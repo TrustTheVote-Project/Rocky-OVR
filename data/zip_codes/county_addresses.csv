@@ -1,0 +1,2324 @@
+COUNTY,STREET 1,STREET 2,CITY,STATE,ZIP,PHONE
+Adams ,117 Baltimore Street,Room 106,Gettysburg,PA,17325,(717) 337-9832
+Allegheny ,542 Forbes Avenue,Suite 609,Pittsburgh,PA,15219-2913,(412) 350-4500
+Armstrong ,Administration Building - 450 E. Market Street,Suite 207,Kittanning,PA,16201,(724 )548-3222
+Beaver ,810 Third Street,,Beaver,PA,15009,(724) 770-4440
+Bedford ,200 S. Juliana Street,3rd Floor,Bedford,PA,15522,(814) 623-4807
+Berks ,633 Court Street,,Reading,PA,19601,(610) 478-6490
+Blair ,423 Allegheny Street,Suite 043,Hollidaysburg,PA,16648-2022,(814) 693-3150
+Bradford ,6 Court Street,Suite 2,Towanda,PA,18848,(570) 265-1717
+Bucks ,55 E. Court Street,,Doylestown,PA,18901-4318,(215) 348-6163
+Butler ,PO Box 1208,,Butler,PA,16003,(724) 284-5308
+Cambria ,200 S. Center Street,,Ebensburg,PA,15931,(814) 472-1464
+Cameron ,20 E. Fifth Street,,Emporium,PA,15834-1469,(814) 486-9322
+Carbon ,76 Susquehanna Street,PO Box 170,Jim Thorpe,PA,18229-0170,(570) 325-4801
+Centre ,420 Holmes Street,Willowbank Office Building,Bellefonte,PA,16823-1486,(814) 355-6703
+Chester ,"601 Westtown Road, Suite 150",PO Box 2747,West Chester,PA,19380-0990,(610) 344-6410
+Clarion ,330 Main Street,Room 103,Clarion,PA,16214,(814) 226-4000 EXT. 2205
+Clearfield ,212 E. Locust Street,Suite 106,Clearfield,PA,16830,(814) 765-2641
+Clinton ,232 E. Main Street,Garden Building 3rd Floor,Lock Haven,PA,17745-1385,(570) 893-4019
+Columbia ,PO Box 380,,Bloomsburg,PA,17815-0380,(570) 389-5640
+Crawford ,903 Diamond Park,,Meadville,PA,16335,(814) 333-7306
+Cumberland ,310 Allen Road,Suite 101,Carlisle,PA,17013-3044,(717) 240-6385
+Dauphin ,PO Box 1295,,Harrisburg,PA,17108-1295,(717) 780-6360
+Delaware ,Government Center Building,201 W. Front Street,Media,PA,19063-2728,(610) 891-4659
+Elk ,300 Centers Street,PO Box 448,Ridgeway,PA,15853-0448,(814) 776-5337
+Erie ,140 W. 6 Street,Room 112,Erie,PA,16501,(814) 451-6276
+Fayette ,22 E. Main Street,Public Service Building,Uniontown,PA,15401,(724) 430-1289
+Forest ,526 Elm Street,Box 3,Tionesta,PA,16353,(814) 755-3537
+Franklin ,157 Lincoln Way East,,Chambersburg,PA,17201-2211,(717) 261-3886
+Fulton ,116 W. Market Street,Suite 203,McConnellsburg,PA,17233,(717) 485-3691
+Greene ,93 E. High Street,Room 102,Waynesburg,PA,15370,(724) 852-5230
+Huntingdon ,233 Penn Street,Courthouse,Huntingdon,PA,16652-1486,(814) 643-3091 EXT. 205
+Indiana ,825 Philadelphia Street,,Indiana,PA,15701-3934,(724) 465-3852
+Jefferson ,155 Main Street,Jefferson Place,Brookville,PA,15825-1269,(814) 849-1605
+Juniata ,1 North Main Street,PO Box 68,Mifflintown,PA,17059,(717) 436-7706
+Lackawanna ,2400 Stafford Avenue,PO Box 4524,Scranton,PA,18505,(570) 963-6737
+Lancaster ,150 N. Queen Street,Suite 117,Lancaster,PA,17603-3562,(717) 299-8293
+Lawrence ,430 Court Street,,New Castle,PA,16101,(724) 656-2161
+Lebanon ,400 S. 8th Street,"Room 209, Municipal Building",Lebanon,PA,17042,(717) 228-4428
+Lehigh ,17 S. 7th Street,,Allentown,PA,18101-2401,(610) 782-3194
+Luzerne ,20 N. Pennsylvania Avenue,Suite 207,Wilkes-Barre,PA,18701-3505,(570) 825-1715
+Lycoming ,48 W. Third Street,,Williamsport,PA,17701-9536,(570) 327-2267
+McKean ,500 W. Main Street,Courthouse,Smethport,PA,16749,(814) 887-3203
+Mercer ,5 Courthouse,,Mercer,PA,16137-1227,(724) 662-7542
+Mifflin ,20 N. Wayne Street,,Lewistown,PA,17044,(717) 248-6571
+Monroe ,One Quarker Plaza,Room 105,Stroudsburg,PA,18360,(570) 517-3165
+Montgomery ,Voter Registration,PO Box 311,Norristown,PA,19404-0311,(610) 278-3280
+Montour ,29 Mill Street,,Danville,PA,17821,(570) 271-3000
+Northampton ,670 Wolf Avenue,,Easton,PA,18042,(610) 559-3055
+Northumberland ,320 N. 2nd Street,Suite 1,Sunbury,PA,17801,(570) 988-4208
+Perry ,PO Box 37,,Newbloomfield,PA,17068-0037,(717) 582-2131 EXT. 4110
+Philadelphia ,520 N. Delaware Avenue,5th Floor,Philadelphia,PA,19123-4295,(215) 686-1591
+Pike ,506 Broad Street,,Milford,PA,18337,(570) 296-3427
+Potter ,1 N. Main Street,Suite 204,Coudersport,PA,16915,(814) 274-8487
+Schuylkill ,420 N. Centre Street,,Pottsville,PA,17901,(570) 628-1467
+Snyder ,PO Box 217,,Middleburg,PA,17842-0217,(570) 837-4207
+Somerset ,300 N. Center Avenue,Suite 340,Somerset,PA,15501,(814) 445-1549
+Sullivan ,245 Muncy Street,PO Box 157,Laporte,PA,18626,(570) 946-5201
+Susquehanna ,PO Box 218,105 Maple Street,Montrose,PA,18801,(570) 278-4600 EXT. 220
+Tioga ,118 Main Street,,Wellsboro,PA,16901,(570) 723-8230
+Union ,155 N. 15th Street,,Lewisburg,PA,17837-8822,(570) 524-8681
+Venango ,1174 Elk Street,PO Box 831,Franklin,PA,16323-0831,(814) 432-9514
+Warren ,204 4th Avenue,,Warren,PA,16365,(814) 728-3406
+Wayne ,925 Court Street,,Honesdale,PA,18431,(570) 253-5978
+Westmoreland ,2 N. Main Street,Suite 109,Greensburg,PA,15601,(724) 830-3150
+Wyoming ,1 Courthouse Square,,Tunkhannock,PA,18657,(570) 996-2226
+York ,28 East Market Street,,York,PA,17401-1579,(717) 771-9604
+Washington ,100 W Beau Street,Room 206,Washington,PA,15301,(724) 228-6750
+Atlantic ,Commissioner of Registration,"1333 Atlantic Avenue, Suite 400",Atlantic City,NJ,08401-9950,(609) 343-2245
+Bergen ,Superintendent of Elections,"One Bergen County Plaza, Room 380",Hackensack,NJ,07601-9926,201-336-6101
+Burlington ,Commissioner of Registration,PO Box 6000,Mount Holly,NJ,08060-9908,609-265-5111
+Camden ,Superintendent of Registration,PO Box 268,Pennsauken,NJ,08110-9904,(856) 661-3555
+Cape May ,County Board of Elections,PO Box 5000,,NJ,08210-9945,(609) 465-1050
+Cumberland ,Board of Elections,555 Shiloh Pike,Bridgeton,NJ,08302-9900,(856) 453-5801
+Essex ,Commissioner of Registration,"Hall of Records - 465 Martin Luther King Jr Blvd, Room 417A",Newark,NJ,07102-9852,(973) 621-5061
+Gloucester ,Superintendent of Elections,PO Box 352,Woodbury,NJ,08096-9946,(856) 384-4500
+Hudson ,Hudson County Plaza - 257 Cornelison Avenue,4th Floor,Jersey City,NJ,07302-9961,(201) 369-7791
+Hunterdon ,Permanent Registration Office - 71 Main Street                             ,PO Box 2900,Flemington,NJ,08822-9895,(908) 788-1190
+Mercer ,Commissioner of Registration,PO Box 8068,Trenton,NJ,08650-9905,(609) 989-6750
+Middlesex ,Commissioner of Registration,777 Jersey Avenue,New Brunswick,NJ,08901-9896,(732) 745-3471
+Monmouth ,Commissioner of Registration,PO Box 1267,Freehold,NJ,07728-9930,(732) 431-7780
+Morris ,Commissioner of Registration,PO Box 900,Morristown,NJ,07963-9912,(973) 285-6715
+Ocean ,Board of Election,PO Box 2006,Toms River,NJ,08754-9914,(732) 929-2167
+Passaic ,Commissioner of Registration,"317 Pennsylvania Avenue, Suite 1",Paterson,NJ,07503-9926,(973) 881-4515
+Salem ,Board of Elections,94 Market Street,Salem,NJ,08079-9855,(856) 935-7510 EXT. 8331
+Somerset ,Administration Building - 20 Grove Street,PO Box 3000,Somverville,NJ,08876-9897 ,(908) 231-7084
+Sussex ,83 Spring Street,Suite 305,Newton,NJ,07860-9808,(973) 579-0950
+Union ,271 North Broad Street,Floor 2,Elizabeth,NJ,07208-9867,(908) 527-4123
+Warren ,Board of Elections,"413 2nd Street, Suite 1",Belvidere,NJ,07823-9984,(908) 475-6313
+Adams,210 West Broadway Avenue,Suite 200,Ritzville,Washington,99169-1897,509-659-3249
+Asotin,P.O. Box 129,,Asotin,Washington,99402-0129,509-243-2084
+Benton,P.O. Box 470,,Prosser,Washington,99350-0470,509-736-3085
+Chelan,P.O. Box 4670,,Wenatchee,Washington,98807-0400,509-667-6808
+Clallam,223 E 4th Street,Suite #1,Port Angeles,Washington,98362-3026,360-417-2221
+Clark,P.O. Box 8815,,Vancouver,Washington,98666-8815,360-397-2345
+Columbia,341 East Main Street,Suite 3,Dayton,Washington,99328-1361,509-382-4541
+Cowlitz,207 4th Avenue N. ,Room 107,Kelso,Washington,98626-4124,360-577-3005
+Douglas,P.O. Box 456,,Waterville,Washington,98858-0456,509-745-8527 ext 6407
+Ferry,350 E. Delaware Avenue,#2,Republic,Washington,99166-9747,509-775-5200
+Franklin,P.O. Box 1451,,Pasco,Washington,99301-1451,509-545-3538
+Garfield,P.O. Box 278,,Pomeroy,Washington,99347-0278,509-843-1411
+Grant,P.O. Box 37,,Ephrata,Washington,98823-0037,509-754-2011 ext. 423
+Grays Harbor,100 Broadway Avenue W.,Suite 2,Montesano,Washington,98563-3614,(360) 964-1556
+Island,P.O. Box 1410,,Coupeville,Washington,98239-1410,360-679-7366
+Jefferson,P.O. Box 563,,Port Townsend,Washington,98368-0563,360-385-9117
+King,919 Southwest Grady Way,,Renton,Washington,98057-2906,206-296-8683
+Kitsap,619 Division Street,,Port Orchard,Washington,98366-4678,360-337-7128
+Kittitas,205 W. 5th Ave ,Suite 105,Ellensburg,Washington,98926-2891,509-962-7503
+Klickitat,205 S. Columbus Avenue,MS 2,Goldendale,Washington,98620-9280,509-773-4001
+Lewis,P.O. Box 29,,Chehalis,Washington,98532-0029,360-740-1278
+Lincoln,P.O. Box 28,,Davenport,Washington,99122-0028,509-725-4971
+Mason,P.O. Box 400,,Shelton,Washington,98584-0400,360-427-9670 ext.469
+Okanogan,P.O. Box 1010,,Okanogan,Washington,98840-1010,509-422-7240
+Pacific,P.O. Box 97,,South Bend,Washington,98586-0097,360-875-9317
+Pend Oreille,P.O. Box 5015,,Newport,Washington,99156-5015,509-447-3185
+Pierce,2501 S. 35th Street ,Suite C,Tacoma,Washington,98409-7484,253-798-7430 
+San Juan,P.O. Box 638,,Friday Harbor,Washington,98250-0638,360-378-3357
+Skagit,P.O. Box 1306,,Mount Vernon,Washington,98273-1306,360-336-9305
+Skamania,P.O. Box 790,,Stevenson,Washington,98648-0790,509-427-3730
+Snohomish,3000 Rockefeller Avenue ,#505,Everett,Washington,98201-4060,425-388-3444
+Spokane,1033 W. Gardner Ave,,Spokane,Washington,99260-0020,509-477-2320
+Stevens,215 South Oak Street, Rm. 106,Colville,Washington,99114-2836,509-684-7514
+Thurston,2000 Lakeridge Drive S.W.,,Olympia,Washington,98502-6090,360-786-5408
+Wahkiakum,P.O. Box 543,,Cathlamet,Washington,98612-0543,360-795-3219
+Walla Walla,P.O. Box 2176,,Walla Walla,Washington,99362-0356,509-524-2530
+Whatcom,311 Grand Avenue,Suite 103,Bellingham,Washington,98225-4038,360-676-6742
+Whitman,P.O. Box 191,,Colfax,Washington,99111,509-397-5284
+Yakima,P.O. Box 12570,,Yakima,Washington ,98901-2639,509-574-1340
+Alachua,111 Southeast 1st Avenue,,Gainesville                   ,Florida,32601,352-374-5252
+Baker,P.O. Box 505                                       ,,Macclenny                     ,Florida,32063,904-259-6339
+Bay,830 West 11th Street,,Panama City                   ,Florida,32401,850-784-6100
+Bradford,P.O. Box 58                                        ,,Starke                        ,Florida,32091,904-966-6266
+Brevard,P.O. Box 410819                                    ,,Melbourne                     ,Florida,32941,321-264-6740
+Broward,P.O. Box 029001                                    ,,Fort Lauderdale               ,Florida,33302,954-357-7050
+Calhoun,"20859 Central Avenue East,  Room 117",,Blountstown                   ,Florida,32424,850-674-8568
+Charlotte,"226 Taylor Street, Unit 120",,Punta Gorda                   ,Florida,33950,941-833-5400
+Citrus,120 North Apopka Avenue,,Inverness                     ,Florida,34450,352-341-6740
+Clay,P.O. Box 337                                       ,,Green Cove Springs            ,Florida,32043,904-269-6350
+Collier,"Rev Dr MLK Bldg, 3295 Tamiami Trl E",,Naples                        ,Florida,34112,239-252-8450
+Columbia,"971 W. Duval Street, Suite 102",,Lake City                     ,Florida,32055,386-758-1026
+DeSoto,P.O. Box 89                                        ,,Arcadia                       ,Florida,34265,863-993-4871
+Dixie,P.O. Box 2057                                      ,,Cross City                    ,Florida,32628,352-498-1216
+Duval,105 East Monroe Street,,Jacksonville                  ,Florida,32202,904-630-1414
+Escambia,P.O. Box 12601                                     ,,Pensacola                     ,Florida,32591,850-595-3900
+Flagler,P.O. Box 901                                       ,,Bunnell                       ,Florida,32110,386-313-4170
+Franklin,47 Avenue F                                       ,,Apalachicola                  ,Florida,32320,850-653-9520
+Gadsden,P.O. Box 186                                       ,,Quincy                        ,Florida,32353,850-627-9910
+Gilchrist,"112 South Main Street, Room 128    ",,Trenton                       ,Florida,32693,352-463-3194
+Glades,P.O. Box 668                                       ,,Moore Haven                   ,Florida,33471,863-946-6005
+Gulf,401 Long Avenue,,Port St Joe                   ,Florida,32456,850-229-6117
+Hamilton,1153 US Hwy 41 NW ,Suite 1,Jasper                        ,Florida,32052,386-792-1426
+Hardee,311 N. 6th Avenue,,Wauchula                      ,Florida,33873,863-773-6061
+Hendry,P.O. Box 174                                       ,,LaBelle                       ,Florida,33975,863-675-5230
+Hernando,"20 North Main Street, Room 165               ",,Brooksville                   ,Florida,34601,352-754-4125
+Highlands,P.O. Drawer 3448                                   ,,Sebring                       ,Florida,33871,863-402-6655
+Hillsborough,County Center," 601 E. Kennedy Blvd, 16th Floor",Tampa                         ,Florida,33602,813-272-5850
+Holmes,"201 North Oklahoma Street, Ste 102     ",,Bonifay                       ,Florida,32425,850-547-1107
+Indian River,4375 43rd Avenue,,Vero Beach                    ,Florida,32967,772-226-3440
+Jackson,P.O. Box 6046                                      ,,Marianna                      ,Florida,32447,850-482-9652
+Jefferson,380 West Dogwood Street,,Monticello                    ,Florida,32344,850-997-3348
+Lafayette,P.O. Box 76                                        ,,Mayo                          ,Florida,32066,386-294-1261
+Lake,P.O. Box  457                                      ,,Tavares                       ,Florida,32778,352-343-9734
+Lee,P.O. Box 2545                                      ,,Fort Myers                    ,Florida,33902,239-533-8683
+Leon,P.O. Box 7357                                     ,,Tallahassee                   ,Florida,32314,850-606-8683
+Levy,421 South Court Street,,Bronson                       ,Florida,32621,352-486-5163
+Liberty,P.O. Box 597                                      ,,Bristol                       ,Florida,32321,850-643-5226
+Madison,239  SW Pinckney Street,,Madison                       ,Florida,32340,850-973-6507
+Manatee,P.O. Box 1000                                     ,,Bradenton                     ,Florida,34206,941-741-3823
+Marion,P.O. Box 289                                       ,,Ocala                         ,Florida,34478,352-620-3290
+Martin,P.O. Box 1257                                      ,,Stuart                        ,Florida,34995,772-288-5637
+Miami-Dade,P.O. Box 521550                                   ,,Miami                         ,Florida,33152,305-499-8683
+Monroe,"530 Whitehead Street, Suite 101",,Key West                      ,Florida,33040,305-292-3416
+Nassau,"96135 Nassau Place, Suite 3    ",,Yulee                         ,Florida,32097,904-491-7500
+Okaloosa,"302 Wilson St N., Suite 102",,Crestview                     ,Florida,32536,850-689-5600
+Okeechobee,"304 NW 2nd Street, Rm 144",,Okeechobee                    ,Florida,34972,863-763-4014
+Orange,P.O. Box 562001                                    ,,Orlando                       ,Florida,32856,407-836-2070
+Osceola,2509 E Irlo Bronson Memorial Hwy   ,,Kissimmee                     ,Florida,34744,407-742-6000
+Palm Beach,P.O. Box 22309                                     ,,West Palm Beach               ,Florida,33416,561-656-6200
+Pasco,P.O. Box 300                                       ,,Dade City                     ,Florida,33526,352-521-4302
+Pinellas,13001 Starkey Road,,Largo                         ,Florida,33773,727-464-6108
+Polk,P.O. Box 1460                                      ,,Bartow                        ,Florida,33831,863-534-5888
+Putnam,"2509 Crill Ave, Suite 900",,Palatka                       ,Florida,32177,386-329-0224
+Santa Rosa,"6495 Caroline Street, Suite F                     ",,Milton                        ,Florida,32570,850-983-1900
+Sarasota,P.O. Box 4194                                      ,,Sarasota                      ,Florida,34230,941-861-8600
+Seminole,P.O. Box 1479                                      ,,Sanford                       ,Florida,32773,407-708-7700
+Street Johns,"4455 Avenue A, Suite 101",,Street Augustine                 ,Florida,32095,904-823-2238
+Street Lucie,4132 Okeechobee Rd   ,,Fort Pierce                   ,Florida,34947,772-462-1500
+Sumter,900 N. Main Street,,Bushnell                      ,Florida,33513,(352) 569-1540
+Suwannee,220 Pine Avenue S.W.,,Live Oak                      ,Florida,32064,386-362-2616
+Taylor,P.O. Box 1060                                      ,,Perry                         ,Florida,32348,850-838-3515
+Union,175 West Main Street,,Lake Butler                   ,Florida,32054,386-496-2236
+Volusia,125 W. New York Avenue,,DeLand                        ,Florida,32720,386-736-5930
+Wakulla,P.O. Box 305                                       ,,Crawfordville                 ,Florida,32326,850-926-7575
+Walton,571 US Hwy 90 E          ,,DeFuniak Springs              ,Florida,32433,850-892-8112
+Washington,"1331 South Blvd, Suite 900",,Chipley                       ,Florida,32428,850-638-6230
+Adams,215 N. Cross Street,Room 103,West Union,Ohio,45693,(937) 544-2633 
+Allen,204 N. Main Street,Lower Level,Lima,Ohio,45801,(419) 223-8530
+Ashland,110 Cottage Street,,Ashland,Ohio,44805,(419) 282-4224
+Ashtabula,8 W. Walnut Street,,Jefferson,Ohio,44047,(440) 576-6915
+Athens,15 S. Court Street,Room 130,Athens,Ohio,45701,(740) 592-3201
+Auglaize,209 S. Blackhoof,Room 205,Wapakoneta,Ohio,45895,(419) 739-6720
+Belmont,103 Plaza Drive,Suite B,Street Clairsville,Ohio,43950,(740) 526-0188
+Brown,800 Mt. Orab Pike,Suite 111,Georgetown,Ohio,45121,(937) 378-3008
+Butler,1802 Princeton Road,Suite 600,Hamilton,Ohio,45011,(513) 887-3700
+Carroll,119 S. Lisbon Street,Suite 102,Carrollton,Ohio,44615,(330) 627-2610
+Champaign,1512 South U.S. Hwy 68,Suite L100,Urbana,Ohio,43078,(937) 484-1575
+Clark,3130 E. Main Street,,Springfield,Ohio,45505,(937) 521-2120
+Clermont,76 S. Riverside Drive,,Batavia,Ohio,45103,(513) 732-7275
+Clinton,46 S. South Street,Room 126,Wilmington,Ohio,45177,(937) 382-3537
+Columbiana,7989 Dickey Drive,Suite 3,Lisbon,Ohio,44432, (330) 424-1448
+Coshocton,724 S. Seventh St,Room 100,Coshocton,Ohio,43812,(740) 622-1117
+Crawford,130 N. Walnut Street,Suite A,Bucyrus,Ohio,44820,(419) 562-8721
+Cuyahoga,2925 Euclid Avenue,,Cleveland,Ohio,44115, (216) 443-3200
+Darke,300 Garst Avenue,Suite 7,Greenville,Ohio,45331,(937) 548-1835 
+Defiance,1300 E. Second Street,Suite 103,Defiance,Ohio,43512,(419) 782-8543
+Delaware,2079 U.S. 23 North,,Delaware,Ohio,43015, (740) 833-2080
+Erie,2900 Columbus Avenue,Room 101,Sandusky,Ohio,44870,(419) 627-7601
+Fairfield,951 Liberty Drive,,Lancaster,Ohio,43130,(740) 652-7000 
+Fayette,135 S. Main Street,,Washington Court House,Ohio,43160,(740) 335-1190
+Franklin,280 E. Broad Street,Room 100,Columbus,Ohio,43215,(614) 525-3100 
+Fulton,135 Court House Plaza,,Wauseon,Ohio,43567, (419) 335-6841
+Gallia,18 Locust Street,2nd Floor,Gallipolis,Ohio,45631,(740) 446-1600
+Geauga,470 Center Street - Building 6A,,Chardon,Ohio,44024,(440) 279-2030
+Greene,551 Ledbetter Road,,Xenia,Ohio,45385,(937) 562-6170
+Guernsey,627 Wheeling Avenue,Suite 101,Cambridge,Ohio,43725, (740) 432-2680 
+Hamilton,824 Broadway,,Cincinnati,Ohio,45202,(513) 632-7000
+Hancock,201 E. Lincoln Street,,Findlay,Ohio,45840,(419) 422-3245 
+Hardin,One Court House Square,Suite 40,Kenton,Ohio,43326,(419) 674-2211 
+Harrison,538 N. Main Street,Suite B,Cadiz,Ohio,43907,(740) 942-8866 
+Henry,1827 Oakwood Avenue,,Napoleon,Ohio,43545,(419) 592-7956 
+Highland,1575 N. High Street,Suite 200,Hillsboro,Ohio,45133,(937) 393-9961 
+Hocking,93 W. Hunter Street,,Logan,Ohio,43138, (740) 380-8683
+Holmes,75 E. Clinton Street,Suite 108,Millersburg,Ohio,44654,(330) 674-5921 
+Huron,180 Milan Avenue,Suite 4,Norwalk,Ohio,44857,(419) 668-8238
+Jackson,275 Portsmouth Street,Suite 2,Jackson,Ohio,45640,(740) 286-2905
+Jefferson,117 N. Third Street,,Steubenville,Ohio,43952,(740) 283-8522 
+Knox,117 E. High Street,Suite 210,Mt. Vernon,Ohio,43050,(740) 393-6716 
+Lake,105 Main Street,,Painesville,Ohio,44077,(440) 350-2700 
+Lawrence,111 S. Fourth Street,,Ironton,Ohio,45638, (740) 532-0444
+Licking,20 S. Second Street,,Newark,Ohio,43055,(740) 670-5080
+Logan,225 S. Main Street,,Bellefontaine,Ohio,43311,(937) 599-7255
+Lorain,1985 North Ridge Road E,,Lorain,Ohio,44055,(440) 326-5900
+Lucas,One Government Center,Suite 300,Toledo,Ohio,43604,(419) 213-4001 
+Madison,1423 State Route 38 SE,,London,Ohio,43140,(740) 852-9424 
+Mahoning,345 Oak Hill Avenue,,Youngstown,Ohio,44502,(330) 783-2474
+Marion,222 W. Center Street,,Marion,Ohio,43302,(740) 223-4090 
+Medina,4210 N. Jefferson Street,,Medina,Ohio,44256,(330) 722-9278 
+Meigs,117 E. Memorial Drive,Suite 1,Pomeroy,Ohio,45769, (740) 992-2697 
+Mercer,101 N. Main Street,Room 107,Celina,Ohio,45822,(419) 586-2215 
+Miami,215 W. Main Street,,Troy,Ohio,45373,(740) 992-2697 
+Monroe,117 North Main Street,Suite 12,Woodsfield,Ohio,43793,(740) 472-0929 
+Montgomery,451 W. Third Street,,Dayton,Ohio,45422,(937) 225-5656 
+Morgan,155 E. Main Street,Room 157 ,McConnelsville,Ohio,43756,(740) 962-3116 
+Morrow,619 W. Marion Road,Room 146,Mt. Gilead,Ohio,43338, (419) 946-4026 
+Muskingum,205 N. Seventh Street,,Zanesville,Ohio,43701, (740) 455-7120 
+Noble,140 Court House,,Caldwell,Ohio,43724,(740) 732-2057 
+Ottawa,8444 W. State Route 163,Suite 101,Oak Harbor,Ohio,43449,(419) 898-3071 
+Paulding,105 E. Perry Street,,Paulding,Ohio,45879,(419) 399-8230
+Perry,121 W. Brown Street,,New Lexington,Ohio,43764, (740) 342-2134
+Pickaway,141 W. Main Street,Suite 800,Circleville,Ohio,43113,(740) 474-1100 
+Pike,230 Waverly Plaza,Suite 1100,Waverly,Ohio,45690,(740) 947-4512
+Portage,449 S. Meridian Street,Room 101,Ravenna,Ohio,44266, (330) 297-3511
+Preble,101 E. Main Street,,Eaton,Ohio ,45320,(937) 456-8117
+Putnam,336 E. Main Street,Suite A,Ottawa,Ohio,45875,(419) 523-3343 
+Richland,1495 W. Longview Avenue,Suite 101,Mansfield,Ohio,44906,(419) 774-5530
+Ross,475 Western Avenue,Suite D,Chillicothe,Ohio,45601, (740) 775-2350 
+Sandusky,2020 Countryside Drive,,Fremont,Ohio,43420,(419) 334-6180 
+Scioto,602 7th Street,Room 105,Portsmouth,Ohio,45662,(740) 353-4178
+Seneca,71 S. Washington Street,Suite 1101,Tiffin,Ohio,44883,(419) 447-4424
+Shelby,230 E. Court Street,,Sidney,Ohio,45365, (937) 498-7207 
+Stark,201 Third Street NE,,Canton,Ohio,44702,(330) 451-8683 
+Summit,470 Grant Street,,Akron,Ohio,44311, (330) 643-5200 
+Trumbull,"2947 Youngstown Road, SE",,Warren,Ohio,44484, (330) 369-4050 
+Tuscarawas,101 E. High Avenue,,New Philadelphia,Ohio,44663,(330) 343-8819
+Union,940 London Avenue,Suite 1000,Marysville,Ohio,43040,(937) 642-2836 
+Van Wert,120 E. Main Street,,Van Wert,Ohio,45891,(419) 238-4192
+Vinton,31935 SR 93,,McArthur,Ohio,45651,(740) 596-5855 
+Warren,406 Justice Drive,Room 323,Lebanon,Ohio,45036, (513) 695-1358 
+Washington,204 Davis Avenue,Suite B,Marietta,Ohio,45750,(740) 374-6828 
+Wayne,200 Vanover Street,Suite 1,Wooster,Ohio,44691, (330) 287-5480 
+Williams,228 S. Main Street,,Bryan,Ohio,43506, (419) 636-1854 
+Wood,1 Court House Sq.,,Bowling Green,Ohio,43402, (419) 354-9120 
+Wyandot,109 S. Sandusky Avenue,Room 12,Upper Sandusky,Ohio,43351,(419) 294-1226 
+Adams,4430 S. Adams County Parkway,Suite E3102,Brighton,Colorado,80601-8207,(720) 523-6500
+Alamosa,P.O. Box 630,,Alamosa,Colorado,81101-0630,(719) 589-6681 
+Arapahoe,5334 S. Prince Street,,Littleton,Colorado,80120-1136,(303) 795-4511
+Archuleta,P.O. Box 2589,,Pagosa Springs,Colorado,81147-2589,(970) 264-8350
+Baca,741 Main Street,,Springfield,Colorado,81073-1548,(719) 523-4372
+Bent,P.O. Box 350,,Las Animas,Colorado,81054-0350,(719) 456-2009
+Boulder,1750 33rd Street,Suite 200,Boulder,Colorado,80301-2546,(303) 413-7740
+Broomfield,1 DesCombes Drive,,Broomfield,Colorado,80020-2495,(303) 464-5857
+Chaffee,P.O. Box 699,,Salida,Colorado,81201-1566,(719) 539-4004
+Cheyenne,P.O. Box 567,,Cheyenne Wells,Colorado,80810-0567,(719) 767-5685
+Clear Creek,P.O. Box 2000,,Georgetown,Colorado,80444-2000,(303) 679-2339
+Conejos,P.O. Box 127,,Conejos,Colorado,81129-0127,(719) 376-5422
+Costilla,P.O. Box 308,,San Luis,Colorado,81152-0308,(719) 672-3301
+Crowley,631 Main Street,Suite 102,Ordway,Colorado,81063,(719) 267-5225
+Custer,P.O. Box 150,,West Cliff,Colorado,81252-0150,(719) 783-2441
+Delta,501 Palmer,Suite 211,Delta,Colorado,81416-1764,(970) 874-2449
+Denver,200 W. 14th Avenue,Suite 100,Denver,Colorado,80204,(720) 913-8683
+Dolores,P.O. Box 58,,Dove Creek,Colorado, 81324-0058,(970) 677-2381
+Douglas,125 Stephanie Place,,Castle Rock,Colorado, 80109-1520,(303) 660-7444
+Eagle,P.O. Box 537,,Eagle,Colorado,81631-0537,(970) 328-8715
+Elbert,P.O. Box 37,,Kiowa,Colorado,80117-0037,(303) 621-3127
+El Paso,P.O. Box 2007,,Colorado Springs,Colorado,80907-9444,(719) 575-8683
+Fremont,615 Macon Avenue,Room 102,Canon City ,Colorado,81212-3381,(719) 276-7340
+Garfield,109 8th Street,Suite 200,Glenwood Springs,Colorado,81601-3303,(970) 384-3700
+Gilpin,P.O. Box 429,,Central City ,Colorado,80427-0429,(303) 582-5321
+Grand,P.O. Box 120,,Hot Sulphur Springs,Colorado,80451-0120,(970) 725-3347
+Gunnison,221 N. Wisconsin Street,Suite C,Gunnison,Colorado, 81230-2433,(970) 641-7927
+Hinsdale,P.O. Box 9,,Lake City,Colorado,81235-0009,(970) 944-2228
+Huerfano,401 Main Street,Suite 204,Walsenburg,Colorado, 81089-2085,(719) 738-2380
+Jackson,P.O. Box 337,,Walden,Colorado,80480-0337,(970) 723-4334
+Jefferson,3500 Illinois Street,Suite 1100,Golden,Colorado,80401,(303) 271-8111
+Kiowa,P.O. Box 37,,Eads,Colorado,81036-0037,(719) 438-5421
+Kit Carson,251 16th Street ,Suite 203,Burlington,Colorado,80807-1674,(719) 346-8638
+Lake,P.O. Box 917,,Leadville,Colorado,80461-0917,(719) 486-1410
+La Plata,98 Everett Street,Suite C,Durango,Colorado,81303,(970) 382-6296
+Larimer,P.O. Box 1547,,Ft. Collins,Colorado,80521-2713,(970) 498-7820
+Las Animas,P.O. Box 115,,Trinidad,Colorado,81082-0115,(719) 845-2568
+Lincoln,P.O. Box 67,,Hugo,Colorado,80821-0067,(719) 743-2444
+Logan,315 Main Street,Suite 3,Sterling,Colorado,80751-4357,(970) 522-1544
+Mesa,P.O. Box 20000,,Grand Junction ,Colorado,81502-5006,(970) 244-1662
+Mineral,P.O. Box 70,,Creede,Colorado,81130-0070,(719) 658-2440
+Moffat,221 West Victory Way,Suite 200,Craig,Colorado,81625-2716,(970) 824-9120
+Montezuma,109 West Main St,Room 108,Cortez,Colorado,81321-3189,(970) 565-3728
+Montrose,P.O. Box 1289,,Montrose,Colorado,81402-1289,(970) 249-3362 ext. 3
+Morgan,P.O. Box 1399,,Ft. Morgan,Colorado,80701-1399,(970) 542-3521
+Otero,P.O. Box 511,,La Junta,Colorado,81050-0511,(719) 383-3020
+Ouray,P.O. Box C,,Ouray,Colorado, 81427-0615,(970) 325-4961
+Park,P.O. Box 220,,Fairplay,Colorado,80440-0220,(719) 836-4333
+Phillips,221 South Interocean Avenue,,Holyoke,Colorado,80734-1521,(970) 854-3131
+Pitkin,530 East Main St,Suite 101,Aspen,Colorado,81611-1948,(970) 920-5180
+Prowers,301 S. Main St,Suite 210,Lamar,Colorado,81052-2868,(719) 336-8011
+Pueblo,P.O. Box 480,,Pueblo,Colorado,81002-0480,(719) 583-6620
+Rio Blanco,P.O. Box 1067,,Meeker,Colorado,81641-1067,(970) 878-9460
+Rio Grande,P.O. Box 160,,Del Norte,Colorado,81132-0160,(719) 657-3334
+Routt,P.O. Box 773598,,Steamboat Springs,Colorado,80477-3599,(970) 870-5556
+Saguache,P.O. Box 176,,Saguache,Colorado,81149-0176,(719) 655-2512
+San Juan,P.O. Box 466,,Silverton,Colorado,81433-0466,(970) 387-5671
+San Miguel,P.O. Box 548,,Telluride,Colorado,81435-0548,(970) 728-3954
+Sedgwick,315 Cedar Street,Suite 220,Julesburg,Colorado,80737-1563,(970) 474-3346
+Summit,P.O. Box 1538,,Breckenridge,Colorado,80424-1538,(970) 453-3479
+Teller,P.O. Box 1010,,Cripple Creek,Colorado,80813-1010,"(719) 689-2951, option 5"
+Washington,P.O. Box L ,,Akron,Colorado,80720-0380,(970) 345-6565
+Weld,1402 N. 17th Avenue,,Greeley,Colorodo,80631-9563,(970) 304-6525 ext. 3070
+Yuma,310 Ash Street,Suite F,Wray,Colorado,80758-1850,(970) 332-5809
+Alameda,11225 Fallon Street,Room G-1,Oakland,CA,94612,510-272-6933
+Alpine,P.O. Box 158,,Markleeville,CA,96120,530-694-2281
+Amador,810 Court Street,,Jackson,CA,95642,209-223-6465
+Butte,25 County Center Drive,Suite 110,Oroville,CA,95965,530-538-7761
+Calaveras,891 Mountain Ranch Road,,San Andreas,CA,95249,209-754-6376
+Colusa,546 Jay Street,Suite 200,Colusa,CA,95932,530-458-0500
+Contra Cosa,P.O. Box 271,,Martinez,CA,94553,925-335-7800
+Del Norte,981 H Street,Room 160,Crescent City,CA,95531,707-464-7216
+El Dorado,P.O. Box 678001,,Placerville,CA,95667,530-621-7480
+Fresno,2221 Kern Street,,Fresno,CA,93721,559-600-8683
+Glenn,516 W. Sycamore Street,,Willows,CA,95988,530-934-6414
+Humboldt,3033 H. Street,Room 20,Eureka,CA,95501,707-445-7481
+Imperial,940 Main Street,Suite 206,El Centro,CA,92243,760-482-4226
+Inyo,P.O. Drawer F,,Independence,CA,93526,760-878-0224
+Kern,1115 Truxtun Avenue,,Bakersfield,CA,93301,661-868-3590
+Kings,1400 West Lacey Boulevard,,Hanford,CA,93230,559-582-3211 ext. 4401
+Lake,255 North Forbes Street,,Lakeport,CA,95453,707-263-2372
+Lassen,220 South Lassen Street,Suite 5,Susanville,CA,96130,530-251-8217
+Los Angeles,P.O. Box 1024,,Norwalk,CA,90651-1024,562-466-1310
+Madera,200 W. 4th Street,,Madera,CA,93637,559-675-7720
+Marin,P.O. Box E,,San Rafael,CA,94913-3904,415-473-6456
+Mariposa,P.O. Box 247,,Mariposa,CA,95338,209-966-2007
+Mendocino,501 Low Gap Road,Room 1020,Ukiah,CA,95492,707-463-4371
+Merced,"2222 ""M"" Street",Room 14,Merced,CA,95340,209-385-7541
+Modoc,204 S. Court Street,,Alturas,CA,96101,530-233-6205
+Mono,P.O. Box 237,,Bridgeport,CA,93517,760-932-5537
+Monterey,P.O. Box 4400,,Salinas,CA,93912,831-796-1499
+Napa,900 Combs Street,Suite 256,Napa,CA,94559,707-253-4321
+Nevada,950 Maidu Avenue,,Nevada City,CA,95959,530-265-1298
+Orange,P.O. Box 11298,,Santa Ana,CA,92711,714-567-7600
+Placer,P.O. Box 5278,,Auburn,CA,95604,530-886-5650
+Plumas,520 Main Street,Room 102,Quincy,CA,95971,530-283-6256
+Riverside,2724 Gateway Drive,,Riverside,CA,92507,951-486-7200
+Sacramento,7000 65th Street,Suite A,Sacramento,CA,95823,916-875-6451
+San Benito,"Courthouse, Room 206",440 Fifth Street,Hollister,CA,95023,831-636-4029
+San Bernardino,777 East Rialto Avenue,,San Bernardino,CA,92415,909-387-8300
+San Diego,P.O. Box 85656,,San Diego,CA,92186-5656,858-565-5800
+San Francisco,City Hall - 1 Dr. Carlton B. Goodlett Place,Room 48,San Francisco,CA,94102,415-554-4375
+San Joaquin,P.O. Box 810,,Stockton,CA,95201,209-468-2885
+San Luis Obispo,1055 Monterey Street,Room D-120,San Luis Obispo,CA,93408,805-781-5228
+San Mateo,40 Tower Road,,San Mateo,CA,94402,650-312-5222
+Santa Barbara,P.O. Box 61510,,Santa Barbara,CA,93160-1510,805-568-2200
+Santa Clara,P.O. Box 611360,,San Jose,CA,95161-1360,408-299-8683
+Santa Cruz,701 Ocean Street,Room 210,Santa Cruz,CA,95060,831-454-2060
+Shasta,P.O. Box 990880,,Redding,CA,96099,530-225-5730
+Sierra,P.O. Drawer D,,Downieville,CA,95936,530-289-3295
+Siskiyou,510 North Main Street,,Yreka,CA,96097,530-842-8084
+Solano,675 Texas Street,Suite 2600,Fairfield,CA,94533,707-784-6675
+Sonoma,P.O. Box 11485,,Santa Rosa,CA,95406-1485,707-565-6800
+Stanislaus,1021 I Street,Suite 101,Modesto,CA,95354,209-525-5200
+Sutter,1435 Veterans Memorial Circle,,Yuba City,CA,95993,530-822-7122
+Tehama,P.O. Box 250,,Red Bluff,CA,96080,530-527-8190
+Trinity,P.O. Box 1215,,Weaverville,CA,96093,530-623-1220
+Tulare,5951 South Mooney Road,,Visalia,CA,93277,559-624-7300
+Tuolumne,2 South Green Street,,Sonora,CA,95370,209-533-5570
+Ventura,800 South Victoria Avenue,L-1200,Ventura,CA,93009,805-654-2781
+Yolo,P.O. Box 1820,,Woodland,CA,95776-1820,530-666-8133
+Yuba,915 8th Street,Suite 107,Marysville,CA,95901,530-749-7855
+Accomack,P.O. Box 97,,Accomac,VA,23301,757-787-2935
+Albemarie,PMB 404,536 Pantops Center,Charlottesville,VA,22911,434-972-4173
+Alexandria,132 North Royal Street,Suite 100,Alexandria,VA,22314,703-746-4050
+Alleghany,110 Rosedale Avenue,Suite D,Covington,VA,24426,540-965-1690
+Amelia,P.O. Box 481,,Amelia,VA,23002,804-561-3460
+Amherst,P.O. Box 550,,Amherst,VA,24521,434-946-9315
+Appomattox,P.O. Box 8,,Appomattox,VA,24522,434-352-5302
+Arlington,2100 Clarendon Blvd.,Suite 320,Arlington,VA,22201,703-228-3456
+Augusta,P.O. Box 590,,Verona,VA,24482,540-245-5656
+Bath,P.O. Box 157,,Warm Springs,VA,24484,540-839-7266
+Bedford,County Admin Bldg 122 East Main Street,Suite 204,Bedford,VA,24523,540-586-7649
+Bland,P.O. Box 535,,Bland,VA,24315,276-688-4441
+Botetourt,P.O. Box 62,,Fincastle,VA,24090,540-473-8235
+Bristol,300 Lee Street,,Bristol,VA,24201,276-645-7318
+Brunswick,100 Tobacco Street,Room 103,Lawrenceville,VA,23868,434-848-4414
+Buchanan,P.O. Box 975,,Grundy,VA,24614,276-935-6534
+Buckingham,P.O. Box 222,,Buckingham,VA,23921,434-969-4304
+Buena Vista,2039 Sycamore Avenue,,Buena Vista,VA,24416,540-261-8605
+Campbell,P.O. Box 103,,Rustburg,VA,24588,434-332-9579
+Caroline,P.O. Box 304,,Bowling Greens,VA,22427,804-633-9083
+Carroll,Governmental Center 605-3 Pine Street ,B 110,Hillsville,VA,24342,276-730-3035
+Charles City,P.O. Box 146,,Charles City,VA,23030,804-652-4606
+Charlotte,P.O. Box 118,,Charlotte CH,VA,23923,434-542-5856
+Charlottesville,P.O. Box 911,,Charlottesville,VA,22902,434-970-3250
+Chesapeake,411 Cedar Road,,Chesapeake,VA,23322,757-277-9797
+Chesterfield,P.O. Box 1690,,Chesterfield,VA,23832,804-748-1471
+Clarke,P.O. Box 555,,Berryville,VA,22611,540-955-5168
+Colonial Heights,P.O. Box 3401,,Colonial Heights,VA,23834,804-520-9277
+Covington,515 E. Pine Street,,Covington,VA,24426,540-965-6380
+Craig,P.O. Box 8,,New Castle,VA,24127,540-864-6190
+Culpeper,151 North Main Street,Suite 301,Culpeper,VA,22701,540-864-0652
+Cumberland,P.O. Box 125,,Cumberland,VA,23040,840-492-4504
+Danville City,515 Main Street,,Danville,VA,24541,434-799-6560
+Dickenson,P.O. Box 1306,,Clintwood,VA,24228,276-926-1620
+Dinwiddie,P.O. Box 365,,Dinwiddie,VA,23841,804-469-4500 option 7
+Emporia City,P.O. Box 1092,,Emporia,VA,23847,434-634-9533
+Essex,P.O. Box 1561,,Tappahannock,VA,22560,804-443-4611
+Fairfax,12000 Govt. Ctr. Pkwy,Suite 323,Fairfax,VA,22035,703-222-0776
+Fairfax City,Sisson House,10455 Armstong St,Fairfax,VA,22030,703-385-7890
+Falls Church City,300 Park Avenue,Room 101E,Falls Church,VA,22046,703-248-5085
+Fauquier,32 Waterloo Street,Suite 207,Warrenton,VA,20186,540-422-8290
+Floyd,100 East Main Street,Room 302,Floyd,VA,24091,540-745-9350
+Fluvanna,P.O. Box 44,,Palmyra,VA,22963,434-589-3593
+Franklin,1255 Franklin Street,Suite 106,Rocky Mount,VA,24151,540-483-3025
+Franklin City,P.O. Box 42,,Franklin,VA,23851,757-562-8545
+Frederick,107 North Kent Street,Suite 102,Winchester,VA,22601,540-665-5660
+Fredericksburg City,Executive Plaza 601 Caroline Street,Suite 500-A,Fredericksburg,VA,22401,540-372-1030
+Galax City,P.O. Box 1045,,Galax,VA,24333,276-236-7509
+Giles,201 N. Main Street,Suite 1,Galax,VA,24134,540-921-2802
+Gloucester,P.O. Box 208,,Gloucester,VA,23061,804-693-3659
+Goochland,P.O. Box 1013,,Goochland,VA,23063,804-556-5803
+Grayson,P.O. Box 449,,Independence,VA,24348,276-773-2842
+Greene,P.O. Box 341,,Stanardsville,VA,22973,434-985-5213
+Greensville,P.O. Box 1092,,Emporia,VA,23847,434-348-4228
+Halifax,P.O. Box 400,,Halifax,VA,24558,434-476-3322
+Hampton City,1919 Commerce Drive,Suite 280,Hampton,VA,23666,757-727-6218
+Hanover,P.O. Box 419,,Hanover,VA,23069,804-365-6080
+Harrisonburg City,P.O. Box 20031,,Harrisonburg,VA,22801,540-432-7707
+Henrico,P.O. Box 90775,,Henrico,VA,23273,804-501-4347
+Henry,P.O. Box 7,,Collinsville,VA,24078,276-638-5108
+Highland,P.O. Box 386,,Monterey,VA,24465,540-468-2013
+Hopewell City,309 North 2nd Avenue,,Hopewell,VA,23860,804-541-2232
+Isle of Wright,P.O. Box 77,,Isle of Wright,VA,23397,757-365-6230
+James City,P.O. Box 3567,,Williamsburg,VA,23187,757-253-6868
+King & Queen,P.O. Box 56,,King & Queen CH,VA,23085,804-785-5980
+King George,P.O. Box 1359,,King George,VA,22485,540-775-9186
+King William,P.O. Box 173,,King William,VA,23086,804-769-4952
+Lancaster,P.O. Box 159,,Lancaster,VA,22503,804-462-5277
+Lee,P.O. Box 363,,Jonesville,VA,24263,276-346-7780
+Lexington City,P.O. Box 922,,Lexington,VA,24450,540-462-3706
+Loudoun,"750 Miller Drive, SE",Suite C,Leesburg,VA,20175,703-777-0380
+Louisa,P.O. Box 220,,Louisa,VA,23093,540-967-3427
+Lunenburg,160 Courthouse Sq,,Lunenburg,VA,23952,434-696-3071
+Lynchburg City,3236 Odd Fellows Rd,,Lynchburg,VA,24501,434-847-1609
+Madison,P.O. Box 267,,Madison,VA,22727,540-948-6533
+Manassas City,9025 Center Street,,Manassas,VA,20110,703-257-8230
+Manassas Park City,"City Hall, 1 Park Center Ct.",,Manassas Park,VA,20111,703-335-8806
+Martinsville City,P.O. Box 1323,,Martinsville,VA,24114,276-403-5122
+Mathews,P.O. Box 328,,Mathews,VA,23109,804-725-3200
+Mecklenburg,P.O. Box 436,,Boydton,VA,23917,434-738-6191
+Middlesex,P.O. Box 358,,Saluda,VA,23149,804-758-4420
+Montgomery,755 Roanoke Street,Suite 1F,Christainsburg,VA,24073,540-382-5741
+Nelson,P.O. Box 292,,Lovingston,VA,22949,434-263-4068
+New Kent,P.O. Box 128,,New Kent,VA,23124,804-966-9699
+Newport News City,2400 Washington Ave,,Newport News,VA,23607,757926-8683
+Norfolk City,P.O. Box 1531,,Norfolk,VA,23501,757-664-4353
+Northampton,P.O. Box 510,,Eastville,VA,23347,757-678-0480
+Northumberland,P.O. Box 84,,Heathsville,VA,22473,804-580-4655
+Norton City,P.O. Box 225,,Norton,VA,24273,276-679-1162
+Nottoway,P.O. Box 24,,Nottoway,VA,23955,434-645-8148
+Orange,146 Madison Road,Suite 204,Orange,VA,22960,540-672-5262
+Page,551 Mechanic Street,,Luray,VA,22835,540-743-3986
+Patrick,P.O. Box 635,,Stuart,VA,24171,276-694-7206
+Petersburg City,P.O. Box 1031,,Petersburg,VA,23804,804-733-8071
+Pittsylvania,110 Old Chatham Elementary Lane,,Chatham,VA,24531,434-432-7971
+Poquoson City,500 City Hall Ave,Room 139,Poquoson,VA,23662,757-868-3070
+Portsmouth City,801 Crawford Street,1st Floor,Portsmouth,VA,23704,757-393-8644
+Powhatan,3834 Old Buckingham Rd,Suite G,Powhatan,VA,23139,804-598-5604
+Prince Edward,P.O. Box J,,Farmville,VA,23901,434-392-4767
+Prince George,P.O. Box 34,,Prince George,VA,23875,804-722-8748
+Prince William,9250 Lee Ave,Suite 1,Manassas,VA,20110,703-792-6470
+Pulaski,87 Commerce Street,,Pulaski,VA,24301,540-980-2111
+Radford City,619 2nd Street,,Radford,VA,24141,540-731-3639
+Rappahannock,P.O. Box 236,,Washington,VA,22747,540-675-5380
+Richmond,P.O. Box 1000,,Warsaw,VA,22572,804-333-4772
+Richmond City,P.O. Box 61037,,Richmond,VA,23261,804-646-5950
+Roanoke,P.O. Box 20884,,Roanoke,VA,24018,540-772-7500
+Roanoke City,P.O. Box 1095,,Roanoke,VA,24005,540-853-2281
+Rockbridge,150 S. Main Street,,Lexington ,VA,24450,540-463-7203
+Rockingham,20 E. Gay Street,,Harrisonburg,VA,22802,540-564-3055
+Russell,P.O. Box 383,,Lebanon,VA,24266,276-889-8006
+Salem City,P.O. Box 203,,Salem,VA,24153,540-375-3034
+Scott,P.O. Box 1892,,Gate City,VA,24251,276-386-3843
+Shenandoah,600 N. Main Street,Suite 103,Woodstock,VA,22664,540-459-6195
+Smyth,121 Bagley Circle,Suite 108,Marion,VA,24354,276-783-4511
+Southampton,P.O. Box 666,,Courtland,VA,23837,757-653-9280
+Spotsylvania,P.O. Box 133,,Spotsylvania,VA,22553,540-507-7380
+Stafford,P.O. Box 301,,Stafford,VA,22555,540-658-4000
+Staunton City,P.O. Box 58,,Stauton,VA,24402,540-332-3840
+Suffolk City,P.O. Box 1966,,Suffolk,VA,23439,757-514-7750
+Surry,P.O. Box 264,,Surry,VA,23883,757-294-5213
+Sussex,P.O. Box 1302,,Sussex,VA,23884,434-246-1047
+Tazewell,P.O. Box 201,,Tazewell,VA,24651,276-988-1305
+Virginia Beach City,P.O. Box 6247,,Virginia Beach,VA,23456,757-385-8683
+Warren,220 North Commerce Ave,Suite 700,Front Royal,VA,22630,540-635-4327
+Washington,25544 Lee Hwy.,,Abingdon,VA,24211,276-676-6227
+Waynesboro City,250 S. Wayne Avenue,Suite 205,Waynesboro,VA,22980,540-942-6620
+Westmoreland,P.O. Box 354,,Montross,VA,22520,804-493-8898
+Williamsburg City,P.O. Box 3538,,Williamsburg,VA,23187,757-220-6157
+Winchester City,107-A N. East Lane,,Winchester,VA,22601,540-545-7910
+Wise,P.O. Box 309,,Wise,VA,24293,276-328-8331
+Wythe,245 South Fourth Street,Suite 101,Wytheville,VA,24382,276-223-6038
+York,P.O. Box 451,,Yorktown,VA,23690,757-890-3440
+Albany,32 North Russell Road,,Albany,NY,12206,518-487-5060
+Alleghany,6 Schuyler Street,,Belmont,NY,14813,585-268-9294
+Broome,P.O. Box 1766,,Binghamton,NY,13902,607-778-2172
+Cattaraugus,302 Court Street,,Little Valley,NY,14755,716-938-2400
+Cayuga,157 Genessee (Basement),,Auburn,NY,13021,315-253-1285
+Chautauqua,7 North Erie Street,,Mayville,NY,14757,716-753-4580
+Chemug,P.O. Box 588,,Elmira,NY,14902,607-737-5475
+Chenango,5 Court Street,,Norwich,NY,13815,607-337-1760
+Clinton,Co. Government Center Suite 104,137 Margaret Street,Plattsburgh,NY,12901,518-565-4740
+Columbia,401 State Street,,Hudson,NY,12534,518-828-3115
+Cortland,112 River Street,Suite 1,Cortland,NY,13045,607-753-5032
+Delaware,3 Gallant Ave,,Delhi,NY,13753,608-746-2315
+Dutchess,47 Cannon Street,,Poughkeepsie,NY,12601,845-486-2473
+Eerie,134 West Eagle Street,,Buffalo,NY,14202,716-858-8891
+Essex,P.O. Box 217,,Elizabethtown,NY,12932,518-873-3474
+Franklin,353 West Main Street,Suite 161,Malone,NY,12953,518-481-1663
+Fulton,2714 STHWY 29,Suite 1,Johnstown,NY,12095,518-736-5526
+Genesee,P.O. Box 284,,Batavia,NY,14021,585-344-2550
+Greene,411 Main Street,Suite 437,Catskill,NY,12414,518-719-3550
+Hamilton,P.O. Box 175 ,,Lake Pleasant,NY,12108,518-548-4684
+Herkimer,109 Mary Street,Suite 1306,Herkimer,NY,13350,315-867-1102
+Jefferson,175 Arsenal Street,,Watertown,NY,13601,315-785-3027
+Lewis,7660 N State Street,,Lowville,NY,13367,315-376-5329
+Livingston,6 Court Street ,Room 104,Genesso,NY,14454,585-243-7090
+Madison,P.O. Box 666,,Wampsville,NY,13163,315-366-2231
+Monroe,39 Main Street West,,Rochester,NY ,14614,585-753-1550
+Montgomery,P.O. Box 1500,,Fonda,NY,12068,518-853-8180
+Nassau,240 Old Country Road - 5th Floor,,Mineola,NY,11501,516-571-2411
+New York City,32 Broadway ,7th Floor,New York,NY,10004,212-487-5300
+Bronx,1780 Grand Concourse - 5th Floor,,Bronx,NY,10457,718-299-9017
+Kings,345 Adams Street,4th Floor,Brooklyn,NY,11201,718-797-8800
+New York,200 Varick Street,10th Floor,New York,NY,10014,212-886-2100
+Queens,126-06 Queens Boulevard,,Kew Gardens,NY,11415,718-730-6730
+Richmond,1 Edgewater Plaza,,Staten Island,NY,10305,718-876-0079
+Niagara,111 Main Street,Suite 100,Lockport,NY,14094,718-438-4040
+Oneida,321 Main Street - 3rd Floor,,Utica,NY,13501,315-798-5765
+Onondaga,1000 Eerie Boulevard West,,Syracuse,NY,13204,315-435-3312
+Ontario,74 Ontario Street,,Canandaigua,NY,14424,585-396-4005
+Orange,P.O. Box 30,,Goshen,NY,10924,845-291-2444
+Orleans,14012 State Route 31,,Albion,NY,14411,585-589-3274
+Oswego,185 E. Seneca Street,Box 9,Oswego,NY,13126,315-349-8350
+Ostego,140 County Highway 33W,,Cooperstown,NY,13326,607-547-4247
+Putnam,25 Old Route 6,,Carmel,NY,10512,845-808-1300
+Rensselaer,Ned Pattison Government Center,1600 Seventh Avenue,Troy,NY,12180,518-270-2990
+Rockland,11 New Hempstead Road,,New City,NY,10956,845-638-5172
+Saratoga,50 W. High Street,,Ballston,NY,12020,518-885-2249
+Schenectady,388 Broadway - Suite E,,Schenectady,NY,12305,518-377-2469
+Schoharie,P.O. Box 99,,Schohardie,NY,12157,518-295-8388
+Schuyler,105 9th Street,Unit 13,Watkins,NY,14981,607-535-8195
+Seneca,One DiPronio Drive,,Waterloo,NY,13165,315-539-1760
+Street Lawrence,48 Court Street,,Canton,NY,13617,315-379-2202
+Steuben,3 E. Pulteney Square,,Bath,NY,14810,607-664-2260
+Suffolk,P.O. Box 700,,Yaphank,NY,11980,631-852-4500
+Sullivan,P.O. Box 5012,,Monticello,NY,12701,845-807-0400
+Tioga,County Office Building,56 Main Street,Owego,NY,13827,607-687-8261
+Tompkins,Court House Annex,128 E. Buffalo Street,Ithaca,NY,14850,607-274-5522
+Ulster,284 Wall Street,,Kingston,NY,12401,845-334-5470
+Warren,"Co. Municipal Center, 3rd Floor - Human Service",1340 State Route 9,Lake George,NY,12845,518-761-6456
+Washington,383 Broadway,,Fort Edward,NY,12828,518-746-2180
+Wayne,P.O. Box 636,,Lyons,NY,14489,315-948-7400
+Weschester,25 Quarropas Street,,White Plains,NY,10601,914-995-5700
+Wyoming,4 Perry Avenue,,Warsaw,NY,14569,585-786-8931
+Yates,Suite 1124,417 Liberty Street,Penn Yan,NY,14527,315-536-5135
+Carson City,885 East Musser Street,Suite 1025,Carson City,NV,89701,775-887-2087
+Churchill,155 N. Taylor St,Suite 110,Fallon,NV,89406,775-423-6028
+Clark,P.O. Box 3909,,Las Vegas,NV,89127,702-455-8683
+Douglas,P.O. Box 218,,Minden,NV,89423,775-782-9023
+Elko,550 Court Street 3rd Floor,,Elko,NV,89801,775-753-4600
+Esmeralda,P.O. Box 547,,Goldfield,NV,89013,775-485-6367
+Eureka,P.O. Box 677,,Eureka,NV,89316,775-237-5262
+Humboldt,"50 W. 5th Street, #207",,Winnemucca,NV,89445,775-623-6343
+Lander,315 So. Humboldt Street,,Battle Mountain,NV,89820,775-635-5738
+Lincoln,P.O. Box 90,,Pioche,NV,89043,775-962-5390
+Lyon,27 South Main Street,,Yerington,NV,89447,775-463-6501
+Mineral,P.O. Box 1450,,Hawthorne,NV,89415,775-945-2446
+NYE,P.O. Box 1031,,Tonopah,NV,89049,775-482-8127
+Pershing,P.O. Box 820,,Lovelock,NV,89419,775-273-2208
+Storey,Drawer D,,Virginia City,NV,89440,775-847-0969
+Washoe,P.O. Box 11130,,Reno,NV,89520,775-328-3670
+White Pine,801 Clark Street #4,,Ely,NV,89301,775-293-6509
+Adams,County Clerk,507 Vermont,Quincy,IL,62306,(217) 277-2150
+Alexander,County Clerk,2000 Washington Avenue,Cairo,IL,62914,(618) 734-7000
+Bond,County Clerk,203 W. College,Greenville,IL,62246,(618) 664-0449
+Boone,County Clerk,"1212 Logan Avenue, Suite 103",Belvidere,IL,61008,(815) 544-3103
+Brown,County Clerk,"200 Court Street, Room 4",Mt. Sterling,IL ,62353,(217) 773-3421
+Bureau,County Clerk,"700 S. Main Street, Room 104",Princeton,IL ,61356,(815) 875-2014
+Calhoun,County Clerk,PO Box 187,Hardin,IL,62047,(618) 576-2351
+Carroll,County Clerk,301 N. Main,Mt. Carroll,IL,61053,(815) 244-0221
+Cass,County Clerk,100 E. Springfield Street,Virginia,IL,62691,(217) 452-7217
+Champaign,County Clerk,1776 E. Washington,Urbana,IL ,61802,(217) 384-3724
+Christian,County Clerk,PO Box 647,Taylorville,IL ,62568,(217) 824-4969
+Clark,County Clerk,501 Archer,Marshall,IL,62441,(217) 826-8311
+Clay,County Clerk,PO Box 160,Louisville,IL,62858,(618) 594-6620
+Clinton,County Clerk,PO Box 308,Carlyle,IL,62231,(618) 594-6620
+Coles,County Clerk,"651 Jackson Avenue, Room 122",Charleston,IL,61920,(217) 348-0501
+Cook,County Clerk,"69 W. Washington, 5th Floor",Chicago,IL,60602,(312) 603-0906
+City of Chicago,"69 W. Washington, Suite 600/800",,Chicago,IL,60602,(312) 269-7900
+Crawford,County Clerk,PO Box 616,Robinson,IL,62454,(618) 546-1212
+Cumberland,County Clerk,PO Box 146,Toledo,IL ,62468,(217) 849-2631
+DeKalb,County Clerk,110 E. Sycamore Street,Sycamore,IL,60178,(815) 895-7142
+DeWitt,County Clerk,PO Box 439,Clinton,IL,61727,(217) 935-7780
+Douglas,County Clerk,PO Box 467,Tuscola,IL,61953,(217) 253-2411
+DuPage,DuPage County Election Commission,421 N. County Farm Road,Wheaton,IL,60187,(630) 407-5600
+Edgar,County Clerk,"115 W. Court Street, Room J",Paris,IL,61944,(217) 466-7433
+Edwards,County Clerk,50 E. Main,Albion,IL,62806,(618) 445-2115
+Effingham,County Clerk,PO Box 628,Effingham,IL,62401,(217) 342-6535
+Fayette,County Clerk,PO Box 401,Vandalia,IL,62471,(618) 283-5000
+Ford,County Clerk,"200 W. State Street, Room 101",Paxton,IL,60957,(217) 379-2721
+Franklin,County Clerk,PO Box 607,Benton,IL,62812,(618) 439-3403
+Fulton,County Clerk,PO Box 226,Lewistown,IL,61542,(309) 547-3041
+Gallatin,County Clerk,PO Box 550,Shawneetown,IL,62984,(618) 269-3025
+Greene,County Clerk,519 N. Main Street,Carrollton,IL,60216,(217) 942-5443
+Grundy,County Clerk,PO Box 675,Morris,IL,60450,(815) 941-3222
+Hamilton,County Clerk,100 S. Jackson Street,McLeansboro,IL,62859,(618) 643-2721
+Hancock,County Clerk,PO Box 39,Carthage,IL,62321,(217) 357-3911
+Hardin,County Clerk,PO Box 187,Elizabethtown,IL,62931,(618) 287-2251 
+Henderson,County Clerk,PO Box 308                                     ,Oquawka,IL,61469,(309) 867-2911
+Henry,County Clerk,307 W. Chester Street,Cambridge,IL,61238,(309) 937-3481 
+Iroquois,County Clerk,1001 E. Grant Street,Watseka,IL,60970,(815) 432-6960
+Jackson,County Clerk,1001 Walnut Street,Murphysboro,IL,62966,(618) 687-7360
+Jasper,County Clerk,"204 W. Washington Street, Suite 2",Newton,IL,62448,(618) 783-3124
+Jefferson,County Clerk,"1001 S. 10th Street, Room 105",Mt. Vernon,IL,62864,(618) 244-8020
+Jersey,County Clerk,200 N. LaFayette Street,Jerseyville,IL,62052,(618) 498-5571
+JoDaviess,County Clerk,330 N. Bench Street,Galena,IL,61036,(815) 777-0161
+Johnson,County Clerk,PO Box 96,Vienna,IL,62995,(630) 232-5990
+Kane,County Clerk,719 S. Batavia Avenue,Geneva,IL,60134,(630) 232-3611
+City of Aurora,323 W. Galena Boulevard,,Aurora,IL,60506,(630) 897-4030
+Kankakee,County Clerk,189 E. Court Street,Kankakee,IL,60901,(815) 937-2990
+Kendall,County Clerk,111 W. Fox Street,Yorkville,IL,60560,(630) 553-4104
+Knox,County Clerk,200 S. Cherry,Galesburg,IL,61401,(309) 345-3815
+City of Galesburg,PO Box 1387,,Galesburg,IL ,61402,(309) 342-5563
+Lake,County Clerk,18 N. County Street,Waukegan,IL,60085,(847) 377-2400
+LaSalle,County Clerk,707 E. Etna Road,Ottawa,IL,61350,(815) 434-8202
+Lawrence,County Clerk,1100 State Street,Lawrenceville,IL,62439,(618) 943-2346
+Lee,County Clerk,PO Box 329,Dixon,IL,61021,(815) 288-3309
+Livingston,County Clerk,112 W. Madison Street,Pontiac,IL,61764,(815) 844-2006
+Logan,County Clerk,"601 Broadway, Room 20",Lincoln,IL,62656,(217) 732-4148
+Macon,County Clerk,"141 S. Main Street, Room 104",Decatur,IL,62523,(217) 424-1305
+Macoupin,County Clerk,PO Box 107,Carlinville,IL,62626,(217) 854-3214
+Madison,County Clerk,PO Box 218,Edwardsville,IL,62025,(618) 692-6290
+Marion,County Clerk,PO Box 637,Salem,IL,62881,(618) 548-3400
+Marshall,County Clerk,PO Box 328,Lacon,IL,61540-0328,(309) 246-6325
+Mason,Country Clerk,PO Box 77,Havana,IL,62644,(309) 543-6661
+Massac,County Clerk,PO Box 429,Metropolis,IL,62960,(618) 524-5213
+McDonough,County Clerk,1 Courthouse Square,Macomb,IL,61455,(309) 833-2474
+McHenry,County Clerk,2200 N. Seminary Avenue,Woodstock,IL,60098,(815) 334-4242
+McLean,County Clerk,PO Box 2400,Bloomington,IL,61702-2400,(309) 888-5190
+City of Bloomington,PO Box 2400,,Bloomington,IL,61701,(309) 888-5136
+Menard,County Clerk,PO Box 465,Petersburg,IL,62675,(217) 632-3201
+Mercer,County Clerk,PO Box 66,Aledo,IL,61231,(309) 582-7021
+Monroe,County Clerk,100 S. Main Street,Waterloo,IL,62298,(618) 939-8681
+Montgomery,County Clerk,PO Box 595,Hillsboro,IL,62049,(217) 532-9530
+Morgan,County Clerk,PO Box 1387                                   3,Jacksonville,IL,62651,(217) 243-8581
+Moultrie,County Clerk,10 S. Main Street,Sullivan,IL,61951,(217) 728-4389
+Ogle,County Clerk,105 S. 5th Street,Oregon,IL,61061,(815) 732-1110
+Peoria,County Clerk,324 Main Street,Peoria,IL,61602,(309) 672-6070
+City of Peoria,542 SW Adams,,Peoria,IL,61602,(309) 494-8683
+Perry,County Clerk,PO Box 438,Pinckneyville,IL,62274,(618) 357-5116
+Piatt,County Clerk,PO Box 558,Monticello,IL,61856,(217) 762-9487
+Pike,County Clerk,121 E. Washington,Pittsfield,IL,62363,(217) 285-6812
+Pope,County Clerk,PO Box 558,Golconda,IL,62938,(618) 683-4466
+Pulaski,County Clerk,PO Box 118,Mound City,IL,62963,(618) 748-9360
+Putnam,County Clerk,120 N. 4th Street,Hennepin,IL,61327,(815) 925-7129
+Randolph,County Clerk,#1 Taylor Street,Chester,IL,62233,(618) 826-5000
+Richland,County Clerk,103 W. Main Street,Olney,IL,62450,(618) 392-3111
+Rock Island,County Clerk,PO Box 3577,Rock Island,IL,61204,(309) 558-3570
+Saline,County Clerk,10 E. Poplar,Harrisburg,IL,62946,(618) 253-8197
+Sangamon,County Clerk,200 S. 9th Street,Springfield ,IL,62701,(217) 753-8683
+Schuyler,County Clerk,PO Box 200,Rushville,IL,62681,(217) 322-4734
+Scott,County Clerk,35 E. Market,Winchester,IL,62694,(217) 742-3178
+Shelby,County Clerk,PO Box 230,Shelbyville,IL,62565,(217) 774-4421
+Stark,County Clerk,130 W. Main,Toulon,IL,61483,(309) 286-5911
+St. Clair,County Clerk,10 Public Square,Belleville,IL,62220,(618) 825-2380
+City of East St. Louis,"301 River Park Drive, Suite 300",,East St. Louis,IL,62201,(618) 482-6672
+Stephenson,County Clerk,"50 W. Douglas, Suite 500",Freeport,IL,61032,(815) 235-8289
+Tazewell,County Clerk,11 S. 4th Street,Pekin,IL,61554,(309) 477-2264
+Union,County Clerk,"309 W. Market, Room 116",Jonesboro,IL,62952,(618) 833-5711
+Vermilion,County Clerk,6 North Vermillion,Danville,IL,61832,(217) 554-1900
+City of Danville,6 North Vermillion,,Danville,IL,61832,(217) 554-1930
+Wabash,County Clerk,PO Box 277,Mt. Carmel,IL,62863,(618) 262-4561
+Warren,County Clerk,100 W. Broadway,Monmouth,IL,61462,(309) 734-8592
+Washington,County Clerk,101 E. St. Louis Street,Nashville,IL,62263,(618) 327-4800
+Wayne,County Clerk,PO Box 187,Fairfield,IL,62837,(618) 327-4800
+White,County Clerk,PO Box 339,Carmi,IL,62821,(618) 382-7211
+Whiteside,County Clerk,200 E. Knox Street,"Morrison, ",IL,61270,(815) 772-5189
+Will,County Clerk,302 N. Chicago Street,Joliet,IL,60432,(815) 740-4615
+Williamson,County Clerk,"407 N. Monroe Street, Suite 119",Marion,IL,62959,(618) 997-1301
+Winnebago,County Clerk,404 Elm Street,Rockford,IL,61104,(815) 319-4250
+City of Rockford,301 S. 6th Street,,Rockford,IL,61104,(815) 987-5750
+Woodford,County Clerk,"115 N. Main, Room 202",Eureka,IL,61530,(309) 467-2822
+Alamance ,115 S. Maple Street,,Graham,NC,27253,(336) 570-6755
+Alexander ,PO Box 326,,Taylorsville,NC,28681,(828) 632-2990
+Alleghany ,PO Box 65,,Sparta,NC,28675,(336) 372-4557
+Anson ,PO Box 768,,Wadesboro,NC,28170,(704) 994-3223
+Ashe ,150 Government Circle,Suite 2100,Jefferson,NC,28640,(336) 846-5570
+Avery ,PO Box 145,,Newland,NC,28657,(828) 733-8282
+Beaufort ,PO Box 312,,Washington,NC,27889,(252) 946-2321
+Bertie ,PO Box 312,,Windsor,NC,27983,(252) 794-5306
+Bladen ,PO Box 512,,Elizabethtown,NC,28337,(910) 862-6951
+Brunswick ,PO Box 2,,Bolivia,NC,28422,(910) 253-2620
+Buncombe ,PO Box 7468,,Asheville,NC,28802,(828) 250-4200
+Burke ,PO Box 798,,Morganton,NC,28680-0798,(828) 433-1703
+Cabarrus ,PO Box 1315,,Concord,NC,28026-1315,(704) 920-2860
+Caldwell ,PO Box 564,,Lenoir,NC,28645,(828) 757-1326
+Camden ,PO Box 206,,Camden,NC,27921,(252) 338-1326
+Carteret ,1702 Live Oak Street,Suite 200,Beaufort,NC,28516,(252) 728-8460
+Caswell ,PO Box 698,,Yanceyville,NC,27379,(336) 694-4010
+Catawba ,PO Box 132,,Newton,NC,28658,(828) 464-2424
+Chatham ,PO Box 111,,Pittsboro,NC,27312,(919) 545-8500
+Cherokee ,40 Peachtree Street,,Murphy,NC,28906,(828) 837-6670
+Chowan ,PO Box 133,,Edenton,NC,27932,(252) 482-4010
+Clay ,54 Church Street,,Hayesville,NC,28904,(828) 389-6812
+Cleveland ,PO Box 1299  ,,Shelby,NC,28151-1299,(704) 484-4858
+Columbus ,PO Box 37,,Whiteville,NC,28472,(910) 640-6609
+Craven ,406 Craven Street,,New Bern,NC,28560,(252) 636-6610
+Cumberland ,PO Box 2427,,Fayetteville,NC,28302,(910) 678-7733
+Currituck ,PO Box 177,,Currituck,NC,27929,(252) 232-2525
+Dare ,PO Box 1000,,Manteo,NC,27954,(252) 475-5631
+Davidson ,PO Box 1084,,Lexington,NC,27293-1084,(336) 242-2190
+Davie ,161 Poplar Street,Suite 102,Mocksville,NC,27028,(336) 753-6072
+Duplin ,PO Box 975,,Kenansville,NC,28345,(910) 296-2170
+Durham ,PO Box 868,,Durham,NC,27702,(919) 560-0700
+Edgecombe ,PO Box 10,,Tarboro,NC,27886,(252) 641-7852
+Forsyth ,201 N. Chestnut Street,,Winston Salem,NC,27101-4120,(336) 703-2800
+Franklin ,PO Box 180,,Louisburg,NC,27549,(919) 496-3898
+Gaston ,PO Box 1396,,Gastonia,NC,28053,(704) 852-6005
+Gates ,PO Box 621    ,,Gatesville,NC,27938,(252) 357-1780
+Graham ,PO Box 1239,,Robbinsville,NC,28771,(828) 479-7969
+Granville ,PO Box 83,,Oxford,NC,27565,(919) 693-2515
+Greene ,PO Box 583,,Snow Hill,NC,28580-0583,(252) 747-5921
+Guilford ,PO Box 3427,,Greensboro,NC,27402,(336) 641-3836
+Halifax ,PO Box 101,,Halifax,NC,27839,(252) 583-4391
+Harnett ,PO Box 356,,Lillington,NC,27546,(910) 893-7553
+Haywood ,1233 N. Main Street,Annex II,Waynesville,NC,28786,(828) 452-6633
+Henderson ,PO Box 2090,,Hendersonville,NC,28793,(828) 697-4970
+Hertford ,PO Box 416,,Winton,NC,27986,(252) 358-7812
+Hoke ,PO Box 1565,,Raeford,NC,28376,(910) 875-8751
+Hyde ,PO Box 152,,Swan Quarter,NC,27885,(252) 926-4194
+Iredell ,203 Stockton Street,,Statesville,NC,28677,(704) 878-3140
+Jackson ,401 Grindstaff Cove Road,,Sylva,NC,28779-2705,(828) 586-7538
+Johnston ,PO Box 1172,,Smithfield,NC,27577,(919) 989-5095
+Jones ,PO Box 263,,Trenton,NC,28585,(252) 448-3921
+Lee ,PO Box 1443,,Sanford,NC,27331,(919) 718-4646
+Lenoir ,PO Box 3503,,Kinston,NC,28502-3503,(252) 523-0636
+Lincoln ,115 W. Main Street,Room 201,Lincolnton,NC,28092,(704)-736-8480
+Macon ,5 W. Main Street,,Franklin,NC,28734,(828) 349-2034
+Madison ,PO Box 142,,Marshall,NC,28753,(828) 649-3731
+Martin ,PO Box 810,,Williamston,NC,27892,(252) 789-4317
+McDowell ,PO Box 1509,,Marion,NC,28752,(828) 652-7121
+Mecklenburg ,PO Box 31788,,Charlotte,NC,28231-1788,(704) 336-2133
+Mitchell ,328 Long View Drive,Room 103,Bakersville,NC,28705,(828) 688-3101
+Montgomery ,PO Box 607,,Troy,NC,27371,(910) 572-2024
+Moore ,PO Box 787,,Carthage,NC,28327,(910) 947-3868
+Nash ,PO Box 305,,Nashville,NC,27856,(252) 459-1350
+New Hanover ,230 Government Center Drive,Suite 38,Wilmington,NC,28403,(910) 798-7330
+Northampton ,PO Box 603,,Jackson,NC,27845,(252) 534-5681
+Onslow ,4024 Richlands Hwy,,Jacksonville,NC,28540,(910) 455-4484
+Orange ,PO Box 220,,Hillsborough,NC,27278,(919) 245-2350
+Pamlico ,PO Box 464,,Bayboro,NC,28515,(252) 745-4821
+Pasquotank ,PO Box 1797,,Elizabeth City,NC,27906,(252) 335-1739
+Pender ,PO Box 1232,,Burgaw,NC,28425,(910) 259-1220
+Perquimans ,PO Box 336,,Hertford ,NC,27944,(252) 426-5598
+Person ,331 S. Morgan Street,,Roxboro,NC,27573-5223,(336) 597-1727
+Pitt ,PO Box 56,,Greenville,NC,27835-0056,(252) 902-3300
+Polk ,PO Box 253,,Columbus,NC,28722,(828) 894-8181
+Randolph ,Shaw Building                                 ,158 Worth Street,Asheboro,NC,27203,(336) 318-6900
+Richmond ,PO Box 1843,,Rockingham,NC,28379,(910) 997-8253
+Robeson ,PO Box 2159,,Lumberton,NC,28359,(910) 997-8253
+Rockingham ,PO Box 22,,Wentworth,NC,27375,(336) 342-8107
+Rowan ,130 W. Innes Street,,Salisbury,NC,28144,(704) 216-8140
+Rutherford ,PO Box 927,,Rutherfordton,NC,28139,(828) 287-6030
+Sampson ,PO Box 33,,Clinton,NC,28329-0033,(910) 592-5796
+Scotland ,231 E. Conly Street,Suite 305,Laurinburg,NC,28352,(910) 277-2595
+Stanly ,PO Box 1309,,Albemarle,NC,28002,(704) 986-3647
+Stokes ,PO Box 34,,Danbury,NC,27016,(336) 593-2409
+Surry ,PO Box 372,,Dobson,NC,27017,(336) 401-8225
+Swain ,PO Box 133,,Bryson City,NC,28713,(828) 488-6177
+Transylvania ,PO Box 868,,Brevard,NC,28712,(828) 884-3114
+Tyrrell ,PO Box 449,,Columbia,NC,27925,(252) 796-0775
+Union ,PO Box 1106,,Monroe,NC,28111-1106,(704) 283-3809
+Vance ,300 S. Garnet Street,,Henderson ,NC,27536,(252) 492-3730
+Wake ,PO Box 695,,Raleigh,NC,27602-0695,(919) 856-6240
+Warren ,PO Box 803,,Warrenton,NC,27589,(252) 257-2114
+Washington ,PO Box 1007,,Plymouth ,NC,27962-1007,(252) 793-6017
+Watauga ,PO Box 528,,Boone,NC,28607,(828) 265-8061
+Wayne ,209 S. William Street,,Goldsboro,NC,27530,(919) 731-1411
+Wilkes ,110 North Street,Room 315,Wilkesboro,NC,28697,(336) 651-7339
+Wilson ,PO Box 2121,,Wilson,NC,27894-2121,(252) 399-2836
+Yadkin ,PO Box 877,,Yadkinville,NC,27055,(336) 679-4227
+Yancey ,PO Box 763,,Burnsville,NC,28714,(828) 682-3950
+Ada ,County Clerk,400 N. Benjamin Lane Suite 100,Boise,ID,83704,(208) 287-6860
+Adams ,County Clerk,PO Box 48,Council,ID,83612-0048,(208) 253-4561
+Bannock ,County Clerk,PO Box 6094,Pocatello,ID,83205-6094,(208) 236-7329
+Bear Lake ,County Clerk,PO Box 190,Paris,ID,83261-0190,(208) 945-2212
+Benewah ,County Clerk,701 W. College Avenue Suite 101,St. Maries,ID,83861-1852,(208) 245-3212
+Bingham ,County Clerk,501 N. Maple Street #205,Blackfoot,ID,83221-1776,(208) 782-3164
+Blaine ,County Clerk,206 1st Avenue S. #200,Hailey,ID,83333-8429,(208) 788-5510
+Boise ,County Clerk,PO Box 1300,Idaho City,ID,83631-1300,(208) 392-4431
+Bonner ,County Clerk,"1500 Highway 2, Suite 337",Sandpoint,ID,83864-1794,(208) 255-3631
+Bonneville ,County Clerk,605 N. Capital Avenue,Idaho Falls,ID,83402-3582,(208) 529-1363
+Boundary ,County Clerk,PO Box 419,Bonners Ferry,ID,83805-0419,(208) 267-2242
+Butte ,County Clerk,PO Box 737,Arco,ID,83213-0737,(208) 527-3021
+Camas ,County Clerk,PO Box 430,Fairfield,ID,83327-0430,(208) 764-2242
+Canyon ,County Clerk,1102 E. Chicago,Caldwell,ID,83605-3522,(208) 454-7563
+Caribou ,County Clerk,PO Box 775,Soda Springs,ID,83276-0775,(208) 547-4324
+Cassia ,County Clerk,"1459 Overland Avenue, Room #105",Burley,ID,83318-1862,(208) 878-5240
+Clark ,County Clerk,PO Box 205,Dubois,ID,83423-0205,(208) 374-5304
+Clearwater ,County Clerk,PO Box 586,Orofino,ID,83544-0586,(208) 476-5615
+Custer ,County Clerk,PO Box 385,Challis,ID,83226-0385,(208) 879-2360
+Elmore ,County Clerk,150 S. 4th E #3,Mountain Home,ID,83647-3000,(208) 587-2131
+Franklin ,County Clerk,39 W. Oneida,Preston,ID,83263-1232,(208) 852-1090
+Fremont ,County Clerk,151 W. 1st N #12,St. Anthony,ID,83445-1548,(208) 624-7332
+Gem ,County Clerk,"415 E. Main, Room 202",Emmett,ID,83617-3096,(208) 365-4561
+Gooding ,County Clerk,PO Box 417,Gooding,ID,83330-0417,(208) 934-4841
+Idaho ,County Clerk,"320 W. Main, Room 5",Grangeville,ID,83530-1948,(208) 983-2751
+Jefferson ,County Clerk,"210 Courthouse Way, Suite 100",Rigby,ID,83442,(208) 745-7756
+Jerome ,County Clerk,"300 N. Lincoln, Room 301",Jerome,ID,83338-2344,(208) 644-2714
+Kootenai ,County Clerk,PO Box 9000,Coeur d'Alene,ID,83816-9000,(208) 446-1030
+Latah ,County Clerk,PO Box 8068,Moscow,ID,83843-0568,(208) 883-2249
+Lemhi ,County Clerk,206 Courthouse Drive,Salmon,ID,83467-3900,(208) 756-2815 ext. 224
+Lewis ,County Clerk,"510 Oak Street, Room 1",Nezperce,ID,83543-5065,(208) 937-2661
+Lincoln ,County Clerk,"111 West B Street, Suite C",Shoshone,ID,83352-5364,(208) 886-7641
+Madison ,County Clerk,PO Box 389,Rexburg,ID,83440-0389,(208) 359-6219
+Minidoka ,County Clerk,PO Box 368,Rupert,ID,83350-0368,(208) 436-9511
+Nez Perce ,County Clerk,PO Box 896,Lewiston,ID,83501-0896,(208) 799-3020
+Oneida ,County Clerk,10 Court Street,Malad,ID,83252-1200,(208) 766-4116
+Owyhee ,County Clerk,PO Box 128,Murphy,ID,83650-0128,(208) 495-2421
+Payette ,County Clerk,"1130 3rd Avenue N., Room 104",Payette,ID,83661-2473,(208) 642-6000
+Power ,County Clerk,543 Bannock Avenue,American Falls,ID,83211-1200,(208) 226-7611
+Shoshone ,County Clerk,700 Bank Street #120,Wallace,ID,83873-2348,(208) 752-1264
+Teton ,County Clerk,150 Courthouse Drive #208,Driggs,ID,83422,(208) 354-8780
+Twin Falls ,County Clerk,PO Box 126,Twin Falls,ID,83301,(208) 736-4004
+Valley ,County Clerk,PO Box 1350,Cascade,ID,83611-1350,(208) 382-7100
+Washington ,County Clerk,PO Box 670,Weiser,ID,83672-0670,(208) 414-2092
+Adair ,400 Public Square,Suite 5,Greenfield,IA,50849,(641) 743-2546
+Adams ,PO Box 28,,Corning,IA,50841,(641) 322-3340
+Allamakee ,110 Allamakee Street,,Waukon,IA,52172,(563) 568-3522
+Appanoose ,201 N. 12th Street,,Centerville,IA,52544,(641) 856-6191
+Audubon ,318 Leroy Street,#4,Audubon,IA,50025,(712) 563-2584
+Benton ,PO Box 549,,Vinton,IA,52349,(319) 472-2365
+Black Hawk ,316 E. 5th Street,,Waterloo,IA,50703,(319) 833-3007
+Boone ,201 State Street,,Boone,IA,50036,(515) 433-0502
+Bremer ,415 E. Bremer,,Waverly,IA,50677,(319) 352-0340
+Buchanan ,PO Box 317,,Independence,IA,50644,(319) 334-4109
+Buena Vista ,PO Box 220,,Storm Lake,IA,50588,(712) 749-2542
+Butler ,PO Box 325,,Allison,IA,50602,(319) 267-2670
+Calhoun ,416 4th Street,Suite 1,Rockwell City,IA,50579,(712) 297-7741
+Carroll ,114 E. 6th Street,,Carroll ,IA,51401,(712) 792-9802
+Cass ,5 W. 7th Street,,Atlantic,IA,50022,(712) 243-4570
+Cedar ,400 Cedar Street,,Tipton,IA,52772,(563) 886-3168
+Cerro Gordo ,220 N. Washington Avenue,,Mason City,IA,50401,(641) 421-3034
+Cherokee ,520 W. Main,Drawer H,Cherokee,IA,51012,(712) 225-6704
+Chickasaw ,Box 311,,New Hampton,IA,50659,(641) 394-2100
+Clarke ,100 S. Main,,Osceola,IA,50213,(641) 342-3315
+Clay ,300 W. 4th Street,Suite 4,Spencer,IA,51301,(712) 262-1569
+Clayton ,PO Box 416,,Elkader,IA,52043,(563) 245-1106
+Clinton ,PO Box 2957,,Clinton,IA,52733,(563) 244-0568
+Crawford ,1202 Broadway,Suite 5,Denison,IA,51442,(712) 263-3045
+Dallas ,910 Court Street,,Adel,IA,50003,(515) 993-6915
+Davis ,100 Courthouse Square,Suite 2,Bloomfield,IA,52537,(641) 664-2101
+Decatur ,207 N. Main Street,,Leon,IA,50144,(641) 446-4323
+Delaware ,301 E. Main Street,Room 210,Manchester,IA,52057,(563) 927-4701
+Des Moines ,PO Box 784,,Burlington,IA,52601,(319) 753-8232
+Dickinson ,1802 Hill Avenue,Suite 1400,Spirit Lake,IA,51360,(712) 336-3356
+Dubuque ,720 Central Avenue,,Dubuque,IA,52001,(563) 589-4499
+Emmet ,609 1st Avenue N. ,,Estherville,IA,51334,(712) 362-4261
+Fayette ,PO Box 267,,West Union,IA,52175,(563) 422-3497
+Floyd ,101 S. Main Street,#302,Charles City,IA,50616,(641) 257-6131
+Franklin ,PO Box 26 ,,Hampton,IA,50441,(641) 456-5622
+Fremont ,506 Filmore,,Sidney,IA,51652,(712) 374-2031
+Greene ,114 N. Chestnut,,Jefferson,IA,50129,(515) 386-5680
+Grundy ,706 G Avenue,,Grundy Center,IA,50638,(319) 824-3122
+Guthrie ,200 N. 5th,,Guthrie Center,IA,50115,(641) 747-3619
+Hamilton ,3200 Superior Street,,Webster City,IA,50595,(515) 832-9510
+Hancock ,855 State Street                     ,PO Box 70,Garner,IA,50438,(641) 923-3163
+Hardin ,1215 Edgington Avenue,Suite 1,Eldora,IA,50627,(641) 939-8109
+Harrison ,111 N. 2nd Avenue,,Logan,IA,51546,(712) 644-2401
+Henry ,100 E. Washington Street,Suite 202,Mount Pleasant,IA,52641,(319) 385-0756
+Howard ,137 N. Elm Street,,Cresco,IA,52136,(563) 547-9203
+Humboldt ,PO Box 100,,Dakota City,IA,50529,(515) 332-1571
+Ida ,401 Moorehead Street,,Ida Grove,IA,51445,(712) 364-2626
+Iowa ,970 Court Avenue,,Marengo,IA,52301,(319) 642-3923
+Jackson ,201 W. Platt Street,,Maquoketa,IA,52060,(563) 652-3144
+Jasper ,PO Box 944,,Newton,IA,50208,(641) 792-7016
+Jefferson ,51 E. Briggs,,Fairfield,IA,52556,(641) 472-2840
+Johnson ,913 S. Dubuque Street,Suite 101,Iowa City,IA,52240,(319) 356-6004
+Jones ,PO Box 109,,Anamosa,IA,52205,(319) 462-2282
+Keokuk ,101 S. Main   ,,Sigourney,IA,52591,(641) 622-2320
+Kossuth ,114 W. State Street,,Algona,IA,50511,(515) 295-2718
+Lee ,County Office Building       ,PO Box 190,Fort Madison,IA,52627,(319) 372-3705
+Linn ,935 2nd Street SW,,Cedar Rapids,IA,52404-2100,(319) 892-5300
+Louisa ,PO Box 186,,Wapello,IA,52653,(319) 523-3373
+Lucas ,916 Braden Avenue,,Chariton,IA,50049,(641) 774-4512
+Lyon ,206 S. 2nd Avenue,,Rock Rapids,IA,51246,(712) 472-3713
+Madison ,PO Box 152,,Winterset,IA,50273,(515) 462-3914
+Mahaska ,106 S. 1st Street,,Oskaloosa,IA,52577,(641) 673-7148
+Marion ,214 E. Main,,Knoxville,IA,50138,(641) 828-2217
+Marshall ,1 E. Main Street,,Marshalltown,IA,50158,(641) 754-6323
+Mills ,418 Sharp Street,,Glenwood,IA,51534,(712) 527-3146
+Mitchell ,508 State Street,,Osage,IA,50461,(641) 732-5861
+Monona ,610 Iowa Avenue,,Onawa,IA,51040,(712) 433-2191
+Monroe ,10 Benton Avenue E.,,Albia,IA,52531,(641) 932-2865
+Montgomery ,PO Box 469,,Red Oak,IA,51566,(712) 623-5127
+Muscatine ,414 E. 3rd Street,,Muscatine,IA,52761,(563) 263-5821
+O'Brien ,PO Box 380,,Pirmghar,IA,51245,(712) 957-3225
+Osceola ,300 7th Street,,Sibley,IA,51249,(712) 754-2241
+Page ,112 E. Main,,Clarinda,IA,51632,(712) 542-3219
+Palo Alto ,PO Box 95,,Emmetsburg,IA,50536,(712) 852-2924
+Plymouth ,215 4th Avenue SE,,Le Mars,IA,51031,(712) 546-6100
+Pocahontas ,99 Court Square,,Pocahontas,IA,50574,(712) 335-3361
+Polk ,120 2nd Avenue,,Des Moines,IA,50309,(515) 286-3247
+Pottawattamie ,Box 649,,Council Bluffs,IA,51501,(712) 328-5700
+Poweshiek ,PO Box 57,,Montezuma,IA,50171,(641) 623-5443
+Ringgold ,109 W. Madison,,Mount Ayr,IA,50854,(641) 464-3239
+Sac ,100 NW State Street             ,Box 1,Sac City,IA,50583,(712) 662-7310
+Scott ,600 W. 4th Street,,Davenport,IA,52801,(563) 326-8631
+Shelby ,612 Court Street,,Harlan,IA,51537,(712) 755-3831
+Sioux ,PO Box 18 ,,Orange City,IA,51041,(712) 737-2216
+Story ,900 6th Street,,Nevada,IA,50201,(515) 382-7210
+Tama ,PO Box 61,,Toledo,IA,52342,(641) 484-2740
+Taylor ,405 Jefferson,,Bedford,IA,50833,(712) 523-2280
+Union ,300 N. Pine Street,Suite 2,Creston,IA,50801,(641) 782-1701
+Van Buren ,PO Box 475,,Keosauqua,IA,52565,(319) 293-3129
+Wapello ,101 W. 4th,,Ottumwa,IA,52501,(641) 683-0024
+Warren ,301 N. Buxton,Suite 101,Indianola,IA,50125,(515) 961-1020
+Washington ,PO Box 889,,Washington,IA,52353,(319) 653-7715
+Wayne ,PO Box 435,,Corydon,IA,50060,(641) 872-2242
+Webster ,703 Central Avenue,,Fort Dodge,IA,50501,(515) 573-7175
+Winnebago ,126 S. Clark Street,,Forest City,IA,50436,(641) 585-3412
+Winneshiek ,201 W. Main Street,,Decorah,IA,52101,(563) 382-5085
+Woodbury ,620 Douglas Street,Room 103,Sioux City,IA,51101,(712) 279-6465
+Worth ,1000 Central Avenue,,Northwood,IA,50459,(641) 324-2316
+Wright ,PO Box 147,,Clarion,IA,50525,(515) 532-2771
+Allen ,1 N Washington,,Iola,KS,66749,(620) 365-1407
+Anderson ,100 E 4th,,Garnett,KS,66032,(785) 448-6841
+Atchison ,423 N 5th,,Atchison,KS,66002-1861,(913) 367-1653
+Barber ,120 E Washington,,Medicine Lodge,KS,67104,(620) 886-3961
+Barton ,"1400 Main Street, Room 202",,Great Bend,KS,67530,(620) 793-1835
+Bourbon ,210 S National,,Ft Scott,KS,66701,(620) 223-3800
+Brown ,601 Oregon St,,Hiawatha,KS,66434,(785) 742-2581
+Butler ,205 W Central,Courthouse,El Dorado,KS,67042,(316) 322-4233
+Chase ,PO Box 529,Courthouse Square,Cottonwood Falls,KS,66845-0547,(620) 273-6423
+Chautaqua ,215 N Chautauqua,,Sedan,KS,67361,(620) 725-5800
+Cherokee ,PO Box 14,100 W Maple,Columbus,KS,66725,(620) 429-2042
+Cheyenne ,PO Box 985,212 E Washington,St Francis,KS,67756,(785) 332-8800
+Clark ,PO Box 886,913 Highland,Ashland,KS,67831,(620) 635-2813
+Clay ,PO Box 98,712 5th Street,Clay Center,KS,67432,(785) 632-2552
+Cloud ,811 Washington,,Concordia,KS,66901,(785) 243-8110
+Coffey ,"110 S 6th, Room 202",,Burlington,KS,66839,(620) 364-2191
+Comance ,Box 776,201 S New York,Coldwater,KS,67029,(620) 582-2361
+Cowley ,311 E 9th,,Winfield,KS,67156,(620) 221-5495
+Crawford ,PO Box 249,111 E Forest,Girard,KS,66743-0249,(620) 724-6115
+Decatur ,PO Box 28,,Oberlin,KS,67749,(785) 475-8102
+Dickinson ,PO Box 248,"109 E 1st, Ste. 207",Abilene,KS,67410,(785) 263-3774
+Doniphan ,PO Box 278,,Troy,KS,66087,(785) 985-3513
+Douglas ,1100 Massachusetts St,,Lawrence,KS,66044,(785) 832-5281
+Edwards ,312 Massachusetts,,Kinsley,KS,67547,(620) 659-3000
+Elk ,PO Box 606,127 N Pine,Howard,KS,67349,(620) 374-2490
+Ellis ,PO Box 720,,Hays,KS,67601,(785) 628-9410
+Ellsworth ,210 N Kansas,,Ellsworth,KS,67439,(785) 472-4161
+Finney ,Finney Co. Admin. Center,"311 N. 9th St., P.O. Box M",Garden City,KS,67846,(620) 272-3575
+Ford ,100 Gunsmoke,,Dodge City,KS,67801,(620) 227-4550
+Franklin ,315 S Main,,Ottawa,KS,66067,(785) 229-3410
+Geary ,200 E. 8th Street,,Junction City,KS,66441,(785) 238-3912
+Gove ,PO Box 128,,Gove,KS,67736,(785) 938-2300
+Graham ,410 N Pomeroy,,Hill City,KS,67642,(785) 421-3453
+Grant ,108 S Glenn,,Ulysses,KS,67880,(620) 356-1335
+Gray ,PO Box 487,,Cimarron,KS,67835-0487,(620) 855-3618
+Greeley ,P.O. Box 277,,Tribune,KS,67879,(620) 376-4256
+Greenwood ,311 N Main,,Eureka,KS,67045,(620) 583-8121
+Hamilton ,PO Box 1167,219 N Main,Syracuse,KS,67878,(620) 384-5629
+Harper ,201 N Jennings,,Anthony,KS,67003,(620) 842-5555
+Harvey ,PO Box 687,8th & Main,Newton,KS,67114,(316) 284-6842
+Haskell ,PO Box 518,300 Inman St,Sublette,KS,67877,(620) 675-2263
+Hodgeman ,500 Main,,Jetmore,KS,67854,(620) 357-6421
+Jackson ,400 New York,,Holton,KS,66436,(785) 364-2891
+Jefferson ,PO Box 321,,Oskaloosa,KS,66066,(785) 863-2272
+Jewell ,307 N Commercial,,Mankato,KS,66956,(785) 378-4020
+Johnson ,2101 E Kansas City Rd,,Olathe,KS,66061,(913) 782-3441
+Kearny ,PO Box 86,304 N Main,Lakin,KS,67860,(620) 355-6422
+Kingman ,130 N Spruce,,Kingman,KS,67068,(620) 532-2521
+Kiowa ,211 East Florida Avenue,,Greensburg,KS,67054,(620) 723-3366
+Labette ,PO Box 387,501 Merchant,Oswego,KS,67356,(620) 795-2138
+Lane ,PO Box 788,144 S Lane,Dighton,KS,67839,(620) 397-5356
+Leavenworth ,300 Walnut,,Leavenworth,KS,66048,(913) 684-0422
+Lincoln ,216 E Lincoln Ave,,Lincoln,KS,67455,(785) 524-4757
+Linn ,P.O. Box 350,,Mound City,KS,66056,(913) 795-2668
+Logan ,710 W 2nd,,Oakley,KS,67748,(785) 671-4244
+Lyon ,430 Commercial,,Emporia,KS,66801,(620) 341-3245
+Marion ,"200 South Third, Suite 104",Marion County Courthouse,Marion,KS,66861,(620) 382-2185
+Marshall ,1201 Broadway,,Marysville,KS,66508,(785) 562-5361
+McPherson ,117 N. Maple,,McPherson,KS,67460,(620) 241-3656
+Meade county,PO Box 278,,Meade,KS,67864,(620) 873-8700
+Miami ,201 S. Pearl,Suite 102,Paola,KS,66071,(913) 294-3976
+Mitchell ,PO Box 190,111 S Hersey,Beloit,KS,67420,(785) 738-3652
+Montgomery ,PO Box 446,217 E Myrtle,Independence,KS,67301,(620) 330-1200
+Morris ,501 West Main,,Council Grove,KS,66846,(620) 767-5518
+Morton ,PO Box 1116,1025 Morton St,Elkhart,KS,67950,(620) 697-2157
+Nemaha ,PO Box 186,607 Nemaha,Seneca,KS,66538,(785) 336-2170
+Neosho ,PO Box 138,100 S Main,Erie,KS,66733,(620) 244-3811
+Ness ,202 W Sycamore,,Ness City,KS,67560,(785) 798-2401
+Norton ,PO Box 70,105 S Kansas,Norton,KS,67654,(785) 877-5710
+Osage ,PO Box 226,717 Topeka Ave,Lyndon,KS,66451-0226,(785) 828-4812
+Osborne ,PO Box 160,423 W Main,Osborne,KS,67473,(785) 346-2431
+Ottawa ,307 N Concord Suite 130,,Minneapolis,KS,67467,(785) 392-2279
+Pawnee ,715 Broadway,,Larned,KS,67550,(620) 285-3721
+Phillips ,301 State Street,,Phillipsburg,KS,67661,(785) 543-6825
+Pottawatomie ,PO Box 187,207 N 1st,Westmoreland,KS,66549,(785) 457-3314
+Pratt ,PO Box 885,300 S Ninnescah,Pratt,KS,67124,(620) 672-4110
+Rawlins ,607 Main,,Atwood,KS,67730,(785) 626-3351
+Reno ,206 West 1st,,Hutchinson,KS,67501,(620) 694-2732
+Republic ,1815 M. Street,,Belleville,KS,66935-0429,(785) 527-7231
+Rice ,101 W Commercial,,Lyons,KS,67554,(620) 257-2232
+Riley ,110 Courthouse Plaza,,Manhattan,KS,66502,(785) 537-6300
+Rooks ,115 N Walnut,,Stockton,KS,67669,(785) 425-6391
+Rush ,PO Box 220,715 Elm,LaCrosse,KS,67548,(785) 222-2731
+Russell ,PO Box 113,4th & Main,Russell,KS,67665,(785) 483-4641
+Saline ,"300 W Ash, Ste. #215",,Salina,KS,67401,(785) 309-5820
+Scott ,303 Court,,Scott City,KS,67871,(620) 872-2420
+Sedgwick ,510 N Main,,Wichita,KS,67203-3798,(316) 660-7100
+Seward ,"515 N Washington, Suite 100",,Liberal,KS,67901,(620) 626-3355
+Shawnee ,911 SW 37th,,Topeka,KS,66611,(785) 266-0285
+Sheridan ,P.O. Box 899,925 9th Street,Hoxie,KS,67740,(785) 675-3361
+Sherman ,"813 Broadway, Rm 102",,Goodland,KS,67735,(785) 890-4802
+Smith ,218 S Grant,,Smith Center,KS,66967,(785) 282-5110
+Stafford ,209 N Broadway,Courthouse,St. John,KS,67576,(620) 549-3509
+Stanton ,PO Box 190,201 N Main,Johnson,KS,67855,(620) 492-2140
+Stevens ,200 E 6th,,Hugoton,KS,67951,(620) 544-2541
+Sumner ,501 N Washington,,Wellington,KS,67152,(620) 326-3395
+Thomas ,300 N Court,,Colby,KS,67701,(785) 460-4500
+Trego ,216 Main,,WaKeeney,KS,67672,(785) 743-5773
+Wabaunsee ,PO Box 278,215 Kansas,Alma,KS,66401,(785) 765-2421
+Wallace ,PO Box 70,,Sharon Springs,KS,67758,(785) 852-4282
+Washington ,214 C St,,Washington,KS,66968,(785) 325-2974
+Wichita ,PO Drawer 968,206 S Fourth St,Leoti,KS,67861,(620) 375-2731
+Wilson ,615 Madison,,Fredonia,KS,66736,(620) 378-2186
+Woodson ,"105 W Rutledge, Room 103",,Yates Center,KS,66783,(620) 625-8605
+Wyandotte ,850 State Avenue,,Kansas City,KS,66101,(913) 573-8500
+Allegany ,701 Kelly Road,Suite 213,Cumberland,MD,21502-3401,(301) 777-5931
+Anne Arundel ,Anne Arundel County Government Building,PO Box 490,Glen Burnie,MD,21060-0490,(410) 222-6600
+Baltimore City,Charles L. Benton Building ," 417 E. Fayette Street, Room 129",Baltimore ,MD,21202-3432,(410) 396-5550
+Baltimore ,106 Bloomsbury Avenue,,Catonsville,MD,21228,(410) 887-5700
+Calvert ,PO Box 798,,Prince Frederick,MD,20678-0798,(410) 535-2214
+Caroline ,Health and Public Services Building                                   ," 403 S. Seventh Street, Suite 247",Denton,MD,21629-1335,(410) 479-8145
+Carroll ,300 South Center Street,Room 212,Westminster,MD,21157-5248,(410) 386-2080
+Cecil ,200 Chesapeake Boulevard,Suite 1900,Elkton,MD,21921-6395,(410) 996-5310
+Charles ,PO Box 908,,La Plata,MD,20646-0908,(301) 934-8972
+Dorchester ,PO Box 414,,Cambridge,MD,21613-0414,(410) 228-2560
+Frederick ,12 E. Church Street,Winchester Hall,Frederick,MD,21701-5447,(301) 600-8683
+Garrett ,Public Service Center      ,"2008 Maryland Highway, Suite 1 ",Mountain Lake Park,MD,21550,(301) 334-6985
+Harford ,133 Industry Lane,,Forest Hill,MD,21050,(410) 638-3565
+Howard ,9770 Patuxent Woods Drive,Suite 200,Columbia,MD,21046,(410) 313-5820
+Kent ,135 Dixon Drive,,Chestertown,MD,21620-1141,(410) 778-0038
+Montgomery ,PO Box 4333,,Rockville,MD,20849-4333,(240) 777-8500
+Prince George's ,1100 Mercantile Lane,Suite 115A,Largo,MD,20774,(301) 430-8020
+Queen Anne's ,PO Box 274,,Centreville,MD,21617-0724,(410) 758-0832
+St. Mary's ,PO Box 197,,Leonardtown,MD,20650-0197,(301) 475-7844
+Somerset ,County Office Building           ,PO Box 96,Princess Anne,MD,218530-0096,(410) 651-0767
+Talbot ,PO Box 353,,Easton,MD,21601-0353,(410) 770-8099
+Washington ,35 W. Washington Street,Room 101,Hagerstown,MD,21740,(240) 313-2050
+Wicomico ,PO Box 4091,,Salisbury,MD,21803-4091,(410) 548-4830
+Worcester ,100 Belt Street,,Snow Hill,MD,21863-1310,(410) 632-1320
+Adair ,106 W. Washington,Second Floor,Kirksville,MO,63501,(660) 665-3350
+Andrew ,411 Court Street,,Savannah,MO,64485,(816) 324-3624
+Atchison ,400 S. Washington,,Rock Port,MO,64482,(660) 744-6214
+Audrain ,101 N. Jefferson,Room 101,Mexico,MO,65265,(573) 473-5820
+Barry ,700 Main,Suite 2,Cassville,MO,65625,(417) 847-2561
+Barton ,1004 Gulf,Room 103,Lamar,MO,64759,(417) 682-3529
+Bates ,1 N. Delaware,,Butler,MO,65625,(417) 847-2561
+Benton ,316 Van Buren,,Warsaw,MO,65355,(660) 438-7326
+Bollinger ,204 E. High Street,,Marble Hill,MO,63764,(573) 238-1900 ext. 333
+Boone ,801 E. Walnut Street,Room 236,Columbia,MO,65201,(573) 886-4295
+Buchanan ,411 Jules,Room 121,St. Joseph,MO,64501,(816) 271-1412
+Butler ,100 N. Main,Room 202,Poplar Bluff,MO,63901,(573) 686-8050
+Caldwell ,49 E. Main,,Kingston,MO,64650,(816) 586-2571
+Callaway ,10 E. Fifth Street,,Fulton ,MO,65251,(573) 642-0730
+Camden ,#1 Court Circle,Suite 2,Camdenton,MO,65020,(573) 346-4440 ext. 1220
+Cape Girardeau ,1 Barton Square,,Jackson,MO,63755,(573) 243-3547
+Carroll ,8 S. Main,Suite 6,Carrollton,MO,64633,(660) 542-0615
+Carter ,105 Main Street,,Van Buren,MO,63965,(573) 323-4527
+Cass ,102 E. Wall,,Harrisonville,MO,645701,(816) 380-8102
+Cedar ,113 South Street,,Stockton,MO,65785,(417) 276-6700 ext. 221
+Chariton ,306 S. Cherry,,Keytesville,MO,65261,(660) 288-3273
+Christian ,100 W. Church,Room 206,Ozark,MO,65721,(417) 581-6360
+Clark ,111 E. Court Street,Suite 110,Kahoka,MO,63445,(660) 727-3283
+Clay ,100 W. Mississippi Street,,Liberty,MO,64068,(816) 415-8683
+Clinton ,207 N. Main,,Plattsburg,MO,64477,(816) 539-3713
+Cole ,311 E. High Street,Room 201,Jefferson City,MO,65101,(573) 634-9106
+Cooper ,200 Main Street,Room 23,Boonville,MO,65233,(660) 882-2114
+Crawford ,203 W. Main Street,,Steelville,MO,65565,(573) 775-2376
+Dade ,300 W. Water,,Greenfield,MO,65661,(417) 637-2724
+Dallas ,102 S. Cedar,,Buffalo,MO,65622,(417) 345-2632
+Daviess ,102 N. Main,,Gallatin,MO,64640,(660) 663-2641
+DeKalb ,109 W. Main Street,,Maysville,MO,64469,(417) 345-2632
+Dent ,400 N. Main Street,,Salem,MO,65560,(573) 729-4144
+Douglas ,203 S.E. Second,,Ava,MO,65608,(417) 683-4714
+Dunklin ,Courthouse Square,Room 201,Kennett,MO,63857,(573) 888-1374
+Franklin ,400 E. Locust,Suite 201,Union,MO,63084,(636) 583-6355
+Gasconade ,119 E. First Street,Suite 2,Hermann,MO,65041,(573) 486-5427
+Gentry ,200 W. Clay,,Albany,MO,64402,(660) 726-3525
+Greene ,940 Boonville,Room 113,Springfield,MO,65802,(417) 868-4055
+Grundy ,700 Main,2nd Floor,Trenton,MO,64683,(660) 359-4040 ext. 4
+Harrison ,1505 Main Street,,Bethany,MO,64424,(660) 425-6424
+Henry ,100 W. Franklin,,Clinton,MO,64735,(660) 885-7204
+Hickory ,Spring & Dallas,,Hermitage,MO,65668,(417) 745-6450
+Holt ,102 W. Nodaway,,Oregon,MO,64473,(660) 446-3303
+Howard ,1 Courthouse Square,,Fayette,MO,65248,(660) 248-2284
+Howell ,35 Court Square,Room 200,West Plains,MO,65775,(417) 256-2591
+Iron ,250 S. Main,,Ironton,MO,63650,(573) 546-2912
+Jackson ,215 N. Liberty Street            ,PO Box 296,Independence,MO,64051,(816) 325-4600
+Jasper ,302 S. Main,Room 102,Carthage,MO,64836,(417) 237-1008
+Jefferson ,729 Maple Street,Room G17,Hillsboro,MO,63050,(636) 797-5486
+Johnson ,300 N. Holden,,Warrensburg,MO,64093,(660) 747-6161
+Kansas City,30 W. Pershing,Suite 610,Kansas City,MO,64108,(816) 842-4820
+Knox ,107 N. Fourth Street,,Edina,MO,63537,(660) 397-2184
+Laclede ,200 N. Adams,,Lebanon,MO,65536,(417) 532-5471
+Lafayette ,1001 Main ,Room 103,Lexington,MO,64067,(660) 259-4315
+Lawrence ,1 E. Courthouse Square,Suite 101,Mt. Vernon,MO,65712,(417) 466-2638
+Lewis ,100 E. Lafayette,,Monticello,MO,63457,(573) 767-5205
+Lincoln ,201 Main Street,,Troy,MO,63379,(636) 528-6300 ext. 1
+Linn ,108 N. High,Room 102,Linneus,MO,64653,(660) 895-5417
+Livingston ,700 Webster Street,Suite 10 ,Chillicothe,MO,64601,(660) 646-8000 ext. 3
+Macon ,101 E. Washington ,Building 1,Macon,MO,63552,(660) 385-2913
+Madison ,1 Courthouse Square,,Fredericktown,MO,63645,(573) 783-2176
+Maries ,Fourth & Main,,Vienna,MO,65582,(573) 422-3388
+Marion ,100 S. Main,Room 107,Palmyra,MO,63461,(573) 769-2549
+McDonald ,602 Main Street,,Pineville,MO,64856,(417) 223-7532
+Mercer ,802 Main Street,,Princeton,MO,64673,(660) 748-3425
+Miller ,2001 Highway 52,,Tuscumbia,MO,65082,(573) 369-1910
+Mississippi ,200 N. Main Street,,Charleston,MO,63834,(573) 683-2146 ext. 221
+Moniteau ,200 E. Main Street,Room 106,California,MO,65018,(573) 796-4661
+Monroe ,300 N. Main Street,Room 204,Paris,MO,65275,(660) 327-5106
+Montgomery ,211 E. Third Street,,Montgomery,MO,63361,(573) 564-3357
+Morgan ,100 E. Newton,,Versailles,MO,65084,(573) 378-5436 ext. 132
+New Madrid ,450 Main,,New Madrid,MO,63869,(573) 748-2524
+Newton ,101 S. Wood Street,,Neosho,MO,64850,(417) 451-8221
+Nodaway ,403 N. Market,,Maryville,MO,64468,(660) 582-2251
+Oregon ,"Co Courthouse, 1st Floor",Room 1,Alton,MO,65606,(417) 778-7475
+Osage ,PO Box 826,,Linn ,MO,65051,(573) 897-2139
+Ozark ,1 Courthouse Square,,Gainesville,MO,65655,(417) 679-3516
+Pemiscot ,610 Ward Avenue,Suite 2-A,Caruthersville,MO,63830,(573) 333-4203
+Perry ,321 N. Main,No. 2,Perryville,MO,63775,(573) 547-4242
+Pettis ,415 S. Ohio,Suite 214,Sedalia,MO,65301,(660) 826-5000 ext. 918
+Phelps ,200 N. Main Street,,Rolla,MO,65401,(573) 458-6101
+Pike ,115 W. Main,,Bowling Green,MO,63334,(573) 324-2412
+Platte ,2600 NW Prairie View Road,,Platte City,MO,64079,(816) 858-4400
+Polk ,102 E. Broadway,Room 113,Bolivar,MO,65613,(417) 326-4031
+Pulaski ,301 Historic Route 66 E.,Suite 101,Waynesville,MO,65583,(573) 774-4701
+Putnam ,1601 Main,Room 204,Unionville,MO,63565,(660) 947-2674
+Ralls ,311 S. Main,,New London,MO,63459,(573) 985-7111
+Randolph ,110 South Main Street,,Huntsville,MO,65259,(660) 277-4717
+Ray ,100 W. Main,,Richmond,MO,64085,(816) 776-4502
+Reynolds ,PO Box 10,,Centerville,MO,63633,(573) 648-2494 ext. 12
+Ripley ,100 Courthouse Square,Suite 2,Doniphan,MO,63935,(573) 996-3215
+Saline ,101 E. Arrow,Room 202,Marshall,MO,65340,(660) 886-3331
+Schulyer ,#1 Courthouse Square,,Lancaster,MO,63548,(660) 457-3842
+Scotland ,117 S. Market,Suite 100,Memphis ,MO,63555,(660) 465-7027
+Scott ,131 S. Winchester,,Benton,MO,63736,(573) 545-3549
+Shannon ,106 Main,,Eminence,MO,65466,(573) 226-3414
+Shelby ,100 E. Main,,Shelbyville,MO,63469,(573) 633-2181
+St. Charles ,397 Turner Boulevard,,St Peters,MO,63376,(636) 949-7550
+St. Clair ,655 Second Street,,Osceola,MO,64776,(417) 646-2315
+St. Francois ,1 W. Liberty,Suite 300,Farmington,MO,63640,(573) 756-5411 ext. 5
+St. Louis City,300 N. Tucker,,St. Louis,MO,63101,(314) 622-4336
+St. Louis ,12 Sunnen Drive,Suite 126,Maplewood,MO,63143,(314) 615-1800
+Ste Genevieve ,55 S. Third Street,,Ste. Genevieve,MO,63670,(573) 883-5779
+Stoddard ,401 S. Prairie                             ,PO Box 110,Bloomfield,MO,63825,(573) 568-3339
+Stone ,PO Box 45,,Galena,MO,65656,(417) 357-6127
+Sullivan ,109 N. Main,,Milan,MO,63556,(660) 265-3786
+Taney ,132 David Street                     ,PO Box 156,Forsyth,MO,65653,(417) 546-7203
+Texas ,210 N. Grand Avenue,Suite 311,Houston,MO,65483,(417) 967-2112
+Vernon ,100 W. Cherry,Suite 6,Nevada,MO,64772,(417) 448-2500
+Warren ,101 Mockingbird Lane,Suite 302,Warrenton,MO,63383,(636) 456-3331
+Washington ,102 N. Missouri Street,,Potosi,MO,63664,(573) 438-6111 ext. 221
+Wayne ,109 Walnut Street                  ,PO Box 48,Greenville,MO,63944,(573) 224-5600 ext. 4
+Webster ,101 S. Crittenden,Room 12 ,Mashfield,MO,65706,(417) 468-2223
+Worth ,Fourth & Front Street,,Grant City,MO,64456,(660) 564-2219
+Wright ,125 Court Square,,Hartville,MO,65667,(417) 741-6661
+Bernalillo ,One Civic Plaza NW,6th Floor,Albuquerque,NM,87102,(505) 468-1290
+Catron ,Catron County Courthouse ,PO Box 197,Reserve,NM,87830,(575) 533-6400
+Chaves ,PO Box 580,,Roswell,NM,88202,(575) 624-6614
+Cibola ,515 W. High,,Grants,NM,87020,(505) 285-2535
+Colfax ,PO Box 159,,Raton,NM,87740,(575) 445-5551
+Curry ,1509 Grayson Court,,Clovis,NM,88101,(575) 763-5591
+De Baca ,PO Box 347,,Fort Sumner,NM,88119,(575) 355-2601
+Doña Ana ,845 N. Motel Boulevard,,Las Cruces,NM,88007,(575) 647-7421
+Eddy ,325 S. Main Street,,Carlsbad,NM,88220,(575) 885-3383
+Grant ,PO Box 898,,Silver City,NM,88062,(575) 574-0042
+Guadalupe ,1448 Historic Route 66,Suite 1,Santa Rosa,NM,88435,(575) 472-3791
+Harding ,35 Pine Street,,Mosquero,NM,87733,(575) 673-2301
+Hidalgo ,Hidalgo County Courthouse ,300 South Shakespeare Street,Lordsburg,NM,88045,(575) 542-9213
+Lea ,PO Box 1507,,Lovington,NM,88260,(575) 396-8619
+Lincoln ,PO Box 338,,Carrizozo,NM,88301-0338,(575) 648-2394 ext. 130
+Los Alamos ,1000 Central Avenue,Suite 240,Los Alamos,NM,87544,(505) 662-8101
+Luna ,PO Box 1838,,Deming,NM,88030,(575) 546-0491
+McKinley ,207 West Hill Street,,Gallup,NM,87301,(505) 863-6866
+Mora ,PO Box 360,,Mora,NM,87732,(575) 387-2448
+Otero ,1104 N. White Sands Boulevard,Suite C,Alamogordo,NM,88310,(575) 437-4942
+Quay ,Box 1225,,Tucumcari,NM,88401,(575) 461-0510
+Rio Arriba ,Tierra Amarilla Court House ,PO Box 158,Tierra Amarilla,NM,87575,(575) 588-7724
+Roosevelt ,109 West First Street,Lobby Box 4,Portales,NM,88130,(575) 356-8562
+San Juan ,PO Box 550,,Aztec,NM,87410,(505) 334-9471
+San Miguel ,San Miguel County Courthouse                             ,"500 W. National Avenue, Suite 113",Las Vegas,NM,87701,(505) 425-9331
+Sandoval ,PO Box 40,,Bernalillo,NM,87004,(505) 867-7573
+Santa Fe ,102 Grant Avenue                ,Box 1985,Santa Fe,NM,87504,(505) 986-6280
+Sierra ,100 N. Date Street,Suite 6,Truth or Consequences,NM,87901,(575) 894-2840
+Socorro ,PO Box I,,Socorro,NM,87801,(575) 835-0423
+Taos ,105 Albright Street,Suite D,Taos,NM,87571,(575) 737-6380
+Torrance ,PO Box 767,,Estancia,NM,87016,(505) 246-4737
+Union ,PO Box 430,,Clayton,NM,88415,(575) 374-9491
+Valencia ,PO Box 969,,Los Lunas,NM,87031,(505) 866-2075
+Adams ,500 W. 4th Street                    ,PO Box 2067,Hastings ,NE,68901,(402) 461-7199
+Antelope ,501 Main Street                         ,PO Box 26,Neligh,NE,68756,(402) 887-4410
+Arthur ,PO Box 126,,Arthur,NE,69121,(308) 764-2203
+Banner ,PO Box 67,,Harrisburg,NE,69345,(308) 436-5265
+Blaine ,145 Lincoln Avenue,,Brewster,NE,68821,(308) 547-2222 ext. 201
+Boone ,222 S. 4th Street,,Albion,NE,68620,(402) 395-2055
+Box Butte ,PO Box 678,,Alliance,NE,69301,(308) 762-6565
+Boyd ,401 Thayer                                 ,PO Box 26,Butte,NE,68722,(402) 775-2391
+Brown ,148 W. 4th Street,,Ainsworth,NE,69210,(402) 387-2705
+Buffalo ,1512 Central Avenue             ,PO Box 1270,Kearney,NE,68847,(308) 236-1233
+Burt ,"111 N. 13th Street, Suite 8                 ",PO Box 87,Tekamah,NE,68061,(402) 374-2955
+Butler ,451 N. 5th Street,,David City,NE,68632,(402) 367-7436
+Cass ,201 Main Street,,Plattsmouth,NE,68048,(402) 296-9309
+Cedar ,1015 Broadway                        ,PO Box 47,Hartington,NE,68739,(402) 254-7411
+Chase ,PO Box 1299,,Imperial,NE,69033,(308) 882-7500
+Cherry ,365 N. Main Street                 ,PO Box 120,Valentine,NE,69201,(402) 376-2771
+Cheyene ,1000 10th Avenue                    ,PO Box 217,Sydney,NE,69162,(308) 254-2141
+Clay ,111 W. Fairfield Street,,Clay Center,NE,68933,(402) 762-3463
+Colfax ,411 E. 11th Street,,Schuyler,NE,68661,(402) 352-8504
+Cuming ,200 S. Lincoln Street,Room 100,West Point,NE,68788,(402) 372-6002
+Custer ,431 S. 10th Street,,Broken Bow,NE,68822,(308) 872-5701
+Dakota ,1601 Broadway Street               ,PO Box 39,Dakota City,NE,68731,(402) 987-2125
+Dawes ,451 Main,,Chadron,NE,69337,(308) 432-0100
+Dawson ,700 N. Washington,Room A,Lexington,NE,68850,(308) 324-9832
+Deuel ,PO Box 327,,Chappell,NE,69129,(308) 874-3308
+Dixon ,302 W. 3rd Street                   ,PO Box 546,Ponca,NE,68770,(402) 755-5602
+Dodge ,435 N. Park,Room 102,Fremont,NE,68025,(402) 727-2767
+Douglas ,225 N. 115th Street,,Omaha,NE,68154,(402) 444-8683
+Dundy ,112 7th Avenue West           ,PO Box 506,Benkelman,NE,69021,(308) 423-2058
+Fillmore ,900 G. Street                              ,PO Box 307,Geneva,NE,68361,(402) 759-4931
+Franklin ,PO Box 146,,Franklin,NE,68939,(308) 425-6202
+Frontier ,PO Box 40,,Stockville,NE,69042,(308) 367-8641
+Furnas ,912 R Street                               ,PO Box 387,Beaver City,NE,68926,(308) 268-4145
+Gage ,612 Grant Street                      ,PO Box 429,Beatrice,NE,68310,(402) 223-1300
+Garden ,611 Main Street                       ,PO Box 350,Oshkosh,NE,69154,(308) 772-9926
+Garfield ,250 S. 8th Avenue                   ,PO Box 218,Burwell,NE,68823,(308) 346-4161
+Gosper ,PO Box 136,,Elwood,NE,68937,(308) 785-2611
+Grant ,PO Box 139,,Hyannis,NE,69350,(308) 458-2780
+Greeley ,PO Box 287,,Greeley,NE,68842,(308) 428-3625
+Hall ,121 South Pine,Suite 8,Grand Island,NE,68801,(308) 385-5085
+Hamilton ,1111 13th Street,Suite 1,Aurora,NE,68818,(402) 694-3443
+Harlan ,PO Box 698,,Alma,NE,68920,(308) 928-2173
+Hayes ,502 Troth                                   ,PO Box 370,Hayes Center,NE,69032,(308) 286-3413
+Hitchcock ,PO Box 248,,Trenton,NE,69044,(308) 334-5646
+Holt ,PO Box 329,,O'Neill,NE,68763,(402) 336-1762
+Hooker ,303 NW 1st Street                   ,PO Box 184,Mullen,NE,69152,(308) 546-2244
+Howard ,PO Box 25,,St. Paul,NE,68873,(308) 754-4343
+Jefferson ,411 Fourth Street ,,Fairbury ,NE,68352,(402) 729-6818
+Johnson ,PO Box 416,,Tecumseh,NE,68450,(402) 335-6300
+Kearney ,PO Box 339,,Milden,NE,68959,(308) 832-2723
+Keith ,511 N. Spruce,Suite 102,Ogallala,NE,69153,(308) 284-4726
+Keya Paha ,PO Box 349,,Springview,NE,68778,(402) 497-3791
+Kimball ,114 E. Third Street,Suite 6,Kimball ,NE,69145,(308) 235-2241
+Knox ,206 Main Street                       ,PO Box 166,Center,NE,68724,(402) 288-5604
+Lancaster ,601 N. 46th Street,,Lincoln,NE,68503,(402) 441-7311
+Loup ,408 4th Street                              PO Box 187,,Taylor,NE,68879,(308) 942-3135
+Madison ,1313 Main Street                     ,PO Box 290,Madison,NE,68748,(402) 454-3311 ext. 136
+McPherson ,PO Box 122,,Tryon,NE,69167,(308) 587-2363
+Merrick ,1510 18th Street                     ,PO Box 27,Central City,NE,68826,(308) 946-2881
+Morrill ,PO Box 610,,Bridgeport,NE,69336,(308) 262-0860
+Nance ,209 Esther Street                     ,PO Box 338,Fullerton,NE,68638,(308) 536-2331
+Nemaha ,1824 N Street,Suite 201,Auburn,NE,68305,(402) 274-4213
+Nuckolls ,150 S. Main Street                  ,PO Box 366,Nelson,NE,68961,(402) 225-4361
+Otoe ,"1021 Central Avenue, Room 102",PO Box 249,Nebraska City,NE,68410,(402) 873-9505
+Pawnee ,625 6th Street                            ,PO Box 431,Pawnee City,NE,68420,(402) 852-2962
+Perkins ,Perkins County Courthouse 200 Lincoln Avenue                ,PO Box 156,Grant,NE,69140,(308) 352-4643
+Phelps ,715 5th Avenue                      ,PO Box 404,Holdrege,NE,68949,(308) 995-4469
+Pierce ,111 W. Court Street,Room 1,Pierce,NE,68767,(402) 329-4225
+Platte ,2610 14th Street                     ,PO Box 513,Columbus,NE,68602,(402) 563-4908
+Polk ,400 Hawkeye Street               ,PO Box 267,Osceola,NE,68651,(402) 747-5431
+Red Willow ,502 Norris Avenue,,McCook,NE,69001,(308) 345-1552
+Richardson ,1700 Stone Street,Room 203,Falls City,NE,68355,(402) 245-2911
+Rock ,400 S. State Street                  ,PO Box 367,Bassett,NE,68714,(402) 684-3933
+Saline ,PO Box 865,,Wilber,NE,68465,(402) 821-2374
+Sarpy ,501 Olson Drive,Suite 4,Papillion,NE,68046,(402) 593-2167
+Saunders ,"433 N. Chestnut Street, Suite 300",PO Box 61,Wahoo,NE,68066,(402) 443-8101
+Scotts Bluff ,1825 10th Street,,Gering,NE,69341,(308) 436-6600
+Seward ,529 Seward Street                    ,PO Box 190,Seward,NE,68434,(402) 643-2883
+Sheridan ,301 E. 2nd Street,,Rushville,NE,69360,(308) 327-5650
+Sherman ,630 O Street                                 PO Box 456,,Loup City,NE,68853,(308) 745-1513 ext. 100
+Sioux ,325 Main Street                         ,PO Box 158,Harrison,NE,69346,(308) 668-2443
+Stanton ,804 Ivy Street                          ,PO Box 347,Stanton,NE,68779,(402) 439-2222
+Thayer ,225 N. Fourth Street,Room 201,Hebron,NE,68370,(402) 768-6126
+Thomas ,503 Main Street                       ,PO Box 226,Thedford,NE,69166,(308) 645-2261
+Thurston ,106 S. 5th Street                      ,PO Box 159,Pender,NE,68047,(402) 385-2343
+Valley ,125 S. 15th Street,,Ord,NE,68862,(308) 728-3700
+Washington ,1555 Colfax Street                   ,PO Box 466,Blair,NE,68008,(402) 426-6822
+Wayne ,510 Pearl Street,Suite 5,Wayne,NE,68787-1939,(402) 375-2288
+Webster ,621 N. Cedar Street                  ,PO Box 250,Red Cloud,NE,68970,(402) 746-2716
+Wheeler ,301 3rd Street                          ,PO Box 127,Bartlett,NE,68622,(308) 654-3235
+York ,510 Lincoln Avenue,,York,NE,68467,(402) 362-7759
+Arcadia ,568 N.W. Court Circle,,Crowley,LA,70526-4363,(337) 788-8841
+Allen ,PO Box 150,,Oberlin,LA,70655-0150,(337) 639-4966
+Ascension ,828 S. Irma Boulevard ,#205,Gonzales,LA,70737-3631,(225) 621-5780
+Assumption ,PO Box 578,,Napoleonville,LA,70390-0578,(985) 369-7347
+Avoyelles ,312 N. Main Street,Suite E,Marksville,LA,71351-2409,(318) 253-7129
+Beauregard ,PO Box 952,,Deridder,LA,70634-0952,(337) 463-7955
+Bienville ,PO Box 697,,Arcadia,LA,71001-0697,(318) 263-7407
+Bossier ,PO Box 635,,Benton,LA,71006-0635,(318) 965-2301
+Caddo ,PO Box 1253,,Shreveport,LA,71163-1253,(318) 226-6891
+Calcasieu ,1000 Ryan Street,Suite 7,Lake Charles,LA,70601-5250,(337) 721-4000
+Caldwell ,PO Box 1107,,Columbia,LA,71418-1107,(318) 649-7364
+Cameron ,PO Box 1,,Cameron,LA,70631,(337) 775-5493
+Catahoula ,PO Box 215,,Harrisonburg,LA,71340-0215,(318) 744-5745
+Claiborne ,507 W. Main Street,Suite 1,Homer,LA,71040-3929,(318) 927-3332
+Concordia ,4001 Carter Street,Suite K,Vidalia,LA,71373-3021,(318) 336-7770
+De Soto ,105 Franklin Street,,Mansfield,LA,71052-2046,(318) 872-1149
+East Baton Rouge ,222 St. Louis Street,#201,Baton Rouge,LA,70802-5860,(225) 389-3940
+East Carroll ,PO Box 708,,Lake Providence,LA,71254-0708,(318) 559-2015
+East Feliciana ,PO Box 488,,Clinton,LA,70722-0488,(225) 683-3105
+Evangeline ,200 Court Street,Suite 102,Ville Platte,LA,70586-4463,(337) 363-5538
+Franklin ,6560 Main Street,,Winnsboro,LA,71295-2750,(318) 435-4489
+Grant ,200 Main Street,Room #103,Colfax,LA,71417-1828,(318) 627-9938
+Iberia ,300 S. Iberia Street,Suite 110,New Iberia,LA,70560-4543,(337) 369-4407
+Iverville ,PO Box 554,,Plaquemine,LA,70765-0554,(225) 687-5201
+Jackson ,500 E. Court Street,Room #102,Jonesboro,LA,71251-3400,(318) 259-2486
+Jefferson ,PO Box 10494,,Jefferson,LA,70181-0494,(504) 736-6191
+Jefferson Davis ,302 N. Cutting Avenue,,Jennings,LA,70546-5361,(337) 824-0834
+Lafayette ,1010 Lafayette Street,Suite 313,Lafayette,LA,70501-6885,(337) 291-7140
+Lafourche ,307 W. 4th Street,,Thibodaux,LA,70301-3105,(985) 447-3256
+Lasalle ,PO Box 2439,,Jena,LA,71342,(318) 992-2254
+Lincoln ,100 W. Texas Avenue,Room #10,Ruston,LA,71270-4463,(318) 251-5110
+Livingston ,PO Box 968,,Livingston,LA,70754,(225) 686-3054
+Madison ,100 N. Cedar Street,Room #5,Tallulah,LA,71282-3892,(318) 574-2193
+Morehouse ,129 N. Franklin Street,Suite 1,Bastrop,LA,71220-3815,(318) 281-1434
+Natchitoches ,PO Box 677,,Natchitoches,LA,71458-0677,(318) 357-2211
+Orleans ,1300 Perdido,Room 1W23,New Orleans,LA,70112-2127,(504) 658-8300
+Ouachita ,122 Saint John Street,Room #114,Monroe,LA,71201,(318) 327-1436
+Plaquemines ,PO Box 989,,Port Sulphur,LA,70083-0989,(504) 934-3620
+Pointe Coupee ,211 E. Main Street,Floor 2,New Roads,LA,70760-3661,(225) 638-5537
+Rapides ,701 Murray Street,Room #123,Alexandria,LA,71301-8060,(318) 473-6770
+Red River ,PO Box 432,,Coushatta,LA,71019-0432,(318) 932-5027
+Richland ,PO Box 368,,Rayville,LA,71269-0368,(318) 728-3582
+Sabine ,400 Capitol Street,Room 107,Many,LA,71449-3098,(318) 256-3697
+St. Bernard ,8201 W. Judge Perez Drive,,Chalmette,LA,70043-1696,(504) 278-4231
+St. Charles ,PO Box 315,,Hahnville,LA,70057-0315,(985) 783-5120
+St. Helena ,PO Box 543,,Greensburg,LA,70441-0543,(225) 222-4440
+St. James ,PO Box 179,,Convent,LA,70723-0719,(225) 562-2330
+St. John The Baptist ,1801 W. Airline Highway,,Laplace,LA,70068-3344,(985) 652-9797
+St. Landry ,PO Box 818,,Opelousas,LA,70571-0818,(337) 948-0572
+St. Martin ,415 St. Martin Street,,St. Martinville,LA,70582-4549,(337) 394-2204
+St Mary ,500 Main Street,Suite 301,Franklin,LA,70538-6144,(337) 828-4100
+St. Tammany ,701 N. Columbia Street,,Covington,LA,70433,(985) 809-5500
+Tangipahoa ,PO Box 895,,Amite,LA,70422-0895,(985) 748-3215
+Tensas ,PO Box 183,,St. Joseph,LA,71366-0813,(318) 766-3931
+Terrebonne ,8026 Main Street,Suite 101,Houma,LA,70360-3407,(985) 873-6533
+Union ,PO Box 235,,Farmerville,LA,71241-0235,(318) 368-8660
+Vermilion ,100 N. State Street,Suite #120,Abbeville,LA,70510-5170,(337) 898-4324
+Vernon ,PO Box 626,,Leesville,LA,71496-0626,(337) 239-3690
+Washington ,900 Washington Street,Suite 3,Franklinton,LA,70438-1719,(985) 839-7850
+Webster ,PO Box 674,,Minden,LA,71058-0674,(318) 377-9272
+West Baton Rouge ,PO Box 31,,Port Allen,LA,70767-0031,(225) 336-2421
+West Carroll ,PO Box 71,,Oak Grove,LA,71263-0071,(318) 428-2381
+West Feliciana ,PO Box 2490,,St. Francisville,LA,70775,(225) 635-6161
+Winn ,119 West Main Street,Suite #105,Winnfield,LA,71483,(318) 628-6133
+New Castle,"Carvel State Office Building, 4th Floor",820 North French Street,Wilmington,DE,19801,302-577-3464
+Kent,100 Enterprise Place,Suite 5,Dover,DE,19904,302-739-4498
+Sussex,119 N. Race Street,P. O. Box 457,Georgetown,DE,19947,302-856-5367
+Apache,P.O. Box 428,,St. Johns,AZ,85936,(928) 337-7537 
+Cochise,1415 Melody Lane,Building A,Bisbee,AZ,85603,(520) 432-8970
+Coconino,110 E. Cherry Avenue,,Flagstaff,AZ,86001,(928) 679-7860
+Gila,5515 S. Apache Avenue,Suite 900,Globe,AZ,85501,(928) 402-8708
+Graham,921 Thatcher Blvd,,Safford,AZ,85546,(928) 792-5037
+Greenlee,P.O. Box 908,,Clifton,AZ,85533,(928) 865-2072
+La Paz,1108 Joshua Avenue,,Parker,AZ,85344,(928) 669-6115
+Maricopa,111 S. Third Avenue,#102,Phoenix,AZ,85003-2225,(602) 506-1511
+Mohave,P.O. Box 7000,,Kingman,AZ,86402-7000,(928) 753-0733
+Navajo,P.O. Box 668,,Holbrook,AZ,86025,(928) 524-4062
+Pima,6550 S. Country Club ,,Tucson,AZ,85756,(520) 724-6830
+Pinal,P.O. Box 1592,,Florence,AZ,85132,(520) 866-7550
+Santa Cruz,2150 N. Congress Drive,Suite 119,Nogales,AZ,85621,(520) 375-7808
+Yavapai,1015 Fair Street,Room 228,Prescott,AZ,86305,(928) 771-3250
+Yuma,198 S. Main Street,,Yuma,AZ,85364, (928) 373-6034 
+Bak​er,1995 Third Street,Suite 150,Baker City,OR,97814-3398,541-523-8207
+Benton,120 N.W. Fourth Street,Room 13,Corvallis,OR,97330,541-766-6756
+Clac​kamas,Elections Division,"1710 Red Soils Court, Suite 100",Oregon City,OR,97045,503-655-8510
+Cla​​tsop,820 Exchange Street,Suite 220,Astoria,OR,97103,503-325-8511
+C​olumbia,Columbia County Courthouse,230 Strand Street,St. Helens,OR,97051-2089,503-397-7214
+C​​oos,Coos County Courthouse,250 N. Baxter Street,Coquille,OR,97423-1899,541-396-7610
+C​rook,300 N.E. Third Street,Room 23,Prineville,OR,97754-1919,541-447-6553
+Cu​rr​y,94235 Moore Street,Suite 212,Gold Beach,OR,97444,541-247-3297
+Desch​utes,P.O. Box 6005,,Bend,OR,97708-6005,541-388-6546
+Doug​las,P.O. Box 10,,Roseburg,OR,97470-0004,541-440-4252
+Gilliam​,P.O. Box 427,,Condon,OR,97823-0427,541-384-2311
+Grant,201 S. Humbolt,Suite 290,Canyon City,OR,97820,541-575-1675
+Harney,450 N. Buena Vista Avenue,,Burns,OR,97720,541-573-6641
+Hood River,601 State Street,,Hood River,OR,97031-1871,541-386-1442
+Jackson,1101 W. Main Street,Suite 201,Medford,OR,97501-2369,541-774-6148
+Jefferson,"Courthouse, Annex A","66 S.E. D Street, Suite C",Madras,OR,97741,541-475-4451
+Josephin​e,P.O. Box 69,,Grants Pass,OR,97528-0203,541-474-5243
+Kl​amath,305 Main Street,,Klamath Falls,OR,97601,541-883-5157
+La​ke,513 Center Street,,Lakeview,OR,97630-1539,541-947-6006
+La​ne,275 W. 10th Avenue,,Eugene,OR,97401-3008,541-682-4234
+Linc​oln,"225 W. Olive Street, Room 201",,Newport,OR,97365,541-265-4131
+Lin​​n,300 Fourth Ave. S.W,,Albany,OR,97321,541-967-3831
+Malh​eur,"251 B St. W., Suite 4",,Vale,OR,97918,541-473-5151
+Mario​n,4263 Commercial St. SE #300,,Salem,OR,97302-3987,503-588-5041
+Morrow​,P.O. Box 338,,Heppner,OR,97836-0338,541-676-5604
+Multnom​ah,1040 S.E. Morrison Street,,Portland,OR,97214-2495,503-988-3720
+P​olk,850 Main Street,,Dallas,OR,97338-3179,503-623-9217
+Sher​man,P.O. Box 365,,Moro,OR,97039-0365,541-565-3606
+Tillamook,201 Laurel Avenue,,Tillamook,OR,97141,503-842-3402
+Um​atilla,"216 SE 4th St, Ste 18",,Pendleton,OR,97801,541-278-6254
+Union,1001 Fourth Street,Suite D,La Grande,OR,97850,541-963-1006
+Wallow​a,101 S. River Street,"Room 100, Door 16",Enterprise,OR,97828-1335,541-426-4543
+W​asco,511 Washington Street,Room 201,The Dalles,OR,97058,541-506-2530
+Washing​ton,3700 S.W. Murray Boulevard,Suite 101,Beaverton,OR,97005,503-846-5800
+W​heeler,P.O. Box 327,,Fossil,OR,97830-0327,541-763-2400
+Ya​mhill,414 N.E. Evans Street,,McMinnville,OR,97128,503-434-7518
+Anderson,100 North Main Street,Anderson County Courthouse Room 207,Clinton,TN,37716-3617,865-457-6238
+Bedford,One Public Square,Courthouse Suite 20,Shelbyville,TN,37160-3952,931-684-0531
+Benton,113 Maple Avenue,Suite 1,Camden,TN,38320-2044,731-584-6144
+Bledsoe,P.O. Box 253,,Pikeville,TN,37367-0253,423-447-2776
+Blount,383 Court Street,Blount County Courthouse,Maryville,TN,37804-5906,865-273-5920
+Bradley,155 Broad Street N.W.,Courthouse Annex Suite 102,Cleveland,TN,37311-5000,423-728-7115
+Campbell,P.O. Box 84,,Jacksboro,TN,37757-0084,423-562-9777
+Cannon,301 West Main Street,Adams Office Bldg Room 244,Woodbury,TN,37190-1100,615-563-5650
+Carroll,625 High Street,Carroll Co Office Complex Suite 113,Huntingdon,TN,38344-1703,731-986-1968
+Carter,801 Elk Avenue,Main Courthouse Room 207,Elizabethton,TN,37643-4537,423-542-1822
+Cheatham,188 County Services Drive,Suite 100,Ashland City,TN,37015-1744,615-792-5770
+Chester,P.O. Box 127,,Henderson,TN,38340-0127,731-989-4039
+Claiborne,P.O. Box 343,,Tazewell,TN,37879-0343,423-626-5128
+Clay,P.O. Box 721,,Celina,TN,38551-0721,931-243-2536
+Cocke,360 East Main Street,Courthouse Annex Room 130,Newport,TN,37821-3121,423-623-2042
+Coffee,1329 McArthur Street,Coffee Co Admin. Plaza Suite 6,Manchester,TN,37355-2456,931-723-5103
+Crockett,235 East Church Street,,Alamo,TN,38001-1107,731-696-5465
+Cumberland,2 South Main Street,Milo Lemert Bldg Suite 105,Crossville,TN,38555-4583,931-484-4919
+Davidson,P.O. Box 650,,Nashville,TN,37217,615-862-8800
+Decatur,P.O. Box 298,,Decaturville,TN,38329-0298,731-852-2911
+Dekalb,P.O. Box 543,,Smithville,TN,37166-0543,615-597-4146
+Dickson,P.O. Box 522,,Charlotte,TN,37036-0522,615-789-6021
+Dyer,P.O. Box 1109,,Dyersburg,TN,38025-1109,731-286-4268
+Fayette,P.O. Box 339,,Somerville,TN,38068-0339,901-465-5223
+Fentress,P.O. Box 1027,,Jamestown,TN,38556-1027,931-879-7162
+Franklin,839 Dinah Shore Blvd,Suite 1,Winchester,TN,37398-1426,931-967-1893
+Gibson,"One Court Square, Suite 101",Gibson County Courthouse,Trenton,TN,38382-1851,731-855-7669
+Giles,P.O. Box 678,,Pulaski,TN,38478-0678,931-363-2424
+Grainger,P.O. Box 28,,Rutledge,TN,37861-0028,865-828-5132
+Greene,218 North Main Street,Suite 1,Greeneville,TN,37745-3834,423-798-1715
+Grundy,P.O. Box 181,,Altamont,TN,37301-0181,931-692-3551
+Hamblen,511 West Second North St,Courthouse Room 101,Morristown,TN,37814-3964,423-586-7169
+Hamilton,700 River Terminal Road,,Chattanooga,TN,37406-1736,423-493-5100
+Hancock,P.O. Box 423,,Sneedville,TN,37869-0423,423-733-4549
+Hardeman,P.O. Box 12,,Bolivar,TN,38008-0012,731-658-4751
+Hardin,465 Main Street,Courthouse Basement,Savannah,TN,38372-2062,731-925-3375
+Hawkins,110 East Main Street,Suite 301,Rogersville,TN,37857-3360,423-272-8061
+Haywood,One North Washington Ave,Courthouse Basement,Brownsville,TN,38012-2561,731-772-1760
+Henderson,12 Natchez Trace Dr,,Lexington,TN,38351-1838,731-968-6832
+Henry,P.O. Box 967,,Paris,TN,38242-0967,731-642-0411
+Hickman,114 North Central Ave,Suite 201,Centerville,TN,37033-1426,931-729-4560
+Houston,P.O. Box 346,,Erin,TN,37061-0346,931-289-3047
+Humphreys,208 West Wyly Street,,Waverly,TN,37185-1547,931-296-6504
+Jackson,P.O. Box 13,,Gainesboro,TN,38562-0013,931-268-9284
+Jefferson,P.O. Box 177,,Dandridge,TN,37725-0177,865-397-3440
+Johnson,P.O. Box 106,,Mountain City,TN,37683-0106,423-727-8592
+Knox,300 Main Street,Knox Co Courthouse Room 218,Knoxville,TN,37902-1850,865-215-2480
+Lake,217 S Court Street,,Tiptonville,TN,38079-1305,731-253-7521
+Lauderdale,P.O. Box 532,,Ripley,TN,38063-0532,731-635-2881
+Lawrence,219 Centennial Blvd,,Lawrenceburg,TN,38464-3208,931-762-7836
+Lewis,35 Smith Avenue,,Hohenwald,TN,38462-1124,(931)-796-0510
+Lincoln,208 Davidson Street East,Room 106,Fayetteville,TN,37334-3581,931-433-6220
+Loudon,P.O. Box 193,,Loudon,TN,37774-1042,865-458-2560
+Macon,111 East Locust Street,,Lafayette,TN,37083-1219,615-666-2199
+Madison,311 North Parkway,,Jackson,TN,38305-2713,731-660-1796
+Marion,109 Academy Avenue,,Jasper,TN,37347-3520,423-942-2108
+Marshall,P.O. Box 1105,,Lewisburg,TN,37091-0105,931-359-4894
+Maury,1207A Tradewinds Drive,,Columbia,TN,38401-4607,931-375-6001
+McMinn,5 South Hill Street,Suite B,Athens,TN,37303-5403,423-745-0843
+McNairy,P.O. Box 764,,Selmer,TN,38375-0764,731-645-6432
+Meigs,P.O. Box 1266,,Decatur,TN,37322-1266,423-334-5866
+Monroe,P.O. Box 397,,Madisonville,TN,37354-0397,423-442-2461
+Montgomery,P.O. Box 422,,Clarksville,TN,37041-0422,931-648-5707
+Moore,P.O. Box 8056,,Lynchburg,TN,37352-8056,931-759-4532
+Morgan,P.O. Box 266,,Wartburg,TN,37887-4317,423-346-3190
+Obion,P.O. Box 52,,Union City,TN,38281-0052,731-885-1901
+Overton,P.O. Box 384,,Livingston,TN,38570-0384,931-823-5985
+Perry,P.O. Box 77,,Linden,TN,37096-0077,931-589-2025
+Pickett,105 South Main Street,Community Center Room 2,Byrdstown,TN,38549-2285,931-864-3583
+Polk,P.O. Box 157,,Benton,TN,37307-0157,423-338-4531
+Putnam,705 County Services Drive,,Cookeville,TN,38501-4338,931-526-2566
+Rhea,P.O. Box 181,,Dayton,TN,37321-0181,423-775-7816
+Roane,P.O. Box 157,,Kingston,TN,37763-0157,865-376-3184
+Robertson,513 South Brown Street,Robertson Co Office Bldg Room 137,Springfield,TN,37172-2941,615-384-5592
+Rutherford,1 South Public Square,Rutherford County Bldg Suite 103,Murfreesboro,TN,37130-8001,615-898-7743
+Scott,P.O. Box 586,,Huntsville,TN,37756-0586,423-663-2430
+Sequatchie,68 Spring Street,,Dunlap,TN,37327-3752,423-949-2431
+Sevier,P. O. Box 4690,,Sevierville,TN,37864-4690,865-453-6985
+Shelby,150 Washington Ave,Shelby Co Office Bldg Suite 205,Memphis,TN,38103-2009,901-222-1200
+Smith,122 Turner High Circle,Turner Annex Building Suite 105,Carthage,TN,37030-1555,615-735-8241
+Stewart,P.O. Box 217,,Dover,TN,37058-0217,931-232-5100
+Sullivan,3258 Highway 126,Suite 103,Blountville,TN,37617-4566,423-323-6444
+Sumner,355 North Belvedere Drive,Sumner Co Admin Bldg Room 106,Gallatin,TN,37066-5410,615-452-1456
+Tipton,P.O. Box 456,,Covington,TN,38019-0456,901-476-0223
+Trousdale,214 Broadway,,Hartsville,TN,37074-1304,615-374-2712
+Unicoi,P.O. Box 76,,Erwin,TN,37650-0076,423-743-6521
+Union,P.O. Box 39,,Maynardville,TN,37807-0039,865-992-3471
+Van Buren,P.O. Box 254,,Spencer,TN,38585-0254,931-946-2728
+Warren,201 Locust Street,Suite 3,McMinnville,TN,37110-9926,931-473-5834
+Washington,100 East Main Street,Courthouse,Jonesborough,TN,37659-1340,423-753-1688
+Wayne,P.O. Box 706,,Waynesboro,TN,38485-0706,931-722-3517
+Weakley,135 South Poplar Street,Suite A,Dresden,TN,38225-1479,731-364-5564
+White,1 Bockman Way,Courthouse Room 215,Sparta,TN,38583-2034,931-836-3671
+Williamson,1320 West Main Street,Administrative Complex Suite 140,Franklin,TN,37064-3731,615-790-5711
+Wilson,P.O. Box 97,,Lebanon,TN,37088-0097,615-444-0216
+AURORA,P.O. Box 397,,Plankinton,SD,57368-0397,605-942-7752
+BEADLE,450 3rd Street SW,Suite 201,Huron,SD,57350-0845,605-353-8400
+BENNETT,P.O. Box 460,,Martin,SD,57551-0460,605-685-6931
+BON HOMME,P.O. Box 605,,Tyndall,SD,57066-0605,605-589-4212
+BROOKINGS,"520 3rd Street, Suite 100",,Brookings,SD,57006-2086,605-696-8200
+BROWN,25 Market Street,Suite 1,Aberdeen,SD,57401-4293,605-626-7110
+BRULE,300 S Courtland,Suite 103,Chamberlain,SD,57325-1599,605-234-4430
+BUFFALO,P.O. Box 146,,Gann Valley,SD,57341-0146,605-293-3217
+BUTTE,839 Fifth Ave,,Belle Fourche,SD,57717-1719,605-892-4485
+CAMPBELL,P.O. Box 37,,Mound City,SD,57646-0037,605-955-3366
+CHARLES MIX,P.O. Box 490,,Lake Andes,SD,57356-0490,605-487-7131
+CLARK,P.O. Box 294,,Clark,SD,57225-0294,605-532-5921
+CLAY,211 W Main,Suite 200,Vermillion,SD,57069,605-677-7120
+CODINGTON,14 First Ave SE,,Watertown,SD,57201-3611,605-882-6297
+CORSON,P.O. Box 255,,McIntosh,SD,57641-0255,605-273-4229
+CUSTER,420 Mt Rushmore Road,,Custer,SD,57730-1934,605-673-8173
+DAVISON,200 E 4th Street,,Mitchell,SD,57301-2692,605-995-8608
+DAY,711 W 1st Street,,Webster,SD,57274,605-345-9500
+DEUEL,P.O. Box 616,,Clear Lake,SD,57226-0616,605-874-2312
+DEWEY,P.O. Box 277,,Timber Lake,SD,57656-0277,605-865-3672
+DOUGLAS,P.O. Box 159,,Armour,SD,57313-0159,605-724-2423
+EDMUNDS,P.O. Box 97,,Ipswich,SD,57451-0097,605-426-6762
+FALL RIVER,906 N River Street,,Hot Springs,SD,57747-1398,605-745-5130
+FAULK,P.O. Box 309,,Faulkton,SD,57438-0309,605-598-6224
+GRANT,210 E Fifth Avenue,,Milbank,SD,57252-2499,605-432-6711
+GREGORY,221 East 8th Street,,Burke,SD,57523,605-775-2664
+HAAKON,P.O. Box 698,,Philip,SD,57567-0698,605-859-2800
+HAMLIN,P.O. Box 237,,Hayti,SD,57241-0237,605-783-3201
+HAND,415 West First Avenue,,Miller,SD,57362-1346,605-853-2182
+HANSON,P.O. Box 500,,Alexandria,SD,57311-0500,605-239-4714
+HARDING,P.O. Box 26,,Buffalo,SD,57720-0026,605-375-3313
+HUGHES,104 E Capitol Avenue,,Pierre,SD,57501-2591,605-773-7451
+HUTCHINSON,140 Euclid,Room 128,Olivet,SD,57052-0128,605-387-4212
+HYDE,P.O. Box 379,,Highmore,SD,57345-0379,605-852-2519
+JACKSON,P.O. Box 280,,Kadoka,SD,57543-0280,605-837-2422
+JERAULD,P.O. Box 422,,Wessington Springs,SD,57382-0422,605-539-9301
+JONES,P.O. Box 307,,Murdo,SD,57559-0307,605-669-7100
+KINGSBURY,P.O. Box 196,,Desmet,SD,57231-0196,605-854-3832
+LAKE,200 E Center,,Madison,SD,57042-2941,605-256-7600
+LAWRENCE,P.O. Box F,,Deadwood,SD,57732-0678,605-578-1941
+LINCOLN,104 N Main,Suite 110,Canton,SD,57013-1703,605-764-2581
+LYMAN,P.O. Box 38,,Kennebec,SD,57544-0038,605-869-2247
+MARSHALL,P.O. Box 130,,Britton,SD,57430-0130,605-448-2401
+MCCOOK,P.O. Box 190,,Salem,SD,57058,605-425-2791
+MCPHERSON,P.O. Box 390,,Leola,SD,57456,605-439-3314
+MEADE,1300 Sherman Street,Suite 126,Sturgis,SD,57785,605-347-2360
+MELLETTE,P.O. Box C,,White River,SD,57579-0403,605-259-3291
+MINER,P.O. Box 86,,Howard,SD,57349-0086,605-772-4671
+MINNEHAHA,415 N Dakota Avenue,,Sioux Falls,SD,57104-2465,605-367-4220
+MOODY,101 E Pipestone Avenue,Suite D,Flandreau,SD,57028-0750,605-997-3161
+PENNINGTON,315 St Joseph Street,,Rapid City,SD,57701-2879,605-394-2153
+PERKINS,P.O. Box 126,,Bison,SD,57620-0126,605-244-5624
+POTTER,201 S Exene,,Gettysburg,SD,57442-1521,605-765-9408
+ROBERTS,411 2nd Ave E,,Sisseton,SD,57262-1495,605-698-7336
+SANBORN,P.O. Box 7,,Woonsocket,SD,57385-0007,605-796-4513
+SHANNON,906 N River Street,,Hot Springs,SD,57747-1398,605-745-5130
+SPINK,210 E 7th Avenue,,Redfield,SD,57469-1266,605-472-4580
+STANLEY,P.O. Box 595,,Fort Pierre,SD,57532-0595,605-223-7780
+SULLY,P.O. Box 265,,Onida,SD,57564-0265,605-258-2541
+TODD,200 East 3rd,,Winner,SD,57580-1806,605-842-3727
+TRIPP,200 East 3rd,,Winner,SD,57580-1806,605-842-3727
+TURNER,P.O. Box 370,,Parker,SD,57053-0370,605-297-3153
+UNION,209 E Main Street,Suite 200,Elk Point,SD,57025-2327,605-356-2101
+WALWORTH,P.O. Box 199,,Selby,SD,57472-0199,605-649-7878
+YANKTON,321 W. 3rd Street,Suite 100,Yankton,SD,57078-0137,605-260-4400
+ZIEBACH,P.O. Box 68,,Dupree,SD,57623-0068,605-365-5157
+Honolulu,530 South King Street,Room 100,Honolulu,HI,96813,(808) 768-3800
+Kauai,4386 Rice Street,Room 101,Lihue,HI,96766,(808) 241-4800
+Maui,200 South High Street,Room 708,Wailuku,HI,96793,(808) 270-7749
+Hawaii,25 Aupuni Street,Rom 1502,Hilo,HI,96720,(808) 961-8277
+Beaverhead,2 S Pacific Street No. 3 ,,Dillon,MT,59725,(406) 683-3720 
+Big Horn,P.O. Box 908 ,,Hardin,MT,59034,(406) 665-9796 
+Blaine,P.O. Box 278 ,,Chinook,MT,59523,(406) 357-3240 
+Broadwater,515 Broadway Street,,Townsend,MT,59644,(406) 266-3443 
+Carbon,P.O. Box 887 ,,Red Lodge,MT,59068,(406) 446-1220 
+Carter,Box 315 ,,Ekalaka,MT,59324,(406) 775-8749 
+Cascade,Box 2305 ,,Great Falls,MT,59403,(406) 454-6803 
+Chouteau,Box 459 ,,Fort Benton,MT,59442,(406) 622-5151 
+Custer,1010 Main ,,Miles City,MT,59301,(406) 874-3343 
+Daniels,Box 247 ,,Scobey,MT,59263,(406) 487-5561 
+Dawson,207 West Bell ,,Glendive,MT,59330,(406) 377-3058 
+Deer Lodge,800 Main ,,Anaconda,MT,59711,(406) 563-4060 
+Fallon,Box 846 ,,Baker,MT,59313,(406) 778-7106 
+Fergus,712 W Main ,,Lewistown,MT,59457,(406) 535-5242 
+Flathead,800 S Main ,,Kalispell,MT,59901,(406) 758-2453 
+Gallatin,311 W Main,Room 210,Bozeman,MT,59715,(406) 582-3060 
+Garfield,Box 7 ,,Jordan,MT,59337,(406) 557-2760 
+Glacier,512 E Main ,,Cut Bank,MT,59427,(406) 873-3609 
+Golden Valley,P.O. Box 10 ,,Ryegate,MT,59074,(406) 568-2231 
+Granite,Box 925 ,,Philipsburg,MT,59858,(406) 859-3771 
+Hill,315 4th Street,,Havre,MT,59501,(406) 265-5481 x221 
+Jefferson,Box H ,,Boulder,MT,59632,(406) 225-4020 
+Judith Basin,Box 427 ,,Stanford,MT,59479,(406) 566-2277 x109 
+Lake,106 4th Avenue E ,,Polson,MT,59860,(406) 883-7268 
+Lewis & Clark,316 N Park Avenue,Room 168,Helena,MT,59623,(406) 447-8338 
+Liberty,Box 459 ,,Chester,MT,59522,(406) 759-5365 
+Lincoln,512 California ,,Libby,MT,59923,(406) 283-2300 
+Madison,Box 366 ,,Virginia City,MT,59755,(406) 843-4270 
+McCone,Box 199 ,,Circle,MT,59215,(406) 485-3505 
+Meagher,Box 309 ,,White Sulphur Springs,MT,59645,(406) 547-3612 x2 
+Mineral,Box 550 ,,Superior,MT,59872,(406) 822-3520 
+Missoula,200 W Broadway ,,Missoula,MT,59802,(406) 258-4751 
+Musselshell,506 Main ,,Roundup,MT,59072,(406) 323-1104 
+Park,414 E Callender Street,,Livingston,MT,59047,(406) 222-4110 
+Petroleum,Box 226 ,,Winnett,MT,59087,(406) 429-5311 
+Phillips,Box 360 ,,Malta,MT,59538,(406) 654-2423 
+Pondera,20 4th Avenue SW ,,Conrad,MT,59425,(406) 271-4000 
+Powder River,Box 200 ,,Broadus,MT,59317,(406) 436-2361 
+Powell,409 Missouri ,,Deer Lodge,MT,59722,(406) 846-9786 
+Prairie,Box 125 ,,Terry,MT,59349,(406) 635-5575 
+Ravalli,215 S 4th Street  ,Suite C,Hamilton,MT,59840,(406) 375-6550 
+Richland,201 W Main ,,Sidney,MT,59270,(406) 433-1708 
+Roosevelt,400 2nd Ave S ,,Wolf Point,MT,59201,(406) 653-6250 
+Rosebud,Box 47 ,,Forsyth,MT,59327,(406) 346-7318 
+Sanders,Box 519 ,,Thompson Falls,MT,59873,(406) 827-6922 
+Sheridan,100 W Laurel Avenue ,,Plentywood,MT,59254,(406) 765-3403 
+Silver Bow,155 W Granite,Room 208,Butte,MT,59701,(406) 497-6342 
+Stillwater,Box 149 ,,Columbus,MT,59019,(406) 322-8000 
+Sweet Grass,Box 888 ,,Big Timber,MT,59011,(406) 932-5152 
+Teton,Box 610 ,,Choteau,MT,59422,(406) 466-2693 
+Toole,226 1st St S ,,Shelby,MT,59474,(406) 424-8300 
+Treasure,Box 392 ,,Hysham,MT,59038,(406) 342-5547 
+Valley,501 Court Square Box 2 ,,Glasgow,MT,59230,(406) 228-6226 
+Wheatland,Box 1903 ,,Harlowton,MT,59036,(406) 632-4891 
+Wibaux,P.O. Box 199 ,,Wibaux,MT,59353,(406) 796-2481 
+Yellowstone,Box 35002 ,,Billings,MT,59107,(406) 256-2740 
+Beaver,P.O. Box 392,,Beaver,UT,84713,(435) 438-6463
+Box Elder,01 South Main Street,,Bringham City,UT,84302,(435) 734-3355
+Cache,179 North Main Street,Suite 102,Logan,UT,84321,(435) 716-7150
+Carbon,120 E. Main Street,,Price,UT,84501,(435) 636-3224
+Daggett,P.O. Box 400,,Manila,UT,84046,(435) 784-3154
+Davis,28 E. State Street,,Farmington,UT,84025,(801) 451-3324
+Duchesne,P.O. Box 270,,Duchesne,UT,84021,(435) 738-1228
+Emery,P.O. Box 907,,Castle Dale,UT,84513,(435) 381-5106
+Garfield,55 South Main,,Panguitch,UT,84759,(435) 676-8826
+Grand,125 E. Center,,Moab,UT,84532,(435) 259-1321
+Iron,P.O. Box 429,,Parowan,UT,84761,(435) 477-8340
+Juab,160 North Main,,Nephi,UT,84648,(435) 623-3410
+Kane,76 North Main Street,,Kanab,UT,84741,(435) 644-2458
+Millard,765 South Highway 99,Suite 6,Fillmore,UT,84631,(435) 743-6223
+Morgan,P.O. Box 886,,Morgan,UT,84050,(801) 829-6176
+Piute,P.O. Box 99,,Junction,UT,84740,(435) 577-2840
+Rich,"20 South Main, P.O. Box 218",,Randolph,UT,84064,(435) 793-2415
+Salt Lake,2001 South State Street,#S1100,Salt Lake City,UT,84190,(385) 468-7400
+San Juan,P.O. Box 338,,Monticello,UT,84535,(435) 587-3223
+Sanpete,P.O. Box 100,,Manti,UT,84642,(435) 835-2131
+Sevier,P.O. Box 607,,Richfield,UT,84701,(435) 893-0400
+Summit,60 North Main                                  P.O. Box 128,,Coalville,UT,84017,(435) 336-3204
+Tooele,47 South Main,,Tooele,UT,84074,(435) 843-3140
+Uintah,147 E. Main,,Vernal,UT,84078,(435) 781-5361
+Utah,"100 E. Center, Room 3100",,Provo,UT,84606,(801) 851-8128
+Wasatch,25 North Main,,Herber City,UT,84032,(435) 654-3211
+Washington,197 E. Tabernacle,,St. George,UT,84770,(435) 634-5712
+Wayne,P.O. Box 189,,Loa,UT,84747,(435) 836-1300
+Weber,2380 Washington Boulevard #320,,Ogden,UT,84401,(801) 399-8400
+Addison,7 Mahady Court,,Middlebury,VT,5753,(802) 388-7747
+Bennington,207 South Street,,Bennington ,VT,5201,(802) 447-2700
+Caledonia,P.O. Box 203,,St. Johnsbury,VT,5819,(802) 751-0405
+Chittenden,P.O. Box 187,,Burlington,VT,5402,(802) 951-5106
+Essex,P.O. Box 75,,Guildhall,VT,5902,(802) 676-3910
+Franklin,17 Church Street,,St. Albans,VT,5478,(802) 524-3863
+Grand Isle,P.O. Box 127,,North Hero,VT,5474,(802) 372-8350
+Lamoille,P.O. Box 490,,Hyde Park,VT,5655,(802) 888-0631
+Orange,5 Court Street,,Chelsea,VT,5038,(802) 685-4610
+Orleans,247 Main Street,,Newport,VT,5855,(802) 334-4461
+Rutland,83 Center Street,,Rutland,VT,5701,(802) 775-4394
+Washington,65 State Street,,Montpelier,VT,5602,(802) 828-2091
+Windham,P.O. Box 207,,Newfane,VT,5345,(802) 251-2009
+Windsor,12 The Green #101,,Woodstock,VT,5091,(802) 457-5222
+Barbour,8 N. Main Street,,Philippi,WV,26416,(304) 457-5986
+Berkeley,100 W. King Street,Room 1,Martinsburg,WV,25401,(304) 267-3001
+Boone,200 State Street,,Madison,WV,25130,(304) 369-7330
+Braxton,P.O. Box 486,,Sutton,WV,26601,(304) 765-2833
+Brooke,632 Main Street,,Wellsburg,WV,26070,(304) 737-3661
+Cabell,750 5th Avenue,Suite 108,Huntington,WV,25701,(304) 526-8625
+Calhoun,P.O. Box 230,,Grantsville,WV,26147,(304) 354-6725
+Clay,P.O. Box 190,,Clay,WV,25043,(304) 587-4259
+Doddridge,118 E. Court Street,Room 102,West Union,WV,26456,(304) 873-2631
+Fayette,P.O. Box 569,,Fayetteville,WV,25840,(304) 574-4225
+Gilmer,10 Howard Street,,Gelnville,WV,26351,(304) 462-7641
+Grant,5 Highland Avenue,,Petersburg,WV,26847,(304) 257-4550
+Greenbrier,P.O. Box 506,,Lewisburg,WV,24901,(304) 647-6602
+Hampshire,P.O. Box 806,,Romney,WV,26757,(304) 822-5112
+Hancock,P.O. Box 367,,New Cumberland,WV,26047,(304) 564-3311 ext. 266
+Hardy,204 Washington Street,Room 111,Moorefield,WV,26836,(304) 530-0250
+Harrison,301 W. Main Street,,Clarksburg,WV,26301,(304) 624-8675
+Jackson,P.O. Box 800,,Ripley,WV,25271,(304) 373-2250
+Jefferson,P.O. Box 208,,Charles Town,WV,25414,(304) 728-3215
+Kanawha,P.O. Box 3226,,Charleston,WV,25332,(304) 357-0130
+Lewis,P.O. Box 87,,Weston,WV,26452,(304) 269-8215
+Lincoln,P.O. Box 497,,Hamlin,WV,25523,(304) 824-3336
+Logan,300 Stratton Street,,Logan ,WV,25601,(304) 792-8600
+Marion,P.O. Box 1267,,Fairmont,WV,26555,(304) 367-5445
+Marshall,P.O. Box 459,,Moundsville,WV,26041,(304) 845-1220
+Mason,200 Sixth Street,,Point Pleasant,WV,25550,(304) 675-1997
+McDowell,90 Wyoming Street,Suite 109,Welch,WV,24801,(304) 436-8544
+Mercer,1501 W. Main Street,Suite 121,Princeton,WV,24740,(304) 487-8311
+Mineral,150 Armstrong Street,,Keyser,WV,26726,(304) 788-3924
+Mingo,P.O. Box 1197,,Williamson,WV,25661,(304) 235-0330
+Monongalia,243 High Street,,Morgantown,WV,26505,(304) 291-7230
+Monroe,P.O. Box 350,,Union,WV,24983,(304) 772-3096
+Morgan,77 Farifax Street,Room 102,Berkeley Springs,WV,25411,(304) 258-8547
+Nicholas,700 Main Street,Suite 2,Summersville,WV,26651,(304) 872-7820
+Ohio,1500 Chapline Street,,Wheeling,WV,26003,(304) 234-3656
+Pendleton,P.O. Box 1167,,Franklin,WV,26807,(304) 358-2505
+Pleasants,301 Court Lane,,St. Marys,WV,26170,(304) 684-3542
+Pocahontas,900 C 10th Avenue,,Marlinton,WV,24954,(304) 799-4549
+Preston,106 W. Main Street,Suite 103,Kingwood,WV,26537,(304) 329-0070
+Putnam,3389 Winfield Road,,Winfield,WV,25213,(304) 586-0202
+Raleigh,215 Main Street,,Beckley,WV,25802,(304) 252-8681
+Randolph,2 Randolph Avenue,,Elkins,WV,26241,(304) 636-0543
+Ritchie,115 E. Main Street,Room 201,Harrisville,WV,26362,(304) 643-2164 ext. 221
+Roane,200 Main Street,,Spencer,WV,25276,(304) 927-2860
+Summers,P.O. Box 97,,Hinton,WV,25951,(304) 466-7104
+Taylor,214 W. Main Street,,Grafton,WV,26354,(304) 265-1401
+Tucker,215 First Street,Suite 3,Parsons,WV,26287,(304) 478-2414 ext. 201
+Tyler,P.O. Box 66,,Middlebourne,WV,26149,(304) 758-2102
+Upshur,40 W. Main Street,,Buckhannon,WV,26201,(304) 472-1068
+Wayne,P.O. Box 248,,Wayne ,WV,25570,(304) 272-6362
+Webster,2 Court Square,Room G1,Webster Springs,WV,26288,(304) 847-2508
+Wetzel,P.O. Box 156,,New Martinsville,WV,26155,(304) 455-8224
+Wirt,P.O. Box 53,,Elizabeth,WV,26143,(304) 275-4271
+Wood,P.O. Box 1474,,Parkersburg,WV,26102,(304) 424-1850
+Wyoming,P.O. Box 309,,Pineville,WV,24874,(304) 732-8000 ext. 242
+Adair,P.O. Box 6,,Stilwell,OK,74960-0006,(918) 696-4905
+Alfalfa,300 S. Grand Avenue,,Cherokee,OK,73728-2548,(580) 596-2718
+Atoka,200 E. Court Street,Suite 106 E,Atoka,OK,74525-2056,(580) 889-5297
+Beaver,P.O. Box 639,,Beaver,OK,73932-0639,(580) 625-4742
+Beckham,306 E. Main Street,,Sayre,OK,73662-2923,(580) 928-3314
+Blaine,212 N. Weigle Avenue,Suite 6,Watonga,OK,73772-3844,(580) 623-5518
+Bryan,P.O. Box 1396,,Durant,OK,74702-1396,(580) 924-3228
+Caddo,P.O. Box 277,,Anadarko,OK,73005-0277,(405) 247-5001
+Canadian,P.O. Box 307,,El Reno,OK,73036-0307,(405) 422-2422
+Carter,106 Hinkle Street SW,,Ardmore,OK,73401-6412,(580) 223-5290
+Cherokee,914 S. College Avenue,,Tahlequah,OK,74464-4726,(918) 456-2261
+Choctaw,P.O. Box 517,,Hugo,OK,74743-0517,(580) 326-5164
+Cimarron,P.O. Box 331,,Boise City,OK,73933-0331,(580) 544-3377
+Cleveland,641 E. Robinson Street,Suite 200,Norman,OK,73071-6656,(405) 366-0210
+Coal,18 N. Michigan Street,,Coalgate,OK,74538-2823,(580) 927-3456
+Comanche,315 SW 5th Street,Room 206,Lawton,OK,73501-4326,(580) 353-1880
+Cotton,301 N. Broadway Street,Room 2 ,Walters,OK,73572-1271,(580) 875-3403
+Craig,210 W. Delaware Avenue,Suite 108,Vinita,OK,74301-4236,(918) 256-7559
+Creek,P.O. Box 990,,Sapulpa,OK,74067-0990,(918) 224-3529
+Custer,P.O. Box 1326,,Clinton,OK,73601-1326,(580) 323-5124
+Delaware,P.O. Box 589,,Jay,OK,74346-0589,(918) 253-8762
+Dewey,P.O. Box 115,,Taloga,OK,73667-0115,(580) 328-5668
+Ellis,P.O. Box 492,,Arnett,OK,73832-0492,(580) 885-7721
+Garfield,P.O. Box 1872,,Enid,OK,73702-1872,(580) 237-6016
+Garvin,201 W. Grant Avenue,Room 8,Pauls Valley,OK,73075-3234,(405) 238-3303
+Grady,P.O. Box 1226,,Chickasha,OK,73023-1226,(405) 224-1430
+Grant,P.O. Box 68,,Medford,OK,73759-0068,(580) 395-2862
+Greer,106 E. Jefferson Street,Room 1,Mangum,OK,73554-4273,(580) 782-2307
+Harmon,114 W. Hollis Street,Floor 2 Room 5,Hollis,OK,73550-3053,(580) 688-2460
+Harper,P.O. Box 541,,Buffalo,OK,73834-0541,(580) 735-2313
+Haskell,P.O. Box 300,,Stigler,OK,74462-0300,(918) 967-8792
+Hughes,200 N. Broadway Street,Suite 3,Holdenville,OK,74848-3400,(405) 379-2174
+Jackson,101 N. Main Street ,Room 105,Altus,OK,73521-3142,(580) 482-2370
+Jefferson,220 N. Main Street,Room 203,Waurika,OK,73573-2236,(580) 228-3150
+Johnston,705 W. Main Street,,Tishomingo,OK,73460-1734,(580) 371-3670
+Kay,P.O. Box 331,,Newkirk,OK,74647-0331,(580) 362-2130
+Kingfisher,101 S. Main Street,Suite 8,Kingfisher,OK,73750-3241,(405) 375-3895
+Kiowa,P.O. Box 31,,Hobart,OK,73651-0031,(580) 726-2509
+Latimer,109 N. Central Street,Suite 102,Wilburton,OK,74578-2440,(918) 465-3703
+LeFlore,P.O. Box 249,,Poteau,OK,74953-0249,(918) 647-3701
+Lincoln,P.O. Box 97,,Chandler,OK,74834-0097,(405) 258-1349
+Logan,224 E. Vilas Avenue,,Guthrie,OK,73044-4834,(405) 282-1900
+Love,405 W. Main Street,Suite 103,Marietta,OK,73448-2849,(580) 276-2242
+McClain,P.O. Box 759,,Purcell,OK,73080-0759,(405) 527-3121
+McCurtain,108 N. Central Avenue,,Idabel,OK,74745,(580) 286-7405
+McIntosh,P.O. Box 1022,,Eufaula,OK,74432-1022,(918) 689-2452
+Major,500 E. Broadway,Suite 8,Fariview,OK,73737-2243,(580) 227-4520
+Marshall,P.O. Box 9,,Madill,OK,73446-0009,(580) 795-5460
+Mayes,1 Court Place,Suite 130,Pryor,OK,74361-2449,(918) 825-1826
+Murray,P.O. Box 556,,Sulphur,OK,73086-0556,(580) 622-3800
+Muskogee,P.O. Box 216,,Muskogee,OK,74402-0216,(918) 687-8151
+Noble,300 Courthouse Drive,Suite 2 ,Perry,OK,73077-6649,(580) 336-3527
+Nowata,228 N. Maple Street,,Nowata,OK,74048-2623,(918) 273-0710
+Okfuskee,209 N. 3rd Street,,Okemah,OK,74859-2627,(918) 623-0105
+Oklahoma,4201 N. Lincoln Boulevard,,Oklahoma City,OK,73105-5210,(405) 713-1515
+Okmulgee,314 W. 7th Street,Suite 102,Okmulgee,OK,74447-5028,(918) 756-2365
+Osage,P.O. Box 929,,Pawhuska,OK,74056-0929,(918) 287-3036
+Ottawa,123 E. Central Avenue,Suite 104,Miami,OK,74354-7080,(918) 542-2893
+Pawnee,P.O. Box 38,,Pawnee,OK,74058-0038,(918) 762-2125
+Payne,315 W. 6th Avenue,Suite 207,Stillwater,OK,74074-4080,(405) 747-8350
+Pittsburg,109 E. Carl Albert Parkway,Room 101,McAlester,OK,74501,(918) 423-3877
+Pontotoc,P.O. Box 302,,Ada,OK,74821-0302,(580) 332-4534
+Pottawatomie,14101 Acme Road,,Shawnee,OK,74804-9250,(405) 273-8376
+Pushmataha,204 SW 4th Street,Suite A,Antlers,OK,74523-3814,(580) 298-3292
+Roger Mills,P.O. Box 147,,Cheyenne,OK,73628-0147,(580) 497-3330
+Rogers,415 W. 1st Street ,,Claremore,OK,74017-7801,(918) 341-2965
+Seminole,110 S. Wewoka Avenue,Suite 101,Wewoka,OK,74884-2645,(405) 257-2786
+Sequoyah,110 E. Creek Avenue,,Sallisaw,OK,74955-4613,(918) 775-2614
+Stephens,101 S. 11th Street,Room 100,Duncan,OK,73533-4758,(580) 255-8782
+Texas,P.O. Box 607,,Guymon,OK,73942-0607,(580) 338-7644
+Tillman,201 N. Main Street,Room 5,Frederick ,OK,73542-5400,(580) 335-2287
+Tulsa,555 N. Denver Avenue,,Tulsa ,OK,74103-1008,(918) 596-5780
+Wagoner,P.O. Box 714,,Wagoner,OK,74477-0714,(918) 485-2142
+Washington,420 St. Johnstone Avenue,Suite 101,Bartlesville,OK,74003,(918) 337-2850
+Washita,P.O. Box 602,,Cordell,OK,73632-0602,(580) 832-3658
+Woods,P.O. Box 184,,Alva,OK,73717-0184,(580) 327-1452
+Woodward,P.O. Box 613,,Woodward,OK,73802-0613,(580) 256-3609
+Arkansas,101 Court Square,,Dewitt,AR,72042,(870) 946-4349
+Ashley,205 East Jefferson,,Hamburg,AR,71646,(870) 853-2020
+Baxter,#1 E. 7th Street,Suite 103,Mountain Home,AR,72653,(870) 425-3475
+Benton,215 East Central,,Bentonville,AR,72712,(479) 271-1013
+Boone,100 N. Main ,Suite 201,Harrison,AR,72601,(870) 741-8428
+Bradley,101 E. Cedar Street,,Warren,AR,71671,(870) 226-3464
+Calhoun,P.O. Box 1175,,Hampton,AR,71744,(870) 798-2517
+Carroll,210 W. Church Street,,Berryville,AR,72616,(870) 423-2022
+Chicot,108 Main Street,,Lake Village,AR,71653,(870) 265-8000
+Clark,401 Clay Street,,Arkadelphia,AR,71923,(870) 246-4491
+Clay,151 S. Second Avenue,,Piggott,AR,72454,(870) 598-2813
+Cleburne,301 W. Main Street,,Heber Springs,AR,72543,(501) 362-4620
+Cleveland,P.O. Box 368,,Rison,AR,71665,(870) 325-6521
+Columbia,One Court Square,Suite 1 ,Magnolia,AR,71753,(870) 235-3774
+Conway,117 S. Moose Street,,Morrilton,AR,72110,(501) 354-9621
+Craighead,511 S. Main,Room 202,Jonesboro,AR,72401,(870) 933-4520
+Crawford,300 Main Street,Room 7,Van Buren,AR,72956,(479) 474-1312
+Crittenden,100 Court Square,,Marion,AR,72364,(870) 739-4434
+Cross,705 E. Union Street,,Wynne,AR,72396,(870) 238-5735
+Dallas,206 W. 3rd,,Fordyce,AR,71742,(870) 352-2307
+Desha,P.O. Box 218,,Arkansas City,AR,71630,(870) 877-2323
+Drew,210 S. Main Street,,Monticello,AR,71655,(870) 460-6260
+Faulkner,801 Locust Street,,Conway,AR,72034,(501) 450-4909
+Franklin,211 W. Commercial,,Ozark,AR,72949,(479) 667-3607
+Fulton,P.O. Box 219,,Salem,AR,72576,(870) 895-3310
+Garland,501 Ouachita ,Room 103,Hot Springs,AR,71901,(501) 622-3610
+Grant,101 W. Center,Room 106,Sheridan,AR,72150,(870) 942-2631
+Greene,320 West Court Street,Room 102,Paragould,AR,72450,(870) 239-6345
+Hempstead,P.O. Box 1420,,Hope,AR,71802,(870) 777-2241
+Hot Spring,210 Locust Street,,Malvern,AR,72104,(501) 332-2291
+Howard,421 N. Main Street,Room 10,Nashville,AR,71852,(870) 845-7502
+Independence,192 E. Main,,Batesville,AR,72501,(870) 793-8828
+Izard,P.O. Box 95,,Melbourne,AR,72556,(870) 368-4316
+Jackson,208 Main Street,,Newport,AR,72112,(870) 523-7420
+Jefferson,P.O. Box 6317,,Pine Bluff,AR,71601,(870) 541-5322
+Johnson,P.O. Box 57,,Clarksville,AR,72830,(479) 754-3967
+Lafayette,3rd and Spruce Street,,Lewisville,AR,71845,(870) 921-4633
+Lawrence,P.O. Box 526,,Walnut Ridge,AR,72476,(870) 886-1111
+Lee,15 E. Chestnut Street,Room 4,Marianna,AR,72360,(870) 295-7715
+Lincoln,300 S. Drew Street,,Star City,AR,71667,(870) 628-5114
+Little River,351 N. 2nd Street,,Ashdown,AR,71822,(870) 898-7208
+Logan,#25 W. Walnut Street,,Paris,AR,72855,(479) 963-2618
+Lonoke,301 N. Center Street                ,P.O. Box 188,Lonoke,AR,72086,(501) 676-2368
+Madison,"201 W. Main Street, Suite 202                  ",P.O. Box 37,Huntsville,AR,72740,(479) 738-2747
+Marion,P.O. Box 385,,Yellville,AR,72687,(870) 449-6226
+Miller,400 Laurel Street,Room 105,Texarkana,AR,71854,(870) 774-1501
+Mississippi,200 W. Walnut Street,,Blytheville,AR,72315,(870) 762-2411
+Monroe,123 Madison Street,,Clarendon,AR,72029,(870) 747-3632
+Montgomery,105 Highway 270 E.,,Mount Ida,AR,71957,(870) 867-3521
+Nevada,215 E. 2nd Street,,Prescott,AR,71857,(870) 887-2710
+Newton,100 E. Court Street                  ,P.O. Box 410,Jasper,AR,72641,(870) 446-5125
+Ouachita,P.O. Box 1041,,Camden,AR,71711,(870) 837-2220
+Perry,310 W. Main Street,,Perryville,AR,72126,(501) 889-5126
+Phillips,620 Cherry Street,Suite 202,Helena,AR,72342,(870) 338-5505
+Pike,P.O. Box 218,,Murfreesboro,AR,71958,(870) 285-2743
+Poinsett,401 Market Street,,Harrisburg,AR,72432,(870) 578-4412
+Polk,507 Church Avenue,,Mena,AR,71953,(479) 394-8123
+Pope,102 W. Main Steet,Suite 6,Russellville,AR,72801,(479) 968-6064
+Prairie,200 Courthouse Square,Suite 104,Des Arc,AR,72040,(870) 256-4434
+Pulaski,401 W. Markham ,,Little Rock,AR,72201,(501) 340-8500
+Randolph,101 E. Broadway,Suite A,Pocahontas,AR,72455,(870) 892-5822
+Saline,215 N. Main,Suite 9,Benton ,AR,72015,(501) 303-5630
+Scott,190 W. 1st Street Box 10         ,P.O. Box 2165,Waldron,AR,72958,(479) 637-2642
+Searcy,P.O. Box 998,,Marshall,AR,72650,(870) 448-3807
+Sebastian,35 S. 6th Street,Room 102,Fort Smith,AR,72901,(479) 782-5065
+Sevier,115 N. 3rd Street,Room 102,De Queen,AR,71832,(870) 642-2852
+Sharp,P.O. Box 307,,Ash Flat,AR,72513,(870) 994-7361
+St. Francis,P.O. Box 1653,,Forrest City,AR,72336,(870) 261-1725
+Stone,107 W. Main Street,Suite D,Mountain View,AR,72560,(870) 269-5550
+Union,101 N. Washington,Suite 102,El Dorado ,AR,71730,(870) 864-1910
+Van Buren,1414 Highway 65 S,Suite 131,Clinton,AR,72031,(501) 745-4140
+Washington,280 N. College,Suite 300,Fayetteville,AR,72701,(479) 444-1711
+White,315 North Spruce Street,,Searcy,AR,72143,(501) 279-6204
+Woodruff,500 N. Third Street,,Augusta,AR,72006,(870) 347-2871
+Yell,P.O. Box 219,,Danville,AR,72833,(479) 495-4850
+Barrington,Town Hall,283 County Road,Barrington,RI,2806,(401) 247-1900
+Bristol,Town Hall,10 Court Street,Bristol,RI,2809,(401) 253-7000
+Burrillville,Town Hall,105 Harrisville Main Street,Harrisville,RI,2830,(401) 568-4300 ext. 112
+Central Falls,City Hall,580 Broad Street,Central Falls,RI,2863,(401) 727-7450
+Charlestown,Town Hall,4540 South County Trail,Charlestown,RI,2813,(401) 364-1200
+Coventry,Town Hall,1670 Flat River Road,Coventry,RI,2816,(401) 822-9150
+Cranston,City Hall,869 Park Avenue,Cranston,RI,2910,(401) 780-3126
+Cumberland,Town Hall,45 Broad Street,Cumberland,RI,2864,(401) 728-2400 ext. 136
+East Greenwich,Town Hall,P.O. Box 111,East Greenwich ,RI,2818,(401) 886-8603
+East Providence,City Hall,145 Taunton Avenue,East Providence,RI,2914,(401) 435-7502
+Exeter,Town Hall,675 Ten Rod Road,Exeter,RI,2822,(401) 294-2287
+Foster,Town Hall,181 Howard Hill Road,Foster ,RI,2825,(401) 392-9200
+Glocester,Town Hall,"1145 Putnam Pike, P.O. Box B",Glocester,RI,2814,(401) 568-6206
+Hopkinton,Town Hall,One Townhouse Road,Hopkinton,RI,2833,(401) 377-7777
+Jamestown,Town Hall,93 Narragansett Avenue,Jamestown,RI,2835,(401) 423-9804
+Johnston,Town Hall,1385 Hartford Avenue,Johnston,RI,2919,(401) 553-8856
+Lincoln,Town Hall,100 Old River Road,Lincoln,RI,2865,(401) 333-1140
+Little Compton,Town Hall,P.O. Box 226,Little Compton,RI,2837,(401) 635-4400
+Middletown,Town Hall,350 East Main Road,Middletown,RI,2842,(401) 849-5540
+Narragansett,Town Hall,25 Fifth Avenue,Narragansett,RI,2882,(401) 782-0625
+Newport,City Hall,43 Broadway,Newport,RI,2840,(401) 845-5384
+New Shoreham  (Block Island),Town Hall,P.O. Box 220,New Shoreham,RI,2807,(401) 466-3200
+North Kingstown,Town Hall,80 Boston Neck Road,N. Kingstown,RI,2852,(401) 294-3331
+North Providence,Town Hall,2000 Smith Street,N. Providence,RI,2911,(401) 232-0900
+North Smithfield,Municipal Annex,575 Smithfield Road,North Smithfield,RI,2896,(401) 767-2200 ext. 326
+Pawtucket,City Hall,137 Roosevelt Avenue,Pawtucket,RI,2871,(401) 722-1637 ext. 207
+Portsmouth,Town Hall,2200 East Main Road,Portsmouth,RI,2871,(401) 683-3157
+Providence,City Hall,25 Dorrance Street,Providence,RI,2903,(401) 421-0495
+Richmond,Town Hall,5 Richmond Townhouse Road,Wyoming,RI,2898,(401) 539-9000
+Scituate,Town Hall,P.O. Box 328,N. Scituate,RI,2857,(401) 647-2822
+Smithfield,Town Hall,64 Farnum Pike,Smithfield,RI,2917,(401) 233-1001
+South Kingstown,Town Hall,180 High Street,Wakefield,RI,2879,(401) 789-9331 ext. 1230
+Tiverton,Town Hall,343 Highland Road,Tiverton,RI,2878,(401) 625-6703
+Warren,Town Hall,514 Main Street,Warren ,RI,2885,(401) 245-7340
+Warwick,City Hall,3275 Post Road,Warwick,RI,2886,(401) 738-2000 ext. 2222
+Westerly,Town Hall,45 Broad Street,Westerly,RI,2891,(401) 348-2503
+West Greenwich,Town Hall,280 Victory Highway,West Greenwich,RI,2817,(401) 392-3800 ext. 108 or 100
+West Warwick,Town Hall,1170 Main Street,West Warwick,RI,2893,(401) 822-9200
+Woonsocket,City Hall,169 Main Street,Woonsocket,RI,2895,(401) 767-9221
+Autauga,218 N. Court Street,,Prattville,AL,36067-3004,(334) 358-6740
+Baldwin,P.O. Box 1507,,Bay Minette,AL,36507,(251) 937-0229
+Bibb,175 SW Davidson Drive,,Centreville,AL,35042,(205) 926-3102
+Blount,P.O. Box 326,,Oneonta,AL,35121-0005,(205) 625-4182
+Bullock,217B N. Prairie Street,,Union Springs,AL,36089-1659,(334) 738-5372 
+Butler,P.O. Box 756,,Greenville,AL,36037-0756,(334) 382-5685
+Cherokee,206 Cedar Bluff Road,Suite 106,Centre ,AL,35960-1403,(256) 927-5336
+Chilton,P.O. Box 640,,Clanton,AL,35046-0640,(205) 755-3820
+Choctaw,117 S. Mulberry Avenue,Suite 1,Butler,AL,36904-2557,(205) 459-2531
+Clarke,P.O. Box 10,,Grove Hill,AL,36451-0010,(251) 275-3062
+Clay,P.O. Box 446,,Ashland,AL,36251-0446,(256) 354-7815
+Cleburne,120 Vickery Street,Room 103,Heflin,AL,36264-1166,(256) 463-5299
+Coffee,6 County Complex,,New Brockton,AL,36351-9791,(334) 894-5347
+Colbert,201 N. Main Street,,Tuscumbia,AL,35674-2095,(256) 386-8535
+Conecuh,200 Court Street,Room 224,Evergreen ,AL,36401-2836,(251) 578-7024
+Coosa,P.O. Box 218,,Rockford,AL,35136-0218,(256) 277-2418
+Covington,228 Hillcrest Drive,,Andalusia,AL,36420-2527,(334) 428-2685
+Crenshaw,P.O. Box 328,,Luverne,AL,36049-0328,(334) 335-6568 ext. 254
+Cullman,500 2nd Avenue SW,Suite 112,Cullman ,AL,35055-4135,(256) 739-3530 ext. 275
+Dale,P.O. Box 1101,,Ozark,AL,36361-1101,(334) 774-9038
+Dallas,P.O. Box 987,,Selma,AL,36702,(334) 874-2534
+DeKalb,111 Grand Avenue SW,Suite 105,Fort Payne,AL,35967,(256) 845-8598
+Escambia,P.O. Box 557,,Brewton,AL,36427-0557,(251) 867-0243
+Etowah,800 Forrest Avenue,Suite 206,Gadsden,AL,35901-3660,(256) 549-5384
+Fayette,103 First Avenue NW,Suite 4,Fayette,AL,35555-2627,(205) 932-5432
+Franklin,P.O. Box 70,,Russellville,AL,35653-0070,(256) 332-8849
+Geneva,200 N. Commerce Street,,Geneva,AL,36340,(334) 684-5655
+Greene,P.O. Box 224,,Eutaw,AL,35462-0224,(205) 372-9669
+Hale,905D Centerville Street,,Greensboro,AL,36744,(334) 624-4672
+Henry,101 Court Square,Suite E,Abbeville,AL,36310,(334) 585-6080
+Houston,P.O. Box 6406,,Dothan,AL,36302-6406,(334) 677-4776
+Jackson,P.O. Box 548,,Scottsboro,AL,37568-0548,(256) 574-9339
+Jefferson,716 Richard Arrington Jr. Boulevard,,Birmingham,AL,35203-0115,(205) 325-5550
+Lamar,P.O. Box 338,,Vernon,AL,35592-0338,(205) 695-6348
+Lauderdale,P.O. Box 1059,,Florence,AL,35630-1059,(256) 760-5840
+Lawrence,14451 Market Street,Suite 340,Moulton,AL,35650,(256) 974-2460
+Lee,P.O. Box 1530,,Opelika,AL,36803-1530,(334) 737-3636
+Limestone,100 Clinton Street S. ,Suite E,Athens ,AL,35613-2655,(256) 233-6405
+Macon,101 E. Northside Street,Room 1,Tuskegee,AL,36083-1731,(334) 724-2617
+Madison,100 Northside Square,Room 517,Huntsville,AL,35801-4820,(256) 532-3510
+Marengo,P.O. Box 480715,,Linden,AL,36748-0715,(334) 295-2249
+Marion,P.O. Box 964,,Hamilton,AL,35570-0964,(205) 921-3625
+Marshall,424 Blount Avenue,Suite 106,Guntersville,AL,35976-1108,(256) 571-7740
+Mobile,151 Government Street,,Mobile ,AL,36602,(251) 574-8586
+Monroe,P.O. Box 972,,Monroeville,AL,36461-0972,(251) 743-4107 ext. 141
+Montgomery,P.O. Box 1667,,Montgomery,AL,36102-1667,(334) 832-1215
+Morgan,P.O. Box 668,,Decatur,AL,35602-0668,(256) 351-4660
+Perry,P.O. Box 555,,Marion,AL,36756-0555,(334) 683-2218
+Pickens,P.O. Box 173,,Carrollton,AL,35447-0173,(205) 367-2071
+Pike,120 W. Church Street,Room B2,Troy,AL,36081-1913,(334) 566-1757
+Randolph,P.O. Box 215,,Wedowee,AL,36278-0215,(256) 357-2138
+Russell,P.O. Box 700 ,,Phenix City,AL,36868-0700,(334) 298-1443
+Shelby,P.O. Box 1642,,Columbiana,AL,35051-1642,(205) 669-3913
+St. Clair,1815 Cogswell Avenue,Suite B-25,Pell City,AL,35125,(205) 338-3954
+Sumter,P.O. Box 783,,Livingston,AL,35470-0783,(205) 652-7902
+Tallapoosa,125 N. Broadnax Street,Room 20,Dadeville,AL,36853-1371,(256) 825-1081
+Tuscaloosa,2501 7th Street,Suite 200,Tuscaloosa,AL,35401-1801,(205) 349-3870 ext. 415
+Walker,P.O. Box 1472,,Jasper ,AL,35502-1472,(205) 384-7279
+Washington,P.O. Box 1224 ,,Chatom ,AL,36518-1224,(251) 847-3255
+Wilcox,P.O. Box 661,,Camden,AL,36726-0661,(334) 682-9753
+Winston,P.O. Box 459,,Double Springs,AL,35553-0459,(205) 489-3966
+Calhoun,1702 Noble Street,Suite 113,Anniston,AL,36201-3814,(256) 241-2930
+Elmore,100 E. Commerce Street,Room 20,Wetumpka,AL,36092-2756,(334) 567-1150
+Lowndes,P.O. Box 311,,Hayneville,AL,36040-0311,(334) 548-2389
+Adair,"424 Public Square, Suite 3",,Columbia,KY,42728,270-384-2801
+Allen,"201 W. Main Street, Room 6",,Scottsville,KY,42164,270-237-3706
+Anderson,151 S. Main Street,,Lawrenceburg,KY,40342,502-839-3041
+Ballard,P.O. Box 145,,Wickliffe,KY,42087,270-335-5168
+Barren,"117 N. Public Square, Suite 1A",,Glasgow,KY,42141,270-651-5200
+Bath,P.O. Box 609,,Owingsville,KY,40360,606-674-2613
+Bell,P.O. Box 157,,Pineville,KY,40977,606-337-6143
+Boone,P.O. Box 874,,Burlington,KY,41005,859-334-2108
+Bourbon,P.O. Box 312,,Paris,KY,40361,859-987-2142
+Boyd,P.O. Box 523,,Catlettsburg,KY,41129,606-739-5116
+Boyle,"321 W. Main Street, Suite 123",,Danville,KY,40422,859-238-1110
+Bracken,P.O. Box 147 ,,Brooksville,KY,41004,606-735-2952
+Breathitt,1137 Main Street,,Jackson,KY,41339,606-666-3800
+Breckinridge,P.O. Box 538,,Hardinsburg,KY,40143,270-756-2246
+Bullitt,P.O. Box 6,,Shepherdsville,KY,40165,502-543-2513
+Butler,P.O. Box 1463,,Morgantown,KY,42261,270-526-5676
+Caldwell,"100 E Market Street, Room 23",,Princeton,KY,42445,270-365-6754
+Calloway,"101 S 5th Street, Suite 5",,Murray,KY,42071,270-753-3923
+Campbell,"1098 Monmouth Street, Room 205",,Newport,KY,41071,859-292-3850
+Carlisle,P.O. Box 176,,Bardwell,KY,42023,270-628-3233
+Carroll,440 Main Street,,Carrollton,KY,41008,502-732-7005
+Carter,"300 W Main Street, Room 232 ",,Grayson,KY,41143,606-474-5188
+Casey,P.O. Box 310,,Liberty,KY,42539,606-787-6471
+Christian,"511 S. Main Street, Suite 11",,Hopkinsville,KY,42240,270-887-4107
+Clark,P.O. Box 4060,,Winchester,KY,40392,859-745-0280
+Clay,"102 Richmond Rd, Suite 101",,Manchester,KY,40962,606-598-2544
+Clinton,"100 S. Cross Street, Suite 103",,Albany,KY,42602,606-387-5943
+Crittenden,"107 S. Main Street, Suite 203",,Marion,KY,42064,270-965-3403
+Cumberland,P.O. Box 275,,Burkesville,KY,42717,270-864-3726
+Daviess,P.O. Box 609,,Owensboro,KY,42302,270-685-8434
+Edmonson,P.O. Box 830,,Brownsville,KY,42210,270-597-2624
+Elliott,P.O. Box 225,,Sandy Hook,KY,41171,606-738-5421
+Estill,P.O. Box 59,,Irvine,KY,40336,606-723-5156
+Fayette,162 E. Main Street ,,Lexington,KY,40507,859-253-3344
+Fleming,100 Court Square ,,Flemingsburg,KY,41041,606-845-8461
+Floyd,P.O. Box 1089,,Prestonsburg,KY,41653,606-886-3816
+Franklin,P.O. Box 338,,Frankfort,KY,40602,502-875-8702
+Fulton,P.O. Box 126,,Hickman,KY,42050,270-236-2727
+Gallatin,P.O. Box 1309,,Warsaw,KY,41095,859-567-5411
+Garrard,15 Public Square Suite 5,,Lancaster,KY,40444,859-792-3071
+Grant,107 N. Main Street,,Williamstown,KY,41097,859-824-3321
+Graves,"101 E. South Street, Suite 2",,Mayfield,KY,42066,270-247-1676
+Grayson,10 Public Square ,,Leitchfield,KY,42754,270-259-0638
+Green,203 W Court Street,,Greensburg,KY,42743,270-932-5386
+Greenup,P.O. Box 686,,Greenup,KY,41144,606-473-7394
+Hancock,P.O. Box 146 ,,Hawesville,KY,42348,270-927-6117
+Hardin,P.O. Box 1030,,Elizabethtown,KY,42702,270-765-6762
+Harlan,P.O. Box 670,,Harlan,KY,40831,606-573-3636
+Harrison,313 Oddville Ave,,Cynthiana,KY,41031,859-234-7130
+Hart,P.O. Box 277,,Munfordville,KY,42765,270-524-2751
+Henderson,P.O. Box 374,,Henderson,KY,42419,270-826-3906
+Henry,P.O. Box 615,,New Castle,KY,40050,502-845-5705
+Hickman,"110 E. Clay Street, Suite E",,Clinton,KY,42031,270-653-2131
+Hopkins,24 Union Street,,Madisonville,KY,42431,270-821-7361
+Jackson,P.O. Box 339,,McKee,KY,40447,606-287-7800
+Jefferson,"810 Barrett Avenue, Suite 103",,Louisville,KY,40204,502-574-6073
+Jessamine,101 N Main Street,,Nicholasville,KY,40356,859-885-4161
+Johnson,"230 Court Street, Suite 124",,Paintsville,KY,41240,606-789-2557
+Kenton,P.O. Box 1109,,Covington,KY,41012,859-392-1620
+Knott,P.O. Box 446,,Hindman,KY,41822,606-785-5651
+Knox,"401 Court Square, Suite 102",,Barbourville,KY,40906,606-546-3568
+Larue,"209 W. High Street, Suite 3",,Hodgenville,KY,42748,270-358-3544
+Laurel,"101 S. Main Street, Room 203",,London,KY,40741,606-864-5158
+Lawrence,122 S. Main Cross Street,,Louisa,KY,41230,606-638-0504
+Lee,P.O. Box 556,,Beattyville,KY,41311,606-464-4115
+Leslie,P.O. Box 916,,Hyden,KY,41749,606-672-2193
+Letcher,"156 Main Street, Suite 102",,Whitesburg,KY,41858,606-633-2432
+Lewis,P.O. Box 129,,Vanceburg,KY,41179,606-796-3062
+Lincoln,301 North 3rd Street,,Stanford,KY,40484,606-365-4570
+Livingston,P.O. Box 400,,Smithland,KY,42081,270-928-2162
+Logan,P.O. Box 358,,Russellville,KY,42276,270-726-6061
+Lyon,P.O. Box 310,,Eddyville,KY,42038,270-388-2331
+McCracken,P.O. Box 609,,Paducah,KY,42002,270-444-4700
+McCreary,P.O. Box 699,,Whitley City,KY,42653,606-376-2411
+McLean,P.O. Box 57,,Calhoun,KY,42327,270-273-3082
+Madison,P.O. Box 1270,,Richmond,KY,40475,859-624-4705
+Magoffin,P.O. Box 1535,,Salyersville,KY,41465,606-349-2216
+Marion,"223 N. Spalding Avenue, Suite 102",,Lebanon,KY,40033,270-692-2651
+Marshall,1101 Main Street,,Benton,KY,42025,270-527-4740
+Martin,P.O. Box 460,,Inez,KY,41224,606-298-2810
+Mason,P.O. Box 234,,Maysville,KY,41056,606-564-3341
+Meade,P.O. Box 614,,Brandenburg,KY,40108,270-422-2152
+Menifee,P.O. Box 123,,Frenchburg,KY,40322,606-768-3512
+Mercer,P.O. Box 426,,Harrodsburg,KY,40330,859-734-6310
+Metcalfe,P.O. Box 25,,Edmonton,KY,42129,270-432-4821
+Monroe,"200 N. Main Street, Suite D",,Tompkinsville,KY,42167,270-487-5471
+Montgomery,P.O. Box 1406 ,,Mount Sterling,KY,40353,859-498-8700
+Morgan,P.O. Box 26,,West Liberty,KY,41472,606-743-3949
+Muhlenberg,P.O. Box 525,,Greenville,KY,42345,270-338-1441
+Nelson,113 E. Stephen Foster Avenue,,Bardstown,KY,40004,502-348-1829
+Nicholas,P.O. Box 227,,Carlisle,KY,40311,859-289-3730
+Ohio,"301 S. Main Street, Suite 201",,Hartford,KY,42347,270-298-4422
+Oldham,100 W. Jefferson Street,,LaGrange,KY,40031,502-222-0047
+Owen,136 W. Bryan Street,,Owenton,KY,40359,502-484-2213
+Owsley,P.O. Box 500,,Booneville,KY,41314,606-593-5735
+Pendleton,P.O. Box 112,,Falmouth,KY,41040,859-654-3380
+Perry,P.O. Box 150,,Hazard,KY,41702,606-436-3090
+Pike,P.O. Box 631,,Pikeville,KY,41502,606-432-6211
+Powell,P.O. Box 548,,Stanton,KY,40380,606-663-6444
+Pulaski,P.O. Box 739,,Somerset,KY,42502,606-679-2042
+Robertson,P.O. Box 75,,Mount Olivet,KY,41064,606-724-5212
+Rockcastle,"205 E. Main Street, Box 6",,Mount Vernon,KY,40456,606-256-2831
+Rowan,600 W. Main Street Room 102,,Morehead,KY,40351,606-784-5850
+Russell,P.O. Box 579,,Jamestown,KY,42629,270-343-2125
+Scott,101 E. Main Street,,Georgetown,KY,40324,502-863-7875
+Shelby,P.O. Box 819,,Shelbyville,KY,40066,502-633-4410
+Simpson,P.O. Box 268,,Franklin,KY,42135,270-586-8161
+Spencer,P.O. Box 544,,Taylorsville,KY,40071,502-477-3215
+Taylor,"203 N. Court Street, Suite 5",,Campbellsville,KY,42718,270-465-6677
+Todd,P.O. Box 307,,Elkton,KY,42220,270-265-9966
+Trigg,P.O. Box 1310,,Cadiz,KY,42211,270-522-6661
+Trimble,P.O. Box 262,,Bedford,KY,40006,502-255-7174
+Union,P.O. Box 119,,Morganfield,KY,42437,270-389-1334
+Warren,P.O. Box 478,,Bowling Green,KY,42102,270-843-5306
+Washington,P.O. Box 446,,Springfield,KY,40069,859-336-5425
+Wayne,"55 N. Main Street, Suite 106",,Monticello,KY,42633,606-348-5721
+Webster,P.O. Box 19,,Dixon,KY,42409,270-639-7006
+Whitley,P.O. Box 8,,Williamsburg,KY,40769,606-549-6002
+Wolfe,P.O. Box 400,,Campton,KY,41301,606-668-3515
+Woodford,"103 S. Main Street, Room 120",,Versailles ,KY,40383,859-873-3421
+Barbour,P.O. Box 402 ,,Clayton,AL,36016,(334) 775-8579
+Chambers,18 Alabama Avenue E.,Room 101,LaFayette,AL,36862,(334) 864-4313
+Talladega,P.O. Box 6170,,Talladega,AL,35161-6170,(256) 761-2132
+Adams,P.O. Box 1224,,Natchez,MS,39121,(601) 446-6326
+Alcorn,P.O. Box 430,,Corinth,MS,38835,(662) 286-7740
+Amite,P.O. Box 312,,Liberty,MS,39645,(601) 657-8932
+Attala,100 Courthouse,Suite 1,Kosciusko,MS,39090,(662) 289-1471
+Benton,P.O. Box 262,,Ashland,MS,38603,(662) 224-6310
+Bolivar,P.O. Box 670,,Cleveland,MS,38732,(662) 759-6521
+Calhoun,P.O. Box 25,,Pittsboro,MS,38951,(662) 412-3101
+Carroll,P.O. Box 6,,Vaiden,MS,39176,(662) 464-5476
+Chickasaw,234 W Main Street,Room 203,Okolona,MS,38860,(662) 456-2331
+Choctaw,P.O. Box 34,,Ackerman,MS,39735,(662) 285-6245
+Claiborne,P.O. Box 549,,Port Gibson,MS,39150,(601) 437-5841
+Clarke,P.O. Box 216,,Quitman,MS,39355,(601) 776-3111
+Clay,P.O. Box 364,,West Point,MS,39773,(662) 494-3384
+Coahoma,P.O. Drawer 849,,Clarksdale,MS,38614,(662) 624-3014
+Copiah,P.O. Box 467,,Hazlehurst,MS,39083-0467,(601) 894-1241
+Covington,P.O. Box 667,,Collins,MS,39428,(601) 765-6506
+DeSoto,2535 Highway 51 S. ,,Hernando,MS,38632,(662) 429-1325
+Forrest,P.O. Box 992,,Hattiesburg,MS,39403-0992,(601) 582-3213
+Franklin,P.O. Box 267,,Meadville,MS,39653,(601) 384-2320
+George,355 Cox Street,Suite C,Lucedale,MS,39452,(601) 947-4881
+Greene,P.O. Box 310,,Leakesville,MS,39451,(601) 394-2379
+Grenada,P.O. Box 1517,,Grenada,MS,38902-1517,(662) 226-1941
+Hancock,152 Main Street,Suite B,Bay Saint Louis,MS,39520,(228) 467-5265
+Harrison,P.O. Box 998,,Gulfport,MS,39502,(228) 865-4051
+Hinds,P. O Box 327,,Jackson,MS,39205,(601) 968-6628
+Holmes,P.O. Box 718,,Lexington,MS,39095,(662) 834-2476
+Humphreys,P.O. Box 696,,Belzoni,MS,39038,(662) 247-3065
+Issaquena,P.O. Box 27,,Mayersville,MS,39113,(662) 873-2761
+Itawamba,201 W Main Street,,Fulton,MS,38843,(662) 862-3511
+Jackson,P.O. Box 998,,Pascagoula,MS,39568,(228) 769-3040
+Jasper,P.O. Box 447,,Bay Springs,MS,39422,(601) 727-4941
+Jefferson,P.O. Box 305,,Fayette,MS,39069,(601) 786-3422
+Jefferson Davis,P.O. Box 1090,,Prentiss,MS,39474,(601) 792-4231
+Jones,P.O. Box 1336,,Laurel,MS,39441,(601) 477-8538
+Kemper,P.O. Box 130,,Dekalb,MS,39328,(601) 743-2224
+Lafayette,1 Courthouse Square,Suite 101,Oxford,MS,38655,(662) 234-4951
+Lamar,P.O. Box 369,,Purvis,MS,39475,(601) 794-8504
+Lauderdale,P.O. Box 1005,,Meridian,MS,39302-1005,(601) 482-9731
+Lawrence,P.O. Box 1249,,Monticello,MS,39654,(601) 587-4791
+Leake,P.O. Box 67,,Carthage,MS,39051,(601) 267-8357
+Lee,P.O. Box 762,,Tupelo,MS,38802,(662) 841-9024
+Leflore,P.O. Box 1953,,Greenwood,MS,38935,(662) 453-1435
+Lincoln,P.O. Box 357,,Brookhaven,MS,39602,(601) 833-3435
+Lowndes,P.O. Box 31,,Columbus,MS,39703,(662) 329-5900
+Madison,P.O. Drawer 1626,,Canton,MS,39046,(601) 859-4365
+Marion,250 Broad Street,Suite 1,Columbia,MS,39429,(601) 736-8246
+Marshall,P.O. Box 459,,Holly Springs,MS,38635,(662) 252-3434
+Monroe,P.O. Box 843,,Aberdeen,MS,39730,(662) 369-8695
+Montgomery,P.O. Box 765,,Winona,MS,38967,(662) 283-4161
+Neshoba,401 E. Beacon Street,Suite 110,Philadelphia,MS,39350,(601) 656-4781
+Newton,P.O. Box 447,,Decatur,MS,39327,(601) 635-2368
+Noxubee,505 S. Jefferson Street ,,Macon,MS,39341,(662) 726-5737
+Oktibbeha,108 W. Main Street,Suite 118,Starkville,MS,39759,(662) 323-1356
+Panola,P.O. Box 346,,Batesville,MS,38606,(662) 563-6210
+Pearl River,200 S. Main,,Poplarville,MS,39470,(601) 403-2328
+Perry,P.O. Box 198,,New Augusta,MS,39462,(601) 964-8663
+Pike,P. O Box 31,,Magnolia,MS,39652,(601) 783-2581
+Pontotoc,P. O Box 428,,Pontotoc,MS,38863,(662) 489-3908
+Prentiss,P. O Box 727,,Booneville,MS,38829,(662) 728-4611
+Quitman,220 Chestnut Street,Suite 4,Marks,MS,38646,(662) 326-8003
+Rankin,P.O. Box 1599,,Brandon,MS,39043,(601) 825-1466
+Scott,P.O. Box 371,,Forest,MS,39074,(601) 469-3601
+Sharkey,P.O. Box 218,,Rolling Fork,MS,39159,(662) 873-2755
+Simpson,P.O. Box 307,,Mendenhall,MS,39114,(601) 847-2474
+Smith,P.O. Box 517,,Raleigh,MS,39153,(601) 782-4751
+Stone,323 Cavers Ave,,Wiggins,MS,39577,(601) 928-5246
+Sunflower,P.O. Box 880,,Indianola,MS,38751,(662) 887-1252
+Tallahatchie,P.O. Box 86,,Charleston,MS,38921,(662) 647-8758
+Tate,201 Ward Street,,Senatobia,MS,38668,(662) 562-5211
+Tippah,102-A N. Main,,Ripley,MS,38663,(662) 837-7370
+Tishomingo,1008 Battleground Drive,,Iuka,MS,38852,(662) 423-7026
+Tunica,P.O. Box 184,,Tunica,MS,38676,(662) 363-2842
+Union,P.O. Box 298,,New Albany,MS,38652,(662) 534-1910
+Walthall,200 Ball Ave,,Tylertown,MS,39667,(601) 876-5677
+Warren,P.O. Box 351,,Vicksburg,MS,39181,(601) 636-3961
+Washington,P. O Box 1276,,Greenville,MS,38702,(662) 378-2747
+Wayne,609 Azalea,,Waynesboro,MS,39367,(601) 735-1171
+Webster,515 Carroll Street,,Walthall,MS,39771,(662) 258-6287
+Wilkinson,P. O Box 327,,Woodville,MS,39669,(601) 888-6697
+Winston,P.O. Drawer 785,,Louisville,MS,39339,(662) 773-3581
+Yalobusha,P. O Box 1431,,Water Valley,MS,38965,(662) 473-1341
+Yazoo,P. O Box 108,,Yazoo City,MS,39194,(662) 746-1872
+Aitkin,209 2nd St NW,Room 202,Aitkin,MN,56431,
+Anoka,"325 E Main St, W130",,Anoka,MN,55303,
+Becker,915 Lake Avenue,Courthouse - 2nd Floor,Detroit Lakes,MN,56501,
+Beltrami,701 Minnesota Ave N.W.,Suite 220,Bemidji,MN,56601,
+Benton,Elections,PO Box 129,Foley,MN,56329,
+Big Stone,"20 2nd St SE, Suite 103",,Ortonville,MN,56278,
+Blue Earth,P.O. Box 3524,,Mankato,MN,56002,
+Brown,P.O. Box 115,,New Ulm,MN,56073,
+Carlton,P.O. Box 130,,Carlton,MN,55718,
+Carver,600 E 4th St,Government Center Administration Building,Chaska,MN,55318,
+Cass,P.O. Box 3000,,Walker,MN,56484,
+Chippewa,629 N 11th St,,Montevideo,MN,56265,
+Chisago,"313 N Main St, Rm 271",,Center City,MN,55012,
+Clay,P.O. Box 280,,Moorhead,MN,56561,
+Clearwater,213 Main Ave N Dept 202,,Bagley,MN,56621,
+Cook,411 W 2nd St,,Grand Marais,MN,55604,
+Cottonwood,900 3rd Ave,,Windom,MN,56101,
+Crow Wing,326 Laurel St,Suite 22,Brainerd,MN,56401,
+Dakota,"1590 Highway 55, Suite 2300",,Hastings,MN,55033,
+Dodge,22 6th St E Dept 45,Dodge County Courthouse,Mantorville,MN,55955,
+Douglas,305 8th Ave W,,Alexandria,MN,56308,
+Faribault,P.O. Box 130,,Blue Earth,MN,56013,
+Fillmore,P.O. Box 466,,Preston,MN,55965,
+Freeborn,P.O. Box 1147,,Albert Lea,MN,56007,
+Goodhue,Goodhue County Government Center,509 W Fifth Street,Red Wing,MN,55066,
+Grant,P.O. Box 1007,,Elbow Lake,MN,56531,
+Hennepin,PSL 012 Government Center,300 S 6th St,Minneapolis,MN,55487,
+Houston,"304 S Marshall St, Ste 116",,Caledonia,MN,55921,
+Hubbard,301 Court Ave,,Park Rapids,MN,56470,
+Isanti,555 18th Ave SW,,Cambridge,MN,55008,
+Itasca,123 NE 4th St,,Grand Rapids,MN,55744,
+Jackson,P.O. Box 226,,Jackson,MN,56143,
+Kanabec,18 N Vine St,Suite 261A,Mora,MN,55051,
+Kandiyohi,P.O. Box 936,,Willmar,MN,56201,
+Kittson,"410 5th St S, Ste 214",,Hallock,MN,56728,
+Koochiching,715 4th St,,International Falls,MN,56649,
+Lac Qui Parle,"600 6th St, Suite 6",,Madison,MN,56256,
+Lake,601 3rd Ave,,Two Harbors,MN,55616,
+Lake of the Woods,"206 8th Ave SE, Suite 260",,Baudette,MN,56623,
+Le Sueur,88 S Park Ave,,LeCenter,MN,56057,
+Lincoln,P.O. Box 29,,Ivanhoe,MN,56142,
+Lyon,607 W Main St,,Marshall,MN,56258,
+Mahnomen,P.O. Box 379,,Mahnomen,MN,56557,
+Marshall,208 E Colvin Ave Ste 11,Suite 11,Warren,MN,56762,
+Martin,"201 Lake Ave, Ste 201",,Fairmont,MN,56031,
+McLeod,2391 Hennepin Ave N,,Glencoe,MN,55336,
+Meeker,325 N Sibley Ave,,Litchfield,MN,55355,
+Mille Lacs,635 2nd St SE,,Milaca,MN,56353,
+Morrison,213 1st Ave SE,,Little Falls,MN,56345,
+Mower,201 1st St NE,Courthouse,Austin,MN,55912,
+Murray,P.O. Box 57,,Slayton,MN,56172,
+Nicollet,501 S Minnesota Ave,,St Peter,MN,56082,
+Nobles,P.O. Box 757,,Worthington,MN,56187,
+Norman,P.O. Box 266,,Ada,MN,56510,
+Olmsted,151 4th St SE,,Rochester,MN,55904,
+Otter Tail,Government Services Center,510 Fir Avenue West,Fergus Falls,MN,56537,
+Pennington,P.O. Box 616,,Thief River Falls,MN,56701,
+Pine,635 Northridge Drive NW,Suite 240,Pine City,MN,55063,
+Pipestone,416 Hiawatha Ave S,Pipestone County Courthouse,Pipestone,MN,56164,
+Polk,612 Broadway St N Ste 207,,Crookston,MN,56716,
+Pope,130 E Minnesota Ave Ste 218,,Glenwood,MN,56334,
+Ramsey,P.O. Box  64098,,St Paul,MN,55164,
+Red Lake,P.O. Box 367,,Red Lake Falls,MN,56750,
+Redwood,P.O. Box 130,,Redwood Falls,MN,56283,
+Renville,500 E DuPue Ave Ste 202,,Olivia,MN,56277,
+Rice,320 3rd St NW Ste 5,,Faribault,MN,55021,
+Rock,P.O. Box 509,,Luverne,MN,56156,
+Roseau,606 5th Ave SW Rm 160,,Roseau,MN,56751,
+Scott,200 4th Ave W,,Shakopee,MN,55379,
+Sherburne,13880 Business Center Dr NW,,Elk River,MN,55330,
+Sibley,400 Court Avenue,PO Box 171,Gaylord,MN,55334,
+St. Louis,100 N 5th Ave W #214,,Duluth,MN,55802,
+Stearns,705 Courthouse Sq Rm 148,,St Cloud,MN,56303,
+Steele,P.O. Box 890,,Owatonna,MN,55060,
+Stevens,400 Colorado Ave. Suite 303,,Morris,MN,56267,
+Swift,P.O. Box 288,,Benson,MN,56215,
+Todd,215 1st Ave S Ste 201,,Long Prairie,MN,56347,
+Traverse,P.O. Box 428,,Wheaton,MN,56296,
+Wabasha,625 Jefferson Ave,,Wabasha,MN,55981,
+Wadena,415 Jefferson St S,,Wadena,MN,56482,
+Waseca,307 N State St,,Waseca,MN,56093,
+Washington,P.O. Box 6,,Stillwater,MN,55082,
+Watonwan,P.O. Box 518,,St James,MN,56081,
+Wilkin,P.O. Box 409,,Breckenridge,MN,56520,
+Winona,Winona County Government Center,177 Main St,Winona,MN,55987,
+Wright,"10 2nd St NW, Room 230",,Buffalo,MN,55313,
+Yellow Medicine,180 8th Ave,,Granite Falls,MN,56241,
