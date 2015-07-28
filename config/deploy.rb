@@ -30,7 +30,7 @@ Dotenv.load
 
 
 set :application, "rocky"
-set :repository,  "git@github.com:trustthevote/Rocky.git"
+set :repository,  "git@github.com:trustthevote-project/Rocky-OVR.git"
 
 # If you have previously been relying upon the code to start, stop
 # and restart your mongrel application, or if you rely on the database
