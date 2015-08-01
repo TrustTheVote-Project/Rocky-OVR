@@ -125,10 +125,12 @@
     <div class="whitelabeled">
       Enter pixel tracking codes:
       <% EmailTemplate::EMAIL_TYPES.each do |t| %>
-        <ul class="stacked email-template email-template-<%= t %>">
+        <ul class="stacked email-pixel-tracking email-pixel-tracking-<%= t %>">
           <li class="width_h">
             <h3><%= f.label "#{t}_pixel_tracking_code" %></h3>
             <%= f.text_field "#{t}_pixel_tracking_code" %>
+          </li>
+        </ul>
       <%- end %>
     </div>
     <div class="whitelabeled">
