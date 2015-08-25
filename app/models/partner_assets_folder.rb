@@ -37,7 +37,7 @@ class PartnerAssetsFolder
   end
   
   def directory
-    connection.directories.get(@partner.partner_assets_bucket, prefix: @partner.assets_path)
+    connection.directories.get(@partner.partner_assets_bucket, prefix: @partner.assets_path + '/')
   end
   
   def old_directory
@@ -81,7 +81,7 @@ class PartnerAssetsFolder
 
   # Returns the list of all assets in the folder
   def list_assets
-    directory.files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| File.basename(n.key) }
+    directory.files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key.gsub(@partner.assets_path, '') }
     #Dir.glob(File.join(@partner.assets_path, '*.*')).map { |n| File.basename(n) }
   end
 
