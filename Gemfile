@@ -54,8 +54,9 @@ group :development, :test do
   
   gem "treetop", "= 1.4.10"
   # gem "selenium-client", "= 1.2.16"
-  gem "capistrano", "= 2.15.5"
-  gem "rvm-capistrano", require: false
+
+  gem "capistrano", "= 2.15.5", :require=>false
+  gem "rvm-capistrano"
   
   # Pito:
   gem "hpricot", "0.8.6"
