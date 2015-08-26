@@ -4,6 +4,9 @@ default_url_host: "rtvstaging2-web.osuosl.org"
 api_host_name: https://rtvdemo:bullwinkle@rtvstaging2.osuosl.org
 ui_url_host: "rocky-staging2.herokuapp.com"
 
+mobile_browsers:
+  -
+
 
 hours_before_first_reminder: 0.0333
 hours_between_first_and_second_reminder: 0.0333
