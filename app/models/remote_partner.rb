@@ -35,6 +35,9 @@ class RemotePartner < ActiveResource::Base
         :partner_sms_opt_in
   ].each do |method|
      attr_accessor method
+     define_method("#{method}") do
+       self.attributes[method.to_s]
+     end
      define_method("#{method}?") do
        self.send("#{method}") == true
      end
