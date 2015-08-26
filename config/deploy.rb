@@ -172,7 +172,7 @@ namespace :deploy do
   end
   
   desc "import states.yml and zip code data"
-  task :import_states_and_zips, :roles=>[:app] do
+  task :import_states_and_zips, :roles=>[:util] do
     run <<-CMD
       cd #{latest_release} &&
       RAILS_ENV=#{rails_env} bundle exec rake import:states_and_zips
