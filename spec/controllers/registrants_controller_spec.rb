@@ -229,6 +229,13 @@ describe RegistrantsController do
         get :new, :partner=>partner.to_param, :source=>"abc", :tracking=>"def", :collectemailaddress=>'no'
         response.should redirect_to(MobileConfig.redirect_url(:partner=>partner.id,:locale=>'en', :source=>"abc", :tracking=>"def", :collectemailaddress=>'no'))        
       end
+      it "does not redirect for partners with disabled mobile redirects" do
+        partner = RemotePartner.new
+        partner.stub(:mobile_redirect_disabled).and_return(true)
+        RemotePartner.stub(:find_by_id).and_return(partner)
+        get :new, :partner=>partner.to_param
+        expect(response).to render_template(:show) 
+      end
     end
   end
 
