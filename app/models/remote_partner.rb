@@ -48,7 +48,7 @@ class RemotePartner < ActiveResource::Base
   end
   
   def mobile_redirect_disabled
-    self.id == 26186 
+    self.id == 14557 
   end
   
   (Partner.column_names + [:custom_logo, :header_logo_url]).each do |column|
