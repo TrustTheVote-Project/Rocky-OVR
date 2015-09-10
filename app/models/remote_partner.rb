@@ -40,12 +40,15 @@ class RemotePartner < ActiveResource::Base
      end
      define_method("#{method}?") do
        self.send("#{method}") == true
-     end
-      
+     end      
   end
   
   def default_pixel_tracking_code(email_type, reg)
     Partner.default_pixel_tracking_code(email_type, reg)
+  end
+  
+  def mobile_redirect_disabled
+    self.id == 14557 
   end
   
   (Partner.column_names + [:custom_logo, :header_logo_url]).each do |column|
