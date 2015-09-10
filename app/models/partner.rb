@@ -328,7 +328,7 @@ class Partner < ActiveRecord::Base
     total_count = parties_regs.values.sum
     parties_regs.to_a.sort {|a, b| b[1]<=>a[1] }.collect do |row|
       {
-        :party=>row[0] || "Null (#{Registrant.where(partner_id: self.id).where("status = ? OR status = ?", 'complete', 'step_5').where(finish_with_state: true).count} finish with state)",
+        :party=>row[0] || "None (#{Registrant.where(partner_id: self.id).where("status = ? OR status = ?", 'complete', 'step_5').where(finish_with_state: true).count} finished with state)",
         :count=>row[1].to_i,
         :percentage=> percentage(row[1].to_i, total_count)
       }
