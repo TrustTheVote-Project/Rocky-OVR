@@ -223,7 +223,10 @@ form.form_downloadcsv {
   overflow: hidden;
   display: block;
   position: relative;
-  padding: 20px;
+  padding: 0;
+  fieldset {
+    padding: 10px 20px;
+  }
   .date_input {
     float: left;
     label {
