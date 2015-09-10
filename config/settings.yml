@@ -48,6 +48,11 @@ partner_csv_expiration_minutes: 30
 
   
 ovr_states:
+  AZ:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es    
   CA:
     redirect_to_online_reg_url: true
     api_settings:
@@ -71,6 +76,14 @@ ovr_states:
       - hi
       - km
       - th
+  LA:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+  MN:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
   NV:
     redirect_to_online_reg_url: true
     languages:

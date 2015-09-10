@@ -242,6 +242,7 @@ record_18:
   requires_race: true
   race_tooltip: requested_with_state_name
   requires_party: true
+  online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
   party_tooltip: required_for_presidential
   id_number_tooltip: drivers_license_if_issued_with_state_name
   sos_address: Secretary of State<br>Voter Registration<br>P.O. Box 94125<br>Baton
@@ -298,6 +299,7 @@ record_23:
   abbreviation: MN
   name: Minnesota
   requires_party: false
+  online_registration_url: https://mnvotes.sos.state.mn.us/VoterRegistration/VoterRegistrationStep1.aspx
   party_tooltip: blank
   id_number_tooltip: drivers_license_state_id_with_state_name
   sos_address: Secretary of State<br>60 Empire Drive, Suite 100<br>St. Paul, MN 55155-1299
