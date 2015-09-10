@@ -458,9 +458,14 @@ td#left_column, td#right_column {
   font-weight: bold;
   
   &.small {
-    font-size: .85em;
+    font-size: 12px;
     font-weight: normal;
     background: #0b0b0b;
+    line-height: 16px;
+    img {
+      height: 12px;
+      vertical-align: middle;
+    }
   }
   
 }
