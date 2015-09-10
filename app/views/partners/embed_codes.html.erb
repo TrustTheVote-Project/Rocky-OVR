@@ -9,7 +9,7 @@
     border:none;
     float: left;
     width: 320px;
-    margin:0 9px 0 0;
+    margin:0 0px 0 0;
     padding:0;
   }
   .column img {
@@ -20,7 +20,8 @@
   }
 </style>
 <% content_for :subnav do -%>
-  <% @nav_class[:customize] = :current; @nav_class[:embed] = :current -%>
+  <% # @nav_class[:customize] = :current; -%> 
+  <% @nav_class[:embed] = :current; -%>
   <%= render :partial => "layouts/customize_nav" %>
 <% end -%>
 <div class="customize">
@@ -28,7 +29,7 @@
   <p>Now you can choose the "user interface" that you prefer for your tool.  <strong>Version A</strong> is a 5-step process and <strong>Version B</strong> is a recently released 2-step process with larger input boxes.
   </p>
   <p>
-  Copy the embed code under your preferred interface, and paste that code onto your website, blog, or other web platform.  We suggest you take the code for the "widget" as that keeps users on your website and has the highest completion rates.
+  Copy the embed code under your preferred interface, and paste that code onto your website, blog, or other web platform.  We suggest you take the code for the "widget" or "iFrame" as those keep users on your website and have the highest completion rates.
   </p>
   <div class="columns">
     <div class="column">
@@ -68,6 +69,24 @@
     
     
     <div>
+      <h2><label for="image_link_html">Add a iFrame:</label></h2>
+      <p class="plain_text">
+        The code will let you embed the registration experience on your website.
+      </p>
+      <div class="columns">
+        <div class="column">
+          <h3><strong>Version A</strong></h3>
+          <p><textarea name="iframe_html" readonly="readonly" rows="10" cols="36"><%= h @iframe_html %></textarea></p>
+        </div>
+        <div class="column">
+          <h3><strong>Version B</strong></h3>
+          <p><textarea name="iframe_html_b" readonly="readonly" rows="10" cols="36"><%= h @iframe_html_b %></textarea></p>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div>
       <h2><label for="image_link_html">Add a graphical button:</label></h2>
       <p class="plain_text">
         The code will create a graphical button or banner on your site that links to your unique voter 
@@ -84,9 +103,30 @@
       </div>
     </div>
     
-    
-    
-    
+    <div>
+      <h2><label for="share_link_facebook">Social Sharing:</label></h2>
+      <p class="plain_text">Add these links to your site so everyone can promote voter registration.</p>
+      <div class="columns">
+        <div class="column">
+          <h3><strong>Version A</strong></h3>
+          <h4><strong>Facebook</strong></h4>
+          <p><textarea name="share_link_facebook" readonly="readonly" rows="6" cols="36"><%= h @share_link_facebook %></textarea></p>
+          <h4><strong>Twitter</strong></h4>
+          <p><textarea name="share_link_twitter" readonly="readonly" rows="6" cols="36"><%= h @share_link_twitter %></textarea></p>
+          <h4><strong>Google+</strong></h4>
+          <p><textarea name="share_link_google" readonly="readonly" rows="6" cols="36"><%= h @share_link_google %></textarea></p>
+        </div>
+        <div class="column">
+          <h3><strong>Version A</strong></h3>
+          <h4><strong>Facebook</strong></h4>
+          <p><textarea name="share_link_facebook_b" readonly="readonly" rows="6" cols="36"><%= h @share_link_facebook_b %></textarea></p>
+          <h4><strong>Twitter</strong></h4>
+          <p><textarea name="share_link_twitter_b" readonly="readonly" rows="6" cols="36"><%= h @share_link_twitter_b %></textarea></p>
+          <h4><strong>Google+</strong></h4>
+          <p><textarea name="share_link_google_b" readonly="readonly" rows="6" cols="36"><%= h @share_link_google_b %></textarea></p>
+        </div>
+      </div>
+    </div>
     
     <div>
       <h2><label for="text_link_html">Text link:</label></h2>
@@ -102,6 +142,7 @@
         </div>
       </div>
     </div>
+    
   </form>
   
   <p><span class="bold">Note:</span> If you aren't putting a link or button on a website, blog, or other platform, you can always promote your voter registration tool by using these unique url’s: 

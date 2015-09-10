@@ -151,6 +151,39 @@ describe PartnersController do
         html = HTML::Node.parse(nil, 0, 0, assigns(:image_overlay_html).split("\n").last)
         #assert_select html, "script[type=text/javascript][src=https://example.com/widget_loader.js]"
       end
+      
+      it "shows iframe HTML for version a" do
+        assert_select 'textarea[name=iframe_html][readonly]', 1
+        expect(assigns(:iframe_html)).to eq('<iframe src="https://register.rockthevote.com/?partner=5&source=iframe" width="100%" height="1200" marginheight="0" frameborder="0"></iframe>')        
+      end
+
+      it "shows iframe HTML for version b" do
+        assert_select 'textarea[name=iframe_html_b][readonly]', 1
+        expect(assigns(:iframe_html_b)).to eq('<iframe src="https://register2.rockthevote.com/registrants/map/?source=iframe&partner=5" width="100%" height="1200" marginheight="0" frameborder="0"></iframe>')                
+      end
+      
+      it "shows facebook share" do
+        assert_select 'textarea[name=share_link_facebook][readonly]', 1
+        expect(assigns(:share_link_facebook)).to eq('https://www.facebook.com/sharer/sharer.php?u=https%3A//register.rockthevote.com/?partner=5%26source=fb-share')   
+        assert_select 'textarea[name=share_link_facebook_b][readonly]', 1
+        expect(assigns(:share_link_facebook_b)).to eq('https://www.facebook.com/sharer/sharer.php?u=https%3A//register2.rockthevote.com/?partner=5%26source=fb-share')   
+      end
+      
+      it "shows twitter share" do
+        assert_select 'textarea[name=share_link_twitter][readonly]', 1
+        expect(assigns(:share_link_twitter)).to eq('https://twitter.com/home?status=Register%20to%20Vote%20today%3A%20https%3A//register.rockthevote.com/?partner=5%26source=tw-share')   
+        assert_select 'textarea[name=share_link_twitter_b][readonly]', 1
+        expect(assigns(:share_link_twitter_b)).to eq('https://twitter.com/home?status=Register%20to%20Vote%20today%3A%20https%3A//register2.rockthevote.com/?partner=5%26source=tw-share')   
+        
+      end
+      it "shows google+ share" do
+        assert_select 'textarea[name=share_link_google][readonly]', 1
+        expect(assigns(:share_link_google)).to eq('https://plus.google.com/share?url=https%3A//register.rockthevote.com/?partner=5%26source=G%2B-share')   
+        assert_select 'textarea[name=share_link_google_b][readonly]', 1
+        expect(assigns(:share_link_google_b)).to eq('https://plus.google.com/share?url=https%3A//register2.rockthevote.com/?partner=5%26source=G%2B-share')   
+        
+      end
+      
     end
 
     describe "statistics" do

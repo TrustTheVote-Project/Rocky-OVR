@@ -73,7 +73,12 @@ strong {
   right: 15px;
   font-size: 13px;
   font-weight: bold;
+  &.edit-profile-link {
+    right: 75px;
+  }
 }
+
+
 
 #header span a:link    { color: #b42225; }
 #header span a:visited { color: #b42225; }
@@ -513,3 +518,91 @@ a.button_reset              { width: 240px; height: 36px; }
 a.button_reset span         { width: 240px; height: 36px; background-image: image-url('partner/button_reset_ro.gif'); }
 a.button_update             { width: 207px; height: 36px; }
 a.button_update span        { width: 207px; height: 36px; background-image: image-url('partner/button_update_ro.gif'); }
+
+
+body {
+    background-color: #111;
+    font-family: 'Open Sans',Arial,sans-serif
+}
+#main p {
+    line-height: 1.5em;
+    margin-bottom: 0.8em
+}
+h1 {
+    border-top-color: #efefef;
+    border-top-style: solid;
+    border-top-width: 1px;
+    font-size: 28px;
+    padding-top: 25px;
+    text-align: center;
+    text-transform: uppercase
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #101010;
+    font-family: 'Open Sans', sans-serif
+}
+.text p, p {
+    font-size: 15px
+}
+#container {
+background:#fbfbfb;
+border: 1px solid #252525;
+min-height: 95%
+}
+#header {
+    background-color: #fbfbfb;
+    height: 115px
+}
+#header > p {
+    text-align: center;
+    width: 100%
+}
+#header p {
+    left: 0px
+}
+#main_inner {
+    padding: 0 25px 25px 25px;
+}
+#footer {
+    border-top-style: none
+}
+table {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px
+}
+.login form {
+    width: 300px
+}
+input, textarea {
+border-radius: 4px;
+padding: 10px;
+border: 1px solid #ccc
+}
+#customizations a {
+    color: #b2272e
+}
+#customizations li {
+    font-size: 13px
+}
+#header p {
+    font-size: 17px;
+    text-align: center
+}
+#customize_nav > p {
+    font-size: 15px;
+    text-align: center
+}
+#header p a:first-child {
+    margin-left: 0
+}
+.profile form {
+    width: 100%
+}
+.profile form li.width_a div {
+    width: 260px
+}
+.profile form li.width_b div {
+    width: 135px
+}

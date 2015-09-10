@@ -102,6 +102,20 @@ HTML
 <script type="text/javascript" src="https://register2.rockthevote.com#{widget_loader_path}"></script>
 HTML
 
+    @iframe_html = "<iframe src=\"https://register.rockthevote.com/?partner=#{partner_id}&source=iframe\" width=\"100%\" height=\"1200\" marginheight=\"0\" frameborder=\"0\"></iframe>"
+    
+    @iframe_html_b = "<iframe src=\"https://register2.rockthevote.com/registrants/map/?source=iframe&partner=#{partner_id}\" width=\"100%\" height=\"1200\" marginheight=\"0\" frameborder=\"0\"></iframe>"
+
+    @share_link_facebook = "https://www.facebook.com/sharer/sharer.php?u=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=fb-share"
+    
+    @share_link_facebook_b = "https://www.facebook.com/sharer/sharer.php?u=https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=fb-share"
+    @share_link_twitter = "https://twitter.com/home?status=Register%20to%20Vote%20today%3A%20https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
+    @share_link_twitter_b = "https://twitter.com/home?status=Register%20to%20Vote%20today%3A%20https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
+    @share_link_google = "https://plus.google.com/share?url=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=G%2B-share"
+    @share_link_google_b = "https://plus.google.com/share?url=https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=G%2B-share"
+        
+
+
   end
 
   def statistics
