@@ -17,9 +17,13 @@ ui_timeout_minutes: 5
 
 
 states_with_online_registration:
+  - AZ
   - CA
+  - LA
+  - MN
   - NV
   - WA
+
 
 
 ovr_states:
