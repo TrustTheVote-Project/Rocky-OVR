@@ -1015,6 +1015,11 @@ describe Partner do
 
     describe "by registration date" do
       it "should tally registrants by date bucket and PDF download state" do
+        
+        # this puts the 2 months in the "within past year" but not "year to date" category
+        new_time = Time.local(2008, 2, 1, 12, 0, 0)
+        Timecop.freeze(new_time)
+        
         partner = FactoryGirl.create(:partner)
         7.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at => 2.hours.ago) }
         1.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at => 2.hours.ago, pdf_downloaded: true) }
@@ -1031,6 +1036,9 @@ describe Partner do
         1.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at => 2.years.ago) }
 
         stats = partner.registration_stats_completion_date
+        
+        Timecop.return
+        
         assert_equal  8, stats[:day_count][:completed]
         assert_equal  1, stats[:day_count][:downloaded]
 
@@ -1039,6 +1047,9 @@ describe Partner do
 
         assert_equal 17, stats[:month_count][:completed]
         assert_equal 5, stats[:month_count][:downloaded]
+
+        assert_equal 17, stats[:year_to_date_count][:completed]
+        assert_equal 5, stats[:year_to_date_count][:downloaded]
 
         assert_equal 19, stats[:year_count][:completed]
         assert_equal 6, stats[:year_count][:downloaded]

@@ -55,6 +55,7 @@ group :development, :test do
   gem "treetop", "= 1.4.10"
   # gem "selenium-client", "= 1.2.16"
 
+
   gem "capistrano", "= 2.15.5", :require=>false
   gem "rvm-capistrano"
   
@@ -67,6 +68,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "timecop"
   gem "capybara-webkit", "~> 1.5.2"
   
   gem "webmock"
