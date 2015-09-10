@@ -3,6 +3,7 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Online Voter Registration Partner Portal</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag "application", "partner" %>
   <!--[if !IE 7]>
     <style type="text/css">
@@ -17,12 +18,13 @@
   <div id="container">
     <% if current_partner_session %>
       <div id="header">
+        <span class='edit-profile-link'><%= link_to "Edit Profile", edit_partner_path %></span>
         <span><%= link_to "Log out", logout_path %></span>
         <p>
           <%= link_to "Dashboard", partner_path, :class => @nav_class[:dashboard] %> |
           <%= link_to "Reports", statistics_partner_path, :class => @nav_class[:statistics] %> |
           <%= link_to "Customize", partner_logo_path, :class => @nav_class[:customize] %> |
-          <%= link_to "Edit Profile", edit_partner_path, :class => @nav_class[:profile] %>
+          <%= link_to "Embed Codes", embed_codes_partner_path, :class => @nav_class[:embed] %>          
         </p>
     <% else %>
       <div id="header" class="not_logged_in">
