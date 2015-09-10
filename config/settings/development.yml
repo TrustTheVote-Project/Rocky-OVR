@@ -34,11 +34,14 @@ ovr_states:
   
 
 states_with_online_registration:
-  - CA
   - AZ
-  - CO
+  - CA
+  - LA
+  - MN
   - NV
   - WA
+
+  
   
 enabled_locales:
   - en
