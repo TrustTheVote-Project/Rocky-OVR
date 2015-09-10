@@ -22,6 +22,11 @@
         <td><%= @stats_by_completion_date[:month_count][:downloaded] %></td>
       </tr>
       <tr class="<%= cycle('even', 'odd') %>">
+        <th>Year to date</th>
+        <td><%= @stats_by_completion_date[:year_to_date_count][:completed] %></td>
+        <td><%= @stats_by_completion_date[:year_to_date_count][:downloaded] %></td>
+      </tr>
+      <tr class="<%= cycle('even', 'odd') %>">
         <th>Within last year</th>
         <td><%= @stats_by_completion_date[:year_count][:completed] %></td>
         <td><%= @stats_by_completion_date[:year_count][:downloaded] %></td>

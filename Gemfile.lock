@@ -271,6 +271,7 @@ GEM
       ref
     thor (0.19.1)
     tilt (1.4.1)
+    timecop (0.8.0)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -343,6 +344,7 @@ DEPENDENCIES
   simplecov
   sqlite3
   therubyracer
+  timecop
   treetop (= 1.4.10)
   uglifier
   webmock
