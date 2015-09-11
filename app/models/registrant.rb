@@ -1667,11 +1667,11 @@ class Registrant < ActiveRecord::Base
   end
 
   def partner_survey_question_1
-    partner.send("survey_question_1_#{locale}")
+    locale.blank ? "" : partner.send("survey_question_1_#{locale}")
   end
 
   def partner_survey_question_2
-    partner.send("survey_question_2_#{locale}")
+    locale.blank ? "" : partner.send("survey_question_2_#{locale}")
   end
 
   def set_questions
