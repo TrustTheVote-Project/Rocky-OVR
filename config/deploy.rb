@@ -298,7 +298,7 @@ namespace :deploy do
 end
 
 before "heroku:setup", "heroku:set_config", "heroku:addons"
-after "heroku:deploy", "heroku:import_states"
+after "heroku:deploy", "heroku:import_states_yml"
 
 namespace :heroku do
   
