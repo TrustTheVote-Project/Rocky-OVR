@@ -27,21 +27,12 @@
         </tbody>
       </table>
     </div>
-    <span class="button rollover_button" id="link_customizetool">
-      <a class="button_customizetool" href="<%= partner_logo_path %>"><span>Customize Tool</span></a>
-    </span>
-    <span class="button rollover_button" id="link_editprofile">
-      <a class="button_editprofile" href="<%= edit_partner_path %>"><span>Edit Profile</span></a>
-    </span>
+    <%= rollover_image_link("link_customizetool", "Customize Tool", partner_logo_path, id: "link_customizetool") %>
+    <%= rollover_image_link("link_editprofile", "Edit Profile", edit_partner_path, id: "link_editprofile") %>
   </div>
 
   <div id="dash_left" class="dash">
     <%= render :partial => 'stats_by_completion_date' %>
-    <span class="button rollover_button" id="link_viewreport">
-      <a class="button_viewreport" href="<%= statistics_partner_path %>"><span>View Full Report</span></a>
-    </span>
-    <span class="button rollover_button" id="link_downloaddata">
-      <a class="button_downloaddata" href="<%= statistics_partner_path %>"><span>Download Data</span></a>
-    </span>
+    <%= rollover_image_link("link_viewreport", "View Full Report and Download Data", statistics_partner_path, id: "link_viewreport") %>
   </div>
 </div>
