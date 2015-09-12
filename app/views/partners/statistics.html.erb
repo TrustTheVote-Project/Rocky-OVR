@@ -20,7 +20,7 @@
           <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
         </div>
         <div class='submit_button'>
-          <%= submit_tag "", :class=>"button_downloadcsv", alt: "Download CSV" %>
+          <%= rollover_button "downloadcsv", "Download CSV", id: "downloadcsv"%>
         </div>
       </fieldset>
     <%- end %>
