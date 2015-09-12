@@ -298,6 +298,7 @@ namespace :deploy do
 end
 
 before "heroku:setup", "heroku:set_config", "heroku:addons"
+after "heroku:deploy", "heroku:import_states"
 
 namespace :heroku do
   
@@ -307,6 +308,14 @@ namespace :heroku do
   task :deploy do
     %x[git push #{heroku_remote} #{branch}:master]
   end
+  
+  desc "import states.yml data"
+  task :import_states_yml, :roles => [:app] do
+    Bundler.with_clean_env do
+      system("heroku run bundle exec rake import:states --remote=#{heroku_remote}")
+    end
+  end
+  
   
   task :setup do
     Bundler.with_clean_env do
