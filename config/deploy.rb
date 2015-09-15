@@ -79,8 +79,10 @@ before 'deploy:setup', 'rvm:install_rvm'   # install RVM
 before 'deploy:setup', 'rvm:install_ruby' 
 before 'deploy:setup', 'rvm:install_passenger' 
 before 'deploy:setup', 'rvm:setup_passenger' 
+before 'deploy:setup', 'rvm:install_bundler'
 
-after 'deploy:setup', 'heroku:setup'
+# this shouldn't be automatic ?
+# after 'deploy:setup', 'heroku:setup'
 
 before 'deploy', 'rvm:install_ruby' # install Ruby and create gemset (both if missing)
 
@@ -103,7 +105,8 @@ before "deploy:restart", "deploy:import_states_yml"   # runs after migrations wh
 after "deploy:restart", "deploy:run_pdf_workers", "deploy:run_workers"
 after "deploy", "deploy:cleanup"
 
-after "deploy", "heroku:deploy"
+# this should not be automatic 
+# after "deploy", "heroku:deploy"
 
 namespace :admin do
   desc "reset admin password and display"
@@ -129,6 +132,12 @@ namespace :rvm do
   task :setup_passenger, :roles => :web do
     run "passenger-install-apache2-module --auto", :shell => fetch(:rvm_shell)    
   end
+  
+  desc "Install bundler in gemset"
+  task :install_bundler, :roles => [:web, :util, :pdf] do
+    run 'rvm use ruby-1.9.3-p125@rocky4 && gem install bundler', :shell => fetch(:rvm_shell)
+  end
+  
 end
 
 
