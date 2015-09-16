@@ -33,6 +33,6 @@ set :keep_releases, 3
 set :rails_env,    "loadtest"
 set :heroku_remote, "rocky-loadtest"
 
-set :branch, "master"
+set :branch, "6.2"
 
 after "deploy:migrate", "deploy:symlink_translations"
