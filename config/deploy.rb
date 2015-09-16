@@ -75,7 +75,7 @@ set :rvm_install_with_sudo, true
 set :sync_assets, fetch(:sync_assets, true)
 
 
-before 'deploy:setup', 'rvm:install_rvm'   # install RVM
+before 'deploy:setup', 'deploy:download_gpg_key', 'rvm:install_rvm'   # install RVM
 before 'deploy:setup', 'rvm:install_ruby' 
 before 'deploy:setup', 'rvm:install_passenger' 
 before 'deploy:setup', 'rvm:setup_passenger' 
@@ -121,7 +121,11 @@ end
 
 
 
+
+
 namespace :rvm do
+  
+
   
   desc "Install passenger"
   task :install_passenger, :roles => :web do
@@ -144,6 +148,11 @@ end
 
 namespace :deploy do
 
+  desc "Get RVM GPG key"
+  task :download_gpg_key do
+    run_without_rvm "gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
+  end
+  
   # namespace :assets do
   #   task :precompile, :roles => :web, :except => { :no_release => true } do
   #     from = source.next_revision(current_revision)
