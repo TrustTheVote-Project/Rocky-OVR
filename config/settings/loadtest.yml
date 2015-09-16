@@ -1,7 +1,7 @@
 from_address:  "register@rockthevote.com"
-pdf_host_name: 'rtvloadtest.osuosl.org'
-default_url_host: "rtvloadtest.osuosl.org"
-api_host_name: https://rtvdemo:bullwinkle@rtvloadtest.osuosl.org
+pdf_host_name: 'rtv-loadtest.osuosl.org'
+default_url_host: "rtv-loadtest.osuosl.org"
+api_host_name: https://rtvdemo:bullwinkle@rtv-loadtest.osuosl.org
 ui_url_host: "rocky-loadtest.herokuapp.com"
 
 
