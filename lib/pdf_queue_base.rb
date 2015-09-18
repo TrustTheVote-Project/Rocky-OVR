@@ -27,15 +27,13 @@ module PdfQueueBase
       end
       if pdfgen_id.nil? 
         if self.count != 0
-          Rails.logger.warn "#{Time.now} Couldn't get lock on any #{self.class.name}" 
-        end
-        if self.class == PriorityPdfGeneration
+          Rails.logger.warn "#{Time.now} Couldn't get lock on any #{self.class.name}"
+        elsif self == PriorityPdfGeneration
           PdfGeneration.find_and_generate
           return nil
-        else
-          sleep(sleep_timeout)
-          return nil
         end
+        sleep(sleep_timeout)
+        return nil
       end
     end
     return pdfgen_id
