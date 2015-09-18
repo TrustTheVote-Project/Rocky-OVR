@@ -102,7 +102,7 @@ set :rake, 'bundle exec rake'
 
 
 before "deploy:restart", "deploy:import_states_yml"   # runs after migrations when migrating
-after "deploy:restart", "deploy:run_pdf_workers", "deploy:run_workers"
+after "deploy:restart", "deploy:run_pdf_workers", "deploy:run_util_pdf_workers", "deploy:run_workers"
 after "deploy", "deploy:cleanup"
 
 # this should not be automatic 
@@ -303,13 +303,22 @@ namespace :deploy do
   task :run_pdf_workers, :roles => :pdf do
     run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec ruby script/rocky_pdf_runner stop"
     sleep 10
+    12.times do
+      run "cd #{latest_release} && RAILS_ENV=#{rails_env} TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start"
+    end
+  end
+  
+  desc "Run (or restart) pdf worker processes on pdf server"
+  task :run_util_pdf_workers, :roles => :util do
+    run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec ruby script/rocky_pdf_runner stop"
+    sleep 10
     2.times do
       run "cd #{latest_release} && RAILS_ENV=#{rails_env} TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start"
     end
   end
 
   desc "Stop worker pdf processes on pdf server"
-  task :stop_pdf_workers, :roles => :pdf do
+  task :stop_pdf_workers, :roles => [:pdf, :util] do
     run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec ruby script/rocky_pdf_runner stop"
   end
   
