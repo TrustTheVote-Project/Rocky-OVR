@@ -29,7 +29,13 @@ module PdfQueueBase
         if self.count != 0
           Rails.logger.warn "#{Time.now} Couldn't get lock on any #{self.class.name}" 
         end
-        sleep(sleep_timeout)
+        if self.class == PriorityPdfGeneration
+          PdfGeneration.find_and_generate
+          return nil
+        else
+          sleep(sleep_timeout)
+          return nil
+        end
       end
     end
     return pdfgen_id
@@ -49,8 +55,8 @@ module PdfQueueBase
   #   if pdfgen_id
   #     pdfgen = self.find(pdfgen_id)
   #     r = pdfgen.registrant
-  #     if r && r.generate_pdf_html
-  #       r.finish_pdf
+  #     if r && r.pdf_writer.registrant_to_html_string
+  #       r.finalize_pdf
   #       puts "Generated HTML for #{r.id}"
   #       pdfgen.delete
   #     else
