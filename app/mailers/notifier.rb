@@ -100,7 +100,7 @@ class Notifier < ActionMailer::Base
       ptc = partner && partner.default_pixel_tracking_code(kind)
     end
     
-    ptc = ERB.new(ptc.html_safe).result(binding)
+    ptc = ERB.new(ptc.to_s.html_safe).result(binding)
 
     return ptc.to_s.html_safe
   end
