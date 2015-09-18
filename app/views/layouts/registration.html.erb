@@ -24,7 +24,7 @@
   <%- end %>
   <div id="container">
 
-  <% if @partner.custom_logo? -%>
+  <% if @partner && @partner.custom_logo? -%>
     <div id="header" class="partner">
       <div id="partner-logo">
         <%= image_tag "#{@partner.header_logo_url}" %>
