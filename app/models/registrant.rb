@@ -1430,7 +1430,7 @@ class Registrant < ActiveRecord::Base
   rescue StandardError => error
     Airbrake.notify(
       :error_class => error.class.name,
-      :error_message => "Email Delivery Error(#{error.class.name}): #{error.message}",
+      :error_message => "Email Delivery Error(#{error.class.name}) for registrant #{self.id}: #{error.message}\n #{error.backtrace}",
       :request => { :params => {:worker => "deliver_reminder_email", :registrant_id => self.id} })
   end
   
