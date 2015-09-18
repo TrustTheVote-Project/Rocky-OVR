@@ -303,12 +303,12 @@ namespace :deploy do
   task :run_pdf_workers, :roles => :pdf do
     run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec ruby script/rocky_pdf_runner stop"
     sleep 10
-    8.times do
+    10.times do
       run "cd #{latest_release} && RAILS_ENV=#{rails_env} TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start"
     end
   end
   
-  desc "Run (or restart) pdf worker processes on pdf server"
+  desc "Run (or restart) pdf worker processes on util server"
   task :run_util_pdf_workers, :roles => :util do
     run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec ruby script/rocky_pdf_runner stop"
     sleep 10
