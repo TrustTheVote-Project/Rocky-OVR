@@ -6,5 +6,5 @@ Dir.chdir(Rails.root)
 loop do
   # this will call the regular pdf gen if no priority pdfs are found
   PriorityPdfGeneration.find_and_generate
-  #PdfGeneration.find_and_generate
+  PdfGeneration.find_and_generate
 end
