@@ -136,11 +136,14 @@ class PdfWriter
   end
 
   def generate_pdf(force_write = false)
+    t = Time.now
     html_string = registrant_to_html_string
+    Rails.logger("#{Time.now - t} to gen html string")
     return false if !html_string
 
     if force_write || !pdf_exists?
       PdfWriter.write_pdf_from_html_string(html_string, pdf_file_path, self.locale, pdf_file_dir)
+      Rails.logger("#{Time.now - t} to write pdf file")
     end
     # lets assume if there's no error raise, the file got generated (to limit FS operations)
     return true
