@@ -66,14 +66,14 @@ module PdfQueueBase
   def find_and_generate
     t1 = Time.now
     pdfgen_id = retrieve
-    Rails.logger.info("#{Time.now - t1} to retrieve #{self.id}")
+    Rails.logger.info("#{Time.now - t1} to retrieve #{pdfgen_id}")
     if pdfgen_id
       pdfgen = self.find(pdfgen_id, :include => :registrant)
       r = pdfgen.registrant
       if r && r.generate_pdf #(true)
-        Rails.logger.info("#{Time.now - t1} to generate pdf #{self.id}")        
+        Rails.logger.info("#{Time.now - t1} to generate pdf #{pdfgen_id}")        
         finalized = r.finalize_pdf
-        Rails.logger.info("#{Time.now - t1} to finalize #{self.id}")
+        Rails.logger.info("#{Time.now - t1} to finalize #{pdfgen_id}")
         
         if !finalized
           Rails.logger.error "FAILED to finalize registrant #{r.id} from pdfgen id #{pdfgen_id} (#{r.errors.inspect})"
