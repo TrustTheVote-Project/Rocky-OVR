@@ -31,7 +31,7 @@ gem 'dalli'
 
 group :pdf do
   gem 'wkhtmltopdf-binary', :git=>"https://github.com/amekelburg/wkhtmltopdf-binary"
-  gem 'wicked_pdf', '~> 0.9.6'
+  gem 'wicked_pdf', '0.9.6'
 end
 
 gem 'rest-client'
