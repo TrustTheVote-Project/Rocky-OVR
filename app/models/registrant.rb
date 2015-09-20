@@ -1286,13 +1286,9 @@ class Registrant < ActiveRecord::Base
   end
 
   def generate_pdf(force = false)
-    t = Time.now
     if pdf_writer.valid?
-      Rails.logger.info("#{Time.now - t} to check pdf_writer valid")
       if pdf_writer.generate_pdf(force)
-        Rails.logger.info("#{Time.now - t} for pdfwriter to gen pdf")
         deliver_confirmation_email
-        Rails.logger.info("#{Time.now - t} to deliver conf email")
         return true
       else
         return false

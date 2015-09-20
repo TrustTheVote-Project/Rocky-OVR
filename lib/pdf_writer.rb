@@ -218,11 +218,9 @@ class PdfWriter
     )
     Rails.logger.info("#{Time.now - t} to generate pdf")
     FileUtils.mkdir_p(pdf_file_dir)
-    Rails.logger.info("#{Time.now - t} to make pdf dir")
     File.open(path, "w") do |f|
       f << pdf.force_encoding('UTF-8')
     end
-    Rails.logger.info("#{Time.now - t} to write pdf to disk")
   end   
   
   private 
