@@ -303,7 +303,7 @@ namespace :deploy do
   task :run_pdf_workers, :roles => :pdf do
     run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec ruby script/rocky_pdf_runner stop"
     sleep 10
-    10.times do
+    8.times do
       run "cd #{latest_release} && RAILS_ENV=#{rails_env} TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start"
     end
   end

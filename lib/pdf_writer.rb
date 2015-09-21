@@ -136,14 +136,11 @@ class PdfWriter
   end
 
   def generate_pdf(force_write = false)
-    t = Time.now
     html_string = registrant_to_html_string
-    Rails.logger.info("#{Time.now - t} to gen html string")
     return false if !html_string
 
     if force_write || !pdf_exists?
       PdfWriter.write_pdf_from_html_string(html_string, pdf_file_path, self.locale, pdf_file_dir)
-      Rails.logger.info("#{Time.now - t} to write pdf file")
     end
     # lets assume if there's no error raise, the file got generated (to limit FS operations)
     return true
@@ -208,7 +205,6 @@ class PdfWriter
 
 
   def self.write_pdf_from_html_string(html_string, path, locale, pdf_file_dir)
-    t = Time.now
     pdf = WickedPdf.new.pdf_from_string(
       html_string,
       :disable_internal_links         => false,
@@ -216,7 +212,6 @@ class PdfWriter
       :encoding => 'utf8',
       :locale=>locale
     )
-    Rails.logger.info("#{Time.now - t} to generate pdf")
     FileUtils.mkdir_p(pdf_file_dir)
     File.open(path, "w") do |f|
       f << pdf.force_encoding('UTF-8')
