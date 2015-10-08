@@ -131,7 +131,7 @@ HTML
 
   def registrations
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
-    end_date = params[:end_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
+    end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
     current_partner.generate_registrants_csv_async(start_date, end_date)
     redirect_to download_csv_partner_url
   end
