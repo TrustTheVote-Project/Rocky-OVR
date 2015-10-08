@@ -223,10 +223,20 @@ Then /^I should be sent a thank\-you email in korean$/ do
   email.subject.should == "온라인 유권자 등록을 이용해 주셔서 감사합니다"
 end
 
+Given(/^no emails have been sent$/) do
+  ActionMailer::Base.deliveries = []
+end
+
+
 Then /^I should not be sent a thank\-you email$/ do
+  ActionMailer::Base.deliveries.count.should == 0
+end
+
+Then /^I should not be sent a thank\-you email, only a chaser email$/ do
   ActionMailer::Base.deliveries.last.subject.should == I18n.t('email.chaser.subject')
   ActionMailer::Base.deliveries.count.should == 1
 end
+
 
 
 Then /^my status should be "([^\"]*)"$/ do |status|

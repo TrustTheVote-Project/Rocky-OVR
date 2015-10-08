@@ -43,8 +43,8 @@ class RemotePartner < ActiveResource::Base
      end      
   end
   
-  def default_pixel_tracking_code(email_type, reg)
-    Partner.default_pixel_tracking_code(email_type, reg)
+  def default_pixel_tracking_code(email_type)
+    Partner.default_pixel_tracking_code(email_type)
   end
   
   def mobile_redirect_disabled

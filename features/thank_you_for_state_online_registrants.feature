@@ -96,6 +96,7 @@ Feature: Thank you email for registrants who choose to register online with a st
   Scenario: Registrant who finished online but hasn't expired yet doesn't get sent a thank-you email
     Given I have completed step 3 as a resident of "Washington" state
     And I have a state license
+    And no emails have been sent
     When I go to the step 4 page
     And I press "registrant_state_online_registration"
     And the timeout_stale_registrations task has run
@@ -106,12 +107,13 @@ Feature: Thank you email for registrants who choose to register online with a st
   Scenario: Registrant who at one point finished online but went back to the RTV form and had their session expire doesn't get sent a thank you email
     Given I have completed step 3 as a resident of "Washington" state
     And I have a state license
+    And no emails have been sent
     When I go to the step 4 page
     And I press "registrant_state_online_registration"
     And I follow "finish your registration with Rock the Vote"
     And my session expires
     And the timeout_stale_registrations task has run
-    Then I should not be sent a thank-you email
+    Then I should not be sent a thank-you email, only a chaser email
     And my status should not be "complete"
   
   
