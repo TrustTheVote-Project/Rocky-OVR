@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151008153652) do
+ActiveRecord::Schema.define(:version => 20151008160637) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -217,6 +217,8 @@ ActiveRecord::Schema.define(:version => 20151008153652) do
   add_index "registrants", ["age"], :name => "index_registrants_on_age"
   add_index "registrants", ["created_at"], :name => "index_registrants_on_created_at"
   add_index "registrants", ["finish_with_state", "partner_id", "status", "created_at"], :name => "index_registrants_for_stats"
+  add_index "registrants", ["finish_with_state", "partner_id", "status", "home_state_id"], :name => "index_registrants_by_state"
+  add_index "registrants", ["finish_with_state", "partner_id", "status"], :name => "index_registrants_for_started_count"
   add_index "registrants", ["home_state_id"], :name => "index_registrants_on_home_state_id"
   add_index "registrants", ["name_title"], :name => "index_registrants_on_name_title"
   add_index "registrants", ["official_party_name"], :name => "index_registrants_on_official_party_name"
@@ -225,6 +227,10 @@ ActiveRecord::Schema.define(:version => 20151008153652) do
   add_index "registrants", ["reminders_left", "updated_at"], :name => "index_registrants_on_reminders_left_and_updated_at"
   add_index "registrants", ["remote_partner_id"], :name => "index_registrants_on_remote_partner_id"
   add_index "registrants", ["remote_uid"], :name => "index_registrants_on_remote_uid"
+  add_index "registrants", ["status", "partner_id", "age"], :name => "index_registrants_by_age"
+  add_index "registrants", ["status", "partner_id", "name_title"], :name => "index_registrants_by_gender"
+  add_index "registrants", ["status", "partner_id", "official_party_name"], :name => "index_registrants_by_party"
+  add_index "registrants", ["status", "partner_id", "race"], :name => "index_registrants_by_race"
   add_index "registrants", ["status"], :name => "index_registrants_on_status"
   add_index "registrants", ["uid"], :name => "index_registrants_on_uid"
 
