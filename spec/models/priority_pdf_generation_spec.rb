@@ -48,9 +48,14 @@ describe PriorityPdfGeneration do
         before(:each) do
           selector.stub(:first).and_return(nil)
           PriorityPdfGeneration.stub(:sleep)
+          PdfGeneration.stub(:find_and_generate)
         end
-        it "pauses before returning" do
-          PriorityPdfGeneration.should_receive(:sleep).with(0)
+        it "calls PdfGeneration.find_and_generate" do
+          PdfGeneration.should_receive(:find_and_generate)
+          PriorityPdfGeneration.retrieve
+        end
+        it "does not pause before returning" do
+          PriorityPdfGeneration.should_not_receive(:sleep)
           PriorityPdfGeneration.retrieve
         end
         context 'when there are rows it should be retrieving' do
