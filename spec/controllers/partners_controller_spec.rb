@@ -228,6 +228,18 @@ describe PartnersController do
         get :registrations
         controller.current_partner.should have_received(:generate_registrants_csv_async)
       end
+      it "parses dates" do
+        controller.current_partner.stub(:generate_registrants_csv_async)
+        get :registrations, start_date: "09/20/2014", end_date: "10/01/2015"
+        controller.current_partner.should have_received(:generate_registrants_csv_async).with(Date.parse("2014-09-20"), Date.parse("2015-10-01"))
+      end
+      it "works with only one date" do
+        controller.current_partner.stub(:generate_registrants_csv_async)
+        get :registrations, end_date: "10/01/2015"
+        controller.current_partner.should have_received(:generate_registrants_csv_async).with(nil, Date.parse("2015-10-01"))
+        
+      end
+      
       it "redirects to the download_csv action" do
         controller.current_partner.stub(:generate_registrants_csv_async)
         get :registrations
