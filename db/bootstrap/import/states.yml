@@ -44,6 +44,7 @@ record_1:
   sos_url: http://www.elections.alaska.gov/
   sub_18: 90_days_before
   registration_deadline: received_30_days
+  id_length_min: '4'
 record_2:
   abbreviation: AZ
   name: Arizona
@@ -70,6 +71,7 @@ record_3:
   sos_phone: (501) 682-3526
   sos_url: http://www.sosweb.state.ar.us/elections.html
   registration_deadline: postmarked_30_days
+  id_length_min: '4'
 record_4:
   abbreviation: CA
   name: California
@@ -93,6 +95,7 @@ record_5:
   sos_phone: (303) 894-2200
   sos_url: http://www.sos.state.co.us/pubs/elections/
   online_registration_url: https://www.sos.state.co.us/Voter/secuVerifyExist.do
+  id_length_min: '4'
 record_6:
   abbreviation: CT
   name: Connecticut
@@ -116,6 +119,7 @@ record_7:
   sos_phone: (302) 739-4277
   sos_url: http://elections.delaware.gov/
   registration_deadline: delaware
+  id_length_min: '4'
 record_8:
   abbreviation: DC
   name: District of Columbia
@@ -142,6 +146,7 @@ record_9:
   sos_phone: (850) 245-6200
   sos_url: http://election.dos.state.fl.us/
   sub_18: when_is_16
+  id_length_min: '4'
 record_10:
   abbreviation: GA
   name: Georgia
@@ -156,6 +161,7 @@ record_10:
   sos_url: http://www.sos.state.ga.us/elections/
   sub_18: 6_months_before
   registration_deadline: georgia
+  id_length_min: '4'
 record_11:
   abbreviation: HI
   name: Hawaii
@@ -179,6 +185,7 @@ record_12:
     Capitol Building<br>Boise, ID 83720-0080
   sos_phone: (208) 334-2300
   sos_url: http://www.sos.idaho.gov/elect/eleindex.htm
+  id_length_min: '4'
 record_13:
   abbreviation: IL
   name: Illinois
@@ -190,6 +197,7 @@ record_13:
   sos_phone: (217) 782-4141
   sos_url: http://www.elections.il.gov/
   registration_deadline: postmarked_28_days
+  id_length_min: '4'
 record_14:
   abbreviation: IN
   name: Indiana
@@ -200,6 +208,7 @@ record_14:
     Street, Room E-204<br>Indianapolis, IN 46204-2743
   sos_phone: (317) 232-3939
   sos_url: http://www.state.in.us/sos/elections/
+  id_length_min: '4'
 record_15:
   abbreviation: IA
   name: Iowa
@@ -212,6 +221,7 @@ record_15:
   sos_url: http://www.sos.state.ia.us/
   sub_18: 6_months_before
   registration_deadline: iowa
+  id_length_min: '4'
 record_16:
   abbreviation: KS
   name: Kansas
@@ -226,6 +236,7 @@ record_16:
   registration_deadline: kansas
   pdf_instructions: kansas
   email_instructions: kansas
+  id_length_min: '4'
 record_17:
   abbreviation: KY
   name: Kentucky
@@ -251,6 +262,7 @@ record_18:
   sos_url: http://www.sos.louisiana.gov/tabid/68/Default.aspx
   sub_18: once_turned_17
   registration_deadline: received_30_days
+  id_length_min: '4'
 record_19:
   abbreviation: ME
   name: Maine
@@ -263,6 +275,7 @@ record_19:
   sos_url: http://www.state.me.us/sos/cec/elec/
   sub_18: once_turned_17_but
   registration_deadline: received_21_days
+  id_length_min: '4'
 record_20:
   abbreviation: MD
   name: Maryland
@@ -273,6 +286,7 @@ record_20:
   sos_phone: (800) 222-VOTE
   sos_url: http://www.electionsmaryland.com
   registration_deadline: postmarked_21_days
+  id_length_min: '4'
 record_21:
   abbreviation: MA
   name: Massachusetts
@@ -284,6 +298,7 @@ record_21:
   sos_phone: (800) 462-VOTE
   sos_url: http://www.sec.state.ma.us/ele
   registration_deadline: postmarked_20_days
+  id_length_min: '4'
 record_22:
   abbreviation: MI
   name: Michigan
@@ -295,6 +310,7 @@ record_22:
   sos_phone: (517) 373-2540
   sos_url: http://www.michigan.gov/sos/0,1607,7-127-1633---,00.html
   registration_deadline: postmarked_30_days
+  id_length_min: '4'
 record_23:
   abbreviation: MN
   name: Minnesota
@@ -306,6 +322,7 @@ record_23:
   sos_phone: (651) 215-1440
   sos_url: http://www.sos.state.mn.us/home/index.asp?page=134
   registration_deadline: received_21_days
+  id_length_min: '4'
 record_24:
   abbreviation: MS
   name: Mississippi
@@ -317,6 +334,7 @@ record_24:
   sos_url: http://www.sos.state.ms.us/elections/elections.asp
   sub_18: be_by_next_general_election_november
   registration_deadline: postmarked_30_days
+  id_length_min: '4'
 record_25:
   abbreviation: MO
   name: Missouri
@@ -328,6 +346,7 @@ record_25:
   sos_url: http://www.sos.mo.gov/elections/
   sub_18: 6_months_before
   registration_deadline: missouri
+  id_length_min: '4'
 record_26:
   abbreviation: MT
   name: Montana
@@ -340,6 +359,7 @@ record_26:
   sos_url: http://sos.mt.gov/elections/index.asp
   sub_18: turn_by_next_election_2
   registration_deadline: postmarked_30_days
+  id_length_min: '4'
 record_27:
   abbreviation: NE
   name: Nebraska
@@ -352,6 +372,7 @@ record_27:
   sos_url: http://www.sos.state.ne.us/elec/
   sub_18: be_by_next_general_election_november
   registration_deadline: nebraska
+  id_length_min: '4'
 record_28:
   abbreviation: NV
   name: Nevada
@@ -363,6 +384,7 @@ record_28:
   sos_phone: (775) 684-5705
   sos_url: http://nvsos.gov/index.aspx?page=3
   registration_deadline: nevada
+  id_length_min: '4'
 record_29:
   abbreviation: NH
   name: New Hampshire
@@ -391,6 +413,7 @@ record_30:
   sos_phone: (609) 292-3760
   sos_url: http://www.nj.gov/state/elections/
   registration_deadline: received_21_days
+  id_length_min: '4'
 record_31:
   abbreviation: NM
   name: New Mexico
@@ -420,6 +443,7 @@ record_32:
   sos_phone: (800) FOR-VOTE
   sos_url: http://www.elections.ny.gov
   registration_deadline: new_york
+  id_length_min: '4'
 record_33:
   abbreviation: NC
   name: North Carolina
@@ -432,6 +456,7 @@ record_33:
   sos_phone: (919) 733-7173
   sos_url: http://www.sboe.state.nc.us/
   registration_deadline: received_25_days
+  id_length_min: '4'
 record_34:
   abbreviation: ND
   name: North Dakota
@@ -460,6 +485,7 @@ record_35:
   sos_url: http://www.sos.state.oh.us/elections.aspx
   sub_18: turn_by_next_general_election_november_2
   registration_deadline: received_30_days
+  id_length_min: '4'
 record_36:
   abbreviation: OK
   name: Oklahoma
@@ -472,6 +498,7 @@ record_36:
   sos_url: http://www.oklaosf.state.ok.us/~elections/
   sub_18: 60_days_before_election_novemeber
   registration_deadline: postmarked_25_days
+  id_length_min: '4'
 record_37:
   abbreviation: OR
   name: Oregon
@@ -484,6 +511,7 @@ record_37:
   sos_url: http://www.sos.state.or.us/elections/
   sub_18: once_turned_17
   registration_deadline: postmarked_21_days
+  id_length_min: '4'
 record_38:
   abbreviation: PA
   name: Pennsylvania
@@ -508,6 +536,7 @@ record_39:
   sos_phone: (401) 222-2345
   sos_url: http://www.elections.state.ri.us/
   registration_deadline: rhode_island
+  id_length_min: '4'
 record_40:
   abbreviation: SC
   name: South Carolina
@@ -520,6 +549,7 @@ record_40:
   sos_phone: (803) 734-9060
   sos_url: http://www.scvotes.org/
   registration_deadline: postmarked_30_days
+  id_length_min: '4'
 record_41:
   abbreviation: SD
   name: South Dakota
@@ -543,6 +573,7 @@ record_42:
   sos_phone: (615) 741-7956
   sos_url: http://www.state.tn.us/sos/election/index.htm
   registration_deadline: postmarked_30_days
+  id_length_min: '4'
 record_43:
   abbreviation: TX
   name: Texas
@@ -555,6 +586,7 @@ record_43:
   sos_url: http://www.sos.state.tx.us/elections/index.shtml
   sub_18: 2_months_before
   registration_deadline: postmarked_30_days
+  id_length_min: '4'
 record_44:
   abbreviation: UT
   name: Utah
@@ -567,6 +599,7 @@ record_44:
   sos_url: http://elections.utah.gov/
   sub_18: blank
   registration_deadline: utah
+  id_length_min: '4'
 record_45:
   abbreviation: VT
   name: Vermont
@@ -578,6 +611,7 @@ record_45:
   sos_phone: (802) 828-2464
   sos_url: http://vermont-elections.org/
   registration_deadline: vermont
+  id_length_min: '4'
 record_46:
   abbreviation: VA
   name: Virginia
@@ -602,6 +636,7 @@ record_47:
   sos_url: http://www.secstate.wa.gov/elections/
   sub_18: turn_by_next_general_election_november
   registration_deadline: washington
+  id_length_min: '4'
 record_48:
   abbreviation: WV
   name: West Virginia
@@ -613,6 +648,7 @@ record_48:
   sos_phone: (304) 558-6000
   sos_url: http://www.sos.wv.gov/elections/Pages/default.aspx
   registration_deadline: postmarked_21_days
+  id_length_min: '4'
 record_49:
   abbreviation: WI
   name: Wisconsin
@@ -625,6 +661,7 @@ record_49:
   sos_url: https://myvote.wi.gov
   sub_18: 17_turn_18
   registration_deadline: postmarked_20_days
+  id_length_min: '4'
 record_50:
   abbreviation: WY
   name: Wyoming
