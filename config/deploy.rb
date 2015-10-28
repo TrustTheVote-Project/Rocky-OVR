@@ -343,6 +343,13 @@ namespace :heroku do
     end
   end
   
+  task :import_states_and_zips, :roles=>[:util] do
+    Bundler.with_clean_env do
+      system("heroku run bundle exec rake import:states_and_zips --remote=#{heroku_remote}")
+    end
+  end
+  
+  
   
   task :setup do
     Bundler.with_clean_env do
