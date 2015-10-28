@@ -41,7 +41,8 @@ class StateImporter
     end
     
     def self.base_uri
-      "http://eod.staging.usvotefoundation.org"
+      #"http://eod.staging.usvotefoundation.org"
+      "http://eod.usvotefoundation.org"
     end
     
     def self.api_uri
