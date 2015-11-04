@@ -466,9 +466,11 @@ en:
         in person at the county elections department the Monday one week before the
         election
       postmarked_11_days: postmarked 11 days before the election
+      postmarked_14_days: postmarked 14 days before the election
       postmarked_20_days: postmarked 20 days before the election
       postmarked_21_days: postmarked 21 days before the election
       postmarked_25_days: postmarked 25 days before the election
+      postmarked_27_days: postmarked 27 days before the election
       postmarked_28_days: postmarked 28 days before the election
       postmarked_29_days: postmarked 29 days before the election
       postmarked_30_days: postmarked 30 days before the election
