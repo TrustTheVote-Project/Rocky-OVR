@@ -439,42 +439,46 @@ vi:
       17_turn_18: nếu bạn được 17 tuổi, và sẽ bước sang 18 trước khi cuộc bầu cử lần
         sau
     registration_deadline:
-      california: postmarked or submitted to an elections office (or NVRA voter registration
-        agency) on or before 15 days prior to Election Day (to vote in that election)
-      connecticut: postmarked 14 days before the election or received in person 7
-        days before the election
-      delaware: postmarked by the fourth Saturday before a general or primary election,
-        or 10 days before a special election
-      georgia: postmarked by the fifth Monday before the election
-      iowa: received in-person 10 days before General and Primary Elections (11 days
-        before all other elections), or postmarked 15 days before Election Day.
-      kansas: postmarked 21 days before the election if mailed, received at the county
-        office 21 days before the election if delivered in person.
-      missouri: received before 5pm (or normal close of business) on the fourth Wednesday
-        prior to the election
-      new_york: postmarked 25 days before the election and received no less than 20
-        days before the election
-      nebraska: postmarked by the third Friday before the election, or received in-person
-        by 6pm on the second Friday before the election
-      nevada: postmarked by 31 days before the election, or submitted online by 21
-        days before an election, or received in-person at a clerk's office 21 days
-        before an election.
-      rhode_island: received 30 days before the election. Mailed voter registration
-        forms received after the deadline will be accepted as long as the mail is
-        postmarked on or before the voter registration deadline.
-      utah: postmarked 30 days before the election, or received in person 15 days
-        before the election
-      vermont: received by 5pm on the Wednesday before the election
-      washington: postmarked by the Monday four weeks before the election, or received
-        in person at the county elections department the Monday one week before the
-        election
-      postmarked_11_days: postmarked 11 days before the election
-      postmarked_20_days: postmarked 20 days before the election
-      postmarked_21_days: postmarked 21 days before the election
-      postmarked_25_days: postmarked 25 days before the election
-      postmarked_28_days: postmarked 28 days before the election
-      postmarked_29_days: postmarked 29 days before the election
-      postmarked_30_days: postmarked 30 days before the election
+      california: đóng dấu bưu điện hoặc nộp cho một văn phòng bầu cử (hoặc cơ quan
+        đăng ký cử tri NVRA) vào hoặc trước 15 ngày trước ngày bầu cử (bỏ phiếu trong
+        cuộc bầu cử đó)
+      connecticut: đóng dấu bưu điện đến 14 ngày trước khi cuộc bầu cử hoặc nhận được
+        trong người 7 ngày trước bầu cử
+      delaware: đóng dấu bưu điện ngày thứ Bảy thứ tư trước khi một cuộc tổng tuyển
+        cử hoặc chính, hoặc 10 ngày trước khi một cuộc bầu cử đặc biệt
+      georgia: đóng dấu bưu điện vào ngày thứ Hai thứ năm trước khi cuộc bầu cử
+      iowa: nhận được trong người 10 ngày trước chung và Tiểu học Bầu Cử (11 ngày
+        trước khi mọi cuộc bầu cử khác), hoặc dấu bưu điện 15 ngày trước ngày bầu
+        cử.
+      kansas: đóng dấu bưu điện trước 21 ngày trước cuộc bầu cử nếu được gửi đi, được
+        nhận tại văn phòng quận 21 ngày trước bầu cử nếu giao trong người.
+      missouri: nhận được trước 5 giờ chiều (hoặc gần bình thường của doanh nghiệp)
+        vào thứ tư thứ tư trước cuộc bầu cử
+      new_york: đóng dấu bưu điện 25 ngày trước bầu cử và nhận được không ít hơn 20
+        ngày trước bầu cử
+      nebraska: đóng dấu bưu điện vào ngày thứ Sáu thứ ba trước khi cuộc bầu cử, hoặc
+        nhận được trong người bởi 06:00 ngày thứ sáu thứ hai trước khi cuộc bầu cử
+      nevada: đóng dấu bưu điện 31 ngày trước bầu cử, hoặc nộp trực tuyến 21 ngày
+        trước cuộc bầu cử, hoặc nhận trực tiếp tại văn phòng của một nhân viên bán
+        hàng 21 ngày trước khi cuộc bầu cử.
+      rhode_island: nhận 30 ngày trước bầu cử. Các hình thức đăng ký cử tri gửi nhận
+        sau thời hạn sẽ được chấp nhận miễn là thư được đóng dấu bưu điện vào hoặc
+        trước thời hạn đăng ký cử tri.
+      utah: đóng dấu bưu điện 30 ngày trước bầu cử, hoặc nhận được trong người 15
+        ngày trước bầu cử
+      vermont: nhận được 5 giờ chiều ngày thứ Tư trước khi cuộc bầu cử
+      washington: đóng dấu bưu điện vào ngày thứ Hai bốn tuần trước khi cuộc bầu cử,
+        hoặc nhận trực tiếp tại bộ phận bầu cử quận thứ hai một tuần trước khi cuộc
+        bầu cử
+      postmarked_11_days: đóng dấu bưu điện 11 ngày trước bầu cử
+      postmarked_14_days: đóng dấu bưu điện 14 ngày trước bầu cử
+      postmarked_20_days: đóng dấu bưu điện 20 ngày trước bầu cử
+      postmarked_21_days: đóng dấu bưu điện 21 ngày trước bầu cử
+      postmarked_25_days: đóng dấu bưu điện 25 ngày trước bầu cử
+      postmarked_27_days: đóng dấu bưu điện 27 ngày trước bầu cử
+      postmarked_28_days: đóng dấu bưu điện 28 ngày trước bầu cử
+      postmarked_29_days: đóng dấu bưu điện 29 ngày trước bầu cử
+      postmarked_30_days: đóng dấu bưu điện 30 ngày trước bầu cử
       received_10_days: 10 ngày trước cuộc bầu cử
       received_14_days: 14 ngày trước cuộc bầu cử
       received_15_days: 15 ngày trước cuộc bầu cử

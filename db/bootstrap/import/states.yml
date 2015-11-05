@@ -31,7 +31,7 @@ record_0:
   sos_phone: (800) 274-VOTE
   sos_url: http://www.sos.state.al.us/Elections/Default.aspx
   sub_18: be_by_next_election
-  registration_deadline: received_14_days
+  registration_deadline: postmarked_14_days
 record_1:
   abbreviation: AK
   name: Alaska
@@ -196,14 +196,14 @@ record_13:
     IL 62704
   sos_phone: (217) 782-4141
   sos_url: http://www.elections.il.gov/
-  registration_deadline: postmarked_28_days
+  registration_deadline: postmarked_27_days
   id_length_min: '4'
 record_14:
   abbreviation: IN
   name: Indiana
   requires_party: false
   party_tooltip: indiana
-  id_number_tooltip: indiana
+  id_number_tooltip: drivers_license_or_ssn_or_none_4
   sos_address: Office of the Secretary of State<br>Election Division<br>302 West Washington
     Street, Room E-204<br>Indianapolis, IN 46204-2743
   sos_phone: (317) 232-3939
