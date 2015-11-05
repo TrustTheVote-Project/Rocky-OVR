@@ -309,11 +309,15 @@ ko:
         (10월 27일)까지 전달하세요.
       postmarked_11_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 11일 전까지 우체국 소인(postmark)이 찍히도록
         해서 보내세요
+      postmarked_14_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 14일 전까지 우체국 소인(postmark)이 찍히도록
+        해서 보내세요
       postmarked_20_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 20일 전까지 우체국 소인(postmark)이 찍히도록
         해서 보내세요
       postmarked_21_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 21일 전까지 우체국 소인(postmark)이 찍히도록
         해서 보내세요
       postmarked_25_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 25일 전까지 우체국 소인(postmark)이 찍히도록
+        해서 보내세요
+      postmarked_27_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 27일 전까지 우체국 소인(postmark)이 찍히도록
         해서 보내세요
       postmarked_28_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 28일 전까지 우체국 소인(postmark)이 찍히도록
         해서 보내세요
@@ -364,4 +368,3 @@ ko:
         허용 문서의 전체 목록은 온라인으로 볼 수 있습니다.<br/>
 
         <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">http://www.gotvoterid.com/proof-of-citizenship.html#evidence</a>'
-
