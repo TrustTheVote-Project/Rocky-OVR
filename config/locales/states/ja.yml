@@ -174,9 +174,11 @@ ja:
       vermont: 選挙前の水曜日の午後５時までに提出する。
       washington: 選挙の４週間前の月曜日までの消印で郵送する、あるいは選挙の１週間前の月曜日までに郡の選挙部門に直接提出する。
       postmarked_11_days: 選挙の１１日前の消印のあるもの
+      postmarked_14_days: 選挙の14日前の消印のあるもの
       postmarked_20_days: 選挙の２０日前の消印のあるもの
       postmarked_21_days: 選挙の２１日前の消印のあるもの
       postmarked_25_days: 選挙の２５日前の消印のあるもの
+      postmarked_27_days: 選挙の２7日前の消印のあるもの
       postmarked_28_days: 選挙の２８日前の消印のあるもの
       postmarked_29_days: 選挙の２９日前の消印のあるもの
       postmarked_30_days: 選挙の３０日前の消印のあるもの
