@@ -66,22 +66,22 @@ en:
         not_required_with_state_name: The state of %{state_name} does not require
           information about race or ethnicity.
         not_required_but_appreciated_with_state_name: The state of %{state_name} does
-          not request information about your race or ethnicity.  However, Rock the
-          Vote would appreciate this information in order  to measure the effectiveness
-          of our voter registration efforts.  This information will NOT appear on
-          your printed voter registration form.
+          not request information about your race or ethnicity.  However, we would
+          appreciate this information in order  to measure the effectiveness of our
+          voter registration efforts.  This information will NOT appear on your printed
+          voter registration form.
         not_required_but_appreciated_with_state_name_2: The state of %{state_name}
-          does not require information about your race or ethnicity.  However, Rock
-          the Vote would appreciate this information in order  to measure the effectiveness
+          does not require information about your race or ethnicity.  However, we
+          would appreciate this information in order  to measure the effectiveness
           of our voter registration efforts.  This information will NOT appear on
           your printed voter registration form.
         virginia: The Commonwealth of Virginia does not request information about
-          your race or ethnicity.  However, Rock the Vote would appreciate this information
-          in order to measure the effectiveness of our voter registration efforts.  This
+          your race or ethnicity.  However, we would appreciate this information in
+          order to measure the effectiveness of our voter registration efforts.  This
           information will NOT appear on your printed voter registration form.
         washington_dc: The District of Columbia does not request information about
-          your race or ethnicity.  However, Rock the Vote would appreciate this information
-          in order to measure the effectiveness of our voter registration efforts.  This
+          your race or ethnicity.  However, we would appreciate this information in
+          order to measure the effectiveness of our voter registration efforts.  This
           information will NOT appear on your printed voter registration form.
       party:
         blank: ''
@@ -219,7 +219,7 @@ en:
         indiana: You must provide your ten-digit Indiana driver's license number or
           Bureau of Motor Vehicles ID number.  If you do not have a driver's license
           or State of Indiana BMV ID card, please enter the last four digits of your
-          Social Security number.
+          Social Security number. If you have none of these, type NONE.
         maryland: If you have a current, valid Maryland driver's license or a Motor
           Vehicle Administration identification card, you must enter the driver's
           license or identification number.  If you have neither, you must enter the
@@ -233,15 +233,14 @@ en:
         wisconsin: If you have been issued and have a current and valid WI driver's
           license or WI DOT-issued identification card (ID), you must provide the
           number. If you have been issued a WI driver's license, which is revoked,
-          suspended, or expired, please provide the number and the last 4 digits of
-          your social security number. If you have not been issued a WI driver's license
-          or a WI DOT-issued ID, you must provide the last 4 digits of your social
-          security number. If you do not have a WI driver's license, a WI DOT-issued
-          ID or a social security number, indicate that fact by filling in the appropriate
-          circle.
-        south_dakota: Your driver's license number is required.  If you do not have
+          suspended, or expired, please provide that number and the last 4 digits
+          of your social security number, separated by a space. If you have not been
+          issued a WI driver's license or a WI DOT-issued ID, you must provide the
+          last 4 digits of your social security number. If you do not have a WI driver's
+          license, a WI DOT-issued ID or a social security number, please write "NEITHER."
+        south_dakota: Your driver's license number is required. If you do not have
           a valid driver's license, you must provide the last four digits of your
-          Social Security number.  If you do not have either a driver's license or
+          Social Security number. If you do not have either a driver's license or
           a Social Security number, you must register at your county auditor's office
           and sign a statement verifying the fact that you have neither a South Dakota
           driver's license nor Social Security number.
@@ -251,7 +250,7 @@ en:
           Security number.  If you don't have either number, please enter "NONE" and
           the state will assign you a number.
         ssn_or_none: Please provide your Social Security number. (If you do not have
-          a Social Security number, please enter "NONE" and  the state will assign
+          a Social Security number, please enter "NONE" and the state will assign
           you an identification number.)
         ssn_or_none_2: Your full Social Security number is required.  If you do not
           have a Social Security number, enter "NONE" and a number will be assigned
@@ -293,14 +292,14 @@ en:
           be assigned to you.
         drivers_license_or_other_with_state_name_3: You must provide your %{state_name}
           driver's license number.  If you  do not have a %{state_name} driver's license
-          number, then you must provide the last four digits of  your Social Security
+          number, then you must provide the last four digits of your Social Security
           number.  If you do not have a driver's license or a Social Security  number,
           please enter "NONE" and the state will assign you an identification number.
         drivers_license_or_other_with_state_name_4: You must provide your %{state_name}
-          driver's license number.  If you  do not have a driver's license number,
+          driver's license number.  If you do not have a driver's license number,
           then you must provide the last four digits of  your Social Security number.  If
-          you do not have a driver's license or a Social Security  number, please
-          enter "NONE" and the state will assign you an identification number.
+          you do not have a driver's license or a Social Security number, please enter
+          "NONE" and the state will assign you an identification number.
         drivers_license_or_ssn_or_none: You must provide either your driver's license
           number or the last four digits of your Social Security number.  If you have
           neither a driver's license nor a Social Security number, please enter "NONE"
@@ -310,9 +309,9 @@ en:
           of your Social Security number.  If you have neither, please enter "NONE"
           and a unique identifier will be assigned to you by the state.
         drivers_license_or_ssn_or_none_3: You must provide your driver's license number,
-          if you have one.  If you do not have a driver's license number, you must
-          provide the last four digits of your Social Security number.  If you do
-          not have either number, check the box beside
+          if you have one. If you do not have a driver's license number, you must
+          provide the last four digits of your Social Security number. If you do not
+          have either number, please write "NONE."
         drivers_license_or_ssn_or_none_4: You must provide your driver's license number.  If
           you do not have a driver's license number, you must provide the last four
           digits of your Social Security number.  If you do not have either number,
@@ -408,9 +407,11 @@ en:
           you do not have a driver's license or a Social Security number, please enter
           "NONE" and the state will assign you an identification number.
         driver_license_state_issues_and_ssn: You must provide you state-issued driver's
-          license number AND the last four digits of your Social Security number.  If
-          you do not have a driver's license or a Social Security number, please enter
-          "NONE" and a unique identifying number will be assigned by the state.
+          license number AND the last four digits of your Social Security number.
+          Please input both of these numbers in the identification field, separated
+          by a space. If you do not have a driver's license or a Social Security number,
+          please enter "NONE" and a unique identifying number will be assigned by
+          the state.
     sub_18:
       blank: ''
       be_by_next_election: if you will be 18 by the next election
