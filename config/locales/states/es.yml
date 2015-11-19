@@ -220,17 +220,22 @@ es:
           social. El Estado también solicita el número de su licencia de conducir
           de Oklahoma. Si no posee ninguno de estos números, ingrese "NINGUNO", y
           el Estado le asignará un número de identificación.
-        wisconsin: Debe proporcionar el número de su licencia de conducir. Si no posee
-          una licencia de conducir que sea actual y válida, ingrese los últimos cuatro
-          dígitos de su número de seguro social o el número completo de la tarjeta
-          de identificación emitido por el Departamento de Transporte. (Si no posee
-          ninguno de estos números, ingrese "NINGUNO", y el Estado le asignará un
-          número de identificación).
+        wisconsin: Si se le ha emitido y tiene una licencia de conducir o tarjeta
+          de identidad emitida por el Departamento de Transporte actual y válida,
+          debe proporcionar el número. Si tiene una licencia de conducir que haya
+          sido revocada o suspendida, o se haya vencido, por favor proporcione el
+          número y los cuatro últimos dígitos de su número de seguro social, separados
+          por un espacio. Si no se le ha emitido una licencia de conducir o una tarjeta
+          de identidad del Departamento de Transporte, debe proporcionar los últimos
+          cuatro dígitos de su número de seguro social. Si no tiene una licencia de
+          conducir, una tarjeta de identidad del Departamento de Transporte o un número
+          de seguro social, por favor escriba "NINGUNO".
         south_dakota: Debe proporcionar el número de su licencia de conducir. Si no
           tiene una licencia de conducir válida, debe proporcionar los últimos cuatro
-          dígitos de su número de seguro social. (Si no posee licencia de conducir
-          ni un número de seguro social, ingrese "NINGUNO", y el Estado le asignará
-          un número de identificación).
+          dígitos de su número de seguro social. Si no tiene una licencia de conducir
+          o un número de seguro social, se debe registrar en la oficina del auditor
+          del condado y firmar una sentencia verificando que efectivamente no tiene
+          una licencia de conducir de Dakota del Sur ni un número de seguro social.
         ssn_requested: Debe proporcionar su número de seguro social. No es obligatorio
           proporcionar esta información. Si no proporciona su número de seguro social,
           debe ingresar el número de su licencia de conducir o los últimos cuatro
@@ -241,22 +246,19 @@ es:
         ssn_or_none_2: Debe proporcionar su número de seguro social completo. (Si
           no posee un número de seguro social, ingrese "NINGUNO", y el Estado le asignará
           un número de identificación).
-        ssn_or_none_3: Debe proporcionar su número de seguro social completo. (Si
-          no posee un número de seguro social, ingrese "NINGUNO", y el Estado le asignará
-          un número de identificación).
+        ssn_or_none_3: Debe proporcionar su número de seguro social completo.
         ssn_or_none_4: Debe proporcionar su número de seguro social completo. (Si
           no posee un número de seguro social, ingrese "NINGUNO", y el Estado le asignará
           un número de identificación).
         ssn_or_none_5: Indique su número de seguro social. Si no tiene número de seguro
           social, ingrese “NINGUNO”, y el estado le asignará un número.
-        ssn_full: Debe proporcionar su número de seguro social completo. Si no posee
-          un número de seguro social, ingrese "NINGUNO",  y el Estado le asignará
-          un número de identificación.
-        ssn_full_2: Debe proporcionar su número de seguro social. Si no posee un número
-          de seguro social, ingrese "NINGUNO",  y el Estado le asignará un número
-          de identificación.
-        ssn_full_not_required: Debe proporcionar su número de seguro social completo.
-          Si no posee un número de seguro social, ingrese "NINGUNO" en el formulario.
+        ssn_full: Debe proporcionar su número de seguro social completo. Se utiliza
+          para evitar la inscripción fraudulenta y votar. Falta esta información impedirá
+          la aceptación de esta solicitud.
+        ssn_full_2: Debe proporcionar su número de seguro social.
+        ssn_full_not_required: Se requiere su número de Seguro Social completo.  Ninguna
+          persona se le deberá negar el derecho de registrar debido a la imposibilidad
+          de incluir número de Seguro Social.
         drivers_license_or_mvc: Debe proporcionar los últimos cuatro dígitos de su
           número de seguro social O el número de su licencia de conducir de Nueva
           Jersey. Si no posee ninguno de estos números de identificación, ingrese
@@ -393,10 +395,11 @@ es:
           de conducir ni un número de seguro social, ingrese "NINGUNO", y el Estado
           le asignará un número de identificación.
         driver_license_state_issues_and_ssn: Debe proporcionar el número de su licencia
-          de conducir emitido por el Estado Y los últimos cuatro dígitos de su número
-          de seguro social. Si no posee licencia de conducir ni un número de seguro
-          social, ingrese "NINGUNO", y el Estado le asignará un número de identificación
-          único.
+          de conducir emitida por el Estado y los últimos cuatro dígitos de su número
+          de seguro social. Por favor ingrese ambos números en la casilla de identificación,
+          separados por un espacio. Si no posee una licencia de conducir o un número
+          de seguro social, ingrese "NINGUNO", y el Estado le asignará un número de
+          identificación único.
     sub_18:
       blank: ''
       be_by_next_election: si vas a cumplir 18 años antes de la próxima elección
@@ -459,11 +462,15 @@ es:
         antes de las elecciones
       postmarked_11_days: Tiene que tener el cello del correo 11 días antes de la
         elección.
+      postmarked_14_days: Tiene que tener el cello del correo 14 días antes de la
+        elección.
       postmarked_20_days: Tiene que tener el cello del correo 20 días antes de la
         elección.
       postmarked_21_days: Tiene que tener el cello del correo 21 días antes de la
         elección.
       postmarked_25_days: Tiene que tener el cello del correo 25 días antes de la
+        elección.
+      postmarked_27_days: Tiene que tener el cello del correo 27 días antes de la
         elección.
       postmarked_28_days: Tiene que tener el cello del correo 28 días antes de la
         elección.
@@ -483,25 +490,28 @@ es:
       thirty_days_before: 30 Días antes de las elecciones
     pdf_instructions:
       blank: ''
-      arizona: ! '<b>*Note for First Time Voter Registration Applicants And Recent
-        Movers: You must ALSO submit proof of citizenship to vote in state elections!</b><br/><i>If
-        this is your first time registering in Arizona or you have moved to another
-        county, your voter registration form must also include proof of citizenship
-        to vote in state elections (ie. Governor, Secretary of State, &amp; state
-        legislature). Otherwise you will ONLY be eleigible to vote in federal elections.
-        If you have an AZ driver license or state ID card issued after 10/1/1996,
-        that is suffient "proof of citizenship" and no other documentation is needed.
-        If not, you must submit "proof of citizenship" along with your voter registration
-        application. The most common "proof" is a photocopy of your birth certificate
-        or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>'
-      kansas: ! '<b>*Note for First Time Voter Registration Applicants: You must ALSO
-        submit proof of citizenship to vote in state elections!</b><br/><i>If this
-        is your first time registering in Kansas, your voter registration form must
-        also include proof of citizenship to vote in state elections (ie. Governor,
-        Secretary of State, & state legislature). Otherwise you will ONLY be eligible
-        to vote in federal elections.  The most common "proof" is a photocopy of your
-        birth certificate or passport, but a full list of acceptable documentation
-        can be found <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">online</a>.</i>'
+      arizona: ! '<b>* Nota para la primera vez los votantes Los solicitantes de registro
+        y Movers recientes: Debe acompañar la prueba de la ciudadanía a votar en las
+        elecciones estatales!</b><br/><i>Si esta es la primera vez que registrarse
+        en Arizona o ha mudado a otro condado, el formulario de inscripción de votante
+        también debe incluir prueba de ciudadanía para votar en las elecciones estatales
+        (es decir, el gobernador, el secretario de Estado, y amp;. Legislatura estatal).
+        De lo contrario, sólo se eleigible a votar en las elecciones federales. Si
+        usted tiene una licencia de conducir o tarjeta de identificación AZ emitida
+        por el estado después de 01/10/1996, es decir suffient "prueba de ciudadanía"
+        y no se necesita ninguna otra documentación. Si no, usted debe presentar "prueba
+        de ciudadanía", junto con su solicitud de registro de votantes. La "prueba"
+        más común es una fotocopia de su certificado de nacimiento o pasaporte. Una
+        lista completa de la documentación aceptable se puede encontrar <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">aquí</a>.</i>'
+      kansas: ! '<b>* Nota para los solicitantes de registro de la primera vez Votantes:
+        Debe acompañar la prueba de la ciudadanía a votar en las elecciones estatales!</b><br/><i>Si
+        esta es la primera vez que registrarse en Kansas, el formulario de inscripción
+        de votante también debe incluir prueba de ciudadanía para votar en las elecciones
+        estatales (es decir. Gobernador, Secretario de Estado, y la legislatura estatal).
+        De lo contrario, sólo serán elegibles para votar en las elecciones federales.
+        La "prueba" más común es una fotocopia de su certificado de nacimiento o pasaporte,
+        pero una lista completa de la documentación aceptable puede ser encontrada
+        <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">aquí</a>.</i>'
     email_instructions:
       blank: ''
       arizona: ! '<b>* Nota para el Primer Tiempo Registro de Votantes Applicatns

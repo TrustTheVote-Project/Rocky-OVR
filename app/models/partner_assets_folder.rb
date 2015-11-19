@@ -81,7 +81,7 @@ class PartnerAssetsFolder
 
   # Returns the list of all assets in the folder
   def list_assets
-    directory.files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
+    files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
     #Dir.glob(File.join(@partner.assets_path, '*.*')).map { |n| File.basename(n) }
   end
 
@@ -95,13 +95,21 @@ class PartnerAssetsFolder
     
   end
 
+  def files
+    @files ||= directory.files
+  end
+  
+  def file_names
+    files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key }
+  end
 
   def asset_url(name)
     asset_file(name) && asset_file(name).public_url
   end
 
   def asset_file(name)
-    directory.files.get(path_from_name(name))
+    files.detect {|f| f.key == path_from_name(name) }
+    #directory.files.get(path_from_name(name))
   end
   
   def asset_file_exists?(name)

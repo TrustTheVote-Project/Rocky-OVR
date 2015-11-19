@@ -512,9 +512,11 @@ hi:
       washington: चुनाव, या चुनाव से पहले सोमवार से एक सप्ताह काउंटी चुनावों विभाग
         में व्यक्ति में प्राप्त से पहले सोमवार को चार सप्ताह से पोस्टमार्क
       postmarked_11_days: 11 दिनों के चुनाव से पहले पोस्टमार्क
+      postmarked_14_days: 14 दिनों के चुनाव से पहले पोस्टमार्क
       postmarked_20_days: 20 दिनों के चुनाव से पहले पोस्टमार्क
       postmarked_21_days: 21 दिनों के चुनाव से पहले पोस्टमार्क
       postmarked_25_days: 25 दिनों के चुनाव से पहले पोस्टमार्क
+      postmarked_27_days: 27 दिनों के चुनाव से पहले पोस्टमार्क
       postmarked_28_days: 28 दिनों के चुनाव से पहले पोस्टमार्क
       postmarked_29_days: 29 दिन चुनाव से पहले पोस्टमार्क
       postmarked_30_days: 30 दिनों के चुनाव से पहले पोस्टमार्क
@@ -574,4 +576,3 @@ hi:
         दस्तावेज की एक पूरी सूची ऑनलाइन पाया जा सकता है.<br/>
 
         <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">http://www.gotvoterid.com/proof-of-citizenship.html#evidence</a>'
-

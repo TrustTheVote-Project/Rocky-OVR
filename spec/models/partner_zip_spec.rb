@@ -117,18 +117,19 @@ describe PartnerZip do
       p.partner_css_present?.should be_truthy      
     end
     it "deletes the tmp directory when done regardless of result" do
+      original_size = Dir.entries(PartnerZip.tmp_root).size
       @file = File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', 'four_good_partners.zip'))
       pz = PartnerZip.new(@file)
       pz.create
-      Dir.entries(PartnerZip.tmp_root).size.should == 2
+      Dir.entries(PartnerZip.tmp_root).size.should == original_size
       @file = File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', 'invalid_partners.zip'))
       pz = PartnerZip.new(@file)
       pz.create.should
-      Dir.entries(PartnerZip.tmp_root).size.should == 2      
+      Dir.entries(PartnerZip.tmp_root).size.should == original_size
       @file = File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', 'ejs_good_partners2.zip'))
       pz = PartnerZip.new(@file)
       pz.create.should
-      Dir.entries(PartnerZip.tmp_root).size.should == 2      
+      Dir.entries(PartnerZip.tmp_root).size.should == original_size
     end
     it "sets tracking snippets and survey questions" do
       @file = File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', 'ejs_good_partners1.zip'))
