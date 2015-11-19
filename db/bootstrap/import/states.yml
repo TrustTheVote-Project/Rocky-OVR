@@ -31,16 +31,16 @@ record_0:
   sos_phone: (800) 274-VOTE
   sos_url: http://www.sos.state.al.us/Elections/Default.aspx
   sub_18: be_by_next_election
-  registration_deadline: postmarked_11_days
+  registration_deadline: postmarked_14_days
 record_1:
   abbreviation: AK
   name: Alaska
   requires_party: true
   party_tooltip: closed_caucus_with_state_name
   id_number_tooltip: drivers_license_with_state_name
-  sos_address: State of Alaska<br>Division of Elections<br>PO Box 110017<br>Juneau,
+  sos_address: State of Alaska<br>Division of Elections<br>PO Box 110018<br>Juneau,
     AK 99811-0017
-  sos_phone: (907) 465-4611
+  sos_phone: (907) 465-3021
   sos_url: http://www.elections.alaska.gov/
   sub_18: 90_days_before
   registration_deadline: received_30_days
@@ -155,8 +155,8 @@ record_10:
   requires_party: false
   party_tooltip: not_done_with_state_name
   id_number_tooltip: georgia
-  sos_address: Secretary of State<br>Elections Division<br>1104 West Tower<br>2 Martin
-    Luther King Jr. Drive SE<br>Atlanta, GA 30334-1505
+  sos_address: Secretary of State<br>Elections Division<br>802 Floyd West Tower<br>2
+    Martin Luther King Jr. Drive SE<br>Atlanta, GA 30334-1505
   sos_phone: (404) 656-2871
   sos_url: http://www.sos.state.ga.us/elections/
   sub_18: 6_months_before
@@ -196,14 +196,14 @@ record_13:
     IL 62704
   sos_phone: (217) 782-4141
   sos_url: http://www.elections.il.gov/
-  registration_deadline: postmarked_28_days
+  registration_deadline: postmarked_27_days
   id_length_min: '4'
 record_14:
   abbreviation: IN
   name: Indiana
   requires_party: false
   party_tooltip: indiana
-  id_number_tooltip: indiana
+  id_number_tooltip: drivers_license_or_ssn_or_none_4
   sos_address: Office of the Secretary of State<br>Election Division<br>302 West Washington
     Street, Room E-204<br>Indianapolis, IN 46204-2743
   sos_phone: (317) 232-3939
@@ -271,7 +271,7 @@ record_19:
   id_number_tooltip: drivers_license_or_other_with_state_name_2
   sos_address: Bureau of Corporations, Elections and Commissions<br>Elections Division<br>101
     State House Station<br>Augusta, ME 04333-0101
-  sos_phone: (207) 642-7736
+  sos_phone: (207) 624-7650
   sos_url: http://www.state.me.us/sos/cec/elec/
   sub_18: once_turned_17_but
   registration_deadline: received_21_days
@@ -318,7 +318,8 @@ record_23:
   online_registration_url: https://mnvotes.sos.state.mn.us/VoterRegistration/VoterRegistrationStep1.aspx
   party_tooltip: blank
   id_number_tooltip: drivers_license_state_id_with_state_name
-  sos_address: Secretary of State<br>60 Empire Drive, Suite 100<br>St. Paul, MN 55155-1299
+  sos_address: Secretary of State<br>100 State Office Bldg<br>100 Rev. MLK Drive<br>St.
+    Paul, MN 55155-1299
   sos_phone: (651) 215-1440
   sos_url: http://www.sos.state.mn.us/home/index.asp?page=134
   registration_deadline: received_21_days
@@ -366,8 +367,7 @@ record_27:
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: drivers_license_or_other_with_state_name_3
-  sos_address: Secretary of State<br>State Capitol Building - Suite 2300<br>Lincoln,
-    NE 68509-4608
+  sos_address: Secretary of State<br>1445 K. St, 3rd Floor<br>Lincoln, NE 68509
   sos_phone: (402) 471-2555
   sos_url: http://www.sos.state.ne.us/elec/
   sub_18: be_by_next_general_election_november
@@ -505,7 +505,7 @@ record_37:
   requires_party: true
   party_tooltip: required_for_primary_2
   id_number_tooltip: drivers_license_or_other_with_state_name_4
-  sos_address: Secretary of State<br>Elections Division<br>141 State Capitol<br>Salem,
+  sos_address: Secretary of State<br>Elections Division<br>255 Capitol St, NE<br>Salem,
     OR 97310-0722
   sos_phone: (503) 986-1518
   sos_url: http://www.sos.state.or.us/elections/
@@ -568,8 +568,8 @@ record_42:
   requires_party: true
   party_tooltip: tennessee
   id_number_tooltip: ssn_or_none_4
-  sos_address: Coordinator of Elections<br>Tennessee Tower, Ninth Floor<br>312 Eighth
-    Avenue North<br>Nashville, TN 37243
+  sos_address: Elections<br>7th Floor, Snodgrass Tower<br>312 Rosa L. Parks Avenue<br>Nashville,
+    TN 37243-1102
   sos_phone: (615) 741-7956
   sos_url: http://www.state.tn.us/sos/election/index.htm
   registration_deadline: postmarked_30_days
@@ -606,8 +606,8 @@ record_45:
   requires_party: false
   party_tooltip: vermont
   id_number_tooltip: drivers_license_or_ssn_or_none_4
-  sos_address: Office of the Secretary of State<br>Director of Elections<br>26 Terrace
-    Street<br>Montpelier, VT 05609-1101
+  sos_address: Office of the Secretary of State<br>Director of Elections<br>128 State
+    St<br>Montpelier, VT 05633-1101
   sos_phone: (802) 828-2464
   sos_url: http://vermont-elections.org/
   registration_deadline: vermont
@@ -630,8 +630,7 @@ record_47:
   requires_party: false
   party_tooltip: washington
   id_number_tooltip: drivers_license_with_state_name_2
-  sos_address: Secretary of State<br>Voter Registration by Mail<br>P.O. Box 40230<br>Olympia,
-    WA 98504-0230
+  sos_address: State Elections Division<br>P.O. Box 40229<br>Olympia, WA 98504-0230
   sos_phone: (360) 902-4180
   sos_url: http://www.secstate.wa.gov/elections/
   sub_18: turn_by_next_general_election_november
@@ -674,7 +673,7 @@ record_50:
   id_length_min: ''
   id_length_max: ''
   id_number_tooltip: blank
-  sos_address: ''
+  sos_address: State Capitol Bldg<br>200 W. 24th St<br>Cheyenne, WY 82002
   sos_phone: ''
   sos_url: ''
   sub_18: turn_by_next_election
