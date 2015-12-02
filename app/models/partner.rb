@@ -25,7 +25,9 @@
 require 'open-uri'
 
 class Partner < ActiveRecord::Base
-  acts_as_authentic
+  acts_as_authentic do |c|
+    c.crypto_provider = Authlogic::CryptoProviders::Sha512
+  end
   
 
   DEFAULT_ID = 1
