@@ -13,7 +13,7 @@ require 'cucumber'
 require 'cucumber/rails'
 require 'cucumber/rails/rspec'
 require 'cucumber/rspec/doubles'
-
+require 'authlogic/test_case'
 
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
