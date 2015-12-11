@@ -48,10 +48,12 @@ end
 # Session
 
 Then /^I should be logged in$/ do
+  activate_authlogic
   assert_not_nil PartnerSession.find #controller.send(:current_partner_session)
 end
 
 Then /^I should be logged out$/ do
+  activate_authlogic
   assert_nil PartnerSession.find #controller.send(:current_partner_session)
 end
 
