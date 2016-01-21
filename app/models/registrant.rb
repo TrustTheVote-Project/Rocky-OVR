@@ -89,12 +89,14 @@ class Registrant < ActiveRecord::Base
        "prev_zip_code"
     ]
   
-  # OVR_REGEX = /^(\p{Latin}|\P{Letter})*$/
-  CA_NAME_REGEX =   /^[a-zA-Z0-9'#,\-\/_\.@\s]*$/ #A-Z a-z 0-9 '#,-/_ .@space
+  OVR_REGEX = /^(\p{Latin}|\P{Letter})*$/
+  
+  #CA_NAME_REGEX =   /^[a-zA-Z0-9'#,\-\/_\.@\s]*$/ #A-Z a-z 0-9 '#,-/_ .@space
+  
   # CA_EMAIL_REGEX =  /^[a-zA-Z0-9\-\/_\.]+@.*\..*$/ #A-Z a-z 0-9, underscore, dash, and '@' followed by at least one "."
   CA_ADDRESS_REGEX    = /^[a-zA-Z0-9#\-\s,\/\.]*$/ # A-Z a-z 0-9 # dash space, / .
   CA_CITY_STATE_REGEX = /^[a-zA-Z0-9#\-\s]*$/      # A-Z a-z 0-9 # dash space
-  OVR_REGEX = /^[a-zA-Z0-9#\-\s,\/\.\+!@\$%\^&\*_=\(\)\[\]\{\};':"\\<>\?\|]*$/
+  # OVR_REGEX = /^[a-zA-Z0-9#\-\s,\/\.\+!@\$%\^&\*_=\(\)\[\]\{\};':"\\<>\?\|]*$/
   #white space and hyphen for names; and for addresses phone#s and other stuff, also include special chars such as # ( ) / + 
   
   def self.validate_fields(list, regex, message)
@@ -106,7 +108,7 @@ class Registrant < ActiveRecord::Base
   end
   
   validate_fields(PDF_FIELDS, OVR_REGEX, :invalid_for_pdf)
-  validate_fields(NAME_FIELDS, CA_NAME_REGEX, :invalid)
+  validate_fields(NAME_FIELDS, OVR_REGEX, :invalid)
   validate_fields(ADDRESS_FIELDS, CA_ADDRESS_REGEX, :invalid)
   validate_fields(CITY_FIELDS, CA_CITY_STATE_REGEX, :invalid)
   
