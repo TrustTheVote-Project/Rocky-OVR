@@ -91,6 +91,48 @@ ovr_states:
   WA:
     languages:
       - en
+  AK:
+      redirect_to_online_reg_url: true
+  CO:
+      redirect_to_online_reg_url: true
+  CT:
+      redirect_to_online_reg_url: true
+  GA:
+      redirect_to_online_reg_url: true
+  HI:
+      redirect_to_online_reg_url: true
+  IL:
+      redirect_to_online_reg_url: true
+  IN:
+      redirect_to_online_reg_url: true
+  IA:
+      redirect_to_online_reg_url: true
+  KS:
+      redirect_to_online_reg_url: true
+  MD:
+      redirect_to_online_reg_url: true
+  MA:
+      redirect_to_online_reg_url: true
+  NE:
+      redirect_to_online_reg_url: true
+  NM:
+      redirect_to_online_reg_url: true
+  NY:
+      redirect_to_online_reg_url: true
+  OR:
+      redirect_to_online_reg_url: true
+  PA:
+      redirect_to_online_reg_url: true
+  SC:
+      redirect_to_online_reg_url: true
+  UT:
+      redirect_to_online_reg_url: true
+  VT:
+      redirect_to_online_reg_url: true
+  VA:
+      redirect_to_online_reg_url: true
+  WV:
+      redirect_to_online_reg_url: true
 
   
 enabled_locales:
