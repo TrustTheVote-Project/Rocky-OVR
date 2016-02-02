@@ -92,47 +92,110 @@ ovr_states:
     languages:
       - en
   AK:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   CO:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   CT:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   GA:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   HI:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   IL:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   IN:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   IA:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   KS:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   MD:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   MA:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   NE:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   NM:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   NY:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   OR:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   PA:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   SC:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   UT:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   VT:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   VA:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
   WV:
-      redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
 
   
 enabled_locales:
