@@ -629,7 +629,7 @@ record_45:
   sos_url: http://vermont-elections.org/
   registration_deadline: vermont
   id_length_min: '4'
-  online_registration_url: https://olvr.sec.state.vt.us/Registration/RegistrationDetails
+  online_registration_url: https://olvr.sec.state.vt.us/Registration/
 record_46:
   abbreviation: VA
   name: Virginia
