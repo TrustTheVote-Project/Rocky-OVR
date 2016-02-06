@@ -109,30 +109,103 @@ describe GeoState do
         Rails.root.join("spec/fixtures/files/county_addressing/zip_code_database.csv")
       )
     end
-
-    describe "self#county_registrar_addresses" do
-      it "returns a hash of state_abbr=>county=>address with blank lines removed" do
-        GeoState.county_registrar_addresses.should == {
-          "LA"=>{
-              "adams" => ["AC Office\n117 Baltimore Street\nRoom 106\nGettysburg, LA 17325", ["00544"], "city"],
-              "allegheny parish" => ["A Office\n542 Forbes Avenue\nSuite 609\nPittsburgh, LA 15219-2913", ["00501", "00502"], "county"]
-            },
-          "NY"=>{
-            "adjuntas county"=>["AC2 Office\n542 Forbes Avenue\nPittsburgh, NY 15219-2913", ["00601"], "county"]
-          }
-        }
+    
+    describe "self#read_zip_code_database" do
+      it "creates a zipcode row for item in the csv" do
+        GeoState.read_zip_code_database
+        expect(ZipCodeCountyAddress.count).to eq(4)
       end
-      context "when a county isn't in the zip file" do
-        before(:each) do
-          GeoState.stub(:zip_code_database_file).and_return(
-            Rails.root.join("spec/fixtures/files/county_addressing/zip_code_database_missing_counties.csv")
-          )
-        end
-        it "raise a list of missing counties" do
-          expect { GeoState.county_registrar_addresses }.to raise_error(StandardError, "The following counties are missing from the zip code database:\nLA: Adams City\nNY: AdJuntas County")         
-        end
+      it "adds county names for each zip code" do
+        GeoState.read_zip_code_database
+        z = ZipCodeCountyAddress.first
+        expect(z.county).to include("allegheny's parish")
       end
+      
+      it "adds space and quote escaped county names for each zip code" do
+        GeoState.read_zip_code_database
+        z = ZipCodeCountyAddress.first
+        expect(z.county).to include("alleghenys parish")
+        expect(z.county).to include("allegheny'sparish")
+      end
+      it "adds city names for each zip code" do
+        GeoState.read_zip_code_database
+        z = ZipCodeCountyAddress.first
+        expect(z.cities[0]).to eq("allegheny city")
+        z = ZipCodeCountyAddress.first(2).last
+        expect(z.cities).to include("another city")        
+      end
+      it "adds the 'city, county' name for each zip code" do
+        GeoState.read_zip_code_database
+        z = ZipCodeCountyAddress.first
+        expect(z.cities).to include("allegheny city, allegheny's parish")        
+      end
+      it "adds unacceptable city names for each zip code" do
+        GeoState.read_zip_code_database
+        z = ZipCodeCountyAddress.last
+        expect(z.unacceptable_cities).to include("jard de adjuntas")
+      end      
     end
+
+    describe "registrar_address(zip)" do
+      let(:state) { GeoState['CA']}
+      let(:zca) { double(ZipCodeCountyAddress) }
+      
+      before(:each) do
+        state.send(:write_attribute, 'registrar_address', 'db_address')
+        zca.stub(:address).and_return("LEO Address")
+      
+        ZipCodeCountyAddress.stub(:where).and_return([zca])                  
+      end
+      it "returns the zip code's LEO address" do
+        expect(state.registrar_address('12345')).to eq("LEO Address")
+      end
+      describe "when zip is nill" do
+        it "returns the db attribute" do
+          expect(state.registrar_address).to eq("db_address")
+        end
+      end
+      describe "when the zip is not in the database" do
+        before(:each) do
+          ZipCodeCountyAddress.stub(:where).and_return([])
+        end
+        it "returns the db attribute" do
+          expect(state.registrar_address('12345')).to eq('db_address')
+        end
+      end
+      describe "when the zip record does not have an address" do
+        before(:each) do
+          zca.stub(:address).and_return(nil)
+        end
+        it "returns the db attribute" do
+          expect(state.registrar_address('12345')).to eq('db_address')
+        end        
+      end
+      
+    end
+
+    # describe "self#county_registrar_addresses" do
+    #   it "returns a hash of state_abbr=>county=>address with blank lines removed" do
+    #     GeoState.county_registrar_addresses.should == {
+    #       "LA"=>{
+    #           "adams" => ["AC Office\n117 Baltimore Street\nRoom 106\nGettysburg, LA 17325", ["00544"], "city"],
+    #           "allegheny parish" => ["A Office\n542 Forbes Avenue\nSuite 609\nPittsburgh, LA 15219-2913", ["00501", "00502"], "county"]
+    #         },
+    #       "NY"=>{
+    #         "adjuntas county"=>["AC2 Office\n542 Forbes Avenue\nPittsburgh, NY 15219-2913", ["00601"], "county"]
+    #       }
+    #     }
+    #   end
+    #   context "when a county isn't in the zip file" do
+    #     before(:each) do
+    #       GeoState.stub(:zip_code_database_file).and_return(
+    #         Rails.root.join("spec/fixtures/files/county_addressing/zip_code_database_missing_counties.csv")
+    #       )
+    #     end
+    #     it "raise a list of missing counties" do
+    #       expect { GeoState.county_registrar_addresses }.to raise_error(StandardError, "The following counties are missing from the zip code database:\nLA: Adams City\nNY: AdJuntas County")
+    #     end
+    #   end
+    # end
   end
 
 end
