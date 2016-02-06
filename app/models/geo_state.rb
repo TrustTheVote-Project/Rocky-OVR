@@ -295,74 +295,53 @@ class GeoState < ActiveRecord::Base
     #2. Read county-addresses into memory
     #3. Make sure all county-address counties are in zip database
     #4. Map county/state/zip/addresses and commit to DB
-    counties = {}
-    cities = {}
-    acceptable_cities = {}
-    unacceptable_cities = {}
     CSV.foreach(zip_code_database_file, {:headers=>:first_row}) do |row|
-      counties[row["state"]] ||= {}
-      counties[row["state"]][row["county"].to_s.downcase] ||= []
-      counties[row["state"]][row["county"].to_s.downcase] << row["zip"]      
+      z = ZipCodeCountyAddress.find_by_zip(row["zip"]) || ZipCodeCountyAddress.new(zip: row["zip"])
+      z.geo_state = GeoState[row["state"]]
+      next if z.geo_state.blank?
+      z.zip = row["zip"]
+      
+      z.county << row["county"].to_s.downcase
+
       # also add the county without apostraphes
       county_clean = "#{row["county"]}".gsub(/'/, '').to_s.downcase
-      counties[row["state"]][county_clean] ||= []
-      counties[row["state"]][county_clean] << row["zip"]
+      z.county << county_clean
 
       # also add the county without spaces
       county_concat = "#{row["county"]}".gsub(/\s/, '').to_s.downcase
-      counties[row["state"]][county_concat] ||= []
-      counties[row["state"]][county_concat] << row["zip"]
+      z.county << county_concat
+      
+      # make uniq!
+      z.county.uniq!
       
 
-      cities[row["state"]] ||= {}
-      cities[row["state"]][row["primary_city"].to_s.downcase] ||= []
-      cities[row["state"]][row["primary_city"].to_s.downcase] << row["zip"]
+      z.cities << row["primary_city"].to_s.downcase
+
       # also add the city, county version 
       city_county = "#{row["primary_city"]}, #{row["county"]}".to_s.downcase
-      cities[row["state"]][city_county] ||= []
-      cities[row["state"]][city_county] << row["zip"]
+      z.cities << city_county
+
       # also add the city without apostraphes
       city_clean = "#{row["primary_city"]}".gsub(/'/, '').to_s.downcase
-      cities[row["state"]][city_clean] ||= []
-      cities[row["state"]][city_clean] << row["zip"]
+      z.cities << city_clean
       
-      
-      acceptable_cities[row["state"]] ||= {}
       acceptables = row["acceptable_cities"].to_s.split(',')
-      acceptables.each do |ac|
-        acceptable_cities[row["state"]][ac.to_s.downcase.strip] ||= []
-        acceptable_cities[row["state"]][ac.to_s.downcase.strip] << row["zip"]
+      acceptables.each do |ac|        
+        z.cities << ac.to_s.downcase.strip
       end
       
-      unacceptable_cities[row["state"]] ||= {}
+      z.cities.uniq!
+      
       unacceptables = row["unacceptable_cities"].to_s.split(',')
       unacceptables.each do |ac|
-        unacceptable_cities[row["state"]][ac.to_s.downcase.strip] ||= []
-        unacceptable_cities[row["state"]][ac.to_s.downcase.strip] << row["zip"]
+        z.unacceptable_cities << ac.to_s.downcase.strip
       end
+      z.unacceptable_cities.uniq!
+      
+      z.save!
       
     end
     
-    # merge in acceptables and unacceptables to cities
-    # acceptable_cities.each do |state, city_list|
-    #   city_list.each do |city, zips|
-    #     if cities[state][city].nil?
-    #       cities[state][city] ||= []
-    #       cities[state][city] += zips
-    #     end
-    #   end
-    # end
-    # unacceptable_cities.each do |state, city_list|
-    #   city_list.each do |city, zips|
-    #     if cities[state][city].nil?
-    #       cities[state][city] ||= []
-    #       cities[state][city] += zips
-    #     end
-    #   end
-    # end
-    
-    
-    return [counties, cities]
   end
 
   def self.zip5map
@@ -399,7 +378,7 @@ class GeoState < ActiveRecord::Base
   
   def registrar_address(zip_code=nil)
     county_address_zip = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first
-    if county_address_zip
+    if county_address_zip && county_address_zip.address
       county_address_zip.address.gsub(/\n/,"<br/>")
     else
       read_attribute(:registrar_address)

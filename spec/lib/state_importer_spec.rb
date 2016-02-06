@@ -313,7 +313,7 @@ YML
       it "runs import_state for each row in the hash" do
         si.should_receive(:import_state).with(states_hash[:record_0])
         si.should_receive(:import_state).with(states_hash[:record_1])
-        si.should_receive(:import_zip_county_addresses)
+        # si.should_receive(:import_zip_county_addresses)
         si.import
       end
       it "doesn't run :import_zip_county_addresses when skip_zip_county_import is true" do
@@ -397,20 +397,20 @@ YML
       
     end
 
-    describe "#import_zip_county_addresses" do
-      let(:si) { StateImporter.new }
-
-      it "creates a list of ZipCodeCountyAddress objects" do
-        si.import_zip_county_addresses
-        # 3 counties, 4 zip codes
-        si.imported_zip_addresses.should have(4).zip_code_county_addresses        
-        zca = si.imported_zip_addresses.first
-        zca.geo_state_id.should == GeoState["LA"].id
-        zca.zip.should == "00544"
-        zca.county.should == "adams"
-        zca.address.should == "AC Office\n117 Baltimore Street\nRoom 106\nGettysburg, LA 17325"
-      end
-    end
+    # describe "#import_zip_county_addresses" do
+    #   let(:si) { StateImporter.new }
+    #
+    #   it "creates a list of ZipCodeCountyAddress objects" do
+    #     si.import_zip_county_addresses
+    #     # 3 counties, 4 zip codes
+    #     si.imported_zip_addresses.should have(4).zip_code_county_addresses
+    #     zca = si.imported_zip_addresses.first
+    #     zca.geo_state_id.should == GeoState["LA"].id
+    #     zca.zip.should == "00544"
+    #     zca.county.should == "adams"
+    #     zca.address.should == "AC Office\n117 Baltimore Street\nRoom 106\nGettysburg, LA 17325"
+    #   end
+    # end
     
     describe "#commit!" do
       let(:si) { StateImporter.new }
