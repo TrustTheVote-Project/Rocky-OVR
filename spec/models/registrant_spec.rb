@@ -322,9 +322,10 @@ describe Registrant do
   
     describe "field text validations" do
       Registrant::PDF_FIELDS.each do |field|
-        it "only allows ascii characters for PDF field #{field}" do
+        it "only allows latin characters for PDF field #{field}" do
           ascii_locales = [:en,  :tl]
-          non_ascii_locales = [:es, :zh, :vi, :"zh-tw", :hi, :ur, :bn, :ja, :ko, :th, :km]
+          latin_locales = [:es, :vi]
+          non_latin_locales = [:zh, :"zh-tw", :hi, :ur, :bn, :ja, :ko, :th, :km]
 
           r = Registrant.new
           r.stub(:has_mailing_address?).and_return(true)
@@ -332,7 +333,7 @@ describe Registrant do
           r.stub(:change_of_address?).and_return(true)
 
           #puts "testing field: #{field}"
-          non_ascii_locales.each do |loc|
+          non_latin_locales.each do |loc|
             txt = I18n.t('txt.registration.in_language_name', :locale=>loc, :default => "")
             unless txt.blank?
               #puts "\tTesting #{loc}: #{txt}"
@@ -341,27 +342,32 @@ describe Registrant do
               r.errors[field].should_not be_empty          
             end
           end
-          ascii_locales.each do |loc|
+          latin_locales.each do |loc|
             txt = I18n.t('txt.registration.in_language_name', :locale=>loc, :default => "").to_s +  " 123"
             # puts "\tTesting #{loc}: #{txt}"
             r.send("#{field}=",txt)
             if !r.valid?
-              puts r.send(field)
+              # puts field, r.send(field)
             end
-            r.errors[field].should be_empty
+            # Address/City fields only accept ascii
+            if (Registrant::ADDRESS_FIELDS.include?(field) || Registrant::CITY_FIELDS.include?(field)) && !ascii_locales.include?(loc)
+              r.errors[field].should_not be_empty
+            else
+              r.errors[field].should be_empty
+            end
           end
         end
       end
 
       Registrant::NAME_FIELDS.each do |field|
-        it "only allows 'A-Z a-z 0-9 '#,-/_ .@space' in name field #{field}" do
+        it "only allows latin in name field #{field}" do
           r = Registrant.new
           r.stub(:has_mailing_address?).and_return(true)
           r.stub(:change_of_name?).and_return(true)
           r.stub(:change_of_address?).and_return(true)
           r.send("#{field}=", "AZaz09'#,-/_.@ ")
           r.should be_valid
-          r.send("#{field}=", "AZaz09'#,-/_.@ !")
+          r.send("#{field}=", "AZaz09'#,-/_.@ " + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
           r.should_not be_valid
           r.errors[field].should_not be_empty
         end

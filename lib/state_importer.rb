@@ -253,7 +253,7 @@ class StateImporter
         end
       end
     end
-    import_zip_county_addresses unless skip_zip_county_import 
+    # import_zip_county_addresses unless skip_zip_county_import
   end
   
   def import_zip_county_addresses
