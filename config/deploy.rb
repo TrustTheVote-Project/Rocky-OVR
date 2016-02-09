@@ -301,7 +301,7 @@ namespace :deploy do
   
   desc "Run (or restart) pdf worker processes on pdf server"
   task :run_pdf_workers, :roles => :pdf do
-    #run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec ruby script/rocky_pdf_runner stop"
+    run "cd #{latest_release} && RAILS_ENV=#{rails_env} bundle exec ruby script/rocky_pdf_runner stop"
     sleep 10
     8.times do
       run "cd #{latest_release} && RAILS_ENV=#{rails_env} TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start"

@@ -3,6 +3,10 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config/environ
 
 Dir.chdir(Rails.root)
 
+require 'dotenv'
+Dotenv.load(".env.#{ENV['RAILS_ENV']}")
+
+
 loop do
   # this will call the regular pdf gen if no priority pdfs are found
   PriorityPdfGeneration.find_and_generate
