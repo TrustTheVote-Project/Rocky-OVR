@@ -165,7 +165,7 @@ record_10:
   sub_18: 6_months_before
   registration_deadline: georgia
   id_length_min: '4'
-  online_registration_url: "https://registertovote.sos.ga.gov/GAOLVR/#no-back-button"
+  online_registration_url: https://registertovote.sos.ga.gov/GAOLVR/#no-back-button
 record_11:
   abbreviation: HI
   name: Hawaii
@@ -506,8 +506,8 @@ record_36:
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: oklahoma
-  sos_address: Oklahoma State Election Board<br>P.O. Box 528800<br>Oklahoma City,
-    OK 73152-8800
+  sos_address: Oklahoma State Election Board<br>PO Box 53156<br>Oklahoma City, OK
+    73152
   sos_phone: (405) 521-2391
   sos_url: http://www.oklaosf.state.ok.us/~elections/
   sub_18: 60_days_before_election_novemeber
@@ -668,7 +668,7 @@ record_48:
   sos_url: http://www.sos.wv.gov/elections/Pages/default.aspx
   registration_deadline: postmarked_21_days
   id_length_min: '4'
-  online_registration_url: "https://ovr.sos.wv.gov/Register#Qualifications"
+  online_registration_url: https://ovr.sos.wv.gov/Register#Qualifications
 record_49:
   abbreviation: WI
   name: Wisconsin
