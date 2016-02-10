@@ -37,7 +37,6 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   end
   
   def lookup_region
-    puts "looking up region"
     county_name = self.county.first
     city_name = self.cities.first
     state_abbr = self.geo_state.abbreviation
@@ -88,7 +87,6 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   
   
   def self.search_regions(filter_name, filter_value, state_abbr)
-    puts "searching regions"
     return get(region_uri(filter_name, filter_value, state_abbr))
   end
   
@@ -113,12 +111,9 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   
   
   def self.get(path)
-    puts "#{StateImporter::CountyAddresses.base_uri}#{path}"
     response =  JSON.parse(RestClient.get("#{StateImporter::CountyAddresses.base_uri}#{path}"))
-    puts response
     return response["objects"]
   rescue Exception => e
-    puts e.message
     return []
   end
   
