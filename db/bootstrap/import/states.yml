@@ -32,6 +32,7 @@ record_0:
   sos_url: http://www.sos.state.al.us/Elections/Default.aspx
   sub_18: be_by_next_election
   registration_deadline: postmarked_14_days
+  online_registration_url: https://www.alabamavotes.gov/olvr/default.aspx
 record_1:
   abbreviation: AK
   name: Alaska
