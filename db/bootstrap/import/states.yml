@@ -302,6 +302,14 @@ record_21:
   name: Massachusetts
   requires_party: true
   party_tooltip: massachusetts
+  parties:
+  - democratic
+  - independent
+  - green
+  - libertarian
+  - republican
+  - unenrolled
+  - other
   id_number_tooltip: drivers_license_or_other_with_state_name_2
   sos_address: Secretary of the Commonwealth<br>Elections Division<br>One Ashburton
     Place - Room 1705<br>Boston, MA 02108
