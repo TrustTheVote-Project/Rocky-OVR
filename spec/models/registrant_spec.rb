@@ -624,7 +624,7 @@ describe Registrant do
         assert @reg.errors[:phone].empty?
       end
       
-      it "should require valid state id" do
+      it "should require valid state id, based on state settings" do
         assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => nil)
 
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "NONE")
@@ -642,6 +642,10 @@ describe Registrant do
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "1-234567")
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "*234567")
         assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => "$234567")
+        
+        
+        
+        
       end
       
       it "should upcase state id" do
@@ -842,6 +846,13 @@ describe Registrant do
       assert_attribute_valid_with(  :step_3_registrant, :state_id_number => "1-234567")
       assert_attribute_valid_with(  :step_3_registrant, :state_id_number => "*234567")
       assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "$234567")
+
+
+      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "S345671 24323")
+      assert_attribute_valid_with(:step_3_registrant, :state_id_number => "S345671  4323")
+      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "1234 4323")
+      assert_attribute_valid_with(:step_3_registrant, :state_id_number => "S345671 2323")
+
     end
 
     it "should upcase state id" do
@@ -2250,12 +2261,19 @@ describe Registrant do
 
   def assert_attribute_invalid_with(model, attributes)
     reg = FactoryGirl.build(model, attributes)
-    reg.invalid?
-    assert attributes.keys.any? { |attr_name| reg.errors[attr_name] }
+    reg.valid?
+    attributes.keys.each do |k|
+      expect(reg.errors[k]).to_not be_empty
+    end
+    
   end
 
   def assert_attribute_valid_with(model, attributes)
     reg = FactoryGirl.build(model, attributes)
-    assert reg.valid?
+    reg.valid?
+    attributes.keys.each do |k|
+      expect(reg.errors[k]).to be_empty
+    end
+    
   end
 end
