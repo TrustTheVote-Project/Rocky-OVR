@@ -281,7 +281,7 @@ class Registrant < ActiveRecord::Base
 
   with_options :if => :at_least_step_3? do |reg|
     reg.validates_presence_of :state_id_number, :unless=>[:complete?, :in_ovr_flow?]
-    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|[-*A-Z0-9]{7,42})$/i, :allow_blank => true
+    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|[-*A-Z0-9\s]{7,42})$/i, :allow_blank => true
     reg.validate :validate_phone_present_if_opt_in_sms_at_least_step_3
     reg.validate                :validate_race_at_least_step_3,   :unless => [ :in_ovr_flow? ]
     reg.validate                :validate_party_at_least_step_3,  :unless => [ :building_via_api_call, :in_ovr_flow? ]
@@ -290,7 +290,7 @@ class Registrant < ActiveRecord::Base
   
   with_options :if => [:at_least_step_2?, :use_short_form?] do |reg|
     reg.validates_presence_of :state_id_number, :unless=>:complete?
-    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|[-*A-Z0-9]{7,42})$/i, :allow_blank => true
+    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|[-*A-Z0-9\s]{7,42})$/i, :allow_blank => true
     reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
     reg.validates_presence_of :phone_type, :if => :has_phone?
     reg.validate :validate_phone_present_if_opt_in_sms_use_short_form

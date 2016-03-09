@@ -39,7 +39,7 @@ record_1:
   requires_party: true
   party_tooltip: closed_caucus_with_state_name
   id_number_tooltip: drivers_license_with_state_name
-  sos_address: State of Alaska<br>Division of Elections<br>PO Box 110018<br>Juneau,
+  sos_address: State of Alaska<br>Division of Elections<br>PO Box 110017<br>Juneau,
     AK 99811-0017
   sos_phone: (907) 465-3021
   sos_url: http://www.elections.alaska.gov/
@@ -68,8 +68,8 @@ record_3:
   requires_party: true
   party_tooltip: not_required
   id_number_tooltip: drivers_license_non_operating_with_state_name
-  sos_address: Secretary of State<br>Voter Services<br>P.O. Box 8111<br>Little Rock,
-    AR 72203-8111
+  sos_address: Secretary of State<br>500 Woodlane Street, Suite 256<br>Little Rock,
+    AR 72201-8111
   sos_phone: (501) 682-3526
   sos_url: http://www.sosweb.state.ar.us/elections.html
   registration_deadline: postmarked_30_days
@@ -81,7 +81,7 @@ record_4:
   party_tooltip: california
   no_party: decline_to_state
   id_number_tooltip: drivers_license_required_at_voting_with_state_name
-  sos_address: Secretary of State<br>Elections Division<br>1500 11th Street<br>Sacramento,
+  sos_address: Secretary of State<br>Elections Division<br>1500 11th Street, 5th FL<br>Sacramento,
     CA 95814
   sos_phone: (800) 345-VOTE
   sos_url: http://www.sos.ca.gov/elections/registration-status/
@@ -95,7 +95,7 @@ record_5:
   id_number_tooltip: colorado
   sos_address: Secretary of State<br>1700 Broadway, Suite 200<br>Denver, CO 80290
   sos_phone: (303) 894-2200
-  sos_url: http://www.sos.state.co.us/pubs/elections/
+  sos_url: https://www.govotecolorado.com
   online_registration_url: https://www.sos.state.co.us/voter-classic/pages/pub/olvr/verifyNewVoter.xhtml
   id_length_min: '4'
 record_6:
@@ -337,7 +337,7 @@ record_23:
   online_registration_url: https://mnvotes.sos.state.mn.us/VoterRegistration/VoterRegistrationStep1.aspx
   party_tooltip: blank
   id_number_tooltip: drivers_license_state_id_with_state_name
-  sos_address: Secretary of State<br>100 State Office Bldg<br>100 Rev. MLK Drive<br>St.
+  sos_address: Secretary of State<br>180 State Office Bldg<br>100 Rev. MLK Drive<br>St.
     Paul, MN 55155-1299
   sos_phone: (651) 215-1440
   sos_url: http://www.sos.state.mn.us/home/index.asp?page=134
@@ -386,7 +386,7 @@ record_27:
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: drivers_license_or_other_with_state_name_3
-  sos_address: Secretary of State<br>1445 K. St, 3rd Floor<br>Lincoln, NE 68509
+  sos_address: Elections Office<br>P.O. Box 94608<br>Lincoln, NE 68509
   sos_phone: (402) 471-2555
   sos_url: http://www.sos.state.ne.us/elec/
   sub_18: be_by_next_general_election_november
@@ -417,8 +417,9 @@ record_29:
   id_length_min: ''
   id_length_max: ''
   id_number_tooltip: blank
-  sos_address: ''
-  sos_phone: ''
+  sos_address: ! 'Elections Office<br>State House, Room 204<br>107 North Main Street<br>Concord,
+    N.H. 03301 '
+  sos_phone: 603-271-3242
   sos_url: ''
   sub_18: blank
   registration_deadline: received_10_days
@@ -476,7 +477,7 @@ record_33:
   id_number_tooltip: drivers_license_or_dmv_with_state_name
   sos_address: State Board of Elections<br>P.O. Box 27255<br>Raleigh, NC 27611-7255
   sos_phone: (919) 733-7173
-  sos_url: http://www.sboe.state.nc.us/
+  sos_url: https://enr.ncsbe.gov/voter_search_public/
   registration_deadline: received_25_days
   id_length_min: '4'
 record_34:
@@ -491,7 +492,8 @@ record_34:
   id_length_min: ''
   id_length_max: ''
   id_number_tooltip: blank
-  sos_address: ''
+  sos_address: Secretary of State State<br>600 E Boulevard Avenue Dept 108<br>Bismarck
+    ND 58505-0500
   sos_phone: ''
   sos_url: ''
   sub_18: blank
@@ -658,7 +660,8 @@ record_47:
   requires_party: false
   party_tooltip: washington
   id_number_tooltip: drivers_license_with_state_name_2
-  sos_address: State Elections Division<br>P.O. Box 40229<br>Olympia, WA 98504-0230
+  sos_address: State Elections Division<br>520 Union Ave SE<br>P.O. Box 40229<br>Olympia,
+    WA 98504-0230
   sos_phone: (360) 902-4180
   sos_url: http://www.secstate.wa.gov/elections/
   sub_18: turn_by_next_general_election_november

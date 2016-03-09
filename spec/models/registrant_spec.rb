@@ -641,6 +641,7 @@ describe Registrant do
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "A234567")
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "1-234567")
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "*234567")
+        assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "*234567 3456")
         assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => "$234567")
       end
       
@@ -841,6 +842,7 @@ describe Registrant do
       assert_attribute_valid_with(  :step_3_registrant, :state_id_number => "A234567")
       assert_attribute_valid_with(  :step_3_registrant, :state_id_number => "1-234567")
       assert_attribute_valid_with(  :step_3_registrant, :state_id_number => "*234567")
+      assert_attribute_valid_with(  :step_2_registrant, :state_id_number => "*234567 3456")
       assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "$234567")
     end
 
