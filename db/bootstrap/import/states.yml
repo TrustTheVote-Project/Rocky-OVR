@@ -123,6 +123,7 @@ record_7:
   sos_url: http://elections.delaware.gov/
   registration_deadline: delaware
   id_length_min: '4'
+  online_registration_url: https://ivote.de.gov/voterlogin.aspx
 record_8:
   abbreviation: DC
   name: District of Columbia
@@ -136,6 +137,7 @@ record_8:
   sos_url: http://www.dcboee.org/
   sub_18: when_at_least_16
   registration_deadline: postmarked_30_days
+  online_registration_url: https://www.vote4dc.com/Voter/Voter/CommonVoter
 record_9:
   abbreviation: FL
   name: Florida
@@ -256,6 +258,7 @@ record_17:
   sos_phone: (502) 573-7100
   sos_url: http://elect.ky.gov/
   sub_18: when_will_be_18
+  online_registration_url: https://vrsws.sos.ky.gov/ovrweb/
 record_18:
   abbreviation: LA
   name: Louisiana
@@ -367,6 +370,7 @@ record_25:
   sub_18: 6_months_before
   registration_deadline: missouri
   id_length_min: '4'
+  online_registration_url: http://www.sos.mo.gov/elections/goVoteMissouri/register.aspx
 record_26:
   abbreviation: MT
   name: Montana
