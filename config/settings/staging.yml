@@ -16,6 +16,8 @@ ui_timeout_minutes: 5
 states_with_online_registration:
   - AZ
   - CA
+  - DE
+  - DC
   - LA
   - MN
   - NV
@@ -30,8 +32,10 @@ states_with_online_registration:
   - IN
   - IA
   - KS
+  - KY
   - MD
   - MA
+  - MO
   - NE
   - NM
   - NY
