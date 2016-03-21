@@ -628,7 +628,7 @@ record_44:
     UT 84114
   sos_phone: (800) 995-VOTE
   sos_url: http://elections.utah.gov/
-  sub_18: blank
+  sub_18: once_turned_16
   registration_deadline: utah
   id_length_min: '4'
   online_registration_url: https://secure.utah.gov/voterreg/index.html
