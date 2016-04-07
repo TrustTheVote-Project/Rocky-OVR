@@ -98,6 +98,7 @@ record_5:
   sos_url: https://www.govotecolorado.com
   online_registration_url: https://www.sos.state.co.us/voter-classic/pages/pub/olvr/verifyNewVoter.xhtml
   id_length_min: '4'
+  registration_deadline: colorado
 record_6:
   abbreviation: CT
   name: Connecticut
