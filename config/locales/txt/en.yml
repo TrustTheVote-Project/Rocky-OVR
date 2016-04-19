@@ -1,9 +1,9 @@
 ---
 en:
   txt:
-    unknown_error: "Unknown error: the web administrators have been contacted."
-    error: "Something went wrong."
-    try_again: "Go back and try again."
+    unknown_error: ! 'Unknown error: the web administrators have been contacted.'
+    error: Something went wrong.
+    try_again: Go back and try again.
     rtv_and_partner: Rock the Vote and %{partner_name}
     button:
       submit: Next Step
@@ -54,8 +54,9 @@ en:
         form, you can find contact information for your Secretary of State at our
         <a href="http://www.rockthevote.com/election-center/" target="_blank">Election
         Center</a>.
-      ineligible_header: ! 'Sorry, you are not eligible to register to vote for the
-        following reason(s):'
+      ineligible_header: ! 'Sorry, we aren''t able to help you register to vote.<BR>
+
+        Here''s what the issue is:'
       external_header: ! '%{state} Registrant'
       name: Name
       select_none: (none)
@@ -232,4 +233,3 @@ en:
     status_text:
       message: I just registered to vote and you can too!
       under_18_message: Make sure you register to vote. It's easy!
-
