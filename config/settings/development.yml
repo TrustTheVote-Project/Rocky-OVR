@@ -28,6 +28,7 @@ ovr_states:
       - en
       - es
   WA:
+    redirect_to_online_url: true
     languages:
       - en
       - es
