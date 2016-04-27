@@ -138,7 +138,7 @@ record_8:
   sos_url: http://www.dcboee.org/
   sub_18: when_at_least_16
   registration_deadline: postmarked_30_days
-  online_registration_url: https://www.vote4dc.com/Voter/Voter/CommonVoter
+  online_registration_url: https://www.vote4dc.com/ApplyInstructions/Register
 record_9:
   abbreviation: FL
   name: Florida
@@ -691,8 +691,8 @@ record_49:
   requires_party: true
   party_tooltip: wisconsin
   id_number_tooltip: wisconsin
-  sos_address: Government Accountability Board<br>212 East Washington Avenue, Third
-    Floor<br>P.O. Box 7984<br>Madison, Wisconsin 53707-7984
+  sos_address: Wisconsin Government Accountability Board<br>P.O. Box 7984<br>Madison,
+    Wisconsin 53707-7984
   sos_phone: (608) 266-8005
   sos_url: https://myvote.wi.gov
   sub_18: 17_turn_18
