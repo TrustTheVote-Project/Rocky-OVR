@@ -29,7 +29,7 @@ record_0:
   sos_address: Office of the Secretary of State<br>Elections Division<br>P.O. Box
     5616<br>Montgomery, AL 36103-5616
   sos_phone: (800) 274-VOTE
-  sos_url: http://www.sos.state.al.us/Elections/Default.aspx
+  sos_url: http://www.alabamavotes.gov/
   sub_18: be_by_next_election
   registration_deadline: postmarked_14_days
   online_registration_url: https://www.alabamavotes.gov/olvr/default.aspx
@@ -108,7 +108,7 @@ record_6:
   sos_address: Secretary of State<br>Elections Division<br>30 Trinity Street<br>Hartford,
     CT 06106
   sos_phone: (800) 509-6100
-  sos_url: http://www.sots.ct.gov/sots/cwp/view.asp?a=3&Q=415810&sotsNav=|
+  sos_url: http://www.sots.ct.gov/sots/cwp/view.asp?a=3172&q=525432
   sub_18: once_turned_17
   registration_deadline: connecticut
   online_registration_url: https://voterregistration.ct.gov/OLVR/
@@ -242,7 +242,7 @@ record_16:
   sos_address: Secretary of State<br>Memorial Hall - 1st Floor<br>120 SW 10th Ave.<br>Topeka,
     KS 66612-1594
   sos_phone: (785) 796-4564
-  sos_url: http://www.kssos.org/elections/elections.html
+  sos_url: http://www.voteks.org/
   sub_18: be_by_next_general_election_november
   registration_deadline: kansas
   pdf_instructions: kansas
@@ -297,7 +297,7 @@ record_20:
   id_number_tooltip: maryland
   sos_address: State Board of Elections<br>P.O. Box 6486<br>Annapolis, MD 21401-0486
   sos_phone: (800) 222-VOTE
-  sos_url: http://www.electionsmaryland.com
+  sos_url: http://elections.maryland.gov/voter_registration/index.html
   registration_deadline: postmarked_21_days
   id_length_min: '4'
   online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/
@@ -344,7 +344,7 @@ record_23:
   sos_address: Secretary of State<br>180 State Office Bldg<br>100 Rev. MLK Drive<br>St.
     Paul, MN 55155-1299
   sos_phone: (651) 215-1440
-  sos_url: http://www.sos.state.mn.us/home/index.asp?page=134
+  sos_url: http://elections.maryland.gov/voter_registration/index.html
   registration_deadline: received_21_days
   id_length_min: '4'
 record_24:
@@ -355,7 +355,7 @@ record_24:
   id_number_tooltip: drivers_license_current_and_valid
   sos_address: Secretary of State<br>P.O. Box 136<br>Jackson, MS 39205-0136
   sos_phone: (800) 829-6786
-  sos_url: http://www.sos.state.ms.us/elections/elections.asp
+  sos_url: http://www.sos.ms.gov/elections-voting/pages/default.aspx
   sub_18: be_by_next_general_election_november
   registration_deadline: postmarked_30_days
   id_length_min: '4'
@@ -393,7 +393,7 @@ record_27:
   id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: Elections Office<br>P.O. Box 94608<br>Lincoln, NE 68509
   sos_phone: (402) 471-2555
-  sos_url: http://www.sos.state.ne.us/elec/
+  sos_url: http://www.sos.ms.gov/elections-voting/pages/default.aspx
   sub_18: be_by_next_general_election_november
   registration_deadline: nebraska
   id_length_min: '4'
@@ -482,7 +482,7 @@ record_33:
   id_number_tooltip: drivers_license_or_dmv_with_state_name
   sos_address: State Board of Elections<br>P.O. Box 27255<br>Raleigh, NC 27611-7255
   sos_phone: (919) 733-7173
-  sos_url: https://enr.ncsbe.gov/voter_search_public/
+  sos_url: http://www.ncsbe.gov/
   registration_deadline: received_25_days
   id_length_min: '4'
 record_34:
@@ -590,7 +590,7 @@ record_41:
   id_number_tooltip: south_dakota
   sos_address: Elections, Secretary of State<br>500 E. Capitol<br>Pierre, SD 57501-5070
   sos_phone: (605) 773-3537
-  sos_url: http://sdsos.gov/Elections/Default.aspx
+  sos_url: http://sdsos.gov/elections-voting/default.aspx
   registration_deadline: received_15_days
 record_42:
   abbreviation: TN
@@ -603,7 +603,7 @@ record_42:
   sos_address: Elections<br>7th Floor, Snodgrass Tower<br>312 Rosa L. Parks Avenue<br>Nashville,
     TN 37243-1102
   sos_phone: (615) 741-7956
-  sos_url: http://www.state.tn.us/sos/election/index.htm
+  sos_url: http://sos.tn.gov/elections
   registration_deadline: postmarked_30_days
   id_length_min: '4'
 record_43:
