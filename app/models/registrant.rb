@@ -288,6 +288,13 @@ class Registrant < ActiveRecord::Base
     
   end
   
+  validate do |reg|
+    if reg.at_least_step_3? || (reg.at_least_step_2? && reg.use_short_form?)
+      reg.validate_state_id_number
+    end
+  end
+      
+  
   with_options :if => [:at_least_step_2?, :use_short_form?] do |reg|
     reg.validates_presence_of :state_id_number, :unless=>:complete?
     reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|[-*A-Z0-9\s]{7,42})$/i, :allow_blank => true
@@ -574,6 +581,14 @@ class Registrant < ActiveRecord::Base
       self.opt_in_email = false
     end
     return true
+  end
+
+  def validate_state_id_number
+    return true if self.state_id_number.blank?
+    regexp = /^(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))$/i
+    if (self.state_id_number =~ regexp)==nil
+      errors.add(:state_id_number, :invalid)
+    end
   end
 
   def validate_phone_present_if_opt_in_sms_at_least_step_2
