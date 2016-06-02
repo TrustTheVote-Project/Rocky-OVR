@@ -14,4 +14,4 @@ RAILS_ENV=staging2 bundle exec rake db:migrate
 RAILS_ENV=staging2 bundle exec rake db:bootstrap
 RAILS_ENV=staging2 bundle exec rake import:states
 
-# touch tmp/restart.txt
+touch tmp/restart.txt
