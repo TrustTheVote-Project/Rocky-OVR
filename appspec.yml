@@ -4,7 +4,7 @@ files:
   - source: /
     destination: /var/www/rocky
   - source: /script/aws/httpd-staging2.conf
-    destination: /etc/httpd/conf/httpd.conf
+    destination: /etc/httpd/conf
 permissions:
   - object: /var/www/rocky
     pattern: "**"
