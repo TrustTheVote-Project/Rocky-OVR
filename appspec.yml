@@ -5,9 +5,9 @@ files:
     destination: /var/www/rocky
 permissions:
   - object: /var/www/rocky
-      owner: ec2-user
-      group: ec2-user
-      type: directory
+    owner: ec2-user
+    group: ec2-user
+    type: directory
 hooks:
   BeforeInstall:
     - location: script/aws/install_lib_dependencies.sh
