@@ -10,4 +10,4 @@ hooks:
       runas: root
     - location: script/aws/install_rvm_passenger.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
