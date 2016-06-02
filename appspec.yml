@@ -5,9 +5,9 @@ files:
     destination: /var/www/rocky
 hooks:
   BeforeInstall:
-    - location: scripts/aws/install_lib_dependencies.sh
+    - location: script/aws/install_lib_dependencies.sh
       timeout: 300
       runas: root
-    - location: scripts/aws/install_rvm_passenger.sh
+    - location: script/aws/install_rvm_passenger.sh
       timeout: 300
       runas: ec2-user
