@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO: test if this is all set-up, if so don't run these!
 cd /home/ec2-user
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 # Most of the time gpg2 is not necessary, so keep going if it doesn't work
