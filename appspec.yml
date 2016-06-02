@@ -3,7 +3,7 @@ os: linux
 files:
   - source: /
     destination: /var/www/rocky
-  - source: /script/httpd-staging2.conf
+  - source: /script/aws/httpd-staging2.conf
     destination: /etc/httpd/conf/httpd.conf
 permissions:
   - object: /var/www/rocky
