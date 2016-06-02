@@ -1,5 +1,6 @@
 #!/bin/bash
 cd /home/ec2-user
+source /home/ec2-user/.rvm/scripts/rvm 
 PASSENGER_VERSION=$(passenger-config --version)
 
 if [ $PASSENGER_VERSION != '3.0.19' ]; then
