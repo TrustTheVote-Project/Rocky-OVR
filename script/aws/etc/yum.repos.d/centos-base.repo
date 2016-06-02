@@ -1,6 +1,0 @@
-[base]
-name=CentOS-6 - Base
-baseurl=http://centos.osuosl.org/6/os/$basearch
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6  
