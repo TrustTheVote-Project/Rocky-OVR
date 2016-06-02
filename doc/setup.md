@@ -81,6 +81,13 @@ in your `.env` file (which only needs to exist on your development machine, or
 wherever you run your cap scripts from). See `.env.example` for a list of what
 values need to be specified.
 
+
+## 3a. AWS Deploys
+
+To watch a particular codedeploy, run on the ec2 server:
+
+    tail -n100 -f  /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log
+
 ## 3. Configure servers
 
 The current deploy process for all environments assumes a separate web and
