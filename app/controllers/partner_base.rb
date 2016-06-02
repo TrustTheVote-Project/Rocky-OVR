@@ -71,10 +71,10 @@ class PartnerBase < ApplicationController
     @nav_class = Hash.new
   end
   
-  def redirect_ui_role
-    if ENV['ROCKY_ROLE'] == 'UI'
-      redirect_to "#{RockyConf.api_host_name }/login"
-    end
-  end
+  # def redirect_ui_role
+  #   if ENV['ROCKY_ROLE'] == 'UI'
+  #     redirect_to "#{RockyConf.api_host_name }/login"
+  #   end
+  # end
 
 end

@@ -25,7 +25,6 @@
 class Admin::BaseController < ApplicationController
 
   layout 'admin'
-  before_filter :redirect_ui_role
 
   skip_before_filter :authenticate_everything
   before_filter :authenticate, :if => lambda { !%w{ development test }.include?(Rails.env) }
@@ -39,11 +38,6 @@ class Admin::BaseController < ApplicationController
     end
   end
 
-  def redirect_ui_role
-    if ENV['ROCKY_ROLE'] == 'UI'
-      redirect_to "#{RockyConf.api_host_name }/admin"
-    end
-  end
 
 
 end

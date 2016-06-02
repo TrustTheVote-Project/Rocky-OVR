@@ -183,20 +183,6 @@ class Registrant < ActiveRecord::Base
   aasm_state :rejected
 
   belongs_to :partner
-  # belongs_to :remote_partner
-  def partner
-    !remote_partner_id.blank? ? RemotePartner.find(remote_partner_id) : super
-  end
-  def partner=(obj)
-    if obj.is_a?(RemotePartner)
-      self.remote_partner_id = obj.id
-    else
-      super
-    end
-  end
-  def remote_partner_id_present?
-    !self.remote_partner_id.blank?
-  end
 
   belongs_to :home_state,    :class_name => "GeoState"
   belongs_to :mailing_state, :class_name => "GeoState"
@@ -1069,31 +1055,31 @@ class Registrant < ActiveRecord::Base
   end
 
   def complete_registration
-    begin
-      response = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations.json", 
-        {:registration => self.to_api_hash}.to_json, :content_type => :json, :accept => :json
-      ))
-      
-      self.remote_uid = response["uid"]
-      self.remote_pdf_path = response["pdfurl"]
-      self.save!
-      redact_sensitive_data
-      return true
-    rescue Exception => e
-      begin
-        Rails.logger.error e.response
-      rescue Exception => e2
-        Rails.logger.error e.message
-        Rails.logger.error e.backtrace
-      end
-      raise "Error submiting to core API"
-    end
+    # begin
+    #   response = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations.json",
+    #     {:registration => self.to_api_hash}.to_json, :content_type => :json, :accept => :json
+    #   ))
+    #
+    #   self.remote_uid = response["uid"]
+    #   self.remote_pdf_path = response["pdfurl"]
+    #   self.save!
+    #   redact_sensitive_data
+    #   return true
+    # rescue Exception => e
+    #   begin
+    #     Rails.logger.error e.response
+    #   rescue Exception => e2
+    #     Rails.logger.error e.message
+    #     Rails.logger.error e.backtrace
+    #   end
+    #   raise "Error submiting to core API"
+    # end
     
     
-    # I18n.locale = self.locale.to_sym
-    # generate_pdf
-    # deliver_confirmation_email
-    # enqueue_reminder_emails
+    I18n.locale = self.locale.to_sym
+    generate_pdf
+    deliver_confirmation_email
+    enqueue_reminder_emails
   end
   
   def self.remote_pdf_ready?(uid)
