@@ -18,3 +18,9 @@ RAILS_ENV=staging2 bundle exec rake import:states
 RAILS_ENV=staging2 bundle exec rake assets:precompile
 
 touch tmp/restart.txt
+
+echo $LIFECYCLE_EVENT
+echo $DEPLOYMENT_ID
+echo $APPLICATION_NAME
+echo $DEPLOYMENT_GROUP_NAME
+echo $DEPLOYMENT_GROUP_ID
