@@ -1,8 +1,13 @@
 #!/bin/bash
 
-IFS='_' read -r -a ENV_ROLE <<< "$DEPLOYMENT_GROUP_NAME"
-RAILS_ENV=$ENV_ROLE[0]
-SERVER_ROLE=$ENV_ROLE[1]
+IFS='_' read -ra ENV_ROLE <<< "$DEPLOYMENT_GROUP_NAME"
+RAILS_ENV="${ENV_ROLE[0]}"
+SERVER_ROLE="${ENV_ROLE[1]}"
+
+echo $DEPLOYMENT_GROUP_NAME
+echo $SERVER_ROLE
+echo $RAILS_ENV
+
 
 cd /var/www/rocky
 source /home/ec2-user/.rvm/scripts/rvm 
@@ -11,8 +16,8 @@ gem install bundler
 bundle install --without development test
 
 # Make sure we have the config files downloaded
-aws s3 cp s3://rocky-staging2-codedeploy/database.yml config/database.yml --region us-west-2
-aws s3 cp s3://rocky-staging2-codedeploy/.env.staging2 .env.staging2 --region us-west-2
+aws s3 cp s3://rocky-$RAILS_ENV-codedeploy/database.yml config/database.yml --region us-west-2
+aws s3 cp s3://rocky-$RAILS_ENV-codedeploy/.env.$RAILS_ENV .env.$RAILS_ENV --region us-west-2
 
 if [ $SERVER_ROLE == 'util' ]; then
     echo "I'm a util server"
@@ -36,8 +41,6 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     echo "I'm a PDF server"
 fi
 
-echo $SERVER_ROLE
-echo $RAILS_ENV
 
 # echo $LIFECYCLE_EVENT
 # echo $DEPLOYMENT_ID
