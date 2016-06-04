@@ -70,5 +70,4 @@ class PartnerBase < ApplicationController
     @nav_class = Hash.new
   end
   
-
-  endp
+end
