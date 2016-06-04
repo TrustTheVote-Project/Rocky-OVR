@@ -22,17 +22,18 @@ if [ $SERVER_ROLE == 'util' ]; then
     RAILS_ENV=$RAILS_ENV bundle exec rake db:bootstrap
     RAILS_ENV=$RAILS_ENV bundle exec rake import:states
 
-    RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
     # restart the PDF workers
 fi
 
 if [ $SERVER_ROLE == 'web' ]; then
     echo "I'm a web server"
+    RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
     touch tmp/restart.txt
 fi
 
 if [ $SERVER_ROLE == 'pdf' ]; then
     # restart the PDF workers
+    echo "I'm a PDF server"
 fi
 
 echo $SERVER_ROLE
