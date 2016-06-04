@@ -1,4 +1,9 @@
 #!/bin/bash
+
+IFS='_' read -r -a ENV_ROLE <<< "$DEPLOYMENT_GROUP_NAME"
+RAILS_ENV=$ENV_ROLE[0]
+SERVER_ROLE=$ENV_ROLE[1]
+
 cd /var/www/rocky
 source /home/ec2-user/.rvm/scripts/rvm 
 rvm use ruby-1.9.3-p551@rocky6
@@ -9,18 +14,38 @@ bundle install --without development test
 aws s3 cp s3://rocky-staging2-codedeploy/database.yml config/database.yml --region us-west-2
 aws s3 cp s3://rocky-staging2-codedeploy/.env.staging2 .env.staging2 --region us-west-2
 
-# TODO: get these to use a standard environment variable?
-RAILS_ENV=staging2 bundle exec rake db:migrate
-# TODO: Only run once!!
-RAILS_ENV=staging2 bundle exec rake db:bootstrap
-RAILS_ENV=staging2 bundle exec rake import:states
+if [ $SERVER_ROLE == 'util' ]; then
+    echo "I'm a util server"
+    # TODO: get these to use a standard environment variable?
+    RAILS_ENV=$RAILS_ENV bundle exec rake db:migrate
+    # TODO: Only run once!!
+    RAILS_ENV=$RAILS_ENV bundle exec rake db:bootstrap
+    RAILS_ENV=$RAILS_ENV bundle exec rake import:states
 
-RAILS_ENV=staging2 bundle exec rake assets:precompile
+    RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
+    # restart the PDF workers
+fi
 
-touch tmp/restart.txt
+if [ $SERVER_ROLE == 'web' ]; then
+    echo "I'm a web server"
+    touch tmp/restart.txt
+fi
 
-echo $LIFECYCLE_EVENT
-echo $DEPLOYMENT_ID
-echo $APPLICATION_NAME
-echo $DEPLOYMENT_GROUP_NAME
-echo $DEPLOYMENT_GROUP_ID
+if [ $SERVER_ROLE == 'pdf' ]; then
+    # restart the PDF workers
+fi
+
+echo $SERVER_ROLE
+echo $RAILS_ENV
+
+# echo $LIFECYCLE_EVENT
+# echo $DEPLOYMENT_ID
+# echo $APPLICATION_NAME
+# echo $DEPLOYMENT_GROUP_NAME
+# echo $DEPLOYMENT_GROUP_ID
+
+# [2016-06-04 19:05:29.180] [d-0WNIF2G0G][stdout]AfterInstall
+# [2016-06-04 19:05:29.180] [d-0WNIF2G0G][stdout]d-0WNIF2G0G
+# [2016-06-04 19:05:29.180] [d-0WNIF2G0G][stdout]rocky
+# [2016-06-04 19:05:29.180] [d-0WNIF2G0G][stdout]staging2
+# [2016-06-04 19:05:29.180] [d-0WNIF2G0G][stdout]1324e2a4-7ad8-46ad-be04-720a4c523899
