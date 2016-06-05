@@ -7,6 +7,7 @@ SERVER_ROLE="${ENV_ROLE[1]}"
 
 cd /var/www/rocky
 source /etc/profile.d/rvm.sh
+rvm install 1.9.3-p551
 rvm use ruby-1.9.3-p551@rocky6
 gem install bundler
 bundle install --without development test
