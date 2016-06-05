@@ -1,13 +1,9 @@
 #!/bin/bash
 
+# curl http://169.254.169.254/latest/meta-data/ ?
 IFS='_' read -ra ENV_ROLE <<< "$DEPLOYMENT_GROUP_NAME"
 RAILS_ENV="${ENV_ROLE[0]}"
 SERVER_ROLE="${ENV_ROLE[1]}"
-
-echo $DEPLOYMENT_GROUP_NAME
-echo $SERVER_ROLE
-echo $RAILS_ENV
-
 
 cd /var/www/rocky
 source /home/ec2-user/.rvm/scripts/rvm 

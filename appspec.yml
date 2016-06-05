@@ -20,10 +20,7 @@ permissions:
       - file
 hooks:
   BeforeInstall:
-    - location: script/aws/install_lib_dependencies.sh
-      timeout: 300
-      runas: root
-    - location: script/aws/install_rvm_passenger.sh
+    - location: script/aws/backup_previous_revision.sh
       timeout: 300
       runas: ec2-user
   AfterInstall:
