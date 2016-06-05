@@ -6,7 +6,7 @@ RAILS_ENV="${ENV_ROLE[0]}"
 SERVER_ROLE="${ENV_ROLE[1]}"
 
 cd /var/www/rocky
-source /home/ec2-user/.rvm/scripts/rvm 
+source /etc/profile.d/rvm.sh
 rvm use ruby-1.9.3-p551@rocky6
 gem install bundler
 bundle install --without development test
