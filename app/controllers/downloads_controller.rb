@@ -29,9 +29,7 @@ class DownloadsController < RegistrationStep
   
   def show
     find_registrant(:download)
-    if @registrant.remote_uid.blank?
-      render "error"
-    elsif @registrant.remote_pdf_ready?
+    if @registrant.pdf_ready?
       render "show"
     elsif @registrant.javascript_disabled?
       if @registrant.updated_at < 30.seconds.ago && !@registrant.email_address.blank?
@@ -40,7 +38,7 @@ class DownloadsController < RegistrationStep
         render "preparing"
       end
     else
-      @uid = @registrant.remote_uid
+      @uid = nil #@registrant.remote_uid
       @timeout = !@registrant.email_address.blank?
       render "preparing"
     end

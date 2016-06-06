@@ -40,7 +40,7 @@ class RegistrantsController < RegistrationStep
     options[:tracking] = params[:tracking] if params[:tracking]
     options[:short_form] = params[:short_form] if params[:short_form]
     options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
-    options.merge!(:protocol => "https") unless Rails.env.development?
+    options.merge!(:protocol => "https") if RockyConf.use_https
     redirect_to new_registrant_url(options)
   end
 
@@ -50,7 +50,7 @@ class RegistrantsController < RegistrationStep
     if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
       redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
     else
-      @registrant = Registrant.new(:remote_partner_id => @partner_id, :locale => @locale, :tracking_source => @source, :tracking_id=>@tracking, :short_form=>@short_form, :collect_email_address=>@collect_email_address)
+      @registrant = Registrant.new(:partner_id => @partner_id, :locale => @locale, :tracking_source => @source, :tracking_id=>@tracking, :short_form=>@short_form, :collect_email_address=>@collect_email_address)
       render "show"
     end
   end
@@ -60,7 +60,7 @@ class RegistrantsController < RegistrationStep
     set_up_locale
     @registrant = Registrant.new(params[:registrant].reverse_merge(
                                     :locale => @locale,
-                                    :remote_partner_id => @partner_id,
+                                    :partner_id => @partner_id,
                                     :tracking_source => @source,
                                     :tracking_id => @tracking,
                                     :short_form => @short_form,

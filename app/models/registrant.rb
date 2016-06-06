@@ -231,7 +231,7 @@ class Registrant < ActiveRecord::Base
   before_save :set_questions, :set_finish_with_state
 
   with_options :if => :at_least_step_1? do |reg|
-    reg.validates_presence_of   :partner_id, :unless=>[:remote_partner_id_present?]
+    reg.validates_presence_of   :partner_id #, :unless=>[:remote_partner_id_present?]
     reg.validates_inclusion_of  :has_state_license, :in=>[true,false], :unless=>[:building_via_api_call]
     reg.validates_inclusion_of  :will_be_18_by_election, :in=>[true,false], :unless=>[:building_via_api_call]
     
@@ -1075,11 +1075,15 @@ class Registrant < ActiveRecord::Base
     #   raise "Error submiting to core API"
     # end
     
+    self.status = 'complete'
+    saved = self.save
+    queue_pdf
+    return saved
     
-    I18n.locale = self.locale.to_sym
-    generate_pdf
-    deliver_confirmation_email
-    enqueue_reminder_emails
+    # I18n.locale = self.locale.to_sym
+    # generate_pdf
+    # deliver_confirmation_email
+    # enqueue_reminder_emails
   end
   
   def self.remote_pdf_ready?(uid)
