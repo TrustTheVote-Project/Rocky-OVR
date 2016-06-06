@@ -1264,13 +1264,16 @@ class Registrant < ActiveRecord::Base
     self.pdf_downloaded = true
     self.pdf_downloaded_at = DateTime.now
     self.save
-    return pdf_path
+    return pdf_url
   end
   
   def pdf_file_path(pdfpre=nil)
     pdf_writer.pdf_file_path(pdfpre)
   end
   
+  def pdf_url(pdfpre = nil, file=false)
+   "https://s3-us-west-2.amazonaws.com/rocky-pdfs-#{Rails.env}#{pdf_path(pdfpre, file)}"
+  end
   def pdf_path(pdfpre = nil, file=false)
     pdf_writer.pdf_path(pdfpre, file)
   end
