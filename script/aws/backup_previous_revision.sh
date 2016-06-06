@@ -1,8 +1,3 @@
-# Make sure a writeable pdfs folder exists for tmp writing
-sudo mkdir -p /pdfs
-sudo chown ec2-user /pdfs
-sudo chgrp ec2-user /pdfs
-
 # TODO Before downloading the latest code, back up existing code base
 # Have the app served from a symlinked location, so we can just change the pointer for a quick revert
 sudo mkdir -p /var/www/rocky-last-deploy
