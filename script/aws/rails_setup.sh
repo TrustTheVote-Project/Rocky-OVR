@@ -23,6 +23,7 @@ if [ $SERVER_ROLE == 'util' ]; then
     # TODO: Only run once!!
     RAILS_ENV=$RAILS_ENV bundle exec rake db:bootstrap
     RAILS_ENV=$RAILS_ENV bundle exec rake import:states
+    RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
 
     # restart the PDF workers
 fi

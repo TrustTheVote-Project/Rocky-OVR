@@ -140,7 +140,7 @@ class PdfWriter
     return false if !html_string
 
     if force_write || !pdf_exists?
-      PdfWriter.write_pdf_from_html_string(html_string, pdf_file_path, self.locale, pdf_file_dir)
+      PdfWriter.write_pdf_from_html_string(html_string, pdf_file_path, self.locale, pdf_file_dir, pdf_path)
     end
     # lets assume if there's no error raise, the file got generated (to limit FS operations)
     return true
@@ -204,7 +204,7 @@ class PdfWriter
 
 
 
-  def self.write_pdf_from_html_string(html_string, path, locale, pdf_file_dir)
+  def self.write_pdf_from_html_string(html_string, path, locale, pdf_file_dir, url_path)
     pdf = WickedPdf.new.pdf_from_string(
       html_string,
       :disable_internal_links         => false,
@@ -216,7 +216,33 @@ class PdfWriter
     File.open(path, "w") do |f|
       f << pdf.force_encoding('UTF-8')
     end
+    # And then upload it to s3
+    uploaded = self.upload_pdf_to_s3(path, url_path)
+    # If it got there, delete the tmp file
+    if uploaded
+      File.delete(path)
+    else
+      # Handle failed upload to S3 - it's probably raising an error
+    end
   end   
+  
+  def self.upload_pdf_to_s3(path, url_path)
+    connection = Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :region                   => 'us-west-2'
+    })
+    bucket_name = "rocky-pdfs-#{Rails.env}"
+    directory = connection.directories.get(bucket_name)
+    file = directory.files.create(
+      :key    => url_path.gsub(/^\//,''),
+      :body   => File.open(path).read,
+      :content_type => "application/pdf",
+      :encryption => 'AES256', #Make sure its encrypted on their own hard drives
+      :public => true
+    )    
+  end
   
   private 
   
