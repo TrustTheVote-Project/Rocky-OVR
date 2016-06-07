@@ -19,7 +19,7 @@ module PdfQueueBase
     end
     queue_registrant(options[:registrant_id])
   rescue Exception => e
-    Rails.logger.error "Registraint #{options[:registrant_id]} not queued for PDF generation!:\n#{e.message}\n#{e.backtrace}"
+    Rails.logger.error "Registraint #{options[:registrant_id]} not queued for PDF generation!:\n#{e.message}\n#{e.backtrace.join("\n")}"
     return false
   end
   
@@ -42,7 +42,8 @@ module PdfQueueBase
       #body == registrant_id
     else
       if self == PriorityPdfGeneration
-        PdfGeneration.find_and_generate
+        puts "Get a regular one"
+        PdfGeneration.receive_and_generate
         return nil
       end
       sleep(sleep_timeout)
@@ -143,7 +144,7 @@ module PdfQueueBase
       end
     end
   rescue Exception => e
-    Rails.logger.error("#{Time.now} Error finding and generating PDF:\n#{e.message}\n#{e.backtrace}")
+    Rails.logger.error("#{Time.now} Error finding and generating PDF:\n#{e.message}\n#{e.backtrace.join("\n")}")
     sleep(15)
     #raise e
   end
