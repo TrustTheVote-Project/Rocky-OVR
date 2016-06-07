@@ -36,6 +36,8 @@ if [ $SERVER_ROLE == 'util' ]; then
     # make sure the script is executable
     chmod u+x script/*worker
     # restart the PDF workers TODO: how many times?
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop
+    sleep 10
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
     
     # TODO: enable and start the regular jobs worker (for report generation)
@@ -61,6 +63,8 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     # make sure the script is executable
     chmod u+x script/*worker
     # restart the PDF workers TODO: how many times?
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop
+    sleep 10
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
     
 fi

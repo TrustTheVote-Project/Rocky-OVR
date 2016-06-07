@@ -432,35 +432,35 @@ class Registrant < ActiveRecord::Base
     find_by_param(param) || begin raise ActiveRecord::RecordNotFound end
   end
   
-  def self.old_ui_record_ids
-    self.where("updated_at < ?", ui_timeout_minutes.minutes.ago).pluck(:id)
-  end
+  # def self.old_ui_record_ids
+  #   self.where("updated_at < ?", ui_timeout_minutes.minutes.ago).pluck(:id)
+  # end
 
-  def self.ui_timeout_minutes
-    RockyConf.ui_timeout_minutes
-  end
+  # def self.ui_timeout_minutes
+  #   RockyConf.ui_timeout_minutes
+  # end
   
-  def self.process_ui_records
-    self.where("status='complete' AND updated_at < ?", ui_timeout_minutes.minutes.ago).delete_all
-    results = {}
-    self.old_ui_record_ids.each_slice(10) do |id_list|
-      registrants = self.where("id in (?)", id_list)
-      reg_hashes = registrants.collect {|r| r.to_bulk_api_hash }
-      created_records = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations/bulk.json", {
-          :registrants => reg_hashes, 
-          :partner_id=>Partner::DEFAULT_ID, 
-          :partner_API_key=>ENV['ROCKY_CORE_API_KEY']
-      }.to_json, :content_type => :json, :accept => :json))
-      
-      created_records["registrants_added"].each_with_index do |creation_status,idx|
-        results[registrants[idx].id] = creation_status
-        if creation_status[0] == true
-          registrants[idx].delete
-        end
-      end
-    end
-    results
-  end
+  # def self.process_ui_records
+  #   self.where("status='complete' AND updated_at < ?", ui_timeout_minutes.minutes.ago).delete_all
+  #   results = {}
+  #   self.old_ui_record_ids.each_slice(10) do |id_list|
+  #     registrants = self.where("id in (?)", id_list)
+  #     reg_hashes = registrants.collect {|r| r.to_bulk_api_hash }
+  #     created_records = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations/bulk.json", {
+  #         :registrants => reg_hashes,
+  #         :partner_id=>Partner::DEFAULT_ID,
+  #         :partner_API_key=>ENV['ROCKY_CORE_API_KEY']
+  #     }.to_json, :content_type => :json, :accept => :json))
+  #
+  #     created_records["registrants_added"].each_with_index do |creation_status,idx|
+  #       results[registrants[idx].id] = creation_status
+  #       if creation_status[0] == true
+  #         registrants[idx].delete
+  #       end
+  #     end
+  #   end
+  #   results
+  # end
 
   def self.abandon_stale_records
     id_list = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id)
@@ -1086,31 +1086,31 @@ class Registrant < ActiveRecord::Base
     # enqueue_reminder_emails
   end
   
-  def self.remote_pdf_ready?(uid)
-    response = JSON.parse(RestClient.get("#{RockyConf.api_host_name}/api/v3/registrations/pdf_ready.json?UID=#{uid}"))    
-    return (response["pdf_ready"] == true)
-  rescue Exception => e
-    begin
-      Rails.logger.error e.response
-    rescue Exception => e2
-      Rails.logger.error e.message
-      Rails.logger.error e.backtrace
-    end
-    return false
-  end
+  # def self.remote_pdf_ready?(uid)
+  #   response = JSON.parse(RestClient.get("#{RockyConf.api_host_name}/api/v3/registrations/pdf_ready.json?UID=#{uid}"))
+  #   return (response["pdf_ready"] == true)
+  # rescue Exception => e
+  #   begin
+  #     Rails.logger.error e.response
+  #   rescue Exception => e2
+  #     Rails.logger.error e.message
+  #     Rails.logger.error e.backtrace
+  #   end
+  #   return false
+  # end
   
-  def self.stop_reminders(uid)
-    response = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations/stop_reminders.json", {:UID=>uid}))    
-    return response.symbolize_keys
-  rescue Exception => e
-    begin
-      Rails.logger.error e.response
-    rescue Exception => e2
-      Rails.logger.error e.message
-      Rails.logger.error e.backtrace
-    end
-    return {:reminders_stopped=>false}
-  end
+  # def self.stop_reminders(uid)
+  #   response = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations/stop_reminders.json", {:UID=>uid}))
+  #   return response.symbolize_keys
+  # rescue Exception => e
+  #   begin
+  #     Rails.logger.error e.response
+  #   rescue Exception => e2
+  #     Rails.logger.error e.message
+  #     Rails.logger.error e.backtrace
+  #   end
+  #   return {:reminders_stopped=>false}
+  # end
   
   def stop_reminders_url
     self.custom_stop_reminders_url.blank? ? default_stop_reminders_url : custom_stop_reminders_url_with_uid
