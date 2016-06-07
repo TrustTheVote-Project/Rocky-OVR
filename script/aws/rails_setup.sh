@@ -69,6 +69,8 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     
 fi
 
+echo Finished rails set up at:
+date
 
 # echo $LIFECYCLE_EVENT
 # echo $DEPLOYMENT_ID

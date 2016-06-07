@@ -42,7 +42,6 @@ module PdfQueueBase
       #body == registrant_id
     else
       if self == PriorityPdfGeneration
-        puts "Get a regular one"
         PdfGeneration.receive_and_generate
         return nil
       end
