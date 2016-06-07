@@ -18,6 +18,7 @@ aws s3 cp s3://rocky-$RAILS_ENV-codedeploy/.env.$RAILS_ENV .env.$RAILS_ENV --reg
 
 if [ $SERVER_ROLE == 'util' ]; then
     echo "I'm a util server"
+    cd /var/www/rocky
     # TODO: get these to use a standard environment variable?
     RAILS_ENV=$RAILS_ENV bundle exec rake db:migrate
     # TODO: Only run once!!
@@ -25,7 +26,24 @@ if [ $SERVER_ROLE == 'util' ]; then
     RAILS_ENV=$RAILS_ENV bundle exec rake import:states
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
 
-    # restart the PDF workers
+    # TODO: make sure cron is installed?
+    
+    
+    # ensure the file structure exists
+    cd /var/www/rocky
+    mkdir -p tmp/pids
+    # make sure the script is executable
+    chmod u+x script/*worker
+    # restart the PDF workers TODO: how many times?
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
+    
+    # TODO: enable and start the regular jobs worker (for report generation)
+    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner stop
+    sleep 5
+    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
+    
+    # make sure there's a place for translation files
+    mkdir -p tmp/translation_files
 fi
 
 if [ $SERVER_ROLE == 'web' ]; then
@@ -35,8 +53,15 @@ if [ $SERVER_ROLE == 'web' ]; then
 fi
 
 if [ $SERVER_ROLE == 'pdf' ]; then
-    # restart the PDF workers
     echo "I'm a PDF server"
+    # ensure the file structure exists
+    cd /var/www/rocky
+    mkdir -p tmp/pids
+    # make sure the script is executable
+    chmod u+x script/*worker
+    # restart the PDF workers TODO: how many times?
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
+    
 fi
 
 
