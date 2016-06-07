@@ -57,7 +57,8 @@ Rocky::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.perform_deliveries = false
 
   # Enable threaded mode
   # config.threadsafe!
