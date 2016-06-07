@@ -9,6 +9,6 @@ Dotenv.load(".env.#{ENV['RAILS_ENV']}")
 
 loop do
   # this will call the regular pdf gen if no priority pdfs are found
-  PriorityPdfGeneration.find_and_generate
+  PriorityPdfGeneration.receive_and_generate
   # PdfGeneration.find_and_generate
 end

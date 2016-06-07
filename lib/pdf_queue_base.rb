@@ -41,6 +41,10 @@ module PdfQueueBase
       #receipt_handle
       #body == registrant_id
     else
+      if self == PriorityPdfGeneration
+        PdfGeneration.find_and_generate
+        return nil
+      end
       sleep(sleep_timeout)
       return nil
     end
