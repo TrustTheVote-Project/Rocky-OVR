@@ -15,6 +15,7 @@ bundle install --without development test
 # Make sure we have the config files downloaded
 aws s3 cp s3://rocky-$RAILS_ENV-codedeploy/database.yml config/database.yml --region us-west-2
 aws s3 cp s3://rocky-$RAILS_ENV-codedeploy/.env.$RAILS_ENV .env.$RAILS_ENV --region us-west-2
+cat /home/ec2-user/aws_env_vars.txt >> .env.$RAILS_ENV
 
 if [ $SERVER_ROLE == 'util' ]; then
     echo "I'm a util server"

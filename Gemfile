@@ -37,6 +37,7 @@ end
 gem 'rest-client'
 gem 'diffy'
 gem 'asset_sync'
+gem 'aws-sdk'
 
 group :development, :test do
   gem "rspec-rails", "~> 3.2.3"
