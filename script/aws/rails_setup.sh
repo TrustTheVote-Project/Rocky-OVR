@@ -87,7 +87,7 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     # make sure the script is executable
     chmod u+x script/*worker
     # restart the PDF workers
-    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no-wait
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no_wait
     sleep 10    
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --force
     sleep 3
