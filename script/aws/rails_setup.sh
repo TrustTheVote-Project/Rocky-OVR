@@ -17,6 +17,15 @@ aws s3 cp s3://rocky-cloudformation-assets/database.$RAILS_ENV.yml config/databa
 aws s3 cp s3://rocky-cloudformation-assets/.env.$RAILS_ENV .env.$RAILS_ENV --region us-west-2
 cat /home/ec2-user/aws_env_vars.txt >> .env.$RAILS_ENV
 
+NUM_PDF_WORKERS=4
+if [ $RAILS_ENV == 'staging' ]; then
+    NUM_PDF_WORKERS=2
+fi
+if [ $RAILS_ENV == 'staging2' ]; then
+    NUM_PDF_WORKERS=2
+fi
+
+
 if [ $SERVER_ROLE == 'util' ]; then
     echo "I'm a util server"
     cd /var/www/rocky
@@ -35,18 +44,26 @@ if [ $SERVER_ROLE == 'util' ]; then
     mkdir -p tmp/pids
     # make sure the script is executable
     chmod u+x script/*worker
-    # restart the PDF workers TODO: how many times?
-    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop
-    sleep 10
-    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
     
     # TODO: enable and start the regular jobs worker (for report generation)
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner stop
     sleep 5
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
     
+    # restart the PDF workers
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop
+    sleep 10    
+    for run in $(seq 1 $NUM_PDF_WORKERS)
+    do
+        RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
+    done
+    
+    
+    
     # make sure there's a place for translation files
     mkdir -p tmp/translation_files
+    
+    
 fi
 
 if [ $SERVER_ROLE == 'web' ]; then
@@ -62,11 +79,13 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     mkdir -p tmp/pids
     # make sure the script is executable
     chmod u+x script/*worker
-    # restart the PDF workers TODO: how many times?
+    # restart the PDF workers
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop
     sleep 10
-    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
-    
+    for run in $(seq 1 $NUM_PDF_WORKERS)
+    do
+        RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
+    done    
 fi
 
 echo Finished rails set up at:
