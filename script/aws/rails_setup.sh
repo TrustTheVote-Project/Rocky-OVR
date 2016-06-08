@@ -17,6 +17,7 @@ aws s3 cp s3://rocky-cloudformation-assets/database.$RAILS_ENV.yml config/databa
 aws s3 cp s3://rocky-cloudformation-assets/.env.$RAILS_ENV .env.$RAILS_ENV --region us-west-2
 cat /home/ec2-user/aws_env_vars.txt >> .env.$RAILS_ENV
 
+
 NUM_PDF_WORKERS=4
 if [ $RAILS_ENV == 'staging' ]; then
     NUM_PDF_WORKERS=2
@@ -28,12 +29,20 @@ fi
 
 if [ $SERVER_ROLE == 'util' ]; then
     echo "I'm a util server"
+    
+    # Crontab is for UTIL only
+    cd ~
+    aws s3 cp s3://rocky-cloudformation-assets/crontab . --region us-west-2
+    crontab -r
+    # Cat the crontab contents into the crontab editor
+    (crontab -l 2>/dev/null; cat ./crontab) | crontab -
+    
+    
     cd /var/www/rocky
-    # TODO: get these to use a standard environment variable?
     RAILS_ENV=$RAILS_ENV bundle exec rake db:migrate
 
-    # TODO: Only run once!!
-    RAILS_ENV=$RAILS_ENV bundle exec rake db:bootstrap
+    # Only run once!!
+    # RAILS_ENV=$RAILS_ENV bundle exec rake db:bootstrap
     RAILS_ENV=$RAILS_ENV bundle exec rake import:states
 
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
