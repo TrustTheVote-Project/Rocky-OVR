@@ -31,9 +31,11 @@ if [ $SERVER_ROLE == 'util' ]; then
     cd /var/www/rocky
     # TODO: get these to use a standard environment variable?
     RAILS_ENV=$RAILS_ENV bundle exec rake db:migrate
+
     # TODO: Only run once!!
     RAILS_ENV=$RAILS_ENV bundle exec rake db:bootstrap
     RAILS_ENV=$RAILS_ENV bundle exec rake import:states
+
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
 
     # TODO: make sure cron is installed?
@@ -76,6 +78,9 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     echo "I'm a PDF server"
     # ensure the file structure exists
     cd /var/www/rocky
+    RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
+    
+    
     mkdir -p tmp/pids
     # make sure the script is executable
     chmod u+x script/*worker

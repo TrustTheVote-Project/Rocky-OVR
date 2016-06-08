@@ -19,9 +19,9 @@ permissions:
 hooks:
   BeforeInstall:
     - location: script/aws/backup_previous_revision.sh
-      timeout: 300
+      timeout: 600
       runas: ec2-user
   AfterInstall:
     - location: script/aws/rails_setup.sh
-      timeout: 300
+      timeout: 600
       runas: ec2-user
