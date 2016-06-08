@@ -53,8 +53,10 @@ if [ $SERVER_ROLE == 'util' ]; then
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
     
     # restart the PDF workers
-    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no-wait
     sleep 10    
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --force
+    sleep 3
     for run in $(seq 1 $NUM_PDF_WORKERS)
     do
         RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
@@ -85,8 +87,10 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     # make sure the script is executable
     chmod u+x script/*worker
     # restart the PDF workers
-    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop
-    sleep 10
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no-wait
+    sleep 10    
+    RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --force
+    sleep 3
     for run in $(seq 1 $NUM_PDF_WORKERS)
     do
         RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner start
