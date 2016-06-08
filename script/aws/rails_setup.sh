@@ -33,6 +33,7 @@ if [ $SERVER_ROLE == 'util' ]; then
     # Crontab is for UTIL only
     cd ~
     aws s3 cp s3://rocky-cloudformation-assets/crontab . --region us-west-2
+    sed -i 's/RAILS_ENV/'"$RAILS_ENV"'/' ./crontab
     crontab -r
     # Cat the crontab contents into the crontab editor
     (crontab -l 2>/dev/null; cat ./crontab) | crontab -
