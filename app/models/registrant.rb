@@ -1124,9 +1124,9 @@ class Registrant < ActiveRecord::Base
     custom_stop_reminders_url.to_s.gsub("<UID>", self.uid)
   end
   
-  def remote_pdf_ready?
-    self.class.remote_pdf_ready?(self.remote_uid)
-  end
+  # def remote_pdf_ready?
+  #   self.class.remote_pdf_ready?(self.remote_uid)
+  # end
   
   def to_api_hash
     {
