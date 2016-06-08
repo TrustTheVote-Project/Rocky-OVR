@@ -1,0 +1,15 @@
+Prod on OSL:
+Web: 8GB Mem, 4 CPUs
+Util: 8GB Mem, 8 CPUs
+PDF: 8GB Mem, 8CPUs
+PassengerMaxPoolSize 60
+
+1CPU, 2GB Mem (+head room) = 15 Passengers
+m3.medium = 1CPU, 3.75GB
+c4.large = 2CPU (8ECU), 3.75GB
+
+MySQL - 2 core is *plenty*
+Maybe 16GB RAM for prod? 
+* db.r3.large 2 / 15
+db.m4.xlarge 4 / 16
+20GB storage
