@@ -233,7 +233,7 @@ class PdfWriter
       :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
       :region                   => 'us-west-2'
     })
-    bucket_name = "rocky-pdfs-#{Rails.env}"
+    bucket_name = "rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}"
     directory = connection.directories.get(bucket_name)
     file = directory.files.create(
       :key    => url_path.gsub(/^\//,''),

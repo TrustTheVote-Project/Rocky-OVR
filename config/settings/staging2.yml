@@ -1,5 +1,5 @@
 use_https: false
-from_address:  "alex.mekelburg@osetfoundation.org"
+from_address:  "register@rockthevote.com"
 pdf_host_name: 'dev.rocky.trustthevote.org'
 default_url_host: "dev.rocky.trustthevote.org"
 api_host_name: https://rtvdemo:bullwinkle@dev.rocky.trustthevote.org

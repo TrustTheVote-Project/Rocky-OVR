@@ -30,6 +30,7 @@ spec/fixtures/files/*/tmp/*
 .env.development
 .env.test
 .env.cucumber
+aws-assets
 coverage
 config/mobile.yml
 config/states_with_online_registration.yml
