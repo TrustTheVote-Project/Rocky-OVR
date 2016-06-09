@@ -24,8 +24,8 @@ class QueueAnalyzer
       dequeue_per_second = delta / INTERVAL.to_f
       if dequeue_per_second > 0
         return [count / dequeue_per_second, count, dequeue_per_second] # E.g. 20 items at 4 items/sec is 5 secs to dequeue
-      else
-        return [-1, count, dequeue_per_second]
+      else # It's *increasing* - definitiely increase the ttdeque_quue
+        return [999, count, dequeue_per_second]
       end
     else
       return [-1, count, 0]
