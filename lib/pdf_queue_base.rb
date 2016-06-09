@@ -4,6 +4,16 @@ module PdfQueueBase
     ENV["SQS_QUEUE_URL"]
   end
   
+  def count
+    resp  = queue.get_queue_attributes({
+      queue_url: queue_url, # required
+      attributes: ["ApproximateNumberOfMessages"]
+    })
+    return resp.attributes["ApproximateNumberOfMessages"] || 0
+  rescue
+    return 0
+  end
+  
   def queue_registrant(registrant_id)
     resp = queue.send_message({
       queue_url: queue_url, # required

@@ -61,10 +61,16 @@ if [ $SERVER_ROLE == 'util' ]; then
     # make sure the script is executable
     chmod u+x script/*worker
     
-    # TODO: enable and start the regular jobs worker (for report generation)
+    # enable and start the regular jobs worker (for report generation)
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner stop
     sleep 5
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
+
+    # enable and start the cloudwatch queue reporter (for PDFs autoscaling)
+    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_cloudwatch_runner stop
+    sleep 5
+    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_cloudwatch_runner start
+
     
     # restart the PDF workers
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no_wait
