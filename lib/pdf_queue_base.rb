@@ -9,7 +9,7 @@ module PdfQueueBase
       queue_url: queue_url, # required
       attribute_names: ["ApproximateNumberOfMessages"]
     })
-    return resp.attributes["ApproximateNumberOfMessages"] || 0
+    return resp.attributes["ApproximateNumberOfMessages"].to_i
   rescue
     return 0
   end
