@@ -7,7 +7,7 @@ module PdfQueueBase
   def count
     resp  = queue.get_queue_attributes({
       queue_url: queue_url, # required
-      attributes: ["ApproximateNumberOfMessages"]
+      attribute_names: ["ApproximateNumberOfMessages"]
     })
     return resp.attributes["ApproximateNumberOfMessages"] || 0
   rescue

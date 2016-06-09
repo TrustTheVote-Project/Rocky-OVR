@@ -11,7 +11,7 @@ INTERVAL = 3
 
 class QueueAnalyzer
   def self.get_count
-    PdfGeneration.count || 0
+    (PdfGeneration.count || 0) + (PriorityPdfGeneration.count || 0)
   end
   
   def self.seconds_to_empty
