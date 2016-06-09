@@ -2,7 +2,7 @@
 # bundle exec ruby spec/api_load_test.rb  
 
 # Config
-NUM_THREADS = 1  # Number of concurrent users
+NUM_THREADS = 3  # Number of concurrent users
 NUM_REQUESTS = 500 # How many PDFs each user generates
 
 HOST = "https://rtvdemo:bullwinkle@loadtest.rocky.rockthevote.com"
@@ -84,9 +84,9 @@ NUM_THREADS.times do |t|
     NUM_REQUESTS.times do |r|
       request_count += 1
       req = PdfGenRequest.new("thread-#{t}-request-#{r}")
-      puts req.id
       req.make_request
       responses[req.id] = req.response
+      puts "#{req.id}: Executing at #{request_count / (Time.now - start).to_f } reqs/sec"      
     end
   end
   threads << thr

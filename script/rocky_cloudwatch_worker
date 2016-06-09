@@ -10,6 +10,42 @@ Dir.chdir(Rails.root)
 INTERVAL = 10
 
 class QueueAnalyzer
+  
+  def self.get_empty_recieves
+    client = Aws::CloudWatch::Client.new({
+      region: 'us-west-2',
+      access_key_id: ENV['SQS_AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['SQS_AWS_SECRET_ACCESS_KEY']
+    })
+    resp = client.get_metric_statistics({
+      namespace: "AWS/SQS",
+      metric_name: "NumberOfEmptyReceives",
+      dimensions: [{
+        name: "QueueName",
+        value: ENV['SQS_QUEUE_NAME']
+      }],
+      start_time: (Time.now - 60.seconds), # required
+      end_time: Time.now, # required
+      period: 60, # required
+      statistics: ["Sum"]
+    })
+    queue_empties = resp.datapoints[0] ? resp.datapoints[0].sum : 0
+    resp = client.get_metric_statistics({
+      namespace: "AWS/SQS",
+      metric_name: "NumberOfEmptyReceives",
+      dimensions: [{
+        name: "QueueName",
+        value: ENV['SQS_QUEUE_NAME']
+      }],
+      start_time: (Time.now - 60.seconds), # required
+      end_time: Time.now, # required
+      period: 60, # required
+      statistics: ["Sum"]
+    })
+    priority_queue_empties = resp.datapoints[0] ? resp.datapoints[0].sum : 0
+    return queue_empties + priority_queue_empties
+  end
+  
   def self.get_count
     (PdfGeneration.count || 0) + (PriorityPdfGeneration.count || 0)
   end
@@ -34,7 +70,7 @@ class QueueAnalyzer
 end
 
 class CloudWatchPublisher
-  def self.send(seconds, count, dequeue_rate)
+  def self.send(seconds, count, dequeue_rate, total_empty_receives)
     t = Time.now
     Rails.logger.debug "Should dequeue #{count} items in #{seconds} seconds."
     cloudwatch = Aws::CloudWatch::Client.new({
@@ -59,6 +95,16 @@ class CloudWatchPublisher
         metric_name: "dequeue_rate",
         value: dequeue_rate,
         timestamp: t
+      },
+      {
+        metric_name: "enqueue_rate",
+        value: -dequeue_rate,
+        timestamp: t
+      },
+      {
+        metric_name: "total_empty_receives",
+        value: total_empty_receives,
+        timestamp: t
       }]
     })
   end
@@ -67,7 +113,8 @@ end
 loop do
   # this will call the regular pdf gen if no priority pdfs are found
   seconds, count, dequeue_rate = QueueAnalyzer.seconds_to_empty
-  CloudWatchPublisher.send seconds, count, dequeue_rate
+  empty_receives = QueueAnalyzer.get_empty_recieves
+  CloudWatchPublisher.send seconds, count, dequeue_rate, empty_receives
   sleep INTERVAL
   # PdfGeneration.find_and_generate
 end
