@@ -4,9 +4,10 @@ Util: 8GB Mem, 8 CPUs
 PDF: 8GB Mem, 8CPUs
 PassengerMaxPoolSize 60
 
-1CPU, 2GB Mem (+head room) = 15 Passengers
-m3.medium = 1CPU, 3.75GB
-c4.large = 2CPU (8ECU), 3.75GB
+1CPU, 2GB Mem (+head room) = 15 Passengers could double with more ram 1/4 = 30 passengers
+m3.medium = 1CPU, 3.75GB -> Uses all ram but 50% CPU...
+r3.large = 2CPU, 16GB # Try for 45 passengers
+c4.large = 2CPU (8ECU), 3.75GB # 4 PDF workers or 3?
 
 MySQL - 2 core is *plenty*
 Maybe 16GB RAM for prod? 

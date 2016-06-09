@@ -17,8 +17,8 @@ aws s3 cp s3://rocky-cloudformation-assets/database.$RAILS_ENV.yml config/databa
 aws s3 cp s3://rocky-cloudformation-assets/.env.$RAILS_ENV .env.$RAILS_ENV --region us-west-2
 cat /home/ec2-user/aws_env_vars.txt >> .env.$RAILS_ENV
 
-
-NUM_PDF_WORKERS=4
+#4 ? or 3 still gets > 90% cpu usage?
+NUM_PDF_WORKERS=3 
 if [ $RAILS_ENV == 'staging' ]; then
     NUM_PDF_WORKERS=2
 fi
