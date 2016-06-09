@@ -24,11 +24,12 @@ class QueueAnalyzer
         name: "QueueName",
         value: ENV['SQS_QUEUE_NAME']
       }],
-      start_time: (Time.now - 60.seconds), # required
+      start_time: (Time.now - (60*5).seconds), # required
       end_time: Time.now, # required
-      period: 60, # required
+      period: 60*5, # required
       statistics: ["Sum"]
     })
+    raise resp.datapoints[0].inspect
     queue_empties = resp.datapoints[0] ? resp.datapoints[0].sum : 0
     resp = client.get_metric_statistics({
       namespace: "AWS/SQS",
@@ -37,9 +38,9 @@ class QueueAnalyzer
         name: "QueueName",
         value: ENV['SQS_QUEUE_NAME']
       }],
-      start_time: (Time.now - 60.seconds), # required
+      start_time: (Time.now - (60*5).seconds), # required
       end_time: Time.now, # required
-      period: 60, # required
+      period: 60*5, # required
       statistics: ["Sum"]
     })
     priority_queue_empties = resp.datapoints[0] ? resp.datapoints[0].sum : 0
