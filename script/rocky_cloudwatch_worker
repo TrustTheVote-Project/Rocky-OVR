@@ -14,10 +14,12 @@ class QueueAnalyzer
     (PdfGeneration.count || 0) + (PriorityPdfGeneration.count || 0)
   end
   
+  cattr_accessor :previous_count
+  
   def self.seconds_to_empty
     count = self.get_count
     if count > 0
-      delta = self.previous_count - count
+      delta = (self.previous_count || 0) - count
       self.previous_count = count
       dequeue_per_second = delta / INTERVAL.to_f
       if dequeue_per_second > 0
