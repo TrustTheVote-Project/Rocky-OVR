@@ -23,18 +23,18 @@ class QueueAnalyzer
       self.previous_count = count
       dequeue_per_second = delta / INTERVAL.to_f
       if dequeue_per_second > 0
-        return [count / dequeue_per_second, count] # E.g. 20 items at 4 items/sec is 5 secs to dequeue
+        return [count / dequeue_per_second, count, dequeue_per_second] # E.g. 20 items at 4 items/sec is 5 secs to dequeue
       else
-        return [-1, count]
+        return [-1, count, dequeue_per_second]
       end
     else
-      return [-1, count]
+      return [-1, count, 0]
     end
   end
 end
 
 class CloudWatchPublisher
-  def self.send(seconds, count)
+  def self.send(seconds, count, dequeue_rate)
     t = Time.now
     Rails.logger.debug "Should dequeue #{count} items in #{seconds} seconds."
     cloudwatch = Aws::CloudWatch::Client.new({
@@ -54,6 +54,11 @@ class CloudWatchPublisher
         metric_name: "approximate_count",
         value: count,
         timestamp: t
+      },
+      {
+        metric_name: "dequeue_rate",
+        value: dequeue_rate,
+        timestamp: t
       }]
     })
   end
@@ -61,8 +66,8 @@ end
 
 loop do
   # this will call the regular pdf gen if no priority pdfs are found
-  seconds, count = QueueAnalyzer.seconds_to_empty
-  CloudWatchPublisher.send seconds, count
+  seconds, count, dequeue_rate = QueueAnalyzer.seconds_to_empty
+  CloudWatchPublisher.send seconds, count, dequeue_rate
   sleep INTERVAL
   # PdfGeneration.find_and_generate
 end
