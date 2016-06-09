@@ -108,7 +108,7 @@ class CloudWatchPublisher
       },
       {
         metric_name: "too_many_pdf_gens",
-        value: too_many_pdf_gens,
+        value: (too_many_pdf_gens ? 1 : 0),
         timestamp: t
       }]
     })

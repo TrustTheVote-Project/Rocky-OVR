@@ -7,9 +7,9 @@ PassengerMaxPoolSize 60
 1CPU, 2GB Mem (+head room) = 15 Passengers could double with more ram 1/4 = 30 passengers
 m3.medium = 1CPU, 3.75GB ->  15passgeners Uses 3GB ram but only 50% CPU ...
 m3.medium = 1CPU, 3.75GB ->  40passgeners Uses 3.55GB ram but only 60% CPU ...
-m3.large = 2CPU, 8GB # 40 passengers uses 100% of cpu bot only 3-4 GB ram
-m4.large = 2CPU, 8GB # 45 passengers uses 00% of cpu bot only 3-4 GB ram
-c4.large = 2CPU, 3.75GB # 45 passengers uses 00% of cpu bot only 3-4 GB ram
+c4.large = 2CPU, 3.75GB # 45 passengers uses 90% of cpu bot only 3-4 GB ram
+m3.large = 2CPU, 8GB # 40 passengers uses 90% of cpu bot only 3-4 GB ram
+m4.large = 2CPU, 8GB # 45 passengers = ?
 
 r3.large = 2CPU, 16GB # Try for 45 passengers - uses 100% but only 5GB ram
 c4.large = 2CPU (8ECU), 3.75GB # 4 PDF workers or 3?
