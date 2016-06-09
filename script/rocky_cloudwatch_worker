@@ -29,7 +29,6 @@ class QueueAnalyzer
       period: 60*5, # required
       statistics: ["Sum"]
     })
-    raise resp.datapoints[0].inspect
     queue_empties = resp.datapoints[0] ? resp.datapoints[0].sum : 0
     resp = client.get_metric_statistics({
       namespace: "AWS/SQS",
