@@ -59,7 +59,8 @@ end
 
 loop do
   # this will call the regular pdf gen if no priority pdfs are found
-  CloudWatchPublisher.send QueueAnalyzer.seconds_to_empty
+  seconds, count = QueueAnalyzer.seconds_to_empty
+  CloudWatchPublisher.send seconds, count
   sleep INTERVAL
   # PdfGeneration.find_and_generate
 end
