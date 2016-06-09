@@ -2,8 +2,8 @@
 # bundle exec ruby spec/api_load_test.rb  
 
 # Config
-NUM_THREADS = 3  # Number of concurrent users
-NUM_REQUESTS = 500 # How many PDFs each user generates
+NUM_THREADS = 50  # Number of concurrent users
+NUM_REQUESTS = 30 # How many PDFs each user generates
 
 HOST = "https://rtvdemo:bullwinkle@loadtest.rocky.rockthevote.com"
 
