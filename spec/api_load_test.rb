@@ -5,40 +5,9 @@
 NUM_THREADS = 25  # Number of concurrent users
 NUM_REQUESTS = 20 # How many PDFs each user generates
 
-HOST = "https://rtvdemo:bullwinkle@rtvstaging-web1.osuosl.org"
+HOST = "https://rtvdemo:bullwinkle@loadtest.rocky.rockthevote.com"
 
 PATH = "/api/v3/registrations.json"
-
-
-
-# View PDF queue status:
-# bundle exec rails c staging  (for example)
-# copy this method in then run it to see PriorityQueue lenghts
-def view_queue
-  started = false
-  max = 0
-  start_time = nil
-  end_time = nil
-  loop do
-    ct = PriorityPdfGeneration.count
-    if ct > max
-      start_time = Time.now
-      started = true
-      max = ct
-    elsif ct == 0 && started
-      end_time = Time.now
-      started = false
-      puts "Cleared #{max} in #{end_time-start_time} seconds"
-    end    
-    puts ct
-    # puts "Priority Queue"
-    # puts "#{PdfGeneration.count}\t#{PriorityPdfGeneration.count}"
-    sleep 5
-  end
-end
-
-
-  
 
 # This request does not use an email address
 require 'rest-client'

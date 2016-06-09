@@ -34,11 +34,15 @@ if [ $SERVER_ROLE == 'util' ]; then
     cd ~
     aws s3 cp s3://rocky-cloudformation-assets/crontab . --region us-west-2
     sed -i 's/RAILS_ENV/'"$RAILS_ENV"'/' ./crontab
+    
+    # Make sure the cron scripts are executable
+    chmod u+x /var/www/rocky/script/cron_mail_reminders
+    chmod u+x /var/www/rocky/script/cron_timeout_stale_registrations
+    
     crontab -r
     # Cat the crontab contents into the crontab editor
     (crontab -l 2>/dev/null; cat ./crontab) | crontab -
-    
-    
+        
     cd /var/www/rocky
     RAILS_ENV=$RAILS_ENV bundle exec rake db:migrate
 

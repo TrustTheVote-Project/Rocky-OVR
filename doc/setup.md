@@ -245,11 +245,6 @@ There is a script at spec/api_load_test.rb that can run multi-threaded tests aga
 In the file, edit the config section at the top to specify the number of threads and requests-per-thread
 and other details like which server to test. 
 
-The next section of the file is a method for viewing the PDF queue status. Log into a machine
-that has access to the application and the queue data base and start a rails console. Copy the view_queue
-method into the console and then run the method. This will show a queue status every 5 seconds and also calculate
-a run off time for a maximal number of PdfGenerations in the queue.
-
 Once you have the monitor running, run the load test script via
 
     $ bundle exec ruby spec/api_load_test.rb
