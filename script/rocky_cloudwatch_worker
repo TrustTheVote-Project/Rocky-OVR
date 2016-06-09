@@ -7,7 +7,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config/environ
 Dir.chdir(Rails.root)
 
 
-INTERVAL = 10
+INTERVAL = 3
 
 class QueueAnalyzer
   def self.get_count
@@ -21,18 +21,20 @@ class QueueAnalyzer
       self.previous_count = count
       dequeue_per_second = delta / INTERVAL.to_f
       if dequeue_per_second > 0
-        return count / dequeue_per_second # E.g. 20 items at 4 items/sec is 5 secs to dequeue
+        return [count / dequeue_per_second, count] # E.g. 20 items at 4 items/sec is 5 secs to dequeue
       else
-        return -1
+        return [-1, count]
       end
     else
-      return -1
+      return [-1, count]
     end
   end
 end
 
 class CloudWatchPublisher
-  def self.send(seconds)
+  def self.send(seconds, count)
+    t = Time.now
+    Rails.logger.debug "Should dequeue #{count} items in #{seconds} seconds."
     cloudwatch = Aws::CloudWatch::Client.new({
       region: 'us-west-2',
       access_key_id: ENV['SQS_AWS_ACCESS_KEY_ID'],
@@ -43,8 +45,13 @@ class CloudWatchPublisher
       metric_data: [{
         metric_name: "seconds_to_empty",
         value: seconds,
-        timestamp: Time.now,
+        timestamp: t,
         unit: "Seconds"
+      },
+      {
+        metric_name: "approximate_count",
+        value: count,
+        timestamp: t
       }]
     })
   end
