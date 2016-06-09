@@ -70,7 +70,7 @@ class QueueAnalyzer
 end
 
 class CloudWatchPublisher
-  def self.send(seconds, count, dequeue_rate, total_empty_receives)
+  def self.send(seconds, count, dequeue_rate, total_empty_receives, too_many_pdf_gens)
     t = Time.now
     Rails.logger.debug "Should dequeue #{count} items in #{seconds} seconds."
     cloudwatch = Aws::CloudWatch::Client.new({
@@ -105,6 +105,11 @@ class CloudWatchPublisher
         metric_name: "total_empty_receives",
         value: total_empty_receives,
         timestamp: t
+      },
+      {
+        metric_name: "too_many_pdf_gens",
+        value: too_many_pdf_gens,
+        timestamp: t
       }]
     })
   end
@@ -114,7 +119,9 @@ loop do
   # this will call the regular pdf gen if no priority pdfs are found
   seconds, count, dequeue_rate = QueueAnalyzer.seconds_to_empty
   empty_receives = QueueAnalyzer.get_empty_recieves
-  CloudWatchPublisher.send seconds, count, dequeue_rate, empty_receives
+  too_many_pdf_gens = count == 0 || (dequeue_rate * 10 > count)
+  
+  CloudWatchPublisher.send seconds, count, dequeue_rate, empty_receives, too_many_pdf_gens
   sleep INTERVAL
   # PdfGeneration.find_and_generate
 end
