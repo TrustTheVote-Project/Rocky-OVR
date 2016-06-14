@@ -29,6 +29,8 @@ class DownloadsController < RegistrationStep
   
   def show
     find_registrant(:download)
+    @attempt = (params[:cno] || 1).to_i
+    @refresh_location = @attempt >= 10 ? registrant_finish_path(@registrant) : registrant_download_path(@registrant, :cno=>@attempt+1)
     if @registrant.pdf_ready?
       render "show"
     elsif @registrant.javascript_disabled?
