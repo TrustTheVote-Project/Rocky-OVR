@@ -138,7 +138,8 @@ HTML
   
   def download_csv
     if current_partner.csv_ready
-      redirect_to "/csv/#{current_partner.id}/#{current_partner.csv_file_name}"
+      redirect_to current_partner.csv_url 
+      #"/csv/#{current_partner.id}/#{current_partner.csv_file_name}"
     end
   end
 

@@ -544,17 +544,41 @@ class Partner < ActiveRecord::Base
     Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, Time.now)
   end
   
+  def csv_url
+    "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.csv_file_name)}"
+    
+  end
+  
   def generate_registrants_csv_file(start_date=nil, end_date = nil)
     time_stamp = end_date || Time.now
     self.csv_file_name = self.generate_csv_file_name(time_stamp, start_date)
     file = File.open(csv_file_path, "w")
     file.write generate_registrants_csv(start_date, end_date).force_encoding 'utf-8'
     file.close
+    # UPLOAD TO S3
+    connection = Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :region                   => 'us-west-2'
+    })
+    
+    bucket_name = "rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}"
+    directory = connection.directories.get(bucket_name)
+    file = directory.files.create(
+      :key    => File.join(self.id.to_s, self.csv_file_name),
+      :body   => File.open(csv_file_path, "r").read,
+      :content_type => "text/csv",
+      :encryption => 'AES256', #Make sure its encrypted on their own hard drives
+      :public => true
+    )  
+    File.delete(csv_file_path)
+    
     self.csv_ready = true
     self.save!
 
-    action = Delayed::PerformableMethod.new(self, :delete_registrants_csv_file, [self.csv_file_name])
-    Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, AppConfig.partner_csv_expiration_minutes.from_now)
+    # action = Delayed::PerformableMethod.new(self, :delete_registrants_csv_file, [self.csv_file_name])
+    # Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, AppConfig.partner_csv_expiration_minutes.from_now)
   end
   
   def delete_registrants_csv_file(file_name)
