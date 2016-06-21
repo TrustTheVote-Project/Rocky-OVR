@@ -110,7 +110,8 @@ class PdfWriter
       'registrants/registrant_pdf', 
       :layout => 'layouts/nvra',
       :encoding => 'utf8',
-      :locale=>self.locale
+      :locale=>self.locale,
+      :page_size => "Letter"
     )
     I18n.locale = prev_locale
 
