@@ -210,7 +210,8 @@ class PdfWriter
       :disable_internal_links         => false,
       :disable_external_links         => false,
       :encoding => 'utf8',
-      :locale=>locale
+      :locale=>locale,
+      :page_size => locale.to_s == "en" ? "Letter" : "A4"
     )
     FileUtils.mkdir_p(pdf_file_dir)
     File.open(path, "w") do |f|
