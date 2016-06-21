@@ -828,7 +828,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def pdf_english_race
-    if requires_race? && race != I18n.t('txt.registration.races', :locale=>locale).values.last
+    if race != I18n.t('txt.registration.races', :locale=>locale).values.last
       english_race
     else
       ""
@@ -836,7 +836,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def pdf_race
-    if requires_race? && race != I18n.t('txt.registration.races', :locale=>locale).values.last
+    if race != I18n.t('txt.registration.races', :locale=>locale).values.last
       race
     else
       ""
