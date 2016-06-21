@@ -110,8 +110,7 @@ class PdfWriter
       'registrants/registrant_pdf', 
       :layout => 'layouts/nvra',
       :encoding => 'utf8',
-      :locale=>self.locale,
-      :page_size => "Letter"
+      :locale=>self.locale
     )
     I18n.locale = prev_locale
 
@@ -211,7 +210,8 @@ class PdfWriter
       :disable_internal_links         => false,
       :disable_external_links         => false,
       :encoding => 'utf8',
-      :locale=>locale
+      :locale=>locale,
+      :page_size => "Letter"
     )
     FileUtils.mkdir_p(pdf_file_dir)
     File.open(path, "w") do |f|
