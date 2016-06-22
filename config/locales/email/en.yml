@@ -255,7 +255,7 @@ en:
 
           %{rtv_link}'
     thank_you_external:
-      subject: Thanks for beginning the voter registration process with %{rtv_and_partner_name}
+      subject: Thanks for beginning the voter registration process
       body:
         main: ! 'Dear %{registrant_first_name},<br><br>
 
