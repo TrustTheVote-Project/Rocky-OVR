@@ -1496,7 +1496,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def email_address_to_send_from
-    if partner && !partner.primary? && partner.whitelabeled? && !partner.from_email.blank?
+    if partner && !partner.primary? && partner.whitelabeled? && !partner.from_email.blank? && partner.from_email_verified?
       partner.from_email
     else
       RockyConf.from_address

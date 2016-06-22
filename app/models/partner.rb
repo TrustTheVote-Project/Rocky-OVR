@@ -681,8 +681,43 @@ class Partner < ActiveRecord::Base
     
   end
   
+  def from_email_verified?
+    if self.from_email.blank?
+      return false
+    end
+    if self.from_email_verified_at && self.from_email_verified_at > 1.hour.ago
+      return true
+    else
+      if self.from_email_verification_checked_at.nil? || self.from_email_verification_checked_at < 5.minutes.ago
+        return self.check_from_email_verification
+      else
+        return false
+      end
+    end
+  end
   
 protected
+
+  def check_from_email_verification
+    ses = Aws::SES::Client.new(
+          region: 'us-west-2',
+          access_key_id: ENV['SQS_AWS_ACCESS_KEY_ID'],
+          secret_access_key: ENV['SQS_AWS_SECRET_ACCESS_KEY'])
+    resp = ses.get_identity_verification_attributes({
+        identities: [self.from_email], # required
+    })
+    verified = resp.verification_attributes[self.from_email].verification_status == "Success"
+    if verified
+      self.update_attributes(from_email_verified_at: DateTime.now)
+      return true
+    else
+      return false
+    end
+  rescue
+    return false
+  ensure
+    self.update_attributes(from_email_verification_checked_at: DateTime.now)
+  end
 
 
   def method_missing(method_name, *args, &block)
