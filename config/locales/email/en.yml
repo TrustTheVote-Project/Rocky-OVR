@@ -238,35 +238,31 @@ en:
 
           Please send question or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
     chaser:
-      subject: ! 'You can still register to vote'
+      subject: You can still register to vote
       body:
         main: ! 'Hey %{registrant_first_name},<br><br>
 
-          I noticed that you didn’t finish filling out your online voter registration form. Registering with %{rtv_and_partner_name}''s online tool takes less time than it takes to…<br>
-          Make popcorn<br>
-          Take a Buzzfeed quiz<br>
-          Listen to a Beyoncé song<br><br>
+          I noticed that you didn’t finish filling out your online voter registration
+          form. Registering with %{rtv_and_partner_name}''s online tool takes less
+          time than it takes to…<br> Make popcorn<br> Take a Buzzfeed quiz<br> Listen
+          to a Beyoncé song<br><br>
 
-          We want you to be part of our vast community of empowered voters. Amplify your voice today by finishing the registration process and making sure you are ready for the next election!<br><br>
+          We want you to be part of our vast community of empowered voters. Amplify
+          your voice today by finishing the registration process and making sure you
+          are ready for the next election!<br><br>
 
           %{rtv_and_partner_name}<br><br>
-          
+
           %{rtv_link}'
     thank_you_external:
-      subject: Thank you for using the online voter registration tool
+      subject: Thanks for beginning the voter registration process
       body:
         main: ! 'Dear %{registrant_first_name},<br><br>
 
 
           Thank you for using %{rtv_and_partner_name}''s online voter registration
-          tool.<br><br>
-
-
-          If you completed a voter registration application online, it was submitted
-          to the  %{state_name} Secretary of State''s Office for processing. Once
-          approved, you''ll receive a confirmation from the %{state_abbr} Secretary
-          of State''s Office and your county elections department will put your new
-          voter registration card in the mail.<br><br>
+          tool to begin the voter registration process. You should have been able
+          to complete the process on the %{state_name} Secretary of State''s website.<br><br>
 
 
           If you have questions or concerns, you can check the status of your voter
@@ -274,12 +270,6 @@ en:
           %{registrar_phone}, or checking online at %{registrar_url}. Please contact
           %{rtv_and_partner_name} directly if you encountered any issues with the
           registration process.<br><br>
-
-
-          Now, we need your help getting others registered to vote too. There are
-          big elections all over the country this year and 45 million eligible young
-          voters - and we need to make sure everybody has their say. So, send an email
-          to your family and friends or pass on the message below today.<br><br>
 
 
           And, finally, don''t forget to vote when Election Day rolls around. If we
@@ -292,7 +282,7 @@ en:
           Your friends at Rock the Vote<br><br>
 
 
-          P.S. Visit <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visit <strong><a href="https://www.rockthevote.com/">www.rockthevote.com</a></strong>
           for more information on voting, the elections, and the issues you care about.
           You can also find tools to start your own voter registration campaign in
           your community.<br><br>'
@@ -362,4 +352,3 @@ en:
 
 
         Happy voting!'
-
