@@ -125,12 +125,21 @@ describe Notifier do
       email.body.should include("http://register.rockthevote.com/?partner=#{partner.id}&source=email-confirmation")
     end
     
-    it "sends from partner email when configured" do
+    it "sends from partner email when configured and is verified in aws" do
       partner    = FactoryGirl.create(:partner, :whitelabeled => true, :from_email=>"custom@partner.org")
+      partner.stub(:from_email_verified?).and_return(true)
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
       Notifier.confirmation(registrant).deliver
       email = ActionMailer::Base.deliveries.last
       email.from.should include("custom@partner.org")      
+    end
+    it "sends from rtv email when configured but is NOT verified in aws" do
+      partner    = FactoryGirl.create(:partner, :whitelabeled => true, :from_email=>"custom@partner.org")
+      partner.stub(:from_email_verified?).and_return(false)
+      registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
+      Notifier.confirmation(registrant).deliver
+      email = ActionMailer::Base.deliveries.last
+      email.from.should include("rocky@example.com")      
     end
   end
 
@@ -144,7 +153,7 @@ describe Notifier do
       email = ActionMailer::Base.deliveries.last
       email.to.should include(registrant.email_address)
       email.from.should include(RockyConf.from_address)
-      email.subject.should include("Thank you for using the online voter registration tool")
+      email.subject.should include("Thanks for beginning the voter registration process")
       assert_equal "UTF-8", email.charset
       assert_equal "quoted-printable", email.header['Content-Transfer-Encoding'].to_s
     end
@@ -167,6 +176,7 @@ describe Notifier do
     end
     it "sends from partner email when configured" do
       partner    = FactoryGirl.create(:partner, :whitelabeled => true, :from_email=>"custom@partner.org")
+      partner.stub(:from_email_verified?).and_return(true)
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
       Notifier.thank_you_external(registrant).deliver
       email = ActionMailer::Base.deliveries.last
@@ -244,6 +254,8 @@ describe Notifier do
     end
     it "sends from partner email when configured" do
       partner    = FactoryGirl.create(:partner, :whitelabeled => true, :from_email=>"custom@partner.org")
+      partner.stub(:from_email_verified?).and_return(true)
+      
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
       Notifier.reminder(registrant).deliver
       email = ActionMailer::Base.deliveries.last
@@ -314,6 +326,8 @@ describe Notifier do
     
     it "sends from partner email when configured" do
       partner    = FactoryGirl.create(:partner, :whitelabeled => true, :from_email=>"custom@partner.org")
+      partner.stub(:from_email_verified?).and_return(true)
+      
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
       Notifier.final_reminder(registrant).deliver
       email = ActionMailer::Base.deliveries.last

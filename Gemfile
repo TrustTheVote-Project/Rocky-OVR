@@ -71,7 +71,6 @@ end
 group :test do
   gem "timecop"
   gem "capybara-webkit", "~> 1.5.2"
-  
   gem "webmock"
 end
 

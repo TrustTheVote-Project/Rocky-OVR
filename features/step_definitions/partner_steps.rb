@@ -31,8 +31,8 @@ end
 
 Given /^that partner's css file does not exist$/ do
   @partner ||= Partner.last
-  RemotePartner.any_instance.stub(:application_css_present?).and_return(false)
-  RemotePartner.any_instance.stub(:registration_css_present?).and_return(false)
+  Partner.any_instance.stub(:application_css_present?).and_return(false)
+  Partner.any_instance.stub(:registration_css_present?).and_return(false)
   # @partner.stub(:application_css_present?).and_return(false)
   # @partner.stub(:registration_css_present?).and_return(false)
 end

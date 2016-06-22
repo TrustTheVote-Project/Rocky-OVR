@@ -34,28 +34,14 @@ describe Registrant do
     end
     context 'when partner ID is present' do
       it "returns a partner object" do
-        RemotePartner.should_not_receive(:find)
-        r.partner.should be_nil
-      end
-    end
-    context 'when remote_partner_id is present' do
-      it "returns a remote-partner object" do
-        r.remote_partner_id = 234
-        RemotePartner.should_receive(:find).with(234)
         Partner.should_not_receive(:find)
-        r.partner
-        
+        r.partner.should be_nil
       end
     end
   end
   describe '#partner=' do
     let(:r) { Registrant.new }
     let(:p) { Partner.new({:id=>123}) }
-    let(:rp) { RemotePartner.new({:id=>234}) }
-    it "sets remote_partner_id when object is a remote partner" do
-      r.partner = rp
-      r.remote_partner_id.should == 234
-    end
     it "sets partner values when object is a partner" do
       r.partner = p
       r.partner.should == p
@@ -169,7 +155,14 @@ describe Registrant do
       r = Registrant.new(:partner=>@p)
       r.email_address_to_send_from.should == RockyConf.from_address
     end
-    it "returns the parter from_email when the parter is whitelabled and address is set" do
+    it "returns FROM_ADDRESS when the partner is whitelabled and address is set and NOT verified" do
+      @p.from_email = ''
+      @p.stub(:from_email_verified?).and_return(false)
+      r = Registrant.new(:partner=>@p)
+      r.email_address_to_send_from.should == RockyConf.from_address
+    end
+    it "returns the parter from_email when the partner is whitelabled and address is set and verified" do
+      @p.stub(:from_email_verified?).and_return(true)
       r = Registrant.new(:partner=>@p)
       r.email_address_to_send_from.should == "custom-from@rtv.org"
     end
@@ -421,12 +414,12 @@ describe Registrant do
       assert_attribute_invalid_with(:step_1_registrant, :partner_id => nil)
       assert_attribute_invalid_with(:step_1_registrant, :locale => nil)
       assert_attribute_invalid_with(:step_1_registrant, :email_address => nil)
-      assert_attribute_invalid_with(:step_1_registrant, :email_address => nil, :collect_email_address=>'yes')
+      assert_attribute_invalid_with(:step_1_registrant, {:email_address => nil}, :collect_email_address=>'yes')
 
       #FOR NOW
-      assert_attribute_invalid_with(:step_1_registrant, :email_address => nil, :collect_email_address=>'optional')
+      assert_attribute_invalid_with(:step_1_registrant, {:email_address => nil}, :collect_email_address=>'optional')
 
-      assert_attribute_invalid_with(:step_1_registrant, :email_address => nil, :collect_email_address=>'abc')
+      assert_attribute_invalid_with(:step_1_registrant, {:email_address => nil}, :collect_email_address=>'abc')
 
       assert_attribute_invalid_with(:step_1_registrant, :home_zip_code => nil, :home_state_id => nil)
       assert_attribute_invalid_with(:step_1_registrant, :home_zip_code => '00000')
@@ -539,10 +532,10 @@ describe Registrant do
     end
 
     it "requires mailing address fields if has_mailing_address" do
-      assert_attribute_invalid_with(:step_2_registrant, :has_mailing_address => true, :mailing_address => nil)
-      assert_attribute_invalid_with(:step_2_registrant, :has_mailing_address => true, :mailing_city => nil)
-      assert_attribute_invalid_with(:step_2_registrant, :has_mailing_address => true, :mailing_state_id => nil)
-      assert_attribute_invalid_with(:step_2_registrant, :has_mailing_address => true, :mailing_zip_code => nil)
+      assert_attribute_invalid_with(:step_2_registrant, {:mailing_address => nil}, :has_mailing_address => true,)
+      assert_attribute_invalid_with(:step_2_registrant, {:mailing_city => nil}, :has_mailing_address => true)
+      assert_attribute_invalid_with(:step_2_registrant, {:mailing_state_id => nil}, :has_mailing_address => true)
+      assert_attribute_invalid_with(:step_2_registrant, {:mailing_zip_code => nil}, :has_mailing_address => true)
     end
 
     it "should check format of mailing_zip_code" do
@@ -625,27 +618,24 @@ describe Registrant do
       end
       
       it "should require valid state id, based on state settings" do
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => nil)
+        assert_attribute_invalid_with(:step_2_registrant, {:state_id_number => nil}, :short_form=>true)
 
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "NONE")
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "none")
 
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => "123")
+        assert_attribute_invalid_with(:step_2_registrant, {:state_id_number => "123"}, :short_form=>true)
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "1234")
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => "12345")
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => "123456")
+        assert_attribute_invalid_with(:step_2_registrant, {:state_id_number => "12345"}, :short_form=>true)
+        assert_attribute_invalid_with(:step_2_registrant, {:state_id_number => "123456"}, :short_form=>true)
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "1234567")
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "1"*42)
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => "1"*43)
+        assert_attribute_invalid_with(:step_2_registrant, {:state_id_number => "1"*43}, :short_form=>true)
 
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "A234567")
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "1-234567")
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "*234567")
         assert_attribute_valid_with(  :step_2_registrant, :short_form=>true, :state_id_number => "*234567 3456")
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :state_id_number => "$234567")
-        
-        
-        
+        assert_attribute_invalid_with(:step_2_registrant, {:state_id_number => "$234567"}, :short_form=>true)
         
       end
       
@@ -656,17 +646,17 @@ describe Registrant do
       end
       
       it "should require previous name fields if change_of_name" do
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :change_of_name => true, :prev_name_title => nil)
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :change_of_name => true, :prev_first_name => nil)
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :change_of_name => true, :prev_last_name => nil)
+        assert_attribute_invalid_with(:step_2_registrant, {:prev_name_title => nil},:short_form=>true, :change_of_name => true)
+        assert_attribute_invalid_with(:step_2_registrant, {:prev_first_name => nil},:short_form=>true, :change_of_name => true)
+        assert_attribute_invalid_with(:step_2_registrant, {:prev_last_name => nil},:short_form=>true, :change_of_name => true)
       end
 
       it "requires previous address fields if change_of_address" do
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :change_of_address => true, :prev_address => nil)
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :change_of_address => true, :prev_city => nil)
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :change_of_address => true, :prev_state_id => nil)
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :change_of_address => true, :prev_zip_code => nil)
-        assert_attribute_invalid_with(:step_2_registrant, :short_form=>true, :change_of_address => true, :prev_zip_code => '00000')
+        assert_attribute_invalid_with(:step_2_registrant, {:prev_address => nil}, :short_form=>true, :change_of_address => true)
+        assert_attribute_invalid_with(:step_2_registrant, {:prev_city => nil}, :short_form=>true, :change_of_address => true)
+        assert_attribute_invalid_with(:step_2_registrant, {:prev_state_id => nil}, :short_form=>true, :change_of_address => true)
+        assert_attribute_invalid_with(:step_2_registrant, {:prev_zip_code => nil}, :short_form=>true, :change_of_address => true)
+        assert_attribute_invalid_with(:step_2_registrant, {:prev_zip_code => '00000'}, :short_form=>true, :change_of_address => true)
       end
 
       it "should not require attestations" do
@@ -704,28 +694,28 @@ describe Registrant do
     
     
     it "should require previous name fields if change_of_name" do
-      assert_attribute_invalid_with(:step_2_registrant, :change_of_name => true, :prev_name_title => nil)
-      assert_attribute_invalid_with(:step_2_registrant, :change_of_name => true, :prev_first_name => nil)
-      assert_attribute_invalid_with(:step_3_registrant, :change_of_name => true, :prev_last_name => nil)
+      assert_attribute_invalid_with(:step_2_registrant, {:prev_name_title => nil}, :change_of_name => true)
+      assert_attribute_invalid_with(:step_2_registrant, {:prev_first_name => nil}, :change_of_name => true)
+      assert_attribute_invalid_with(:step_3_registrant, {:prev_last_name => nil}, :change_of_name => true)
     end
 
     it "requires previous address fields if change_of_address" do
-      assert_attribute_invalid_with(:step_2_registrant, :change_of_address => true, :prev_address => nil)
-      assert_attribute_invalid_with(:step_2_registrant, :change_of_address => true, :prev_city => nil)
-      assert_attribute_invalid_with(:step_2_registrant, :change_of_address => true, :prev_state_id => nil)
-      assert_attribute_invalid_with(:step_2_registrant, :change_of_address => true, :prev_zip_code => nil)
-      assert_attribute_invalid_with(:step_2_registrant, :change_of_address => true, :prev_zip_code => '00000')
+      assert_attribute_invalid_with(:step_2_registrant, {:prev_address => nil}, :change_of_address => true)
+      assert_attribute_invalid_with(:step_2_registrant, {:prev_city => nil}, :change_of_address => true)
+      assert_attribute_invalid_with(:step_2_registrant, {:prev_state_id => nil}, :change_of_address => true)
+      assert_attribute_invalid_with(:step_2_registrant, {:prev_zip_code => nil}, :change_of_address => true)
+      assert_attribute_invalid_with(:step_2_registrant, {:prev_zip_code => '00000'}, :change_of_address => true)
     end
     
     it "should check format of prev_zip_code" do
-      reg = FactoryGirl.build(:step_2_registrant, :change_of_address => true, :prev_zip_code => 'ABCDE')
+      reg = FactoryGirl.build(:step_2_registrant, :prev_zip_code => 'ABCDE', :change_of_address => true)
       reg.invalid?
 
       assert_equal ["Use ZIP or ZIP+4"], [reg.errors[:prev_zip_code]].flatten
     end
 
     it "should limit number of simultaneous errors on prev_zip_code" do
-      reg = FactoryGirl.build(:step_2_registrant, :change_of_address => true, :prev_zip_code => nil)
+      reg = FactoryGirl.build(:step_2_registrant, :prev_zip_code => nil, :change_of_address => true, )
       reg.invalid?
 
       assert_equal ["Required"], [reg.errors[:prev_zip_code]].flatten
@@ -1321,99 +1311,6 @@ describe Registrant do
     end
   end
 
-  describe "process UI registrant records" do
-    
-    describe 'self.old_ui_record_ids' do
-      it "finds registrant ids that haven't been updated in 30 minutes" do
-        where = double("where")
-        Registrant.should_receive(:where).and_return(where)
-        where.should_receive(:pluck).with(:id)
-        Registrant.old_ui_record_ids
-      end
-    end
-    describe 'self.process_ui_records' do
-      it "deletes completed registrants" do
-        where = double("where")
-        ui_timeout_minutes = double("30")
-        time_length = double("time_length")
-        ui_timeout_minutes.stub(:minutes).and_return(time_length)
-        time_length.stub(:ago).and_return("timeout")
-        Registrant.stub(:ui_timeout_minutes).and_return(ui_timeout_minutes)
-        Registrant.stub(:old_ui_record_ids).and_return([])
-        Registrant.should_receive(:where).with("status='complete' AND updated_at < ?", "timeout").and_return(where)
-        where.should_receive(:delete_all)
-        Registrant.process_ui_records
-      end
-      
-      it "finds old_ui_record_ids in batches of 10" do
-        id_list = double(Array)
-        Registrant.stub(:old_ui_record_ids).and_return(id_list)
-        id_list.should_receive(:each_slice).with(10)
-        Registrant.process_ui_records
-      end
-      context 'when there are incomplete records' do
-        let(:r0) { FactoryGirl.create(:maximal_registrant) }
-        let(:r1) { FactoryGirl.create(:step_1_registrant) }
-        let(:r2) { FactoryGirl.create(:step_2_registrant) }
-        let(:r3) { FactoryGirl.create(:step_3_registrant) }
-        let(:r4) { FactoryGirl.create(:step_4_registrant) }
-        let(:r5) { FactoryGirl.create(:step_5_registrant) }
-        let(:r1_state) { FactoryGirl.create(:step_1_registrant, :home_zip_code => '58001') } # North Dakota
-        let(:r1_age) { FactoryGirl.create(:step_1_registrant, :date_of_birth => 10.years.ago)  }
-        let(:r1_citizen) { FactoryGirl.create(:step_1_registrant, :us_citizen => false)  }
-        before(:each) do
-          [r0,
-          r1,
-          r2,
-          r3,
-          r4,
-          r5,
-          r1_state,
-          r1_age,
-          r1_citizen].each do |r|
-            r.remote_partner_id = r.partner_id
-            r.partner_id = nil
-            r.update_attributes(:updated_at=>1.hour.ago)
-          end
-          Partner.any_instance.stub(:valid_api_key?).and_return(true)
-        end
-        
-        it "submits data as-is for incomplete records" do
-          Registrant.count.should == 9
-          Registrant.all.each do |r|
-            r.remote_partner_id.should == 1
-            r.partner_id.should be_nil
-          end
-          Registrant.process_ui_records
-          Registrant.count.should == 8
-          Registrant.all.each do |r|
-            r.partner_id.should == 1
-            r.remote_partner_id.should be_nil
-            r.created_at.should > 1.minute.ago
-          end
-          
-        end
-        context 'when the api response has failures success' do
-          before(:each) do
-            r5.update_attributes(:updated_at=>1.hour.ago,
-              :remote_partner_id => nil,
-              :partner_id => 1)
-          end
-          it "does not delete the record" do
-            puts r5.remote_partner_id
-            Registrant.count.should == 9
-            Registrant.process_ui_records
-            r = Registrant.find(r5.id)
-            r.should == Registrant.first
-            r.updated_at.should < 30.minutes.ago
-            Registrant.count.should == 8
-          end
-        end        
-      end
-    end
-  end
-  
-
   describe "stale records" do
     it "should become abandoned" do
       stale_rec = FactoryGirl.create(:step_4_registrant, :updated_at => (RockyConf.minutes_before_abandoned.minutes + 10).seconds.ago)
@@ -1502,22 +1399,7 @@ describe Registrant do
   describe "PDF" do
     before(:each) do
       @registrant = FactoryGirl.create(:maximal_registrant)
-    end
-    
-    describe '.remote_pdf_ready?(uid)' do
-      it "calls the core API" do
-        RestClient.should_receive(:get).with("#{RockyConf.api_host_name}/api/v3/registrations/pdf_ready.json?UID=uid").
-          and_return('{"pdf_ready": true, "UID": "uid"}')
-        Registrant.remote_pdf_ready?("uid").should be_truthy
-      end
-    end
-    describe '#remote_pdf_ready?' do
-      it "calls the class method using the local copies remote_uid value" do
-        @registrant.remote_uid = "ruid"
-        Registrant.stub(:remote_pdf_ready?)
-        Registrant.should_receive(:remote_pdf_ready?).with("ruid")
-        @registrant.remote_pdf_ready?
-      end
+      PdfWriter.stub(:upload_pdf_to_s3).and_return(false)
     end
     
     describe "merge" do
@@ -1670,7 +1552,7 @@ describe Registrant do
         it 'saves the registrant' do
           reg.should have_received(:save)
         end
-        it { should == reg.pdf_path }
+        it { should == reg.pdf_url }
       end
     end
   end
@@ -1875,28 +1757,16 @@ describe Registrant do
 
   describe "wrapping up" do
     let(:reg) { FactoryGirl.create(:step_5_registrant) }
-    before(:each) do
-      RestClient.stub(:post).and_return({
-        :pdfurl=>"http://abc",
-        :uid=>reg.uid
-      }.to_json)
-      reg.stub(:to_api_hash).and_return({"data"=>"value"})
-    end
-    
+
     it "should transition to complete state" do
       reg.stub(:complete_registration)
       reg.wrap_up
       assert reg.reload.complete?
     end
 
-    it "calls the core API" do
-      RestClient.should_receive(:post).with("#{RockyConf.api_host_name}/api/v3/registrations.json", {:registration=>{"data"=>"value"}}.to_json, {:content_type=>:json, :accept=>:json})
+    it "queues the PDF" do
+      reg.should_receive(:queue_pdf)
       reg.complete_registration
-    end
-    
-    it "clears out sensitive data" do
-      reg.complete_registration
-      assert_nil reg.state_id_number
     end
     
     describe "background processing" do
@@ -2112,36 +1982,6 @@ describe Registrant do
     end
   end
   
-  describe 'stop_reminders' do
-    describe '.stop_reminders(uid)' do
-      it "posts to the core API" do
-        RestClient.should_receive(:post).with("#{RockyConf.api_host_name}/api/v3/registrations/stop_reminders.json", {:UID=>"uid"}).and_return('{
-          "reminders_stopped": true
-        }')
-        Registrant.stop_reminders("uid")
-      end
-    end
-  
-    describe 'stop_reminders_url' do
-      let(:r) { Registrant.new({:uid=>"uid123"})}
-      context 'when custom url is blank' do
-        it "returns default APP url" do
-          r.stop_reminders_url.should == "https://example-pdf.com/registrants/uid123/finish?reminders=stop"
-        end
-      end
-      context 'when custom url is not blank' do
-        it "returns substituted url" do
-          r.custom_stop_reminders_url = "http://example.com/custom/<UID>/stop_reminders"
-          r.stop_reminders_url.should == "http://example.com/custom/uid123/stop_reminders"
-
-          r.custom_stop_reminders_url = "http://example.com/custom/MyUniqueId/stop_reminders"
-          r.stop_reminders_url.should == "http://example.com/custom/MyUniqueId/stop_reminders"
-        end
-        
-      end
-    end
-  end
-
   describe "shared_text" do
     describe "when complete" do
       it "says I voted" do
@@ -2261,9 +2101,10 @@ describe Registrant do
     end
   end
 
-  def assert_attribute_invalid_with(model, attributes)
-    reg = FactoryGirl.build(model, attributes)
-    reg.valid?
+  def assert_attribute_invalid_with(model, attributes, other_attributes = {})
+    reg = FactoryGirl.build(model, attributes.merge(other_attributes))
+    assert !reg.valid?
+    puts reg.errors.to_hash, attributes
     attributes.keys.each do |k|
       expect(reg.errors[k]).to_not be_empty
     end

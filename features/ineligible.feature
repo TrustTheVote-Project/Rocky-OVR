@@ -9,7 +9,7 @@ Feature: Ineligible
        And I enter valid data for step 1
        But I live in North Dakota
       When I press "registrant_submit"
-      Then I should see "not eligible"
+      Then I should see "North Dakota does not have voter registration"
        And I should see "North Dakota"
       When I follow "Return"
        And I live in California
@@ -22,8 +22,7 @@ Feature: Ineligible
        And I enter valid data for step 1
        But I uncheck "I am a U.S. citizen"
       When I press "registrant_submit"
-      Then I should see "not eligible"
-       And I should see "must be a U.S. citizen"
+       Then I should see "must be a U.S. citizen"
       When I follow "Return"
        And I check "I am a U.S. citizen"
        And I press "registrant_submit"
@@ -35,8 +34,7 @@ Feature: Ineligible
        And I enter valid data for step 1
        And I live in North Dakota
       When I press "registrant_submit"
-      Then I should see "not eligible"
-       And I should see "North Dakota"
+      Then I should see "North Dakota does not have voter registration"
       When I follow "Return"
        And I live in California
        And I press "registrant_submit"

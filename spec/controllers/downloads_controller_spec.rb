@@ -33,20 +33,10 @@ describe DownloadsController do
       Partner.any_instance.stub(:valid_api_key?).and_return(true)
     end
 
-    describe 'when the registrant remote ID is blank' do
-      before(:each) do
-        @registrant = FactoryGirl.create(:maximal_registrant)
-      end
-      it "renders the error page" do
-        get :show, :registrant_id => @registrant.to_param
-        assert_template "error"
-      end
-    end
-  
     describe "when PDF is ready" do
       before(:each) do
-        @registrant = FactoryGirl.create(:maximal_registrant, :remote_uid=>"UID")
-        Registrant.any_instance.stub(:remote_pdf_ready?).and_return(true)
+        @registrant = FactoryGirl.create(:maximal_registrant)
+        Registrant.any_instance.stub(:pdf_ready?).and_return(true)
       end
 
       it "provides a link to download the PDF" do
@@ -62,8 +52,8 @@ describe DownloadsController do
 
     describe "when PDF is not ready" do
       before(:each) do
-        @registrant = FactoryGirl.create(:step_5_registrant, :remote_uid=>"UID")
-        Registrant.any_instance.stub(:remote_pdf_ready?).and_return(false)
+        @registrant = FactoryGirl.create(:step_5_registrant)
+        Registrant.any_instance.stub(:pdf_ready?).and_return(false)
       
       end
       context 'with javascript enabled' do
@@ -71,7 +61,6 @@ describe DownloadsController do
           it "renders a preparing page that polls the PDF ready api with the registrant UID and a timeout redirect" do
             get :show, :registrant_id => @registrant.to_param
             assert_not_nil assigns[:registrant]
-            assert assigns[:uid] == @registrant.remote_uid
             assert assigns[:timeout] == true
             assert_response :success
             assert_template "preparing"
@@ -84,7 +73,6 @@ describe DownloadsController do
             @registrant.save!
             get :show, :registrant_id => @registrant.to_param
             assert_not_nil assigns[:registrant]
-            assert assigns[:uid] == @registrant.remote_uid
             assert assigns[:timeout] == false
             assert_response :success
             assert_template "preparing"
@@ -158,8 +146,7 @@ describe DownloadsController do
       before(:each) do
         registrant.update_attributes(pdf_ready: true)
       end 
-      it 'sets pdf_downloaded' do
-        
+      it 'sets pdf_downloaded' do        
         get :pdf, registrant_id: registrant.to_param
         registrant.reload
         registrant.pdf_downloaded.should == true
@@ -167,7 +154,7 @@ describe DownloadsController do
       end
       it 'redirects to pdf file' do
         get :pdf, registrant_id: registrant.to_param
-        assert_redirected_to registrant.pdf_path
+        assert_redirected_to registrant.pdf_url
       end
     end
     

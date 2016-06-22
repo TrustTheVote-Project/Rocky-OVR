@@ -25,7 +25,6 @@ Feature: Log in
     When I go to the login page
     And I log in as "bullwinkle/password"
     Then I should be on the partner dashboard
-    And I should be logged in
 
   @passing
   Scenario: Partner logs in successfully with email
@@ -33,5 +32,4 @@ Feature: Log in
     When I go to the login page
     And I log in as "bullwinkle@example.com/password"
     Then I should be on the partner dashboard
-    And I should be logged in
     And I should see "Log out"

@@ -40,7 +40,6 @@ end
 
 Given /^I have completed step (\d+)$/ do |step_num|
   @registrant = FactoryGirl.create("step_#{step_num}_registrant")
-  switch_partner_to_remote(@registrant)
 end
 
 Given(/^my zip code is "(.*?)"$/) do |zip|
@@ -48,24 +47,18 @@ Given(/^my zip code is "(.*?)"$/) do |zip|
 end
 
 Given /^I have completed step (\d+) for a short form$/ do |step_num|
-  @registrant = FactoryGirl.create("step_#{step_num}_registrant", :short_form=>true)
-  switch_partner_to_remote(@registrant)
-  
+  @registrant = FactoryGirl.create("step_#{step_num}_registrant", :short_form=>true)  
 end
 
 Given /^I have completed step (\d+) for a short form as a resident of "([^\"]*)"$/ do |step_num, state_name|
   state = GeoState.find_by_name(state_name)
   zip_prefix = GeoState.zip3map.key(state.abbreviation)
   @registrant = FactoryGirl.create("step_#{step_num}_registrant", :home_zip_code=>zip_prefix+'01', :short_form=>true)
-  switch_partner_to_remote(@registrant)
-  
 end
 
 Given /^I have completed step (\d+) from that partner$/ do |step_num|
   @registrant = FactoryGirl.create("step_#{step_num}_registrant")
   @registrant.partner = Partner.last
-  switch_partner_to_remote(@registrant)
-  
   @registrant.save!
 end
 
@@ -73,8 +66,6 @@ Given /^I have completed step (\d+) as a resident of "([^\"]*)" state$/ do |step
   state = GeoState.find_by_name(state_name)
   zip_prefix = GeoState.zip3map.key(state.abbreviation)
   @registrant = FactoryGirl.create("step_#{step_num}_registrant", :home_zip_code=>zip_prefix+'01')
-  switch_partner_to_remote(@registrant)
-  
 end
 
 Given /^I have completed step (\d+) from that partner as a resident of "([^\"]*)" state$/ do |step_num,state_name|
@@ -82,24 +73,18 @@ Given /^I have completed step (\d+) from that partner as a resident of "([^\"]*)
   zip_prefix = GeoState.zip3map.key(state.abbreviation)
   @registrant = FactoryGirl.create("step_#{step_num}_registrant", :home_zip_code=>zip_prefix+'01')
   @registrant.partner = Partner.last
-  switch_partner_to_remote(@registrant)
-  
   @registrant.save!
 end
 
 
 Given(/^I have completed step (\d+) without an email address$/) do |step_num|
   @registrant = FactoryGirl.create("step_#{step_num}_registrant", :collect_email_address=>'no', :email_address=>nil)
-  switch_partner_to_remote(@registrant)
-  
 end
 
 Given(/^I have completed step (\d+) as a resident of "(.*?)" state without an email address$/) do |step_num,state_name|
   state = GeoState.find_by_name(state_name)
   zip_prefix = GeoState.zip3map.key(state.abbreviation)
   @registrant = FactoryGirl.create("step_#{step_num}_registrant", :home_zip_code=>zip_prefix+'01', :collect_email_address=>'no', :email_address=>nil)  
-  switch_partner_to_remote(@registrant)
-  
 end
 
 
@@ -135,8 +120,6 @@ Given /^I have completed step (\d+) as a resident of "([^\"]*)" state from that 
   zip = GeoState.zip5map.invert[geo_state.abbreviation] || GeoState.zip3map.invert[geo_state.abbreviation]
   @registrant = FactoryGirl.create("step_#{step_num}_registrant", :home_zip_code=>zip+'00')
   @registrant.partner = Partner.last
-  switch_partner_to_remote(@registrant)
-  
   @registrant.save!
 end
 
@@ -145,8 +128,6 @@ Given /^I have completed step (\d+) as a resident of "([^\"]*)" state without ja
   zip = GeoState.zip5map.invert[geo_state.abbreviation] || GeoState.zip3map.invert[geo_state.abbreviation]
   @registrant = FactoryGirl.create("step_#{step_num}_registrant", :home_zip_code=>zip+'00')
   @registrant.partner = Partner.last
-  switch_partner_to_remote(@registrant)
-  
   @registrant.javascript_disabled = true
   @registrant.save!
 end
@@ -161,6 +142,7 @@ end
 
 
 When /^the timeout_stale_registrations task has run$/ do
+  Partner.any_instance.stub(:from_email_verified?).and_return(true)
   Registrant.abandon_stale_records
 end
 
@@ -182,10 +164,22 @@ Then(/^my confirmation email should include "(.*?)"$/) do |text|
   email.body.should include(text)
 end
 
+
+Given(/^the zip code "(.*?)" has the address"(.*?)"$/) do |zip, address|
+  ZipCodeCountyAddress.create({
+    zip: zip,
+    geo_state_id: 1,
+    address: address,
+    last_checked: DateTime.now
+  })
+end
+
+
+
 Then /^I should be sent a thank\-you email$/ do
   email = ActionMailer::Base.deliveries.last
   email.to.should include(@registrant.email_address)
-  email.subject.should == "Thank you for using the online voter registration tool"
+  email.subject.should == "Thanks for beginning the voter registration process"
 end
 
 Given(/^that partner has a custom thank\-you external email$/) do
@@ -208,7 +202,7 @@ Then /^I should be sent a thank\-you email from RTV$/ do
   email = ActionMailer::Base.deliveries.last
   email.to.should include(@registrant.email_address)
   email.from.should include(RockyConf.from_address)
-  email.subject.should == "Thank you for using the online voter registration tool"
+  email.subject.should == "Thanks for beginning the voter registration process"
 end
 
 Then /^I should be sent a thank\-you email in spanish$/ do
@@ -281,8 +275,7 @@ Given(/^I have a state license$/) do
 end
 
 Given(/^the PDF is not ready$/) do
-  Registrant.any_instance.stub(:remote_pdf_ready?).and_return(false)
-  Registrant.any_instance.stub(:remote_uid).and_return("auid")
+  Registrant.any_instance.stub(:pdf_ready?).and_return(false)
 end
 
 Given /there is localized state data/ do
@@ -461,6 +454,15 @@ When(/^I'm testing$/) do
 end
 
 
+When(/^the pdf generator has run$/) do
+  @registrant.generate_pdf
+end
+
+Before('@cleanup_pdf') do
+  # Stub the delivery
+  PdfWriter.stub(:upload_pdf_to_s3).and_return(false)
+  
+end
 
 After('@cleanup_pdf') do
   `rm #{@registrant.pdf_file_path}`

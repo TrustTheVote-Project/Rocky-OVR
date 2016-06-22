@@ -89,6 +89,10 @@ describe V2::StateRequirements do
   end
 
   it 'should return data' do
+    s = GeoState['CA']
+    s.registrar_address = nil
+    s.save!
+    
     V2::StateRequirements.find(:home_state_id => 'CA', :lang => 'en').should == {
       :requires_party     => true,
       :id_number_msg      => nil,

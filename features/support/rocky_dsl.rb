@@ -46,7 +46,7 @@ module RockyDsl
         raise({ :field_name => name, :message => "Invalid parameter type", :status => 400}.to_s)
       end
     end
-    Registrant.any_instance.stub(:remote_pdf_ready?).and_return(true)
+    Registrant.any_instance.stub(:pdf_ready?).and_return(true)
   end
   def stub_ca_disclosures
     WebMock.stub_request(:get, %r{https://a8e83b219df9c88311b3-01fbb794ac405944f26ec8749fe8fe7b.ssl.cf1.rackcdn.com/discl/.+/discl.+.txt}).to_return do |req|
@@ -57,9 +57,6 @@ module RockyDsl
     end
  end
 
-  def switch_partner_to_remote(registrant)
-    registrant.update_attributes(:remote_partner_id=>registrant.partner_id, :partner_id=>nil)
-  end
 end
 
 

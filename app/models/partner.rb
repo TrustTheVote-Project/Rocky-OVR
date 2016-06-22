@@ -188,6 +188,11 @@ class Partner < ActiveRecord::Base
   scope :government, where(:is_government_partner=>true)
   scope :standard, where(:is_government_partner=>false)
 
+
+  def mobile_redirect_disabled
+    self.id == 14557 
+  end
+
   def self.find_by_login(login)
     p = find_by_username(login) || find_by_email(login)
     return (p && p.is_government_partner? ? nil : p)
@@ -556,6 +561,18 @@ class Partner < ActiveRecord::Base
     file.write generate_registrants_csv(start_date, end_date).force_encoding 'utf-8'
     file.close
     # UPLOAD TO S3
+    upload_registrants_csv_file
+    
+    File.delete(csv_file_path)
+    
+    self.csv_ready = true
+    self.save!
+
+    # action = Delayed::PerformableMethod.new(self, :delete_registrants_csv_file, [self.csv_file_name])
+    # Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, AppConfig.partner_csv_expiration_minutes.from_now)
+  end
+  
+  def upload_registrants_csv_file
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
@@ -572,14 +589,8 @@ class Partner < ActiveRecord::Base
       :encryption => 'AES256', #Make sure its encrypted on their own hard drives
       :public => true
     )  
-    File.delete(csv_file_path)
-    
-    self.csv_ready = true
-    self.save!
-
-    # action = Delayed::PerformableMethod.new(self, :delete_registrants_csv_file, [self.csv_file_name])
-    # Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, AppConfig.partner_csv_expiration_minutes.from_now)
   end
+  
   
   def delete_registrants_csv_file(file_name)
     if File.exists?(csv_file_path(file_name))

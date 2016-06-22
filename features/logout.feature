@@ -3,7 +3,7 @@ Feature: Log out
   A logged in partner
   Should be able to log out
 
-  @passing
+  @wip
   Scenario: Partner logs out
     Given I registered with "bullwinkle/password"
     When I log in as "bullwinkle/password"

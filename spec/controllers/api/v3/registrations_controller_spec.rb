@@ -26,18 +26,6 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../rails_helper')
 
 describe Api::V3::RegistrationsController do
 
-  describe 'calls to a UI role app' do
-    it "should return a message with 302" do
-      old_role = ENV['ROCKY_ROLE']
-      ENV['ROCKY_ROLE'] = 'UI'
-      
-      post :create
-      response.status.should == 302
-      response.body.should include("changed")
-      ENV['ROCKY_ROLE'] = old_role
-      
-    end
-  end
   describe 'create' do
     it 'should return URL of PDF to be generated' do
       expect_api_response :pdfurl => "https://example-pdf.com/123.pdf", :uid => "123"
@@ -129,18 +117,18 @@ describe Api::V3::RegistrationsController do
     end
   end
 
-  describe 'bulk' do
-    it "should catch errors" do
-      expect_api_error :message => 'error'
-      bulk { raise ArgumentError.new('error') }
-    end
-    it "calls the reg service bulk_crate and returns list of results" do
-      expect_api_response({:registrants_added=>[[true],[false,"message"]]})
-      bulk do
-        [[true],[false,"message"]]
-      end
-    end
-  end
+  # describe 'bulk' do
+  #   it "should catch errors" do
+  #     expect_api_error :message => 'error'
+  #     bulk { raise ArgumentError.new('error') }
+  #   end
+  #   it "calls the reg service bulk_crate and returns list of results" do
+  #     expect_api_response({:registrants_added=>[[true],[false,"message"]]})
+  #     bulk do
+  #       [[true],[false,"message"]]
+  #     end
+  #   end
+  # end
 
 
   private

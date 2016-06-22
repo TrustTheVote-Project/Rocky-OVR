@@ -351,6 +351,10 @@ describe Partner do
     end
 
 
+    describe "#from_email_verified?" do
+      it "Needs to be tested!"
+    end
+
     describe "#assets_path" do
       it "returns the s3 key path to the partner directory" do
         partner = FactoryGirl.create(:partner)
@@ -725,7 +729,8 @@ describe Partner do
     end
     describe "#generate_registrants_csv_file" do
       before(:each) do
-        @partner = FactoryGirl.create(:partner)        
+        @partner = FactoryGirl.create(:partner)    
+        @partner.stub(:upload_registrants_csv_file)    
         @t = Time.now
         @file = double("mock_object")
         Time.stub(:now) { @t }
@@ -734,6 +739,7 @@ describe Partner do
         @partner.stub(:csv_ready=)
         @partner.stub(:save!)
         File.stub(:open) { @file }
+        File.stub(:delete)
         @file.stub(:write) { true }
         @file.stub(:close) { true }
         
@@ -758,12 +764,20 @@ describe Partner do
         @partner.csv_file_name.should == "fn.csv"
         @partner.should have_received(:save!)
       end
-      it "sets a delayed job to delete the file" do
+      it "uploads the file to s3" do
         @partner.generate_registrants_csv_file
-        Delayed::PerformableMethod.should have_received(:new).with(@partner, :delete_registrants_csv_file, ['fn.csv'])
-        Delayed::Job.should have_received(:enqueue).with("action", Partner::CSV_GENERATION_PRIORITY, AppConfig.partner_csv_expiration_minutes.from_now)        
+        @partner.should have_received(:upload_registrants_csv_file)
       end
+      it "deletes the local file" do
+        @partner.generate_registrants_csv_file
+        File.should have_received(:delete).with(@partner.csv_file_path)
+      end
+      
     end
+    describe "#upload_registrants_csv_file" do
+      it "nees to be tested!"
+    end
+    
   end
 
   describe "registration statistics" do

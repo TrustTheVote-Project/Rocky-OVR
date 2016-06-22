@@ -26,25 +26,14 @@ require File.expand_path(File.dirname(__FILE__) + '/../rails_helper')
 
 describe RegistrantsController do
   before(:each) do
-    RemotePartner.stub(:find) do |arg|
-      RemotePartner.new(:id=>arg)
+    Partner.stub(:find) do |arg|
+      p = Partner.new(:id=>arg)
+      p.stub(:to_param) { arg.to_s }
+      p.stub(:id) { arg }
+      p
     end
-    RemotePartner.stub(:find).with(nil).and_raise("Not Found")
+    Partner.stub(:find).with(nil).and_raise("Not Found")
   end
-  
-
-  describe 'calls to a APP role app' do
-    it "should redirect to the UI server" do
-      old_role = ENV['ROCKY_ROLE']
-      ENV['ROCKY_ROLE'] = 'web'
-      
-      get :new
-      response.should redirect_to("//#{RockyConf.ui_url_host}")
-      ENV['ROCKY_ROLE'] = old_role
-      
-    end
-  end
-  
   
   describe "widget loader" do
     render_views
@@ -60,6 +49,9 @@ describe RegistrantsController do
   end
 
   describe "landing" do
+    before(:each) do 
+      request.stub(:protocol) { "https://" }      
+    end
     it "redirects to /new, and leaves out partner when none given" do
       get :landing
       assert_redirected_to new_registrant_url(:protocol => "https")
@@ -92,8 +84,8 @@ describe RegistrantsController do
 
     it "assumes default partner when partner given doesn't exist" do
       non_existent_partner_id = "43243243"
-      RemotePartner.stub(:find).with("43243243").and_raise("Not Found")
-      assert RemotePartner.find_by_id(non_existent_partner_id).nil?
+      Partner.stub(:find).with("43243243").and_raise("Not Found")
+      assert Partner.find_by_id(non_existent_partner_id).nil?
       get :landing, :partner => non_existent_partner_id.to_s
       assert_redirected_to new_registrant_url(:protocol => "https", :partner => Partner::DEFAULT_ID)
     end
@@ -110,7 +102,7 @@ describe RegistrantsController do
       get :new, :locale => 'es', :partner => '2', :source => 'email', :tracking=>"trackid", :collectemailaddress=>"yes"
       reg = assigns[:registrant]
       assert_equal 'es', reg.locale
-      assert_equal 2, reg.remote_partner_id
+      assert_equal 2, reg.partner_id
       assert_equal "2", reg.partner.id.to_s
       assert_equal 'email', reg.tracking_source
       assert_equal 'trackid', reg.tracking_id
@@ -120,7 +112,7 @@ describe RegistrantsController do
     it "should default partner id to RTV" do
       get :new
       reg = assigns[:registrant]
-      assert_equal Partner::DEFAULT_ID, reg.remote_partner_id
+      assert_equal Partner::DEFAULT_ID, reg.partner_id
     end
 
     it "should default locale to English" do
@@ -162,13 +154,12 @@ describe RegistrantsController do
       end
 
       it "should show partner banner and logo for non-primary partner with custom logo" do
-        partner = RemotePartner.new
+        partner = Partner.new
         partner.id = 1234
-        partner.custom_logo = true
-        partner.header_logo_url = "http://abc123"
+        partner.stub(:custom_logo?) { true }
+        partner.stub(:logo) { "http://abc123" }
 
-        RemotePartner.stub(:find).with(partner.to_param).and_return(partner)
-        ActiveResource::Connection.cache.clear
+        Partner.stub(:find_by_id).with(partner.to_param).and_return(partner)
         get :new, :partner => partner.to_param
 
         assert_response :success
@@ -230,9 +221,9 @@ describe RegistrantsController do
         response.should redirect_to(MobileConfig.redirect_url(:partner=>partner.id,:locale=>'en', :source=>"abc", :tracking=>"def", :collectemailaddress=>'no'))        
       end
       it "does not redirect for partners with disabled mobile redirects" do
-        partner = RemotePartner.new
+        partner = Partner.new
         partner.stub(:mobile_redirect_disabled).and_return(true)
-        RemotePartner.stub(:find_by_id).and_return(partner)
+        Partner.stub(:find_by_id).and_return(partner)
         get :new, :partner=>partner.to_param
         expect(response).to render_template(:show) 
       end
@@ -258,7 +249,7 @@ describe RegistrantsController do
       @reg_attributes.delete(:locale)
       @reg_attributes.delete(:partner_id)
       post :create, :registrant => @reg_attributes, :partner => @partner.id, :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"1", :collectemailaddress=>'yes'
-      assert_equal @partner.id, assigns[:registrant].remote_partner_id
+      assert_equal @partner.id, assigns[:registrant].partner_id
       assert_equal "es", assigns[:registrant].locale
       assert_equal "email", assigns[:registrant].tracking_source
       assert_equal "trackid", assigns[:registrant].tracking_id

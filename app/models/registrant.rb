@@ -210,7 +210,7 @@ class Registrant < ActiveRecord::Base
     validates_format_of(attr_names, configuration.merge(:with => /^\d{5}(-\d{4})?$/, :allow_blank => true));
 
     validates_each(attr_names, configuration) do |record, attr_name, value|
-      if record.errors[attr_name].nil? && !GeoState.valid_zip_code?(record.send(attr_name))
+      if record.errors[attr_name].empty? && !GeoState.valid_zip_code?(record.send(attr_name))
         record.errors.add(attr_name, :invalid_zip, :default => configuration[:message], :value => value)
       end
     end
@@ -432,36 +432,6 @@ class Registrant < ActiveRecord::Base
     find_by_param(param) || begin raise ActiveRecord::RecordNotFound end
   end
   
-  # def self.old_ui_record_ids
-  #   self.where("updated_at < ?", ui_timeout_minutes.minutes.ago).pluck(:id)
-  # end
-
-  # def self.ui_timeout_minutes
-  #   RockyConf.ui_timeout_minutes
-  # end
-  
-  # def self.process_ui_records
-  #   self.where("status='complete' AND updated_at < ?", ui_timeout_minutes.minutes.ago).delete_all
-  #   results = {}
-  #   self.old_ui_record_ids.each_slice(10) do |id_list|
-  #     registrants = self.where("id in (?)", id_list)
-  #     reg_hashes = registrants.collect {|r| r.to_bulk_api_hash }
-  #     created_records = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations/bulk.json", {
-  #         :registrants => reg_hashes,
-  #         :partner_id=>Partner::DEFAULT_ID,
-  #         :partner_API_key=>ENV['ROCKY_CORE_API_KEY']
-  #     }.to_json, :content_type => :json, :accept => :json))
-  #
-  #     created_records["registrants_added"].each_with_index do |creation_status,idx|
-  #       results[registrants[idx].id] = creation_status
-  #       if creation_status[0] == true
-  #         registrants[idx].delete
-  #       end
-  #     end
-  #   end
-  #   results
-  # end
-
   def self.abandon_stale_records
     id_list = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id)
     self.find_each(:batch_size=>500, :conditions => ["id in (?)", id_list]) do |reg|
@@ -1055,62 +1025,11 @@ class Registrant < ActiveRecord::Base
   end
 
   def complete_registration
-    # begin
-    #   response = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations.json",
-    #     {:registration => self.to_api_hash}.to_json, :content_type => :json, :accept => :json
-    #   ))
-    #
-    #   self.remote_uid = response["uid"]
-    #   self.remote_pdf_path = response["pdfurl"]
-    #   self.save!
-    #   redact_sensitive_data
-    #   return true
-    # rescue Exception => e
-    #   begin
-    #     Rails.logger.error e.response
-    #   rescue Exception => e2
-    #     Rails.logger.error e.message
-    #     Rails.logger.error e.backtrace
-    #   end
-    #   raise "Error submiting to core API"
-    # end
-    
     self.status = 'complete'
     saved = self.save
     queue_pdf
     return saved
-    
-    # I18n.locale = self.locale.to_sym
-    # generate_pdf
-    # deliver_confirmation_email
-    # enqueue_reminder_emails
   end
-  
-  # def self.remote_pdf_ready?(uid)
-  #   response = JSON.parse(RestClient.get("#{RockyConf.api_host_name}/api/v3/registrations/pdf_ready.json?UID=#{uid}"))
-  #   return (response["pdf_ready"] == true)
-  # rescue Exception => e
-  #   begin
-  #     Rails.logger.error e.response
-  #   rescue Exception => e2
-  #     Rails.logger.error e.message
-  #     Rails.logger.error e.backtrace
-  #   end
-  #   return false
-  # end
-  
-  # def self.stop_reminders(uid)
-  #   response = JSON.parse(RestClient.post("#{RockyConf.api_host_name}/api/v3/registrations/stop_reminders.json", {:UID=>uid}))
-  #   return response.symbolize_keys
-  # rescue Exception => e
-  #   begin
-  #     Rails.logger.error e.response
-  #   rescue Exception => e2
-  #     Rails.logger.error e.message
-  #     Rails.logger.error e.backtrace
-  #   end
-  #   return {:reminders_stopped=>false}
-  # end
   
   def stop_reminders_url
     self.custom_stop_reminders_url.blank? ? default_stop_reminders_url : custom_stop_reminders_url_with_uid
@@ -1124,9 +1043,6 @@ class Registrant < ActiveRecord::Base
     custom_stop_reminders_url.to_s.gsub("<UID>", self.uid)
   end
   
-  # def remote_pdf_ready?
-  #   self.class.remote_pdf_ready?(self.remote_uid)
-  # end
   
   def to_api_hash
     {
@@ -1193,7 +1109,6 @@ class Registrant < ActiveRecord::Base
       survey_answer_1: survey_answer_1, 
       survey_question_2: survey_question_2,
       survey_answer_2: survey_answer_2,
-      custom_stop_reminders_url: "https://#{RockyConf.ui_url_host}/registrants/<UID>/stop_reminders",
       async: true
     }
   end

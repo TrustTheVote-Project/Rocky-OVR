@@ -280,26 +280,36 @@ describe PdfWriter do
       FileUtils.stub(:mkdir_p).with("dir")
       fstream.stub(:<<)
       File.stub(:open).with("path", "w").and_yield(fstream)
+      File.stub(:delete)
       pdf.stub(:force_encoding).and_return("pdf")
       wpdf.stub(:pdf_from_string).and_return(pdf)
+      PdfWriter.stub(:upload_pdf_to_s3).and_return(true)
       WickedPdf.stub(:new).and_return(wpdf)
     end
     it "generates PDF contents" do
       WickedPdf.should_receive(:new)
       wpdf.should_receive(:pdf_from_string)
-      PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir")
+      PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir", "url")
     end
     
     it "makes the directory" do
       FileUtils.should_receive(:mkdir_p).with("dir")
-      PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir")
+      PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir", "url")
     end
+    
+    it "uploads to s3 and deletes the file" do
+      PdfWriter.should_receive(:upload_pdf_to_s3).with("path", "url")
+      File.should_receive(:delete).with("path")
+      PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir", "url")
+    end
+    
+    it "TBD when s3 upload fails"
     
     it "writes the file from the string" do
       File.should_receive(:open)
       pdf.should_receive(:force_encoding)
       fstream.should_receive(:<<).with("pdf")
-      PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir")
+      PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir", "url")
     end
   end
   

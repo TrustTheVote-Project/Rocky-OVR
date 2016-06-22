@@ -60,10 +60,12 @@ Feature: Step 5
     @cleanup_pdf @passing
     Scenario: Custom zip-code-based addreses
      Given I have completed step 4
+       And the zip code "00501" has the address"542 Forbes Avenue\nSuite 609\nPittsburgh, LA 15219-2913"
        And my zip code is "00501"
       When I go to the step 5 page
        And I check "registrant_attest_true"
        And I press "registrant_submit"
+       And the pdf generator has run
       Then I should see "Print Your Form"
        And my confirmation email should include "542 Forbes Avenue"
        And my confirmation email should include "Suite 609"
