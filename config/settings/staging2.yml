@@ -1,9 +1,9 @@
-use_https: false
+use_https: true
 from_address:  "register@rockthevote.com"
-pdf_host_name: 'dev.rocky.trustthevote.org'
-default_url_host: "dev.rocky.trustthevote.org"
-api_host_name: https://rtvdemo:bullwinkle@dev.rocky.trustthevote.org
-ui_url_host: "dev.rocky.trustthevote.org"
+pdf_host_name: 'dev.rocky.rockthevote.com'
+default_url_host: "dev.rocky.rockthevote.com"
+api_host_name: https://rtvdemo:bullwinkle@dev.rocky.rockthevote.com
+ui_url_host: "dev.rocky.rockthevote.com"
 
 mobile_browsers:
   -
