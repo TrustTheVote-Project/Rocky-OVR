@@ -20,4 +20,9 @@ namespace :utility do
     ReminderMailer.new.deliver_reminders!
   end
   
+  desc "Generate Reports for RTV"
+  task :generate_rtv_reports => :environment do
+    ReportGenerator.generate
+  end
+  
 end

@@ -37,6 +37,7 @@ if [ $SERVER_ROLE == 'util' ]; then
     # Make sure the cron scripts are executable
     chmod u+x /var/www/rocky/script/cron_mail_reminders
     chmod u+x /var/www/rocky/script/cron_timeout_stale_registrations
+    chmod u+x /var/www/rocky/script/generate_rtv_reports
     
     crontab -r
     # Cat the crontab contents into the crontab editor
@@ -51,8 +52,6 @@ if [ $SERVER_ROLE == 'util' ]; then
 
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
 
-    # TODO: make sure cron is installed?
-    
     
     # ensure the file structure exists
     cd /var/www/rocky
