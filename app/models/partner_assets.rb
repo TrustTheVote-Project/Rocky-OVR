@@ -69,7 +69,7 @@ module PartnerAssets
   def pdf_logo_ext
     logo_extensions = %w(gif jpg jpeg)
     logo_extensions.each do |ext|
-      if File.exists?(self.absolute_pdf_logo_path(ext))
+      if folder.asset_file("#{PDF_LOGO}.#{ext}")
         return ext
       end
     end
