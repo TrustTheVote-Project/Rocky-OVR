@@ -259,6 +259,7 @@ describe Partner do
     let(:paf) { double(PartnerAssetsFolder) }
     before(:each) do
       PartnerAssetsFolder.stub(:new).and_return(paf)
+      paf.stub(:asset_file).and_return(true)
     end
   
     describe "Class Methods" do
@@ -504,7 +505,7 @@ describe Partner do
       describe "pdf_logo_ext" do
         context "when there is no pdf_logo" do
           before(:each) do
-            File.stub(:exists?).and_return(false)
+            paf.stub(:asset_file).and_return(false)
           end
           it "returns nil" do
             partner.pdf_logo_ext.should be_nil
@@ -512,10 +513,8 @@ describe Partner do
         end
         context "when there is a pdf_logo jpeg" do
           before(:each) do
-            partner.stub(:absolute_pdf_logo_path).and_return('badpath')
-            partner.stub(:absolute_pdf_logo_path).with('jpeg').and_return("path")
-            File.stub(:exists?).with('badpath').and_return(false)
-            File.stub(:exists?).with("path").and_return(true)
+            paf.stub(:asset_file).and_return(false)
+            paf.stub(:asset_file).with('pdf_logo.jpeg').and_return(true)
           end
           it "returns png" do
             partner.pdf_logo_ext.should == 'jpeg'
@@ -548,13 +547,16 @@ describe Partner do
       #   end
       # end
       describe "absolute_pdf_logo_path(ext)" do
+        before(:each) do
+          allow(paf).to receive(:asset_url) {|p| "s3-url/#{p}"}
+        end
         context "when nil is passed" do
           context "when pdf_logo_ext returns nil" do
             before(:each) do
               partner.stub(:pdf_logo_ext).and_return(nil)
             end
             it "returns the path with a gif extension" do
-              partner.absolute_pdf_logo_path(nil).should == "#{partner.assets_root}/#{partner.assets_path}/#{Partner::PDF_LOGO}.gif"
+              partner.absolute_pdf_logo_path(nil).should == "s3-url/#{Partner::PDF_LOGO}.gif"
             end
           end
           context "when pdf_logo_ext returns jpg" do
@@ -562,13 +564,13 @@ describe Partner do
               partner.stub(:pdf_logo_ext).and_return('jpg')
             end
             it "returns the path with a jpg exention" do
-              partner.absolute_pdf_logo_path(nil).should == "#{partner.assets_root}/#{partner.assets_path}/#{Partner::PDF_LOGO}.jpg"
+              partner.absolute_pdf_logo_path(nil).should == "s3-url/#{Partner::PDF_LOGO}.jpg"
             end
           end
         end
         context "when a value is passed" do
           it "returns the path with the passed exention" do
-            partner.absolute_pdf_logo_path('jpeg').should == "#{partner.assets_root}/#{partner.assets_path}/#{Partner::PDF_LOGO}.jpeg"
+            partner.absolute_pdf_logo_path('jpeg').should == "s3-url/#{Partner::PDF_LOGO}.jpeg"
           end          
         end
       end
