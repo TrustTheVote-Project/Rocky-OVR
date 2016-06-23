@@ -84,6 +84,7 @@ module PartnerAssets
   # Assuming always the case of shared/symlinked FS across partner upload server and PDF gen servers
   def absolute_pdf_logo_path(ext=nil)
     ext ||= pdf_logo_ext || "gif"
+    return asset_url("#{PDF_LOGO}.#{ext}")
     "#{assets_root}/#{assets_path}/#{PDF_LOGO}.#{ext}"
   end
 

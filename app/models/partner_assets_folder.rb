@@ -133,12 +133,12 @@ class PartnerAssetsFolder
     rescue
       filename = File.basename(file)
     end
-    if PartnerAssets.is_pdf_logo?(filename)
-      local_path = @partner.absolute_pdf_logo_path(PartnerAssets.extension(filename))
-      ensure_dir(local_path)
-      File.open(local_path, 'wb') { |f| f.write(file.read) }
-    end
-    write_file(path, file.read)
+    write_file(path, file)
+    # if PartnerAssets.is_pdf_logo?(filename)
+    #   local_path = @partner.absolute_pdf_logo_path(PartnerAssets.extension(filename))
+    #   ensure_dir(local_path)
+    #   File.open(local_path, 'wb') { |f| f.write(file.read) }
+    # end
   end
 
   def write_file(path, content)
