@@ -21,8 +21,8 @@ namespace :utility do
   end
   
   desc "Generate Reports for RTV"
-  task :generate_rtv_reports => :environment do
-    ReportGenerator.generate
+  task :generate_rtv_reports, [:hours]  => [:environment] do |t, args|
+    ReportGenerator.send("generate_#{args[:hours]}")
   end
   
 end

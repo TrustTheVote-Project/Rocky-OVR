@@ -16,23 +16,32 @@ class ReportGenerator
     %w(id username email name organization url address city state_abbrev zip_code phone survey_question_1_en survey_question_1_es survey_question_2_en survey_question_2_es created_at updated_at)
   end
   # p.id, p.username, p.email, p.name, p.organization, p.url, p.address, p.city, l.abbreviation, p.zip_code, p.phone, p.survey_question_1_en, p.survey_question_1_es, p.survey_question_2_en, p.survey_question_2_es, p.created_at, p.updated_at from partners p join geo_states l on (p.state_id = l.id);
+
+  def self.generate_4
+    t = DateTime.now
+    self.generate_6hr_registrants(t)
+    self.generate_partners(t, 4)
+  end
   
-  def self.generate
+  def self.generate_24
     t = DateTime.now
     self.generate_24hr_registrants(t)
-    self.generate_6hr_registrants(t)
-    self.generate_partners(t)
+    self.generate_partners(t, 24)
   end
   
   def self.generate_24hr_registrants(t)
     self.generate_registrants(t, 24)
   end
   
+  def self.generate_4hr_registrants(t)
+    self.generate_registrants(t, 4)
+  end
+
   def self.generate_6hr_registrants(t)
     self.generate_registrants(t, 6)
   end
   
-  def self.generate_partners(t)
+  def self.generate_partners(t, time_period)
     partners = Partner.includes(:state)
     csv_str = CSV.generate do |csv|
       partners.each do |p|
@@ -40,7 +49,11 @@ class ReportGenerator
         csv << p_attr
       end
     end
-    self.save_csv_to_s3(csv_str, "partners.csv")
+    if time_period == 24
+      self.save_csv_to_s3(csv_str, "partners.csv")
+    else
+      self.save_csv_to_s3(csv_str, "rtv_partners.csv")
+    end
   end
   
   def self.generate_registrants(t, time_span)
@@ -56,10 +69,15 @@ class ReportGenerator
   end
   
   def self.file_name(base, time, time_period)
-    d1 = time - time_period
-    d1_str = d1.strftime("%Y_%m_%d-%H:%M")
-    d2_str = time.strftime("%Y_%m_%d-%H:%M")
-    "#{base}_#{time_period}hr_#{d1_str}-#{d2_str}.csv"
+    if time_period == 24
+      "registrants.csv"
+    else
+      "rtv_registrants.csv"
+    end
+    # d1 = time - time_period
+    # d1_str = d1.strftime("%Y_%m_%d-%H:%M")
+    # d2_str = time.strftime("%Y_%m_%d-%H:%M")
+    # "#{base}_#{time_period}hr_#{d1_str}-#{d2_str}.csv"
   end
   
   def self.save_csv_to_s3(contents, file_name)
