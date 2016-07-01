@@ -1026,7 +1026,7 @@ class Registrant < ActiveRecord::Base
 
   def complete_registration
     self.status = 'complete'
-    saved = self.save
+    saved = self.save!
     queue_pdf
     return saved
   end
