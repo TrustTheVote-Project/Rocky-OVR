@@ -43,7 +43,10 @@ class ReportGenerator
   
   def self.generate_partners(t, time_period)
     partners = Partner.includes(:state)
-    csv_str = CSV.generate do |csv|
+    csv_str = CsvFormatter.wrap do |csv|
+      csv << headers = self.partner_fields.dup
+      CsvFormatter.rename_array_item(headers, 'state_abbrev', 'abbreviation')
+
       partners.each do |p|
         p_attr = self.partner_fields.collect {|fname| p.send(fname) }
         csv << p_attr
@@ -58,7 +61,10 @@ class ReportGenerator
   
   def self.generate_registrants(t, time_span)
     registrants = Registrant.where("created_at > ?", t-time_span.hours).includes(:home_state)
-    csv_str = CSV.generate do |csv|
+    csv_str = CsvFormatter.wrap do |csv|
+      csv << headers = self.registrant_fields.dup
+      CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
+
       registrants.each do |r|
         reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) }
         csv << reg_attributes
@@ -95,7 +101,7 @@ class ReportGenerator
       :content_type => "text/csv",
       :encryption => 'AES256', #Make sure its encrypted on their own hard drives
       :public => false
-    ) 
+    )
   end
   
 end
