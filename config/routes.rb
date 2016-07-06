@@ -32,6 +32,8 @@ Rocky::Application.routes.draw do
       post "registrations"
       get "download_csv"
       get "embed_codes"
+      get "branding"
+      post "update_branding", as: 'update_branding'
     end
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]

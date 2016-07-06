@@ -1,0 +1,11 @@
+- @nav_class[:branding] = :current
+%h1= I18n.t('partners.branding.title', default: 'Setup Custom Branding')
+.text
+  %p= I18n.t('partners.branding.description', default: 'Custom Branding feature description')
+
+= form_for @partner, url: update_branding_partner_path, method: :post, :html => { :multipart => true } do |f|
+  %fieldset
+    %legend Whitelabeled CSS
+    = render partial: 'admin/shared/custom_css'
+    = render partial: 'admin/shared/custom_emails'
+  = partner_rollover_button 'update', 'Update'

@@ -272,6 +272,11 @@ li {
   margin: 0.5em 2em;
 }
 
+/* copied from admin.css for list compatibility between admin and non-admin layout pages */
+ul.stacked li {
+  margin: 1em 5px 1em 0;
+}
+
 form li {
   list-style: none;
   margin: 0 5px 0 0;
