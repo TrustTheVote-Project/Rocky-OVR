@@ -150,16 +150,28 @@ HTML
   def update_branding
     @partner = current_partner
     update_custom_css(@partner, params[:css_files])
+    # assets_folder.update_asset
+    asset_file = params[:partner].try(:[], :file)
+
+    if asset_file
+      name = asset_file.original_filename
+      assets_folder.update_sub_asset(name, :preview, asset_file)
+    end
+
+
     redirect_to branding_partner_path
   end
 
   protected
 
   def update_custom_css(partner, css_files)
-    paf = PartnerAssetsFolder.new(partner)
     (css_files || {}).each do |name, data|
-      paf.update_css(name, data)
+      assets_folder.update_sub_css(name, :preview, data)
     end
+  end
+
+  def assets_folder
+    @paf ||= PartnerAssetsFolder.new(@partner)
   end
 
   def partner_id

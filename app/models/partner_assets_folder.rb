@@ -71,6 +71,16 @@ class PartnerAssetsFolder
     path = path_from_name(name)
     update_path(path, file)
   end
+
+  def update_sub_asset(name, group, file)
+    path = sub_asset_path(group, name)
+    update_path(path, file)
+  end
+
+  def update_sub_css(name, group, file)
+    update_path(sub_css_path(group, name), file)
+  end
+
   def write_asset(name, content)
     write_path(path_from_name(name), content)
   end
@@ -120,6 +130,23 @@ class PartnerAssetsFolder
 
   def css_path(name)
     @partner.send("#{name}_css_path")
+  end
+
+  def sub_css_path(group, name)
+    path = css_path(name)
+    inject_folder_name(group, path)
+    path
+  end
+
+  def sub_asset_path(group, name)
+    path = path_from_name(name)
+    inject_folder_name(group, path)
+    path
+  end
+
+  def inject_folder_name(folder, path)
+    basename = File.basename(path)
+    path.gsub!(basename, folder.to_s + '/' + basename)
   end
 
   def ensure_dir(path)

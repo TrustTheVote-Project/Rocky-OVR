@@ -1,0 +1,19 @@
+%div.whitelabeled
+  %ul.stacked
+    %li.width_e
+      %h3 New asset
+      %div= f.file_field :file
+  %br
+  - assets = PartnerAssetsPresenter.new(@partner)
+  %fieldset
+    %legend Not approved
+    - assets.not_approved.each do |asset|
+      = check_box_tag asset
+      = asset
+      %br
+    = button_tag 'Remove selected'
+  %fieldset
+    %legend Approved
+    - assets.approved.each do |asset|
+      = asset
+      %br
