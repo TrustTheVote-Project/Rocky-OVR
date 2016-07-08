@@ -105,6 +105,11 @@ class PartnerAssetsFolder
     
   end
 
+  # deletes an asset from a sub folder
+  def delete_sub_asset(name, group)
+    (f = existing(File.join(@partner.assets_path, group.to_s, File.basename(name)))) && f.destroy
+  end
+
   def files
     @files ||= directory.files
   end

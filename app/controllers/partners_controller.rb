@@ -149,10 +149,14 @@ HTML
 
   def update_branding
     @partner = current_partner
-    update_custom_css(@partner, params[:css_files])
-    # assets_folder.update_asset
-    asset_file = params[:partner].try(:[], :file)
+    # remove assets before uploading new ones
+    params[:remove].try(:each) do |filename, _|
+      assets_folder.delete_sub_asset(filename, :preview)
+    end
 
+    update_custom_css(params[:css_files])
+
+    asset_file = params[:partner].try(:[], :file)
     if asset_file
       name = asset_file.original_filename
       assets_folder.update_sub_asset(name, :preview, asset_file)
@@ -164,7 +168,7 @@ HTML
 
   protected
 
-  def update_custom_css(partner, css_files)
+  def update_custom_css(css_files)
     (css_files || {}).each do |name, data|
       assets_folder.update_sub_css(name, :preview, data)
     end

@@ -5,9 +5,7 @@ class PartnerAssetsPresenter
   PREVIEW_REMOVER = ->(v) { v.gsub(%r(^preview\/), '') }
 
   def initialize(partner)
-    assets_raw = Rails.cache.fetch("partner/#{partner.id}/assets", expires_in: 10.minutes) do
-      PartnerAssetsFolder.new(partner).list_assets
-    end
+    assets_raw = PartnerAssetsFolder.new(partner).list_assets
 
     @approved = assets_raw.reject(&PREVIEW_FILTER).sort
     @not_approved = assets_raw.select(&PREVIEW_FILTER).map(&PREVIEW_REMOVER).sort

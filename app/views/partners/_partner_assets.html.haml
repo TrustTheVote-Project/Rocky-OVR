@@ -7,13 +7,28 @@
   - assets = PartnerAssetsPresenter.new(@partner)
   %fieldset
     %legend Not approved
-    - assets.not_approved.each do |asset|
-      = check_box_tag asset
-      = asset
-      %br
-    = button_tag 'Remove selected'
+    %table.assets
+      %tbody
+        - if assets.not_approved.empty?
+          %tr
+            %td.name There are no assets yet
+        - else
+          - assets.not_approved.each do |asset|
+            %tr
+              %td.name
+                = check_box_tag "remove[#{asset}]"
+                = asset
+          %br
+          %div Click 'Update' to delete selected items
   %fieldset
     %legend Approved
-    - assets.approved.each do |asset|
-      = asset
-      %br
+    %table.assets
+      %tbody
+      - if assets.approved.empty?
+        %tr
+          %td.name There are no approved assets yet
+
+      - assets.approved.each do |asset|
+        %tr
+          %td.name= asset
+    %br
