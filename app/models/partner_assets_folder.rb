@@ -91,8 +91,15 @@ class PartnerAssetsFolder
 
   # Returns the list of all assets in the folder
   def list_assets
-    files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
+    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
     #Dir.glob(File.join(@partner.assets_path, '*.*')).map { |n| File.basename(n) }
+  end
+
+  # now only archive copies are private, so expiration is not needed
+  # when a file is deleted its public_url is not available but cached value affects nothing
+  # b/c file list is not cached
+  def cached_public_url(fog_file)
+    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 20.hours) { fog_file.public_url }
   end
 
   # Deletes the asset
