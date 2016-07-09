@@ -156,21 +156,38 @@ HTML
 
     update_custom_css(params[:css_files])
 
-    asset_file = params[:partner].try(:[], :file)
-    if asset_file
-      name = asset_file.original_filename
-      assets_folder.update_sub_asset(name, :preview, asset_file)
-    end
+    upload_custom_asset(params[:partner].try(:[], :file))
 
+    update_email_templates(params[:template])
+
+    update_email_template_subjects(params[:template_subject])
 
     redirect_to branding_partner_path
   end
 
   protected
 
+  def upload_custom_asset(asset_file)
+    return unless asset_file
+    name = asset_file.original_filename
+    assets_folder.update_sub_asset(name, :preview, asset_file)
+  end
+
   def update_custom_css(css_files)
     (css_files || {}).each do |name, data|
       assets_folder.update_sub_css(name, :preview, data)
+    end
+  end
+
+  def update_email_templates(templates)
+    templates.try(:each) do |name, body|
+      EmailTemplate.set(@partner, name, body)
+    end
+  end
+
+  def update_email_template_subjects(subjects)
+    subjects.try(:each) do |name, subject|
+      EmailTemplate.set_subject(@partner, name, subject)
     end
   end
 
