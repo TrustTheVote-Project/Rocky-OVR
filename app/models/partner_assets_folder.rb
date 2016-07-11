@@ -129,11 +129,19 @@ class PartnerAssetsFolder
     asset_file(name) && asset_file(name).public_url
   end
 
+  def sub_asset_url(group, name)
+    sub_asset_file(group, name).try(:public_url)
+  end
+
   def asset_file(name)
     files.detect {|f| f.key == path_from_name(name) }
     #directory.files.get(path_from_name(name))
   end
   
+  def sub_asset_file(group, name)
+    files.detect {|f| f.key == sub_asset_path(group, name) }
+  end
+
   def asset_file_exists?(name)
     !asset_file(name).nil?
   end

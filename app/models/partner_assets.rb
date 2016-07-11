@@ -134,6 +134,18 @@ module PartnerAssets
     partner_path
   end
 
+  def sub_application_css_url(group)
+    folder.sub_asset_url(group, APP_CSS)
+  end
+
+  def sub_registration_css_url(group)
+    folder.sub_asset_url(group, REG_CSS)
+  end
+
+  def sub_partner_css_url(group)
+    folder.sub_asset_url(group, PART_CSS)
+  end
+
   def application_css_url
     folder.asset_url(APP_CSS)
     #"#{assets_url}/#{APP_CSS}"
