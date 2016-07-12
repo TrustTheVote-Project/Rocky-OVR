@@ -241,5 +241,12 @@ describe PartnersController do
         end
       end
     end
+
+    describe 'branding' do
+      it 'renders branding template' do
+        get :branding
+        expect(response).to render_template('branding')
+      end
+    end
   end
 end

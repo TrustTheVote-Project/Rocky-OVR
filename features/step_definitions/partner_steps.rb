@@ -29,6 +29,10 @@ Given /^that partner's css file exists$/ do
   File.stub(:exists?).and_return(true)
 end
 
+Given /^that partner's assets do not exist$/ do
+  PartnerAssetsFolder.any_instance.stub(:list_assets).and_return([])
+end
+
 Given /^that partner's css file does not exist$/ do
   @partner ||= Partner.last
   Partner.any_instance.stub(:application_css_present?).and_return(false)
@@ -67,4 +71,16 @@ Then /^that partner's zip code list should be "([^\"]*)"$/ do |comma_separated_l
   @partner ||= Partner.last
   @partner.reload
   @partner.government_partner_zip_codes.join(", ").should == comma_separated_list.to_s
+end
+
+Then(/^The "([^"]*)" css is "([^"]*)"$/) do |_, _, table|
+  table.hashes.each do |pair|
+    css = pair[:css]
+    status = pair[:status]
+    page.body.should include "#{css}.css (#{status})" if status == 'missing'
+  end
+end
+
+Then(/^(approved|non-approved) assets are ([a-zA-Z., ]+)$/) do |type, list|
+  pending
 end
