@@ -257,6 +257,37 @@ describe PartnersController do
         expect(redirect_params).to include('preview_custom_assets')
         expect(redirect_params['partner']).to be_eql(@partner.id.to_s)
       end
+
+      describe 'editing' do
+        it 'uploads custom css files' do
+          files = [PartnerAssets::APP_CSS, PartnerAssets::REG_CSS, PartnerAssets::PART_CSS].map do |css|
+            file = { read: css + ' content' }
+            path = "#{@partner.assets_path}/preview/#{css}"
+            expect_any_instance_of(PartnerAssetsFolder).to receive(:update_path).with(path, file)
+            file
+          end
+          post :update_branding, css_files: { application: files[0], registration: files[1], partner: files[2] }
+        end
+
+        it 'uploads custom assets' do
+          file = Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/files/partner_logo.jpg'))
+          path = "#{@partner.assets_path}/preview/partner_logo.jpg"
+
+          expect_any_instance_of(PartnerAssetsFolder).to receive(:update_path).with(path, file)
+          post :update_branding, partner: { file: file }
+        end
+
+        it 'updates emails templates' do
+          expect(EmailTemplate).to receive(:set).with(@partner, 'template_name1', 'value1')
+          expect(EmailTemplate).to receive(:set).with(@partner, 'template_name2', 'value2')
+          expect(EmailTemplate).to receive(:set_subject).with(@partner, 'template_subj1', 'value3')
+          expect(EmailTemplate).to receive(:set_subject).with(@partner, 'template_subj2', 'value4')
+
+          post :update_branding,
+               template: { 'template_name1' => 'value1', 'template_name2' => 'value2' },
+               template_subject: { 'template_subj1' => 'value3', 'template_subj2' => 'value4' }
+        end
+      end
     end
   end
 end
