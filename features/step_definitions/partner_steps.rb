@@ -106,8 +106,9 @@ Then(/^The "([^"]*)" css is "([^"]*)"$/) do |_, _, table|
   end
 end
 
-Then(/^(approved|non-approved) assets are ([a-zA-Z., ]+)$/) do |type, list|
-  pending
+Then(/^(approved|non-approved) assets are (empty)$/) do |type, list|
+  selector = (type == 'approved' ? 'approved' : 'not_approved') + ' .asset'
+  expect(page.all(selector)).to be_empty
 end
 
 Then (/^I should be redirected to the right preview URL$/) do
