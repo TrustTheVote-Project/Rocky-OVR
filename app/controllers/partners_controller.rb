@@ -165,6 +165,10 @@ HTML
     redirect_to branding_partner_path
   end
 
+  def preview_assets
+    redirect_to new_registrant_path(preview_custom_assets: '', partner: current_partner.id)
+  end
+
   protected
 
   def upload_custom_asset(asset_file)

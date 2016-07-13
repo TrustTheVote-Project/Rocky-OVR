@@ -8,6 +8,8 @@
     = link_to "E-Mail templates", '#', 'data-show-class' => 'emails'
 
 %h1= I18n.t('partners.branding.title', default: 'Setup Custom Branding')
+%p.nav-items.css.assets
+  = link_to 'Live preview', preview_assets_partner_path, target: '_blank', id: 'registrant_preview'
 .text
   %p= I18n.t('partners.branding.description', default: 'Custom Branding feature description')
 

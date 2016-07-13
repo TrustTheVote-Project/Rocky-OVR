@@ -34,6 +34,7 @@ Rocky::Application.routes.draw do
       get "embed_codes"
       get "branding"
       post "update_branding"
+      get "preview_assets"
     end
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]

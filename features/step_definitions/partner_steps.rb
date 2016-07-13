@@ -31,6 +31,22 @@ end
 
 Given /^that partner's assets do not exist$/ do
   PartnerAssetsFolder.any_instance.stub(:list_assets).and_return([])
+  PartnerAssetsFolder.any_instance.stub(:directory).and_return(OpenStruct.new(files: []))
+end
+
+
+Given(/^partner's assets exist:$/) do |table|
+  @partner ||= Partner.last
+  assets = table.hashes.map { |item| item[:asset] }
+
+  assets_paths = assets.map { |asset| File.join(@partner.assets_path, asset)}
+  PartnerAssetsFolder.any_instance.stub(:list_assets).and_return(assets_paths)
+
+  files = assets.map do |asset|
+    path = File.join(@partner.assets_path, asset)
+    double(key: path, public_url: 'https://' + File.join(@partner.assets_path, asset))
+  end
+  PartnerAssetsFolder.any_instance.stub(:directory).and_return(double(files: files))
 end
 
 Given /^that partner's css file does not exist$/ do
@@ -52,6 +68,15 @@ end
 Then /^I should see a link to that partner's CSS$/ do
   page.body.should include("link href=\"#{@partner.application_css_url}")
   page.body.should include("link href=\"#{@partner.registration_css_url}")
+end
+
+Then /^preview\/(application|registration|partner).css should be loaded$/ do |asset|
+  method = "sub_#{asset}_css_url"
+  page.body.should include("link href=\"#{@partner.send(method, :preview)}")
+end
+
+Then /^system (application|registration).css should be loaded$/ do |asset|
+  page.body.should include("link href=\"/assets/#{asset}.css")
 end
 
 
@@ -83,4 +108,13 @@ end
 
 Then(/^(approved|non-approved) assets are ([a-zA-Z., ]+)$/) do |type, list|
   pending
+end
+
+Then (/^I should be redirected to the right preview URL$/) do
+  # 'http://www.example.com/registrants/new?partner=3&preview_custom_assets='
+
+  expect(current_url).to start_with('http://www.example.com/registrants/new?')
+  params = URI::decode_www_form(URI(current_url).query)
+  expect(params.assoc('partner')).to include (Partner.last.id.to_s)
+  expect(params.assoc('preview_custom_assets')).not_to be_nil
 end

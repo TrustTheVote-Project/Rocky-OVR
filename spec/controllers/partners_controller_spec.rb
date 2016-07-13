@@ -247,6 +247,16 @@ describe PartnersController do
         get :branding
         expect(response).to render_template('branding')
       end
+
+      it 'redirects to preview url' do
+        get :preview_assets
+
+        expect(response.status).to eq(302)
+        expect(response.location).to include(new_registrant_path)
+        redirect_params = Rack::Utils.parse_query(URI.parse(response.location).query)
+        expect(redirect_params).to include('preview_custom_assets')
+        expect(redirect_params['partner']).to be_eql(@partner.id.to_s)
+      end
     end
   end
 end
