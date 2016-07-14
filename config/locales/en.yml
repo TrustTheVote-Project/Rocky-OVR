@@ -149,3 +149,8 @@ en:
       not_confirmed: Your account is not confirmed.
       not_approved: Your account is not approved.
       no_authentication_details: You did not provide any details for authentication.
+  partners:
+    branding:
+      nav: Branding
+      title: Setup Custom Branding
+      description: paragraph explaining what this feature does

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
-  <%= stylesheet_link_tag *partner_css %>
+  <%= stylesheet_link_tag *(params.has_key?(:preview_custom_assets) ? preview_partner_css : partner_css) %>
   <!--[if !IE 7]>
     <style type="text/css">
       #container { display:table; height:100% }

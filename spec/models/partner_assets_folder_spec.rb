@@ -99,4 +99,19 @@ describe PartnerAssetsFolder do
       @paf.list_assets.should == [ 'sample.css' ]
     end
   end
+
+  describe 'sub_assets' do
+    it 'respect sub directories ' do
+      test_file = double(
+          public_url: :public_url,
+          key: File.join(@partner.assets_path, 'test', 'file.txt'),
+          destroy: nil
+      )
+      directory = double(files: [test_file])
+      allow(@paf).to receive(:directory).and_return(directory)
+
+      expect(@paf.sub_asset_url('test', 'file.txt')).to be_eql(:public_url)
+      expect(@paf.sub_asset_file('test', 'file.txt')).to be_eql(test_file)
+    end
+  end
 end

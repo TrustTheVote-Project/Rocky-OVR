@@ -95,33 +95,8 @@
     </ul>
     
     
-    <div class="whitelabeled">
-      <ul class="stacked">
-        <li class="width_e">
-          <br/>
-          <h3>application.css <%= '(missing)' unless @partner.application_css_present? %></h3>
-          <div>
-            <%= file_field_tag 'css_files[application]' %>
-          </div>
-        </li>
-        <li class="width_e">
-          <br/>
-          <h3>registration.css <%= '(missing)' unless @partner.registration_css_present? %></h3>
-          <div>
-            <%= file_field_tag 'css_files[registration]' %>
-          </div>
-        </li>
-        <li class="width_e">
-          <br/>
-          <h3>partner.css <%= '(missing)' unless @partner.partner_css_present? %></h3>
-          <div>
-            <%= file_field_tag 'css_files[partner]' %>
-          </div>
-        </li>
-      </ul>
-      
-    </div>
-    
+    <%= render partial: 'admin/shared/custom_css' %>
+
     <div class="whitelabeled">
       Enter pixel tracking codes:
       <% EmailTemplate::EMAIL_TYPES.each do |t| %>
@@ -133,23 +108,6 @@
         </ul>
       <%- end %>
     </div>
-    <div class="whitelabeled">
-      Select a language for editing emails:
-      <select class='locale-select'>
-        <%- I18n.available_locales.each do |loc| %>
-          <option value=<%= loc %> <%= loc.to_s=='en' ? 'selected' : '' %>><%= loc %></option>
-        <%- end %>
-      </select>
-      <% EmailTemplate::TEMPLATE_NAMES.each do |name, label| %>
-        <ul class="stacked email-template email-template-<%= name.split('.').last %>">
-          <li class="width_h">
-            <h3><label><%= label %></label></h3>
-            <%= text_field_tag "template_subject[#{name}]", EmailTemplate.get_subject(@partner, name), :rows => 5 %>
-            <br/><br/>
-            <%= text_area_tag "template[#{name}]", EmailTemplate.get(@partner, name), :rows => 5 %>
-          </li>
-        </ul>
-      <% end %>
-    </div>
+    <%= render partial: 'admin/shared/custom_emails' %>
   </fieldset>
 <% end %>

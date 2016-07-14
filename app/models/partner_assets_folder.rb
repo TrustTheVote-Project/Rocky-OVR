@@ -71,6 +71,16 @@ class PartnerAssetsFolder
     path = path_from_name(name)
     update_path(path, file)
   end
+
+  def update_sub_asset(name, group, file)
+    path = sub_asset_path(group, name)
+    update_path(path, file)
+  end
+
+  def update_sub_css(name, group, file)
+    update_path(sub_css_path(group, name), file)
+  end
+
   def write_asset(name, content)
     write_path(path_from_name(name), content)
   end
@@ -81,8 +91,15 @@ class PartnerAssetsFolder
 
   # Returns the list of all assets in the folder
   def list_assets
-    files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
+    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
     #Dir.glob(File.join(@partner.assets_path, '*.*')).map { |n| File.basename(n) }
+  end
+
+  # now only archive copies are private, so expiration is not needed
+  # when a file is deleted its public_url is not available but cached value affects nothing
+  # b/c file list is not cached
+  def cached_public_url(fog_file)
+    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 20.hours) { fog_file.public_url }
   end
 
   # Deletes the asset
@@ -93,6 +110,11 @@ class PartnerAssetsFolder
       FileUtils.rm_f File.join(local_path)
     end
     
+  end
+
+  # deletes an asset from a sub folder
+  def delete_sub_asset(name, group)
+    (f = existing(File.join(@partner.assets_path, group.to_s, File.basename(name)))) && f.destroy
   end
 
   def files
@@ -107,11 +129,19 @@ class PartnerAssetsFolder
     asset_file(name) && asset_file(name).public_url
   end
 
+  def sub_asset_url(group, name)
+    sub_asset_file(group, name).try(:public_url)
+  end
+
   def asset_file(name)
     files.detect {|f| f.key == path_from_name(name) }
     #directory.files.get(path_from_name(name))
   end
   
+  def sub_asset_file(group, name)
+    files.detect {|f| f.key == sub_asset_path(group, name) }
+  end
+
   def asset_file_exists?(name)
     !asset_file(name).nil?
   end
@@ -120,6 +150,23 @@ class PartnerAssetsFolder
 
   def css_path(name)
     @partner.send("#{name}_css_path")
+  end
+
+  def sub_css_path(group, name)
+    path = css_path(name)
+    inject_folder_name(group, path)
+    path
+  end
+
+  def sub_asset_path(group, name)
+    path = path_from_name(name)
+    inject_folder_name(group, path)
+    path
+  end
+
+  def inject_folder_name(folder, path)
+    basename = File.basename(path)
+    path.gsub!(basename, folder.to_s + '/' + basename)
   end
 
   def ensure_dir(path)
