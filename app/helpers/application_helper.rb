@@ -34,7 +34,19 @@ module ApplicationHelper
     opts
   end
 
+  def preview_partner_css(partner)
+    [
+      partner.application_css_url(:preview) || 'application',
+      partner.registration_css_url(:preview) || 'registration',
+      *registrant_css,
+      partner.partner_css_url(:preview)
+    ].compact
+  end
+
   def partner_css(partner = @partner)
+    if params.has_key?(:preview_custom_assets) || @registrant.try(:is_fake)
+      return preview_partner_css(partner)
+    end
     wl = partner && partner.whitelabeled?
 
     stylesheets = []

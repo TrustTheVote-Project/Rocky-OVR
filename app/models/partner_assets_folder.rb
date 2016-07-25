@@ -58,8 +58,8 @@ class PartnerAssetsFolder
   
 
   # Updates the css
-  def update_css(name, file)
-    update_path(css_path(name), file)
+  def update_css(name, file, group = nil)
+    update_path(css_path(name, group), file)
   end
   
   def write_css(name, content)
@@ -67,65 +67,112 @@ class PartnerAssetsFolder
   end
 
   # Updates asset
-  def update_asset(name, file)
-    path = path_from_name(name)
+  def update_asset(name, file, group = nil)
+    path = path_from_name(name, group)
     update_path(path, file)
   end
-  def write_asset(name, content)
-    write_path(path_from_name(name), content)
+
+  def write_asset(name, content, group = nil)
+    write_path(path_from_name(name, group), content)
   end
   
-  def path_from_name(name)
-    File.join(@partner.assets_path, File.basename(name))
+  def path_from_name(name, group = nil)
+    File.join(@partner.assets_path, group.to_s, File.basename(name))
   end
 
   # Returns the list of all assets in the folder
   def list_assets
-    files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
+    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
     #Dir.glob(File.join(@partner.assets_path, '*.*')).map { |n| File.basename(n) }
   end
 
-  # Deletes the asset
-  def delete_asset(name)
-    (f = existing(File.join(@partner.assets_path, File.basename(name)))) && f.destroy
-    if PartnerAssets.is_pdf_logo?(name)
-      local_path = @partner.absolute_pdf_logo_path(PartnerAssets.extension(name))
-      FileUtils.rm_f File.join(local_path)
+  def files_by_folder(folder)
+    files_to_hash(
+      files.select do |file|
+        v = parse_file_key(file.key)
+        v.folder == folder && v.basename.present?
+      end
+    )
+  end
+
+  # returns { "base_file_name" => "content" }
+  def files_to_hash(files)
+    {}.tap do |result|
+      files.each do |file|
+        result[File.basename(file.key)] = file.body
+      end
     end
-    
+  end
+
+
+  def parse_file_key(key)
+    # allow only "root/folder/file.ext" and "root/file.ext", any deeper structure is ignored
+    folder, basename = *key.scan(%r(^#{@partner.assets_path}(/[^/]+)?(/[^/]+)$))[0]
+    formatter = ->(x){ x.to_s.sub(/^\//, '') }
+    OpenStruct.new(folder: formatter.(folder), basename: formatter.(basename))
+  end
+
+  # now only archive copies are private, so expiration is not needed
+  # when a file is deleted its public_url is not available but cached value affects nothing
+  # b/c file list is not cached
+  def cached_public_url(fog_file)
+    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 20.hours) { fog_file.public_url }
+  end
+
+  def delete_assets(names)
+    names.each { |name| delete_asset(name)}
+  end
+
+  # Deletes the asset
+  def delete_asset(name, group = nil)
+    (f = existing(File.join(@partner.assets_path, group.to_s, File.basename(name)))) && f.destroy
   end
 
   def files
     @files ||= directory.files
   end
-  
+
   def file_names
     files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key }
   end
 
-  def asset_url(name)
-    asset_file(name) && asset_file(name).public_url
+  def asset_url(name, group = nil)
+    asset_file(name, group).try(:public_url)
   end
 
-  def asset_file(name)
-    files.detect {|f| f.key == path_from_name(name) }
-    #directory.files.get(path_from_name(name))
+  def asset_file(name, group = nil)
+    files.detect {|f| f.key == path_from_name(name, group) }
   end
-  
+
   def asset_file_exists?(name)
-    !asset_file(name).nil?
+    asset_file(name).present?
+  end
+
+  def publish_sub_assets(group)
+    source_folder = "#{group}/"
+    sub_assets = list_assets.select { |a| a.starts_with? source_folder }
+    sub_assets_names = sub_assets.map { |a| File.basename(a) }
+    delete_assets_list = list_assets - sub_assets - sub_assets_names
+
+    sub_assets_names.each do |name|
+      src = File.join(group.to_s, name)
+      dst = name
+      copy(src, dst)
+    end
+
+    delete_assets(delete_assets_list)
   end
 
   private
 
-  def css_path(name)
-    @partner.send("#{name}_css_path")
+  def css_path(name, group = nil)
+    @partner.send("#{name}_css_path", group)
   end
 
   def ensure_dir(path)
     FileUtils.mkdir_p File.dirname(path)
   end
-  
+
   def update_file(path, file)
     filename = ""
     begin
@@ -141,12 +188,12 @@ class PartnerAssetsFolder
     # end
   end
 
-  def write_file(path, content)
+  def write_file(path, content, public = true)
     directory.files.create(
       :key    => path,
       :body   => content,
-      :public => true
-    )    
+      :public => public
+    )
   end
 
   def update_path(path, file)
@@ -159,7 +206,7 @@ class PartnerAssetsFolder
     create_version(path)
     write_file(path, content)
   end
-  
+
   def existing(path)
      directory.files.get(path)
   end
@@ -173,10 +220,20 @@ class PartnerAssetsFolder
     ts   = Time.now.strftime("%Y%m%d%H%M%S")
 
     archive_path = File.join(@partner.absolute_old_assets_path, "#{name}-#{ts}#{ext}")
-    
+
     directory.files.create :key => archive_path, :body => file.body, :public=>false
-    
+
     #FileUtils.cp path, archive_path
   end
-  
+
+  def copy(from, to)
+    source = File.join(@partner.assets_path, from)
+    destination = File.join(@partner.assets_path, to)
+
+    create_version(destination) if existing(destination)
+    source_file = existing(source)
+
+    write_file(destination, source_file.body)
+  end
+
 end
