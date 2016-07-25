@@ -32,6 +32,9 @@ Rocky::Application.routes.draw do
       post "registrations"
       get "download_csv"
       get "embed_codes"
+      get "branding"
+      post "update_branding"
+      get "preview_assets"
     end
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]
@@ -116,6 +119,7 @@ Rocky::Application.routes.draw do
     resources :partners do
       member do
         get :regen_api_key
+        post :publish
       end
       resources :assets, :only => [ :index, :create, :destroy ]
     end

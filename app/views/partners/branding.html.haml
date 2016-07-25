@@ -1,0 +1,29 @@
+- @nav_class[:branding] = :current
+#customize_nav
+  %p.switcher(data-hide-class = 'nav-items')
+    = link_to "CSS", '#', class: :current, 'data-show-class' => 'css'
+    |
+    = link_to "Assets", '#', 'data-show-class' => 'assets'
+    |
+    = link_to "E-Mail templates", '#', 'data-show-class' => 'emails'
+
+%h1= I18n.t('partners.branding.title', default: 'Setup Custom Branding')
+%p.nav-items.css.assets
+  = link_to 'Live preview', preview_assets_partner_path, target: '_blank', id: 'registrant_preview', confirm: preview_confirmation
+.text
+  %p= I18n.t('partners.branding.description', default: 'Custom Branding feature description')
+
+= form_for @partner, url: update_branding_partner_path, method: :post, :html => { :multipart => true } do |f|
+  %fieldset.nav-items.css
+    %legend Whitelabeled CSS
+    = render partial: 'admin/shared/custom_css'
+
+  %fieldset.nav-items.assets
+    %legend Assets
+    = render partial: 'partner_assets', locals: { f: f }
+
+  %fieldset.nav-items.emails
+    %legend E-Mail templates
+    = render partial: 'admin/shared/custom_emails'
+
+  = partner_rollover_button 'update', 'Update'

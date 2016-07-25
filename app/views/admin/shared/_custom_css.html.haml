@@ -1,0 +1,14 @@
+%div.whitelabeled
+  %ul.stacked
+    %li.width_e
+      %br
+      %h3= "application.css#{' (missing)' unless @partner.application_css_present?}"
+      %div= file_field_tag 'css_files[application]'
+    %li.width_e
+      %br
+      %h3= "registration.css#{' (missing)' unless @partner.registration_css_present?}"
+      %div= file_field_tag 'css_files[registration]'
+    %li.width_e
+      %br
+      %h3= "partner.css#{' (missing)' unless @partner.partner_css_present? }"
+      %div= file_field_tag 'css_files[partner]'
