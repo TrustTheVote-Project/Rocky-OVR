@@ -88,7 +88,7 @@ class PartnerAssetsFolder
 
   def files_by_folder(folder)
     files_to_hash(
-      files.select do |file|
+      files.to_a.select do |file|
         v = parse_file_key(file.key)
         v.folder == folder && v.basename.present?
       end
