@@ -76,3 +76,26 @@ Feature: Log in
     Then non-approved assets are partner_logo.jpg
     And approved assets are partner_logo.jpg
     And Assets "not changed" warning should be shown
+
+  Scenario: fake registrant creation
+    Given partner's assets exist:
+      | asset                |
+      | preview/pdf_logo.jpg |
+    When I go to the partner branding page
+    And I follow "registrant_preview"
+    And I have not set a locale
+    And I fill in "Email Address" with "john.public@example.com"
+    And I fill in "ZIP Code" with "94113"
+    And I am 20 years old
+    And I check "registrant_has_state_license"
+    And I check "registrant_will_be_18_by_election"
+    And I check "I am a U.S. citizen"
+    And I press "registrant_submit"
+    Then fake registrant is created
+
+  Scenario: fake registrant pdf logo preview
+    Given partner's assets exist:
+      | asset                |
+      | preview/pdf_logo.jpg |
+    Given fake registrant finished registration
+    Then registrant pdf includes "preview/pdf_logo.jpg"

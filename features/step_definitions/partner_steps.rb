@@ -119,3 +119,17 @@ Then(/^changes are published$/) do
   # emulates admin's publishing in background
   @partner.folder.publish_sub_assets(:preview)
 end
+
+Then(/^fake registrant is created$/) do
+  @registrant = @partner.registrants.last
+  expect(@registrant.is_fake).to be true
+end
+
+Given(/^fake registrant finished registration$/) do
+  @registrant = FactoryGirl.create("step_5_registrant", is_fake: true, partner: @partner)
+end
+
+Then(/^registrant pdf includes "([^"]+)"$/) do |text|
+  source = @registrant.pdf_writer.registrant_to_html_string
+  expect(source).to include(text)
+end
