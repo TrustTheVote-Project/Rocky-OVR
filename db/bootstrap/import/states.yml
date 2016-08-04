@@ -344,7 +344,7 @@ record_23:
   sos_address: Secretary of State<br>180 State Office Bldg<br>100 Rev. MLK Drive<br>St.
     Paul, MN 55155-1299
   sos_phone: (651) 215-1440
-  sos_url: http://elections.maryland.gov/voter_registration/index.html
+  sos_url: http://www.sos.state.mn.us/elections-voting/
   registration_deadline: received_21_days
   id_length_min: '4'
 record_24:
