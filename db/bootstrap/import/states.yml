@@ -96,7 +96,7 @@ record_5:
   sos_address: Secretary of State<br>1700 Broadway, Suite 200<br>Denver, CO 80290
   sos_phone: (303) 894-2200
   sos_url: https://www.govotecolorado.com
-  online_registration_url: https://www.sos.state.co.us/voter-classic/pages/pub/olvr/verifyNewVoter.xhtml
+  online_registration_url: https://www.sos.state.co.us/voter-classic?vrdid=vrd_944
   id_length_min: '4'
   registration_deadline: colorado
 record_6:
@@ -393,7 +393,7 @@ record_27:
   id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: Elections Office<br>P.O. Box 94608<br>Lincoln, NE 68509
   sos_phone: (402) 471-2555
-  sos_url: http://www.sos.ms.gov/elections-voting/pages/default.aspx
+  sos_url: http://www.sos.ne.gov/dyindex.html
   sub_18: be_by_next_general_election_november
   registration_deadline: nebraska
   id_length_min: '4'
