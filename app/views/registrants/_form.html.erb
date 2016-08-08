@@ -34,61 +34,63 @@ $(document).ready(function() {
     <span class="error"><%= form.object.errors[:home_zip_code].join("\n") %></span>
   </li>
 </ul>
-<ul class="flat">
-  <li class="width_f">
-    <h3><%= form.label :date_of_birth %></h3>
-    <%= field_div form, :date_of_birth, :value => form.object.form_date_of_birth %>
-    <div class="tooltip"><%= tooltip_tag :date_of_birth %></div>
-    <% if !form.object.errors[:date_of_birth].empty? %>
-      <span class="error"><%= form.object.errors[:date_of_birth].join("\n") %></span>
-    <% else %>
-      <span class="example">MM-DD-YYYY</span>
-    <% end %>
-  </li>
-</ul>
+<%- if !@registrant.use_short_form? %>
+  <ul class="flat">
+    <li class="width_f">
+      <h3><%= form.label :date_of_birth %></h3>
+      <%= field_div form, :date_of_birth, :value => form.object.form_date_of_birth %>
+      <div class="tooltip"><%= tooltip_tag :date_of_birth %></div>
+      <% if !form.object.errors[:date_of_birth].empty? %>
+        <span class="error"><%= form.object.errors[:date_of_birth].join("\n") %></span>
+      <% else %>
+        <span class="example">MM-DD-YYYY</span>
+      <% end %>
+    </li>
+  </ul>
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :us_citizen %> <%= form.label :us_citizen %>
+        <span class="error"><%= form.object.errors[:us_citizen].join("\n") %></span>
+      </h3>
+    </li>
+  </ul>
 
-<ul class="checkbox checkbox-step-1">
-  <li class="spacer">&nbsp;</li>
-  <li>
-    <h3>
-      <%= form.check_box :us_citizen %> <%= form.label :us_citizen %>
-      <span class="error"><%= form.object.errors[:us_citizen].join("\n") %></span>
-    </h3>
-  </li>
-</ul>
 
 
-
-<ul class="checkbox checkbox-step-1">
-  <li class="spacer">&nbsp;</li>
-  <li>
-    <h3>
-      <%= form.check_box :has_state_license %> <%= form.label :has_state_license %>
-      <span class="error"><%= form.object.errors[:has_state_license].join("\n") %></span>
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :has_state_license %> <%= form.label :has_state_license %>
+        <span class="error"><%= form.object.errors[:has_state_license].join("\n") %></span>
       
-    </h3>
-  </li>
-</ul>
+      </h3>
+    </li>
+  </ul>
 
-<ul class="checkbox checkbox-step-1">
-  <li class="spacer">&nbsp;</li>
-  <li>
-    <h3>
-      <%= form.check_box :will_be_18_by_election %> <%= form.label :will_be_18_by_election %>
-      <span class="error"><%= form.object.errors[:will_be_18_by_election].join("\n") %></span>
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :will_be_18_by_election %> <%= form.label :will_be_18_by_election %>
+        <span class="error"><%= form.object.errors[:will_be_18_by_election].join("\n") %></span>
       
-    </h3>
-  </li>
-</ul>
+      </h3>
+    </li>
+  </ul>
 
 
 
-<ul class="checkbox checkbox-step-1">
-  <li class="spacer">&nbsp;</li>
-  <li>
-    <h3>
-      <%= form.check_box :first_registration %> <%= form.label :first_registration %>
-      <span class="error"><%= form.object.errors[:first_registration].join("\n") %></span>
-    </h3>
-  </li>
-</ul>
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :first_registration %> <%= form.label :first_registration %>
+        <span class="error"><%= form.object.errors[:first_registration].join("\n") %></span>
+      </h3>
+    </li>
+  </ul>
+<%- end %>
+

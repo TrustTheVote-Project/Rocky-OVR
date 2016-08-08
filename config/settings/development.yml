@@ -32,6 +32,9 @@ ovr_states:
     languages:
       - en
       - es
+  MA:
+    languages:
+      - en
   
 
 states_with_online_registration:

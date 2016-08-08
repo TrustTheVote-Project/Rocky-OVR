@@ -108,7 +108,19 @@ Feature: Step 1
       When I go to a new registration page for that partner
       Then I should see "Custom Snippet From Partner"
         
-      
+        
+    @wip
+    Scenario: User arrives for a short form
+      When I go to a new registration with a short form
+      Then I should see a field for "Email Address"
+      And I should see a field for "ZIP Code"
+      And I should not see a field for "Date of Birth"
+      And I should not see a field for "I am a U.S. citizen."
+      And I should not see a field for "I have a driver's license or state ID card."
+      And I should not see a field for "I will be 18 by the next election day."
+      And I should not see a field for "I am registering to vote for the first time."
+    
+    @passing
     Scenario: Step1 creation default for primary partner
       When I go to a new registration page
       And I fill in "Email Address" with "john.public@example.com"
