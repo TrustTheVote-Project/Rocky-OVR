@@ -1230,6 +1230,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def finalize_pdf
+    self.status = 'complete' # lets make sure this is set
     self.pdf_ready = true
     redact_sensitive_data
     save
