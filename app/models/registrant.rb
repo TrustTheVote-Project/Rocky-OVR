@@ -980,7 +980,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def use_short_form?
-    short_form? && !in_ovr_flow?
+    short_form?# && !in_ovr_flow?
   end
     
 
