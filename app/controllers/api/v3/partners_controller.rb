@@ -48,5 +48,27 @@ class Api::V3::PartnersController < Api::V3::BaseController
     name = e.message.split(': ')[1]
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
+  
+  
+  def partner_id_validation
+    if params[:partner_id].blank?
+      jsonp({
+        message: "Missing Parameter: partner_id"
+      }, status: 400)
+    else
+      partner = Partner.find_by_id(params[:partner_id])
+      if partner
+        jsonp({
+          is_valid: true,
+          partner_name: partner.name
+        })
+      else
+        jsonp({
+          is_valid: false
+        })      
+      end
+    end
+  end
+
 
 end

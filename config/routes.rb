@@ -108,6 +108,7 @@ Rocky::Application.routes.draw do
       end
       match 'gregistrations',      :format => 'json', :controller => 'registrations', :action => 'index_gpartner', :via => :get
       match 'gregistrations',      :format => 'json', :controller => 'registrations', :action => 'create_finish_with_state', :via => :post
+      match 'partnerIdValidation', format: 'json', controller: 'partners', action: 'partner_id_validation', via: :get
     end
   end
 
