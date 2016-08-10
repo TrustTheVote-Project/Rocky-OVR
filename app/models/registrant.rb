@@ -230,19 +230,9 @@ class Registrant < ActiveRecord::Base
 
   before_save :set_questions, :set_finish_with_state
 
-  with_options :if => :at_least_step_1? do |reg|
-    reg.validates_presence_of   :partner_id #, :unless=>[:remote_partner_id_present?]
-    reg.validates_inclusion_of  :has_state_license, :in=>[true,false], :unless=>[:building_via_api_call]
-    reg.validates_inclusion_of  :will_be_18_by_election, :in=>[true,false], :unless=>[:building_via_api_call]
-    
-    reg.validates_inclusion_of  :locale, :in => RockyConf.enabled_locales
-    reg.validates_presence_of   :email_address, :unless=>:not_require_email_address?
-    reg.validates_format_of     :email_address, :with => Authlogic::Regex.email, :allow_blank => true
-    reg.validates_zip_code      :home_zip_code
-    reg.validates_presence_of   :home_state_id
-    reg.validate                :validate_date_of_birth
-    reg.validates_inclusion_of  :us_citizen, :in => [ false, true ], :unless => :building_via_api_call
-  end
+  validates_with RegistrantValidator
+  
+  
 
   with_options :if => :at_least_step_2? do |reg|
     reg.validates_presence_of   :name_title
