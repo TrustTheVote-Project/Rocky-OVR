@@ -111,7 +111,7 @@ describe Api::V3::PartnersController do
         expect(subject.status).to eq(400)
       end
       it "returns a JSON body with message=Missing Parameter: partner_id" do
-        expect(JSON.parse(subject.body)).not_to have_key("is_valid")
+        expect(JSON.parse(subject.body)["is_valid"]).to eq(false)
         expect(JSON.parse(subject.body)["message"]).to eq("Missing Parameter: partner_id")
       end
     end

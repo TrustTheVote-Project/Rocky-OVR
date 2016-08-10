@@ -53,6 +53,7 @@ class Api::V3::PartnersController < Api::V3::BaseController
   def partner_id_validation
     if params[:partner_id].blank?
       jsonp({
+        is_valid: false,
         message: "Missing Parameter: partner_id"
       }, status: 400)
     else
