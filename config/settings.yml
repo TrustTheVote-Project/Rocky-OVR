@@ -57,7 +57,7 @@ ovr_states:
     redirect_to_online_reg_url: true
     api_settings:
       api_url: https://covrapitest.sos.ca.gov/PostingEntityInterfaceService.svc
-      api_key: d2DE1Nht8I
+      api_key: <%= ENV['CA_API_KEY'] %>
       api_posting_entity_name: RTV
       debug_in_ui: false
       log_all_requests: false
@@ -189,6 +189,9 @@ ovr_states:
       - en
       - es
   PA:
+    api_settings:
+      api_url: "https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
+      api_key: <%= ENV['PA_API_KEY'] %>
     redirect_to_online_reg_url: true
     languages:
       - en
