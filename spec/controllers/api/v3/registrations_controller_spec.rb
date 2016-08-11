@@ -89,6 +89,15 @@ describe Api::V3::RegistrationsController do
       it 'should return a 400 response'
       it 'should return a body with registration_rejection and an error list of all the validation messages'
     end
+    context 'registrant record fails PA validation' do
+      let(:invalid_registrant) { double(Registrant, valid?: true, errors: double(Errors, full_messages: ["Message One", "Message Two"]))}
+      before(:each) do
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
+        
+      end
+      it 'should return a 400 response'
+      it 'should return a body with registration_rejection and an error list of all the validation messages'
+    end
   end
 
   describe 'index' do
