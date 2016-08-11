@@ -66,6 +66,31 @@ describe Api::V3::RegistrationsController do
     end
   end
 
+  describe 'create_pa' do
+    let(:query) {
+      {
+        rocky_request: { 
+          voter_records_request: {
+            
+          }
+        }        
+      }
+    }
+    subject { post :create_pa, query.merge(format: 'json') }
+    context 'successful registration' do
+      it 'should return a 200 response'
+      it 'should return a body with registration_acknowledgement'
+    end
+    context 'registrant record fails rocky validation' do
+      let(:invalid_registrant) { double(Registrant, valid?: false, errors: double(Errors, full_messages: ["Message One", "Message Two"]))}
+      before(:each) do
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
+      end
+      it 'should return a 400 response'
+      it 'should return a body with registration_rejection and an error list of all the validation messages'
+    end
+  end
+
   describe 'index' do
     it 'should catch errors' do
       expect_api_error :message => 'error'

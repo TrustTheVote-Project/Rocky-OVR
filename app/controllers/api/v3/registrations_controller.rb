@@ -84,6 +84,48 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
   
+  def create_pa
+    # This is just for endpoint testing. Remove it when the rest of the code
+    # is implemented
+    return jsonp({
+      registration_acknowledgement: "Endpoint Success"
+    })
+    # Remove above when rest of code is implemented
+    
+    # 1. Build a rocky registrant record based on all of the fields
+    registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request], true)
+    # 2.Check if the registrant is internally valid
+    if registrant.valid?
+      # If valid for rocky, ensure that it's valid for PA submissions
+      pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)
+      if pa_validation_errors.any?
+        # 
+        jsonp({registration_rejection: {
+          other_error: registrant.error_messages
+        }})
+      else
+        # If there are no errors, make the submission to PA
+        # This will commit the registrant with the response code
+        begin
+          V3::RegistrationService.register_with_pa(registrant)
+          jsonp({
+            registration_acknowledgement: registrant.state_ovr_data["pa_transaction_id"]
+          })
+        rescue Exception => e
+          jsonp({
+            registration_rejection: {
+              other_error: ["Error submitting to PA: #{e.message}"]
+            }
+          })
+        end
+      end
+    else
+      jsonp({registration_rejection: {
+        error: registrant.full_messages
+      }})
+    end
+  end
+  
   def pdf_ready
     query = {
       :UID              => params[:UID]
