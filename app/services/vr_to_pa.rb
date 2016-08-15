@@ -253,7 +253,7 @@ class VRToPA
 
     result['DateOfBirth'] = read([:date_of_birth])
     result['Gender'] = parse_gender(read([:gender]))
-    result['Ethnicity'] = 'A' # read([:race]) TODO convert
+    result['Ethnicity'] = parse_race(read([:race]))
 
     value = query([:contact_methods], :type, 'phone', :value)
     result['Phone'] = value
@@ -355,5 +355,18 @@ class VRToPA
 
   def is_empty(value)
     value.nil? || (value.is_a?(Hash) && value.keys.size == 0)
+  end
+
+  RACE_RULES =
+    {
+      "american indian / alaskan native" => "I",
+      "asian / pacific islander" => "A",
+      "black (not hispanic)" => "B",
+      "hispanic" => "H",
+      "white (not hispanic)" => "W"
+    }
+
+  def parse_race(race)
+    RACE_RULES[race.downcase] || "O"
   end
 end
