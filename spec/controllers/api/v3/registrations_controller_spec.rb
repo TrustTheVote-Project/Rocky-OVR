@@ -66,6 +66,209 @@ describe Api::V3::RegistrationsController do
     end
   end
 
+  describe 'create_pa' do
+    let(:query) {
+      {
+        "rocky_request" => {
+          "lang" => "en",
+          "phone_type" => "home",
+          "partner_id" => 1,
+          "opt_in_email" => false,
+          "opt_in_sms" => false,
+          "opt_in_volunteer" => false,
+          "partner_opt_in_sms" => true,
+          "partner_opt_in_email" => true,
+          "partner_opt_in_volunteer" => false,
+          "finish_with_state" => true,
+          "created_via_api" => true,
+          "source_tracking_id" => "Aaron Huttner",
+          "partner_tracking_id" => "22201",
+          "geo_location" => {
+            "lat" => 123,
+            "long" => -123
+          },
+          "open_tracking_id" => "metro canvasing",
+          "voter_records_request" => {
+            "type" => "registration",
+            "generated_date" => "2016-06-16T19:44:45+00:00",
+            "voter_registration" => {
+              "date_of_birth" => "2016-06-16",
+              "mailing_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "\"\"",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "previous_registration_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "\"\"",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "registration_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "\"\"",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "registration_address_is_mailing_address" => false,
+              "name" => {
+                "first_name" => "Aaron",
+                "last_name" => "Huttner",
+                "middle_name" => "Bernard",
+                "title_prefix" => "Mr",
+                "title_suffix" => "Jr"
+              },
+              "previous_name" => {
+                "first_name" => "Aaron",
+                "last_name" => "Huttner",
+                "middle_name" => "Bernard",
+                "title_prefix" => "Mr",
+                "title_suffix" => "Jr"
+              },
+              "gender" => "male",
+              "race" => "American Indian / Alaskan Native",
+              "party" => "democratic",
+              "voter_classifications" => [
+                {
+                  "type" => "eighteen_on_election_day",
+                  "assertion" => true
+                },
+                {
+                  "type" => "united_states_citizen",
+                  "assertion" => true
+                },
+                {
+                  "type" => "send_copy_in_mail",
+                  "assertion" => true
+                },
+                {
+                  "type" => "agreed_to_declaration",
+                  "assertion" => true
+                }
+              ],
+              "signature" => {
+                "mime_type" => "image/png",
+                "image" => "?"
+              },
+              "voter_ids" => [
+                {
+                  "type" => "drivers_license",
+                  "string_value" => "1243asdf",
+                  "attest_no_such_id" => false
+                }
+              ],
+              "contact_methods" => [
+                {
+                  "type" => "phone",
+                  "value" => "555-555-5555",
+                  "capabilities" => [
+                    "voice",
+                    "fax",
+                    "sms"
+                  ]
+                }
+              ],
+              "additional_info" => [
+                {
+                  "name" => "preferred_language",
+                  "string_value" => "english"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+    subject { post :create_pa, query.merge(format: 'json') }
+
+    context 'invalid request structure' do
+      let(:query) { {} }
+      it 'returns error code 400' do
+        expect(subject.status).to be_eql(400)
+      end
+    end
+
+    context 'successful registration' do
+      it 'should return a 200 response' do
+        expect(PARegistrationRequest).to receive(:send_request).and_return({id: 'APP_ID', date: 'APP_DATE', error: ''})
+        expect(subject.code).to eql "200"
+      end
+
+      it 'should return a body with registration_acknowledgement' do
+        expect(PARegistrationRequest).to receive(:send_request).and_return({id: 'APP_ID', date: 'APP_DATE', error: ''})
+        expect(subject.headers["Content-Type"]).to include "application/json"
+        result = JSON.parse(subject.body)
+        expect(result).to include({"registration_acknowledgement" => "APP_ID"})
+      end
+    end
+    context 'registrant record fails rocky validation' do
+      let(:invalid_registrant) { double(Registrant, valid?: false, errors: double(Errors, full_messages: ["Message One", "Message Two"]))}
+      before(:each) do
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
+      end
+      it 'should return a 400 response'
+      it 'should return a body with registration_rejection and an error list of all the validation messages'
+    end
+    context 'registrant record fails PA validation' do
+      let(:invalid_registrant) { double(Registrant, valid?: true, errors: double(Errors, full_messages: ["Message One", "Message Two"]))}
+      before(:each) do
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
+        
+      end
+      it 'should return a 400 response'
+      it 'should return a body with registration_rejection and an error list of all the validation messages'
+    end
+  end
+
   describe 'index' do
     it 'should catch errors' do
       expect_api_error :message => 'error'
