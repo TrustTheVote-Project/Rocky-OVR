@@ -151,25 +151,6 @@ describe V3::RegistrationService do
     end
   end
 
-  describe 'create_pa_registrant' do
-    it 'builds a rocky registrant instance from the params'
-    it 'puts the voter_records_request hash into registrant state_ovr_data["voter_records_request"]'
-  end
-  
-  describe 'valid_for_pa_submission(registrant)' do
-    it "checks values in registrant.state_ovr_data['voter_records_request'] for valid enum values"
-    it "checks values in registrant.state_ovr_data['voter_records_request'] for a valid signature file"
-    # it "does other validations TBD?"
-  end
-  
-  describe 'register_with_pa(registrant)' do
-    it "Builds an XML file from valuds in registrant.state_ovr_data['voter_records_request']"
-    it "submits XML to RockyConf.ovr_states.PA.api_settings.api_url" # this setting includes the API key
-    it "saves the transaction ID into registrant.state_ovr_data['pa_transaction_id']"
-    it "commits the rocky registrant to the DB"
-  end
-  
-
   describe 'data_to_attrs' do
     specify { V3::RegistrationService.send(:data_to_attrs, {}).should == {} }
     specify { V3::RegistrationService.send(:data_to_attrs, { :lang  => 'ex' }).should == { :locale => 'ex' } }
