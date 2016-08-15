@@ -85,11 +85,58 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   end
   
   def create_pa
-    # This is just for endpoint testing. Remove it when the rest of the code
-    # is implemented
-    return jsonp({
-      registration_acknowledgement: "Endpoint Success"
-    })
+    # # This is just for endpoint testing. Remove it when the rest of the code
+    # # is implemented
+    # return jsonp({
+    #   registration_acknowledgement: "Endpoint Success"
+    # })
+
+    # initial integration implementation
+
+    # input request structure validation
+    [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
+      value = params
+      keys.each do |key|
+        unless (value = value[key.to_s])
+          return jsonp({:error => "Invalid request: parameter #{keys.join('.')} not found"}, :status => 400)
+        end
+      end
+    end
+
+    pa_data = nil
+    pa_adapter = VRToPA.new(params['rocky_request']['voter_records_request'])
+    begin
+      pa_data = pa_adapter.convert
+    rescue => e
+      return jsonp({
+                       registration_rejection: {
+                           other_error: ["Error parsing request: #{e.message}"]
+                       }
+                   })
+    end
+
+    begin
+      result = PARegistrationRequest.send_request(pa_data)
+      if result[:error].present?
+        return jsonp({
+                         registration_rejection: {
+                             other_error: [result[:error]]
+                         }
+                     })
+      else
+        return jsonp({
+                         registration_acknowledgement: result[:id]
+                     })
+      end
+    rescue => e
+      return jsonp({
+                       registration_rejection: {
+                           other_error: ["Error submitting to PA: #{e.message}"]
+                       }
+                   })
+
+    end
+
     # Remove above when rest of code is implemented
     
     # 1. Build a rocky registrant record based on all of the fields
