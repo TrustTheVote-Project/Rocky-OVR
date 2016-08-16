@@ -291,8 +291,9 @@ class VRToPA
     result['signatureimage'] = read([:signature, :image])
     result['continueAppSubmit'] = "1"
     result['donthavebothDLandSSN'] = "0"
-    result['politicalparty'] = "OTH"
-    result['otherpoliticalparty'] = read([:party])
+    party_values = parse_party(read([:party]))
+    result['politicalparty'] = party_values[0]
+    result['otherpoliticalparty'] = party_values[1]
     result['needhelptovote'] = ""
     result['typeofassistance'] = ""
 
@@ -325,7 +326,6 @@ class VRToPA
     result
   end
 
-
   private
 
   def read(keys, required=false)
@@ -352,7 +352,7 @@ class VRToPA
   end
 
   def parse_gender(gender)
-    gender == 'male' ? 'M' : 'F'
+    gender.downcase.strip == 'male' ? 'M' : 'F'
   end
 
   def is_empty(value)
@@ -369,6 +369,19 @@ class VRToPA
     }
 
   def parse_race(race)
-    RACE_RULES[race.downcase] || "O"
+    RACE_RULES[race.downcase.strip] || "O"
   end
+
+  PARTIES_NAMES = {
+      "democratic" => "D",
+      "republican" => "R",
+      "other" => "OTH",
+      "none" => "NF"
+  }
+
+  def parse_party(name)
+    v = PARTIES_NAMES[name.downcase.strip]
+    v ? [v, ""] : ["OTH", v]
+  end
+
 end
