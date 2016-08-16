@@ -265,8 +265,11 @@ class VRToPA
     result['unittype'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address_type])
     result['unitnumber'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address])
 
-    result['city'] = query([:registration_address, :numbered_thoroughfare_address, :complete_place_names],
-                           :place_name_type, 'City', :place_name_value)
+    municipality = query(
+        [:registration_address, :numbered_thoroughfare_address, :complete_place_names],
+        :place_name_type, 'MunicipalJurisdiction', :place_name_value)
+    result['municipality'] = municipality
+    result['city'] = municipality
 
     result['zipcode'] = read([:registration_address, :numbered_thoroughfare_address, :zip_code])
     result['donthavePermtOrResAddress'] = ''
@@ -275,11 +278,10 @@ class VRToPA
                   :place_name_type, 'County', :place_name_value)
 
 
-    result['municipality'] = query([:registration_address, :numbered_thoroughfare_address, :complete_place_names], :place_name_type, 'MunicipalJurisdiction', :place_name_value)
 
     result['mailingaddress'] = read([:mailing_address, :numbered_thoroughfare_address, :complete_street_name])
     result['mailingcity'] = query([:mailing_address, :numbered_thoroughfare_address, :complete_place_names],
-                                  :place_name_type, 'City', :place_name_value)
+                                  :place_name_type, 'MunicipalJurisdiction', :place_name_value)
     result['mailingstate'] = read([:mailing_address, :numbered_thoroughfare_address, :state])
     result['mailingzipcode'] = read([:mailing_address, :numbered_thoroughfare_address, :zip_code])
 
@@ -302,7 +304,7 @@ class VRToPA
     result['previousregmiddlename'] = read([:previous_name, :middle_name])
     result['previousregaddress'] = read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name])
     result['previousregcity'] = query([:previous_registration_address, :numbered_thoroughfare_address, :complete_place_names],
-                                      :place_name_type, 'City', :place_name_value)
+                                      :place_name_type, 'MunicipalJurisdiction', :place_name_value)
     result['previousregstate'] = read([:previous_registration_address, :numbered_thoroughfare_address, :state])
     result['previousregzip'] = read([:previous_registration_address, :numbered_thoroughfare_address, :zip_code])
 
