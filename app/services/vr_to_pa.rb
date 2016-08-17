@@ -1,4 +1,6 @@
 class VRToPA
+  class ParsingError < StandardError; end
+
   REQUIRED = true
   # for reference only
   # FIELDS = {
@@ -227,7 +229,7 @@ class VRToPA
   def initialize(voter_records_req)
     @voter_records_request = voter_records_req
     @request = @voter_records_request['voter_registration']
-    raise 'Invalid input, voter_registration value not found' if @request.nil?
+    raise ParsingError.new('Invalid input, voter_registration value not found') if @request.nil?
   end
 
   def convert
@@ -317,7 +319,7 @@ class VRToPA
     result['assistedpersonname'] = ""
     result['assistedpersonAddress'] = ""
     result['assistedpersonphone'] = ""
-    result['assistancedeclaration2'] = "1"
+    result['assistancedeclaration2'] = assistance_declaration2
     result['ispollworker'] = ""
     result['bilingualinterpreter'] = ""
     result['pollworkerspeaklang'] = ""
@@ -331,21 +333,21 @@ class VRToPA
     keys.each do |key|
       break if value.nil?
       value = value[key.to_s]
-      raise "Value #{keys.join('.')} not found in #{@request}" if required && value.nil?
+      raise ParsingError.new("Value #{keys.join('.')} not found in #{@request}") if required && value.nil?
     end
     value
   end
 
   def query(keys, key, value, output, required=false)
     objects = read(keys, required) || []
-    raise "Array is expected #{objects.class.name} found" unless objects.is_a? Array
+    raise ParsingError.new("Array is expected #{objects.class.name} found") unless objects.is_a? Array
     result = objects.find { |obj| obj[key.to_s] == value }
-    raise("Not found #{key} == #{value} in #{objects}") if required
+    raise ParsingError.new("Not found #{key} == #{value} in #{objects}") if required
     result ? result[output.to_s] : ""
   end
 
   def bool_to_int(v)
-    raise "Boolean expected, #{v.class.name} found" unless [true, false].include?(v)
+    raise ParsingError.new("Boolean expected, #{v.class.name} found") unless [true, false].include?(v)
     v ? "1": "0"
   end
 
@@ -391,6 +393,12 @@ class VRToPA
 
   def ssn4
     query([:voter_ids], :type, 'ssn4', :string_value)
+  end
+
+  def assistance_declaration2
+    value = query([:additional_info], :name, 'assistance_declaration2', :boolean_value)
+    value = false if value == ""
+    bool_to_int(value)
   end
 
 end

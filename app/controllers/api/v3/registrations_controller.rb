@@ -119,7 +119,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
     begin
       result = PARegistrationRequest.send_request(pa_data)
-      debug_info = debug ? { debug: { input: input, converted: pa_data }.merge(pa: result) } : {}
+      debug_info = debug ? { debug: { pa: result, converted: pa_data, input: input } } : {}
       if result[:error].present?
         return jsonp({
                          registration_rejection: {

@@ -8,7 +8,8 @@ describe VRToPA do
     {
         email: :email_value,
         ssn4: :ssn4_value,
-        party: 'party_value'
+        party: 'party_value',
+        assistance_declaration2: true
     }
   end
   let(:full_input) do
@@ -147,6 +148,10 @@ describe VRToPA do
             {
                 "name" => "preferred_language",
                 "string_value" => "english"
+            },
+            {
+                "name" => "assistance_declaration2",
+                "boolean_value" => parameters[:assistance_declaration2]
             }
         ]
     }
@@ -158,10 +163,11 @@ describe VRToPA do
     let(:input) { full_input }
 
     it 'returns all values' do
-      expect(subject).to include({"Email" => :email_value})
-      expect(subject).to include({"ssn4" => :ssn4_value})
-      expect(subject).to include({"politicalparty" => "OTH"})
-      expect(subject).to include({"otherpoliticalparty" => 'party_value'})
+      expect(subject).to include("Email" => :email_value)
+      expect(subject).to include("ssn4" => :ssn4_value)
+      expect(subject).to include("politicalparty" => "OTH")
+      expect(subject).to include("otherpoliticalparty" => "party_value")
+      expect(subject).to include("assistancedeclaration2" => "1")
     end
 
   end
@@ -225,26 +231,54 @@ describe VRToPA do
 
   describe 'party' do
     test_cases =
-      {
-          "democratic" => {politicalparty: "D", otherpoliticalparty: ""},
-          "Democratic" => {politicalparty: "D", otherpoliticalparty: ""},
-          " Democratic " => {politicalparty: "D", otherpoliticalparty: ""},
-          "republican" => {politicalparty: "R", otherpoliticalparty: ""},
-          "Republican" => {politicalparty: "R", otherpoliticalparty: ""},
-          "other" => {politicalparty: "OTH", otherpoliticalparty: ""},
-          "Other" => {politicalparty: "OTH", otherpoliticalparty: ""},
-          "none" => {politicalparty: "NF", otherpoliticalparty: ""},
-          "None" => {politicalparty: "NF", otherpoliticalparty: ""},
-          "green" => {politicalparty: "OTH", otherpoliticalparty: "green"},
-          "Green" => {politicalparty: "OTH", otherpoliticalparty: "Green"},
-      }
+        {
+            "democratic" => {politicalparty: "D", otherpoliticalparty: ""},
+            "Democratic" => {politicalparty: "D", otherpoliticalparty: ""},
+            " Democratic " => {politicalparty: "D", otherpoliticalparty: ""},
+            "republican" => {politicalparty: "R", otherpoliticalparty: ""},
+            "Republican" => {politicalparty: "R", otherpoliticalparty: ""},
+            "other" => {politicalparty: "OTH", otherpoliticalparty: ""},
+            "Other" => {politicalparty: "OTH", otherpoliticalparty: ""},
+            "none" => {politicalparty: "NF", otherpoliticalparty: ""},
+            "None" => {politicalparty: "NF", otherpoliticalparty: ""},
+            "green" => {politicalparty: "OTH", otherpoliticalparty: "green"},
+            "Green" => {politicalparty: "OTH", otherpoliticalparty: "Green"},
+        }
 
     it 'supports pre defined cases' do
       test_cases.each do |test, er|
-        adapter = VRToPA.new("voter_registration" => { "party" => test })
+        adapter = VRToPA.new("voter_registration" => {"party" => test})
         expect(adapter.party).to eql(er)
       end
     end
+  end
+  describe 'assistance_declaration2' do
+    subject { adapter.assistance_declaration2 }
+    context 'no additional info' do
+      let(:input) { {} }
+      it 'default 0' do
+        expect(subject).to eql "0"
+      end
+    end
+    context 'no assistance_declaration2 info' do
+      let(:input) { {"additional_info" => [{"name" => "n1", "string_value" => "s1"}]} }
+      it 'default 0' do
+        expect(subject).to eql "0"
+      end
+    end
+    context 'assistance_declaration2 info set to true ' do
+      let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "boolean_value" => true}]} }
+      it 'default 0' do
+        expect(subject).to eql "1"
+      end
+    end
+    context 'assistance_declaration2 invalid info  ' do
+      let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "another_value" => 42}]} }
+      it 'default 0' do
+        expect { subject }.to raise_error VRToPA::ParsingError
+      end
+    end
+
   end
 
 end
