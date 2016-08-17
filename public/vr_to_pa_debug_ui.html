@@ -11,7 +11,7 @@
     <script>
         $(function () {
             $('#btn-submit').click(function () {
-                var url = $('#input-url').attr('value')
+                var url = $('#input-url').val()
                 var data = $('#input-json').val()
               $('#output-json').val('Pending...')
 
@@ -178,6 +178,10 @@
             "type": "drivers_license",
             "string_value": "12312312",
             "attest_no_such_id": false
+          },
+          {
+            "type": "ssn4",
+            "string_value": "4321"
           }
         ],
         "contact_methods": [

@@ -287,7 +287,7 @@ class VRToPA
 
     result['drivers-license'] = query([:voter_ids], :type, 'drivers_license', :string_value)
 
-    result['ssn4'] = "1234"
+    result['ssn4'] = ssn4
     result['signatureimage'] = read([:signature, :image])
     result['continueAppSubmit'] = "1"
     result['donthavebothDLandSSN'] = "0"
@@ -384,6 +384,10 @@ class VRToPA
 
   def email
     query([:contact_methods], :type, 'email', :value)
+  end
+
+  def ssn4
+    query([:voter_ids], :type, 'ssn4', :string_value)
   end
 
 end

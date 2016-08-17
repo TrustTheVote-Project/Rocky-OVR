@@ -6,7 +6,8 @@ describe VRToPA do
   let(:adapter) { VRToPA.new("voter_registration" => input) }
   let(:parameters) do
     {
-        email: :email_value
+        email: :email_value,
+        ssn4: :ssn4_value
     }
   end
   let(:full_input) do
@@ -123,6 +124,10 @@ describe VRToPA do
                 "type" => "drivers_license",
                 "string_value" => "12345678",
                 "attest_no_such_id" => false
+            },
+            {
+                "type" => "ssn4",
+                "string_value" => parameters[:ssn4],
             }
         ],
         "contact_methods" => [
@@ -153,6 +158,7 @@ describe VRToPA do
 
     it 'returns all values' do
       expect(subject).to include({"Email" => :email_value})
+      expect(subject).to include({"ssn4" => :ssn4_value})
     end
 
   end
