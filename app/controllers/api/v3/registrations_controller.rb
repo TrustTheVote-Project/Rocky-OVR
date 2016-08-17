@@ -104,7 +104,9 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     end
 
     pa_data = nil
-    pa_adapter = VRToPA.new(params['rocky_request']['voter_records_request'])
+    debug = params.delete(:debug_info)
+    input = params['rocky_request']['voter_records_request']
+    pa_adapter = VRToPA.new(input)
     begin
       pa_data = pa_adapter.convert
     rescue => e
@@ -117,23 +119,24 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
     begin
       result = PARegistrationRequest.send_request(pa_data)
+      debug_info = debug ? { debug: { input: input, converted: pa_data }.merge(pa: result) } : {}
       if result[:error].present?
         return jsonp({
                          registration_rejection: {
                              other_error: [result[:error]]
                          }
-                     })
+                     }.merge(debug_info))
       else
         return jsonp({
                          registration_acknowledgement: result[:id]
-                     })
+                     }.merge(debug_info))
       end
     rescue => e
       return jsonp({
                        registration_rejection: {
                            other_error: ["Error submitting to PA: #{e.message}"]
                        }
-                   })
+                   }.merge(debug_info))
 
     end
 
