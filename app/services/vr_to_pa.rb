@@ -291,9 +291,9 @@ class VRToPA
     result['signatureimage'] = read([:signature, :image])
     result['continueAppSubmit'] = "1"
     result['donthavebothDLandSSN'] = "0"
-    party_values = parse_party(read([:party]))
-    result['politicalparty'] = party_values[0]
-    result['otherpoliticalparty'] = party_values[1]
+
+    result['politicalparty'] = party[:politicalparty]
+    result['otherpoliticalparty'] = party[:otherpoliticalparty]
     result['needhelptovote'] = ""
     result['typeofassistance'] = ""
 
@@ -377,9 +377,12 @@ class VRToPA
       "none" => "NF"
   }
 
-  def parse_party(name)
-    v = PARTIES_NAMES[name.downcase.strip]
-    v ? [v, ""] : ["OTH", v]
+  def party
+    @party ||= begin
+      name = read([:party])
+      v = PARTIES_NAMES[name.downcase.strip]
+      v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: name}
+    end
   end
 
   def email

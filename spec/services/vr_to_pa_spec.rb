@@ -7,7 +7,8 @@ describe VRToPA do
   let(:parameters) do
     {
         email: :email_value,
-        ssn4: :ssn4_value
+        ssn4: :ssn4_value,
+        party: 'party_value'
     }
   end
   let(:full_input) do
@@ -96,7 +97,7 @@ describe VRToPA do
         },
         "gender" => "male",
         "race" => "American Indian / Alaskan Native",
-        "party" => "democratic",
+        "party" => parameters[:party],
         "voter_classifications" => [
             {
                 "type" => "eighteen_on_election_day",
@@ -159,6 +160,8 @@ describe VRToPA do
     it 'returns all values' do
       expect(subject).to include({"Email" => :email_value})
       expect(subject).to include({"ssn4" => :ssn4_value})
+      expect(subject).to include({"politicalparty" => "OTH"})
+      expect(subject).to include({"otherpoliticalparty" => 'party_value'})
     end
 
   end
@@ -219,4 +222,29 @@ describe VRToPA do
       end
     end
   end
+
+  describe 'party' do
+    test_cases =
+      {
+          "democratic" => {politicalparty: "D", otherpoliticalparty: ""},
+          "Democratic" => {politicalparty: "D", otherpoliticalparty: ""},
+          " Democratic " => {politicalparty: "D", otherpoliticalparty: ""},
+          "republican" => {politicalparty: "R", otherpoliticalparty: ""},
+          "Republican" => {politicalparty: "R", otherpoliticalparty: ""},
+          "other" => {politicalparty: "OTH", otherpoliticalparty: ""},
+          "Other" => {politicalparty: "OTH", otherpoliticalparty: ""},
+          "none" => {politicalparty: "NF", otherpoliticalparty: ""},
+          "None" => {politicalparty: "NF", otherpoliticalparty: ""},
+          "green" => {politicalparty: "OTH", otherpoliticalparty: "green"},
+          "Green" => {politicalparty: "OTH", otherpoliticalparty: "Green"},
+      }
+
+    it 'supports pre defined cases' do
+      test_cases.each do |test, er|
+        adapter = VRToPA.new("voter_registration" => { "party" => test })
+        expect(adapter.party).to eql(er)
+      end
+    end
+  end
+
 end
