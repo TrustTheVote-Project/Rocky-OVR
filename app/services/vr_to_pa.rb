@@ -259,7 +259,7 @@ class VRToPA
     result['Phone'] = value
 
 
-    result['Email'] = "" # TODO
+    result['Email'] = email
     result['streetaddress'] = read([:registration_address, :numbered_thoroughfare_address, :complete_street_name])
     result['streetaddress2'] = ""
     result['unittype'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address_type])
@@ -326,8 +326,6 @@ class VRToPA
     result
   end
 
-  private
-
   def read(keys, required=false)
     value = @request
     keys.each do |key|
@@ -339,7 +337,7 @@ class VRToPA
   end
 
   def query(keys, key, value, output, required=false)
-    objects = read(keys, required)
+    objects = read(keys, required) || []
     raise "Array is expected #{objects.class.name} found" unless objects.is_a? Array
     result = objects.find { |obj| obj[key.to_s] == value }
     raise("Not found #{key} == #{value} in #{objects}") if required
@@ -382,6 +380,10 @@ class VRToPA
   def parse_party(name)
     v = PARTIES_NAMES[name.downcase.strip]
     v ? [v, ""] : ["OTH", v]
+  end
+
+  def email
+    query([:contact_methods], :type, 'email', :value)
   end
 
 end
