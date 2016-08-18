@@ -1,5 +1,6 @@
 class VRToPA
-  class ParsingError < StandardError; end
+  class ParsingError < StandardError;
+  end
 
   REQUIRED = true
   # for reference only
@@ -67,163 +68,162 @@ class VRToPA
 
   #
   # SAMPLE_VR_REQUEST = {
-      # "rocky_request" => {
-      #     "lang" => "en",
-      #     "phone_type" => "home",
-      #     "partner_id" => 1,
-      #     "opt_in_email" => false,
-      #     "opt_in_sms" => false,
-      #     "opt_in_volunteer" => false,
-      #     "partner_opt_in_sms" => true,
-      #     "partner_opt_in_email" => true,
-      #     "partner_opt_in_volunteer" => false,
-      #     "finish_with_state" => true,
-      #     "created_via_api" => true,
-      #     "source_tracking_id" => "Aaron Huttner",
-      #     "partner_tracking_id" => "22201",
-      #     "geo_location" => {
-      #         "lat" => 123,
-      #         "long" => -123
-      #     },
-      #     "open_tracking_id" => "metro canvasing",
-      #     "voter_records_request" => {
+  # "rocky_request" => {
+  #     "lang" => "en",
+  #     "phone_type" => "home",
+  #     "partner_id" => 1,
+  #     "opt_in_email" => false,
+  #     "opt_in_sms" => false,
+  #     "opt_in_volunteer" => false,
+  #     "partner_opt_in_sms" => true,
+  #     "partner_opt_in_email" => true,
+  #     "partner_opt_in_volunteer" => false,
+  #     "finish_with_state" => true,
+  #     "created_via_api" => true,
+  #     "source_tracking_id" => "Aaron Huttner",
+  #     "partner_tracking_id" => "22201",
+  #     "geo_location" => {
+  #         "lat" => 123,
+  #         "long" => -123
+  #     },
+  #     "open_tracking_id" => "metro canvasing",
+  #     "voter_records_request" => {
 
-          #     "type" => "registration",
-          #     "generated_date" => "2016-06-16T19=>44=>45+00=>00",
-          #     "voter_registration" => {
-          #         "date_of_birth" => "2016-06-16",
-          #         "mailing_address" => {
-          #             "numbered_thoroughfare_address" => {
-          #                 "complete_address_number" => "\"\"",
-          #                 "complete_street_name" => "801 N. Monroe",
-          #                 "complete_sub_address" => {
-          #                     "sub_address_type" => "APT",
-          #                     "sub_address" => "Apt 306"
-          #                 },
-          #                 "complete_place_names" => [
-          #                     {
-          #                         "place_name_type" => "MunicipalJurisdiction",
-          #                         "place_name_value" => "Philadelphia"
-          #                     },
-          #                     {
-          #                         "place_name_type" => "County",
-          #                         "place_name_value" => "Philadelphia"
-          #                     }
-          #                 ],
-          #                 "state" => "Virginia",
-          #                 "zip_code" => "22201"
-          #             }
-          #         },
-          #         "previous_registration_address" => {
-          #             "numbered_thoroughfare_address" => {
-          #                 "complete_address_number" => "\"\"",
-          #                 "complete_street_name" => "801 N. Monroe",
-          #                 "complete_sub_address" => {
-          #                     "sub_address_type" => "APT",
-          #                     "sub_address" => "Apt 306"
-          #                 },
-          #                 "complete_place_names" => [
-          #                     {
-          #                         "place_name_type" => "MunicipalJurisdiction",
-          #                         "place_name_value" => "Philadelphia"
-          #                     },
-          #                     {
-          #                         "place_name_type" => "County",
-          #                         "place_name_value" => "Philadelphia"
-          #                     }
-          #                 ],
-          #                 "state" => "Virginia",
-          #                 "zip_code" => "22201"
-          #             }
-          #         },
-          #         "registration_address" => {
-          #             "numbered_thoroughfare_address" => {
-          #                 "complete_address_number" => "\"\"",
-          #                 "complete_street_name" => "801 N. Monroe",
-          #                 "complete_sub_address" => {
-          #                     "sub_address_type" => "APT",
-          #                     "sub_address" => "Apt 306"
-          #                 },
-          #                 "complete_place_names" => [
-          #                     {
-          #                         "place_name_type" => "MunicipalJurisdiction",
-          #                         "place_name_value" => "Philadelphia"
-          #                     },
-          #                     {
-          #                         "place_name_type" => "County",
-          #                         "place_name_value" => "Philadelphia"
-          #                     }
-          #                 ],
-          #                 "state" => "Virginia",
-          #                 "zip_code" => "22201"
-          #             }
-          #         },
-          #         "registration_address_is_mailing_address" => false,
-          #         "name" => {
-          #             "first_name" => "Aaron",
-          #             "last_name" => "Huttner",
-          #             "middle_name" => "Bernard",
-          #             "title_prefix" => "Mr",
-          #             "title_suffix" => "Jr"
-          #         },
-          #         "previous_name" => {
-          #             "first_name" => "Aaron",
-          #             "last_name" => "Huttner",
-          #             "middle_name" => "Bernard",
-          #             "title_prefix" => "Mr",
-          #             "title_suffix" => "Jr"
-          #         },
-          #         "gender" => "male",
-          #         "race" => "American Indian / Alaskan Native",
-          #         "party" => "democratic",
-          #         "voter_classifications" => [
-          #             {
-          #                 "type" => "eighteen_on_election_day",
-          #                 "assertion" => true
-          #             },
-          #             {
-          #                 "type" => "united_states_citizen",
-          #                 "assertion" => true
-          #             },
-          #             {
-          #                 "type" => "send_copy_in_mail",
-          #                 "assertion" => true
-          #             },
-          #             {
-          #                 "type" => "agreed_to_declaration",
-          #                 "assertion" => true
-          #             }
-          #         ],
-          #         "signature" => {
-          #             "mime_type" => "image/png",
-          #             "image" => "?"
-          #         },
-          #         "voter_ids" => [
-          #             {
-          #                 "type" => "drivers_license",
-          #                 "string_value" => "1243asdf",
-          #                 "attest_no_such_id" => false
-          #             }
-          #         ],
-          #         "contact_methods" => [
-          #             {
-          #                 "type" => "phone",
-          #                 "value" => "555-555-5555",
-          #                 "capabilities" => ["voice", "fax", "sms"]
-          #             }
-          #         ],
-          #         "additional_info" => [
-          #             {
-          #                 "name" => "preferred_language",
-          #                 "string_value" => "english"
-          #             }
-          #         ]
-          #     }
-          # }
-
-      # }
+  #     "type" => "registration",
+  #     "generated_date" => "2016-06-16T19=>44=>45+00=>00",
+  #     "voter_registration" => {
+  #         "date_of_birth" => "2016-06-16",
+  #         "mailing_address" => {
+  #             "numbered_thoroughfare_address" => {
+  #                 "complete_address_number" => "\"\"",
+  #                 "complete_street_name" => "801 N. Monroe",
+  #                 "complete_sub_address" => {
+  #                     "sub_address_type" => "APT",
+  #                     "sub_address" => "Apt 306"
+  #                 },
+  #                 "complete_place_names" => [
+  #                     {
+  #                         "place_name_type" => "MunicipalJurisdiction",
+  #                         "place_name_value" => "Philadelphia"
+  #                     },
+  #                     {
+  #                         "place_name_type" => "County",
+  #                         "place_name_value" => "Philadelphia"
+  #                     }
+  #                 ],
+  #                 "state" => "Virginia",
+  #                 "zip_code" => "22201"
+  #             }
+  #         },
+  #         "previous_registration_address" => {
+  #             "numbered_thoroughfare_address" => {
+  #                 "complete_address_number" => "\"\"",
+  #                 "complete_street_name" => "801 N. Monroe",
+  #                 "complete_sub_address" => {
+  #                     "sub_address_type" => "APT",
+  #                     "sub_address" => "Apt 306"
+  #                 },
+  #                 "complete_place_names" => [
+  #                     {
+  #                         "place_name_type" => "MunicipalJurisdiction",
+  #                         "place_name_value" => "Philadelphia"
+  #                     },
+  #                     {
+  #                         "place_name_type" => "County",
+  #                         "place_name_value" => "Philadelphia"
+  #                     }
+  #                 ],
+  #                 "state" => "Virginia",
+  #                 "zip_code" => "22201"
+  #             }
+  #         },
+  #         "registration_address" => {
+  #             "numbered_thoroughfare_address" => {
+  #                 "complete_address_number" => "\"\"",
+  #                 "complete_street_name" => "801 N. Monroe",
+  #                 "complete_sub_address" => {
+  #                     "sub_address_type" => "APT",
+  #                     "sub_address" => "Apt 306"
+  #                 },
+  #                 "complete_place_names" => [
+  #                     {
+  #                         "place_name_type" => "MunicipalJurisdiction",
+  #                         "place_name_value" => "Philadelphia"
+  #                     },
+  #                     {
+  #                         "place_name_type" => "County",
+  #                         "place_name_value" => "Philadelphia"
+  #                     }
+  #                 ],
+  #                 "state" => "Virginia",
+  #                 "zip_code" => "22201"
+  #             }
+  #         },
+  #         "registration_address_is_mailing_address" => false,
+  #         "name" => {
+  #             "first_name" => "Aaron",
+  #             "last_name" => "Huttner",
+  #             "middle_name" => "Bernard",
+  #             "title_prefix" => "Mr",
+  #             "title_suffix" => "Jr"
+  #         },
+  #         "previous_name" => {
+  #             "first_name" => "Aaron",
+  #             "last_name" => "Huttner",
+  #             "middle_name" => "Bernard",
+  #             "title_prefix" => "Mr",
+  #             "title_suffix" => "Jr"
+  #         },
+  #         "gender" => "male",
+  #         "race" => "American Indian / Alaskan Native",
+  #         "party" => "democratic",
+  #         "voter_classifications" => [
+  #             {
+  #                 "type" => "eighteen_on_election_day",
+  #                 "assertion" => true
+  #             },
+  #             {
+  #                 "type" => "united_states_citizen",
+  #                 "assertion" => true
+  #             },
+  #             {
+  #                 "type" => "send_copy_in_mail",
+  #                 "assertion" => true
+  #             },
+  #             {
+  #                 "type" => "agreed_to_declaration",
+  #                 "assertion" => true
+  #             }
+  #         ],
+  #         "signature" => {
+  #             "mime_type" => "image/png",
+  #             "image" => "?"
+  #         },
+  #         "voter_ids" => [
+  #             {
+  #                 "type" => "drivers_license",
+  #                 "string_value" => "1243asdf",
+  #                 "attest_no_such_id" => false
+  #             }
+  #         ],
+  #         "contact_methods" => [
+  #             {
+  #                 "type" => "phone",
+  #                 "value" => "555-555-5555",
+  #                 "capabilities" => ["voice", "fax", "sms"]
+  #             }
+  #         ],
+  #         "additional_info" => [
+  #             {
+  #                 "name" => "preferred_language",
+  #                 "string_value" => "english"
+  #             }
+  #         ]
+  #     }
   # }
 
+  # }
+  # }
 
 
   def initialize(voter_records_req)
@@ -277,8 +277,7 @@ class VRToPA
     result['donthavePermtOrResAddress'] = ''
 
     result['county'] = query([:registration_address, :numbered_thoroughfare_address, :complete_place_names],
-                  :place_name_type, 'County', :place_name_value)
-
+                             :place_name_type, 'County', :place_name_value)
 
 
     result['mailingaddress'] = read([:mailing_address, :numbered_thoroughfare_address, :complete_street_name])
@@ -287,12 +286,12 @@ class VRToPA
     result['mailingstate'] = read([:mailing_address, :numbered_thoroughfare_address, :state])
     result['mailingzipcode'] = read([:mailing_address, :numbered_thoroughfare_address, :zip_code])
 
-    result['drivers-license'] = query([:voter_ids], :type, 'drivers_license', :string_value)
+    result['drivers-license'] = drivers_license
 
     result['ssn4'] = ssn4
     result['signatureimage'] = read([:signature, :image])
     result['continueAppSubmit'] = "1"
-    result['donthavebothDLandSSN'] = "0"
+    result['donthavebothDLandSSN'] = dont_have_both_ids
 
     result['politicalparty'] = party[:politicalparty]
     result['otherpoliticalparty'] = party[:otherpoliticalparty]
@@ -312,7 +311,7 @@ class VRToPA
     result['previousregzip'] = read([:previous_registration_address, :numbered_thoroughfare_address, :zip_code])
 
     result['previousregcounty'] = query([:previous_registration_address, :numbered_thoroughfare_address, :complete_place_names],
-                  :place_name_type, 'County', :place_name_value)
+                                        :place_name_type, 'County', :place_name_value)
 
     result['previousregyear'] = ""
     result['declaration1'] = "1"
@@ -326,6 +325,10 @@ class VRToPA
     result['secondEmail'] = ""
 
     result
+  end
+
+  def drivers_license
+    query([:voter_ids], :type, 'drivers_license', :string_value)
   end
 
   def read(keys, required=false)
@@ -347,8 +350,12 @@ class VRToPA
   end
 
   def bool_to_int(v)
-    raise ParsingError.new("Boolean expected, #{v.class.name} found") unless [true, false].include?(v)
-    v ? "1": "0"
+    raise ParsingError.new("Boolean expected, #{v.class.name} found (#{v})") unless is_bool(v)
+    v ? "1" : "0"
+  end
+
+  def is_bool(v)
+    [true, false].include?(v)
   end
 
   def parse_gender(gender)
@@ -356,17 +363,17 @@ class VRToPA
   end
 
   def is_empty(value)
-    value.nil? || (value.is_a?(Hash) && value.keys.size == 0)
+    [nil, {}, "", []].include?(value)
   end
 
   RACE_RULES =
-    {
-      "american indian / alaskan native" => "I",
-      "asian / pacific islander" => "A",
-      "black (not hispanic)" => "B",
-      "hispanic" => "H",
-      "white (not hispanic)" => "W"
-    }
+      {
+          "american indian / alaskan native" => "I",
+          "asian / pacific islander" => "A",
+          "black (not hispanic)" => "B",
+          "hispanic" => "H",
+          "white (not hispanic)" => "W"
+      }
 
   def parse_race(race)
     RACE_RULES[race.downcase.strip] || "O"
@@ -395,10 +402,31 @@ class VRToPA
     query([:voter_ids], :type, 'ssn4', :string_value)
   end
 
+  def no_such_voter_id(type)
+    v = query([:voter_ids], :type, type, :attest_no_such_id)
+
+    raise ParsingError.new("Wrong attest_no_such_id value for #{type}: \"#{v}\"") if is_empty(v) || !is_bool(v)
+
+    bool_to_int(v)
+  end
+
   def assistance_declaration2
     value = query([:additional_info], :name, 'assistance_declaration2', :boolean_value)
     value = false if value == ""
     bool_to_int(value)
+  end
+
+  def dont_have_both_ids
+    v = no_such_voter_id('ssn4') == '1'&&
+        no_such_voter_id('drivers_license') == '1'
+    if v
+      [ssn4: ssn4, drivers_license: drivers_license].each do |name, id|
+        raise ParsingError.new("Non empty #{name} when attest_no_such_id == true") unless is_empty(id)
+      end
+      "1"
+    else
+      "0"
+    end
   end
 
 end

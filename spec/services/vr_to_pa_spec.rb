@@ -9,7 +9,8 @@ describe VRToPA do
         email: :email_value,
         ssn4: :ssn4_value,
         party: 'party_value',
-        assistance_declaration2: true
+        assistance_declaration2: true,
+        attest_no_ssn4_id: false
     }
   end
   let(:full_input) do
@@ -130,6 +131,7 @@ describe VRToPA do
             {
                 "type" => "ssn4",
                 "string_value" => parameters[:ssn4],
+                "attest_no_such_id" => parameters[:attest_no_ssn4_id]
             }
         ],
         "contact_methods" => [
@@ -168,6 +170,7 @@ describe VRToPA do
       expect(subject).to include("politicalparty" => "OTH")
       expect(subject).to include("otherpoliticalparty" => "party_value")
       expect(subject).to include("assistancedeclaration2" => "1")
+      expect(subject).to include("donthavebothDLandSSN" => "0")
     end
 
   end
@@ -278,7 +281,91 @@ describe VRToPA do
         expect { subject }.to raise_error VRToPA::ParsingError
       end
     end
+  end
+  describe 'dont_have_both_DL_and_SSN' do
+    subject { adapter.dont_have_both_ids }
+    context 'no DL and SSN' do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "drivers_license",
+                    "attest_no_such_id" => true
+                },
+                {
+                    "type" => "ssn4",
+                    "attest_no_such_id" => true
+                }
+            ]
+        }
+      end
 
+      it "1" do
+        expect(subject).to eql("1")
+      end
+    end
+
+    context 'no DL and there is SSN' do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "drivers_license",
+                    "attest_no_such_id" => true
+                },
+                {
+                    "type" => "ssn4",
+                    "string_value" => "1234",
+                    "attest_no_such_id" => false
+                }
+            ]
+        }
+      end
+
+      it "0" do
+        expect(subject).to eql("0")
+      end
+    end
+
+    context 'there is DL and no SSN' do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "drivers_license",
+                    "string_value" => "123456",
+                    "attest_no_such_id" => false
+                },
+                {
+                    "type" => "ssn4",
+                    "attest_no_such_id" => true
+                }
+            ]
+        }
+      end
+
+      it "0" do
+        expect(subject).to eql("0")
+      end
+    end
+
+    context 'there is DL and no entire SSN record' do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "drivers_license",
+                    "string_value" => "123456",
+                    "attest_no_such_id" => false
+                }
+            ]
+        }
+      end
+
+      it "raises en error " do
+        expect{ subject }.to raise_error(VRToPA::ParsingError)
+      end
+    end
   end
 
 end
