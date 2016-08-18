@@ -85,7 +85,8 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   end
   
   def create_pa
-    # initial integration implementation
+    debug = params.delete(:debug_info)
+    debug_info = debug ? { debug: { pa: result, converted: pa_data, input: input } } : {}
 
     # input request structure validation
     [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
@@ -98,7 +99,6 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     end
 
     
-
     # Remove above when rest of code is implemented
     
     # 1. Build a rocky registrant record based on all of the fields
@@ -108,10 +108,9 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       # If valid for rocky, ensure that it's valid for PA submissions
       pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)
       if pa_validation_errors.any?
-        # 
         jsonp({registration_rejection: {
-          other_error: registrant.error_messages
-        }})
+          other_error: pa_validation_errors
+        }}.merge(debug_info), :status => 400)
       else
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
@@ -119,25 +118,25 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
           V3::RegistrationService.register_with_pa(registrant)
           jsonp({
             registration_acknowledgement: registrant.state_ovr_data["pa_transaction_id"]
-          })
+          }.merge(debug_info))
         rescue Exception => e
           jsonp({
             registration_rejection: {
               other_error: ["Error submitting to PA: #{e.message}"]
             }
-          })
+          }.merge(debug_info), :status => 400)
         end
       end
     else
       jsonp({registration_rejection: {
         error: registrant.errors.full_messages
-      }})
+      }}.merge(debug_info), :status => 400)
     end
   rescue Exception => e
     raise e
     jsonp({registration_rejection: {
       error: ["Error building registrant: #{e.message}"]
-    }})
+    }}.merge(debug_info), :status => 400)
     
   end
   

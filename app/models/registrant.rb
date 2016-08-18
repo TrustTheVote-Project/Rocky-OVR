@@ -1156,8 +1156,9 @@ class Registrant < ActiveRecord::Base
   end
 
   def partner_absolute_pdf_logo_path
-    if partner && partner.whitelabeled? && partner.pdf_logo_present?
-      partner.absolute_pdf_logo_path
+    group = self.is_fake ? :preview : nil
+    if partner && (partner.whitelabeled? || group) && partner.pdf_logo_present?(group)
+      partner.absolute_pdf_logo_path(group)
     else
       ""
     end

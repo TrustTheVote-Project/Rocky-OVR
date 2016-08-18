@@ -102,7 +102,8 @@ module V3
       return []
     end
     
-    def self.register_with_pa(registrant)
+    def self.register_with_pa(registrant, debug=nil)
+    
       pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
       
       pa_data = pa_adapter.convert

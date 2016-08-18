@@ -29,8 +29,8 @@ class PARegistrationRequest
     Rails.logger.debug 'PA:RESPONSE>> ' + response.body.to_s
 
     raise "HTTP Error: #{response.body}" unless response.code == "200"
-    parse_response(response.body)
 
+    parse_response(response.body).merge(request: request.body, response: response.body)
   end
 
   def self.prepare_request(params)
@@ -47,6 +47,7 @@ class PARegistrationRequest
     r = response.scan %r("<RESPONSE><APPLICATIONID>(.*)</APPLICATIONID><APPLICATIONDATE>(.*)</APPLICATIONDATE><ERROR>(.*)</ERROR></RESPONSE>")
     raise "Invalid response: #{response}" unless r && r.length == 1 && r[0].length == 3
 
+    r[0][0] = 0 if r[0][0].empty?
     { id: r[0][0], date: r[0][1], error: r[0][2]}
   end
 end
