@@ -93,7 +93,11 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       value = params
       keys.each do |key|
         unless (value = value[key.to_s])
-          return jsonp({:error => "Invalid request: parameter #{keys.join('.')} not found"}, :status => 400)
+          return jsonp({
+            registration_success: false,
+            registration_acknowledgement: nil,
+            errors: ["Invalid request: parameter #{keys.join('.')} not found"]
+          }, :status => 400)
         end
       end
     end
@@ -108,35 +112,42 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       # If valid for rocky, ensure that it's valid for PA submissions
       pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)
       if pa_validation_errors.any?
-        jsonp({registration_rejection: {
-          other_error: pa_validation_errors
-        }}.merge(debug_info), :status => 400)
+        jsonp({
+          registration_success: false,
+          transaction_id: nil,
+          errors: pa_validation_errors
+        }.merge(debug_info), :status => 400)
       else
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
         begin
           V3::RegistrationService.register_with_pa(registrant)
           jsonp({
-            registration_acknowledgement: registrant.state_ovr_data["pa_transaction_id"]
+            registration_success: true,
+            transaction_id: registrant.state_ovr_data["pa_transaction_id"]
           }.merge(debug_info))
         rescue Exception => e
           jsonp({
-            registration_rejection: {
-              other_error: ["Error submitting to PA: #{e.message}"]
-            }
+            registration_success: false,
+            transaction_id: nil,
+            errors: ["Error submitting to PA: #{e.message}"]
           }.merge(debug_info), :status => 400)
         end
       end
     else
-      jsonp({registration_rejection: {
-        error: registrant.errors.full_messages
-      }}.merge(debug_info), :status => 400)
+      jsonp({
+        registration_success: false,
+        transaction_id: nil,
+        errors: registrant.errors.full_messages
+      }.merge(debug_info), :status => 400)
     end
   rescue Exception => e
     raise e
-    jsonp({registration_rejection: {
+    jsonp({
+      registration_success: false,
+      transaction_id: nil,
       error: ["Error building registrant: #{e.message}"]
-    }}.merge(debug_info), :status => 400)
+    }.merge(debug_info), :status => 400)
     
   end
   
