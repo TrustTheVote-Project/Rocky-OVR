@@ -155,7 +155,43 @@ describe VRToPA do
                 "name" => "assistance_declaration2",
                 "boolean_value" => parameters[:assistance_declaration2]
             }
-        ]
+        ],
+        "registration_helper" => {
+            "registration_address" => {
+                "numbered_thoroughfare_address" => {
+                    "complete_address_number" => "55",
+                    "complete_street_name" => "Assistant Street",
+                    "complete_sub_address" => {
+                        "sub_address_type" => "APT",
+                        "sub_address" => "555"
+                    },
+                    "complete_place_names" => [
+                        {
+                            "place_name_type" => "MunicipalJurisdiction",
+                            "place_name_value" => "Assistant City"
+                        },
+                        {
+                            "place_name_type" => "County",
+                            "place_name_value" => "County"
+                        }
+                    ],
+                    "state" => "Assistant State",
+                    "zip_code" => "22222"
+                }
+            },
+            "contact_methods" => [
+                {
+                    "type" => "phone",
+                    "value" => "1234567890",
+                    "capabilities" => %w(voice fax sms)
+                }
+            ],
+            "name" => {
+                "first_name" => "Assistant",
+                "last_name" => "Name"
+            }
+        }
+
     }
   end
 
@@ -171,6 +207,9 @@ describe VRToPA do
       expect(subject).to include("otherpoliticalparty" => "party_value")
       expect(subject).to include("assistancedeclaration2" => "1")
       expect(subject).to include("donthavebothDLandSSN" => "0")
+      expect(subject).to include("assistedpersonname" => "Assistant Name")
+      expect(subject).to include("assistedpersonAddress" => "55 Assistant Street, Assistant City Assistant State")
+      expect(subject).to include("assistedpersonphone" => "1234567890")
     end
 
   end
@@ -363,9 +402,116 @@ describe VRToPA do
       end
 
       it "raises en error " do
-        expect{ subject }.to raise_error(VRToPA::ParsingError)
+        expect { subject }.to raise_error(VRToPA::ParsingError)
+      end
+    end
+  end
+  describe 'assisted_person_name' do
+    subject { adapter.assisted_person_name }
+    context 'full name provided' do
+      let(:input) do
+        {
+            "registration_helper" => {
+                "name" => {
+                    "first_name" => "FN",
+                    "last_name" => "LN",
+                    "middle_name" => "MN",
+                    "title_prefix" => "Ms",
+                    "title_suffix" => "III"
+                }
+            }
+        }
+      end
+      it 'loads full name' do
+        expect(subject).to eql('Ms FN MN LN III')
+      end
+    end
+    context 'minimalistic name provided' do
+      let(:input) do
+        {
+            "registration_helper" => {
+                "name" => {
+                    "first_name" => "FN",
+                    "last_name" => "LN"
+                }
+            }
+        }
+      end
+      it 'loads full name' do
+        expect(subject).to eql('FN LN')
+      end
+    end
+  end
+  describe 'assisted_person_address' do
+    subject { adapter.assisted_person_address }
+    context 'full address defined' do
+      let(:input) do
+        {
+            "registration_helper" => {
+                "registration_address" => {
+                    "numbered_thoroughfare_address" => {
+                        "complete_address_number" => "1",
+                        "complete_street_name" => "Street",
+                        "complete_sub_address" => {
+                            "sub_address_type" => "APT",
+                            "sub_address" => "100"
+                        },
+                        "complete_place_names" => [
+                            {
+                                "place_name_type" => "MunicipalJurisdiction",
+                                "place_name_value" => "City"
+                            },
+                            {
+                                "place_name_type" => "County",
+                                "place_name_value" => "County"
+                            }
+                        ],
+                        "state" => "State",
+                        "zip_code" => "22222"
+                    }
+                }
+            }
+        }
+      end
+      it 'loads full address' do
+        expect(subject).to eql('1 Street, City State')
       end
     end
   end
 
+  describe 'assisted_person_phone' do
+    subject { adapter.assisted_person_phone }
+    context 'phone is defined' do
+      let(:input) do
+        {
+            "registration_helper" => {
+                "contact_methods" => [
+                    {
+                        "type" => "phone",
+                        "value" => "555-555-5555",
+                        "capabilities" => %w(voice fax sms)
+                    }
+                ]
+            }
+        }
+      end
+
+      it 'loads phone number' do
+        expect(subject).to eql('555-555-5555')
+      end
+    end
+  end
+
+  describe 'assisted_person_info' do
+    subject { adapter }
+    context 'data not provided' do
+      let(:input) { {} }
+
+      it 'loads nothing' do
+        expect(subject.assisted_person_name).to eql ""
+        expect(subject.assisted_person_address).to eql ""
+        expect(subject.assisted_person_phone).to eql ""
+      end
+    end
+  end
 end

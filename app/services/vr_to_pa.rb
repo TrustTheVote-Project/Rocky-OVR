@@ -315,9 +315,9 @@ class VRToPA
 
     result['previousregyear'] = ""
     result['declaration1'] = "1"
-    result['assistedpersonname'] = ""
-    result['assistedpersonAddress'] = ""
-    result['assistedpersonphone'] = ""
+    result['assistedpersonname'] = assisted_person_name
+    result['assistedpersonAddress'] = assisted_person_address
+    result['assistedpersonphone'] = assisted_person_phone
     result['assistancedeclaration2'] = assistance_declaration2
     result['ispollworker'] = ""
     result['bilingualinterpreter'] = ""
@@ -332,6 +332,7 @@ class VRToPA
   end
 
   def read(keys, required=false)
+    keys = keys.split(".") if keys.is_a? String
     value = @request
     keys.each do |key|
       break if value.nil?
@@ -427,6 +428,35 @@ class VRToPA
     else
       "0"
     end
+  end
+
+  def assisted_person_name
+    name = read("registration_helper.name")
+    return "" if is_empty(name)
+    parts = %w(title_prefix first_name middle_name last_name title_suffix)
+    join_non_empty(parts.map { |k| name[k] }, ' ')
+  end
+
+  def assisted_person_address
+    address = read "registration_helper.registration_address.numbered_thoroughfare_address"
+    return "" if is_empty(address)
+
+    line1 = join_non_empty([address["complete_address_number"], address["complete_street_name"]], ' ')
+    city = query(
+        "registration_helper.registration_address.numbered_thoroughfare_address.complete_place_names",
+        :place_name_type, 'MunicipalJurisdiction', :place_name_value)
+    state = address["state"]
+    line2 = join_non_empty([city, state], " ")
+
+    join_non_empty([line1, line2], ", ")
+  end
+
+  def assisted_person_phone
+    query("registration_helper.contact_methods", :type, 'phone', :value)
+  end
+
+  def join_non_empty(objects, separator)
+    objects.reject { |v| is_empty(v) }.join(separator)
   end
 
 end

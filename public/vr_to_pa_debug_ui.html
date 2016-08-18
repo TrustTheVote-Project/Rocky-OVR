@@ -13,9 +13,9 @@
             $('#btn-submit').click(function () {
                 var url = $('#input-url').val()
                 var data = $('#input-json').val()
-              $('#output-json').val('Pending...')
+                $('#output-json').val('Pending...')
 
-              $.ajax({
+                $.ajax({
                     type: "POST",
                     url: url,
                     data: data,
@@ -23,8 +23,8 @@
                         $('#output-json').val(JSON.stringify(response, null, 4))
                     },
                     error: function (data) {
-                      $('#output-json').val(JSON.stringify(data.responseJSON, null, 4))
-                      console.error(data)
+                        $('#output-json').val(JSON.stringify(data.responseJSON, null, 4))
+                        console.error(data)
                     },
                     contentType: 'application/json',
                     dataType: 'json'
@@ -181,7 +181,8 @@
           },
           {
             "type": "ssn4",
-            "string_value": "4321"
+            "string_value": "4321",
+            "attest_no_such_id": false
           }
         ],
         "contact_methods": [
@@ -204,7 +205,42 @@
             "name": "preferred_language",
             "string_value": "english"
           }
-        ]
+        ],
+        "registration_helper": {
+            "registration_address": {
+                "numbered_thoroughfare_address": {
+                    "complete_address_number": "55",
+                    "complete_street_name": "Assistant Street",
+                    "complete_sub_address": {
+                        "sub_address_type": "APT",
+                        "sub_address": "555"
+                    },
+                    "complete_place_names": [
+                        {
+                            "place_name_type": "MunicipalJurisdiction",
+                            "place_name_value": "Assistant City"
+                        },
+                        {
+                            "place_name_type": "County",
+                            "place_name_value": "County"
+                        }
+                    ],
+                    "state": "Assistant State",
+                    "zip_code": "22222"
+                }
+            },
+            "contact_methods": [
+                {
+                    "type": "phone",
+                    "value": "1234567890",
+                    "capabilities": ["voice", "fax", "sms"]
+                }
+            ],
+            "name": {
+                "first_name": "Assistant",
+                "last_name": "Name"
+            }
+        }
       }
     }
   }
