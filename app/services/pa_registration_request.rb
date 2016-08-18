@@ -21,12 +21,12 @@ class PARegistrationRequest
     request.add_field('Cache-Control', 'no-cache')
 
     request.body = prepare_request(params)
-    print 'PA:REQUEST>> ', request.body, "\n"
+    Rails.logger.debug 'PA:REQUEST>> '+ request.body.to_s
 
     response = http.request(request)
 
-    print 'PA:RESPONSE>> ', response, "\n"
-    print 'PA:RESPONSE>> ', response.body, "\n"
+    Rails.logger.debug 'PA:RESPONSE>> ' + response.to_s
+    Rails.logger.debug 'PA:RESPONSE>> ' + response.body.to_s
 
     raise "HTTP Error: #{response.body}" unless response.code == "200"
     parse_response(response.body)

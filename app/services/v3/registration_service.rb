@@ -79,6 +79,42 @@ module V3
       return reg
     end
     
+    def self.create_pa_registrant(orig_data)
+      data = orig_data.deep_dup
+      geo_location  = data.delete(:geo_location)
+      open_tracking  = data.delete(:open_tracking_id)
+      attrs = pa_data_to_attrs(data)
+      r = Registrant.build_from_api_data(attrs)
+      # process into Registrant fields
+      r.state_ovr_data["voter_records_request"] = orig_data[:voter_records_request]
+      r.state_ovr_data["geo_location"] = geo_location
+      r.state_ovr_data["open_tracking_id"] = open_tracking
+      return r
+    end
+    
+    def self.valid_for_pa_submission(registrant)
+      pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
+      begin
+        pa_data = pa_adapter.convert
+      rescue => e
+        return ["Error parsing request: #{e.message}"]        
+      end
+      return []
+    end
+    
+    def self.register_with_pa(registrant)
+      pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
+      
+      pa_data = pa_adapter.convert
+      result = PARegistrationRequest.send_request(pa_data)
+      if result[:error].present?
+        raise result[:error].to_s
+      else
+        registrant.state_ovr_data['pa_transaction_id'] = result[:id]
+        registrant.save!
+      end
+    end
+    
     # def self.bulk_create(data_list, partner_id, partner_api_key)
     #   partner = V3::PartnerService.find_partner(partner_id, partner_api_key)
     #   return data_list.collect do |data|
@@ -246,6 +282,149 @@ module V3
       end
     end
 
+
+    def self.pa_data_to_attrs(data)
+      
+      attrs = data.clone
+      attrs.symbolize_keys! if attrs.respond_to?(:symbolize_keys!)
+      
+      attrs.merge!(attrs[:voter_records_request].delete(:voter_registration))
+      attrs.delete(:voter_records_request) # This only deletes the remaining stub, most keys have just been moved to the top level.
+      attrs.delete(:registration_helper)
+      attrs.delete(:gender)
+      attrs.delete(:signature)
+      attrs.delete(:additional_info)
+      
+      name = attrs.delete(:name)
+      if name
+        attrs[:name_title] = self.fix_pa_title(name[:title_prefix])
+        attrs[:first_name] = name[:first_name]
+        attrs[:middle_name] = name[:middle_name]
+        attrs[:last_name] = name[:last_name]
+        attrs[:name_suffix] = self.fix_pa_suffix(name[:title_suffix])
+      end
+      
+      
+      reg_address = attrs.delete(:registration_address)
+      if reg_address && reg_address = reg_address.delete(:numbered_thoroughfare_address)
+        attrs[:home_address]  = [
+          reg_address[:complete_address_number],
+          reg_address[:complete_street_name]
+        ].join(" ")
+        attrs[:home_unit] = reg_address[:complete_sub_address] ?  reg_address[:complete_sub_address][:sub_address] : nil
+        attrs[:home_city] = reg_address[:complete_place_names] && reg_address[:complete_place_names].any? ? reg_address[:complete_place_names][0][:place_name_value] : nil
+        attrs[:home_state] = GeoState[reg_address[:state].to_s.upcase] || GeoState.find_by_name(reg_address[:state])
+        attrs[:home_zip_code] = reg_address[:zip_code]        
+      end
+      
+      reg_equals_mailing = attrs.delete(:registration_address_is_mailing_address)
+      mailing_address = attrs.delete(:mailing_address)
+      if mailing_address && !reg_equals_mailing && mailing_address = mailing_address.delete(:numbered_thoroughfare_address) 
+        attrs[:mailing_address]  = [
+          mailing_address[:complete_address_number],
+          mailing_address[:complete_street_name]
+        ].join(" ")
+        attrs[:mailing_unit] = mailing_address[:complete_sub_address] ?  mailing_address[:complete_sub_address][:sub_address] : nil
+        attrs[:mailing_city] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].any? ? mailing_address[:complete_place_names][0][:place_name_value] : nil
+        attrs[:mailing_state] = GeoState[mailing_address[:state].to_s.upcase] || GeoState.find_by_name(mailing_address[:state])
+        attrs[:mailing_zip_code] = mailing_address[:zip_code]        
+      end
+      
+      
+      # Handle name/address changes
+      prev_name = attrs.delete(:previous_name)
+      if prev_name
+        attrs[:change_of_name] = true
+        attrs[:prev_name_title] = self.fix_pa_title(prev_name[:title_prefix])
+        attrs[:prev_first_name] = prev_name[:first_name]
+        attrs[:prev_middle_name] = prev_name[:middle_name]
+        attrs[:prev_last_name] = prev_name[:last_name]
+        attrs[:prev_name_suffix] = self.fix_pa_suffix(prev_name[:title_suffix])
+      end
+      prev_reg = attrs.delete(:previous_registration_address)
+      if prev_reg && prev_reg = prev_reg.delete(:numbered_thoroughfare_address)
+        attrs[:change_of_address] = true
+        attrs[:prev_address]  = [
+          prev_reg[:complete_address_number],
+          prev_reg[:complete_street_name]
+        ].join(" ")
+        attrs[:prev_unit] = prev_reg[:complete_sub_address] ?  prev_reg[:complete_sub_address][:sub_address] : nil
+        attrs[:prev_city] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].any? ? prev_reg[:complete_place_names][0][:place_name_value] : nil
+        attrs[:prev_state] = GeoState[prev_reg[:state].to_s.upcase] || GeoState.find_by_name(prev_reg[:state])
+        attrs[:prev_zip_code] = prev_reg[:zip_code]        
+      end
+      
+      classifications = attrs.delete(:voter_classifications)
+      if classifications && classifications.any?
+        classifications.each do |cls|
+          case cls[:type]
+          when "eighteen_on_election_day"
+            attrs[:will_be_18_by_election] = cls[:assertion]
+          when "united_states_citizen"
+            attrs[:us_citizen] = cls[:assertion]
+          end
+        end
+      end
+
+      voter_ids = attrs.delete(:voter_ids)
+      if voter_ids && voter_ids.any?
+        voter_ids.each do |cls|
+          case cls[:type]
+          when "drivers_license"
+            if cls[:attest_no_such_id]
+              attrs[:has_state_license] = false
+            else
+              attrs[:has_state_license] = true
+              attrs[:state_id_number] = cls[:string_value]
+            end
+          when "ssn_last_four"
+            if !cls[:attest_no_such_id]
+              attrs[:state_id_number] = cls[:string_value]
+            end
+          end
+        end
+      end
+      
+      contacts = attrs.delete(:contact_methods)
+      if contacts && contacts.any?
+        contacts.each do |cls|
+          case cls[:type]
+          when "phone"
+            attrs[:phone] = cls[:value]
+            if cls[:capabilities].include?("sms")
+              attrs[:phone_type] = I18n.t("txt.registration.phone_types.mobile")
+            end
+          when "email"
+            attrs[:email_address] = cls[:value]
+          end
+        end
+      end
+
+      
+      attrs[:locale] = attrs.delete(:lang)
+      attrs[:volunteer] = attrs.delete(:opt_in_volunteer)
+      attrs[:partner_volunteer] = attrs.delete(:partner_opt_in_volunteer)
+      attrs.delete(:created_via_api)
+      attrs[:tracking_source] = attrs.delete(:source_tracking_id)
+      attrs[:tracking_id] = attrs.delete(:partner_tracking_id)
+      
+      return attrs
+      
+    end
+
+    def self.fix_pa_title(pa_title)
+      unless pa_title == "Miss"
+        return "#{pa_title}."
+      else
+        return pa_title
+      end
+    end
+    
+    def self.fix_pa_suffix(pa_suffix)
+      return "Jr." if pa_suffix == "Jr"
+      return "Sr." if pa_suffix == "Jr"
+      return pa_suffix        
+    end
 
     def self.data_to_attrs(data)
       attrs = data.clone

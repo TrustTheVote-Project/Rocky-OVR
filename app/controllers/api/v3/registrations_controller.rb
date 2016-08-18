@@ -85,12 +85,6 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   end
   
   def create_pa
-    # # This is just for endpoint testing. Remove it when the rest of the code
-    # # is implemented
-    # return jsonp({
-    #   registration_acknowledgement: "Endpoint Success"
-    # })
-
     # initial integration implementation
 
     # input request structure validation
@@ -103,44 +97,12 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       end
     end
 
-    pa_data = nil
-    pa_adapter = VRToPA.new(params['rocky_request']['voter_records_request'])
-    begin
-      pa_data = pa_adapter.convert
-    rescue => e
-      return jsonp({
-                       registration_rejection: {
-                           other_error: ["Error parsing request: #{e.message}"]
-                       }
-                   })
-    end
-
-    begin
-      result = PARegistrationRequest.send_request(pa_data)
-      if result[:error].present?
-        return jsonp({
-                         registration_rejection: {
-                             other_error: [result[:error]]
-                         }
-                     })
-      else
-        return jsonp({
-                         registration_acknowledgement: result[:id]
-                     })
-      end
-    rescue => e
-      return jsonp({
-                       registration_rejection: {
-                           other_error: ["Error submitting to PA: #{e.message}"]
-                       }
-                   })
-
-    end
+    
 
     # Remove above when rest of code is implemented
     
     # 1. Build a rocky registrant record based on all of the fields
-    registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request], true)
+    registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])
     # 2.Check if the registrant is internally valid
     if registrant.valid?
       # If valid for rocky, ensure that it's valid for PA submissions
@@ -168,9 +130,15 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       end
     else
       jsonp({registration_rejection: {
-        error: registrant.full_messages
+        error: registrant.errors.full_messages
       }})
     end
+  rescue Exception => e
+    raise e
+    jsonp({registration_rejection: {
+      error: ["Error building registrant: #{e.message}"]
+    }})
+    
   end
   
   def pdf_ready
