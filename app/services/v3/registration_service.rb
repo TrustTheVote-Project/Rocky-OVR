@@ -313,7 +313,9 @@ module V3
           reg_address[:complete_street_name]
         ].join(" ")
         attrs[:home_unit] = reg_address[:complete_sub_address] ?  reg_address[:complete_sub_address][:sub_address] : nil
+        # TODO do we know that these are always provided and in order?
         attrs[:home_city] = reg_address[:complete_place_names] && reg_address[:complete_place_names].any? ? reg_address[:complete_place_names][0][:place_name_value] : nil
+        attrs[:home_county] = reg_address[:complete_place_names] && reg_address[:complete_place_names].length > 1 ? reg_address[:complete_place_names][1][:place_name_value] : nil
         attrs[:home_state] = GeoState[reg_address[:state].to_s.upcase] || GeoState.find_by_name(reg_address[:state])
         attrs[:home_zip_code] = reg_address[:zip_code]        
       end
@@ -327,6 +329,7 @@ module V3
         ].join(" ")
         attrs[:mailing_unit] = mailing_address[:complete_sub_address] ?  mailing_address[:complete_sub_address][:sub_address] : nil
         attrs[:mailing_city] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].any? ? mailing_address[:complete_place_names][0][:place_name_value] : nil
+        attrs[:mailing_county] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].length > 1 ? mailing_address[:complete_place_names][1][:place_name_value] : nil
         attrs[:mailing_state] = GeoState[mailing_address[:state].to_s.upcase] || GeoState.find_by_name(mailing_address[:state])
         attrs[:mailing_zip_code] = mailing_address[:zip_code]        
       end
@@ -351,6 +354,7 @@ module V3
         ].join(" ")
         attrs[:prev_unit] = prev_reg[:complete_sub_address] ?  prev_reg[:complete_sub_address][:sub_address] : nil
         attrs[:prev_city] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].any? ? prev_reg[:complete_place_names][0][:place_name_value] : nil
+        attrs[:prev_county] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].length > 1 ? prev_reg[:complete_place_names][1][:place_name_value] : nil
         attrs[:prev_state] = GeoState[prev_reg[:state].to_s.upcase] || GeoState.find_by_name(prev_reg[:state])
         attrs[:prev_zip_code] = prev_reg[:zip_code]        
       end
@@ -379,7 +383,10 @@ module V3
               attrs[:state_id_number] = cls[:string_value]
             end
           when "ssn_last_four"
-            if !cls[:attest_no_such_id]
+            if cls[:attest_no_such_id]
+              attrs[:has_state_license] = false
+            else
+              attrs[:has_ssn] = true
               attrs[:state_id_number] = cls[:string_value]
             end
           end
