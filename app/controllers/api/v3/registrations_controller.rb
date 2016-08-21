@@ -127,7 +127,6 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
             transaction_id: registrant.state_ovr_data["pa_transaction_id"]
           }.merge(debug_info))
         rescue Exception => e
-          raise e
           jsonp({
             registration_success: false,
             transaction_id: nil,
@@ -143,7 +142,6 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       }.merge(debug_info), :status => 400)
     end
   rescue Exception => e
-    raise e
     jsonp({
       registration_success: false,
       transaction_id: nil,
