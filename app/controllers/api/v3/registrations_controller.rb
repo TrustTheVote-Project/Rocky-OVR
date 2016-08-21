@@ -95,9 +95,9 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
         unless (value = value[key.to_s])
           return jsonp({
             registration_success: false,
-            registration_acknowledgement: nil,
+            transaction_id: nil,
             errors: ["Invalid request: parameter #{keys.join('.')} not found"]
-          }, :status => 400)
+          }.merge(debug_info), :status => 400)
         end
       end
     end
@@ -127,6 +127,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
             transaction_id: registrant.state_ovr_data["pa_transaction_id"]
           }.merge(debug_info))
         rescue Exception => e
+          raise e
           jsonp({
             registration_success: false,
             transaction_id: nil,

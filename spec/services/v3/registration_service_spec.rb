@@ -152,8 +152,202 @@ describe V3::RegistrationService do
   end
 
   describe 'create_pa_registrant' do
-    it 'builds a rocky registrant instance from the params'
-    it 'puts the voter_records_request hash into registrant state_ovr_data["voter_records_request"]'
+    let(:json_request) {
+      {
+        "rocky_request" => {
+          "lang" => "en",
+          "phone_type" => "home",
+          "partner_id" => 1,
+          "opt_in_email" => false,
+          "opt_in_sms" => false,
+          "opt_in_volunteer" => false,
+          "partner_opt_in_sms" => true,
+          "partner_opt_in_email" => true,
+          "partner_opt_in_volunteer" => false,
+          "finish_with_state" => true,
+          "created_via_api" => true,
+          "source_tracking_id" => "Aaron Huttner",
+          "partner_tracking_id" => "22201",
+          "geo_location" => {
+            "lat" => 123,
+            "long" => -123
+          },
+          "open_tracking_id" => "metro canvasing",
+          "voter_records_request" => {
+            "type" => "registration",
+            "generated_date" => "2016-06-16T19:44:45+00:00",
+            "voter_registration" => {
+              "date_of_birth" => "2016-06-16",
+              "mailing_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "previous_registration_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "registration_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "registration_address_is_mailing_address" => false,
+              "name" => {
+                "first_name" => "Aaron",
+                "last_name" => "Huttner",
+                "middle_name" => "Bernard",
+                "title_prefix" => "Mr",
+                "title_suffix" => "Jr"
+              },
+              "previous_name" => {
+                "first_name" => "Aron",
+                "last_name" => "Huttner",
+                "middle_name" => "Bernard",
+                "title_prefix" => "Mr",
+                "title_suffix" => "Jr"
+              },
+              "gender" => "male",
+              "race" => "American Indian / Alaskan Native",
+              "party" => "democratic",
+              "voter_classifications" => [
+                {
+                  "type" => "eighteen_on_election_day",
+                  "assertion" => true
+                },
+                {
+                  "type" => "united_states_citizen",
+                  "assertion" => true
+                },
+                {
+                  "type" => "send_copy_in_mail",
+                  "assertion" => true
+                },
+                {
+                  "type" => "agreed_to_declaration",
+                  "assertion" => true
+                }
+              ],
+              "signature" => {
+                "mime_type" => "image/png",
+                "image" => "?"
+              },
+              "voter_ids" => [
+                {
+                  "type" => "drivers_license",
+                  "string_value" => "1243asdf",
+                  "attest_no_such_id" => false
+                },
+                {
+                  "type" => "ssn4",
+                  "string_value" => "",
+                  "attest_no_such_id" => true                  
+                }
+              ],
+              "contact_methods" => [
+                {
+                  "type" => "phone",
+                  "value" => "555-555-5555",
+                  "capabilities" => [
+                    "voice",
+                    "fax",
+                    "sms"
+                  ]
+                }
+              ],
+              "additional_info" => [
+                {
+                  "name" => "preferred_language",
+                  "string_value" => "english"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+    it 'builds a finish-with-state rocky registrant instance from the params' do
+      r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+      expect(r.valid?).to eq(true)
+      expect(r.finish_with_state).to eq(true)
+      expect(r.home_address).to eq("801 N. Monroe")
+      expect(r.home_unit).to eq("Apt 306")
+      expect(r.home_city).to eq("Philadelphia")
+      expect(r.home_state_abbrev).to eq("VA")
+      expect(r.home_zip_code).to eq("22201")
+      
+      expect(r.prev_first_name).to eq("Aron")
+      expect(r.first_name).to eq("Aaron")
+      expect(r.change_of_name).to be(true)
+      expect(r.state_id_number).to eq("1243ASDF")
+      expect(r.has_ssn).to be(false)
+      expect(r.has_state_license).to be(true)
+      
+      #r.state_ovr_data["voter_records_request"] = orig_data[:voter_records_request]
+      #r.state_ovr_data["geo_location"] = geo_location
+      #r.state_ovr_data["open_tracking_id"] = open_tracking
+      
+      
+    end
+    
+    it 'puts the voter_records_request hash, geo_location and open_tracking_id into registrant state_ovr_data' do
+      r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+      expect(r.state_ovr_data["voter_records_request"]).to eq(json_request["rocky_request"]["voter_records_request"])
+      expect(r.state_ovr_data["geo_location"]).to eq(json_request["rocky_request"]["geo_location"])
+      expect(r.state_ovr_data["open_tracking_id"]).to eq(json_request["rocky_request"]["open_tracking_id"])
+    end
   end
   
   describe 'valid_for_pa_submission(registrant)' do

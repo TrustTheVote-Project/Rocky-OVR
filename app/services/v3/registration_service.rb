@@ -80,6 +80,7 @@ module V3
     end
     
     def self.create_pa_registrant(orig_data)
+      orig_data = ActiveSupport::HashWithIndifferentAccess.new(orig_data)
       data = orig_data.deep_dup
       geo_location  = data.delete(:geo_location)
       open_tracking  = data.delete(:open_tracking_id)
@@ -311,7 +312,7 @@ module V3
         attrs[:home_address]  = [
           reg_address[:complete_address_number],
           reg_address[:complete_street_name]
-        ].join(" ")
+        ].join(" ").strip
         attrs[:home_unit] = reg_address[:complete_sub_address] ?  reg_address[:complete_sub_address][:sub_address] : nil
         # TODO do we know that these are always provided and in order?
         attrs[:home_city] = reg_address[:complete_place_names] && reg_address[:complete_place_names].any? ? reg_address[:complete_place_names][0][:place_name_value] : nil
@@ -326,7 +327,7 @@ module V3
         attrs[:mailing_address]  = [
           mailing_address[:complete_address_number],
           mailing_address[:complete_street_name]
-        ].join(" ")
+        ].join(" ").strip
         attrs[:mailing_unit] = mailing_address[:complete_sub_address] ?  mailing_address[:complete_sub_address][:sub_address] : nil
         attrs[:mailing_city] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].any? ? mailing_address[:complete_place_names][0][:place_name_value] : nil
         attrs[:mailing_county] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].length > 1 ? mailing_address[:complete_place_names][1][:place_name_value] : nil
@@ -351,7 +352,7 @@ module V3
         attrs[:prev_address]  = [
           prev_reg[:complete_address_number],
           prev_reg[:complete_street_name]
-        ].join(" ")
+        ].join(" ").strip
         attrs[:prev_unit] = prev_reg[:complete_sub_address] ?  prev_reg[:complete_sub_address][:sub_address] : nil
         attrs[:prev_city] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].any? ? prev_reg[:complete_place_names][0][:place_name_value] : nil
         attrs[:prev_county] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].length > 1 ? prev_reg[:complete_place_names][1][:place_name_value] : nil
@@ -382,9 +383,9 @@ module V3
               attrs[:has_state_license] = true
               attrs[:state_id_number] = cls[:string_value]
             end
-          when "ssn_last_four"
+          when "ssn4"
             if cls[:attest_no_such_id]
-              attrs[:has_state_license] = false
+              attrs[:has_ssn] = false
             else
               attrs[:has_ssn] = true
               attrs[:state_id_number] = cls[:string_value]

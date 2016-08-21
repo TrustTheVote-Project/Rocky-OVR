@@ -238,34 +238,58 @@ describe Api::V3::RegistrationsController do
     end
 
     context 'successful registration' do
+      let(:valid_registrant) { FactoryGirl.create(:api_v3_maximal_registrant) }
+      before(:each) do
+        valid_registrant.state_ovr_data = {}
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(valid_registrant)
+        allow(V3::RegistrationService).to receive(:valid_for_pa_submission).and_return([])
+        allow(V3::RegistrationService).to receive(:register_with_pa).with(valid_registrant) { |r| r.state_ovr_data["pa_transaction_id"]="APP_ID"}
+      end
       it 'should return a 200 response' do
-        expect(PARegistrationRequest).to receive(:send_request).and_return({id: 'APP_ID', date: 'APP_DATE', error: ''})
         expect(subject.code).to eql "200"
       end
 
-      it 'should return a body with registration_acknowledgement' do
-        expect(PARegistrationRequest).to receive(:send_request).and_return({id: 'APP_ID', date: 'APP_DATE', error: ''})
+      it 'should return a body with transaction_id' do
         expect(subject.headers["Content-Type"]).to include "application/json"
         result = JSON.parse(subject.body)
-        expect(result).to include({"registration_acknowledgement" => "APP_ID"})
+        expect(result).to include({"transaction_id" => "APP_ID"})
       end
     end
     context 'registrant record fails rocky validation' do
-      let(:invalid_registrant) { double(Registrant, valid?: false, errors: double(Errors, full_messages: ["Message One", "Message Two"]))}
+      let(:invalid_registrant) { double(Registrant, valid?: false, errors: double("Errors", full_messages: ["Message One", "Message Two"]))}
       before(:each) do
         allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
       end
-      it 'should return a 400 response'
-      it 'should return a body with registration_rejection and an error list of all the validation messages'
+      it 'should return a 400 response' do
+        expect(subject.status).to be_eql(400)
+      end
+      it 'should return a body with registration_success: false and an error list of all the validation messages' do
+        resp = JSON.parse(subject.body)
+        expect(resp["registration_success"]).to eq(false)
+        expect(resp["errors"]).to eq([
+          "Message One",
+          "Message Two"
+        ])
+      end
     end
     context 'registrant record fails PA validation' do
-      let(:invalid_registrant) { double(Registrant, valid?: true, errors: double(Errors, full_messages: ["Message One", "Message Two"]))}
+      let(:valid_registrant) { FactoryGirl.create(:api_v3_maximal_registrant) }
+      
       before(:each) do
-        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
-        
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(valid_registrant)
+        allow(V3::RegistrationService).to receive(:valid_for_pa_submission).and_return(["PA Error One", "PA Error Two"])        
       end
-      it 'should return a 400 response'
-      it 'should return a body with registration_rejection and an error list of all the validation messages'
+      it 'should return a 400 response' do
+        expect(subject.status).to eq(400)
+      end
+      it 'should return a body with registration_success: false and an error list of all the validation messages' do
+        result = JSON.parse(subject.body)
+        expect(result["registration_success"]).to eq(false)
+        expect(result["errors"]).to eq([
+          "PA Error One",
+          "PA Error Two"
+        ])
+      end
     end
   end
 
