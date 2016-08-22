@@ -396,7 +396,6 @@ class VRToPA
   PARTIES_NAMES = {
       "democratic" => "D",
       "republican" => "R",
-      "other" => "OTH",
       "none" => "NF"
   }
 
