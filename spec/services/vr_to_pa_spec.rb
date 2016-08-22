@@ -158,7 +158,7 @@ describe VRToPA do
             }
         ],
         "registration_helper" => {
-            "registration_address" => {
+            "address" => {
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "55",
                     "complete_street_name" => "Assistant Street",
@@ -456,7 +456,7 @@ describe VRToPA do
       let(:input) do
         {
             "registration_helper" => {
-                "registration_address" => {
+                "address" => {
                     "numbered_thoroughfare_address" => {
                         "complete_address_number" => "1",
                         "complete_street_name" => "Street",

@@ -451,12 +451,12 @@ class VRToPA
   end
 
   def assisted_person_address
-    address = read "registration_helper.registration_address.numbered_thoroughfare_address"
+    address = read "registration_helper.address.numbered_thoroughfare_address"
     return "" if is_empty(address)
 
     line1 = join_non_empty([address["complete_address_number"], address["complete_street_name"]], ' ')
     city = query(
-        "registration_helper.registration_address.numbered_thoroughfare_address.complete_place_names",
+        "registration_helper.address.numbered_thoroughfare_address.complete_place_names",
         :place_name_type, 'MunicipalJurisdiction', :place_name_value)
     state = address["state"]
     line2 = join_non_empty([city, state], " ")
