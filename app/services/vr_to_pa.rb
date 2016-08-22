@@ -363,6 +363,21 @@ class VRToPA
     result ? result[output.to_s] : ""
   end
 
+  def str_to_bool(v, error_field_name = "")
+    case v
+      when "true"
+        true
+      when "false"
+        false
+      else
+        if error_field_name != ""
+          raise ParsingError.new("Invalid string value: \"#{v}\" for #{error_field_name}. Expected: \"true\" or \"false\"")
+        else
+          false
+        end
+    end
+  end
+
   def bool_to_int(v, error_field_name = "")
     raise ParsingError.new("Boolean expected, #{v.class.name} found (#{error_field_name} #{v})") unless is_bool(v)
     v ? "1" : "0"
@@ -425,8 +440,8 @@ class VRToPA
   end
 
   def assistance_declaration2
-    value = query([:additional_info], :name, 'assistance_declaration2', :boolean_value)
-    value = false if value == ""
+    value = query([:additional_info], :name, 'assistance_declaration2', :string_value)
+    value = str_to_bool(value)
     bool_to_int(value)
   end
 

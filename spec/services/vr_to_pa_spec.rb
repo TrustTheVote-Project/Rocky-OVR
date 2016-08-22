@@ -10,7 +10,7 @@ describe VRToPA do
         email: :email_value,
         ssn4: :ssn4_value,
         party: 'party_value',
-        assistance_declaration2: true,
+        assistance_declaration2: "true",
         attest_no_ssn4_id: false
     }
   end
@@ -154,7 +154,7 @@ describe VRToPA do
             },
             {
                 "name" => "assistance_declaration2",
-                "boolean_value" => parameters[:assistance_declaration2]
+                "string_value" => parameters[:assistance_declaration2]
             }
         ],
         "registration_helper" => {
@@ -316,16 +316,25 @@ describe VRToPA do
         expect(subject).to eql "0"
       end
     end
+
     context 'assistance_declaration2 info set to true ' do
-      let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "boolean_value" => true}]} }
-      it 'default 0' do
+      let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "string_value" => "true"}]} }
+      it '== 1' do
         expect(subject).to eql "1"
       end
     end
+
+    context 'assistance_declaration2 info set to false ' do
+      let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "string_value" => "false"}]} }
+      it '== 0' do
+        expect(subject).to eql "0"
+      end
+    end
+
     context 'assistance_declaration2 invalid info  ' do
       let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "another_value" => 42}]} }
       it 'default 0' do
-        expect { subject }.to raise_error VRToPA::ParsingError
+        expect { subject }.not_to raise_error
       end
     end
   end
