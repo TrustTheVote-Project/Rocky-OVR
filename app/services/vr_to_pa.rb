@@ -234,17 +234,17 @@ class VRToPA
 
   def convert
     result = {}
-    result['batch'] ="0"
+    result['batch'] = "0"
     result['FirstName'] = read([:name, :first_name], REQUIRED)
     result['MiddleName'] = read([:name, :middle_name], REQUIRED)
     result['LastName'] = read([:name, :last_name])
     result['TitleSuffix'] = read([:name, :title_suffix])
 
-    value = query([:voter_classifications], :type, 'united_states_citizen', :assertion)
-    result['united-states-citizen'] = bool_to_int(value)
+    value = query([:voter_classifications], :type, 'united_states_citizen', :assertion, REQUIRED)
+    result['united-states-citizen'] = bool_to_int(value, "united_states_citizen")
 
-    value = query([:voter_classifications], :type, 'eighteen_on_election_day', :assertion)
-    result['eighteen-on-election-day'] = bool_to_int(value)
+    value = query([:voter_classifications], :type, 'eighteen_on_election_day', :assertion, REQUIRED)
+    result['eighteen-on-election-day'] = bool_to_int(value, "eighteen_on_election_day")
 
     result['isnewregistration'] =
         (is_empty(read([:previous_registration_address])) && is_empty(read([:previous_name]))) ? "1" : "0"
@@ -253,7 +253,8 @@ class VRToPA
     result['ispartychange'] = ""
     result['isfederalvoter'] = ""
 
-    result['DateOfBirth'] = read([:date_of_birth])
+    # YYYY-MM-DD is expected
+    result['DateOfBirth'] = VRToPA.format_date(read([:date_of_birth], REQUIRED), "date_of_birth")
     result['Gender'] = parse_gender(read([:gender]))
     result['Ethnicity'] = parse_race(read([:race]))
 
@@ -262,29 +263,25 @@ class VRToPA
 
 
     result['Email'] = email
-    result['streetaddress'] = read([:registration_address, :numbered_thoroughfare_address, :complete_street_name])
+    result['streetaddress'] = street_address
     result['streetaddress2'] = ""
     result['unittype'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address_type])
     result['unitnumber'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address])
 
-    municipality = query(
-        [:registration_address, :numbered_thoroughfare_address, :complete_place_names],
-        :place_name_type, 'MunicipalJurisdiction', :place_name_value)
-    result['municipality'] = municipality
-    result['city'] = municipality
+    result['municipality'] = municipality(:registration_address)
+    result['city'] = municipality(:registration_address)
 
-    result['zipcode'] = read([:registration_address, :numbered_thoroughfare_address, :zip_code])
+    result['zipcode'] = zip_code(:registration_address)
     result['donthavePermtOrResAddress'] = ''
 
     result['county'] = query([:registration_address, :numbered_thoroughfare_address, :complete_place_names],
-                             :place_name_type, 'County', :place_name_value)
+                             :place_name_type, 'County', :place_name_value, REQUIRED)
 
 
     result['mailingaddress'] = read([:mailing_address, :numbered_thoroughfare_address, :complete_street_name])
-    result['mailingcity'] = query([:mailing_address, :numbered_thoroughfare_address, :complete_place_names],
-                                  :place_name_type, 'MunicipalJurisdiction', :place_name_value)
+    result['mailingcity'] = municipality(:mailing_address)
     result['mailingstate'] = read([:mailing_address, :numbered_thoroughfare_address, :state])
-    result['mailingzipcode'] = read([:mailing_address, :numbered_thoroughfare_address, :zip_code])
+    result['mailingzipcode'] = zip_code(:mailing_address)
 
     result['drivers-license'] = drivers_license
 
@@ -305,8 +302,7 @@ class VRToPA
     result['previousregfirstname'] = read([:previous_name, :first_name])
     result['previousregmiddlename'] = read([:previous_name, :middle_name])
     result['previousregaddress'] = read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name])
-    result['previousregcity'] = query([:previous_registration_address, :numbered_thoroughfare_address, :complete_place_names],
-                                      :place_name_type, 'MunicipalJurisdiction', :place_name_value)
+    result['previousregcity'] = municipality(:previous_registration_address)
     result['previousregstate'] = read([:previous_registration_address, :numbered_thoroughfare_address, :state])
     result['previousregzip'] = read([:previous_registration_address, :numbered_thoroughfare_address, :zip_code])
 
@@ -325,6 +321,23 @@ class VRToPA
     result['secondEmail'] = ""
 
     result
+  end
+
+  def zip_code(section)
+    read([section, :numbered_thoroughfare_address, :zip_code], REQUIRED)
+  end
+
+  def municipality(section)
+    query(
+        [section, :numbered_thoroughfare_address, :complete_place_names],
+        :place_name_type, 'MunicipalJurisdiction', :place_name_value, REQUIRED)
+  end
+
+  def street_address
+    join_non_empty([
+                       read([:registration_address, :numbered_thoroughfare_address, :complete_address_number]),
+                       read([:registration_address, :numbered_thoroughfare_address, :complete_street_name], REQUIRED)
+                   ], ' ')
   end
 
   def drivers_license
@@ -346,12 +359,12 @@ class VRToPA
     objects = read(keys, required) || []
     raise ParsingError.new("Array is expected #{objects.class.name} found") unless objects.is_a? Array
     result = objects.find { |obj| obj[key.to_s] == value }
-    raise ParsingError.new("Not found #{key} == #{value} in #{objects}") if required
+    raise ParsingError.new("Not found #{key} == #{value} in #{objects}") if is_empty(result) && required
     result ? result[output.to_s] : ""
   end
 
-  def bool_to_int(v)
-    raise ParsingError.new("Boolean expected, #{v.class.name} found (#{v})") unless is_bool(v)
+  def bool_to_int(v, error_field_name = "")
+    raise ParsingError.new("Boolean expected, #{v.class.name} found (#{error_field_name} #{v})") unless is_bool(v)
     v ? "1" : "0"
   end
 
@@ -460,4 +473,14 @@ class VRToPA
     objects.reject { |v| is_empty(v) }.join(separator)
   end
 
+  def self.format_date(value, error_field_name=nil)
+    # Date.parse(value).strftime("%m/%d/%Y")
+    Date.parse(value).strftime("%Y-%m-%d")
+  rescue ArgumentError => e
+    if error_field_name.nil?
+      ""
+    else
+      raise ParsingError.new("Invalid date value \"#{value}\" for \"#{error_field_name}\", #{e.message}")
+    end
+  end
 end
