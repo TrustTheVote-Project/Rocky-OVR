@@ -250,7 +250,7 @@ class VRToPA
     result['isnewregistration'] =
         (is_empty(read([:previous_registration_address])) && is_empty(read([:previous_name]))) ? "1" : "0"
     result['name-update'] = name_update
-    result['address-update'] = is_empty(read([:previous_registration_address])) ? "0" : "1"
+    result['address-update'] = address_update
     result['ispartychange'] = ""
     result['isfederalvoter'] = ""
 
@@ -302,10 +302,10 @@ class VRToPA
     result['previousreglastname'] = prev_last_name
     result['previousregfirstname'] = prev_first_name
     result['previousregmiddlename'] = prev_middle_name
-    result['previousregaddress'] = read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name])
-    result['previousregcity'] = municipality(:previous_registration_address, OPTIONAL)
-    result['previousregstate'] = read([:previous_registration_address, :numbered_thoroughfare_address, :state])
-    result['previousregzip'] = read([:previous_registration_address, :numbered_thoroughfare_address, :zip_code])
+    result['previousregaddress'] = prev_reg_address
+    result['previousregcity'] = prev_reg_city
+    result['previousregstate'] = prev_reg_state
+    result['previousregzip'] = prev_reg_zip
 
     result['previousregcounty'] = query([:previous_registration_address, :numbered_thoroughfare_address, :complete_place_names],
                                         :place_name_type, 'County', :place_name_value)
@@ -322,6 +322,26 @@ class VRToPA
     result['secondEmail'] = ""
 
     result
+  end
+
+  def prev_reg_zip
+    read([:previous_registration_address, :numbered_thoroughfare_address, :zip_code], address_update == "1")
+  end
+
+  def prev_reg_state
+    read([:previous_registration_address, :numbered_thoroughfare_address, :state])
+  end
+
+  def prev_reg_city
+    municipality(:previous_registration_address, address_update == "1")
+  end
+
+  def prev_reg_address
+    read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name], address_update == "1")
+  end
+
+  def address_update
+    is_empty(read([:previous_registration_address])) ? "0" : "1"
   end
 
   def prev_middle_name

@@ -699,4 +699,25 @@ describe VRToPA do
       end
     end
   end
+
+  describe "prev_reg_address" do
+    context "empty input" do
+      let(:input) { {} }
+      it "return empty" do
+        expect(adapter.prev_reg_address).to be_nil
+        expect(adapter.prev_reg_city).to eql ""
+        expect(adapter.prev_reg_state).to be_nil
+        expect(adapter.prev_reg_zip).to be_nil
+      end
+    end
+    context "partly empty input" do
+      let(:input) { { "previous_registration_address" => { "not_empty" => "value"} } }
+      it "raise error (except state)" do
+        expect{ adapter.prev_reg_address }.to raise_error
+        expect{ adapter.prev_reg_city }.to raise_error
+        expect{ adapter.prev_reg_state }.not_to raise_error
+        expect{ adapter.prev_reg_zip }.to raise_error
+      end
+    end
+  end
 end
