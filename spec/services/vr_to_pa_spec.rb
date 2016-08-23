@@ -10,7 +10,7 @@ describe VRToPA do
         email: :email_value,
         ssn4: :ssn4_value,
         party: 'party_value',
-        assistance_declaration2: "true",
+        assistant_declaration: "true",
         attest_no_ssn4_id: false
     }
   end
@@ -153,8 +153,8 @@ describe VRToPA do
                 "string_value" => "english"
             },
             {
-                "name" => "assistance_declaration2",
-                "string_value" => parameters[:assistance_declaration2]
+                "name" => "assistant_declaration",
+                "string_value" => parameters[:assistant_declaration]
             }
         ],
         "registration_helper" => {
@@ -302,37 +302,37 @@ describe VRToPA do
       end
     end
   end
-  describe 'assistance_declaration2' do
-    subject { adapter.assistance_declaration2 }
+  describe 'assistant_declaration' do
+    subject { adapter.assistant_declaration }
     context 'no additional info' do
       let(:input) { {} }
       it 'default 0' do
         expect(subject).to eql "0"
       end
     end
-    context 'no assistance_declaration2 info' do
+    context 'no assistant_declaration info' do
       let(:input) { {"additional_info" => [{"name" => "n1", "string_value" => "s1"}]} }
       it 'default 0' do
         expect(subject).to eql "0"
       end
     end
 
-    context 'assistance_declaration2 info set to true ' do
-      let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "string_value" => "true"}]} }
+    context 'assistant_declaration info set to true ' do
+      let(:input) { {"additional_info" => [{"name" => "assistant_declaration", "string_value" => "true"}]} }
       it '== 1' do
         expect(subject).to eql "1"
       end
     end
 
-    context 'assistance_declaration2 info set to false ' do
-      let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "string_value" => "false"}]} }
+    context 'assistant_declaration info set to false ' do
+      let(:input) { {"additional_info" => [{"name" => "assistant_declaration", "string_value" => "false"}]} }
       it '== 0' do
         expect(subject).to eql "0"
       end
     end
 
-    context 'assistance_declaration2 invalid info  ' do
-      let(:input) { {"additional_info" => [{"name" => "assistance_declaration2", "another_value" => 42}]} }
+    context 'assistant_declaration invalid info  ' do
+      let(:input) { {"additional_info" => [{"name" => "assistant_declaration", "another_value" => 42}]} }
       it 'default 0' do
         expect { subject }.not_to raise_error
       end

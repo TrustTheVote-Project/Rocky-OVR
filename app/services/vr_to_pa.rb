@@ -314,7 +314,7 @@ class VRToPA
     result['assistedpersonname'] = assisted_person_name
     result['assistedpersonAddress'] = assisted_person_address
     result['assistedpersonphone'] = assisted_person_phone
-    result['assistancedeclaration2'] = assistance_declaration2
+    result['assistancedeclaration2'] = assistant_declaration
     result['ispollworker'] = ""
     result['bilingualinterpreter'] = ""
     result['pollworkerspeaklang'] = ""
@@ -439,8 +439,8 @@ class VRToPA
     bool_to_int(v)
   end
 
-  def assistance_declaration2
-    value = query([:additional_info], :name, 'assistance_declaration2', :string_value)
+  def assistant_declaration
+    value = query([:additional_info], :name, 'assistant_declaration', :string_value)
     value = str_to_bool(value)
     bool_to_int(value)
   end
