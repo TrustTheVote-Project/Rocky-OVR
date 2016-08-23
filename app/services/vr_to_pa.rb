@@ -417,7 +417,7 @@ class VRToPA
 
   def party
     @party ||= begin
-      name = read([:party])
+      name = read([:party], REQUIRED)
       v = PARTIES_NAMES[name.downcase.strip]
       v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: name}
     end

@@ -1,6 +1,6 @@
-# to run only this spec:
-# require File.expand_path('../../../app/services/vr_to_pa', __FILE__)
-# require 'date'
+# used to run only this spec:
+require File.expand_path('../../../app/services/vr_to_pa', __FILE__)
+require 'date'
 
 describe VRToPA do
   let(:input) { raise 'input is not re-defined' }
@@ -280,25 +280,35 @@ describe VRToPA do
   end
 
   describe 'party' do
-    test_cases =
-        {
-            "democratic" => {politicalparty: "D", otherpoliticalparty: ""},
-            "Democratic" => {politicalparty: "D", otherpoliticalparty: ""},
-            " Democratic " => {politicalparty: "D", otherpoliticalparty: ""},
-            "republican" => {politicalparty: "R", otherpoliticalparty: ""},
-            "Republican" => {politicalparty: "R", otherpoliticalparty: ""},
-            "other" => {politicalparty: "OTH", otherpoliticalparty: "other"},
-            "Other" => {politicalparty: "OTH", otherpoliticalparty: "Other"},
-            "none" => {politicalparty: "NF", otherpoliticalparty: ""},
-            "None" => {politicalparty: "NF", otherpoliticalparty: ""},
-            "green" => {politicalparty: "OTH", otherpoliticalparty: "green"},
-            "Green" => {politicalparty: "OTH", otherpoliticalparty: "Green"},
-        }
+    context 'custom tests' do
+      test_cases =
+          {
+              "democratic" => {politicalparty: "D", otherpoliticalparty: ""},
+              "Democratic" => {politicalparty: "D", otherpoliticalparty: ""},
+              " Democratic " => {politicalparty: "D", otherpoliticalparty: ""},
+              "republican" => {politicalparty: "R", otherpoliticalparty: ""},
+              "Republican" => {politicalparty: "R", otherpoliticalparty: ""},
+              "other" => {politicalparty: "OTH", otherpoliticalparty: "other"},
+              "Other" => {politicalparty: "OTH", otherpoliticalparty: "Other"},
+              "none" => {politicalparty: "NF", otherpoliticalparty: ""},
+              "None" => {politicalparty: "NF", otherpoliticalparty: ""},
+              "green" => {politicalparty: "OTH", otherpoliticalparty: "green"},
+              "Green" => {politicalparty: "OTH", otherpoliticalparty: "Green"},
+          }
 
-    it 'supports pre defined cases' do
-      test_cases.each do |test, er|
-        adapter = VRToPA.new("voter_registration" => {"party" => test})
-        expect(adapter.party).to eql(er)
+      it 'supports pre defined cases' do
+        test_cases.each do |test, er|
+          adapter = VRToPA.new("voter_registration" => {"party" => test})
+          expect(adapter.party).to eql(er)
+        end
+      end
+    end
+
+    context 'empty input' do
+      subject { adapter.party }
+      let(:input) { { } }
+      it 'raise error' do
+        expect { subject }.to raise_error /party/
       end
     end
   end
