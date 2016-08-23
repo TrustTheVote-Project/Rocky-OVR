@@ -306,7 +306,7 @@ describe VRToPA do
 
     context 'empty input' do
       subject { adapter.party }
-      let(:input) { { } }
+      let(:input) { {} }
       it 'raise error' do
         expect { subject }.to raise_error /party/
       end
@@ -657,6 +657,46 @@ describe VRToPA do
         end
       end
 
+    end
+  end
+
+  describe "prev names" do
+    subject { [adapter.prev_first_name, adapter.prev_last_name, adapter.prev_middle_name] }
+
+    context "empty input" do
+      let(:input) { {} }
+      it "returns nothing" do
+        expect(subject).to eql [nil, nil, nil]
+      end
+    end
+
+    context "full input" do
+      let(:input) do
+        {
+            "previous_name" => {
+                "first_name" => "fn",
+                "last_name" => "ln",
+                "middle_name" => "mn",
+            }
+        }
+      end
+      it "returns nothing" do
+        expect(subject).to eql %w(fn ln mn)
+      end
+    end
+
+    context "partly empty input" do
+      let(:input) do
+        {
+            "previous_name" => {
+                "first_name" => "fn"
+            }
+        }
+      end
+
+      it "raise error" do
+        expect { subject }.to raise_error /last_name/
+      end
     end
   end
 end

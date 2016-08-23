@@ -249,7 +249,7 @@ class VRToPA
 
     result['isnewregistration'] =
         (is_empty(read([:previous_registration_address])) && is_empty(read([:previous_name]))) ? "1" : "0"
-    result['name-update'] = is_empty(read([:previous_name])) ? "0" : "1"
+    result['name-update'] = name_update
     result['address-update'] = is_empty(read([:previous_registration_address])) ? "0" : "1"
     result['ispartychange'] = ""
     result['isfederalvoter'] = ""
@@ -299,9 +299,9 @@ class VRToPA
     result['preferredlanguage'] = query([:additional_info], :name, 'preferred_language', :string_value)
 
     result['voterregnumber'] = ""
-    result['previousreglastname'] = read([:previous_name, :last_name])
-    result['previousregfirstname'] = read([:previous_name, :first_name])
-    result['previousregmiddlename'] = read([:previous_name, :middle_name])
+    result['previousreglastname'] = prev_last_name
+    result['previousregfirstname'] = prev_first_name
+    result['previousregmiddlename'] = prev_middle_name
     result['previousregaddress'] = read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name])
     result['previousregcity'] = municipality(:previous_registration_address, OPTIONAL)
     result['previousregstate'] = read([:previous_registration_address, :numbered_thoroughfare_address, :state])
@@ -322,6 +322,22 @@ class VRToPA
     result['secondEmail'] = ""
 
     result
+  end
+
+  def prev_middle_name
+    read([:previous_name, :middle_name])
+  end
+
+  def prev_first_name
+    read([:previous_name, :first_name], name_update == "1")
+  end
+
+  def prev_last_name
+    read([:previous_name, :last_name], name_update == "1")
+  end
+
+  def name_update
+    is_empty(read([:previous_name])) ? "0" : "1"
   end
 
   def zip_code(section)
