@@ -3,6 +3,7 @@ class VRToPA
   end
 
   REQUIRED = true
+  OPTIONAL = false
   # for reference only
   # FIELDS = {
   #     "batch" => 0,
@@ -302,7 +303,7 @@ class VRToPA
     result['previousregfirstname'] = read([:previous_name, :first_name])
     result['previousregmiddlename'] = read([:previous_name, :middle_name])
     result['previousregaddress'] = read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name])
-    result['previousregcity'] = municipality(:previous_registration_address)
+    result['previousregcity'] = municipality(:previous_registration_address, OPTIONAL)
     result['previousregstate'] = read([:previous_registration_address, :numbered_thoroughfare_address, :state])
     result['previousregzip'] = read([:previous_registration_address, :numbered_thoroughfare_address, :zip_code])
 
@@ -327,10 +328,10 @@ class VRToPA
     read([section, :numbered_thoroughfare_address, :zip_code], REQUIRED)
   end
 
-  def municipality(section)
+  def municipality(section, is_required=REQUIRED)
     query(
         [section, :numbered_thoroughfare_address, :complete_place_names],
-        :place_name_type, 'MunicipalJurisdiction', :place_name_value, REQUIRED)
+        :place_name_type, 'MunicipalJurisdiction', :place_name_value, is_required)
   end
 
   def street_address
