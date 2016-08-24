@@ -401,7 +401,7 @@ describe VRToPA do
             "voter_ids" => [
                 {
                     "type" => "drivers_license",
-                    "string_value" => "123456",
+                    "string_value" => "12345678",
                     "attest_no_such_id" => false
                 },
                 {
@@ -713,12 +713,12 @@ describe VRToPA do
       end
     end
     context "partly empty input" do
-      let(:input) { { "previous_registration_address" => { "not_empty" => "value"} } }
+      let(:input) { {"previous_registration_address" => {"not_empty" => "value"}} }
       it "raise error (except state)" do
-        expect{ adapter.prev_reg_address }.to raise_error
-        expect{ adapter.prev_reg_city }.to raise_error
-        expect{ adapter.prev_reg_state }.not_to raise_error
-        expect{ adapter.prev_reg_zip }.to raise_error
+        expect { adapter.prev_reg_address }.to raise_error
+        expect { adapter.prev_reg_city }.to raise_error
+        expect { adapter.prev_reg_state }.not_to raise_error
+        expect { adapter.prev_reg_zip }.to raise_error
       end
     end
   end
@@ -766,7 +766,49 @@ describe VRToPA do
         expect { subject }.to raise_error
       end
     end
+  end
 
+  describe "drivers_license" do
+    subject { adapter.drivers_license }
+    context "empty input" do
+      let(:input) { {} }
+      it "empty" do
+        expect(subject).to eql ""
+      end
+    end
 
+    context "valid DL" do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "drivers_license",
+                    "string_value" => "12345678",
+                    "attest_no_such_id" => false
+                }
+            ]
+        }
+      end
+      it "empty" do
+        expect(subject).to eql "12345678"
+      end
+    end
+
+    context "invalid DL" do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "drivers_license",
+                    "string_value" => "123-45678",
+                    "attest_no_such_id" => false
+                }
+            ]
+        }
+      end
+      it "raises error" do
+        expect{ subject }.to raise_error
+      end
+    end
   end
 end

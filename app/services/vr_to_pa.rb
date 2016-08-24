@@ -384,7 +384,12 @@ class VRToPA
   end
 
   def drivers_license
-    query([:voter_ids], :type, 'drivers_license', :string_value)
+    dl = query([:voter_ids], :type, 'drivers_license', :string_value)
+    dl = "" if is_empty(dl)
+    dl = dl.strip if dl.respond_to?(:strip)
+    valid = dl == "" || dl =~ /^\d{8}$/
+    raise ParsingError.new("Invalid drivers licence value \"%s\": 8 digits are expected" % dl) unless valid
+    dl
   end
 
   def read(keys, required=false)
