@@ -1,5 +1,6 @@
 # used to run only this spec:
 require File.expand_path('../../../app/services/vr_to_pa', __FILE__)
+require File.expand_path('../../../app/services/phone_formatter', __FILE__)
 require 'date'
 
 describe VRToPA do
@@ -210,13 +211,14 @@ describe VRToPA do
       expect(subject).to include("donthavebothDLandSSN" => "0")
       expect(subject).to include("assistedpersonname" => "Assistant Name")
       expect(subject).to include("assistedpersonAddress" => "55 Assistant Street, Assistant City Assistant State")
-      expect(subject).to include("assistedpersonphone" => "1234567890")
+      expect(subject).to include("assistedpersonphone" => "123-456-7890")
       expect(subject).to include("city" => "Registration City")
       expect(subject).to include("mailingcity" => "Mailing City")
       expect(subject).to include("previousregcity" => "Previous City")
       expect(subject["assistedpersonAddress"]).to include("Assistant City")
       expect(subject).to include("zipcode" => "11111")
       expect(subject).to include("mailingzipcode" => "33333")
+      expect(subject).to include("Phone" => "555-555-5555")
 
     end
 
@@ -719,5 +721,52 @@ describe VRToPA do
         expect{ adapter.prev_reg_zip }.to raise_error
       end
     end
+  end
+
+  describe "phone" do
+    subject { adapter.phone }
+
+    context "empty phone" do
+      let(:input) { {} }
+      it "returns nothing" do
+        expect(subject).to eql("")
+      end
+    end
+
+    context "valid phone" do
+      let(:input) do
+        {
+            "contact_methods" => [
+                {
+                    "type" => "phone",
+                    "value" => "+1-555-555-5555",
+                    "capabilities" => %w(voice fax sms)
+                }
+            ]
+        }
+      end
+      it "returns nothing" do
+        expect(subject).to eql("555-555-5555")
+      end
+    end
+
+    context "invalid phone" do
+      let(:input) do
+        {
+            "contact_methods" => [
+                {
+                    "type" => "phone",
+                    "value" => "+5-555-555",
+                    "capabilities" => %w(voice fax sms)
+                }
+            ]
+        }
+      end
+      it "raise error" do
+        expect { subject }.to raise_error
+      end
+    end
+
+
   end
 end

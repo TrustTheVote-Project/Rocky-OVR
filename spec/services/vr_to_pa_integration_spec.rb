@@ -1,5 +1,6 @@
 # used to run only this spec:
 require File.expand_path('../../../app/services/vr_to_pa', __FILE__)
+require File.expand_path('../../../app/services/phone_formatter', __FILE__)
 require 'date'
 require 'json'
 

@@ -259,8 +259,7 @@ class VRToPA
     result['Gender'] = parse_gender(read([:gender]))
     result['Ethnicity'] = parse_race(read([:race]))
 
-    value = query([:contact_methods], :type, 'phone', :value)
-    result['Phone'] = value
+    result['Phone'] = phone
 
 
     result['Email'] = email
@@ -322,6 +321,13 @@ class VRToPA
     result['secondEmail'] = ""
 
     result
+  end
+
+  def phone(section = nil)
+    value = query([section, :contact_methods].compact, :type, 'phone', :value)
+    is_empty(value) ? "" : PhoneFormatter.process(value)
+  rescue PhoneFormatter::InvalidPhoneNumber => e
+    raise ParsingError.new(e.message)
   end
 
   def prev_reg_zip
@@ -523,7 +529,7 @@ class VRToPA
   end
 
   def assisted_person_phone
-    query("registration_helper.contact_methods", :type, 'phone', :value)
+    phone(:registration_helper)
   end
 
   def join_non_empty(objects, separator)
