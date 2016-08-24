@@ -278,11 +278,14 @@ class VRToPA
                              :place_name_type, 'County', :place_name_value, REQUIRED)
 
 
-    result['mailingaddress'] = read([:mailing_address, :numbered_thoroughfare_address, :complete_street_name])
-    result['mailingcity'] = municipality(:mailing_address)
-    result['mailingstate'] = read([:mailing_address, :numbered_thoroughfare_address, :state])
-    result['mailingzipcode'] = zip_code(:mailing_address)
-
+    has_mailing_address = read([:registration_address_is_mailing_address]) == false
+    if has_mailing_address
+      result['mailingaddress'] = read([:mailing_address, :numbered_thoroughfare_address, :complete_street_name])
+      result['mailingcity'] = municipality(:mailing_address)
+      result['mailingstate'] = read([:mailing_address, :numbered_thoroughfare_address, :state])
+      result['mailingzipcode'] = zip_code(:mailing_address)
+    end
+    
     result['drivers-license'] = drivers_license
 
     result['ssn4'] = ssn4

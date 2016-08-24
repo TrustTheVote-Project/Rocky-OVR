@@ -84,7 +84,7 @@ describe VRToPA do
                 "zip_code" => "11111"
             }
         },
-        "registration_address_is_mailing_address" => true,
+        "registration_address_is_mailing_address" => false,
         "name" => {
             "first_name" => "Aaron",
             "last_name" => "Huttner",
