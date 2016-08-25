@@ -237,8 +237,8 @@ class VRToPA
     result = {}
     result['batch'] = "0"
     result['FirstName'] = read([:name, :first_name], REQUIRED)
-    result['MiddleName'] = read([:name, :middle_name], REQUIRED)
-    result['LastName'] = read([:name, :last_name])
+    result['MiddleName'] = read([:name, :middle_name])
+    result['LastName'] = read([:name, :last_name], REQUIRED)
     result['TitleSuffix'] = read([:name, :title_suffix])
 
     value = query([:voter_classifications], :type, 'united_states_citizen', :assertion, REQUIRED)
