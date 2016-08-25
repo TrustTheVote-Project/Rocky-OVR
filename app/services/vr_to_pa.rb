@@ -293,7 +293,7 @@ class VRToPA
     result['drivers-license'] = drivers_license
 
     result['ssn4'] = ssn4
-    result['signatureimage'] = read([:signature, :image])
+    result['signatureimage'] = readsignature
     result['continueAppSubmit'] = "1"
     result['donthavebothDLandSSN'] = dont_have_both_ids
 
@@ -413,6 +413,14 @@ class VRToPA
       raise ParsingError.new("Required value #{keys.join('.')} not found in #{@request}") if required && is_empty(value)
     end
     value
+  end
+  
+  def readsignature
+    data = read([:signature, :image])
+    type = read([:signature, :mime_type])
+    
+    return "data:#{type};base64,#{data}"
+    
   end
 
   def query(keys, key, value, output, required=false)
