@@ -273,7 +273,6 @@ class VRToPA
 
     result['zipcode'] = zip_code(:registration_address)
     result['donthavePermtOrResAddress'] = ''
-    result['state'] = read([:registration_address, :numbered_thoroughfare_address, :state])
     result['county'] = query([:registration_address, :numbered_thoroughfare_address, :complete_place_names],
                              :place_name_type, 'County', :place_name_value, REQUIRED)
 
