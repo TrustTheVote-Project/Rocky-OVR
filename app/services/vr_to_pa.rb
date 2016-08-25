@@ -293,7 +293,7 @@ class VRToPA
       result['mailingstate'] = 'PA'
       result['mailingzipcode'] = result['zipcode']      
     end
-    
+
     result['drivers-license'] = drivers_license
 
     result['ssn4'] = ssn4
@@ -342,7 +342,7 @@ class VRToPA
   end
 
   def prev_reg_zip
-    read([:previous_registration_address, :numbered_thoroughfare_address, :zip_code], address_update == "1")
+    zip_code(:previous_registration_address, address_update == "1")
   end
 
   def prev_reg_state
@@ -377,8 +377,13 @@ class VRToPA
     is_empty(read([:previous_name])) ? "0" : "1"
   end
 
-  def zip_code(section)
-    read([section, :numbered_thoroughfare_address, :zip_code], REQUIRED)
+  def zip_code(section, is_required=true)
+    v = safe_strip(read([section, :numbered_thoroughfare_address, :zip_code], is_required))
+    if is_empty(v) || v =~ /^\d{5}(-\d{4})?$/
+      v
+    else
+      raise ParsingError.new("Invalid ZIP code \"#{v}\". Expected format is NNNNN or NNNNN-NNNN")
+    end
   end
 
   def municipality(section, is_required=REQUIRED)
@@ -409,7 +414,7 @@ class VRToPA
     keys.each do |key|
       break if value.nil?
       value = value[key.to_s]
-      raise ParsingError.new("Value #{keys.join('.')} not found in #{@request}") if required && value.nil?
+      raise ParsingError.new("Required value #{keys.join('.')} not found in #{@request}") if required && is_empty(value)
     end
     value
   end
@@ -486,7 +491,14 @@ class VRToPA
   end
 
   def ssn4
-    query([:voter_ids], :type, 'ssn4', :string_value)
+    v = safe_strip(query([:voter_ids], :type, 'ssn4', :string_value))
+    if is_empty(v)
+      ""
+    else
+      valid = v.is_a?(String) && v =~ /^\d{4}$/
+      raise ParsingError.new("Invalid SSN4 value \"#{v}\", expected: 4 digits value") unless valid
+      v
+    end
   end
 
   def no_such_voter_id(type)
@@ -560,6 +572,14 @@ class VRToPA
       ""
     else
       raise ParsingError.new("Invalid date value \"#{value}\" for \"#{error_field_name}\", #{e.message}")
+    end
+  end
+
+  def safe_strip(value)
+    if value.respond_to? :strip
+      value.strip
+    else
+      value
     end
   end
 end

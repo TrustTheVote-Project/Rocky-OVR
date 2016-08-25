@@ -6,15 +6,6 @@ require 'date'
 describe VRToPA do
   let(:input) { raise 'input is not re-defined' }
   let(:adapter) { VRToPA.new("voter_registration" => input) }
-  let(:parameters) do
-    {
-        email: :email_value,
-        ssn4: :ssn4_value,
-        party: 'party_value',
-        assistant_declaration: "true",
-        attest_no_ssn4_id: false
-    }
-  end
   let(:full_input) do
     {
         "date_of_birth" => "2016-06-16",
@@ -101,7 +92,7 @@ describe VRToPA do
         },
         "gender" => "male",
         "race" => "American Indian / Alaskan Native",
-        "party" => parameters[:party],
+        "party" => 'party_value',
         "voter_classifications" => [
             {
                 "type" => "eighteen_on_election_day",
@@ -132,8 +123,8 @@ describe VRToPA do
             },
             {
                 "type" => "ssn4",
-                "string_value" => parameters[:ssn4],
-                "attest_no_such_id" => parameters[:attest_no_ssn4_id]
+                "string_value" => "1234",
+                "attest_no_such_id" => false
             }
         ],
         "contact_methods" => [
@@ -144,7 +135,7 @@ describe VRToPA do
             },
             {
                 "type" => "email",
-                "value" => parameters[:email],
+                "value" => :email_value,
                 "capabilities" => %w(voice fax sms)
             }
         ],
@@ -155,7 +146,7 @@ describe VRToPA do
             },
             {
                 "name" => "assistant_declaration",
-                "string_value" => parameters[:assistant_declaration]
+                "string_value" => "true"
             }
         ],
         "registration_helper" => {
@@ -197,29 +188,28 @@ describe VRToPA do
     }
   end
 
-
   describe 'convert' do
     subject { adapter.convert }
     let(:input) { full_input }
 
     it 'returns all values' do
-      expect(subject).to include("Email" => :email_value)
-      expect(subject).to include("ssn4" => :ssn4_value)
-      expect(subject).to include("politicalparty" => "OTH")
-      expect(subject).to include("otherpoliticalparty" => "party_value")
-      expect(subject).to include("assistancedeclaration2" => "1")
-      expect(subject).to include("donthavebothDLandSSN" => "0")
-      expect(subject).to include("assistedpersonname" => "Assistant Name")
-      expect(subject).to include("assistedpersonAddress" => "55 Assistant Street, Assistant City Assistant State")
-      expect(subject).to include("assistedpersonphone" => "123-456-7890")
-      expect(subject).to include("city" => "Registration City")
-      expect(subject).to include("mailingcity" => "Mailing City")
-      expect(subject).to include("previousregcity" => "Previous City")
+      expect(subject["Email"]).to eql(:email_value)
+      expect(subject["ssn4"]).to eql("1234")
+      expect(subject["politicalparty"]).to eql("OTH")
+      expect(subject["otherpoliticalparty"]).to eql("party_value")
+      expect(subject["assistancedeclaration2"]).to eql("1")
+      expect(subject["donthavebothDLandSSN"]).to eql("0")
+      expect(subject["assistedpersonname"]).to eql("Assistant Name")
+      expect(subject["assistedpersonAddress"]).to eql("55 Assistant Street, Assistant City Assistant State")
+      expect(subject["assistedpersonphone"]).to eql("123-456-7890")
+      expect(subject["city"]).to eql("Registration City")
+      expect(subject["mailingcity"]).to eql("Mailing City")
+      expect(subject["previousregcity"]).to eql("Previous City")
       expect(subject["assistedpersonAddress"]).to include("Assistant City")
-      expect(subject).to include("zipcode" => "11111")
-      expect(subject).to include("mailingzipcode" => "33333")
-      expect(subject).to include("Phone" => "555-555-5555")
-
+      expect(subject["zipcode"]).to eql("11111")
+      expect(subject["previousregzip"]).to eql("22222")
+      expect(subject["mailingzipcode"]).to eql("33333")
+      expect(subject["Phone"]).to eql("555-555-5555")
     end
 
   end
@@ -807,8 +797,116 @@ describe VRToPA do
         }
       end
       it "raises error" do
-        expect{ subject }.to raise_error
+        expect { subject }.to raise_error
       end
     end
+  end
+
+  describe "SSN4" do
+    subject { adapter.ssn4 }
+    context "empty input" do
+      let(:input) { {} }
+      it "empty" do
+        expect(subject).to eql("")
+      end
+    end
+
+    context "valid input" do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "ssn4",
+                    "string_value" => "  1234  ",
+                    "attest_no_such_id" => false
+                }
+            ]
+        }
+      end
+      it "returns value" do
+        expect(subject).to eql("1234")
+      end
+    end
+
+    context "invalid input" do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "ssn4",
+                    "string_value" => "  12345  ",
+                    "attest_no_such_id" => false
+                }
+            ]
+        }
+      end
+
+      it "raises error" do
+        expect { subject }.to raise_error /SSN4/
+      end
+    end
+  end
+  describe "zip_code" do
+    subject { adapter.zip_code(:example, required) }
+    let(:input) do
+      {
+          "example" =>
+              {
+                  "numbered_thoroughfare_address" => {
+                      "zip_code" => zip_code_value
+                  }
+              }
+      }
+    end
+    context "required" do
+      let(:required) { true }
+
+      context "valid" do
+        let(:zip_code_value) { " 12345 " }
+        it "returns value" do
+          expect(subject).to eql("12345")
+        end
+      end
+
+      context "empty" do
+        let(:zip_code_value) { "" }
+        it "raises error" do
+          expect{ subject }.to raise_error /Required/
+        end
+      end
+
+      context "invalid" do
+        let(:zip_code_value) { " 123345 " }
+        it "raises error" do
+          expect{subject}.to raise_error /ZIP/
+        end
+      end
+    end
+    context "optional" do
+      let(:required) { false }
+
+      context "valid" do
+        let(:zip_code_value) { " 12345-6789 " }
+        it "returns value" do
+          expect(subject).to eql("12345-6789")
+        end
+      end
+
+      context "empty" do
+        let(:zip_code_value) { "" }
+        it "returns nothing" do
+          expect(subject).to eql("")
+        end
+      end
+
+      context "invalid" do
+        let(:zip_code_value) { " 12345 - 6789 " }
+        it "raises error" do
+          expect{subject}.to raise_error /ZIP/
+        end
+      end
+
+    end
+
   end
 end
