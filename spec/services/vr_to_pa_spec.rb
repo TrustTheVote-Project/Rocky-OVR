@@ -9,7 +9,7 @@ describe VRToPA do
   let(:parameters) do
     {
         email: :email_value,
-        ssn4: :ssn4_value,
+        ssn4: "1234",
         party: 'party_value',
         assistant_declaration: "true",
         attest_no_ssn4_id: false
@@ -204,7 +204,7 @@ describe VRToPA do
 
     it 'returns all values' do
       expect(subject).to include("Email" => :email_value)
-      expect(subject).to include("ssn4" => :ssn4_value)
+      expect(subject["ssn4"]).to eql("1234")
       expect(subject).to include("politicalparty" => "OTH")
       expect(subject).to include("otherpoliticalparty" => "party_value")
       expect(subject).to include("assistancedeclaration2" => "1")
@@ -811,4 +811,50 @@ describe VRToPA do
       end
     end
   end
+
+  describe "SSN4" do
+    subject { adapter.ssn4 }
+    context "empty input" do
+      let(:input) { {} }
+      it "empty" do
+        expect(subject).to eql("")
+      end
+    end
+
+    context "valid input" do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "ssn4",
+                    "string_value" => "  1234  ",
+                    "attest_no_such_id" => false
+                }
+            ]
+        }
+      end
+      it "returns value" do
+        expect(subject).to eql("1234")
+      end
+    end
+
+    context "invalid input" do
+      let(:input) do
+        {
+            "voter_ids" => [
+                {
+                    "type" => "ssn4",
+                    "string_value" => "  12345  ",
+                    "attest_no_such_id" => false
+                }
+            ]
+        }
+      end
+
+      it "raises error" do
+        expect { subject }.to raise_error /SSN4/
+      end
+    end
+  end
+
 end

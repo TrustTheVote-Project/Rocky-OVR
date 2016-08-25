@@ -478,7 +478,14 @@ class VRToPA
   end
 
   def ssn4
-    query([:voter_ids], :type, 'ssn4', :string_value)
+    v = safe_strip(query([:voter_ids], :type, 'ssn4', :string_value))
+    if is_empty(v)
+       ""
+    else
+      valid = v.is_a?(String) &&  v =~ /^\d{4}$/
+      raise ParsingError.new("Invalid SSN4 value \"#{v}\", expected: 4 digits value") unless valid
+      v
+    end
   end
 
   def no_such_voter_id(type)
@@ -552,6 +559,14 @@ class VRToPA
       ""
     else
       raise ParsingError.new("Invalid date value \"#{value}\" for \"#{error_field_name}\", #{e.message}")
+    end
+  end
+
+  def safe_strip(value)
+    if value.respond_to? :strip
+      value.strip
+    else
+      value
     end
   end
 end
