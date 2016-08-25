@@ -335,18 +335,13 @@ describe V3::RegistrationService do
       expect(r.has_ssn).to be(false)
       expect(r.has_state_license).to be(true)
       
-      #r.state_ovr_data["voter_records_request"] = orig_data[:voter_records_request]
-      #r.state_ovr_data["geo_location"] = geo_location
-      #r.state_ovr_data["open_tracking_id"] = open_tracking
-      
-      
     end
     
     it 'puts the voter_records_request hash, geo_location and open_tracking_id into registrant state_ovr_data' do
       r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
       expect(r.state_ovr_data["voter_records_request"]).to eq(json_request["rocky_request"]["voter_records_request"])
       expect(r.state_ovr_data["geo_location"]).to eq(json_request["rocky_request"]["geo_location"])
-      expect(r.state_ovr_data["open_tracking_id"]).to eq(json_request["rocky_request"]["open_tracking_id"])
+      expect(r.open_tracking_id).to eq(json_request["rocky_request"]["open_tracking_id"])
     end
   end
   

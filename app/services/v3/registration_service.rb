@@ -83,13 +83,11 @@ module V3
       orig_data = ActiveSupport::HashWithIndifferentAccess.new(orig_data)
       data = orig_data.deep_dup
       geo_location  = data.delete(:geo_location)
-      open_tracking  = data.delete(:open_tracking_id)
       attrs = pa_data_to_attrs(data)
-      r = Registrant.build_from_api_data(attrs, true)
+      r = Registrant.build_from_pa_api_data(attrs)
       # process into Registrant fields
       r.state_ovr_data["voter_records_request"] = orig_data[:voter_records_request]
       r.state_ovr_data["geo_location"] = geo_location
-      r.state_ovr_data["open_tracking_id"] = open_tracking
       return r
     end
     
@@ -416,6 +414,7 @@ module V3
       attrs.delete(:created_via_api)
       attrs[:tracking_source] = attrs.delete(:source_tracking_id)
       attrs[:tracking_id] = attrs.delete(:partner_tracking_id)
+      attrs[:open_tracking_id] = attrs.delete(:open_tracking_id)
       
       if attrs[:email].blank?
         attrs[:collect_email_address] = 'no'
