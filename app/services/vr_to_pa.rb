@@ -284,13 +284,10 @@ class VRToPA
       result['mailingstate'] = read([:mailing_address, :numbered_thoroughfare_address, :state])
       result['mailingzipcode'] = zip_code(:mailing_address)
     else
-      result['mailingaddress'] = result["streetaddress"]
-      if !result['streetaddress2'].blank?
-        result['mailingaddress'] += "\n#{result['streetaddress2']}"
-      end
-      result['mailingcity'] = result['city']
-      result['mailingstate'] = 'PA'
-      result['mailingzipcode'] = result['zipcode']      
+      result['mailingaddress'] = ''
+      result['mailingcity'] = ''
+      result['mailingstate'] = ''
+      result['mailingzipcode'] = ''
     end
 
     result['drivers-license'] = drivers_license
