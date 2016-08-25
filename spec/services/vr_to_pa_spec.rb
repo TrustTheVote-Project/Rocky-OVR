@@ -207,6 +207,7 @@ describe VRToPA do
       expect(subject["previousregcity"]).to eql("Previous City")
       expect(subject["assistedpersonAddress"]).to include("Assistant City")
       expect(subject["zipcode"]).to eql("11111")
+      expect(subject["previousregzip"]).to eql("22222")
       expect(subject["mailingzipcode"]).to eql("33333")
       expect(subject["Phone"]).to eql("555-555-5555")
     end
@@ -845,5 +846,67 @@ describe VRToPA do
       end
     end
   end
+  describe "zip_code" do
+    subject { adapter.zip_code(:example, required) }
+    let(:input) do
+      {
+          "example" =>
+              {
+                  "numbered_thoroughfare_address" => {
+                      "zip_code" => zip_code_value
+                  }
+              }
+      }
+    end
+    context "required" do
+      let(:required) { true }
 
+      context "valid" do
+        let(:zip_code_value) { " 12345 " }
+        it "returns value" do
+          expect(subject).to eql("12345")
+        end
+      end
+
+      context "empty" do
+        let(:zip_code_value) { "" }
+        it "raises error" do
+          expect{ subject }.to raise_error /Required/
+        end
+      end
+
+      context "invalid" do
+        let(:zip_code_value) { " 123345 " }
+        it "raises error" do
+          expect{subject}.to raise_error /ZIP/
+        end
+      end
+    end
+    context "optional" do
+      let(:required) { false }
+
+      context "valid" do
+        let(:zip_code_value) { " 12345-6789 " }
+        it "returns value" do
+          expect(subject).to eql("12345-6789")
+        end
+      end
+
+      context "empty" do
+        let(:zip_code_value) { "" }
+        it "returns nothing" do
+          expect(subject).to eql("")
+        end
+      end
+
+      context "invalid" do
+        let(:zip_code_value) { " 12345 - 6789 " }
+        it "raises error" do
+          expect{subject}.to raise_error /ZIP/
+        end
+      end
+
+    end
+
+  end
 end
