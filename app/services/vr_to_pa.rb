@@ -273,7 +273,7 @@ class VRToPA
 
     result['zipcode'] = zip_code(:registration_address)
     result['donthavePermtOrResAddress'] = ''
-
+    result['state'] = read([:registration_address, :numbered_thoroughfare_address, :state])
     result['county'] = query([:registration_address, :numbered_thoroughfare_address, :complete_place_names],
                              :place_name_type, 'County', :place_name_value, REQUIRED)
 
@@ -284,6 +284,14 @@ class VRToPA
       result['mailingcity'] = municipality(:mailing_address)
       result['mailingstate'] = read([:mailing_address, :numbered_thoroughfare_address, :state])
       result['mailingzipcode'] = zip_code(:mailing_address)
+    else
+      result['mailingaddress'] = result["streetaddress"]
+      if !result['streetaddress2'].blank?
+        result['mailingaddress'] += "\n#{result['streetaddress2']}"
+      end
+      result['mailingcity'] = result['city']
+      result['mailingstate'] = 'PA'
+      result['mailingzipcode'] = result['zipcode']      
     end
     
     result['drivers-license'] = drivers_license
