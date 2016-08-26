@@ -326,8 +326,14 @@ class VRToPA
     result['bilingualinterpreter'] = ""
     result['pollworkerspeaklang'] = ""
     result['secondEmail'] = ""
-
+    result['sendcopyinmail'] = send_copy_in_mail
     result
+  end
+
+  def send_copy_in_mail
+    value = query([:voter_classifications], :type, 'send_copy_in_mail', :assertion)
+    value = false if is_empty(value)
+    bool_to_int(value, "send_copy_in_mail")
   end
 
   def phone(section = nil)

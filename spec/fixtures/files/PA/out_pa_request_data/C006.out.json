@@ -57,5 +57,6 @@
   "ispollworker": "",
   "bilingualinterpreter": "",
   "pollworkerspeaklang": "",
-  "secondEmail": ""
+  "secondEmail": "",
+  "sendcopyinmail": "1"
 }
