@@ -263,7 +263,7 @@ describe Api::V3::RegistrationsController do
       end
     end
     context 'registrant record fails rocky validation' do
-      let(:invalid_registrant) { double(Registrant, valid?: false, errors: double("Errors", messages: {key: ["Message One", "Message Two"]})).as_null_object}
+      let(:invalid_registrant) { double(Registrant, valid?: false, errors: double("Errors", full_messages: ["Message One", "Message Two"])).as_null_object}
       before(:each) do
         allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
       end

@@ -114,7 +114,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
         pa_success_result
       end
     else
-      pa_error_result(registrant.errors.messages.values.flatten, registrant)
+      pa_error_result(registrant.errors.full_messages, registrant)
     end
   rescue StandardError => e
     pa_error_result("Error building registrant: #{e.message}", registrant)
