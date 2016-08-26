@@ -1,4 +1,5 @@
 require_relative '../../../../app/services/vr_to_pa'
+require '../../../../app/services/phone_formatter'
 require 'json'
 require 'date'
 
