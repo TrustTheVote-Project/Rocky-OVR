@@ -108,12 +108,9 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       else
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
-        begin
-          V3::RegistrationService.register_with_pa(registrant)
-          pa_success_result(registrant.state_ovr_data["pa_transaction_id"])
-        rescue StandardError => e
-          pa_error_result("Error submitting to PA: #{e.message}")
-        end
+        registrant.save!
+        V3::RegistrationService.delay.async_register_with_pa(registrant.id)
+        pa_success_result(nil)
       end
     else
       pa_error_result(registrant.errors.full_messages)
