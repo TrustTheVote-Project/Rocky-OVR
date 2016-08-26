@@ -103,22 +103,30 @@ module V3
     
     def self.async_register_with_pa(registrant_id)
       registrant = Registrant.find(registrant_id)
+      if registrant.nil?
+        AdminMailer.pa_no_registrant_error(registrant_id).deliver
+        return
+      end
       register_with_pa(registrant)
     rescue StandardError => e
       return if registrant.nil?
       registrant.state_ovr_data["errors"] = [e.message]
       registrant.state_ovr_data["errors"] << ["Backtrace\n" + e.backtrace.join("\n")]
       registrant.save!
+      raise e # For delayed-job, will enque the run again            
     end
 
+    PA_RETRY_ERRORS = %w(VR_WAPI_PennDOTServiceDown VR_WAPI_ServiceError VR_WAPI_SystemError)
     def self.register_with_pa(registrant)
-
       pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
-      
       pa_data = pa_adapter.convert
       result = PARegistrationRequest.send_request(pa_data)
       if result[:error].present?
-        raise result[:error].to_s
+        registrant.state_ovr_data["errors"] ||= []
+        registrant.state_ovr_data["errors"] << [result[:error].to_s]
+        registrant.save!
+        raise result[:error].to_s if PA_RETRY_ERRORS.include?(result[:error].to_s)
+        AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
       else
         registrant.state_ovr_data['pa_transaction_id'] = result[:id]
         registrant.save!

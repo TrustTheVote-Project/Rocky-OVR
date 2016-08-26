@@ -248,11 +248,18 @@ describe Api::V3::RegistrationsController do
       it 'should return a 200 response' do
         expect(subject.code).to eql "200"
       end
-
-      it 'should return a body with transaction_id' do
+      it 'should queue the PA registration' do
+        expect(valid_registrant).to receive(:save!) 
+        mock_delay = double("Delay")
+        expect(V3::RegistrationService).to receive(:delay).and_return(mock_delay)
+        expect(mock_delay).to receive(:async_register_with_pa).with(valid_registrant.id)
+        subject
+      end
+      
+      it 'should return a body with registration_success: true' do
         expect(subject.headers["Content-Type"]).to include "application/json"
         result = JSON.parse(subject.body)
-        expect(result).to include({"transaction_id" => "APP_ID"})
+        expect(result).to include({"registration_success" => true})
       end
     end
     context 'registrant record fails rocky validation' do

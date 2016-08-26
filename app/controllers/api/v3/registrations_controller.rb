@@ -110,7 +110,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
         # This will commit the registrant with the response code
         registrant.save!
         V3::RegistrationService.delay.async_register_with_pa(registrant.id)
-        pa_success_result(nil)
+        pa_success_result
       end
     else
       pa_error_result(registrant.errors.full_messages)
@@ -119,10 +119,9 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     pa_error_result("Error building registrant: #{e.message}")
   end
 
-  def pa_success_result(transaction_id)
+  def pa_success_result
     data = {
         registration_success: true,
-        transaction_id: transaction_id,
         errors: []
     }
     jsonp(data)

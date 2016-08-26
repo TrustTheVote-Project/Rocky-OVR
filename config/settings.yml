@@ -18,6 +18,7 @@ ui_url_host: "register5.example.com"
 
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
+  admin_recipients: "david@rockthevote.com, alex.mekelburg@osetfoundation.org"
   translation_recipients: "david@rockthevote.com, alex.mekelburg@osetfoundation.org"
 
 admin_username: 'admin'
