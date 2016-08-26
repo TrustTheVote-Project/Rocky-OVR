@@ -410,7 +410,7 @@ class VRToPA
     keys.each do |key|
       break if value.nil?
       value = value[key.to_s]
-      raise ParsingError.new("Required value #{keys.join('.')} not found in #{@request}") if required && is_empty(value)
+      raise ParsingError.new("Required value #{keys.join('.')} not found") if required && is_empty(value)
     end
     value
   end

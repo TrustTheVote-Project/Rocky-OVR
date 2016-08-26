@@ -85,6 +85,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   end
 
   def create_pa
+    registrant = nil
     params.delete(:debug_info)
 
     # input request structure validation
@@ -104,7 +105,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       # If valid for rocky, ensure that it's valid for PA submissions
       pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)
       if pa_validation_errors.any?
-        pa_error_result(pa_validation_errors)
+        pa_error_result(pa_validation_errors, registrant)
       else
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
@@ -113,10 +114,10 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
         pa_success_result
       end
     else
-      pa_error_result(registrant.errors.full_messages)
+      pa_error_result(registrant.errors.messages.values.flatten, registrant)
     end
   rescue StandardError => e
-    pa_error_result("Error building registrant: #{e.message}")
+    pa_error_result("Error building registrant: #{e.message}", registrant)
   end
 
   def pa_success_result
@@ -127,12 +128,18 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     jsonp(data)
   end
 
-  def pa_error_result(errors)
+  def pa_error_result(errors, registrant=nil)
+    if !errors.is_a?(Array)
+      errors = [errors]
+    end
     data = {
         registration_success: false,
         transaction_id: nil,
-        errors: [].push(*errors)
+        errors: errors
     }
+
+    Rails.logger.warn("Grommet Registration Error for params:\n#{params}\n\nErrors:\n#{errors}")
+    AdminMailer.grommet_registration_error(errors, registrant).deliver
 
     jsonp(data, :status => 400)
   end

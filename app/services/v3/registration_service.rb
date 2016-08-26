@@ -126,6 +126,7 @@ module V3
         registrant.state_ovr_data["errors"] << [result[:error].to_s]
         registrant.save!
         raise result[:error].to_s if PA_RETRY_ERRORS.include?(result[:error].to_s)
+        Rails.logger.warn("Grommet Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
         AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
       else
         registrant.state_ovr_data['pa_transaction_id'] = result[:id]

@@ -32,6 +32,15 @@ class AdminMailer < ActionMailer::Base
     )
   end
   
+  def grommet_registration_error(error_list=[], registrant=nil)
+    name = registrant ? "#{registrant.first_name} #{registrant.last_name}" : "(name not determined)"
+    registrant_details = registrant ? "\nEvent Name: #{registrant.open_tracking_id}\nEvent Zip: #{registrant.tracking_id}\nCanvasser Namer: #{registrant.tracking_source}" : nil
+    mail(
+      subject:"Error validating request from grommet",
+      body: "Registrant - #{name} - not registered due to validation error:#{registrant_details}\n\n#{error_list.join('\n')}"
+    )
+  end
+  
   def pa_registration_error(registrant, error_list)
     
     mail(
