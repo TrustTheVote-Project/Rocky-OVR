@@ -210,6 +210,7 @@ describe VRToPA do
       expect(subject["previousregzip"]).to eql("22222")
       expect(subject["mailingzipcode"]).to eql("33333")
       expect(subject["Phone"]).to eql("555-555-5555")
+      expect(subject["sendcopyinmail"]).to eql("1")
     end
 
   end
@@ -950,7 +951,42 @@ describe VRToPA do
       let(:email) { " account@super@domain.com  " }
 
       it "raises error" do
-        expect{ subject }.to raise_error /mail/
+        expect { subject }.to raise_error /mail/
+      end
+    end
+  end
+
+  describe "send_copy_in_mail" do
+    subject { adapter.send_copy_in_mail }
+    let(:input) do
+      {
+          "voter_classifications" => [
+              {
+                  "type" => "send_copy_in_mail",
+                  "assertion" => send_copy_in_mail
+              }
+          ]
+      }
+    end
+
+    context "skipped section" do
+      let(:input) { {} }
+      it "0" do
+        expect(subject).to eql("0")
+      end
+    end
+
+    context "true value" do
+      let(:send_copy_in_mail) { true }
+      it "1" do
+        expect(subject).to eql("1")
+      end
+    end
+
+    context "false value" do
+      let(:send_copy_in_mail) { false }
+      it "0" do
+        expect(subject).to eql("0")
       end
     end
   end
