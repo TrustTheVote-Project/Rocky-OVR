@@ -45,7 +45,6 @@ class PARegistrationRequest
 
   def self.parse_response(response)
     r = response.scan %r(<RESPONSE><APPLICATIONID>(.*)</APPLICATIONID><APPLICATIONDATE>(.*)</APPLICATIONDATE><ERROR>(.*)</ERROR></RESPONSE>)
-    puts r.to_s
     raise "Invalid response: #{response}" unless r && r.length == 1 && r[0].length == 3
 
     r[0][0] = 0 if r[0][0].empty?
