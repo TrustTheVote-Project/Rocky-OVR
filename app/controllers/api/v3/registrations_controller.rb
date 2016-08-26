@@ -25,7 +25,7 @@
 require "#{Rails.root}/app/services/v3"
 class Api::V3::RegistrationsController < Api::V3::BaseController
 
-  
+
 
   # Lists registrations
   def index
@@ -40,7 +40,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
   end
-  
+
   def index_gpartner
     query = {
       :gpartner_id       => params[:gpartner_id],
@@ -53,8 +53,8 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
   end
-  
-  
+
+
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
   def create
@@ -83,28 +83,20 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     name = e.message.split(': ')[1]
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
-  
+
   def create_pa
-    debug = params.delete(:debug_info)
-    debug_info = debug ? { debug: { pa: result, converted: pa_data, input: input } } : {}
+    params.delete(:debug_info)
 
     # input request structure validation
     [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
       value = params
       keys.each do |key|
         unless (value = value[key.to_s])
-          return jsonp({
-            registration_success: false,
-            transaction_id: nil,
-            errors: ["Invalid request: parameter #{keys.join('.')} not found"]
-          }.merge(debug_info), :status => 400)
+          return pa_error_result("Invalid request: parameter #{keys.join('.')} not found")
         end
       end
     end
 
-    
-    # Remove above when rest of code is implemented
-    
     # 1. Build a rocky registrant record based on all of the fields
     registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])
     # 2.Check if the registrant is internally valid
@@ -112,44 +104,43 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       # If valid for rocky, ensure that it's valid for PA submissions
       pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)
       if pa_validation_errors.any?
-        jsonp({
-          registration_success: false,
-          transaction_id: nil,
-          errors: pa_validation_errors
-        }.merge(debug_info), :status => 400)
+        pa_error_result(pa_validation_errors)
       else
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
         begin
           V3::RegistrationService.register_with_pa(registrant)
-          jsonp({
-            registration_success: true,
-            transaction_id: registrant.state_ovr_data["pa_transaction_id"]
-          }.merge(debug_info))
-        rescue Exception => e
-          jsonp({
-            registration_success: false,
-            transaction_id: nil,
-            errors: ["Error submitting to PA: #{e.message}"]
-          }.merge(debug_info), :status => 400)
+          pa_success_result(registrant.state_ovr_data["pa_transaction_id"])
+        rescue StandardError => e
+          pa_error_result("Error submitting to PA: #{e.message}")
         end
       end
     else
-      jsonp({
+      pa_error_result(registrant.errors.full_messages)
+    end
+  rescue StandardError => e
+    pa_error_result("Error building registrant: #{e.message}")
+  end
+
+  def pa_success_result(transaction_id)
+    data = {
+        registration_success: true,
+        transaction_id: transaction_id,
+        errors: []
+    }
+    jsonp(data)
+  end
+
+  def pa_error_result(errors)
+    data = {
         registration_success: false,
         transaction_id: nil,
-        errors: registrant.errors.full_messages
-      }.merge(debug_info), :status => 400)
-    end
-  rescue Exception => e
-    jsonp({
-      registration_success: false,
-      transaction_id: nil,
-      error: ["Error building registrant: #{e.message}"]
-    }.merge(debug_info), :status => 400)
-    
+        errors: [].push(*errors)
+    }
+
+    jsonp(data, :status => 400)
   end
-  
+
   def pdf_ready
     query = {
       :UID              => params[:UID]
@@ -164,7 +155,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
-  
+
   def stop_reminders
     query = {
       :UID              => params[:UID]
@@ -179,7 +170,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
-  
+
   def bulk
     jsonp({
         :registrants_added=>V3::RegistrationService.bulk_create(params[:registrants], params[:partner_id], params[:partner_API_key])
