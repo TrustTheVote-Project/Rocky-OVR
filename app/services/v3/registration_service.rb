@@ -101,8 +101,18 @@ module V3
       return []
     end
     
-    def self.register_with_pa(registrant, debug=nil)
-    
+    def self.async_register_with_pa(registrant_id)
+      registrant = Registrant.find(registrant_id)
+      register_with_pa(registrant)
+    rescue StandardError => e
+      return if registrant.nil?
+      registrant.state_ovr_data["errors"] = [e.message]
+      registrant.state_ovr_data["errors"] << ["Backtrace\n" + e.backtrace.join("\n")]
+      registrant.save!
+    end
+
+    def self.register_with_pa(registrant)
+
       pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
       
       pa_data = pa_adapter.convert
