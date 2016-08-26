@@ -135,7 +135,7 @@ describe VRToPA do
             },
             {
                 "type" => "email",
-                "value" => :email_value,
+                "value" => "valid@email.value",
                 "capabilities" => %w(voice fax sms)
             }
         ],
@@ -193,7 +193,7 @@ describe VRToPA do
     let(:input) { full_input }
 
     it 'returns all values' do
-      expect(subject["Email"]).to eql(:email_value)
+      expect(subject["Email"]).to eql("valid@email.value")
       expect(subject["ssn4"]).to eql("1234")
       expect(subject["politicalparty"]).to eql("OTH")
       expect(subject["otherpoliticalparty"]).to eql("party_value")
@@ -871,14 +871,14 @@ describe VRToPA do
       context "empty" do
         let(:zip_code_value) { "" }
         it "raises error" do
-          expect{ subject }.to raise_error /Required/
+          expect { subject }.to raise_error /Required/
         end
       end
 
       context "invalid" do
         let(:zip_code_value) { " 123345 " }
         it "raises error" do
-          expect{subject}.to raise_error /ZIP/
+          expect { subject }.to raise_error /ZIP/
         end
       end
     end
@@ -902,11 +902,56 @@ describe VRToPA do
       context "invalid" do
         let(:zip_code_value) { " 12345 - 6789 " }
         it "raises error" do
-          expect{subject}.to raise_error /ZIP/
+          expect { subject }.to raise_error /ZIP/
         end
       end
+    end
+  end
 
+  describe "email" do
+    subject { adapter.email }
+    let(:input) do
+      {
+          "contact_methods" => [
+              {
+                  "type" => "email",
+                  "value" => email,
+                  "capabilities" => %w(voice fax sms)
+              }
+          ]
+      }
     end
 
+    context "missing email value" do
+      let(:input) { {} }
+
+      it "empty" do
+        expect(subject).to eql("")
+      end
+    end
+
+    context "empty email value" do
+      let(:email) { "  " }
+
+      it "empty" do
+        expect(subject).to eql("")
+      end
+    end
+
+    context "valid email value" do
+      let(:email) { " account-n.a.m.e+ext@super.domain.com  " }
+
+      it "correct" do
+        expect(subject).to eql("account-n.a.m.e+ext@super.domain.com")
+      end
+    end
+
+    context "invalid email value" do
+      let(:email) { " account@super@domain.com  " }
+
+      it "raises error" do
+        expect{ subject }.to raise_error /mail/
+      end
+    end
   end
 end

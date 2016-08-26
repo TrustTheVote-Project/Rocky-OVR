@@ -491,7 +491,14 @@ class VRToPA
   end
 
   def email
-    query([:contact_methods], :type, 'email', :value)
+    v = safe_strip(query([:contact_methods], :type, 'email', :value))
+    if is_empty(v)
+      ""
+    else
+      valid = v.is_a?(String) && v =~ /^[^\s@]+@[^\s@]+\.[\w]{2,}$/
+      raise ParsingError.new("Invalid e-mail value \"#{v}\".") unless valid
+      v
+    end
   end
 
   def ssn4
