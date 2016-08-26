@@ -341,6 +341,7 @@ module V3
       reg_equals_mailing = attrs.delete(:registration_address_is_mailing_address)
       mailing_address = attrs.delete(:mailing_address)
       if mailing_address && !reg_equals_mailing && mailing_address = mailing_address.delete(:numbered_thoroughfare_address) 
+        attrs[:has_mailing_address] = true
         attrs[:mailing_address]  = [
           mailing_address[:complete_address_number],
           mailing_address[:complete_street_name]
