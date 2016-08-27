@@ -318,10 +318,12 @@ class VRToPA
 
     result['previousregyear'] = ""
     result['declaration1'] = "1"
+    
     result['assistedpersonname'] = assisted_person_name
     result['assistedpersonAddress'] = assisted_person_address
     result['assistedpersonphone'] = assisted_person_phone
     result['assistancedeclaration2'] = [assistant_declaration, assistance_declaration2].max
+    validate_assisted_person_data(result)
     result['ispollworker'] = ""
     result['bilingualinterpreter'] = ""
     result['pollworkerspeaklang'] = ""
@@ -540,6 +542,14 @@ class VRToPA
     value = query([:additional_info], :name, 'assistance_declaration2', :boolean_value)
     value = false if value == ""
     bool_to_int(value)
+  end
+  
+  def validate_assisted_person_data(result)
+    if result['assistancedeclaration2'] == '1'
+      raise ParsingError.new("If assistance declaration is true, assistant name, address and phone must be provided.") if is_empty(result['assistedpersonname']) || is_empty(result['assistedpersonAddress']) || is_empty(result['assistedpersonphone'])
+    elsif !is_empty(result['assistedpersonname']) || !is_empty(result['assistedpersonAddress']) || !is_empty(result['assistedpersonphone'])
+      raise ParsingError.new("If assistance declaration is false, assistant name, address and phone must be empty.")
+    end
   end
 
   def dont_have_both_ids

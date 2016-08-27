@@ -343,6 +343,54 @@ describe VRToPA do
       end
     end
   end
+  describe 'assistance_declaration validation' do
+    subject { adapter.convert }
+    context 'when declaration is true' do
+      let(:input) { full_input }
+      before(:each) do
+       input["additional_info"] = [{"name" => "assistant_declaration", "string_value" => "true"}]
+       input["registration_helper"]["name"] = {}
+      end
+      it 'requires name, address and phone when true' do
+        expect { subject }.to raise_error("If assistance declaration is true, assistant name, address and phone must be provided.")
+      end
+    end
+    context 'when declaration is false' do
+      let(:input) { full_input }
+      before(:each) do 
+        input["additional_info"] = [{"name" => "assistant_declaration", "string_value" => "false"}]
+        input["registration_helper"] = {              
+            "address" => {
+                "numbered_thoroughfare_address" => {
+                    "complete_address_number" => "1",
+                    "complete_street_name" => "Street",
+                    "complete_sub_address" => {
+                        "sub_address_type" => "APT",
+                        "sub_address" => "100"
+                    },
+                    "complete_place_names" => [
+                        {
+                            "place_name_type" => "MunicipalJurisdiction",
+                            "place_name_value" => "City"
+                        },
+                        {
+                            "place_name_type" => "County",
+                            "place_name_value" => "County"
+                        }
+                    ],
+                    "state" => "State",
+                    "zip_code" => "22222"
+                }
+            }
+        }
+      end
+      it 'raises an error if helper information is present but declaration is false' do
+        expect { subject }.to raise_error("If assistance declaration is false, assistant name, address and phone must be empty.")
+      end
+    end
+    
+    
+  end
   describe 'dont_have_both_DL_and_SSN' do
     subject { adapter.dont_have_both_ids }
     context 'no DL and SSN' do
