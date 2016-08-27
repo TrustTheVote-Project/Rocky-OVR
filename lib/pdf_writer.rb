@@ -48,6 +48,7 @@ class PdfWriter
   attr_accessor :partner_absolute_pdf_logo_path,
       :registration_instructions_url,
       :home_state_pdf_instructions,
+      :home_state_pdf_other_instructions,
       :state_registrar_address,
       :registration_deadline,
       :english_party_name,
