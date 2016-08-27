@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160825143125) do
-
+ActiveRecord::Schema.define(:version => 20160827171640) do
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -269,6 +268,7 @@ ActiveRecord::Schema.define(:version => 20160825143125) do
     t.string   "registration_deadline",     :limit => 1024
     t.string   "pdf_instructions",          :limit => 1024
     t.string   "email_instructions",        :limit => 1024
+    t.string   "pdf_other_instructions",    :limit => 1024
   end
 
   add_index "state_localizations", ["state_id"], :name => "index_state_localizations_on_state_id"

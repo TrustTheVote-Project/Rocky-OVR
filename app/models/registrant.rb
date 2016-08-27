@@ -859,7 +859,7 @@ class Registrant < ActiveRecord::Base
     home_state && home_state.registrar_address(self.home_zip_code)
   end
   
-  [:pdf_instructions, :email_instructions].each do |state_data|
+  [:pdf_instructions, :email_instructions, :pdf_other_instructions].each do |state_data|
     define_method("home_state_#{state_data}") do
       localization.send(state_data)
     end

@@ -17,6 +17,7 @@ defaults:
   sub_18: turn_by_next_election
   registration_deadline: postmarked_29_days
   pdf_instructions: blank
+  pdf_other_instructions: blank
   email_instructions: blank
 record_0:
   abbreviation: AL
