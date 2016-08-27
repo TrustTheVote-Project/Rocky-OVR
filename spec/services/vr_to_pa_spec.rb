@@ -210,7 +210,9 @@ describe VRToPA do
       expect(subject["previousregzip"]).to eql("22222")
       expect(subject["mailingzipcode"]).to eql("33333")
       expect(subject["Phone"]).to eql("555-555-5555")
-      expect(subject["sendcopyinmail"]).to eql("1")
+      # Removed from PA
+      # expect(subject["sendcopyinmail"]).to eql("1")
+      expect(subject["sendcopyinmail"]).to eql(nil)
     end
 
   end

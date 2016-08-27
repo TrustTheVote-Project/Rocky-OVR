@@ -326,7 +326,10 @@ class VRToPA
     result['bilingualinterpreter'] = ""
     result['pollworkerspeaklang'] = ""
     result['secondEmail'] = ""
-    result['sendcopyinmail'] = send_copy_in_mail
+
+    # Removed from PA API:
+    # result['sendcopyinmail'] = send_copy_in_mail
+
     result
   end
 
