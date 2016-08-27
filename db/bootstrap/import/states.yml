@@ -17,6 +17,7 @@ defaults:
   sub_18: turn_by_next_election
   registration_deadline: postmarked_29_days
   pdf_instructions: blank
+  pdf_other_instructions: blank
   email_instructions: blank
 record_0:
   abbreviation: AL
@@ -697,6 +698,7 @@ record_49:
   sos_url: https://myvote.wi.gov
   sub_18: 17_turn_18
   registration_deadline: postmarked_20_days
+  pdf_other_instructions: wisconsin
   id_length_min: '4'
 record_50:
   abbreviation: WY
