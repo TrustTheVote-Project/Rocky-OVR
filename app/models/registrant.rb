@@ -1290,6 +1290,7 @@ class Registrant < ActiveRecord::Base
       :partner_absolute_pdf_logo_path => partner_absolute_pdf_logo_path,
       :registration_instructions_url => registration_instructions_url,
       :home_state_pdf_instructions => home_state_pdf_instructions,
+      :home_state_pdf_other_instructions => home_state_pdf_other_instructions,
       :state_registrar_address => state_registrar_address,
       :registration_deadline => registration_deadline,
       :party => party,
