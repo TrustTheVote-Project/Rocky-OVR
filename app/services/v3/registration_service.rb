@@ -459,7 +459,7 @@ module V3
     
     def self.fix_pa_suffix(pa_suffix)
       return "Jr." if pa_suffix == "Jr"
-      return "Sr." if pa_suffix == "Jr"
+      return "Sr." if pa_suffix == "Sr"
       return pa_suffix        
     end
 
