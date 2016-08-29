@@ -1131,4 +1131,22 @@ describe VRToPA do
       end
     end
   end
+
+  # probably this is a temporary method:
+  describe "send_copy_in_mail2" do
+    subject { adapter.send_copy_in_mail2 }
+    let(:input) do
+      {
+          "additional_info" => [
+              {
+                  "name" => "send_copy_in_mail",
+                  "string_value" => "true"
+              }
+          ]
+      }
+      it '1' do
+        expect(subject).to eql("1")
+      end
+    end
+  end
 end

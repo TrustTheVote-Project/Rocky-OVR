@@ -329,7 +329,7 @@ class VRToPA
     result['secondEmail'] = ""
 
     # Removed from PA API:
-    # result['sendcopyinmail'] = send_copy_in_mail
+    # result['sendcopyinmail'] = send_copy_in_mail || send_copy_in_mail2
 
     result
   end
@@ -344,6 +344,13 @@ class VRToPA
 
   def send_copy_in_mail
     value = query([:voter_classifications], :type, 'send_copy_in_mail', :assertion)
+    value = false if is_empty(value)
+    bool_to_int(value, "send_copy_in_mail")
+  end
+
+  # we don't know where it can come from
+  def send_copy_in_mail2
+    value = query([:additional_info], :name, 'send_copy_in_mail', :string_value)
     value = false if is_empty(value)
     bool_to_int(value, "send_copy_in_mail")
   end
