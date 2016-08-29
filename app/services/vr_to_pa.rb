@@ -247,8 +247,7 @@ class VRToPA
     value = query([:voter_classifications], :type, 'eighteen_on_election_day', :assertion, REQUIRED)
     result['eighteen-on-election-day'] = bool_to_int(value, "eighteen_on_election_day")
 
-    result['isnewregistration'] =
-        (is_empty(read([:previous_registration_address])) && is_empty(read([:previous_name]))) ? "1" : "0"
+    result['isnewregistration'] = is_new_registration
     result['name-update'] = name_update
     result['address-update'] = address_update
     result['ispartychange'] = ""
@@ -333,6 +332,14 @@ class VRToPA
     # result['sendcopyinmail'] = send_copy_in_mail
 
     result
+  end
+
+  def is_new_registration
+    empty_prev_reg = is_empty(read([:previous_registration_address]))
+    empty_prev_name = is_empty(read([:previous_name]))
+    prev_state = read("previous_registration_address.numbered_thoroughfare_address.state")
+    prev_state_outside_pa = !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
+    (empty_prev_reg && empty_prev_name) || prev_state_outside_pa ? "1" : "0"
   end
 
   def send_copy_in_mail
@@ -425,13 +432,13 @@ class VRToPA
     end
     value
   end
-  
+
   def readsignature
     data = read([:signature, :image])
     type = read([:signature, :mime_type])
-    
+
     return "data:#{type};base64,#{data}"
-    
+
   end
 
   def query(keys, key, value, output, required=false)

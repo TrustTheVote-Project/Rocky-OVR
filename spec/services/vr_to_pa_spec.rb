@@ -27,7 +27,7 @@ describe VRToPA do
                         "place_name_value" => "Philadelphia"
                     }
                 ],
-                "state" => "Virginia",
+                "state" => "PA",
                 "zip_code" => "33333"
             }
         },
@@ -49,7 +49,7 @@ describe VRToPA do
                         "place_name_value" => "Philadelphia"
                     }
                 ],
-                "state" => "Virginia",
+                "state" => "PA",
                 "zip_code" => "22222"
             }
         },
@@ -71,7 +71,7 @@ describe VRToPA do
                         "place_name_value" => "Philadelphia"
                     }
                 ],
-                "state" => "Virginia",
+                "state" => "PA",
                 "zip_code" => "11111"
             }
         },
@@ -213,6 +213,7 @@ describe VRToPA do
       # Removed from PA
       # expect(subject["sendcopyinmail"]).to eql("1")
       expect(subject["sendcopyinmail"]).to eql(nil)
+      expect(subject["isnewregistration"]).to eql("0")
     end
 
   end
@@ -348,8 +349,8 @@ describe VRToPA do
     context 'when declaration is true' do
       let(:input) { full_input }
       before(:each) do
-       input["additional_info"] = [{"name" => "assistant_declaration", "string_value" => "true"}]
-       input["registration_helper"]["name"] = {}
+        input["additional_info"] = [{"name" => "assistant_declaration", "string_value" => "true"}]
+        input["registration_helper"]["name"] = {}
       end
       it 'requires name, address and phone when true' do
         expect { subject }.to raise_error("If assistance declaration is true, assistant name, address and phone must be provided.")
@@ -357,9 +358,9 @@ describe VRToPA do
     end
     context 'when declaration is false' do
       let(:input) { full_input }
-      before(:each) do 
+      before(:each) do
         input["additional_info"] = [{"name" => "assistant_declaration", "string_value" => "false"}]
-        input["registration_helper"] = {              
+        input["registration_helper"] = {
             "address" => {
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "1",
@@ -388,8 +389,8 @@ describe VRToPA do
         expect { subject }.to raise_error("If assistance declaration is false, assistant name, address and phone must be empty.")
       end
     end
-    
-    
+
+
   end
   describe 'dont_have_both_DL_and_SSN' do
     subject { adapter.dont_have_both_ids }
@@ -1037,6 +1038,54 @@ describe VRToPA do
       let(:send_copy_in_mail) { false }
       it "0" do
         expect(subject).to eql("0")
+      end
+    end
+  end
+
+  describe "is_new_registration" do
+    subject { adapter.is_new_registration }
+
+    context "empty input" do
+      let(:input) { {} }
+      it "1" do
+        expect(subject).to eql("1")
+      end
+    end
+
+    context "prev name found" do
+      let(:input) { {"previous_name" => {"somthing" => "value"}} }
+      it "0" do
+        expect(subject).to eql("0")
+      end
+    end
+
+    context "prev PA registration found" do
+      let(:input) do
+        {
+            "previous_registration_address" => {
+                "numbered_thoroughfare_address" => {
+                    "state" => "PA"
+                }
+            }
+        }
+      end
+      it "0" do
+        expect(subject).to eql("0")
+      end
+    end
+
+    context "prev registration outside PA found" do
+      let(:input) do
+        {
+            "previous_registration_address" => {
+                "numbered_thoroughfare_address" => {
+                    "state" => "VI"
+                }
+            }
+        }
+      end
+      it "1" do
+        expect(subject).to eql("1")
       end
     end
   end
