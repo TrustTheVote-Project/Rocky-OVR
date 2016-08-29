@@ -467,7 +467,7 @@ class VRToPA
   end
 
   def parse_gender(gender)
-    gender.downcase.strip == 'male' ? 'M' : 'F'
+    gender.to_s.downcase.strip == 'male' ? 'M' : 'F'
   end
 
   def is_empty(value)
@@ -484,7 +484,7 @@ class VRToPA
       }
 
   def parse_race(race)
-    RACE_RULES[race.downcase.strip] || "O"
+    RACE_RULES[race.to_s.downcase.strip] || "O"
   end
 
   PARTIES_NAMES = {
@@ -496,7 +496,7 @@ class VRToPA
   def party
     @party ||= begin
       name = read([:party], REQUIRED)
-      v = PARTIES_NAMES[name.downcase.strip]
+      v = PARTIES_NAMES[name.to_s.downcase.strip]
       v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: name}
     end
   end
