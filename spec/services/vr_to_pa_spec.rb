@@ -12,7 +12,7 @@ describe VRToPA do
         "mailing_address" => {
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
-                "complete_street_name" => "801 N. Monroe",
+                "complete_street_name" => "444 N. Street",
                 "complete_sub_address" => {
                     "sub_address_type" => "APT",
                     "sub_address" => "Apt 306"
@@ -24,17 +24,17 @@ describe VRToPA do
                     },
                     {
                         "place_name_type" => "County",
-                        "place_name_value" => "Philadelphia"
+                        "place_name_value" => "Mailing County"
                     }
                 ],
-                "state" => "PA",
+                "state" => "PA1",
                 "zip_code" => "33333"
             }
         },
         "previous_registration_address" => {
             "numbered_thoroughfare_address" => {
-                "complete_address_number" => "\"\"",
-                "complete_street_name" => "801 N. Monroe",
+                "complete_address_number" => "",
+                "complete_street_name" => "222 N. Street",
                 "complete_sub_address" => {
                     "sub_address_type" => "APT",
                     "sub_address" => "Apt 306"
@@ -46,7 +46,7 @@ describe VRToPA do
                     },
                     {
                         "place_name_type" => "County",
-                        "place_name_value" => "Philadelphia"
+                        "place_name_value" => "Prev County"
                     }
                 ],
                 "state" => "PA",
@@ -55,8 +55,8 @@ describe VRToPA do
         },
         "registration_address" => {
             "numbered_thoroughfare_address" => {
-                "complete_address_number" => "\"\"",
-                "complete_street_name" => "801 N. Monroe",
+                "complete_address_number" => "",
+                "complete_street_name" => "333 N. Street",
                 "complete_sub_address" => {
                     "sub_address_type" => "APT",
                     "sub_address" => "Apt 306"
@@ -68,10 +68,10 @@ describe VRToPA do
                     },
                     {
                         "place_name_type" => "County",
-                        "place_name_value" => "Philadelphia"
+                        "place_name_value" => "Registration County"
                     }
                 ],
-                "state" => "PA",
+                "state" => "PA2",
                 "zip_code" => "11111"
             }
         },
@@ -84,11 +84,11 @@ describe VRToPA do
             "title_suffix" => "Jr"
         },
         "previous_name" => {
-            "first_name" => "Aaron",
-            "last_name" => "Huttner",
-            "middle_name" => "Bernard",
-            "title_prefix" => "Mr",
-            "title_suffix" => "Jr"
+            "first_name" => "PFN",
+            "last_name" => "PLN",
+            "middle_name" => "PMN",
+            "title_prefix" => "PTP",
+            "title_suffix" => "PTS"
         },
         "gender" => "male",
         "race" => "American Indian / Alaskan Native",
@@ -142,7 +142,7 @@ describe VRToPA do
         "additional_info" => [
             {
                 "name" => "preferred_language",
-                "string_value" => "english"
+                "string_value" => "English"
             },
             {
                 "name" => "assistant_declaration",
@@ -165,7 +165,7 @@ describe VRToPA do
                         },
                         {
                             "place_name_type" => "County",
-                            "place_name_value" => "County"
+                            "place_name_value" => "Helper County"
                         }
                     ],
                     "state" => "Assistant State",
@@ -205,7 +205,6 @@ describe VRToPA do
       expect(subject["city"]).to eql("Registration City")
       expect(subject["mailingcity"]).to eql("Mailing City")
       expect(subject["previousregcity"]).to eql("Previous City")
-      expect(subject["assistedpersonAddress"]).to include("Assistant City")
       expect(subject["zipcode"]).to eql("11111")
       expect(subject["previousregzip"]).to eql("22222")
       expect(subject["mailingzipcode"]).to eql("33333")
@@ -214,8 +213,51 @@ describe VRToPA do
       # expect(subject["sendcopyinmail"]).to eql("1")
       expect(subject["sendcopyinmail"]).to eql(nil)
       expect(subject["isnewregistration"]).to eql("0")
-    end
 
+      expect(subject["batch"]).to eql("0")
+      expect(subject["FirstName"]).to eql("Aaron")
+      expect(subject["MiddleName"]).to eql("Bernard")
+      expect(subject["LastName"]).to eql("Huttner")
+      expect(subject["united-states-citizen"]).to eql("1")
+      expect(subject["eighteen-on-election-day"]).to eql("1")
+      expect(subject["name-update"]).to eql("1")
+      expect(subject["address-update"]).to eql("1")
+      expect(subject["ispartychange"]).to eql("")
+      expect(subject["isfederalvoter"]).to eql("")
+      expect(subject["DateOfBirth"]).to eql("2016-06-16")
+      expect(subject["Gender"]).to eql("M")
+      expect(subject["Ethnicity"]).to eql("I")
+      expect(subject["streetaddress"]).to eql("333 N. Street")
+      expect(subject["streetaddress2"]).to eql("")
+      expect(subject["unittype"]).to eql("APT")
+      expect(subject["unitnumber"]).to eql("Apt 306")
+      expect(subject["donthavePermtOrResAddress"]).to eql("")
+      expect(subject["county"]).to eql("Registration County")
+      expect(subject["municipality"]).to eql("Registration City")
+      expect(subject["mailingaddress"]).to eql("444 N. Street")
+      expect(subject["mailingcity"]).to eql("Mailing City")
+      expect(subject["mailingstate"]).to eql("PA1")
+      expect(subject["previousregstate"]).to eql("PA")
+      expect(subject["drivers-license"]).to eql("12345678")
+      expect(subject["signatureimage"]).to eql("data:image/png;base64,?")
+      expect(subject["continueAppSubmit"]).to eql("1")
+      expect(subject["donthavebothDLandSSN"]).to eql("0")
+      expect(subject["needhelptovote"]).to eql("")
+      expect(subject["typeofassistance"]).to eql("")
+      expect(subject["preferredlanguage"]).to eql("English")
+      expect(subject["voterregnumber"]).to eql("")
+      expect(subject["previousreglastname"]).to eql("PLN")
+      expect(subject["previousregfirstname"]).to eql("PFN")
+      expect(subject["previousregmiddlename"]).to eql("PMN")
+      expect(subject["previousregaddress"]).to eql("222 N. Street")
+      expect(subject["previousregcounty"]).to eql("Prev County")
+      expect(subject["previousregyear"]).to eql("")
+      expect(subject["declaration1"]).to eql("1")
+      expect(subject["ispollworker"]).to eql("")
+      expect(subject["bilingualinterpreter"]).to eql("")
+      expect(subject["pollworkerspeaklang"]).to eql("")
+      expect(subject["secondEmail"]).to eql("")
+    end
   end
 
   describe 'email' do
@@ -609,7 +651,7 @@ describe VRToPA do
         {
             "registration_address" => {
                 "numbered_thoroughfare_address" => {
-                    "complete_address_number" => "\"\"",
+                    "complete_address_number" => "",
                     "complete_street_name" => "801 N. Monroe",
                     "complete_sub_address" => {
                         "sub_address_type" => "APT",
