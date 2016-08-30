@@ -269,7 +269,7 @@ class VRToPA
     # that the user will actually enter in "Apt" as part of the unit number and don't
     # want duplicate data going through
     result['unittype'] = ''
-    result['unitnumber'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address])
+    result['unitnumber'] = unitnumber
 
     result['municipality'] = municipality(:registration_address)
     result['city'] = municipality(:registration_address)
@@ -422,6 +422,14 @@ class VRToPA
                        read([:registration_address, :numbered_thoroughfare_address, :complete_address_number]),
                        read([:registration_address, :numbered_thoroughfare_address, :complete_street_name], REQUIRED)
                    ], ' ')
+  end
+  
+  def unitnumber
+    un = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address])
+    un = un.to_s
+    valid = un.length <= 15
+    raise ParsingError.new("Unit number must be 15 characters or less. #{un} is #{un.length} characters") unless valid
+    un
   end
 
   def drivers_license

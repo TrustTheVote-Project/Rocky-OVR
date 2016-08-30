@@ -316,6 +316,7 @@ describe VRToPA do
       end
     end
   end
+  
 
   describe 'party' do
     context 'custom tests' do
@@ -637,6 +638,20 @@ describe VRToPA do
       end
     end
   end
+  describe 'unitnumber' do
+    subject { adapter.unitnumber }
+    context 'too long input' do
+      let(:input) { full_input }
+      before(:each) do
+        input["registration_address"]["numbered_thoroughfare_address"]["complete_sub_address"]["sub_address"] = "1234567890123456"
+      end
+      it 'raises error' do
+        
+        expect { subject }.to raise_error /must be 15 characters/i
+      end
+    end
+  end
+  
   describe 'municipality' do
     context "empty municipality" do
       subject { adapter.municipality(:registration_address) }
