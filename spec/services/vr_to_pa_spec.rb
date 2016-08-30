@@ -229,7 +229,7 @@ describe VRToPA do
       expect(subject["Ethnicity"]).to eql("I")
       expect(subject["streetaddress"]).to eql("333 N. Street")
       expect(subject["streetaddress2"]).to eql("")
-      expect(subject["unittype"]).to eql("APT")
+      expect(subject["unittype"]).to eql("")
       expect(subject["unitnumber"]).to eql("Apt 306")
       expect(subject["donthavePermtOrResAddress"]).to eql("")
       expect(subject["county"]).to eql("Registration County")

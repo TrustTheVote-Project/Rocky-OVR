@@ -264,7 +264,11 @@ class VRToPA
     result['Email'] = email
     result['streetaddress'] = street_address
     result['streetaddress2'] = ""
-    result['unittype'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address_type])
+    #result['unittype'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address_type])
+    # 'unittype' in the JSON is always "APT" - it's not actaully collected, so we expect
+    # that the user will actually enter in "Apt" as part of the unit number and don't
+    # want duplicate data going through
+    result['unittype'] = ''
     result['unitnumber'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address])
 
     result['municipality'] = municipality(:registration_address)
