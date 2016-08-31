@@ -108,6 +108,6 @@
         </ul>
       <%- end %>
     </div>
-    <%= render partial: 'admin/shared/custom_emails' %>
+    <%= render partial: 'admin/shared/custom_emails', locals: { prefix: "preview_" } %>
   </fieldset>
 <% end %>

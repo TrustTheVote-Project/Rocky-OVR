@@ -79,4 +79,18 @@ describe EmailTemplate do
     EmailTemplate.present?(@p, 'missing').should be_falsey
   end
 
+  describe "publish" do
+    it "set production content from preview templates" do
+      EmailTemplate.set(@p, "confirmation.en", "old confirmation body")
+      EmailTemplate.set_subject(@p, "confirmation.en", "old confirmation subject")
+
+      EmailTemplate.set(@p, "preview_confirmation.en", "new confirmation body")
+      EmailTemplate.set_subject(@p, "preview_confirmation.en", "new confirmation subject")
+
+      EmailTemplate.publish_templates(@p)
+
+      expect(EmailTemplate.get(@p, "confirmation.en")).to eql("new confirmation body")
+      expect(EmailTemplate.get_subject(@p, "confirmation.en")).to eql("new confirmation subject")
+    end
+  end
 end

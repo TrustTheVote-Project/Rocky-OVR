@@ -28,12 +28,13 @@ describe StateLocalization do
   describe "tooltips" do
     it "should accomodate long tooltips" do
       kilo_chars = "s" * 1024
+      thousand_chars = 's' * 1000
       loc = StateLocalization.create!(
         :locale => 'en',
         :not_participating_tooltip => kilo_chars,
         :race_tooltip => kilo_chars,
         :id_number_tooltip => kilo_chars,
-        :parties => kilo_chars,
+        :parties => thousand_chars, # serialized YAML value takes +8 chars to be stored
         :sub_18 => kilo_chars,
         :registration_deadline => kilo_chars,
         :pdf_instructions => kilo_chars,
@@ -43,7 +44,7 @@ describe StateLocalization do
       assert_equal kilo_chars, loc.not_participating_tooltip
       assert_equal kilo_chars, loc.race_tooltip
       assert_equal kilo_chars, loc.id_number_tooltip
-      assert_equal kilo_chars, loc.parties
+      assert_equal thousand_chars, loc.parties
       assert_equal kilo_chars, loc.sub_18
       assert_equal kilo_chars, loc.registration_deadline
       assert_equal kilo_chars, loc.pdf_instructions
