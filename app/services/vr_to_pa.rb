@@ -512,7 +512,7 @@ class VRToPA
       }
 
   def parse_race(race)
-    RACE_RULES[race.to_s.downcase.strip] || "O"
+    RACE_RULES[race.to_s.downcase.strip] || ""
   end
 
   PARTIES_NAMES = {
