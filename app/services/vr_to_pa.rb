@@ -493,7 +493,9 @@ class VRToPA
   end
 
   def parse_gender(gender)
-    gender.to_s.downcase.strip == 'male' ? 'M' : 'F'
+    return 'M' if gender.to_s.downcase.strip == 'male'
+    return 'F' if gender.to_s.downcase.strip == 'female'
+    return ''
   end
 
   def is_empty(value)
@@ -594,7 +596,7 @@ class VRToPA
   def assisted_person_name
     name = read("registration_helper.name")
     return "" if is_empty(name)
-    parts = %w(title_prefix first_name middle_name last_name title_suffix)
+    parts = %w(first_name middle_name last_name title_suffix)
     join_non_empty(parts.map { |k| name[k] }, ' ')
   end
 

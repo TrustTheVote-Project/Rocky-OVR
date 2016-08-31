@@ -351,6 +351,47 @@ describe VRToPA do
       end
     end
   end
+  
+  describe 'parse_gender' do
+    let(:input) { full_input }
+    context 'if the value is like " MALE " ' do
+      it 'returns M' do
+        g = "MALE"
+        expect(adapter.parse_gender(g)).to eql "M"
+        g = " MALE "
+        expect(adapter.parse_gender(g)).to eql "M"
+        g = " mALE    "
+        expect(adapter.parse_gender(g)).to eql "M"
+        g = "male"
+        expect(adapter.parse_gender(g)).to eql "M"
+      end
+    end
+    context 'if the value is like " FEMALE " ' do
+      it 'returns M' do
+        g = "FEMALE"
+        expect(adapter.parse_gender(g)).to eql "F"
+        g = " FEMALE "
+        expect(adapter.parse_gender(g)).to eql "F"
+        g = " feMALE    "
+        expect(adapter.parse_gender(g)).to eql "F"
+        g = "female"
+        expect(adapter.parse_gender(g)).to eql "F"
+      end
+    end
+    context 'if the value is not like male or female' do
+      it 'returns M' do
+        g = "FE-MALE"
+        expect(adapter.parse_gender(g)).to eql ""
+        g = " MALE."
+        expect(adapter.parse_gender(g)).to eql ""
+        g = ""
+        expect(adapter.parse_gender(g)).to eql ""
+        g = nil
+        expect(adapter.parse_gender(g)).to eql ""
+      end
+    end
+    
+  end  
   describe 'assistant_declaration' do
     subject { adapter.assistant_declaration }
     context 'no additional info' do
@@ -536,8 +577,8 @@ describe VRToPA do
             }
         }
       end
-      it 'loads full name' do
-        expect(subject).to eql('Ms FN MN LN III')
+      it 'loads full name without title prefix' do
+        expect(subject).to eql('FN MN LN III')
       end
     end
     context 'minimalistic name provided' do
