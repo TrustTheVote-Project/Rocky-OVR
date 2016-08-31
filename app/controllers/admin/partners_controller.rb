@@ -60,6 +60,7 @@ class Admin::PartnersController < Admin::BaseController
   def publish
     @partner = Partner.find(params[:id])
     @partner.folder.publish_sub_assets(:preview)
+    EmailTemplate.publish_templates(@partner)
     redirect_to admin_partners_path, flash: { success: 'Assets update finished' }
   end
   

@@ -24,6 +24,6 @@
 
   %fieldset.nav-items.emails
     %legend E-Mail templates
-    = render partial: 'admin/shared/custom_emails'
+    = render partial: 'admin/shared/custom_emails', locals: { prefix: "preview_" }
 
   = partner_rollover_button 'update', 'Update'
