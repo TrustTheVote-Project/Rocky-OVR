@@ -99,4 +99,105 @@ describe PartnerAssetsFolder do
       @paf.list_assets.should == [ 'sample.css' ]
     end
   end
+
+  describe 'sub_assets' do
+    it 'respect sub directories ' do
+      test_file = double(
+          public_url: :public_url,
+          key: File.join(@partner.assets_path, 'test', 'file.txt'),
+          destroy: nil
+      )
+      directory = double(files: [test_file])
+      allow(@paf).to receive(:directory).and_return(directory)
+
+      expect(@paf.asset_url('file.txt', 'test')).to be_eql(:public_url)
+      expect(@paf.asset_file('file.txt', 'test')).to be_eql(test_file)
+    end
+  end
+
+  describe 'publish sub assets' do
+
+    it 'copies new files and remove old ones' do
+      folder = @partner.assets_path + '/'
+      files = [
+          double(key: folder + 'asset1.jpg', public_url: 'https://server/asset1.jpg', body: 'b1'),
+          double(key: folder + 'asset2.jpg', public_url: 'https://server/asset1.jpg', body: 'b2'),
+          double(key: folder + 'test/asset1.jpg', public_url: 'https://server/test/asset1.jpg', body: 'new1'),
+          double(key: folder + 'test/asset3.jpg', public_url: 'https://server/test/asset3.jpg', body: 'new3'),
+      ]
+      directory = double(files: files)
+      allow(@partner.folder).to receive(:directory).and_return(directory)
+      allow(@partner.folder).to receive(:existing) { |path| files.find { |f| f.key == path } }
+
+      expect(files[1]).to receive(:destroy)
+      expect(@partner.folder).to receive(:create_version).with(folder + 'asset1.jpg')
+      # current logic doesn't assume version creation on file deletion
+      # expect(@partner.folder).to receive(:create_version).with(folder + 'asset2.jpg')
+
+      expect(@partner.folder).to receive(:write_file).with(folder + 'asset1.jpg', 'new1')
+      expect(@partner.folder).to receive(:write_file).with(folder + 'asset3.jpg', 'new3')
+
+      @partner.folder.publish_sub_assets(:test)
+    end
+  end
+
+  describe 'parse_file_key' do
+    subject { @paf.parse_file_key(key) }
+
+    context 'root files' do
+      let(:key) { [@partner.assets_path, 'example.file'].join('/') }
+
+      it 'has empty folder and proper filename' do
+        expect(subject.folder).to be_empty
+        expect(subject.basename).to be_eql('example.file')
+      end
+    end
+
+    context 'sub-folder files' do
+      let(:key) { [@partner.assets_path, 'directory', 'example.file'].join('/') }
+      it 'has proper folder and file names' do
+        expect(subject.folder).to be_eql('directory')
+        expect(subject.basename).to be_eql('example.file')
+      end
+    end
+
+    context 'sub-sub-folder files' do
+      let(:key) { [@partner.assets_path, 'directory', 'sub-dir', 'example.file'].join('/') }
+      it 'has empty folder and file names' do
+        expect(subject.folder).to be_empty
+        expect(subject.basename).to be_empty
+      end
+    end
+
+    context 'other partner files' do
+      let(:another_partner) { FactoryGirl.create(:partner) }
+      let(:key) { [another_partner.assets_path, 'example.file'].join('/') }
+      it 'has empty folder and file names' do
+        expect(subject.folder).to be_empty
+        expect(subject.basename).to be_empty
+      end
+    end
+  end
+
+  describe 'files_by_folder' do
+    before do
+      allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(PartnerFakeS3.wrap(@partner, %w(r1 r2 s/sr1 s/sr2)))
+    end
+
+    it 'returns root files' do
+      actual_keys = @paf.files_by_folder('').keys
+      expected_keys = %w(r1 r2)
+      expect(actual_keys).to match_array(expected_keys)
+    end
+
+    it 'returns sub-files' do
+      actual_keys = @paf.files_by_folder('s').keys
+      expected_keys = %w(sr1 sr2)
+      expect(actual_keys).to match_array(expected_keys)
+    end
+
+    it 'respects empty sub folders' do
+      expect(@paf.files_by_folder('x').keys).to be_empty
+    end
+  end
 end

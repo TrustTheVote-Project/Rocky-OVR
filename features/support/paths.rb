@@ -88,6 +88,8 @@ module NavigationHelpers
       edit_admin_partner_path(Partner.last)
     when /the partner edit page for the first partner/
       edit_admin_partner_path(Partner.first)
+    when /the partner branding page/
+      branding_partner_path
     # Add more mappings here.
     # Here is a more fancy example:
     #

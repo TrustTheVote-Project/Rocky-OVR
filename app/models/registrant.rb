@@ -109,7 +109,7 @@ class Registrant < ActiveRecord::Base
   
   validate_fields(PDF_FIELDS, OVR_REGEX, :invalid_for_pdf)
   validate_fields(NAME_FIELDS, OVR_REGEX, :invalid)
-  validate_fields(ADDRESS_FIELDS, CA_ADDRESS_REGEX, :invalid)
+  validate_fields(ADDRESS_FIELDS, CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period")
   validate_fields(CITY_FIELDS, CA_CITY_STATE_REGEX, :invalid)
   
   # PDF_FIELDS.each do |pdf_field|
@@ -127,6 +127,8 @@ class Registrant < ActiveRecord::Base
     "Status",
     "Tracking Source",
     "Tracking ID",
+    "Open Tracking ID",
+    "PA Transaction ID",
     "Language",
     "Date of birth",
     "Email address",
@@ -140,12 +142,14 @@ class Registrant < ActiveRecord::Base
     "Home address",
     "Home unit",
     "Home city",
+    "Home County",
     "Home state",
     "Home zip code",
     "Has mailing address?",
     "Mailing address",
     "Mailing unit",
     "Mailing city",
+    "Mailing County",
     "Mailing state",
     "Mailing zip code",
     "Party",
@@ -165,7 +169,10 @@ class Registrant < ActiveRecord::Base
     "Ineligible reason",
     "Started registration",
     "Finish with State",
-    "Built via API"
+    "Built via API",
+    "Has State License",
+    "Has SSN",
+    "Geo Location"
   ]
 
   attr_protected :status
@@ -312,7 +319,7 @@ class Registrant < ActiveRecord::Base
     reg.validates_inclusion_of :us_citizen,                        :in => [ true ], :message=>"Required value is '1' or 'true'"
   end
 
-  validates_presence_of  :send_confirmation_reminder_emails, :in => [ true, false ], :if=>[:building_via_api_call, :finish_with_state?]
+  validates_inclusion_of  :send_confirmation_reminder_emails, :in => [ true, false ], :if=>[:building_via_api_call, :finish_with_state?]
 
 
   def skip_survey_and_opt_ins?
@@ -411,6 +418,15 @@ class Registrant < ActiveRecord::Base
     r.status                  = api_finish_with_state ? :step_2 : :step_5
     r
   end
+
+  def self.build_from_pa_api_data(data)
+    r = Registrant.new(data)
+    r.building_via_api_call   = true
+    r.finish_with_state       = true
+    r.status                  = :step_2
+    r
+  end
+
 
   def self.find_by_param(param)
     reg = find_by_uid(param)
@@ -833,7 +849,7 @@ class Registrant < ActiveRecord::Base
     home_state && home_state.registrar_address(self.home_zip_code)
   end
   
-  [:pdf_instructions, :email_instructions].each do |state_data|
+  [:pdf_instructions, :email_instructions, :pdf_other_instructions].each do |state_data|
     define_method("home_state_#{state_data}") do
       localization.send(state_data)
     end
@@ -1146,8 +1162,9 @@ class Registrant < ActiveRecord::Base
   end
 
   def partner_absolute_pdf_logo_path
-    if partner && partner.whitelabeled? && partner.pdf_logo_present?
-      partner.absolute_pdf_logo_path
+    group = self.is_fake ? :preview : nil
+    if partner && (partner.whitelabeled? || group) && partner.pdf_logo_present?(group)
+      partner.absolute_pdf_logo_path(group)
     else
       ""
     end
@@ -1263,6 +1280,7 @@ class Registrant < ActiveRecord::Base
       :partner_absolute_pdf_logo_path => partner_absolute_pdf_logo_path,
       :registration_instructions_url => registration_instructions_url,
       :home_state_pdf_instructions => home_state_pdf_instructions,
+      :home_state_pdf_other_instructions => home_state_pdf_other_instructions,
       :state_registrar_address => state_registrar_address,
       :registration_deadline => registration_deadline,
       :party => party,
@@ -1417,11 +1435,22 @@ class Registrant < ActiveRecord::Base
     original_survey_question_2.blank? ? partner_survey_question_2 : original_survey_question_2
   end
 
+  def geo_location
+    geo = (self.state_ovr_data || {})["geo_location"]
+    if geo && geo["lat"] && geo["long"]
+      return "lat: #{geo['lat']} lon: #{geo['long']}"
+    else
+      return nil
+    end
+  end
+
   def to_csv_array
     [
       status.humanize,
       self.tracking_source,
       self.tracking_id,
+      self.open_tracking_id,
+      (self.state_ovr_data || {})["pa_transaction_id"],
       locale_english_name,
       pdf_date_of_birth,
       email_address,
@@ -1435,12 +1464,14 @@ class Registrant < ActiveRecord::Base
       home_address,
       home_unit,
       home_city,
+      home_county,
       home_state && home_state.abbreviation,
       home_zip_code,
       yes_no(has_mailing_address?),
       mailing_address,
       mailing_unit,
       mailing_city,
+      mailing_county,
       mailing_state_abbrev,
       mailing_zip_code,
       party,
@@ -1460,7 +1491,10 @@ class Registrant < ActiveRecord::Base
       ineligible_reason,
       created_at && created_at.to_s,
       yes_no(finish_with_state?),
-      yes_no(building_via_api_call?)
+      yes_no(building_via_api_call?),
+      yes_no(has_state_license?),
+      yes_no(has_ssn?),
+      self.geo_location  
     ]
   end
 

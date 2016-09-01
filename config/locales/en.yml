@@ -149,3 +149,11 @@ en:
       not_confirmed: Your account is not confirmed.
       not_approved: Your account is not approved.
       no_authentication_details: You did not provide any details for authentication.
+  partners:
+    branding:
+      nav: Branding
+      title: Setup Custom Branding
+      description: paragraph explaining what this feature does
+      preview_warning:
+        not_set: Custom assets are not uploaded, default assets will be used
+        not_changed: Partner's assets are not changed, continue?

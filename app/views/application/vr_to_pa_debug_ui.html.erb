@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>debug tool</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#btn-submit').click(function () {
+                var url = $('#input-url').val()
+                var data = $('#input-json').val()
+                $('#output-json').val('Pending...')
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function (response) {
+                        $('#output-json').val(JSON.stringify(response, null, 4))
+                    },
+                    error: function (data) {
+                        $('#output-json').val(JSON.stringify(data.responseJSON, null, 4))
+                        console.error(data)
+                    },
+                    contentType: 'application/json',
+                    dataType: 'json'
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+
+<div>
+    <input id="input-url" value="/api/v3/voterregistrationrequest?debug_info=true" style="width: 90%; ">
+    <button id="btn-submit">Submit</button>
+</div>
+
+<div class="col-md-6">
+    <textarea id="input-json" cols="70" rows="30">
+{
+  "rocky_request": {
+    "lang": "en",
+    "phone_type": "home",
+    "partner_id": 1,
+    "opt_in_email": false,
+    "opt_in_sms": false,
+    "opt_in_volunteer": false,
+    "partner_opt_in_sms": true,
+    "partner_opt_in_email": true,
+    "partner_opt_in_volunteer": false,
+    "finish_with_state": true,
+    "created_via_api": true,
+    "source_tracking_id": "Aaaa AaaAa",
+    "partner_tracking_id": "1",
+    "geo_location": {
+      "lat": 123,
+      "long": -123
+    },
+    "open_tracking_id": "metro canvasing",
+    "voter_records_request": {
+      "type": "registration",
+      "generated_date": "2016-06-16T19:44:45+00:00",
+      "voter_registration": {
+        "date_of_birth": "2016-06-16",
+        "mailing_address": {
+          "numbered_thoroughfare_address": {
+            "complete_address_number": "",
+            "complete_street_name": "888 N. Aaaa",
+            "complete_sub_address": {
+              "sub_address_type": "APT",
+              "sub_address": "Apt 36"
+            },
+            "complete_place_names": [
+              {
+                "place_name_type": "MunicipalJurisdiction",
+                "place_name_value": "Philadelphia"
+              },
+              {
+                "place_name_type": "County",
+                "place_name_value": "Philadelphia"
+              }
+            ],
+            "state": "VI",
+            "zip_code": "22201"
+          }
+        },
+        "previous_registration_address": {
+          "numbered_thoroughfare_address": {
+            "complete_address_number": "",
+            "complete_street_name": "888 N. Aaaa",
+            "complete_sub_address": {
+              "sub_address_type": "APT",
+              "sub_address": "Apt 36"
+            },
+            "complete_place_names": [
+              {
+                "place_name_type": "MunicipalJurisdiction",
+                "place_name_value": "Philadelphia"
+              },
+              {
+                "place_name_type": "County",
+                "place_name_value": "Philadelphia"
+              }
+            ],
+            "state": "VA",
+            "zip_code": "22201"
+          }
+        },
+        "registration_address": {
+          "numbered_thoroughfare_address": {
+            "complete_address_number": "",
+            "complete_street_name": "888 N. Aaaa",
+            "complete_sub_address": {
+              "sub_address_type": "APT",
+              "sub_address": "Apt 36"
+            },
+            "complete_place_names": [
+              {
+                "place_name_type": "MunicipalJurisdiction",
+                "place_name_value": "Philadelphia"
+              },
+              {
+                "place_name_type": "County",
+                "place_name_value": "Philadelphia"
+              }
+            ],
+            "state": "VI",
+            "zip_code": "22201"
+          }
+        },
+        "registration_address_is_mailing_address": false,
+        "name": {
+          "first_name": "Aaa",
+          "last_name": "Aaaer",
+          "middle_name": "B",
+          "title_prefix": "Mr",
+          "title_suffix": "Jr"
+        },
+        "previous_name": {
+          "first_name": "Aaa",
+          "last_name": "Aaaer",
+          "middle_name": "B",
+          "title_prefix": "Mr",
+          "title_suffix": "Jr"
+        },
+        "gender": "male",
+        "race": "American Indian / Alaskan Native",
+        "party": "democratic",
+        "voter_classifications": [
+          {
+            "type": "eighteen_on_election_day",
+            "assertion": true
+          },
+          {
+            "type": "united_states_citizen",
+            "assertion": true
+          },
+          {
+            "type": "send_copy_in_mail",
+            "assertion": true
+          },
+          {
+            "type": "agreed_to_declaration",
+            "assertion": true
+          }
+        ],
+        "voter_ids": [
+          {
+            "type": "drivers_license",
+            "string_value": "12312312",
+            "attest_no_such_id": false
+          },
+          {
+            "type": "ssn4",
+            "string_value": "4321",
+            "attest_no_such_id": false
+          }
+        ],
+        "contact_methods": [
+          {
+            "type": "phone",
+            "value": "555-555-5555",
+            "capabilities": [
+              "voice",
+              "fax",
+              "sms"
+            ]
+          },
+          {
+            "type": "email",
+            "value": "sample@email.com"
+          }
+        ],
+        "additional_info": [
+          {
+            "name": "preferred_language",
+            "string_value": "english"
+          },
+          {
+          "name": "assistant_declaration",
+          "string_value": "true"
+          }
+        ],
+        "registration_helper": {
+            "address": {
+                "numbered_thoroughfare_address": {
+                    "complete_address_number": "55",
+                    "complete_street_name": "Assistant Street",
+                    "complete_sub_address": {
+                        "sub_address_type": "APT",
+                        "sub_address": "555"
+                    },
+                    "complete_place_names": [
+                        {
+                            "place_name_type": "MunicipalJurisdiction",
+                            "place_name_value": "Assistant City"
+                        },
+                        {
+                            "place_name_type": "County",
+                            "place_name_value": "County"
+                        }
+                    ],
+                    "state": "Assistant State",
+                    "zip_code": "22222"
+                }
+            },
+            "contact_methods": [
+                {
+                    "type": "phone",
+                    "value": "555-555-5555",
+                    "capabilities": ["voice", "fax", "sms"]
+                }
+            ],
+            "name": {
+                "first_name": "Assistant",
+                "last_name": "Name"
+            }
+        }
+      }
+    }
+  }
+}
+    </textarea>
+</div>
+
+<div class="col-md-6">
+    <textarea id="output-json" cols="80" rows="30">
+        Click Submit to send request
+    </textarea>
+</div>
+
+
+</body>
+</html>

@@ -20,6 +20,14 @@ class TranslationsController < ApplicationController
     @registrant.date_of_birth = Date.parse("01-01-1900")
     @registrant.id = 111
     @registrant.locale = @locale
+    url = @registrant.registration_instructions_url
+    if !url.blank?
+      @registrant_instructions_link = "<br><a href='#{url}'>#{url}</a><br>"
+    else
+      @registrant_instructions_link = ''
+    end
+    
+    
     @logo_image_path ="file:///#{Rails.root.join('app/assets/images', RockyConf.pdf.nvra.page1.default_logo).to_s}"
     I18n.locale = @locale
     
