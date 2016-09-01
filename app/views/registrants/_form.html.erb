@@ -36,18 +36,7 @@ $(document).ready(function() {
   </li>
 </ul>
 <%- if !@registrant.use_short_form? %>
-  <ul class="flat">
-    <li class="width_f">
-      <h3><%= form.label :date_of_birth %></h3>
-      <%= field_div form, :date_of_birth, :value => form.object.form_date_of_birth %>
-      <div class="tooltip"><%= tooltip_tag :date_of_birth %></div>
-      <% if !form.object.errors[:date_of_birth].empty? %>
-        <span class="error"><%= form.object.errors[:date_of_birth].join("\n") %></span>
-      <% else %>
-        <span class="example">MM-DD-YYYY</span>
-      <% end %>
-    </li>
-  </ul>
+ <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>
 <%- end %>
 
 <ul class="checkbox checkbox-step-1">

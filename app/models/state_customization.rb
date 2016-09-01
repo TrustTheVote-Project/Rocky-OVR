@@ -41,7 +41,7 @@ class StateCustomization
   end
   
   def enabled_for_language?(lang, reg)
-    return false if !reg.has_state_license?
+    return false if reg && !reg.has_state_license?
     return true if ovr_settings.blank?
     lang_list = ovr_settings["languages"]
     return true if lang_list.blank? || lang_list.empty?

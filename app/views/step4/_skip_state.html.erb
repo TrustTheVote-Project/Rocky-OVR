@@ -1,0 +1,6 @@
+    
+  <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form} %>
+
+  <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
+  
+  <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>  

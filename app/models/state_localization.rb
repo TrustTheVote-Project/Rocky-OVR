@@ -31,4 +31,8 @@ class StateLocalization < ActiveRecord::Base
     state && state.online_reg_enabled?(locale, reg)
   end
   
+  def allows_ovr_ignoring_license?(reg)
+    state && state.online_reg_enabled?(locale)
+  end
+  
 end
