@@ -27,8 +27,10 @@
           <%= link_to "Dashboard", partner_path, :class => @nav_class[:dashboard] %> |
           <%= link_to "Reports", statistics_partner_path, :class => @nav_class[:statistics] %> |
           <%= link_to "Customize", partner_logo_path, :class => @nav_class[:customize] %> |
-          <%= link_to "Embed Codes", embed_codes_partner_path, :class => @nav_class[:embed] %> |
-          <%= link_to I18n.t('partners.branding.nav', default: 'Branding'), branding_partner_path, :class => @nav_class[:branding] %>
+          <%= link_to "Embed Codes", embed_codes_partner_path, :class => @nav_class[:embed] %> 
+          <%- if false %>|
+            <%= link_to I18n.t('partners.branding.nav', default: 'Branding'), branding_partner_path, :class => @nav_class[:branding] %>
+          <%- end %>
         </p>
     <% else %>
       <div id="header" class="not_logged_in">
