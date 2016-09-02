@@ -34,6 +34,8 @@ Rocky::Application.routes.draw do
       get "download_csv"
       get "embed_codes"
       get "branding"
+      get "branding_approval"
+      post "request_branding_approval"
       post "update_branding"
       get "preview_assets"
     end

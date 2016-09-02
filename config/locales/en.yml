@@ -157,3 +157,15 @@ en:
       preview_warning:
         not_set: Custom assets are not uploaded, default assets will be used
         not_changed: Partner's assets are not changed, continue?
+      approval:
+        title: Preview & Submission
+        status:
+          not_found: The request is not opened.
+          open: The request is opened %{date}.
+          rejected: The request is rejected %{date}.
+          done: The latest request was fulfilled %{date}.
+        open: Open
+        close: Close
+        approve: Approve
+        reject: Reject
+

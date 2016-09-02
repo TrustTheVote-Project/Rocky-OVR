@@ -1,0 +1,17 @@
+- @nav_class[:branding] = :current
+#customize_nav
+  %p
+    = link_to I18n.t('partners.branding.title', default: 'Setup Custom Branding'), branding_partner_path
+    |
+    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), branding_approval_partner_path, class: :current
+
+%p
+  = link_to 'Live preview', preview_assets_partner_path, target: '_blank', id: 'registrant_preview', confirm: preview_confirmation
+%p
+  = I18n::t("partners.branding.approval.status.#{@update_request.status}", date: @update_request.date)
+  - if @update_request.can_be_opened
+    %p
+      = button_to I18n::t("partners.branding.approval.open"), { action: "request_branding_approval", request_action: "open" }
+  - if @update_request.can_be_closed
+    %p
+      = button_to I18n::t("partners.branding.approval.close"), { action: "request_branding_approval", request_action: "close" }
