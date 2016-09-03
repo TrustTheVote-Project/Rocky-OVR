@@ -108,6 +108,7 @@
         </ul>
       <%- end %>
     </div>
-    <%= render partial: 'admin/shared/custom_emails', locals: { prefix: "preview_" } %>
+    <%- custom_emails_locals = show_custom_branding ? { prefix: "preview_" } : {} %>
+    <%= render partial: 'admin/shared/custom_emails', locals: custom_emails_locals %>
   </fieldset>
 <% end %>

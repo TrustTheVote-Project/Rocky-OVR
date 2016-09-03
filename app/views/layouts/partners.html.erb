@@ -28,7 +28,7 @@
           <%= link_to "Reports", statistics_partner_path, :class => @nav_class[:statistics] %> |
           <%= link_to "Customize", partner_logo_path, :class => @nav_class[:customize] %> |
           <%= link_to "Embed Codes", embed_codes_partner_path, :class => @nav_class[:embed] %> 
-          <%- if false %>|
+          <%- if show_custom_branding %>|
             <%= link_to I18n.t('partners.branding.nav', default: 'Branding'), branding_partner_path, :class => @nav_class[:branding] %>
           <%- end %>
         </p>
