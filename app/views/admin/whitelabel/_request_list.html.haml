@@ -1,0 +1,32 @@
+- if requests.any?
+  - confirmation = "Are you sure you want update partner's branding?"
+  %table
+    %thead
+      %tr
+        %th Date
+        %th ID
+        %th Name
+        %th Organization
+        %th E-Mail
+        %th
+        %th
+        %th
+    %tbody
+    - requests.each do |request|
+      - p = request.partner
+      %tr
+        %td= request.date
+        %td= p.id
+        %td= h p.name
+        %td= h p.organization
+        %td= mail_to p.email, p.email
+        %td
+          - p.folder.list_named_urls.each do |pair|
+            %p= link_to pair[0], pair[1]
+        %td= link_to "Preview", p.preview_custom_assets_link, target: '_blank'
+        - if request.open?
+          %td= link_to "Approve", { action: "approve_request", partner_id: p.id }, method: :POST, confirm: confirmation
+        - else
+          %td
+- else
+  %p No requests found

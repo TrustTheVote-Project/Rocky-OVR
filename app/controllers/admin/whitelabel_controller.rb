@@ -22,25 +22,21 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class Admin::BaseController < ApplicationController
+class Admin::WhitelabelController < Admin::BaseController
 
-  layout 'admin'
-
-  skip_before_filter :authenticate_everything
-  before_filter :authenticate, :if => lambda { !%w{ development test }.include?(Rails.env) }
-  before_filter :init_nav_class
-
-  private
-
-  def authenticate
-    authenticate_or_request_with_http_basic("RTV Admin Console") do |user, password|
-      pass = Settings.admin_password
-      pass.present? && user == RockyConf.admin_username && password == pass
-    end
+  def requests
+    @requests = {
+        open: BrandingUpdateRequest.all.select { |r| r.open? },
+        recently_closed: BrandingUpdateRequest.recently_closed
+    }
   end
 
-  def init_nav_class
-    @nav_class = Hash.new
+  def approve_request
+    @partner = Partner.find(params[:partner_id])
+    req = BrandingUpdateRequest.new(@partner)
+    @partner.folder.publish_sub_assets(:preview)
+    EmailTemplate.publish_templates(@partner)
+    req.done
+    redirect_to requests_admin_whitelabel_path, flash: { success: 'Assets update finished' }
   end
-
 end

@@ -43,7 +43,7 @@ Rocky::Application.routes.draw do
     resource "widget_image",  :only => [:show, :update]
     resource "logo",          :only => [:show, :update, :destroy]
   end
-  
+
   match "/widget_loader.js", :format => "js", :to => "registrants#widget_loader", :as=>'widget_loader'
   
   resources "password_resets", :only => [:new, :create, :edit, :update]
@@ -130,6 +130,13 @@ Rocky::Application.routes.draw do
     end
     resources :government_partners
     resource :partner_zips, :only=>[:create]
+    resource :whitelabel, :only=>[], controller: "whitelabel" do
+      member do
+        get :requests
+        post :approve_request
+      end
+    end
+
   end
     
   # The priority is based upon order of creation:

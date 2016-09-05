@@ -157,15 +157,16 @@ en:
       preview_warning:
         not_set: Custom assets are not uploaded, default assets will be used
         not_changed: Partner's assets are not changed, continue?
+      preview: Preview custom branding
       approval:
         title: Preview & Submission
         status:
-          not_found: The request is not opened.
-          open: The request is opened %{date}.
-          rejected: The request is rejected %{date}.
+          not_found: The request is not sent.
+          open: "Submitted at %{date}. Approval status: pending."
+          rejected: The request was rejected %{date}.
           done: The latest request was fulfilled %{date}.
-        open: Open
-        close: Close
+        open: Submit for approval
+        close: Revoke from approval
         approve: Approve
         reject: Reject
 
