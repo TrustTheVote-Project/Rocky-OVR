@@ -1,0 +1,8 @@
+= render :partial=>"admin/shared/admin_nav"
+- @nav_class[:whitelabel] = :current
+
+%h3 Open requests
+= render partial: "request_list", locals: { requests: @requests[:open]}
+
+%h3 Recently closed
+= render partial: "request_list", locals: { requests: @requests[:recently_closed]}

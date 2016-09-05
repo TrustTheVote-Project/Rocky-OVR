@@ -17,7 +17,8 @@
   <div id="container">
     <div id="header">
       <p>
-        <%= link_to "Dashboard", admin_partners_path %>
+        <%= link_to "Dashboard", admin_partners_path, class: @nav_class[:dashboard] %>|
+        <%= link_to "Whitelabel requests #{@nav_bar}", requests_admin_whitelabel_path, class: @nav_class[:whitelabel] %>
       </p>
     </div>
 

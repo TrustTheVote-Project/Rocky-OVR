@@ -1,4 +1,5 @@
 class BrandingUpdateRequest
+  attr_reader :partner
   STATUS = OpenStruct.new(not_found: "not_found", open: "open", rejected: "rejected", done: "done").freeze
 
   ALLOWED_TRANSITIONS = {
@@ -48,6 +49,27 @@ class BrandingUpdateRequest
 
   def can_be_closed
     can_be STATUS.not_found
+  end
+
+  def open?
+    status == STATUS.open
+  end
+
+  def done?
+    status == STATUS.done
+  end
+
+  def self.all
+    Partner.where("NOT branding_update_request IS NULL").map { |p| BrandingUpdateRequest.new(p) }
+  end
+
+  def self.recently_closed
+    Partner.order("updated_at DESC")
+        .limit(100)
+        .map { |p| BrandingUpdateRequest.new(p) }
+        .select(&:done?)
+        .sort_by(&:date)
+        .last(10)
   end
 
   private
