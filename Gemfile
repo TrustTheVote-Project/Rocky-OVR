@@ -40,6 +40,8 @@ gem 'asset_sync'
 gem 'aws-sdk'
 
 group :development, :test do
+  gem 'pry'
+  gem 'spring-commands-rspec'
   gem "rspec-rails", "~> 3.2.3"
   gem 'rspec-collection_matchers'
   gem 'rspec-activemodel-mocks'

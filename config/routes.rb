@@ -1,6 +1,7 @@
 Rocky::Application.routes.draw do
   
   root :to => "registrants#landing"
+  match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui"
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout'
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
@@ -32,6 +33,9 @@ Rocky::Application.routes.draw do
       post "registrations"
       get "download_csv"
       get "embed_codes"
+      get "branding"
+      post "update_branding"
+      get "preview_assets"
     end
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]
@@ -108,6 +112,8 @@ Rocky::Application.routes.draw do
       end
       match 'gregistrations',      :format => 'json', :controller => 'registrations', :action => 'index_gpartner', :via => :get
       match 'gregistrations',      :format => 'json', :controller => 'registrations', :action => 'create_finish_with_state', :via => :post
+      match 'voterregistrationrequest', format: 'json', controller: 'registrations', action: 'create_pa', via: :post
+      match 'partnerIdValidation', format: 'json', controller: 'partners', action: 'partner_id_validation', via: :get
     end
   end
 
@@ -116,6 +122,7 @@ Rocky::Application.routes.draw do
     resources :partners do
       member do
         get :regen_api_key
+        post :publish
       end
       resources :assets, :only => [ :index, :create, :destroy ]
     end
