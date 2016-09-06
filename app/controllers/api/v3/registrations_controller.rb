@@ -25,7 +25,7 @@
 require "#{Rails.root}/app/services/v3"
 class Api::V3::RegistrationsController < Api::V3::BaseController
 
-  
+
 
   # Lists registrations
   def index
@@ -40,7 +40,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
   end
-  
+
   def index_gpartner
     query = {
       :gpartner_id       => params[:gpartner_id],
@@ -53,8 +53,8 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
   end
-  
-  
+
+
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
   def create
@@ -83,7 +83,67 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     name = e.message.split(': ')[1]
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
-  
+
+  def create_pa
+    registrant = nil
+    params.delete(:debug_info)
+
+    # input request structure validation
+    [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
+      value = params
+      keys.each do |key|
+        unless (value = value[key.to_s])
+          return pa_error_result("Invalid request: parameter #{keys.join('.')} not found")
+        end
+      end
+    end
+
+    # 1. Build a rocky registrant record based on all of the fields
+    registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])
+    # 2.Check if the registrant is internally valid
+    if registrant.valid?
+      # If valid for rocky, ensure that it's valid for PA submissions
+      pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)
+      if pa_validation_errors.any?
+        pa_error_result(pa_validation_errors, registrant)
+      else
+        # If there are no errors, make the submission to PA
+        # This will commit the registrant with the response code
+        registrant.save!
+        V3::RegistrationService.delay.async_register_with_pa(registrant.id)
+        pa_success_result
+      end
+    else
+      pa_error_result(registrant.errors.full_messages, registrant)
+    end
+  rescue StandardError => e
+    pa_error_result("Error building registrant: #{e.message}", registrant)
+  end
+
+  def pa_success_result
+    data = {
+        registration_success: true,
+        errors: []
+    }
+    jsonp(data)
+  end
+
+  def pa_error_result(errors, registrant=nil)
+    if !errors.is_a?(Array)
+      errors = [errors]
+    end
+    data = {
+        registration_success: false,
+        transaction_id: nil,
+        errors: errors
+    }
+
+    Rails.logger.warn("Grommet Registration Error for params:\n#{params}\n\nErrors:\n#{errors}")
+    AdminMailer.grommet_registration_error(errors, registrant).deliver
+
+    jsonp(data, :status => 400)
+  end
+
   def pdf_ready
     query = {
       :UID              => params[:UID]
@@ -98,7 +158,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
-  
+
   def stop_reminders
     query = {
       :UID              => params[:UID]
@@ -113,7 +173,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
-  
+
   def bulk
     jsonp({
         :registrants_added=>V3::RegistrationService.bulk_create(params[:registrants], params[:partner_id], params[:partner_API_key])

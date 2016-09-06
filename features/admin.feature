@@ -113,3 +113,21 @@ Feature: Admin UI
       And I should see a pixel tracking field for "final_reminder"
       And I should see a pixel tracking field for "thank_you_external"
       And I should see a pixel tracking field for "chaser"
+
+  Scenario: Preview partners branding
+    Given the following partner exists:
+      | name         | organization      |
+      | Partner Name | Organization Name |
+    Given that partner's assets do not exist
+    When I go to the admin dashboard
+     And I follow partner's link "Preview"
+    Then I should be redirected to the right preview URL
+
+  Scenario: Preview partners branding
+    Given the following partner exists:
+      | name         | organization      |
+      | Partner Name | Organization Name |
+    Given Assets publishing is expected
+    When I go to the admin dashboard
+     And I follow partner's link "Publish"
+  Then Success flash message is shown
