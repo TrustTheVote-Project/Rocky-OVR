@@ -134,6 +134,7 @@ Rocky::Application.routes.draw do
       member do
         get :requests
         post :approve_request
+        post :reject_request
       end
     end
 

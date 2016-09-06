@@ -1,5 +1,6 @@
 - if requests.any?
-  - confirmation = "Are you sure you want update partner's branding?"
+  - confirmation = "Are you sure you want to update partner's branding?"
+  - reject_confirmation = "Are you sure you want to reject partner's request?"
   %table
     %thead
       %tr
@@ -8,6 +9,7 @@
         %th Name
         %th Organization
         %th E-Mail
+        %th
         %th
         %th
         %th
@@ -21,12 +23,15 @@
         %td= h p.organization
         %td= mail_to p.email, p.email
         %td
-          - p.folder.list_named_urls.each do |pair|
-            %p= link_to pair[0], pair[1]
+          - p.folder.list_named_urls.sort_by(&:first).each do |pair|
+            = link_to pair[0], pair[1]
+            %br
         %td= link_to "Preview", p.preview_custom_assets_link, target: '_blank'
         - if request.open?
           %td= link_to "Approve", { action: "approve_request", partner_id: p.id }, method: :POST, confirm: confirmation
+          %td= link_to "Reject", { action: "reject_request", partner_id: p.id }, method: :POST, confirm: reject_confirmation
         - else
+          %td
           %td
 - else
   %p No requests found
