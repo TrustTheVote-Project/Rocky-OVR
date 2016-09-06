@@ -71,16 +71,38 @@ describe Api::V3::PartnersController do
       let(:mock_partner) { double(Partner, :name=>"Partner Name")}
       before(:each) do
         allow(Partner).to receive(:find_by_id).with('1').and_return(mock_partner)
+        allow(mock_partner).to receive(:enabled_for_grommet?).and_return(true)
       end
-      subject { get :partner_id_validation, query.merge(format: 'json') }
-      it "returns a 200" do
-        expect(subject.status).to eq(200)
+      context 'when partner is allowed' do
+        subject { get :partner_id_validation, query.merge(format: 'json') }
+        it "returns a 200" do
+          expect(subject.status).to eq(200)
+        end
+        it "returns a JSON body with is_valid=true" do
+          expect(JSON.parse(subject.body)["is_valid"]).to eq(true)
+        end
+        it "returns a JSON body with partner_name='Partner Name'" do
+          expect(JSON.parse(subject.body)["partner_name"]).to eq("Partner Name")
+        end
       end
-      it "returns a JSON body with is_valid=true" do
-        expect(JSON.parse(subject.body)["is_valid"]).to eq(true)
-      end
-      it "returns a JSON body with partner_name='Partner Name'" do
-        expect(JSON.parse(subject.body)["partner_name"]).to eq("Partner Name")
+      context 'when parter is not allowed' do
+        let(:query) {{
+          :partner_id=>'1',
+        }}
+        before(:each) do
+          allow(mock_partner).to receive(:enabled_for_grommet?).and_return(false)
+        end
+        subject { get :partner_id_validation, query.merge(format: 'json') }
+        it "returns a 200" do
+          expect(subject.status).to eq(200)
+        end
+        it "returns a JSON body with is_valid=false" do
+          expect(JSON.parse(subject.body)["is_valid"]).to eq(false)
+        end
+        it "returns a JSON body without partner_name key" do
+          expect(JSON.parse(subject.body)).not_to have_key("partner_name")
+        end
+        
       end
     end
     context 'when partner_id is invalid' do
