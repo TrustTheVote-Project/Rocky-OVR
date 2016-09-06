@@ -69,6 +69,7 @@ class BrandingUpdateRequest
         .map { |p| BrandingUpdateRequest.new(p) }
         .select(&:done?)
         .sort_by(&:date)
+        .reverse!
         .last(10)
   end
 
