@@ -133,7 +133,6 @@ FactoryGirl.define do
     partner_volunteer   true
     tracking_source       "tracking_source"
     tracking_id   "part_tracking_id"
-    open_tracking_id "open id"
     original_survey_question_1     "color?"
     original_survey_question_2     "dog name?"
     survey_answer_1     "blue"
@@ -141,10 +140,6 @@ FactoryGirl.define do
     send_confirmation_reminder_emails false
     building_via_api_call true
     will_be_18_by_election true
-    has_state_license true
-    has_ssn true
-    home_county "County"
-    mailing_county "Mailing County"
   end
   factory :api_v3_maximal_registrant, :parent => :maximal_registrant do 
     partner_opt_in_email        true

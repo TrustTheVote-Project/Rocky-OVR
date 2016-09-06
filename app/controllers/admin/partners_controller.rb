@@ -56,13 +56,7 @@ class Admin::PartnersController < Admin::BaseController
     @partner.generate_api_key!
     redirect_to admin_partner_path(@partner)
   end
-
-  def publish
-    @partner = Partner.find(params[:id])
-    @partner.folder.publish_sub_assets(:preview)
-    EmailTemplate.publish_templates(@partner)
-    redirect_to admin_partners_path, flash: { success: 'Assets update finished' }
-  end
+  
   
 
   private

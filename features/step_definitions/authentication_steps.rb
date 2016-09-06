@@ -39,11 +39,14 @@ Given /^no partner exists with a login of "(.*)"$/ do |login|
 end
 
 Given /^I registered with "(.*)\/(.*)"$/ do |login, password|
-  @partner = FactoryGirl.create :partner,
+  partner = FactoryGirl.create :partner,
     :username              => login,
     :password              => password,
     :password_confirmation => password
-end
+    
+  
+  
+end 
 
 # Session
 

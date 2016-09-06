@@ -28,17 +28,20 @@ When /^I upload the "([^\"]*)" zip file$/ do |file_name|
 end
 
 Then /^I should see that partner's api key$/ do
+  @partner ||= Partner.last
   @partner.api_key.should_not be_blank
   page.should have_content(@partner.api_key)
 end
 
 
 Given /^that partner's api key is "([^\"]*)"$/ do |key|
+  @partner ||= Partner.last
   @partner.update_attributes!(:api_key=>key)
 end
 
 
 Then /^that partner's api key should not be "([^\"]*)"$/ do |old_key|
+  @partner ||= Partner.last
   @partner.reload
   @partner.api_key.should_not == old_key
 end
@@ -61,18 +64,4 @@ end
 
 Then(/^I should see a pixel tracking field for "(.*?)"$/) do |email_type|
   page.should have_field("partner[#{email_type}_pixel_tracking_code]")  
-end
-
-When(/^I follow partner's link "([^"]*)"$/) do |link|
-  within "tr.partner-#{@partner.id}" do
-    click_link link
-  end
-end
-
-Then(/^Success flash message is shown$/) do
-  expect(page).to have_css('li.flash-success')
-end
-
-Given(/^Assets publishing is expected/) do
-  expect_any_instance_of(PartnerAssetsFolder).to receive(:publish_sub_assets)
 end

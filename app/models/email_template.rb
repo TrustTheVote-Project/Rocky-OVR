@@ -26,8 +26,7 @@ class EmailTemplate < ActiveRecord::Base
 
   EMAIL_TYPES = %w(confirmation reminder final_reminder chaser thank_you_external)
   TEMPLATE_NAMES = EMAIL_TYPES.inject([]){|result,t| result + I18n.available_locales.collect{|l| ["#{t}.#{l}", "#{t.capitalize.gsub("_", " ")} #{l.upcase}"]} }
-  PREVIEW_NAME_MAPPING = TEMPLATE_NAMES.map { |name, label| ["preview_#{name}", name, label]}
-
+  
   
   # [ [ 'confirmation.en', 'Confirmation EN' ], [ 'confirmation.es', 'Confirmation ES' ],
   #      [ 'reminder.en', 'Reminder EN' ], [ 'reminder.es', 'Reminder ES' ] ]
@@ -67,12 +66,4 @@ class EmailTemplate < ActiveRecord::Base
     get(partner, name).present?
   end
 
-  def self.publish_templates(partner)
-    PREVIEW_NAME_MAPPING.each do |preview_name, production_name, _|
-      subject = get_subject(partner, preview_name)
-      body = get(partner, preview_name)
-      set(partner, production_name, body)
-      set_subject(partner, production_name, subject)
-    end
-  end
 end
