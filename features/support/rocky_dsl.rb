@@ -20,11 +20,7 @@ module RockyDsl
       id = $1
       {:body=>{:partner => V3::PartnerService.find({:partner_id=>id, :partner_api_key=>'abc123'}) }.to_json}
     end
-    PartnerAssetsFolder.any_instance.stub(:asset_file_exists?).and_return(false)
-    PartnerAssetsFolder.any_instance.stub(:asset_url).and_return('')
-    PartnerAssetsFolder.any_instance.stub(:update_css).and_return(true)
-    PartnerAssetsFolder.any_instance.stub(:update_asset).and_return(true)
-    #Partner.any_instance.stub(:application_css_present?).and_return(false)
+    PartnerAssetsFolder.any_instance.stub(:directory).and_return(FakeS3.new)
   end
   def stub_registrant_creation_via_api
     

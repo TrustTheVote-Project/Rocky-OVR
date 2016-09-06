@@ -183,13 +183,11 @@ Then /^I should be sent a thank\-you email$/ do
 end
 
 Given(/^that partner has a custom thank\-you external email$/) do
-  @partner ||= Partner.last
   EmailTemplate.set(@partner, "thank_you_external.en", "Custom partner for <%= @registrant_home_state_name %>, <%= @registrant_home_state_abbrev %>")
   EmailTemplate.set_subject(@partner, "thank_you_external.en", "Custom Subject")
 end
 
 Then /^I should be sent a thank\-you email from that partner$/ do
-  @partner ||= Partner.last
   registrant = Registrant.last
   email = ActionMailer::Base.deliveries.last
   email.to.should include(@registrant.email_address)
@@ -408,7 +406,6 @@ Then /^my value for "([^\"]*)" should be "([^\"]*)"$/ do |method, value|
 end
 
 When /^the partner changes "([^\"]*)" to "([^\"]*)"$/ do |method, value|
-  @partner ||= Partner.last
   @partner.reload
   @partner.send("#{method}=", value)
   @partner.save!

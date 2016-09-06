@@ -66,6 +66,240 @@ describe Api::V3::RegistrationsController do
     end
   end
 
+  describe 'create_pa' do
+    let(:query) {
+      {
+        "rocky_request" => {
+          "lang" => "en",
+          "phone_type" => "home",
+          "partner_id" => 1,
+          "opt_in_email" => false,
+          "opt_in_sms" => false,
+          "opt_in_volunteer" => false,
+          "partner_opt_in_sms" => true,
+          "partner_opt_in_email" => true,
+          "partner_opt_in_volunteer" => false,
+          "finish_with_state" => true,
+          "created_via_api" => true,
+          "source_tracking_id" => "Aaron Huttner",
+          "partner_tracking_id" => "22201",
+          "geo_location" => {
+            "lat" => 123,
+            "long" => -123
+          },
+          "open_tracking_id" => "metro canvasing",
+          "voter_records_request" => {
+            "type" => "registration",
+            "generated_date" => "2016-06-16T19:44:45+00:00",
+            "voter_registration" => {
+              "date_of_birth" => "2016-06-16",
+              "mailing_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "\"\"",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "previous_registration_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "\"\"",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "registration_address" => {
+                "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "\"\"",
+                  "complete_street_name" => "801 N. Monroe",
+                  "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                    {
+                      "place_name_type" => "MunicipalJurisdiction",
+                      "place_name_value" => "Philadelphia"
+                    },
+                    {
+                      "place_name_type" => "County",
+                      "place_name_value" => "Philadelphia"
+                    }
+                  ],
+                  "state" => "Virginia",
+                  "zip_code" => "22201"
+                }
+              },
+              "registration_address_is_mailing_address" => false,
+              "name" => {
+                "first_name" => "Aaron",
+                "last_name" => "Huttner",
+                "middle_name" => "Bernard",
+                "title_prefix" => "Mr",
+                "title_suffix" => "Jr"
+              },
+              "previous_name" => {
+                "first_name" => "Aaron",
+                "last_name" => "Huttner",
+                "middle_name" => "Bernard",
+                "title_prefix" => "Mr",
+                "title_suffix" => "Jr"
+              },
+              "gender" => "male",
+              "race" => "American Indian / Alaskan Native",
+              "party" => "democratic",
+              "voter_classifications" => [
+                {
+                  "type" => "eighteen_on_election_day",
+                  "assertion" => true
+                },
+                {
+                  "type" => "united_states_citizen",
+                  "assertion" => true
+                },
+                {
+                  "type" => "send_copy_in_mail",
+                  "assertion" => true
+                },
+                {
+                  "type" => "agreed_to_declaration",
+                  "assertion" => true
+                }
+              ],
+              "signature" => {
+                "mime_type" => "image/png",
+                "image" => "?"
+              },
+              "voter_ids" => [
+                {
+                  "type" => "drivers_license",
+                  "string_value" => "1243asdf",
+                  "attest_no_such_id" => false
+                }
+              ],
+              "contact_methods" => [
+                {
+                  "type" => "phone",
+                  "value" => "555-555-5555",
+                  "capabilities" => [
+                    "voice",
+                    "fax",
+                    "sms"
+                  ]
+                }
+              ],
+              "additional_info" => [
+                {
+                  "name" => "preferred_language",
+                  "string_value" => "english"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+    subject { post :create_pa, query.merge(format: 'json') }
+
+    context 'invalid request structure' do
+      let(:query) { {} }
+      it 'returns error code 400' do
+        expect(subject.status).to be_eql(400)
+      end
+    end
+
+    context 'successful registration' do
+      let(:valid_registrant) { FactoryGirl.create(:api_v3_maximal_registrant) }
+      before(:each) do
+        valid_registrant.state_ovr_data = {}
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(valid_registrant)
+        allow(V3::RegistrationService).to receive(:valid_for_pa_submission).and_return([])
+        allow(V3::RegistrationService).to receive(:register_with_pa).with(valid_registrant) { |r| r.state_ovr_data["pa_transaction_id"]="APP_ID"}
+      end
+      it 'should return a 200 response' do
+        expect(subject.code).to eql "200"
+      end
+      it 'should queue the PA registration' do
+        expect(valid_registrant).to receive(:save!) 
+        mock_delay = double("Delay")
+        expect(V3::RegistrationService).to receive(:delay).and_return(mock_delay)
+        expect(mock_delay).to receive(:async_register_with_pa).with(valid_registrant.id)
+        subject
+      end
+      
+      it 'should return a body with registration_success: true' do
+        expect(subject.headers["Content-Type"]).to include "application/json"
+        result = JSON.parse(subject.body)
+        expect(result).to include({"registration_success" => true})
+      end
+    end
+    context 'registrant record fails rocky validation' do
+      let(:invalid_registrant) { double(Registrant, valid?: false, errors: double("Errors", full_messages: ["Message One", "Message Two"])).as_null_object}
+      before(:each) do
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
+      end
+      it 'should return a 400 response' do
+        expect(subject.status).to be_eql(400)
+      end
+      it 'should return a body with registration_success: false and an error list of all the validation messages' do
+        resp = JSON.parse(subject.body)
+        expect(resp["registration_success"]).to eq(false)
+        expect(resp["errors"]).to eq([
+          "Message One",
+          "Message Two"
+        ])
+      end
+    end
+    context 'registrant record fails PA validation' do
+      let(:valid_registrant) { FactoryGirl.create(:api_v3_maximal_registrant) }
+      
+      before(:each) do
+        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(valid_registrant)
+        allow(V3::RegistrationService).to receive(:valid_for_pa_submission).and_return(["PA Error One", "PA Error Two"])        
+      end
+      it 'should return a 400 response' do
+        expect(subject.status).to eq(400)
+      end
+      it 'should return a body with registration_success: false and an error list of all the validation messages' do
+        result = JSON.parse(subject.body)
+        expect(result["registration_success"]).to eq(false)
+        expect(result["errors"]).to eq([
+          "PA Error One",
+          "PA Error Two"
+        ])
+      end
+    end
+  end
+
   describe 'index' do
     it 'should catch errors' do
       expect_api_error :message => 'error'
