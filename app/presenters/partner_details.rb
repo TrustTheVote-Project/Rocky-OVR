@@ -44,11 +44,6 @@ class PartnerDetails
     @p.whitelabeled? ? 'Yes' : 'No'
   end
 
-  def enabled_for_grommet_status
-    @p.enabled_for_grommet? ? 'Yes' : 'No'
-  end
-
-
   def assets_status
     [ [ "application.css",          pm(@p.application_css_present?) ],
       [ "registration.css",         pm(@p.registration_css_present?) ],

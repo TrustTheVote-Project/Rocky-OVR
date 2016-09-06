@@ -29,15 +29,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_everything, :if => lambda { !%w{ development test production loadtest }.include?(Rails.env) }
 
-
-  def vr_to_pa_debug_ui
-    if Rails.env.production?
-      raise ActionController::RoutingError.new('Not Found')      
-    else
-      render layout: false
-    end
-  end
-
   protected
 
   # override in subclass controller if plain HTTP is allowed

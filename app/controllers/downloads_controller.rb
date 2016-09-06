@@ -52,7 +52,6 @@ class DownloadsController < RegistrationStep
       redirect_to registrant_finish_path(@registrant, not_ready: true)
     else
       pdf_path = @registrant.download_pdf
-      @registrant.destroy if @registrant.is_fake
       redirect_to pdf_path
     end
   end

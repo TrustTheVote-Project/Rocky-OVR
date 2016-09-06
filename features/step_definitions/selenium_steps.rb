@@ -49,7 +49,3 @@ end
 After('@iframe') do
   selenium.select_frame "relative=top"
 end
-
-Then(/^reload the page$/) do
-  visit current_path
-end

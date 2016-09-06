@@ -462,21 +462,21 @@ describe Partner do
     describe "#application_css_url" do
       it "is returns the URL for the custom application css" do
         partner = FactoryGirl.build(:partner)
-        paf.should_receive(:asset_url).with("application.css", nil)
+        paf.should_receive(:asset_url).with("application.css")
         partner.application_css_url
       end
     end
     describe "#registration_css_url" do
       it "is returns the URL for the custom registration css" do
         partner = FactoryGirl.build(:partner)
-        paf.should_receive(:asset_url).with("registration.css", nil)
+        paf.should_receive(:asset_url).with("registration.css")
         partner.registration_css_url
       end
     end
     describe "#partner_css_url" do
       it "is returns the URL for the custom partner css" do
         partner = FactoryGirl.build(:partner)
-        paf.should_receive(:asset_url).with("partner.css", nil)
+        paf.should_receive(:asset_url).with("partner.css")
         partner.partner_css_url
       end
     end
@@ -514,7 +514,7 @@ describe Partner do
         context "when there is a pdf_logo jpeg" do
           before(:each) do
             paf.stub(:asset_file).and_return(false)
-            paf.stub(:asset_file).with('pdf_logo.jpeg', nil).and_return(true)
+            paf.stub(:asset_file).with('pdf_logo.jpeg').and_return(true)
           end
           it "returns png" do
             partner.pdf_logo_ext.should == 'jpeg'
@@ -556,7 +556,7 @@ describe Partner do
               partner.stub(:pdf_logo_ext).and_return(nil)
             end
             it "returns the path with a gif extension" do
-              partner.absolute_pdf_logo_path.should == "s3-url/#{Partner::PDF_LOGO}.gif"
+              partner.absolute_pdf_logo_path(nil).should == "s3-url/#{Partner::PDF_LOGO}.gif"
             end
           end
           context "when pdf_logo_ext returns jpg" do
@@ -564,9 +564,14 @@ describe Partner do
               partner.stub(:pdf_logo_ext).and_return('jpg')
             end
             it "returns the path with a jpg exention" do
-              partner.absolute_pdf_logo_path.should == "s3-url/#{Partner::PDF_LOGO}.jpg"
+              partner.absolute_pdf_logo_path(nil).should == "s3-url/#{Partner::PDF_LOGO}.jpg"
             end
           end
+        end
+        context "when a value is passed" do
+          it "returns the path with the passed exention" do
+            partner.absolute_pdf_logo_path('jpeg').should == "s3-url/#{Partner::PDF_LOGO}.jpeg"
+          end          
         end
       end
     end
@@ -611,71 +616,6 @@ describe Partner do
         partner.should be_valid
       end
     end
-  end
-
-  describe 'whitelableing fake integration' do
-
-    before(:each) do
-      @partner = FactoryGirl.create(:partner)
-    end
-
-    it 'reads partner\'s s3 application.css file' do
-      fs3 = PartnerFakeS3.wrap(@partner, ['application.css', 'preview/application.css'])
-      allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(fs3)
-
-      expect(@partner.application_css_url).to be_eql(fs3.files[0].public_url)
-      expect(@partner.application_css_url(:preview)).to be_eql(fs3.files[1].public_url)
-      expect(@partner.registration_css_url).to be_eql(nil)
-      expect(@partner.registration_css_url(:preview)).to be_eql(nil)
-      expect(@partner.partner_css_url).to be_eql(nil)
-      expect(@partner.partner_css_url(:preview)).to be_eql(nil)
-    end
-
-  end
-
-  describe 'status preview status' do
-    before(:each) do
-      @partner = FactoryGirl.create(:partner)
-    end
-
-    context 'empty assets' do
-      it 'not set' do
-        allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
-        expect(@partner.preview_assets_status).to be_eql(:not_set)
-      end
-    end
-
-    context 'only preview assets' do
-      it 'updated' do
-        fs3 = PartnerFakeS3.wrap(@partner, ['preview/application.css', 'preview/somthing.jpg'])
-        allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(fs3)
-        expect(@partner.preview_assets_status).to be_eql(:updated)
-      end
-    end
-
-
-    context 'the same preview and root assets' do
-      it 'not_changed' do
-        allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
-        @partner.folder.write_asset('application.css', 'c1')
-        @partner.folder.write_asset('something.jpg', 'c2')
-        @partner.folder.write_asset('application.css', 'c1', :preview)
-        @partner.folder.write_asset('something.jpg', 'c2', :preview)
-
-        expect(@partner.preview_assets_status).to be_eql(:not_changed) end
-    end
-
-    context 'updated preview content' do
-      it 'not_changed' do
-        allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
-        @partner.folder.write_asset('application.css', 'c1')
-        @partner.folder.write_asset('something.jpg', 'c2')
-        @partner.folder.write_asset('application.css', 'c1', :preview)
-        @partner.folder.write_asset('something.jpg', 'c3', :preview)
-
-        expect(@partner.preview_assets_status).to be_eql(:updated) end
-    end
-
   end
 
   describe "default opt-in sets" do

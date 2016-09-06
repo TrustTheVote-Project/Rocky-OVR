@@ -1593,8 +1593,6 @@ describe Registrant do
       assert_equal [ "Step 1",
                       nil,
                       nil,
-                      nil,
-                      nil,
                      "English",
                      reg.date_of_birth.to_s(:month_day_year),
                      reg.email_address,
@@ -1608,11 +1606,9 @@ describe Registrant do
                      nil,
                      nil,
                      nil,
-                     nil,
                      "PA",
                      "15215",
                      "No",
-                     nil,
                      nil,
                      nil,
                      nil,
@@ -1635,10 +1631,7 @@ describe Registrant do
                      nil,
                      nil,
                      "No",
-                     "No",
-                     "Yes",
-                     "No",
-                     nil],
+                     "No"],
                   reg.to_csv_array
     end
 
@@ -1649,8 +1642,6 @@ describe Registrant do
       assert_equal [ "Complete",
                      "tracking_source",
                      "part_tracking_id",
-                     "open id",
-                     nil,
                      "English",
                      reg.date_of_birth.to_s(:month_day_year),
                      "citizen@example.com",
@@ -1664,14 +1655,12 @@ describe Registrant do
                      "123 Civil Rights Way",
                      "Apt 2",
                      "West Grove",
-                     "County",
                      "CA",
                      "94110",
                      "Yes",
                      "10 Main St",
                      "Box 5",
                      "Adams",
-                     "Mailing County",
                      "MA",
                      "02135",
                      "Democratic",
@@ -1691,10 +1680,7 @@ describe Registrant do
                      nil,
                      reg.created_at && reg.created_at.to_s,
                      "No",
-                     "Yes",
-                     "Yes",
-                     "Yes",
-                     nil
+                     "Yes"
                      ],
                  reg.to_csv_array
     end
@@ -1708,8 +1694,6 @@ describe Registrant do
       reg.to_csv_array.should == [ "Complete",
                      "tracking_source",
                      "part_tracking_id",
-                     "open id",
-                     nil,
                      "Spanish",
                      reg.date_of_birth.to_s(:month_day_year),
                      "citizen@example.com",
@@ -1723,14 +1707,12 @@ describe Registrant do
                      "123 Civil Rights Way",
                      "Apt 2",
                      "West Grove",
-                     "County",
                      "CA",
                      "94110",
                      "Yes",
                      "10 Main St",
                      "Box 5",
                      "Adams",
-                     "Mailing County",
                      "MA",
                      "02135",
                      "Democratic",
@@ -1750,80 +1732,19 @@ describe Registrant do
                      nil,
                      reg.created_at && reg.created_at.to_s,
                      "No",
-                     "Yes",
-                     "Yes",
-                     "Yes",
-                     nil
+                     "Yes"
                      ]
                  
     end
 
     it "renders ineligible CSV" do
       reg = FactoryGirl.create(:step_1_registrant, :us_citizen => false)
-      assert_equal "Not a US citizen", reg.to_csv_array[-7]
+      assert_equal "Not a US citizen", reg.to_csv_array[-4]
     end
     
     it "includes non-english/spanish locale names" do
       reg = FactoryGirl.create(:api_v2_maximal_registrant, :locale => "zh-tw")
-      reg.to_csv_array[5].should == "Chinese (Traditional)"
-    end
-    
-    it "includes geo location and PA tracking id" do
-      reg = FactoryGirl.create(:api_v2_maximal_registrant)
-      reg.state_ovr_data = {}
-      reg.state_ovr_data["pa_transaction_id"] = "PA ID"
-      reg.state_ovr_data["geo_location"] = {"lat"=>1.23, "long"=>2.34} 
-      assert_equal [ "Complete",
-                     "tracking_source",
-                     "part_tracking_id",
-                     "open id",
-                     "PA ID",
-                     "English",
-                     reg.date_of_birth.to_s(:month_day_year),
-                     "citizen@example.com",
-                     "No",
-                     "Yes",
-                     "Mrs.",
-                     "Susan",
-                     "Brownell",
-                     "Anthony",
-                     "III",
-                     "123 Civil Rights Way",
-                     "Apt 2",
-                     "West Grove",
-                     "County",
-                     "MA",
-                     "02134",
-                     "Yes",
-                     "10 Main St",
-                     "Box 5",
-                     "Adams",
-                     "Mailing County",
-                     "MA",
-                     "02135",
-                     nil,
-                     "White (not Hispanic)",
-                     "123-456-7890",
-                     "Mobile",
-                     "Yes",
-                     "Yes",
-                     "Yes",
-                     "Yes",
-                     "color?",
-                     "blue",
-                     "dog name?",
-                     "fido",
-                     "Yes",
-                     "Yes",
-                     nil,
-                     reg.created_at && reg.created_at.to_s,
-                     "No",
-                     "Yes",
-                     "Yes",
-                     "Yes",
-                     "lat: 1.23 lon: 2.34"
-                     ],
-                 reg.to_csv_array
+      reg.to_csv_array[3].should == "Chinese (Traditional)"
     end
 
     it "has a CSV header" do

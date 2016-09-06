@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160906192704) do
+ActiveRecord::Schema.define(:version => 20160827171640) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -102,7 +102,6 @@ ActiveRecord::Schema.define(:version => 20160906192704) do
     t.text     "pixel_tracking_codes"
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
-    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"
