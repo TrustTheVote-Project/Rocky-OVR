@@ -7,7 +7,7 @@ class PARegistrationRequest
 
   def self.send_request(params)
 
-    print 'PA:REQUEST>> ', params, "\n"
+    # print 'PA:REQUEST>> ', params, "\n"
     server = RockyConf.ovr_states.PA.api_settings.api_url # 'https://paovrwebapi.votespa.com'
     api_key = RockyConf.ovr_states.PA.api_settings.api_key
     url = "/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=#{api_key}&sysparm_action=SETAPPLICATION&sysparm_Language=0"
