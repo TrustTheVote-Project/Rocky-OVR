@@ -1,12 +1,14 @@
 var emailTemplateUI = function() {
-  $(".locale-select").change(function() {
+  var handler = function() {
     $(".email-template").hide();
-    var loc = this.value;
-    console.log(loc);
-    $(".email-template-"+loc).show();
-  })
-  $(".locale-select").change();
-}
+    var loc = $("#email-locale-select").val();
+    var type = $("#email-type-select").val();
+    var template_class = ".email-template-"+ type + "--" + loc;
+    $(template_class).show();
+  };
+  $(".template-select").change(handler);
+  handler();
+};
 
 // treats <.switcher>'s direct child <a> elements as elements switchers
 // on click:
