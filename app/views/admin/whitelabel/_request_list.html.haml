@@ -18,7 +18,7 @@
       - p = request.partner
       %tr
         %td= request.date
-        %td= p.id
+        %td= link_to p.id, admin_partner_path(p)
         %td= h p.name
         %td= h p.organization
         %td= mail_to p.email, p.email
