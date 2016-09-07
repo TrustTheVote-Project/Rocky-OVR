@@ -1,4 +1,4 @@
-V3#***** BEGIN LICENSE BLOCK *****
+#***** BEGIN LICENSE BLOCK *****
 #
 #Version: RTV Public License 1.0
 #

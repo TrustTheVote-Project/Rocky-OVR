@@ -152,5 +152,8 @@ module ApplicationHelper
     base64 = Base64.encode64(asset.to_s).gsub(/\s+/, "")
     "data:#{asset.content_type};base64,#{Rack::Utils.escape(base64)}"
   end
-  
+
+  def show_custom_branding
+    false
+  end
 end
