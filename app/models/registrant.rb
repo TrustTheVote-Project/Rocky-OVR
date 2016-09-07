@@ -234,6 +234,7 @@ class Registrant < ActiveRecord::Base
   after_validation :enqueue_tell_friends_emails
 
   before_create :generate_uid
+  before_create :set_dl_defaults
 
   before_save :set_questions, :set_finish_with_state
 
@@ -409,6 +410,10 @@ class Registrant < ActiveRecord::Base
 
   def at_least_step_3?
     at_least_step?(3)
+  end
+
+  def at_least_step_4?
+    at_least_step?(4)
   end
 
   def at_least_step_5?
@@ -1461,6 +1466,12 @@ class Registrant < ActiveRecord::Base
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
+  end
+  
+  def set_dl_defaults
+    if has_state_license.nil? && self.home_state_allows_ovr_ignoring_license?
+      self.has_state_license = true
+    end
   end
 
   def yes_no(attribute)

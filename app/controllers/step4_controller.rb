@@ -63,14 +63,28 @@ class Step4Controller < RegistrationStep
 
   def advance_to_next_step
     @registrant.advance_to_step_4
+    if @registrant.use_short_form? && !@registrant.using_state_online_registration?
+      @registrant.advance_to_step_5
+    end
   end
 
   def next_url
     if @registrant.using_state_online_registration?
       registrant_state_online_registration_url(@registrant)
     else
-      registrant_step_5_url(@registrant)
+      if @registrant.use_short_form?
+        registrant_download_url(@registrant)
+      else
+        registrant_step_5_url(@registrant)
+      end
     end
+  end
+  
+  def redirect_when_eligible
+    if @registrant.use_short_form? && !@registrant.using_state_online_registration?
+      @registrant.wrap_up
+    end
+    super
   end
 
   def set_up_view_variables

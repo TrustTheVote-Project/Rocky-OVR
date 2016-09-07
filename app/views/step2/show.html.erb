@@ -1,5 +1,4 @@
 
-
 <h1><%= t('txt.registration.step_2_header') %></h1>
 
 <%= form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form| %>
@@ -32,31 +31,34 @@
     </ul>
   </fieldset>
 
-  <%- if @registrant.use_short_form? %>
-    <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>  
-  <%- end %>
 
   <%= render :partial=> "registrants/home_address", :locals=>{:form=>form} %>
   
   <%- if @registrant.use_short_form? %>
     <%= render(:partial => 'previous', :locals => {:form => form, :show_hr=>false}) unless @registrant.first_registration? %>
     
+    <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>  
+    
+    
     <%- if @registrant.home_state_allows_ovr_ignoring_license? %>
       <%- content_for :head do %>
         <script>
         $(document).ready(function() {
-          var show_fields = <%= @registrant.has_state_license? %>;
           function hasStateLicenseSelected() {
             return $('input[name="registrant[has_state_license]"]:checked').val() == "1";
           }
           if(hasStateLicenseSelected()) {
             $('.skip_state_registration').hide();    
+          } else {
+            $('.use_state_registration').hide();    
           }
           $('input[name="registrant[has_state_license]"]').click(function() {
             if (hasStateLicenseSelected()) {
                $('.skip_state_registration').hide(); 
+               $('.use_state_registration').show();    
             } else {
               $('.skip_state_registration').show();
+              $('.use_state_registration').hide();    
             }
           });  
         });
@@ -65,16 +67,19 @@
     
     
       <ul class="radio">
-        <li class="spacer">&nbsp;</li>
-        <li>
+        <li class='has_license'>
           <h3>
             <%= form.radio_button :has_state_license, 1, checked: @registrant.has_state_license? %> <%= form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev) %>
           </h3>
+          <div class='use_state_registration checkbox-explanation'>
+            <p><%= I18n.t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name) %></p>
+          </div>
         </li>
-        <li class="spacer">&nbsp;</li>
+      </ul>
+      <ul class="radio">        
         <li>
           <h3>
-            <%= form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license? %> <%= form.label :has_state_license_1, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev) %>
+            <%= form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license? %> <%= form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev) %>
           </h3>
         </li>
       </ul>
@@ -87,12 +92,22 @@
       <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
     <%- end %>
     <%= render :partial=> "registrants/phone", :locals=>{:form=>form} %>
-    <%= render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true} %>
-    <%= render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form} %>
+    <fieldset class='no_border'>
+        <%= render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true} %>
+        <%= render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form} %>
     
-    <%= render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form} %>      
-  
-    <%= rollover_button(:prepare, I18n.t('txt.button.prepare')) %>
+        <%= render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form} %>      
+    </fieldset>
+    <%- if  @registrant.home_state_allows_ovr_ignoring_license? %>
+      <div class="use_state_registration">
+          <%= rollover_button(:prepare, I18n.t('txt.button.submit')) %>
+      </div>
+    <%- end %>
+    <div class="skip_state_registration">
+        <%= rollover_button(:prepare, I18n.t('txt.button.prepare')) %>
+    </div>
+    
+        
     
   <%- else %>
     <%= render(:partial => 'previous', :locals => {:form => form}) unless @registrant.first_registration? %>

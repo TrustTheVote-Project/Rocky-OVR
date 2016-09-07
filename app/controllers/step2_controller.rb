@@ -30,6 +30,8 @@ class Step2Controller < RegistrationStep
     if params[:registrant]
       params[:registrant].delete(:home_state_name)
     end
+    params[:registrant][:using_state_online_registration] = !params[:registrant_state_online_registration].nil?
+    
     if params[:javascript_disabled] == "1" && params[:registrant]
       reg = params[:registrant]
       if reg[:has_mailing_address] == "0"
@@ -48,21 +50,27 @@ class Step2Controller < RegistrationStep
     @registrant.advance_to_step_2
     if @registrant.use_short_form?
       @registrant.advance_to_step_3
-      @registrant.advance_to_step_4
-      @registrant.advance_to_step_5
+      if !@registrant.in_ovr_flow?
+        @registrant.advance_to_step_4
+        @registrant.advance_to_step_5
+      end
     end
   end
 
   def next_url
     if @registrant.use_short_form?
-      registrant_download_url(@registrant)
+      if @registrant.in_ovr_flow?
+        registrant_step_4_url(@registrant)
+      else
+        registrant_download_url(@registrant)
+      end
     else
       registrant_step_3_url(@registrant)
     end
   end
 
   def redirect_when_eligible
-    if @registrant.use_short_form?
+    if @registrant.use_short_form? && !@registrant.in_ovr_flow?   
       @registrant.wrap_up
     end
     super

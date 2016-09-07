@@ -53,4 +53,9 @@ $(document).ready(function() {
 <div class="skip_state_registration">
   <h1><%= t('txt.registration.step_3_header') %></h1>
   <%= render partial: 'skip_state', locals: { form: form } %>
+  <%- if @registrant.use_short_form? %>
+    <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.prepare').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>        
+  <%- else %>
+    <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>  
+  <%- end %>
 </div>

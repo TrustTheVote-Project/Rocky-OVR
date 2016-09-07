@@ -370,12 +370,13 @@ div.back {
 
 
 .has_license .checkbox-explanation p {
-    background: none repeat scroll 0 0 #EFEFEF;
-    color: #2F9E00;
+    //background: none repeat scroll 0 0 #EFEFEF;
+    color: #c62129;
+    border: 2px solid #c62129;
     font-size: 13px;
     font-weight: bold;
-    margin: -5px 75px 20px 110px;
-    padding: 10px;
+    margin: 0px 35px 20px;
+    padding: 15px;
 }
 
 
@@ -730,7 +731,7 @@ body {
     background-repeat: repeat-x;
     background-size: auto auto;
     color: #404040;
-    font-family: "Open Sans";
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;
@@ -1037,10 +1038,12 @@ ul.checkbox h3 input {
     box-sizing: border-box;
     display: block;
     float: left;
-    height: 20px;
+    height: 17px;
+    margin-top: 6px;
     width: 20px;
     -webkit-appearance: checkbox;
 }
+
 li.width_a div {
     width: 300px;
 }
@@ -1060,7 +1063,7 @@ fieldset ul.checkbox li {
     width: 100%;
 }
 ul.checkbox h3 label {
-    display: inline;
+    display: inline-block;
     line-height: 20px;
     margin-right: 10px;
     width: 90%;
@@ -1309,11 +1312,42 @@ div.rollover_button a.button_share_twitter span, div.rollover_button:hover a.but
 ul.checkbox h3 input {
     -moz-appearance: checkbox;
     box-sizing: border-box;
-    display: block;
-    float: left;
-    height: 20px;
     width: 20px;
+    display: inline-block;
+    height: 14px;
+    float: none;
+    vertical-align: top;    
 }
+ul.checkbox-with-tooltip h3 label {
+  width: auto;
+}
+
+ul.radio {
+  li {
+    text-align: left;
+    h3 {
+      margin-bottom: 5px;
+      margin-left: 12px;
+      input[type='radio'] {
+        box-sizing: border-box;
+        width: 20px;
+        display: inline-block;
+        height: 14px;
+        float: none;
+        vertical-align: top;
+        margin-top: 6px;  
+      }
+      label {
+        display: inline-block;
+        line-height: 20px;
+        margin-right: 10px;
+        width: 90%;
+        
+      }
+    }
+  }
+}
+
 
 select {
 border: 1px solid #bebebe;

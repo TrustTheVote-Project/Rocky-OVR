@@ -72,6 +72,7 @@ en:
       not_given: none
       has_state_license: I have a current %{state} state identification card or driver's
         license
+      has_state_license_eligible: You may be eligible to finish your voter registration using the %{state} online voter registration system.
       has_no_state_license: I do not have a current %{state} state identification
         card or driver's license
       titles:
