@@ -1,11 +1,14 @@
 %div.whitelabeled
-  Select a language for editing emails:
-  %select.locale-select
+  Select template's language and category:
+  %select#email-locale-select.template-select
     - I18n.available_locales.each do |loc|
-      %option(value=loc){ (loc.to_s=='en') ? { selected: '' } : {} }= loc
+      %option(value=loc){ (loc.to_s=='en') ? { selected: '' } : {} }= loc.upcase
+  %select#email-type-select.template-select
+    - EmailTemplate::EMAIL_TYPES.each do |type|
+      %option(value=type){ (type == 'confirmation') ? { selected: '' } : {} }= type.humanize
   - prefix ||= ""
   - EmailTemplate::TEMPLATE_NAMES.each do |name, label|
-    %ul(class="stacked email-template email-template-#{ name.split('.').last }")
+    %ul(class="stacked email-template email-template-#{name.sub(".", "--")}")
       %li.width_h
         %h3
           %label= label
