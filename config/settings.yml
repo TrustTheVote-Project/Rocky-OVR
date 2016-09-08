@@ -16,6 +16,9 @@ default_url_host: "register.example.com"
 ui_url_host: "register5.example.com"
 
 
+# this URL (if present) is shown as a WIKI nav menu item in the Partner portal
+#partner_wiki_url: "http://www.something.com"
+
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
   admin_recipients: "errors@rockthevote.com, alex.mekelburg@osetfoundation.org"
