@@ -12,7 +12,7 @@
   "ispartychange": "",
   "isfederalvoter": "",
   "DateOfBirth": "1944-05-02",
-  "Gender": "F",
+  "Gender": "",
   "Ethnicity": "H",
   "Phone": "123-456-7890",
   "Email": "testing@rockthevote.com",
@@ -50,13 +50,12 @@
   "previousregcounty": "MCKEAN",
   "previousregyear": "",
   "declaration1": "1",
-  "assistedpersonname": "Ms Clark PA Kent",
+  "assistedpersonname": "Clark PA Kent",
   "assistedpersonAddress": "1234 Outer Space, PA",
   "assistedpersonphone": "123-456-7890",
   "assistancedeclaration2": "1",
   "ispollworker": "",
   "bilingualinterpreter": "",
   "pollworkerspeaklang": "",
-  "secondEmail": "",
-  "sendcopyinmail": "1"
+  "secondEmail": ""
 }

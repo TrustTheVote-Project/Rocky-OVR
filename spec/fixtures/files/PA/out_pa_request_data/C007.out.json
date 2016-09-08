@@ -12,7 +12,7 @@
   "ispartychange": "",
   "isfederalvoter": "",
   "DateOfBirth": "1975-06-06",
-  "Gender": "F",
+  "Gender": "",
   "Ethnicity": "O",
   "Phone": "554-232-3231",
   "Email": "testing@rockthevote.com",
@@ -50,13 +50,12 @@
   "previousregcounty": "MCKEAN",
   "previousregyear": "",
   "declaration1": "1",
-  "assistedpersonname": "Ms Bat Man",
+  "assistedpersonname": "Bat Man",
   "assistedpersonAddress": "12 Batcave, PA",
   "assistedpersonphone": "554-232-3231",
   "assistancedeclaration2": "1",
   "ispollworker": "",
   "bilingualinterpreter": "",
   "pollworkerspeaklang": "",
-  "secondEmail": "",
-  "sendcopyinmail": "1"
+  "secondEmail": ""
 }
