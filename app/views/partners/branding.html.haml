@@ -3,7 +3,7 @@
   %p
     = link_to I18n.t('partners.branding.title', default: 'Setup Custom Branding'), '#', class: :current
     |
-    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), branding_approval_partner_path
+    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), branding_approval_partner_path, id: "preview_and_submission_link"
 
   %p.switcher(data-hide-class = 'nav-items')
     = link_to "CSS", '#', class: :current, 'data-show-class' => 'css'
