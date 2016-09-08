@@ -1771,7 +1771,7 @@ describe Registrant do
     it "includes geo location and PA tracking id" do
       reg = FactoryGirl.create(:api_v2_maximal_registrant)
       reg.state_ovr_data = {}
-      reg.state_ovr_data["pa_transation_id"] = "PA ID"
+      reg.state_ovr_data["pa_transaction_id"] = "PA ID"
       reg.state_ovr_data["geo_location"] = {"lat"=>1.23, "long"=>2.34} 
       assert_equal [ "Complete",
                      "tracking_source",
@@ -1791,17 +1791,17 @@ describe Registrant do
                      "123 Civil Rights Way",
                      "Apt 2",
                      "West Grove",
-                     "CA",
                      "County",
-                     "94110",
+                     "MA",
+                     "02134",
                      "Yes",
                      "10 Main St",
                      "Box 5",
                      "Adams",
-                     "MA",
                      "Mailing County",
+                     "MA",
                      "02135",
-                     "Democratic",
+                     nil,
                      "White (not Hispanic)",
                      "123-456-7890",
                      "Mobile",
