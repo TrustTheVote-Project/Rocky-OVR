@@ -12,7 +12,7 @@
   "ispartychange": "",
   "isfederalvoter": "",
   "DateOfBirth": "1996-06-10",
-  "Gender": "F",
+  "Gender": "",
   "Ethnicity": "O",
   "Phone": "332-343-1212",
   "Email": "testing@rockthevote.com",
@@ -50,13 +50,12 @@
   "previousregcounty": "MCKEAN",
   "previousregyear": "",
   "declaration1": "1",
-  "assistedpersonname": "Mr Chrissy Helper",
+  "assistedpersonname": "Chrissy Helper",
   "assistedpersonAddress": "121 Fun Lane, PA",
   "assistedpersonphone": "332-343-1212",
   "assistancedeclaration2": "1",
   "ispollworker": "",
   "bilingualinterpreter": "",
   "pollworkerspeaklang": "",
-  "secondEmail": "",
-  "sendcopyinmail": "1"
+  "secondEmail": ""
 }
