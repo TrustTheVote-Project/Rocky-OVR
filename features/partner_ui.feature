@@ -99,3 +99,13 @@ Feature: Log in
       | preview/pdf_logo.jpg |
     Given fake registrant finished registration
     Then registrant pdf includes "preview/pdf_logo.jpg"
+
+  Scenario: wiki nav present
+    Given settings partner wiki url is "http://www.wiki.com"
+    When reload the page
+    Then I should see an href to "http://www.wiki.com"
+
+  Scenario: wiki nav hidden
+    Given settings partner wiki url is ""
+    When reload the page
+    Then I should not see an href to "http://www.wiki.com"
