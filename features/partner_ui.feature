@@ -20,9 +20,9 @@ Feature: Log in
   Scenario: Preview changes
     Given that partner's assets do not exist
     When I go to the partner branding page
-    And I should see a link for "registrant_preview"
+    And I follow "preview_and_submission_link"
     And Assets "not set" warning should be shown
-    When I follow "registrant_preview"
+    And I follow "registrant_preview"
     Then I should be redirected to the right preview URL
 
   Scenario: Preview CSS injection
@@ -35,6 +35,7 @@ Feature: Log in
     And I follow "Assets"
     Then non-approved assets are application.css, registration.css, partner.css
     Then approved assets are empty
+    When I follow "preview_and_submission_link"
     And I follow "registrant_preview"
     Then preview/application.css should be loaded
     Then preview/registration.css should be loaded
@@ -45,6 +46,7 @@ Feature: Log in
       | asset                    |
       | preview/registration.css |
     When I go to the partner branding page
+    When I follow "preview_and_submission_link"
     And I follow "registrant_preview"
     Then system application.css should be loaded
     Then preview/registration.css should be loaded
@@ -65,23 +67,22 @@ Feature: Log in
     When I go to the partner branding page
     Then non-approved assets are empty
     And approved assets are empty
-    And Assets "not set" warning should be shown
     Then I attach the file at "spec/fixtures/files/partner_logo.jpg" to "partner_file"
     And I press "partner_submit"
     Then non-approved assets are partner_logo.jpg
     And approved assets are empty
-    And Assets status warning is not shown
     Then changes are published
     Then reload the page
     Then non-approved assets are partner_logo.jpg
     And approved assets are partner_logo.jpg
-    And Assets "not changed" warning should be shown
 
   Scenario: fake registrant creation
     Given partner's assets exist:
       | asset                |
       | preview/pdf_logo.jpg |
     When I go to the partner branding page
+    When I follow "preview_and_submission_link"
+    And Assets status warning is not shown
     And I follow "registrant_preview"
     And I have not set a locale
     And I fill in "Email Address" with "john.public@example.com"
