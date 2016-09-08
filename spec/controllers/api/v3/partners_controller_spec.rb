@@ -68,7 +68,7 @@ describe Api::V3::PartnersController do
       let(:query) {{
         :partner_id=>'1',
       }}
-      let(:mock_partner) { double(Partner, :name=>"Partner Name")}
+      let(:mock_partner) { double(Partner, :organization=>"Partner Org Name")}
       before(:each) do
         allow(Partner).to receive(:find_by_id).with('1').and_return(mock_partner)
         allow(mock_partner).to receive(:enabled_for_grommet?).and_return(true)
@@ -81,8 +81,8 @@ describe Api::V3::PartnersController do
         it "returns a JSON body with is_valid=true" do
           expect(JSON.parse(subject.body)["is_valid"]).to eq(true)
         end
-        it "returns a JSON body with partner_name='Partner Name'" do
-          expect(JSON.parse(subject.body)["partner_name"]).to eq("Partner Name")
+        it "returns a JSON body with partner_name='Partner Org Name'" do
+          expect(JSON.parse(subject.body)["partner_name"]).to eq("Partner Org Name")
         end
       end
       context 'when parter is not allowed' do

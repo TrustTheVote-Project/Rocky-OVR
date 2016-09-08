@@ -61,7 +61,7 @@ class Api::V3::PartnersController < Api::V3::BaseController
       if partner && partner.enabled_for_grommet?
         jsonp({
           is_valid: true,
-          partner_name: partner.name
+          partner_name: partner.organization
         })
       else
         jsonp({
