@@ -47,14 +47,16 @@ end
 Then(/^I should see an email body field for "(.*?)" for each language$/) do |template_label|
   I18n.available_locales.each do |loc|
     t_name = EmailTemplate::TEMPLATE_NAMES.to_a.detect{|nl| nl[1]=="#{template_label} #{loc.to_s.upcase}" }
-    page.should have_field("template[#{t_name[0]}]")
+    # only PREVIEW emails set is edited manually
+    page.should have_field("template[preview_#{t_name[0]}]")
   end
 end
 
 Then(/^I should see an email subject field for "(.*?)" for each langauge$/) do |template_label|
   I18n.available_locales.each do |loc|
     t_name = EmailTemplate::TEMPLATE_NAMES.to_a.detect{|nl| nl[1]=="#{template_label} #{loc.to_s.upcase}" }
-    page.should have_field("template_subject[#{t_name[0]}]")
+    # only PREVIEW emails set is edited manually
+    page.should have_field("template_subject[preview_#{t_name[0]}]")
   end
   
 end
