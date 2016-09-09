@@ -22,34 +22,5 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class Admin::BaseController < ApplicationController
-
-  layout 'admin'
-
-  skip_before_filter :authenticate_everything
-  before_filter :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
-  before_filter :init_nav_class
-
-  helper_method :current_admin
-
-  private
-
-  def authenticate
-    redirect_to admin_login_path unless current_admin
-  end
-
-  def current_admin_session
-    return @current_admin_session if defined?(@current_admin_session)
-    @current_admin_session = AdminSession.find
-  end
-
-  def current_admin
-    return @current_admin if defined?(@current_admin)
-    @current_admin = current_admin_session && current_admin_session.record
-  end
-
-  def init_nav_class
-    @nav_class = Hash.new
-  end
-
+class AdminSession < Authlogic::Session::Base
 end

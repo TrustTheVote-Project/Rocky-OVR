@@ -22,34 +22,32 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class Admin::BaseController < ApplicationController
+class Admin::AdminSessionsController < Admin::BaseController
+  skip_before_filter :authenticate
+  layout "admin"
 
-  layout 'admin'
-
-  skip_before_filter :authenticate_everything
-  before_filter :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
-  before_filter :init_nav_class
-
-  helper_method :current_admin
-
-  private
-
-  def authenticate
-    redirect_to admin_login_path unless current_admin
+  def new
+    if current_admin
+      redirect_to admin_partners_path
+    else
+      @admin_session = AdminSession.new
+    end
   end
 
-  def current_admin_session
-    return @current_admin_session if defined?(@current_admin_session)
-    @current_admin_session = AdminSession.find
+  def create
+    @admin_session = AdminSession.new(params[:admin_session])
+    if @admin_session.save
+      redirect_to admin_partners_path
+    else
+      render :action => 'new'
+    end
   end
 
-  def current_admin
-    return @current_admin if defined?(@current_admin)
-    @current_admin = current_admin_session && current_admin_session.record
+  def destroy
+    if current_admin_session
+      current_admin_session.destroy
+      flash[:message] = "Successfully logged out"
+    end
+    redirect_to admin_login_path
   end
-
-  def init_nav_class
-    @nav_class = Hash.new
-  end
-
 end
