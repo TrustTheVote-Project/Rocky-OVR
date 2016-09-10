@@ -1,4 +1,3 @@
-
 <h1><%= t('txt.registration.step_2_header') %></h1>
 
 <%= form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form| %>
@@ -31,12 +30,25 @@
     </ul>
   </fieldset>
 
+  <%- if @registrant.use_short_form? %>
+    <ul class="checkbox checkbox-step-1">
+      <li class="spacer">&nbsp;</li>
+      <li>
+        <h3>
+          <%= form.check_box :us_citizen %> <%= form.label :us_citizen %>
+          <span class="error"><%= form.object.errors[:us_citizen].join("\n") %></span>
+        </h3>
+      </li>
+    </ul>
+    <%= render partial: 'previous_name', locals: { form: form } %>
+    
+  <%- end %>
 
   <%= render :partial=> "registrants/home_address", :locals=>{:form=>form} %>
   
   <%- if @registrant.use_short_form? %>
-    <%= render(:partial => 'previous', :locals => {:form => form, :show_hr=>false}) unless @registrant.first_registration? %>
     
+    <%= render partial: 'previous_address', locals: { form: form } %>
     <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>  
     
     

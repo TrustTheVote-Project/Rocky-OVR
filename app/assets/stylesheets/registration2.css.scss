@@ -1,0 +1,122 @@
+body {
+  width: 100%;
+  margin: 0px auto;
+  background: white;
+}
+
+#header {
+  text-align: center;
+  background-image: url(/assets/reg/rtv-header.png);
+  background-repeat: no-repeat;
+  height: 80px;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  margin-bottom: 60px;  
+  #progress-bar {
+    display: none;
+  }
+}
+
+#header, #main {
+  width: 600px;
+  margin: 0px auto;
+}
+
+#main {
+  width: 580px;
+  padding: 20px 10px;
+  #other_language_link {
+    text-align: right;
+    margin: 1em 0;
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: #fff url(/assets/reg/select-arrow.png) no-repeat 92% center;
+      font-size: 14px;
+      padding: 6px 40px 6px 5px;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+      height: 34px;
+      border: 0;
+    }
+  }
+  
+  form {
+    ul, ul.flat {
+      margin: 0;
+      padding: 0;
+      li, li.width_f {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        h3 {
+          float: none;
+          text-align: left;
+          width: auto;
+        }
+        div {
+          width: 75%;
+          input {
+            border: 1px solid #333333;
+            width: calc(100% - 10px - 2px);
+            padding: 5px;
+            margin: 0;
+            &#registrant_home_zip_code {
+              
+            }
+          }
+        }
+        > div.tooltip {
+          width: calc(25% - 10px);
+          padding: 5px;
+          float: none;
+          display: inline-block;
+        }
+        span.error {
+          display: block;
+        }
+        &.registrant-form__home-zip__line {
+          width: 65%;          
+        }
+        
+        &.registrant-form__home-zip__button {
+          width: 35%;
+          button {
+            height: 51px;
+          }          
+        }
+        .button.rollover_button {
+          margin: 0;
+          display: inline-block;
+        }
+      }
+    }
+    .rollover_button button {
+      background-color: #fff;
+      background-image: none;
+      border: 2px solid #b2272c;
+      border-radius: 0;
+      box-shadow: none;
+      color: #b2272c !important;
+      font-family: 'Fira Sans', helvetica, arial, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 20px;
+      margin: 0 !important;
+      padding: 11px 20px !important;
+      text-align: center !important;
+      text-decoration: none;
+      text-shadow: none;
+      transition: background 0.5s ease-out 0s, color 0.05s ease-in 0s;
+      margin: 0;
+      min-width: 185px;
+      &:hover {
+        background: #b2272c;
+        color: #fff !important;
+        cursor: pointer;
+        transition: background 0.9s ease-out, color 0.05s ease-in;
+      }
+    }
+  }
+  
+}
