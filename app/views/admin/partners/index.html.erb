@@ -20,10 +20,8 @@
       <th>API Key</th>
       <th>Whitelabeled</th>
       <th></th>
-      <%- if show_custom_branding %>
       <th></th>
       <th></th>
-      <%- end %>
     </tr>
   </thead>
   <tbody>
@@ -35,10 +33,8 @@
         <td><%= h p.api_key %></td>
         <td><%= p.whitelabeled? ? 'Yes' : 'No' %></td>
         <td><%= link_to "Show", admin_partner_path(p) %></td>
-        <%- if show_custom_branding %>
         <td><%= link_to "Preview", p.preview_custom_assets_link, target: '_blank' %></td>
         <td><%= link_to "Publish", publish_admin_partner_path(p), method: 'post', confirm: publish_confirmation %></td>
-        <%- end %>
       </tr>
     <%- end %>
   </tbody>

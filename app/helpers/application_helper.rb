@@ -157,7 +157,4 @@ module ApplicationHelper
     BrandingUpdateRequest.all.count { |x| x.open? }
   end
 
-  def show_custom_branding
-    false
-  end
 end
