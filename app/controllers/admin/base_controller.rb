@@ -35,7 +35,10 @@ class Admin::BaseController < ApplicationController
   private
 
   def authenticate
-    redirect_to admin_login_path unless current_admin
+    unless current_admin
+      store_location
+      redirect_to admin_login_path
+    end
   end
 
   def current_admin_session
@@ -50,6 +53,15 @@ class Admin::BaseController < ApplicationController
 
   def init_nav_class
     @nav_class = Hash.new
+  end
+
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
   end
 
 end
