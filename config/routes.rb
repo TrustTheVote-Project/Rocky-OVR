@@ -137,6 +137,9 @@ Rocky::Application.routes.draw do
         post :reject_request
       end
     end
+    resource  "admin_sessions"
+    match  "login",  :to => "admin_sessions#new", :as=>'login'
+    match "logout", :to => "admin_sessions#destroy", :as=>'logout'
 
   end
     

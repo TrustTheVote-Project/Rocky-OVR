@@ -1,0 +1,12 @@
+= form_for @admin_session, url: admin_admin_sessions_path do |f|
+  - if @admin_session.errors.any?
+    %p
+      %span.error Unable to login
+  %div
+    %p
+      %h3= f.label :username, "Login"
+      = f.text_field :username
+    %p
+      %h3= f.label :password
+      = f.password_field :password
+    = f.submit "Log in"

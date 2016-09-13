@@ -15,12 +15,19 @@
 <body>
   <div id="bg"><div></div></div>
   <div id="container">
-    <div id="header">
-      <p>
-        <%= link_to "Dashboard", admin_partners_path, class: @nav_class[:dashboard] %>|
-        <%= link_to "Whitelabel requests (#{branding_open_requests_count})", requests_admin_whitelabel_path, class: @nav_class[:whitelabel] %>
-      </p>
-    </div>
+    <% if current_admin %>
+      <div id="header">
+        <span><%= link_to "Log out", admin_logout_path %></span>
+        <p>
+          <%= link_to "Dashboard", admin_partners_path, class: @nav_class[:dashboard] %>|
+          <%= link_to "Whitelabel requests (#{branding_open_requests_count})", requests_admin_whitelabel_path, class: @nav_class[:whitelabel] %>
+        </p>
+      </div>
+    <% else %>
+        <div id="header" class="not_logged_in">
+          <span><%= link_to "Log in", admin_login_path %></span>
+        </div>
+    <% end %>
 
     <div id="main">
       <div id="main_inner">

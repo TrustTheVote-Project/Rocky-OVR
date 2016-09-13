@@ -78,3 +78,8 @@ end
 Given(/^Assets publishing is expected/) do
   expect_any_instance_of(PartnerAssetsFolder).to receive(:publish_sub_assets)
 end
+
+Given(/^Admin logged in$/) do
+  allow_any_instance_of(Admin::BaseController).to receive(:current_admin).and_return(double)
+  allow_any_instance_of(Admin::BaseController).to receive(:current_admin_session).and_return(double)
+end

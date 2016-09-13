@@ -3,7 +3,10 @@ Feature: Admin gregistrations
   So I can manage government partners
   As an admin
   I want to view, create and edit government partners in the admin UI
-  
+
+    Background:
+      Given Admin logged in
+
     Scenario: Government partner lists
       Given the following government partner exists:
         | organization                 |
