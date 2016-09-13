@@ -141,6 +141,9 @@ Rocky::Application.routes.draw do
     match  "login",  :to => "admin_sessions#new", :as=>'login'
     match "logout", :to => "admin_sessions#destroy", :as=>'logout'
 
+    resource :stats, only: [] do
+      get :downloads
+    end
   end
     
   # The priority is based upon order of creation:
