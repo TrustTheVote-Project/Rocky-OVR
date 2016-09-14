@@ -3,7 +3,7 @@
   <%- if @registrant.partner.rtv_email_opt_in || @registrant.partner.primary? %>
     <ul class="checkbox">
       <li class="spacer">&nbsp;</li>
-      <li>
+      <li class='registrant-form__opt-in-email__line'>
         <h3>
           <%= form.check_box :opt_in_email %>
           <%= form.label :opt_in_email, t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe %>
@@ -17,7 +17,7 @@
   <%- if @registrant.partner.partner_email_opt_in && !@registrant.partner.primary? %>
     <ul class="checkbox">
       <li class="spacer">&nbsp;</li>
-      <li>
+      <li class='registrant-form__partner-opt-in-email__line'>
         <h3>
           <%= form.check_box :partner_opt_in_email %>
           <%= form.label :partner_opt_in_email, t('txt.registration.opt_in_email', :organization => h(@registrant.partner.organization)).html_safe %>

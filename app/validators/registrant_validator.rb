@@ -12,15 +12,16 @@ class RegistrantValidator < ActiveModel::Validator
       if !reg.use_short_form?
         reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
         reg.validate_date_of_birth
+
+        reg.validates_inclusion_of  :will_be_18_by_election, :in=>[true,false] unless reg.building_via_api_call?
+        reg.validates_inclusion_of  :us_citizen, :in => [ false, true ] unless reg.building_via_api_call?
       end
       
-      reg.validates_inclusion_of  :will_be_18_by_election, :in=>[true,false] unless reg.building_via_api_call?
     
       reg.validates_inclusion_of  :locale, :in => RockyConf.enabled_locales
       reg.validates_presence_of   :email_address unless reg.not_require_email_address?
       validates_zip_code  reg,    :home_zip_code
       reg.validates_presence_of   :home_state_id
-      reg.validates_inclusion_of  :us_citizen, :in => [ false, true ] unless reg.building_via_api_call?
     end
     
     if reg.at_least_step_2?

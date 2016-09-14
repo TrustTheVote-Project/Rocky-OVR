@@ -1,5 +1,5 @@
 <ul class="flat race-dropdown">
-  <li>
+  <li class='registrant-form__race__line'>
     <h3><%= form.label :race %></h3>
     <div><%= form.select :race, @registrant.races, :include_blank => true %></div>
     <div class="tooltip"><%= tooltip_tag :race, @race_tooltip %></div>
@@ -8,7 +8,7 @@
 </ul>
 <% if @state_parties && @state_parties.any? %>
   <ul class="flat party-dropdown">
-    <li>
+    <li class='registrant-form__party__line'>
       <h3><%= form.label :party %></h3>
       <%= select_div form, :party, @state_parties, :include_blank => true %>
       <div class="tooltip"><%= tooltip_tag :party, @party_tooltip %></div>

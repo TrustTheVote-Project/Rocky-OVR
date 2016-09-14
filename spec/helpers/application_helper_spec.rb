@@ -67,6 +67,12 @@ describe ApplicationHelper do
       partner = FactoryGirl.build(:partner, :whitelabeled => false)
       helper.partner_css(partner).should == [ 'application', 'registration' ]
     end
+    
+    it "should return default registration2 stylesheet for non-whitelabeled partner registrants with short form" do
+      partner = FactoryGirl.build(:partner, :whitelabeled => false)
+      registrant = double(Registrant, use_short_form?: true, is_fake: false)
+      helper.partner_css(partner, registrant).should == [ 'application', 'registration2' ]      
+    end
 
     it "should return custom application css" do
       partner = FactoryGirl.build(:partner, :whitelabeled => true)

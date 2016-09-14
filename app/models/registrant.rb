@@ -1260,7 +1260,7 @@ class Registrant < ActiveRecord::Base
   def check_ineligible
     self.ineligible_non_participating_state = home_state && !home_state.participating?
     self.ineligible_age = age && age < 18
-    self.ineligible_non_citizen = !us_citizen?
+    self.ineligible_non_citizen = !us_citizen? && (!use_short_form? || at_least_step_2? || rejected?)
     true # don't halt save in after_validation
   end
 

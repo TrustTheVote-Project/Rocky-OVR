@@ -34,24 +34,28 @@ module ApplicationHelper
     opts
   end
 
-  def preview_partner_css(partner)
+  def preview_partner_css(partner, registrant)
     [
       partner.application_css_url(:preview) || 'application',
-      partner.registration_css_url(:preview) || 'registration',
+      registrant && registrant.use_short_form? ? partner.registration2_css_url(:preview) || 'registration2' : partner.registration_css_url(:preview) || 'registration',
       *registrant_css,
       partner.partner_css_url(:preview)
     ].compact
   end
 
-  def partner_css(partner = @partner)
-    if params.has_key?(:preview_custom_assets) || @registrant.try(:is_fake)
+  def partner_css(partner = @partner, registrant=@registrant)
+    if params.has_key?(:preview_custom_assets) || registrant.try(:is_fake)
       return preview_partner_css(partner)
     end
     wl = partner && partner.whitelabeled?
 
     stylesheets = []
     stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
-    stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
+    if registrant && registrant.use_short_form?
+      stylesheets << (wl && partner.registration2_css_present? ? partner.registration2_css_url : "registration2")
+    else
+      stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
+    end
     stylesheets += registrant_css
     stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
     stylesheets
@@ -104,7 +108,8 @@ module ApplicationHelper
     kind = options.delete(:kind) || "text"
     selector = "#{kind}_field"
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
-    content_tag(:div, form.send( selector, field, {:size => nil}.merge(options) ).html_safe, :class => has_error).html_safe
+    class_name = [options.delete(:class), has_error].compact.join(' ')
+    content_tag(:div, form.send( selector, field, {:size => nil}.merge(options) ).html_safe, :class => class_name).html_safe
   end
 
   def select_div(form, field, contents, options={})
