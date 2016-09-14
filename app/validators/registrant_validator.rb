@@ -153,7 +153,7 @@ class RegistrantValidator < ActiveModel::Validator
       if reg.race.blank?
         reg.errors.add(:race, :blank)
       else
-        reg.errors.add(:race, :inclusion) unless english_races.include?(reg.english_race)
+        reg.errors.add(:race, :inclusion) unless reg.english_races.include?(reg.english_race)
       end
     end
   end
