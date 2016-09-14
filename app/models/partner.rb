@@ -497,7 +497,7 @@ class Partner < ActiveRecord::Base
   end
 
   def generate_username
-    self.username = self.email
+    self.username = self.email if self.username.empty?
   end
 
   def generate_api_key!
