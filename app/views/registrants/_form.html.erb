@@ -42,7 +42,9 @@ $(document).ready(function() {
   
 </ul>
 <%- if !@registrant.use_short_form? %>
- <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>
+ <ul class="flat">
+   <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>
+  </ul>
 
   <ul class="checkbox checkbox-step-1">
     <li class="spacer">&nbsp;</li>

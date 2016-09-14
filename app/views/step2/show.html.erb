@@ -1,29 +1,31 @@
-<h1><%= t('txt.registration.step_2_header') %></h1>
+  <%- if !@registrant.use_short_form? %>
+    <h1><%= t('txt.registration.step_2_header') %></h1>
+  <%- end %>
 
 <%= form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form| %>
   <fieldset>
-    <legend><%= I18n.t('txt.registration.name') %><%= tooltip_tag :registrant_name %></legend>
+    <legend><span><%= I18n.t('txt.registration.name') %></span><%= tooltip_tag :registrant_name %></legend>
     <ul class="stacked">
-      <li class="width_d">
+      <li class="width_d registrant-form__name-title__line">
         <h3><%= form.label :name_title %></h3>
         <%= select_div form, :name_title, @registrant.titles, :include_blank => true %>
         <span class="error"><%= form.object.errors[:name_title].join("\n") %></span>
       </li>
-      <li class="width_b">
+      <li class="width_b registrant-form__first-name__line">
         <h3><%= form.label :first_name %></h3>
         <%= field_div form, :first_name %>
         <span class="error"><%= form.object.errors[:first_name].join("\n") %></span>
       </li>
-      <li class="width_c">
+      <li class="width_c registrant-form__middle-name__line">
         <h3><%= form.label :middle_name %></h3>
         <%= field_div form, :middle_name %>
       </li>
-      <li class="width_b">
+      <li class="width_b registrant-form__last-name__line">
         <h3><%= form.label :last_name %></h3>
         <%= field_div form, :last_name %>
         <span class="error"><%= form.object.errors[:last_name].join("\n") %></span>
       </li>
-      <li class="width_d">
+      <li class="width_d registrant-form__name-suffix__line">
         <h3><%= form.label :name_suffix %></h3>
         <div><%= form.select :name_suffix, @registrant.suffixes, :include_blank => t('txt.registration.select_none') %></div>
       </li>
@@ -33,7 +35,7 @@
   <%- if @registrant.use_short_form? %>
     <ul class="checkbox checkbox-step-1">
       <li class="spacer">&nbsp;</li>
-      <li>
+      <li class='registrant-form__us-citizen__line'>
         <h3>
           <%= form.check_box :us_citizen %> <%= form.label :us_citizen %>
           <span class="error"><%= form.object.errors[:us_citizen].join("\n") %></span>
@@ -49,7 +51,6 @@
   <%- if @registrant.use_short_form? %>
     
     <%= render partial: 'previous_address', locals: { form: form } %>
-    <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>  
     
     
     <%- if @registrant.home_state_allows_ovr_ignoring_license? %>
@@ -79,7 +80,7 @@
     
     
       <ul class="radio">
-        <li class='has_license'>
+        <li class='registrant-form__has-state-license__line has_license'>
           <h3>
             <%= form.radio_button :has_state_license, 1, checked: @registrant.has_state_license? %> <%= form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev) %>
           </h3>
@@ -89,7 +90,7 @@
         </li>
       </ul>
       <ul class="radio">        
-        <li>
+        <li class='registrant-form__has-no-state-license__line'>
           <h3>
             <%= form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license? %> <%= form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev) %>
           </h3>
@@ -98,12 +99,20 @@
       <div class="skip_state_registration">
         <%= render partial: 'step4/skip_state', locals: { form: form } %>
       </div>
+      <ul class='flat dob-and-phone'>
+        <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>  
+        <%= render :partial=> "registrants/phone", :locals=>{:form=>form} %>        
+      </ul>
       
     <%- else %>
-      <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false} %>
+      
+      <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>true} %>
       <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
+      <div class='clear-fix'></div>
+      <ul>
+        <%= render :partial=> "registrants/phone", :locals=>{:form=>form} %>
+      </ul>
     <%- end %>
-    <%= render :partial=> "registrants/phone", :locals=>{:form=>form} %>
     <fieldset class='no_border'>
         <%= render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true} %>
         <%= render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form} %>
@@ -123,10 +132,15 @@
     
   <%- else %>
     <%= render(:partial => 'previous', :locals => {:form => form}) unless @registrant.first_registration? %>
-    <%= render :partial=> "registrants/phone", :locals=>{:form=>form} %>
+    
+    <ul class="flat">
+      <%= render :partial=> "registrants/phone", :locals=>{:form=>form} %>
+    </ul>
+    </hr>
     
     <%= rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) %>
   <%- end %>
   
   <div class="back"><%= link_to t('txt.button.back').html_safe, registrant_path(@registrant) %></div>
+  <br/>
 <% end %>

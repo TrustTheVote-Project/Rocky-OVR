@@ -70,7 +70,7 @@ class Step2Controller < RegistrationStep
   end
 
   def redirect_when_eligible
-    if @registrant.use_short_form? && !@registrant.in_ovr_flow?   
+    if @registrant.use_short_form? && !@registrant.in_ovr_flow? && !@registrant.rejected?
       @registrant.wrap_up
     end
     super

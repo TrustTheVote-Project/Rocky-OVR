@@ -46,9 +46,9 @@ en:
         home_zip_code: ZIP Code
         us_citizen: I am a U.S. citizen.
         name_title: Title
-        first_name: First
+        first_name: First Name
         middle_name: Middle
-        last_name: Last
+        last_name: Last Name
         name_suffix: Suffix
         home_address: Address
         home_unit: ! 'Unit/Lot #'
