@@ -153,7 +153,7 @@ class Partner < ActiveRecord::Base
   serialize :survey_question_1, Hash
   serialize :survey_question_2, Hash
   serialize :pixel_tracking_codes, Hash
-  
+  serialize :branding_update_request, OpenStruct
   
   # Need to declare attributes for each enabled lang
   RockyConf.enabled_locales.each do |locale|

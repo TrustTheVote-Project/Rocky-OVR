@@ -1,0 +1,12 @@
+- @nav_class[:statistics] = :current
+%table
+  %thead
+    %th Partner ID
+    %th Partner Name
+    %th % PDFs downloaded
+  %tbody
+    - @downloads.each do |id, name, percent|
+      %tr
+        %td= link_to id, admin_partner_path(id) if id
+        %td= link_to name, admin_partner_path(id) if id
+        %td= percent

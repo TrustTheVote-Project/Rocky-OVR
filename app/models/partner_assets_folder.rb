@@ -80,6 +80,10 @@ class PartnerAssetsFolder
     File.join(@partner.assets_path, group.to_s, File.basename(name))
   end
 
+  def list_named_urls
+    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |f| [f.key.gsub( @partner.assets_path + '/', ''), cached_public_url(f)]}
+  end
+
   # Returns the list of all assets in the folder
   def list_assets
     files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }

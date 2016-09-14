@@ -1,0 +1,34 @@
+<%- # subject to refactoring - extract common template from CA and common state partials %>
+<% content_for :head do %>
+<script>
+
+$(document).ready(function() {
+  $('.skip_state_registration').hide();
+  $('.skip_state_registration_link').click(function() {
+    $('.skip_state_registration').show();
+  });
+});
+
+</script>
+<% end %>
+<div style="text-align:center;">
+  <H1>Online state registration is not supported in preview mode. Please click the following link</H1>
+  <br/>
+  <a href="#" class='skip_state_registration_link'>
+    <%= I18n.t('txt.button.skip_state_online_registration', :rtv_and_partner_name=>@registrant.rtv_and_partner_name).html_safe %>
+  </a>
+</div>
+<br/><br/>
+<br/><br/>
+
+<div class="skip_state_registration">
+  <h1><%= t('txt.registration.step_3_header') %></h1>
+    
+  <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form} %>
+
+  <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
+  
+  <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>  
+  
+  
+</div>

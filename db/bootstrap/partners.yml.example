@@ -17,3 +17,5 @@ sponsor:
   widget_image: rtv-234x60-v1.gif
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
+  survey_question_1_en:  "Hello?"
+  survey_question_2_en:  "Outta here?"
