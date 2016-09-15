@@ -1,7 +1,13 @@
 class RegistrantValidator < ActiveModel::Validator
+  
   def validate(reg)
     
-    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|[-*A-Z0-9\s]{7,42})$/i, :allow_blank => true
+    #regexp = /^(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))$/i
+    
+    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|([-*A-Z0-9\s]{7,42}(\s+\d{4})?))$/i, :allow_blank => true
+    
+  
+
     reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
     reg.validates_format_of :email_address, :with => Authlogic::Regex.email, :allow_blank => true
     reg.validates_presence_of :phone_type if reg.has_phone?
@@ -20,8 +26,12 @@ class RegistrantValidator < ActiveModel::Validator
     
       reg.validates_inclusion_of  :locale, :in => RockyConf.enabled_locales
       reg.validates_presence_of   :email_address unless reg.not_require_email_address?
-      validates_zip_code  reg,    :home_zip_code
       reg.validates_presence_of   :home_state_id
+    end
+    
+    if (reg.at_least_step_1? && (!reg.use_short_form? || reg.home_state_id.blank?)) ||
+       (reg.at_least_step_2? && reg.use_short_form? )
+      validates_zip_code  reg,    :home_zip_code
     end
     
     if reg.at_least_step_2?
@@ -36,10 +46,16 @@ class RegistrantValidator < ActiveModel::Validator
       validate_phone_present_if_opt_in_sms(reg)
     end
     
+    if requires_presence_of_state_id_number(reg)
+      reg.validates_presence_of :state_id_number unless reg.complete?
+      validate_state_id_number(reg)
+    end
+    # if reg.at_least_step_3? || (reg.at_least_step_2? && reg.use_short_form?)
+    #   validate_state_id_number(reg)
+    # end
+    
+    
     if reg.at_least_step_2? && reg.use_short_form? 
-      if !reg.in_ovr_flow?
-        reg.validates_presence_of :state_id_number unless reg.complete?
-      end
       if reg.home_state_allows_ovr_ignoring_license?
         reg.validates_inclusion_of  :has_state_license, :in=>[true,false]
       end
@@ -58,27 +74,19 @@ class RegistrantValidator < ActiveModel::Validator
     
 
     if reg.at_least_step_3?
-      unless reg.complete? || reg.in_ovr_flow?
-        reg.validates_presence_of :state_id_number
-      end
       unless reg.in_ovr_flow?
         validate_race(reg)        
       end
-      unless reg.in_ovr_flow? || reg.building_via_api_call?
-        validate_party(reg)
-      end
     end
   
-    if reg.at_least_step_3? || (reg.at_least_step_2? && reg.use_short_form?)
-      validate_state_id_number(reg)
+    if requires_validate_party(reg)
+       validate_party(reg)
     end
+
+  
   
     if reg.at_least_step_4? && !reg.using_state_online_registration?
-      validate_party(reg)
       validate_race(reg)        
-      unless reg.complete?
-        reg.validates_presence_of :state_id_number
-      end      
     end
 
     if reg.needs_prev_name?
@@ -122,6 +130,44 @@ class RegistrantValidator < ActiveModel::Validator
     
   end
   
+  def requires_presence_of_state_id_number(reg)
+    if reg.at_least_step_2? && reg.use_short_form? 
+      if !reg.in_ovr_flow?
+        return true
+      end
+    end
+    if reg.at_least_step_3?
+      unless reg.complete? || reg.in_ovr_flow?
+        return true
+      end
+    end
+    if reg.at_least_step_4? && !reg.using_state_online_registration?
+      unless reg.complete?
+        return true
+      end      
+    end
+  end
+  
+  def validate_state_id_number(reg)
+    return true if reg.state_id_number.blank?
+    regexp = /^(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))$/i
+    if (reg.state_id_number =~ regexp)==nil
+      reg.errors.add(:state_id_number, :invalid)
+    end
+  end
+  
+  
+  def requires_validate_party(reg)
+    if reg.at_least_step_3?
+      unless reg.in_ovr_flow? || reg.building_via_api_call?
+        return true
+      end
+    end
+    if reg.at_least_step_4? && !reg.using_state_online_registration?
+      return true
+    end    
+  end
+  
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
     reg.validates_format_of(attr_name, {:with => /^\d{5}(-\d{4})?$/, :allow_blank => true});
@@ -153,18 +199,11 @@ class RegistrantValidator < ActiveModel::Validator
       if reg.race.blank?
         reg.errors.add(:race, :blank)
       else
-        reg.errors.add(:race, :inclusion) unless english_races.include?(reg.english_race)
+        reg.errors.add(:race, :inclusion) unless reg.english_races.include?(reg.english_race)
       end
     end
   end
   
-  def validate_state_id_number(reg)
-    return true if reg.state_id_number.blank?
-    regexp = /^(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))$/i
-    if (reg.state_id_number =~ regexp)==nil
-      reg.errors.add(:state_id_number, :invalid)
-    end
-  end
   
   
 end

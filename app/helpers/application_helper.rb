@@ -45,7 +45,7 @@ module ApplicationHelper
 
   def partner_css(partner = @partner, registrant=@registrant)
     if params.has_key?(:preview_custom_assets) || registrant.try(:is_fake)
-      return preview_partner_css(partner)
+      return preview_partner_css(partner, registrant)
     end
     wl = partner && partner.whitelabeled?
 

@@ -410,6 +410,9 @@ body {
           padding: 15px;
       }
     }
+    .instructions--state-id-number p {
+      margin-top: 0;
+    }
     ul.flat.dob-and-phone {
       li, li.width_f {
         &.registrant-form__date-of-birth__line {
