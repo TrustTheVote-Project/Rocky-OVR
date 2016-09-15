@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20160909093241) do
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
     t.text     "branding_update_request"
+    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"
