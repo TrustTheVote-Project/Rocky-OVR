@@ -65,9 +65,15 @@
   <ul class="checkbox">
     <li>
       <h3>
+        <%= f.check_box :active %>
+        <%= f.label :active, 'Active user (allowed to login)' %>
+      </h3>      
+    </li>
+    <li>
+      <h3>
         <%= f.check_box :enabled_for_grommet %>
         <%= f.label :enabled_for_grommet, 'Enabled For Grommet' %>
-      </h3>      
+      </h3>
     </li>
   </ul>
     
