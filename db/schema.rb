@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20160909093241) do
     t.text     "pixel_tracking_codes"
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
+    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
     t.text     "branding_update_request"
   end
 
