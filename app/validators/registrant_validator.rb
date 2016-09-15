@@ -48,6 +48,7 @@ class RegistrantValidator < ActiveModel::Validator
     
     if requires_presence_of_state_id_number(reg)
       reg.validates_presence_of :state_id_number unless reg.complete?
+      validate_state_id_number(reg)
     end
     # if reg.at_least_step_3? || (reg.at_least_step_2? && reg.use_short_form?)
     #   validate_state_id_number(reg)
@@ -146,6 +147,15 @@ class RegistrantValidator < ActiveModel::Validator
       end      
     end
   end
+  
+  def validate_state_id_number(reg)
+    return true if reg.state_id_number.blank?
+    regexp = /^(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))$/i
+    if (reg.state_id_number =~ regexp)==nil
+      reg.errors.add(:state_id_number, :invalid)
+    end
+  end
+  
   
   def requires_validate_party(reg)
     if reg.at_least_step_3?
