@@ -21,7 +21,14 @@
       <h3><%= f.label :email %></h3>
       <%= field_div f, :email %>
       <span class="error"><%= @partner.errors[:email].join("\n") %></span>
-    </li>     
+    </li>
+
+    <li class="width_a">
+      <h3><%= f.label :username %></h3>
+      <%= field_div f, :username %>
+      <span class="error"><%= @partner.errors[:username].join("\n") %></span>
+    </li>
+
     <li class="width_a">
       <h3><%= f.label :phone %></h3>
       <%= field_div f, :phone %>
@@ -58,9 +65,15 @@
   <ul class="checkbox">
     <li>
       <h3>
+        <%= f.check_box :active %>
+        <%= f.label :active, 'Active user (allowed to login)' %>
+      </h3>      
+    </li>
+    <li>
+      <h3>
         <%= f.check_box :enabled_for_grommet %>
         <%= f.label :enabled_for_grommet, 'Enabled For Grommet' %>
-      </h3>      
+      </h3>
     </li>
   </ul>
     
