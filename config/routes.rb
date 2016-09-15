@@ -21,6 +21,10 @@ Rocky::Application.routes.draw do
     member do 
       get "stop_reminders", :to=>'reminders#stop', :as=>'stop_reminders'
     end
+    collection do
+      get 'new/:state_abbrev', action: 'new'
+    end
+    
   end
 
   resource  "partner_session"

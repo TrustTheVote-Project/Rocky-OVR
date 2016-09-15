@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160906192704) do
+ActiveRecord::Schema.define(:version => 20160909093241) do
+
+  create_table "admins", :force => true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -103,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20160906192704) do
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
     t.boolean  "enabled_for_grommet",                              :default => false, :null => false
+    t.text     "branding_update_request"
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"

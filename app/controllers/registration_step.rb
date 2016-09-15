@@ -112,10 +112,22 @@ class RegistrationStep < ApplicationController
   def find_partner
     @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
     @partner_id = @partner.id
+    set_params
+  end
+  
+  def set_params
     @source = params[:source]
     @tracking = params[:tracking]
     @short_form = params[:short_form]
     @collect_email_address = params[:collectemailaddress]
+    @email_address = params[:email_address]
+    @first_name = params[:first_name]
+    @last_name = params[:last_name]
+    @state_abbrev = params[:state_abbrev]
+    @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
+    if !@state_abbrev.blank?
+      @short_form = true
+    end
   end
   
   # def redirect_app_role

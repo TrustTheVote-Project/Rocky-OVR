@@ -50,16 +50,32 @@ class RegistrantsController < RegistrationStep
     if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
       redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
     else
-      @registrant = Registrant.new(
-          partner_id: @partner_id, 
-          locale: @locale, 
-          tracking_source: @source, 
-          tracking_id: @tracking, 
-          short_form: @short_form, 
-          collect_email_address: @collect_email_address,
+      
+      if @short_form && @email_address && @home_state
+        params[:registrant] = {
+          email_address: @email_address,
+          first_name: @first_name,
+          last_name: @last_name,
+          home_state: @home_state,
           is_fake: params.keys.include?('preview_custom_assets')
-      )
-      render "show"
+        }
+        create
+      else        
+        @registrant = Registrant.new(
+            partner_id: @partner_id, 
+            locale: @locale, 
+            tracking_source: @source, 
+            tracking_id: @tracking, 
+            short_form: @short_form, 
+            collect_email_address: @collect_email_address,
+            email_address: @email_address,
+            first_name: @first_name,
+            last_name: @last_name,
+            home_state: @home_state,
+            is_fake: params.keys.include?('preview_custom_assets')
+        )
+        render "show"
+      end
     end
   end
 
