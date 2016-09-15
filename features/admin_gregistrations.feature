@@ -3,7 +3,10 @@ Feature: Admin gregistrations
   So I can manage government partners
   As an admin
   I want to view, create and edit government partners in the admin UI
-  
+
+    Background:
+      Given Admin logged in
+
     Scenario: Government partner lists
       Given the following government partner exists:
         | organization                 |
@@ -17,7 +20,7 @@ Feature: Admin gregistrations
     Scenario: Create a new government partner
       When I go to the admin government partners page
       And I follow "Create New Government Partner"
-      Then I should not see a field for "Username"
+      Then I should see a field for "Username"
       And I should not see a field for "Password"
       And I should not see a field for "Password Confirmation"
       And I should see a field for "From Email"

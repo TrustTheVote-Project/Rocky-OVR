@@ -29,6 +29,7 @@ describe Admin::AssetsController do
   before(:each) { @paf = double(PartnerAssetsFolder) }
   before(:each) { @partner = FactoryGirl.create(:partner) }
   before(:each) { controller.stub(:assets_folder) { @paf } }
+  before(:each) { mock_admin_logged_in }
 
   describe 'index' do
     before  { @paf.stub(:list_assets) { [] } }

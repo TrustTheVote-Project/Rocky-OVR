@@ -117,3 +117,7 @@ RSpec.configure do |config|
   
   
 end
+
+def mock_admin_logged_in
+  allow_any_instance_of(Admin::BaseController).to receive(:current_admin).and_return(double)
+end

@@ -38,6 +38,8 @@ Rocky::Application.routes.draw do
       get "download_csv"
       get "embed_codes"
       get "branding"
+      get "branding_approval"
+      post "request_branding_approval"
       post "update_branding"
       get "preview_assets"
     end
@@ -45,7 +47,7 @@ Rocky::Application.routes.draw do
     resource "widget_image",  :only => [:show, :update]
     resource "logo",          :only => [:show, :update, :destroy]
   end
-  
+
   match "/widget_loader.js", :format => "js", :to => "registrants#widget_loader", :as=>'widget_loader'
   
   resources "password_resets", :only => [:new, :create, :edit, :update]
@@ -132,6 +134,20 @@ Rocky::Application.routes.draw do
     end
     resources :government_partners
     resource :partner_zips, :only=>[:create]
+    resource :whitelabel, :only=>[], controller: "whitelabel" do
+      member do
+        get :requests
+        post :approve_request
+        post :reject_request
+      end
+    end
+    resource  "admin_sessions"
+    match  "login",  :to => "admin_sessions#new", :as=>'login'
+    match "logout", :to => "admin_sessions#destroy", :as=>'logout'
+
+    resource :stats, only: [] do
+      get :downloads
+    end
   end
     
   # The priority is based upon order of creation:

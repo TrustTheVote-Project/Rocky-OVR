@@ -45,7 +45,7 @@ module ApplicationHelper
 
   def partner_css(partner = @partner, registrant=@registrant)
     if params.has_key?(:preview_custom_assets) || registrant.try(:is_fake)
-      return preview_partner_css(partner)
+      return preview_partner_css(partner, registrant)
     end
     wl = partner && partner.whitelabeled?
 
@@ -158,7 +158,8 @@ module ApplicationHelper
     "data:#{asset.content_type};base64,#{Rack::Utils.escape(base64)}"
   end
 
-  def show_custom_branding
-    false
+  def branding_open_requests_count
+    BrandingUpdateRequest.all.count { |x| x.open? }
   end
+
 end

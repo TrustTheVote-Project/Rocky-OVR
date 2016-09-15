@@ -1,0 +1,10 @@
+admin:
+  id: 1
+  username: admin
+  email: admin@example.com
+  # password is "admin"
+  crypted_password: 04dda254c743e225b823c018354b14dc1fadd4adf9f4b0f40a3ce66d45a42a76ede3263bad0c9a3b8d1cae5d042502e261e4e0bf9e3f3472b36fb9efe404f29d
+  password_salt: BfBvcW2rrFjmS7saFRP
+  persistence_token: 17a8c23e1314bd2ac15137cb3ffad3625b95ba5f6a577929cb54989e56315f2c8cd4da5a4a8085a3073b552581cf1d4976f1876099dcee22ba5934b7e7840365
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

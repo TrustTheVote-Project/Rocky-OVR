@@ -12,8 +12,8 @@
   "ispartychange": "",
   "isfederalvoter": "",
   "DateOfBirth": "1995-04-15",
-  "Gender": "F",
-  "Ethnicity": "O",
+  "Gender": "",
+  "Ethnicity": "",
   "Phone": "123-456-7890",
   "Email": "testing@rockthevote.com",
   "streetaddress": "101 Digel Hollow RD",
@@ -50,13 +50,12 @@
   "previousregcounty": "MCKEAN",
   "previousregyear": "",
   "declaration1": "1",
-  "assistedpersonname": "Ms Jen Tolentino",
+  "assistedpersonname": "Jen Tolentino",
   "assistedpersonAddress": "830 S. Fairfax Ave, PA",
   "assistedpersonphone": "123-456-7890",
   "assistancedeclaration2": "1",
   "ispollworker": "",
   "bilingualinterpreter": "",
   "pollworkerspeaklang": "",
-  "secondEmail": "",
-  "sendcopyinmail": "1"
+  "secondEmail": ""
 }

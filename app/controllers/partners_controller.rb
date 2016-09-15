@@ -147,6 +147,30 @@ HTML
     @partner = current_partner
   end
 
+  def branding_approval
+    @partner = current_partner
+    @update_request = BrandingUpdateRequest.new(@partner)
+  end
+
+  def request_branding_approval
+    @partner = current_partner
+    @update_request = BrandingUpdateRequest.new(@partner)
+    action = params[:request_action]
+    error = false
+
+    if action == "open"
+      @update_request.open rescue error = true
+    elsif action == "close"
+      @update_request.delete rescue error = true
+    else
+      Rails.logger.error "Invalid request"
+      error = true
+    end
+
+    flash = error ? { warning: "Invalid operation" } : {}
+    redirect_to branding_approval_partner_path, flash: flash
+  end
+
   def update_branding
     @partner = current_partner
     # remove assets before uploading new ones

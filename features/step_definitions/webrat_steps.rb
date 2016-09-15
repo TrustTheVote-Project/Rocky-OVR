@@ -190,6 +190,13 @@ Then /^I should see a link for "([^\"]*)"$/ do |text|
   #field_by_xpath("//a[text()='#{text}']").should be
 end
 
+Then /^I should( not)? see an href to "([^\"]*)"$/ do |should_not, url|
+  if should_not
+    page.should_not have_link(nil, href: url)
+  else
+    page.should have_link(nil, href: url)
+  end
+end
 
 
 Then /^I should be on (.+)$/ do |page_name|

@@ -4,7 +4,9 @@ Feature: Admin UI
   As an admin
   I want to manage partner data
 
-    
+    Background:
+      Given Admin logged in
+
     Scenario: List partners
       Given the following partner exists:
         | name         | organization      |

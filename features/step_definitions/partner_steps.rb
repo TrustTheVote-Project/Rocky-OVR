@@ -133,3 +133,7 @@ Then(/^registrant pdf includes "([^"]+)"$/) do |text|
   source = @registrant.pdf_writer.registrant_to_html_string
   expect(source).to include(text)
 end
+
+Given(/^settings partner wiki url is "([^"]*)"$/) do |url|
+  expect(RockyConf).to receive(:partner_wiki_url).at_least(:once).and_return(url)
+end

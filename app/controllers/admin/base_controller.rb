@@ -27,17 +27,41 @@ class Admin::BaseController < ApplicationController
   layout 'admin'
 
   skip_before_filter :authenticate_everything
-  before_filter :authenticate, :if => lambda { !%w{ development test }.include?(Rails.env) }
+  before_filter :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
+  before_filter :init_nav_class
+
+  helper_method :current_admin
 
   private
 
   def authenticate
-    authenticate_or_request_with_http_basic("RTV Admin Console") do |user, password|
-      pass = Settings.admin_password
-      pass.present? && user == RockyConf.admin_username && password == pass
+    unless current_admin
+      store_location
+      redirect_to admin_login_path
     end
   end
 
+  def current_admin_session
+    return @current_admin_session if defined?(@current_admin_session)
+    @current_admin_session = AdminSession.find
+  end
 
+  def current_admin
+    return @current_admin if defined?(@current_admin)
+    @current_admin = current_admin_session && current_admin_session.record
+  end
+
+  def init_nav_class
+    @nav_class = Hash.new
+  end
+
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
 
 end

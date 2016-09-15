@@ -26,6 +26,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../../rails_helper')
 
 describe Admin::GovernmentPartnersController do
 
+  before(:each) { mock_admin_logged_in }
+
   describe 'GET #index' do
     it 'should render the index' do
       get :index
