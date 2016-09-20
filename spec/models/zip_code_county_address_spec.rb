@@ -139,6 +139,43 @@ describe ZipCodeCountyAddress do
       }])
       expect(z.lookup_office_address("123")).to be_nil
     end
+    it "returns additional_address of type=>name=>Voter Registration Mailing Address" do
+      ZipCodeCountyAddress.stub(:get).and_return([{
+        "additional_addresses"=>[
+          {
+            "address"=>{
+              "street1"=> "The Wrong Street",
+              "city"=>    "B",
+              "state"=>   "AA",
+              "zip"=>     "00000"
+            },
+            "type"=>{
+              "id"=>11,
+              "name"=>"The wrong type"
+            }
+          },
+          {
+            "address"=>{
+              "street1"=> "The Right Street",
+              "city"=>    "Boston",
+              "state"=>   "MA",
+              "zip"=>     "02110"
+            },
+            "type"=>{
+              "id"=>11,
+              "name"=>"Voter Registration Mailing Address"
+            }
+          }          
+        ],
+        "mailing_address"=> {
+          "street1"=> "The Street",
+          "city"=>    "Oston",
+          "state"=>   "MM",
+          "zip"=>     "111111"
+        }
+      }])
+      expect(z.lookup_office_address("123")).to eq("The Right Street\nBoston, MA, 02110")      
+    end
     it "returns multiline address when a mailing_address is found" do
       ZipCodeCountyAddress.stub(:get).and_return([{
         "mailing_address"=> {

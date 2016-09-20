@@ -1204,7 +1204,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def pdf_url(pdfpre = nil, file=false)
-   "https://s3-us-west-2.amazonaws.com/rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}#{pdf_path(pdfpre, file)}"
+   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com/#{pdf_path(pdfpre, file)}"
   end
   def pdf_path(pdfpre = nil, file=false)
     pdf_writer.pdf_path(pdfpre, file)
