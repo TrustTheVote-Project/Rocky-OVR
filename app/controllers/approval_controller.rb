@@ -22,36 +22,51 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-require File.expand_path(File.dirname(__FILE__) + '/../rails_helper')
+class ApprovalController < PartnerBase
+  layout "partners"
+  before_filter :require_partner, :load_data
 
-describe WidgetImagesController do
-  describe "when logged in" do
-    before(:each) do
-      rspec_partner_auth
-    end
 
-    describe "show" do
-      render_views
-      it "shows image selection page" do
-        get :show
-        assert_response :success
-        assert_template "show"
-        assert_not_nil assigns[:partner]
-        assert_equal Partner::WIDGET_IMAGES.length, response.body.scan(%r{/assets/widget/rtv-[^.]+\.gif}).length
-      end
-    end
+  def show
+  end
 
-    describe "update" do
-      before(:each) do
-        @partner.widget_image_name = "rtv100x100v1"
-      end
+  def update
+    error = false
 
-      it "changes the widget image setting" do
-        get :update, :partner => {:widget_image_name => "rtv200x165v1"}
-        assert_redirected_to partner_url
-        assert_equal "rtv-200x165-v1.gif", assigns[:partner].widget_image
-      end
+    @update_request.open rescue error = true
+
+    flash = error ? { warning: "Invalid operation" } : {}
+    redirect_to partner_branding_approval_path, flash: flash
+  end
+
+  def destroy
+    error = false
+
+    @update_request.delete rescue error = true
+
+    flash = error ? { warning: "Invalid operation" } : {}
+    redirect_to partner_branding_approval_path, flash: flash
+  end
+
+  def preview
+    redirect_to current_partner.preview_custom_assets_link
+  end
+
+  private
+
+  def load_data
+    @partner = current_partner
+    @update_request = BrandingUpdateRequest.new(@partner)
+  end
+
+  def preview_confirmation
+    status = @partner.preview_assets_status
+    if status != :updated
+      I18n::t('partners.branding.preview_warning')[status];
+    else
+      ''
     end
   end
 
+  helper_method :preview_confirmation
 end

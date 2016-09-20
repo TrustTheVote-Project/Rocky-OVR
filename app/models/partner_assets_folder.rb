@@ -86,8 +86,22 @@ class PartnerAssetsFolder
 
   # Returns the list of all assets in the folder
   def list_assets
-    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
-    #Dir.glob(File.join(@partner.assets_path, '*.*')).map { |n| File.basename(n) }
+    is_system_css = ->(file) do
+      ["application", "registration"].each do |name|
+        return true if file.key.ends_with? "/#{name}.css"
+      end
+      false
+    end
+
+    filter = ->(file) do
+      cached_public_url(file).nil? || (file.content_length == 0 && is_system_css.call(file))
+    end
+
+    formatter = ->(file) do
+      file.key.gsub( @partner.assets_path + '/', '')
+    end
+
+    files.reject(&filter).map(&formatter)
   end
 
   def files_by_folder(folder)
@@ -154,9 +168,12 @@ class PartnerAssetsFolder
 
   def publish_sub_assets(group)
     source_folder = "#{group}/"
-    sub_assets = list_assets.select { |a| a.starts_with? source_folder }
+    # get all assets (including system app.css and reg.css)
+    assets = list_named_urls.map(&:first)
+    sub_assets = assets.select { |a| a.starts_with? source_folder }
     sub_assets_names = sub_assets.map { |a| File.basename(a) }
-    delete_assets_list = list_assets - sub_assets - sub_assets_names
+    # don't delete new files and preview sub files:
+    delete_assets_list = assets - sub_assets - sub_assets_names
 
     sub_assets_names.each do |name|
       src = File.join(group.to_s, name)
@@ -178,18 +195,7 @@ class PartnerAssetsFolder
   end
 
   def update_file(path, file)
-    filename = ""
-    begin
-      filename = file.original_filename
-    rescue
-      filename = File.basename(file)
-    end
     write_file(path, file)
-    # if PartnerAssets.is_pdf_logo?(filename)
-    #   local_path = @partner.absolute_pdf_logo_path(PartnerAssets.extension(filename))
-    #   ensure_dir(local_path)
-    #   File.open(local_path, 'wb') { |f| f.write(file.read) }
-    # end
   end
 
   def write_file(path, content, public = true)

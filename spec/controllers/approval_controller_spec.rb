@@ -23,35 +23,20 @@
 #
 #***** END LICENSE BLOCK *****
 require File.expand_path(File.dirname(__FILE__) + '/../rails_helper')
+require 'spec_helper'
 
-describe WidgetImagesController do
-  describe "when logged in" do
-    before(:each) do
-      rspec_partner_auth
-    end
-
-    describe "show" do
-      render_views
-      it "shows image selection page" do
-        get :show
-        assert_response :success
-        assert_template "show"
-        assert_not_nil assigns[:partner]
-        assert_equal Partner::WIDGET_IMAGES.length, response.body.scan(%r{/assets/widget/rtv-[^.]+\.gif}).length
-      end
-    end
-
-    describe "update" do
-      before(:each) do
-        @partner.widget_image_name = "rtv100x100v1"
-      end
-
-      it "changes the widget image setting" do
-        get :update, :partner => {:widget_image_name => "rtv200x165v1"}
-        assert_redirected_to partner_url
-        assert_equal "rtv-200x165-v1.gif", assigns[:partner].widget_image
-      end
-    end
+describe ApprovalController do
+  before(:each) do
+    rspec_partner_auth
   end
 
+  it 'redirects to preview url' do
+    get :preview
+
+    expect(response.status).to eq(302)
+    expect(response.location).to include(new_registrant_path)
+    redirect_params = Rack::Utils.parse_query(URI.parse(response.location).query)
+    expect(redirect_params).to include('preview_custom_assets')
+    expect(redirect_params['partner']).to be_eql(@partner.id.to_s)
+  end
 end

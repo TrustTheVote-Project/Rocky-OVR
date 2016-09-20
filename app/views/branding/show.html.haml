@@ -3,7 +3,7 @@
   %p
     = link_to I18n.t('partners.branding.title', default: 'Setup Custom Branding'), '#', class: :current
     |
-    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), branding_approval_partner_path, id: "preview_and_submission_link"
+    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), partner_branding_approval_path, id: "preview_and_submission_link"
 
   %p.switcher(data-hide-class = 'nav-items')
     = link_to "CSS", '#', class: :current, 'data-show-class' => 'css'
@@ -15,14 +15,14 @@
 .text
   %p= I18n.t('partners.branding.description', default: 'Custom Branding feature description')
 
-= form_for @partner, url: update_branding_partner_path, method: :post, :html => { :multipart => true } do |f|
+= form_for @partner, url: partner_branding_path, method: :put, :html => { :multipart => true } do |f|
   %fieldset.nav-items.css
     %legend Whitelabeled CSS
-    = render partial: 'admin/shared/custom_css'
+    = render partial: 'css', locals: { f: f}
 
   %fieldset.nav-items.assets
     %legend Assets
-    = render partial: 'partner_assets', locals: { f: f }
+    = render partial: 'assets', locals: { f: f }
 
   %fieldset.nav-items.emails
     %legend E-Mail templates

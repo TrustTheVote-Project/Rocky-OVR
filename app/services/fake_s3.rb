@@ -1,12 +1,13 @@
 class FakeS3
   class FakeS3File
-    attr_reader :key, :body, :public_url
+    attr_reader :key, :body, :public_url, :content_length
 
-    def initialize(key, body, public_url, storage)
+    def initialize(key, body, public_url, storage, content_length=1)
       @key = key
       @body = body
       @public_url = public_url
       @storage = storage
+      @content_length = content_length
       @storage.push self
     end
 
