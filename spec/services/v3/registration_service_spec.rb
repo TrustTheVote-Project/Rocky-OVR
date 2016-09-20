@@ -358,7 +358,6 @@ describe V3::RegistrationService do
     it "commits the rocky registrant to the DB"
   end
   
-
   describe 'data_to_attrs' do
     specify { V3::RegistrationService.send(:data_to_attrs, {}).should == {} }
     specify { V3::RegistrationService.send(:data_to_attrs, { :lang  => 'ex' }).should == { :locale => 'ex' } }
