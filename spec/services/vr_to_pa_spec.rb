@@ -861,6 +861,41 @@ describe VRToPA do
         expect { adapter.prev_reg_zip }.to raise_error
       end
     end
+    context "is new registration" do
+      let(:input){ 
+        {
+          "previous_registration_address" => {
+              "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "",
+                  "complete_street_name" => "222 N. Street",
+                  "complete_sub_address" => {
+                      "sub_address_type" => "APT",
+                      "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                      {
+                          "place_name_type" => "MunicipalJurisdiction",
+                          "place_name_value" => "Previous City"
+                      },
+                      {
+                          "place_name_type" => "County",
+                          "place_name_value" => "Prev County"
+                      }
+                  ],
+                  "state" => "PA",
+                  "zip_code" => "22222"
+              }
+          },
+        }
+      }
+      it "returns blank prev-reg when is_new_registration" do
+        allow(adapter).to receive(:is_new_registration_boolean).and_return(true)
+        expect(adapter.prev_reg_address).to be_nil
+        expect(adapter.prev_reg_city).to eql ""
+        expect(adapter.prev_reg_state).to be_nil
+        expect(adapter.prev_reg_zip).to be_nil        
+      end
+    end
   end
 
   describe "phone" do
