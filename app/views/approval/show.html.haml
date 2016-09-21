@@ -1,3 +1,9 @@
+- #TODO move to new layout
+- content_for :subnav do
+  - @nav_class[:branding] = :current
+  - @nav_class[:customize] = :current
+  = render :partial => "layouts/customize_nav"
+
 - @nav_class[:branding] = :current
 #customize_nav
   %p

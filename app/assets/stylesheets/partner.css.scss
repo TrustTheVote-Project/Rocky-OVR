@@ -574,6 +574,11 @@ border: 1px solid #ccc
     font-size: 15px;
     text-align: center
 }
+
+.smaller-nav-font * {
+    font-size: 13px;
+}
+
 #header p a:first-child {
     margin-left: 0
 }

@@ -151,7 +151,7 @@ en:
       no_authentication_details: You did not provide any details for authentication.
   partners:
     branding:
-      nav: Branding
+      nav: Advanced
       title: Setup Custom Branding
       description: paragraph explaining what this feature does
       preview_warning:

@@ -1,4 +1,9 @@
-- @nav_class[:branding] = :current
+- #TODO move to new layout
+- content_for :subnav do
+  - @nav_class[:branding] = :current
+  - @nav_class[:customize] = :current
+  = render :partial => "layouts/customize_nav"
+
 #customize_nav
   %p
     = link_to I18n.t('partners.branding.title', default: 'Setup Custom Branding'), '#', class: :current

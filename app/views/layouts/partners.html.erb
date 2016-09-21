@@ -27,8 +27,7 @@
           <%= link_to "Dashboard", partner_path, :class => @nav_class[:dashboard] %> |
           <%= link_to "Reports", statistics_partner_path, :class => @nav_class[:statistics] %> |
           <%= link_to "Customize", partner_logo_path, :class => @nav_class[:customize] %> |
-          <%= link_to "Embed Codes", embed_codes_partner_path, :class => @nav_class[:embed] %> |
-          <%= link_to I18n.t('partners.branding.nav', default: 'Branding'), partner_branding_path, :class => @nav_class[:branding] %>
+          <%= link_to "Embed Codes", embed_codes_partner_path, :class => @nav_class[:embed] %>
           <%= "|".html_safe + link_to("Wiki", RockyConf.partner_wiki_url) if RockyConf.partner_wiki_url.present? %>
         </p>
     <% else %>
