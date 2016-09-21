@@ -18,19 +18,22 @@
     = link_to "E-Mail templates", '#', 'data-show-class' => 'emails'
 
 .text
-  %p= I18n.t('partners.branding.description', default: 'Custom Branding feature description')
+  %p= I18n.t('partners.branding.description.general', default: 'Custom Branding feature description')
 
 = form_for @partner, url: partner_branding_path, method: :put, :html => { :multipart => true } do |f|
   %fieldset.nav-items.css
     %legend Whitelabeled CSS
+    = render partial: "list", locals: { key: "partners.branding.description.css"}
     = render partial: 'css', locals: { f: f}
 
   %fieldset.nav-items.assets
     %legend Assets
+    = render partial: "list", locals: { key: "partners.branding.description.assets"}
     = render partial: 'assets', locals: { f: f }
 
   %fieldset.nav-items.emails
     %legend E-Mail templates
+    = render partial: "list", locals: { key: "partners.branding.description.email_templates"}
     = render partial: 'admin/shared/custom_emails', locals: { prefix: "preview_" }
 
   = partner_rollover_button 'update', 'Update'

@@ -282,6 +282,12 @@ form li {
   margin: 0 5px 0 0;
 }
 
+ul.clear li {
+  list-style: disc;
+  line-height: 1.5;
+  margin: 0.5em 2em;
+}
+
 .copy_html h3 {
   font-weight: normal;
   text-align: left;
