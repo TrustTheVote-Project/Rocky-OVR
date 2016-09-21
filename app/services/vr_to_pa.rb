@@ -455,8 +455,12 @@ class VRToPA
   def readsignature
     data = read([:signature, :image])
     type = read([:signature, :mime_type])
-
-    return "data:#{type};base64,#{data}"
+    
+    if !is_empty(data)
+      return "data:#{type};base64,#{data}"
+    else
+      return ""
+    end
 
   end
 
