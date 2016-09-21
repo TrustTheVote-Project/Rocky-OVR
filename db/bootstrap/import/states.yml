@@ -249,7 +249,7 @@ record_16:
   pdf_instructions: kansas
   email_instructions: kansas
   id_length_min: '4'
-  online_registration_url: https://www.kdor.org/voterregistration/secure/default.aspx
+  online_registration_url: https://www.kdor.ks.gov/Apps/VoterReg/Default.aspx
 record_17:
   abbreviation: KY
   name: Kentucky
@@ -569,6 +569,7 @@ record_39:
   sos_url: http://www.elections.state.ri.us/
   registration_deadline: rhode_island
   id_length_min: '4'
+  online_registration_url: https://vote.sos.ri.gov/
 record_40:
   abbreviation: SC
   name: South Carolina
