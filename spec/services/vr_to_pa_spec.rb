@@ -1188,6 +1188,46 @@ describe VRToPA do
     end
   end
 
+  describe "readsignature" do
+    subject { adapter.readsignature }
+    context "when there is image content" do
+      let(:input) do
+        {
+            "signature" => {
+              "mime_type" => "image/img-type",
+              "image" => "content"
+          }
+        }
+      end
+      it "returns a combined mime_type/image" do
+        expect { subject.to eql("data:image/img-type;base64,content")}
+      end
+    end
+    context "when there is no image content" do
+      let(:input) do
+        {
+            "signature" => {
+              "mime_type" => "image/img-type",
+              "image" => " "
+          }
+        }
+      end
+      it "returns a blank string" do
+        expect { subject.to eql("")}
+      end
+    end
+    context "when there is no signature content" do
+      let(:input) do
+        {
+            "not_a_signature" => { }
+        }
+      end
+      it "returns a blank string" do
+        expect { subject.to eql("")}
+      end
+    end
+  end
+
   # probably this is a temporary method:
   describe "send_copy_in_mail2" do
     subject { adapter.send_copy_in_mail2 }
