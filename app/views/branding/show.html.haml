@@ -11,9 +11,9 @@
     = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), partner_branding_approval_path, id: "preview_and_submission_link"
 
   %p.switcher(data-hide-class = 'nav-items')
-    = link_to "CSS", '#', class: :current, 'data-show-class' => 'css'
+    = link_to "Assets", '#', class: :current, 'data-show-class' => 'assets'
     |
-    = link_to "Assets", '#', 'data-show-class' => 'assets'
+    = link_to "CSS", '#', 'data-show-class' => 'css'
     |
     = link_to "E-Mail templates", '#', 'data-show-class' => 'emails'
 
