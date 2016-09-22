@@ -42,12 +42,17 @@ class EmailTemplate < ActiveRecord::Base
   def self.set(partner, name, body)
     return unless partner
     tmpl = EmailTemplate.find_or_initialize_by_partner_id_and_name(partner.id, name)
+
+    # don't save default values # + some browsers add \r to \n
+    body = "" if body.gsub("\r", "") == default(name)
     tmpl.body = body
     tmpl.save!
   end
+
   def self.set_subject(partner, name, subject)
     return unless partner
     tmpl = EmailTemplate.find_or_initialize_by_partner_id_and_name(partner.id, name)
+    subject = "" if subject == default_subject(name)
     tmpl.subject = subject
     tmpl.save!    
   end
@@ -55,11 +60,13 @@ class EmailTemplate < ActiveRecord::Base
   # Returns the template body
   def self.get(partner, name)
     return nil unless partner
-    EmailTemplate.find_by_partner_id_and_name(partner.id, name).try(:body)
+    body = EmailTemplate.find_by_partner_id_and_name(partner.id, name).try(:body)
+    body.presence || default(name)
   end
+
   def self.get_subject(partner, name)
     return nil unless partner
-    EmailTemplate.find_by_partner_id_and_name(partner.id, name).try(:subject)
+    EmailTemplate.find_by_partner_id_and_name(partner.id, name).try(:subject).presence || default_subject(name)
   end
 
   # Returns TRUE if the partner email template with this name is non-empty
@@ -74,5 +81,31 @@ class EmailTemplate < ActiveRecord::Base
       set(partner, production_name, body)
       set_subject(partner, production_name, subject)
     end
+  end
+
+  def self.default(name)
+    match = name.scan(/^(preview_)?(.+)\.(.+)$/)[0]
+    return nil if match.nil?
+
+    type = match[1]
+    locale = match[2]
+
+    # To replace I18n.t with its not interpolated translation
+    # $1 - entire ERB ruby injection
+    # $2 - extracted KEY
+    regexp_i18n = /(<%=\s*I18n.t\(['"]([^'"]+)['"]((?!%>).)+%>)/m
+
+    # To fix interpolation to be erb-compatible and use system variables
+    regexp_interpolation = /%{([^}]+)}/
+
+    source = File.read(File.join(Rails.root, 'app', 'views', 'notifier', "#{type}.html.erb"))
+    translation = source.gsub(regexp_i18n) { I18n.t($2, locale: locale) }
+
+    translation.gsub(regexp_interpolation) { "<%= @#{$1} %>" }
+  end
+
+  def self.default_subject(name)
+    match = name.scan(/^preview_?(.+)\.(.+)$/)[0] || []
+    match ? I18n.t("email.#{match[0]}.subject", locale: match[1]) : nil
   end
 end
