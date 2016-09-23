@@ -893,7 +893,8 @@ describe VRToPA do
         expect(adapter.prev_reg_address).to be_nil
         expect(adapter.prev_reg_city).to eql ""
         expect(adapter.prev_reg_state).to be_nil
-        expect(adapter.prev_reg_zip).to be_nil        
+        expect(adapter.prev_reg_zip).to be_nil 
+        expect(adapter.address_update).to eql("0")       
       end
     end
   end
