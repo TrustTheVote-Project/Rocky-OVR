@@ -87,7 +87,12 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   def create_pa
     registrant = nil
     params.delete(:debug_info)
-
+    
+    begin
+      GrommetRequest.create(request_params: params)
+    rescue
+    end
+    
     # input request structure validation
     [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
       value = params
