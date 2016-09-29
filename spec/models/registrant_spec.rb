@@ -329,21 +329,22 @@ describe Registrant do
           non_latin_locales.each do |loc|
             txt = I18n.t('txt.registration.in_language_name', :locale=>loc, :default => "")
             unless txt.blank?
-              #puts "\tTesting #{loc}: #{txt}"
+              # puts "\tTesting #{loc}: #{txt}"
               r.send("#{field}=",txt)
               r.should_not be_valid
+              # puts r.send(field), r.errors.keys, r.errors[field]
               r.errors[field].should_not be_empty          
             end
           end
           latin_locales.each do |loc|
             txt = I18n.t('txt.registration.in_language_name', :locale=>loc, :default => "").to_s +  " 123"
-            # puts "\tTesting #{loc}: #{txt}"
+            puts "\tTesting #{loc}: #{txt}"
             r.send("#{field}=",txt)
             if !r.valid?
               # puts field, r.send(field)
             end
-            # Address/City fields only accept ascii
-            if (Registrant::ADDRESS_FIELDS.include?(field) || Registrant::CITY_FIELDS.include?(field)) && !ascii_locales.include?(loc)
+            # Address/City fields only accept ascii, and transliterates spanish
+            if (Registrant::ADDRESS_FIELDS.include?(field) || Registrant::CITY_FIELDS.include?(field)) && !ascii_locales.include?(loc) && loc != :es
               r.errors[field].should_not be_empty
             else
               r.errors[field].should be_empty
@@ -382,6 +383,8 @@ describe Registrant do
           r.send("#{field}=", "AZaz09@")
           r.should_not be_valid
           r.errors[field].should_not be_empty
+        end
+        it "replacees spansih characters with ascii" do
         end
       end
 

@@ -107,6 +107,16 @@ class Registrant < ActiveRecord::Base
     
   end
   
+  before_validation :basic_character_replacement
+  def basic_character_replacement
+    [ADDRESS_FIELDS, CITY_FIELDS].flatten.each do |field|
+      val = self.send(field).to_s
+      val = val.gsub(/á/i,"a").gsub(/é/i,"e").gsub(/í/i,"i").gsub(/ó/i,"o").gsub(/ú/i,"u").gsub(/ñ/i,"n")
+      self.send("#{field}=", val)
+    end
+  end
+  
+  
   validate_fields(PDF_FIELDS, OVR_REGEX, :invalid_for_pdf)
   validate_fields(NAME_FIELDS, OVR_REGEX, :invalid)
   validate_fields(ADDRESS_FIELDS, CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period")
