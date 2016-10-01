@@ -107,12 +107,19 @@ class Registrant < ActiveRecord::Base
     
   end
   
-  before_validation :basic_character_replacement
-  def basic_character_replacement
+  #before_validation :basic_character_replacement
+  SPANISH_CHARS = "áéíóúñ"
+  def basic_character_replacement!
     [ADDRESS_FIELDS, CITY_FIELDS].flatten.each do |field|
       val = self.send(field).to_s
       val = val.gsub(/á/i,"a").gsub(/é/i,"e").gsub(/í/i,"i").gsub(/ó/i,"o").gsub(/ú/i,"u").gsub(/ñ/i,"n")
       self.send("#{field}=", val)
+    end
+    [CITY_FIELDS].flatten.each do |field|
+      #Also allow city fields to have the same as address fields (, / .) - just remove them
+      val = self.send(field).to_s
+      val = val.gsub(/[,\.]/i,"").gsub(/\//i, " ")
+      self.send("#{field}=", val)      
     end
   end
   

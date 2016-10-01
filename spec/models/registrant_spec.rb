@@ -343,8 +343,8 @@ describe Registrant do
             if !r.valid?
               # puts field, r.send(field)
             end
-            # Address/City fields only accept ascii, and transliterates spanish
-            if (Registrant::ADDRESS_FIELDS.include?(field) || Registrant::CITY_FIELDS.include?(field)) && !ascii_locales.include?(loc) && loc != :es
+            # Address/City fields only accept ascii
+            if (Registrant::ADDRESS_FIELDS.include?(field) || Registrant::CITY_FIELDS.include?(field)) && !ascii_locales.include?(loc)
               r.errors[field].should_not be_empty
             else
               r.errors[field].should be_empty
@@ -384,8 +384,6 @@ describe Registrant do
           r.should_not be_valid
           r.errors[field].should_not be_empty
         end
-        it "replacees spansih characters with ascii" do
-        end
       end
 
       Registrant::CITY_FIELDS.each do |field|
@@ -408,8 +406,33 @@ describe Registrant do
         end
       end
     end
-
+  end
   
+  describe 'basic_character_replacement' do
+    it "replacees spansih characters with ascii in addresses" do
+      r = Registrant.new
+      r.stub(:has_mailing_address?).and_return(true)
+      r.stub(:change_of_name?).and_return(true)
+      r.stub(:change_of_address?).and_return(true)
+      
+      [Registrant::ADDRESS_FIELDS, Registrant::CITY_FIELDS].flatten.each do |field|
+        r.send("#{field}=", Registrant::SPANISH_CHARS)
+        r.basic_character_replacement!
+        expect(r.send(field)).to eql("aeioun")
+      end
+    end
+    it "removes , . / from city fields" do
+      r = Registrant.new
+      r.stub(:has_mailing_address?).and_return(true)
+      r.stub(:change_of_name?).and_return(true)
+      r.stub(:change_of_address?).and_return(true)
+      
+      [Registrant::CITY_FIELDS].flatten.each do |field|
+        r.send("#{field}=", "St. Thomas, Virgin/Islands")
+        r.basic_character_replacement!
+        expect(r.send(field)).to eql("St Thomas Virgin Islands")
+      end
+    end
   end
 
   describe "step 1" do
