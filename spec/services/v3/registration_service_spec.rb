@@ -151,7 +151,7 @@ describe V3::RegistrationService do
     end
   end
 
-  describe 'create_pa_registrant' do
+  describe "grommet requests" do
     let(:json_request) {
       {
         "rocky_request" => {
@@ -318,44 +318,101 @@ describe V3::RegistrationService do
         }
       }
     }
-    it 'builds a finish-with-state rocky registrant instance from the params' do
-      r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
-      expect(r.valid?).to eq(true)
-      expect(r.finish_with_state).to eq(true)
-      expect(r.home_address).to eq("801 N. Monroe")
-      expect(r.home_unit).to eq("Apt 306")
-      expect(r.home_city).to eq("Philadelphia")
-      expect(r.home_state_abbrev).to eq("VA")
-      expect(r.home_zip_code).to eq("22201")
+    describe 'create_pa_registrant' do
+
+      it 'builds a finish-with-state rocky registrant instance from the params' do
+        r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+        expect(r.valid?).to eq(true)
+        expect(r.finish_with_state).to eq(true)
+        expect(r.home_address).to eq("801 N. Monroe")
+        expect(r.home_unit).to eq("Apt 306")
+        expect(r.home_city).to eq("Philadelphia")
+        expect(r.home_state_abbrev).to eq("VA")
+        expect(r.home_zip_code).to eq("22201")
       
-      expect(r.prev_first_name).to eq("Aron")
-      expect(r.first_name).to eq("Aaron")
-      expect(r.change_of_name).to be(true)
-      expect(r.state_id_number).to eq("1243ASDF")
-      expect(r.has_ssn).to be(false)
-      expect(r.has_state_license).to be(true)
+        expect(r.prev_first_name).to eq("Aron")
+        expect(r.first_name).to eq("Aaron")
+        expect(r.change_of_name).to be(true)
+        expect(r.state_id_number).to eq("1243ASDF")
+        expect(r.has_ssn).to be(false)
+        expect(r.has_state_license).to be(true)
       
-    end
+      end
     
-    it 'puts the voter_records_request hash, geo_location and open_tracking_id into registrant state_ovr_data' do
-      r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
-      expect(r.state_ovr_data["voter_records_request"]).to eq(json_request["rocky_request"]["voter_records_request"])
-      expect(r.state_ovr_data["geo_location"]).to eq(json_request["rocky_request"]["geo_location"])
-      expect(r.open_tracking_id).to eq(json_request["rocky_request"]["open_tracking_id"])
+      it 'puts the voter_records_request hash, geo_location and open_tracking_id into registrant state_ovr_data' do
+        r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+        expect(r.state_ovr_data["voter_records_request"]).to eq(json_request["rocky_request"]["voter_records_request"])
+        expect(r.state_ovr_data["geo_location"]).to eq(json_request["rocky_request"]["geo_location"])
+        expect(r.open_tracking_id).to eq(json_request["rocky_request"]["open_tracking_id"])
+      end
     end
-  end
   
-  describe 'valid_for_pa_submission(registrant)' do
-    it "checks values in registrant.state_ovr_data['voter_records_request'] for valid enum values"
-    it "checks values in registrant.state_ovr_data['voter_records_request'] for a valid signature file"
-    # it "does other validations TBD?"
-  end
+    describe 'valid_for_pa_submission(registrant)' do
+      it "checks values in registrant.state_ovr_data['voter_records_request'] for valid enum values"
+      it "checks values in registrant.state_ovr_data['voter_records_request'] for a valid signature file"
+      # it "does other validations TBD?"
+    end
   
-  describe 'register_with_pa(registrant)' do
-    it "Builds an XML file from valuds in registrant.state_ovr_data['voter_records_request']"
-    it "submits XML to RockyConf.ovr_states.PA.api_settings.api_url" # this setting includes the API key
-    it "saves the transaction ID into registrant.state_ovr_data['pa_transaction_id']"
-    it "commits the rocky registrant to the DB"
+    describe 'register_with_pa(registrant)' do
+      it "Builds an XML file from valuds in registrant.state_ovr_data['voter_records_request']"
+      it "submits XML to RockyConf.ovr_states.PA.api_settings.api_url" # this setting includes the API key
+      it "saves the transaction ID into registrant.state_ovr_data['pa_transaction_id']"
+      it "commits the rocky registrant to the DB"
+      describe "invalid signature VR_WAPI_Invalidsignaturecontrast" do
+        let(:r) { V3::RegistrationService.create_pa_registrant(json_request["rocky_request"]) }
+        before(:each) do
+          allow(PARegistrationRequest).to receive(:send_request).and_return({:error=>"VR_WAPI_Invalidsignaturecontrast"})
+        end
+        context "when there's a DL" do
+          before(:each) do
+            json_request["rocky_request"]["voter_records_request"]["voter_registration"]["voter_ids"] = [
+                  {
+                    "type" => "drivers_license",
+                    "string_value" => "12378945",
+                    "attest_no_such_id" => false
+                  },
+                  {
+                    "type" => "ssn4",
+                    "string_value" => "",
+                    "attest_no_such_id" => true                  
+                  }
+                ]
+          end
+          it "raises an error and removes the signature if there's a DL" do
+            expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to_not be_nil
+            expect {
+              V3::RegistrationService.register_with_pa(r)
+            }.to raise_error("registrant has bad sig, but has drivers license")
+            expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to be_nil
+        
+          end
+        end
+        context "when there's no DL" do
+          before(:each) do
+            json_request["rocky_request"]["voter_records_request"]["voter_registration"]["voter_ids"] = [
+                  {
+                    "type" => "drivers_license",
+                    "string_value" => "",
+                    "attest_no_such_id" => true
+                  },
+                  {
+                    "type" => "ssn4",
+                    "string_value" => "",
+                    "attest_no_such_id" => true                  
+                  }
+                ]
+          end
+          it "does not raise an error if there's no DL" do
+            expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to_not be_nil
+            expect {
+              V3::RegistrationService.register_with_pa(r)
+            }.not_to raise_error
+            expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to_not be_nil
+        
+          end
+        end
+      end
+    end
   end
   
 

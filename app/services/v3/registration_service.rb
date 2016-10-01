@@ -126,6 +126,21 @@ module V3
         registrant.state_ovr_data["errors"] << [result[:error].to_s]
         registrant.save!
         raise result[:error].to_s if PA_RETRY_ERRORS.include?(result[:error].to_s)
+        
+        if result[:error].to_s == "VR_WAPI_Invalidsignaturecontrast"
+          #see if they have a DL
+          if registrant.state_ovr_data["voter_records_request"]["voter_registration"]["voter_ids"]
+            registrant.state_ovr_data["voter_records_request"]["voter_registration"]["voter_ids"].each do |id_type|
+              if id_type["type"] == "drivers_license" &&  !id_type["string_value"].blank?
+                registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
+                registrant.save
+                raise "registrant has bad sig, but has drivers license"
+              end
+            end
+          end
+        end
+        
+        
         Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
         AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
       elsif result[:id].blank? || result[:id]==0
