@@ -26,7 +26,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../../rails_helper')
 
 describe Admin::PartnerZipsController do
 
-  before(:each) { mock_admin_logged_in }
+  before(:each) do
+    mock_admin_logged_in
+    allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
+  end
 
   describe "create" do
     before(:each) do

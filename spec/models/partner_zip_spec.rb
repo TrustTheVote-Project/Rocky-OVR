@@ -25,6 +25,9 @@
 require File.dirname(__FILE__) + '/../rails_helper'
 
 describe PartnerZip do
+  before(:each) do
+    allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
+  end
   after(:each) do
     if File.exists?("#{Rails.root}/public/TEST")
       FileUtils.remove_entry_secure("#{Rails.root}/public/TEST", true)

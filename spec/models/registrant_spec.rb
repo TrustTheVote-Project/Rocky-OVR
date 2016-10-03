@@ -26,7 +26,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../rails_helper')
 
 describe Registrant do
   include Rails.application.routes.url_helpers
-  
+
+  before(:each) do
+    allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
+  end
   describe '#partner' do
     let(:r) { Registrant.new }
     before(:each) do
