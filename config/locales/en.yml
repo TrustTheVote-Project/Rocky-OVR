@@ -162,7 +162,7 @@ en:
         css:
          - "Create a file called partner.css that overwrites the default styles with your own. Reference the fonts and images already uploaded.
          (ie: body {background-image: url(‘mybackground.jpg’); color: #cc0000;}
-         This file will load after the default styles so anything you define should change. Go to wiki.rockthevote.com for some examples."
+         This file will load after the default styles so anything you define should change. Go to <a href=\"http://wiki.rockthevote.com\" target=\"_blank\">wiki.rockthevote.com</a> for some examples."
         email_templates:
          - "Customize the autoresponders to match your tone and brand.
          Remember to keep those important HTML tags such as (<%= @registrant.first_name %> and <%= @registrar_phone %>)
