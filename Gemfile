@@ -39,6 +39,10 @@ gem 'diffy'
 gem 'asset_sync'
 gem 'aws-sdk'
 
+group :development do
+  gem 'rack-mini-profiler'
+end
+
 group :development, :test do
   gem 'pry'
   gem 'spring-commands-rspec'

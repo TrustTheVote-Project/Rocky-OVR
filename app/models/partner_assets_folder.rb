@@ -106,7 +106,7 @@ class PartnerAssetsFolder
 
   def files_by_folder(folder)
     files_to_hash(
-      files.to_a.select do |file|
+      files.select do |file|
         v = parse_file_key(file.key)
         v.folder == folder && v.basename.present?
       end
@@ -134,7 +134,7 @@ class PartnerAssetsFolder
   # when a file is deleted its public_url is not available but cached value affects nothing
   # b/c file list is not cached
   def cached_public_url(fog_file)
-    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 20.hours) { fog_file.public_url }
+    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 3.days) { fog_file.public_url } if fog_file
   end
 
   def delete_assets(names)
@@ -147,15 +147,16 @@ class PartnerAssetsFolder
   end
 
   def files
-    @files ||= directory.files
+    # iteration over original files causes additional S3 requests (Fog's behaviour)
+    @files ||= directory.files.to_a
   end
 
   def file_names
-    files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key }
+    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |n| n.key }
   end
 
   def asset_url(name, group = nil)
-    asset_file(name, group).try(:public_url)
+    cached_public_url(asset_file(name, group))
   end
 
   def asset_file(name, group = nil)
