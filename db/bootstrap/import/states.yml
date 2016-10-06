@@ -71,7 +71,7 @@ record_3:
   id_number_tooltip: drivers_license_non_operating_with_state_name
   sos_address: Secretary of State<br>500 Woodlane Street, Suite 256<br>Little Rock,
     AR 72201-8111
-  sos_phone: (501) 682-3526
+  sos_phone: (501) 682-5070
   sos_url: http://www.sosweb.state.ar.us/elections.html
   registration_deadline: postmarked_30_days
   id_length_min: '4'
@@ -242,7 +242,7 @@ record_16:
   id_number_tooltip: drivers_license_non_driver_2
   sos_address: Secretary of State<br>Memorial Hall - 1st Floor<br>120 SW 10th Ave.<br>Topeka,
     KS 66612-1594
-  sos_phone: (785) 796-4564
+  sos_phone: (785) 296-4564
   sos_url: http://www.voteks.org/
   sub_18: be_by_next_general_election_november
   registration_deadline: kansas
@@ -468,7 +468,7 @@ record_32:
   id_number_tooltip: drivers_license_or_other_with_state_name_4
   sos_address: NYS Board of Elections<br>40 North Pearl Street, 5th Floor<br>Albany,
     NY 12207-2729
-  sos_phone: (800) FOR-VOTE
+  sos_phone: (518) 474-6220
   sos_url: http://www.elections.ny.gov
   registration_deadline: new_york
   id_length_min: '4'
