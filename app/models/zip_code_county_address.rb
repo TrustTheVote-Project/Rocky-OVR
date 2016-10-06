@@ -43,9 +43,8 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     # Region lookup by first county name
     regions = []
     [["region_name", county_name],
-      ["region_name", county_name.gsub(/(county|borough|parish)/i, '').strip ],
-      ["county_name", county_name],
       ["county_name", county_name.gsub(/(county|borough|parish)/i, '').strip ],
+      ["county_name", county_name],
       ["county_name", city_name],
       ["municipality_name", county_name],
       ["municipality_name", city_name]
