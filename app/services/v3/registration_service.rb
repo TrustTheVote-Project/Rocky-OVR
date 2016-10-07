@@ -128,16 +128,20 @@ module V3
         raise result[:error].to_s if PA_RETRY_ERRORS.include?(result[:error].to_s)
         
         if result[:error].to_s == "VR_WAPI_Invalidsignaturecontrast"
+          # resubmit
+          registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
+          registrant.save
+          raise "registrant has bad sig, removing and resubmitting"
           #see if they have a DL
-          if registrant.state_ovr_data["voter_records_request"]["voter_registration"]["voter_ids"]
-            registrant.state_ovr_data["voter_records_request"]["voter_registration"]["voter_ids"].each do |id_type|
-              if id_type["type"] == "drivers_license" &&  !id_type["string_value"].blank?
-                registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
-                registrant.save
-                raise "registrant has bad sig, but has drivers license"
-              end
-            end
-          end
+          # if registrant.state_ovr_data["voter_records_request"]["voter_registration"]["voter_ids"]
+          #   registrant.state_ovr_data["voter_records_request"]["voter_registration"]["voter_ids"].each do |id_type|
+          #     if id_type["type"] == "drivers_license" &&  !id_type["string_value"].blank?
+          #       registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
+          #       registrant.save
+          #       raise "registrant has bad sig, but has drivers license"
+          #     end
+          #   end
+          # end
         end
         
         

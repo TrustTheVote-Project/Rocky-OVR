@@ -382,7 +382,7 @@ describe V3::RegistrationService do
             expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to_not be_nil
             expect {
               V3::RegistrationService.register_with_pa(r)
-            }.to raise_error("registrant has bad sig, but has drivers license")
+            }.to raise_error("registrant has bad sig, removing and resubmitting")
             expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to be_nil
         
           end
@@ -402,12 +402,12 @@ describe V3::RegistrationService do
                   }
                 ]
           end
-          it "does not raise an error if there's no DL" do
+          it "also raises an error if there's no DL" do
             expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to_not be_nil
             expect {
               V3::RegistrationService.register_with_pa(r)
-            }.not_to raise_error
-            expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to_not be_nil
+            }.to raise_error("registrant has bad sig, removing and resubmitting")
+            expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to be_nil
         
           end
         end

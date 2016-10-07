@@ -42,10 +42,12 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     state_abbr = self.geo_state.abbreviation
     # Region lookup by first county name
     regions = []
-    [["region_name", county_name],
+    [ ["region_name", county_name],
+      ["municipality_name", city_name],
       ["county_name", county_name],
-      ["municipality_name", county_name],
-      ["municipality_name", city_name]
+      ["county_name", city_name],
+      ["county_name", county_name.gsub(/(county|borough|parish)/i, '').strip ],
+      ["municipality_name", county_name]
     ].each do |filter_name, filter_value|
       if filter_value
         regions = self.class.search_regions(filter_name, filter_value, state_abbr)

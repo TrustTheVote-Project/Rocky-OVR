@@ -13,6 +13,7 @@ class GrommetRequest < ActiveRecord::Base
       end
     end    
     registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])    
+    registrant.basic_character_replacement!
     if registrant.valid?
       # If valid for rocky, ensure that it's valid for PA submissions
       pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)

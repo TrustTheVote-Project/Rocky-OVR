@@ -89,6 +89,7 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
+      - es
   WA:
     redirect_to_online_reg_url: true
     languages:
@@ -97,12 +98,10 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   AL:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   CO:
     redirect_to_online_reg_url: true
     languages:
@@ -125,12 +124,10 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   HI:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   IL:
     redirect_to_online_reg_url: true
     languages:
@@ -140,17 +137,14 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   IA:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   KS:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   KY:
     redirect_to_online_reg_url: true
     languages:
@@ -159,7 +153,6 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   MD:
     redirect_to_online_reg_url: true
     languages:
@@ -206,27 +199,22 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   UT:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   VT:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   VA:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   WV:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
 
   
 enabled_locales:
