@@ -13,9 +13,10 @@ class PARegistrationRequest
     url = "/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=#{api_key}&sysparm_action=SETAPPLICATION&sysparm_Language=0"
 
     uri = URI.parse(server)
-    http = Net::HTTP.new(uri.host, uri.port, read_timeout: 125)
+    http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.read_timeout = 125
     request = Net::HTTP::Post.new(url)
     request.add_field('Content-Type', 'application/json')
     request.add_field('Cache-Control', 'no-cache')
