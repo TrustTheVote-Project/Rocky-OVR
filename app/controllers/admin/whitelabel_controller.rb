@@ -34,8 +34,7 @@ class Admin::WhitelabelController < Admin::BaseController
   def approve_request
     @partner = Partner.find(params[:partner_id])
     req = BrandingUpdateRequest.new(@partner)
-    @partner.folder.publish_sub_assets(:preview)
-    EmailTemplate.publish_templates(@partner)
+    publish_partner_assets(@partner)
     req.done
     redirect_to requests_admin_whitelabel_path, flash: { success: "Assets update finished [id=#{@partner.id}]" }
   end
