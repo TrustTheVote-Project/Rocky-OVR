@@ -23,4 +23,4 @@
         %div.email-preview
           - kind = name.split(".").first
           - locale = name.split(".").last
-          = Notifier.preview_message(@partner, prefix + kind, locale).body.to_s.html_safe
+          = Notifier.preview_message(@partner, prefix, kind, locale).body.to_s.html_safe
