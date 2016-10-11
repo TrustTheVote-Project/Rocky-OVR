@@ -62,6 +62,11 @@ class Notifier < ActionMailer::Base
     
   end
 
+  def preview_message(partner, kind, locale)
+    registrant = Registrant.new(id:0, uid: '00000000', first_name: "FirstName", last_name: "LastName", partner: partner, locale: locale, home_state: GeoState[1])
+    setup_registrant_email(registrant, kind)
+  end
+
   protected
 
   def setup_registrant_email(registrant, kind)

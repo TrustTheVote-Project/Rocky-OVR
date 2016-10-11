@@ -673,3 +673,11 @@ table.assets {
   font-size: 13px;
   border-spacing: 5px;
 }
+ul li div.email-preview {
+  overflow-y: scroll;
+  height: 300px;
+  width: auto;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}

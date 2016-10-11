@@ -16,3 +16,11 @@
         %br
         %br
         = text_area_tag "template[#{prefix + name}]", EmailTemplate.get(@partner, prefix + name), :rows => 5
+        %br
+        %br
+        %p
+          Save your changes to preview the result. Save empty message to load default values.
+        %div.email-preview
+          - kind = name.split(".").first
+          - locale = name.split(".").last
+          = Notifier.preview_message(@partner, prefix + kind, locale).body.to_s.html_safe
