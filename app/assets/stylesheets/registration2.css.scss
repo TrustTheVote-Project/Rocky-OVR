@@ -1,13 +1,9 @@
+@import 'registration2-variables';
+
 * {
   box-sizing: border-box;
   position: relative;
 }
-
-
-$input-height: 40px;
-$label-height: 25px;
-$label-font-size: 16px;
-$input-border: 1px solid #333333;
 
 .clear-fix {
   clear: both;
@@ -62,13 +58,13 @@ body {
 }
 
 #header, #main {
-  width: 600px;
+  width: $main-width;
   margin: 0px auto;
 }
 
 #main {
-  width: 580px;
-  padding: 20px 10px;
+  width: $main-width - $main-padding;
+  padding: 20px $main-padding / 2;
   #other_language_link {
     text-align: right;
     margin: 1em 0;
@@ -139,7 +135,7 @@ body {
       float: none;
       display: inline-block;
       position: absolute;
-      left: -30px;
+      left: 0 - $tooltip-offset;
       top: 7px;
     }
     
@@ -546,3 +542,5 @@ body {
   
   
 }
+
+@import 'registration2-mobile';

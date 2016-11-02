@@ -308,17 +308,18 @@ class VRToPA
     result['preferredlanguage'] = query([:additional_info], :name, 'preferred_language', :string_value)
 
     result['voterregnumber'] = ""
+
     result['previousreglastname'] = prev_last_name
     result['previousregfirstname'] = prev_first_name
     result['previousregmiddlename'] = prev_middle_name
+
     result['previousregaddress'] = prev_reg_address
     result['previousregcity'] = prev_reg_city
     result['previousregstate'] = prev_reg_state
     result['previousregzip'] = prev_reg_zip
 
-    result['previousregcounty'] = query([:previous_registration_address, :numbered_thoroughfare_address, :complete_place_names],
-                                        :place_name_type, 'County', :place_name_value)
-
+    result['previousregcounty'] = prev_reg_county
+    
     result['previousregyear'] = ""
     result['declaration1'] = "1"
     
@@ -338,12 +339,16 @@ class VRToPA
     result
   end
 
-  def is_new_registration
+  def is_new_registration_boolean
     empty_prev_reg = is_empty(read([:previous_registration_address]))
     empty_prev_name = is_empty(read([:previous_name]))
     prev_state = read("previous_registration_address.numbered_thoroughfare_address.state")
     prev_state_outside_pa = !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
-    (empty_prev_reg && empty_prev_name) || prev_state_outside_pa ? "1" : "0"
+    return (empty_prev_reg && empty_prev_name) || prev_state_outside_pa
+  end
+
+  def is_new_registration
+     is_new_registration_boolean ? "1" : "0"
   end
 
   def send_copy_in_mail
@@ -366,36 +371,41 @@ class VRToPA
     raise ParsingError.new(e.message)
   end
 
+  def prev_reg_county
+    is_new_registration_boolean ? nil : query([:previous_registration_address, :numbered_thoroughfare_address, :complete_place_names],
+                                          :place_name_type, 'County', :place_name_value)
+  end
+
   def prev_reg_zip
-    zip_code(:previous_registration_address, address_update == "1")
+    is_new_registration_boolean ? nil : zip_code(:previous_registration_address, address_update == "1")
   end
 
   def prev_reg_state
-    read([:previous_registration_address, :numbered_thoroughfare_address, :state])
+    is_new_registration_boolean ? nil : read([:previous_registration_address, :numbered_thoroughfare_address, :state])
   end
 
   def prev_reg_city
-    municipality(:previous_registration_address, address_update == "1")
+    is_new_registration_boolean ? "" : municipality(:previous_registration_address, address_update == "1")
   end
 
   def prev_reg_address
-    read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name], address_update == "1")
+    is_new_registration_boolean ? nil : read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name], address_update == "1")
   end
 
   def address_update
-    is_empty(read([:previous_registration_address])) ? "0" : "1"
+    is_new_registration_boolean ? "0" : (is_empty(read([:previous_registration_address])) ? "0" : "1")
   end
 
   def prev_middle_name
-    read([:previous_name, :middle_name])
+    is_new_registration_boolean ? nil : read([:previous_name, :middle_name])
   end
 
   def prev_first_name
-    read([:previous_name, :first_name], name_update == "1")
+    is_new_registration_boolean ? nil : read([:previous_name, :first_name], name_update == "1")
   end
 
   def prev_last_name
-    read([:previous_name, :last_name], name_update == "1")
+    is_new_registration_boolean ? nil : read([:previous_name, :last_name], name_update == "1")
   end
 
   def name_update
@@ -455,8 +465,12 @@ class VRToPA
   def readsignature
     data = read([:signature, :image])
     type = read([:signature, :mime_type])
-
-    return "data:#{type};base64,#{data}"
+    
+    if !is_empty(data)
+      return "data:#{type};base64,#{data}"
+    else
+      return ""
+    end
 
   end
 

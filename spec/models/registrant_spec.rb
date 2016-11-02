@@ -329,15 +329,16 @@ describe Registrant do
           non_latin_locales.each do |loc|
             txt = I18n.t('txt.registration.in_language_name', :locale=>loc, :default => "")
             unless txt.blank?
-              #puts "\tTesting #{loc}: #{txt}"
+              # puts "\tTesting #{loc}: #{txt}"
               r.send("#{field}=",txt)
               r.should_not be_valid
+              # puts r.send(field), r.errors.keys, r.errors[field]
               r.errors[field].should_not be_empty          
             end
           end
           latin_locales.each do |loc|
             txt = I18n.t('txt.registration.in_language_name', :locale=>loc, :default => "").to_s +  " 123"
-            # puts "\tTesting #{loc}: #{txt}"
+            puts "\tTesting #{loc}: #{txt}"
             r.send("#{field}=",txt)
             if !r.valid?
               # puts field, r.send(field)
@@ -405,8 +406,33 @@ describe Registrant do
         end
       end
     end
-
+  end
   
+  describe 'basic_character_replacement' do
+    it "replacees spansih characters with ascii in addresses" do
+      r = Registrant.new
+      r.stub(:has_mailing_address?).and_return(true)
+      r.stub(:change_of_name?).and_return(true)
+      r.stub(:change_of_address?).and_return(true)
+      
+      [Registrant::ADDRESS_FIELDS, Registrant::CITY_FIELDS].flatten.each do |field|
+        r.send("#{field}=", Registrant::SPANISH_CHARS)
+        r.basic_character_replacement!
+        expect(r.send(field)).to eql("aeioun")
+      end
+    end
+    it "removes , . / from city fields" do
+      r = Registrant.new
+      r.stub(:has_mailing_address?).and_return(true)
+      r.stub(:change_of_name?).and_return(true)
+      r.stub(:change_of_address?).and_return(true)
+      
+      [Registrant::CITY_FIELDS].flatten.each do |field|
+        r.send("#{field}=", "St. Thomas, Virgin/Islands")
+        r.basic_character_replacement!
+        expect(r.send(field)).to eql("St Thomas Virgin Islands")
+      end
+    end
   end
 
   describe "step 1" do

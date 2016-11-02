@@ -124,6 +124,9 @@ class RegistrationStep < ApplicationController
     @first_name = params[:first_name]
     @last_name = params[:last_name]
     @state_abbrev = params[:state_abbrev]
+    if @state_abbrev
+      @short_form = true
+    end
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     if !@state_abbrev.blank?
       @short_form = true
