@@ -1,0 +1,147 @@
+@import 'registration2-variables';
+
+$mobile-width: calc(100% - #{$tooltip-offset});
+$mobile-min-width: 300px - $tooltip-offset;
+
+@media(max-width: $main-width) {
+  body {
+    #header {
+      width: $mobile-width;
+      min-width: $mobile-min-width;
+      background-image: none;
+      .header-text {
+        display: block;
+        color: white;
+        font-size: 24px;
+        text-transform: uppercase;
+        margin-top: ((80-24px)/2);
+      }  
+    }
+    #main {
+        width: $mobile-width;
+        min-width: $mobile-min-width;
+        form {
+          ul, ul.flat {
+            li, li.width_f {
+              h3 {
+                font-size: 13px;
+              }
+              &.registrant-form__home-zip__button {
+                button {
+                  padding-left: 0px !important;
+                  padding-right: 0px !important;                                  
+                }
+              }
+              &.registrant-form__us-citizen__line,
+              &.registrant-form__change-of-name__line {
+                width: 100%;
+              }
+              
+              &.registrant-form__has-state-license__line, 
+              &.registrant-form__has-no-state-license__line {
+                input {
+                  width: 10%;
+                }
+                label {
+                  width: 90%;
+                  font-weight: normal;
+                }
+              }
+              
+            }
+            
+            .has_license {
+              .checkbox-explanation {
+                p {
+                  margin-left: 10%;
+                  margin-right: 10%;
+                }
+              } 
+            }
+            &.dob-and-phone {
+              li, li.width_f {
+                &.registrant-form__date-of-birth__line {
+                  width: 100%;
+                }
+                &.registrant-form__phone__line {
+                  width: 55%;
+                }
+                &.registrant-form__phone-type__line {
+                  width: 40%;
+                }                
+              }
+            }
+          }
+          .rollover_button {
+            button {
+              text-align: center;
+              font-size: 14px;
+            }
+          }
+          ul.stacked {
+            li {
+              width: 100%;
+              padding-bottom: 0;
+              &.registrant-form__home-address__line,
+              &.registrant-form__prev-address__line,
+              &.registrant-form__mailing-address__line {
+                width: 70%;
+              }
+              &.registrant-form__home-unit__line,
+              &.registrant-form__prev-unit__line,
+              &.registrant-form__mailing-unit__line {
+                width: 28%;
+              }
+              &.registrant-form__home-state-abbrev__line,
+              &.registrant-form__prev-state-abbrev__line,
+              &.registrant-form__mailing-state-abbrev__line {
+                width: 48%;
+              }
+              &.registrant-form__home-zip-code__line,
+              &.registrant-form__prev-zip-code__line,
+              &.registrant-form__mailing-zip-code__line {
+                width: 50%;
+              }
+            }            
+          }
+        }
+        .step_4 {
+          h1, h3.ovr_step_4 {
+            width: 100%;            
+          }
+        }
+        .download {
+          width: 100%;
+          h2 {
+            margin-left:0;
+            margin-right:0;
+          }
+          p, p.centered {
+            margin-left: 0;
+            margin-right: 0;
+            span.rollover_button {
+              a span {
+                line-height: 1.4em;
+                white-space: normal;
+              }
+            }
+          }
+        }
+    }
+    #footer {
+      width: 100%;
+      min-width: $mobile-min-width;
+      p {
+        width: 100%;
+        text-align: center;
+        span {
+          line-height: 1.7em;
+        }
+      }
+    } 
+  }
+  .share div.rollover_button {
+    width: 100%;
+    padding: 5px;
+  }
+}

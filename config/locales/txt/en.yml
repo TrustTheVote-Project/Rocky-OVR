@@ -1,6 +1,7 @@
 ---
 en:
   txt:
+    register_to_vote: Register To Vote
     unknown_error: ! 'Unknown error: the web administrators have been contacted.'
     error: Something went wrong.
     try_again: Go back and try again.

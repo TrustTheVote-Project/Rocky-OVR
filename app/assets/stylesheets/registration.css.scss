@@ -51,6 +51,9 @@ iframe {
   margin: 0 auto;
   background-image: image-url('reg/header.jpg');
   background-repeat: no-repeat;
+  .header-text {
+    display: none;
+  }
 }
 
 #header.partner {
@@ -1540,3 +1543,4 @@ fieldset.no_border {
 #progress-bar li.progress-title {
     min-width: 50px;
 }
+
