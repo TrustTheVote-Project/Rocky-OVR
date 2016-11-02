@@ -20,6 +20,7 @@ zh:
       libertarian: 自由党
       republican: 共和党
       working_families: 工薪家庭
+      unenrolled: 無參加
       other: 其他
     no_party_label:
       none: 以上都不是
@@ -150,6 +151,7 @@ zh:
       17_turn_18: 如果您年满17岁而且将会在下一次选举日前年满18岁
     registration_deadline:
       california: 申请表必须盖有选举日前15 天的邮戳或在选举日前15天送达选举办公室（或者NVRA选民登记机构)（才能够参与该选举）
+      colorado: .
       connecticut: 申请表必须盖有选举前14 天的邮戳或在选举前7天亲自送达选举办公室。
       delaware: 一般选举或者初选的申请表必须盖有早于选举前第四个星期六的邮戳。特殊选举申请表必须盖有选举前10天的邮戳。
       georgia: 申请表必须盖有早于选举前第五个星期一的邮戳。
@@ -164,11 +166,11 @@ zh:
       vermont: 申请表必须在选举前的星期三的下午5点前送达。
       washington: 申请表必须盖有选举前第四个星期一的邮戳或在选举前第一个星期一亲自送达县选举部门
       postmarked_11_days: 申请表必须盖有选举前11天的邮戳
-      postmarked_14_days: 申请表必须盖有选举前140天的邮戳
+      postmarked_14_days: 郵戳選舉前十四天
       postmarked_20_days: 申请表必须盖有选举前20天的邮戳
       postmarked_21_days: 申请表必须盖有选举前21天的邮戳
       postmarked_25_days: 申请表必须盖有选举前25天的邮戳
-      postmarked_27_days: 申请表必须盖有选举前27天的邮戳
+      postmarked_27_days: 郵戳選舉前二十七天
       postmarked_28_days: 申请表必须盖有选举前28天的邮戳
       postmarked_29_days: 申请表必须盖有选举前29天的邮戳
       postmarked_30_days: 申请表必须盖有选举前30天的邮戳
@@ -188,6 +190,9 @@ zh:
         href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">online</a>.</i>'
       kansas: ! '<b>*首次进行登记的选民请注意: 您必须在州选投票的同时出示证明公民身份的文件！</b><br/><i>如果这是您首次在堪萨斯州登记，您的选民登记表格必须同时包含证明公民身份的文件才可以参加州选举（即：州长，州秘书长以及州议会选举）。否则您将只能够在联邦政府选举中投票。最常见的“证明文件”有出生证或护照的复印件，全部认可文件的详细列表可以在以下链接找到<a
         href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">online</a>.</i>'
+    pdf_other_instructions:
+      blank: ''
+      wisconsin: 在威斯康辛州辦理登記, 申請人必須提供戶口証明文件.  如果你使用郵寄登記, 你可用必須包括選民姓名及現在地址的下列任何一種戶口証明文件.
     email_instructions:
       blank: ''
       arizona: ! '*首次登记选民及近期更改地址的选民请注意：您必须在州选投票的同时出示证明公民身份的文件！</b><br/><i>如果这是您首次在亚利桑那州登记或者您搬家至其他郡县，您的选民登记表格必须同时包含证明公民身份的文件才可以参加州选举（即：州长，州秘书长以及州议会选举）。否则您将只能够在联邦政府选举中投票。如果您拥有亚利桑那州驾驶证或1996年10月以后发放的州身份证，就满足“公民身份证明”的条件，无需其他证明文件。否则，您必须随选民登记申请表附上您的“公民身份证明文件”。最常见的“证明文件”有出生证或护照的复印件，全部认可文件的详细列表可以在以下链接找到<a

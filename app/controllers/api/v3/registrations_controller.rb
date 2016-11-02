@@ -87,7 +87,12 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   def create_pa
     registrant = nil
     params.delete(:debug_info)
-
+    
+    begin
+      GrommetRequest.create(request_params: params)
+    rescue
+    end
+    
     # input request structure validation
     [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
       value = params
@@ -100,6 +105,8 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
     # 1. Build a rocky registrant record based on all of the fields
     registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])
+    # 1a. do subsititutions for invalid chars
+    registrant.basic_character_replacement!
     # 2.Check if the registrant is internally valid
     if registrant.valid?
       # If valid for rocky, ensure that it's valid for PA submissions

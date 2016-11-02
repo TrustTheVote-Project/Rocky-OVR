@@ -41,9 +41,12 @@ mobile_browsers:
   - iphone
   
 widget_loader_url: https://s3.amazonaws.com/ovr/widget_loader.js
-hours_before_first_reminder: 120
-hours_between_first_and_second_reminder: 72
-hours_between_second_and_final_reminder: 72
+# hours_before_first_reminder: 120
+# hours_between_first_and_second_reminder: 72
+# hours_between_second_and_final_reminder: 72
+hours_before_first_reminder: 2
+hours_between_first_and_second_reminder: 2
+hours_between_second_and_final_reminder: 2
 minutes_before_abandoned: 30
 ui_timeout_minutes: 30
 pdf_expiration_days: 14
@@ -92,6 +95,7 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
+      - es
   WA:
     redirect_to_online_reg_url: true
     languages:
@@ -100,12 +104,10 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   AL:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   CO:
     redirect_to_online_reg_url: true
     languages:
@@ -128,12 +130,10 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   HI:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   IL:
     redirect_to_online_reg_url: true
     languages:
@@ -143,17 +143,14 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   IA:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   KS:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   KY:
     redirect_to_online_reg_url: true
     languages:
@@ -162,7 +159,6 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   MD:
     redirect_to_online_reg_url: true
     languages:
@@ -200,31 +196,31 @@ ovr_states:
     languages:
       - en
       - es
+  RI:
+    redirect_to_online_reg_url: ture
+    languages:
+      - en
+      - es
   SC:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   UT:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   VT:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   VA:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
   WV:
     redirect_to_online_reg_url: true
     languages:
       - en
-      - es
 
   
 enabled_locales:

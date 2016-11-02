@@ -9,7 +9,7 @@ cd /var/www/rocky
 source /etc/profile.d/rvm.sh
 rvm install 1.9.3-p551
 rvm use ruby-1.9.3-p551@rocky6 --create
-gem install bundler
+gem install bundler -v 1.12
 bundle install --without development test
 
 # Make sure we have the config files downloaded

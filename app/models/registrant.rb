@@ -107,6 +107,23 @@ class Registrant < ActiveRecord::Base
     
   end
   
+  #before_validation :basic_character_replacement
+  SPANISH_CHARS = "áéíóúñ"
+  def basic_character_replacement!
+    [ADDRESS_FIELDS, CITY_FIELDS].flatten.each do |field|
+      val = self.send(field).to_s
+      val = val.gsub(/á/i,"a").gsub(/é/i,"e").gsub(/í/i,"i").gsub(/ó/i,"o").gsub(/ú/i,"u").gsub(/ñ/i,"n")
+      self.send("#{field}=", val)
+    end
+    [CITY_FIELDS].flatten.each do |field|
+      #Also allow city fields to have the same as address fields (, / .) - just remove them
+      val = self.send(field).to_s
+      val = val.gsub(/[,\.]/i,"").gsub(/\//i, " ")
+      self.send("#{field}=", val)      
+    end
+  end
+  
+  
   validate_fields(PDF_FIELDS, OVR_REGEX, :invalid_for_pdf)
   validate_fields(NAME_FIELDS, OVR_REGEX, :invalid)
   validate_fields(ADDRESS_FIELDS, CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period")
@@ -1067,7 +1084,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def pdf_url(pdfpre = nil, file=false)
-   "https://s3-us-west-2.amazonaws.com/rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}#{pdf_path(pdfpre, file)}"
+   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com#{pdf_path(pdfpre, file)}"
   end
   def pdf_path(pdfpre = nil, file=false)
     pdf_writer.pdf_path(pdfpre, file)

@@ -861,6 +861,42 @@ describe VRToPA do
         expect { adapter.prev_reg_zip }.to raise_error
       end
     end
+    context "is new registration" do
+      let(:input){ 
+        {
+          "previous_registration_address" => {
+              "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "",
+                  "complete_street_name" => "222 N. Street",
+                  "complete_sub_address" => {
+                      "sub_address_type" => "APT",
+                      "sub_address" => "Apt 306"
+                  },
+                  "complete_place_names" => [
+                      {
+                          "place_name_type" => "MunicipalJurisdiction",
+                          "place_name_value" => "Previous City"
+                      },
+                      {
+                          "place_name_type" => "County",
+                          "place_name_value" => "Prev County"
+                      }
+                  ],
+                  "state" => "PA",
+                  "zip_code" => "22222"
+              }
+          },
+        }
+      }
+      it "returns blank prev-reg when is_new_registration" do
+        allow(adapter).to receive(:is_new_registration_boolean).and_return(true)
+        expect(adapter.prev_reg_address).to be_nil
+        expect(adapter.prev_reg_city).to eql ""
+        expect(adapter.prev_reg_state).to be_nil
+        expect(adapter.prev_reg_zip).to be_nil 
+        expect(adapter.address_update).to eql("0")       
+      end
+    end
   end
 
   describe "phone" do
@@ -1184,6 +1220,46 @@ describe VRToPA do
       end
       it "1" do
         expect(subject).to eql("1")
+      end
+    end
+  end
+
+  describe "readsignature" do
+    subject { adapter.readsignature }
+    context "when there is image content" do
+      let(:input) do
+        {
+            "signature" => {
+              "mime_type" => "image/img-type",
+              "image" => "content"
+          }
+        }
+      end
+      it "returns a combined mime_type/image" do
+        expect { subject.to eql("data:image/img-type;base64,content")}
+      end
+    end
+    context "when there is no image content" do
+      let(:input) do
+        {
+            "signature" => {
+              "mime_type" => "image/img-type",
+              "image" => " "
+          }
+        }
+      end
+      it "returns a blank string" do
+        expect { subject.to eql("")}
+      end
+    end
+    context "when there is no signature content" do
+      let(:input) do
+        {
+            "not_a_signature" => { }
+        }
+      end
+      it "returns a blank string" do
+        expect { subject.to eql("")}
       end
     end
   end

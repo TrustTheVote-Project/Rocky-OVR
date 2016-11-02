@@ -42,10 +42,12 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     state_abbr = self.geo_state.abbreviation
     # Region lookup by first county name
     regions = []
-    [["region_name", county_name],
+    [ ["region_name", county_name],
+      ["municipality_name", city_name],
       ["county_name", county_name],
-      ["municipality_name", county_name],
-      ["municipality_name", city_name]
+      ["county_name", city_name],
+      ["county_name", county_name.gsub(/(county|borough|parish)/i, '').strip ],
+      ["municipality_name", county_name]
     ].each do |filter_name, filter_value|
       if filter_value
         regions = self.class.search_regions(filter_name, filter_value, state_abbr)
@@ -71,7 +73,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     if offices.any?
       raise "Too many offices for region #{region_id}" if offices.count > 5
       office = offices.first
-      mailing_office = office["mailing_address"]
+      mailing_office = select_address_from_office(office)
       if mailing_office
         return [mailing_office["address_to"],
          mailing_office["street1"],
@@ -83,7 +85,17 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     return nil
   end
   
-  
+  def select_address_from_office(office)
+    # First find any "additional_addresses" where 
+    # "type"=>"name" == "Voter Registration Mailing Address"
+    if office["additional_addresses"] && office["additional_addresses"].is_a?(Array)
+      additional_address = office["additional_addresses"].find {|addr| addr["type"] && addr["type"]["name"]=="Voter Registration Mailing Address"}
+      if additional_address
+        return additional_address["address"]
+      end
+    end
+    return office["mailing_address"]
+  end
   
   
   def self.search_regions(filter_name, filter_value, state_abbr)

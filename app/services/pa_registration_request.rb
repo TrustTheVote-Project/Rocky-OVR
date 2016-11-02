@@ -16,6 +16,7 @@ class PARegistrationRequest
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.read_timeout = 125
     request = Net::HTTP::Post.new(url)
     request.add_field('Content-Type', 'application/json')
     request.add_field('Cache-Control', 'no-cache')
