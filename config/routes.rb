@@ -3,6 +3,7 @@ Rocky::Application.routes.draw do
   root :to => "registrants#landing"
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui"
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout'
+  match "/registrants/new/:state_abbrev", to: "registrants#new"
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
     resource "step_2", :controller => "step2", :only => [:show, :update]

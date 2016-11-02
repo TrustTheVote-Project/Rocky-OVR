@@ -35,7 +35,11 @@
       
   <% end -%>
       <div class='header-text'>
-        <%= t 'txt.register_to_vote' %>
+        <%- if @registrant && @registrant.home_state_abbrev %>
+          <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_abbrev %>
+        <%- else %>
+          <%= t 'txt.register_to_vote' %>
+        <%- end %>
       </div>
       <div id="progress-bar">
         <ol>
