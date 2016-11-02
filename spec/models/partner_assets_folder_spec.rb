@@ -26,7 +26,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../rails_helper')
 
 describe PartnerAssetsFolder do
 
-  before(:each) do 
+  before(:each) do
+    allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
     @partner = FactoryGirl.create(:partner)
     @partner.stub(:partner_root).and_return("partners/TEST")
     @paf = PartnerAssetsFolder.new(@partner)
@@ -50,11 +51,11 @@ describe PartnerAssetsFolder do
       end
 
       it 'should replace asset file' do
-        open(@partner.application_css_url).read.should == "alt\n"
+        @partner.folder.asset_file(@partner.application_css_path).body.should == "alt\n"
       end
 
       it 'should create the versioned copy' do
-        css_files = @paf.old_directory.files
+        css_files = @paf.directory.files.select {|f| f.key.starts_with?(@partner.absolute_old_assets_path) }
         css_files.count.should == 1
         css_files.first.key.should match /\/application-#{Time.now.strftime("%Y%m%d%H")}\d{4}\.css$/
       end

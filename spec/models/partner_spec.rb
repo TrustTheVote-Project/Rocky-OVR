@@ -26,6 +26,10 @@ require File.dirname(__FILE__) + '/../rails_helper'
 
 describe Partner do
 
+  before(:each) do
+    allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
+  end
+
   describe "creation" do
     it "sets an API key on creation" do
       p = FactoryGirl.create(:partner, :api_key=>'')

@@ -22,27 +22,21 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class Admin::WhitelabelController < Admin::BaseController
+require File.expand_path(File.dirname(__FILE__) + '/../rails_helper')
+require 'spec_helper'
 
-  def requests
-    @requests = {
-        open: BrandingUpdateRequest.all.select { |r| r.open? },
-        recently_closed: BrandingUpdateRequest.recently_closed
-    }
+describe ApprovalController do
+  before(:each) do
+    rspec_partner_auth
   end
 
-  def approve_request
-    @partner = Partner.find(params[:partner_id])
-    req = BrandingUpdateRequest.new(@partner)
-    publish_partner_assets(@partner)
-    req.done
-    redirect_to requests_admin_whitelabel_path, flash: { success: "Assets update finished [id=#{@partner.id}]" }
-  end
+  it 'redirects to preview url' do
+    get :preview
 
-  def reject_request
-    @partner = Partner.find(params[:partner_id])
-    req = BrandingUpdateRequest.new(@partner)
-    req.reject
-    redirect_to requests_admin_whitelabel_path, flash: { success: "Partner's request rejected [id=#{@partner.id}]" }
+    expect(response.status).to eq(302)
+    expect(response.location).to include(new_registrant_path)
+    redirect_params = Rack::Utils.parse_query(URI.parse(response.location).query)
+    expect(redirect_params).to include('preview_custom_assets')
+    expect(redirect_params['partner']).to be_eql(@partner.id.to_s)
   end
 end

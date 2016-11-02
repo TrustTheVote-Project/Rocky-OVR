@@ -64,4 +64,10 @@ class Admin::BaseController < ApplicationController
     session[:return_to] = nil
   end
 
+  def publish_partner_assets(partner)
+    partner.folder.publish_sub_assets(:preview)
+    EmailTemplate.publish_templates(partner)
+    partner.update_attributes(whitelabeled: true) unless partner.whitelabeled?
+  end
+
 end

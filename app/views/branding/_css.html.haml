@@ -1,0 +1,9 @@
+%div.whitelabeled
+  %ul.checkbox
+    %li
+      %h3= "partner.css#{' (missing)' unless @partner.partner_css_present? }"
+      %h3
+        = check_box_tag :replace_sys_css
+        = label_tag :replace_sys_css, "replace system versions of application.css and registration.css"
+    %li.width_e
+      %div= file_field_tag 'css_files[partner]'

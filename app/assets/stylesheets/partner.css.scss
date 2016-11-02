@@ -282,6 +282,12 @@ form li {
   margin: 0 5px 0 0;
 }
 
+ul.clear li {
+  list-style: disc;
+  line-height: 1.5;
+  margin: 0.5em 2em;
+}
+
 .copy_html h3 {
   font-weight: normal;
   text-align: left;
@@ -574,6 +580,11 @@ border: 1px solid #ccc
     font-size: 15px;
     text-align: center
 }
+
+.smaller-nav-font * {
+    font-size: 13px;
+}
+
 #header p a:first-child {
     margin-left: 0
 }
@@ -661,4 +672,12 @@ div, span {
 table.assets {
   font-size: 13px;
   border-spacing: 5px;
+}
+ul li div.email-preview {
+  overflow-y: scroll;
+  height: 300px;
+  width: auto;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  padding: 10px;
 }

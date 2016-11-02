@@ -1,0 +1,24 @@
+- #TODO move to new layout
+- content_for :subnav do
+  - @nav_class[:branding] = :current
+  - @nav_class[:customize] = :current
+  = render :partial => "layouts/customize_nav"
+
+- @nav_class[:branding] = :current
+#customize_nav
+  %p
+    = link_to I18n.t('partners.branding.title', default: 'Setup Custom Branding'), partner_branding_path
+    |
+    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), partner_branding_approval_path, class: :current
+%p
+  = I18n.t('partners.branding.description.approval')
+%p
+  = link_to I18n::t("partners.branding.preview"), preview_partner_branding_approval_path, target: '_blank', id: 'registrant_preview', confirm: preview_confirmation
+%p
+  = I18n::t("partners.branding.approval.status.#{@update_request.status}", date: @update_request.date)
+  - if @update_request.can_be_opened
+    %p
+      = button_to I18n::t("partners.branding.approval.open"), {}, method: :put
+  - if @update_request.can_be_closed
+    %p
+      = button_to I18n::t("partners.branding.approval.close"), {}, method: :delete

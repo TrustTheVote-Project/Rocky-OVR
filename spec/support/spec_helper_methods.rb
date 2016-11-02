@@ -32,6 +32,7 @@ module SpecHelperMethods
       :aws_secret_access_key    => ENV['AWS_SECRET_ACCESS_KEY']
     })
     connection.directories.get("rocky-partner-assets-test").files.each do |f|
+      print "WARNING: found test S3 file: #{f.key}. Test shouldn't upload files to live S3, FakeS3 wrapper should be used.\n"
       f.destroy
     end
   end

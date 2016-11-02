@@ -22,27 +22,51 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class Admin::WhitelabelController < Admin::BaseController
+class ApprovalController < PartnerBase
+  layout "partners"
+  before_filter :require_partner, :load_data
 
-  def requests
-    @requests = {
-        open: BrandingUpdateRequest.all.select { |r| r.open? },
-        recently_closed: BrandingUpdateRequest.recently_closed
-    }
+
+  def show
   end
 
-  def approve_request
-    @partner = Partner.find(params[:partner_id])
-    req = BrandingUpdateRequest.new(@partner)
-    publish_partner_assets(@partner)
-    req.done
-    redirect_to requests_admin_whitelabel_path, flash: { success: "Assets update finished [id=#{@partner.id}]" }
+  def update
+    error = false
+
+    @update_request.open rescue error = true
+
+    flash = error ? { warning: "Invalid operation" } : {}
+    redirect_to partner_branding_approval_path, flash: flash
   end
 
-  def reject_request
-    @partner = Partner.find(params[:partner_id])
-    req = BrandingUpdateRequest.new(@partner)
-    req.reject
-    redirect_to requests_admin_whitelabel_path, flash: { success: "Partner's request rejected [id=#{@partner.id}]" }
+  def destroy
+    error = false
+
+    @update_request.delete rescue error = true
+
+    flash = error ? { warning: "Invalid operation" } : {}
+    redirect_to partner_branding_approval_path, flash: flash
   end
+
+  def preview
+    redirect_to current_partner.preview_custom_assets_link
+  end
+
+  private
+
+  def load_data
+    @partner = current_partner
+    @update_request = BrandingUpdateRequest.new(@partner)
+  end
+
+  def preview_confirmation
+    status = @partner.preview_assets_status
+    if status != :updated
+      I18n::t('partners.branding.preview_warning')[status];
+    else
+      ''
+    end
+  end
+
+  helper_method :preview_confirmation
 end

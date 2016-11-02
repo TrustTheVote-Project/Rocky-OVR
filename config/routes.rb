@@ -38,15 +38,15 @@ Rocky::Application.routes.draw do
       post "registrations"
       get "download_csv"
       get "embed_codes"
-      get "branding"
-      get "branding_approval"
-      post "request_branding_approval"
-      post "update_branding"
-      get "preview_assets"
     end
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]
     resource "logo",          :only => [:show, :update, :destroy]
+    resource "branding", only: [:show, :update], controller: "branding" do
+      resource "approval", only: [:show, :update, :destroy], controller: "approval" do
+        get "preview"
+      end
+    end
   end
 
   match "/widget_loader.js", :format => "js", :to => "registrants#widget_loader", :as=>'widget_loader'

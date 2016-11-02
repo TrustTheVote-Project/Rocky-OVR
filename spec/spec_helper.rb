@@ -91,3 +91,10 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+
+def rspec_partner_auth
+  activate_authlogic
+  @partner = FactoryGirl.create(:partner, :id => 5)
+  PartnerSession.create(@partner)
+end
