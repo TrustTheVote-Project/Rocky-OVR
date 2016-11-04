@@ -101,16 +101,44 @@ describe Step2Controller do
       assert_template "show"
     end
     
-
+    context "if using a short form" do 
+      before(:each) do 
+        @registrant.stub(:use_short_form?) { true }      
+        Registrant.stub(:find_by_param!) { @registrant }        
+      end
+      it "should go to step 4 if on ovr_flow" do
+        @registrant.stub(:in_ovr_flow?) { true }
+        put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:maximal_registrant).reject {|k,v| k == :status }
+        assert_not_nil assigns[:registrant]
+        assert assigns[:registrant].step_3?
+        assert_redirected_to registrant_step_4_url(assigns[:registrant])
+      end
+      
+      it "should go to the confirmation page if using not in ovr_flow" do
+        @registrant.stub(:in_ovr_flow?) { false }
+        put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:maximal_registrant).reject {|k,v| k == :status }
+        assert_not_nil assigns[:registrant]
+        assert assigns[:registrant].complete?
+        assert_redirected_to registrant_download_url(assigns[:registrant])
+      end
+      
+      it "should set using_state_online_registration to true when registrant_state_online_registration button is pressed" do
+        put :update, :registrant_id => @registrant.to_param, 
+                     :registrant => FactoryGirl.attributes_for(:step_4_registrant, :has_state_license=>true).reject {|k,v| k == :status },
+                     :registrant_state_online_registration => ""
+                     
+        expect(assigns[:registrant][:using_state_online_registration]).to eq(true)
+      end
+      it "should set using_state_online_registration to false when regular next button is pressed" do
+        put :update, :registrant_id => @registrant.to_param, 
+                     :registrant => FactoryGirl.attributes_for(:step_4_registrant, :has_state_license=>true).reject {|k,v| k == :status }                     
+                     
+        expect(assigns[:registrant][:using_state_online_registration]).to eq(false)
+      end
+      
     
-    it "should go to the confirmation page if using a short_form" do
-      @registrant.stub(:use_short_form?) { true }      
-      Registrant.stub(:find_by_param!) { @registrant }
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:maximal_registrant).reject {|k,v| k == :status }
-      assert_not_nil assigns[:registrant]
-      assert assigns[:registrant].complete?
-      assert_redirected_to registrant_download_url(assigns[:registrant])
     end
+    
     
   end
 end
