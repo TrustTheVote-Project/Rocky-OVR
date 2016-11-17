@@ -123,10 +123,11 @@ class RegistrationStep < ApplicationController
     @email_address = params[:email_address]
     @first_name = params[:first_name]
     @last_name = params[:last_name]
-    @state_abbrev = params[:state_abbrev]
+    @state_abbrev = params[:state_abbrev] || params[:state]
     if @state_abbrev
       @short_form = true
     end
+    @home_zip_code = params[:home_zip_code]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     if !@state_abbrev.blank?
       @short_form = true

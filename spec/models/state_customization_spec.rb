@@ -110,5 +110,15 @@ describe StateCustomization do
     end
   end
   
+  describe "enabled_for_language?" do
+    context "when reg is null" do
+      it "returns whether the state is enabled for the locale"
+    end
+    context "when reg is present" do
+      it "returns false if the reg does not have id"
+      it "returns whether the state is enabled for the locale if the reg does have id"
+    end
+  end
+  
   
 end

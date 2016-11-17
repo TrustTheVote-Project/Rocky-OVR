@@ -40,6 +40,12 @@ class RegistrantsController < RegistrationStep
     options[:tracking] = params[:tracking] if params[:tracking]
     options[:short_form] = params[:short_form] if params[:short_form]
     options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
+    options[:home_zip_code] = params[:home_zip_code] if params[:home_zip_code]
+    options[:state_abbrev] = params[:state_abbrev] if params[:state_abbrev]
+    options[:state] = params[:state] if params[:state]
+    options[:first_name] = params[:first_name] if params[:first_name]
+    options[:last_name] = params[:last_name] if params[:last_name]
+    options[:email_address] = params[:email_address] if params[:email_address]
     options.merge!(:protocol => "https") if RockyConf.use_https
     redirect_to new_registrant_url(options)
   end
@@ -56,6 +62,7 @@ class RegistrantsController < RegistrationStep
           first_name: @first_name,
           last_name: @last_name,
           home_state: @home_state,
+          home_zip_code: @home_zip_code,          
           is_fake: params.keys.include?('preview_custom_assets')
         }
         create
