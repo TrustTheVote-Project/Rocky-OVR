@@ -538,9 +538,26 @@ body {
       margin-left: auto !important;
       margin-right: auto !important;
   }
-
-  
-  
 }
+
+#main.using_state_registration {
+  .registrant-form__change-of-name__line,
+  #prev_name_set,
+  .registrant-form__has-mailing-address__line,
+  #mailing_address_set,
+  .registrant-form__change-of-address__line,
+  #prev_address_set,
+  .registrant-form__middle-name__line,
+  .registrant-form__prev-middle-name__line
+   {
+    display: none !important;
+  }
+  .registrant-form__first-name__line, .registrant-form__prev-last-name__line,
+  .registrant-form__last-name__line, .registrant-form__prev-first-name__line {
+    width: 31%;
+  }
+ 
+}
+
 
 @import 'registration2-mobile';

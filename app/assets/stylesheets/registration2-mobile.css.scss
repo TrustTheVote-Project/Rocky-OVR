@@ -128,6 +128,15 @@ $mobile-min-width: 300px - $tooltip-offset;
           }
         }
     }
+    
+    #main.using_state_registration {
+      .registrant-form__first-name__line, .registrant-form__prev-last-name__line,
+      .registrant-form__last-name__line, .registrant-form__prev-first-name__line {
+        width: 100%;
+      }
+ 
+    }
+    
     #footer {
       width: 100%;
       min-width: $mobile-min-width;
