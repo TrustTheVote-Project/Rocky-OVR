@@ -78,6 +78,7 @@ class RegistrantsController < RegistrationStep
             first_name: @first_name,
             last_name: @last_name,
             home_state: @home_state,
+            home_zip_code: @home_zip_code,
             is_fake: params.keys.include?('preview_custom_assets')
         )
         render "show"
