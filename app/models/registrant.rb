@@ -297,7 +297,7 @@ class Registrant < ActiveRecord::Base
   
   def require_email_address?
     #!%w(no optional)
-    !%w(no).include?(collect_email_address.to_s.downcase.strip)
+    !%w(no).include?(collect_email_address.to_s.downcase.strip) && !(home_state && !home_state.participating?)
   end
 
   def needs_mailing_address?
@@ -787,8 +787,10 @@ class Registrant < ActiveRecord::Base
 
   def home_zip_code=(zip)
     self[:home_zip_code] = zip
-    self.home_state = nil
-    self.home_state_id = zip && (s = GeoState.for_zip_code(zip.strip)) ? s.id : self.home_state_id
+    if zip
+      self.home_state = nil
+      self.home_state_id = (s = GeoState.for_zip_code(zip.strip)) ? s.id : self.home_state_id
+    end
   end
 
   def home_state_name
