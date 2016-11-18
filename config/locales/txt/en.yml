@@ -2,7 +2,7 @@
 en:
   txt:
     register_to_vote: Register To Vote
-    register_to_vote_in: Register To Vote in %{state_abbrev}
+    register_to_vote_in: Register in %{state_abbrev}
     unknown_error: ! 'Unknown error: the web administrators have been contacted.'
     error: Something went wrong.
     try_again: Go back and try again.

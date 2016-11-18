@@ -7,8 +7,7 @@ function revealErrors() {
 };
 
 function toggleFieldSet(checkbox, set, rule, speed) {
-	console.log(checkbox, set, rule, speed)
-  if ( $(checkbox).is(':checked') ) {
+	if ( $(checkbox).is(':checked') ) {
     $(rule).hide(0);
     $(set).fadeIn(speed);
   } else {
