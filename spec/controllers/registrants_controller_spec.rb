@@ -57,7 +57,7 @@ describe RegistrantsController do
       assert_redirected_to new_registrant_url(:protocol => "https")
     end
 
-    it "keeps partner, locale, source, tracking, collectemailaddress and short_form params when redirecting" do
+    it "keeps partner, locale, source, tracking, home_zip_code, email_address, state, first_name, last_name, collectemailaddress and short_form params when redirecting" do
       get :landing, :partner => "2"
       assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2")
       get :landing, :locale => "es"
@@ -80,6 +80,10 @@ describe RegistrantsController do
       assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es", :source => "email", :short_form=>"1")
       get :landing, :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0"
       assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0")
+      
+      get :landing, :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0", first_name: "first", last_name: "last", state: "CA", home_zip_code: "90210", email_address: "email@example.com"
+      assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0", first_name: "first", last_name: "last", state: "CA", home_zip_code: "90210", email_address: "email@example.com")
+      
     end
 
     it "assumes default partner when partner given doesn't exist" do
