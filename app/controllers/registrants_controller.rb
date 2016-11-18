@@ -56,7 +56,7 @@ class RegistrantsController < RegistrationStep
     if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
       redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
     else
-      if @short_form && @email_address && @home_state
+      if @short_form && (@email_address || @collect_email_address=='no') && @home_state
         params[:registrant] = {
           email_address: @email_address,
           first_name: @first_name,
