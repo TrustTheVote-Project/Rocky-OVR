@@ -129,6 +129,8 @@ class RegistrationStep < ApplicationController
     end
     @home_zip_code = params[:home_zip_code]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
+    @home_state ||= @home_zip_code ? GeoState.for_zip_code(@home_zip_code.strip) : nil
+    
     if !@state_abbrev.blank?
       @short_form = true
     end

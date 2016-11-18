@@ -61,4 +61,36 @@ describe RegistrationStep do
     @reg.finish_with_state.should be_falsey
   end
   
+  describe "set_params" do
+    let(:params) { { } }
+    before(:each) do
+      allow(@rs).to receive(:params) { params }
+      @rs.send(:set_params)
+    end
+    context "with state_abbrev param" do
+      let(:params) { { state_abbrev: "CA" } }
+      it 'sets @state_abbrev and forces short_form to true' do
+        expect(@rs.instance_variable_get("@state_abbrev")).to eq("CA")
+        expect(@rs.instance_variable_get("@short_form")).to eq(true)
+        expect(@rs.instance_variable_get("@home_state")).to eq(GeoState["CA"])
+      end
+    end
+    context "with state param" do
+      let(:params) { { state: "MA" } }
+      it 'sets @state_abbrev and forces short_form to true' do
+        expect(@rs.instance_variable_get("@state_abbrev")).to eq("MA")
+        expect(@rs.instance_variable_get("@short_form")).to eq(true)
+        expect(@rs.instance_variable_get("@home_state")).to eq(GeoState["MA"])
+      end
+    end
+    context "with state_abbrev and state param" do
+      let(:params) { { state: "MA" , state_abbrev: "CA"} }
+      it 'sets @state_abbrev and forces short_form to true' do
+        expect(@rs.instance_variable_get("@state_abbrev")).to eq("CA")
+        expect(@rs.instance_variable_get("@short_form")).to eq(true)
+        expect(@rs.instance_variable_get("@home_state")).to eq(GeoState["CA"])
+      end
+    end
+  end
+  
 end

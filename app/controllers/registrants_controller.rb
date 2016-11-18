@@ -56,13 +56,17 @@ class RegistrantsController < RegistrationStep
     if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
       redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
     else
-      if @short_form && (@email_address || @collect_email_address=='no') && @home_state
+      if (@home_state && !@home_state.participating?) || (@short_form && (@email_address || @collect_email_address=='no') && @home_state)
+        
+        # In case it's just a home state being passed, allow to create the registrant anyway
+        @short_form = true
+        
         params[:registrant] = {
           email_address: @email_address,
           first_name: @first_name,
           last_name: @last_name,
           home_state: @home_state,
-          home_zip_code: @home_zip_code,          
+          home_zip_code: @home_zip_code,
           is_fake: params.keys.include?('preview_custom_assets')
         }
         create

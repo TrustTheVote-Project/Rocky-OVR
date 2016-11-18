@@ -86,6 +86,7 @@ describe RegistrantsController do
       
     end
 
+
     it "assumes default partner when partner given doesn't exist" do
       non_existent_partner_id = "43243243"
       Partner.stub(:find).with("43243243").and_raise("Not Found")
@@ -172,39 +173,6 @@ describe RegistrantsController do
       end
     end
       
-      # moving redirect scenarios into contorller specs instead of features
-      # Scenario: Start from a mobile agent
-      #   Given I am using a mobile browser
-      #   When I go to a new registration page
-      #   Then I should be redirected to the mobile url with partner="1"
-      # 
-      # Scenario: Start from a mobile agent and partner setting
-      #   Given I am using a mobile browser
-      #   And the following partner exists:
-      #     | organization |
-      #     | one          |
-      #     | two          |
-      #     | th3          |
-      #   When I go to a new registration page for partner="3"
-      #   Then I should be redirected to the mobile url with partner="3"
-      # 
-      # Scenario: Start from a mobile agent and partner, source and tracking setting
-      #   Given I am using a mobile browser
-      #   And the following partner exists:
-      #     | organization |
-      #     | one          |
-      #     | two          |
-      #     | th3          |
-      #   When I go to a new registration page for partner="3", source="abc" and tracking="def"
-      #   Then I should be redirected to the mobile url with partner="3", source="abc" and tracking="def"
-    
-      # Then /^I should be redirected to the mobile url with partner="([^\"]*)"$/ do |partner|
-      #   response.should redirect_to(MobileConfig.redirect_url(:partner=>partner,:locale=>'en'))
-      # end
-      # 
-      # Then /^I should be redirected to the mobile url with partner="([^\"]*)", source="([^\"]*)" and tracking="([^\"]*)"$/ do |partner,source,tracking|
-      #   response.should redirect_to(MobileConfig.redirect_url(:partner=>partner,:locale=>'en', :source=>source, :tracking=>tracking))
-      # end
     
     context "from a mobile browser" do  
       before(:each) do
@@ -232,6 +200,61 @@ describe RegistrantsController do
         expect(response).to render_template(:show) 
       end
     end
+    
+    context "when using a short form" do
+      let(:params) { {
+        short_form: true
+      }}
+      let(:registrant) { FactoryGirl.create(:step_1_registrant)}
+      it "renders the same template" do
+        get :new, params
+        assert_template "show"
+      end
+      context "when email and zip are provided" do
+        let(:params) { {
+          short_form: true,
+          email_address: "email@example.com",
+          home_zip_code: "90210"
+        }}
+        it "goes to the create method" do
+          expect(controller).to receive(:create) { controller.render text: '' }
+          get :new, params
+        end
+      end
+      context "when email and state are provided" do
+        let(:params) { {
+          short_form: true,
+          email_address: "email@example.com",
+          state: "CA"
+        }}
+        it "goes to the create method" do
+          expect(controller).to receive(:create) { controller.render text: '' }
+          get :new, params
+        end
+      end
+      context "when zip provided with collectemailaddress=no" do
+        let(:params) { {
+          short_form: true,
+          collectemailaddress: "no",
+          home_zip_code: "02113"
+        }}
+        it "goes to the create method" do
+          expect(controller).to receive(:create) { controller.render text: '' }
+          get :new, params
+        end
+      end
+      context "when state is not enabled" do
+        let(:params) { {
+          short_form: true,
+          state: "WY"
+        }}
+        it "redirects to ineligible state" do
+          get :new, params
+          expect(response).to redirect_to registrant_ineligible_url(assigns[:registrant])          
+        end
+      end
+    end
+    
   end
 
   describe "#create" do
