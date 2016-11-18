@@ -25,7 +25,7 @@
 class Step2Controller < RegistrationStep
   CURRENT_STEP = 2
 
-  def update    
+  def update  
     # get rid of home_state_name
     if params[:registrant]
       params[:registrant].delete(:home_state_name)

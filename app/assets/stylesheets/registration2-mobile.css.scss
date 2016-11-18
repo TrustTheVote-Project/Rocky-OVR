@@ -8,14 +8,13 @@ $mobile-min-width: 300px - $tooltip-offset;
     #header {
       width: $mobile-width;
       min-width: $mobile-min-width;
-      background-image: none;
+      background-image: image-url('rock-the-vote-horz-logo-rev.png');
+      background-position: center 5px;
+      background-size: auto 30px;
       .header-text {
-        display: block;
-        color: white;
         font-size: 24px;
-        text-transform: uppercase;
-        margin-top: ((80-24px)/2);
-      }  
+        padding-top: ((80-(24px+35px))/2 + 35px);        
+      }
     }
     #main {
         width: $mobile-width;
