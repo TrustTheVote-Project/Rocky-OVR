@@ -126,7 +126,7 @@ class RegistrationStep < ApplicationController
   def set_params
     @source = params[:source]
     @tracking = params[:tracking]
-    @short_form = params[:short_form]
+    @short_form = params[:short_form] || MobileConfig.is_mobile_request?(request)
     @collect_email_address = params[:collectemailaddress]
     @email_address = params[:email_address]
     @first_name = params[:first_name]

@@ -53,40 +53,39 @@ class RegistrantsController < RegistrationStep
   # GET /registrants/new
   def new
     set_up_locale
-    if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
-      redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
-    else
-      if (@home_state && !@home_state.participating?) || (@short_form && (@email_address || @collect_email_address=='no') && @home_state)
-        
-        # In case it's just a home state being passed, allow to create the registrant anyway
-        @short_form = true
-        
-        params[:registrant] = {
+    # if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
+    #   redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
+    # else
+    if (@home_state && !@home_state.participating?) || (@short_form && (@email_address || @collect_email_address=='no') && @home_state)
+      
+      # In case it's just a home state being passed, allow to create the registrant anyway
+      @short_form = true
+      
+      params[:registrant] = {
+        email_address: @email_address,
+        first_name: @first_name,
+        last_name: @last_name,
+        home_state: @home_state,
+        home_zip_code: @home_zip_code,
+        is_fake: params.keys.include?('preview_custom_assets')
+      }
+      create
+    else        
+      @registrant = Registrant.new(
+          partner_id: @partner_id, 
+          locale: @locale, 
+          tracking_source: @source, 
+          tracking_id: @tracking, 
+          short_form: @short_form, 
+          collect_email_address: @collect_email_address,
           email_address: @email_address,
           first_name: @first_name,
           last_name: @last_name,
           home_state: @home_state,
           home_zip_code: @home_zip_code,
           is_fake: params.keys.include?('preview_custom_assets')
-        }
-        create
-      else        
-        @registrant = Registrant.new(
-            partner_id: @partner_id, 
-            locale: @locale, 
-            tracking_source: @source, 
-            tracking_id: @tracking, 
-            short_form: @short_form, 
-            collect_email_address: @collect_email_address,
-            email_address: @email_address,
-            first_name: @first_name,
-            last_name: @last_name,
-            home_state: @home_state,
-            home_zip_code: @home_zip_code,
-            is_fake: params.keys.include?('preview_custom_assets')
-        )
-        render "show"
-      end
+      )
+      render "show"
     end
   end
 
