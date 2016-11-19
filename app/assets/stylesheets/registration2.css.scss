@@ -10,6 +10,15 @@
   clear: both;
 }
 
+input[type=text] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  outline: none;
+}
+
+
 body {
   width: 100%;
   margin: 0px auto;
