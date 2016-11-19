@@ -26,6 +26,7 @@ module PartnerAssets
 
   APP_CSS = "application.css"
   REG_CSS = "registration.css"
+  REG2_CSS = "registration2.css"
   PART_CSS = "partner.css"
   PDF_LOGO = "pdf_logo" #.jpeg, .jpg or .gif
 
@@ -49,7 +50,9 @@ module PartnerAssets
 
   def registration_css_present?
     folder.asset_file_exists?(REG_CSS)
-    #File.exists?(self.absolute_registration_css_path)
+  end
+  def registration2_css_present?
+    folder.asset_file_exists?(REG_CSS)
   end
 
   def partner_css_present?
