@@ -21,18 +21,34 @@ body {
   background-position: 0 0;
   background-repeat: repeat-x;
   background-size: auto auto;
+  padding-bottom: 60px;
   
-  #footer {
-    font-family: 'Fira Sans', helvetica, arial, sans-serif;
+  #sticky_footer {
     background-image: image-url('reg/container-repeater.gif');
     background-origin: padding-box;
     background-position: 0 0;
-    background-repeat: repeat-x;
-    background-size: auto auto;
+    background-repeat: repeat;
+    background-size: auto auto;   
+    border-top: 1px solid #999; 
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 60px;
+  }
+  
+  #footer {
+    font-family: 'Fira Sans', helvetica, arial, sans-serif;
+    width: 600px;
+    height: 60px;
+    padding: 0;
+    border: 0;
     p {
       text-align: left;
-      width: 600px;
-      margin: 0px auto;
+      width: 300px;
+      line-height: 18px;
+      font-size: 12px;
+      padding: 12px 0;
       a, a:visited, a:hover, a:link {
         color: #ddd;
         text-transform: uppercase;
@@ -41,7 +57,53 @@ body {
         color: #aaa;
       }
     }
+    .powered-by-logo {
+      float: right;     
+      &:after {
+        content: " ";
+        display: block;
+        clear: both;
+      }
+      img {
+        margin: 15px 0px;
+        height: 30px;
+      }
+      .powered-by-text {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 15px;
+        padding-top: 30px;
+        line-height: 15px;
+        color: #aaa;
+        font-family: "Times New Roman", Times, serif;
+        font-style: oblique;
+      }
+    }
+    #powered_by_logo {
+      display: block;
+      width: auto;
+      padding: 0;
+      margin: 0;      
+      a {
+        display: inline-block;
+      }
+    }
+    #powered_by_aws_logo {
+      display: none;
+    }
   }
+  
+  &.primary-partner {
+    #footer {
+      #powered_by_logo {
+        display: none;
+      }
+      #powered_by_aws_logo {
+        display: block;
+      }      
+    }
+  }
+  
 }
 
 #header {
@@ -77,7 +139,7 @@ body {
 
 #main {
   width: $main-width - $main-padding;
-  padding: 20px $main-padding / 2;
+  padding: 20px $main-padding/2 60px;
   #other_language_link {
     text-align: right;
     margin: 1em 0;

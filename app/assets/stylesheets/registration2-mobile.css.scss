@@ -19,6 +19,7 @@ $mobile-min-width: 300px - $tooltip-offset;
     #main {
         width: $mobile-width;
         min-width: $mobile-min-width;
+        padding-bottom: 105px;
         form {
           ul, ul.flat {
             li, li.width_f {
@@ -136,17 +137,37 @@ $mobile-min-width: 300px - $tooltip-offset;
  
     }
     
+    #sticky_footer, #footer {
+      height: 105px;
+    }
+    
     #footer {
       width: 100%;
       min-width: $mobile-min-width;
       p {
+        text-align: center;
+        width: 100%;
+      }
+      .copyright {
+        display: block;
+      }
+      .powered-by-logo {
+        float: none;
         width: 100%;
         text-align: center;
-        span {
-          line-height: 1.7em;
+        .powered-by-text {
+          padding-top: 22.5px;
         }
-      }
-    } 
+        img {
+          margin: 7.5px 0;            
+        }
+      }        
+      
+    }
+    &.primary-partner {
+      #footer {
+      } 
+    }
   }
   .share div.rollover_button {
     width: 100%;
