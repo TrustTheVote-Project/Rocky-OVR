@@ -40,9 +40,10 @@ class RegistrationStep < ApplicationController
   end
 
   def update
-    find_registrant
-    set_up_view_variables
+    find_registrant    
     @registrant.attributes = params[:registrant]
+    set_up_locale
+    set_up_view_variables
     attempt_to_advance
   end
 
@@ -52,6 +53,13 @@ class RegistrationStep < ApplicationController
   hide_action :current_step
 
   protected
+
+  def set_up_locale
+    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
+    @locale = params[:locale] || (@registrant ? @registrant.locale : nil) || 'en'
+    I18n.locale = @locale.to_sym
+  end
+
 
   def set_up_view_variables
   end

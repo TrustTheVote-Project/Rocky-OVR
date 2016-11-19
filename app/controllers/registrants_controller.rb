@@ -123,11 +123,6 @@ class RegistrantsController < RegistrationStep
 
   protected
 
-  def set_up_locale
-    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
-    @locale = params[:locale] || 'en'
-    I18n.locale = @locale.to_sym
-  end
 
   def advance_to_next_step
     @registrant.advance_to_step_1
