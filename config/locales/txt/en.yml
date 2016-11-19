@@ -30,6 +30,7 @@ en:
       in_language_name: In English
       powered_by: ! 'powered by:'
       progress_indicator: ! 'Step:'
+      intro_message: Voter registration time takes an average of two minutes or less to complete.
       step_1_header: New Registrant
       step_2_header: Personal Information
       step_3_header: Additional Registration Information
