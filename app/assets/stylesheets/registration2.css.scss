@@ -215,18 +215,27 @@ body {
     }
   }
   
+  .step_6 {
+    h1 {
+      margin: 0px auto;
+      text-align: center;
+      font-size: 28px;
+      text-transform: uppercase;      
+    }
+  }
+  
   form {
     
     ul li > div.tooltip {
       width: 25%;      
     }
     ul li > div.tooltip, fieldset legend img.tooltip {
-      padding: 5px;
+      padding: 2px 5px;
       float: none;
       display: inline-block;
       position: absolute;
       left: 0 - $tooltip-offset;
-      top: 7px;
+      top: 0px;
     }
     
     &:after {
@@ -297,7 +306,7 @@ body {
       }
       li, li.width_f {
         margin: 0;
-        padding: 1em  0 0;
+        padding: 0 0 0;
         width: 100%;
         h3 {
           float: none;
@@ -529,6 +538,10 @@ body {
   }
   
 
+  .back {
+    text-align: center;
+  }
+
   .download .rollover_button a {
     background-color: #fff;
     background-image: none;
@@ -541,7 +554,7 @@ body {
     font-weight: 700;
     line-height: 1em;
     margin: 0 !important;
-    padding: 10px 20px !important;
+    padding: 15px 20px !important;
     text-align: center !important;
     text-decoration: none !important;
     text-shadow: none;
@@ -563,13 +576,23 @@ body {
   }
 
   .download p {
-    font-size: 14px;
-    margin: 15px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 15px;
   	line-height: 1.6em;
+    text-align: center;
+    color: $grey;
   }
 
   .download h2 {
-    margin: 15px;
+    line-height: 1.6em;
+    font-weight: normal;
+    margin: 15px 0 25px;
+    color: $red;
+    font-size: 19px;
+    text-align: center;
   }
 
   .download h2.spaced_out {
@@ -607,18 +630,7 @@ body {
     padding: 30px;
   }
 
-  .download p {
-      font-size: 19px;
-      font-weight: 800;
-      line-height: 1.6em;
-      margin-bottom: 15px;
-      margin-left: 20px;
-      margin-right: 20px;
-      margin-top: 15px;
-      text-align: center;
-      color: #b2272c;
 
-  }
 
   .disclosures {
       border: 1px solid #ccc;
