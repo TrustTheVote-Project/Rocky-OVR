@@ -78,6 +78,10 @@ class RegistrationStep < ApplicationController
   
 
   def attempt_to_advance
+    if params[:skip_advance] == "true"
+      render 'show' and return
+    end
+    
     advance_to_next_step
 
     if @registrant.valid?
