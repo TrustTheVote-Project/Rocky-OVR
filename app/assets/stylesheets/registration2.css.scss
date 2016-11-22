@@ -395,6 +395,12 @@ body {
           margin-right: 2%;
         }
         
+        &.registrant-form__us-citizen__line {
+          h3 {
+            height: auto;
+          }
+        }
+        
         &.registrant-form__home-address__line, 
         &.registrant-form__mailing-address__line, 
         &.registrant-form__prev-address__line {

@@ -42,6 +42,7 @@ class RegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of  :name_suffix, :in => Registrant::SUFFIXES, :allow_blank => true
       reg.validates_presence_of   :home_address unless reg.finish_with_state?
       reg.validates_presence_of   :home_city unless reg.finish_with_state?
+      reg.validates_acceptance_of :us_citizen unless reg.building_via_api_call?
     
       validate_phone_present_if_opt_in_sms(reg)
     end
@@ -178,7 +179,7 @@ class RegistrantValidator < ActiveModel::Validator
   end
   
   def validate_phone_present_if_opt_in_sms(reg)
-    return true
+    return true if reg.building_via_api_call?
     if (reg.opt_in_sms? || reg.partner_opt_in_sms?) && reg.phone.blank?
       reg.errors.add(:phone, :required_if_opt_in)
     end

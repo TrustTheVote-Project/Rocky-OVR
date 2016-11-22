@@ -113,6 +113,9 @@ en:
               accepted: You must indicate whether the above information is correct.
             has_state_license:
               inclusion: Please indicate whether you have a valid state license.
+            us_citizen:
+              accepted: You must be a US citizen
+              
       messages:
         inclusion: ! '%{attribute} is not included in the list.'
         exclusion: ! '%{attribute} is reserved.'
