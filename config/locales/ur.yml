@@ -51,6 +51,7 @@ ur:
         home_unit: مکان / فلیٹ نمبر
         home_city: شہر
         home_state_name: ریاست
+        home_state_abbrev: ریاست
         has_mailing_address: میں اپنی ڈاک مندرجہ بالا پتہ کے علاوہ دوسرے پتہ پر وصول
           کرتا ہوں
         has_state_license: میں نے ایک ڈرائیور کا لائسنس یا ریاست شناختی کارڈ ہے.

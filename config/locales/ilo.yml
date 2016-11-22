@@ -53,6 +53,7 @@ ilo:
         home_unit: ! 'Unit/Lote #'
         home_city: Ciudad
         home_state_name: Estado
+        home_state_abbrev: Estado
         has_mailing_address: Al-alaek dagiti surat ko iti address nga sabali ken ti
           im-mununa.
         has_state_license: Adda cucuac nga Driver's License ken State ID.

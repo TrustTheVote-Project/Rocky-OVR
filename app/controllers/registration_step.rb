@@ -42,6 +42,7 @@ class RegistrationStep < ApplicationController
   def update
     find_registrant    
     @registrant.attributes = params[:registrant]
+    @registrant.check_locale_change
     set_up_locale
     set_up_view_variables
     attempt_to_advance

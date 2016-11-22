@@ -51,6 +51,7 @@ vi:
         home_unit: Đơn vị/ Số lô
         home_city: Thành phố
         home_state_name: Tiểu bang
+        home_state_abbrev: Tiểu bang
         has_mailing_address: Tôi nhận thư tại một điạ chỉ khác với địa chỉ trên
         has_state_license: Tôi có giấy phép lái xe hoặc thẻ căn cước bang.
         will_be_18_by_election: Tôi sẽ đủ 18 tuổi vào kì bầu cử tới.

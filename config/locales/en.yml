@@ -54,6 +54,7 @@ en:
         home_unit: ! 'Unit/Lot #'
         home_city: City
         home_state_name: State
+        home_state_abbrev: State
         has_mailing_address: I get my mail at a different address from the one above.
         has_state_license: I have a driver's license or state ID card.
         will_be_18_by_election: I will be 18 by the next election day.

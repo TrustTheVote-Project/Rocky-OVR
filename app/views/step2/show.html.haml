@@ -5,7 +5,8 @@
 = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
   - if @registrant.use_short_form?
     #other_language_link
-      = form.select :locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {}, onchange: "$(this.form).submit()"
+      = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {}, onchange: "$(this.form).submit()", value: @registrant.locale
+      = form.hidden_field :locale, :value=>@registrant.locale      
 
   = render partial: 'name', locals: {form: form}
 

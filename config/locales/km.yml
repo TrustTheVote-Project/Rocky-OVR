@@ -53,6 +53,7 @@ km:
         home_unit: លេខក្រុមតូច/ឡូត៍#
         home_city: ទីក្រុង
         home_state_name: រដ្ឋ
+        home_state_abbrev: រដ្ឋ
         has_mailing_address: ខ្ញុំ​ទទួលសំបុត្រពីអាស័យដ្ឋានផ្សេងខុសពីមួយខាងលើនោះ​។​
         has_state_license: ខ្ញុំមានអាជ្ញាប័ណ្ណបើកបរ ឬ អត្តសញ្ញាណប័ណ្ណរដ្ឋ។
         will_be_18_by_election: ខ្ញុំនឹងមានអាយុ ១៨ ឆ្នាំ នៅថ្ងៃបោះឆ្នោតក្រោយ។

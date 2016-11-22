@@ -53,6 +53,7 @@ es:
         home_unit: No.
         home_city: Ciudad
         home_state_name: Estado
+        home_state_abbrev: Estado
         has_mailing_address: Recibo mi correo en una dirección diferente a la provista
           anteriormente.
         has_state_license: Tengo una licencia de conducir o una tarjeta de identificación

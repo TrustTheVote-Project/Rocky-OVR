@@ -255,7 +255,7 @@ class Registrant < ActiveRecord::Base
 
   before_save :set_questions, :set_finish_with_state
 
-  attr_accessor :telling_friends
+  attr_accessor :telling_friends, :new_locale, :input_locale
 
   validates_with RegistrantValidator
   
@@ -586,6 +586,10 @@ class Registrant < ActiveRecord::Base
     english_attribute_value(prev_name_suffix_key, 'suffixes')
   end
   
+  def phone_type_key
+    key_for_attribute(:phone_type, 'phone_types')
+  end
+  
   def key_for_attribute(attr_name, i18n_list)
     key_value = I18n.t("txt.registration.#{i18n_list}", :locale=>locale).detect{|k,v| v==self.send(attr_name)}
     key_value && key_value.length == 2 ? key_value[0] : nil    
@@ -689,6 +693,30 @@ class Registrant < ActiveRecord::Base
       else
         return nil
       end
+    end
+  end
+
+  # Reset name/prev prefix, suffix, race, party, phone_type
+  def check_locale_change
+    if !self.new_locale.blank? && self.new_locale != self.locale
+      selected_name_title_key = name_title_key
+      selected_name_suf_key = name_suffix_key
+      selected_prev_name_title_key = prev_name_title_key
+      selected_prev_name_suf_key = prev_name_suffix_key
+      selected_race_key = race_key
+      party_idx = state_parties.index(self.party)
+      selected_phone_key = phone_type_key
+      
+      self.locale = self.new_locale
+      
+      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale)
+      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale)
+      self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale)
+      self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale)
+      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale)
+      self.party = state_parties[party_idx] if party_idx
+      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale)
+      
     end
   end
 

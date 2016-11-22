@@ -53,6 +53,7 @@ tl:
         home_unit: ! 'Unit/Lote #'
         home_city: Lungsod
         home_state_name: Estado
+        home_state_abbrev: Estado
         has_mailing_address: Nakukuha ko ang aking koreo sa address na naiiba kaysa
           nasa itaas
         has_state_license: Mayroon akong lisensiya ng pagmamaneho o ID card ng estado.
