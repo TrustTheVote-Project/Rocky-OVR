@@ -119,8 +119,11 @@ body {
   text-align: center;
   background-image: image-url('rtv-square-reversed.png');
   background-repeat: no-repeat;
-  background-size: 75px 45px;
   background-position: 0 15px;
+  background-size: auto 50px;
+  &.partner {
+    background-size: 75px 45px;
+  }
   
   height: 80px;
   margin: 0 auto;

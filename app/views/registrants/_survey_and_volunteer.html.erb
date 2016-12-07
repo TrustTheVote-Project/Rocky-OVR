@@ -1,7 +1,7 @@
-<%- if !@registrant.use_short_form? && (!@question_1.blank? || !@question_2.blank? || @registrant.any_ask_for_volunteers?) %>
+<%- if !@question_1.blank? || !@question_2.blank? || @registrant.any_ask_for_volunteers? %>
   <fieldset class="questions">
     <legend><%= t('txt.registration.survey_title') %></legend>
-    <% unless @question_1.blank? %>
+    <% unless @question_1.blank? && %>
       <ul class="question">
         <li class="width_e registrant-form__survey-answer-1__line">
           <h3><%= form.label :survey_answer_1, h(@question_1) %></h3>
