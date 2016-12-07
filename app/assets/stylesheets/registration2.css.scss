@@ -239,7 +239,7 @@ body {
       display: inline-block;
       position: absolute;
       left: 0 - $tooltip-offset;
-      top: 0px;
+      top: 1em;
     }
     
     &:after {
