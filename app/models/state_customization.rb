@@ -75,6 +75,10 @@ class StateCustomization
   def decorate_registrant(registrant=nil, controller=nil)
   end
   
+  def require_age_confirmation?
+    return false if ovr_settings.blank?
+    return ovr_settings["require_age_confirmation"]
+  end
   
 protected
   def self.class_exists?(class_name)

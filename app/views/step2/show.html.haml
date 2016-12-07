@@ -9,9 +9,6 @@
       = form.hidden_field :locale, :value=>@registrant.locale      
       = hidden_field_tag 'skip_advance', false
 
-  = render partial: 'name', locals: {form: form}
-
-  - if @registrant.use_short_form?
     %ul.checkbox.checkbox-step-1
       %li.spacer= "&nbsp;"
       %li.registrant-form__us-citizen__line
@@ -19,7 +16,20 @@
           = form.check_box :us_citizen 
           = form.label :us_citizen
           %span.error= form.object.errors[:us_citizen].join("\n")
-    
+          
+    - if @registrant.require_age_confirmation?
+      %ul.checkbox.checkbox-step-1
+        %li.spacer
+        %li.registrant-form__will-be-18-by-election__line
+          %h3
+            = form.check_box :will_be_18_by_election
+            = form.label :will_be_18_by_election
+          %span.error= form.object.errors[:will_be_18_by_election].join("\n")
+          
+
+  = render partial: 'name', locals: {form: form}
+
+  - if @registrant.use_short_form?    
     = render partial: 'previous_name', locals: { form: form }
     
   = render :partial=> "registrants/home_address", :locals=>{:form=>form}
