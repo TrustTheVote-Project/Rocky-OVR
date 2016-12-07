@@ -4,6 +4,15 @@ $mobile-width: calc(100% - #{$tooltip-offset});
 $mobile-min-width: 300px - $tooltip-offset;
 
 @media(max-width: $main-width) {
+  
+  .qtip-close {
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding-top: 1px;
+    border-radius: 20px;
+  }
+  
   body {
     #header {
       width: $mobile-width;

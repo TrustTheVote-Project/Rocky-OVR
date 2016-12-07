@@ -33,9 +33,24 @@ function addTooltips(selector, target_corner, tooltip_corner) {
       my: tooltip_corner,
 			viewport: $(window)
     },
-    hide: { fixed: true, delay: 100, effect: { length: 50 } }, // Hovering over tooltip keeps them visible
-    show: { delay: 50, effect: { length: 50 } }
+    content: {
+      button: true
+    },
+    hide: { fixed: true, delay: 300, effect: { length: 50 } }, // Hovering over tooltip keeps them visible
+    show: { delay: 50, effect: { length: 50 }},
+    events: {
+      show: function(event, api) { 
+        $(selector).addClass('tooltip-shown'); 
+      },
+      hide: function(event, api) { 
+        $(selector).removeClass('tooltip-shown'); 
+      }
+    }
   }).on('touchend', function() {
-    $(this).qtip('hide').mouseout().blur().parent().click();
+    if ($(this).hasClass('tooltip-shown')) {
+      $(this).qtip('hide').mouseout().blur().parent().click();      
+    } else {
+      $(this).qtip('show') //.mouseout().blur().parent().click();      
+    }
   })
 };
