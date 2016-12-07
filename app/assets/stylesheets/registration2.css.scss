@@ -183,16 +183,21 @@ body {
     }
   }
   
-  .step_1 form {
-    ul, ul.flat {
-      li, li.width_f {
-        &.registrant-form__home-zip__line {
-          width: 60%;          
+  .step_1 {
+    h1 { 
+      display: none;
+    }
+    form {
+      ul, ul.flat {
+        li, li.width_f {
+          &.registrant-form__home-zip__line {
+            width: 60%;          
+          }
         }
       }
     }
   }
-  
+    
   .step_4 {
     h1 {
       text-transform: uppercase;
@@ -406,6 +411,7 @@ body {
         }
         
         &.registrant-form__us-citizen__line {
+          margin-top: 30px;
           h3 {
             height: auto;
           }
