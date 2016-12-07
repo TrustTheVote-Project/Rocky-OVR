@@ -49,6 +49,10 @@ class RegistrantsController < RegistrationStep
     options.merge!(:protocol => "https") if RockyConf.use_https
     redirect_to new_registrant_url(options)
   end
+  
+  def share
+    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+  end
 
   # GET /registrants/new
   def new

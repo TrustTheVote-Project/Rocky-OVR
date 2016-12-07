@@ -181,6 +181,14 @@ body {
     a {
       text-decoration: underline;
     }
+    &.overseas-instructions {
+      margin: 4em 0;
+    }
+    &.already-registered {
+      font-size: 15px;
+      text-align: right;
+      margin: 4em 0;
+    }
   }
   
   .step_1 {
@@ -255,7 +263,7 @@ body {
       content: " ";
       clear: both;
     }
-    padding-bottom: 100px;
+    padding-bottom: 1em;
     
     fieldset {
       margin: 0;

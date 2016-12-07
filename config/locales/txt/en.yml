@@ -39,6 +39,7 @@ en:
       step_5_header: Review and Confirm
       stay_informed_header: Stay Informed
       identification_header: Identification Information
+      already_registered: Already registered? <a href="%{url}">Share with your friends</a>.
       survey_title: Questions For You
       preparing_header: Preparing Registration Form...
       download_header: Print Your Form
