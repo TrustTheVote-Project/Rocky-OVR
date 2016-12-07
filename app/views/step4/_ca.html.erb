@@ -35,7 +35,7 @@ ul.affirm  .disclosures li {
   <%= form.hidden_field :covr_success %>
   <ul class="affirm">
     <li>
-      <div class="disclosures" style="background: white; overflow-y:scroll; height: <%= @registrant.disclosures_box_height %> ; width: 500px; padding:10px; margin:10px 0; font-size:<%= @registrant.disclosures_font_size %>;">
+      <div class="disclosures" style="background: white; overflow-y:scroll; height: <%= @registrant.disclosures_box_height %> ; padding:10px; margin:10px 0; font-size:<%= @registrant.disclosures_font_size %>;">
         <%- CA.disclosures[@registrant.locale.to_s].each do |num, text| %>
           <div class="disclosure" style="margin-bottom:2em;">
             <p class="disclosure_num" style="float:left; "><%= "#{num}.&nbsp;".html_safe %></p>

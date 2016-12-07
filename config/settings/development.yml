@@ -17,7 +17,6 @@ ovr_states:
       debug_in_ui: true
       log_all_requests: true
       disclosures_font_size: 14px
-      disclosures_box_height: 100px
       disclosures_prechecked: true
   NV:
     redirect_to_online_url: true

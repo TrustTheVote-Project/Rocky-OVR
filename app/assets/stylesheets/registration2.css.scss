@@ -645,10 +645,16 @@ body {
   .disclosures {
       border: 1px solid #ccc;
       font-size: 13px;
-      width: 525px;
+      width: 100%;
       text-align: left;
       margin-left: auto !important;
       margin-right: auto !important;
+      .disclosure_num {
+        margin: 0;
+      }
+      p {
+        color: black;
+      }
   }
 }
 
