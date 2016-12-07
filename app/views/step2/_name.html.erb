@@ -14,6 +14,7 @@
     <li class="width_c registrant-form__middle-name__line">
       <h3><%= form.label :middle_name %></h3>
       <%= field_div form, :middle_name %>
+      <span class="error"><%= form.object.errors[:middle_name].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__last-name__line">
       <h3><%= form.label :last_name %></h3>

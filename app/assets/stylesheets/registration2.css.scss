@@ -239,6 +239,9 @@ body {
       display: inline-block;
       position: absolute;
       left: 0 - $tooltip-offset;
+      top: 0;
+    }
+    fieldset legend img.tooltip {
       top: 1em;
     }
     
@@ -255,6 +258,9 @@ body {
       border: none;
       legend {
         padding: 1em 0 0;
+      }
+      &.opt-ins {
+        margin-top: 30px;
       }
     }
     
@@ -438,8 +444,8 @@ body {
         }
         
         &.registrant-form__state-id-number__line {
-          width: 65%;
-          margin-right: 10%;
+          width: 100%;
+          margin-right: 0%;
         }
         &.registrant-form__date-of-birth__line {
           width: 25%;
@@ -515,9 +521,17 @@ body {
           padding: 15px;
       }
     }
+    .state-id-number {
+      margin-top: 30px;
+    }
     .instructions--state-id-number p {
       margin-top: 0;
     }
+    .email-checkbox-explanation p {
+      margin: 0;
+      display: none;
+    }
+    
     ul.flat.dob-and-phone {
       li, li.width_f {
         &.registrant-form__date-of-birth__line {

@@ -71,13 +71,15 @@
         = render :partial=> "registrants/phone", :locals=>{:form=>form}
       
     - else
-      = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>true}
+      .state-id-number
+        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
-      .clear-fix'
-      %ul
+      .clear-fix
+      %ul.flat.dob-and-phone
+        = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}      
         = render :partial=> "registrants/phone", :locals=>{:form=>form}
 
-    %fieldset.no_border
+    %fieldset.no_border.opt-ins
       = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
       = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
     
