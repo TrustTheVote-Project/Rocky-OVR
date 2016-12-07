@@ -105,7 +105,7 @@ class EmailTemplate < ActiveRecord::Base
   end
 
   def self.default_subject(name)
-    match = name.scan(/^preview_?(.+)\.(.+)$/)[0] || []
+    match = name.scan(/^preview_?(.+)\.(.+)$/)[0] || nil
     match ? I18n.t("email.#{match[0]}.subject", locale: match[1]) : nil
   end
 end

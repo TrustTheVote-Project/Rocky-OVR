@@ -236,7 +236,7 @@ km:
     chaser:
       subject: អ្នកនៅមានពេលចុះឈ្មោះបោះឈ្នោត។
       body:
-        main: ! 'សួស្តី %{registrant_first_name},<br>
+        main: ! 'សួស្តី%{registrant_first_name_with_space},<br>
 
           ខ្ញុំដឹងថា អ្នកមិនបានបំពេញចប់ក្រដាសចុះឈ្មោះបោះឆ្នោត តាមអ៉នឡាយឡើយ។ ចុះឈ្មោះជាមួយ%
           rtv_and _partner_ name’s  តាមរបៀបណែនាំតាមអ៉នឡាយ ប្រើពេលតិចជាងធម្មតា។<br>
