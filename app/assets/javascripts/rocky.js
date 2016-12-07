@@ -33,10 +33,9 @@ function addTooltips(selector, target_corner, tooltip_corner) {
       my: tooltip_corner,
 			viewport: $(window)
     },
-    hide: { fixed: true, delay: 300, effect: { length: 50 } }, // Hovering over tooltip keeps them visible
+    hide: { fixed: true, delay: 100, effect: { length: 50 } }, // Hovering over tooltip keeps them visible
     show: { delay: 50, effect: { length: 50 } }
-  })
-  $(selector).on('touchend', function() {
-    $(this).qtip('toggle');
+  }).on('touchend', function() {
+    $(this).qtip('hide');
   })
 };
