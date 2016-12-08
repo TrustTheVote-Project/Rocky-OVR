@@ -1,5 +1,5 @@
 sponsor:
-  allow_ask_for_volunteers: false
+  allow_ask_for_volunteers: true
   barcode_prefix: "RTV"
   name: "Rock the Vote"
   url: "http://www.rockthevote.com"
