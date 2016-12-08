@@ -28,7 +28,7 @@ $mobile-min-width: 300px - $tooltip-offset;
     #main {
         width: $mobile-width;
         min-width: $mobile-min-width;
-        padding-bottom: 105px;
+        padding-bottom: 30px;
         p {
           &.already-registered {
             font-size: 13px;
@@ -160,6 +160,7 @@ $mobile-min-width: 300px - $tooltip-offset;
     
     #sticky_footer, #footer {
       height: 105px;
+      position: relative;
     }
     
     #footer {
