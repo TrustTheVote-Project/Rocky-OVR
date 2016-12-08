@@ -29,7 +29,7 @@
           %h3
             = form.check_box :will_be_18_by_election
             = form.label :will_be_18_by_election
-          %span.error= form.object.errors[:will_be_18_by_election].join("\n")
+            %span.error= form.object.errors[:will_be_18_by_election].join("\n")
 
     = render partial: 'previous_name', locals: { form: form }
     
