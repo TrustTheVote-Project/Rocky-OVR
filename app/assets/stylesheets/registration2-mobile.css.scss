@@ -29,6 +29,13 @@ $mobile-min-width: 300px - $tooltip-offset;
         width: $mobile-width;
         min-width: $mobile-min-width;
         padding-bottom: 105px;
+        p {
+          &.already-registered {
+            font-size: 13px;
+            text-align: center;
+            margin: 4em -10px;
+          }
+        }
         form {
           ul, ul.flat {
             li, li.width_f {
@@ -56,8 +63,6 @@ $mobile-min-width: 300px - $tooltip-offset;
                   font-weight: normal;
                 }
               }
-              
-              
             }
             
             .has_license {
@@ -79,6 +84,12 @@ $mobile-min-width: 300px - $tooltip-offset;
                 &.registrant-form__phone-type__line {
                   width: 40%;
                 }                
+              }
+            }
+            &.checkbox li {
+              float: none;
+              h3 {
+                height: auto;
               }
             }
           }
