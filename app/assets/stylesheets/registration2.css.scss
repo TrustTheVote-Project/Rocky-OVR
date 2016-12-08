@@ -275,6 +275,11 @@ body {
       &.opt-ins {
         margin-top: 30px;
       }
+      &.questions {
+        legend {
+          margin-bottom: 15px;
+        }
+      }
     }
     
     hr {
@@ -532,7 +537,11 @@ body {
           margin-top: 0;
         }
         
-        
+        &.registrant-form__survey-answer-1__line,
+        &.registrant-form__survey-answer-2__line,
+        &.registrant-form__volunteer__line {
+          margin-bottom: 30px;
+        }
         
       }
       
