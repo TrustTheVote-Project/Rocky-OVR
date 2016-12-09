@@ -37,7 +37,7 @@ module ApplicationHelper
   def preview_partner_css(partner, registrant)
     [
       partner.application_css_url(:preview) || 'application',
-      registrant && registrant.use_short_form? ? (partner.registration2_css_url(:preview) || 'registration2') : (partner.registration_css_url(:preview) || 'registration'),
+      registrant && !registrant.use_short_form? ? (partner.registration_css_url(:preview) || 'registration') : (partner.registration2_css_url(:preview) || 'registration2'),
       *registrant_css,
       partner.partner_css_url(:preview)
     ].compact
@@ -51,10 +51,10 @@ module ApplicationHelper
 
     stylesheets = []
     stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
-    if registrant && registrant.use_short_form?
-      stylesheets << (wl && partner.registration2_css_present? ? partner.registration2_css_url : "registration2")
-    else
+    if registrant && !registrant.use_short_form?
       stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
+    else
+      stylesheets << (wl && partner.registration2_css_present? ? partner.registration2_css_url : "registration2")
     end
     stylesheets += registrant_css
     stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
