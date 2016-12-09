@@ -44,7 +44,14 @@
         :javascript
           $(document).ready(function() {
             function hasStateLicenseSelected() {
-              return $('input[name="registrant[has_state_license]"]:checked').val() == "1";
+              var hasLicenseSelected = $('input[name="registrant[has_state_license]"]:checked').val() == "1";
+              // If check-18 checkbox is present, that must also be selected
+              var willBe18 = true;
+              var willBe18Checkbox = $('input[name="registrant[will_be_18_by_election]"]');
+              if (willBe18Checkbox.length > 0 && !willBe18Checkbox.is(":checked")) {
+                willBe18 = false;
+              }
+              return hasLicenseSelected && willBe18;
             }
             function toggleHasStateLicense() {
               if (hasStateLicenseSelected()) {
@@ -59,6 +66,7 @@
             }
             toggleHasStateLicense();
             $('input[name="registrant[has_state_license]"]').click(toggleHasStateLicense);  
+            $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
           });
     
       %ul.radio
