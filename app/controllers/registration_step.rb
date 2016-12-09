@@ -131,7 +131,7 @@ class RegistrationStep < ApplicationController
   def set_params
     @source = params[:source]
     @tracking = params[:tracking]
-    @short_form = params[:short_form].nil? ? !@partner || !@partner.whitelabeled? : params[:short_form]!="false" 
+    @short_form = params[:short_form]!="false" && (!@partner || !@partner.use_long_form?)
     @collect_email_address = params[:collectemailaddress]
     @email_address = params[:email_address]
     @first_name = params[:first_name]

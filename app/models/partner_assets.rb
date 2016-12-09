@@ -35,6 +35,10 @@ module PartnerAssets
     return $1
   end
 
+  def use_long_form?
+    whitelabeled? && !registration2_css_present? && registration_css_present?
+  end
+
   def css_present?
     application_css_present? && registration_css_present?
   end
@@ -52,7 +56,7 @@ module PartnerAssets
     folder.asset_file_exists?(REG_CSS)
   end
   def registration2_css_present?
-    folder.asset_file_exists?(REG_CSS)
+    folder.asset_file_exists?(REG2_CSS)
   end
 
   def partner_css_present?
@@ -140,6 +144,12 @@ module PartnerAssets
   end
   def registration_css_path(group = nil)
     File.join(partner_path, group.to_s, REG_CSS)
+  end
+  def registration2_css_url(group = nil)
+    folder.asset_url(REG2_CSS, group)
+  end
+  def registration2_css_path(group = nil)
+    File.join(partner_path, group.to_s, REG2_CSS)
   end
 
   def partner_css_url(group = nil)

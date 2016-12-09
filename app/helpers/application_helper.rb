@@ -48,7 +48,6 @@ module ApplicationHelper
       return preview_partner_css(partner, registrant)
     end
     wl = partner && partner.whitelabeled?
-
     stylesheets = []
     stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
     if registrant && !registrant.use_short_form?
