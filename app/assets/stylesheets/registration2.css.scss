@@ -230,6 +230,13 @@ body {
       
       width: 70%;
     }
+    
+    ul {
+      // Different here due to lack of has-state-ID question
+      li.registrant-form__state-id-number__line {
+        margin-top: 30px;
+      }
+    }
   }
   
   .step_6 {
@@ -273,7 +280,7 @@ body {
         padding: 1em 0 0;
       }
       &.opt-ins {
-        margin-top: 30px;
+        margin-top: 20px;
       }
       &.questions {
         legend {
