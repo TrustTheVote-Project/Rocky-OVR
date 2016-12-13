@@ -274,7 +274,7 @@ li {
 
 /* copied from admin.css for list compatibility between admin and non-admin layout pages */
 ul.stacked li {
-  margin: 1em 5px 1em 0;
+  margin: 1em 15px 1em 0;
 }
 
 form li {
@@ -563,7 +563,7 @@ table {
 }
 input, textarea {
 border-radius: 4px;
-padding: 10px;
+padding: 5px;
 border: 1px solid #ccc
 }
 #customizations a {
@@ -591,8 +591,11 @@ border: 1px solid #ccc
 .profile form {
     width: 100%
 }
-.profile form li.width_a div {
+
+.profile form li.width_a {
+  div {
     width: 260px
+  }
 }
 .profile form li.width_b div {
     width: 135px

@@ -35,12 +35,14 @@ module ApplicationHelper
   end
 
   def preview_partner_css(partner, registrant)
-    [
-      partner.application_css_url(:preview) || 'application',
-      registrant && !registrant.use_short_form? ? (partner.registration_css_url(:preview) || 'registration') : (partner.registration2_css_url(:preview) || 'registration2'),
-      *registrant_css,
-      partner.partner_css_url(:preview)
-    ].compact
+    stylesheets = []
+    if !partner.replace_system_css?(:preview)
+      stylesheets << (partner.application_css_url(:preview) || 'application')
+      stylesheets << (registrant && !registrant.use_short_form? ? (partner.registration_css_url(:preview) || 'registration') : 'registration2')
+    end
+    stylesheets += registrant_css
+    stylesheets << ((registrant && !registrant.use_short_form?) ? partner.partner_css_url(:preview) : partner.partner2_css_url(:preview))
+    return stylesheets.compact
   end
 
   def partner_css(partner = @partner, registrant=@registrant)
@@ -49,14 +51,22 @@ module ApplicationHelper
     end
     wl = partner && partner.whitelabeled?
     stylesheets = []
-    stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
-    if registrant && !registrant.use_short_form?
-      stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
-    else
-      stylesheets << (wl && partner.registration2_css_present? ? partner.registration2_css_url : "registration2")
+    if !partner.replace_system_css?
+      stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
+      if registrant && !registrant.use_short_form?
+        stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
+      else
+        # Partners can't upload reg2 - just part2 and either keep the default reg2 or mark as reaplce_system_css
+        stylesheets << "registration2"
+      end
     end
+    # event with replace_system_css, keep the locale specific ones
     stylesheets += registrant_css
-    stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
+    if registrant && !registrant.use_short_form?
+      stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
+    else
+      stylesheets << partner.partner2_css_url if wl && partner.partner2_css_present?
+    end
     stylesheets
   end
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161213141536) do
+ActiveRecord::Schema.define(:version => 20161213164552) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20161213141536) do
     t.text     "branding_update_request"
     t.boolean  "active",                                           :default => true,  :null => false
     t.text     "external_conversion_snippet"
+    t.text     "replace_system_css"
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"

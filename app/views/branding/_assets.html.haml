@@ -2,7 +2,7 @@
   %ul.stacked
     %li.width_e
       %h3 New asset
-      %div= f.file_field :file
+      %div= file_field_tag :file
   %br
   - assets = PartnerAssetsPresenter.new(@partner)
   %fieldset
@@ -16,8 +16,10 @@
           - assets.not_approved.each do |asset|
             %tr
               %td.name
+                %span.asset
+                  = link_to asset, @partner.folder.asset_url(asset, :preview)
                 = check_box_tag "remove[#{asset}]"
-                %span.asset= asset
+                remove
           %br
           %div Click 'Update' to delete selected items
   %fieldset

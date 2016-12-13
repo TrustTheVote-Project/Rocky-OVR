@@ -1,9 +1,21 @@
 %div.whitelabeled
   %ul.checkbox
     %li
-      %h3= "partner.css#{' (missing)' unless @partner.partner_css_present? }"
-      %h3
-        = check_box_tag :replace_sys_css
-        = label_tag :replace_sys_css, "replace system versions of application.css and registration.css"
+      %h3= "Custom 2-step CSS"
+      %ul.clear
+        - if @partner.partner2_css_present?(:preview)
+          %li
+            = link_to "Not Approved Version", @partner.partner2_css_url(:preview)
+            = check_box_tag "remove[partner2.css]"
+            remove
+            
+        - if @partner.partner2_css_present?
+          %li= link_to "Approved Version", @partner.partner2_css_url
+        - if !@partner.partner2_css_present?(:preview) && !@partner.partner2_css_present?
+          %li None uploaded
     %li.width_e
-      %div= file_field_tag 'css_files[partner]'
+      %div= file_field_tag 'css_files[partner2]'
+    %li
+      %h3
+        = f.check_box :replace_system_css_preview
+        = f.label :replace_system_css_preview, "remove system versions of application.css and registration.css"

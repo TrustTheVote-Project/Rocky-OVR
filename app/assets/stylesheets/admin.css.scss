@@ -27,5 +27,12 @@ table.assets .name {
 }
 
 ul.stacked li {
-	margin: 1em 5px 1em 0;
+	margin: 1em 15px 1em 0;
+}
+
+#container {
+  width: 1240px;
+}
+#header {
+  background-image: url(https://s3.amazonaws.com/rocky-assets/assets/admin/header_admin_tools.gif);
 }

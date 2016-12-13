@@ -116,6 +116,7 @@ class Partner < ActiveRecord::Base
   
 
   serialize :government_partner_zip_codes
+  serialize :replace_system_css, Hash
 
   before_validation :reformat_phone
   before_validation :set_default_widget_image

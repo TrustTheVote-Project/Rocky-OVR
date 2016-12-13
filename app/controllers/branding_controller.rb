@@ -26,6 +26,7 @@ class BrandingController < PartnerBase
   layout "partners"
   before_filter :require_partner
 
+  MAX_MB = 5.0
 
   def show
     @partner = current_partner
@@ -33,15 +34,15 @@ class BrandingController < PartnerBase
 
   def update
     @partner = current_partner
+    @partner.update_attributes(params[:partner])
     # remove assets before uploading new ones
     params[:remove].try(:each) do |filename, _|
       assets_folder.delete_asset(filename, :preview)
-      try_delete_system_css if filename == "partner.css"
     end
 
-    update_custom_css(params[:css_files], params[:replace_sys_css])
+    update_custom_css(params[:css_files])
 
-    upload_custom_asset(params[:partner].try(:[], :file))
+    upload_custom_asset(params.try(:[], :file))
 
     update_email_templates(params[:template])
 
@@ -54,28 +55,18 @@ class BrandingController < PartnerBase
 
   def upload_custom_asset(asset_file)
     return unless asset_file
-    name = asset_file.original_filename
-    assets_folder.update_asset(name, asset_file, :preview)
+    if check_validity(asset_file)
+      name = asset_file.original_filename
+      assets_folder.update_asset(name, asset_file, :preview)
+    end
   end
 
-  def update_custom_css(css_files, replace_sys_css)
-    if (replace_sys_css == "1") && css_files && css_files[:partner]
-      css_files[:application] = StringIO.new("")
-      css_files[:registration] = StringIO.new("")
-    end
-
+  def update_custom_css(css_files)
     (css_files || {}).each do |name, data|
+      if !is_css?(data)
+        flash[:warning]="Custom CSS must be a .css file"
+      end
       assets_folder.update_css(name, data, :preview)
-    end
-  end
-
-  # when single partner.css is deleted - fake app.css or reg.css must be deleted
-  def try_delete_system_css
-    ["application", "registration"].each do |name|
-      name += ".css"
-      file = assets_folder.asset_file(name, :preview)
-      next if file.nil? || file.content_length != 0
-      assets_folder.delete_asset(name, :preview)
     end
   end
 
@@ -92,6 +83,36 @@ class BrandingController < PartnerBase
   end
 
   def assets_folder
-    @paf ||= PartnerAssetsFolder.new(@partner)
+    @partner.folder
   end
+  
+  def check_validity(file)
+    if !(is_font?(file) || is_image?(file))
+      flash[:warning]="#{file.original_filename} must be an image or font file"
+      return false
+    end
+    if file.size > MAX_MB * 1024000
+      flash[:warning]="#{file.original_filename} must be less than #{MAX_MB} MB"
+      return false
+    end
+    return true
+  end
+  
+  def is_image?(file)
+    %w(jpg jpeg gif png).include?(extension(file))
+  end
+
+  def is_font?(file)
+    %w(ttf otf woff woff2 svg eot).include?(extension(file))
+  end
+  
+  def is_css?(file)
+    extension(file) == 'css'
+  end
+  
+  def extension(file)
+    file.original_filename.to_s.split('.').last.downcase.strip
+  end
+  
+    
 end

@@ -86,15 +86,15 @@ class PartnerAssetsFolder
 
   # Returns the list of all assets in the folder
   def list_assets
-    is_system_css = ->(file) do
-      ["application", "registration"].each do |name|
+    is_partner2_css = ->(file) do
+      ["partner2"].each do |name|
         return true if file.key.ends_with? "/#{name}.css"
       end
       false
     end
 
     filter = ->(file) do
-      cached_public_url(file).nil? || (file.content_length == 0 && is_system_css.call(file))
+      cached_public_url(file).nil? || is_partner2_css.call(file)
     end
 
     formatter = ->(file) do
@@ -163,8 +163,8 @@ class PartnerAssetsFolder
     files.detect {|f| f.key == path_from_name(name, group) }
   end
 
-  def asset_file_exists?(name)
-    asset_file(name).present?
+  def asset_file_exists?(name, group = nil)
+    asset_file(name, group).present?
   end
 
   def publish_sub_assets(group)
