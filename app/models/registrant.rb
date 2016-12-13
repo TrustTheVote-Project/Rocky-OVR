@@ -287,8 +287,16 @@ class Registrant < ActiveRecord::Base
     partner.rtv_sms_opt_in || partner.partner_sms_opt_in || partner.primary?
   end
   
+  def ask_for_primary_volunteers?
+    partner.primary? ? partner.ask_for_volunteers? : RockyConf.sponsor.allow_ask_for_volunteers && partner.ask_for_volunteers?
+  end
+  
+  def ask_for_partner_volunteers?
+    !partner.primary? && partner.partner_ask_for_volunteers?
+  end
+  
   def any_ask_for_volunteers?
-    ((partner.ask_for_volunteers? || partner.primary?) && RockyConf.sponsor.allow_ask_for_volunteers) || (partner.partner_ask_for_volunteers? && !partner.primary?)
+    ask_for_primary_volunteers? || ask_for_partner_volunteers?
   end
   
   def not_require_email_address?

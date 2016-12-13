@@ -19,7 +19,7 @@
         </li>
       </ul>
     <% end %>
-    <% if (@registrant.partner.ask_for_volunteers? || @registrant.partner.primary?) && RockyConf.sponsor.allow_ask_for_volunteers %>
+    <% if @registrant.ask_for_primary_volunteers? %>
       <ul class="checkbox">
         <li class="spacer">&nbsp;</li>
         <li class='registrant-form__volunteer__line'>
@@ -30,7 +30,7 @@
         </li>
       </ul>
     <% end %>
-    <% if @registrant.partner.partner_ask_for_volunteers? && !@registrant.partner.primary? %>
+    <% if @registrant.ask_for_partner_volunteers? %>
       <ul class="checkbox">
         <li class="spacer">&nbsp;</li>
         <li class='registrant-form__partner-volunteer__line'>

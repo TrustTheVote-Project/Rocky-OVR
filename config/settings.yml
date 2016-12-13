@@ -126,6 +126,7 @@ ovr_states:
       - en    
   DE:
     redirect_to_online_reg_url: true
+    require_age_confirmation: true
     languages:
       - en    
   GA:
@@ -168,6 +169,7 @@ ovr_states:
       - es
   MO:
     redirect_to_online_reg_url: true
+    require_age_confirmation: true
     languages:
       - en
   NE:
@@ -195,6 +197,7 @@ ovr_states:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
     redirect_to_online_reg_url: true
+    require_age_confirmation: true
     languages:
       - en
       - es
@@ -212,6 +215,7 @@ ovr_states:
     languages:
       - en
   VT:
+    require_age_confirmation: true
     redirect_to_online_reg_url: true
     languages:
       - en
