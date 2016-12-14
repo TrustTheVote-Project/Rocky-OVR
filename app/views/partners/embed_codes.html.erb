@@ -26,44 +26,19 @@
 <% end -%>
 <div class="customize">
   <h1>Grab Your Embed Code</h1>
-  <p>Now you can choose the "user interface" that you prefer for your tool.  <strong>Version A</strong> is a 5-step process and <strong>Version B</strong> is a recently released 2-step process with larger input boxes.
-  </p>
   <p>
   Copy the embed code under your preferred interface, and paste that code onto your website, blog, or other web platform.  We suggest you take the code for the "widget" or "iFrame" as those keep users on your website and have the highest completion rates.
   </p>
-  <div class="columns">
-    <div class="column">
-      <%= image_tag 'admin/version-a.png' %>
-    </div>
-    <div class="column">
-      <%= image_tag 'admin/version-b.png' %>
-    </div>
-  </div>
-  
-
-
-
-
 
   <form class="copy_html" action="#" method="get" accept-charset="utf-8">
     
     <div>
       <h2><label for="image_overlay_html">Add a widget button:</label> <span style="font-weight:normal;">(spawns the form in a new window)</span></h2>
       <p class="plain_text">
-        Best option! This code will create a button or banner on a web page. But instead of taking your users to a separate website or page, the link will result in your voter registration tool being displayed on top of the page users were viewing. That's right, users will not leave your site. To see what it looks like, check out these examples: <span class="floatbox" data-fb-options="<%= @floatbox_options %>"><a href="https://register.rockthevote.com/?partner=<%= @partner.id %>&source=embed-<%= @partner.widget_image_name %>">Version A</a> | <a href="https://register2.rockthevote.com<%= root_path(:partner => @partner.id, :source => "embed-#{@partner.widget_image_name}").html_safe %>" class="floatbox">Version B</a></span>
+        Best option! This code will create a button or banner on a web page. But instead of taking your users to a separate website or page, the link will result in your voter registration tool being displayed on top of the page users were viewing. That's right, users will not leave your site. To see what it looks like, check out this examples: <span class="floatbox" data-fb-options="<%= @floatbox_options %>"><a href="https://register.rockthevote.com/?partner=<%= @partner.id %>&source=embed-<%= @partner.widget_image_name %>">Preview</a>
       </p>  
       <script type="text/javascript" src="<%= RockyConf.widget_loader_url %>"></script>
-			<script type="text/javascript" src="https://register2.rockthevote.com/widget_loader.js"></script>
-      <div class="columns">
-        <div class="column">
-          <h3><strong>Version A</strong></h3>
-          <p><textarea name="image_overlay_html" readonly="readonly" rows="16" cols="36"><%= h @image_overlay_html %></textarea></p>
-        </div>
-        <div class="column">
-          <h3><strong>Version B</strong></h3>
-          <p class="column"><textarea name="image_overlay_html" readonly="readonly" rows="16" cols="36"><%= h @image_overlay_html_b %></textarea></p>
-        </div>
-      </div>
+      <p><textarea name="image_overlay_html" readonly="readonly" rows="16" ><%= h @image_overlay_html %></textarea></p>      
     </div>
     
     
@@ -73,16 +48,7 @@
       <p class="plain_text">
         The code will let you embed the registration experience on your website.
       </p>
-      <div class="columns">
-        <div class="column">
-          <h3><strong>Version A</strong></h3>
-          <p><textarea name="iframe_html" readonly="readonly" rows="10" cols="36"><%= h @iframe_html %></textarea></p>
-        </div>
-        <div class="column">
-          <h3><strong>Version B</strong></h3>
-          <p><textarea name="iframe_html_b" readonly="readonly" rows="10" cols="36"><%= h @iframe_html_b %></textarea></p>
-        </div>
-      </div>
+      <p><textarea name="iframe_html" readonly="readonly" rows="10" ><%= h @iframe_html %></textarea></p>      
     </div>
     
     
@@ -91,70 +57,36 @@
       <p class="plain_text">
         The code will create a graphical button or banner on your site that links to your unique voter 
         registration tool. There are several graphics to choose from. You can <%= link_to "view your current choice", partner_widget_url, :target => "_blank" %> or <%= link_to "change it", partner_widget_image_path %>.</p>
-      <div class="columns">
-        <div class="column">
-          <h3><strong>Version A</strong></h3>
-          <p><textarea name="image_link_html" readonly="readonly" rows="10" cols="36"><%= h @image_link_html %></textarea></p>
-        </div>
-        <div class="column">
-          <h3><strong>Version B</strong></h3>
-          <p><textarea name="image_link_html" readonly="readonly" rows="10" cols="36"><%= h @image_link_html_b %></textarea></p>
-        </div>
-      </div>
+        <p><textarea name="image_link_html" readonly="readonly" rows="10" ><%= h @image_link_html %></textarea></p>        
     </div>
     
     <div>
       <h2><label for="share_link_facebook">Social Sharing:</label></h2>
       <p class="plain_text">Add these links to your site so everyone can promote voter registration.</p>
-      <div class="columns">
-        <div class="column">
-          <h3><strong>Version A</strong></h3>
-          <h4><strong>Facebook</strong></h4>
-          <p><textarea name="share_link_facebook" readonly="readonly" rows="6" cols="36"><%= h @share_link_facebook %></textarea></p>
-          <h4><strong>Twitter</strong></h4>
-          <p><textarea name="share_link_twitter" readonly="readonly" rows="6" cols="36"><%= h @share_link_twitter %></textarea></p>
-          <h4><strong>Google+</strong></h4>
-          <p><textarea name="share_link_google" readonly="readonly" rows="6" cols="36"><%= h @share_link_google %></textarea></p>
-        </div>
-        <div class="column">
-          <h3><strong>Version B</strong></h3>
-          <h4><strong>Facebook</strong></h4>
-          <p><textarea name="share_link_facebook_b" readonly="readonly" rows="6" cols="36"><%= h @share_link_facebook_b %></textarea></p>
-          <h4><strong>Twitter</strong></h4>
-          <p><textarea name="share_link_twitter_b" readonly="readonly" rows="6" cols="36"><%= h @share_link_twitter_b %></textarea></p>
-          <h4><strong>Google+</strong></h4>
-          <p><textarea name="share_link_google_b" readonly="readonly" rows="6" cols="36"><%= h @share_link_google_b %></textarea></p>
-        </div>
-      </div>
+      <h4><strong>Facebook</strong></h4>
+      <p><textarea name="share_link_facebook" readonly="readonly" rows="6" ><%= h @share_link_facebook %></textarea></p>
+      <h4><strong>Twitter</strong></h4>
+      <p><textarea name="share_link_twitter" readonly="readonly" rows="6" ><%= h @share_link_twitter %></textarea></p>
+      <h4><strong>Google+</strong></h4>
+      <p><textarea name="share_link_google" readonly="readonly" rows="6" ><%= h @share_link_google %></textarea></p>
     </div>
     
     <div>
       <h2><label for="text_link_html">Text link:</label></h2>
       <p class="plain_text">Just paste this HTML code into a page on your site and you will create a link to your unique voter registration tool.</p>
-      <div class="columns">
-        <div class="column">
-          <h3><strong>Version A</strong></h3>
-          <p><textarea name="text_link_html" readonly="readonly" rows="6" cols="36"><%= h @text_link_html %></textarea></p>
-        </div>
-        <div class="column">
-          <h3><strong>Version B</strong></h3>
-          <p><textarea name="text_link_html" readonly="readonly" rows="6" cols="36"><%= h @text_link_html_b %></textarea></p>
-        </div>
-      </div>
+      <p><textarea name="text_link_html" readonly="readonly" rows="6" ><%= h @text_link_html %></textarea></p>      
     </div>
     
   </form>
   
-  <p><span class="bold">Note:</span> If you aren't putting a link or button on a website, blog, or other platform, you can always promote your voter registration tool by using these unique url’s: 
+  <p><span class="bold">Note:</span> If you aren't putting a link or button on a website, blog, or other platform, you can always promote your voter registration tool by using this unique url: 
     </p>
   <p>
     <br/>
-    <strong>Version A</strong> &mdash; <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}" %>
-    <br/>
-    <strong>Version B</strong> &mdash; <%= link_to "https://register2.rockthevote.com#{root_path(:partner => @partner.id)}",    "https://register2.rockthevote.com#{root_path(:partner =>  @partner.id)}" %>
-    </p>
-    <br/>
-    <p>Use them in emails, in your Facebook or Twitter status updates, or in other custom ways. <br/>
+    <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}" %>
+  </p>
+  <br/>
+  <p>Use them in emails, in your Facebook or Twitter status updates, or in other custom ways.         <br/>
     Get creative!</p>
   
   

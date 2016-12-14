@@ -40,6 +40,7 @@ ovr_states:
 states_with_online_registration:
   - AZ
   - CA
+  - DC
   - LA
   - MN
   - NV
