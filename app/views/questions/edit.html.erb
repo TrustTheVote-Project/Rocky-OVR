@@ -54,8 +54,8 @@
       <fieldset>
         <legend>Volunteering</legend>
         <p>
-          <%= form.check_box :ask_for_volunteers %>
-          <%= form.label :ask_for_volunteers, "Ask for volunteers for <strong>#{@partner.organization}</strong>".html_safe %>
+          <%= form.check_box :partner_ask_for_volunteers %>
+          <%= form.label :partner_ask_for_volunteers, "Ask for volunteers for <strong>#{@partner.organization}</strong>".html_safe %>
           <% if @partner.organization.blank? %>
             &hellip; (you should fill in your organization name in your <%= link_to "profile", edit_partner_path %>)
           <% end %>
