@@ -20,7 +20,12 @@
     <legend>Whitelabeling</legend>
     <ul class="stacked">
       <li class="width_a">
-        <h3><%= f.label :from_email %></h3>
+        <h3>
+          <%= f.label :from_email %>
+          <%- if !@partner.from_email.blank? %>
+            <strong><%= @partner.from_email_verified? ? "Verified!" : "Not Verified!"%></strong>
+          <%- end %>
+        </h3>
         <%= field_div f, :from_email %>
         <span class="error"><%= @partner.errors[:from_email].join("\n") %></span>
         <span class="instructions">* Email address to send confirmation, reminder and thank-you emails from for whitelabeled partners</span>

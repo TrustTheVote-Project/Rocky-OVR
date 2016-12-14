@@ -62,6 +62,7 @@ class Notifier < ActionMailer::Base
     
   end
 
+  
   def preview_message(partner, prefix, kind, locale)
     registrant = Registrant.new(id:0, uid: '00000000', first_name: "FirstName", last_name: "LastName", partner: partner, locale: locale, home_state: GeoState[1])
     is_preview_found = !!EmailTemplate.get(partner, "#{prefix}#{kind}.#{locale}")
@@ -73,6 +74,9 @@ class Notifier < ActionMailer::Base
   protected
 
   def setup_registrant_email(registrant, kind)
+    if registrant.is_fake? && !kind.starts_with?("preview_")
+      kind = "preview_#{kind}"
+    end
     partner = registrant.partner
     use_custom_template = partner.whitelabeled? || kind.starts_with?("preview_")
     subject = partner && (use_custom_template) && EmailTemplate.get_subject(partner, "#{kind}.#{registrant.locale}")

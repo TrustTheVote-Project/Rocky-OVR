@@ -25,12 +25,17 @@
 class BrandingController < PartnerBase
   layout "partners"
   before_filter :require_partner
+  before_filter :set_partner, only: [:show, :css, :emails]
 
   MAX_MB = 5.0
 
   def show
-    @partner = current_partner
   end
+  def css
+  end
+  def emails
+  end
+
 
   def update
     @partner = current_partner
@@ -48,10 +53,14 @@ class BrandingController < PartnerBase
 
     update_email_template_subjects(params[:template_subject])
 
-    redirect_to partner_branding_path
+    redirect_to :back
   end
 
   protected
+
+  def set_partner
+    @partner = current_partner
+  end
 
   def upload_custom_asset(asset_file)
     return unless asset_file

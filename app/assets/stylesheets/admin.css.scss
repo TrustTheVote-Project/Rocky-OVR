@@ -6,12 +6,7 @@ th { font-weight: bold; }
 
 .properties .label { font-weight: bold; text-align: right; }
 
-.whitelabeled { 
-  display: none; 
-  .email-template {
-    display: none;
-  }
-}
+
 
 .actions {
   margin: 20px 0;
@@ -26,9 +21,7 @@ table.assets .name {
   width: 200px;
 }
 
-ul.stacked li {
-	margin: 1em 15px 1em 0;
-}
+
 
 #container {
   width: 1240px;
@@ -36,3 +29,5 @@ ul.stacked li {
 #header {
   background-image: url(https://s3.amazonaws.com/rocky-assets/assets/admin/header_admin_tools.gif);
 }
+
+@import '_partner_whitelabel';

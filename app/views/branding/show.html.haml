@@ -1,40 +1,46 @@
-- #TODO move to new layout
-- content_for :subnav do
-  - @nav_class[:branding] = :current
-  - @nav_class[:customize] = :current
-  = render :partial => "layouts/customize_nav"
-
-#customize_nav
-  %p
-    = link_to I18n.t('partners.branding.title', default: 'Setup Custom Branding'), '#', class: :current
-    |
-    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), partner_branding_approval_path, id: "preview_and_submission_link"
-
-  %p.switcher(data-hide-class = 'nav-items')
-    = link_to "Assets", '#', class: :current, 'data-show-class' => 'assets'
-    |
-    = link_to "CSS", '#', 'data-show-class' => 'css'
-    |
-    = link_to "E-Mail templates", '#', 'data-show-class' => 'emails'
-
-.text
-  %p= I18n.t('partners.branding.description.general', default: 'Custom Branding feature description')
+= render 'branding_nav', {selected: :assets}
 
 = form_for @partner, url: partner_branding_path, method: :put, :html => { :multipart => true } do |f|
   %fieldset.nav-items.assets
     %legend Assets
-    = render partial: "list", locals: { key: "partners.branding.description.assets"}
-    = render partial: 'assets', locals: { f: f }
+    = render partial: "instructions_list", locals: { key: "partners.branding.description.assets"}
+  
+    %div.whitelabeled
+      %ul.stacked
+        %li.width_e
+          %h3 New asset
+          %div= file_field_tag :file
+      %br
+      - assets = PartnerAssetsPresenter.new(@partner)
+      %fieldset
+        %legend Not approved
+        %table.assets.not_approved
+          %tbody
+            - if assets.not_approved.empty?
+              %tr
+                %td.name#no_preview_assets_found There are no assets yet
+            - else
+              - assets.not_approved.each do |asset|
+                %tr
+                  %td.name
+                    %span.asset
+                      = link_to asset, @partner.folder.asset_url(asset, :preview)
+                    = check_box_tag "remove[#{asset}]"
+                    remove
+              %br
+              %div Click 'Update' to delete selected items
+      %fieldset
+        %legend Approved
+        %table.assets.approved
+          %tbody
+          - if assets.approved.empty?
+            %tr
+              %td.name#no_approved_assets_found There are no approved assets yet
 
-  %fieldset.nav-items.css
-    %legend Whitelabeled CSS
-    = render partial: "list", locals: { key: "partners.branding.description.css"}
-    = render partial: 'css', locals: { f: f}
-
-
-  %fieldset.nav-items.emails
-    %legend E-Mail templates
-    = render partial: "list", locals: { key: "partners.branding.description.email_templates"}
-    = render partial: 'admin/shared/custom_emails', locals: { prefix: "preview_" }
-
+          - assets.approved.each do |asset|
+            %tr
+              %td.name
+                %span.asset= asset
+        %br
+  
   = partner_rollover_button 'update', 'Update'

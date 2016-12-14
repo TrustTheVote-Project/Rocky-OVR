@@ -1,3 +1,5 @@
+@import '_partner_whitelabel';
+
 #container {
   width: 720px;
   background: #ddd image-url('partner/content_bg.gif') repeat-x top left;
@@ -270,11 +272,6 @@ li {
   font-size: 14px;
   list-style: disc;
   margin: 0.5em 2em;
-}
-
-/* copied from admin.css for list compatibility between admin and non-admin layout pages */
-ul.stacked li {
-  margin: 1em 15px 1em 0;
 }
 
 form li {

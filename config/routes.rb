@@ -44,6 +44,10 @@ Rocky::Application.routes.draw do
     resource "widget_image",  :only => [:show, :update]
     resource "logo",          :only => [:show, :update, :destroy]
     resource "branding", only: [:show, :update], controller: "branding" do
+      collection do
+        get 'css'
+        get 'emails'
+      end
       resource "approval", only: [:show, :update, :destroy], controller: "approval" do
         get "preview"
       end

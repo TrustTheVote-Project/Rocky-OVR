@@ -120,7 +120,7 @@ class Partner < ActiveRecord::Base
 
   before_validation :reformat_phone
   before_validation :set_default_widget_image
-
+  before_validation :detect_from_email_change
 
   before_create :generate_api_key
   
@@ -710,6 +710,12 @@ class Partner < ActiveRecord::Base
   
 protected
 
+  def detect_from_email_change
+    if self.from_email_changed?
+      self.from_email_verified_at = nil
+    end
+  end
+
   def check_from_email_verification
     ses = Aws::SES::Client.new(
           region: 'us-west-2',
@@ -718,6 +724,10 @@ protected
     resp = ses.get_identity_verification_attributes({
         identities: [self.from_email], # required
     })
+    if resp.verification_attributes[self.from_email].blank?
+      ses.verify_email_identity({email_address: self.from_email})
+      return false
+    end
     verified = resp.verification_attributes[self.from_email].verification_status == "Success"
     if verified
       self.update_attributes(from_email_verified_at: DateTime.now)
