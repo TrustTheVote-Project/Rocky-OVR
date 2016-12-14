@@ -9,7 +9,8 @@
         %th Name
         %th Organization
         %th E-Mail
-        %th
+        %th Assets
+        %th Preview
         %th
         %th
         %th
@@ -26,11 +27,16 @@
           - p.folder.list_named_urls.sort_by(&:first).each do |pair|
             = link_to pair[0], pair[1]
             %br
-        %td= link_to "Preview", p.preview_custom_assets_link, target: '_blank'
+        %td
+          = link_to "Preview", p.preview_custom_assets_link, target: '_blank'
         - if request.open?
-          %td= link_to "Approve", { action: "approve_request", partner_id: p.id }, method: :POST, confirm: confirmation
+          %td
+            = link_to "Review Emails", edit_admin_partner_path(p)
+          %td
+          = link_to "Approve", { action: "approve_request", partner_id: p.id }, method: :POST, confirm: confirmation
           %td= link_to "Reject", { action: "reject_request", partner_id: p.id }, method: :POST, confirm: reject_confirmation
         - else
+          %td
           %td
           %td
 - else

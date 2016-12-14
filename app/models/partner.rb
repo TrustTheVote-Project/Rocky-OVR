@@ -295,18 +295,24 @@ class Partner < ActiveRecord::Base
      I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
     }.flatten.uniq
     
-    male_count = female_count = 0
+    male_count = female_count = not_specified_count = 0
 
     counts.each do |row|
-      if male_titles.include?(row["name_title"])
+      if row["name_title"].blank?
+        not_specified_count += row["registrations_count"].to_i
+      elsif male_titles.include?(row["name_title"])
         male_count += row["registrations_count"].to_i
       else
         female_count += row["registrations_count"].to_i
       end
     end
 
-    sum = male_count + female_count
-    [ { :gender => "Male",
+    sum = male_count + female_count + not_specified_count
+    [ { :gender => "Not Specified",
+        :registrations_count => not_specified_count,
+        :registrations_percentage => not_specified_count.to_f / sum
+      },
+      { :gender => "Male",
         :registrations_count => male_count,
         :registrations_percentage => male_count.to_f / sum
       },
