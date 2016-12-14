@@ -108,7 +108,7 @@ record_6:
   id_number_tooltip: drivers_license_or_photo_id_and_other
   sos_address: Secretary of State<br>Elections Division<br>30 Trinity Street<br>Hartford,
     CT 06106
-  sos_phone: (800) 509-6100
+  sos_phone: (860) 509-6100
   sos_url: http://www.sots.ct.gov/sots/cwp/view.asp?a=3172&q=525432
   sub_18: once_turned_17
   registration_deadline: connecticut
@@ -657,7 +657,7 @@ record_46:
   id_number_tooltip: ssn_or_none_3
   sos_address: State Board of Elections<br>1100 Bank Street, 1st Floor<br>Richmond,
     VA 23219
-  sos_phone: (804) 786-6551
+  sos_phone: (804) 864-8901
   sos_url: http://www.sbe.state.va.us/
   registration_deadline: received_22_days
   online_registration_url: https://vote.elections.virginia.gov/Registration/Eligibility
