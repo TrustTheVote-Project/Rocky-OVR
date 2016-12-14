@@ -33,7 +33,7 @@
           %td
             = link_to "Review Emails", edit_admin_partner_path(p, anchor: 'emails')
           %td
-          = link_to "Approve", { action: "approve_request", partner_id: p.id }, method: :POST, confirm: confirmation
+            = link_to "Approve", { action: "approve_request", partner_id: p.id }, method: :POST, confirm: confirmation
           %td= link_to "Reject", { action: "reject_request", partner_id: p.id }, method: :POST, confirm: reject_confirmation
         - else
           %td
