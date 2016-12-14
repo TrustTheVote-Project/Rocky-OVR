@@ -532,3 +532,8 @@ en:
         to vote in federal elections.  The most common "proof" is a photocopy of your
         birth certificate or passport, but a full list of acceptable documentation
         can be found <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">online</a>.</i>'
+      wisconsin: ! '<strong>*Note: Applicants must always provide a Proof of Residence 
+        document when registering in Wisconsin.</strong><br>
+        If you are registering by mail, you can use any of the Proof of Residence listed 
+        <a href="http://www.gab.wi.gov/publications/voter-guides/proof-of-residence"  target="_blank">here</a> 
+        that must include the voter’s name and current address.'
