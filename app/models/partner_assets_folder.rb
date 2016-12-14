@@ -199,11 +199,12 @@ class PartnerAssetsFolder
     write_file(path, file)
   end
 
-  def write_file(path, content, public = true)
+  def write_file(path, content, is_public = true)
     directory.files.create(
       :key    => path,
       :body   => content,
-      :public => public
+      :content_type => mime_from_path(path),
+      :public => is_public
     )
   end
 
@@ -232,7 +233,12 @@ class PartnerAssetsFolder
 
     archive_path = File.join(@partner.absolute_old_assets_path, "#{name}-#{ts}#{ext}")
 
-    directory.files.create :key => archive_path, :body => file.body, :public=>false
+    directory.files.create(
+      :key => archive_path, 
+      :body => file.body, 
+      :content_type => mime_from_path(archive_path),
+      :public=>false
+    )
 
     #FileUtils.cp path, archive_path
   end
@@ -245,6 +251,12 @@ class PartnerAssetsFolder
     source_file = existing(source)
 
     write_file(destination, source_file.body)
+  end
+  
+  def mime_from_path(path)
+    MIME::Types.type_for(path.to_s).first.content_type
+  rescue
+    ""
   end
 
 end
