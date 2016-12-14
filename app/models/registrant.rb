@@ -384,6 +384,10 @@ class Registrant < ActiveRecord::Base
     find_by_param(param) || begin raise ActiveRecord::RecordNotFound end
   end
   
+  def self.remove_fake_records
+    Registrant.where(is_fake: true).where(status: 'complete').destroy_all
+  end
+  
   def self.abandon_stale_records
     id_list = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id)
     self.find_each(:batch_size=>500, :conditions => ["id in (?)", id_list]) do |reg|
@@ -405,6 +409,9 @@ class Registrant < ActiveRecord::Base
       end
       reg.abandon!
       Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
+      if reg.is_fake?
+        reg.destroy
+      end      
     end
   end
 
