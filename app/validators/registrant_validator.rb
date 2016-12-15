@@ -57,7 +57,7 @@ class RegistrantValidator < ActiveModel::Validator
     
     
     if reg.at_least_step_2? && reg.use_short_form? 
-      if reg.home_state_allows_ovr_ignoring_license?
+      if reg.home_state_allows_ovr_ignoring_license? && reg.require_id?
         reg.validates_inclusion_of  :has_state_license, :in=>[true,false]
       end
       reg.validate_date_of_birth

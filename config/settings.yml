@@ -88,6 +88,7 @@ ovr_states:
       - en
   MN:
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
   NV:
@@ -124,6 +125,7 @@ ovr_states:
   DE:
     redirect_to_online_reg_url: true
     require_age_confirmation: true
+    require_id: false
     languages:
       - en    
   GA:
@@ -167,6 +169,7 @@ ovr_states:
   MO:
     redirect_to_online_reg_url: true
     require_age_confirmation: true
+    require_id: false
     languages:
       - en
   NE:
@@ -195,6 +198,7 @@ ovr_states:
       api_key: <%= ENV['PA_API_KEY'] %>
     redirect_to_online_reg_url: true
     require_age_confirmation: true
+    require_id: false
     languages:
       - en
       - es
@@ -214,6 +218,7 @@ ovr_states:
   VT:
     require_age_confirmation: true
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
   VA:

@@ -212,7 +212,7 @@ class Registrant < ActiveRecord::Base
   belongs_to :mailing_state, :class_name => "GeoState"
   belongs_to :prev_state,    :class_name => "GeoState"
 
-  delegate :requires_race?, :requires_party?, :require_age_confirmation?, :to => :home_state, :allow_nil => true
+  delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
   def self.state_attr_accessor(*args)
     [args].flatten.each do |arg|

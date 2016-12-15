@@ -41,7 +41,9 @@ class StateCustomization
   end
   
   def enabled_for_language?(lang, reg)
-    return false if reg && !reg.has_state_license?
+    if require_id?
+      return false if reg && !reg.has_state_license?
+    end
     if require_age_confirmation?
       return false if reg && !reg.will_be_18_by_election?
     end    
@@ -78,6 +80,11 @@ class StateCustomization
   def require_age_confirmation?
     return false if ovr_settings.blank?
     return ovr_settings["require_age_confirmation"]
+  end
+  
+  def require_id?
+    return true if ovr_settings.blank?
+    return ovr_settings["require_id"]!=false
   end
   
 protected

@@ -44,14 +44,19 @@
         :javascript
           $(document).ready(function() {
             function hasStateLicenseSelected() {
-              var hasLicenseSelected = $('input[name="registrant[has_state_license]"]:checked').val() == "1";
+              var hasStateLicense = true;
+              var hasStateLicenseRadio = $('input[name="registrant[has_state_license]"]:checked'); //a radio must have 1 selected
+              if (hasStateLicenseRadio.length > 0 && hasStateLicenseRadio.val()!="1") {
+                hasStateLicense = false;
+              } 
+              
               // If check-18 checkbox is present, that must also be selected
               var willBe18 = true;
               var willBe18Checkbox = $('input[name="registrant[will_be_18_by_election]"]');
               if (willBe18Checkbox.length > 0 && !willBe18Checkbox.is(":checked")) {
                 willBe18 = false;
               }
-              return hasLicenseSelected && willBe18;
+              return hasStateLicense && willBe18;
             }
             function toggleHasStateLicense() {
               if (hasStateLicenseSelected()) {
@@ -69,18 +74,19 @@
             $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
           });
     
-      %ul.radio
-        %li.registrant-form__has-state-license__line.has_license
-          %h3
-            = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
-            = form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev)
-          .use_state_registration.checkbox-explanation
-            %p= I18n.t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name)
-      %ul.radio
-        %li.registrant-form__has-no-state-license__line
-          %h3
-            = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
-            = form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev)
+      - if @registrant.require_id?
+        %ul.radio
+          %li.registrant-form__has-state-license__line.has_license
+            %h3
+              = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
+              = form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev)
+            .use_state_registration.checkbox-explanation
+              %p= I18n.t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name)
+        %ul.radio
+          %li.registrant-form__has-no-state-license__line
+            %h3
+              = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
+              = form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev)
 
       .skip_state_registration
         = render partial: 'step4/skip_state', locals: { form: form }
