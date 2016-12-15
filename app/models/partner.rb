@@ -133,6 +133,7 @@ class Partner < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :url
+  validates_format_of :url, with: /^https?:\/\//, message: "Must start with http(s)://"
   validates_presence_of :address
   validates_presence_of :city
   validates_presence_of :state_id
