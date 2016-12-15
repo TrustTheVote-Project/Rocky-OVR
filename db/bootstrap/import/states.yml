@@ -323,6 +323,7 @@ record_21:
   registration_deadline: postmarked_20_days
   id_length_min: '4'
   online_registration_url: https://www.sec.state.ma.us/OVR/Pages/MinRequirements.aspx?RMVId=True
+  sub_18: once_turned_16
 record_22:
   abbreviation: MI
   name: Michigan
@@ -701,6 +702,7 @@ record_49:
   registration_deadline: postmarked_20_days
   pdf_other_instructions: wisconsin
   id_length_min: '4'
+  email_instructions: wisconsin
 record_50:
   abbreviation: WY
   name: Wyoming
