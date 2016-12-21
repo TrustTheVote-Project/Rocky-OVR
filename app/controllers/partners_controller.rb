@@ -41,7 +41,7 @@ class PartnersController < PartnerBase
     @partner = Partner.new(params[:partner])
     if @partner.save
       flash[:success] = "Registered!"
-      redirect_back_or_default partner_url
+      redirect_to partner_url
     else
       render "new"
     end
