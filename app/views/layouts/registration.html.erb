@@ -41,7 +41,7 @@
       <div class='header-text'>
         <%- if @registrant && @registrant.home_state_abbrev %>
           <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_name %>
-        <%- else %>
+        <%- elsif !@registrant || @registrant.short_form? %>
           <%= t 'txt.register_to_vote' %>
         <%- end %>
       </div>

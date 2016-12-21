@@ -1,5 +1,6 @@
-.intro-message
-  %p=t('txt.registration.intro_message')
+- if !@registrant || @registrant.short_form?
+  .intro-message
+    %p=t('txt.registration.intro_message')
   
 %h1= t('txt.registration.step_1_header')
 
