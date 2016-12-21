@@ -7,7 +7,7 @@
       <span class="error"><%= form.object.errors[:name_title].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__first-name__line">
-      <h3><%= form.label :first_name %></h3>
+      <h3><%= form.label :first_name %><span class='required'>*</span></h3>
       <%= field_div form, :first_name %>
       <span class="error"><%= form.object.errors[:first_name].join("\n") %></span>
     </li>
@@ -17,7 +17,7 @@
       <span class="error"><%= form.object.errors[:middle_name].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__last-name__line">
-      <h3><%= form.label :last_name %></h3>
+      <h3><%= form.label :last_name %><span class='required'>*</span></h3>
       <%= field_div form, :last_name %>
       <span class="error"><%= form.object.errors[:last_name].join("\n") %></span>
     </li>

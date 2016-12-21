@@ -7,23 +7,20 @@
   <h1>Survey Questions</h1>
 
   <p>
-    You can ask applicants to answer two customized questions during the voter registration process. Just enter your questions in the text boxes below. If you don't have translations available, just leave blank.
+    You can ask applicants to answer two questions during the voter registration process. Responses can be reviewed when you <%= link_to "download your voter registration data", statistics_partner_path %>. Also, make sure you check the box below if you want to ask applicants if they want to volunteer for your organization.
+  </p>
+  <p>
+    To create the survey questions, simply enter your questions in the text boxes below. If you don't have translations available, just leave those boxes blank.
   </p>
   <p class="extra_leading">
     We recommend asking questions that can be answered in a few words. For example:
   </p>
-
   <ul>
     <li>What is the top issue facing the country right now?</li>
     <li>If you are in school, where do you go?</li>
     <li>What is your favorite band?</li>
   </ul>
 
-  <p class="extra_leading">
-    You can see the applicants' answers when you
-    <%= link_to "download your voter registration data", statistics_partner_path %>.
-    Also, make sure you check the box below if you want to ask applicants if they want to volunteer for your organization.
-  </p>
 
   <div id="survey_questions">
     <%= form_for @partner, :url => partner_questions_path, :method => :put do |form| %>

@@ -10,10 +10,11 @@
         %h3
           = f.label :from_email
           - if !@partner.from_email.blank?
+            %br
             %strong= @partner.from_email_verified? ? "Verified!" : "Not Verified! (may take up to 5 minutes after verifying with Amazon)"
         = field_div f, :from_email
         %span.error= @partner.errors[:from_email].join("\n")
-        %span.instructions * Email address to send confirmation, reminder and thank-you emails from for whitelabeled partners
+        %span.instructions * The emaill address will need to be confirmed.
     
     = render partial: 'admin/shared/custom_emails'
 

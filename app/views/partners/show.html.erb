@@ -3,9 +3,7 @@
 <h1>Welcome <%= @partner.name %>!</h1>
 
 <p>
-  With your Partner Dashboard, you can customize your tool and copy and paste the HTML code to embed
-  your online registration tool on your website. You can access statistics and download registration
-  data about the people you are registering to vote. You can also modify your partner profile.
+  Through the Partner Portal, you can customize your voter registration tool, track progress, and grab a unique embed code to place the tool on your website.
 </p>
 
 <div id="dashboard">
@@ -18,8 +16,8 @@
             <th>
               <ul>
                 <li><%= link_to "Add custom survey questions and set volunteer sign up options", edit_partner_questions_path %></li>
-                <li><%= link_to "Upload your own custom logo", partner_logo_path %></li>
-                <li><%= link_to "Get custom buttons and banners", partner_widget_image_path %></li>
+                <li><%= link_to "Upload your own logo", partner_logo_path %></li>
+                <li><%= link_to "Select a button or banner", partner_widget_image_path %></li>
                 <li><%= link_to "Get your embed code", embed_codes_partner_path %></li>
               </ul>
             </th>
@@ -28,7 +26,6 @@
       </table>
     </div>
     <%= rollover_image_link("link_customizetool", "Customize Tool", partner_logo_path, id: "link_customizetool") %>
-    <%= rollover_image_link("link_editprofile", "Edit Profile", edit_partner_path, id: "link_editprofile") %>
   </div>
 
   <div id="dash_left" class="dash">

@@ -1,5 +1,5 @@
     <li class="width_f registrant-form__date-of-birth__line">
-      <h3><%= form.label :date_of_birth %></h3>
+      <h3><%= form.label :date_of_birth %><span class='required'>*</span></h3>
       <%= field_div form, :date_of_birth, :value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY' %>
       <div class="tooltip"><%= tooltip_tag :date_of_birth %></div>
       <span class="error"><%= form.object.errors[:date_of_birth].join("\n") %></span>

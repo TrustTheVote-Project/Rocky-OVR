@@ -19,5 +19,5 @@
     = link_to "E-Mail templates", emails_partner_branding_path, class: selected == :emails ? 'current' : ''
 
 .text
-  %p= I18n.t('partners.branding.description.general', default: 'Custom Branding feature description')
+  %p= I18n.t('partners.branding.description.general', default: 'Custom Branding feature description').html_safe
 

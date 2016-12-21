@@ -24,8 +24,12 @@
 #***** END LICENSE BLOCK *****
 class EmailTemplate < ActiveRecord::Base
 
+  def self.display_name(type)
+    type == 'thank_you_external' ? 'State OVR Responder' : type.humanize
+  end
+  
   EMAIL_TYPES = %w(confirmation reminder final_reminder chaser thank_you_external)
-  TEMPLATE_NAMES = EMAIL_TYPES.inject([]){|result,t| result + I18n.available_locales.collect{|l| ["#{t}.#{l}", "#{t.capitalize.gsub("_", " ")} #{l.upcase}"]} }
+  TEMPLATE_NAMES = EMAIL_TYPES.inject([]){|result,t| result + I18n.available_locales.collect{|l| ["#{t}.#{l}", "#{display_name(t)} #{l.upcase}"]} }
   PREVIEW_NAME_MAPPING = TEMPLATE_NAMES.map { |name, label| ["preview_#{name}", name, label]}
 
   
@@ -37,6 +41,8 @@ class EmailTemplate < ActiveRecord::Base
   validates_presence_of   :partner
   validates_presence_of   :name
   validates_uniqueness_of :name, :scope => :partner_id
+
+  
 
   # Sets the template body (creates or updates as necessary)
   def self.set(partner, name, body)

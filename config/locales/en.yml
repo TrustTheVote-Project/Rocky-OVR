@@ -36,7 +36,7 @@ en:
   activerecord:
     attributes:
       partner:
-        from_email: From Email
+        from_email: Edit "from" email address to send autoresponders from your organization, rather than Rock the Vote.
         url: URL
         registration_instructions_url: PDF instructions URL
       registrant:
@@ -155,10 +155,10 @@ en:
       no_authentication_details: You did not provide any details for authentication.
   partners:
     branding:
-      nav: Advanced
+      nav: White Label
       title: Setup Custom Branding
       description:
-        general: Change the look and feel of your tool to match your website and brand. It's super simple!
+        general: This section allows partners with some knowledge of CSS and HTML to fully customized their registration tool. You have the option to overwrite the default CSS and modify the autoresponder emails. Simply upload new resources through the portal, review changes, and submit for approval. <a href="http://wiki.rockthevote.com/index.php/Examples" target="_BLANK">Here are some great examples</a>.
         assets:
          - Upload your graphics (background images, special icons, etc that will be referenced in your CSS)
          - Upload your licensed fonts (or include google webfonts directly in your CSS file using @import)
@@ -168,10 +168,10 @@ en:
          (ie: body {background-image: url(‘mybackground.jpg’); color: #cc0000;}
          This file will load after the default styles so anything you define should change. Go to <a href=\"http://wiki.rockthevote.com\" target=\"_blank\">wiki.rockthevote.com</a> for some examples."
         email_templates:
-         - "Customize the autoresponders to match your tone and brand.
-         Remember to keep those important HTML tags such as (<%= @registrant.first_name %> and <%= @registrar_phone %>)
-         intact so dynamic content such as state phone numbers and other information can be pulled in appropriately.
-         We recommend using a text editor, such as TextWrangler."
+         - The registration platform will automatically send emails to new registrants to ensure they complete the process. 
+         - Partners are able to modify the templates to match your tone and brand.
+         - Remember to keep those important HTML tags such as (<%= @registrant.first_name %> and <%= @registrar_phone %>) intact so dynamic content such as state phone numbers and other information can be pulled in appropriately. 
+         - We recommend using a text editor, such as TextWrangler.
         approval: Once you’ve made all your edits, please click the “Preview” button to see your changes. When you’re happy with how the tool looks, hit the “Submit for Approval” button. The Rock the Vote team will review and approve as soon as possible. This process may take up to 48 hours.
       preview_warning:
         not_set: Custom assets are not uploaded, default assets will be used
