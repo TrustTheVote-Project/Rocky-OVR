@@ -39,10 +39,12 @@
       
   <% end -%>
       <div class='header-text'>
-        <%- if @registrant && @registrant.home_state_abbrev %>
-          <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_name %>
-        <%- elsif !@registrant || @registrant.short_form? %>
-          <%= t 'txt.register_to_vote' %>
+        <%- if !@registrant || @registrant.short_form? %>
+          <%- if @registrant && @registrant.home_state_abbrev %>
+            <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_name %>
+          <%- else%>
+            <%= t 'txt.register_to_vote' %>
+          <%- end %>
         <%- end %>
       </div>
       <div id="progress-bar">
