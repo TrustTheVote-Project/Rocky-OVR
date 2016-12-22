@@ -35,7 +35,7 @@
     <div>
       <h2><label for="image_overlay_html">Add a widget button:</label> <span style="font-weight:normal;">(spawns the form in a new window)</span></h2>
       <p class="plain_text">
-        Best option! This code will create a button or banner on a web page. But instead of taking your users to a separate website or page, the link will result in your voter registration tool being displayed on top of the page users were viewing. That's right, users will not leave your site. To see what it looks like, check out this examples: <span class="floatbox" data-fb-options="<%= @floatbox_options %>"><a href="https://register.rockthevote.com/?partner=<%= @partner.id %>&source=embed-<%= @partner.widget_image_name %>">Preview</a>
+        Best option! This code will create a button or banner on a web page. But instead of taking your users to a separate website or page, the link will result in your voter registration tool being displayed on top of the page users were viewing. That's right, users will not leave your site. To see what it looks like, check out this examples: <span class="floatbox" data-fb-options="<%= @floatbox_options %>"><a href="https://<%= RockyConf.default_url_host %>/?partner=<%= @partner.id %>&source=embed-<%= @partner.widget_image_name %>">Preview</a>
       </p>  
       <script type="text/javascript" src="<%= RockyConf.widget_loader_url %>"></script>
       <p><textarea name="image_overlay_html" readonly="readonly" rows="16" ><%= h @image_overlay_html %></textarea></p>      

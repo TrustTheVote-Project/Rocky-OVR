@@ -20,6 +20,7 @@
         %h3
           = form.check_box :us_citizen 
           = form.label :us_citizen
+          %span.required *
           %span.error= form.object.errors[:us_citizen].join("\n")
           
     - if @registrant.require_age_confirmation?
