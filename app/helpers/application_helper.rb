@@ -38,7 +38,7 @@ module ApplicationHelper
     stylesheets = []
     if !partner.replace_system_css?(:preview)
       stylesheets << 'application'
-      stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : 'registration2'
+      stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : 'registration2')
     end
     stylesheets += registrant_css
     stylesheets << ((registrant && !registrant.use_short_form?) ? partner.partner_css_url(:preview) : partner.partner2_css_url(:preview))
