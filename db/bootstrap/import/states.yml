@@ -43,7 +43,7 @@ record_1:
   sos_address: State of Alaska<br>Division of Elections<br>PO Box 110017<br>Juneau,
     AK 99811-0017
   sos_phone: (907) 465-3021
-  sos_url: http://www.elections.alaska.gov/
+  sos_url: http://www.elections.alaska.gov
   sub_18: 90_days_before
   registration_deadline: received_30_days
   id_length_min: '4'
@@ -97,7 +97,7 @@ record_5:
   sos_address: Secretary of State<br>1700 Broadway, Suite 200<br>Denver, CO 80290
   sos_phone: (303) 894-2200
   sos_url: https://www.govotecolorado.com
-  online_registration_url: https://www.sos.state.co.us/voter-classic?vrdid=vrd_944
+  online_registration_url: https://www.sos.state.co.us/voter-classic?vrdid=944
   id_length_min: '4'
   registration_deadline: colorado
 record_6:
