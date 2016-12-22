@@ -31,8 +31,12 @@ class CO < StateCustomization
     if registrant && registrant.state_ovr_data && registrant.state_ovr_data[:is_mobile]
       "https://www.sos.state.co.us/voter-mobile/"
     else     
-      partner = registrant.partner_id
-      "#{root_url}&campaign=#{partner}"
+      partner = registrant.partner ? registrant.partner.organization : nil
+      if partner
+        return "#{root_url}&campaign=#{CGI.escape(partner)}"
+      else
+        return root_url
+      end
     end
   end
   
