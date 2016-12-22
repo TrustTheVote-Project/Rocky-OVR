@@ -158,7 +158,7 @@ body {
     select {
       -webkit-appearance: none;
       -moz-appearance: none;
-      background: #fff image-url('reg/select-arrow.png') no-repeat 92% center;
+      background: #fff image-url('reg/select-arrow.png') no-repeat right center;
       font-size: 14px;
       padding: 6px 40px 6px 5px;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
@@ -369,7 +369,7 @@ body {
           select {
             -webkit-appearance: none;
             -moz-appearance: none;
-            background: #fff image-url('reg/select-arrow.png') no-repeat 92% center;
+            background: #fff image-url('reg/select-arrow.png') no-repeat right center;
             font-size: 14px;
             padding: 6px 40px 6px 5px;
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
@@ -380,7 +380,7 @@ body {
           }
           &.has_error {
            select {
-             background: #fcc image-url('reg/select-arrow.png') no-repeat 92% center;
+             background: #fcc image-url('reg/select-arrow.png') no-repeat right center;
            } 
           }
         }
