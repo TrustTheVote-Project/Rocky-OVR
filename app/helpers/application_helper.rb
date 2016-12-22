@@ -37,8 +37,8 @@ module ApplicationHelper
   def preview_partner_css(partner, registrant)
     stylesheets = []
     if !partner.replace_system_css?(:preview)
-      stylesheets << (partner.application_css_url(:preview) || 'application')
-      stylesheets << (registrant && !registrant.use_short_form? ? (partner.registration_css_url(:preview) || 'registration') : 'registration2')
+      stylesheets << 'application'
+      stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : 'registration2'
     end
     stylesheets += registrant_css
     stylesheets << ((registrant && !registrant.use_short_form?) ? partner.partner_css_url(:preview) : partner.partner2_css_url(:preview))
@@ -52,11 +52,12 @@ module ApplicationHelper
     wl = partner && partner.whitelabeled?
     stylesheets = []
     if !partner.replace_system_css?
-      stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
       if registrant && !registrant.use_short_form?
+        stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
         stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
       else
         # Partners can't upload reg2 - just part2 and either keep the default reg2 or mark as reaplce_system_css
+        stylesheets << "application"
         stylesheets << "registration2"
       end
     end
