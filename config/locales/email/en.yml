@@ -240,7 +240,7 @@ en:
     chaser:
       subject: You can still register to vote
       body:
-        main: ! 'Hey %{registrant_first_name},<br><br>
+        main: ! 'Hey%{registrant_first_name_with_space},<br><br>
 
           I noticed that you didn’t finish filling out your online voter registration
           form. Registering with %{rtv_and_partner_name}''s online tool takes less

@@ -26,7 +26,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../rails_helper')
 
 describe Registrant do
   include Rails.application.routes.url_helpers
-  
+
+  before(:each) do
+    allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
+  end
   describe '#partner' do
     let(:r) { Registrant.new }
     before(:each) do
@@ -1152,10 +1155,10 @@ describe Registrant do
       r = Registrant.new(:short_form=>false)
       r.use_short_form?.should be_falsey
     end
-    it "returns false if short_form is true and in_ovr_flow? is true" do
+    it "returns true if short_form is true even if in_ovr_flow? is true" do
       r = Registrant.new(:short_form=>true)
       r.stub(:in_ovr_flow?) { true }
-      r.use_short_form?.should be_falsey
+      expect(r.use_short_form?).to be(true)
     end
     it "return true if short_form is true and in_ovr_flow is false" do
       r = Registrant.new(:short_form=>true)

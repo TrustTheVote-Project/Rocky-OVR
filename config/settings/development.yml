@@ -1,12 +1,9 @@
 pdf_host_name: localhost:3001
 api_host_name: http://localhost:3001
 use_https: false
-from_address: "rocky-dev@gmail.com"
-default_url_host: "localhost:3001"
+from_address: "Rock The Vote <rocky-dev@gmail.com>"
+default_url_host: "localhost:3000"
 ui_url_host: "localhost:3000"
-
-mobile_browsers:
-  -
 
 
 hours_before_first_reminder: 0.0333
@@ -20,7 +17,6 @@ ovr_states:
       debug_in_ui: true
       log_all_requests: true
       disclosures_font_size: 14px
-      disclosures_box_height: 100px
       disclosures_prechecked: true
   NV:
     redirect_to_online_url: true
@@ -36,13 +32,18 @@ ovr_states:
     languages:
       - en
       - es
+  MA:
+    languages:
+      - en
   
 
 states_with_online_registration:
   - AZ
   - CA
+  - DC
   - LA
   - MN
+  - MO
   - NV
   - WA
   - AK

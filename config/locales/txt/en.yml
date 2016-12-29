@@ -1,6 +1,8 @@
 ---
 en:
   txt:
+    register_to_vote: Register To Vote
+    register_to_vote_in: Register in %{state_abbrev}
     unknown_error: ! 'Unknown error: the web administrators have been contacted.'
     error: Something went wrong.
     try_again: Go back and try again.
@@ -9,7 +11,7 @@ en:
       submit: Next Step
       edit: Edit
       back: ! '&lt; Previous Step'
-      download: Print your<br/>registration<br/>form now
+      download: Print your registration form now
       ineligible_try_again: Return
       keep_going: Keep Going
       remind_me_later: Remind Me Later
@@ -28,6 +30,7 @@ en:
       in_language_name: In English
       powered_by: ! 'powered by:'
       progress_indicator: ! 'Step:'
+      intro_message: Voter registration time takes an average of two minutes or less to complete.
       step_1_header: New Registrant
       step_2_header: Personal Information
       step_3_header: Additional Registration Information
@@ -36,6 +39,7 @@ en:
       step_5_header: Review and Confirm
       stay_informed_header: Stay Informed
       identification_header: Identification Information
+      already_registered: Already registered? <a href="%{url}">Share with your friends</a>.
       survey_title: Questions For You
       preparing_header: Preparing Registration Form...
       download_header: Print Your Form
@@ -72,6 +76,7 @@ en:
       not_given: none
       has_state_license: I have a current %{state} state identification card or driver's
         license
+      has_state_license_eligible: You may be eligible to finish your voter registration using the %{state} online voter registration system.
       has_no_state_license: I do not have a current %{state} state identification
         card or driver's license
       titles:

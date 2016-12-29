@@ -27,6 +27,7 @@ module PartnerAssets
   APP_CSS = "application.css"
   REG_CSS = "registration.css"
   PART_CSS = "partner.css"
+  PART2_CSS = "partner2.css"
   PDF_LOGO = "pdf_logo" #.jpeg, .jpg or .gif
 
   def self.extension(name)
@@ -34,12 +35,28 @@ module PartnerAssets
     return $1
   end
 
-  def css_present?
-    application_css_present? && registration_css_present?
+  def replace_system_css?(group=:live)
+    self.replace_system_css[group]
+  end
+  def replace_system_css_live
+    self.replace_system_css?(:live)
+  end
+  def replace_system_css_preview
+    self.replace_system_css?(:preview)
+  end
+  def replace_system_css_live=(value)
+    self.replace_system_css[:live]=!!(value && value != "0" && value.to_s.downcase != 'false')
+  end
+  def replace_system_css_preview=(value)
+    self.replace_system_css[:preview]=!!(value && value != "0" && value.to_s.downcase != 'false')
+  end
+
+  def use_long_form?
+    whitelabeled? && !partner2_css_present? && (application_css_present? || registration_css_present? || partner_css_present?)
   end
 
   def any_css_present?
-    application_css_present? || registration_css_present? || partner_css_present?
+    application_css_present? || registration_css_present? || partner_css_present? || partner2_css_present?
   end
 
   def application_css_present?
@@ -49,12 +66,14 @@ module PartnerAssets
 
   def registration_css_present?
     folder.asset_file_exists?(REG_CSS)
-    #File.exists?(self.absolute_registration_css_path)
   end
 
   def partner_css_present?
     folder.asset_file_exists?(PART_CSS)
     #File.exists?(self.absolute_partner_css_path)
+  end
+  def partner2_css_present?(group=nil)
+    folder.asset_file_exists?(PART2_CSS, group)
   end
   
   def pdf_logo_present?(group = nil)
@@ -142,9 +161,15 @@ module PartnerAssets
   def partner_css_url(group = nil)
     folder.asset_url(PART_CSS, group)
   end
+  def partner2_css_url(group = nil)
+    folder.asset_url(PART2_CSS, group)
+  end
 
   def partner_css_path(group = nil)
     File.join(partner_path, group.to_s, PART_CSS)
+  end
+  def partner2_css_path(group = nil)
+    File.join(partner_path, group.to_s, PART2_CSS)
   end
 
   def absolute_old_assets_path

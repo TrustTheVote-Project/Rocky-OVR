@@ -34,26 +34,40 @@ module ApplicationHelper
     opts
   end
 
-  def preview_partner_css(partner)
-    [
-      partner.application_css_url(:preview) || 'application',
-      partner.registration_css_url(:preview) || 'registration',
-      *registrant_css,
-      partner.partner_css_url(:preview)
-    ].compact
+  def preview_partner_css(partner, registrant)
+    stylesheets = []
+    if !partner.replace_system_css?(:preview)
+      stylesheets << 'application'
+      stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : 'registration2')
+    end
+    stylesheets += registrant_css
+    stylesheets << ((registrant && !registrant.use_short_form?) ? partner.partner_css_url(:preview) : partner.partner2_css_url(:preview))
+    return stylesheets.compact
   end
 
-  def partner_css(partner = @partner)
-    if params.has_key?(:preview_custom_assets) || @registrant.try(:is_fake)
-      return preview_partner_css(partner)
+  def partner_css(partner = @partner, registrant=@registrant)
+    if params.has_key?(:preview_custom_assets) || registrant.try(:is_fake)
+      return preview_partner_css(partner, registrant)
     end
     wl = partner && partner.whitelabeled?
-
     stylesheets = []
-    stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
-    stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
+    if !partner.replace_system_css?
+      if registrant && !registrant.use_short_form?
+        stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
+        stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
+      else
+        # Partners can't upload reg2 - just part2 and either keep the default reg2 or mark as reaplce_system_css
+        stylesheets << "application"
+        stylesheets << "registration2"
+      end
+    end
+    # event with replace_system_css, keep the locale specific ones
     stylesheets += registrant_css
-    stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
+    if registrant && !registrant.use_short_form?
+      stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
+    else
+      stylesheets << partner.partner2_css_url if wl && partner.partner2_css_present?
+    end
     stylesheets
   end
   
@@ -95,7 +109,7 @@ module ApplicationHelper
   end
 
   def tooltip_tag(tooltip_id, content = t("txt.registration.tooltips.#{tooltip_id}"))
-    image_tag 'buttons/help_icon.gif', :mouseover => 'buttons/help_icon_over.gif', :alt => t('txt.button.help'),
+    image_tag 'buttons/help_icon.png', :mouseover => 'buttons/help_icon_over.png', :alt => t('txt.button.help'),
       :class => 'tooltip', :id => "tooltip-#{tooltip_id}",
       :title => content
   end
@@ -104,7 +118,8 @@ module ApplicationHelper
     kind = options.delete(:kind) || "text"
     selector = "#{kind}_field"
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
-    content_tag(:div, form.send( selector, field, {:size => nil}.merge(options) ).html_safe, :class => has_error).html_safe
+    class_name = [options.delete(:class), has_error].compact.join(' ')
+    content_tag(:div, form.send( selector, field, {:size => nil}.merge(options) ).html_safe, :class => class_name).html_safe
   end
 
   def select_div(form, field, contents, options={})
@@ -153,7 +168,8 @@ module ApplicationHelper
     "data:#{asset.content_type};base64,#{Rack::Utils.escape(base64)}"
   end
 
-  def show_custom_branding
-    false
+  def branding_open_requests_count
+    BrandingUpdateRequest.all.count { |x| x.open? }
   end
+
 end

@@ -7,26 +7,20 @@
   <h1>Survey Questions</h1>
 
   <p>
-    You can ask applicants to answer two customized questions during the voter registration process. The
-    questions will appear on step four of the five-step process. Just enter your questions in the text boxes
-    below. Questions in the English boxes will appear when applicants use the English version of the online
-    voter registration tool; questions in the Spanish boxes will appear if they fill out the Spanish version.
+    You can ask applicants to answer two questions during the voter registration process. Responses can be reviewed when you <%= link_to "download your voter registration data", statistics_partner_path %>. Also, make sure you check the box below to ask applicants if they want to volunteer.
+  </p>
+  <p>
+    To create the survey questions, simply enter your questions in the text boxes below. If you don't have translations available, just leave those boxes blank.
   </p>
   <p class="extra_leading">
     We recommend asking questions that can be answered in a few words. For example:
   </p>
-
   <ul>
     <li>What is the top issue facing the country right now?</li>
     <li>If you are in school, where do you go?</li>
     <li>What is your favorite band?</li>
   </ul>
 
-  <p class="extra_leading">
-    You can see the applicants' answers when you
-    <%= link_to "download your voter registration data", statistics_partner_path %>.
-    Also, make sure you check the box below if you want to ask applicants if they want to volunteer for your organization.
-  </p>
 
   <div id="survey_questions">
     <%= form_for @partner, :url => partner_questions_path, :method => :put do |form| %>
@@ -54,8 +48,9 @@
       <fieldset>
         <legend>Volunteering</legend>
         <p>
-          <%= form.check_box :ask_for_volunteers %>
-          <%= form.label :ask_for_volunteers, "Ask for volunteers for <strong>#{@partner.organization}</strong>".html_safe %>
+          <%- field_name = @partner.primary? ? :ask_for_volunteers : :partner_ask_for_volunteers %>
+          <%= form.check_box field_name %>
+          <%= form.label field_name, "Ask for volunteers for <strong>#{@partner.organization}</strong>".html_safe %>
           <% if @partner.organization.blank? %>
             &hellip; (you should fill in your organization name in your <%= link_to "profile", edit_partner_path %>)
           <% end %>

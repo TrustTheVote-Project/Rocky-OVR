@@ -1,14 +1,16 @@
 %div.whitelabeled
   %ul.stacked
-    %li.width_e
+    - unless @partner.partner2_css_present?
+      - if @partner.application_css_present?
+        %li.full-width
+          %h3= link_to 'application.css', @partner.application_css_url
+      - if @partner.registration_css_present?
+        %li.full-width
+          %h3= link_to 'registration.css', @partner.registration_css_url
+      - if @partner.partner_css_present?
+        %li.full-width
+          %h3= link_to 'partner.css', @partner.partner_css_url
+    %li.full-width
       %br
-      %h3= "application.css#{' (missing)' unless @partner.application_css_present?}"
-      %div= file_field_tag 'css_files[application]'
-    %li.width_e
-      %br
-      %h3= "registration.css#{' (missing)' unless @partner.registration_css_present?}"
-      %div= file_field_tag 'css_files[registration]'
-    %li.width_e
-      %br
-      %h3= "partner.css#{' (missing)' unless @partner.partner_css_present? }"
-      %div= file_field_tag 'css_files[partner]'
+      %h3= "partner2.css#{' (missing)' unless @partner.partner2_css_present? }"
+      %div= file_field_tag 'css_files[partner2]'

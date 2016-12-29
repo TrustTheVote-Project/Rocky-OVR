@@ -1,9 +1,11 @@
-<%- if !@registrant.use_short_form? && (!@question_1.blank? || !@question_2.blank? || @registrant.any_ask_for_volunteers?) %>
+<%- if !@question_1.blank? || !@question_2.blank? || @registrant.any_ask_for_volunteers? %>
   <fieldset class="questions">
-    <legend><%= t('txt.registration.survey_title') %></legend>
+    <%- if !@question_1.blank? || !@question_2.blank?  %>
+      <legend><%= t('txt.registration.survey_title') %></legend>
+    <%- end %>
     <% unless @question_1.blank? %>
       <ul class="question">
-        <li class="width_e">
+        <li class="width_e registrant-form__survey-answer-1__line">
           <h3><%= form.label :survey_answer_1, h(@question_1) %></h3>
           <%= field_div form, :survey_answer_1, :maxlength => 60 %>
         </li>
@@ -11,16 +13,16 @@
     <% end %>
     <% unless @question_2.blank? %>
       <ul class="question">
-        <li class="width_e">
+        <li class="width_e registrant-form__survey-answer-2__line">
           <h3><%= form.label :survey_answer_2, h(@question_2) %></h3>
           <%= field_div form, :survey_answer_2, :maxlength => 60 %>
         </li>
       </ul>
     <% end %>
-    <% if (@registrant.partner.ask_for_volunteers? || @registrant.partner.primary?) && RockyConf.sponsor.allow_ask_for_volunteers %>
+    <% if @registrant.ask_for_primary_volunteers? %>
       <ul class="checkbox">
         <li class="spacer">&nbsp;</li>
-        <li>
+        <li class='registrant-form__volunteer__line'>
           <h3>
             <%= form.check_box :volunteer %>
             <%= form.label :volunteer, t('txt.registration.volunteer', :organization => h("Rock the Vote")) %>
@@ -28,10 +30,10 @@
         </li>
       </ul>
     <% end %>
-    <% if @registrant.partner.partner_ask_for_volunteers? && !@registrant.partner.primary? %>
+    <% if @registrant.ask_for_partner_volunteers? %>
       <ul class="checkbox">
         <li class="spacer">&nbsp;</li>
-        <li>
+        <li class='registrant-form__partner-volunteer__line'>
           <h3>
             <%= form.check_box :partner_volunteer %>
             <%= form.label :partner_volunteer, t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe %>

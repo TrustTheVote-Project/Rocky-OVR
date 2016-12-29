@@ -51,6 +51,7 @@ ko:
         home_unit: 아파트 번호
         home_city: 도시
         home_state_name: 주
+        home_state_abbrev: 주
         has_mailing_address: 저는 우편물을 받는 주소가 따로 있습니다.
         has_state_license: 운전면허증 또는 주 정부 ID 를 가지고 있습니다.
         will_be_18_by_election: 선거 날에 18살이 됩니다.

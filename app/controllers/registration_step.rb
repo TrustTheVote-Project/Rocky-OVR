@@ -40,9 +40,11 @@ class RegistrationStep < ApplicationController
   end
 
   def update
-    find_registrant
-    set_up_view_variables
+    find_registrant    
     @registrant.attributes = params[:registrant]
+    @registrant.check_locale_change
+    set_up_locale
+    set_up_view_variables
     attempt_to_advance
   end
 
@@ -52,6 +54,13 @@ class RegistrationStep < ApplicationController
   hide_action :current_step
 
   protected
+
+  def set_up_locale
+    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
+    @locale = params[:locale] || (@registrant ? @registrant.locale : nil) || 'en'
+    I18n.locale = @locale.to_sym
+  end
+
 
   def set_up_view_variables
   end
@@ -69,6 +78,10 @@ class RegistrationStep < ApplicationController
   
 
   def attempt_to_advance
+    if params[:skip_advance] == "true"
+      render 'show' and return
+    end
+    
     advance_to_next_step
 
     if @registrant.valid?
@@ -112,10 +125,28 @@ class RegistrationStep < ApplicationController
   def find_partner
     @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
     @partner_id = @partner.id
+    set_params
+  end
+  
+  def set_params
     @source = params[:source]
     @tracking = params[:tracking]
-    @short_form = params[:short_form]
+    @short_form = (params[:short_form]!="false" && (!@partner || !@partner.use_long_form?)) || MobileConfig.is_mobile_request?(request)
     @collect_email_address = params[:collectemailaddress]
+    @email_address = params[:email_address]
+    @first_name = params[:first_name]
+    @last_name = params[:last_name]
+    @state_abbrev = params[:state_abbrev] || params[:state]
+    if @state_abbrev
+      @short_form = true
+    end
+    @home_zip_code = params[:home_zip_code]
+    @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
+    @home_state ||= @home_zip_code ? GeoState.for_zip_code(@home_zip_code.strip) : nil
+    
+    if !@state_abbrev.blank?
+      @short_form = true
+    end
   end
   
   # def redirect_app_role

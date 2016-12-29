@@ -1,3 +1,5 @@
+@import '_partner_whitelabel';
+
 #container {
   width: 720px;
   background: #ddd image-url('partner/content_bg.gif') repeat-x top left;
@@ -272,14 +274,15 @@ li {
   margin: 0.5em 2em;
 }
 
-/* copied from admin.css for list compatibility between admin and non-admin layout pages */
-ul.stacked li {
-  margin: 1em 5px 1em 0;
-}
-
 form li {
   list-style: none;
   margin: 0 5px 0 0;
+}
+
+ul.clear li {
+  list-style: disc;
+  line-height: 1.5;
+  margin: 0.5em 2em;
 }
 
 .copy_html h3 {
@@ -293,7 +296,7 @@ form li {
   padding: 1em;
   font-family: Menlo, Courier, "Courier New", monospace;
   font-size: 11px;
-  *width: 95%;
+  width: 95%;
 }
 
 .wrapper {
@@ -557,7 +560,7 @@ table {
 }
 input, textarea {
 border-radius: 4px;
-padding: 10px;
+padding: 5px;
 border: 1px solid #ccc
 }
 #customizations a {
@@ -574,14 +577,22 @@ border: 1px solid #ccc
     font-size: 15px;
     text-align: center
 }
+
+.smaller-nav-font * {
+    font-size: 13px;
+}
+
 #header p a:first-child {
     margin-left: 0
 }
 .profile form {
     width: 100%
 }
-.profile form li.width_a div {
+
+.profile form li.width_a {
+  div {
     width: 260px
+  }
 }
 .profile form li.width_b div {
     width: 135px
@@ -661,4 +672,12 @@ div, span {
 table.assets {
   font-size: 13px;
   border-spacing: 5px;
+}
+ul li div.email-preview {
+  overflow-y: scroll;
+  height: 300px;
+  width: auto;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  padding: 10px;
 }

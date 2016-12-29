@@ -1,5 +1,5 @@
 sponsor:
-  allow_ask_for_volunteers: false
+  allow_ask_for_volunteers: true
   barcode_prefix: "RTV"
   name: "Rock the Vote"
   url: "http://www.rockthevote.com"
@@ -15,6 +15,9 @@ from_address: "rocky@example.com"
 default_url_host: "register.example.com"
 ui_url_host: "register5.example.com"
 
+
+# this URL (if present) is shown as a WIKI nav menu item in the Partner portal
+partner_wiki_url: "http://wiki.rockthevote.com"
 
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
@@ -64,8 +67,10 @@ ovr_states:
       log_all_requests: false
       disclosures_url: https://a8e83b219df9c88311b3-01fbb794ac405944f26ec8749fe8fe7b.ssl.cf1.rackcdn.com/discl/
       web_url_base: https://covrtest.sos.ca.gov
+      disclosures_box_height: 170px
       web_agency_key: RTV
       custom_error_string: CUSTOM_COVR_ERROR
+    require_age_confirmation: true
     languages:
       - en
       - es
@@ -83,6 +88,7 @@ ovr_states:
       - en
   MN:
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
   NV:
@@ -118,6 +124,8 @@ ovr_states:
       - en    
   DE:
     redirect_to_online_reg_url: true
+    require_age_confirmation: true
+    require_id: false
     languages:
       - en    
   GA:
@@ -160,6 +168,8 @@ ovr_states:
       - es
   MO:
     redirect_to_online_reg_url: true
+    require_age_confirmation: true
+    require_id: false
     languages:
       - en
   NE:
@@ -187,6 +197,8 @@ ovr_states:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
     redirect_to_online_reg_url: true
+    require_age_confirmation: true
+    require_id: false
     languages:
       - en
       - es
@@ -204,7 +216,9 @@ ovr_states:
     languages:
       - en
   VT:
+    require_age_confirmation: true
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
   VA:

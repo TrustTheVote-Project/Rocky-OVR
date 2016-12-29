@@ -62,11 +62,24 @@ class Notifier < ActionMailer::Base
     
   end
 
+  
+  def preview_message(partner, prefix, kind, locale)
+    registrant = Registrant.new(id:0, uid: '00000000', first_name: "FirstName", last_name: "LastName", partner: partner, locale: locale, home_state: GeoState[1])
+    is_preview_found = !!EmailTemplate.get(partner, "#{prefix}#{kind}.#{locale}")
+    template_name = is_preview_found ? (prefix + kind) : kind
+
+    setup_registrant_email(registrant, template_name)
+  end
+
   protected
 
   def setup_registrant_email(registrant, kind)
+    if registrant.is_fake? && !kind.starts_with?("preview_")
+      kind = "preview_#{kind}"
+    end
     partner = registrant.partner
-    subject = partner && partner.whitelabeled? && EmailTemplate.get_subject(partner, "#{kind}.#{registrant.locale}")
+    use_custom_template = partner.whitelabeled? || kind.starts_with?("preview_")
+    subject = partner && (use_custom_template) && EmailTemplate.get_subject(partner, "#{kind}.#{registrant.locale}")
     
     
     # call message_body first to set up instance variables
@@ -122,7 +135,8 @@ class Notifier < ActionMailer::Base
     @home_state_email_instructions = registrant.home_state_email_instructions.blank? ? '' : (registrant.home_state_email_instructions + "<br/><br/>").to_s.html_safe
 
     partner = registrant.partner
-    custom_template = partner && partner.whitelabeled? && EmailTemplate.get(partner, "#{kind}.#{registrant.locale}")
+    use_custom_template = partner.whitelabeled? || kind.starts_with?("preview_")
+    custom_template = partner && use_custom_template && EmailTemplate.get(partner, "#{kind}.#{registrant.locale}")
 
     if !custom_template.blank?
       render :inline => custom_template

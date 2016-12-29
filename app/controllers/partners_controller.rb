@@ -41,7 +41,7 @@ class PartnersController < PartnerBase
     @partner = Partner.new(params[:partner])
     if @partner.save
       flash[:success] = "Registered!"
-      redirect_back_or_default partner_url
+      redirect_to partner_url
     else
       render "new"
     end
@@ -143,61 +143,7 @@ HTML
     end
   end
 
-  def branding
-    @partner = current_partner
-  end
-
-  def update_branding
-    @partner = current_partner
-    # remove assets before uploading new ones
-    params[:remove].try(:each) do |filename, _|
-      assets_folder.delete_asset(filename, :preview)
-    end
-
-    update_custom_css(params[:css_files])
-
-    upload_custom_asset(params[:partner].try(:[], :file))
-
-    update_email_templates(params[:template])
-
-    update_email_template_subjects(params[:template_subject])
-
-    redirect_to branding_partner_path
-  end
-
-  def preview_assets
-    redirect_to current_partner.preview_custom_assets_link
-  end
-
   protected
-
-  def upload_custom_asset(asset_file)
-    return unless asset_file
-    name = asset_file.original_filename
-    assets_folder.update_asset(name, asset_file, :preview)
-  end
-
-  def update_custom_css(css_files)
-    (css_files || {}).each do |name, data|
-      assets_folder.update_css(name, data, :preview)
-    end
-  end
-
-  def update_email_templates(templates)
-    templates.try(:each) do |name, body|
-      EmailTemplate.set(@partner, name, body)
-    end
-  end
-
-  def update_email_template_subjects(subjects)
-    subjects.try(:each) do |name, subject|
-      EmailTemplate.set_subject(@partner, name, subject)
-    end
-  end
-
-  def assets_folder
-    @paf ||= PartnerAssetsFolder.new(@partner)
-  end
 
   def partner_id
     current_partner && current_partner.to_param
@@ -207,14 +153,5 @@ HTML
     "http://#{request.host}/images/widget/#{@partner.widget_image}"
   end
 
-  def preview_confirmation
-    status = @partner.preview_assets_status
-    if status != :updated
-      I18n::t('partners.branding.preview_warning')[status];
-    else
-      ''
-    end
-  end
-
-  helper_method :partner_widget_url, :preview_confirmation
+  helper_method :partner_widget_url
 end

@@ -212,7 +212,7 @@ class Registrant < ActiveRecord::Base
   belongs_to :mailing_state, :class_name => "GeoState"
   belongs_to :prev_state,    :class_name => "GeoState"
 
-  delegate :requires_race?, :requires_party?, :to => :home_state, :allow_nil => true
+  delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
   def self.state_attr_accessor(*args)
     [args].flatten.each do |arg|
@@ -251,103 +251,14 @@ class Registrant < ActiveRecord::Base
   after_validation :enqueue_tell_friends_emails
 
   before_create :generate_uid
+  before_create :set_dl_defaults
 
   before_save :set_questions, :set_finish_with_state
 
-  with_options :if => :at_least_step_1? do |reg|
-    reg.validates_presence_of   :partner_id #, :unless=>[:remote_partner_id_present?]
-    reg.validates_inclusion_of  :has_state_license, :in=>[true,false], :unless=>[:building_via_api_call]
-    reg.validates_inclusion_of  :will_be_18_by_election, :in=>[true,false], :unless=>[:building_via_api_call]
-    
-    reg.validates_inclusion_of  :locale, :in => RockyConf.enabled_locales
-    reg.validates_presence_of   :email_address, :unless=>:not_require_email_address?
-    reg.validates_format_of     :email_address, :with => Authlogic::Regex.email, :allow_blank => true
-    reg.validates_zip_code      :home_zip_code
-    reg.validates_presence_of   :home_state_id
-    reg.validate                :validate_date_of_birth
-    reg.validates_inclusion_of  :us_citizen, :in => [ false, true ], :unless => :building_via_api_call
-  end
+  attr_accessor :telling_friends, :new_locale, :input_locale
 
-  with_options :if => :at_least_step_2? do |reg|
-    reg.validates_presence_of   :name_title
-    reg.validates_inclusion_of  :name_title, :in => TITLES, :allow_blank => true
-    reg.validates_presence_of   :first_name, :unless => :building_via_api_call
-    reg.validates_presence_of   :last_name
-    reg.validates_inclusion_of  :name_suffix, :in => SUFFIXES, :allow_blank => true
-    reg.validates_presence_of   :home_address,    :unless => [ :finish_with_state? ]
-    reg.validates_presence_of   :home_city,       :unless => [ :finish_with_state? ]
-    
-    reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
-    reg.validates_presence_of :phone_type, :if => :has_phone?
-    reg.validate :validate_phone_present_if_opt_in_sms_at_least_step_2  
-  end
+  validates_with RegistrantValidator
   
-  with_options :if => :needs_mailing_address? do |reg|
-    reg.validates_presence_of :mailing_address
-    reg.validates_presence_of :mailing_city
-    reg.validates_presence_of :mailing_state_id
-    reg.validates_zip_code    :mailing_zip_code
-  end
-
-  with_options :if => :at_least_step_3? do |reg|
-    reg.validates_presence_of :state_id_number, :unless=>[:complete?, :in_ovr_flow?]
-    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|[-*A-Z0-9\s]{7,42})$/i, :allow_blank => true
-    reg.validate :validate_phone_present_if_opt_in_sms_at_least_step_3
-    reg.validate                :validate_race_at_least_step_3,   :unless => [ :in_ovr_flow? ]
-    reg.validate                :validate_party_at_least_step_3,  :unless => [ :building_via_api_call, :in_ovr_flow? ]
-    
-  end
-  
-  validate do |reg|
-    if reg.at_least_step_3? || (reg.at_least_step_2? && reg.use_short_form?)
-      reg.validate_state_id_number
-    end
-  end
-      
-  
-  with_options :if => [:at_least_step_2?, :use_short_form?] do |reg|
-    reg.validates_presence_of :state_id_number, :unless=>:complete?
-    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|[-*A-Z0-9\s]{7,42})$/i, :allow_blank => true
-    reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
-    reg.validates_presence_of :phone_type, :if => :has_phone?
-    reg.validate :validate_phone_present_if_opt_in_sms_use_short_form
-  end
-
-  with_options :if => :needs_prev_name? do |reg|
-    reg.validates_presence_of :prev_name_title
-    reg.validates_presence_of :prev_first_name
-    reg.validates_presence_of :prev_last_name
-  end
-  
-  with_options :if => :needs_prev_address? do |reg|
-    reg.validates_presence_of :prev_address
-    reg.validates_presence_of :prev_city
-    reg.validates_presence_of :prev_state_id
-    reg.validates_zip_code    :prev_zip_code
-  end
-
-  with_options :if => :at_least_step_5? do |reg|
-    reg.validates_acceptance_of :attest_true
-  end
-
-  attr_accessor :telling_friends
-  with_options :if => :telling_friends do |reg|
-    reg.validates_presence_of :tell_from
-    reg.validates_presence_of :tell_email
-    reg.validates_format_of :tell_email, :with => Authlogic::Regex.email
-    reg.validates_presence_of :tell_recipients
-    reg.validates_presence_of :tell_subject
-    reg.validates_presence_of :tell_message
-  end
-
-  with_options :if => :building_via_api_call do |reg|
-    reg.validates_inclusion_of :opt_in_email,                      :in => [ true, false ]
-    reg.validates_inclusion_of :opt_in_sms,                        :in => [ true, false ]
-    reg.validates_inclusion_of :us_citizen,                        :in => [ true ], :message=>"Required value is '1' or 'true'"
-  end
-
-  validates_inclusion_of  :send_confirmation_reminder_emails, :in => [ true, false ], :if=>[:building_via_api_call, :finish_with_state?]
-
 
   def skip_survey_and_opt_ins?
     question_1.blank? && question_2.blank? && !any_ask_for_volunteers? && !any_email_opt_ins? && !any_phone_opt_ins?
@@ -376,8 +287,16 @@ class Registrant < ActiveRecord::Base
     partner.rtv_sms_opt_in || partner.partner_sms_opt_in || partner.primary?
   end
   
+  def ask_for_primary_volunteers?
+    partner.primary? ? partner.ask_for_volunteers? : RockyConf.sponsor.allow_ask_for_volunteers && partner.ask_for_volunteers?
+  end
+  
+  def ask_for_partner_volunteers?
+    !partner.primary? && partner.partner_ask_for_volunteers?
+  end
+  
   def any_ask_for_volunteers?
-    ((partner.ask_for_volunteers? || partner.primary?) && RockyConf.sponsor.allow_ask_for_volunteers) || (partner.partner_ask_for_volunteers? && !partner.primary?)
+    ask_for_primary_volunteers? || ask_for_partner_volunteers?
   end
   
   def not_require_email_address?
@@ -386,7 +305,7 @@ class Registrant < ActiveRecord::Base
   
   def require_email_address?
     #!%w(no optional)
-    !%w(no).include?(collect_email_address.to_s.downcase.strip)
+    !%w(no).include?(collect_email_address.to_s.downcase.strip) && !(home_state && !home_state.participating?)
   end
 
   def needs_mailing_address?
@@ -465,6 +384,10 @@ class Registrant < ActiveRecord::Base
     find_by_param(param) || begin raise ActiveRecord::RecordNotFound end
   end
   
+  def self.remove_fake_records
+    Registrant.where(is_fake: true).where(status: 'complete').destroy_all
+  end
+  
   def self.abandon_stale_records
     id_list = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id)
     self.find_each(:batch_size=>500, :conditions => ["id in (?)", id_list]) do |reg|
@@ -486,6 +409,9 @@ class Registrant < ActiveRecord::Base
       end
       reg.abandon!
       Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
+      if reg.is_fake?
+        reg.destroy
+      end      
     end
   end
 
@@ -516,6 +442,10 @@ class Registrant < ActiveRecord::Base
 
   def at_least_step_3?
     at_least_step?(3)
+  end
+
+  def at_least_step_4?
+    at_least_step?(4)
   end
 
   def at_least_step_5?
@@ -572,30 +502,6 @@ class Registrant < ActiveRecord::Base
     return true
   end
 
-  def validate_state_id_number
-    return true if self.state_id_number.blank?
-    regexp = /^(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))$/i
-    if (self.state_id_number =~ regexp)==nil
-      errors.add(:state_id_number, :invalid)
-    end
-  end
-
-  def validate_phone_present_if_opt_in_sms_at_least_step_2
-    validate_phone_present_if_opt_in_sms
-  end
-  def validate_phone_present_if_opt_in_sms_at_least_step_3
-    validate_phone_present_if_opt_in_sms
-  end
-  def validate_phone_present_if_opt_in_sms_use_short_form
-    validate_phone_present_if_opt_in_sms
-  end
-
-  def validate_phone_present_if_opt_in_sms
-    return true
-    if (self.opt_in_sms? || self.partner_opt_in_sms?) && phone.blank?
-      errors.add(:phone, :required_if_opt_in)
-    end
-  end
 
   def date_of_birth=(string_value)
     dob = nil
@@ -695,6 +601,10 @@ class Registrant < ActiveRecord::Base
     english_attribute_value(prev_name_suffix_key, 'suffixes')
   end
   
+  def phone_type_key
+    key_for_attribute(:phone_type, 'phone_types')
+  end
+  
   def key_for_attribute(attr_name, i18n_list)
     key_value = I18n.t("txt.registration.#{i18n_list}", :locale=>locale).detect{|k,v| v==self.send(attr_name)}
     key_value && key_value.length == 2 ? key_value[0] : nil    
@@ -743,22 +653,6 @@ class Registrant < ActiveRecord::Base
     self.class.race_key(locale, race)
   end
   
-  def validate_race_at_least_step_3
-    validate_race
-  end
-  def validate_race_at_least_step_3_custom_2
-    validate_race
-  end
-  
-  def validate_race
-    if requires_race?
-      if race.blank?
-        errors.add(:race, :blank)
-      else
-        errors.add(:race, :inclusion) unless english_races.include?(english_race)
-      end
-    end
-  end
 
   def state_parties
     if requires_party?
@@ -814,6 +708,30 @@ class Registrant < ActiveRecord::Base
       else
         return nil
       end
+    end
+  end
+
+  # Reset name/prev prefix, suffix, race, party, phone_type
+  def check_locale_change
+    if !self.new_locale.blank? && self.new_locale != self.locale
+      selected_name_title_key = name_title_key
+      selected_name_suf_key = name_suffix_key
+      selected_prev_name_title_key = prev_name_title_key
+      selected_prev_name_suf_key = prev_name_suffix_key
+      selected_race_key = race_key
+      party_idx = state_parties.index(self.party)
+      selected_phone_key = phone_type_key
+      
+      self.locale = self.new_locale
+      
+      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale)
+      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale)
+      self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale)
+      self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale)
+      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale)
+      self.party = state_parties[party_idx] if party_idx
+      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale)
+      
     end
   end
 
@@ -896,22 +814,6 @@ class Registrant < ActiveRecord::Base
             :state_rule => localization.sub_18).html_safe
   end
 
-  def validate_party_at_least_step_3
-    validate_party
-  end
-  def validate_party_at_least_step_3_custom_2
-    validate_party
-  end
-
-  def validate_party
-    if requires_party?
-      if party.blank?
-        errors.add(:party, :blank)
-      else
-        errors.add(:party, :inclusion) unless english_state_parties.include?(english_party_name)
-      end
-    end
-  end
 
   def abandon!
     self.attributes = {:abandoned => true, :state_id_number => nil}
@@ -928,8 +830,10 @@ class Registrant < ActiveRecord::Base
 
   def home_zip_code=(zip)
     self[:home_zip_code] = zip
-    self.home_state = nil
-    self.home_state_id = zip && (s = GeoState.for_zip_code(zip.strip)) ? s.id : self.home_state_id
+    if zip && !zip.blank?
+      self.home_state = nil
+      self.home_state_id = (s = GeoState.for_zip_code(zip.strip)) ? s.id : self.home_state_id
+    end
   end
 
   def home_state_name
@@ -999,10 +903,14 @@ class Registrant < ActiveRecord::Base
     localization ? localization.allows_ovr?(self) : false
   end
   
+  def home_state_allows_ovr_ignoring_license?
+    localization ? localization.allows_ovr_ignoring_license?(self) : false
+  end
+  
   
 
   def custom_step_4_partial
-    "#{home_state.abbreviation.downcase}"
+    is_fake? ? "fake_state_online_page" : "#{home_state.abbreviation.downcase}"
   end
   
   def has_home_state_online_registration_instructions?
@@ -1023,7 +931,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def use_short_form?
-    short_form? && !in_ovr_flow?
+    short_form?# && !in_ovr_flow?
   end
     
 
@@ -1414,7 +1322,7 @@ class Registrant < ActiveRecord::Base
   def check_ineligible
     self.ineligible_non_participating_state = home_state && !home_state.participating?
     self.ineligible_age = age && age < 18
-    self.ineligible_non_citizen = !us_citizen?
+    self.ineligible_non_citizen = !us_citizen? && (!use_short_form? || at_least_step_2? || rejected?)
     true # don't halt save in after_validation
   end
 
@@ -1606,6 +1514,10 @@ class Registrant < ActiveRecord::Base
     end
   end
 
+  def has_phone?
+    !phone.blank?
+  end
+
   private ###
 
   def at_least_step?(step)
@@ -1613,12 +1525,15 @@ class Registrant < ActiveRecord::Base
     !current_step.nil? && (current_step >= step)
   end
 
-  def has_phone?
-    !phone.blank?
-  end
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
+  end
+  
+  def set_dl_defaults
+    if has_state_license.nil? && self.home_state_allows_ovr_ignoring_license?
+      self.has_state_license = true
+    end
   end
 
   def yes_no(attribute)

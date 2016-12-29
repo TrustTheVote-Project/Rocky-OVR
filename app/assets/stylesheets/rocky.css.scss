@@ -152,11 +152,6 @@ label {
 	line-height: 1.6em;
 }
 
-ul.checkbox h3 label, ul.checkbox h3 input {
-	display:block;
-	float:left;
-}
-
 ul.checkbox-with-tooltip h3 label, ul.checkbox-with-tooltip h3 input {
 	float:none;
 	display: inline;
@@ -310,6 +305,11 @@ form div.button {
 #footer #powered_by_logo {
 	display: none;
 }
+
+#footer #powered_by_aws_logo {
+  display: none;
+}
+
 
 #footer p {
   position: relative;

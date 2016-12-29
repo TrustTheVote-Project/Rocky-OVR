@@ -42,6 +42,8 @@ module NavigationHelpers
       preview_pdf_translation_path($1, :format=>:pdf)
     when /the state configurations page/i
       state_configurations_path
+    when /a new registration with a short form/
+      new_registrant_path(:short_form=>1)
     when /a new registration page for that partner/
       new_registrant_path(:partner=>Partner.last.id)
     when /a new registration page for partner="(\d)", source="(.+)" and tracking="(.+)"/
@@ -87,7 +89,7 @@ module NavigationHelpers
     when /the partner edit page for the first partner/
       edit_admin_partner_path(Partner.first)
     when /the partner branding page/
-      branding_partner_path
+      partner_branding_path
     # Add more mappings here.
     # Here is a more fancy example:
     #

@@ -1,0 +1,30 @@
+= render 'branding_nav', {selected: :css}
+
+= form_for @partner, url: partner_branding_path, method: :put, :html => { :multipart => true } do |f|
+  %fieldset.nav-items.assets
+    %legend Whitelabeled CSS
+    = render partial: "instructions_list", locals: { key: "partners.branding.description.css"}
+  
+    %div.whitelabeled
+      %ul.checkbox
+        %li
+          %h3= "Custom 2-step CSS"
+          %ul.clear
+            - if @partner.partner2_css_present?(:preview)
+              %li
+                = link_to "Not Approved Version", @partner.partner2_css_url(:preview)
+                = check_box_tag "remove[partner2.css]"
+                remove
+            
+            - if @partner.partner2_css_present?
+              %li= link_to "Approved Version", @partner.partner2_css_url
+            - if !@partner.partner2_css_present?(:preview) && !@partner.partner2_css_present?
+              %li None uploaded
+        %li.width_e
+          %div= file_field_tag 'css_files[partner2]'
+        %li
+          %h3
+            = f.check_box :replace_system_css_preview
+            = f.label :replace_system_css_preview, "Remove Rock the Vote default CSS completely. (you will need to re-write all classes in your custom 'partner.css' file)"
+
+  = partner_rollover_button 'update', 'Update'

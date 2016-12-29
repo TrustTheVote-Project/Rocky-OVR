@@ -51,6 +51,7 @@ zh-tw:
         home_unit: 公寓/小區號碼
         home_city: 城市
         home_state_name: 州
+        home_state_abbrev: 州
         has_mailing_address: 我的收信地址與以上不同。
         has_state_license: 我擁有駕駛證或者州身份證
         will_be_18_by_election: 我將在下一個選舉日前滿18歲

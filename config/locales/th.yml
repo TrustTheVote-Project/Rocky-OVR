@@ -51,6 +51,7 @@ th:
         home_unit: เลขที่ห้อง
         home_city: เมือง
         home_state_name: รัฐ
+        home_state_abbrev: รัฐ
         has_mailing_address: ฉันได้รับจดหมายของฉันที่ที่อยู่แตกต่างจากข้างบน
         has_state_license: ฉันมีใบขับขี่หรือบัตรประจำตัวประชาชนที่รัฐออกให้
         will_be_18_by_election: ฉันจะมีอายุครบ 18 ปีบริบูรณ์ภายในวันเลือกตั้งครั้งต่อไป

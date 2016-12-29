@@ -39,9 +39,14 @@ gem 'diffy'
 gem 'asset_sync'
 gem 'aws-sdk'
 
+group :development do
+  gem 'rack-mini-profiler'
+end
+
 group :development, :test do
   gem 'pry'
   gem 'spring-commands-rspec'
+  gem "spring-commands-cucumber"
   gem "rspec-rails", "~> 3.2.3"
   gem 'rspec-collection_matchers'
   gem 'rspec-activemodel-mocks'

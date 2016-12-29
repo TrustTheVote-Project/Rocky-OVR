@@ -1,0 +1,46 @@
+= render 'branding_nav', {selected: :assets}
+
+= form_for @partner, url: partner_branding_path, method: :put, :html => { :multipart => true } do |f|
+  %fieldset.nav-items.assets
+    %legend Assets
+    = render partial: "instructions_list", locals: { key: "partners.branding.description.assets"}
+  
+    %div.whitelabeled
+      %ul.stacked
+        %li.width_e
+          %h3 New asset
+          %div= file_field_tag :file
+      %br
+      - assets = PartnerAssetsPresenter.new(@partner)
+      %fieldset
+        %legend Not approved
+        %table.assets.not_approved
+          %tbody
+            - if assets.not_approved.empty?
+              %tr
+                %td.name#no_preview_assets_found There are no assets yet
+            - else
+              - assets.not_approved.each do |asset|
+                %tr
+                  %td.name
+                    %span.asset
+                      = link_to asset, @partner.folder.asset_url(asset, :preview)
+                    = check_box_tag "remove[#{asset}]"
+                    remove
+              %br
+              %div Click 'Update' to delete selected items
+      %fieldset
+        %legend Approved
+        %table.assets.approved
+          %tbody
+          - if assets.approved.empty?
+            %tr
+              %td.name#no_approved_assets_found There are no approved assets yet
+
+          - assets.approved.each do |asset|
+            %tr
+              %td.name
+                %span.asset= asset
+        %br
+  
+  = partner_rollover_button 'update', 'Update'

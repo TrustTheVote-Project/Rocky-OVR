@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160906192704) do
+ActiveRecord::Schema.define(:version => 20161213164552) do
+
+  create_table "admins", :force => true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -52,6 +62,12 @@ ActiveRecord::Schema.define(:version => 20160906192704) do
     t.datetime "updated_at"
     t.string   "registrar_url"
     t.string   "online_registration_url"
+  end
+
+  create_table "grommet_requests", :force => true do |t|
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.text     "request_params"
   end
 
   create_table "partners", :force => true do |t|
@@ -103,6 +119,10 @@ ActiveRecord::Schema.define(:version => 20160906192704) do
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
     t.boolean  "enabled_for_grommet",                              :default => false, :null => false
+    t.text     "branding_update_request"
+    t.boolean  "active",                                           :default => true,  :null => false
+    t.text     "external_conversion_snippet"
+    t.text     "replace_system_css"
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"

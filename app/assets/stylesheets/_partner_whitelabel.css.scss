@@ -1,0 +1,17 @@
+/* copied from admin.css for list compatibility between admin and non-admin layout pages */
+ul.stacked li {
+	margin: 1em 15px 1em 0;
+  &.full-width {
+    float: none;
+  }
+}
+
+.whitelabeled { 
+  //display: none; 
+  .email-template {
+    display: none;
+    textarea {
+      width :100%;
+    }
+  }
+}

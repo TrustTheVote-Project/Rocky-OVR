@@ -3,6 +3,10 @@ Rocky::Application.routes.draw do
   root :to => "registrants#landing"
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui"
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout'
+  match "/registrants/new/:state_abbrev", to: "registrants#new"
+  match "/registrants/map", to: "registrants#new"
+  match "/registrants/map/:state_abbrev", to: "registrants#new"
+  match "/share", to: "registrants#share"
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
     resource "step_2", :controller => "step2", :only => [:show, :update]
@@ -21,6 +25,10 @@ Rocky::Application.routes.draw do
     member do 
       get "stop_reminders", :to=>'reminders#stop', :as=>'stop_reminders'
     end
+    collection do
+      get 'new/:state_abbrev', action: 'new'
+    end
+    
   end
 
   resource  "partner_session"
@@ -33,15 +41,21 @@ Rocky::Application.routes.draw do
       post "registrations"
       get "download_csv"
       get "embed_codes"
-      get "branding"
-      post "update_branding"
-      get "preview_assets"
     end
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]
     resource "logo",          :only => [:show, :update, :destroy]
+    resource "branding", only: [:show, :update], controller: "branding" do
+      collection do
+        get 'css'
+        get 'emails'
+      end
+      resource "approval", only: [:show, :update, :destroy], controller: "approval" do
+        get "preview"
+      end
+    end
   end
-  
+
   match "/widget_loader.js", :format => "js", :to => "registrants#widget_loader", :as=>'widget_loader'
   
   resources "password_resets", :only => [:new, :create, :edit, :update]
@@ -128,6 +142,20 @@ Rocky::Application.routes.draw do
     end
     resources :government_partners
     resource :partner_zips, :only=>[:create]
+    resource :whitelabel, :only=>[], controller: "whitelabel" do
+      member do
+        get :requests
+        post :approve_request
+        post :reject_request
+      end
+    end
+    resource  "admin_sessions"
+    match  "login",  :to => "admin_sessions#new", :as=>'login'
+    match "logout", :to => "admin_sessions#destroy", :as=>'logout'
+
+    resource :stats, only: [] do
+      get :downloads
+    end
   end
     
   # The priority is based upon order of creation:

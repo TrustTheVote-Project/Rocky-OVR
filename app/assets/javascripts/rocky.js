@@ -7,8 +7,7 @@ function revealErrors() {
 };
 
 function toggleFieldSet(checkbox, set, rule, speed) {
-	console.log(checkbox, set, rule, speed)
-  if ( $(checkbox).is(':checked') ) {
+	if ( $(checkbox).is(':checked') ) {
     $(rule).hide(0);
     $(set).fadeIn(speed);
   } else {
@@ -34,7 +33,24 @@ function addTooltips(selector, target_corner, tooltip_corner) {
       my: tooltip_corner,
 			viewport: $(window)
     },
+    content: {
+      button: true
+    },
     hide: { fixed: true, delay: 300, effect: { length: 50 } }, // Hovering over tooltip keeps them visible
-    show: { delay: 50, effect: { length: 50 } }
+    show: { delay: 50, effect: { length: 50 }},
+    events: {
+      show: function(event, api) { 
+        $(selector).addClass('tooltip-shown'); 
+      },
+      hide: function(event, api) { 
+        $(selector).removeClass('tooltip-shown'); 
+      }
+    }
+  }).on('touchend', function() {
+    if ($(this).hasClass('tooltip-shown')) {
+      $(this).qtip('hide').mouseout().blur().parent().click();      
+    } else {
+      $(this).qtip('show') //.mouseout().blur().parent().click();      
+    }
   })
 };

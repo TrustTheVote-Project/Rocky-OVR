@@ -36,7 +36,8 @@ en:
   activerecord:
     attributes:
       partner:
-        from_email: From Email
+        from_email: Edit "from" email address to send autoresponders from your organization,
+          rather than Rock the Vote.
         url: URL
         registration_instructions_url: PDF instructions URL
       registrant:
@@ -46,22 +47,23 @@ en:
         home_zip_code: ZIP Code
         us_citizen: I am a U.S. citizen.
         name_title: Title
-        first_name: First
+        first_name: First Name
         middle_name: Middle
-        last_name: Last
+        last_name: Last Name
         name_suffix: Suffix
         home_address: Address
         home_unit: ! 'Unit/Lot #'
         home_city: City
         home_state_name: State
+        home_state_abbrev: State
         has_mailing_address: I get my mail at a different address from the one above.
         has_state_license: I have a driver's license or state ID card.
-        will_be_18_by_election: I will be 18 by the next election day.
+        will_be_18_by_election: I will be 18 or older by the next election.
         mailing_address: Address
         mailing_unit: ! 'Unit/Lot #'
         mailing_city: City
         mailing_state_abbrev: State
-        mailing_zip_code: ZIP Code
+        mailing_zip_code: Zip
         party: Party
         race: Race
         state_id_number: ID Number
@@ -78,7 +80,7 @@ en:
         prev_unit: ! 'Unit/Lot #'
         prev_city: City
         prev_state_abbrev: State
-        prev_zip_code: ZIP Code
+        prev_zip_code: Zip
         opt_in_email: Receive emails
         opt_in_sms: Receive txt messages
         attest_true: I have reviewed the above information, and it is true and accurate
@@ -113,6 +115,8 @@ en:
               accepted: You must indicate whether the above information is correct.
             has_state_license:
               inclusion: Please indicate whether you have a valid state license.
+            us_citizen:
+              accepted: You must be a US citizen!
       messages:
         inclusion: ! '%{attribute} is not included in the list.'
         exclusion: ! '%{attribute} is reserved.'
@@ -151,9 +155,51 @@ en:
       no_authentication_details: You did not provide any details for authentication.
   partners:
     branding:
-      nav: Branding
+      nav: White Label
       title: Setup Custom Branding
-      description: paragraph explaining what this feature does
+      description:
+        general: This section allows partners with some knowledge of CSS and HTML
+          to fully customized their registration tool. You have the option to overwrite
+          the default CSS and modify the autoresponder emails. Simply upload new resources
+          through the portal, review changes, and submit for approval. <a href="http://wiki.rockthevote.com/index.php/Examples"
+          target="_BLANK">Here are some great examples</a>.
+        assets:
+        - Upload your graphics (background images, special icons, etc that will be
+          referenced in your CSS)
+        - Upload your licensed fonts (or include google webfonts directly in your
+          CSS file using @import)
+        - Upload a 468px wide by 400px tall logo called pdf_logo.gif and it will appear
+          in the generated pdf. (make sure to save as a gif)
+        css:
+        - ! 'Create a file called partner.css that overwrites the default styles with
+          your own. Reference the fonts and images already uploaded. (ie: body {background-image:
+          url(‘mybackground.jpg’); color: #cc0000;} This file will load after the
+          default styles so anything you define should change. Go to <a href="http://wiki.rockthevote.com"
+          target="_blank">wiki.rockthevote.com</a> for some examples.'
+        email_templates:
+        - The registration platform will automatically send emails to new registrants
+          to ensure they complete the process.
+        - Partners are able to modify the templates to match your tone and brand.
+        - Remember to keep those important HTML tags such as (<%= @registrant.first_name
+          %> and <%= @registrar_phone %>) intact so dynamic content such as state
+          phone numbers and other information can be pulled in appropriately.
+        - We recommend using a text editor, such as TextWrangler.
+        approval: Once you’ve made all your edits, please click the “Preview” button
+          to see your changes. When you’re happy with how the tool looks, hit the
+          “Submit for Approval” button. The Rock the Vote team will review and approve
+          as soon as possible. This process may take up to 48 hours.
       preview_warning:
         not_set: Custom assets are not uploaded, default assets will be used
         not_changed: Partner's assets are not changed, continue?
+      preview: Preview
+      approval:
+        title: Preview & Submission
+        status:
+          not_found: The request is not sent.
+          open: ! 'Submitted at %{date}. Approval status: pending.'
+          rejected: The request was rejected %{date}.
+          done: The latest request was fulfilled %{date}.
+        open: Submit for approval
+        close: Revoke from approval
+        approve: Approve
+        reject: Reject

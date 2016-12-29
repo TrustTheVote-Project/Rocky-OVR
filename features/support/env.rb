@@ -59,7 +59,11 @@ si.commit!
 
 Before do
   I18n.locale = :en
-  ActiveResource::Connection.cache.clear
+  begin
+    ActiveResource::Connection.cache.clear
+  rescue
+    puts "features/support/env.rb:65 No cache to clear?"
+  end
   stub_partners
   stub_registrant_creation_via_api
   stub_ca_disclosures

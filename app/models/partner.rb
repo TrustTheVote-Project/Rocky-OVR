@@ -116,10 +116,11 @@ class Partner < ActiveRecord::Base
   
 
   serialize :government_partner_zip_codes
+  serialize :replace_system_css, Hash
 
   before_validation :reformat_phone
   before_validation :set_default_widget_image
-
+  before_validation :detect_from_email_change
 
   before_create :generate_api_key
   
@@ -132,6 +133,7 @@ class Partner < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :url
+  validates_format_of :url, with: /^https?:\/\//, message: "Must start with http(s)://"
   validates_presence_of :address
   validates_presence_of :city
   validates_presence_of :state_id
@@ -153,7 +155,7 @@ class Partner < ActiveRecord::Base
   serialize :survey_question_1, Hash
   serialize :survey_question_2, Hash
   serialize :pixel_tracking_codes, Hash
-  
+  serialize :branding_update_request, OpenStruct
   
   # Need to declare attributes for each enabled lang
   RockyConf.enabled_locales.each do |locale|
@@ -230,12 +232,11 @@ class Partner < ActiveRecord::Base
     sql =<<-"SQL"
       SELECT count(*) as registrations_count, home_state_id FROM `registrants`
       WHERE (status = 'complete' OR status = 'step_5') 
-        AND finish_with_state = ?
         AND partner_id = #{self.id}
       GROUP BY home_state_id
     SQL
     
-    counts = Registrant.connection.select_all(Registrant.send(:sanitize_sql_for_conditions, [sql, false]))
+    counts = Registrant.connection.select_all(Registrant.send(:sanitize_sql_for_conditions, [sql]))
     
     sum = counts.sum {|row| row["registrations_count"].to_i}
     named_counts = counts.collect do |row|
@@ -294,18 +295,24 @@ class Partner < ActiveRecord::Base
      I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
     }.flatten.uniq
     
-    male_count = female_count = 0
+    male_count = female_count = not_specified_count = 0
 
     counts.each do |row|
-      if male_titles.include?(row["name_title"])
+      if row["name_title"].blank?
+        not_specified_count += row["registrations_count"].to_i
+      elsif male_titles.include?(row["name_title"])
         male_count += row["registrations_count"].to_i
       else
         female_count += row["registrations_count"].to_i
       end
     end
 
-    sum = male_count + female_count
-    [ { :gender => "Male",
+    sum = male_count + female_count + not_specified_count
+    [ { :gender => "Not Specified",
+        :registrations_count => not_specified_count,
+        :registrations_percentage => not_specified_count.to_f / sum
+      },
+      { :gender => "Male",
         :registrations_count => male_count,
         :registrations_percentage => male_count.to_f / sum
       },
@@ -347,25 +354,25 @@ class Partner < ActiveRecord::Base
   end
 
   def registration_stats_completion_date
-    conditions = "finish_with_state = ? AND partner_id = ? AND (status = 'complete' OR status = 'step_5') AND created_at >= ?"
+    conditions = "partner_id = ? AND (status = 'complete' OR status = 'step_5') AND created_at >= ?"
     stats = {}
-    stats[:day_count] = {:completed => Registrant.count(:conditions => [conditions, false, self, 1.day.ago]) }
-    stats[:week_count] = {:completed => Registrant.count(:conditions => [conditions, false, self, 1.week.ago]) }
-    stats[:month_count] = {:completed => Registrant.count(:conditions => [conditions, false, self, 1.month.ago]) }
-    stats[:year_to_date_count] =  {:completed => Registrant.count(:conditions => [conditions, false, self, Time.now.beginning_of_year]) }
-    stats[:year_count] =  {:completed => Registrant.count(:conditions => [conditions, false, self, 1.year.ago]) }
-    stats[:total_count] = {:completed => Registrant.count(:conditions => ["finish_with_state = ? AND partner_id = ? AND (status = 'complete' OR status = 'step_5')", false, self]) }
-    stats[:percent_complete] = {:completed => stats[:total_count][:completed].to_f / Registrant.count(:conditions => ["finish_with_state = ? AND partner_id = ? AND (status != 'initial')", false, self]) }
+    stats[:day_count] = {:completed => Registrant.count(:conditions => [conditions, self, 1.day.ago]) }
+    stats[:week_count] = {:completed => Registrant.count(:conditions => [conditions, self, 1.week.ago]) }
+    stats[:month_count] = {:completed => Registrant.count(:conditions => [conditions, self, 1.month.ago]) }
+    stats[:year_to_date_count] =  {:completed => Registrant.count(:conditions => [conditions, self, Time.now.beginning_of_year]) }
+    stats[:year_count] =  {:completed => Registrant.count(:conditions => [conditions, self, 1.year.ago]) }
+    stats[:total_count] = {:completed => Registrant.count(:conditions => ["partner_id = ? AND (status = 'complete' OR status = 'step_5')", self]) }
+    stats[:percent_complete] = {:completed => stats[:total_count][:completed].to_f / Registrant.count(:conditions => ["partner_id = ? AND (status != 'initial')", self]) }
     
-    conditions = "finish_with_state = ? AND partner_id = ? AND (status = 'complete' OR status = 'step_5') AND created_at >= ? AND pdf_downloaded = ?"
+    conditions = "partner_id = ? AND (status = 'complete' OR status = 'step_5') AND created_at >= ? AND pdf_downloaded = ?"
 
-    stats[:day_count][:downloaded] = Registrant.count(:conditions => [conditions, false, self, 1.day.ago, true])
-    stats[:week_count][:downloaded] = Registrant.count(:conditions => [conditions, false, self, 1.week.ago, true])
-    stats[:month_count][:downloaded] = Registrant.count(:conditions => [conditions, false, self, 1.month.ago, true])
-    stats[:year_to_date_count][:downloaded] = Registrant.count(:conditions => [conditions, false, self, Time.now.beginning_of_year, true])
-    stats[:year_count][:downloaded] = Registrant.count(:conditions => [conditions, false, self, 1.year.ago, true])
-    stats[:total_count][:downloaded] = Registrant.count(:conditions => ["finish_with_state = ? AND partner_id = ? AND (status = 'complete' OR status = 'step_5') AND pdf_downloaded = ?", false, self, true])
-    stats[:percent_complete][:downloaded] = stats[:total_count][:downloaded].to_f / Registrant.count(:conditions => ["finish_with_state = ? AND partner_id = ? AND (status != 'initial')", false, self])
+    stats[:day_count][:downloaded] = Registrant.count(:conditions => [conditions, self, 1.day.ago, true])
+    stats[:week_count][:downloaded] = Registrant.count(:conditions => [conditions, self, 1.week.ago, true])
+    stats[:month_count][:downloaded] = Registrant.count(:conditions => [conditions, self, 1.month.ago, true])
+    stats[:year_to_date_count][:downloaded] = Registrant.count(:conditions => [conditions, self, Time.now.beginning_of_year, true])
+    stats[:year_count][:downloaded] = Registrant.count(:conditions => [conditions, self, 1.year.ago, true])
+    stats[:total_count][:downloaded] = Registrant.count(:conditions => ["partner_id = ? AND (status = 'complete' OR status = 'step_5') AND pdf_downloaded = ?", self, true])
+    stats[:percent_complete][:downloaded] = stats[:total_count][:downloaded].to_f / Registrant.count(:conditions => ["partner_id = ? AND (status != 'initial')", self])
 
 
     
@@ -497,7 +504,7 @@ class Partner < ActiveRecord::Base
   end
 
   def generate_username
-    self.username = self.email
+    self.username = self.email unless self.username.present?
   end
 
   def generate_api_key!
@@ -709,6 +716,12 @@ class Partner < ActiveRecord::Base
   
 protected
 
+  def detect_from_email_change
+    if self.from_email_changed?
+      self.from_email_verified_at = nil
+    end
+  end
+
   def check_from_email_verification
     ses = Aws::SES::Client.new(
           region: 'us-west-2',
@@ -717,6 +730,10 @@ protected
     resp = ses.get_identity_verification_attributes({
         identities: [self.from_email], # required
     })
+    if resp.verification_attributes[self.from_email].blank?
+      ses.verify_email_identity({email_address: self.from_email})
+      return false
+    end
     verified = resp.verification_attributes[self.from_email].verification_status == "Success"
     if verified
       self.update_attributes(from_email_verified_at: DateTime.now)

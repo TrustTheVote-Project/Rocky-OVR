@@ -27,9 +27,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../rails_helper')
 describe QuestionsController do
   describe "when logged in" do
     before(:each) do
-      activate_authlogic
-      @partner = FactoryGirl.create(:partner, :id => 5)
-      PartnerSession.create(@partner)
+      rspec_partner_auth
     end
 
     describe "edit" do

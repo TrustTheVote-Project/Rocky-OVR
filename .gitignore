@@ -36,6 +36,7 @@ config/mobile.yml
 config/states_with_online_registration.yml
 config/database.yml
 db/bootstrap/partners.yml
+db/bootstrap/admins.yml
 log/*.log
 tmp/*
 public/TEST

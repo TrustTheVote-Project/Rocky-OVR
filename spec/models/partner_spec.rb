@@ -26,6 +26,10 @@ require File.dirname(__FILE__) + '/../rails_helper'
 
 describe Partner do
 
+  before(:each) do
+    allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
+  end
+
   describe "creation" do
     it "sets an API key on creation" do
       p = FactoryGirl.create(:partner, :api_key=>'')
@@ -360,32 +364,6 @@ describe Partner do
       it "returns the s3 key path to the partner directory" do
         partner = FactoryGirl.create(:partner)
         partner.assets_path.should == "partners/#{partner.id}"
-      end
-    end
-    describe "#css_present?" do
-      it "returns true if the both custom css files are present" do
-        partner = FactoryGirl.build(:partner)
-        paf.stub("asset_file_exists?").and_return(true)
-        partner.css_present?.should be_truthy
-      end
-      it "returns false if the custom application css file is not present" do
-        partner = FactoryGirl.build(:partner)
-        paf.stub("asset_file_exists?").with("application.css").and_return(false)
-        paf.stub("asset_file_exists?").with("registration.css").and_return(true)
-        
-        partner.css_present?.should be_falsey
-      end
-      it "returns false if the custom registration css file is not present" do
-        partner = FactoryGirl.build(:partner)
-        paf.stub("asset_file_exists?").with("application.css").and_return(true)
-        paf.stub("asset_file_exists?").with("registration.css").and_return(false)
-        partner.css_present?.should be_falsey
-      end
-      it "returns false if the both custom css files are not present" do
-        partner = FactoryGirl.build(:partner)
-        paf.stub("asset_file_exists?").with("application.css").and_return(false)
-        paf.stub("asset_file_exists?").with("registration.css").and_return(false)
-        partner.css_present?.should be_falsey
       end
     end
 

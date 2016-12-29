@@ -80,15 +80,33 @@ class PartnerAssetsFolder
     File.join(@partner.assets_path, group.to_s, File.basename(name))
   end
 
+  def list_named_urls
+    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |f| [f.key.gsub( @partner.assets_path + '/', ''), cached_public_url(f)]}
+  end
+
   # Returns the list of all assets in the folder
   def list_assets
-    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |n| n.key.gsub( @partner.assets_path + '/', '') }
-    #Dir.glob(File.join(@partner.assets_path, '*.*')).map { |n| File.basename(n) }
+    is_partner2_css = ->(file) do
+      ["partner2"].each do |name|
+        return true if file.key.ends_with? "/#{name}.css"
+      end
+      false
+    end
+
+    filter = ->(file) do
+      cached_public_url(file).nil? || is_partner2_css.call(file)
+    end
+
+    formatter = ->(file) do
+      file.key.gsub( @partner.assets_path + '/', '')
+    end
+
+    files.reject(&filter).map(&formatter)
   end
 
   def files_by_folder(folder)
     files_to_hash(
-      files.to_a.select do |file|
+      files.select do |file|
         v = parse_file_key(file.key)
         v.folder == folder && v.basename.present?
       end
@@ -116,7 +134,7 @@ class PartnerAssetsFolder
   # when a file is deleted its public_url is not available but cached value affects nothing
   # b/c file list is not cached
   def cached_public_url(fog_file)
-    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 20.hours) { fog_file.public_url }
+    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 3.days) { fog_file.public_url } if fog_file
   end
 
   def delete_assets(names)
@@ -129,30 +147,34 @@ class PartnerAssetsFolder
   end
 
   def files
-    @files ||= directory.files
+    # iteration over original files causes additional S3 requests (Fog's behaviour)
+    @files ||= directory.files.to_a
   end
 
   def file_names
-    files.collect {|f| f.public_url.nil? ?  nil : f }.compact.map { |n| n.key }
+    files.collect {|f| cached_public_url(f).nil? ?  nil : f }.compact.map { |n| n.key }
   end
 
   def asset_url(name, group = nil)
-    asset_file(name, group).try(:public_url)
+    cached_public_url(asset_file(name, group))
   end
 
   def asset_file(name, group = nil)
     files.detect {|f| f.key == path_from_name(name, group) }
   end
 
-  def asset_file_exists?(name)
-    asset_file(name).present?
+  def asset_file_exists?(name, group = nil)
+    asset_file(name, group).present?
   end
 
   def publish_sub_assets(group)
     source_folder = "#{group}/"
-    sub_assets = list_assets.select { |a| a.starts_with? source_folder }
+    # get all assets (including system app.css and reg.css)
+    assets = list_named_urls.map(&:first)
+    sub_assets = assets.select { |a| a.starts_with? source_folder }
     sub_assets_names = sub_assets.map { |a| File.basename(a) }
-    delete_assets_list = list_assets - sub_assets - sub_assets_names
+    # don't delete new files and preview sub files:
+    delete_assets_list = assets - sub_assets - sub_assets_names
 
     sub_assets_names.each do |name|
       src = File.join(group.to_s, name)
@@ -174,25 +196,15 @@ class PartnerAssetsFolder
   end
 
   def update_file(path, file)
-    filename = ""
-    begin
-      filename = file.original_filename
-    rescue
-      filename = File.basename(file)
-    end
     write_file(path, file)
-    # if PartnerAssets.is_pdf_logo?(filename)
-    #   local_path = @partner.absolute_pdf_logo_path(PartnerAssets.extension(filename))
-    #   ensure_dir(local_path)
-    #   File.open(local_path, 'wb') { |f| f.write(file.read) }
-    # end
   end
 
-  def write_file(path, content, public = true)
+  def write_file(path, content, is_public = true)
     directory.files.create(
       :key    => path,
       :body   => content,
-      :public => public
+      :content_type => mime_from_path(path),
+      :public => is_public
     )
   end
 
@@ -221,7 +233,12 @@ class PartnerAssetsFolder
 
     archive_path = File.join(@partner.absolute_old_assets_path, "#{name}-#{ts}#{ext}")
 
-    directory.files.create :key => archive_path, :body => file.body, :public=>false
+    directory.files.create(
+      :key => archive_path, 
+      :body => file.body, 
+      :content_type => mime_from_path(archive_path),
+      :public=>false
+    )
 
     #FileUtils.cp path, archive_path
   end
@@ -234,6 +251,12 @@ class PartnerAssetsFolder
     source_file = existing(source)
 
     write_file(destination, source_file.body)
+  end
+  
+  def mime_from_path(path)
+    MIME::Types.type_for(path.to_s).first.content_type
+  rescue
+    ""
   end
 
 end

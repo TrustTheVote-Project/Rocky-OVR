@@ -25,6 +25,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../rails_helper')
 
 describe V2::PartnerService do
+  before(:each) do
+    allow_any_instance_of(PartnerAssetsFolder).to receive(:directory).and_return(FakeS3.new)
+  end
   describe "#find" do
     context 'error' do
       it 'raises an error if the partner is not found' do

@@ -40,16 +40,41 @@ class RegistrantsController < RegistrationStep
     options[:tracking] = params[:tracking] if params[:tracking]
     options[:short_form] = params[:short_form] if params[:short_form]
     options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
+    options[:home_zip_code] = params[:home_zip_code] if params[:home_zip_code]
+    options[:state_abbrev] = params[:state_abbrev] if params[:state_abbrev]
+    options[:state] = params[:state] if params[:state]
+    options[:first_name] = params[:first_name] if params[:first_name]
+    options[:last_name] = params[:last_name] if params[:last_name]
+    options[:email_address] = params[:email_address] if params[:email_address]
     options.merge!(:protocol => "https") if RockyConf.use_https
     redirect_to new_registrant_url(options)
+  end
+  
+  def share
+    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
   end
 
   # GET /registrants/new
   def new
     set_up_locale
-    if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
-      redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
-    else
+    # if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
+    #   redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
+    # else
+    if (@home_state && !@home_state.participating?) || (@short_form && (@email_address || @collect_email_address=='no') && @home_state)
+      
+      # In case it's just a home state being passed, allow to create the registrant anyway
+      @short_form = true
+      
+      params[:registrant] = {
+        email_address: @email_address,
+        first_name: @first_name,
+        last_name: @last_name,
+        home_state: @home_state,
+        home_zip_code: @home_zip_code,
+        is_fake: params.keys.include?('preview_custom_assets')
+      }
+      create
+    else        
       @registrant = Registrant.new(
           partner_id: @partner_id, 
           locale: @locale, 
@@ -57,6 +82,11 @@ class RegistrantsController < RegistrationStep
           tracking_id: @tracking, 
           short_form: @short_form, 
           collect_email_address: @collect_email_address,
+          email_address: @email_address,
+          first_name: @first_name,
+          last_name: @last_name,
+          home_state: @home_state,
+          home_zip_code: @home_zip_code,
           is_fake: params.keys.include?('preview_custom_assets')
       )
       render "show"
@@ -96,11 +126,6 @@ class RegistrantsController < RegistrationStep
 
   protected
 
-  def set_up_locale
-    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
-    @locale = params[:locale] || 'en'
-    I18n.locale = @locale.to_sym
-  end
 
   def advance_to_next_step
     @registrant.advance_to_step_1

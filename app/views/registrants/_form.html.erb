@@ -18,78 +18,78 @@ $(document).ready(function() {
 <%= form.hidden_field :is_fake %>
 
 <%- if @registrant.collect_email_address? %>
-  <ul class="flat">
-    <li class="width_f">
-      <h3><%= form.label :email_address %></h3>
-      <%= field_div form, :email_address %>
-      <div class="tooltip"><%= tooltip_tag :email_address %></div>
-      <span class="error"><%= form.object.errors[:email_address].join("\n") %></span>
+  <ul class="flat registrant-form__email">
+    <li class="width_f registrant-form__email__line">
+      <h3 class='registrant-form__email__line__label'><%= form.label :email_address %><%- unless !@registrant.require_email_address?%><span class='required'>*</span><%- end%></h3>
+      <%= field_div form, :email_address, class: 'registrant-form__email__line__input' %>
+      <div class="tooltip registrant-form__email__line__tooltip"><%= tooltip_tag :email_address %></div>
+      <span class="error registrant-form__email__line__error"><%= form.object.errors[:email_address].join("\n") %></span>
     </li>
   </ul>
 <%- end %>
-<ul class="flat">
-  <li class="width_f">
-    <h3><%= form.label :home_zip_code %></h3>
-    <%= field_div form, :home_zip_code %>
-    <div class="tooltip"><%= tooltip_tag :home_zip_code %></div>
-    <span class="error"><%= form.object.errors[:home_zip_code].join("\n") %></span>
+<ul class="flat registrant-form__home-zip">
+  <li class="width_f registrant-form__home-zip__line">
+    <h3 class='registrant-form__home-zip__line__label'><%= form.label :home_zip_code %><span class='required'>*</span></h3>
+    <%= field_div form, :home_zip_code, class: 'registrant-form__home-zip__line__input' %>
+    <div class="tooltip registrant-form__home-zip__line__tooltip"><%= tooltip_tag :home_zip_code %></div>
+    <span class="error registrant-form__home-zip__line__error"><%= form.object.errors[:home_zip_code].join("\n") %></span>
   </li>
+  <%- if @registrant.use_short_form? %>
+    <li class="registrant-form__home-zip__button">
+      <%= rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) %>
+    </li>  
+  <%- end %>
+  
 </ul>
-<ul class="flat">
-  <li class="width_f">
-    <h3><%= form.label :date_of_birth %></h3>
-    <%= field_div form, :date_of_birth, :value => form.object.form_date_of_birth %>
-    <div class="tooltip"><%= tooltip_tag :date_of_birth %></div>
-    <% if !form.object.errors[:date_of_birth].empty? %>
-      <span class="error"><%= form.object.errors[:date_of_birth].join("\n") %></span>
-    <% else %>
-      <span class="example">MM-DD-YYYY</span>
-    <% end %>
-  </li>
-</ul>
+<%- if !@registrant.use_short_form? %>
+ <ul class="flat">
+   <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>
+  </ul>
 
-<ul class="checkbox checkbox-step-1">
-  <li class="spacer">&nbsp;</li>
-  <li>
-    <h3>
-      <%= form.check_box :us_citizen %> <%= form.label :us_citizen %>
-      <span class="error"><%= form.object.errors[:us_citizen].join("\n") %></span>
-    </h3>
-  </li>
-</ul>
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :us_citizen %> <%= form.label :us_citizen %>
+        <span class="error"><%= form.object.errors[:us_citizen].join("\n") %></span>
+      </h3>
+    </li>
+  </ul>
 
-
-
-<ul class="checkbox checkbox-step-1">
-  <li class="spacer">&nbsp;</li>
-  <li>
-    <h3>
-      <%= form.check_box :has_state_license %> <%= form.label :has_state_license %>
-      <span class="error"><%= form.object.errors[:has_state_license].join("\n") %></span>
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :has_state_license %> <%= form.label :has_state_license %>
+        <span class="error"><%= form.object.errors[:has_state_license].join("\n") %></span>
       
-    </h3>
-  </li>
-</ul>
+      </h3>
+    </li>
+  </ul>
 
-<ul class="checkbox checkbox-step-1">
-  <li class="spacer">&nbsp;</li>
-  <li>
-    <h3>
-      <%= form.check_box :will_be_18_by_election %> <%= form.label :will_be_18_by_election %>
-      <span class="error"><%= form.object.errors[:will_be_18_by_election].join("\n") %></span>
-      
-    </h3>
-  </li>
-</ul>
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :will_be_18_by_election %> <%= form.label :will_be_18_by_election %>
+        <span class="error"><%= form.object.errors[:will_be_18_by_election].join("\n") %></span>
+    
+      </h3>
+    </li>
+  </ul>
+  
+  
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :first_registration %> <%= form.label :first_registration %>
+        <span class="error"><%= form.object.errors[:first_registration].join("\n") %></span>
+      </h3>
+    </li>
+  </ul>
+<%- end %>
 
 
 
-<ul class="checkbox checkbox-step-1">
-  <li class="spacer">&nbsp;</li>
-  <li>
-    <h3>
-      <%= form.check_box :first_registration %> <%= form.label :first_registration %>
-      <span class="error"><%= form.object.errors[:first_registration].join("\n") %></span>
-    </h3>
-  </li>
-</ul>
+

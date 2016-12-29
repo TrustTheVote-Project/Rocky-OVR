@@ -44,8 +44,8 @@ class Admin::PartnersController < Admin::BaseController
       update_email_templates(@partner, params[:template])
       update_email_template_subjects(@partner, params[:template_subject])
       update_custom_css(@partner, params[:css_files])
-
-      redirect_to [ :admin, @partner ]
+      flash[:message]= "Partner Updated"
+      redirect_to edit_admin_partner_path
     else
       render :edit
     end
@@ -59,11 +59,9 @@ class Admin::PartnersController < Admin::BaseController
 
   def publish
     @partner = Partner.find(params[:id])
-    @partner.folder.publish_sub_assets(:preview)
-    EmailTemplate.publish_templates(@partner)
+    publish_partner_assets(@partner)
     redirect_to admin_partners_path, flash: { success: 'Assets update finished' }
   end
-  
 
   private
 

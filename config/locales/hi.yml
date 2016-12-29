@@ -51,6 +51,7 @@ hi:
         home_unit: यूनिट/लॉट#
         home_city: शहर
         home_state_name: रज्य
+        home_state_abbrev: रज्य
         has_mailing_address: मेरी चिट्ठियां उपर दिए गये पाते से दूसरे पाते पर आतीं
           हैं|
         has_state_license: मेरे पास ड्राइवर लाइसेन्स या राज्य का पहचान पत्र है

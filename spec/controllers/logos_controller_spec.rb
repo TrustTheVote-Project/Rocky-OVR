@@ -34,9 +34,7 @@ describe LogosController do
   render_views
   
   before(:each) do
-    activate_authlogic
-    @partner = FactoryGirl.create(:partner)
-    PartnerSession.create(@partner)
+    rspec_partner_auth
   end
 
   after(:each) do

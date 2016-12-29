@@ -50,15 +50,12 @@ $(document).ready(function() {
 </div>
 <br/><br/>
 <br/><br/>
-
 <div class="skip_state_registration">
-  <h1><%= t('txt.registration.step_3_header') %></h1>
-    
-  <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form} %>
-
-  <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
-  
-  <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>  
-  
-  
+  <h2><%= t('txt.registration.step_3_header') %></h2>
+  <%= render partial: 'skip_state', locals: { form: form, include_step_2: true } %>
+  <%- if @registrant.use_short_form? %>
+    <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.prepare').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>        
+  <%- else %>
+    <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>  
+  <%- end %>
 </div>

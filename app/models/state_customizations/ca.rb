@@ -308,6 +308,11 @@ class CA < StateCustomization
   NUM_DISCLOSURES = 5
   
   def enabled_for_language?(lang, reg)
+    return false if reg && !reg.has_state_license?
+    if require_age_confirmation?
+      return false if reg && !reg.will_be_18_by_election?
+    end    
+    
     if CA.disclosures.nil? || CA.disclosures[lang.to_s].nil? || CA.disclosures[lang.to_s].size != NUM_DISCLOSURES
       return false
     end

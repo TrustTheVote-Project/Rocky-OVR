@@ -19,20 +19,34 @@
   </script>
   <%= yield :head %>
 </head>
-<body>
+<body class="<%= 'primary-partner' if @partner && @partner.primary? %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
     <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
   <div id="container">
 
   <% if @partner && @partner.custom_logo? -%>
-    <div id="header" class="partner">
-      <div id="partner-logo">
-        <%= image_tag "#{@partner.header_logo_url}" %>
-      </div>
+    <%- if @registrant && @registrant.short_form? %>
+      <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
+    <%- else %>
+      <div id="header" class="partner">
+        <div id="partner-logo">
+          <%= image_tag "#{@partner.header_logo_url}" %>
+        </div>
+    <%- end %>
   <% else -%>
     <div id="header">
+      
   <% end -%>
+      <div class='header-text'>
+        <%- if !@registrant || @registrant.short_form? %>
+          <%- if @registrant && @registrant.home_state_abbrev %>
+            <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_name %>
+          <%- else%>
+            <%= t 'txt.register_to_vote' %>
+          <%- end %>
+        <%- end %>
+      </div>
       <div id="progress-bar">
         <ol>
           <li class="progress-title"><%= t('txt.registration.progress_indicator').html_safe %></li>

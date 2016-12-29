@@ -5,6 +5,10 @@
       <h3><%= f.label :external_tracking_snippet %></h3>
       <%= f.text_area :external_tracking_snippet, :rows => 5 %>
     </li>
+    <li class="width_h">
+      <h3><%= f.label :external_conversion_snippet %></h3>
+      <%= f.text_area :external_conversion_snippet, :rows => 5 %>
+    </li>
   </ul>
   
 </fieldset>
@@ -16,7 +20,12 @@
     <legend>Whitelabeling</legend>
     <ul class="stacked">
       <li class="width_a">
-        <h3><%= f.label :from_email %></h3>
+        <h3>
+          <%= f.label :from_email %>
+          <%- if !@partner.from_email.blank? %>
+            <strong><%= @partner.from_email_verified? ? "Verified!" : "Not Verified!"%></strong>
+          <%- end %>
+        </h3>
         <%= field_div f, :from_email %>
         <span class="error"><%= @partner.errors[:from_email].join("\n") %></span>
         <span class="instructions">* Email address to send confirmation, reminder and thank-you emails from for whitelabeled partners</span>
@@ -108,7 +117,7 @@
         </ul>
       <%- end %>
     </div>
-    <%- custom_emails_locals = show_custom_branding ? { prefix: "preview_" } : {} %>
-    <%= render partial: 'admin/shared/custom_emails', locals: custom_emails_locals %>
+    <a name="emails"></a>
+    <%= render partial: 'admin/shared/custom_emails', locals: { prefix: "preview_" } %>
   </fieldset>
 <% end %>

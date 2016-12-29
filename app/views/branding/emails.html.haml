@@ -1,0 +1,21 @@
+= render 'branding_nav', {selected: :emails}
+
+= form_for @partner, url: partner_branding_path, method: :put, :html => { :multipart => true } do |f|
+  %fieldset.nav-items.assets
+    %legend E-Mail templates
+    = render partial: "instructions_list", locals: { key: "partners.branding.description.email_templates"}
+    
+    %ul.stacked
+      %li.width_a
+        %h3
+          = f.label :from_email
+          - if !@partner.from_email.blank?
+            %br
+            %strong= @partner.from_email_verified? ? "Verified!" : "Not Verified! (may take up to 5 minutes after verifying with Amazon)"
+        = field_div f, :from_email
+        %span.error= @partner.errors[:from_email].join("\n")
+        %span.instructions * The emaill address will need to be confirmed.
+    
+    = render partial: 'admin/shared/custom_emails'
+
+  = partner_rollover_button 'update', 'Update'

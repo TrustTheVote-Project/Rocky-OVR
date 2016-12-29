@@ -41,15 +41,17 @@ class StateCustomization
   end
   
   def enabled_for_language?(lang, reg)
-    return false if !reg.has_state_license?
+    if require_id?
+      return false if reg && !reg.has_state_license?
+    end
+    if require_age_confirmation?
+      return false if reg && !reg.will_be_18_by_election?
+    end    
     return true if ovr_settings.blank?
     lang_list = ovr_settings["languages"]
     return true if lang_list.blank? || lang_list.empty?
     return lang_list.include?(lang)
   end
-  
-  
-  
   
   def online_reg_url(registrant)
     state.online_registration_url
@@ -75,6 +77,15 @@ class StateCustomization
   def decorate_registrant(registrant=nil, controller=nil)
   end
   
+  def require_age_confirmation?
+    return false if ovr_settings.blank?
+    return ovr_settings["require_age_confirmation"]
+  end
+  
+  def require_id?
+    return true if ovr_settings.blank?
+    return ovr_settings["require_id"]!=false
+  end
   
 protected
   def self.class_exists?(class_name)
