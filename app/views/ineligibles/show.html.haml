@@ -1,7 +1,7 @@
 %h1= I18n.t('txt.registration.ineligible_header').html_safe
 
 - if @registrant.ineligible_non_participating_state?
-  %p.reason= @registrant.home_state_not_participating_text
+  %p.reason= @registrant.home_state_not_participating_text.to_s.html_safe
 
 - if @registrant.ineligible_non_citizen?
   %p.reason= I18n.t('txt.registration.ineligible.non_citizen')
