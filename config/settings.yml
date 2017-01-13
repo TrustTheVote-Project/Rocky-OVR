@@ -187,6 +187,12 @@ ovr_states:
     languages:
       - en
       - es
+  OH:
+    redirect_to_online_reg_url: true
+    require_id: true
+    languages:
+      - en
+      - es
   OR:
     redirect_to_online_reg_url: true
     languages:
