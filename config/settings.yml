@@ -61,7 +61,7 @@ ovr_states:
     redirect_to_online_reg_url: true
     api_settings:
       api_url: https://covrapitest.sos.ca.gov/PostingEntityInterfaceService.svc
-      api_key: <%= ENV['CA_API_KEY'] %>
+      api_key: d2DE1Nht8I
       api_posting_entity_name: RTV
       debug_in_ui: false
       log_all_requests: false
