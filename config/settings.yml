@@ -189,7 +189,6 @@ ovr_states:
       - es
   OH:
     redirect_to_online_reg_url: true
-    require_id: true
     languages:
       - en
       - es
