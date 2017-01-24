@@ -5,7 +5,6 @@
 
 - if @registrant.ineligible_non_citizen?
   %p.reason= I18n.t('txt.registration.ineligible.non_citizen')
-# removing above will take out language but then Return link takes back to step 2 instead of 1
 
 .return
   - if @registrant.short_form && @registrant.home_state && (!@registrant.email_address.blank? || !@registrant.collect_email_address?)
