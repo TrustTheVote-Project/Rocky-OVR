@@ -644,7 +644,7 @@ table.form {
 		}
 		#address {
 			position: absolute;
-			top: 2540px*(1/3);
+			top: 2540px*(1/3) - (2.8 * $fs);
 			left: 450px*(1/3);
 			font-size: 1.25 * $fs;
 			.line {
