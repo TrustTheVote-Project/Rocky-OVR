@@ -56,7 +56,13 @@ Rocky::Application.routes.draw do
     end
   end
 
+  constraints Reg2DomainConstraint.new do
+    get '/widget_loader.js', to: redirect('https://s3.amazonaws.com/ovr/widget_loader.js')
+  end
+  
   match "/widget_loader.js", :format => "js", :to => "registrants#widget_loader", :as=>'widget_loader'
+  
+  
   
   resources "password_resets", :only => [:new, :create, :edit, :update]
 
