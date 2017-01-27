@@ -68,5 +68,8 @@
 
 
 <%= render :partial => 'layouts/urchin' %>
+<%- if !@registrant || @registrant.short_form? %>
+  <script src="https://s3.amazonaws.com/ovr/iframeResizer.contentWindow.min.js" type="text/javascript"></script>
+<%- end %>
 </body>
 </html>
