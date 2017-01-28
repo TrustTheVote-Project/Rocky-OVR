@@ -10,11 +10,11 @@
                 <tem:PostingAgencyKey><%= api_key %></tem:PostingAgencyKey>
                 <tem:CovrAgencyKey><%= api_posting_entity_name %></tem:CovrAgencyKey>
                 
-                <tem:IsUsCitizen>true</tem:IsUsCitizen>
-                <tem:IsEighteenOrOlder>true</tem:IsEighteenOrOlder>
-                <tem:IsDisclosureDisplayed>true</tem:IsDisclosureDisplayed>
+                <tem:IsUsCitizen><%= us_citizen? %></tem:IsUsCitizen>
+                <tem:IsEighteenOrOlder><%= will_be_18_by_election? %></tem:IsEighteenOrOlder>
+                <tem:IsDisclosureDisplayed>1</tem:IsDisclosureDisplayed>
                 
-                <tem:VoterResidentType>true</tem:VoterResidentType>
+                <tem:VoterResidentType>1</tem:VoterResidentType>
                 
                 <tem:DobDay><%= dob_day %></tem:DobDay>
                 <tem:DobMonth><%= dob_month %></tem:DobMonth>
@@ -35,21 +35,21 @@
                 <tem:PreviousMiddleName><%= escape_xml_prev_middle_name %></tem:PreviousMiddleName>
                 <tem:PreviousLastName><%= escape_xml_prev_last_name %></tem:PreviousLastName>
 
-                <tem:IsHomeAddress>true</tem:IsHomeAddress>
+                <tem:IsHomeAddress><%= has_home_address? %></tem:IsHomeAddress>
                 <tem:HomeAddressStreetLine1><%= escape_xml_home_address %></tem:HomeAddressStreetLine1>
                 <tem:HomeAddressStreetLine2><%= escape_xml_home_unit %></tem:HomeAddressStreetLine2>
                 <tem:HomeAddressCity><%= escape_xml_home_city %></tem:HomeAddressCity>
                 <tem:HomeAddressState><%= escape_xml_home_state_name %></tem:HomeAddressState>
                 <tem:HomeAddressZip><%= escape_xml_home_zip_code %></tem:HomeAddressZip>
 
-                <tem:IsMailingAddress>false</tem:IsMailingAddress>
+                <tem:IsMailingAddress><%= has_mailing_address? %></tem:IsMailingAddress>
                 <tem:MailingAddressStreetLine1><%= escape_xml_mailing_address %></tem:MailingAddressStreetLine1>
                 <tem:MailingAddressStreetLine2><%= escape_xml_mailing_unit %></tem:MailingAddressStreetLine2>
                 <tem:MailingAddressCity><%= escape_xml_mailing_city %></tem:MailingAddressCity>
                 <tem:MailingAddressState><%= escape_xml_mailing_state_name %></tem:MailingAddressState>
                 <tem:MailingAddressZip><%= escape_xml_mailing_zip_code %></tem:MailingAddressZip>
 
-                <tem:IsPreviouslyRegistered>false</tem:IsPreviouslyRegistered>
+                <tem:IsPreviouslyRegistered><%= has_prev_address? %></tem:IsPreviouslyRegistered>
                 <tem:PreviousAddressStreetLine1><%= escape_xml_prev_address %></tem:PreviousAddressStreetLine1>
                 <tem:PreviousAddressStreetLine2><%= escape_xml_prev_unit %></tem:PreviousAddressStreetLine2>
                 <tem:PreviousAddressCity><%= escape_xml_prev_city %></tem:PreviousAddressCity>
