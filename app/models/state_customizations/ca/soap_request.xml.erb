@@ -33,6 +33,7 @@
                 <tem:IsEighteenOrOlder><%= will_be_18_by_election? %></tem:IsEighteenOrOlder>
                 <tem:IsHomeAddress><%= has_home_address? %></tem:IsHomeAddress>
                 <tem:IsMailingAddress><%= has_mailing_address? %></tem:IsMailingAddress>
+                <tem:IsNonUspsAddress>false</tem:IsNonUspsAddress>
                 <tem:IsPreviouslyRegistered><%= has_prev_address? %></tem:IsPreviouslyRegistered>
                 <tem:IsUsCitizen><%= us_citizen? %></tem:IsUsCitizen>
                 
@@ -45,6 +46,7 @@
                 
                 <tem:NameSuffix><%= name_suffix_id %></tem:NameSuffix>
                 
+                <tem:NonUspsAddressDescription></tem:NonUspsAddressDescription>
                 <tem:PhoneNumber><%= phone %></tem:PhoneNumber>
                 
                 <tem:PostingAgencyKey><%= api_key %></tem:PostingAgencyKey>
