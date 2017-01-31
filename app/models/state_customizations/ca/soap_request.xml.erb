@@ -6,63 +6,74 @@
   </s:Header>
   <s:Body>
     <tem:GetTokenNumber>
-    <tem:postingEntity>
-                <tem:PostingAgencyKey><%= api_key %></tem:PostingAgencyKey>
-                <tem:CovrAgencyKey><%= api_posting_entity_name %></tem:CovrAgencyKey>
+    <tem:PostingEntity>
                 
-                <tem:IsUsCitizen><%= us_citizen? %></tem:IsUsCitizen>
-                <tem:IsEighteenOrOlder><%= will_be_18_by_election? %></tem:IsEighteenOrOlder>
-                <tem:IsDisclosureDisplayed>1</tem:IsDisclosureDisplayed>
-                
-                <tem:VoterResidentType>1</tem:VoterResidentType>
+                <tem:CurrentFirstName><%= escape_xml_first_name %></tem:CurrentFirstName>
+                <tem:CurrentLastName><%= escape_xml_last_name %></tem:CurrentLastName>
+                <tem:CurrentMiddleName><%= escape_xml_middle_name %></tem:CurrentMiddleName>
                 
                 <tem:DobDay><%= dob_day %></tem:DobDay>
                 <tem:DobMonth><%= dob_month %></tem:DobMonth>
                 <tem:DobYear><%= dob_year %></tem:DobYear>
                 
-                <% if !ethnicity_id.blank? %><tem:EthnicityId><%= ethnicity_id %></tem:EthnicityId><% end %>
                 <tem:ElectionMaterialLanguageId><%= language_id %></tem:ElectionMaterialLanguageId>
                 
-                
-                
-                
-                <tem:PrefixId><%= name_prefix_id %></tem:PrefixId>
-                <tem:CurrentFirstName><%= escape_xml_first_name %></tem:CurrentFirstName>
-                <tem:CurrentMiddleName><%= escape_xml_middle_name %></tem:CurrentMiddleName>
-                <tem:CurrentLastName><%= escape_xml_last_name %></tem:CurrentLastName>
-                <% if false %><tem:NameSuffix><%= name_suffix_id %></tem:NameSuffix><% end %>
-                
-                <tem:PreviousFirstName><%= escape_xml_prev_first_name %></tem:PreviousFirstName>
-                <tem:PreviousMiddleName><%= escape_xml_prev_middle_name %></tem:PreviousMiddleName>
-                <tem:PreviousLastName><%= escape_xml_prev_last_name %></tem:PreviousLastName>
-
-                <tem:IsHomeAddress><%= has_home_address? %></tem:IsHomeAddress>
-                <tem:HomeAddressStreetLine1><%= escape_xml_home_address %></tem:HomeAddressStreetLine1>
-                <tem:HomeAddressStreetLine2><%= escape_xml_home_unit %></tem:HomeAddressStreetLine2>
-                <tem:HomeAddressCity><%= escape_xml_home_city %></tem:HomeAddressCity>
-                <tem:HomeAddressState><%= escape_xml_home_state_name %></tem:HomeAddressState>
-                <tem:HomeAddressZip><%= escape_xml_home_zip_code %></tem:HomeAddressZip>
-
-                <tem:IsMailingAddress><%= has_mailing_address? %></tem:IsMailingAddress>
-                <tem:MailingAddressStreetLine1><%= escape_xml_mailing_address %></tem:MailingAddressStreetLine1>
-                <tem:MailingAddressStreetLine2><%= escape_xml_mailing_unit %></tem:MailingAddressStreetLine2>
-                <tem:MailingAddressCity><%= escape_xml_mailing_city %></tem:MailingAddressCity>
-                <tem:MailingAddressState><%= escape_xml_mailing_state_name %></tem:MailingAddressState>
-                <tem:MailingAddressZip><%= escape_xml_mailing_zip_code %></tem:MailingAddressZip>
-
-                <tem:IsPreviouslyRegistered><%= has_prev_address? %></tem:IsPreviouslyRegistered>
-                <tem:PreviousAddressStreetLine1><%= escape_xml_prev_address %></tem:PreviousAddressStreetLine1>
-                <tem:PreviousAddressStreetLine2><%= escape_xml_prev_unit %></tem:PreviousAddressStreetLine2>
-                <tem:PreviousAddressCity><%= escape_xml_prev_city %></tem:PreviousAddressCity>
-                <tem:PreviousAddressState><%= escape_xml_prev_state_name %></tem:PreviousAddressState>
-                <tem:PreviousAddressZip><%= escape_xml_prev_zip_code %></tem:PreviousAddressZip>
-
-                <tem:PhoneNumber><%= phone %></tem:PhoneNumber>
                 <tem:EmailId><%= email_address %></tem:EmailId>
                 
+                <% if !ethnicity_id.blank? %><tem:EthnicityId><%= ethnicity_id %></tem:EthnicityId><% end %>
+                
+                <tem:HomeAddressCity><%= escape_xml_home_city %></tem:HomeAddressCity>
+                <tem:HomeAddressState><%= escape_xml_home_state_abbrev %></tem:HomeAddressState>
+                <tem:HomeAddressStreetLine1><%= escape_xml_home_address %></tem:HomeAddressStreetLine1>
+                <tem:HomeAddressStreetLine2><%= escape_xml_home_unit %></tem:HomeAddressStreetLine2>
+                <tem:HomeAddressZip><%= escape_xml_home_zip_code %></tem:HomeAddressZip>
                 
                 
-             </tem:postingEntity>    
+                <tem:IsDisclosureDisplayed>true</tem:IsDisclosureDisplayed>
+                <tem:IsEighteenOrOlder><%= will_be_18_by_election? %></tem:IsEighteenOrOlder>
+                <tem:IsHomeAddress><%= has_home_address? %></tem:IsHomeAddress>
+                <tem:IsMailingAddress><%= has_mailing_address? %></tem:IsMailingAddress>
+                <tem:IsNonUspsAddress>false</tem:IsNonUspsAddress>
+                <tem:IsPreviouslyRegistered><%= has_prev_address? %></tem:IsPreviouslyRegistered>
+                <tem:IsUsCitizen><%= us_citizen? %></tem:IsUsCitizen>
+                
+                <tem:MailingAddressCity><%= escape_xml_mailing_city %></tem:MailingAddressCity>
+                <tem:MailingAddressState><%= escape_xml_mailing_state_name %></tem:MailingAddressState>
+                <tem:MailingAddressStreetLine1><%= escape_xml_mailing_address %></tem:MailingAddressStreetLine1>
+                <tem:MailingAddressStreetLine2><%= escape_xml_mailing_unit %></tem:MailingAddressStreetLine2>
+                <tem:MailingAddressZip><%= escape_xml_mailing_zip_code %></tem:MailingAddressZip>
+                
+                
+                <tem:NameSuffix><%= name_suffix_id %></tem:NameSuffix>
+                
+                <tem:NonUspsAddressDescription></tem:NonUspsAddressDescription>
+                <tem:PhoneNumber><%= phone %></tem:PhoneNumber>
+                
+                <tem:PostingAgencyKey><%= api_key %></tem:PostingAgencyKey>
+                
+                <tem:PrefixId><%= name_prefix_id %></tem:PrefixId>
+                
+                
+                <tem:PreviousAddressCity><%= escape_xml_prev_city %></tem:PreviousAddressCity>
+                <tem:PreviousAddressState><%= escape_xml_prev_state_name %></tem:PreviousAddressState>
+                <tem:PreviousAddressStreetLine1><%= escape_xml_prev_address %></tem:PreviousAddressStreetLine1>
+                <tem:PreviousAddressStreetLine2><%= escape_xml_prev_unit %></tem:PreviousAddressStreetLine2>
+                <tem:PreviousAddressZip><%= escape_xml_prev_zip_code %></tem:PreviousAddressZip>
+                
+                <tem:PreviousFirstName><%= escape_xml_prev_first_name %></tem:PreviousFirstName>
+                <tem:PreviousLastName><%= escape_xml_prev_last_name %></tem:PreviousLastName>
+                <tem:PreviousMiddleName><%= escape_xml_prev_middle_name %></tem:PreviousMiddleName>
+
+                <tem:VoterResidentType>1</tem:VoterResidentType>
+                
+                
+                
+                
+                <% if false %><tem:CovrAgencyKey><%= api_posting_entity_name %></tem:CovrAgencyKey><% end %>
+                
+                
+                
+             </tem:PostingEntity>    
       </tem:GetTokenNumber>
   </s:Body>
 </s:Envelope>

@@ -31,7 +31,7 @@ class CA < StateCustomization
     delegate :email_address,
       :first_name, :middle_name, :last_name,
       :prev_first_name, :prev_middle_name, :prev_last_name,
-      :home_address, :home_unit, :home_city, :home_state_name, :home_zip_code,
+      :home_address, :home_unit, :home_city, :home_state_name, :home_state_abbrev, :home_zip_code,
       :mailing_address, :mailing_unit, :mailing_city, :mailing_state_name, :mailing_zip_code,
       :prev_address, :prev_unit, :prev_city, :prev_state_name, :prev_zip_code, 
       :covr_token, :covr_success,
@@ -60,11 +60,11 @@ class CA < StateCustomization
     end
     
     def us_citizen?
-      registrant.us_citizen? ? '1' : '0'
+      registrant.us_citizen? ? 'true' : 'false'
     end
     
     def will_be_18_by_election?
-      registrant.will_be_18_by_election? ? '1' : '0'
+      registrant.will_be_18_by_election? ? 'true' : 'false'
     end
     
     def dob_day
@@ -82,15 +82,15 @@ class CA < StateCustomization
     end
     
     def has_home_address?
-      1
+      true
     end
     
     def has_mailing_address?
-      registrant.has_mailing_address ? '1' : '0'
+      registrant.has_mailing_address ? 'true' : 'false'
     end
     
     def has_prev_address?
-      registrant.change_of_address? ? '1' : '0'
+      registrant.change_of_address? ? 'true' : 'false'
     end
     
     
@@ -212,6 +212,23 @@ class CA < StateCustomization
         3
       when 'ms'
         4
+      else
+        ""
+      end
+    end
+    
+    def name_suffix_id
+      case registrant.name_suffix_key.to_s
+      when 'jr'
+        1
+      when 'sr'
+        2
+      when 'ii'
+        3
+      when 'iii'
+        4
+      when 'iv'
+        5
       else
         ""
       end
