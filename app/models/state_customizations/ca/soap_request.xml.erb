@@ -12,7 +12,7 @@
                 
                 <tem:IsUsCitizen><%= us_citizen? %></tem:IsUsCitizen>
                 <tem:IsEighteenOrOlder><%= will_be_18_by_election? %></tem:IsEighteenOrOlder>
-                <tem:IsDisclosureDisplayed>1</tem:IsDisclosureDisplayed>
+                <tem:IsDisclosureDisplayed>true</tem:IsDisclosureDisplayed>
                 
                 <tem:VoterResidentType>1</tem:VoterResidentType>
                 
@@ -30,7 +30,8 @@
                 <tem:CurrentFirstName><%= escape_xml_first_name %></tem:CurrentFirstName>
                 <tem:CurrentMiddleName><%= escape_xml_middle_name %></tem:CurrentMiddleName>
                 <tem:CurrentLastName><%= escape_xml_last_name %></tem:CurrentLastName>
-
+                <tem:NameSuffix><%= name_suffix_id %></tem:NameSuffix>
+                
                 <tem:PreviousFirstName><%= escape_xml_prev_first_name %></tem:PreviousFirstName>
                 <tem:PreviousMiddleName><%= escape_xml_prev_middle_name %></tem:PreviousMiddleName>
                 <tem:PreviousLastName><%= escape_xml_prev_last_name %></tem:PreviousLastName>

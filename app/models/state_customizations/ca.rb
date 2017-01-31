@@ -60,11 +60,11 @@ class CA < StateCustomization
     end
     
     def us_citizen?
-      registrant.us_citizen? ? '1' : '0'
+      registrant.us_citizen? ? 'true' : 'false'
     end
     
     def will_be_18_by_election?
-      registrant.will_be_18_by_election? ? '1' : '0'
+      registrant.will_be_18_by_election? ? 'true' : 'false'
     end
     
     def dob_day
@@ -82,15 +82,15 @@ class CA < StateCustomization
     end
     
     def has_home_address?
-      1
+      true
     end
     
     def has_mailing_address?
-      registrant.has_mailing_address ? '1' : '0'
+      registrant.has_mailing_address ? 'true' : 'false'
     end
     
     def has_prev_address?
-      registrant.change_of_address? ? '1' : '0'
+      registrant.change_of_address? ? 'true' : 'false'
     end
     
     
@@ -212,6 +212,23 @@ class CA < StateCustomization
         3
       when 'ms'
         4
+      else
+        ""
+      end
+    end
+    
+    def name_suffix_id
+      case registrant.name_suffix_key.to_s
+      when 'jr'
+        1
+      when 'sr'
+        2
+      when 'ii'
+        3
+      when 'iii'
+        4
+      when 'iv'
+        5
       else
         ""
       end
