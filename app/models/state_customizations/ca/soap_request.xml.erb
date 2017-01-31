@@ -6,7 +6,7 @@
   </s:Header>
   <s:Body>
     <tem:GetTokenNumber>
-    <tem:postingEntity>
+    <tem:PostingEntity>
                 
                 <tem:CurrentFirstName><%= escape_xml_first_name %></tem:CurrentFirstName>
                 <tem:CurrentLastName><%= escape_xml_last_name %></tem:CurrentLastName>
@@ -23,7 +23,7 @@
                 <% if !ethnicity_id.blank? %><tem:EthnicityId><%= ethnicity_id %></tem:EthnicityId><% end %>
                 
                 <tem:HomeAddressCity><%= escape_xml_home_city %></tem:HomeAddressCity>
-                <tem:HomeAddressState><%= escape_xml_home_state_name %></tem:HomeAddressState>
+                <tem:HomeAddressState><%= escape_xml_home_state_abbrev %></tem:HomeAddressState>
                 <tem:HomeAddressStreetLine1><%= escape_xml_home_address %></tem:HomeAddressStreetLine1>
                 <tem:HomeAddressStreetLine2><%= escape_xml_home_unit %></tem:HomeAddressStreetLine2>
                 <tem:HomeAddressZip><%= escape_xml_home_zip_code %></tem:HomeAddressZip>
@@ -73,7 +73,7 @@
                 
                 
                 
-             </tem:postingEntity>    
+             </tem:PostingEntity>    
       </tem:GetTokenNumber>
   </s:Body>
 </s:Envelope>

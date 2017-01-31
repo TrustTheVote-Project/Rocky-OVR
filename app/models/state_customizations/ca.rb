@@ -31,7 +31,7 @@ class CA < StateCustomization
     delegate :email_address,
       :first_name, :middle_name, :last_name,
       :prev_first_name, :prev_middle_name, :prev_last_name,
-      :home_address, :home_unit, :home_city, :home_state_name, :home_zip_code,
+      :home_address, :home_unit, :home_city, :home_state_name, :home_state_abbrev, :home_zip_code,
       :mailing_address, :mailing_unit, :mailing_city, :mailing_state_name, :mailing_zip_code,
       :prev_address, :prev_unit, :prev_city, :prev_state_name, :prev_zip_code, 
       :covr_token, :covr_success,
