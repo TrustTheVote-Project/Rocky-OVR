@@ -22,6 +22,12 @@
                 
                 <% if !ethnicity_id.blank? %><tem:EthnicityId><%= ethnicity_id %></tem:EthnicityId><% end %>
                 
+                <tem:HomeAddressCity><%= escape_xml_home_city %></tem:HomeAddressCity>
+                <tem:HomeAddressState><%= escape_xml_home_state_name %></tem:HomeAddressState>
+                <tem:HomeAddressStreetLine1><%= escape_xml_home_address %></tem:HomeAddressStreetLine1>
+                <tem:HomeAddressStreetLine2><%= escape_xml_home_unit %></tem:HomeAddressStreetLine2>
+                <tem:HomeAddressZip><%= escape_xml_home_zip_code %></tem:HomeAddressZip>
+                
                 
                 <tem:IsDisclosureDisplayed>true</tem:IsDisclosureDisplayed>
                 <tem:IsEighteenOrOlder><%= will_be_18_by_election? %></tem:IsEighteenOrOlder>
@@ -29,12 +35,6 @@
                 <tem:IsMailingAddress><%= has_mailing_address? %></tem:IsMailingAddress>
                 <tem:IsPreviouslyRegistered><%= has_prev_address? %></tem:IsPreviouslyRegistered>
                 <tem:IsUsCitizen><%= us_citizen? %></tem:IsUsCitizen>
-                
-                <tem:HomeAddressCity><%= escape_xml_home_city %></tem:HomeAddressCity>
-                <tem:HomeAddressState><%= escape_xml_home_state_name %></tem:HomeAddressState>
-                <tem:HomeAddressStreetLine1><%= escape_xml_home_address %></tem:HomeAddressStreetLine1>
-                <tem:HomeAddressStreetLine2><%= escape_xml_home_unit %></tem:HomeAddressStreetLine2>
-                <tem:HomeAddressZip><%= escape_xml_home_zip_code %></tem:HomeAddressZip>
                 
                 <tem:MailingAddressCity><%= escape_xml_mailing_city %></tem:MailingAddressCity>
                 <tem:MailingAddressState><%= escape_xml_mailing_state_name %></tem:MailingAddressState>
@@ -51,9 +51,6 @@
                 
                 <tem:PrefixId><%= name_prefix_id %></tem:PrefixId>
                 
-                <tem:PreviousFirstName><%= escape_xml_prev_first_name %></tem:PreviousFirstName>
-                <tem:PreviousLastName><%= escape_xml_prev_last_name %></tem:PreviousLastName>
-                <tem:PreviousMiddleName><%= escape_xml_prev_middle_name %></tem:PreviousMiddleName>
                 
                 <tem:PreviousAddressCity><%= escape_xml_prev_city %></tem:PreviousAddressCity>
                 <tem:PreviousAddressState><%= escape_xml_prev_state_name %></tem:PreviousAddressState>
@@ -61,6 +58,10 @@
                 <tem:PreviousAddressStreetLine2><%= escape_xml_prev_unit %></tem:PreviousAddressStreetLine2>
                 <tem:PreviousAddressZip><%= escape_xml_prev_zip_code %></tem:PreviousAddressZip>
                 
+                <tem:PreviousFirstName><%= escape_xml_prev_first_name %></tem:PreviousFirstName>
+                <tem:PreviousLastName><%= escape_xml_prev_last_name %></tem:PreviousLastName>
+                <tem:PreviousMiddleName><%= escape_xml_prev_middle_name %></tem:PreviousMiddleName>
+
                 <tem:VoterResidentType>1</tem:VoterResidentType>
                 
                 
