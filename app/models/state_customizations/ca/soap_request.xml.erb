@@ -7,42 +7,32 @@
   <s:Body>
     <tem:GetTokenNumber>
     <tem:postingEntity>
-                <tem:PostingAgencyKey><%= api_key %></tem:PostingAgencyKey>
-                <tem:CovrAgencyKey><%= api_posting_entity_name %></tem:CovrAgencyKey>
-                
+                <tem:IsDisclosureDisplayed>true</tem:IsDisclosureDisplayed>
+                <tem:VoterResidentType>1</tem:VoterResidentType>
                 <tem:IsUsCitizen><%= us_citizen? %></tem:IsUsCitizen>
                 <tem:IsEighteenOrOlder><%= will_be_18_by_election? %></tem:IsEighteenOrOlder>
-                <tem:IsDisclosureDisplayed>true</tem:IsDisclosureDisplayed>
-                
-                <tem:VoterResidentType>1</tem:VoterResidentType>
-                
                 <tem:DobDay><%= dob_day %></tem:DobDay>
                 <tem:DobMonth><%= dob_month %></tem:DobMonth>
                 <tem:DobYear><%= dob_year %></tem:DobYear>
                 
-                <% if !ethnicity_id.blank? %><tem:EthnicityId><%= ethnicity_id %></tem:EthnicityId><% end %>
-                <tem:ElectionMaterialLanguageId><%= language_id %></tem:ElectionMaterialLanguageId>
-                
-                
-                
-                
                 <tem:PrefixId><%= name_prefix_id %></tem:PrefixId>
+                <tem:CurrentLastName><%= escape_xml_last_name %></tem:CurrentLastName>
                 <tem:CurrentFirstName><%= escape_xml_first_name %></tem:CurrentFirstName>
                 <tem:CurrentMiddleName><%= escape_xml_middle_name %></tem:CurrentMiddleName>
-                <tem:CurrentLastName><%= escape_xml_last_name %></tem:CurrentLastName>
                 <tem:NameSuffix><%= name_suffix_id %></tem:NameSuffix>
                 
+                <tem:PreviousLastName><%= escape_xml_prev_last_name %></tem:PreviousLastName>
                 <tem:PreviousFirstName><%= escape_xml_prev_first_name %></tem:PreviousFirstName>
                 <tem:PreviousMiddleName><%= escape_xml_prev_middle_name %></tem:PreviousMiddleName>
-                <tem:PreviousLastName><%= escape_xml_prev_last_name %></tem:PreviousLastName>
-
+                
+                
                 <tem:IsHomeAddress><%= has_home_address? %></tem:IsHomeAddress>
                 <tem:HomeAddressStreetLine1><%= escape_xml_home_address %></tem:HomeAddressStreetLine1>
                 <tem:HomeAddressStreetLine2><%= escape_xml_home_unit %></tem:HomeAddressStreetLine2>
                 <tem:HomeAddressCity><%= escape_xml_home_city %></tem:HomeAddressCity>
                 <tem:HomeAddressState><%= escape_xml_home_state_name %></tem:HomeAddressState>
                 <tem:HomeAddressZip><%= escape_xml_home_zip_code %></tem:HomeAddressZip>
-
+                
                 <tem:IsMailingAddress><%= has_mailing_address? %></tem:IsMailingAddress>
                 <tem:MailingAddressStreetLine1><%= escape_xml_mailing_address %></tem:MailingAddressStreetLine1>
                 <tem:MailingAddressStreetLine2><%= escape_xml_mailing_unit %></tem:MailingAddressStreetLine2>
@@ -56,9 +46,28 @@
                 <tem:PreviousAddressCity><%= escape_xml_prev_city %></tem:PreviousAddressCity>
                 <tem:PreviousAddressState><%= escape_xml_prev_state_name %></tem:PreviousAddressState>
                 <tem:PreviousAddressZip><%= escape_xml_prev_zip_code %></tem:PreviousAddressZip>
-
+                
+                
                 <tem:PhoneNumber><%= phone %></tem:PhoneNumber>
                 <tem:EmailId><%= email_address %></tem:EmailId>
+                <tem:EmailIdConfirmation><%= email_address %></tem:EmailIdConfirmation>
+                
+                
+                <% if !ethnicity_id.blank? %><tem:EthnicityId><%= ethnicity_id %></tem:EthnicityId><% end %>
+                
+                <tem:ElectionMaterialLanguageId><%= language_id %></tem:ElectionMaterialLanguageId>
+                
+                <tem:PostingAgencyKey><%= api_key %></tem:PostingAgencyKey>
+                <%- if false %>
+                  <tem:CovrAgencyKey><%= api_posting_entity_name %></tem:CovrAgencyKey>
+                <%- end %>
+                
+                
+                
+                
+                
+                
+                
                 
                 
                 
