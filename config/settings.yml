@@ -231,11 +231,11 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-  WV:
+  WI:
     redirect_to_online_reg_url: true
     languages:
       - en
-  WI:
+  WV:
     redirect_to_online_reg_url: true
     languages:
       - en
@@ -243,9 +243,6 @@ ovr_states:
 enabled_locales:
   - en
   - es
-
-
-  
 
 pdf:
   nvra:
