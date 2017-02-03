@@ -231,15 +231,15 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
-  WI:
-    redirect_to_online_reg_url: true
-    languages:
-      - en
   WV:
     redirect_to_online_reg_url: true
     languages:
       - en
-  
+  WI:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+
 enabled_locales:
   - en
   - es
