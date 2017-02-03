@@ -68,5 +68,8 @@
 
 
 <%= render :partial => 'layouts/urchin' %>
+<%- if !@registrant || @registrant.short_form? %>
+  <%= javascript_include_tag "iframeResizer.contentWindow.min" %> 
+<%- end %>
 </body>
 </html>
