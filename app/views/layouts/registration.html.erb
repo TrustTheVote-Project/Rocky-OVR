@@ -26,7 +26,7 @@
   <div id="container">
 
   <% if @partner && @partner.custom_logo? -%>
-    <%- if @registrant && @registrant.short_form? %>
+    <%- if !@registrant || @registrant.short_form? %>
       <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
     <%- else %>
       <div id="header" class="partner">
