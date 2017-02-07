@@ -71,6 +71,7 @@ ovr_states:
       web_agency_key: RTV
       custom_error_string: CUSTOM_COVR_ERROR
     require_age_confirmation: true
+    require_id: false
     languages:
       - en
       - es
@@ -234,14 +235,14 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
+  WI:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
 
-  
 enabled_locales:
   - en
   - es
-
-
-  
 
 pdf:
   nvra:

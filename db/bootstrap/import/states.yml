@@ -704,6 +704,7 @@ record_49:
   pdf_other_instructions: wisconsin
   id_length_min: '4'
   email_instructions: wisconsin
+  online_registration_url: https://myvote.wi.gov/en-US/RegisterToVote
 record_50:
   abbreviation: WY
   name: Wyoming
