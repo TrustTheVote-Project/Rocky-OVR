@@ -40,12 +40,13 @@ states_with_online_registration:
   - VT
   - VA
   - WV
+  - WI
 
 ovr_states:
   CA:
     api_settings:
       api_url: https://covrapi.sos.ca.gov/PostingEntityInterfaceService.svc
-      api_key: LKh$aye
+      api_key: <%= ENV['CA_API_KEY'] %>
       debug_in_ui: false
       log_all_requests: true
       disclosures_prechecked: true
