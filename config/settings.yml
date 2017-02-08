@@ -60,13 +60,13 @@ ovr_states:
   CA:
     redirect_to_online_reg_url: true
     api_settings:
-      api_url: https://covrapitest.sos.ca.gov/PostingEntityInterfaceService.svc
+      api_url: https://covrapi.sos.ca.gov/PostingEntityInterfaceService.svc
       api_key: <%= ENV['CA_API_KEY'] %>
       api_posting_entity_name: RTV
       debug_in_ui: false
       log_all_requests: false
       disclosures_url: https://a8e83b219df9c88311b3-01fbb794ac405944f26ec8749fe8fe7b.ssl.cf1.rackcdn.com/discl/
-      web_url_base: https://covrtest.sos.ca.gov
+      web_url_base: https://covr.sos.ca.gov
       disclosures_box_height: 170px
       web_agency_key: RTV
       custom_error_string: CUSTOM_COVR_ERROR
