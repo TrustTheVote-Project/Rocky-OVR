@@ -45,7 +45,6 @@ ovr_states:
   CA:
     api_settings:
       api_url: https://covrapi.sos.ca.gov/PostingEntityInterfaceService.svc
-      api_key: LKh$aye
       debug_in_ui: false
       log_all_requests: true
       disclosures_prechecked: true
