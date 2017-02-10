@@ -39,6 +39,7 @@ states_with_online_registration:
   - UT
   - VT
   - VA
+  - WI
   - WV
 
 ovr_states:
