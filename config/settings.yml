@@ -70,7 +70,7 @@ ovr_states:
       disclosures_box_height: 170px
       web_agency_key: RTV
       custom_error_string: CUSTOM_COVR_ERROR
-    require_age_confirmation: true
+    require_age_confirmation: false
     require_id: false
     languages:
       - en
