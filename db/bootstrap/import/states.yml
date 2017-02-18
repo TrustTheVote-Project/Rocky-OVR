@@ -88,6 +88,7 @@ record_4:
   sos_url: http://www.sos.ca.gov/elections/registration-status/
   online_registration_url: http://www.registertovote.ca.gov/
   registration_deadline: california
+  sub_18: once_turned_16
 record_5:
   abbreviation: CO
   name: Colorado
