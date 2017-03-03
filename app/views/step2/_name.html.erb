@@ -2,7 +2,7 @@
   <legend><span><%= I18n.t('txt.registration.name') %></span><%= tooltip_tag :registrant_name %></legend>
   <ul class="stacked">
     <li class="width_d registrant-form__name-title__line">
-      <h3><%= form.label :name_title %></h3>
+      <h3><%= form.label :name_title %><span class='required'>*</span></h3>
       <%= select_div form, :name_title, @registrant.titles, :include_blank => true %>
       <span class="error"><%= form.object.errors[:name_title].join("\n") %></span>
     </li>
