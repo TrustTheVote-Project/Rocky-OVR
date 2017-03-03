@@ -21,7 +21,7 @@
   <legend><span><%= I18n.t('txt.registration.previous_name') %></span></legend>
   <ul class="stacked">
     <li class="width_d registrant-form__prev-name-title__line">
-      <h3><%= form.label :prev_name_title %></h3>
+      <h3><%= form.label :prev_name_title %><span class='required'>*</span></h3>
       <%= select_div form, :prev_name_title, @registrant.titles, :include_blank => true %>
       <span class="error"><%= form.object.errors[:prev_name_title].join("\n") %></span>
     </li>
