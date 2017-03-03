@@ -35,7 +35,7 @@ class RegistrantValidator < ActiveModel::Validator
     end
     
     if reg.at_least_step_2?
-      #reg.validates_presence_of   :name_title
+      reg.validates_presence_of   :name_title
       reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
       reg.validates_presence_of   :first_name unless reg.building_via_api_call?
       reg.validates_presence_of   :last_name
@@ -91,7 +91,7 @@ class RegistrantValidator < ActiveModel::Validator
     end
 
     if reg.needs_prev_name?
-      #reg.validates_presence_of :prev_name_title
+      reg.validates_presence_of :prev_name_title
       reg.validates_presence_of :prev_first_name
       reg.validates_presence_of :prev_last_name
     end
