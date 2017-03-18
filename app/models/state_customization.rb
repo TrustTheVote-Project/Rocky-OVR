@@ -36,6 +36,10 @@ class StateCustomization
     @state = state
   end
   
+  def automatic_under_18_ok?(registrant)
+    return false
+  end
+  
   def online_reg_enabled?(locale, registrant = nil)
     GeoState.states_with_online_registration.include?(state.abbreviation) && self.enabled_for_language?(locale, registrant)
   end

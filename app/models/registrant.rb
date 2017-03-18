@@ -1327,7 +1327,11 @@ class Registrant < ActiveRecord::Base
   end
 
   def ineligible?
-    ineligible_non_participating_state || (ineligible_age && !under_18_ok) || ineligible_non_citizen
+    ineligible_non_participating_state || (ineligible_age && !(under_18_ok || automatic_under_18_ok?)) || ineligible_non_citizen
+  end
+
+  def automatic_under_18_ok?
+    localization ? localization.automatic_under_18_ok?(self) : false
   end
 
   def eligible?
