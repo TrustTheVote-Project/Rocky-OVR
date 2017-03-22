@@ -324,6 +324,11 @@ class CA < StateCustomization
     
   NUM_DISCLOSURES = 5
   
+  def automatic_under_18_ok?(registrant)
+    return registrant && registrant.age >= 16
+  end
+  
+  
   def enabled_for_language?(lang, reg)
     if require_id?
       return false if reg && !reg.has_state_license?
