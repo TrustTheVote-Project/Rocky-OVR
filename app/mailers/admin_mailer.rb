@@ -35,6 +35,7 @@ class AdminMailer < ActionMailer::Base
   def approve_branding_request(branding_request)
     mail(
       subject: "Branding Request Approved",
+      to: branding_request.partner.email,
       body: "Hey there,\n\nWe wanted to let you know that your recent uploads to the Rock the Vote voter registration tool were approved!\n\n#{new_registrant_url(partner: branding_request.partner)}\n\nThanks\nRock the Vote"
     )
   end
@@ -42,6 +43,7 @@ class AdminMailer < ActionMailer::Base
   def reject_branding_request(branding_request)
     mail(
       subject: "[ROCKY] Branding Request Opened",
+      to: branding_request.partner.email,
       body: "Hey there,\n\nYour recent uploads to the Rock the Vote voter registration tool have been rejected. Please update and resubmit.\n\n#{partner_branding_url}\n\nThanks\nRock the Vote"
     )
   end
