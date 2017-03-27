@@ -25,6 +25,28 @@
 class AdminMailer < ActionMailer::Base
   default from: RockyConf.admin.from_address, to: RockyConf.admin.admin_recipients
   
+  def open_branding_request(branding_request)
+    mail(
+      subject: "[ROCKY] Branding Request Opened",
+      body: "New branding request submitted by #{branding_request && branding_request.partner && branding_request.partner.name}.\n\n #{requests_admin_whitelabel_url}"
+    )
+  end
+  
+  def approve_branding_request(branding_request)
+    mail(
+      subject: "Branding Request Approved",
+      body: "Hey there,\n\nWe wanted to let you know that your recent uploads to the Rock the Vote voter registration tool were approved!\n\n#{new_registrant_url(partner: branding_request.partner)}\n\nThanks\nRock the Vote"
+    )
+  end
+  
+  def reject_branding_request(branding_request)
+    mail(
+      subject: "[ROCKY] Branding Request Opened",
+      body: "Hey there,\n\nYour recent uploads to the Rock the Vote voter registration tool have been rejected. Please update and resubmit.\n\n#{partner_branding_url}\n\nThanks\nRock the Vote"
+    )
+  end
+  
+  
   def pa_no_registrant_error(registrant_id)
     mail(
       subject: "[ROCKY PA INTEGRATION] Error submitting to PA: No registrant found for id #{registrant_id}",
