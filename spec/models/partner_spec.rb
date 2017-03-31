@@ -373,21 +373,25 @@ describe Partner do
         paf.stub("asset_file_exists?").with("application.css").and_return(true)
         paf.stub("asset_file_exists?").with("registration.css").and_return(false)
         paf.stub("asset_file_exists?").with("partner.css").and_return(false)
+        paf.stub("asset_file_exists?").with("partner2.css").and_return(false)
         partner.any_css_present?.should be_truthy
 
         paf.stub("asset_file_exists?").with("application.css").and_return(false)
         paf.stub("asset_file_exists?").with("registration.css").and_return(true)
         paf.stub("asset_file_exists?").with("partner.css").and_return(false)
+        paf.stub("asset_file_exists?").with("partner2.css").and_return(false)
         partner.any_css_present?.should be_truthy
 
         paf.stub("asset_file_exists?").with("application.css").and_return(false)
         paf.stub("asset_file_exists?").with("registration.css").and_return(false)
         paf.stub("asset_file_exists?").with("partner.css").and_return(true)
+        paf.stub("asset_file_exists?").with("partner2.css").and_return(true)
         partner.any_css_present?.should be_truthy
 
         paf.stub("asset_file_exists?").with("application.css").and_return(true)
         paf.stub("asset_file_exists?").with("registration.css").and_return(true)
         paf.stub("asset_file_exists?").with("partner.css").and_return(true)
+        paf.stub("asset_file_exists?").with("partner2.css").and_return(true)
         partner.any_css_present?.should be_truthy
       end
       it "returns false if all css files are missing" do
@@ -395,6 +399,7 @@ describe Partner do
         paf.stub("asset_file_exists?").with("application.css").and_return(false)
         paf.stub("asset_file_exists?").with("registration.css").and_return(false)
         paf.stub("asset_file_exists?").with("partner.css").and_return(false)
+        paf.stub("asset_file_exists?").with("partner2.css", nil).and_return(false)
 
         partner.any_css_present?.should be_falsey
       end
@@ -436,6 +441,18 @@ describe Partner do
         partner.partner_css_present?.should be_falsey
       end
     end
+    describe "#partner2_css_present?" do
+      it "returns true when the file exists" do
+        partner = FactoryGirl.build(:partner)
+        paf.stub("asset_file_exists?").with("partner2.css", nil).and_return(true)
+        partner.partner2_css_present?.should be_truthy
+      end
+      it "returns false when the file is missing" do
+        partner = FactoryGirl.build(:partner)
+        paf.stub("asset_file_exists?").with("partner2.css", nil).and_return(false)
+        partner.partner2_css_present?.should be_falsey
+      end
+    end
 
     describe "#application_css_url" do
       it "is returns the URL for the custom application css" do
@@ -456,6 +473,13 @@ describe Partner do
         partner = FactoryGirl.build(:partner)
         paf.should_receive(:asset_url).with("partner.css", nil)
         partner.partner_css_url
+      end
+    end
+    describe "#partner2_css_url" do
+      it "is returns the URL for the custom partner css" do
+        partner = FactoryGirl.build(:partner)
+        paf.should_receive(:asset_url).with("partner2.css", nil)
+        partner.partner2_css_url
       end
     end
     
@@ -664,7 +688,6 @@ describe Partner do
       partner.rtv_sms_opt_in.should be_truthy
       partner.partner_sms_opt_in.should be_falsey
       partner.ask_for_volunteers.should be_falsey
-      partner.ask_for_volunteers?.should == RockyConf.sponsor.allow_ask_for_volunteers
       partner.partner_ask_for_volunteers.should be_falsey
     end
   end
@@ -815,7 +838,7 @@ describe Partner do
       
     end
     describe "#upload_registrants_csv_file" do
-      it "nees to be tested!"
+      it "needs to be tested!"
     end
     
   end
@@ -842,11 +865,12 @@ describe Partner do
         assert_equal 0.4, stats[1][:registrations_percentage]
       end
 
-      it "only uses completed/step_5 registrations without finish-with-state for stats" do
+      it "uses completed/step_5 registrations with or without finish-with-state for stats" do
         partner = FactoryGirl.create(:partner)
         # Assume any relevant states are *allowed* to have online reg
         GeoState.stub(:states_with_online_registration).and_return(['PA','MA','FL','CA'])
         
+        # Florida
         3.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner)
           reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
@@ -855,10 +879,14 @@ describe Partner do
           reg = FactoryGirl.create(:step_4_registrant, :partner => partner)
           reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
         end
+        
+        # California
         2.times do
           reg = FactoryGirl.create(:step_5_registrant, :partner => partner)
           reg.update_attributes(:home_zip_code => "94101", :party => "Decline to State")
         end
+
+        # Florida
         2.times do 
           reg = FactoryGirl.create(:step_5_registrant, :partner=>partner, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
           reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
@@ -866,11 +894,11 @@ describe Partner do
         stats = partner.registration_stats_state
         assert_equal 2, stats.length
         assert_equal "Florida", stats[0][:state_name]
-        assert_equal 3, stats[0][:registrations_count]
-        assert_equal 0.6, stats[0][:registrations_percentage]
+        assert_equal 5, stats[0][:registrations_count]
+        assert_equal 5/7.0, stats[0][:registrations_percentage]
         assert_equal "California", stats[1][:state_name]
         assert_equal 2, stats[1][:registrations_count]
-        assert_equal 0.4, stats[1][:registrations_percentage]
+        assert_equal 2/7.0, stats[1][:registrations_percentage]
       end
 
       it "should only include data for this partner" do
@@ -996,7 +1024,7 @@ describe Partner do
         3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Mr.") }
         2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Ms.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1012,7 +1040,7 @@ describe Partner do
         3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Ms.") }
         1.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Sra.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 6, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1026,7 +1054,7 @@ describe Partner do
         3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Mr.") }
         2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Sra.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1041,7 +1069,7 @@ describe Partner do
         2.times { FactoryGirl.create(:step_4_registrant, :partner => partner, :name_title => "Mr.") }
         2.times { FactoryGirl.create(:step_5_registrant, :partner => partner, :name_title => "Sra.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1057,7 +1085,7 @@ describe Partner do
         3.times { FactoryGirl.create(:maximal_registrant, :partner => other_partner, :name_title => "Mr.") }
         2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Ms.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1112,7 +1140,7 @@ describe Partner do
         assert_equal 6, stats[:total_count][:downloaded]
       end
 
-      it "only uses completed/step_5 registrations without finish_with_state for stats" do
+      it "only uses completed/step_5 registrations with or without finish_with_state for stats" do
         partner = FactoryGirl.create(:partner)
         GeoState.stub(:states_with_online_registration).and_return(['PA','MA'])
         
@@ -1121,7 +1149,7 @@ describe Partner do
         8.times { FactoryGirl.create(:step_4_registrant,  :partner => partner, :created_at => 2.hours.ago) }
         8.times { FactoryGirl.create(:step_5_registrant,  :partner => partner, :created_at => 2.hours.ago) }
         stats = partner.registration_stats_completion_date
-        assert_equal  16, stats[:day_count][:completed]
+        assert_equal  18, stats[:day_count][:completed]
       end
 
       it "should show percent complete" do

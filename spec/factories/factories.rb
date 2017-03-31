@@ -205,7 +205,7 @@ FactoryGirl.define do
     password              "password"
     password_confirmation "password"
     name                  { |p| p.username && p.username.humanize }
-    url                   { |p| "#{p.username}.example.com" }
+    url                   { |p| "http://#{p.username}.example.com" }
     address               "123 Liberty Ave."
     city                  "Pittsburgh"
     state_id                 { GeoState['PA'].id }
