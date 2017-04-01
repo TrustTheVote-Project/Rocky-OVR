@@ -111,12 +111,55 @@ describe StateCustomization do
   end
   
   describe "enabled_for_language?" do
+    let(:sc) { StateCustomization.new(state) }
+    let(:ovr_settings) { nil }
+    let(:reg) { nil }
+    let(:lang) { "a" }
+    before(:each) do
+      allow(sc).to receive(:ovr_settings) { ovr_settings }
+      allow(sc).to receive(:require_id?) { false }
+      allow(sc).to receive(:require_age_confirmation?) { false }
+      
+    end
+    subject { sc.enabled_for_language?(lang, reg) }
     context "when reg is null" do
-      it "returns whether the state is enabled for the locale"
+      context "if ovr_settings is not configured" do
+        let(:ovr_settings) { nil }
+        it { should eq(true) }
+      end
+      context "if ovr_settings has emtpy languages key" do
+        let(:ovr_settings) {{"languages"=>[]}}
+        it { should eq(true) }
+      end
+      context "if ovr_settings doesn't include the language key" do
+        let(:ovr_settings) {{"languages"=>["not-the-lang"]}}
+        it { should eq(false) }
+      end
+      context "if ovr_settings has emtpy languages key" do
+        let(:ovr_settings) {{"languages"=>["b","a"]}}
+        it { should eq(true) }
+      end
     end
     context "when reg is present" do
-      it "returns false if the reg does not have id"
-      it "returns whether the state is enabled for the locale if the reg does have id"
+      let(:reg) { double(Registrant) }
+      context "when id is required" do
+        before(:each) do
+          allow(sc).to receive(:require_id?) { true }
+        end
+        it "returns false if the reg does not have id" do
+          expect(reg).to receive(:has_state_license?) { false }
+          expect(subject).to eq(false)
+        end        
+      end
+      context "require_age_confirmation?" do
+        before(:each) do
+          allow(sc).to receive(:require_age_confirmation?) { true }
+        end
+        it "returns false if the reg is not 18" do
+          expect(reg).to receive(:will_be_18_by_election?) { false }
+          expect(subject).to eq(false)          
+        end
+      end
     end
   end
   

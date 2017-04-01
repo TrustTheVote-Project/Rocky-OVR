@@ -338,7 +338,6 @@ describe Partner do
         end
         it "copies the CSS files to the partner path (with the correct names) from URLs" do
           pending "Don't need URL designation of assets yet"
-          raise "Fail"
         end
         it "does not set the partner as whitelabeled if the path functions fail" do
           @partner.stub(:application_css_present?).and_return(false)
@@ -355,9 +354,39 @@ describe Partner do
       end
     end
 
-
     describe "#from_email_verified?" do
-      it "Needs to be tested!"
+      let(:partner) { FactoryGirl.create(:partner) }
+      context "when from_email is blank" do
+        before(:each) do
+          partner.from_email = nil
+        end
+        it "returns false" do
+          expect(partner.from_email_verified?).to eq(false)
+        end
+      end
+      context "when from email is present" do
+        before(:each) do
+          partner.from_email = "from@example.com"
+        end
+        context 'when from email has been verified recently' do
+          it "returns true" do
+            partner.from_email_verified_at = 59.minutes.ago
+            expect(partner.from_email_verified?).to eq(true)
+          end          
+        end
+        context 'from email verification checked less than 5 minutes ago' do
+          it "returns false" do
+            partner.from_email_verification_checked_at = 4.minutes.ago
+            expect(partner.from_email_verified?).to eq(false)
+          end
+        end
+        context "from email verification has not been checked recently" do
+          it "returns check_from_email_verification" do
+            expect(partner).to receive(:check_from_email_verification) { "verified_or_not"}
+            expect(partner.from_email_verified?).to eq("verified_or_not")
+          end
+        end
+      end
     end
 
     describe "#assets_path" do
@@ -837,8 +866,53 @@ describe Partner do
       end
       
     end
+    
+    # def upload_registrants_csv_file
+    #   connection = Fog::Storage.new({
+    #     :provider                 => 'AWS',
+    #     :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+    #     :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+    #     :region                   => 'us-west-2'
+    #   })
+    #
+    #   bucket_name = "rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}"
+    #   directory = connection.directories.get(bucket_name)
+    #   file = directory.files.create(
+    #     :key    => File.join(self.id.to_s, self.csv_file_name),
+    #     :body   => File.open(csv_file_path, "r").read,
+    #     :content_type => "text/csv",
+    #     :encryption => 'AES256', #Make sure its encrypted on their own hard drives
+    #     :public => true
+    #   )
+    # end
+    
+    
     describe "#upload_registrants_csv_file" do
-      it "needs to be tested!"
+      it "connects to S3 annd places a file" do
+        partner = FactoryGirl.create(:partner)
+        partner.csv_file_name = "name"
+        connection = double(Fog::Storage)
+        dirs = double("dirs")
+        dir = double("dir")
+        files = double("files")
+        expect(Fog::Storage).to receive(:new) { connection }
+        expect(connection).to receive(:directories) { dirs }
+        expect(dirs).to receive(:get).with("rocky-reports-test") { dir }
+        
+        file_io = double("file_io")
+        expect(file_io).to receive(:read) { "body" }
+        expect(File).to  receive(:open).with(partner.csv_file_path, "r") { file_io }
+        
+        expect(dir).to receive(:files) { files }
+        expect(files).to receive(:create).with({
+          key: File.join(partner.id.to_s, partner.csv_file_name),
+          body: "body",
+          content_type: "text/csv",
+          encryption: "AES256",
+          public: true
+        })
+        partner.upload_registrants_csv_file
+      end
     end
     
   end
