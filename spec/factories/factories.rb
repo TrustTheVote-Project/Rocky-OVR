@@ -33,6 +33,7 @@ FactoryGirl.define do
     us_citizen      true
     has_state_license true
     will_be_18_by_election true
+    short_form true
     #opt_in_email    true
     #opt_in_sms      true
   end

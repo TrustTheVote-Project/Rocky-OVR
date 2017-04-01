@@ -65,7 +65,7 @@ Feature: Thank you email for registrants who choose to register online with a st
     And my status should be "complete"
 
 
-  @passing
+  @wip
   Scenario: Registrant who finished online and selected spanish gets sent a thank-you email
     Given I have completed step 3 as a resident of "Washington" state
     And I have a state license
