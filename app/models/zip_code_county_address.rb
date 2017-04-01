@@ -46,7 +46,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       ["municipality_name", city_name],
       ["county_name", county_name],
       ["county_name", city_name],
-      ["county_name", county_name.gsub(/(county|borough|parish)/i, '').strip ],
+      ["county_name", county_name.to_s.gsub(/(county|borough|parish)/i, '').strip ],
       ["municipality_name", county_name]
     ].each do |filter_name, filter_value|
       if filter_value

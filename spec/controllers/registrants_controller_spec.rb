@@ -135,7 +135,7 @@ describe RegistrantsController do
       render_views
 
       it "should keep partner, locale, tracking source, tracking id and short_form" do
-        get :new, :locale => 'es', :partner => '2', :source => 'email', :tracking=>'trackid', :short_form=>'1'
+        get :new, :locale => 'es', :partner => '2', :source => 'email', :tracking=>'trackid', :short_form=>true
         assert_equal '2', assigns[:partner_id].to_s
         assert_equal 'es', assigns[:locale]
         assert_equal 'email', assigns[:source]
@@ -145,7 +145,7 @@ describe RegistrantsController do
         assert_select "input[name=locale][value=es]"
         assert_select "input[name=source][value=email]"
         assert_select "input[name=tracking][value=trackid]"
-        assert_select "input[name=short_form][value=1]"
+        assert_select "input[name=short_form][value=true]"
       end
     end
 
@@ -181,7 +181,6 @@ describe RegistrantsController do
 
         assert_response :success
         assert_select "#header.partner[style=background-image: url('http://abc123')]"
-        assert_select "#partner-logo img[src=http://abc123]"
       end
     end
       
@@ -196,14 +195,11 @@ describe RegistrantsController do
       end
       it "shows mobile for another partner even if short_form is false" do
         partner = Partner.new
-        partner.id = 1234
         partner.stub(:custom_logo?) { true }
         partner.stub(:logo) { "http://abc123" }
         Partner.stub(:find_by_id).with(partner.to_param).and_return(partner)
         get :new, :partner => partner.to_param, short_form: false
         
-        partner = FactoryGirl.create(:partner)
-        get :new, :partner=>partner.to_param
         response.should render_template :show
       end
     end

@@ -303,7 +303,23 @@ describe PdfWriter do
       PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir", "url")
     end
     
-    it "TBD when s3 upload fails"
+    describe 'when uploads to s3 fail' do
+      before(:each) do
+        allow(PdfWriter).to receive(:upload_pdf_to_s3).and_return(false)
+      end
+      it "does not delete the file" do
+        File.should_not_receive(:delete)
+        begin
+          PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir", "url")
+        rescue
+        end
+      end
+      it "raises an exception" do
+        expect {
+          PdfWriter.write_pdf_from_html_string("html", "path", "locale", "dir", "url")        
+        }.to raise_error
+      end
+    end
     
     it "writes the file from the string" do
       File.should_receive(:open)

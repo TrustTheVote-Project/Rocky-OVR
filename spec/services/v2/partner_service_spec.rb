@@ -219,6 +219,7 @@ describe V2::PartnerService do
         }
         V2::PartnerService.create_record(params).should
         params2 = params.dup
+        params2[:username] = "b-custom-username"
         params2.delete(:government_partner_zip_codes)
         params2[:government_partner_state_id] = GeoState["MA"].id
         params2[:email] = "contact_email+2@rtv.org"
