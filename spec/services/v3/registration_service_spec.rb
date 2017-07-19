@@ -176,6 +176,7 @@ describe V3::RegistrationService do
           "voter_records_request" => {
             "type" => "registration",
             "generated_date" => "2016-06-16T19:44:45+00:00",
+            "canvasser_name" => "Canvasser Name",
             "voter_registration" => {
               "date_of_birth" => "2016-06-16",
               "mailing_address" => {
@@ -344,6 +345,11 @@ describe V3::RegistrationService do
         expect(r.state_ovr_data["voter_records_request"]).to eq(json_request["rocky_request"]["voter_records_request"])
         expect(r.state_ovr_data["geo_location"]).to eq(json_request["rocky_request"]["geo_location"])
         expect(r.open_tracking_id).to eq(json_request["rocky_request"]["open_tracking_id"])
+      end
+      it "allows a canvasser_name field in the \"voter_records_request\" field" do
+        r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+        expect(r.state_ovr_data["voter_records_request"]["canvasser_name"]).to eq("Canvasser Name")
+        
       end
     end
   
