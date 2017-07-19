@@ -242,11 +242,18 @@ end
 
 
 When /^I am (\d+) years old$/ do |age|
+  #raise page.body.to_s
   fill_in("registrant_date_of_birth", :with => age.to_i.years.ago.to_date.strftime("%m/%d/%Y"))
 end
 
 Given /^I have not set a locale$/ do
   I18n.locale = nil
+end
+
+Given(/^my phone number is "(.*?)"$/) do |phone|
+  @registrant.phone = phone
+  @registrant.phone_type = :mobile
+  @registrant.save
 end
 
 Given /^my locale is "([^\"]*)"$/ do |locale|
@@ -281,7 +288,7 @@ Given /there is localized state data/ do
 end
 
 Then /^I should see a new download$/ do
-  assert File.exists?(Registrant.last.pdf_file_path)
+  assert @s3_file_uploaded
 end
 
 Then /^I should see my email$/ do
@@ -322,8 +329,18 @@ end
 When /^I enter valid data for step 1$/ do
   step %Q{I fill in "Email Address" with "john.public@example.com"}
   step %Q{I fill in "ZIP Code" with "94113"}
-  step %Q{I am 20 years old}
+end
+
+When /^I enter valid data for step 2$/ do
+  step %Q{I select "Mr." from "registrant_name_title"}
+  step %Q{I fill in "registrant_first_name" with "First"}  
+  step %Q{I fill in "registrant_last_name" with "Last"}  
   step %Q{I check "I am a U.S. citizen"}
+  step %Q{I check "I will be 18 or older by the next election"}
+  step %Q{I fill in "registrant_home_address" with "123 Street"}  
+  step %Q{I fill in "registrant_home_city" with "City"}  
+  step %Q{I fill in "registrant_home_zip_code" with "02113"}  
+  step %Q{Is elect "Democratic" from "Party"}    
 end
 
 When /^I live in (.*)$/ do |state_name|
@@ -452,6 +469,10 @@ end
 
 
 When(/^the pdf generator has run$/) do
+  allow(@registrant.pdf_writer).to receive(:generate_pdf) { 
+    @s3_file_uploaded = true
+    true 
+  }
   @registrant.generate_pdf
 end
 

@@ -38,6 +38,7 @@ end
 
 When /^I go to (.+)$/ do |page_name|
   visit path_to(page_name)
+  #raise page.body.to_s
 end
 
 When /^I press "([^\"]*)"$/ do |button|
@@ -45,6 +46,7 @@ When /^I press "([^\"]*)"$/ do |button|
 end
 
 When /^I follow "([^\"]*)"$/ do |link|
+  #raise page.body.to_s
   click_link(link)
 end
 
@@ -108,6 +110,8 @@ When /^I check "([^\"]*)"$/ do |field|
 end
 
 When /^I uncheck "([^\"]*)"$/ do |field|
+  #raise @registrant.inspect
+  #raise page.body.to_s
   uncheck(field) 
 end
 
@@ -156,6 +160,8 @@ end
 
 
 Then /^I should see a checkbox for "([^\"]*)"$/ do |label|
+  # raise @registrant.any_ask_for_volunteers?.to_s
+  # raise page.body.to_s
   page.should have_checkbox(label)
 end
 

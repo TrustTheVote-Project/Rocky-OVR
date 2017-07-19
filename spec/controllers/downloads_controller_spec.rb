@@ -45,7 +45,6 @@ describe DownloadsController do
         assert_response :success
         assert_template "show"
         assert_select "span.button a[target=_blank]"
-        assert_select "span.button a[onclick]"
       end
 
     end

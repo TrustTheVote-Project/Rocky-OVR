@@ -72,6 +72,9 @@ describe Api::V3::PartnersController do
       before(:each) do
         allow(Partner).to receive(:find_by_id).with('1').and_return(mock_partner)
         allow(mock_partner).to receive(:enabled_for_grommet?).and_return(true)
+        allow(mock_partner).to receive(:custom_data).and_return({
+          "canvassing_session_timeout_length" => 300
+        })
       end
       context 'when partner is allowed' do
         subject { get :partner_id_validation, query.merge(format: 'json') }
@@ -83,6 +86,9 @@ describe Api::V3::PartnersController do
         end
         it "returns a JSON body with partner_name='Partner Org Name'" do
           expect(JSON.parse(subject.body)["partner_name"]).to eq("Partner Org Name")
+        end
+        it "returns a JSON body with session_timeout_length" do
+          expect(JSON.parse(subject.body)["session_timeout_length"]).to eq(300)
         end
       end
       context 'when parter is not allowed' do

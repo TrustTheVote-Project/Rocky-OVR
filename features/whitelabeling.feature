@@ -5,6 +5,7 @@ Feature: White labeling
   I should be see custom designs for partners configured with white labeling assets
   
   
+    @wip
     Scenario: Partner with ID 1 should use the standard assets
       Given the following partner exists:
         | id | name                | whitelabeled |
@@ -13,6 +14,7 @@ Feature: White labeling
       When I go to the registration page for that partner
       Then I should see a link to the standard CSS
   
+    @wip
     Scenario: Partner without custom css should use the standard assets
       Given the following partner exists:
         | name                | whitelabeled |
@@ -20,7 +22,7 @@ Feature: White labeling
       When I go to the registration page for that partner
       Then I should see a link to the standard CSS
   
-    @passing
+    @wip
     Scenario: Whitelabeled partner with missing CSS should use the standard assets
       Given the following partner exists:
         | name                | whitelabeled |

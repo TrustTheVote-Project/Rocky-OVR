@@ -23,7 +23,7 @@ Feature: Admin gregistrations
       Then I should see a field for "Username"
       And I should not see a field for "Password"
       And I should not see a field for "Password Confirmation"
-      And I should see a field for "From Email"
+      And I should see a field for "partner_from_email"
       And I should see a field for "Finish iframe url"
       And I should see a field for "Whitelabeled CSS"
       And I should see a field for "Ask for RTV email opt-in"

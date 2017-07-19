@@ -109,17 +109,16 @@ Feature: Step 2
       And I fill in "Phone" with "1231231234"
       And I fill in "registrant_home_address" with "123 Market St."
       And I fill in "registrant_home_city" with "Pittsburgh"
-      And I press "registrant_submit"
-      Then I should see "Stay Informed and Take Action"
-      And I should see a field for "Send me txt messages from Rock the Vote"
-      And I should see a field for "Receive emails from Rock the Vote"
+      And I press "Next Step"
+      Then I should see "Hang on. You are eligible to register online in your state."
       
     @passing
     Scenario: User arrives with short_form=1 and leaves fields blank
       Given I have completed step 1 for a short form
       When I go to the step 2 page
       And I press "registrant_submit"
-      Then I should see "Personal Information"
+      Then I should see "Name"
+      And I should see "Address"
       And I should see "Required"
       
     @passing

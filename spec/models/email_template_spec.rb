@@ -36,10 +36,13 @@ describe EmailTemplate do
           ["reminder.#{locale}", "Reminder #{locale.to_s.upcase}"]
         )
         EmailTemplate::TEMPLATE_NAMES.should include(
+          ["final_reminder.#{locale}", "Final reminder #{locale.to_s.upcase}"]
+        )
+        EmailTemplate::TEMPLATE_NAMES.should include(
           ["chaser.#{locale}", "Chaser #{locale.to_s.upcase}"]
         )
         EmailTemplate::TEMPLATE_NAMES.should include(
-          ["thank_you_external.#{locale}", "Thank you external #{locale.to_s.upcase}"]
+          ["thank_you_external.#{locale}", "State OVR Responder #{locale.to_s.upcase}"]
         )
       end      
     end

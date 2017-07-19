@@ -176,6 +176,7 @@ describe V3::RegistrationService do
           "voter_records_request" => {
             "type" => "registration",
             "generated_date" => "2016-06-16T19:44:45+00:00",
+            "canvasser_name" => "Canvasser Name",
             "voter_registration" => {
               "date_of_birth" => "2016-06-16",
               "mailing_address" => {
@@ -345,19 +346,44 @@ describe V3::RegistrationService do
         expect(r.state_ovr_data["geo_location"]).to eq(json_request["rocky_request"]["geo_location"])
         expect(r.open_tracking_id).to eq(json_request["rocky_request"]["open_tracking_id"])
       end
+      it "allows a canvasser_name field in the \"voter_records_request\" field" do
+        r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+        expect(r.state_ovr_data["voter_records_request"]["canvasser_name"]).to eq("Canvasser Name")
+        
+      end
     end
   
     describe 'valid_for_pa_submission(registrant)' do
-      it "checks values in registrant.state_ovr_data['voter_records_request'] for valid enum values"
-      it "checks values in registrant.state_ovr_data['voter_records_request'] for a valid signature file"
-      # it "does other validations TBD?"
+      let(:state_ovr_data) { double(Hash) }
+      let(:registrant) { double(Registrant) }
+      let(:pa_adapter) { double(VRToPA) }
+      before(:each) do
+        allow(state_ovr_data).to receive(:[]) { "hash" }
+        allow(registrant).to receive(:state_ovr_data) { state_ovr_data }
+        allow(VRToPA).to receive(:new).with("hash") { pa_adapter }
+        allow(pa_adapter).to receive(:convert)
+      end
+      subject { V3::RegistrationService.valid_for_pa_submission(registrant) }
+      it "initiates a VRToPA conversion" do
+        expect(VRToPA).to receive(:new).with("hash") { pa_adapter }
+        expect(subject).to eq([])
+      end
+      it "captures conversion errors and returns an error array" do
+        allow(pa_adapter).to receive(:convert) { raise "a" }
+        expect(subject).to eq(["Error parsing request: a"])
+      end
     end
   
     describe 'register_with_pa(registrant)' do
-      it "Builds an XML file from valuds in registrant.state_ovr_data['voter_records_request']"
-      it "submits XML to RockyConf.ovr_states.PA.api_settings.api_url" # this setting includes the API key
+      it "buils a PA adapter and converts is"
+      it "submits a PARegistrationRequest"
+      it "saves any errors to the registrant"
+      it "raises the error if it's a retry error type"
+      it "resubmits w/out signature if it's a signature contrast error"
+      it "saves an error and sends admin email if there is no error message or transaction id"      
       it "saves the transaction ID into registrant.state_ovr_data['pa_transaction_id']"
       it "commits the rocky registrant to the DB"
+      
       describe "invalid signature VR_WAPI_Invalidsignaturecontrast" do
         let(:r) { V3::RegistrationService.create_pa_registrant(json_request["rocky_request"]) }
         before(:each) do
@@ -413,7 +439,99 @@ describe V3::RegistrationService do
         end
       end
     end
+    
+    describe "track_clock_in_event" do
+      let(:data) {{
+        "source_tracking_id" => "123457689",
+        "partner_tracking_id" => "22201",
+        "geo_location" => {
+          lat: 123.00, 
+          long: -123.00
+        },
+        "open_tracking_id" => "some text",
+        "canvasser_name" => "A Name",
+        "clock_in_datetime" => "2016-06-16T19:44:45+00:00",
+        "session_timeout_length" => 210
+      }}
+      # it "raises an error if fields are missing" do
+      #   bad_data = data
+      #   bad_data.delete(:open_tracking_id)
+      #   expect {
+      #     V3::RegistrationService.track_clock_in_event(data)
+      #   }.to raise_error(V3::RegistrationService::ValidationError)
+      # end
+      it "should create a new TrackingEvent" do
+        expect {
+          V3::RegistrationService.track_clock_in_event(data)
+        }.to change {
+          TrackingEvent.count
+        }.by(1)
+      end  
+      it "creates a new tracking event via open data plus the event name" do
+        expect(TrackingEvent).to receive(:create_from_data).with(data.merge(tracking_event_name: "pa_canvassing_clock_in"))
+        V3::RegistrationService.track_clock_in_event(data)
+      end
+      it "stores the data we expect" do
+        V3::RegistrationService.track_clock_in_event(data)
+        te = TrackingEvent.last
+        expect(te.tracking_event_name).to eq("pa_canvassing_clock_in")
+        expect(te.source_tracking_id).to eq("123457689")
+        expect(te.partner_tracking_id).to eq("22201")
+        expect(te.geo_location).to eq({
+          "lat" => 123.00, 
+          "long" => -123.00
+        })
+        expect(te.open_tracking_id).to eq("some text")
+        expect(te.tracking_data).to eq({
+          "canvasser_name" => "A Name",
+          "clock_in_datetime" => "2016-06-16T19:44:45+00:00",
+          "session_timeout_length" => 210          
+        })
+      end
+    end
+    
   end
+  
+  describe "track_clock_out_event" do
+    let(:data) {{
+      "source_tracking_id" => "123457689",
+      "partner_tracking_id" => "22201",
+      "geo_location" => {
+        lat: 123.00, 
+        long: -123.00
+      },
+      "open_tracking_id" => "some text",
+      "canvasser_name" => "A Name",
+      "clock_out_datetime" => "2016-06-16T19:44:45+00:00",
+    }}
+    it "should create a new TrackingEvent" do
+      expect {
+        V3::RegistrationService.track_clock_out_event(data)
+      }.to change {
+        TrackingEvent.count
+      }.by(1)
+    end  
+    it "creates a new tracking event via open data" do
+      expect(TrackingEvent).to receive(:create_from_data).with(data.merge(tracking_event_name: "pa_canvassing_clock_out"))
+      V3::RegistrationService.track_clock_out_event(data)
+    end
+    it "stores the data we expect" do
+      V3::RegistrationService.track_clock_out_event(data)
+      te = TrackingEvent.last
+      expect(te.source_tracking_id).to eq("123457689")
+      expect(te.partner_tracking_id).to eq("22201")
+      expect(te.geo_location).to eq({
+        "lat" => 123.00, 
+        "long" => -123.00
+      })
+      expect(te.open_tracking_id).to eq("some text")
+      expect(te.tracking_data).to eq({
+        "canvasser_name" => "A Name",
+        "clock_out_datetime" => "2016-06-16T19:44:45+00:00"
+      })
+    end
+  end
+  
   
 
   describe 'data_to_attrs' do

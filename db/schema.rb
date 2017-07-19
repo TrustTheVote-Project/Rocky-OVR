@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161213164552) do
+ActiveRecord::Schema.define(:version => 20170719153519) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -294,6 +294,17 @@ ActiveRecord::Schema.define(:version => 20161213164552) do
   end
 
   add_index "state_localizations", ["state_id"], :name => "index_state_localizations_on_state_id"
+
+  create_table "tracking_events", :force => true do |t|
+    t.string   "tracking_event_name"
+    t.string   "source_tracking_id"
+    t.string   "partner_tracking_id"
+    t.string   "open_tracking_id"
+    t.text     "geo_location"
+    t.text     "tracking_data"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
 
   create_table "zip_code_county_addresses", :force => true do |t|
     t.integer  "geo_state_id"
