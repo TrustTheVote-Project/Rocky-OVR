@@ -340,7 +340,7 @@ When /^I enter valid data for step 2$/ do
   step %Q{I fill in "registrant_home_address" with "123 Street"}  
   step %Q{I fill in "registrant_home_city" with "City"}  
   step %Q{I fill in "registrant_home_zip_code" with "02113"}  
-  step %Q{I select "Democratic" from "Party"}    
+  step %Q{Is elect "Democratic" from "Party"}    
 end
 
 When /^I live in (.*)$/ do |state_name|
