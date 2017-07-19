@@ -159,14 +159,14 @@ class RegistrantValidator < ActiveModel::Validator
   
   
   def requires_validate_party(reg)
-    if reg.at_least_step_3?
-      unless reg.in_ovr_flow? || reg.building_via_api_call?
-        return true
-      end
+    return false if reg.building_via_api_call?
+    if reg.at_least_step_3? && !reg.in_ovr_flow?
+      return true
     end
     if reg.at_least_step_4? && !reg.using_state_online_registration?
       return true
     end    
+    return false
   end
   
   def validates_zip_code(reg, attr_name)

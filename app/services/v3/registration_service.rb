@@ -150,6 +150,7 @@ module V3
       elsif result[:id].blank? || result[:id]==0
           registrant.state_ovr_data["errors"] ||= []
           registrant.state_ovr_data["errors"] << ["PA returned response with no errors and no transaction ID"]
+          registrant.save!
           Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
           AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
       else

@@ -51,8 +51,8 @@ module ApplicationHelper
     end
     wl = partner && partner.whitelabeled?
     stylesheets = []
-    if !partner.replace_system_css?
-      if registrant && !registrant.use_short_form?
+    if !partner || !partner.replace_system_css?
+      if partner && registrant && !registrant.use_short_form?
         stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
         stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
       else
@@ -63,7 +63,7 @@ module ApplicationHelper
     end
     # event with replace_system_css, keep the locale specific ones
     stylesheets += registrant_css
-    if registrant && !registrant.use_short_form?
+    if partner && registrant && !registrant.use_short_form?
       stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
     else
       stylesheets << partner.partner2_css_url if wl && partner.partner2_css_present?

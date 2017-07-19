@@ -47,6 +47,7 @@ describe BrandingController do
 
       expect(@fs3.files.count).to be_eql 0
 
+      request.env["HTTP_REFERER"] = "example.com"
       post :update, css_files: {application: files[0], registration: files[1], partner: files[2]}
 
       paths = [
@@ -64,7 +65,8 @@ describe BrandingController do
 
       expect(@fs3.files.count).to be_eql 0
 
-      post :update, partner: {file: file}
+      request.env["HTTP_REFERER"] = "example.com"
+      post :update, {file: file}
 
       expect(@fs3.files.count).to be_eql 1
       expect(@fs3.files[0].key).to be_eql File.join(@partner.partner_path, 'preview', 'partner_logo.jpg')
@@ -75,7 +77,8 @@ describe BrandingController do
       expect(EmailTemplate).to receive(:set).with(@partner, 'template_name2', 'value2')
       expect(EmailTemplate).to receive(:set_subject).with(@partner, 'template_subj1', 'value3')
       expect(EmailTemplate).to receive(:set_subject).with(@partner, 'template_subj2', 'value4')
-
+      
+      request.env["HTTP_REFERER"] = "example.com"
       post :update,
            template: {'template_name1' => 'value1', 'template_name2' => 'value2'},
            template_subject: {'template_subj1' => 'value3', 'template_subj2' => 'value4'}

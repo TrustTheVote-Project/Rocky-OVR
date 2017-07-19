@@ -354,16 +354,36 @@ describe V3::RegistrationService do
     end
   
     describe 'valid_for_pa_submission(registrant)' do
-      it "checks values in registrant.state_ovr_data['voter_records_request'] for valid enum values"
-      it "checks values in registrant.state_ovr_data['voter_records_request'] for a valid signature file"
-      # it "does other validations TBD?"
+      let(:state_ovr_data) { double(Hash) }
+      let(:registrant) { double(Registrant) }
+      let(:pa_adapter) { double(VRToPA) }
+      before(:each) do
+        allow(state_ovr_data).to receive(:[]) { "hash" }
+        allow(registrant).to receive(:state_ovr_data) { state_ovr_data }
+        allow(VRToPA).to receive(:new).with("hash") { pa_adapter }
+        allow(pa_adapter).to receive(:convert)
+      end
+      subject { V3::RegistrationService.valid_for_pa_submission(registrant) }
+      it "initiates a VRToPA conversion" do
+        expect(VRToPA).to receive(:new).with("hash") { pa_adapter }
+        expect(subject).to eq([])
+      end
+      it "captures conversion errors and returns an error array" do
+        allow(pa_adapter).to receive(:convert) { raise "a" }
+        expect(subject).to eq(["Error parsing request: a"])
+      end
     end
   
     describe 'register_with_pa(registrant)' do
-      it "Builds an XML file from valuds in registrant.state_ovr_data['voter_records_request']"
-      it "submits XML to RockyConf.ovr_states.PA.api_settings.api_url" # this setting includes the API key
+      it "buils a PA adapter and converts is"
+      it "submits a PARegistrationRequest"
+      it "saves any errors to the registrant"
+      it "raises the error if it's a retry error type"
+      it "resubmits w/out signature if it's a signature contrast error"
+      it "saves an error and sends admin email if there is no error message or transaction id"      
       it "saves the transaction ID into registrant.state_ovr_data['pa_transaction_id']"
       it "commits the rocky registrant to the DB"
+      
       describe "invalid signature VR_WAPI_Invalidsignaturecontrast" do
         let(:r) { V3::RegistrationService.create_pa_registrant(json_request["rocky_request"]) }
         before(:each) do

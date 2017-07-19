@@ -628,22 +628,22 @@ describe Registrant do
         assert !@reg.valid?
       end
       
-      it "DOES NOT validate phone is present if rtv mobile opt-in is true" do
+      it "Validates phone is present if rtv mobile opt-in is true" do
         @reg.phone_type = "Mobile"
         @reg.phone = ''
         
         @reg.opt_in_sms = true
-        @reg.valid?.should be_truthy
-        assert @reg.errors[:phone].empty?
+        @reg.valid?.should be_falsey
+        assert !@reg.errors[:phone].empty?
       end
 
-      it "DOES NOT validate phone is present if partner mobile opt-in is true" do
+      it "Validates phone is present if partner mobile opt-in is true" do
         @reg.phone_type = "Mobile"
         @reg.phone = ''
 
         @reg.partner_opt_in_sms = true
-        @reg.valid?.should be_truthy
-        assert @reg.errors[:phone].empty?
+        @reg.valid?.should be_falsey
+        assert !@reg.errors[:phone].empty?
       end
       
       it "should require valid state id, based on state settings" do
@@ -921,20 +921,20 @@ describe Registrant do
     
     
     
-    it "DOES NOT validate phone is present if rtv mobile opt-in is true" do
+    it "Validates phone is present if rtv mobile opt-in is true" do
       reg = FactoryGirl.build(:step_3_registrant, :phone => "")
       
       reg.opt_in_sms = true
-      reg.valid?.should be_truthy
-      assert reg.errors[:phone].empty?
+      reg.valid?.should be_falsey
+      assert !reg.errors[:phone].empty?
     end
 
-    it "DOES NOT validate phone is present if partner mobile opt-in is true" do
+    it "Validates phone is present if partner mobile opt-in is true" do
       reg = FactoryGirl.build(:step_3_registrant, :phone => "")
 
       reg.partner_opt_in_sms = true
-      reg.valid?.should be_truthy
-      assert reg.errors[:phone].empty?
+      reg.valid?.should be_falsey
+      assert !reg.errors[:phone].empty?
     end
     
     
