@@ -42,11 +42,13 @@ class StateImporter
     
     def self.base_uri
       #"http://eod.staging.usvotefoundation.org"
-      "http://eod.usvotefoundation.org"
+      #"http://eod.usvotefoundation.org"
+      "https://api.usvotefoundation.org"
     end
     
     def self.api_uri
-      "/api/v2"
+      #"/api/v2"
+      "/v1/eod"
     end
     
     def self.path(resource_type, params={})
