@@ -439,7 +439,99 @@ describe V3::RegistrationService do
         end
       end
     end
+    
+    describe "track_clock_in_event" do
+      let(:data) {{
+        "source_tracking_id" => "123457689",
+        "partner_tracking_id" => "22201",
+        "geo_location" => {
+          lat: 123.00, 
+          long: -123.00
+        },
+        "open_tracking_id" => "some text",
+        "canvasser_name" => "A Name",
+        "clock_in_datetime" => "2016-06-16T19:44:45+00:00",
+        "session_timeout_length" => 210
+      }}
+      # it "raises an error if fields are missing" do
+      #   bad_data = data
+      #   bad_data.delete(:open_tracking_id)
+      #   expect {
+      #     V3::RegistrationService.track_clock_in_event(data)
+      #   }.to raise_error(V3::RegistrationService::ValidationError)
+      # end
+      it "should create a new TrackingEvent" do
+        expect {
+          V3::RegistrationService.track_clock_in_event(data)
+        }.to change {
+          TrackingEvent.count
+        }.by(1)
+      end  
+      it "creates a new tracking event via open data plus the event name" do
+        expect(TrackingEvent).to receive(:create_from_data).with(data.merge(tracking_event_name: "pa_canvassing_clock_in"))
+        V3::RegistrationService.track_clock_in_event(data)
+      end
+      it "stores the data we expect" do
+        V3::RegistrationService.track_clock_in_event(data)
+        te = TrackingEvent.last
+        expect(te.tracking_event_name).to eq("pa_canvassing_clock_in")
+        expect(te.source_tracking_id).to eq("123457689")
+        expect(te.partner_tracking_id).to eq("22201")
+        expect(te.geo_location).to eq({
+          "lat" => 123.00, 
+          "long" => -123.00
+        })
+        expect(te.open_tracking_id).to eq("some text")
+        expect(te.tracking_data).to eq({
+          "canvasser_name" => "A Name",
+          "clock_in_datetime" => "2016-06-16T19:44:45+00:00",
+          "session_timeout_length" => 210          
+        })
+      end
+    end
+    
   end
+  
+  describe "track_clock_out_event" do
+    let(:data) {{
+      "source_tracking_id" => "123457689",
+      "partner_tracking_id" => "22201",
+      "geo_location" => {
+        lat: 123.00, 
+        long: -123.00
+      },
+      "open_tracking_id" => "some text",
+      "canvasser_name" => "A Name",
+      "clock_out_datetime" => "2016-06-16T19:44:45+00:00",
+    }}
+    it "should create a new TrackingEvent" do
+      expect {
+        V3::RegistrationService.track_clock_out_event(data)
+      }.to change {
+        TrackingEvent.count
+      }.by(1)
+    end  
+    it "creates a new tracking event via open data" do
+      expect(TrackingEvent).to receive(:create_from_data).with(data.merge(tracking_event_name: "pa_canvassing_clock_out"))
+      V3::RegistrationService.track_clock_out_event(data)
+    end
+    it "stores the data we expect" do
+      V3::RegistrationService.track_clock_out_event(data)
+      te = TrackingEvent.last
+      expect(te.source_tracking_id).to eq("123457689")
+      expect(te.partner_tracking_id).to eq("22201")
+      expect(te.geo_location).to eq({
+        "lat" => 123.00, 
+        "long" => -123.00
+      })
+      expect(te.open_tracking_id).to eq("some text")
+      expect(te.tracking_data).to eq({
+        "canvasser_name" => "A Name",
+        "clock_out_datetime" => "2016-06-16T19:44:45+00:00"
+      })
+    end
+  end
+  
   
 
   describe 'data_to_attrs' do

@@ -93,6 +93,14 @@ class Partner < ActiveRecord::Base
     }
   })
   
+  def custom_data
+    return {
+        "canvassing_session_timeout_length" => RockyConf.ovr_states.PA.api_settings.canvassing_session_timeout_minutes
+      }
+  rescue
+    return {}
+  end
+  
   def header_logo_url
     self.logo(:header)
   end

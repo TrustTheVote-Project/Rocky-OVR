@@ -1573,6 +1573,14 @@ describe Partner do
       end
     end
   end
+  
+  describe "custom_data" do
+    it "includes canvassing timeout length" do
+      p = Partner.new
+      expect(p.custom_data["canvassing_session_timeout_length"]).to eq(RockyConf.ovr_states.PA.api_settings.canvassing_session_timeout_minutes)
+    end
+  end
+  
 
 end
 

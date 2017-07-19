@@ -79,6 +79,54 @@ module V3
       return reg
     end
     
+    def self.validate_data_attributes(data, attributes)
+      data = ActiveSupport::HashWithIndifferentAccess.new(data)
+      missing_elements = []
+      error_message= ''
+      attributes.each do |f|
+        if !data.has_key?(f)
+          missing_elements << f
+        end
+      end
+      if missing_elements.any?
+        error_message = "The following fields were missing: #{missing_elements.join(',')}."
+      end      
+      return error_message
+    end
+    
+    def self.track_clock_in_event(data)
+      # Expect data to have certain elements
+      data = ActiveSupport::HashWithIndifferentAccess.new(data)
+      # error_message = validate_data_attributes(data, %w(source_tracking_id partner_tracking_id open_tracking_id canvasser_name clock_in_datetime session_timeout_length))
+      # if data.has_key?("geo_location") && !data["geo_location"].is_a?(Hash)
+      #     error_message += " Geo location must be a hash".
+      #   end
+      # end
+      #
+      # if !error_message.blank?
+      #   raise ValidationError.new("attributes", error_message)
+      # end
+      
+      TrackingEvent.create_from_data(data.merge(tracking_event_name: "pa_canvassing_clock_in"))
+    end
+
+    def self.track_clock_out_event(data)
+      # Expect data to have certain elements
+      data = ActiveSupport::HashWithIndifferentAccess.new(data)
+      # error_message = validate_data_attributes(data, %w(source_tracking_id partner_tracking_id open_tracking_id canvasser_name clock_out_datetime))
+      # if data.has_key?("geo_location") && !data["geo_location"].is_a?(Hash)
+      #     error_message += " Geo location must be a hash".
+      #   end
+      # end
+      #
+      # if !error_message.blank?
+      #   raise ValidationError.new("attributes", error_message)
+      # end
+      
+      
+      TrackingEvent.create_from_data(data.merge(tracking_event_name: "pa_canvassing_clock_out"))
+    end
+    
     def self.create_pa_registrant(orig_data)
       orig_data = ActiveSupport::HashWithIndifferentAccess.new(orig_data)
       data = orig_data.deep_dup
