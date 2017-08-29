@@ -616,7 +616,7 @@ record_43:
   name: Texas
   requires_party: false
   party_tooltip: not_required
-  id_number_tooltip: drivers_license_or_ssn_or_none_4
+  id_number_tooltip: drivers_license_non_driver_with_state_name
   sos_address: Office of the Secretary of State<br>Elections Division<br>P.O. Box
     12060<br>Austin, TX 78711-2060
   sos_phone: (800) 252-VOTE
