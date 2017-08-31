@@ -93,6 +93,14 @@ class Partner < ActiveRecord::Base
     }
   })
   
+  def custom_data
+    return {
+        "canvassing_session_timeout_length" => RockyConf.ovr_states.PA.api_settings.canvassing_session_timeout_minutes
+      }
+  rescue
+    return {}
+  end
+  
   def header_logo_url
     self.logo(:header)
   end
@@ -706,7 +714,7 @@ class Partner < ActiveRecord::Base
     if self.from_email_verified_at && self.from_email_verified_at > 1.hour.ago
       return true
     else
-      if self.from_email_verification_checked_at.nil? || self.from_email_verification_checked_at < 5.minutes.ago
+      if self.from_email_verification_checked_at.nil? || self.from_email_verification_checked_at > 5.minutes.ago
         return self.check_from_email_verification
       else
         return false

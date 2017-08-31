@@ -622,7 +622,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def self.english_race(locale, race)
-    if locale.to_s == 'en' || english_races.include?(race)
+    if english_races.include?(race)
       return race
     else
       if ridx = race_idx(locale, race)
@@ -642,7 +642,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def self.race_idx(locale, race)
-    I18n.t('txt.registration.races', :locale=>locale).values.index(race)
+    I18n.t('txt.registration.races', :locale=>locale).values.collect(&:downcase).index(race.downcase)
   end
   
   def english_race

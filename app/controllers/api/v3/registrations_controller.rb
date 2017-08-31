@@ -84,6 +84,30 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
 
+  def clock_in
+    data = params.deep_dup
+    data.delete(:debug_info)
+    data.delete(:format)
+    data.delete(:controller)
+    data.delete(:action)
+    V3::RegistrationService.track_clock_in_event(data)
+    jsonp({}, status: 200)
+  rescue V3::RegistrationService::ValidationError => e
+    jsonp({ :message => e.message }, status: 400)
+  end
+
+  def clock_out
+    data = params.deep_dup
+    data.delete(:debug_info)
+    data.delete(:format)
+    data.delete(:controller)
+    data.delete(:action)
+    V3::RegistrationService.track_clock_out_event(data)
+    jsonp({}, status: 200)
+  rescue V3::RegistrationService::ValidationError => e
+    jsonp({ :message => e.message }, status: 400)
+  end
+
   def create_pa
     registrant = nil
     params.delete(:debug_info)

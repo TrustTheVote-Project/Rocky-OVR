@@ -338,7 +338,6 @@ describe Partner do
         end
         it "copies the CSS files to the partner path (with the correct names) from URLs" do
           pending "Don't need URL designation of assets yet"
-          raise "Fail"
         end
         it "does not set the partner as whitelabeled if the path functions fail" do
           @partner.stub(:application_css_present?).and_return(false)
@@ -355,9 +354,39 @@ describe Partner do
       end
     end
 
-
     describe "#from_email_verified?" do
-      it "Needs to be tested!"
+      let(:partner) { FactoryGirl.create(:partner) }
+      context "when from_email is blank" do
+        before(:each) do
+          partner.from_email = nil
+        end
+        it "returns false" do
+          expect(partner.from_email_verified?).to eq(false)
+        end
+      end
+      context "when from email is present" do
+        before(:each) do
+          partner.from_email = "from@example.com"
+        end
+        context 'when from email has been verified recently' do
+          it "returns true" do
+            partner.from_email_verified_at = 59.minutes.ago
+            expect(partner.from_email_verified?).to eq(true)
+          end          
+        end
+        context 'from email verification checked less than 5 minutes ago' do
+          it "returns false" do
+            partner.from_email_verification_checked_at = 4.minutes.ago
+            expect(partner.from_email_verified?).to eq(false)
+          end
+        end
+        context "from email verification has not been checked recently" do
+          it "returns check_from_email_verification" do
+            expect(partner).to receive(:check_from_email_verification) { "verified_or_not"}
+            expect(partner.from_email_verified?).to eq("verified_or_not")
+          end
+        end
+      end
     end
 
     describe "#assets_path" do
@@ -373,21 +402,25 @@ describe Partner do
         paf.stub("asset_file_exists?").with("application.css").and_return(true)
         paf.stub("asset_file_exists?").with("registration.css").and_return(false)
         paf.stub("asset_file_exists?").with("partner.css").and_return(false)
+        paf.stub("asset_file_exists?").with("partner2.css").and_return(false)
         partner.any_css_present?.should be_truthy
 
         paf.stub("asset_file_exists?").with("application.css").and_return(false)
         paf.stub("asset_file_exists?").with("registration.css").and_return(true)
         paf.stub("asset_file_exists?").with("partner.css").and_return(false)
+        paf.stub("asset_file_exists?").with("partner2.css").and_return(false)
         partner.any_css_present?.should be_truthy
 
         paf.stub("asset_file_exists?").with("application.css").and_return(false)
         paf.stub("asset_file_exists?").with("registration.css").and_return(false)
         paf.stub("asset_file_exists?").with("partner.css").and_return(true)
+        paf.stub("asset_file_exists?").with("partner2.css").and_return(true)
         partner.any_css_present?.should be_truthy
 
         paf.stub("asset_file_exists?").with("application.css").and_return(true)
         paf.stub("asset_file_exists?").with("registration.css").and_return(true)
         paf.stub("asset_file_exists?").with("partner.css").and_return(true)
+        paf.stub("asset_file_exists?").with("partner2.css").and_return(true)
         partner.any_css_present?.should be_truthy
       end
       it "returns false if all css files are missing" do
@@ -395,6 +428,7 @@ describe Partner do
         paf.stub("asset_file_exists?").with("application.css").and_return(false)
         paf.stub("asset_file_exists?").with("registration.css").and_return(false)
         paf.stub("asset_file_exists?").with("partner.css").and_return(false)
+        paf.stub("asset_file_exists?").with("partner2.css", nil).and_return(false)
 
         partner.any_css_present?.should be_falsey
       end
@@ -436,6 +470,18 @@ describe Partner do
         partner.partner_css_present?.should be_falsey
       end
     end
+    describe "#partner2_css_present?" do
+      it "returns true when the file exists" do
+        partner = FactoryGirl.build(:partner)
+        paf.stub("asset_file_exists?").with("partner2.css", nil).and_return(true)
+        partner.partner2_css_present?.should be_truthy
+      end
+      it "returns false when the file is missing" do
+        partner = FactoryGirl.build(:partner)
+        paf.stub("asset_file_exists?").with("partner2.css", nil).and_return(false)
+        partner.partner2_css_present?.should be_falsey
+      end
+    end
 
     describe "#application_css_url" do
       it "is returns the URL for the custom application css" do
@@ -456,6 +502,13 @@ describe Partner do
         partner = FactoryGirl.build(:partner)
         paf.should_receive(:asset_url).with("partner.css", nil)
         partner.partner_css_url
+      end
+    end
+    describe "#partner2_css_url" do
+      it "is returns the URL for the custom partner css" do
+        partner = FactoryGirl.build(:partner)
+        paf.should_receive(:asset_url).with("partner2.css", nil)
+        partner.partner2_css_url
       end
     end
     
@@ -664,7 +717,6 @@ describe Partner do
       partner.rtv_sms_opt_in.should be_truthy
       partner.partner_sms_opt_in.should be_falsey
       partner.ask_for_volunteers.should be_falsey
-      partner.ask_for_volunteers?.should == RockyConf.sponsor.allow_ask_for_volunteers
       partner.partner_ask_for_volunteers.should be_falsey
     end
   end
@@ -814,8 +866,53 @@ describe Partner do
       end
       
     end
+    
+    # def upload_registrants_csv_file
+    #   connection = Fog::Storage.new({
+    #     :provider                 => 'AWS',
+    #     :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+    #     :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+    #     :region                   => 'us-west-2'
+    #   })
+    #
+    #   bucket_name = "rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}"
+    #   directory = connection.directories.get(bucket_name)
+    #   file = directory.files.create(
+    #     :key    => File.join(self.id.to_s, self.csv_file_name),
+    #     :body   => File.open(csv_file_path, "r").read,
+    #     :content_type => "text/csv",
+    #     :encryption => 'AES256', #Make sure its encrypted on their own hard drives
+    #     :public => true
+    #   )
+    # end
+    
+    
     describe "#upload_registrants_csv_file" do
-      it "nees to be tested!"
+      it "connects to S3 annd places a file" do
+        partner = FactoryGirl.create(:partner)
+        partner.csv_file_name = "name"
+        connection = double(Fog::Storage)
+        dirs = double("dirs")
+        dir = double("dir")
+        files = double("files")
+        expect(Fog::Storage).to receive(:new) { connection }
+        expect(connection).to receive(:directories) { dirs }
+        expect(dirs).to receive(:get).with("rocky-reports-test") { dir }
+        
+        file_io = double("file_io")
+        expect(file_io).to receive(:read) { "body" }
+        expect(File).to  receive(:open).with(partner.csv_file_path, "r") { file_io }
+        
+        expect(dir).to receive(:files) { files }
+        expect(files).to receive(:create).with({
+          key: File.join(partner.id.to_s, partner.csv_file_name),
+          body: "body",
+          content_type: "text/csv",
+          encryption: "AES256",
+          public: true
+        })
+        partner.upload_registrants_csv_file
+      end
     end
     
   end
@@ -842,11 +939,12 @@ describe Partner do
         assert_equal 0.4, stats[1][:registrations_percentage]
       end
 
-      it "only uses completed/step_5 registrations without finish-with-state for stats" do
+      it "uses completed/step_5 registrations with or without finish-with-state for stats" do
         partner = FactoryGirl.create(:partner)
         # Assume any relevant states are *allowed* to have online reg
         GeoState.stub(:states_with_online_registration).and_return(['PA','MA','FL','CA'])
         
+        # Florida
         3.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner)
           reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
@@ -855,10 +953,14 @@ describe Partner do
           reg = FactoryGirl.create(:step_4_registrant, :partner => partner)
           reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
         end
+        
+        # California
         2.times do
           reg = FactoryGirl.create(:step_5_registrant, :partner => partner)
           reg.update_attributes(:home_zip_code => "94101", :party => "Decline to State")
         end
+
+        # Florida
         2.times do 
           reg = FactoryGirl.create(:step_5_registrant, :partner=>partner, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
           reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
@@ -866,11 +968,11 @@ describe Partner do
         stats = partner.registration_stats_state
         assert_equal 2, stats.length
         assert_equal "Florida", stats[0][:state_name]
-        assert_equal 3, stats[0][:registrations_count]
-        assert_equal 0.6, stats[0][:registrations_percentage]
+        assert_equal 5, stats[0][:registrations_count]
+        assert_equal 5/7.0, stats[0][:registrations_percentage]
         assert_equal "California", stats[1][:state_name]
         assert_equal 2, stats[1][:registrations_count]
-        assert_equal 0.4, stats[1][:registrations_percentage]
+        assert_equal 2/7.0, stats[1][:registrations_percentage]
       end
 
       it "should only include data for this partner" do
@@ -996,7 +1098,7 @@ describe Partner do
         3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Mr.") }
         2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Ms.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1012,7 +1114,7 @@ describe Partner do
         3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Ms.") }
         1.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Sra.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 6, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1026,7 +1128,7 @@ describe Partner do
         3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Mr.") }
         2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Sra.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1041,7 +1143,7 @@ describe Partner do
         2.times { FactoryGirl.create(:step_4_registrant, :partner => partner, :name_title => "Mr.") }
         2.times { FactoryGirl.create(:step_5_registrant, :partner => partner, :name_title => "Sra.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1057,7 +1159,7 @@ describe Partner do
         3.times { FactoryGirl.create(:maximal_registrant, :partner => other_partner, :name_title => "Mr.") }
         2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :name_title => "Ms.") }
         stats = partner.registration_stats_gender
-        assert_equal 2, stats.length
+        assert_equal 3, stats.length
         assert_equal "Male", stats[0][:gender]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
@@ -1112,7 +1214,7 @@ describe Partner do
         assert_equal 6, stats[:total_count][:downloaded]
       end
 
-      it "only uses completed/step_5 registrations without finish_with_state for stats" do
+      it "only uses completed/step_5 registrations with or without finish_with_state for stats" do
         partner = FactoryGirl.create(:partner)
         GeoState.stub(:states_with_online_registration).and_return(['PA','MA'])
         
@@ -1121,7 +1223,7 @@ describe Partner do
         8.times { FactoryGirl.create(:step_4_registrant,  :partner => partner, :created_at => 2.hours.ago) }
         8.times { FactoryGirl.create(:step_5_registrant,  :partner => partner, :created_at => 2.hours.ago) }
         stats = partner.registration_stats_completion_date
-        assert_equal  16, stats[:day_count][:completed]
+        assert_equal  18, stats[:day_count][:completed]
       end
 
       it "should show percent complete" do
@@ -1471,6 +1573,14 @@ describe Partner do
       end
     end
   end
+  
+  describe "custom_data" do
+    it "includes canvassing timeout length" do
+      p = Partner.new
+      expect(p.custom_data["canvassing_session_timeout_length"]).to eq(RockyConf.ovr_states.PA.api_settings.canvassing_session_timeout_minutes)
+    end
+  end
+  
 
 end
 

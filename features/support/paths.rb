@@ -31,7 +31,6 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-    
     when /the homepage/i
       root_path
     when /the translations page/i
@@ -42,8 +41,12 @@ module NavigationHelpers
       preview_pdf_translation_path($1, :format=>:pdf)
     when /the state configurations page/i
       state_configurations_path
-    when /a new registration with a short form/
-      new_registrant_path(:short_form=>1)
+    when /a new registration page with a long form/
+      a = new_registrant_path(:short_form=>false)
+    when /a new registration page with a short form/
+      new_registrant_path(:short_form=>true)
+    when /a new registration page for that partner with a long form/
+      new_registrant_path(:partner=>Partner.last.id, short_form: false)
     when /a new registration page for that partner/
       new_registrant_path(:partner=>Partner.last.id)
     when /a new registration page for partner="(\d)", source="(.+)" and tracking="(.+)"/
@@ -54,8 +57,12 @@ module NavigationHelpers
       new_registrant_path(:collectemailaddress=>$1)
     when /a new registration page/, /a new step 1 page/
       new_registrant_path
+    when /new Spanish registration page with a long form/
+      a= new_registrant_path(:locale => 'es', short_form: false)
     when /new Spanish registration page/
       new_registrant_path(:locale => 'es')
+    when /new Korean registration page with a long form/
+      new_registrant_path(:locale => 'ko', short_form: false)
     when /new Korean registration page/
       new_registrant_path(:locale => 'ko')
     when /the step 1 page/
@@ -80,6 +87,8 @@ module NavigationHelpers
       admin_partners_path
     when /the admin government partners page/
       admin_government_partners_path
+    when /the registration page for that partner with a long form/
+      "#{new_registrant_path}?partner=#{@partner.id}&short_form=false"
     when /the registration page for that partner/
       "#{new_registrant_path}?partner=#{@partner.id}"
     when /the partner page for that partner/

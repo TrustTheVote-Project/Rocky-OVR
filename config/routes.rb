@@ -133,6 +133,8 @@ Rocky::Application.routes.draw do
       match 'gregistrations',      :format => 'json', :controller => 'registrations', :action => 'index_gpartner', :via => :get
       match 'gregistrations',      :format => 'json', :controller => 'registrations', :action => 'create_finish_with_state', :via => :post
       match 'voterregistrationrequest', format: 'json', controller: 'registrations', action: 'create_pa', via: :post
+      match 'clockIn', format: 'json', controller: 'registrations', action: 'clock_in', via: :post
+      match 'clockOut', format: 'json', controller: 'registrations', action: 'clock_out', via: :post
       match 'partnerIdValidation', format: 'json', controller: 'partners', action: 'partner_id_validation', via: :get
     end
   end

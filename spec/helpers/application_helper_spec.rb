@@ -60,12 +60,12 @@ describe ApplicationHelper do
 
   describe "partner_css" do
     it "should return default stylesheets" do
-      helper.partner_css(nil).should == [ 'application', 'registration' ]
+      helper.partner_css(nil).should == [ 'application', 'registration2' ]
     end
 
     it "should return default stylesheets for non-whitelabled partner" do
       partner = FactoryGirl.build(:partner, :whitelabeled => false)
-      helper.partner_css(partner).should == [ 'application', 'registration' ]
+      helper.partner_css(partner).should == [ 'application', 'registration2' ]
     end
     
     it "should return default registration2 stylesheet for non-whitelabeled partner registrants with short form" do
@@ -76,25 +76,51 @@ describe ApplicationHelper do
 
     it "should return custom application css" do
       partner = FactoryGirl.build(:partner, :whitelabeled => true)
+      registrant = double(Registrant, use_short_form?: false, is_fake: false)
       partner.stub(:application_css_present?) { true }
       partner.stub(:application_css_url) { 'app.css' }
-      helper.partner_css(partner).should == [ 'app.css', 'registration' ]
+      helper.partner_css(partner, registrant).should == [ 'app.css', 'registration' ]
     end
 
-    it "should return custom registration css" do
+    it "should return custom registration css if replacing system css" do
       partner = FactoryGirl.build(:partner, :whitelabeled => true)
+      registrant = double(Registrant, use_short_form?: false, is_fake: false)
       partner.stub(:registration_css_present?) { true }
       partner.stub(:registration_css_url) { 'reg.css' }
-      helper.partner_css(partner).should == [ 'application', 'reg.css' ]
+      helper.partner_css(partner, registrant).should == [ 'application', 'reg.css' ]
     end
     
-    it "should return custom partner css" do
+    it "should return custom app and partner css if replacing system css" do
       partner = FactoryGirl.build(:partner, :whitelabeled => true)
+      registrant = double(Registrant, use_short_form?: false, is_fake: false)
       partner.stub(:application_css_present?) { true }
       partner.stub(:partner_css_present?) { true }
       partner.stub(:application_css_url) { 'app.css' }
       partner.stub(:partner_css_url) { 'partner.css' }
-      helper.partner_css(partner).should == ['app.css', 'registration', 'partner.css']
+      helper.partner_css(partner, registrant).should == ['app.css', 'registration', 'partner.css']
+    end
+    it "should return custom partner css, but not others if using short form" do
+      partner = FactoryGirl.build(:partner, :whitelabeled => true)
+      registrant = double(Registrant, use_short_form?: true, is_fake: false)
+      partner.stub(:registration_css_present?) { true }
+      partner.stub(:application_css_present?) { true }
+      partner.stub(:partner2_css_present?) { true }
+      partner.stub(:application_css_url) { 'app.css' }
+      partner.stub(:registration_css_url) { 'reg.css' }
+      partner.stub(:partner2_css_url) { 'partner-custom.css' }
+      helper.partner_css(partner, registrant).should == ['application', 'registration2', 'partner-custom.css']
+    end
+    it "should return only partner css, but not others if replacing system css" do
+      partner = FactoryGirl.build(:partner, :whitelabeled => true)
+      registrant = double(Registrant, use_short_form?: false, is_fake: false)
+      partner.stub(:replace_system_css?) { true }
+      partner.stub(:registration_css_present?) { true }
+      partner.stub(:application_css_present?) { true }
+      partner.stub(:partner_css_present?) { true }
+      partner.stub(:application_css_url) { 'app.css' }
+      partner.stub(:registration_css_url) { 'reg.css' }
+      partner.stub(:partner_css_url) { 'partner-custom.css' }
+      helper.partner_css(partner, registrant).should == ['partner-custom.css']
     end
   end
 

@@ -522,7 +522,8 @@ class VRToPA
           "asian / pacific islander" => "A",
           "black (not hispanic)" => "B",
           "hispanic" => "H",
-          "white (not hispanic)" => "W"
+          "white (not hispanic)" => "W",
+          "other" => "O"
       }
 
   def parse_race(race)
