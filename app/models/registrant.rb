@@ -253,7 +253,7 @@ class Registrant < ActiveRecord::Base
   before_create :generate_uid
   before_create :set_dl_defaults
 
-  before_save :set_questions, :set_finish_with_state
+  before_save :set_questions, :set_finish_with_state, :set_will_be_18
 
   attr_accessor :telling_friends, :new_locale, :input_locale
 
@@ -1578,6 +1578,11 @@ class Registrant < ActiveRecord::Base
       self.original_survey_question_2 = partner_survey_question_2
     end
     true
+  end
+  
+  def set_will_be_18
+    self.will_be_18_by_election = true unless self.require_age_confirmation?
+    return true
   end
   
   def set_finish_with_state
