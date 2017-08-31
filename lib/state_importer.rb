@@ -46,7 +46,6 @@ class StateImporter
     end
     
     def self.api_uri
-      #"/api/v2"
       "/v1/eod"
     end
     
