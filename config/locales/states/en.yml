@@ -804,7 +804,7 @@ en:
         a mail ballot, but you can still register to vote in person through Election
         Day. If you register after the 8th day, you must visit one of the Voter Service
         and Polling Centers to get a ballot.
-      connecticut: ! 'postmarked 14 days before the election or received in person
+      connecticut: ! 'postmarked 7 days before the election or received in person
         7
 
         days before the election'
