@@ -28,6 +28,7 @@ es:
       in_language_name: En español
       powered_by: ! 'accionado por:'
       progress_indicator: Paso
+      intro_message: El registro de votantes toma un promedio de dos minutos o menos para completar.
       step_1_header: Nuevo Registro
       step_2_header: Información Personal
       step_3_header: Información adicional para registro
