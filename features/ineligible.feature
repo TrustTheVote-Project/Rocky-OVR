@@ -14,19 +14,20 @@ Feature: Ineligible
       When I follow "Return"
        And I live in California
        And I press "registrant_submit"
-      Then I should see "Personal Information"
+      Then I should see "Name"
+       And I should see "Address"
 
     @passing
     Scenario: not citizen
-     Given I go to a new registration page
-       And I enter valid data for step 1
-       But I uncheck "I am a U.S. citizen"
+      Given I have completed step 1
+      When I go to the step 2 page
+      And I enter valid data for step 2
+      And I uncheck "I am a U.S. citizen"
       When I press "registrant_submit"
-       Then I should see "must be a U.S. citizen"
-      When I follow "Return"
-       And I check "I am a U.S. citizen"
-       And I press "registrant_submit"
-      Then I should see "Personal Information"
+      Then I should see "You must be a US citizen"
+      When I check "I am a U.S. citizen"
+      And I press "registrant_submit"
+      Then I should not see "You must be a US citizen"
 
     @passing
     Scenario: multiple reasons on same page
@@ -38,9 +39,10 @@ Feature: Ineligible
       When I follow "Return"
        And I live in California
        And I press "registrant_submit"
-      Then I should see "Personal Information"
+      Then I should see "Name"
+      And I should see "Address"
 
-    @passing
+    @wip
     Scenario: under 18 but old enough
      Given I go to a new registration page
        And I enter valid data for step 1
@@ -50,7 +52,7 @@ Feature: Ineligible
       When I press "Keep Going"
       Then I should see "Personal Information"
 
-    @passing
+    @wip
     Scenario: under 18 and wants reminder
      Given I go to a new registration page
        And I enter valid data for step 1

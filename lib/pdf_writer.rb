@@ -224,6 +224,7 @@ class PdfWriter
     if uploaded
       File.delete(path)
     else
+      raise "File #{path} not uploaded to S3"
       # Handle failed upload to S3 - it's probably raising an error
     end
   end   
@@ -243,7 +244,9 @@ class PdfWriter
       :content_type => "application/pdf",
       :encryption => 'AES256', #Make sure its encrypted on their own hard drives
       :public => true
-    )    
+    ) 
+  rescue
+    return false   
   end
   
   private 

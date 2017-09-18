@@ -42,13 +42,17 @@ class PARegistrationRequest
     PREFIX + body + POSTFIX
   end
 
-  # sample response = "\"<RESPONSE><APPLICATIONID>27042</APPLICATIONID><APPLICATIONDATE>Aug 12 2016  8:37AM</APPLICATIONDATE><ERROR></ERROR></RESPONSE>\""
+  # sample response = "\"<RESPONSE><APPLICATIONID>27042</APPLICATIONID><APPLICATIONDATE>Aug 12 2016  8:37AM</APPLICATIONDATE><SIGNATURE>Submitted with Uploaded Signature</SIGNATURE><ERROR></ERROR></RESPONSE>\""
 
   def self.parse_response(response)
-    r = response.scan %r(<RESPONSE><APPLICATIONID>(.*)</APPLICATIONID><APPLICATIONDATE>(.*)</APPLICATIONDATE><ERROR>(.*)</ERROR></RESPONSE>)
-    raise "Invalid response: #{response}" unless r && r.length == 1 && r[0].length == 3
-
-    r[0][0] = 0 if r[0][0].empty?
-    { id: r[0][0], date: r[0][1], error: r[0][2]}
+    r = response.scan %r(<RESPONSE><APPLICATIONID>(.*)</APPLICATIONID><APPLICATIONDATE>(.*)</APPLICATIONDATE><SIGNATURE>(.*)</SIGNATURE><ERROR>(.*)</ERROR></RESPONSE>)
+    raise "Invalid response: #{response}" unless r && r.length == 1 && r[0].length == 4
+    application_id = r[0][0]
+    application_id = 0 if application_id.empty?
+    application_date = r[0][1]
+    signature = r[0][2]
+    error = r[0][3]
+    
+    { id: application_id, date: application_date, signature: signature, error: error}
   end
 end

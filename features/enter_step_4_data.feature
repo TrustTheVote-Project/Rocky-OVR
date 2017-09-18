@@ -65,12 +65,13 @@ Feature: Step 4
         | organization   | rtv_sms_opt_in | partner_sms_opt_in  |
         | Opt-in Partner | true           | false               |        
       And I have completed step 3 from that partner
+      And my phone number is "123-456-7890"
       When I go to the step 4 page
       Then I should see a checkbox for "Send me txt messages from Rock the Vote"
       And I should not see a checkbox for "Send me txt messages from Opt-in Partner"
       When I check "Send me txt messages from Rock the Vote"
       And I press "registrant_submit"
-      Then I should not see "Stay Informed and Take Action"
+      Then I should not see "Send me txt messages from Rock the Vote"
       And I should not see "Required if receiving TXT"
 
     @passing
@@ -95,7 +96,6 @@ Feature: Step 4
       And the setting for allowing ask-for-volunteer is true        
       When I go to the step 4 page
       Then I should not see a checkbox for "Receive emails from Rock the Vote"
-      And I should see a checkbox for "I would like to volunteer with Rock the Vote"
       And I press "registrant_submit"
       Then I should not be signed up for "opt_in_email" 
 

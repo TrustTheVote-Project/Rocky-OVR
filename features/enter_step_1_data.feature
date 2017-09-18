@@ -58,8 +58,8 @@ Feature: Step 1
          
     
     @passing
-    Scenario: completing step 1
-      When I go to a new registration page
+    Scenario: completing step 1 in long form
+      When I go to a new registration page with a long form
        And I have not set a locale
        And I fill in "Email Address" with "john.public@example.com"
        And I fill in "ZIP Code" with "94113"
@@ -70,8 +70,21 @@ Feature: Step 1
        And I press "registrant_submit"
       Then I should see "Personal Information"
 
-    Scenario: completing step 1 in Spanish
-      When I go to a new Spanish registration page
+    @passing
+    Scenario: completing step 1
+      When I go to a new registration page
+       And I have not set a locale
+       And I fill in "Email Address" with "john.public@example.com"
+       And I fill in "ZIP Code" with "94113"
+       And I press "registrant_submit"
+      Then I should see "Register in California"
+      And I should see "Name"
+      And I should see "Home Address"
+
+
+    @passing
+    Scenario: completing step 1 in Spanish with a long form
+      When I go to a new Spanish registration page with a long form
        And I have not set a locale
        And I fill in "registrant_email_address" with "john.public@example.com"
        And I fill in "registrant_home_zip_code" with "94113"
@@ -80,10 +93,21 @@ Feature: Step 1
        And I press "registrant_submit"
       Then I should not see "^Personal Information"
        And I should see "Información Personal"
+
+    @passing
+    Scenario: completing step 1 in Spanish
+      When I go to a new Spanish registration page
+      And I have not set a locale
+      And I fill in "registrant_email_address" with "john.public@example.com"
+      And I fill in "registrant_home_zip_code" with "94113"
+      And I press "registrant_submit"
+      Then I should see "Nombre"
+      And I should see "Dirección casa"
+      
     
     @passing
     Scenario: completing step 1 in Korean
-      When I go to a new Korean registration page
+      When I go to a new Korean registration page with a long form
        And I have not set a locale
        And I fill in "registrant_email_address" with "john.public@example.com"
        And I fill in "registrant_home_zip_code" with "94113"
@@ -92,8 +116,19 @@ Feature: Step 1
        And I press "registrant_submit"
       Then I should not see "^Personal Information"
        And I should see " 개인 정보"
+       
+    @passing
+    Scenario: completing step 1 in Korean
+      When I go to a new Korean registration page
+      And I have not set a locale
+      And I fill in "registrant_email_address" with "john.public@example.com"
+      And I fill in "registrant_home_zip_code" with "94113"
+      And I press "registrant_submit"
+      Then I should not see "^Personal Information"
+      And I should see "이름"
+      And I should see "집 주소"
     
-
+    @passing
     Scenario: modifying step 1 data
       Given I have completed step 4
       When I go to the step 1 page
@@ -111,18 +146,18 @@ Feature: Step 1
         
     @passing
     Scenario: User arrives for a short form
-      When I go to a new registration with a short form
+      When I go to a new registration page with a short form
       Then I should see a field for "Email Address"
       And I should see a field for "ZIP Code"
-      And I should see a field for "I am a U.S. citizen."
-      And I should see a field for "I will be 18 by the next election day."
-      And I should see a field for "I am registering to vote for the first time."
+      And I should not see a field for "I am a U.S. citizen."
+      And I should not see a field for "I will be 18 by the next election day."
+      And I should not see a field for "I am registering to vote for the first time."
       And I should not see a field for "Date of Birth"
       And I should not see a field for "I have a driver's license or state ID card."
     
     @passing
     Scenario: Step1 creation default for primary partner
-      When I go to a new registration page
+      When I go to a new registration page with a long form
       And I fill in "Email Address" with "john.public@example.com"
       And I fill in "ZIP Code" with "94113"
       And I am 20 years old
@@ -135,6 +170,54 @@ Feature: Step 1
       And my value for "partner_opt_in_sms" should be "false"
       And my value for "partner_volunteer" should be "false"
 
+    @passing
+    Scenario: Step1 creation default for primary partner
+      When I go to a new registration page with a short form
+      And I fill in "Email Address" with "john.public@example.com"
+      And I fill in "ZIP Code" with "94113"
+      And I press "registrant_submit"
+      Then my value for "opt_in_email" should be "true"
+      And my value for "opt_in_sms" should be "true"
+      And my value for "volunteer" should be "false"
+      And my value for "partner_opt_in_email" should be "false"
+      And my value for "partner_opt_in_sms" should be "false"
+      And my value for "partner_volunteer" should be "false"
+
+    @passing
+    Scenario Outline: Step1 creation opt-in defaults for partners   
+       Given the following partner exists:
+         | organization   | rtv_email_opt_in | rtv_sms_opt_in | ask_for_volunteers | partner_email_opt_in | partner_sms_opt_in | partner_ask_for_volunteers   |  
+         | Opt-in Partner | <rtv_email>      | <rtv_sms>      | <rtv_volunteer>    | <partner_email>      | <partner_sms>      | <partner_ask_for_volunteers> |        
+      When I go to a new registration page for that partner with a long form
+      And I fill in "Email Address" with "john.public@example.com"
+      And I fill in "ZIP Code" with "94113"
+      And I am 20 years old
+      And I check "I am a U.S. citizen"
+      And I press "registrant_submit"
+      Then my value for "opt_in_email" should be "<rtv_email>"
+      And my value for "opt_in_sms" should be "<rtv_sms>"
+      And my value for "volunteer" should be "false"
+      And my value for "partner_opt_in_email" should be "<partner_email>"
+      And my value for "partner_opt_in_sms" should be "<partner_sms>"
+      And my value for "partner_volunteer" should be "false"
+
+      Examples:
+        | rtv_email | rtv_sms | rtv_volunteer | partner_email | partner_sms | partner_ask_for_volunteers |
+        | true      | true    | true          | true          | true        | true                       |
+        | true      | false   | false         | false         | true        | false                      |
+        | false     | true    | true          | true          | false       | true                       |
+        | false     | false   | false         | false         | false       | false                      |
+        | false     | false   | false         | false         | false       | false                      |
+        | true      | false   | false         | false         | false       | false                      |
+        | false     | true    | false         | false         | false       | false                      |
+        | false     | false   | true          | false         | false       | false                      |
+        | false     | false   | false         | true          | false       | false                      |
+        | false     | false   | false         | false         | true        | false                      |
+        | false     | false   | false         | false         | false       | true                       |
+        
+        
+    
+    @passing
     Scenario Outline: Step1 creation opt-in defaults for partners   
        Given the following partner exists:
          | organization   | rtv_email_opt_in | rtv_sms_opt_in | ask_for_volunteers | partner_email_opt_in | partner_sms_opt_in | partner_ask_for_volunteers   |  
@@ -142,8 +225,6 @@ Feature: Step 1
       When I go to a new registration page for that partner
       And I fill in "Email Address" with "john.public@example.com"
       And I fill in "ZIP Code" with "94113"
-      And I am 20 years old
-      And I check "I am a U.S. citizen"
       And I press "registrant_submit"
       Then my value for "opt_in_email" should be "<rtv_email>"
       And my value for "opt_in_sms" should be "<rtv_sms>"
