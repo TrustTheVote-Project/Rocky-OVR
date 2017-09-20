@@ -136,6 +136,26 @@ describe Registrant do
     end
   end
   
+  describe "#set_will_be_18" do
+    it "sets will_be_18_by_election to true if the state doesn't require age confirmation" do
+      r = Registrant.new
+      expect(r.will_be_18_by_election).to be_falsey
+      allow(r).to receive(:require_age_confirmation?).and_return(false)
+      r.send(:set_will_be_18)
+      expect(r.will_be_18_by_election).to be_truthy
+    end
+    it "does not change will_be_18 if the state does require age confirmation" do
+      r = Registrant.new
+      expect(r.will_be_18_by_election).to be_falsey
+      allow(r).to receive(:require_age_confirmation?).and_return(true)
+      r.send(:set_will_be_18)
+      expect(r.will_be_18_by_election).to be_falsey
+      r.will_be_18_by_election = true
+      r.send(:set_will_be_18)
+      expect(r.will_be_18_by_election).to be_truthy
+    end
+  end
+  
   describe "#email_address_to_send_from" do
     before(:each) do
       @p = Partner.new
