@@ -13,7 +13,7 @@
       #container { display:table; height:100% }
     </style>
   <![endif]-->
-  <%= javascript_include_tag 'application', 'registration' %>
+  <%= javascript_include_tag 'application', 'registration', async: true %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() { hideErrors(); setTimeout('revealErrors();', 400); });
   </script>
