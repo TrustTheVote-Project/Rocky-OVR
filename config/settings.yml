@@ -222,6 +222,8 @@ ovr_states:
       - en
   TN:
     redirect_to_online_reg_url: true
+    require_age_confirmation: true
+    require_id: false
     languages:
       - en
   UT:
