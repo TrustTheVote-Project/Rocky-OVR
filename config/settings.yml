@@ -220,6 +220,10 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
+  TN:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
   UT:
     redirect_to_online_reg_url: true
     languages:
