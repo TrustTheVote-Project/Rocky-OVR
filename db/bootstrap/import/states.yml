@@ -611,6 +611,7 @@ record_42:
   sos_url: http://sos.tn.gov/elections
   registration_deadline: postmarked_30_days
   id_length_min: '4'
+  online_registration_url: https://ovr.govote.tn.gov/
 record_43:
   abbreviation: TX
   name: Texas
