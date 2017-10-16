@@ -907,7 +907,9 @@ class Registrant < ActiveRecord::Base
     localization ? localization.allows_ovr_ignoring_license?(self) : false
   end
   
-  
+  def use_state_flow?
+    home_state && home_state.use_state_flow?(self)
+  end
 
   def custom_step_4_partial
     is_fake? ? "fake_state_online_page" : "#{home_state.abbreviation.downcase}"

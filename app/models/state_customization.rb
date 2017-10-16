@@ -40,6 +40,10 @@ class StateCustomization
     return false
   end
   
+  def use_state_flow?(registrant)
+    false
+  end
+  
   def online_reg_enabled?(locale, registrant = nil)
     GeoState.states_with_online_registration.include?(state.abbreviation) && self.enabled_for_language?(locale, registrant)
   end

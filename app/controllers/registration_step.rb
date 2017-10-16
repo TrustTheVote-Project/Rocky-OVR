@@ -27,7 +27,7 @@ class RegistrationStep < ApplicationController
   include ApplicationHelper
 
   layout "registration"
-  before_filter :find_partner
+  before_filter :find_partner, :detect_state_flow
 
   rescue_from Registrant::AbandonedRecord do |exception|
     reg = exception.registrant
@@ -126,6 +126,13 @@ class RegistrationStep < ApplicationController
     @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
     @partner_id = @partner.id
     set_params
+  end
+  
+  def detect_state_flow
+    if @registrant.use_state_flow?
+      # PASS registrant over to state flow, creating a new state-specific registrant
+    end
+      
   end
   
   def set_params
