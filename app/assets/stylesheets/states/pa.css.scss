@@ -1,0 +1,37 @@
+
+#progress-bar {
+  position: absolute;
+  top: 71px;
+  left: 5px;
+}
+
+
+#progress-bar li {
+  float: left;
+  width: 27px;
+  height: 22px;
+  margin: 0 2px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 28px;
+  background-repeat: no-repeat;
+}
+
+#progress-bar li.progress-title {
+  padding-right: 5px;
+  font-size: 8px;
+}
+
+
+#progress-bar li.progress-done {
+  background-image: image-url('buttons/progress_done.gif');
+}
+
+#progress-bar li.progress-current {
+  background-image: image-url('buttons/progress_current.gif');
+}
+
+#progress-bar li.progress-todo {
+  background-image: image-url('buttons/progress_todo.gif');
+}

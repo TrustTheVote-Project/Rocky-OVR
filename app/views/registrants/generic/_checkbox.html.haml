@@ -1,0 +1,12 @@
+- tooltip ||= nil
+%ul.checkbox.checkbox-step-1
+  %li.spacer= "&nbsp;".html_safe
+  %li{:class=>class_name}
+    %h3
+      = form.check_box field 
+      = form.label field
+      - if required
+        %span.required *
+      - if tooltip
+        = tooltip_tag(:previous_name)
+      %span.error= form.object.errors[field].join("\n")

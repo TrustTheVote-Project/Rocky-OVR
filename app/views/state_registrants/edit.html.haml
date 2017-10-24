@@ -1,0 +1,35 @@
+%h1= t("txt.registration.#{@registrant.status}_header")
+= form_for(@registrant, url: state_registrant_path(@registrant)) do |form|
+  #other_language_link
+    = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {}, onchange: "$(this.form).find('input[name=skip_advance]').val(true); $(this.form).submit()", value: @registrant.locale
+    = form.hidden_field :locale, :value=>@registrant.locale      
+    = hidden_field_tag 'skip_advance', false
+  
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__will-be-18-by-election__line", required: true}
+  
+  %ul.flat
+    = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'width_f registrant-form__date-of-birth__line'} })
+    
+  = render partial: 'step2/name', locals: {form: form}
+  
+  - content_for :head do
+    :javascript
+      $(document).ready(function() {
+        checkboxTogglesSet($('#state_registrants_pa_registrant_change_of_name'), $('#prev_name_set'), $('#prev_name_rule'));
+        $('#javascript_disabled').remove();
+      });
+
+  %fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_name, class_name: "registrant-form__change-of-name__line", required: false, tooltip: :previous_name}
+
+  %fieldset#prev_name_set
+    = hidden_field_tag "javascript_disabled", "1"
+    %legend
+      %span= I18n.t('txt.registration.previous_name')
+    %ul.stacked
+      = field_li(form, :previous_first_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'width_b registrant-form__prev-first-name__line'} , skip_tooltip: true })
+      = field_li(form, :previous_last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'width_b registrant-form__prev-first-name__line'} , skip_tooltip: true })
+      = field_li(form, :previous_suffix, {required: false, label_options: nil, field_options: {include_blank: t('txt.registration.select_none')}, li_options: {class: 'width_b registrant-form__prev-first-name__line'}, select_options: @registrant.suffixes , skip_tooltip: true })
+
+  

@@ -7,6 +7,9 @@ Rocky::Application.routes.draw do
   match "/registrants/map", to: "registrants#new"
   match "/registrants/map/:state_abbrev", to: "registrants#new"
   match "/share", to: "registrants#share"
+  resources "state_registrants", :only => [:new, :create, :show, :update] do
+    
+  end
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
     resource "step_2", :controller => "step2", :only => [:show, :update]

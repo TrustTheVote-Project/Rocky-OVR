@@ -38,7 +38,12 @@ module ApplicationHelper
     stylesheets = []
     if !partner.replace_system_css?(:preview)
       stylesheets << 'application'
-      stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : 'registration2')
+      if registrant.use_state_flow?
+        stylesheets << 'registration2'
+        stylesheets << registrant.home_state_abbr.downcase
+      else
+        stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : 'registration2')
+      end
     end
     stylesheets += registrant_css
     stylesheets << ((registrant && !registrant.use_short_form?) ? partner.partner_css_url(:preview) : partner.partner2_css_url(:preview))
@@ -52,7 +57,11 @@ module ApplicationHelper
     wl = partner && partner.whitelabeled?
     stylesheets = []
     if !partner || !partner.replace_system_css?
-      if partner && registrant && !registrant.use_short_form?
+      if registrant && registrant.use_state_flow?
+        stylesheets << "application"
+        stylesheets << 'registration2'
+        stylesheets << registrant.home_state_abbrev.downcase
+      elsif partner && registrant && !registrant.use_short_form?
         stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
         stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
       else
@@ -97,9 +106,9 @@ module ApplicationHelper
     unit =~ /^\d+$/ ? "##{unit}" : unit
   end
 
-  def progress_indicator
-    (1..5).map do |step_index|
-      progress = case step_index <=> controller.current_step
+  def progress_indicator(num_steps)
+    (1..((num_steps || 5).to_i)).map do |step_index|
+      progress = case step_index <=> (controller.current_step || 1).to_i
       when -1 then "progress-done"
       when 0 then "progress-current"
       else "progress-todo"
@@ -108,10 +117,25 @@ module ApplicationHelper
     end.join
   end
 
-  def tooltip_tag(tooltip_id, content = t("txt.registration.tooltips.#{tooltip_id}"))
+  def tooltip_tag(tooltip_id, content = nil)
+    content ||= t("txt.registration.tooltips.#{tooltip_id}")
     image_tag 'buttons/help_icon.png', :mouseover => 'buttons/help_icon_over.png', :alt => t('txt.button.help'),
       :class => 'tooltip', :id => "tooltip-#{tooltip_id}",
       :title => content
+  end
+  
+  def field_li(form, field, options={})
+    required = options[:required] ? "<span class='required'>*</span>" : ''
+    label = content_tag(:h3, (form.send(:label, field, options[:label_options]) + required.html_safe).html_safe)
+    tooltip = content_tag(:div, tooltip_tag(field, options[:tooltip_content]).html_safe, class: 'tooltip') unless options[:skip_tooltip]
+    error = "<span class='error'>#{form.object.errors[field].join("\n")}</span>"
+    field_html = nil
+    if options[:select_options]
+      field_html = select_div(form, field, options[:select_options], options[:field_options])
+    else
+      field_html = field_div(form, field, options[:field_options])
+    end
+    content_tag(:li, "#{label}#{field_html.html_safe}#{tooltip}#{error}".html_safe, options[:li_options])
   end
 
   def field_div(form, field, options={})

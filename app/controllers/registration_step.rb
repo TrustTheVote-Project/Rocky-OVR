@@ -27,7 +27,7 @@ class RegistrationStep < ApplicationController
   include ApplicationHelper
 
   layout "registration"
-  before_filter :find_partner, :detect_state_flow
+  before_filter :find_partner
 
   rescue_from Registrant::AbandonedRecord do |exception|
     reg = exception.registrant
@@ -108,6 +108,7 @@ class RegistrationStep < ApplicationController
 
   def find_registrant(special_case = nil, p = params)
     @registrant = Registrant.find_by_param!(p[:registrant_id] || p[:id])
+    detect_state_flow
     if (@registrant.complete? || @registrant.under_18?) && special_case.nil?
       raise ActiveRecord::RecordNotFound
     end
@@ -120,6 +121,7 @@ class RegistrationStep < ApplicationController
     if @registrant.finish_with_state? && special_case != :tell_friend && special_case != :finish
       @registrant.update_attributes(:finish_with_state=>false)
     end
+    
   end
 
   def find_partner
@@ -129,8 +131,9 @@ class RegistrationStep < ApplicationController
   end
   
   def detect_state_flow
-    if @registrant.use_state_flow?
+    if @registrant && @registrant.use_state_flow?
       # PASS registrant over to state flow, creating a new state-specific registrant
+      redirect_to new_state_registrant_path(registrant_id: @registrant.to_param)
     end
       
   end

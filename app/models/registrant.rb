@@ -910,6 +910,19 @@ class Registrant < ActiveRecord::Base
   def use_state_flow?
     home_state && home_state.use_state_flow?(self)
   end
+  
+  def state_registrant
+    if use_state_flow?
+      state_registrant_type = "StateRegistrants::#{home_state_abbrev}Registrant"
+      begin
+        return state_registrant_type.constantize.from_registrant(self)
+      rescue
+        nil
+      end
+    else
+      nil
+    end
+  end
 
   def custom_step_4_partial
     is_fake? ? "fake_state_online_page" : "#{home_state.abbreviation.downcase}"
