@@ -1,7 +1,7 @@
 - tooltip ||= nil
 %ul.checkbox.checkbox-step-1
   %li.spacer= "&nbsp;".html_safe
-  %li{:class=>class_name}
+  %li{:class=>"#{class_name} #{required ? 'registrant-form__required-checkbox' : ''}"}
     %h3
       = form.check_box field 
       = form.label field

@@ -72,7 +72,7 @@ class AdminMailer < ActionMailer::Base
   def pa_registration_error(registrant, error_list)
     
     mail(
-      subject: "[ROCKY PA INTEGRATION] Error submitting registration #{registrant.id} to PA",
+      subject: "[ROCKY PA INTEGRATION] Error submitting registration #{registrant.class} #{registrant.id} to PA",
       body: "PA system returned the error:\n\n #{error_list.join("\n")}"
     )
   end

@@ -133,7 +133,7 @@ class RegistrationStep < ApplicationController
   def detect_state_flow
     if @registrant && @registrant.use_state_flow?
       # PASS registrant over to state flow, creating a new state-specific registrant
-      redirect_to new_state_registrant_path(registrant_id: @registrant.to_param)
+      redirect_to edit_state_registrant_path(@registrant.to_param)
     end
       
   end

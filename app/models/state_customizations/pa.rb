@@ -30,6 +30,8 @@ class PA < StateCustomization
     TH: "TOWNHOUSE"
   }
   
+  
+  
   def decorate_registrant(registrant=nil, controller=nil)
     unless registrant.respond_to?(:home_county_required)
       registrant.class.class_eval do

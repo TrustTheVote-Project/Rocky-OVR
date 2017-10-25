@@ -431,7 +431,8 @@ body {
         }
         
         &.registrant-form__us-citizen__line,
-        &.registrant-form__will-be-18-by-election__line {
+        &.registrant-form__will-be-18-by-election__line,
+        &.registrant-form__required-checkbox {
           margin: 15px auto;
           padding: 10px 15px;
           border: 1px solid $light-grey;

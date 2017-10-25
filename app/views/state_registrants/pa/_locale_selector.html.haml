@@ -1,0 +1,4 @@
+#other_language_link
+  = form.select :locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {}, onchange: "this.form.action = '';$(this.form).submit()", value: @registrant.locale
+  -#= form.hidden_field :locale, :value=>@registrant.locale      
+  = hidden_field_tag 'skip_advance', false

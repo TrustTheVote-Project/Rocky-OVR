@@ -40,7 +40,7 @@ module ApplicationHelper
       stylesheets << 'application'
       if registrant.use_state_flow?
         stylesheets << 'registration2'
-        stylesheets << registrant.home_state_abbr.downcase
+        stylesheets << "states/#{registrant.home_state_abbrev.downcase}"        
       else
         stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : 'registration2')
       end
@@ -60,7 +60,7 @@ module ApplicationHelper
       if registrant && registrant.use_state_flow?
         stylesheets << "application"
         stylesheets << 'registration2'
-        stylesheets << registrant.home_state_abbrev.downcase
+        stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
       elsif partner && registrant && !registrant.use_short_form?
         stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
         stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
@@ -139,6 +139,7 @@ module ApplicationHelper
   end
 
   def field_div(form, field, options={})
+    options ||= {}
     kind = options.delete(:kind) || "text"
     selector = "#{kind}_field"
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
@@ -147,6 +148,7 @@ module ApplicationHelper
   end
 
   def select_div(form, field, contents, options={})
+    options ||= {}
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
     content_tag(:div, form.select(field, contents, options), :class => has_error)
   end

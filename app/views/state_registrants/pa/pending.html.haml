@@ -1,0 +1,10 @@
+- content_for :head do 
+  %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}
+
+
+#preparing_content
+  .download{style: "position:relative"}
+    %p.preparing
+      = image_tag "reg/spinner.gif"
+    %p  
+      = I18n.t('states.custom.pa.submitting')
