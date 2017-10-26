@@ -37,24 +37,32 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   validates_with PARegistrantValidator
   
 
-  delegate :titles, :suffixes, :races, :state_parties, to: :registrant
+  delegate :use_state_flow?, to: :registrant
+  delegate :titles, :suffixes, :races, :state_parties, :partner, :partner_id, to: :registrant
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
     
     
   before_create :set_default_opt_ins
+  before_validation :update_original_registrant
     
   def self.from_registrant(reg)
     sr = self.find_by_registrant_id(reg.uid) || self.new
     sr.registrant_id = reg.uid
-    sr.email = reg.email_address
-    sr.registration_zip_code = reg.home_zip_code
-    sr.locale = reg.locale
-    sr.status = :step_2
-    sr.save!
+    sr.status ||= :step_2
+    sr.set_from_original_registrant
     sr
   end
   def registrant
     Registrant.find_by_uid(self.registrant_id)
+  end
+  
+  def complete?
+    status = step_list.last && valid? && confirm_declaration?
+  end
+  
+  def cleanup!
+    self.update_attribute(:ssn4, '')
+    self.update_attribute(:penndot_number, '')
   end
   
   def to_param
@@ -80,9 +88,7 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   def is_fake
     false
   end
-  def use_state_flow?
-    true
-  end
+  
   def short_form?
     true
   end
@@ -139,34 +145,233 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     self.save
     self.delay.submit_to_online_reg_url
   end
+ 
+  def bool_to_int(v)
+    v ? "1" : "0"
+  end
+  
+  def parse_gender
+    male_titles = RockyConf.enabled_locales.collect { |loc|
+     I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
+    }.flatten.uniq
+    return 'M' if male_titles.include?(self.name_title)
+    return 'F' if !self.name_title.blank?
+    return ''
+  end
+  
+  def parse_race
+    VRToPA::RACE_RULES[race.to_s.downcase.strip] || ""
+  end
+  
+
+  def parse_party
+    @parsed_party ||= begin
+      v = VRToPA::PARTIES_NAMES[party.to_s.downcase.strip]
+      v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: party}
+    end
+  end
+  
+  def is_new_registration
+    empty_prev_reg = !change_of_address?
+    empty_prev_name = !change_of_name?
+    prev_state = previous_state
+    prev_state_outside_pa = !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
+    return (empty_prev_reg && empty_prev_name) || prev_state_outside_pa
+  end
   
   
   def to_pa_data
-    #TODO
+    result = {}
+    result['batch'] = "0"
+    result['FirstName'] = self.first_name
+    result['MiddleName'] = self.middle_name
+    result['LastName'] = self.last_name
+    result['TitleSuffix'] = self.name_suffix
+
+    result['united-states-citizen'] = bool_to_int(self.confirm_us_citizen)
+    result['eighteen-on-election-day'] = bool_to_int(self.confirm_will_be_18)
+
+    result['isnewregistration'] = bool_to_int(is_new_registration)
+    result['name-update'] = bool_to_int(self.change_of_name?)
+    result['address-update'] = bool_to_int(self.change_of_address?)
+    result['ispartychange'] = bool_to_int(self.change_of_party?)
+    result['isfederalvoter'] = ""
+
+    # YYYY-MM-DD is expected
+    result['DateOfBirth'] = VRToPA.format_date(self.date_of_birth.to_s)
+    result['Gender'] = parse_gender
+    result['Ethnicity'] = parse_race
+    
+    result['Phone'] = ''
+    if !self.phone.blank?
+      begin
+        result['Phone'] = PhoneFormatter.process(value)
+      rescue
+      end
+    end
+    result['Email'] = email
+    result['streetaddress'] = registration_address_1
+    result['streetaddress2'] = registration_address_2
+    result['unittype'] = registration_unit_type
+    result['unitnumber'] = registration_unit_number
+
+    result['city'] = registration_city
+
+    result['zipcode'] = registration_zip_code
+    result['donthavePermtOrResAddress'] = ''
+    result['county'] = registration_county
+
+    if has_mailing_address?
+      result['mailingaddress'] = mailing_address
+      result['mailingcity'] = mailing_city
+      result['mailingstate'] = mailing_state
+      result['mailingzipcode'] = maling_zip_code
+    else
+      result['mailingaddress'] = ''
+      result['mailingcity'] = ''
+      result['mailingstate'] = ''
+      result['mailingzipcode'] = ''
+    end
+
+    result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
+    result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
+    result['signatureimage'] = ""
+    result['continueAppSubmit'] = "1"
+    result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn?)
+
+    result['politicalparty'] = parse_party[:party]
+    result['otherpoliticalparty'] = parse_party[:otherpoliticalparty]
+    result['needhelptovote'] = ""
+    result['typeofassistance'] = ""
+
+    result['preferredlanguage'] = self.locale
+
+    result['voterregnumber'] = ""
+
+    if !is_new_registration
+      result['previousreglastname'] = previous_last_name
+      result['previousregfirstname'] = previous_first_name
+      result['previousregmiddlename'] = previous_middle_name
+    end
+    if !is_new_registration
+      result['previousregaddress'] = previous_address
+      result['previousregcity'] = previous_city
+      result['previousregstate'] = previous_state
+      result['previousregzip'] = previous_zip_code
+      result['previousregcounty'] = previous_county
+    end
+    
+    
+    result['previousregyear'] = ""
+    result['declaration1'] = bool_to_int(confirm_declaration)
+    
+    result['assistedpersonname'] = assistant_name
+    result['assistedpersonAddress'] = assistant_address
+    result['assistedpersonphone'] = assistant_phone
+    result['assistancedeclaration2'] = confirm_assistant_declaration
+    result['ispollworker'] = ""
+    result['bilingualinterpreter'] = ""
+    result['pollworkerspeaklang'] = ""
+    result['secondEmail'] = ""
+
+    result
   end
   
   def submit_to_online_reg_url
-    result = PARegistrationRequest.send_request(self.to_pa_data)
-    registrant.pa_submission_complete = true
-    registrant.save
-    if result[:error].present?
-      registrant.pa_submission_error = [result[:error].to_s]
-      registrant.save!
-      # No retries for this flow
-      Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.pa_submission_error}")
-      AdminMailer.pa_registration_error(registrant, registrant.pa_submission_error).deliver
-    elsif result[:id].blank? || result[:id]==0
-        registrant.pa_submission_error = ["PA returned response with no errors and no transaction ID"]
-        #complete it, but go on to PDF generation?
-        registrant.pa_transaction_id = nil
-        registrant.save!
-        Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.pa_submission_error}")
-        AdminMailer.pa_registration_error(registrant, registrant.pa_submission_error).deliver
-    else
-      registrant.pa_transaction_id = result[:id]
-      registrant.save!
-      #TODO - modify the original registrant record?
+    begin
+      result = PARegistrationRequest.send_request(self.to_pa_data)
+      self.pa_submission_complete = true
+      self.save
+      if result[:error].present?
+        self.pa_submission_error = [result[:error].to_s]
+        self.save!
+        # No retries for this flow
+        Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
+        AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+      elsif result[:id].blank? || result[:id]==0
+          self.pa_submission_error = ["PA returned response with no errors and no transaction ID"]
+          #complete it, but go on to PDF generation?
+          self.pa_transaction_id = nil
+          self.save!
+          Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
+          AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+      else
+        self.pa_transaction_id = result[:id]
+        self.save!
+        #TODO - make sure original record is marked as complete/no-emails
+        #     - send custom emails
+      end
+    rescue
+      self.pa_transaction_id = nil
+      # TODO - make sure original record knows we're skipping PA OVR
+      self.registrant.skip_state_flow!
     end
+  ensure
+    self.cleanup!
+    self.update_attribute(:pa_submission_complete, true)
+  end
+  
+  def mappings
+    {
+      "email" => "email_address",
+      "confirm_us_citizen"  => "us_citizen",
+      "confirm_will_be_18"  => "will_be_18_by_election",
+      "date_of_birth" => "date_of_birth",
+      "name_title"  => "name_title",
+      "first_name"  => "first_name",
+      "middle_name" => "middle_name",
+      "last_name" => "last_name",
+      "name_suffix" => "name_suffix",
+      "change_of_name"  => "change_of_name",
+      "previous_first_name" => "prev_first_name",
+      "previous_last_name"  => "prev_last_name",
+      "previous_middle_name" => "prev_middle_name",
+      "registration_city" => "home_city",
+      "registration_zip_code" => "home_zip_code",
+      "mailing_address" => "mailing_address",
+      "mailing_city"  => "mailing_city",
+      "mailing_zip_code"  => "mailing_zip_code",
+      "change_of_address" => "change_of_address",
+      "previous_address"  => "prev_address",
+      "previous_city" => "prev_city",
+      "previous_zip_code" => "prev_zip_code",
+      "opt_in_email"  => "opt_in_email",
+      "opt_in_sms"  => "opt_in_sms",
+      "phone" => "phone",
+      "party" => "party",
+      "race"  => "race",
+      "penndot_number"  => "state_id_number",
+      "ssn4"  => "state_id_number",
+      "locale"  => "locale"
+    }
+  end
+  
+  def set_from_original_registrant
+    r = self.registrant
+    mappings.each do |k,v|
+      val = r.send(v)
+      self.update_attribute(k, val) if !val.blank?
+    end
+    self.update_attribute(:registration_address_1, r.home_address)
+    unit_info =r.home_unit.to_s.split(' ')
+    if unit_info.size > 1
+      self.update_attribute(:registration_unit_type, unit_info.shift)
+    end
+    self.update_attribute(:registration_unit_number, unit_info.join(' '))
+    self.update_attribute(:has_mailing_address, r.has_mailing_address?)
+    
+  end
+  
+  def update_original_registrant
+    r = self.registrant
+    mappings.each do |k,v|
+      val = self.send(k)
+      r.update_attribute(v, val)
+    end
+    r.update_attribute(:has_mailing_address, self.has_mailing_address?)
+    r.update_attribute(:home_address, [self.registration_address_1.blank? ? nil : self.registration_address_1, self.registration_address_2.blank? ? nil : self.registration_address_2].compact.join(", "))
+    r.update_attribute(:home_unit, [self.registration_unit_type.blank? ? nil : self.registration_unit_type, self.registration_unit_number.blank? ? nil : self.registration_unit_number].compact.join(" "))  
+    true
   end
   
   

@@ -42,10 +42,15 @@ class RegistrationStep < ApplicationController
   def update
     find_registrant    
     @registrant.attributes = params[:registrant]
-    @registrant.check_locale_change
-    set_up_locale
-    set_up_view_variables
-    attempt_to_advance
+    if detect_state_flow
+      @registrant.save(validate: false)
+      state_flow_redirect
+    else
+      @registrant.check_locale_change
+      set_up_locale
+      set_up_view_variables
+      attempt_to_advance
+    end
   end
 
   def current_step
@@ -108,20 +113,24 @@ class RegistrationStep < ApplicationController
 
   def find_registrant(special_case = nil, p = params)
     @registrant = Registrant.find_by_param!(p[:registrant_id] || p[:id])
-    detect_state_flow
-    if (@registrant.complete? || @registrant.under_18?) && special_case.nil?
-      raise ActiveRecord::RecordNotFound
-    end
-    I18n.locale = @registrant.locale
+    if detect_state_flow
+      state_flow_redirect
+    else
+      if (@registrant.complete? || @registrant.under_18?) && special_case.nil?
+        raise ActiveRecord::RecordNotFound
+      end
+      I18n.locale = @registrant.locale
 
-    if @registrant.partner
-      @partner    = @registrant.partner
-      @partner_id = @partner.id
-    end
-    if @registrant.finish_with_state? && special_case != :tell_friend && special_case != :finish
-      @registrant.update_attributes(:finish_with_state=>false)
-    end
+      if @registrant.partner
+        @partner    = @registrant.partner
+        @partner_id = @partner.id
+      end
+      if @registrant.finish_with_state? && special_case != :tell_friend && special_case != :finish
+        @registrant.update_attributes(:finish_with_state=>false)
+      end
     
+    end
+
   end
 
   def find_partner
@@ -133,9 +142,13 @@ class RegistrationStep < ApplicationController
   def detect_state_flow
     if @registrant && @registrant.use_state_flow?
       # PASS registrant over to state flow, creating a new state-specific registrant
-      redirect_to edit_state_registrant_path(@registrant.to_param)
-    end
-      
+      return true
+    end      
+    false
+  end
+  
+  def state_flow_redirect
+    redirect_to edit_state_registrant_path('step_2', @registrant.to_param)
   end
   
   def set_params

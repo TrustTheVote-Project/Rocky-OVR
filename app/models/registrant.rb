@@ -792,19 +792,26 @@ class Registrant < ActiveRecord::Base
     localization ? localization.allows_ovr_ignoring_license?(self) : false
   end
   
+  def skip_state_flow!
+    self.state_ovr_data ||= []
+    self.state_ovr_data[:skip_state_flow] = true
+    self.finish_with_state = false
+    self.save(validate: false)
+  end
+  
   def use_state_flow?
-    home_state && home_state.use_state_flow?(self)
+    !state_ovr_data[:skip_state_flow] && home_state && home_state.use_state_flow?(self)
   end
   
   def state_registrant
     if use_state_flow?
       state_registrant_type = "StateRegistrants::#{home_state_abbrev}Registrant"
-      begin
+      #begin
         model = state_registrant_type.constantize
-        sr = model.find_by_registrant_id(self.to_param) || model.from_registrant(self)
-      rescue
-        nil
-      end
+        sr = model.from_registrant(self)
+        #rescue
+        #nil
+        #end
     else
       nil
     end
@@ -852,15 +859,7 @@ class Registrant < ActiveRecord::Base
     end
   end
 
-  def form_date_of_birth
-    if @raw_date_of_birth
-      @raw_date_of_birth
-    elsif date_of_birth
-      "%d-%d-%d" % [date_of_birth.month, date_of_birth.mday, date_of_birth.year]
-    else
-      nil
-    end
-  end
+  
 
   def wrap_up
     complete!
@@ -1437,9 +1436,6 @@ class Registrant < ActiveRecord::Base
     end
   end
 
-  def yes_no(attribute)
-    attribute ? "Yes" : "No"
-  end
   
   def method_missing(sym, *args)
     if sym.to_s =~ /^yes_no_(.+)$/

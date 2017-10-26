@@ -11,11 +11,15 @@ class StateRegistrantsController < RegistrationStep
   def update
     @registrant.attributes = params[@registrant.class.table_name.singularize]
     @registrant.save
+    if !@registrant.use_state_flow?
+      redirect_to registrant_step_2_path(@registrant.registrant) and return
+    end
+    
     @registrant.status = params[:step]
     if @registrant.valid?
       @registrant.status = next_step
       @registrant.save
-      if @registrant.complete?
+      if @registrant.complete? && params[:step]==@registrant.step_list[-2]
         @registrant.async_submit_to_online_reg_url
         redirect_to pending_state_registrant_path(@registrant.to_param)
       else
@@ -27,19 +31,22 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def pending
-    @attempt = (params[:cno] || 1).to_i
-    @refresh_location = pending_state_registrant_path(@registrant, :cno=>@attempt+1)
+    @refresh_location = pending_state_registrant_path(@registrant)
     if !@registrant.pa_submission_complete
-      render and return
+      render "state_registrants/#{@registrant.home_state_abbrev.downcase}/pending" and return
     else
-      if @registrant.pa_transaction_id.blank? || @attempt >= 20
+      if @registrant.pa_transaction_id.blank?
         # finish with PDF
         redirect_to registrant_step_5_url(@registrant.registrant)
       else
-        @registrant.cleanup!
-        redirect_to state_registarnt_finish_path(@registrant)
+        redirect_to complete_state_registrant_path(@registrant)
       end
     end
+  end
+  
+  def complete
+    render "state_registrants/#{@registrant.home_state_abbrev.downcase}/complete"
+    
   end
   
   
@@ -49,7 +56,7 @@ class StateRegistrantsController < RegistrationStep
   
   def current_step
     #@registrant.current_step
-    @registrant.step_index(params[:step]) + 1
+    (@registrant.step_index(params[:step]) || @registrant.num_steps)  + 1
   end
 
   def next_step
@@ -64,11 +71,12 @@ class StateRegistrantsController < RegistrationStep
   def load_state_registrant
     old_registrant = Registrant.find_by_param!(params[:registrant_id])
     @registrant = old_registrant.state_registrant
-    @num_steps = @registrant.num_steps
-    if !@registrant.use_state_flow?
-      #TODO how to determine if current registrant is still valid?
-      # Should we always be copying data to the original reg record?
+    if !@registrant
+      redirect_to registrant_step_2_path(old_registrant) and return
+    else
+      @num_steps = @registrant.num_steps
     end
+    set_up_locale
   end
   
 end

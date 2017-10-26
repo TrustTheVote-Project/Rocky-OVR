@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20171025225021) do
+ActiveRecord::Schema.define(:version => 20171026210116) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20171025225021) do
     t.text     "pixel_tracking_codes"
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
-    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
     t.text     "branding_update_request"
+    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
     t.boolean  "active",                                           :default => true,  :null => false
     t.text     "external_conversion_snippet"
     t.text     "replace_system_css"
@@ -308,7 +308,6 @@ ActiveRecord::Schema.define(:version => 20171025225021) do
     t.boolean  "change_of_name"
     t.string   "previous_first_name"
     t.string   "previous_last_name"
-    t.string   "previous_suffix"
     t.string   "registration_address_1"
     t.string   "registration_address_2"
     t.string   "registration_unit_type"
@@ -353,6 +352,7 @@ ActiveRecord::Schema.define(:version => 20171025225021) do
     t.boolean  "pa_submission_complete"
     t.string   "pa_transaction_id"
     t.text     "pa_submission_error"
+    t.string   "previous_middle_name"
   end
 
   create_table "tracking_events", :force => true do |t|

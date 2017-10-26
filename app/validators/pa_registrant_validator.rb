@@ -2,7 +2,9 @@ class PARegistrantValidator < ActiveModel::Validator
   
   def validate(reg)
     
-    #reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
+    if !reg.phone.blank?
+      errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /^\d{10}$/
+    end
     #reg.validates_presence_of :phone_type if reg.has_phone?
 
 
@@ -21,6 +23,8 @@ class PARegistrantValidator < ActiveModel::Validator
       reg.validates_presence_of   :registration_address_1 
       reg.validates_presence_of   :registration_unit_type if !reg.registration_unit_number.blank? 
       reg.validates_presence_of   :registration_unit_number if !reg.registration_unit_type.blank? 
+      reg.validates_length_of     :registration_unit_number, maximum: 15
+      
       reg.validates_presence_of   :registration_city 
       validates_zip_code  reg,    :registration_zip_code
       reg.validates_presence_of   :registration_county
@@ -52,8 +56,7 @@ class PARegistrantValidator < ActiveModel::Validator
       validate_race(reg)        
       validate_party(reg)
       
-      reg.validates_presence_of(:penndot_number) unless reg.confirm_no_penndot_number?
-      reg.validates_presence_of(:ssn4) unless (reg.confirm_no_dl_or_ssn? || !reg.confirm_no_penndot_number?)
+      validate_id(reg)
       if reg.has_assistant?
         reg.validates_presence_of(:assistant_name)
         reg.validates_presence_of(:assistant_address)
@@ -83,6 +86,17 @@ class PARegistrantValidator < ActiveModel::Validator
     end
   end
   
+  def validate_id(reg)
+    unless reg.confirm_no_penndot_number?
+      reg.validates_presence_of(:penndot_number) 
+      reg.errors.add(:penndot_number, :format) unless reg.penndot_number.to_s.gsub(/[^\d]/,'') =~ /^\d{8}$/
+    end
+    unless reg.confirm_no_dl_or_ssn? || !reg.confirm_no_penndot_number?
+      reg.validates_presence_of(:ssn4)
+      reg.errors.add(:ssn4, :format) unless reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /^\d{4}$/
+    end
+  end
+  
   def validate_party(reg)
     if reg.party.blank?
       reg.errors.add(:party, :blank)
@@ -95,9 +109,7 @@ class PARegistrantValidator < ActiveModel::Validator
   end
   
   def validate_race(reg)
-    if reg.race.blank?
-      reg.errors.add(:race, :blank)
-    else
+    if !reg.race.blank?
       reg.errors.add(:race, :inclusion) unless reg.english_races.include?(reg.english_race)
     end
   end

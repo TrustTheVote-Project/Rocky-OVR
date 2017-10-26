@@ -1,5 +1,83 @@
 %h1= t("txt.registration.#{@registrant.status}_header")
 
+%p
+  Full name: 
+  %br
+  = @registrant.name_title
+  = @registrant.first_name
+  = @registrant.middle_name
+  = @registrant.last_name
+  = @registrant.name_suffix
+  
+- if @registrant.change_of_name?
+  %p
+    Previous name: 
+    %br
+    = @registrant.previous_first_name
+    = @registrant.previous_middle_name
+    = @registrant.previous_last_name
+  
+%p
+  Registration Address:
+  %br
+  = @registrant.registration_address_1
+  - if !@registrant.registration_address_2.blank?
+    %br
+    = @registrant.registration_address_2
+  %br
+  = @registrant.registration_unit_type
+  = @registrant.registration_unit_number
+  %br
+  = "#{@registrant.registration_city}, PA #{@registrant.registration_zip_code}"
+  %br
+  = @registrant.registration_county
+  
+- if @registrant.has_mailing_address?
+  %p
+    Mailing Address:
+    %br
+    = @registrant.mailing_address
+    %br
+    = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip_code}"
+  
+- if @registrant.previous_address?
+  %p 
+    Previous Address:
+    %br
+    = @registrant.previous_address
+    %br
+    = "#{@registrant.previous_city}, #{@registrant.previous_state} #{@registrant.previous_zip_code}"
+    %br
+    = @registrant.previous_county
+
+%p
+  Date of Birth:
+  %br
+  = I18n.l @registrant.date_of_birth
+
+%p
+  Political Party:
+  %br
+  = @registrant.party.downcase == "other" ? @registrant.other_party : @registrant.party
+  %b4
+  Change of Party? 
+  = @registrant.yes_no(@registrant.change_of_party)
+%p
+  Race:
+  %br
+  = @registrant.race
+
+%p 
+  Email:
+  %br
+  = @registrant.email
+
+%p 
+  Phone
+  %br
+  = @registrant.phone
+  
+
 = form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
   = render partial: 'state_registrants/pa/locale_selector', locals: {form: form }
   

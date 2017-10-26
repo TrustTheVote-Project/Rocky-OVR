@@ -46,6 +46,20 @@ module RegistrantMethods
     at_least_step?(5)
   end
   
+  def yes_no(attribute)
+    attribute ? "Yes" : "No"
+  end
+  
+  
+  def form_date_of_birth
+    if @raw_date_of_birth
+      @raw_date_of_birth
+    elsif date_of_birth
+      "%d-%d-%d" % [date_of_birth.month, date_of_birth.mday, date_of_birth.year]
+    else
+      nil
+    end
+  end
   
   def validate_date_of_birth
     return if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
