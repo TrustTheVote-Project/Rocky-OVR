@@ -62,7 +62,7 @@ class PARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of(:assistant_name)
         reg.validates_presence_of(:assistant_address)
         reg.validates_presence_of(:assistant_phone)
-        reg.validates_acceptance_of(:confirm_assistant_declaration)
+        reg.validates_acceptance_of(:confirm_assistant_declaration), accept: true
       end
     end
     

@@ -45,7 +45,7 @@
 
   %ul.flat.party-dropdown
     
-    = field_li(form, :party, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
+    = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
     
   %fieldset#other_party_set
     %ul.flat.other-party
