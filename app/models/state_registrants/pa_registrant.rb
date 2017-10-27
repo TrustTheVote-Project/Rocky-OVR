@@ -37,13 +37,12 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   validates_with PARegistrantValidator
   
 
-  delegate :use_state_flow?, to: :registrant
-  delegate :titles, :suffixes, :races, :state_parties, :partner, :partner_id, to: :registrant
-  delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
+  delegate :use_state_flow?, :skip_state_flow?, to: :registrant
+  delegate :titles, :suffixes, :races, :state_parties, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  to: :registrant
+  delegate :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
     
     
   before_create :set_default_opt_ins
-  before_validation :update_original_registrant
     
   def self.from_registrant(reg)
     sr = self.find_by_registrant_id(reg.uid) || self.new
@@ -53,7 +52,7 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     sr
   end
   def registrant
-    Registrant.find_by_uid(self.registrant_id)
+    @registrant ||= Registrant.find_by_uid(self.registrant_id)
   end
   
   def complete?
@@ -65,6 +64,9 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     self.update_attribute(:penndot_number, '')
   end
   
+  def uid
+    self.registrant_id
+  end
   def to_param
     self.registrant_id
   end
@@ -95,11 +97,18 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   def use_short_form?
     true
   end
+  
+  def home_state
+    registration_zip_code.blank? ? GeoState['PA'] : GeoState.for_zip_code(registration_zip_code.strip)
+  end
+  
   def home_state_abbrev
-    "PA"
+    home_state.abbreviation
+    #"PA"
   end
   def home_state_name
-    "Pennsylvania"
+    #"Pennsylvania"
+    home_state.name
   end
   
   STEPS=%w(step_1 step_2 step_3 step_4 complete)
@@ -114,30 +123,6 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   
   def aasm_current_state
     status
-  end
-  
-  # TODO make this reusable
-  def check_locale_change
-    if !self.new_locale.blank? && self.new_locale != self.locale
-      selected_name_title_key = name_title_key
-      selected_name_suf_key = name_suffix_key
-      selected_prev_name_title_key = prev_name_title_key
-      selected_prev_name_suf_key = prev_name_suffix_key
-      selected_race_key = race_key
-      party_idx = state_parties.index(self.party)
-      selected_phone_key = phone_type_key
-      
-      self.locale = self.new_locale
-      
-      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale)
-      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale)
-      self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale)
-      self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale)
-      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale)
-      self.party = state_parties[party_idx] if party_idx
-      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale)
-      
-    end
   end
   
   def async_submit_to_online_reg_url
@@ -284,6 +269,7 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
       self.save
       if result[:error].present?
         self.pa_submission_error = [result[:error].to_s]
+        self.registrant.skip_state_flow!
         self.save!
         # No retries for this flow
         Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
@@ -292,14 +278,16 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
           self.pa_submission_error = ["PA returned response with no errors and no transaction ID"]
           #complete it, but go on to PDF generation?
           self.pa_transaction_id = nil
+          self.registrant.skip_state_flow!
           self.save!
           Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
           AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
       else
         self.pa_transaction_id = result[:id]
         self.save!
-        #TODO - make sure original record is marked as complete/no-emails
-        #     - send custom emails
+        self.update_original_registrant
+        self.registrant.complete_registration_with_state!
+        deliver_confirmation_email
       end
     rescue
       self.pa_transaction_id = nil
@@ -310,6 +298,23 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     self.cleanup!
     self.update_attribute(:pa_submission_complete, true)
   end
+  
+  def submitted?
+    pa_submission_complete?
+  end
+  
+  # TODO do we allow no-collect-email for PA?
+  def send_emails?
+    !self.email.blank?
+  end
+  
+  def deliver_confirmation_email
+    if send_emails?
+      # TODO, depending on partner customizations, just use main Notifier class - or refactor to StateRegistrantNotifier for all states
+      PANotifier.pa_confirmation(self).deliver
+    end
+  end
+  
   
   def mappings
     {
@@ -328,6 +333,7 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
       "previous_middle_name" => "prev_middle_name",
       "registration_city" => "home_city",
       "registration_zip_code" => "home_zip_code",
+      "has_mailing_address" => "has_mailing_address",      
       "mailing_address" => "mailing_address",
       "mailing_city"  => "mailing_city",
       "mailing_zip_code"  => "mailing_zip_code",
@@ -340,8 +346,6 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
       "phone" => "phone",
       "party" => "party",
       "race"  => "race",
-      "penndot_number"  => "state_id_number",
-      "ssn4"  => "state_id_number",
       "locale"  => "locale"
     }
   end
@@ -350,29 +354,31 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     r = self.registrant
     mappings.each do |k,v|
       val = r.send(v)
-      self.update_attribute(k, val) if !val.blank?
+      self.send("#{k}=", val)
     end
-    self.update_attribute(:registration_address_1, r.home_address)
+    self.registration_address_1 = r.home_address
     unit_info =r.home_unit.to_s.split(' ')
     if unit_info.size > 1
-      self.update_attribute(:registration_unit_type, unit_info.shift)
+      self.registration_unit_type = unit_info.shift
     end
-    self.update_attribute(:registration_unit_number, unit_info.join(' '))
-    self.update_attribute(:has_mailing_address, r.has_mailing_address?)
-    
+    self.registration_unit_number = unit_info.join(' ')
+    self.has_mailing_address = r.has_mailing_address?
+    self.save(validate: false)
+  end
+  
+  def attributes=(*args)
+    super(*args)
+    update_original_registrant
   end
   
   def update_original_registrant
     r = self.registrant
     mappings.each do |k,v|
       val = self.send(k)
-      r.update_attribute(v, val)
+      r.send("#{v}=", val)
     end
-    r.update_attribute(:has_mailing_address, self.has_mailing_address?)
-    r.update_attribute(:home_address, [self.registration_address_1.blank? ? nil : self.registration_address_1, self.registration_address_2.blank? ? nil : self.registration_address_2].compact.join(", "))
-    r.update_attribute(:home_unit, [self.registration_unit_type.blank? ? nil : self.registration_unit_type, self.registration_unit_number.blank? ? nil : self.registration_unit_number].compact.join(" "))  
-    true
+    r.home_address = [self.registration_address_1.blank? ? nil : self.registration_address_1, self.registration_address_2.blank? ? nil : self.registration_address_2].compact.join(", ")
+    r.home_unit = [self.registration_unit_type.blank? ? nil : self.registration_unit_type, self.registration_unit_number.blank? ? nil : self.registration_unit_number].compact.join(" ")
+    r.save(validate: false)
   end
-  
-  
 end

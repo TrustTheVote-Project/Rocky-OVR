@@ -2,6 +2,11 @@
 en:
   states:
     custom:
+      pa: 
+        state_flow_error: There was a problem submitting your registration to Pennsylvania. Please try again later or continue to create a paper form.
+        step_2_header: Basic Info
+        step_3_header: Almost Done
+        step_4_header: Review &amp; Confirm
       ca:
         online_instructions: ! 'You can complete your voter registration online with
 

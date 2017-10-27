@@ -38,7 +38,7 @@ module ApplicationHelper
     stylesheets = []
     if !partner.replace_system_css?(:preview)
       stylesheets << 'application'
-      if registrant.use_state_flow?
+      if registrant.use_state_flow? && !registrant.skip_state_flow?
         stylesheets << 'registration2'
         stylesheets << "states/#{registrant.home_state_abbrev.downcase}"        
       else
@@ -57,7 +57,7 @@ module ApplicationHelper
     wl = partner && partner.whitelabeled?
     stylesheets = []
     if !partner || !partner.replace_system_css?
-      if registrant && registrant.use_state_flow?
+      if registrant && registrant.use_state_flow? && !registrant.skip_state_flow?
         stylesheets << "application"
         stylesheets << 'registration2'
         stylesheets << "states/#{registrant.home_state_abbrev.downcase}"

@@ -616,7 +616,7 @@ class Registrant < ActiveRecord::Base
       self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale)
       self.party = state_parties[party_idx] if party_idx
       self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale)
-      
+      self.save(validate: false)
     end
   end
 
@@ -799,8 +799,16 @@ class Registrant < ActiveRecord::Base
     self.save(validate: false)
   end
   
+  def state_flow_error?
+    skip_state_flow? && state_registrant && state_registrant.submitted?
+  end
+  
+  def skip_state_flow?
+    !!state_ovr_data[:skip_state_flow]
+  end
+  
   def use_state_flow?
-    !state_ovr_data[:skip_state_flow] && home_state && home_state.use_state_flow?(self)
+    home_state && home_state.use_state_flow?(self)
   end
   
   def state_registrant
@@ -989,6 +997,12 @@ class Registrant < ActiveRecord::Base
       generate_pdf
       finalize_pdf
     end
+  end
+  
+  def complete_registration_with_state!
+    self.status='complete'
+    self.send_confirmation_reminder_emails = false
+    self.save(validate: false) # We don't care if it's a valid rocky registrant
   end
   
 

@@ -11,7 +11,7 @@ class StateRegistrantsController < RegistrationStep
   def update
     @registrant.attributes = params[@registrant.class.table_name.singularize]
     @registrant.save
-    if !@registrant.use_state_flow?
+    if !@registrant.use_state_flow? || @registrant.skip_state_flow?
       redirect_to registrant_step_2_path(@registrant.registrant) and return
     end
     
@@ -37,7 +37,7 @@ class StateRegistrantsController < RegistrationStep
     else
       if @registrant.pa_transaction_id.blank?
         # finish with PDF
-        redirect_to registrant_step_5_url(@registrant.registrant)
+        redirect_to registrant_step_2_url(@registrant.registrant)
       else
         redirect_to complete_state_registrant_path(@registrant)
       end

@@ -34,7 +34,7 @@
     });
       
       
-%h1= t("txt.registration.#{@registrant.status}_header")
+= render partial: 'state_registrants/pa/header'
 
 = form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
 

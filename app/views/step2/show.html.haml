@@ -1,11 +1,15 @@
 - if !@registrant.use_short_form?
   %h1= t('txt.registration.step_2_header')
     
+- # TODO assumin
+- if @registrant.state_flow_error?
+  .state-flow-error
+    %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
     
 = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
   - if @registrant.use_short_form?
     #other_language_link
-      = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {}, onchange: "$(this.form).find('input[name=skip_advance]').val(true); $(this.form).submit()", value: @registrant.locale
+      = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {selected: @registrant.locale}, onchange: "$(this.form).find('input[name=skip_advance]').val(true); $(this.form).submit()"
       = form.hidden_field :locale, :value=>@registrant.locale      
       = hidden_field_tag 'skip_advance', false
 

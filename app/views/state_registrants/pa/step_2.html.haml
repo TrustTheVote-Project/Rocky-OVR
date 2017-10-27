@@ -1,9 +1,4 @@
-#progress-bar
-  %ol
-    %li.progress-title= t('txt.registration.progress_indicator').html_safe
-    = progress_indicator(@num_steps).html_safe
-
-%h1= t("txt.registration.#{@registrant.status}_header")
+= render partial: 'state_registrants/pa/header'
 
 = form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
 
@@ -107,6 +102,6 @@
     
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
   .back
-    = link_to t('txt.button.back').html_safe, new_registrant_path(@registrant)
+    = link_to t('txt.button.back').html_safe, registrant_path(@registrant.registrant)
     
     

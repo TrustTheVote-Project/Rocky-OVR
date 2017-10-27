@@ -11,8 +11,9 @@ class PARegistrantValidator < ActiveModel::Validator
     if reg.at_least_step_1?
       reg.validates_format_of :email, :with => Authlogic::Regex.email, :allow_blank => true
 
-      reg.validates_inclusion_of  :confirm_will_be_18, :in=>[true]
-      reg.validates_inclusion_of  :confirm_us_citizen, :in => [true]
+      reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
+      reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
+      
       reg.validate_date_of_birth
       
       reg.validates_presence_of   :name_title
@@ -66,7 +67,7 @@ class PARegistrantValidator < ActiveModel::Validator
     end
     
     if reg.at_least_step_3?
-      reg.validates_inclusion_of :confirm_declaration, :in => [true]
+      reg.validates_acceptance_of :confirm_declaration, :accept=>true
     end
 
   end

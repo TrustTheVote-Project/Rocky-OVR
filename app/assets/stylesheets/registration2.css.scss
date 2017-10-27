@@ -739,5 +739,11 @@ body {
  
 }
 
+.state-flow-error {
+  text-align: center;
+  padding: 1em;
+  border: 1px solid $red;
+}
+
 
 @import 'registration2-mobile';

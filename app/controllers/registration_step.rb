@@ -42,11 +42,11 @@ class RegistrationStep < ApplicationController
   def update
     find_registrant    
     @registrant.attributes = params[:registrant]
+    @registrant.check_locale_change
     if detect_state_flow
       @registrant.save(validate: false)
       state_flow_redirect
     else
-      @registrant.check_locale_change
       set_up_locale
       set_up_view_variables
       attempt_to_advance
@@ -140,7 +140,8 @@ class RegistrationStep < ApplicationController
   end
   
   def detect_state_flow
-    if @registrant && @registrant.use_state_flow?
+    
+    if @registrant && @registrant.use_state_flow? && !@registrant.skip_state_flow? && current_step != 1
       # PASS registrant over to state flow, creating a new state-specific registrant
       return true
     end      

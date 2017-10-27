@@ -102,6 +102,18 @@
 
 
 #main {
+  .step_4 {
+    h1 {
+      text-transform: none;
+      display: inline;
+      font-size: 18px;
+      color: black;
+      background: transparent;
+      padding: 0;
+      width: auto;
+      margin: 0;
+    }
+  }
   form {
     ul {
       li.registrant-form__home-address__line {
