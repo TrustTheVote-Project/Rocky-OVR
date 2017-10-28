@@ -402,7 +402,7 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
       val = r.send(v)
       self.send("#{k}=", val)
     end
-    address_info = r.home_address.split(',')
+    address_info = r.home_address.to_s.split(',')
     if address_info.size > 1
       self.registration_address_2 = address_info.pop.strip
     end
