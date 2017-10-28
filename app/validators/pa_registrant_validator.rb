@@ -3,7 +3,7 @@ class PARegistrantValidator < ActiveModel::Validator
   def validate(reg)
     
     if !reg.phone.blank?
-      errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /^\d{10}$/
+      reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /^\d{10}$/
     end
     #reg.validates_presence_of :phone_type if reg.has_phone?
 
@@ -23,7 +23,6 @@ class PARegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of  :name_suffix, :in => Registrant::SUFFIXES, :allow_blank => true
       reg.validates_presence_of   :registration_address_1 
       reg.validates_presence_of   :registration_unit_type if !reg.registration_unit_number.blank? 
-      reg.validates_presence_of   :registration_unit_number if !reg.registration_unit_type.blank? 
       reg.validates_length_of     :registration_unit_number, maximum: 15
       
       reg.validates_presence_of   :registration_city 
@@ -63,6 +62,10 @@ class PARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of(:assistant_address)
         reg.validates_presence_of(:assistant_phone)
         reg.validates_acceptance_of(:confirm_assistant_declaration, accept: true)
+        if !reg.assistant_phone.blank?
+          reg.errors.add(:assistant_phone, :invalid) unless  reg.assistant_phone.to_s.gsub(/[^\d]/,'')=~ /^\d{10}$/
+        end
+        
       end
     end
     

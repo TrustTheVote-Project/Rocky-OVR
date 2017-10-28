@@ -51,6 +51,40 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     sr.set_from_original_registrant
     sr
   end
+  
+  def name_title_key
+    key_for_attribute(:name_title, 'titles')
+  end
+  def english_name_title
+    english_attribute_value(name_title_key, 'titles')
+  end
+  def name_suffix_key
+    key_for_attribute(:name_suffix, 'titles')
+  end
+  def english_name_suffix
+    english_attribute_value(name_suffix_key, 'titles')
+  end
+  
+  
+  attr_accessor :new_locale
+  def check_locale_change
+    if !self.new_locale.blank? && self.new_locale != self.locale
+      selected_name_title_key = name_title_key
+      selected_name_suf_key = name_suffix_key
+      selected_race_key = race_key
+      party_idx = state_parties.index(self.party)
+      self.locale = self.new_locale
+      self.registrant.locale = self.locale #So state_parties returns the correct new list
+       
+      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
+      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
+      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
+      self.party = state_parties[party_idx] if !party_idx.nil?
+      self.save(validate: false)
+      self.update_original_registrant
+    end
+  end
+  
   def registrant
     @registrant ||= Registrant.find_by_uid(self.registrant_id)
   end
@@ -145,14 +179,14 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   end
   
   def parse_race
-    VRToPA::RACE_RULES[race.to_s.downcase.strip] || ""
+    VRToPA::RACE_RULES[english_race.to_s.downcase.strip] || ""
   end
   
 
   def parse_party
     @parsed_party ||= begin
-      v = VRToPA::PARTIES_NAMES[party.to_s.downcase.strip]
-      v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: party}
+      v = VRToPA::PARTIES_NAMES[english_party_name.to_s.downcase.strip]
+      v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: english_party_name}
     end
   end
   
@@ -218,13 +252,21 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
       result['mailingzipcode'] = ''
     end
 
-    result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
-    result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
     result['signatureimage'] = ""
     result['continueAppSubmit'] = "1"
     result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn?)
+    result['ssn4'] = ""
+    result['drivers-license'] = ""
+    unless confirm_no_dl_or_ssn?
+      if confirm_no_penndot_number?
+        result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
+      else
+        result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
+      end
+    end
+    
 
-    result['politicalparty'] = parse_party[:party]
+    result['politicalparty'] = parse_party[:politicalparty]
     result['otherpoliticalparty'] = parse_party[:otherpoliticalparty]
     result['needhelptovote'] = ""
     result['typeofassistance'] = ""
@@ -350,13 +392,22 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     }
   end
   
+  def rase=(val)
+    raise val.to_s
+  end
+  
   def set_from_original_registrant
     r = self.registrant
     mappings.each do |k,v|
       val = r.send(v)
       self.send("#{k}=", val)
     end
-    self.registration_address_1 = r.home_address
+    address_info = r.home_address.split(',')
+    if address_info.size > 1
+      self.registration_address_2 = address_info.pop.strip
+    end
+    self.registration_address_1 = address_info.join(',')
+    
     unit_info =r.home_unit.to_s.split(' ')
     if unit_info.size > 1
       self.registration_unit_type = unit_info.shift

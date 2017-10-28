@@ -1,3 +1,24 @@
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+      checkboxTogglesSet($('#state_registrants_pa_registrant_change_of_name'), $('#prev_name_set'), $('#prev_name_rule'));
+      checkboxTogglesSet($('#state_registrants_pa_registrant_has_mailing_address'), $('#mailing_address_set'));
+      checkboxTogglesSet($('#state_registrants_pa_registrant_change_of_address'), $('#prev_address_set'));
+      $('#javascript_disabled').remove();
+      
+      function togglePreviousAddressCounty() {
+        if ($("#state_registrants_pa_registrant_previous_state").val()=="PA") {
+          $(".registrant-form__prev-county__line").show();
+        } else {
+          $(".registrant-form__prev-county__line").hide();
+        }
+      }
+      
+      $("#state_registrants_pa_registrant_previous_state").change(togglePreviousAddressCounty)
+      togglePreviousAddressCounty();
+      
+    });
+
 = render partial: 'state_registrants/pa/header'
 
 = form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
@@ -12,14 +33,6 @@
     
   = render partial: 'step2/name', locals: {form: form}
   
-  - content_for :head do
-    :javascript
-      $(document).ready(function() {
-        checkboxTogglesSet($('#state_registrants_pa_registrant_change_of_name'), $('#prev_name_set'), $('#prev_name_rule'));
-        checkboxTogglesSet($('#state_registrants_pa_registrant_has_mailing_address'), $('#mailing_address_set'));
-        checkboxTogglesSet($('#state_registrants_pa_registrant_change_of_address'), $('#prev_address_set'));
-        $('#javascript_disabled').remove();
-      });
 
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_name, class_name: "registrant-form__change-of-name__line", required: false, tooltip: :previous_name}
@@ -43,7 +56,7 @@
     %ul.stacked
       = field_li(form, :registration_address_2, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-address__line"}})
     %ul.stacked
-      = field_li(form, :registration_unit_type, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-unit-type__line"}, select_options: StateRegistrants::PARegistrant::UNITS.collect{|k,v| [v,k]}, field_options: {include_blank: true} })
+      = field_li(form, :registration_unit_type, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-unit-type__line"}, select_options: StateRegistrants::PARegistrant::UNITS.collect{|k,v| [t("states.custom.pa.unit_type.#{k}").html_safe,k]}, field_options: {include_blank: true} })
       = field_li(form, :registration_unit_number, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-unit-number__line"} })
     %ul.stacked
       = field_li(form, :registration_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
@@ -65,7 +78,7 @@
       = field_li(form, :mailing_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
     %ul.stacked
       = field_li(form, :mailing_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
-      = field_li(form, :mailing_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation } })
+      = field_li(form, :mailing_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
       = field_li(form, :mailing_zip_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
     
     
@@ -80,10 +93,10 @@
       = field_li(form, :previous_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
     %ul.stacked
       = field_li(form, :previous_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
-      = field_li(form, :previous_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation } })
+      = field_li(form, :previous_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
       = field_li(form, :previous_zip_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
     %ul.stacked
-      = field_li(form, :previous_county, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })  
+      = field_li(form, :previous_county, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__prev-county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })  
   
   - if @registrant.email.blank?
     %fieldset
@@ -92,12 +105,12 @@
         
   
   %fieldset.no_border
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false}
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
   
   %fieldset
     %ul.stacked
       = field_li(form, :phone, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__email__line"}})
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false}
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization => h("Rock the Vote")).html_safe}
   
     
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  

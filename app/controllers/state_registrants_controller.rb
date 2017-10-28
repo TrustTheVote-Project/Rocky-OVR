@@ -5,19 +5,21 @@ class StateRegistrantsController < RegistrationStep
   before_filter :load_state_registrant
     
   def edit
+    set_up_locale
     render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}"
   end
   
   def update
     @registrant.attributes = params[@registrant.class.table_name.singularize]
+    @registrant.status = params[:step] if params[:skip_advance] != "true"
+    @registrant.check_locale_change
+    set_up_locale
     @registrant.save
     if !@registrant.use_state_flow? || @registrant.skip_state_flow?
-      redirect_to registrant_step_2_path(@registrant.registrant) and return
+      go_to_paper and return
     end
-    
-    @registrant.status = params[:step]
-    if @registrant.valid?
-      @registrant.status = next_step
+    if params[:skip_advance] != "true" && @registrant.valid?
+      @registrant.status = next_step 
       @registrant.save
       if @registrant.complete? && params[:step]==@registrant.step_list[-2]
         @registrant.async_submit_to_online_reg_url
@@ -37,7 +39,7 @@ class StateRegistrantsController < RegistrationStep
     else
       if @registrant.pa_transaction_id.blank?
         # finish with PDF
-        redirect_to registrant_step_2_url(@registrant.registrant)
+        go_to_paper
       else
         redirect_to complete_state_registrant_path(@registrant)
       end
@@ -69,14 +71,19 @@ class StateRegistrantsController < RegistrationStep
 
   private
   def load_state_registrant
-    old_registrant = Registrant.find_by_param!(params[:registrant_id])
-    @registrant = old_registrant.state_registrant
+    @old_registrant = Registrant.find_by_param!(params[:registrant_id])
+    @registrant = @old_registrant.state_registrant
     if !@registrant
-      redirect_to registrant_step_2_path(old_registrant) and return
+      go_to_paper and return
     else
       @num_steps = @registrant.num_steps
     end
-    set_up_locale
+    
+  end
+  
+  def go_to_paper
+    @registrant.cleanup! if @registrant #Make sure we don't keep IDs around
+    redirect_to registrant_step_2_path(@old_registrant)
   end
   
 end

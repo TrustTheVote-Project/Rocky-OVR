@@ -1,89 +1,103 @@
 = render partial: 'state_registrants/pa/header'
 
-%p
-  Full name: 
-  %br
-  = @registrant.name_title
-  = @registrant.first_name
-  = @registrant.middle_name
-  = @registrant.last_name
-  = @registrant.name_suffix
-  
-- if @registrant.change_of_name?
-  %p
-    Previous name: 
-    %br
-    = @registrant.previous_first_name
-    = @registrant.previous_middle_name
-    = @registrant.previous_last_name
-  
-%p
-  Registration Address:
-  %br
-  = @registrant.registration_address_1
-  - if !@registrant.registration_address_2.blank?
-    %br
-    = @registrant.registration_address_2
-  - if !@registrant.registration_unit_type.blank?
-    %br
-    = @registrant.registration_unit_type
-    = @registrant.registration_unit_number
-  %br
-  = "#{@registrant.registration_city}, PA #{@registrant.registration_zip_code}"
-  %br
-  = @registrant.registration_county
-  
-- if @registrant.has_mailing_address?
-  %p
-    Mailing Address:
-    %br
-    = @registrant.mailing_address
-    %br
-    = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip_code}"
-  
-- if @registrant.previous_address?
-  %p 
-    Previous Address:
-    %br
-    = @registrant.previous_address
-    %br
-    = "#{@registrant.previous_city}, #{@registrant.previous_state} #{@registrant.previous_zip_code}"
-    %br
-    = @registrant.previous_county
-
-%p
-  Date of Birth:
-  %br
-  = I18n.l @registrant.date_of_birth
-
-%p
-  Political Party:
-  %br
-  = @registrant.party.downcase == "other" ? @registrant.other_party : @registrant.party
-  %b4
-  Change of Party? 
-  = @registrant.yes_no(@registrant.change_of_party)
-%p
-  Race:
-  %br
-  = @registrant.race
-
-%p 
-  Email:
-  %br
-  = @registrant.email
-
-%p 
-  Phone
-  %br
-  = @registrant.phone
-  
 
 = form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
   = render partial: 'state_registrants/pa/locale_selector', locals: {form: form }
   
   
+
+  .review
+    .review__section
+      .review__section__label 
+        Full name: 
+      .review__section__content
+        = @registrant.name_title
+        = @registrant.first_name
+        = @registrant.middle_name
+        = @registrant.last_name
+        = @registrant.name_suffix
   
+    - if @registrant.change_of_name?
+      .review__section
+        .review__section__label 
+          Previous name: 
+        .review__section__content
+          = @registrant.previous_first_name
+          = @registrant.previous_middle_name
+          = @registrant.previous_last_name
+  
+    .review__section
+      .review__section__label 
+        Registration Address:
+      .review__section__content
+        = @registrant.registration_address_1
+        - if !@registrant.registration_address_2.blank?
+          %br
+          = @registrant.registration_address_2
+        - if !@registrant.registration_unit_type.blank?
+          %br
+          = @registrant.registration_unit_type
+          = @registrant.registration_unit_number
+        %br
+        = "#{@registrant.registration_city}, PA #{@registrant.registration_zip_code}"
+        %br
+        = "#{@registrant.registration_county} County"
+  
+    - if @registrant.has_mailing_address?
+      .review__section
+        .review__section__label 
+          Mailing Address:
+        .review__section__content
+          = @registrant.mailing_address
+          %br
+          = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip_code}"
+  
+    - if @registrant.previous_address?
+      .review__section
+        .review__section__label
+          Previous Address:
+        .review__section__content
+          = @registrant.previous_address
+          %br
+          = "#{@registrant.previous_city}, #{@registrant.previous_state} #{@registrant.previous_zip_code}"
+          %br
+          = @registrant.previous_county
+
+    .review__section
+      .review__section__label
+        Date of Birth:
+      .review__section__content
+        = I18n.l @registrant.date_of_birth
+
+    .review__section
+      .review__section__label
+        Political Party:
+      .review__section__content
+        = @registrant.party.downcase == "other" ? @registrant.other_party : @registrant.party
+      .review__section__label
+        Change of Party? 
+      .review__section__content
+        = @registrant.yes_no(@registrant.change_of_party)
+    .review__section
+      .review__section__label
+        Race:
+      .review__section__content
+        = @registrant.race
+
+    .review__section
+      .review__section__label
+        Email:
+      .review__section__content
+        = @registrant.email
+
+    .review__section
+      .review__section__label
+        Phone
+      .review__section__content
+        = @registrant.phone
+  
+  
+  .declaration-text= t('states.custom.pa.declaration').html_safe
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_declaration, class_name: "registrant-form__has-assistant__line", required: true}
   
   

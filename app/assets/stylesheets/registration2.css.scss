@@ -270,7 +270,7 @@ body {
       content: " ";
       clear: both;
     }
-    padding-bottom: 1em;
+    padding-bottom: 2em;
     
     fieldset {
       margin: 0;
@@ -718,6 +718,61 @@ body {
         color: black;
       }
   }
+  
+
+  .state-flow-error {
+    text-align: center;
+    padding: 1em;
+    border: 1px solid $red;
+  }
+
+  .declaration-text {
+    margin-top: 2em;
+    p {
+      line-height: 1.6em;
+      font-size: 15px;
+      color: black;
+      margin: .5em 0;
+    }
+    li {
+      line-height: 1.6em;
+      font-size: 15px;
+      list-style: disc inside none;
+    }
+  }
+
+  .review {
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.4em;
+    &__section {
+      width: 100%;
+      margin: 1em 0;
+      padding-top: 1em;    
+      border-top: 1px solid #ccc;
+      &:after {
+        display: block;
+        content: " ";
+        clear: both;
+      }
+      &__label, &__content {
+        float: left;
+        padding: .5em 0;
+      }
+      &__label {
+        font-weight: bold;
+        text-align: right;
+        width: 30%;
+      }
+      &__content {
+        margin-left: 20px;
+        width: calc(70% - 20px);
+      }
+    }
+  }
+
+  
+  
 }
 
 #main.using_state_registration {
@@ -738,12 +793,5 @@ body {
   }
  
 }
-
-.state-flow-error {
-  text-align: center;
-  padding: 1em;
-  border: 1px solid $red;
-}
-
 
 @import 'registration2-mobile';
