@@ -244,7 +244,7 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
       result['mailingaddress'] = mailing_address
       result['mailingcity'] = mailing_city
       result['mailingstate'] = mailing_state
-      result['mailingzipcode'] = maling_zip_code
+      result['mailingzipcode'] = mailing_zip_code
     else
       result['mailingaddress'] = ''
       result['mailingcity'] = ''
