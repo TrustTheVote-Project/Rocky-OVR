@@ -186,7 +186,7 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   def parse_party
     @parsed_party ||= begin
       v = VRToPA::PARTIES_NAMES[english_party_name.to_s.downcase.strip]
-      v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: english_party_name}
+      v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: other_party}
     end
   end
   
