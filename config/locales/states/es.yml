@@ -28,6 +28,7 @@ es:
       libertarian: Libertario
       republican: Republicano
       working_families: Familias Trabajadoras
+      unenrolled: Unenrolled
       other: Otros
     no_party_label:
       none: Ninguno
@@ -72,21 +73,17 @@ es:
         not_required_but_appreciated_with_state_name: ! '%{state_name} no solicita
           información acerca de su raza u origen étnico.  Sin embargo, Rock the Vote
           apreciaría tu información para poder medir la efectividad de nuestros esfuerzos
-          para registrar votantes.  Esta información NO APARECERÁ en tu forma impresa
-          de registro para votar.'
+          para registrar votantes.'
         not_required_but_appreciated_with_state_name_2: ! '%{state_name} no requiere
           información acerca de su raza u origen étnico.  Sin embargo, Rock the Vote
           apreciaría tu información para poder medir la efectividad de nuestros esfuerzos
-          para registrar votantes.  Esta información NO APARECERÁ en tu forma impresa
-          de registro para votar.'
+          para registrar votantes.'
         virginia: Virginia no solicita información acerca de su raza u origen étnico.  Sin
           embargo, Rock the Vote apreciaría tu información para poder medir la efectividad
-          de nuestros esfuerzos para registrar votantes.  Esta información NO APARECERÁ
-          en tu forma impresa de registro para votar.
+          de nuestros esfuerzos para registrar votantes.
         washington_dc: Washington, D.C. no solicita información acerca de su raza
           u origen étnico.  Sin embargo, Rock the Vote apreciaría tu información para
-          poder medir la efectividad de nuestros esfuerzos para registrar votantes.  Esta
-          información NO APARECERÁ en tu forma impresa de registro para votar.
+          poder medir la efectividad de nuestros esfuerzos para registrar votantes.
       party:
         blank: ''
         arizona: Arizona tiene una elección primaria cerrada. Si está registrado en
@@ -431,7 +428,11 @@ es:
       california: Sello postal o presentarse a la oficina de elecciones (o agencia
         de registro electoral NVRA) en o antes de 15 días antes del Día de la elección
         (a votar en la elección)
-      connecticut: Matasellos 14 días antes de la elección o recibido en persona 7
+      colorado: must be received at least 8 days before an election in order to receive
+        a mail ballot, but you can still register to vote in person through Election
+        Day. If you register after the 8th day, you must visit one of the Voter Service
+        and Polling Centers to get a ballot.
+      connecticut: Matasellos 7 días antes de la elección o recibido en persona 7
         días antes de las elecciones
       delaware: Matasellos de la cuarta el sábado antes de una elección primaria o
         general, o 10 días antes de una elección especial
@@ -512,6 +513,12 @@ es:
         La "prueba" más común es una fotocopia de su certificado de nacimiento o pasaporte,
         pero una lista completa de la documentación aceptable puede ser encontrada
         <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">aquí</a>.</i>'
+    pdf_other_instructions:
+      blank: ''
+      wisconsin: Applicants must always provide a Proof of Residence document when
+        registering in Wisconsin. If you are registering by mail, you can use any
+        of the Proof of Residence listed in the link above that must include the voter’s
+        name and current address.
     email_instructions:
       blank: ''
       arizona: ! '<b>* Nota para el Primer Tiempo Registro de Votantes Applicatns
@@ -540,3 +547,7 @@ es:
         documentos aceptables se puede encontrar en línea.</i><br/>
 
         <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">http://www.gotvoterid.com/proof-of-citizenship.html#evidence</a>'
+      wisconsin: ! '<strong>*Note: Applicants must always provide a Proof of Residence
+        document when registering in Wisconsin.</strong><br> If you are registering
+        by mail, you can use any of the Proof of Residence listed <a href="http://www.gab.wi.gov/publications/voter-guides/proof-of-residence"  target="_blank">here</a>
+        that must include the voter’s name and current address.'
