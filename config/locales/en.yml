@@ -159,6 +159,7 @@ en:
               invalid: ! 'Should be ###-###-####'
             date_of_birth:
               format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
             penndot_number:
               format: Should be 8 digits
             ssn4:
@@ -180,6 +181,8 @@ en:
               invalid: Not a valid address
             date_of_birth:
               format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+              
             phone:
               invalid: ! 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT

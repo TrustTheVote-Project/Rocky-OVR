@@ -80,8 +80,17 @@ module RegistrantMethods
     end
   end
   
+  def validate_date_of_birth_age
+    if date_of_birth < Date.parse("1900-01-01")
+      errors.add(:date_of_birth, :too_old)
+    end    
+  end
+  
   def validate_date_of_birth
-    return if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
+    if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
+      validate_date_of_birth_age
+      return
+    end
     if date_of_birth_before_type_cast.blank?
       errors.add(:date_of_birth, :blank)
     else
@@ -97,6 +106,7 @@ module RegistrantMethods
       if date
         @raw_date_of_birth = nil
         self[:date_of_birth] = date
+        validate_date_of_birth_age
       else
         errors.add(:date_of_birth, :format)
       end
