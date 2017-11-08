@@ -40,6 +40,8 @@ en:
           HUB: "HUB"
           SMC: "STUDENT MAILING CENTER"
           TH: "TOWNHOUSE"
+        submitting: Sending Your Application
+        confirming: Confirming Submission
       ca:
         online_instructions: ! 'You can complete your voter registration online with
 

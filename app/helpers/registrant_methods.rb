@@ -50,6 +50,25 @@ module RegistrantMethods
     attribute ? "Yes" : "No"
   end
   
+  def date_of_birth=(string_value)
+    dob = nil
+    if string_value.is_a?(String)
+      if matches = string_value.match(/^(\d{1,2})\D+(\d{1,2})\D+(\d{4})$/)
+        m,d,y = matches.captures
+        dob = Date.civil(y.to_i, m.to_i, d.to_i) rescue string_value
+      elsif matches = string_value.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})$/)
+        y,m,d = matches.captures
+        dob = Date.civil(y.to_i, m.to_i, d.to_i) rescue string_value
+      else
+        dob = string_value
+      end
+    else
+      dob = string_value
+    end
+    write_attribute(:date_of_birth, dob)
+  end
+
+  
   
   def form_date_of_birth
     if @raw_date_of_birth
@@ -106,6 +125,7 @@ module RegistrantMethods
   end
   
   def race_key
+    return nil if race.nil?
     Registrant.race_key(locale, race)
   end
   

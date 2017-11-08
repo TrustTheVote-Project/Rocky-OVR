@@ -448,7 +448,12 @@ body {
               line-height: 1em;
             }
             input[type=checkbox] {
-              margin: 0 5px 0 0;
+              margin: 3px 5px 0 0;
+            }
+            label {
+              display: inline-block;
+              line-height: 1.6em;
+              width: 78%;
             }
             span.error {
               margin-top: 5px;
@@ -669,6 +674,7 @@ body {
 
   .download h2.spaced_out {
     visibility: hidden;
+    min-height: 100px;
   }
 
   .download h2.preparing {
@@ -734,10 +740,14 @@ body {
       color: black;
       margin: .5em 0;
     }
-    li {
-      line-height: 1.6em;
-      font-size: 15px;
-      list-style: disc inside none;
+    ul {
+      margin-left: 40px;
+      li {
+        line-height: 1.6em;
+        font-size: 15px;
+        list-style: disc outside none;
+      }
+      
     }
   }
 

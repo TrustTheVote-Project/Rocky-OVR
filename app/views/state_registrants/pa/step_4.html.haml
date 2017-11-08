@@ -7,28 +7,40 @@
   
 
   .review
+    
+        
+  
     .review__section
       .review__section__label 
-        Full name: 
+        = t('txt.registration.name')
       .review__section__content
         = @registrant.name_title
         = @registrant.first_name
         = @registrant.middle_name
         = @registrant.last_name
         = @registrant.name_suffix
-  
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+        
     - if @registrant.change_of_name?
       .review__section
         .review__section__label 
-          Previous name: 
+          = t('txt.registration.previous_name') 
         .review__section__content
           = @registrant.previous_first_name
           = @registrant.previous_middle_name
           = @registrant.previous_last_name
-  
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          
+    .review__section
+      .review__section__label
+        = t('activerecord.attributes.state_registrants/pa_registrant.date_of_birth')
+      .review__section__content
+        = I18n.l @registrant.date_of_birth, format: :long
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+    
     .review__section
       .review__section__label 
-        Registration Address:
+        = t('txt.registration.home_address')
       .review__section__content
         = @registrant.registration_address_1
         - if !@registrant.registration_address_2.blank?
@@ -42,60 +54,86 @@
         = "#{@registrant.registration_city}, PA #{@registrant.registration_zip_code}"
         %br
         = "#{@registrant.registration_county} County"
-  
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+        
     - if @registrant.has_mailing_address?
       .review__section
         .review__section__label 
-          Mailing Address:
+          = t('txt.registration.mailing_address') 
         .review__section__content
           = @registrant.mailing_address
           %br
           = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip_code}"
-  
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          
     - if @registrant.previous_address?
       .review__section
         .review__section__label
-          Previous Address:
+          = t('txt.registration.previous_address')
         .review__section__content
           = @registrant.previous_address
           %br
           = "#{@registrant.previous_city}, #{@registrant.previous_state} #{@registrant.previous_zip_code}"
           %br
-          = @registrant.previous_county
+          = "#{@registrant.previous_county} County"
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          
+          
+          
+        
 
     .review__section
       .review__section__label
-        Date of Birth:
-      .review__section__content
-        = I18n.l @registrant.date_of_birth
-
-    .review__section
-      .review__section__label
-        Political Party:
+        = t('activerecord.attributes.state_registrants/pa_registrant.party')
       .review__section__content
         = @registrant.party.downcase == "other" ? @registrant.other_party : @registrant.party
-      .review__section__label
-        Change of Party? 
-      .review__section__content
-        = @registrant.yes_no(@registrant.change_of_party)
-    .review__section
-      .review__section__label
-        Race:
-      .review__section__content
-        = @registrant.race
-
-    .review__section
-      .review__section__label
-        Email:
-      .review__section__content
-        = @registrant.email
-
-    .review__section
-      .review__section__label
-        Phone
-      .review__section__content
-        = @registrant.phone
-  
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+        
+      - if @registrant.change_of_party?
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/pa_registrant.change_of_party')
+        .review__section__content
+          = @registrant.yes_no(@registrant.change_of_party)
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          
+    - unless @registrant.race.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/pa_registrant.race')
+        .review__section__content
+          = @registrant.race
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          
+    - if !@registrant.penndot_number.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/pa_registrant.penndot_number')
+        .review__section__content
+          = @registrant.penndot_number
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          
+    - elsif !@registrant.ssn4.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/pa_registrant.ssn4')
+        .review__section__content
+          = @registrant.ssn4
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          
+    - unless @registrant.phone.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/pa_registrant.email_address')
+        .review__section__content
+          = @registrant.email
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), registrant_path(@registrant))
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/pa_registrant.phone')
+        .review__section__content
+          = PhoneFormatter.process @registrant.phone
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          
   
   .declaration-text= t('states.custom.pa.declaration').html_safe
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_declaration, class_name: "registrant-form__has-assistant__line", required: true}

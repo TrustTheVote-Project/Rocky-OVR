@@ -40,6 +40,9 @@ es:
           HUB: "CENTRO"
           SMC: "CENTRO DE CORREO ESTUDIANTIL"
           TH: "CASA ADOSADA"
+        submitting: Sending Your Application
+        confirming: Confirming Submission
+        
       ca:
         online_instructions: Ahora, se puede completar su formulario de inscripción
           de votante en linea con el estado - usando el formulario de la Secretaria

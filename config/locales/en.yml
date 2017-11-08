@@ -157,6 +157,12 @@ en:
               required_if_opt_in: Required if receiving TXT
             assistant_phone:
               invalid: ! 'Should be ###-###-####'
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+            penndot_number:
+              format: Should be 8 digits
+            ssn4:
+              format: Should be 4 digits
             
         registrant:
           ca_disclosures_error: In order to finish your registration with the state

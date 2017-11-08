@@ -38,7 +38,7 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   
 
   delegate :use_state_flow?, :skip_state_flow?, to: :registrant
-  delegate :titles, :suffixes, :races, :state_parties, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  to: :registrant
+  delegate :titles, :suffixes, :races, :state_parties, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, to: :registrant
   delegate :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
     
     

@@ -157,6 +157,12 @@ es:
               required_if_opt_in: Si necesita recibir TXT
             assistant_phone:
               invalid: ! 'Deber ser ***-***-****'
+            date_of_birth:
+              format: Debe ser MM-DD-AAAA
+            penndot_number:
+              format: Should be 8 digits
+            ssn4:
+              format: Should be 4 digits
             
         registrant:
           ca_disclosures_error: Para completar su inscripción para votar en el estado

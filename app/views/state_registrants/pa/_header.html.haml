@@ -1,6 +1,4 @@
-#progress-bar
-  %ol
-    %li.progress-title= t('txt.registration.progress_indicator').html_safe
-    = progress_indicator(@num_steps).html_safe
+#form_header
+  = render partial: 'state_registrants/pa/steps'
 
-%h1= t("states.custom.pa.#{params[:step]}_header").html_safe
+  %h1= t("states.custom.pa.#{params[:step]}_header").html_safe

@@ -1,7 +1,13 @@
+#form_header {
+  margin-bottom: 22px;
+  &:after {
+    clear: both;
+    display: block;
+    content: " ";
+  }
+}
 #progress-bar {
-  position: absolute;
-  top: 0px;
-  right: 5px;
+  float: right;
   li {
     float: left;
     width: 27px;

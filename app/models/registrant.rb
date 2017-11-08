@@ -487,24 +487,6 @@ class Registrant < ActiveRecord::Base
   end
 
 
-  def date_of_birth=(string_value)
-    dob = nil
-    if string_value.is_a?(String)
-      if matches = string_value.match(/^(\d{1,2})\D+(\d{1,2})\D+(\d{4})$/)
-        m,d,y = matches.captures
-        dob = Date.civil(y.to_i, m.to_i, d.to_i) rescue string_value
-      elsif matches = string_value.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})$/)
-        y,m,d = matches.captures
-        dob = Date.civil(y.to_i, m.to_i, d.to_i) rescue string_value
-      else
-        dob = string_value
-      end
-    else
-      dob = string_value
-    end
-    write_attribute(:date_of_birth, dob)
-  end
-
 
 
   def calculate_age
@@ -703,6 +685,10 @@ class Registrant < ActiveRecord::Base
   def abandon!
     self.attributes = {:abandoned => true, :state_id_number => nil}
     self.save(:validate=>false)
+    if self.state_registrant
+      self.state_registrant.cleanup!
+    end
+  rescue    
   end
 
   # def advance_to!(next_step, new_attributes = {})
