@@ -10,7 +10,7 @@
   <script>
     WebFont.load({
       google: {
-        families: ['Caveat:400,700', 'Fira Sans:400,700,700i']
+        families: ['Caveat:400', 'Fira Sans:400,700,700i']
       }
     });
   </script>
@@ -60,7 +60,7 @@
       <div id="progress-bar">
         <ol>
           <li class="progress-title"><%= t('txt.registration.progress_indicator').html_safe %></li>
-          <%= progress_indicator.html_safe %>
+          <%= progress_indicator(@num_steps).html_safe %>
         </ol>
       </div>
     </div>

@@ -136,6 +136,7 @@ body {
     text-transform: capitalize;
     padding-top: ((80-40px)/2);
     font-family: Caveat,cursive;
+    font-weight: 400;
     height: 80px;
   }    
   #progress-bar {
@@ -269,7 +270,7 @@ body {
       content: " ";
       clear: both;
     }
-    padding-bottom: 1em;
+    padding-bottom: 2em;
     
     fieldset {
       margin: 0;
@@ -430,7 +431,8 @@ body {
         }
         
         &.registrant-form__us-citizen__line,
-        &.registrant-form__will-be-18-by-election__line {
+        &.registrant-form__will-be-18-by-election__line,
+        &.registrant-form__required-checkbox {
           margin: 15px auto;
           padding: 10px 15px;
           border: 1px solid $light-grey;
@@ -446,7 +448,12 @@ body {
               line-height: 1em;
             }
             input[type=checkbox] {
-              margin: 0 5px 0 0;
+              margin: 3px 5px 0 0;
+            }
+            label {
+              display: inline-block;
+              line-height: 1.6em;
+              width: 78%;
             }
             span.error {
               margin-top: 5px;
@@ -667,6 +674,7 @@ body {
 
   .download h2.spaced_out {
     visibility: hidden;
+    min-height: 100px;
   }
 
   .download h2.preparing {
@@ -716,6 +724,65 @@ body {
         color: black;
       }
   }
+  
+
+  .state-flow-error {
+    text-align: center;
+    padding: 1em;
+    border: 1px solid $red;
+  }
+
+  .declaration-text {
+    margin-top: 2em;
+    p {
+      line-height: 1.6em;
+      font-size: 15px;
+      color: black;
+      margin: .5em 0;
+    }
+    ul {
+      margin-left: 40px;
+      li {
+        line-height: 1.6em;
+        font-size: 15px;
+        list-style: disc outside none;
+      }
+      
+    }
+  }
+
+  .review {
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.4em;
+    &__section {
+      width: 100%;
+      margin: 1em 0;
+      padding-top: 1em;    
+      border-top: 1px solid #ccc;
+      &:after {
+        display: block;
+        content: " ";
+        clear: both;
+      }
+      &__label, &__content {
+        float: left;
+        padding: .5em 0;
+      }
+      &__label {
+        font-weight: bold;
+        text-align: right;
+        width: 30%;
+      }
+      &__content {
+        margin-left: 20px;
+        width: calc(70% - 20px);
+      }
+    }
+  }
+
+  
+  
 }
 
 #main.using_state_registration {
@@ -736,6 +803,5 @@ body {
   }
  
 }
-
 
 @import 'registration2-mobile';

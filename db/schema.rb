@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170719153519) do
+ActiveRecord::Schema.define(:version => 20171026210116) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20170719153519) do
     t.text     "pixel_tracking_codes"
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
-    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
     t.text     "branding_update_request"
+    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
     t.boolean  "active",                                           :default => true,  :null => false
     t.text     "external_conversion_snippet"
     t.text     "replace_system_css"
@@ -294,6 +294,66 @@ ActiveRecord::Schema.define(:version => 20170719153519) do
   end
 
   add_index "state_localizations", ["state_id"], :name => "index_state_localizations_on_state_id"
+
+  create_table "state_registrants_pa_registrants", :force => true do |t|
+    t.string   "email"
+    t.boolean  "confirm_us_citizen"
+    t.boolean  "confirm_will_be_18"
+    t.date     "date_of_birth"
+    t.string   "name_title"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "name_suffix"
+    t.boolean  "change_of_name"
+    t.string   "previous_first_name"
+    t.string   "previous_last_name"
+    t.string   "registration_address_1"
+    t.string   "registration_address_2"
+    t.string   "registration_unit_type"
+    t.string   "registration_unit_number"
+    t.string   "registration_city"
+    t.string   "registration_zip_code"
+    t.string   "registration_county"
+    t.boolean  "has_mailing_address"
+    t.string   "mailing_address"
+    t.string   "mailing_city"
+    t.string   "mailing_state"
+    t.string   "mailing_zip_code"
+    t.boolean  "change_of_address"
+    t.string   "previous_address"
+    t.string   "previous_city"
+    t.string   "previous_state"
+    t.string   "previous_zip_code"
+    t.string   "previous_county"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.string   "phone"
+    t.string   "party"
+    t.string   "other_party"
+    t.boolean  "change_of_party"
+    t.string   "race"
+    t.string   "penndot_number"
+    t.string   "ssn4"
+    t.boolean  "confirm_no_dl_or_ssn"
+    t.string   "voter_signature_image"
+    t.boolean  "has_assistant"
+    t.string   "assistant_name"
+    t.string   "assistant_address"
+    t.string   "assistant_phone"
+    t.boolean  "confirm_assistant_declaration"
+    t.boolean  "confirm_declaration"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "registrant_id"
+    t.string   "locale"
+    t.string   "status"
+    t.boolean  "confirm_no_penndot_number"
+    t.boolean  "pa_submission_complete"
+    t.string   "pa_transaction_id"
+    t.text     "pa_submission_error"
+    t.string   "previous_middle_name"
+  end
 
   create_table "tracking_events", :force => true do |t|
     t.string   "tracking_event_name"

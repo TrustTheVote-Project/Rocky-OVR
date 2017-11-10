@@ -40,6 +40,54 @@ en:
           rather than Rock the Vote.
         url: URL
         registration_instructions_url: PDF instructions URL
+      state_registrants/pa_registrant:
+        email: Email
+        registration_zip_code: ZIP Code
+        confirm_declaration: I confirm that I have read and agree to the terms above.
+        confirm_assistant_declaration: I confirm that I have read and agree to the terms above.
+        date_of_birth: Date of Birth
+        confirm_us_citizen: I am a U.S. citizen.
+        confirm_will_be_18: I will be 18 or older by the next election.      
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        previous_first_name: First
+        previous_middle_name: Middle
+        previous_last_name: Last
+        registration_address_1: Address
+        registration_address_2: Address Line 2
+        registration_unit_type: ! 'Unit Type'
+        registration_unit_number: ! 'Unit Number'
+        registration_city: City
+        registration_state: State
+        home_state_abbrev: State
+        registration_county: County
+        has_mailing_address: I get my mail at a different address from the one above.
+        mailing_address: Address
+        mailing_city: City
+        mailing_state: State
+        mailing_zip_code: Zip
+        previous_address: Address
+        previous_city: City
+        previous_state: State
+        previous_zip_code: Zip
+        previous_county: County
+        phone: Phone
+        change_of_name: I have changed my name.
+        change_of_address: I have changed my address.
+        change_of_party: I have changed my political party.
+        party: Political Party
+        race: Race
+        penndot_number: PennDOT Number
+        confirm_no_penndot_number: I do not know my PennDOT Number.
+        ssn4: Last 4 digits of your social security number
+        confirm_no_dl_or_ssn: I do not know the last four digits of my social security number.
+        has_assistant: Someone helped me with this form.
+        assistant_name: Helper Name
+        assistant_address: Helper Address
+        assistant_phone: Helper Phone
       registrant:
         date_of_birth: Date of Birth
         email_address: Email Address
@@ -92,6 +140,31 @@ en:
         tell_message: Personal Message
     errors:
       models:
+        state_registrants/pa_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          attributes:
+            confirm_us_citizen:
+              accepted: You must be a US citizen!
+            confirm_will_be_18:
+              accepted: You must be 18 by the next election to register to vote.
+            confirm_declaration:
+              accepted: You must confirm that you agree to the terms above.
+            confirm_assitant_declaration:
+              accepted: You must confirm that you agree to the terms above.
+            phone:
+              invalid: ! 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+            assistant_phone:
+              invalid: ! 'Should be ###-###-####'
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+            penndot_number:
+              format: Should be 8 digits
+            ssn4:
+              format: Should be 4 digits
+            
         registrant:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
@@ -108,6 +181,8 @@ en:
               invalid: Not a valid address
             date_of_birth:
               format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+              
             phone:
               invalid: ! 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT

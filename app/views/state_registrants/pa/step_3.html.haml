@@ -1,0 +1,103 @@
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+      function togglePenndotNumber() {
+        if ($("#state_registrants_pa_registrant_confirm_no_penndot_number:checked").length > 0) {
+          $(".registrant-form__penndot-number__line").hide();
+          $("#ssn4_set").show();
+        } else {
+          $(".registrant-form__penndot-number__line").show();
+          $("#ssn4_set").hide();
+        }              
+      }
+
+      function toggleSsn4() {
+        if ($("#state_registrants_pa_registrant_confirm_no_dl_or_ssn:checked").length > 0 ) {
+          $(".registrant-form__ssn4__line").hide();
+        } else {
+          $(".registrant-form__ssn4__line").show();
+        }
+      }
+      
+      function toggleAssistant() {
+        if ($("#state_registrants_pa_registrant_has_assistant:checked").length > 0) {
+          $("#assistant_set").show();
+        } else {
+          $("#assistant_set").hide();
+        }        
+      }
+      
+      
+      function toggleOtherParty() {
+        var party = $("#state_registrants_pa_registrant_party").val().toLowerCase()
+        if (party=='other' || party=='otros') {
+          $("#other_party_set").show();          
+        } else {
+          $("#other_party_set").hide();
+        }        
+      }
+      
+      $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
+      toggleOtherParty();
+      $("#state_registrants_pa_registrant_confirm_no_penndot_number").click(togglePenndotNumber)
+      togglePenndotNumber();      
+      $("#state_registrants_pa_registrant_confirm_no_dl_or_ssn").click(toggleSsn4)
+      toggleSsn4();      
+      $("#state_registrants_pa_registrant_has_assistant").click(toggleAssistant)
+      toggleAssistant();
+    });
+      
+      
+= render partial: 'state_registrants/pa/header'
+
+= form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
+
+  = render partial: 'state_registrants/pa/locale_selector', locals: {form: form }
+
+
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
+
+  %ul.flat.party-dropdown
+    
+    = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
+    
+  %fieldset#other_party_set
+    %ul.flat.other-party
+      = field_li(form, :other_party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__other-party__line"}})
+    
+  
+  %ul.flat.race-dropdown
+    = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
+  
+  %p.instructions
+    = I18n.t('states.custom.pa.penndot_number_instructions')
+  %ul.flat.penndot-number    
+    = field_li(form, :penndot_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__penndot-number__line"} })
+    
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
+
+  %fieldset#ssn4_set
+    %ul.flat.ssn4
+      = field_li(form, :ssn4, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn4__line"} })
+      
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dl_or_ssn, class_name: "registrant-form__no-ssn4__line", required: false}
+      
+    
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_assistant, class_name: "registrant-form__has-assistant__line", required: false}
+  
+  %fieldset#assistant_set
+    %ul.stacked
+      = field_li(form, :assistant_name, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-name__line"} })
+    %ul.stacked
+      = field_li(form, :assistant_address, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-address__line"} })
+    %ul.stacked
+      = field_li(form, :assistant_phone, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-phone__line"} })
+    
+    .declaration-text
+      = t('states.custom.pa.assistant_declaration').html_safe
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_assistant_declaration, class_name: "registrant-form__assistant-confirmation__line", required: true}
+
+
+  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
+  .back    
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(controller.prev_step, @registrant.to_param)
