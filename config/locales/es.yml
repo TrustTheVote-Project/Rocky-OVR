@@ -41,8 +41,8 @@ es:
       state_registrants/pa_registrant:
         email: Correo Electrónico
         registration_zip_code: Código Postal
-        confirm_declaration: I confirm that I have read and agree to the terms above.
-        confirm_assistant_declaration: I confirm that I have read and agree to the terms above.
+        confirm_declaration: Confirmo que leí y que acepto los términos anteriores.
+        confirm_assistant_declaration: Confirmo que leí y que acepto los términos anteriores.
         date_of_birth: Fecha de Nac
         confirm_us_citizen: Soy ciudadano americano.
         confirm_will_be_18: Tendré 18 años en el próximo día de elecciones.
@@ -56,12 +56,12 @@ es:
         previous_last_name: Apellido
         registration_address_1: Dirección Casa
         registration_address_2: Dirección 2
-        registration_unit_type: ! 'Unit Type'
+        registration_unit_type: ! 'Unidad Número'
         registration_unit_number: ! 'No.'
         registration_city: Ciudad
         registration_state: Estado
         home_state_abbrev: Estado
-        registration_county: County
+        registration_county: Condado donde vive
         has_mailing_address: Recibo mi correo en una dirección diferente a la provista anteriormente.
         mailing_address: Dirección
         mailing_city: Ciudad
@@ -71,21 +71,21 @@ es:
         previous_city: Ciudad
         previous_state: Estado
         previous_zip_code: Código Postal
-        previous_county: County
+        previous_county: Condado donde vive
         phone: Teléfono
         change_of_name:  He cambiado mi nombre.
         change_of_address: He cambiado mi dirección.
-        change_of_party: I have changed my political party.
+        change_of_party: He cambiado mi partido político.
         party: Partido
         race: Raza
-        penndot_number: PennDOT Number
-        confirm_no_penndot_number: I do not know my PennDOT Number.
-        ssn4: Last 4 digits of your social security number
-        confirm_no_dl_or_ssn: I do not know the last four digits of my social security number.
-        has_assistant: Someone helped me with this form.
-        assistant_name: Helper Name
-        assistant_address: Helper Address
-        assistant_phone: Helper Phone
+        penndot_number: Número de Licencia de Conducir de PA
+        confirm_no_penndot_number: No sé mi número de PennDOT
+        ssn4: Los últimos 4 dígitos de su número de seguro social
+        confirm_no_dl_or_ssn: No sé mi número de los últimos 4 dígitos de su número de seguro social
+        has_assistant: ¿Alguien se ayudó con este formulario?
+        assistant_name: Ayudante Nombre
+        assistant_address: Ayudante Dirección
+        assistant_phone: Número de Teléfono
       registrant:
         date_of_birth: Fecha de Nac
         email_address: Correo Electrónico
@@ -145,13 +145,13 @@ es:
           invalid_zip: Código Postal Invalido
           attributes:
             confirm_us_citizen:
-              accepted: You must be a US citizen!
+              accepted: Soy ciudadano de los Estados Unidos!
             confirm_will_be_18:
-              accepted: You must be 18 by the next election to register to vote.
+              accepted: Tendré por lo menos 18 años en la fecha de las siguientes elecciones.
             confirm_declaration:
-              accepted: You must confirm that you agree to the terms above.
+              accepted: He revisado la información anterior, y es verdad y exacta a lo mejor de mi conocimiento.
             confirm_assitant_declaration:
-              accepted: You must confirm that you agree to the terms above.
+              accepted: Confirmo que leí y que acepto los términos anteriores.
             phone:
               invalid: ! 'Deber ser ***-***-****'
               required_if_opt_in: Si necesita recibir TXT
@@ -160,9 +160,9 @@ es:
             date_of_birth:
               format: Debe ser MM-DD-AAAA
             penndot_number:
-              format: Should be 8 digits
+              format: Deberían tener 8 dígitos
             ssn4:
-              format: Should be 4 digits
+              format: Los últimos 4 dígitos de su número de seguro social
             
         registrant:
           ca_disclosures_error: Para completar su inscripción para votar en el estado
