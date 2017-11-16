@@ -99,10 +99,6 @@
     %ul.stacked
       = field_li(form, :previous_county, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__prev-county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })  
   
-  - if @registrant.email.blank?
-    %fieldset
-      %ul.stacked
-        = field_li(form, :email, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__email__line"}})
         
   
   
@@ -110,6 +106,11 @@
     %ul.stacked
       = field_li(form, :phone, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__email__line"}})
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization => h("Rock the Vote")).html_safe}
+  
+  - if @registrant.email.blank?
+    %fieldset
+      %ul.stacked
+        = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
   
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}

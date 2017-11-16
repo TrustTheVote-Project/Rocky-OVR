@@ -1,5 +1,7 @@
 ---
 en:
+  'yes': Yes
+  'no': No
   language_name: English
   language_name_translation_instructions: Please provide the name of the translated
     language in that language. For example, if you are translating Japanese, provide
@@ -79,6 +81,7 @@ en:
         change_of_address: I have changed my address.
         change_of_party: I have changed my political party.
         party: Political Party
+        other_party: Other Party
         race: Race
         penndot_number: PennDOT Number
         confirm_no_penndot_number: I do not know my PennDOT Number.
@@ -162,8 +165,10 @@ en:
               too_old: Must be after 1900
             penndot_number:
               format: Should be 8 digits
+              blank: Required. If you do not have a PA driver's license or PennDOT ID card number, please select "I do not know my PennDOT number."
             ssn4:
               format: Should be 4 digits
+              blank: Required. If you do not know the last four digits of your social security number, please select "I do not know the last four digits of my social security number.
             
         registrant:
           ca_disclosures_error: In order to finish your registration with the state

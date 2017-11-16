@@ -108,6 +108,12 @@
 
 
 #main {
+  p.instructions {
+    margin-top: 0;
+  }
+  
+  
+  
   .step_4 {
     h1 {
       text-transform: none;
@@ -134,6 +140,14 @@
       }
       li.registrant-form__home-unit-number__line {
         width: 45%;
+      }
+      li.registrant-form__penndot-number__line, li.registrant-form__ssn4__line {
+        .error {
+          height: auto;
+          line-height: 1.5em;
+          white-space: normal;
+          padding: .5em 0;
+        }
       }
     }
     ul.party-dropdown, ul.race-dropdown, ul.other-party {

@@ -1,5 +1,7 @@
 ---
 es:
+  'yes': Sí
+  'no': No
   language_name: español
   language_name_translation_instructions: Por favor, indique el nombre de la lengua
     traducida en ese idioma. Por ejemplo, si se está traduciendo japonés, proporcione
@@ -77,6 +79,7 @@ es:
         change_of_address: He cambiado mi dirección.
         change_of_party: He cambiado mi partido político.
         party: Partido
+        other_party: Otro Partido Político
         race: Raza
         penndot_number: Número de Licencia de Conducir de PA
         confirm_no_penndot_number: No sé mi número de PennDOT
@@ -161,8 +164,10 @@ es:
               format: Debe ser MM-DD-AAAA
             penndot_number:
               format: Deberían tener 8 dígitos
+              blank: Requerido. Marque "No sé mi número de PennDOT" si no sabes su de identificación PennDOT
             ssn4:
               format: Los últimos 4 dígitos de su número de seguro social
+              blank: Requerido. Marque "No sé mi número de los últimos 4 dígitos de su número de seguro social" si no sabes los últimos cuatro dígitos de su número de seguro social.
             
         registrant:
           ca_disclosures_error: Para completar su inscripción para votar en el estado

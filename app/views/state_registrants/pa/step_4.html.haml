@@ -93,7 +93,7 @@
         .review__section__label
           = t('activerecord.attributes.state_registrants/pa_registrant.change_of_party')
         .review__section__content
-          = @registrant.yes_no(@registrant.change_of_party)
+          = @registrant.yes_no_localized(@registrant.change_of_party)
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
           
     - unless @registrant.race.blank?

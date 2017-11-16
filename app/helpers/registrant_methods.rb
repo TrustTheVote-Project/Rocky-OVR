@@ -50,6 +50,10 @@ module RegistrantMethods
     attribute ? "Yes" : "No"
   end
   
+  def yes_no_localized(attribute)
+    attribute ? I18n.t('yes', self.locale) : I18n.t('no', self.locale)
+  end
+  
   def date_of_birth=(string_value)
     dob = nil
     if string_value.is_a?(String)
