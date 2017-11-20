@@ -47,6 +47,7 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def complete
+    set_up_locale
     @registrant_finish_iframe_url = @registrant.finish_iframe_url
     render "state_registrants/#{@registrant.home_state_abbrev.downcase}/complete"    
   end

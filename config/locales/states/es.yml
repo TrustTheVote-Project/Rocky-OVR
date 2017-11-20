@@ -42,7 +42,8 @@ es:
           TH: "CASA ADOSADA"
         submitting: Enviando su aplicación
         confirming: Confirmando la presentación
-        
+        registration_complete: Su inscripción estará completa
+        registration_complete_dialog_text: ! '<ul><li>Su solicitud se ha enviado a la oficina de registro de votantes del condado.</li><li>Su inscripción no estará completa hasta que sea procesada y aceptada por la oficina de inscripción de su condado.</li><li>Si acepta, recibirá su Tarjeta de Inscripción de Votante por correo.</li><li>Si en 14 días no ha recibido su Tarjeta de Inscripción de Votante, llame a su oficina de inscripción de votantes.</li><p>Atención: La fecha límite para inscribirse y poder votar en las próximas elecciones 10/10/2017 es 11/7/2017.</p>'
       ca:
         online_instructions: Ahora, se puede completar su formulario de inscripción
           de votante en linea con el estado - usando el formulario de la Secretaria
