@@ -1,4 +1,5 @@
-#form_header.FinishWithState
-  = render partial: 'state_registrants/pa/steps'
+#form_header
+  .state-integration
+    = render partial: 'state_registrants/pa/steps'
 
-  %h1= t("states.custom.pa.#{params[:step]}_header").html_safe
+    %h1= t("states.custom.pa.#{params[:step]}_header").html_safe
