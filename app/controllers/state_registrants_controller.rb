@@ -78,6 +78,10 @@ class StateRegistrantsController < RegistrationStep
       go_to_paper and return
     else
       @num_steps = @registrant.num_steps
+      if @registrant.partner
+        @partner    = @registrant.partner
+        @partner_id = @partner.id
+      end
     end
     
   end
