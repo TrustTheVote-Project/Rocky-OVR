@@ -811,14 +811,14 @@ class Registrant < ActiveRecord::Base
   def canvasser_clock_in
     return nil if !is_grommet?
     @canvasser_id ||= self.tracking_source
-    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_in")
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_in").first
     t && t.tracking_data ? t.tracking_data["clock_in_datetime"] : nil
   end
 
   def canvasser_clock_out
     return nil if !is_grommet?
     @canvasser_id ||= self.tracking_source
-    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_out")
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_out").first
     t && t.tracking_data ? t.tracking_data["clock_out_datetime"] : nil    
   end
   
