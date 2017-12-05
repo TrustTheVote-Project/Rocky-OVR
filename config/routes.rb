@@ -155,6 +155,9 @@ Rocky::Application.routes.draw do
         get :regen_api_key
         post :publish
       end
+      collection do 
+        post :upload_registrant_statuses
+      end
       resources :assets, :only => [ :index, :create, :destroy ]
     end
     resources :government_partners

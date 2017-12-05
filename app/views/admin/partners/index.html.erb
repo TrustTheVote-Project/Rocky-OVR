@@ -2,6 +2,24 @@
 <%= render :partial=>"admin/shared/admin_nav" %>
 <%- publish_confirmation = 'text explainging publishing details '%>
 
+<h1>Registrant Status</h1>
+<%= form_tag  upload_registrant_statuses_admin_partners_path, method: 'post', multipart: true  do  %>
+  <%= label_tag 'geo_state', 'Select A State' %>
+  <%= select_tag 'geo_state', options_for_select(GeoState.all.collect{|s| [s.abbreviation, s.id]}), include_blank: true%>
+  <%= file_field_tag 'statuses_csv' %>
+  <%= label_tag 'statuses_csv', 'Upload Registrant Status CSV' %>
+  <%= submit_tag 'Upload' %>
+<%- end %>
+
+<%- if @status_results %>
+  <ul>
+    <% @status_results.each do |state_id, message| %>
+      <li>ID <%= state_id%>: <%= message %></li>
+    <%- end %>
+  </ul>
+<%- end%>
+
+
 <h1>Partners</h1>
 
 <%= form_for [ :admin, @partner_zip], :url=>admin_partner_zips_path, :html => { :multipart => true }  do |f| %>

@@ -551,9 +551,25 @@ class Partner < ActiveRecord::Base
     conditions[0] = conditions[0].join(" AND ")
 
     CSV.generate do |csv|
-      csv << Registrant::CSV_HEADER
-      registrants.find_each(:batch_size=>500, :include => [:home_state, :mailing_state, :partner], conditions: conditions) do |reg|
-        csv << reg.to_csv_array
+      header = Registrant::CSV_HEADER
+      has_canvasser_columns = false
+      rows = []
+      registrants.find_each(:batch_size=>500, :include => [:home_state, :mailing_state, :partner, :registrant_status], conditions: conditions) do |reg|
+        row = reg.to_csv_array
+        rows << reg.to_csv_array
+        has_canvasser_columns = true if row.last(2) != [nil, nil]
+      end
+      if has_canvasser_columns
+        header += ["Canvasser Clock In", "Canvasser Clock Out"]
+      else
+        rows.each do |row|
+          row.pop
+          row.pop
+        end
+      end
+      csv << header
+      rows.each do |row|
+        csv << row
       end
     end
   end
