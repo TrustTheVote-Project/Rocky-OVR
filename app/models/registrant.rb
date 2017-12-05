@@ -838,10 +838,10 @@ class Registrant < ActiveRecord::Base
   def api_submission_status
     return nil if !submitted_via_state_api?
     if is_grommet?
-      if grommet_submission["pa_transaction_id"].blank?
-        ["Error", grommet_submission["errors"][0]].join(": ")
+      if state_ovr_data["pa_transaction_id"].blank?
+        ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
       else
-        "Success: #{grommet_submission["pa_transaction_id"]}"
+        "Success: #{state_ovr_data["pa_transaction_id"]}"
       end
     else     
       existing_state_registrant.state_transaction_id.blank? ? ["Error", existing_state_registrant.api_submission_error].join(": ") : "Success: #{existing_state_registrant.state_transaction_id}"
