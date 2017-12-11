@@ -197,6 +197,7 @@ record_12:
   sos_phone: (208) 334-2300
   sos_url: http://www.sos.idaho.gov/elect/eleindex.htm
   id_length_min: '4'
+  online_registration_url: https://apps.idahovotes.gov/OnlineVoterRegistration
 record_13:
   abbreviation: IL
   name: Illinois

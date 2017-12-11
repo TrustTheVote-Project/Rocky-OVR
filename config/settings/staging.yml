@@ -1,4 +1,4 @@
-from_address:  "Rock The Vote <register@rockthevote.com>"
+from_address:  "Rock the Vote <register@rockthevote.com>"
 pdf_host_name: 'staging.rocky.rockthevote.com'
 default_url_host: "staging.rocky.rockthevote.com"
 api_host_name: https://rtvdemo:bullwinkle@staging.rocky.rockthevote.com
@@ -29,6 +29,7 @@ states_with_online_registration:
   - GA
   - FL
   - HI
+  - ID
   - IL
   - IN
   - IA
