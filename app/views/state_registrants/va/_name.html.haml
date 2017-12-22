@@ -1,0 +1,18 @@
+%fieldset
+  %legend
+    %span= I18n.t('txt.registration.name')
+    = tooltip_tag :registrant_name
+  %ul.stacked
+    = field_li(form, :name_title, {skip_tooltip: true ,required: true, li_options: {class: "registrant-form__name-title__line"}, select_options: @registrant.titles, field_options: {include_blank: true} })
+  
+    = field_li(form, :first_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__first-name__line'} , skip_tooltip: true })
+  
+  %ul.stacked
+    = field_li(form, :middle_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__middle-name__line'} , skip_tooltip: true })
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_middle_name, class_name: "registrant-form__no-middle-name__line", required: false}
+
+  %ul.stacked
+    = field_li(form, :last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__last-name__line'} , skip_tooltip: true })
+  
+    = field_li(form, :name_suffix, {skip_tooltip: true ,required: true, li_options: {class: "registrant-form__name-suffix__line"}, select_options: @registrant.suffixes, field_options: {include_blank: true} })
+  

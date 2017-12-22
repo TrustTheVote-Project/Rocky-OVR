@@ -1,4 +1,4 @@
-class StateRegistrants::PARegistrant < ActiveRecord::Base
+class StateRegistrants::PARegistrant < StateRegistrants::Base
   UNITS = {APT: "APARTMENT",
     BSM: "BASEMENT",
     BOX: "BOX #",
@@ -36,59 +36,6 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
   
   validates_with PARegistrantValidator
   
-
-  delegate :use_state_flow?, :skip_state_flow?, to: :registrant
-  delegate :titles, :suffixes, :races, :state_parties, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, to: :registrant
-  delegate :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
-    
-    
-  before_create :set_default_opt_ins
-    
-  def self.from_registrant(reg)
-    sr = self.find_by_registrant_id(reg.uid) || self.new
-    sr.registrant_id = reg.uid
-    sr.status ||= :step_2
-    sr.set_from_original_registrant
-    sr
-  end
-  
-  def name_title_key
-    key_for_attribute(:name_title, 'titles')
-  end
-  def english_name_title
-    english_attribute_value(name_title_key, 'titles')
-  end
-  def name_suffix_key
-    key_for_attribute(:name_suffix, 'titles')
-  end
-  def english_name_suffix
-    english_attribute_value(name_suffix_key, 'titles')
-  end
-  
-  
-  attr_accessor :new_locale
-  def check_locale_change
-    if !self.new_locale.blank? && self.new_locale != self.locale
-      selected_name_title_key = name_title_key
-      selected_name_suf_key = name_suffix_key
-      selected_race_key = race_key
-      party_idx = state_parties.index(self.party)
-      self.locale = self.new_locale
-      self.registrant.locale = self.locale #So state_parties returns the correct new list
-       
-      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
-      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
-      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
-      self.party = state_parties[party_idx] if !party_idx.nil?
-      self.save(validate: false)
-      self.update_original_registrant
-    end
-  end
-  
-  def registrant
-    @registrant ||= Registrant.find_by_uid(self.registrant_id)
-  end
-  
   def complete?
     status = step_list.last && valid? && confirm_declaration?
   end
@@ -98,65 +45,16 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     self.update_attribute(:penndot_number, '')
   end
   
-  def uid
-    self.registrant_id
-  end
-  def to_param
-    self.registrant_id
-  end
-  
-  def set_default_opt_ins
-    self.opt_in_email = true
-    self.opt_in_sms = true
-  end
-  
   def num_steps
     4
   end
-  def current_step
-    if status =~ /step_(\d)/
-      $1
-    else
-      num_steps
-    end
+
+  def default_state_abbrev
+    'PA'
   end
   
-  def is_fake
-    false
-  end
-  
-  def short_form?
-    true
-  end
-  def use_short_form?
-    true
-  end
-  
-  def home_state
-    registration_zip_code.blank? ? GeoState['PA'] : GeoState.for_zip_code(registration_zip_code.strip)
-  end
-  
-  def home_state_abbrev
-    home_state.abbreviation
-    #"PA"
-  end
-  def home_state_name
-    #"Pennsylvania"
-    home_state.name
-  end
-  
-  STEPS=%w(step_1 step_2 step_3 step_4 complete)
-  def step_list
-    STEPS
-  end
-  
-  def advance!
-    self.status = next_step
-    self.save!
-  end
-  
-  def aasm_current_state
-    status
+  def steps
+    %w(step_1 step_2 step_3 step_4 complete)
   end
   
   def async_submit_to_online_reg_url
@@ -362,17 +260,20 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     {
       "email" => "email_address",
       "confirm_us_citizen"  => "us_citizen",
-      "confirm_will_be_18"  => "will_be_18_by_election",
+      #"confirm_will_be_18"  => "will_be_18_by_election",
       "date_of_birth" => "date_of_birth",
       "name_title"  => "name_title",
       "first_name"  => "first_name",
       "middle_name" => "middle_name",
       "last_name" => "last_name",
       "name_suffix" => "name_suffix",
+      
       "change_of_name"  => "change_of_name",
       "previous_first_name" => "prev_first_name",
       "previous_last_name"  => "prev_last_name",
       "previous_middle_name" => "prev_middle_name",
+      "previous_name_suffix" => "prev_name_suffix",
+      
       "registration_city" => "home_city",
       "registration_zip_code" => "home_zip_code",
       "has_mailing_address" => "has_mailing_address",      
@@ -390,10 +291,6 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
       "race"  => "race",
       "locale"  => "locale"
     }
-  end
-  
-  def rase=(val)
-    raise val.to_s
   end
   
   def set_from_original_registrant
@@ -415,11 +312,6 @@ class StateRegistrants::PARegistrant < ActiveRecord::Base
     self.registration_unit_number = unit_info.join(' ')
     self.has_mailing_address = r.has_mailing_address?
     self.save(validate: false)
-  end
-  
-  def attributes=(*args)
-    super(*args)
-    update_original_registrant
   end
   
   def update_original_registrant

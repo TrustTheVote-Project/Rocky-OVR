@@ -248,6 +248,9 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
+    api_settings:
+        api_url: TODO"
+        api_key: <%= ENV['VA_API_KEY'] %>
   WV:
     redirect_to_online_reg_url: true
     languages:
