@@ -1,15 +1,8 @@
 class StateRegistrants::VARegistrant < StateRegistrants::Base
   
   #validates_with VARegistrantValidator
-  delegate :use_state_flow?, :skip_state_flow?, to: :registrant
-  delegate :titles, :suffixes, :races, :state_parties, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, to: :registrant
-  delegate :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
-    
-    
-  before_create :set_default_opt_ins
   
   # mailing address if military (or spouse/dependent), if overseas, if not serviced by USPS or homeless, if providing PO box for privacy
-  
   # Locality Codes
   # https://publicapi.elections.virginia.gov/V1/Locality/All 
   def self.localities
@@ -154,8 +147,9 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   end
   
   def complete?
-    raise NotImplementedError
+    status == step_list.last && valid? && confirm_declaration?
   end
+  
   
   def cleanup!
     # TODO make sure we don't keep SSN
@@ -208,7 +202,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       
       "mailing_city"  => "mailing_city",
       "mailing_zip_code"  => "mailing_zip_code",
-      "mailing_state" => "mailing_state",
+      #"mailing_state" => "mailing_state",
       
       "opt_in_email"  => "opt_in_email",
       "opt_in_sms"  => "opt_in_sms",
@@ -226,6 +220,9 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       val = r.send(v)
       self.send("#{k}=", val)
     end
+    if r.mailing_state
+      self.mailing_state = r.mailing_state.abbreviation
+    end
     self.save(validate: false)
   end
   
@@ -234,6 +231,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     mappings.each do |k,v|
       val = self.send(k)
       r.send("#{v}=", val)
+    end
+    if !self.mailing_state.blank? #always an abbrev
+      r.mailing_state = GeoState[self.mailing_state]
+    else
+      r.mailing_state = nil
     end
     r.save(validate: false)
   end    

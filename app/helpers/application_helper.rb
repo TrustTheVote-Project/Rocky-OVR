@@ -132,6 +132,9 @@ module ApplicationHelper
     field_html = nil
     if options[:select_options]
       field_html = select_div(form, field, options[:select_options], options[:field_options])
+    elsif options[:radio_options]
+      label = content_tag(:h3, (form.object.class.human_attribute_name(field) + required).html_safe).html_safe
+      field_html = radio_div(form, field, options[:radio_options], options[:field_options])
     else
       field_html = field_div(form, field, options[:field_options])
     end
@@ -151,6 +154,16 @@ module ApplicationHelper
     options ||= {}
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
     content_tag(:div, form.select(field, contents, options), :class => has_error)
+  end
+  
+  def radio_div(form, field, radio_options, options={})
+    options ||= {}
+    has_error = !form.object.errors[field].empty? ? "has_error" : nil
+    radio_buttons = radio_options.collect do |text, value|
+      radio = form.radio_button(field, value).html_safe
+      form.label("#{field}_#{value}", "#{radio} #{text}".html_safe).html_safe
+    end.join("\n").html_safe
+    content_tag(:div, radio_buttons, :class => "#{has_error} radio-buttons")
   end
 
   def rollover_button(name, text, button_options={})

@@ -1,0 +1,21 @@
+= form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/va/header'
+  %p
+    WARNING:
+    INTENTIONALLY VOTING MORE THAN ONCE IN AN ELECTION OR MAKING A MATERIALLY FALSE STATEMENT ON THIS FORM CONSTITUTES THE CRIME OF ELECTION FRAUD, WHICH IS PUNISHABLE UNDER VIRGINIA LAW AS A FELONY. VIOLATORS MAY BE SENTENCED TO UP TO 10 YEARS IN PRISON, OR UP TO 12 MONTHS IN JAIL AND/OR FINED UP TO $2,500.
+  
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_voter_fraud_warning, class_name: "registrant-form__confirm-voter-fraud-warning__line", required: true}
+  
+  
+  %p
+    Privacy Act Notice: Article II, Section 2 of the Constitution of Virginia (1971) requires that a person registering to vote provide his or her social security number, if any. Therefore, if you do not provide your social security number, your application for voter registration will be denied. Section 7 of the Federal Privacy Act (Public Law Number 93-579) allows the Commonwealth to enforce this requirement, but also requires that you be advised that state and local voting officials will use the social security number as a unique identifier to ensure that no person is registered in more than one place. This registration card will only be open to inspection by the public if the social security number is removed. Your social security number will appear on reports produced only for official use by voter registration and election officials, and for jury selection purposes by courts, and all lawful governmental purposes.
+    
+  %fieldset
+    %ul.stacked.radio
+      = field_li(form, :confirm_affirm_privacy_notice, {skip_tooltip: true, required: true, radio_options: [["Decline", false], ["Affirm", true]]})
+    
+    
+  = rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
+  .back    
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(controller.prev_step, @registrant.to_param)

@@ -37,7 +37,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   validates_with PARegistrantValidator
   
   def complete?
-    status = step_list.last && valid? && confirm_declaration?
+    status == step_list.last && valid? && confirm_declaration?
   end
   
   def cleanup!
