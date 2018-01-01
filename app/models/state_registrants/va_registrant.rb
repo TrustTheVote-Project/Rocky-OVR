@@ -1,6 +1,6 @@
 class StateRegistrants::VARegistrant < StateRegistrants::Base
   
-  #validates_with VARegistrantValidator
+  validates_with VARegistrantValidator
   
   # mailing address if military (or spouse/dependent), if overseas, if not serviced by USPS or homeless, if providing PO box for privacy
   # Locality Codes
@@ -142,12 +142,28 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   end
   
   
+  def requires_mailing_address?
+    is_protected? || is_military? || no_usps_address?
+  end
+  
+  def is_protected?
+    is_court_protected? || is_law_enforcement? || is_confidentiality_program? || is_being_stalked?
+  end
+  
+  def ssn_digits
+    self.ssn.to_s.gsub(/[^\d]/, '')
+  end
+  
+  def dln_digits
+    self.dln.to_s.gsub(/[^\d]/, '')
+  end
+  
   def gender
     # TODO determine based on title and return 'M' or 'F'
   end
   
   def complete?
-    status == step_list.last && valid? && confirm_declaration?
+    status == step_list.last && valid? && confirm_affirm_privacy_notice? && confirm_voter_fraud_warning?
   end
   
   
@@ -175,7 +191,22 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   
   def async_submit_to_online_reg_url
     raise NotImplementedError
+    self.va_submission_complete = false
+    self.save
+    self.delay.check_voter_confirmation
   end
+  
+  def check_voter_confirmation
+    # Submit to voter confirmation request for eligibility
+    server = RockyConf.ovr_states.VA.api_settings.api_url
+    api_key = RockyConf.ovr_states.VA.api_settings.api_key
+    url = File.join(server, "vX/voter-confirmation")
+    result = RestClient.post(url, )
+    result = PARegistrationRequest.send_request(self.to_pa_data)
+    self.pa_submission_complete = true
+    self.save
+  end
+  
   
   def submit_to_online_reg_url
     raise NotImplementedError

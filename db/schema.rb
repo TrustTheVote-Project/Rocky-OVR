@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20171227020904) do
+ActiveRecord::Schema.define(:version => 20171221225913) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -375,8 +375,9 @@ ActiveRecord::Schema.define(:version => 20171227020904) do
     t.boolean  "confirm_us_citizen"
     t.string   "ssn"
     t.boolean  "confirm_no_ssn"
-    t.date     "date_of_birth"
     t.string   "dln"
+    t.boolean  "confirm_no_dln"
+    t.date     "date_of_birth"
     t.string   "name_title"
     t.string   "first_name"
     t.string   "middle_name"
@@ -400,7 +401,11 @@ ActiveRecord::Schema.define(:version => 20171227020904) do
     t.boolean  "convicted_of_felony"
     t.boolean  "right_to_vote_restored"
     t.boolean  "is_military"
-    t.boolean  "is_protected"
+    t.boolean  "is_law_enforcement"
+    t.boolean  "is_court_protected"
+    t.boolean  "is_confidentiality_program"
+    t.boolean  "is_being_stalked"
+    t.boolean  "no_usps_address"
     t.string   "mailing_address_1"
     t.string   "mailing_address_2"
     t.string   "mailing_city"
@@ -417,12 +422,17 @@ ActiveRecord::Schema.define(:version => 20171227020904) do
     t.string   "registrant_id"
     t.string   "locale"
     t.string   "status"
+    t.boolean  "va_check_complete"
+    t.string   "va_check_voter_id"
+    t.boolean  "va_check_is_registered_voter"
+    t.boolean  "va_check_has_dmv_signature"
+    t.boolean  "va_check_error"
+    t.text     "va_check_response"
     t.boolean  "va_submission_complete"
     t.string   "va_transaction_id"
     t.text     "va_submission_error"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.boolean  "no_usps_address"
   end
 
   create_table "tracking_events", :force => true do |t|

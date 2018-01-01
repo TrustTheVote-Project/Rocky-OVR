@@ -7,13 +7,23 @@
       
       function toggleSsn() {
         if ($("#state_registrants_va_registrant_confirm_no_ssn:checked").length > 0 ) {
-          $(".registrant-form__ssn__line").hide();
+          $(".registrant-form__ssn__line, #dln-set").hide();
         } else {
-          $(".registrant-form__ssn__line").show();
+          $(".registrant-form__ssn__line, #dln-set").show();
         }
       }        
       $("#state_registrants_va_registrant_confirm_no_ssn").click(toggleSsn)
       toggleSsn();      
+
+      function toggleDlnn() {
+        if ($("#state_registrants_va_registrant_confirm_no_dln:checked").length > 0 ) {
+          $(".registrant-form__dln__line").hide();
+        } else {
+          $(".registrant-form__dln__line").show();
+        }
+      }        
+      $("#state_registrants_va_registrant_confirm_no_dln").click(toggleDlnn)
+      toggleDlnn();      
       
       function toggleRightToVoteRestored() {
         if ($("#state_registrants_va_registrant_convicted_of_felony_true:checked").length > 0 ) {
@@ -27,13 +37,13 @@
           
       
       function toggleMailingAddress() {
-        if ($(".registrant-form__is-military__line input:checked, .registrant-form__no-usps-address__line input:checked, .registrant-form__is-protected__line input:checked").length > 0 ) {
+        if ($(".registrant-form__is-military__line input:checked, .registrant-form__no-usps-address__line input:checked, .registrant-form__is-court-protected__line input:checked, .registrant-form__is-law-enforcement__line input:checked, .registrant-form__is-confidentiality-program__line input:checked, .registrant-form__is-being-stalked__line input:checked ").length > 0 ) {
           $(".mailing-address-set").show();
         } else {
           $(".mailing-address-set").hide();          
         }            
       }
-      $(".registrant-form__is-military__line input, .registrant-form__no-usps-address__line input, .registrant-form__is-protected__line input").click(toggleMailingAddress)
+      $(".registrant-form__is-military__line input, .registrant-form__no-usps-address__line input, .registrant-form__is-court-protected__line input, .registrant-form__is-law-enforcement__line input, .registrant-form__is-confidentiality-program__line input, .registrant-form__is-being-stalked__line input").click(toggleMailingAddress)
       toggleMailingAddress();
           
       function toggleOtherStateReg() {
@@ -58,10 +68,14 @@
   
   %fieldset#ssn_set
     %ul.flat.ssn
-      = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"} })
+      = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password} })
       
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_ssn, class_name: "registrant-form__no-ssn__line", required: false}
-    
+  %fieldset#dln-set
+    %ul.flat.dln
+      = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"} })
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__no-ssn__line", required: false}
+      
   %ul.flat
     = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'registrant-form__date-of-birth__line'} })
   
@@ -98,17 +112,29 @@
   -# TODO fix "no" and "yes" to be i18n strings
   %fieldset.convicted-of-felony
     %ul.stacked.radio
-      = field_li(form, :convicted_of_felony, {skip_tooltip: true, required: true, radio_options: [["No", false], ["Yes", true]]})
+      = field_li(form, :convicted_of_felony, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [t('yes'), true]]})
 
   %fieldset.right-to-vote-restored
     %ul.stacked.radio
-      = field_li(form, :right_to_vote_restored, {skip_tooltip: true, required: true, radio_options: [["No", false], ["Yes", true]]})
+      = field_li(form, :right_to_vote_restored, {skip_tooltip: true, required: true, radio_options: [[t("no"), false], [t("yes"), true]]})
   
-  %fieldset.needs-mailing-address
+  %fieldset.voter-classification
+    %legend
+      %span= I18n.t('states.custom.va.voter_classification') 
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_military, class_name: "registrant-form__is-military__line", required: false}
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :no_usps_address, class_name: "registrant-form__no-usps-address__line", required: false}
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_protected, class_name: "registrant-form__is-protected__line", required: false}
+    
+  %fieldset.protected-voter
+    %legend
+      %span= I18n.t('states.custom.va.protected_voter') 
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_law_enforcement, class_name: "registrant-form__is-law-enforcement__line", required: false}
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_court_protected, class_name: "registrant-form__is-court-protected__line", required: false}
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_confidentiality_program, class_name: "registrant-form__is-confidentiality-program__line", required: false}
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_being_stalked, class_name: "registrant-form__is-being-stalked__line", required: false}
   
+  %fieldset.no-usps
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :no_usps_address, class_name: "registrant-form__no-usps-address__line", required: false}
+
+
   %fieldset.mailing-address-set
     %legend
       %span= I18n.t('txt.registration.mailing_address') 
@@ -124,11 +150,17 @@
     %ul.stacked
       = field_li(form, :mailing_address_locality, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::VARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
   
-  %fieldset.registrered-in-other-state
+  %fieldset
+    %legend
+      %span= t('states.custom.va.other_questions')
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registered_in_other_state, class_name: "registrant-form__registered-in-other-state__line", required: false}
     %ul.stacked
       = field_li(form, :other_registration_state_abbrev, {skip_tooltip: true, required: true, field_options: {}, li_options: {class: "registrant-form__other-registration-state-abbrev__line"}, select_options: GeoState.all.collect {|s| [s.name, s.abbreviation] }, field_options: {include_blank: true}})
     
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :interested_in_being_poll_worker, class_name: "registrant-form__interested-in-being-poll-worker__line", required: false}
+    
+
+
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
   .back
     = link_to t('txt.button.back').html_safe, registrant_path(@registrant.registrant)

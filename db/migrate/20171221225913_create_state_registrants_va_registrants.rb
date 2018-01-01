@@ -5,6 +5,8 @@ class CreateStateRegistrantsVaRegistrants < ActiveRecord::Migration
       t.boolean  "confirm_us_citizen"
       t.string   "ssn"
       t.boolean  "confirm_no_ssn"
+      t.string   "dln"
+      t.boolean  "confirm_no_dln"
       t.date     "date_of_birth"
 
       t.string    "dln"
@@ -39,12 +41,12 @@ class CreateStateRegistrantsVaRegistrants < ActiveRecord::Migration
       t.boolean  :right_to_vote_restored
       
       t.boolean  "is_military"
-      t.boolean :is_protected
-      #t.boolean :is_law_enforecment
-      #t.boolean :is_court_protected
-      #t.boolean :is_confidentiality_program
-      #t.boolean :is_being_stalked
+      t.boolean :is_law_enforcement
+      t.boolean :is_court_protected
+      t.boolean :is_confidentiality_program
+      t.boolean :is_being_stalked
       
+      t.boolean :no_usps_address
       t.string   "mailing_address_1"
       t.string   "mailing_address_2"
       t.string   "mailing_city"
@@ -73,6 +75,12 @@ class CreateStateRegistrantsVaRegistrants < ActiveRecord::Migration
       t.string   "registrant_id"
       t.string   "locale"
       t.string   "status"
+      t.boolean  "va_check_complete"
+      t.string   "va_check_voter_id"
+      t.boolean  "va_check_is_registered_voter"
+      t.boolean  "va_check_has_dmv_signature"
+      t.boolean  "va_check_error"
+      t.text     "va_check_response"
       t.boolean  "va_submission_complete"
       t.string   "va_transaction_id"
       t.text     "va_submission_error"

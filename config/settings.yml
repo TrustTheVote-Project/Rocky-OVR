@@ -249,7 +249,7 @@ ovr_states:
     languages:
       - en
     api_settings:
-        api_url: TODO"
+        api_url: "https://fake-va-endpoint.herokuapp.com"
         api_key: <%= ENV['VA_API_KEY'] %>
   WV:
     redirect_to_online_reg_url: true

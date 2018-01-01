@@ -109,6 +109,14 @@
 
 #main {
   form {
+    ul.checkbox {
+      li {
+        margin-bottom: .5em;
+        h3 {
+          height: auto;
+        }
+      }
+    }
     ul.radio {
       li {
         h3 {
@@ -116,9 +124,10 @@
           text-align: left;
           width: auto;
           color: #aaa;
-          height: 25px;
+          height: auto;
           font-size: 16px;
-          line-height: 1em;
+          line-height: 1.4em;
+          margin: 1em 0;
         }
       }
     }
@@ -173,5 +182,11 @@
       
     }
     
+  }
+}
+
+.declaration-text {
+  strong {
+    font-weight: bold;
   }
 }
