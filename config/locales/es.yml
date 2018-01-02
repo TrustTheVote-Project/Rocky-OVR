@@ -1,7 +1,7 @@
 ---
 es:
-  'yes': Sí
-  'no': No
+  'yes': "Sí"
+  'no': "No"
   language_name: español
   language_name_translation_instructions: Por favor, indique el nombre de la lengua
     traducida en ese idioma. Por ejemplo, si se está traduciendo japonés, proporcione
