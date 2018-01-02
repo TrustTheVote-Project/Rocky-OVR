@@ -183,7 +183,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     # TODO make sure we don't keep SSN
     self.ssn = nil
     self.dln = nil
-    self.save(false)
+    self.save(validate: false)
   end
   
   def num_steps
@@ -204,7 +204,6 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   
   
   def async_submit_to_online_reg_url
-    raise NotImplementedError
     self.va_submission_complete = false
     self.va_check_complete = false
     self.save
@@ -215,7 +214,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
     api_key = RockyConf.ovr_states.VA.api_settings.api_key
-    url = File.join(server, "VoterRegistrationSubmission")
+    url = File.join(server, "VoterConfirmationRequest")
     response = RestClient.post(url, {
       "LastName"  => self.last_name,
       "FirstName" => self.first_name,
@@ -227,7 +226,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "DriversLicenseNo" => self.dln,
       "LocalityName" => self.registration_locality,
       "Format" => "json"
-    })
+    }.to_json, {content_type: :json, accept: :json})
     self.va_check_response = response.to_s
     result = JSON.parse(response)
     self.va_check_is_registered_voter = result["IsRegisteredVoter"]
@@ -238,18 +237,19 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     #if self.va_check_is_registered_voter && !self.va_check_voter_id.blank?
     self.submit_to_online_reg_url
   rescue Exception=>e
+    raise e
     self.va_check_error = true
     self.registrant.skip_state_flow!
   ensure
     self.va_check_complete = true
-    self.save(false)    
+    self.save(validate: false)    
   end
   
   def to_va_data
     {
     # 1
       "SendingAgency" => "RockTheVote", #?
-      "Location"  => "register.rockthevote.com," #?
+      "Location"  => "register.rockthevote.com", #?
       "SendingAgencyTransactionTimestamp" => self.updated_at.iso8601,
       "VoterSubmissionID" => self.id,
       "VoterID" => self.va_check_voter_id,
@@ -269,7 +269,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "SSN" => self.ssn,
       "DriversLicenseNo" => self.dln,
       "VoterEmailAddress" => self.email,
-      "VoterPhoneNumber" => self.phone
+      "VoterPhoneNumber" => self.phone,
       "ResidenceAddressLine1" => self.registration_address_1,
       "ResidenceAddressLine2" => self.registration_address_2,
       "ResidenceAddressCity" => self.registration_city,
@@ -302,25 +302,25 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     # 48
 
       "HasElectionOfficialInterest" => interested_in_being_poll_worker?
-    }.to_json
+    }
   end
   
   def submit_to_online_reg_url
     server = RockyConf.ovr_states.VA.api_settings.api_url
     api_key = RockyConf.ovr_states.VA.api_settings.api_key
     url = File.join(server, "VoterRegistrationSubmission")
-    response = RestClient.post(url, self.to_va_data)
+    response = RestClient.post(url, self.to_va_data.to_json, {content_type: :json, accept: :json})
     result = JSON.parse(response)
     
     # TODO - what is the response actually like??
-    va_transaction_id = result["ConfirmationID"]
+    self.va_transaction_id = result["ConfirmationID"]
     
   rescue Exception=>e
     self.va_submission_error = [e.message, e.backtrace].flatten.join("\n")
     self.registrant.skip_state_flow!
   ensure
     self.va_submission_complete = true
-    self.save(false)        
+    self.save(validate: false)        
   end
 
   def mappings

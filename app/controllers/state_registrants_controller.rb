@@ -28,6 +28,7 @@ class StateRegistrantsController < RegistrationStep
         redirect_to edit_state_registrant_path(@registrant.status, @registrant.to_param)
       end
     else
+      raise @registrant.errors.full_messages.to_s
       render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}"
     end
   end

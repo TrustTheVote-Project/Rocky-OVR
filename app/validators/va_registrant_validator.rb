@@ -20,7 +20,9 @@ class VARegistrantValidator < ActiveModel::Validator
       reg.validates_presence_of   :name_title
       reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
       reg.validates_presence_of   :first_name
-      reg.validates_presence_of   :middle_name, unless: :confirm_no_middle_name?
+      unless reg.confirm_no_middle_name?
+        reg.validates_presence_of   :middle_name
+      end
       reg.validates_presence_of   :last_name
       reg.validates_inclusion_of  :name_suffix, :in => Registrant::SUFFIXES, :allow_blank => true
       reg.validates_presence_of   :registration_address_1 
@@ -34,7 +36,9 @@ class VARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :previous_last_name
       end
       
-      reg.validates_presence_of :other_registration_state_abbrev, if: :registered_in_other_state?
+      if reg.registered_in_other_state?
+        reg.validates_presence_of :other_registration_state_abbrev
+      end
   
       if reg.requires_mailing_address? 
         reg.validates_presence_of :mailing_address_1
