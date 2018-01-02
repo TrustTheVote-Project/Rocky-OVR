@@ -159,17 +159,31 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   end
   
   def gender
-    # TODO determine based on title and return 'M' or 'F'
+    male_titles = RockyConf.enabled_locales.collect { |loc|
+     I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
+    }.flatten.uniq
+    return 'M' if male_titles.include?(self.name_title)
+    return 'F' if !self.name_title.blank?
+    return ''   
   end
   
   def complete?
     status == step_list.last && valid? && confirm_affirm_privacy_notice? && confirm_voter_fraud_warning?
   end
   
+  def submitted?
+    va_submission_complete?
+  end
+  
+  def state_transaction_id
+    va_transaction_id
+  end
   
   def cleanup!
     # TODO make sure we don't keep SSN
-    raise NotImplementedError
+    self.ssn = nil
+    self.dln = nil
+    self.save(false)
   end
   
   def num_steps
@@ -192,24 +206,121 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   def async_submit_to_online_reg_url
     raise NotImplementedError
     self.va_submission_complete = false
+    self.va_check_complete = false
     self.save
-    self.delay.check_voter_confirmation
+    self.delay.check_voter_confirmation    
   end
   
   def check_voter_confirmation
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
     api_key = RockyConf.ovr_states.VA.api_settings.api_key
-    url = File.join(server, "vX/voter-confirmation")
-    result = RestClient.post(url, )
-    result = PARegistrationRequest.send_request(self.to_pa_data)
-    self.pa_submission_complete = true
+    url = File.join(server, "VoterRegistrationSubmission")
+    response = RestClient.post(url, {
+      "LastName"  => self.last_name,
+      "FirstName" => self.first_name,
+      "MiddleName" => self.middle_name,
+      "SSN9" => self.ssn,
+      "DOBYear" => self.date_of_birth.year,
+      "DOBDay" =>  self.date_of_birth.day,
+      "DOBMonth" =>  self.date_of_birth.month,
+      "DriversLicenseNo" => self.dln,
+      "LocalityName" => self.registration_locality,
+      "Format" => "json"
+    })
+    self.va_check_response = response.to_s
+    result = JSON.parse(response)
+    self.va_check_is_registered_voter = result["IsRegisteredVoter"]
+    self.va_check_has_dmv_signature = result["HasDMVSignature"]
+    self.va_check_voter_id = result["VoterID"]
+    #self.pa_submission_complete = true
     self.save
+    #if self.va_check_is_registered_voter && !self.va_check_voter_id.blank?
+    self.submit_to_online_reg_url
+  rescue Exception=>e
+    self.va_check_error = true
+    self.registrant.skip_state_flow!
+  ensure
+    self.va_check_complete = true
+    self.save(false)    
   end
   
+  def to_va_data
+    {
+    # 1
+      "SendingAgency" => "RockTheVote", #?
+      "Location"  => "register.rockthevote.com," #?
+      "SendingAgencyTransactionTimestamp" => self.updated_at.iso8601,
+      "VoterSubmissionID" => self.id,
+      "VoterID" => self.va_check_voter_id,
+      "IsUSCitizen" => self.confirm_us_citizen,
+      "VoterConsentGiven" => self.confirm_voter_record_update,
+      "LastName" => self.last_name,
+      "FirstName" => self.first_name,
+      "MiddleName" => self.middle_name,
+      "NoMiddleName" => self.confirm_no_middle_name,
+      "NameSuffix" => self.name_suffix,
+      "PreviousLastName" => self.previous_last_name,
+      "PreviousFirstName" => self.previous_first_name,
+      "PreviousMiddleName" => self.previous_middle_name,
+      "PreviousNameSuffix" => self.previous_name_suffix,
+      "Gender" => self.gender,
+      "DOB" => self.date_of_birth.iso8601,
+      "SSN" => self.ssn,
+      "DriversLicenseNo" => self.dln,
+      "VoterEmailAddress" => self.email,
+      "VoterPhoneNumber" => self.phone
+      "ResidenceAddressLine1" => self.registration_address_1,
+      "ResidenceAddressLine2" => self.registration_address_2,
+      "ResidenceAddressCity" => self.registration_city,
+      "ResidenceAddressState" => "VA",
+      "ResidenceAddressZipCode" => self.registration_zip_code,
+      "ResidenceAddressLocality" => self.registration_locality,
+      "MailingAddressLine1" => self.mailing_address_1,
+      "MailingAddressLine2" => self.mailing_address_2,
+      "MailingAddressCity" => self.mailing_city,
+      "MailingAddressState" => self.mailing_state,
+      "MailingAddressZipCode" => self.mailing_state,
+      "MailingAddressLocality" => self.mailing_address_locality,
+      "AcceptWarningStatement" => self.confirm_voter_fraud_warning?,
+      "AcceptPrivacyNotice" => self.confirm_affirm_privacy_notice?,
+      "IsProhibited" => self.convicted_of_felony?,
+      "IsRightsRestored" => self.right_to_vote_restored?,
+      "IsMilitary" => is_military?,
+      "IsProtected" => is_protected?,
+      "IsLawEnforcement" => is_law_enforcement?,
+      "IsCourtProtected" => is_court_protected?,
+      "IsConfidentialityProgram" => is_confidentiality_program?,
+      "IsBeingStalked" => is_being_stalked?,
+      "IsRegisteredInAnotherState" => registered_in_other_state?,
+      "NonVARegisteredState" => other_registration_state_abbrev,
+
+    # RegisterToVoteConfirmation ????
+    # bool
+    # Yes
+    # Indicates that the voter swears information is accurate and wants to send information to Dept. of Elections to register to vote.
+    # 48
+
+      "HasElectionOfficialInterest" => interested_in_being_poll_worker?
+    }.to_json
+  end
   
   def submit_to_online_reg_url
-    raise NotImplementedError
+    server = RockyConf.ovr_states.VA.api_settings.api_url
+    api_key = RockyConf.ovr_states.VA.api_settings.api_key
+    url = File.join(server, "VoterRegistrationSubmission")
+    response = RestClient.post(url, self.to_va_data)
+    result = JSON.parse(response)
+    
+    # TODO - what is the response actually like??
+    va_transaction_id = result["ConfirmationID"]
+    
+  rescue Exception=>e
+    self.va_submission_error = [e.message, e.backtrace].flatten.join("\n")
+    self.registrant.skip_state_flow!
+  ensure
+    self.va_submission_complete = true
+    self.save(false)        
   end
 
   def mappings

@@ -34,10 +34,10 @@ class StateRegistrantsController < RegistrationStep
   
   def pending
     @refresh_location = pending_state_registrant_path(@registrant)
-    if !@registrant.pa_submission_complete
+    if !@registrant.submitted?
       render "state_registrants/#{@registrant.home_state_abbrev.downcase}/pending" and return
     else
-      if @registrant.pa_transaction_id.blank?
+      if @registrant.state_transaction_id.blank?
         # finish with PDF
         go_to_paper
       else

@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20171221225913) do
     t.text     "pixel_tracking_codes"
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
-    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
     t.text     "branding_update_request"
+    t.boolean  "enabled_for_grommet",                              :default => false, :null => false
     t.boolean  "active",                                           :default => true,  :null => false
     t.text     "external_conversion_snippet"
     t.text     "replace_system_css"
@@ -148,21 +148,6 @@ ActiveRecord::Schema.define(:version => 20171221225913) do
   end
 
   add_index "priority_pdf_generations", ["locked"], :name => "index_priority_pdf_generations_on_locked"
-
-  create_table "registrant_statuses", :force => true do |t|
-    t.integer  "registrant_id"
-    t.string   "state_transaction_id"
-    t.string   "state_status"
-    t.string   "state_status_details"
-    t.integer  "geo_state_id"
-    t.datetime "state_application_date"
-    t.text     "state_data"
-    t.integer  "admin_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
-  end
-
-  add_index "registrant_statuses", ["state_transaction_id", "geo_state_id"], :name => "registrant_statues_state_id_index"
 
   create_table "registrants", :force => true do |t|
     t.string   "status"
@@ -445,10 +430,6 @@ ActiveRecord::Schema.define(:version => 20171221225913) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
-
-  add_index "tracking_events", ["open_tracking_id"], :name => "index_tracking_events_on_open_tracking_id"
-  add_index "tracking_events", ["partner_tracking_id"], :name => "index_tracking_events_on_partner_tracking_id"
-  add_index "tracking_events", ["source_tracking_id"], :name => "index_tracking_events_on_source_tracking_id"
 
   create_table "zip_code_county_addresses", :force => true do |t|
     t.integer  "geo_state_id"

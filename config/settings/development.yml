@@ -27,6 +27,13 @@ ovr_states:
     api_settings:
       api_url: "https://fake-pa-endpoint.herokuapp.com"
   
+  VA:
+    redirect_to_online_reg_url: false
+    languages:
+      - en
+    api_settings:
+        api_url: "http://localhost:3001"
+        api_key: <%= ENV['VA_API_KEY'] %>
   WA:
     redirect_to_online_url: true
     languages:

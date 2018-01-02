@@ -122,7 +122,16 @@ class StateRegistrants::Base < ActiveRecord::Base
     update_original_registrant
   end
   
+  # Whether the user has gone through all steps/data entry
   def complete?
+    raise NotImplementedError
+  end
+  
+  def submitted?
+    raise NotImplementedError
+  end
+  
+  def state_transaction_id
     raise NotImplementedError
   end
   

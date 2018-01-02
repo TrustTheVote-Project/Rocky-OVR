@@ -245,7 +245,7 @@ ovr_states:
     languages:
       - en
   VA:
-    redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: false
     languages:
       - en
     api_settings:

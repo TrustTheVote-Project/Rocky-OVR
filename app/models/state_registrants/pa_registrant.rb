@@ -243,6 +243,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     pa_submission_complete?
   end
   
+  def pa_transaction_id?
+    
+  end
+  
   # TODO do we allow no-collect-email for PA?
   def send_emails?
     !self.email.blank?
