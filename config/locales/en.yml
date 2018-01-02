@@ -1,7 +1,7 @@
 ---
 en:
-  'yes': Yes
-  'no': No
+  'yes': "Yes"
+  'no': "No"
   affirm: Affirm
   decline: Decline
   language_name: English

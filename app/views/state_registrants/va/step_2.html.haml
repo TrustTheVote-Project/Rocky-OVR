@@ -109,10 +109,9 @@
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
   
-  -# TODO fix "no" and "yes" to be i18n strings
   %fieldset.convicted-of-felony
     %ul.stacked.radio
-      = field_li(form, :convicted_of_felony, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [t('yes'), true]]})
+      = field_li(form, :convicted_of_felony, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
 
   %fieldset.right-to-vote-restored
     %ul.stacked.radio
