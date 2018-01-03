@@ -186,12 +186,8 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     self.save(validate: false)
   end
   
-  def num_steps
-    raise NotImplementedError
-  end
-  
   def default_state_abbrev
-    raise NotImplementedError
+    'VA'
   end
   
   def steps
@@ -314,7 +310,15 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     
     # TODO - what is the response actually like??
     self.va_transaction_id = result["ConfirmationID"]
-    
+    self.save!
+    if !self.va_transaction_id.blank?
+      self.update_original_registrant
+      self.registrant.complete_registration_with_state!
+      #deliver_confirmation_email
+    else
+      self.va_submission_error = ["No ID returned from VA submission"].flatten.join("\n")
+      self.registrant.skip_state_flow!
+    end
   rescue Exception=>e
     self.va_submission_error = [e.message, e.backtrace].flatten.join("\n")
     self.registrant.skip_state_flow!
