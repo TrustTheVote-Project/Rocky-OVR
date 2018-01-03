@@ -28,7 +28,6 @@ class StateRegistrantsController < RegistrationStep
         redirect_to edit_state_registrant_path(@registrant.status, @registrant.to_param)
       end
     else
-      raise @registrant.errors.full_messages.to_s
       render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}"
     end
   end
@@ -89,6 +88,7 @@ class StateRegistrantsController < RegistrationStep
   
   def go_to_paper
     @registrant.cleanup! if @registrant #Make sure we don't keep IDs around
+    @old_registrant.skip_state_flow!
     redirect_to registrant_step_2_path(@old_registrant)
   end
   

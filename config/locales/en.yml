@@ -217,6 +217,11 @@ household member."
               too_old: Must be after 1900
             ssn:
               format: Should be 9 digits
+            convicted_of_felony:
+              inclusion: Please select Yes or No.
+            right_to_vote_restored:
+              inclusion: Please select Yes or No.
+              
         state_registrants/pa_registrant:
           blank: Required
           invalid_zip: Invalid ZIP

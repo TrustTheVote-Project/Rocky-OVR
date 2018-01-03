@@ -36,6 +36,11 @@ class VARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :previous_last_name
       end
       
+      reg.validates_inclusion_of :convicted_of_felony, :in => [true, false]
+      if reg.convicted_of_felony?
+        reg.validates_inclusion_of :right_to_vote_restored, :in => [true, false]
+      end
+      
       if reg.registered_in_other_state?
         reg.validates_presence_of :other_registration_state_abbrev
       end

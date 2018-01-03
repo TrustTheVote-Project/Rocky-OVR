@@ -276,7 +276,6 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       "previous_first_name" => "prev_first_name",
       "previous_last_name"  => "prev_last_name",
       "previous_middle_name" => "prev_middle_name",
-      "previous_name_suffix" => "prev_name_suffix",
       
       "registration_city" => "home_city",
       "registration_zip_code" => "home_zip_code",
