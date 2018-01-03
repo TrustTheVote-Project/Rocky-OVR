@@ -42,7 +42,9 @@ class StateRegistrants::Base < ActiveRecord::Base
       selected_name_title_key = name_title_key
       selected_name_suf_key = name_suffix_key
       selected_race_key = race_key
-      party_idx = state_parties.index(self.party)
+      if self.respond_to?(:party) && self.party
+        party_idx = state_parties.index(self.party)
+      end
       self.locale = self.new_locale
       self.registrant.locale = self.locale #So state_parties returns the correct new list
        

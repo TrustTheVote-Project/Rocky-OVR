@@ -120,6 +120,7 @@ module RegistrantMethods
   
   
   def key_for_attribute(attr_name, i18n_list)
+    return nil if !self.respond_to?(attr_name)
     key_value = I18n.t("txt.registration.#{i18n_list}", :locale=>locale).detect{|k,v| v==self.send(attr_name)}
     key_value && key_value.length == 2 ? key_value[0] : nil    
   end
@@ -135,11 +136,12 @@ module RegistrantMethods
 
   
   def english_race
+    return nil if !self.respond_to?(:race)
     Registrant.english_race(locale, race)
   end
   
   def race_key
-    return nil if race.nil?
+    return nil if !self.respond_to?(:race) || race.nil?
     Registrant.race_key(locale, race)
   end
   

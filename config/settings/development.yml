@@ -32,7 +32,7 @@ ovr_states:
     languages:
       - en
     api_settings:
-        api_url: "http://localhost:3001"
+        api_url: "https://fake-va-endpoint.herokuapp.com"
         api_key: <%= ENV['VA_API_KEY'] %>
   WA:
     redirect_to_online_url: true
