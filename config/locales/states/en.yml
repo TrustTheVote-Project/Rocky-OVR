@@ -2,6 +2,8 @@
 en:
   states:
     custom:
+      pa:
+        registration_deadline_text: "Deadline to register to vote, or update an existing registration, is Monday, April 9, 2018"
       ca:
         online_instructions: ! 'You can complete your voter registration online with
 
