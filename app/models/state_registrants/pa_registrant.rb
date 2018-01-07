@@ -239,14 +239,19 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     self.update_attribute(:pa_submission_complete, true)
   end
   
+  # NOTE: This "submitted?", "api_submission_error" and "state_transaction_id" methods must be implemented by all state registrants
   def submitted?
     pa_submission_complete?
   end
   
-  def pa_transaction_id?
-    
+  def api_submission_error
+    self.pa_submission_error.to_s
   end
   
+  def state_transaction_id
+    self.pa_transaction_id
+  end
+
   # TODO do we allow no-collect-email for PA?
   def send_emails?
     !self.email.blank?

@@ -192,7 +192,12 @@ class Registrant < ActiveRecord::Base
     "Built via API",
     "Has State License",
     "Has SSN",
-    "Geo Location"
+    "Geo Location",
+    "Will be 18 by election",
+    "VR Application Status",
+    "VR Application Status Details",
+    "Submitted Via State API",
+    "State API Submission Result"
   ]
 
   attr_protected :status
@@ -210,10 +215,12 @@ class Registrant < ActiveRecord::Base
   aasm_state :rejected
 
   belongs_to :partner
-
+  
   belongs_to :home_state,    :class_name => "GeoState"
   belongs_to :mailing_state, :class_name => "GeoState"
   belongs_to :prev_state,    :class_name => "GeoState"
+
+  has_one :registrant_status
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
@@ -797,15 +804,73 @@ class Registrant < ActiveRecord::Base
     home_state && home_state.use_state_flow?(self)
   end
   
+  def submitted_via_state_api?
+     (!skip_state_flow? && existing_state_registrant && existing_state_registrant.submitted?) || is_grommet?
+  end
+  
+  def canvasser_clock_in
+    return nil if !is_grommet?
+    @canvasser_id ||= self.tracking_source
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_in").first
+    t && t.tracking_data ? t.tracking_data["clock_in_datetime"] : nil
+  end
+
+  def canvasser_clock_out
+    return nil if !is_grommet?
+    @canvasser_id ||= self.tracking_source
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_out").first
+    t && t.tracking_data ? t.tracking_data["clock_out_datetime"] : nil    
+  end
+  
+  
+  def grommet_submission
+    begin 
+      state_ovr_data["voter_records_request"]["voter_registration"]
+    rescue
+      nil
+    end
+  end
+  
+  def is_grommet?
+    !grommet_submission.blank?
+  end
+  
+  def api_submission_status
+    return nil if !submitted_via_state_api?
+    if is_grommet?
+      if state_ovr_data["pa_transaction_id"].blank?
+        ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
+      else
+        "Success: #{state_ovr_data["pa_transaction_id"]}"
+      end
+    else     
+      existing_state_registrant.state_transaction_id.blank? ? ["Error", existing_state_registrant.api_submission_error].join(": ") : "Success: #{existing_state_registrant.state_transaction_id}"
+    end
+  end
+  
+  def existing_state_registrant
+    @existing_state_registrant ||= if use_state_flow?      
+      state_registrant_type = "StateRegistrants::#{home_state_abbrev}Registrant"
+      begin
+        model = state_registrant_type.constantize
+        model.find_by_registrant_id(self.uid)
+      rescue
+        nil
+      end
+    else
+      nil
+    end    
+  end
+  
   def state_registrant
     if use_state_flow?
       state_registrant_type = "StateRegistrants::#{home_state_abbrev}Registrant"
-      #begin
+      begin
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
-        #rescue
-        #nil
-        #end
+      rescue
+        nil
+      end
     else
       nil
     end
@@ -1333,8 +1398,27 @@ class Registrant < ActiveRecord::Base
       yes_no(building_via_api_call?),
       yes_no(has_state_license?),
       yes_no(has_ssn?),
-      self.geo_location  
+      self.geo_location,
+      
+      yes_no(will_be_18_by_election?),
+      vr_application_status,
+      vr_application_status_details,
+      
+      yes_no(submitted_via_state_api?),
+      api_submission_status,
+      
+      canvasser_clock_in,
+      canvasser_clock_out,
+      
     ]
+  end
+  
+  def vr_application_status
+    registrant_status ? registrant_status.state_status : nil
+  end
+  
+  def vr_application_status_details
+    registrant_status ? registrant_status.state_status_details : nil
   end
 
   def status_text
