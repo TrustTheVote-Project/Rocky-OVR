@@ -7,7 +7,7 @@ gem "rake", "10.0.3"
 gem "figaro"
 gem "rails_config"
 
-gem "rails", "= 3.2.18"
+gem "rails", "~> 3.2"
 gem "aasm", "= 3.0.16"
 
 #gem 'utf8-cleaner'
@@ -15,7 +15,7 @@ gem 'rack-robustness'
 
 gem "authlogic", "= 3.4.2"
 gem 'daemons', '~> 1.1.9'
-gem "paperclip", "~> 3.0"
+gem "paperclip", "~> 4.2"
 gem "mysql2"
 #gem "rubyzip"
 gem 'zip-zip'
@@ -25,7 +25,7 @@ gem "dotenv-rails", '~> 0.7.0'
 gem "haml"
 
 gem "rails-i18n", '~> 0.7.3'
-gem 'jquery-rails', '~> 2.1'
+gem 'jquery-rails', '~> 3.1'
 
 gem 'dalli'
 
@@ -88,7 +88,7 @@ group :assets do
   gem 'uglifier'
 end
 
-gem "nokogiri", "= 1.5.9"
+gem "nokogiri", "= 1.6.8.1"
 gem "mechanize", "= 2.7.1"
 gem "newrelic_rpm", "= 3.6.0.83"
 gem "airbrake"
