@@ -148,7 +148,6 @@ class Registrant < ActiveRecord::Base
     "Tracking Source",
     "Tracking ID",
     "Open Tracking ID",
-    "PA Transaction ID",
     "Language",
     "Date of birth",
     "Email address",
@@ -196,6 +195,7 @@ class Registrant < ActiveRecord::Base
     "Will be 18 by election",
     "VR Application Status",
     "VR Application Status Details",
+    "VR Application Status Imported DateTime",
     "Submitted Via State API",
     "State API Submission Result"
   ]
@@ -1354,7 +1354,6 @@ class Registrant < ActiveRecord::Base
       self.tracking_source,
       self.tracking_id,
       self.open_tracking_id,
-      (self.state_ovr_data || {})["pa_transaction_id"],
       locale_english_name,
       pdf_date_of_birth,
       email_address,
@@ -1403,6 +1402,7 @@ class Registrant < ActiveRecord::Base
       yes_no(will_be_18_by_election?),
       vr_application_status,
       vr_application_status_details,
+      vr_application_status_datetime,
       
       yes_no(submitted_via_state_api?),
       api_submission_status,
@@ -1419,6 +1419,10 @@ class Registrant < ActiveRecord::Base
   
   def vr_application_status_details
     registrant_status ? registrant_status.state_status_details : nil
+  end
+  
+  def vr_application_status_datetime
+    registrant_status ? registrant_status.updated_at : nil    
   end
 
   def status_text
