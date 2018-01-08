@@ -300,6 +300,7 @@ describe V3::PartnerService do
         p.survey_question_1_ko.should == "KO One"
         p.survey_question_2_ko.should == "KO Two"
         params2 = params.dup
+        params2[:username] = "b-custom-username"
         params2.delete(:government_partner_zip_codes)
         params2[:government_partner_state_id] = GeoState["MA"].id
         params2[:email] = "contact_email+2@rtv.org"

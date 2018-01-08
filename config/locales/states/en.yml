@@ -109,32 +109,24 @@ en:
 
           appreciate this information in order  to measure the effectiveness of our
 
-          voter registration efforts.  This information will NOT appear on your printed
-
-          voter registration form.'
+          voter registration efforts.'
         not_required_but_appreciated_with_state_name_2: ! 'The state of %{state_name}
 
           does not require information about your race or ethnicity.  However, we
 
           would appreciate this information in order  to measure the effectiveness
 
-          of our voter registration efforts.  This information will NOT appear on
-
-          your printed voter registration form.'
+          of our voter registration efforts.'
         virginia: ! 'The Commonwealth of Virginia does not request information about
 
           your race or ethnicity.  However, we would appreciate this information in
 
-          order to measure the effectiveness of our voter registration efforts.  This
-
-          information will NOT appear on your printed voter registration form.'
+          order to measure the effectiveness of our voter registration efforts.'
         washington_dc: ! 'The District of Columbia does not request information about
 
           your race or ethnicity.  However, we would appreciate this information in
 
-          order to measure the effectiveness of our voter registration efforts.  This
-
-          information will NOT appear on your printed voter registration form.'
+          order to measure the effectiveness of our voter registration efforts.'
       party:
         blank: ''
         arizona: ! 'For presidential preference elections, the registrant needs to
@@ -804,7 +796,7 @@ en:
         a mail ballot, but you can still register to vote in person through Election
         Day. If you register after the 8th day, you must visit one of the Voter Service
         and Polling Centers to get a ballot.
-      connecticut: ! 'postmarked 14 days before the election or received in person
+      connecticut: ! 'postmarked 7 days before the election or received in person
         7
 
         days before the election'

@@ -41,6 +41,7 @@ states_with_online_registration:
   - OR
   - PA
   - SC
+  - TN
   - UT
   - VT
   - VA
@@ -60,6 +61,10 @@ ovr_states:
       web_url_base: https://covrtest.sos.ca.gov
       disclosures_url: https://408cfb943c38a5970903-5b52f06634f7505b14971829884d4c95.ssl.cf1.rackcdn.com/discl/
       web_agency_key: RTV
+  PA:
+    api_settings:
+      api_url: "https://fake-pa-endpoint.herokuapp.com"
+  
   NV:
     languages:
       - en

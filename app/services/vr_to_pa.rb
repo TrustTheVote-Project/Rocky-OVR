@@ -522,7 +522,8 @@ class VRToPA
           "asian / pacific islander" => "A",
           "black (not hispanic)" => "B",
           "hispanic" => "H",
-          "white (not hispanic)" => "W"
+          "white (not hispanic)" => "W",
+          "other" => "O"
       }
 
   def parse_race(race)
@@ -623,7 +624,8 @@ class VRToPA
         "registration_helper.address.numbered_thoroughfare_address.complete_place_names",
         :place_name_type, 'MunicipalJurisdiction', :place_name_value)
     state = address["state"]
-    line2 = join_non_empty([city, state], " ")
+    zip_code = address["zip_code"]
+    line2 = join_non_empty([city, state, zip_code], " ")
 
     join_non_empty([line1, line2], ", ")
   end

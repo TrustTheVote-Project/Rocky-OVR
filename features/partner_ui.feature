@@ -10,6 +10,7 @@ Feature: Log in
   
   Scenario: Editable Subject Lines for emails
 
+  @passing
   Scenario: Review branding
     Given that partner's assets do not exist
     When I go to the partner branding page
@@ -17,6 +18,7 @@ Feature: Log in
     Then non-approved assets are empty
     Then approved assets are empty
 
+  @passing
   Scenario: Preview changes
     Given that partner's assets do not exist
     When I go to the partner branding page
@@ -25,6 +27,7 @@ Feature: Log in
     And I follow "registrant_preview"
     Then I should be redirected to the right preview URL
 
+  @wip
   Scenario: Preview CSS injection
     Given partner's assets exist:
       | asset                    |
@@ -41,6 +44,7 @@ Feature: Log in
     Then preview/registration.css should be loaded
     Then preview/partner.css should be loaded
 
+  @wip
   Scenario: Preview CSS injection partly
     Given partner's assets exist:
       | asset                    |
@@ -51,6 +55,7 @@ Feature: Log in
     Then system application.css should be loaded
     Then preview/registration.css should be loaded
 
+  @passing
   Scenario: Mixed assets
     Given partner's assets exist:
       | asset                    |
@@ -62,6 +67,7 @@ Feature: Log in
     Then non-approved assets are application.css, custom.jpg
     Then approved assets are application.css
 
+  @wip
   Scenario: upload asset
     Given that partner's assets do not exist
     When I go to the partner branding page
@@ -76,6 +82,7 @@ Feature: Log in
     Then non-approved assets are partner_logo.jpg
     And approved assets are partner_logo.jpg
 
+  @wip
   Scenario: fake registrant creation
     Given partner's assets exist:
       | asset                |
@@ -94,6 +101,7 @@ Feature: Log in
     And I press "registrant_submit"
     Then fake registrant is created
 
+  @passing
   Scenario: fake registrant pdf logo preview
     Given partner's assets exist:
       | asset                |
@@ -101,11 +109,13 @@ Feature: Log in
     Given fake registrant finished registration
     Then registrant pdf includes "preview/pdf_logo.jpg"
 
+  @passing
   Scenario: wiki nav present
     Given settings partner wiki url is "http://www.wiki.com"
     When reload the page
     Then I should see an href to "http://www.wiki.com"
 
+  @passing
   Scenario: wiki nav hidden
     Given settings partner wiki url is ""
     When reload the page

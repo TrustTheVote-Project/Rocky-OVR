@@ -90,6 +90,9 @@ en:
         ii: II
         iii: III
         iv: IV
+        v: V
+        vi: VI
+        vii: VII
       races:
         american_indian_alaskan_native: American Indian / Alaskan Native
         asian: Asian / Pacific Islander

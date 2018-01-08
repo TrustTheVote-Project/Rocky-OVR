@@ -2,14 +2,14 @@ sponsor:
   allow_ask_for_volunteers: true
   barcode_prefix: "RTV"
   name: "Rock the Vote"
-  url: "http://www.rockthevote.com"
-  facebook_callback_url: <%= CGI.escape("http://www.rockthevote.com/register/fb") %>
-  partner_signup_url: "https://www.rockthevote.com/partner"
-  footer_link_base_url: "http://www.rockthevote.com/voter-registration/online-application-system"
+  url: "https://www.rockthevote.org"
+  facebook_callback_url: <%= CGI.escape("https://www.rockthevote.org/register-to-vote/?source=fb") %>
+  partner_signup_url: "https://www.rockthevote.org/resources/online-voter-registration-tool/"
+  footer_link_base_url: "https://www.rockthevote.org/voter-registration/online-application-system"
   footer_copyright: "&copy; Copyright %d, Rock the Vote"
   partner_comarketing_text: |
     Numbers not as high as you'd like?
-    <a href="https://www.rockthevote.com/partner/how-to-get-it-out-there.html" target="_blank">Here are some ways to help market your tool.</a>
+    <a href="https://www.rockthevote.org/resources/online-voter-registration-tool/" target="_blank">Here are some ways to help market your tool.</a>
 
 from_address: "rocky@example.com"
 default_url_host: "register.example.com"
@@ -131,6 +131,10 @@ ovr_states:
     require_id: false
     languages:
       - en    
+  FL:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
   GA:
     redirect_to_online_reg_url: true
     languages:
@@ -149,6 +153,10 @@ ovr_states:
     languages:
       - en
   IA:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+  ID:
     redirect_to_online_reg_url: true
     languages:
       - en
@@ -204,6 +212,7 @@ ovr_states:
     api_settings:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
+      canvassing_session_timeout_minutes: 480
     redirect_to_online_reg_url: true
     require_age_confirmation: true
     require_id: false
@@ -217,6 +226,12 @@ ovr_states:
       - es
   SC:
     redirect_to_online_reg_url: true
+    languages:
+      - en
+  TN:
+    redirect_to_online_reg_url: true
+    require_age_confirmation: true
+    require_id: false
     languages:
       - en
   UT:
@@ -251,5 +266,5 @@ pdf:
     page1:
       default_logo: 'pdf/rtvlogo.gif'
       other_block:
-        instructions_url: "http://www.rockthevote.com/registration/instructions/<STATE>-<LOCALE>.html"
+        instructions_url: "https://www.rockthevote.org/registration/instructions/<STATE>-<LOCALE>.html"
   

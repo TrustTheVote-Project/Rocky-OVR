@@ -65,6 +65,30 @@ describe Api::V3::RegistrationsController do
       new_finish_with_state_registration  { reg }
     end
   end
+  
+  describe 'clock_in' do
+    let(:json_data)  {{some: "data"}}
+    subject {post :clock_in, json_data.merge(format: 'json')}
+    it "returns status 200 json" do
+      expect(subject.code).to eq("200")
+    end
+    it "should call the track_clock_in_event service method" do
+      expect(V3::RegistrationService).to receive(:track_clock_in_event).with(json_data)
+      subject
+    end
+  end
+  
+  describe 'clock_out' do
+    let(:json_data)  {{some: "data"}}
+    subject {post :clock_out, json_data.merge(format: 'json')}
+    it "returns status 200 json" do
+      expect(subject.code).to eq("200")
+    end
+    it "should call the track_clock_out_event service method" do
+      expect(V3::RegistrationService).to receive(:track_clock_out_event).with(json_data)
+      subject
+    end
+  end
 
   describe 'create_pa' do
     let(:query) {

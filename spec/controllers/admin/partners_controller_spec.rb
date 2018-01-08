@@ -59,7 +59,7 @@ describe Admin::PartnersController do
 
     context 'valid data' do
       before  { put :update, :id => @partner, :partner => { :name => 'new_name' } }
-      it      { should redirect_to admin_partner_path(@partner) }
+      it      { should redirect_to edit_admin_partner_path(@partner) }
       specify { @partner.reload.name.should == 'new_name' }
     end
 

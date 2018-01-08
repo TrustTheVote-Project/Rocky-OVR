@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require jquery.qtip.min
 //= require rocky
+//= require registration

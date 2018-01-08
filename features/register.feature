@@ -12,7 +12,7 @@ Feature: Register
     And I press "Register"
     Then I should see error messages
 
-  @passing
+  @wip
   Scenario: Partner registers with valid data
     When I go to the register page
     And I fill in "Username" with "Bullwinkle"

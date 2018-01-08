@@ -33,6 +33,7 @@ FactoryGirl.define do
     us_citizen      true
     has_state_license true
     will_be_18_by_election true
+    short_form true
     #opt_in_email    true
     #opt_in_sms      true
   end
@@ -205,7 +206,7 @@ FactoryGirl.define do
     password              "password"
     password_confirmation "password"
     name                  { |p| p.username && p.username.humanize }
-    url                   { |p| "#{p.username}.example.com" }
+    url                   { |p| "http://#{p.username}.example.com" }
     address               "123 Liberty Ave."
     city                  "Pittsburgh"
     state_id                 { GeoState['PA'].id }

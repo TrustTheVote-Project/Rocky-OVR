@@ -155,6 +155,7 @@ record_9:
   sos_url: http://election.dos.state.fl.us/
   sub_18: when_is_16
   id_length_min: '4'
+  online_registration_url: https://registertovoteflorida.gov/en/Registration/Eligibility
 record_10:
   abbreviation: GA
   name: Georgia
@@ -196,6 +197,7 @@ record_12:
   sos_phone: (208) 334-2300
   sos_url: http://www.sos.idaho.gov/elect/eleindex.htm
   id_length_min: '4'
+  online_registration_url: https://apps.idahovotes.gov/OnlineVoterRegistration
 record_13:
   abbreviation: IL
   name: Illinois
@@ -611,12 +613,13 @@ record_42:
   sos_url: http://sos.tn.gov/elections
   registration_deadline: postmarked_30_days
   id_length_min: '4'
+  online_registration_url: https://ovr.govote.tn.gov/
 record_43:
   abbreviation: TX
   name: Texas
-  requires_party: false
+  requires_party: true
   party_tooltip: not_required
-  id_number_tooltip: drivers_license_or_ssn_or_none_4
+  id_number_tooltip: drivers_license_non_driver_with_state_name
   sos_address: Office of the Secretary of State<br>Elections Division<br>P.O. Box
     12060<br>Austin, TX 78711-2060
   sos_phone: (800) 252-VOTE

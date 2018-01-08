@@ -106,6 +106,7 @@ describe CA do
     end
     it "returns a URL with language and token passed in" do
       r = Registrant.new
+      ca.decorate_registrant(r)
       r.stub(:locale).and_return("en")
       r.stub(:covr_token).and_return("token")
       ca.online_reg_url(r).should == "base_url?language=en-US&t=p&CovrAgencyKey=ak&PostingAgencyRecordId=token"

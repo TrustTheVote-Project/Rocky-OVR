@@ -1,4 +1,3 @@
-@import 'https://fonts.googleapis.com/css?family=Caveat:400,700|Fira+Sans:400,700,700i';
 @import 'registration2-variables';
 
 * {
@@ -137,6 +136,7 @@ body {
     text-transform: capitalize;
     padding-top: ((80-40px)/2);
     font-family: Caveat,cursive;
+    font-weight: 400;
     height: 80px;
   }    
   #progress-bar {

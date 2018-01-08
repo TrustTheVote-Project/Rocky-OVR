@@ -136,6 +136,26 @@ describe Registrant do
     end
   end
   
+  describe "#set_will_be_18" do
+    it "sets will_be_18_by_election to true if the state doesn't require age confirmation" do
+      r = Registrant.new
+      expect(r.will_be_18_by_election).to be_falsey
+      allow(r).to receive(:require_age_confirmation?).and_return(false)
+      r.send(:set_will_be_18)
+      expect(r.will_be_18_by_election).to be_truthy
+    end
+    it "does not change will_be_18 if the state does require age confirmation" do
+      r = Registrant.new
+      expect(r.will_be_18_by_election).to be_falsey
+      allow(r).to receive(:require_age_confirmation?).and_return(true)
+      r.send(:set_will_be_18)
+      expect(r.will_be_18_by_election).to be_falsey
+      r.will_be_18_by_election = true
+      r.send(:set_will_be_18)
+      expect(r.will_be_18_by_election).to be_truthy
+    end
+  end
+  
   describe "#email_address_to_send_from" do
     before(:each) do
       @p = Partner.new
@@ -628,22 +648,22 @@ describe Registrant do
         assert !@reg.valid?
       end
       
-      it "DOES NOT validate phone is present if rtv mobile opt-in is true" do
+      it "Validates phone is present if rtv mobile opt-in is true" do
         @reg.phone_type = "Mobile"
         @reg.phone = ''
         
         @reg.opt_in_sms = true
-        @reg.valid?.should be_truthy
-        assert @reg.errors[:phone].empty?
+        @reg.valid?.should be_falsey
+        assert !@reg.errors[:phone].empty?
       end
 
-      it "DOES NOT validate phone is present if partner mobile opt-in is true" do
+      it "Validates phone is present if partner mobile opt-in is true" do
         @reg.phone_type = "Mobile"
         @reg.phone = ''
 
         @reg.partner_opt_in_sms = true
-        @reg.valid?.should be_truthy
-        assert @reg.errors[:phone].empty?
+        @reg.valid?.should be_falsey
+        assert !@reg.errors[:phone].empty?
       end
       
       it "should require valid state id, based on state settings" do
@@ -921,20 +941,20 @@ describe Registrant do
     
     
     
-    it "DOES NOT validate phone is present if rtv mobile opt-in is true" do
+    it "Validates phone is present if rtv mobile opt-in is true" do
       reg = FactoryGirl.build(:step_3_registrant, :phone => "")
       
       reg.opt_in_sms = true
-      reg.valid?.should be_truthy
-      assert reg.errors[:phone].empty?
+      reg.valid?.should be_falsey
+      assert !reg.errors[:phone].empty?
     end
 
-    it "DOES NOT validate phone is present if partner mobile opt-in is true" do
+    it "Validates phone is present if partner mobile opt-in is true" do
       reg = FactoryGirl.build(:step_3_registrant, :phone => "")
 
       reg.partner_opt_in_sms = true
-      reg.valid?.should be_truthy
-      assert reg.errors[:phone].empty?
+      reg.valid?.should be_falsey
+      assert !reg.errors[:phone].empty?
     end
     
     
