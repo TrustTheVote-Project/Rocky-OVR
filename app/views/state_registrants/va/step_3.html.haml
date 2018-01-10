@@ -66,6 +66,6 @@
       = field_li(form, :right_to_vote_restored, {skip_tooltip: true, required: true, radio_options: [[t("no"), false], [t("yes"), true]]})
   
 
-  = rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
+  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
   .back    
     = link_to t('txt.button.back').html_safe, update_state_registrant_path(controller.prev_step, @registrant.to_param)
