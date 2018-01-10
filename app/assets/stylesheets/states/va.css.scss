@@ -146,15 +146,22 @@
     }
     ul {
       li {
-        &.registrant-form__name-title__line, &.registrant-form__middle-name__line, &.registrant-form__last-name__line {
-          width:48%;
+        &.registrant-form__name-title__line,  &.registrant-form__last-name__line {
+          width: 31%;
         }
         
-        &.registrant-form__first-name__line, &.registrant-form__no-middle-name__line, &.registrant-form__name-suffix__line  {
-          width: 50%;
+        &.registrant-form__first-name__line, &.registrant-form__no-middle-name__line, &.registrant-form__middle-name__line {
+          width: 31%;
+          margin-right: 2%;
+        }
+        
+        &.registrant-form__name-suffix__line  {
+          width: 31%;
           margin-right: 0;
         }
         &.registrant-form__no-middle-name__line {
+          width: 33%;
+          margin-right: 0;
           li.spacer {
             height: 25px;
             line-height: 1em;

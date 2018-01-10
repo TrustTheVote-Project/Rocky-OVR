@@ -36,10 +36,6 @@ class VARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :previous_last_name
       end
       
-      reg.validates_inclusion_of :convicted_of_felony, :in => [true, false]
-      if reg.convicted_of_felony?
-        reg.validates_inclusion_of :right_to_vote_restored, :in => [true, false]
-      end
       
       if reg.registered_in_other_state?
         reg.validates_presence_of :other_registration_state_abbrev
@@ -55,6 +51,18 @@ class VARegistrantValidator < ActiveModel::Validator
         end          
       end
   
+      
+      validate_phone_present_if_opt_in_sms(reg)
+    end
+    
+    if reg.at_least_step_2?
+      reg.validates_acceptance_of :confirm_affirm_privacy_notice, :accept=>true
+
+      reg.validates_inclusion_of :convicted_of_felony, :in => [true, false]
+      if reg.convicted_of_felony?
+        reg.validates_inclusion_of :right_to_vote_restored, :in => [true, false]
+      end
+      
       unless reg.confirm_no_ssn?
         reg.validates_presence_of :ssn
         reg.errors.add(:ssn, :format) unless reg.ssn_digits.length == 9
@@ -62,14 +70,10 @@ class VARegistrantValidator < ActiveModel::Validator
           reg.errors.add(:dln, :blank) if reg.dln_digits.blank?
         end
       end
-      
-      validate_phone_present_if_opt_in_sms(reg)
     end
     
-    
-    if reg.at_least_step_2?
+    if reg.at_least_step_3?
       reg.validates_acceptance_of :confirm_voter_fraud_warning, :accept=>true
-      reg.validates_acceptance_of :confirm_affirm_privacy_notice, :accept=>true
     end
 
   end

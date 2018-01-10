@@ -191,11 +191,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   end
   
   def steps
-    %w(step_1 step_2 step_3 complete)
+    %w(step_1 step_2 step_3 step_4 complete)
   end
   
   def num_steps
-    3
+    4
   end
   
   
@@ -244,7 +244,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   def to_va_data
     {
     # 1
-      "SendingAgency" => "RockTheVote", #?
+      "SendingAgency" => "Rock the Vote", #?
       "Location"  => "register.rockthevote.com", #?
       "SendingAgencyTransactionTimestamp" => self.updated_at.iso8601,
       "VoterSubmissionID" => self.id,

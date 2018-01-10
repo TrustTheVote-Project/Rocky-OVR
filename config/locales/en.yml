@@ -46,7 +46,7 @@ en:
         registration_instructions_url: PDF instructions URL
       state_registrants/va_registrant:
         confirm_voter_record_update: I consent to update my voter record with the state or to register to vote if I am not yet registered with Virginia
-        confirm_us_citizen: I am a citizen of The United States of America 
+        confirm_us_citizen: I am a US citizen
         ssn: Social Security Number
         confirm_no_ssn: No SSN was ever issued.
         dln: Virginia DMV Identifier or Customer Number
@@ -54,7 +54,7 @@ en:
 
         name_title: Title
         first_name: First Name
-        middle_name: Middle
+        middle_name: Middle Name
         confirm_no_middle_name: I do not have a middle name.
         last_name: Last Name
         name_suffix: Suffix
@@ -71,7 +71,7 @@ incapacitated and disqualified to vote?"
         right_to_vote_restored: "Has your right to vote been restored?"
         
         is_military: "I am an active-duty uniformed services member, spouse or dependent; or an overseas citizen."
-        no_usps_address: "I am providing a mailing address because my residence address is not serviced by the U.S. Postal Service
+        no_usps_address: "I am providing a P.O. Box mailing address because my residence address is not serviced by the U.S. Postal Service
 or I am homeless."
         is_law_enforcement: "I am an active or retired law enforcement officer, judge, U.S. or Virginia Attorney General attorney."
         is_court_protected: "I have a court issued protective order for my benefit."
@@ -91,7 +91,7 @@ household member."
         registered_in_other_state: I am currently registered to vote in another state.
         interested_in_being_poll_worker: I am interested in being an Officer of Election (poll worker) on Election Day.
 
-        confirm_affirm_privacy_notice: I swear/affirm, under felony penalty for making willfully false material statements or entries, that the information provided for voter registration is true. I authorize the cancellation of my current registration and I have read the Privacy Act Notice.
+        confirm_affirm_privacy_notice: I have read the terms of the Privacy Act Notice.
         confirm_voter_fraud_warning: I acknowledge that I have read the above voter fraud warning.
         
       state_registrants/pa_registrant:
