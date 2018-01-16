@@ -154,6 +154,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     self.ssn.to_s.gsub(/[^\d]/, '')
   end
   
+  def private_ssn
+    "* * *  -  * *  -  #{self.ssn_digits.last(4)}"
+  end
+  
   def dln_digits
     self.dln.to_s.gsub(/[^\d]/, '')
   end
@@ -301,6 +305,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     }
   end
   
+  def registration_locality_name
+    loc = self.class.localities.detect { |l| l["Code"] == self.registration_locality.to_s }
+    loc ? loc["Name"] : nil
+  end
+  
   def submit_to_online_reg_url
     server = RockyConf.ovr_states.VA.api_settings.api_url
     api_key = RockyConf.ovr_states.VA.api_settings.api_key
@@ -346,9 +355,9 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "registration_city" => "home_city",
       "registration_zip_code" => "home_zip_code",
       
+      "has_mailing_address" => "has_mailing_address",
       "mailing_city"  => "mailing_city",
       "mailing_zip_code"  => "mailing_zip_code",
-      #"mailing_state" => "mailing_state",
       
       "opt_in_email"  => "opt_in_email",
       "opt_in_sms"  => "opt_in_sms",

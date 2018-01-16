@@ -7,6 +7,8 @@ class VARegistrantValidator < ActiveModel::Validator
     end
     #reg.validates_presence_of :phone_type if reg.has_phone?
 
+    reg.validates_presence_of :phone_type if reg.has_phone?
+
 
     if reg.at_least_step_1?
       reg.validates_format_of :email, :with => Authlogic::Regex.email, :allow_blank => true
@@ -74,7 +76,16 @@ class VARegistrantValidator < ActiveModel::Validator
     
     if reg.at_least_step_3?
       reg.validates_acceptance_of :confirm_voter_fraud_warning, :accept=>true
+      reg.validates_acceptance_of :confirm_register_to_vote, :accept=>true
     end
+    
+    if reg.has_mailing_address? 
+      reg.validates_presence_of :mailing_address_1
+      reg.validates_presence_of :mailing_city
+      reg.validates_presence_of :mailing_state
+      validates_zip_code reg,    :mailing_zip_code
+    end
+    
 
   end
   

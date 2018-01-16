@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20171221225913) do
+ActiveRecord::Schema.define(:version => 20180116192425) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -368,6 +368,7 @@ ActiveRecord::Schema.define(:version => 20171221225913) do
     t.string   "pa_transaction_id"
     t.text     "pa_submission_error"
     t.string   "previous_middle_name"
+    t.string   "phone_type"
   end
 
   create_table "state_registrants_va_registrants", :force => true do |t|
@@ -433,6 +434,9 @@ ActiveRecord::Schema.define(:version => 20171221225913) do
     t.text     "va_submission_error"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.boolean  "has_mailing_address"
+    t.boolean  "confirm_register_to_vote"
+    t.string   "phone_type"
   end
 
   create_table "tracking_events", :force => true do |t|

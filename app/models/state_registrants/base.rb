@@ -4,8 +4,8 @@ class StateRegistrants::Base < ActiveRecord::Base
   include RegistrantMethods
   
   delegate :use_state_flow?, :skip_state_flow?, to: :registrant
-  delegate :titles, :suffixes, :races, :state_parties, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, to: :registrant
-  delegate :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
+  delegate :titles, :suffixes, :races, :state_parties, :phone_types, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, to: :registrant
+  delegate :has_phone?, :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
 
 
   before_create :set_default_opt_ins
@@ -42,9 +42,9 @@ class StateRegistrants::Base < ActiveRecord::Base
       selected_name_title_key = name_title_key
       selected_name_suf_key = name_suffix_key
       selected_race_key = race_key
-      if self.respond_to?(:party) && self.party
-        party_idx = state_parties.index(self.party)
-      end
+      party_idx = self.respond_to?(:party) && self.party ? state_parties.index(self.party) : nil
+      selected_phone_key = self.respond_to?(:phone_type) ? phone_type_key : nil
+      
       self.locale = self.new_locale
       self.registrant.locale = self.locale #So state_parties returns the correct new list
        
@@ -52,6 +52,8 @@ class StateRegistrants::Base < ActiveRecord::Base
       self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
       self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
       self.party = state_parties[party_idx] if !party_idx.nil?
+      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if !selected_phone_key.blank?
+      
       self.save(validate: false)
       self.update_original_registrant
     end

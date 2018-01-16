@@ -554,9 +554,6 @@ class Registrant < ActiveRecord::Base
     english_attribute_value(prev_name_suffix_key, 'suffixes')
   end
   
-  def phone_type_key
-    key_for_attribute(:phone_type, 'phone_types')
-  end
   
   def self.english_races
     I18n.t('txt.registration.races', :locale=>:en).values

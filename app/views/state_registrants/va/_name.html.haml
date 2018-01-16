@@ -17,5 +17,5 @@
   %ul.stacked
     = field_li(form, :last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__last-name__line'} , skip_tooltip: true })
   
-    = field_li(form, :name_suffix, {skip_tooltip: true ,required: true, li_options: {class: "registrant-form__name-suffix__line"}, select_options: @registrant.suffixes, field_options: {include_blank: true} })
+    = field_li(form, :name_suffix, {skip_tooltip: true ,required: false, li_options: {class: "registrant-form__name-suffix__line"}, select_options: @registrant.suffixes, field_options: {include_blank: true} })
   

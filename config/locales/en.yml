@@ -79,7 +79,7 @@ or I am homeless."
 is in fear for personal safety from another person who has threatened or stalked either me or a
 household member."
         is_confidentiality_program: I am a participant in the Virginia Attorney General’s Address Confidentiality Program
-        
+        has_mailing_address: I get my mail at a different address from the one above.        
         mailing_address_1: Address Line 1
         mailing_address_2: Address Line 2
         mailing_city: City
@@ -93,7 +93,8 @@ household member."
 
         confirm_affirm_privacy_notice: I have read the terms of the Privacy Act Notice.
         confirm_voter_fraud_warning: I acknowledge that I have read the above voter fraud warning.
-        
+        confirm_register_to_vote: I swear/affirm, under felony penalty for making willfully false material statements or entries, that the information provided on this form is true. I authorize the cancellation of my current registration.
+          
       state_registrants/pa_registrant:
         email: Email
         registration_zip_code: ZIP Code
@@ -221,7 +222,8 @@ household member."
               inclusion: Please select Yes or No.
             right_to_vote_restored:
               inclusion: Please select Yes or No.
-              
+            confirm_register_to_vote:
+              accepted: You must consent to register to vote.
         state_registrants/pa_registrant:
           blank: Required
           invalid_zip: Invalid ZIP

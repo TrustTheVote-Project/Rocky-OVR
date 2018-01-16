@@ -145,6 +145,11 @@ module RegistrantMethods
     Registrant.race_key(locale, race)
   end
   
+  def phone_type_key
+    key_for_attribute(:phone_type, 'phone_types')
+  end
+  
+  
 
   def state_parties
     if requires_party?

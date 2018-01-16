@@ -6,9 +6,7 @@
   = render partial: 'state_registrants/pa/header'
   
 
-  .review
-    
-        
+  .review            
   
     .review__section
       .review__section__label 
@@ -120,18 +118,20 @@
           = @registrant.ssn4
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
           
-    - unless @registrant.phone.blank?
+    - unless @registrant.email.blank?
       .review__section
         .review__section__label
-          = t('activerecord.attributes.state_registrants/pa_registrant.email_address')
+          = t('activerecord.attributes.registrants.email_address')
         .review__section__content
           = @registrant.email
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), registrant_path(@registrant))
+    - unless @registrant.phone.blank?
       .review__section
         .review__section__label
-          = t('activerecord.attributes.state_registrants/pa_registrant.phone')
+          = t('activerecord.attributes.registrants.phone')
         .review__section__content
           = PhoneFormatter.process @registrant.phone
+          = @registrant.phone_type
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
           
   

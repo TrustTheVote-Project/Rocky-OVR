@@ -1,0 +1,6 @@
+class AddHasMailingAddressAndConfirmRegisterToVoteToStateRegistrantsVaRegistrants < ActiveRecord::Migration
+  def change
+    add_column :state_registrants_va_registrants, :has_mailing_address, :boolean
+    add_column :state_registrants_va_registrants, :confirm_register_to_vote, :boolean
+  end
+end
