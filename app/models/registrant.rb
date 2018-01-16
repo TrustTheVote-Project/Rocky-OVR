@@ -153,6 +153,7 @@ class Registrant < ActiveRecord::Base
     "Email address",
     "First registration?",
     "US citizen?",
+    "Will be 18 by election",
     "Salutation",
     "First name",
     "Middle name",
@@ -178,7 +179,7 @@ class Registrant < ActiveRecord::Base
     "Opt-in to RTV email?",
     "Opt-in to RTV sms?",
     "Opt-in to Partner email?",
-    "Opt-in to Partner sms?",
+    "Opt-in to Partner SMS/robocall",
     "Survey question 1",
     "Survey answer 1",
     "Survey question 2",
@@ -192,11 +193,11 @@ class Registrant < ActiveRecord::Base
     "Has State License",
     "Has SSN",
     "Geo Location",
-    "Will be 18 by election",
     "VR Application Status",
     "VR Application Status Details",
     "VR Application Status Imported DateTime",
     "Submitted Via State API",
+    "Submitted Signature to State API",
     "State API Submission Result"
   ]
 
@@ -835,6 +836,11 @@ class Registrant < ActiveRecord::Base
     !grommet_submission.blank?
   end
   
+  def api_submitted_with_signature
+    return nil if !is_grommet? # Right now sigs only come from grommet
+    return !grommet_submission["signature"].blank?    
+  end
+  
   def api_submission_status
     return nil if !submitted_via_state_api?
     if is_grommet?
@@ -1359,6 +1365,7 @@ class Registrant < ActiveRecord::Base
       email_address,
       yes_no(first_registration?),
       yes_no(us_citizen?),
+      yes_no(will_be_18_by_election?),
       name_title,
       first_name,
       middle_name,
@@ -1399,12 +1406,12 @@ class Registrant < ActiveRecord::Base
       yes_no(has_ssn?),
       self.geo_location,
       
-      yes_no(will_be_18_by_election?),
       vr_application_status,
       vr_application_status_details,
       vr_application_status_datetime,
-      
+
       yes_no(submitted_via_state_api?),
+      api_submitted_with_signature,
       api_submission_status,
       
       canvasser_clock_in,
