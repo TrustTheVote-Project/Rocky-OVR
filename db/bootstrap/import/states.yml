@@ -412,7 +412,7 @@ record_28:
   sos_address: Secretary of State<br>Elections Division<br>101 North Carson Street,
     Suite 3<br>Carson City, NV 89701-4786
   sos_phone: (775) 684-5705
-  sos_url: http://nvsos.gov/index.aspx?page=3
+  sos_url: https://www.nvsos.gov/VoterSearch/
   registration_deadline: nevada
   id_length_min: '4'
 record_29:
