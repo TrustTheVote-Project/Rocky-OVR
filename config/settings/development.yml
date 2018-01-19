@@ -18,11 +18,6 @@ ovr_states:
       log_all_requests: true
       disclosures_font_size: 14px
       disclosures_prechecked: true
-  NV:
-    redirect_to_online_url: true
-    languages:
-      - en
-      - es
   PA: 
     api_settings:
       api_url: "https://fake-pa-endpoint.herokuapp.com"
