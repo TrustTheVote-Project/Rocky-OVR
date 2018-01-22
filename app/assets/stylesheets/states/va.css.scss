@@ -161,33 +161,10 @@
       margin-top: 2em;
     }
     ul {
-      li {
-        &.registrant-form__name-title__line,  &.registrant-form__last-name__line {
-          width: 31%;
-        }
-        
-        &.registrant-form__first-name__line, &.registrant-form__no-middle-name__line, &.registrant-form__middle-name__line {
-          width: 31%;
-          margin-right: 2%;
-        }
-        
-        &.registrant-form__name-suffix__line  {
-          width: 31%;
-          margin-right: 0;
-        }
-        &.registrant-form__no-middle-name__line {
-          width: 33%;
-          margin-right: 0;
-          li.spacer {
-            height: 25px;
-            line-height: 1em;
-            font-size: 16px;
-            margin-bottom: 3px;
-            width: 100%;
-            display: block;
-          }
-        }
+      li.registrant-form__required-checkbox {
+        width: 90%;
       }
+      
       li.registrant-form__date-of-birth__line {
         width: 130px;
       }
@@ -195,6 +172,7 @@
         width: 100%;
       }
       li.registrant-form__ssn__line {
+        margin-top: 2em;
         .error {
           height: auto;
           line-height: 1.5em;
