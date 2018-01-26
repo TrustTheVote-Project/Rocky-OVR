@@ -159,7 +159,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   end
   
   def dln_digits
-    self.dln.to_s.gsub(/[^\d]/, '')
+    self.dln.to_s.gsub(/[^\da-zA-Z]/, '')
   end
   
   def gender

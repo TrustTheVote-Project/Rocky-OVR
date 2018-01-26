@@ -70,6 +70,7 @@ class VARegistrantValidator < ActiveModel::Validator
         reg.errors.add(:ssn, :format) unless reg.ssn_digits.length == 9
         unless reg.confirm_no_dln?
           reg.errors.add(:dln, :blank) if reg.dln_digits.blank?
+          reg.errors.add(:dln, :format) if reg.dln_digits.length > 9
         end
       end
     end
