@@ -618,7 +618,6 @@ record_42:
 record_43:
   abbreviation: TX
   name: Texas
-  requires_party: true
   party_tooltip: not_required
   id_number_tooltip: drivers_license_non_driver_with_state_name
   sos_address: Office of the Secretary of State<br>Elections Division<br>P.O. Box
