@@ -171,7 +171,7 @@
       li.registrant-form__home-address__line {
         width: 100%;
       }
-      li.registrant-form__ssn__line {
+      li.registrant-form__ssn__line,  li.registrant-form__dln__line {
         margin-top: 2em;
         .error {
           height: auto;

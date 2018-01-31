@@ -25,6 +25,9 @@ class VARegistrantValidator < ActiveModel::Validator
       unless reg.confirm_no_middle_name?
         reg.validates_presence_of   :middle_name
       end
+      if reg.middle_name.blank?
+        reg.validates_acceptance_of :confirm_no_middle_name, :accept=>true
+      end
       reg.validates_presence_of   :last_name
       reg.validates_inclusion_of  :name_suffix, :in => Registrant::SUFFIXES, :allow_blank => true
       reg.validates_presence_of   :registration_address_1 

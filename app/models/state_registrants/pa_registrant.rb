@@ -36,6 +36,13 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   validates_with PARegistrantValidator
   
+  def check_valid_for_state_flow!
+    if self.confirm_no_dl_or_ssn?
+      self.skip_state_flow!
+    end
+  end
+
+  
   def complete?
     status == step_list.last && valid? && confirm_declaration?
   end

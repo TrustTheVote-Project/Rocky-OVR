@@ -15,6 +15,7 @@ class StateRegistrantsController < RegistrationStep
     @registrant.check_locale_change
     set_up_locale
     @registrant.save
+    @registrant.check_valid_for_state_flow!
     if !@registrant.use_state_flow? || @registrant.skip_state_flow?
       go_to_paper and return
     end

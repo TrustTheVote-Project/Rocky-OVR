@@ -3,10 +3,13 @@ class StateRegistrants::Base < ActiveRecord::Base
   
   include RegistrantMethods
   
-  delegate :use_state_flow?, :skip_state_flow?, to: :registrant
+  delegate :use_state_flow?, :skip_state_flow?, :skip_state_flow!, to: :registrant
   delegate :titles, :suffixes, :races, :state_parties, :phone_types, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, to: :registrant
   delegate :has_phone?, :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
 
+  def check_valid_for_state_flow!
+    # by default, does nothing
+  end
 
   before_create :set_default_opt_ins
 

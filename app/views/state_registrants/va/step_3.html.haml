@@ -54,6 +54,7 @@
   %fieldset#dln-set
     %ul.flat.dln
       = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"} })
+    
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__no-ssn__line", required: false}
     
     

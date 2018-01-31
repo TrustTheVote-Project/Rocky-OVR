@@ -89,6 +89,7 @@ household member."
         
         
         registered_in_other_state: I am currently registered to vote in another state.
+        :other_registration_state_abbrev: Other Registration State
         interested_in_being_poll_worker: I am interested in being an Officer of Election (poll worker) on Election Day.
 
         confirm_affirm_privacy_notice: I have read the terms of the Privacy Act Notice.
@@ -208,6 +209,8 @@ household member."
               accepted: You must confirm that you have read the voter fraud warning.
             confirm_affirm_privacy_notice:
               accepted: You must affirm that you accept the privacy notice.
+            confirm_no_middle_name:
+              accepted: You must check this box if you have no middle name.
             phone:
               invalid: ! 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT
