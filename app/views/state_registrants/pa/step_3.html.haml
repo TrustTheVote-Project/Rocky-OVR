@@ -77,7 +77,7 @@
 
   %fieldset#ssn4_set
     %ul.flat.ssn4
-      = field_li(form, :ssn4, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn4__line"} })
+      = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"} })
       
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dl_or_ssn, class_name: "registrant-form__no-ssn4__line", required: false}
       
