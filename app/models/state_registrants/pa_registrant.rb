@@ -39,6 +39,11 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   def check_valid_for_state_flow!
     if self.confirm_no_penndot_number?
       self.skip_state_flow!
+      self.registrant.state_id_number = self.ssn4
+      if self.registrant.state_id_number.blank?
+        self.registrant.state_id_number = "NONE"
+      end
+      self.registrant.save(validate: false)
     end
   end
 

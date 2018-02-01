@@ -14,6 +14,8 @@
       = hidden_field_tag 'skip_advance', false
 
           
+  - if @registrant.skip_state_flow?
+    %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.step_4_header").html_safe
 
   = render partial: 'name', locals: {form: form}
 
@@ -112,7 +114,8 @@
       = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
       = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
     
-      = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+      - unless @registrant.skip_state_flow?
+        = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
 
     - if  @registrant.home_state_allows_ovr_ignoring_license?
       .use_state_registration
