@@ -37,7 +37,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   validates_with PARegistrantValidator
   
   def check_valid_for_state_flow!
-    if self.confirm_no_dl_or_ssn?
+    if self.confirm_no_penndot_number?
       self.skip_state_flow!
     end
   end
@@ -276,7 +276,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     {
       "email" => "email_address",
       "confirm_us_citizen"  => "us_citizen",
-      #"confirm_will_be_18"  => "will_be_18_by_election",
+      "confirm_will_be_18"  => "will_be_18_by_election",
       "date_of_birth" => "date_of_birth",
       "name_title"  => "name_title",
       "first_name"  => "first_name",

@@ -4,8 +4,10 @@
       function togglePenndotNumber() {
         if ($("#state_registrants_pa_registrant_confirm_no_penndot_number:checked").length > 0) {
           $("#penndot_set").hide();
+          $("#penndot_message").show();
         } else {
           $("#penndot_set").show();
+          $("#penndot_message").hide();
         }              
       }
 
@@ -72,8 +74,16 @@
       = field_li(form, :penndot_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__penndot-number__line"} })
     %p.instructions
       = I18n.t('states.custom.pa.penndot_number_instructions')
+
+  
     
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
+
+  %fieldset#penndot_message
+    %p.instructions
+      %span.instructions.error
+        = I18n.t('states.custom.pa.penndot_number_missing')
+
 
   %fieldset#ssn4_set
     %ul.flat.ssn4
