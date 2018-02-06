@@ -200,7 +200,7 @@ describe VRToPA do
       expect(subject["assistancedeclaration2"]).to eql("1")
       expect(subject["donthavebothDLandSSN"]).to eql("0")
       expect(subject["assistedpersonname"]).to eql("Assistant Name")
-      expect(subject["assistedpersonAddress"]).to eql("55 Assistant Street, Assistant City Assistant State")
+      expect(subject["assistedpersonAddress"]).to eql("55 Assistant Street, Assistant City Assistant State 22222")
       expect(subject["assistedpersonphone"]).to eql("123-456-7890")
       expect(subject["city"]).to eql("Registration City")
       expect(subject["mailingcity"]).to eql("Mailing City")
@@ -331,8 +331,10 @@ describe VRToPA do
               "Other" => {politicalparty: "OTH", otherpoliticalparty: "Other"},
               "none" => {politicalparty: "NF", otherpoliticalparty: ""},
               "None" => {politicalparty: "NF", otherpoliticalparty: ""},
-              "green" => {politicalparty: "OTH", otherpoliticalparty: "green"},
-              "Green" => {politicalparty: "OTH", otherpoliticalparty: "Green"},
+              "green" => {politicalparty: "GR", otherpoliticalparty: ""},
+              "Green" => {politicalparty: "GR", otherpoliticalparty: ""},
+              "green2" => {politicalparty: "OTH", otherpoliticalparty: "green2"},
+              "Green2" => {politicalparty: "OTH", otherpoliticalparty: "Green2"},
           }
 
       it 'supports pre defined cases' do
@@ -469,8 +471,10 @@ describe VRToPA do
             }
         }
       end
-      it 'raises an error if helper information is present but declaration is false' do
-        expect { subject }.to raise_error("If assistance declaration is false, assistant name, address and phone must be empty.")
+      it "returns a result with empty assistant data" do
+        expect(subject["assistedpersonname"]).to eq("")
+        expect(subject["assistedpersonAddress"]).to eq("")
+        expect(subject["assistedpersonphone"]).to eq("")
       end
     end
 
@@ -566,6 +570,7 @@ describe VRToPA do
     context 'full name provided' do
       let(:input) do
         {
+            "additional_info" => [{"name" => "assistant_declaration", "string_value" => "true"}],
             "registration_helper" => {
                 "name" => {
                     "first_name" => "FN",
@@ -584,7 +589,8 @@ describe VRToPA do
     context 'minimalistic name provided' do
       let(:input) do
         {
-            "registration_helper" => {
+          "additional_info" => [{"name" => "assistant_declaration", "string_value" => "true"}],
+          "registration_helper" => {
                 "name" => {
                     "first_name" => "FN",
                     "last_name" => "LN"
@@ -602,7 +608,8 @@ describe VRToPA do
     context 'full address defined' do
       let(:input) do
         {
-            "registration_helper" => {
+          "additional_info" => [{"name" => "assistant_declaration", "string_value" => "true"}],
+          "registration_helper" => {
                 "address" => {
                     "numbered_thoroughfare_address" => {
                         "complete_address_number" => "1",
@@ -629,7 +636,7 @@ describe VRToPA do
         }
       end
       it 'loads full address' do
-        expect(subject).to eql('1 Street, City State')
+        expect(subject).to eql('1 Street, City State 22222')
       end
     end
   end
@@ -639,7 +646,8 @@ describe VRToPA do
     context 'phone is defined' do
       let(:input) do
         {
-            "registration_helper" => {
+          "additional_info" => [{"name" => "assistant_declaration", "string_value" => "true"}],
+          "registration_helper" => {
                 "contact_methods" => [
                     {
                         "type" => "phone",

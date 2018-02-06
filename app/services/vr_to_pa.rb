@@ -326,7 +326,7 @@ class VRToPA
     result['assistedpersonname'] = assisted_person_name
     result['assistedpersonAddress'] = assisted_person_address
     result['assistedpersonphone'] = assisted_person_phone
-    result['assistancedeclaration2'] = [assistant_declaration, assistance_declaration2].max
+    result['assistancedeclaration2'] = any_assitant_declaration
     validate_assisted_person_data(result)
     result['ispollworker'] = ""
     result['bilingualinterpreter'] = ""
@@ -577,6 +577,10 @@ class VRToPA
     bool_to_int(v)
   end
 
+  def any_assitant_declaration
+    [assistant_declaration, assistance_declaration2].max
+  end
+
   def assistant_declaration
     value = query([:additional_info], :name, 'assistant_declaration', :string_value)
     value = str_to_bool(value)
@@ -611,6 +615,7 @@ class VRToPA
   end
 
   def assisted_person_name
+    return "" if any_assitant_declaration.to_s != "1"
     name = read("registration_helper.name")
     return "" if is_empty(name)
     parts = %w(first_name middle_name last_name title_suffix)
@@ -618,6 +623,7 @@ class VRToPA
   end
 
   def assisted_person_address
+    return "" if any_assitant_declaration.to_s != "1"
     address = read "registration_helper.address.numbered_thoroughfare_address"
     return "" if is_empty(address)
 
@@ -633,6 +639,7 @@ class VRToPA
   end
 
   def assisted_person_phone
+    return "" if any_assitant_declaration.to_s != "1"
     phone(:registration_helper)
   end
 
