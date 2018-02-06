@@ -566,7 +566,7 @@ record_38:
   sos_address: Office of the Secretary of the Commonwealth<br>210 North Office Building<br>Harrisburg,
     PA 17120-0029
   sos_phone: (717) 787-5280
-  sos_url: http://www.dos.state.pa.us/BCEL/site/default.asp
+  sos_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationStatus.aspx
   registration_deadline: received_30_days
   online_registration_url: https://www.pavoterservices.state.pa.us/Pages/VoterRegistrationApplication.aspx
 record_39:
