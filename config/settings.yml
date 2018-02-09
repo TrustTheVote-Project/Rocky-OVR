@@ -131,10 +131,10 @@ ovr_states:
     require_id: false
     languages:
       - en    
-  FL:
-    redirect_to_online_reg_url: false
-    languages:
-      - en
+#  FL:
+#    redirect_to_online_reg_url: true
+#    languages:
+#      - en
   GA:
     redirect_to_online_reg_url: true
     languages:
