@@ -89,10 +89,11 @@ es:
         iv: IV
       races:
         american_indian_alaskan_native: Indio Americano / Nativo de Alaska
-        asian: Asiático / Islas del Pacífico
+        asian: Asiático/a #Asiático / Islas del Pacífico
         black_not_hispanic: Negra (No hispano)
         hispanic: Hispano
-        mutli_racial: Multi-racial
+        mutli_racial: Dos o más razas #Multi-racial
+        native_hawaiian_or_pacific_islander: Hawaino/a  o isleño/a del pacífico
         white_not_hispanic: Blanca (no hispano)
         other: Otra
         decline_to_state: Declino comentar

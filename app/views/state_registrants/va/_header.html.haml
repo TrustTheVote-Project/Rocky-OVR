@@ -1,0 +1,5 @@
+#form_header
+  .state-integration
+    = render partial: 'state_registrants/va/steps'
+
+    %h1= t("states.custom.va.#{params[:step]}_header").html_safe

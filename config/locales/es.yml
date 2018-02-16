@@ -1,5 +1,7 @@
 ---
 es:
+  'yes': "Sí"
+  'no': "No"
   language_name: español
   language_name_translation_instructions: Por favor, indique el nombre de la lengua
     traducida en ese idioma. Por ejemplo, si se está traduciendo japonés, proporcione
@@ -38,6 +40,55 @@ es:
       partner:
         from_email: De correo electrónico
         url: URL
+      state_registrants/pa_registrant:
+        email: Correo Electrónico
+        registration_zip_code: Código Postal
+        confirm_declaration: Confirmo que leí y que acepto los términos anteriores.
+        confirm_assistant_declaration: Confirmo que leí y que acepto los términos anteriores.
+        date_of_birth: Fecha de Nac
+        confirm_us_citizen: Soy ciudadano americano.
+        confirm_will_be_18: Tendré 18 años en el próximo día de elecciones.
+        name_title: Titulo
+        first_name: Nombre
+        middle_name: Segundo Nombre
+        last_name: Apellido
+        name_suffix: Sufijo
+        previous_first_name: Nombre
+        previous_middle_name: Segundo Nombre
+        previous_last_name: Apellido
+        registration_address_1: Dirección Casa
+        registration_address_2: Dirección 2
+        registration_unit_type: ! 'Unidad Número'
+        registration_unit_number: ! 'No.'
+        registration_city: Ciudad
+        registration_state: Estado
+        home_state_abbrev: Estado
+        registration_county: Condado donde vive
+        has_mailing_address: Recibo mi correo en una dirección diferente a la provista anteriormente.
+        mailing_address: Dirección
+        mailing_city: Ciudad
+        mailing_state: Estado
+        mailing_zip_code: Código Postal
+        previous_address: Dirección
+        previous_city: Ciudad
+        previous_state: Estado
+        previous_zip_code: Código Postal
+        previous_county: Condado donde vive
+        phone: Teléfono
+        change_of_name:  He cambiado mi nombre.
+        change_of_address: He cambiado mi dirección.
+        change_of_party: He cambiado mi partido político.
+        party: Partido
+        other_party: Otro Partido Político
+        race: Raza
+        penndot_number: Número de Licencia de Conducir de PA
+        confirm_no_penndot_number: No sé mi número de PennDOT
+        ssn4: Los últimos 4 dígitos de su número de seguro social
+        confirm_no_dl_or_ssn: No sé mi número de los últimos 4 dígitos de su número de seguro social
+        has_assistant: ¿Alguien se ayudó con este formulario?
+        assistant_name: Ayudante Nombre
+        assistant_address: Ayudante Dirección
+        assistant_phone: Número de Teléfono
       registrant:
         date_of_birth: Fecha de Nac
         email_address: Correo Electrónico
@@ -92,6 +143,32 @@ es:
         tell_message: Mensaje
     errors:
       models:
+        state_registrants/pa_registrant:
+          blank: Requerido
+          invalid_zip: Código Postal Invalido
+          attributes:
+            confirm_us_citizen:
+              accepted: Soy ciudadano de los Estados Unidos!
+            confirm_will_be_18:
+              accepted: Tendré por lo menos 18 años en la fecha de las siguientes elecciones.
+            confirm_declaration:
+              accepted: He revisado la información anterior, y es verdad y exacta a lo mejor de mi conocimiento.
+            confirm_assitant_declaration:
+              accepted: Confirmo que leí y que acepto los términos anteriores.
+            phone:
+              invalid: ! 'Deber ser ***-***-****'
+              required_if_opt_in: Si necesita recibir TXT
+            assistant_phone:
+              invalid: ! 'Deber ser ***-***-****'
+            date_of_birth:
+              format: Debe ser MM-DD-AAAA
+            penndot_number:
+              format: Deberían tener 8 dígitos
+              blank: Requerido. Marque "No sé mi número de PennDOT" si no sabes su de identificación PennDOT
+            ssn4:
+              format: Los últimos 4 dígitos de su número de seguro social
+              blank: Requerido. Marque "No sé mi número de los últimos 4 dígitos de su número de seguro social" si no sabes los últimos cuatro dígitos de su número de seguro social.
+            
         registrant:
           ca_disclosures_error: Para completar su inscripción para votar en el estado
             de California debe aceptar las condiciones arriba mencionadas.

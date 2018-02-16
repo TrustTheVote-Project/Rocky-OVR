@@ -87,6 +87,7 @@ en:
       suffixes:
         jr: Jr.
         sr: Sr.
+        i: I
         ii: II
         iii: III
         iv: IV
@@ -95,10 +96,11 @@ en:
         vii: VII
       races:
         american_indian_alaskan_native: American Indian / Alaskan Native
-        asian: Asian / Pacific Islander
+        asian: Asian  #Asian / Pacific Islander
         black_not_hispanic: Black (not Hispanic)
         hispanic: Hispanic
-        mutli_racial: Multi-racial
+        native_hawaiian_or_pacific_islander: "Native Hawaiian or Other Pacific Islander"
+        mutli_racial: Two or More # Multi-racial
         white_not_hispanic: White (not Hispanic)
         other: Other
         decline_to_state: Decline to State

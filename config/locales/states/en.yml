@@ -2,6 +2,71 @@
 en:
   states:
     custom:
+      va:
+        state_flow_error: There was a problem submitting your registration to Virginia. Please try again later or continue here to create a paper form.
+        step_2_header: Basic Info
+        voter_classification: Voter Classification
+        protected_voter: I am providing a Virginia P.O. Box to protect my residence address from public disclosure because
+        step_3_header: Almost Done
+        step_4_header: Review &amp; Confirm
+        voter_fraud_warning: "<p><strong>WARNING:
+    INTENTIONALLY VOTING MORE THAN ONCE IN AN ELECTION OR MAKING A MATERIALLY FALSE STATEMENT ON THIS FORM CONSTITUTES THE CRIME OF ELECTION FRAUD, WHICH IS PUNISHABLE UNDER VIRGINIA LAW AS A FELONY. VIOLATORS MAY BE SENTENCED TO UP TO 10 YEARS IN PRISON, OR UP TO 12 MONTHS IN JAIL AND/OR FINED UP TO $2,500.</strong></p>"
+        privacy_notice: "<p>Privacy Act Notice: Article II, Section 2 of the Constitution of Virginia (1971) requires that a person registering to vote provide his or her social security number, if any. Therefore, if you do not provide your social security number, your application for voter registration will be denied. Section 7 of the Federal Privacy Act (Public Law Number 93-579) allows the Commonwealth to enforce this requirement, but also requires that you be advised that state and local voting officials will use the social security number as a unique identifier to ensure that no person is registered in more than one place.</p><p>This registration card will only be open to inspection by the public if the social security number is removed. Your social security number will appear on reports produced only for official use by voter registration and election officials, and for jury selection purposes by courts, and all lawful governmental purposes.</p>"
+        submitting: Sending Your Application
+        confirming: Confirming Submission
+        registration_complete: Registration Complete
+        registration_complete_dialog_text: ! '<p>Your application has been sent to the Dept. of Elections to register to vote.</p>'
+        
+      pa: 
+        state_flow_error: There was a problem submitting your registration to Pennsylvania. Please try again later or continue here to create a paper form.
+        step_2_header: Basic Info
+        step_3_header: Almost Done
+        step_4_header: Review &amp; Confirm
+        penndot_number_instructions: "If you have a PA driver's license or PennDOT ID card number, you must use it. Your PennDOT is the 8 digit number found on the top right of a PA driver's license OR non-driver's state ID card."
+        penndot_number_missing: "If you don't have a PennDOT number, you will need to print a PDF and mail it in to register."
+        declaration: "<p><strong>I declare that</strong></p><ul><li>I am a United States citizen and will have been a citizen for at least 1 month on the day of the next election.</li><li>I will be at least 18 years old on the day of the next election.</li><li>I will have lived at the address in section 5 for at least 30 days before the election.</li><li>I am legally qualified to vote.</li></ul><p>I affirm that this information is true. I understand that this declaration is the same as an affidavit, and, if this information is not true, I can be convicted of perjury, and fined up to $15,000, jailed for up to 7 years, or both.</p><p>By checking the box below, you are signing the application electronically. In doing so:</p><ul><li>You agree you have read and accept the terms of the declaration above.</li><li>You understand that your electronic signature on this application will constitute the legal equivalent of your signature for this voter registration application.</li><li>You agree to conduct this voter registration transaction by electronic means and that all laws of the Commonwealth of Pennsylvania will apply to this transaction.</li></ul><p>If you provided your PA driver's license or PennDOT ID number, you understand that the signature from the PennDOT record will constitute your signature on your voter registration record. If you upload an image of your signature, you understand that the signature you upload will constitute your signature on your voter registration record. You understand that you do not have to register electronically, and may use a paper or other non-electronic form of this voter registration application.</p>"        
+        assistant_declaration: "<p>If you helped a voter complete this voter registration application, you must also sign the application.</p><p>By checking the box, you are signing the application electronically. In doing so:</p><ul><li>You understand that your electronic signature on this application will constitute the legal equivalent of your signature.</li><li>You agree to sign this application by electronic means and that all laws of the Commonwealth of Pennsylvania will apply.</li></ul>"
+        unit_type:
+          APT: "APARTMENT"
+          BSM: "BASEMENT"
+          BOX: "BOX #"
+          BLD: "BUILDING"
+          DEP: "DEPARTMENT"
+          FL: "FLOOR"
+          FRN: "FRONT"
+          HNG: "HANGER"
+          LBB: "LOBBY"
+          LOT: "LOT"
+          LOW: "LOWER"
+          OFC: "OFFICE"
+          PH: "PENTHOUSE"
+          PIE: "PIER"
+          POL: "POLL"
+          REA: "REAR"
+          RM: "ROOM"
+          SID: "SIDE"
+          SLI: "SLIP"
+          SPC: "SPACE"
+          STO: "STOP"
+          STE: "SUITE"
+          TRL: "TRAILER"
+          UNI: "UNIT"
+          UPP: "UPPER"
+          CBN: "CABIN"
+          HUB: "HUB"
+          SMC: "STUDENT MAILING CENTER"
+          TH: "TOWNHOUSE"
+        submitting: Sending Your Application
+        confirming: Confirming Submission
+        registration_complete: Registration Complete
+        registration_complete_dialog_text: ! '<ul>
+<li>Your application has been sent to your county voter registration office.</li>
+<li>Registration is not complete until processed and accepted.</li>
+<li>If accepted, you will receive a Voter Registration Card by mail.</li>
+<li>If you do not receive your Voter Registration Card within 14 days, contact your county voter registration office.</li>
+</ul>
+<p>
+Deadline Alert: April 16, 2018 close of registration date of current election is the last day to register before the May 15, 2018 election.</p>'
       ca:
         online_instructions: ! 'You can complete your voter registration online with
 

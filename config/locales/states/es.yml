@@ -2,6 +2,50 @@
 es:
   states:
     custom:
+      pa:
+        state_flow_error: Hubo un problema al enviar su registro a Pennsylvania. Completa registro mediante formulario en papel.
+        step_2_header: Información Básica
+        step_3_header: Casi Termino
+        step_4_header: Revisar y Confirmar
+        penndot_number_instructions: "Ingrese el número de licencia de conducir de PA o de identificación PennDOT, los últimos cuatro dígitos de su número de seguro social."
+        penndot_number_missing: "Si no tiene un número PennDOT, tendrá que imprimir en PDF y enviarlo por correo para registrarse."
+        declaration: "<p><strong>Declaro que</strong></p><ul><li>Soy ciudadano de los Estados Unidos y habré sido ciudadano por lo menos 1 mes antes de la fecha de las siguientes elecciones.</li><li>Tendré por lo menos 18 años en la fecha de las siguientes elecciones.</li><li>Habré vivido en la dirección de la Sección 5 al menos durante 30 días antes de las próximas elecciones.</li><li>Cumplo con los requisitos legales para votar.</li></ul><p>Lo declarado anteriormente es verdadero. Entiendo que esta declaración es una declaración jurada y si la información no es verdadera seré acusado(a) de perjurio y sentenciado(a) a prisión durante 7 años o a pagar una multa máxima de $15,000, o ambos.</p><p>Marcar la casilla de abajo significa que usted está firmando la solicitud electrónicamente. Al hacerlo:</p><ul><li>Afirma que leyó y que acepta los términos de la declaración anterior.</li><li>Afirma que entiende que su firma electrónica en esta solicitud constituye el equivalente legal de su firma para esta solicitud de inscripción de votante.</li><li>Afirma que acepta hacer la transacción de la inscripción de votante a través de medios electrónicos y que entiende que todas las leyes de Pennsylvania se aplicarán a esta transacción.</li></ul><p>Si proporcionó su número de licencia de conducir de PA o de identificación de PennDOT, afirma que entiende que la firma que figura en su registro PennDOT constituirá su firma en el registro de inscripción de votante. Si usted sube una imagen de su firma, comprende que la firma que sube representará su firma en su archivo de inscripción de elector. Afirma que entiende que no es obligatorio inscribirse electrónicamente y que puede usar un formulario impreso o no electrónico para su solicitud de inscripción como votante.</p><p>CONFIRMO QUE LEÍ Y QUE ACEPTO LOS TÉRMINOS ANTERIORES.</p>"        
+        assistant_declaration: "<p>Si usted ayudó a un votante a llenar esta solicitud de inscripción de votante, también debe firmar la solicitud.</p><p>Marcar la casilla significa que usted está firmando electrónicamente la solicitud. Al hacerlo:</p><ul><li>Afirma que entiende que su firma electrónica en esta solicitud constituye el equivalente legal de su firma.</li><li>Afirma que acepta firmar esta solicitud a través de medios electrónicos y que se aplicarán todas las leyes del estado Pennsylvania.</li></ul><p><strong><strong>CONFIRMO QUE LEÍ Y QUE ACEPTO LOS TÉRMINOS ANTERIORES.</strong></strong></p>"
+        unit_type:
+          BOX: "# DE APARTADO"
+          STO: "ALTO"
+          APT: "APARTAMENTO"
+          PH: "ATICO"
+          SLI: "ATRACADERO"
+          CBN: "CABAÑA"
+          TH: "CASA ADOSADA"
+          HUB: "CENTRO"
+          SMC: "CENTRO DE CORREO ESTUDIANTIL"
+          RM: "CUARTO"
+          DEP: "DEPARTAMENTO"
+          BLD: "EDIFICIO"
+          POL: "ELECCIONES"
+          PIE: "EMBARCADERO"
+          FRN: "FRENTE"
+          HNG: "HANGAR"
+          LOW: "INFERIOR"
+          SID: "LADO"
+          LOT: "LOTE"
+          OFC: "OFICINA"
+          FL: "PISO"
+          LBB: "RECIBIDOR"
+          SPC: "SITIO"
+          BSM: "SÓTANO"
+          STE: "SUITE"
+          UPP: "SUPERIOR"
+          TRLR: "TRAILÉR"
+          TRL: "TRAILÉR"
+          REA: "TRASERO"
+          UNI: "UNIDAD DE VIVIENDA"
+        submitting: Enviando su aplicación
+        confirming: Confirmando la presentación
+        registration_complete: Su inscripción estará completa
+        registration_complete_dialog_text: ! '<ul><li>Su solicitud se ha enviado a la oficina de registro de votantes del condado.</li><li>Su inscripción no estará completa hasta que sea procesada y aceptada por la oficina de inscripción de su condado.</li><li>Si acepta, recibirá su Tarjeta de Inscripción de Votante por correo.</li><li>Si en 14 días no ha recibido su Tarjeta de Inscripción de Votante, llame a su oficina de inscripción de votantes.</li><p>Atención: La fecha límite para inscribirse y poder votar en las próximas elecciones 4/16/2018 es 5/15/2018.</p>'
       ca:
         online_instructions: Ahora, se puede completar su formulario de inscripción
           de votante en linea con el estado - usando el formulario de la Secretaria
@@ -515,10 +559,7 @@ es:
         <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">aquí</a>.</i>'
     pdf_other_instructions:
       blank: ''
-      wisconsin: Applicants must always provide a Proof of Residence document when
-        registering in Wisconsin. If you are registering by mail, you can use any
-        of the Proof of Residence listed in the link above that must include the voter’s
-        name and current address.
+      wisconsin: Los solicitantes siempre deben presentar un documento de Prueba de residencia al registrarse en Wisconsin. Si se está registrando por correo, puede usar cualquiera de los comprobantes de residencia que figuran en el enlace anterior que debe incluir el nombre del votante y la dirección actual.
     email_instructions:
       blank: ''
       arizona: ! '<b>* Nota para el Primer Tiempo Registro de Votantes Applicatns

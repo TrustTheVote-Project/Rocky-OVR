@@ -55,9 +55,6 @@ ovr_states:
       web_agency_key: RTV
       web_url_base: https://covr.sos.ca.gov
       disclosures_url: https://408cfb943c38a5970903-5b52f06634f7505b14971829884d4c95.ssl.cf1.rackcdn.com/discl/
-  NV:
-    languages:
-      - en
   WA:
     languages:
       - en

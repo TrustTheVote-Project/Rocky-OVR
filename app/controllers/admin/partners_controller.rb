@@ -29,6 +29,18 @@ class Admin::PartnersController < Admin::BaseController
     @partner_zip = PartnerZip.new(nil)
   end
 
+  def upload_registrant_statuses
+    @partners = Partner.standard
+    @partner_zip = PartnerZip.new(nil)
+    
+    state = GeoState.find(params[:geo_state])
+    csv = params[:statuses_csv]
+    @status_results = RegistrantStatus.import_ovr_status!(csv.path, state, current_admin)
+
+    render action: :index
+    
+  end
+
   def show
     @partner = Partner.find(params[:id])
   end

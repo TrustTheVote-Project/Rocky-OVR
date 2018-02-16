@@ -555,6 +555,12 @@ record_38:
   requires_race: true
   race_tooltip: requested_no_conditions_with_state_name
   requires_party: true
+  parties:
+  - democratic
+  - green
+  - libertarian
+  - republican
+  - other  
   party_tooltip: required_for_primary_2
   id_number_tooltip: drivers_license_or_ssn_or_none_3
   sos_address: Office of the Secretary of the Commonwealth<br>210 North Office Building<br>Harrisburg,
