@@ -214,8 +214,6 @@ ovr_states:
       api_key: <%= ENV['PA_API_KEY'] %>
       canvassing_session_timeout_minutes: 480
     redirect_to_online_reg_url: true
-    require_age_confirmation: true
-    require_id: false
     languages:
       - en
       - es
