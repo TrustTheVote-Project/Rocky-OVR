@@ -88,7 +88,6 @@ record_4:
   sos_url: http://www.sos.ca.gov/elections/registration-status/
   online_registration_url: http://www.registertovote.ca.gov/
   registration_deadline: california
-  sub_18: once_turned_16
 record_5:
   abbreviation: CO
   name: Colorado
@@ -101,6 +100,7 @@ record_5:
   online_registration_url: https://www.sos.state.co.us/voter-classic?vrdid=944
   id_length_min: '4'
   registration_deadline: colorado
+  sub_18: once_turned_16
 record_6:
   abbreviation: CT
   name: Connecticut
@@ -155,7 +155,6 @@ record_9:
   sos_url: http://election.dos.state.fl.us/
   sub_18: when_is_16
   id_length_min: '4'
-  online_registration_url: https://registertovoteflorida.gov/en/Registration/Eligibility
 record_10:
   abbreviation: GA
   name: Georgia
@@ -197,7 +196,6 @@ record_12:
   sos_phone: (208) 334-2300
   sos_url: http://www.sos.idaho.gov/elect/eleindex.htm
   id_length_min: '4'
-  online_registration_url: https://apps.idahovotes.gov/OnlineVoterRegistration
 record_13:
   abbreviation: IL
   name: Illinois
@@ -211,6 +209,7 @@ record_13:
   registration_deadline: postmarked_27_days
   id_length_min: '4'
   online_registration_url: https://ova.elections.il.gov/Step0.aspx
+  sub_18: be_by_next_general_election_november
 record_14:
   abbreviation: IN
   name: Indiana
@@ -399,7 +398,7 @@ record_27:
   sos_address: Elections Office<br>P.O. Box 94608<br>Lincoln, NE 68509
   sos_phone: (402) 471-2555
   sos_url: http://www.sos.ne.gov/dyindex.html
-  sub_18: be_by_next_general_election_november
+  sub_18: turn_by_next_general_election_november_2
   registration_deadline: nebraska
   id_length_min: '4'
   online_registration_url: https://www.nebraska.gov/apps-sos-voter-registration/eligibility/citizen
@@ -415,7 +414,6 @@ record_28:
   sos_url: https://www.nvsos.gov/VoterSearch/
   registration_deadline: nevada
   id_length_min: '4'
-  online_registration_url: http://www.RegisterToVoteNV.gov
 record_29:
   abbreviation: NH
   name: New Hampshire
@@ -457,6 +455,7 @@ record_31:
   sos_url: http://www.sos.state.nm.us/
   registration_deadline: postmarked_28_days
   online_registration_url: https://portal.sos.state.nm.us/OVR/(S(od4445h5uj2f5tyucvvhszdf))/WebPages/InstructionsStep1.aspx
+  sub_18: turn_by_next_general_election_november
 record_32:
   abbreviation: NY
   name: New York
@@ -545,7 +544,7 @@ record_37:
     OR 97310-0722
   sos_phone: (503) 986-1518
   sos_url: http://www.sos.state.or.us/elections/
-  sub_18: once_turned_17
+  sub_18: once_turned_16
   registration_deadline: postmarked_21_days
   id_length_min: '4'
   online_registration_url: https://secure.sos.state.or.us/orestar/vr/register.do?lang=eng&source=SOS
@@ -555,18 +554,12 @@ record_38:
   requires_race: true
   race_tooltip: requested_no_conditions_with_state_name
   requires_party: true
-  parties:
-  - democratic
-  - green
-  - libertarian
-  - republican
-  - other  
   party_tooltip: required_for_primary_2
   id_number_tooltip: drivers_license_or_ssn_or_none_3
   sos_address: Office of the Secretary of the Commonwealth<br>210 North Office Building<br>Harrisburg,
     PA 17120-0029
   sos_phone: (717) 787-5280
-  sos_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationStatus.aspx
+  sos_url: http://www.dos.state.pa.us/BCEL/site/default.asp
   registration_deadline: received_30_days
   online_registration_url: https://www.pavoterservices.state.pa.us/Pages/VoterRegistrationApplication.aspx
 record_39:
@@ -620,10 +613,10 @@ record_42:
   sos_url: http://sos.tn.gov/elections
   registration_deadline: postmarked_30_days
   id_length_min: '4'
-  online_registration_url: https://ovr.govote.tn.gov/
 record_43:
   abbreviation: TX
   name: Texas
+  requires_party: false
   party_tooltip: not_required
   id_number_tooltip: drivers_license_non_driver_with_state_name
   sos_address: Office of the Secretary of State<br>Elections Division<br>P.O. Box
@@ -683,7 +676,7 @@ record_47:
     WA 98504-0230
   sos_phone: (360) 902-4180
   sos_url: http://www.secstate.wa.gov/elections/
-  sub_18: turn_by_next_general_election_november
+  sub_18: turn_by_next_election_2
   registration_deadline: washington
   id_length_min: '4'
 record_48:
