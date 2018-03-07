@@ -101,6 +101,7 @@ record_5:
   online_registration_url: https://www.sos.state.co.us/voter-classic?vrdid=944
   id_length_min: '4'
   registration_deadline: colorado
+  sub_18: once_turned_16
 record_6:
   abbreviation: CT
   name: Connecticut
@@ -211,6 +212,7 @@ record_13:
   registration_deadline: postmarked_27_days
   id_length_min: '4'
   online_registration_url: https://ova.elections.il.gov/Step0.aspx
+  sub_18: be_by_next_general_election_november
 record_14:
   abbreviation: IN
   name: Indiana
@@ -399,7 +401,7 @@ record_27:
   sos_address: Elections Office<br>P.O. Box 94608<br>Lincoln, NE 68509
   sos_phone: (402) 471-2555
   sos_url: http://www.sos.ne.gov/dyindex.html
-  sub_18: be_by_next_general_election_november
+  sub_18: turn_by_next_general_election_november_2
   registration_deadline: nebraska
   id_length_min: '4'
   online_registration_url: https://www.nebraska.gov/apps-sos-voter-registration/eligibility/citizen
@@ -416,6 +418,7 @@ record_28:
   registration_deadline: nevada
   id_length_min: '4'
   online_registration_url: http://www.RegisterToVoteNV.gov
+  sub_18: once_turned_17
 record_29:
   abbreviation: NH
   name: New Hampshire
@@ -457,6 +460,7 @@ record_31:
   sos_url: http://www.sos.state.nm.us/
   registration_deadline: postmarked_28_days
   online_registration_url: https://portal.sos.state.nm.us/OVR/(S(od4445h5uj2f5tyucvvhszdf))/WebPages/InstructionsStep1.aspx
+  sub_18: turn_by_next_general_election_november
 record_32:
   abbreviation: NY
   name: New York
@@ -545,7 +549,7 @@ record_37:
     OR 97310-0722
   sos_phone: (503) 986-1518
   sos_url: http://www.sos.state.or.us/elections/
-  sub_18: once_turned_17
+  sub_18: once_turned_16
   registration_deadline: postmarked_21_days
   id_length_min: '4'
   online_registration_url: https://secure.sos.state.or.us/orestar/vr/register.do?lang=eng&source=SOS
@@ -560,7 +564,7 @@ record_38:
   - green
   - libertarian
   - republican
-  - other  
+  - other
   party_tooltip: required_for_primary_2
   id_number_tooltip: drivers_license_or_ssn_or_none_3
   sos_address: Office of the Secretary of the Commonwealth<br>210 North Office Building<br>Harrisburg,
@@ -624,6 +628,7 @@ record_42:
 record_43:
   abbreviation: TX
   name: Texas
+  requires_party: false
   party_tooltip: not_required
   id_number_tooltip: drivers_license_non_driver_with_state_name
   sos_address: Office of the Secretary of State<br>Elections Division<br>P.O. Box
@@ -683,7 +688,7 @@ record_47:
     WA 98504-0230
   sos_phone: (360) 902-4180
   sos_url: http://www.secstate.wa.gov/elections/
-  sub_18: turn_by_next_general_election_november
+  sub_18: turn_by_next_election_2
   registration_deadline: washington
   id_length_min: '4'
 record_48:
