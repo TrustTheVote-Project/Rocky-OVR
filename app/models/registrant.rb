@@ -145,7 +145,7 @@ class Registrant < ActiveRecord::Base
     "Tracking Source",
     "Tracking ID",
     "Open Tracking ID",
-    "PA Transaction ID",
+    "State API Submission Result",
     "Language",
     "Date of birth",
     "Email address",
@@ -189,7 +189,11 @@ class Registrant < ActiveRecord::Base
     "Built via API",
     "Has State License",
     "Has SSN",
-    "Geo Location"
+    "VR Application Status",
+    "VR Application Status Details",
+    "VR Application Status Imported DateTime",
+    "Submitted Via State API",
+    "Submitted Signature to State API"
   ]
 
   attr_protected :status
@@ -908,6 +912,89 @@ class Registrant < ActiveRecord::Base
   end
   
   
+  def first_registration?
+    if is_grommet? 
+      pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
+      return pa_adapter.is_new_registration_boolean
+    elsif existing_state_registrant
+      return existing_state_registrant.first_registration?
+    else
+      return !!self.first_registration
+    end    
+  end
+  
+  def canvasser_clock_in
+    return nil if !is_grommet?
+    @canvasser_id ||= self.tracking_source
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_in").first
+    t && t.tracking_data ? t.tracking_data["clock_in_datetime"] : nil
+  end
+
+  def canvasser_clock_out
+    return nil if !is_grommet?
+    @canvasser_id ||= self.tracking_source
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_out").first
+    t && t.tracking_data ? t.tracking_data["clock_out_datetime"] : nil    
+  end
+  
+  
+  def grommet_submission
+    begin 
+      state_ovr_data["voter_records_request"]["voter_registration"]
+    rescue
+      nil
+    end
+  end
+  
+  def is_grommet?
+    !grommet_submission.blank?
+  end
+  
+  def api_submitted_with_signature
+    return nil if !is_grommet? # Right now sigs only come from grommet
+    return !grommet_submission["signature"].blank?    
+  end
+  
+  def api_submission_status
+    return nil if !submitted_via_state_api?
+    if is_grommet?
+      if state_ovr_data["pa_transaction_id"].blank?
+        ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
+      else
+        "Success: #{state_ovr_data["pa_transaction_id"]}"
+      end
+    else     
+      existing_state_registrant.state_transaction_id.blank? ? ["Error", existing_state_registrant.api_submission_error].join(": ") : "Success: #{existing_state_registrant.state_transaction_id}"
+    end
+  end
+  
+  def existing_state_registrant
+    @existing_state_registrant ||= if use_state_flow?      
+      state_registrant_type = "StateRegistrants::#{home_state_abbrev}Registrant"
+      begin
+        model = state_registrant_type.constantize
+        model.find_by_registrant_id(self.uid)
+      rescue
+        nil
+      end
+    else
+      nil
+    end    
+  end
+  
+  def state_registrant
+    if use_state_flow?
+      state_registrant_type = "StateRegistrants::#{home_state_abbrev}Registrant"
+      begin
+        model = state_registrant_type.constantize
+        sr = model.from_registrant(self)
+      rescue
+        nil
+      end
+    else
+      nil
+    end
+  end
 
   def custom_step_4_partial
     is_fake? ? "fake_state_online_page" : "#{home_state.abbreviation.downcase}"
@@ -1389,7 +1476,7 @@ class Registrant < ActiveRecord::Base
       self.tracking_source,
       self.tracking_id,
       self.open_tracking_id,
-      (self.state_ovr_data || {})["pa_transaction_id"],
+      api_submission_status,
       locale_english_name,
       pdf_date_of_birth,
       email_address,
@@ -1433,7 +1520,17 @@ class Registrant < ActiveRecord::Base
       yes_no(building_via_api_call?),
       yes_no(has_state_license?),
       yes_no(has_ssn?),
-      self.geo_location  
+      
+      vr_application_status,
+      vr_application_status_details,
+      vr_application_status_datetime,
+
+      yes_no(submitted_via_state_api?),
+      api_submitted_with_signature,
+      
+      canvasser_clock_in,
+      canvasser_clock_out,
+      
     ]
   end
 
