@@ -106,5 +106,15 @@ module Rocky
     config.i18n.fallbacks =[:en]
 
     I18n.enforce_available_locales = false
+    
+    
+    config.middleware.use ExceptionNotification::Rack,
+      email: {
+        email_prefix: "[ROCKY Exception - #{Rails.env}] ",
+        sender_address: %{"Exception Notifier" <no-reply@rockthevote.com>},
+        exception_recipients: %w{alex.mekelburg@osetfoundation.org}
+    }
+    
+    
   end
 end
