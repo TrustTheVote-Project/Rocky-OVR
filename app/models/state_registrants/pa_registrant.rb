@@ -100,6 +100,11 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
   end
   
+  # Override the actual data column here
+  def first_registration?
+    is_new_registration
+  end
+  
   def is_new_registration
     empty_prev_reg = !change_of_address?
     empty_prev_name = !change_of_name?

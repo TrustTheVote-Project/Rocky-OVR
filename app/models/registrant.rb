@@ -148,6 +148,7 @@ class Registrant < ActiveRecord::Base
     "Tracking Source",
     "Tracking ID",
     "Open Tracking ID",
+    "State API Submission Result",
     "Language",
     "Date of birth",
     "Email address",
@@ -192,13 +193,11 @@ class Registrant < ActiveRecord::Base
     "Built via API",
     "Has State License",
     "Has SSN",
-    "Geo Location",
     "VR Application Status",
     "VR Application Status Details",
     "VR Application Status Imported DateTime",
     "Submitted Via State API",
-    "Submitted Signature to State API",
-    "State API Submission Result"
+    "Submitted Signature to State API"
   ]
 
   attr_protected :status
@@ -806,6 +805,17 @@ class Registrant < ActiveRecord::Base
      (!skip_state_flow? && existing_state_registrant && existing_state_registrant.submitted?) || is_grommet?
   end
   
+  def first_registration?
+    if is_grommet? 
+      pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
+      return pa_adapter.is_new_registration_boolean
+    elsif existing_state_registrant
+      return existing_state_registrant.first_registration?
+    else
+      return !!self.first_registration
+    end    
+  end
+  
   def canvasser_clock_in
     return nil if !is_grommet?
     @canvasser_id ||= self.tracking_source
@@ -1357,6 +1367,7 @@ class Registrant < ActiveRecord::Base
       self.tracking_source,
       self.tracking_id,
       self.open_tracking_id,
+      api_submission_status,
       locale_english_name,
       pdf_date_of_birth,
       email_address,
@@ -1401,7 +1412,6 @@ class Registrant < ActiveRecord::Base
       yes_no(building_via_api_call?),
       yes_no(has_state_license?),
       yes_no(has_ssn?),
-      self.geo_location,
       
       vr_application_status,
       vr_application_status_details,
@@ -1409,7 +1419,6 @@ class Registrant < ActiveRecord::Base
 
       yes_no(submitted_via_state_api?),
       api_submitted_with_signature,
-      api_submission_status,
       
       canvasser_clock_in,
       canvasser_clock_out,
