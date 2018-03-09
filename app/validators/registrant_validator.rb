@@ -126,20 +126,16 @@ class RegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of  :send_confirmation_reminder_emails, :in => [ true, false ]
     end
   
-    if reg.home_state_abbrev.to_s.downcase == "ca"
-      [
-        #[Registrant::ADDRESS_FIELDS, Registrant::CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period"],
-        [Registrant::CITY_FIELDS, Registrant::CA_CITY_STATE_REGEX, :invalid]
-      ].each do |list, regex, message|
-        list.each do |field|
-          reg.validates_format_of field, with: regex, message: message
-        end    
+    city_regex = reg.home_state_abbrev.to_s.downcase == "ca" ? Registrant::CA_CITY_STATE_REGEX : Registrant::CITY_STATE_REGEX
+    [
+      #[Registrant::ADDRESS_FIELDS, Registrant::CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period"],
+      [Registrant::CITY_FIELDS, city_regex, :invalid]
+    ].each do |list, regex, message|
+      list.each do |field|
+        reg.validates_format_of field, with: regex, message: message
       end
-      
     end
-    
-  
-    
+
   end
   
   def requires_presence_of_state_id_number(reg)
