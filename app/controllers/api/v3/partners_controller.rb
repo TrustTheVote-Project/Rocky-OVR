@@ -59,10 +59,16 @@ class Api::V3::PartnersController < Api::V3::BaseController
     else
       partner = Partner.find_by_id(params[:partner_id])
       if partner && partner.enabled_for_grommet?
-        jsonp({
+        locales = RockyConf.ovr_states.PA.languages || []
+        deadline_messages = {}
+        locales.each {|l| deadline_messages[l] = I18n.t('states.custom.pa.registration_deadline_text', locale: l)}
+        # TODO: should the jsonp method use JSON.generate for unencoded utf-8 responses?
+        render json: JSON.generate({
           is_valid: true,
           partner_name: partner.organization,
-          session_timeout_length: partner.custom_data["canvassing_session_timeout_length"]
+          session_timeout_length: partner.custom_data["canvassing_session_timeout_length"],
+          registration_deadline_date: RockyConf.ovr_states.PA.registration_deadline.strftime("%Y-%m-%d"),
+          registration_notification_text: deadline_messages
         })
       else
         jsonp({
