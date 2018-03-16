@@ -18,15 +18,17 @@ ovr_states:
       log_all_requests: true
       disclosures_font_size: 14px
       disclosures_prechecked: true
-  NV:
-    redirect_to_online_url: true
-    languages:
-      - en
-      - es
   PA: 
     api_settings:
       api_url: "https://fake-pa-endpoint.herokuapp.com"
   
+  VA:
+    redirect_to_online_reg_url: false
+    languages:
+      - en
+    api_settings:
+        api_url: "https://fake-va-endpoint.herokuapp.com"
+        api_key: <%= ENV['VA_API_KEY'] %>
   WA:
     redirect_to_online_url: true
     languages:

@@ -97,3 +97,5 @@ gem "ledermann-rails-settings", :require => "rails-settings"
 gem 'json'
 
 gem "delayed_job_active_record", "~> 0.4.4"
+
+gem 'exception_notification'

@@ -36,11 +36,14 @@ class Registrant < ActiveRecord::Base
   include AASM
   include Lolrus
   include Rails.application.routes.url_helpers
+  include RegistrantMethods
   
   serialize :state_ovr_data, Hash
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]
-  
+  def step_list
+    STEPS
+  end
   TITLE_KEYS = I18n.t('txt.registration.titles', :locale => :en).keys
   SUFFIX_KEYS = I18n.t('txt.registration.suffixes', :locale => :en).keys
   RACE_KEYS = I18n.t('txt.registration.races', :locale => :en).keys
@@ -151,6 +154,7 @@ class Registrant < ActiveRecord::Base
     "Email address",
     "First registration?",
     "US citizen?",
+    "Will be 18 by election",
     "Salutation",
     "First name",
     "Middle name",
@@ -176,7 +180,7 @@ class Registrant < ActiveRecord::Base
     "Opt-in to RTV email?",
     "Opt-in to RTV sms?",
     "Opt-in to Partner email?",
-    "Opt-in to Partner sms?",
+    "Opt-in to Partner SMS/robocall",
     "Survey question 1",
     "Survey answer 1",
     "Survey question 2",
@@ -211,10 +215,12 @@ class Registrant < ActiveRecord::Base
   aasm_state :rejected
 
   belongs_to :partner
-
+  
   belongs_to :home_state,    :class_name => "GeoState"
   belongs_to :mailing_state, :class_name => "GeoState"
   belongs_to :prev_state,    :class_name => "GeoState"
+
+  has_one :registrant_status
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
@@ -436,25 +442,6 @@ class Registrant < ActiveRecord::Base
       
   end
 
-  def at_least_step_1?
-    at_least_step?(1)
-  end
-
-  def at_least_step_2?
-    at_least_step?(2)
-  end
-
-  def at_least_step_3?
-    at_least_step?(3)
-  end
-
-  def at_least_step_4?
-    at_least_step?(4)
-  end
-
-  def at_least_step_5?
-    at_least_step?(5)
-  end
 
   def clear_superfluous_fields
     unless has_mailing_address?
@@ -507,46 +494,7 @@ class Registrant < ActiveRecord::Base
   end
 
 
-  def date_of_birth=(string_value)
-    dob = nil
-    if string_value.is_a?(String)
-      if matches = string_value.match(/^(\d{1,2})\D+(\d{1,2})\D+(\d{4})$/)
-        m,d,y = matches.captures
-        dob = Date.civil(y.to_i, m.to_i, d.to_i) rescue string_value
-      elsif matches = string_value.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})$/)
-        y,m,d = matches.captures
-        dob = Date.civil(y.to_i, m.to_i, d.to_i) rescue string_value
-      else
-        dob = string_value
-      end
-    else
-      dob = string_value
-    end
-    write_attribute(:date_of_birth, dob)
-  end
 
-  def validate_date_of_birth
-    return if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
-    if date_of_birth_before_type_cast.blank?
-      errors.add(:date_of_birth, :blank)
-    else
-      @raw_date_of_birth = date_of_birth_before_type_cast
-      date = nil
-      if matches = date_of_birth_before_type_cast.to_s.match(/^(\d{1,2})\D+(\d{1,2})\D+(\d{4})$/)
-        m,d,y = matches.captures
-        date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
-      elsif matches = date_of_birth_before_type_cast.to_s.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})$/)
-        y,m,d = matches.captures
-        date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
-      end
-      if date
-        @raw_date_of_birth = nil
-        self[:date_of_birth] = date
-      else
-        errors.add(:date_of_birth, :format)
-      end
-    end
-  end
 
   def calculate_age
     if errors[:date_of_birth].empty? && !date_of_birth.blank?
@@ -605,24 +553,9 @@ class Registrant < ActiveRecord::Base
     english_attribute_value(prev_name_suffix_key, 'suffixes')
   end
   
-  def phone_type_key
-    key_for_attribute(:phone_type, 'phone_types')
-  end
-  
-  def key_for_attribute(attr_name, i18n_list)
-    key_value = I18n.t("txt.registration.#{i18n_list}", :locale=>locale).detect{|k,v| v==self.send(attr_name)}
-    key_value && key_value.length == 2 ? key_value[0] : nil    
-  end
-  
-  def english_attribute_value(key, i18n_list)
-    key.nil? ? nil : I18n.t("txt.registration.#{i18n_list}.#{key}", :locale=>:en)
-  end
   
   def self.english_races
     I18n.t('txt.registration.races', :locale=>:en).values
-  end
-  def english_races
-    self.class.english_races
   end
 
   def self.english_race(locale, race)
@@ -648,72 +581,6 @@ class Registrant < ActiveRecord::Base
   def self.race_idx(locale, race)
     I18n.t('txt.registration.races', :locale=>locale).values.collect(&:downcase).index(race.downcase)
   end
-  
-  def english_race
-    self.class.english_race(locale, race)
-  end
-  
-  def race_key
-    self.class.race_key(locale, race)
-  end
-  
-
-  def state_parties
-    if requires_party?
-      localization ? localization.parties + [ localization.no_party ] : []
-    else
-      []
-    end
-  end
-  
-  def set_official_party_name
-    return unless self.step_5? || self.complete?
-    self.official_party_name = detect_official_party_name
-  end
-  
-  
-  def detect_official_party_name
-    if party.blank?
-      I18n.t('states.no_party_label.none')
-    else
-      return party if en_localization[:parties].include?(party)
-      if locale.to_s == "en"
-        return party == en_localization.no_party ? I18n.t('states.no_party_label.none') : party
-      else
-        if party == localization.no_party
-          return I18n.t('states.no_party_label.none', :locale=>:en)
-        else
-          if (p_index = localization[:parties].index(party))
-            return en_localization[:parties][p_index]
-          else
-            Rails.logger.warn "***** UNKNOWN PARTY:: registrant: #{id}, locale: #{locale}, party: #{party}"
-            return nil
-          end
-        end
-      end
-    end
-  end
-  
-  def english_state_parties
-    if requires_party?
-      en_localization ? en_localization.parties + [ en_localization.no_party ] : []
-    else
-      []
-    end    
-  end
-
-  
-  def english_party_name
-    if locale.to_s == 'en' || english_state_parties.include?(party)
-      return party
-    else
-      if (p_idx = state_parties.index(party))
-        return english_state_parties[p_idx]
-      else
-        return nil
-      end
-    end
-  end
 
   # Reset name/prev prefix, suffix, race, party, phone_type
   def check_locale_change
@@ -728,14 +595,14 @@ class Registrant < ActiveRecord::Base
       
       self.locale = self.new_locale
       
-      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale)
-      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale)
-      self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale)
-      self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale)
-      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale)
-      self.party = state_parties[party_idx] if party_idx
-      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale)
-      
+      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
+      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
+      self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
+      self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
+      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
+      self.party = state_parties[party_idx] if !party_idx.nil?
+      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
+      self.save(validate: false)
     end
   end
 
@@ -822,6 +689,10 @@ class Registrant < ActiveRecord::Base
   def abandon!
     self.attributes = {:abandoned => true, :state_id_number => nil}
     self.save(:validate=>false)
+    if self.state_registrant
+      self.state_registrant.cleanup!
+    end
+  rescue    
   end
 
   # def advance_to!(next_step, new_attributes = {})
@@ -911,6 +782,39 @@ class Registrant < ActiveRecord::Base
     localization ? localization.allows_ovr_ignoring_license?(self) : false
   end
   
+  def skip_state_flow!
+    self.state_ovr_data ||= []
+    self.state_ovr_data[:skip_state_flow] = true
+    self.finish_with_state = false
+    self.save(validate: false)
+  end
+  
+  def state_flow_error?
+    skip_state_flow? && state_registrant && state_registrant.submitted?
+  end
+  
+  def skip_state_flow?
+    !!state_ovr_data[:skip_state_flow]
+  end
+  
+  def use_state_flow?
+    home_state && home_state.use_state_flow?(self)
+  end
+  
+  def submitted_via_state_api?
+     (!skip_state_flow? && existing_state_registrant && existing_state_registrant.submitted?) || is_grommet?
+  end
+  
+  def first_registration?
+    if is_grommet? 
+      pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
+      return pa_adapter.is_new_registration_boolean
+    elsif existing_state_registrant
+      return existing_state_registrant.first_registration?
+    else
+      return !!self.first_registration
+    end    
+  end
   
   def first_registration?
     if is_grommet? 
@@ -1038,15 +942,7 @@ class Registrant < ActiveRecord::Base
     end
   end
 
-  def form_date_of_birth
-    if @raw_date_of_birth
-      @raw_date_of_birth
-    elsif date_of_birth
-      "%d-%d-%d" % [date_of_birth.month, date_of_birth.mday, date_of_birth.year]
-    else
-      nil
-    end
-  end
+  
 
   def wrap_up
     complete!
@@ -1176,6 +1072,12 @@ class Registrant < ActiveRecord::Base
       generate_pdf
       finalize_pdf
     end
+  end
+  
+  def complete_registration_with_state!
+    self.status='complete'
+    self.send_confirmation_reminder_emails = false
+    self.save(validate: false) # We don't care if it's a valid rocky registrant
   end
   
 
@@ -1482,6 +1384,7 @@ class Registrant < ActiveRecord::Base
       email_address,
       yes_no(first_registration?),
       yes_no(us_citizen?),
+      yes_no(will_be_18_by_election?),
       name_title,
       first_name,
       middle_name,
@@ -1532,6 +1435,18 @@ class Registrant < ActiveRecord::Base
       canvasser_clock_out,
       
     ]
+  end
+  
+  def vr_application_status
+    registrant_status ? registrant_status.state_status : nil
+  end
+  
+  def vr_application_status_details
+    registrant_status ? registrant_status.state_status_details : nil
+  end
+  
+  def vr_application_status_datetime
+    registrant_status ? registrant_status.updated_at : nil    
   end
 
   def status_text
@@ -1621,10 +1536,6 @@ class Registrant < ActiveRecord::Base
 
   private ###
 
-  def at_least_step?(step)
-    current_step = STEPS.index(aasm_current_state)
-    !current_step.nil? && (current_step >= step)
-  end
 
 
   def generate_uid
@@ -1637,9 +1548,6 @@ class Registrant < ActiveRecord::Base
     end
   end
 
-  def yes_no(attribute)
-    attribute ? "Yes" : "No"
-  end
   
   def method_missing(sym, *args)
     if sym.to_s =~ /^yes_no_(.+)$/

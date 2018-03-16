@@ -213,10 +213,8 @@ ovr_states:
     api_settings:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
-      canvassing_session_timeout_minutes: 480
+      canvassing_session_timeout_minutes: 1440
     redirect_to_online_reg_url: true
-    require_age_confirmation: true
-    require_id: false
     languages:
       - en
       - es
@@ -249,6 +247,9 @@ ovr_states:
     redirect_to_online_reg_url: true
     languages:
       - en
+    api_settings:
+        api_url: "https://fake-va-endpoint.herokuapp.com"
+        api_key: <%= ENV['VA_API_KEY'] %>
   WV:
     redirect_to_online_reg_url: true
     languages:
