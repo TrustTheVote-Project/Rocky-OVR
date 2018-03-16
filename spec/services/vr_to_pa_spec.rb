@@ -13,10 +13,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "444 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
                     "sub_address" => "Apt 306"
-                },
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -35,10 +35,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "222 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
                     "sub_address" => "Apt 306"
-                },
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -57,10 +57,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "333 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
                     "sub_address" => "Apt 306"
-                },
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -154,10 +154,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "55",
                     "complete_street_name" => "Assistant Street",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
                         "sub_address" => "555"
-                    },
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -451,10 +451,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "1",
                     "complete_street_name" => "Street",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
                         "sub_address" => "100"
-                    },
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -614,10 +614,10 @@ describe VRToPA do
                     "numbered_thoroughfare_address" => {
                         "complete_address_number" => "1",
                         "complete_street_name" => "Street",
-                        "complete_sub_address" => {
+                        "complete_sub_address" => [{
                             "sub_address_type" => "APT",
                             "sub_address" => "100"
-                        },
+                        }],
                         "complete_place_names" => [
                             {
                                 "place_name_type" => "MunicipalJurisdiction",
@@ -687,12 +687,56 @@ describe VRToPA do
       end
     end
   end
+  describe 'street_address_2' do
+    subject { adapter.street_address_2 }
+    context 'empty address' do
+      let(:input) { {} }
+      it 'returns a blank' do
+        expect(subject).to eq("")
+      end
+    end
+    context "only inclues unid number" do
+      let(:input) { {
+        "registration_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "444 N. Street",
+                "complete_sub_address" => [{
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                }]
+            }
+        }        
+      } }
+      it "reutrn a blank" do
+        expect(subject).to eq("")
+      end
+    end
+    context "includes a LINE2" do
+      let(:input) { {
+        "registration_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "444 N. Street",
+                "complete_sub_address" => [{
+                    "sub_address_type" => "LINE2",
+                    "sub_address" => " my line 2 "
+                }]
+            }
+        }        
+      } }
+      it "return a stripped value" do
+        expect(subject).to eq("my line 2")
+      end
+    end
+    
+  end
   describe 'unitnumber' do
     subject { adapter.unitnumber }
     context 'too long input' do
       let(:input) { full_input }
       before(:each) do
-        input["registration_address"]["numbered_thoroughfare_address"]["complete_sub_address"]["sub_address"] = "1234567890123456"
+        input["registration_address"]["numbered_thoroughfare_address"]["complete_sub_address"][0]["sub_address"] = "1234567890123456"
       end
       it 'raises error' do
         
@@ -717,10 +761,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "",
                     "complete_street_name" => "801 N. Monroe",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
                         "sub_address" => "Apt 306"
-                    },
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -876,10 +920,10 @@ describe VRToPA do
               "numbered_thoroughfare_address" => {
                   "complete_address_number" => "",
                   "complete_street_name" => "222 N. Street",
-                  "complete_sub_address" => {
+                  "complete_sub_address" => [{
                       "sub_address_type" => "APT",
                       "sub_address" => "Apt 306"
-                  },
+                  }],
                   "complete_place_names" => [
                       {
                           "place_name_type" => "MunicipalJurisdiction",

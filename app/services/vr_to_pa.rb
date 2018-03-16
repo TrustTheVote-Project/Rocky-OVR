@@ -263,7 +263,7 @@ class VRToPA
 
     result['Email'] = email
     result['streetaddress'] = street_address
-    result['streetaddress2'] = ""
+    result['streetaddress2'] = street_address_2
     #result['unittype'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address_type])
     # 'unittype' in the JSON is always "APT" - it's not actaully collected, so we expect
     # that the user will actually enter in "Apt" as part of the unit number and don't
@@ -433,10 +433,14 @@ class VRToPA
                        read([:registration_address, :numbered_thoroughfare_address, :complete_street_name], REQUIRED)
                    ], ' ')
   end
+
+  def street_address_2
+    query([:registration_address, :numbered_thoroughfare_address, :complete_sub_address], :sub_address_type, 'LINE2', :sub_address).to_s.strip
+  end
+
   
   def unitnumber
-    un = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address])
-    un = un.to_s
+    un = query([:registration_address, :numbered_thoroughfare_address, :complete_sub_address], :sub_address_type, 'APT', :sub_address).to_s.strip
     valid = un.length <= 15
     raise ParsingError.new("Unit number must be 15 characters or less. #{un} is #{un.length} characters") unless valid
     un
