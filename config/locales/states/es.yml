@@ -76,6 +76,7 @@ es:
       other: Otros
     no_party_label:
       none: Ninguno
+      none_no_affiliation: Ninguno (Sin afiliación)
       decline_to_state: Se niega a declarar
       blank: ''
     tooltips:

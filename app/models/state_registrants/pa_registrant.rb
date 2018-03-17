@@ -92,6 +92,15 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     VRToPA::RACE_RULES[english_race.to_s.downcase.strip] || ""
   end
   
+  def state_parties
+    sp = self.registrant.state_parties
+    # no_party should be 2nd to last instead of last
+    if sp.length > 1
+      sp[-1], sp[-2] = sp[-2], sp[-1]
+    end
+    sp
+  end
+
 
   def parse_party
     @parsed_party ||= begin
