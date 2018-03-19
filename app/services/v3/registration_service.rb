@@ -403,8 +403,18 @@ module V3
           reg_address[:complete_address_number],
           reg_address[:complete_street_name]
         ].join(" ").strip
-        attrs[:home_unit] = reg_address[:complete_sub_address] ?  reg_address[:complete_sub_address][:sub_address] : nil
+        if reg_address[:complete_sub_address] && reg_address[:complete_sub_address].any?
+          reg_address[:complete_sub_address].each do |sa|
+            if sa[:sub_address_type] == "APT"
+              attrs[:home_unit] = sa[:sub_address]
+            elsif sa[:sub_address_type] == "LINE2"
+              attrs[:home_address] = attrs[:home_address] + " #{sa[:sub_address]}"
+            end
+          end
+        end
         # TODO do we know that these are always provided and in order?
+        
+        
         attrs[:home_city] = reg_address[:complete_place_names] && reg_address[:complete_place_names].any? ? reg_address[:complete_place_names][0][:place_name_value] : nil
         attrs[:home_county] = reg_address[:complete_place_names] && reg_address[:complete_place_names].length > 1 ? reg_address[:complete_place_names][1][:place_name_value] : nil
         attrs[:home_state] = GeoState[reg_address[:state].to_s.upcase] || GeoState.find_by_name(reg_address[:state])
@@ -419,7 +429,16 @@ module V3
           mailing_address[:complete_address_number],
           mailing_address[:complete_street_name]
         ].join(" ").strip
-        attrs[:mailing_unit] = mailing_address[:complete_sub_address] ?  mailing_address[:complete_sub_address][:sub_address] : nil
+        if mailing_address[:complete_sub_address] && mailing_address[:complete_sub_address].any?
+          mailing_address[:complete_sub_address].each do |sa|
+            if sa[:sub_address_type] == "APT"
+              attrs[:mailing_unit] = sa[:sub_address]
+            elsif sa[:sub_address_type] == "LINE2"
+              attrs[:mailing_address] = attrs[:mailing_address] + " #{sa[:sub_address]}"
+            end
+          end
+        end
+        
         attrs[:mailing_city] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].any? ? mailing_address[:complete_place_names][0][:place_name_value] : nil
         attrs[:mailing_county] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].length > 1 ? mailing_address[:complete_place_names][1][:place_name_value] : nil
         attrs[:mailing_state] = GeoState[mailing_address[:state].to_s.upcase] || GeoState.find_by_name(mailing_address[:state])
@@ -444,7 +463,17 @@ module V3
           prev_reg[:complete_address_number],
           prev_reg[:complete_street_name]
         ].join(" ").strip
-        attrs[:prev_unit] = prev_reg[:complete_sub_address] ?  prev_reg[:complete_sub_address][:sub_address] : nil
+        
+        if prev_reg[:complete_sub_address] && prev_reg[:complete_sub_address].any?
+          prev_reg[:complete_sub_address].each do |sa|
+            if sa[:sub_address_type] == "APT"
+              attrs[:prev_unit] = sa[:sub_address]
+            elsif sa[:sub_address_type] == "LINE2"
+              attrs[:prev_address] = attrs[:prev_address] + " #{sa[:sub_address]}"
+            end
+          end
+        end
+        
         attrs[:prev_city] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].any? ? prev_reg[:complete_place_names][0][:place_name_value] : nil
         attrs[:prev_county] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].length > 1 ? prev_reg[:complete_place_names][1][:place_name_value] : nil
         attrs[:prev_state] = GeoState[prev_reg[:state].to_s.upcase] || GeoState.find_by_name(prev_reg[:state])
