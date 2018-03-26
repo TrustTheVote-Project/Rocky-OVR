@@ -27,7 +27,7 @@ states_with_online_registration:
   - ID
   - KS
   - KY
-  #- MA
+  - MA
   - MD
   - MO
   - NE
