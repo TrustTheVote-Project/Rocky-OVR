@@ -226,10 +226,12 @@ class VRToPA
   # }
   # }
 
+  attr_accessor :mods
 
   def initialize(voter_records_req)
     @voter_records_request = voter_records_req
     @request = @voter_records_request['voter_registration']
+    @mods = []
     raise ParsingError.new('Invalid input, voter_registration value not found') if @request.nil?
   end
 
@@ -336,7 +338,7 @@ class VRToPA
     # Removed from PA API:
     # result['sendcopyinmail'] = send_copy_in_mail || send_copy_in_mail2
 
-    result
+    return [result, modifications]
   end
 
   def is_new_registration_boolean
@@ -368,7 +370,12 @@ class VRToPA
     value = query([section, :contact_methods].compact, :type, 'phone', :value)
     is_empty(value) ? "" : PhoneFormatter.process(value)
   rescue PhoneFormatter::InvalidPhoneNumber => e
-    raise ParsingError.new(e.message)
+    self.mods << "Invalid #{section} Phone \"#{value}\" removed from PA Submission"
+    if section == :registration_helper # For helper, we need data here because it may be required by PA but not validated
+      return value
+    else     
+      return ""
+    end
   end
 
   def prev_reg_county
@@ -552,8 +559,12 @@ class VRToPA
       ""
     else
       valid = v.is_a?(String) && v =~ /^[^\s@]+@[^\s@]+\.[\w]{2,}$/
-      raise ParsingError.new("Invalid e-mail value \"#{v}\".") unless valid
-      v
+      if valid #ParsingError.new("Invalid e-mail value \"#{v}\".") unless valid
+        return v
+      else
+        self.mods << "Invalid email \"#{v}\" removed from PA submission."
+        return ""
+      end
     end
   end
 
@@ -595,9 +606,10 @@ class VRToPA
   
   def validate_assisted_person_data(result)
     if result['assistancedeclaration2'] == '1'
-      raise ParsingError.new("If assistance declaration is true, assistant name, address and phone must be provided.") if is_empty(result['assistedpersonname']) || is_empty(result['assistedpersonAddress']) || is_empty(result['assistedpersonphone'])
-    elsif !is_empty(result['assistedpersonname']) || !is_empty(result['assistedpersonAddress']) || !is_empty(result['assistedpersonphone'])
-      raise ParsingError.new("If assistance declaration is false, assistant name, address and phone must be empty.")
+      if is_empty(result['assistedpersonname']) || is_empty(result['assistedpersonAddress']) || is_empty(result['assistedpersonphone'])
+        result['assistancedeclaration2'] = '0'
+        self.mods << "Assistance declaration changed to FALSE in submission to PA due to missing assistant data"
+      end
     end
   end
 
@@ -615,17 +627,23 @@ class VRToPA
   end
 
   def assisted_person_name
-    return "" if any_assitant_declaration.to_s != "1"
     name = read("registration_helper.name")
     return "" if is_empty(name)
+    if any_assitant_declaration.to_s != "1"
+      self.mods << "Removed assistant name \"#{name}\" in submission to PA due to missing assistant declaration."
+      return "" 
+    end
     parts = %w(first_name middle_name last_name title_suffix)
     join_non_empty(parts.map { |k| name[k] }, ' ')
   end
 
   def assisted_person_address
-    return "" if any_assitant_declaration.to_s != "1"
     address = read "registration_helper.address.numbered_thoroughfare_address"
     return "" if is_empty(address)
+    if any_assitant_declaration.to_s != "1"
+      self.mods << "Removed assistant address \"#{address}\"in submission to PA due to missing assistant declaration."
+      return "" 
+    end
 
     line1 = join_non_empty([address["complete_address_number"], address["complete_street_name"]], ' ')
     city = query(
@@ -639,8 +657,13 @@ class VRToPA
   end
 
   def assisted_person_phone
-    return "" if any_assitant_declaration.to_s != "1"
-    phone(:registration_helper)
+    assistant_phone = phone(:registration_helper)
+    return "" if is_empty(assistant_phone)
+    if any_assitant_declaration.to_s != "1"
+      self.mods << "Removed assistant phone \"#{assistant_phone}\" in submission to PA due to missing assistant declaration."
+      return "" 
+    end
+    assistant_phone
   end
 
   def join_non_empty(objects, separator)

@@ -76,5 +76,13 @@ class AdminMailer < ActionMailer::Base
       body: "PA system returned the error:\n\n #{error_list.join("\n")}"
     )
   end
+
+  def pa_registration_warning(registrant, error_list)
+    
+    mail(
+      subject: "[ROCKY PA INTEGRATION] Error submitting registration #{registrant.class} #{registrant.id} to PA",
+      body: "PA system returned the error:\n\n #{error_list.join("\n")}"
+    )
+  end
   
 end

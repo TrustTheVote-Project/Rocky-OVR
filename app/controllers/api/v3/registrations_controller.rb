@@ -112,8 +112,10 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     registrant = nil
     params.delete(:debug_info)
     
+    gr_id = nil
     begin
-      GrommetRequest.create(request_params: params)
+      gr = GrommetRequest.create(request_params: params)
+      gr_id = gr ? gr.id : nil
     rescue
     end
     
@@ -140,6 +142,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       else
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
+        registrant.state_ovr_data["grommet_request_id"] = gr_id # lets store the original request for reference
         registrant.save!
         V3::RegistrationService.delay.async_register_with_pa(registrant.id)
         pa_success_result

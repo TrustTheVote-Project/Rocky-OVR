@@ -142,7 +142,7 @@ module V3
     def self.valid_for_pa_submission(registrant)
       pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
       begin
-        pa_data = pa_adapter.convert
+        pa_data, modifications = pa_adapter.convert
       rescue => e
         return ["Error parsing request: #{e.message}"]        
       end
@@ -167,8 +167,10 @@ module V3
     PA_RETRY_ERRORS = %w(VR_WAPI_PennDOTServiceDown VR_WAPI_ServiceError VR_WAPI_SystemError)
     def self.register_with_pa(registrant)
       pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
-      pa_data = pa_adapter.convert
+      pa_data, validation_modifications = pa_adapter.convert
       result = PARegistrationRequest.send_request(pa_data)
+      registrant.state_ovr_data["state_api_validation_modifications"] = validation_modifications
+      registrant.save!
       if result[:error].present?
         registrant.state_ovr_data["errors"] ||= []
         registrant.state_ovr_data["errors"] << [result[:error].to_s]
@@ -180,16 +182,6 @@ module V3
           registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
           registrant.save
           raise "registrant has bad sig, removing and resubmitting"
-          #see if they have a DL
-          # if registrant.state_ovr_data["voter_records_request"]["voter_registration"]["voter_ids"]
-          #   registrant.state_ovr_data["voter_records_request"]["voter_registration"]["voter_ids"].each do |id_type|
-          #     if id_type["type"] == "drivers_license" &&  !id_type["string_value"].blank?
-          #       registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
-          #       registrant.save
-          #       raise "registrant has bad sig, but has drivers license"
-          #     end
-          #   end
-          # end
         end
         
         
@@ -203,6 +195,9 @@ module V3
           AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
       else
         registrant.state_ovr_data['pa_transaction_id'] = result[:id]
+        if registrant.state_ovr_data["state_api_validation_modifications"] && registrant.state_ovr_data["state_api_validation_modifications"].any?
+          AdminMailer.pa_registration_warning(registrant, registrant.state_ovr_data["state_api_validation_modifications"]).deliver
+        end
         registrant.save!
       end
     end

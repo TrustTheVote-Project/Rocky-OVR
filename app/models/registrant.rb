@@ -380,7 +380,18 @@ class Registrant < ActiveRecord::Base
     r.building_via_api_call   = true
     r.finish_with_state       = true
     r.status                  = :step_2
-    r
+    # Check for validity
+    if !r.valid?
+      if r.errors[:email]
+        r.collect_email_address = 'no'
+        r.email = nil
+      end
+      if r.errors[:phone]
+        attrs[:phone] = nil
+        attrs[:phone_type] = nil
+      end
+    end
+    
   end
 
 
