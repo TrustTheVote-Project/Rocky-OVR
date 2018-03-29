@@ -338,7 +338,7 @@ class VRToPA
     # Removed from PA API:
     # result['sendcopyinmail'] = send_copy_in_mail || send_copy_in_mail2
 
-    return [result, modifications]
+    return [result, self.mods]
   end
 
   def is_new_registration_boolean
@@ -452,7 +452,7 @@ class VRToPA
   def drivers_license
     dl = query([:voter_ids], :type, 'drivers_license', :string_value)
     dl = "" if is_empty(dl)
-    dl = dl.strip if dl.respond_to?(:strip)
+    dl = dl.to_s.strip.gsub(/[^\d]/,'')
     valid = dl == "" || dl =~ /^\d{8}$/
     raise ParsingError.new("Invalid drivers licence value \"%s\": 8 digits are expected" % dl) unless valid
     dl

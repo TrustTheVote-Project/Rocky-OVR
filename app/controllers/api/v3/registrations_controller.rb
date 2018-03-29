@@ -133,6 +133,8 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])
     # 1a. do subsititutions for invalid chars
     registrant.basic_character_replacement!
+    registrant.state_ovr_data["grommet_request_id"] = gr_id # lets store the original request for reference
+    
     # 2.Check if the registrant is internally valid
     if registrant.valid?
       # If valid for rocky, ensure that it's valid for PA submissions
@@ -142,7 +144,6 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       else
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
-        registrant.state_ovr_data["grommet_request_id"] = gr_id # lets store the original request for reference
         registrant.save!
         V3::RegistrationService.delay.async_register_with_pa(registrant.id)
         pa_success_result
@@ -151,6 +152,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       pa_error_result(registrant.errors.full_messages, registrant)
     end
   rescue StandardError => e
+    raise e
     pa_error_result("Error building registrant: #{e.message}", registrant)
   end
 

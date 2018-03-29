@@ -55,34 +55,42 @@ class AdminMailer < ActionMailer::Base
   
   def pa_no_registrant_error(registrant_id)
     mail(
-      subject: "[ROCKY PA INTEGRATION] Error submitting to PA: No registrant found for id #{registrant_id}",
+      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Error submitting to PA: No registrant found for id #{registrant_id}",
       body: "Registrant #{registrant_id} not found in the rocky database to submit to PA"
     )
   end
   
   def grommet_registration_error(error_list=[], registrant=nil)
     name = registrant ? "#{registrant.first_name} #{registrant.last_name}" : "(name not determined)"
+    req_id = registrant ? " request ID #{registrant.state_ovr_data["grommet_request_id"]} " : " (no req ID found)"
     registrant_details = registrant ? "\nEvent Name: #{registrant.open_tracking_id}\nEvent Zip: #{registrant.tracking_id}\nCanvasser Namer: #{registrant.tracking_source}" : nil
     mail(
-      subject:"[ROCKY GROMMET] Error validating request from grommet",
-      body: "Registrant - #{name} - not registered due to validation error:#{registrant_details}\n\n#{error_list.join('\n')}"
+      subject:"[ROCKY GROMMET#{environment_subject}] Error validating request from grommet",
+      body: "Registrant - #{name}#{req_id} - not registered due to validation error:#{registrant_details}\n\n#{error_list.join('\n')}"
     )
   end
   
   def pa_registration_error(registrant, error_list)
     
     mail(
-      subject: "[ROCKY PA INTEGRATION] Error submitting registration #{registrant.class} #{registrant.id} to PA",
+      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to PA",
       body: "PA system returned the error:\n\n #{error_list.join("\n")}"
     )
   end
-
-  def pa_registration_warning(registrant, error_list)
+  
+  def pa_registration_warning(registrant, mod_list)
     
     mail(
-      subject: "[ROCKY PA INTEGRATION] Error submitting registration #{registrant.class} #{registrant.id} to PA",
-      body: "PA system returned the error:\n\n #{error_list.join("\n")}"
+      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Data changed submitting registration #{registrant.class} #{registrant.id} to PA",
+      body: "The following modifications were made:\n\n #{mod_list.join("\n")}"
     )
+  end
+  
+  private
+  
+  def environment_subject
+    return '' if Rails.env.production?
+    return " - #{Rails.env}"
   end
   
 end

@@ -180,6 +180,8 @@ module V3
         if result[:error].to_s == "VR_WAPI_Invalidsignaturecontrast"
           # resubmit
           registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
+          registrant.state_ovr_data["state_api_validation_modifications"] ||= []
+          registrant.state_ovr_data["state_api_validation_modifications"] << "Removed signature due to PA error #{result[:error].to_s}"
           registrant.save
           raise "registrant has bad sig, removing and resubmitting"
         end

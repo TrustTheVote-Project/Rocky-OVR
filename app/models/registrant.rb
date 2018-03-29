@@ -193,6 +193,8 @@ class Registrant < ActiveRecord::Base
     "Built via API",
     "Has State License",
     "Has SSN",
+    "VR Application Submission Modifications",
+    "VR Application Submission Errors",    
     "VR Application Status",
     "VR Application Status Details",
     "VR Application Status Imported DateTime",
@@ -382,16 +384,16 @@ class Registrant < ActiveRecord::Base
     r.status                  = :step_2
     # Check for validity
     if !r.valid?
-      if r.errors[:email]
+      if r.errors[:email_address] && r.errors[:email_address].any?
         r.collect_email_address = 'no'
-        r.email = nil
+        r.email_address = nil
       end
-      if r.errors[:phone]
-        attrs[:phone] = nil
-        attrs[:phone_type] = nil
+      if r.errors[:phone] && r.errors[:phone].any?
+        r.phone = nil
+        r.phone_type = nil
       end
     end
-    
+    r
   end
 
 
@@ -1424,10 +1426,13 @@ class Registrant < ActiveRecord::Base
       yes_no(has_state_license?),
       yes_no(has_ssn?),
       
+      vr_application_submission_modifications,
+      vr_application_submission_errors,
+      
       vr_application_status,
       vr_application_status_details,
       vr_application_status_datetime,
-
+      
       yes_no(submitted_via_state_api?),
       api_submitted_with_signature,
       
@@ -1449,6 +1454,14 @@ class Registrant < ActiveRecord::Base
     registrant_status ? registrant_status.updated_at : nil    
   end
 
+  def vr_application_submission_modifications
+    (state_ovr_data["state_api_validation_modifications"] || []).join(", ")
+  end
+  
+  def vr_application_submission_errors
+    (state_ovr_data["errors"] || []).join(", ")
+  end
+  
   def status_text
     I18n.locale = self.locale.to_sym
     @status_text ||=
