@@ -64,6 +64,7 @@ class ReportGenerator
     csv_str = CsvFormatter.wrap do |csv|
       csv << headers = self.registrant_fields.dup
       CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
+      CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
 
       registrants.each do |r|
         reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) }
