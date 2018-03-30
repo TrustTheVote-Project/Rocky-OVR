@@ -158,7 +158,8 @@ module V3
       register_with_pa(registrant)
     rescue StandardError => e
       return if registrant.nil?
-      registrant.state_ovr_data["errors"] = [e.message]
+      registrant.state_ovr_data["errors"] ||= []
+      registrant.state_ovr_data["errors"] << e.message
       registrant.state_ovr_data["errors"] << ["Backtrace\n" + e.backtrace.join("\n")]
       registrant.save!
       raise e # For delayed-job, will enque the run again            
@@ -182,7 +183,7 @@ module V3
           registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
           registrant.state_ovr_data["state_api_validation_modifications"] ||= []
           registrant.state_ovr_data["state_api_validation_modifications"] << "Removed signature due to PA error #{result[:error].to_s}"
-          registrant.save
+          registrant.save(validate: false)
           raise "registrant has bad sig, removing and resubmitting"
         end
         
