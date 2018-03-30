@@ -1459,7 +1459,10 @@ class Registrant < ActiveRecord::Base
   end
   
   def vr_application_submission_errors
-    (state_ovr_data["errors"] || []).collect{|e| e =~ /^Backtrace\n/ ? nil : e }.compact.join(", ")
+    (state_ovr_data["errors"] || []).collect do |e| 
+      e_msg = e.is_a?(Array) ? e.join("\n") : e.to_s
+      e_msg =~ /^Backtrace\n/ ? nil : e_msg 
+    end.compact.join(", ")
   end
   
   def status_text

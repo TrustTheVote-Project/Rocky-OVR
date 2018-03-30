@@ -160,7 +160,7 @@ module V3
       return if registrant.nil?
       registrant.state_ovr_data["errors"] ||= []
       registrant.state_ovr_data["errors"] << e.message
-      registrant.state_ovr_data["errors"] << ["Backtrace\n" + e.backtrace.join("\n")]
+      registrant.state_ovr_data["errors"] << "Backtrace\n" + e.backtrace.join("\n")
       registrant.save!
       raise e # For delayed-job, will enque the run again            
     end
@@ -174,7 +174,7 @@ module V3
       registrant.save!
       if result[:error].present?
         registrant.state_ovr_data["errors"] ||= []
-        registrant.state_ovr_data["errors"] << [result[:error].to_s]
+        registrant.state_ovr_data["errors"] << result[:error].to_s
         registrant.save!
         raise result[:error].to_s if PA_RETRY_ERRORS.include?(result[:error].to_s)
         
