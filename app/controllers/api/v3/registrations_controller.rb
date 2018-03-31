@@ -112,8 +112,10 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     registrant = nil
     params.delete(:debug_info)
     
+    gr_id = nil
     begin
-      GrommetRequest.create(request_params: params)
+      gr = GrommetRequest.create(request_params: params)
+      gr_id = gr ? gr.id : nil
     rescue
     end
     
@@ -131,6 +133,8 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])
     # 1a. do subsititutions for invalid chars
     registrant.basic_character_replacement!
+    registrant.state_ovr_data["grommet_request_id"] = gr_id # lets store the original request for reference
+    
     # 2.Check if the registrant is internally valid
     if registrant.valid?
       # If valid for rocky, ensure that it's valid for PA submissions
