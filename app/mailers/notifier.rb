@@ -67,8 +67,19 @@ class Notifier < ActionMailer::Base
     registrant = Registrant.new(id:0, uid: '00000000', first_name: "FirstName", last_name: "LastName", partner: partner, locale: locale, home_state: GeoState[1])
     is_preview_found = !!EmailTemplate.get(partner, "#{prefix}#{kind}.#{locale}")
     template_name = is_preview_found ? (prefix + kind) : kind
-
-    setup_registrant_email(registrant, template_name)
+    begin
+      return setup_registrant_email(registrant, template_name)
+    rescue Exception => e
+      m = mail(
+        :subject=> "Error Parsing Template: #{e.message}",
+        :from=>registrant.email_address_to_send_from,
+        :to=>registrant.email_address,        
+      ) do |format| 
+        format.html { 
+          e.backtrace.to_s.html_safe 
+        }
+      end
+    end
   end
 
   protected
