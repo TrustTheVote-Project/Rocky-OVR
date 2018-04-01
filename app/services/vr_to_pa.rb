@@ -493,7 +493,7 @@ class VRToPA
       src.write(image_blob)
       src.close
       wh = `identify -format "%wx%h" #{src.path}`
-      if wh !="#{SIG_WIDTH}x#{SIG_HEIGHT}"
+      if wh.to_s.strip !="#{SIG_WIDTH}x#{SIG_HEIGHT}"
         dst.close
         #  -background skyblue -extent 100x60
         cmd = "convert #{src.path} -background white -extent #{SIG_WIDTH}x#{SIG_HEIGHT} #{dst.path}"
