@@ -254,7 +254,7 @@ record_16:
   pdf_instructions: kansas
   email_instructions: kansas
   id_length_min: '4'
-  online_registration_url: https://www.kdor.ks.gov/Apps/VoterReg/Default.aspx
+  online_registration_url: https://ksvotes.org/registration
 record_17:
   abbreviation: KY
   name: Kentucky
