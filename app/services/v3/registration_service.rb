@@ -194,17 +194,17 @@ module V3
           
           fixed_zip = false
           registrant.state_ovr_data["state_api_validation_modifications"] ||= []
-          if registration_zip =~/\d{5}-\d{4}/
+          if registration_zip && registration_zip =~/\d{5}-\d{4}/
             fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"] = registration_zip.gsub(/-\d{4}$/,'')
             registrant.state_ovr_data["state_api_validation_modifications"] << "Changed registration zipcode #{registration_zip} to #{fz}"
             fixed_zip = true            
           end
-          if mailing_zip =~/\d{5}-\d{4}/
+          if mailing_zip && mailing_zip =~/\d{5}-\d{4}/
             fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"] = mailing_zip.gsub(/-\d{4}$/,'')
             registrant.state_ovr_data["state_api_validation_modifications"] << "Changed mailing zipcode #{mailing_zip} to #{fz}"
             fixed_zip = true
           end
-          if previous_zip =~/\d{5}-\d{4}/
+          if previous_zip && previous_zip =~/\d{5}-\d{4}/
             fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"] = previous_zip.gsub(/-\d{4}$/,'')
             registrant.state_ovr_data["state_api_validation_modifications"] << "Changed previous zipcode #{previous_zip} to #{fz}"
             fixed_zip = true
