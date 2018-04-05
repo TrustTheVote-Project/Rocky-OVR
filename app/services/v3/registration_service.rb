@@ -188,9 +188,9 @@ module V3
         end
         
         if result[:error].to_s == "VR_WAPI_InvalidOVRzipcode"
-          registration_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"]
-          mailing_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"]
-          previous_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"]
+          registration_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"]
+          mailing_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"]
+          previous_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"]
           
           fixed_zip = false
           registrant.state_ovr_data["state_api_validation_modifications"] ||= []
