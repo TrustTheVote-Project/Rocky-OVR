@@ -162,6 +162,7 @@ ovr_states:
       - en
   KS:
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
   KY:
