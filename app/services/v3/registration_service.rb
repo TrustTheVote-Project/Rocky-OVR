@@ -187,6 +187,36 @@ module V3
           raise "registrant has bad sig, removing and resubmitting"
         end
         
+        if result[:error].to_s == "VR_WAPI_InvalidOVRzipcode"
+          registration_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"]
+          mailing_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"]
+          previous_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"]
+          
+          fixed_zip = false
+          registrant.state_ovr_data["state_api_validation_modifications"] ||= []
+          if registration_zip && registration_zip =~/\d{5}-\d{4}/
+            fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"] = registration_zip.gsub(/-\d{4}$/,'')
+            registrant.state_ovr_data["state_api_validation_modifications"] << "Changed registration zipcode #{registration_zip} to #{fz}"
+            fixed_zip = true            
+          end
+          if mailing_zip && mailing_zip =~/\d{5}-\d{4}/
+            fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"] = mailing_zip.gsub(/-\d{4}$/,'')
+            registrant.state_ovr_data["state_api_validation_modifications"] << "Changed mailing zipcode #{mailing_zip} to #{fz}"
+            fixed_zip = true
+          end
+          if previous_zip && previous_zip =~/\d{5}-\d{4}/
+            fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"] = previous_zip.gsub(/-\d{4}$/,'')
+            registrant.state_ovr_data["state_api_validation_modifications"] << "Changed previous zipcode #{previous_zip} to #{fz}"
+            fixed_zip = true
+          end
+          # resubmit
+          if fixed_zip
+            registrant.save(validate: false)
+            raise "registrant has invalid zip+4, changing to 5-digit zip code and resubmitting"
+          end
+        end
+        
+        
         
         Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
         AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
