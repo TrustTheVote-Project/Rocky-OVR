@@ -224,7 +224,7 @@ record_14:
   sos_phone: (317) 232-3939
   sos_url: http://www.state.in.us/sos/elections/
   id_length_min: '4'
-  online_registration_url: http://indianavoters.in.gov/PublicSite/OVR/Introduction.aspx
+  online_registration_url: https://indianavoters.in.gov/OLVR/Registration/RegistrationEligibility
 record_15:
   abbreviation: IA
   name: Iowa
@@ -254,7 +254,7 @@ record_16:
   pdf_instructions: kansas
   email_instructions: kansas
   id_length_min: '4'
-  online_registration_url: https://www.kdor.ks.gov/Apps/VoterReg/Default.aspx
+  online_registration_url: https://ksvotes.org/registration
 record_17:
   abbreviation: KY
   name: Kentucky

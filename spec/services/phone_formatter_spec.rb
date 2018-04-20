@@ -13,10 +13,10 @@ TEST_CASES = <<-TXT
     10 digits and all other valid chars: +1 (123) 456-7890  ->  123-456-7890
     9 digits: 123456789 -> error
     10 digits and +7: +7(123)456-7890 -> error
-    invalid braces: (123)(456)-7890 -> error
-    invalid double braces: ((123)456-7890 -> error
-    invalid "+" sign: (123)456+7890 -> error
-    invalid letters: 123 456 7890p -> error
+    extra braces: (123)(456)-7890 -> 123-456-7890
+    extra double braces: ((123)456-7890 -> 123-456-7890
+    extra "+" sign: (123)456+7890 -> 123-456-7890
+    extra letters: 123 456 7890p -> 123-456-7890
 TXT
 
 def parse_and_run_test_cases
