@@ -230,7 +230,7 @@ class VRToPA
 
   def initialize(voter_records_req)
     @voter_records_request = voter_records_req
-    @request = @voter_records_request['voter_registration']
+    @request = @voter_records_request['voter_registration'].with_indifferent_access
     @mods = []
     raise ParsingError.new('Invalid input, voter_registration value not found') if @request.nil?
   end
@@ -265,13 +265,13 @@ class VRToPA
 
     result['Email'] = email
     result['streetaddress'] = street_address
-    result['streetaddress2'] = street_address_2
+    result['streetaddress2'] = get_line2_from_address(read([:registration_address]))
     #result['unittype'] = read([:registration_address, :numbered_thoroughfare_address, :complete_sub_address, :sub_address_type])
     # 'unittype' in the JSON is always "APT" - it's not actaully collected, so we expect
     # that the user will actually enter in "Apt" as part of the unit number and don't
     # want duplicate data going through
-    result['unittype'] = ''
-    result['unitnumber'] = unitnumber
+    result['unittype'] = get_unit_type_from_address(read([:registration_address]))
+    result['unitnumber'] = get_unit_number_from_address(read([:registration_address]))
 
     result['municipality'] = municipality(:registration_address)
     result['city'] = municipality(:registration_address)
@@ -441,18 +441,50 @@ class VRToPA
                    ], ' ')
   end
 
-  def street_address_2
-    query([:registration_address, :numbered_thoroughfare_address, :complete_sub_address], :sub_address_type, 'LINE2', :sub_address).to_s.strip
-  end
 
   
-  def unitnumber
-    un = query([:registration_address, :numbered_thoroughfare_address, :complete_sub_address], :sub_address_type, 'APT', :sub_address).to_s.strip
+  def get_unit_type_from_address(address)
+    sub_addr = address && address[:numbered_thoroughfare_address][:complete_sub_address]
+    return "" if !sub_addr
+    if sub_addr[:sub_address_type] && sub_addr[:sub_address_type] == 'APT'
+      # Old format
+      return 'APT'
+    end
+    # TODO what's the format?
+    if sub_addr[:apartment]
+      t = sub_addr[:apartment][:type]
+      if !t || !StateRegistrants::PARegistrant::UNITS[t.to_s.strip.upcase.to_sym]
+        t = StateRegistrants::PARegistrant::UNITS.keys.first.to_s
+      end
+      return t.to_s.strip
+    end
+    return ""
+  end
+  
+  def get_unit_number_from_address(address)
+    sub_addr = address && address[:numbered_thoroughfare_address][:complete_sub_address]
+    return "" if !sub_addr
+    # TODO what's the format?
+    un = ""    
+    if sub_addr[:sub_address_type] && sub_addr[:sub_address_type] == 'APT'
+      # OLD format
+      un = sub_addr[:sub_address].to_s.strip
+    elsif sub_addr[:apartment]
+      un = sub_addr[:apartment][:string_value].to_s.strip
+    end
     valid = un.length <= 15
     raise ParsingError.new("Unit number must be 15 characters or less. #{un} is #{un.length} characters") unless valid
     un
   end
-
+  
+  def get_line2_from_address(address)
+    return "" if !address
+    sub_addr = address && address[:numbered_thoroughfare_address][:complete_sub_address]
+    return "" if !sub_addr
+    # TODO what's the format?
+    return sub_addr[:line2].to_s.strip
+  end
+  
   def drivers_license
     dl = query([:voter_ids], :type, 'drivers_license', :string_value)
     dl = "" if is_empty(dl)
