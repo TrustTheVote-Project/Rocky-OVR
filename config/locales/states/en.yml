@@ -982,21 +982,7 @@ Deadline Alert: April 16, 2018 close of registration date of current election is
         application. The most common "proof" is a photocopy of your birth certificate
 
         or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>'
-      kansas: ! '<b>*Note for First Time Voter Registration Applicants: You must ALSO
-
-        submit proof of citizenship to vote in state elections!</b><br/><i>If this
-
-        is your first time registering in Kansas, your voter registration form must
-
-        also include proof of citizenship to vote in state elections (ie. Governor,
-
-        Secretary of State, & state legislature). Otherwise you will ONLY be eligible
-
-        to vote in federal elections.  The most common "proof" is a photocopy of your
-
-        birth certificate or passport, but a full list of acceptable documentation
-
-        can be found <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">online</a>.</i>'
+      kansas: ! ''
       wisconsin: ! '<strong>*Note: Applicants must always provide a Proof of Residence
         document when registering in Wisconsin.</strong><br> If you are registering
         by mail, you can use any of the Proof of Residence listed <a href="http://www.gab.wi.gov/publications/voter-guides/proof-of-residence"  target="_blank">here</a>
