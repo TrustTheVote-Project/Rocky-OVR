@@ -549,15 +549,6 @@ es:
         de ciudadanía", junto con su solicitud de registro de votantes. La "prueba"
         más común es una fotocopia de su certificado de nacimiento o pasaporte. Una
         lista completa de la documentación aceptable se puede encontrar <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">aquí</a>.</i>'
-      kansas: ! '<b>* Nota para los solicitantes de registro de la primera vez Votantes:
-        Debe acompañar la prueba de la ciudadanía a votar en las elecciones estatales!</b><br/><i>Si
-        esta es la primera vez que registrarse en Kansas, el formulario de inscripción
-        de votante también debe incluir prueba de ciudadanía para votar en las elecciones
-        estatales (es decir. Gobernador, Secretario de Estado, y la legislatura estatal).
-        De lo contrario, sólo serán elegibles para votar en las elecciones federales.
-        La "prueba" más común es una fotocopia de su certificado de nacimiento o pasaporte,
-        pero una lista completa de la documentación aceptable puede ser encontrada
-        <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">aquí</a>.</i>'
     pdf_other_instructions:
       blank: ''
       wisconsin: Los solicitantes siempre deben presentar un documento de Prueba de residencia al registrarse en Wisconsin. Si se está registrando por correo, puede usar cualquiera de los comprobantes de residencia que figuran en el enlace anterior que debe incluir el nombre del votante y la dirección actual.
@@ -578,17 +569,6 @@ es:
         completa de la documentación aceptable puede ser encontrada en línea.</i><br/>
 
         <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">http://www.azsos.gov/election/VoterRegistration.htm#Proof</a>'
-      kansas: ! '<b>* Nota para los solicitantes de registro de la primera vez del
-        votante: Debe acompañar la prueba de la ciudadanía a votar en las elecciones
-        estatales!</b><br/><i>Si esta es la primera vez que registrarse en Kansas,
-        el formulario de registro de votante también debe incluir prueba de ciudadanía
-        para votar en las elecciones estatales (es decir, el gobernador, el secretario
-        de Estado, y la legislatura del estado). De lo contrario, sólo serán elegibles
-        para votar en las elecciones federales. La "prueba" más común es una fotocopia
-        de su certificado de nacimiento o pasaporte, pero la lista completa de los
-        documentos aceptables se puede encontrar en línea.</i><br/>
-
-        <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">http://www.gotvoterid.com/proof-of-citizenship.html#evidence</a>'
       wisconsin: ! '<strong>*Note: Applicants must always provide a Proof of Residence
         document when registering in Wisconsin.</strong><br> If you are registering
         by mail, you can use any of the Proof of Residence listed <a href="http://www.gab.wi.gov/publications/voter-guides/proof-of-residence"  target="_blank">here</a>
