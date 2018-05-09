@@ -284,7 +284,7 @@ class VRToPA
 
     has_mailing_address = read([:registration_address_is_mailing_address]) == false
     if has_mailing_address
-      result['mailingaddress'] = read([:mailing_address, :numbered_thoroughfare_address, :complete_street_name])
+      result['mailingaddress'] = mailing_address
       result['mailingcity'] = municipality(:mailing_address)
       result['mailingstate'] = read([:mailing_address, :numbered_thoroughfare_address, :state])
       result['mailingzipcode'] = zip_code(:mailing_address)
@@ -396,7 +396,37 @@ class VRToPA
   end
 
   def prev_reg_address
-    is_new_registration_boolean ? nil : read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name], address_update == "1")
+    if is_new_registration_boolean 
+      return nil 
+    else 
+      line1 = read([:previous_registration_address, :numbered_thoroughfare_address, :complete_street_name], address_update == "1")
+      unit = nil
+      unit_type = get_unit_type_from_address(read([:previous_registration_address]))
+      unit_number = get_unit_number_from_address(read([:previous_registration_address]))
+      if !unit_number.blank?
+        unit_type_text = StateRegistrants::PARegistrant::UNITS[unit_type.to_s.strip.upcase.to_sym]
+        unit = "#{unit_type_text} #{unit_number}".strip
+      end
+      line1 = [line1, unit].compact.join(", ")
+      line2 = get_line2_from_address(read([:previous_registration_address]))
+      line2 = line2.blank? ? nil : line2
+      return [line1, line2].compact.join("\n")
+    end
+  end
+  
+  def mailing_address
+    line1 = read([:mailing_address, :numbered_thoroughfare_address, :complete_street_name], address_update == "1")
+    unit = nil
+    unit_type = get_unit_type_from_address(read([:mailing_address]))
+    unit_number = get_unit_number_from_address(read([:mailing_address]))
+    if !unit_number.blank?
+      unit_type_text = StateRegistrants::PARegistrant::UNITS[unit_type.to_s.strip.upcase.to_sym]
+      unit = "#{unit_type_text} #{unit_number}"
+    end
+    line1 = [line1, unit].compact.join(", ")
+    line2 = get_line2_from_address(read([:mailing_address]))
+    line2 = line2.blank? ? nil : line2
+    return [line1, line2].compact.join("\n")
   end
 
   def address_update
@@ -446,17 +476,18 @@ class VRToPA
   def get_unit_type_from_address(address)
     sub_addr = address && address[:numbered_thoroughfare_address][:complete_sub_address]
     return "" if !sub_addr
-    if sub_addr[:sub_address_type] && sub_addr[:sub_address_type] == 'APT'
-      # Old format
-      return 'APT'
-    end
-    # TODO what's the format?
-    if sub_addr[:apartment]
-      t = sub_addr[:apartment][:type]
-      if !t || !StateRegistrants::PARegistrant::UNITS[t.to_s.strip.upcase.to_sym]
-        t = StateRegistrants::PARegistrant::UNITS.keys.first.to_s
+    if sub_addr.is_a?(Hash)
+      if sub_addr[:sub_address_type] && sub_addr[:sub_address_type] == 'APT'
+        # Old format
+        return 'APT'
       end
-      return t.to_s.strip
+    elsif sub_addr.is_a?(Array)
+      sub_addr.each do |sub_addr_hash|
+        unit_type = sub_addr_hash[:sub_address_type]
+        if valid_unit_type?(unit_type)
+          return unit_type.to_s.strip.upcase
+        end
+      end
     end
     return ""
   end
@@ -465,24 +496,47 @@ class VRToPA
     sub_addr = address && address[:numbered_thoroughfare_address][:complete_sub_address]
     return "" if !sub_addr
     # TODO what's the format?
-    un = ""    
-    if sub_addr[:sub_address_type] && sub_addr[:sub_address_type] == 'APT'
-      # OLD format
-      un = sub_addr[:sub_address].to_s.strip
-    elsif sub_addr[:apartment]
-      un = sub_addr[:apartment][:string_value].to_s.strip
-    end
+    un = "" 
+    if sub_addr.is_a?(Hash)
+      if sub_addr[:sub_address_type] && sub_addr[:sub_address_type] == 'APT'
+        # OLD format
+        un = sub_addr[:sub_address].to_s.strip
+      end      
+    elsif sub_addr.is_a?(Array)
+      # Find the first valid sub address type
+      sub_addr.each do |sub_addr_hash|
+        unit_type = sub_addr_hash[:sub_address_type]
+        if valid_unit_type?(unit_type)
+          un = sub_addr_hash[:sub_address].to_s.strip
+          break # stop looking
+        end
+      end
+    end   
     valid = un.length <= 15
     raise ParsingError.new("Unit number must be 15 characters or less. #{un} is #{un.length} characters") unless valid
     un
+  end
+  
+  def valid_unit_type?(unit_type)
+    k = unit_type.to_s.strip.upcase.to_sym
+    return k != :LINE2 && StateRegistrants::PARegistrant::UNITS.keys.include?(k)
   end
   
   def get_line2_from_address(address)
     return "" if !address
     sub_addr = address && address[:numbered_thoroughfare_address][:complete_sub_address]
     return "" if !sub_addr
-    # TODO what's the format?
-    return sub_addr[:line2].to_s.strip
+    if sub_addr.is_a?(Hash)
+      # old format doesn't support line 2
+      return ""
+    elsif sub_addr.is_a?(Array)
+      sub_addr.each do |sub_addr_hash|
+        if sub_addr_hash[:sub_address_type].to_s.upcase.to_sym==:LINE2
+          return sub_addr_hash[:sub_address].to_s.strip
+        end
+      end
+    end
+    return ""
   end
   
   def drivers_license

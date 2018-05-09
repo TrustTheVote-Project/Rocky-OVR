@@ -14,10 +14,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "444 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
                     "sub_address" => "306"
-                },
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -36,10 +36,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "222 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
-                    "sub_address" => "Apt 306"
-                },
+                    "sub_address" => "306"
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -58,10 +58,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "333 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
-                    "sub_address" => "Apt 306"
-                },
+                    "sub_address" => "306"
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -155,10 +155,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "55",
                     "complete_street_name" => "Assistant Street",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
                         "sub_address" => "555"
-                    },
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -231,11 +231,11 @@ describe VRToPA do
       expect(subject["streetaddress"]).to eql("333 N. Street")
       expect(subject["streetaddress2"]).to eql("")
       expect(subject["unittype"]).to eql("APT")
-      expect(subject["unitnumber"]).to eql("Apt 306")
+      expect(subject["unitnumber"]).to eql("306")
       expect(subject["donthavePermtOrResAddress"]).to eql("")
       expect(subject["county"]).to eql("Registration County")
       expect(subject["municipality"]).to eql("Registration City")
-      expect(subject["mailingaddress"]).to eql("444 N. Street")
+      expect(subject["mailingaddress"]).to eql("444 N. Street, APARTMENT 306")
       expect(subject["mailingcity"]).to eql("Mailing City")
       expect(subject["mailingstate"]).to eql("PA1")
       expect(subject["previousregstate"]).to eql("PA")
@@ -250,7 +250,7 @@ describe VRToPA do
       expect(subject["previousreglastname"]).to eql("PLN")
       expect(subject["previousregfirstname"]).to eql("PFN")
       expect(subject["previousregmiddlename"]).to eql("PMN")
-      expect(subject["previousregaddress"]).to eql("222 N. Street")
+      expect(subject["previousregaddress"]).to eql("222 N. Street, APARTMENT 306")
       expect(subject["previousregcounty"]).to eql("Prev County")
       expect(subject["previousregyear"]).to eql("")
       expect(subject["declaration1"]).to eql("1")
@@ -452,10 +452,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "1",
                     "complete_street_name" => "Street",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
                         "sub_address" => "100"
-                    },
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -615,10 +615,10 @@ describe VRToPA do
                     "numbered_thoroughfare_address" => {
                         "complete_address_number" => "1",
                         "complete_street_name" => "Street",
-                        "complete_sub_address" => {
+                        "complete_sub_address" => [{
                             "sub_address_type" => "APT",
                             "sub_address" => "100"
-                        },
+                        }],
                         "complete_place_names" => [
                             {
                                 "place_name_type" => "MunicipalJurisdiction",
@@ -727,12 +727,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "333 N. Street",
-                "complete_sub_address" => {
-                  "apartment" => {
-                    "type" => "UNI ",
-                    "string_value" => " 5E"
-                  }
-                },
+                "complete_sub_address" => [{
+                  "sub_address_type" => "UNI ",
+                  "sub_address" => " 5E"
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -799,12 +797,10 @@ describe VRToPA do
               "numbered_thoroughfare_address" => {
                   "complete_address_number" => "",
                   "complete_street_name" => "444 N. Street",
-                  "complete_sub_address" => {
-                    "apartment" => {
-                      "type" => "UNI",
-                      "string_value" => "306"
-                    }
-                  },
+                  "complete_sub_address" => [{
+                    "sub_address_type" => "UNI",
+                    "sub_address" => "306"
+                  }],
                   "complete_place_names" => [
                       {
                           "place_name_type" => "MunicipalJurisdiction",
@@ -831,13 +827,14 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "444 N. Street",
-                "complete_sub_address" => {
-                    "apartment" => {
-                      "type" => "FLR",
-                      "string_value" => "3rd"
-                    },
-                    "line2" => " my line 2 "
-                },
+                "complete_sub_address" => [{
+                    "sub_address_type" => "FLR",
+                    "sub_address" => "3rd"
+                    }, {
+                     "sub_address_type"=>"LINE2",
+                     "sub_address" =>" my line 2 " 
+                    }
+                ],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -864,7 +861,7 @@ describe VRToPA do
     context 'too long input' do
       let(:input) { full_input }
       before(:each) do
-        input["registration_address"]["numbered_thoroughfare_address"]["complete_sub_address"]["sub_address"] = "1234567890123456"
+        input["registration_address"]["numbered_thoroughfare_address"]["complete_sub_address"][0]["sub_address"] = "1234567890123456"
       end
       it 'raises error' do
         
@@ -889,10 +886,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "",
                     "complete_street_name" => "801 N. Monroe",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
-                        "sub_address" => "Apt 306"
-                    },
+                        "sub_address" => "306"
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -1021,6 +1018,84 @@ describe VRToPA do
       end
     end
   end
+  describe "mailing_address" do
+    subject { adapter.convert[0] }
+    context "with unit and line2 subaddress" do
+      let(:input) do
+        full_input.merge({"mailing_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "222 N. Street",
+                "complete_sub_address" => [{
+                    "sub_address_type" => "SKIPPED",
+                    "sub_address" => "F"
+                },
+                {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "111"
+                },
+                {
+                    "sub_address_type" => "LINE2",
+                    "sub_address" => "Line2 Content"
+                }],
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Previous City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Prev County"
+                    }
+                ],
+                "state" => "PA",
+                "zip_code" => "22222"
+            }
+        }})
+      end
+      it "returns an address with unit and line2 content" do
+        expect(subject["mailingaddress"]).to eq("222 N. Street, APARTMENT 111\nLine2 Content")        
+      end
+      
+    end
+    context "without subaddres" do
+      let(:input) do
+        full_input.merge({"mailing_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "222 N. Street",
+                "complete_sub_address" => [{
+                    "sub_address_type" => "SKIPPED",
+                    "sub_address" => "F"
+                },
+                {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "111"
+                },
+                {
+                    "sub_address_type" => "LINE2",
+                    "sub_address" => "Line2 Content"
+                }],
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Previous City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Prev County"
+                    }
+                ],
+                "state" => "PA",
+                "zip_code" => "22222"
+            }
+        }})
+      end
+      it "returns an address without unit and line2 content" do
+        expect(subject["mailingaddress"]).to eq("222 N. Street, APARTMENT 111\nLine2 Content")        
+      end
+    end
+  end
 
   describe "prev_reg_address" do
     context "empty input" do
@@ -1041,6 +1116,32 @@ describe VRToPA do
         expect { adapter.prev_reg_zip }.to raise_error
       end
     end
+    context "line 2 and unit input" do
+      subject { adapter.convert[0] }
+      let(:input) do
+        full_input.merge({"previous_registration_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "222 N. Street",
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Previous City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Prev County"
+                    }
+                ],
+                "state" => "PA",
+                "zip_code" => "22222"
+            }
+        }})
+      end
+      it "returns an address with unit and line2 content" do
+        expect(subject["previousregaddress"]).to eq("222 N. Street")        
+      end
+    end
     context "is new registration" do
       let(:input){ 
         {
@@ -1048,10 +1149,10 @@ describe VRToPA do
               "numbered_thoroughfare_address" => {
                   "complete_address_number" => "",
                   "complete_street_name" => "222 N. Street",
-                  "complete_sub_address" => {
+                  "complete_sub_address" => [{
                       "sub_address_type" => "APT",
-                      "sub_address" => "Apt 306"
-                  },
+                      "sub_address" => "306"
+                  }],
                   "complete_place_names" => [
                       {
                           "place_name_type" => "MunicipalJurisdiction",
