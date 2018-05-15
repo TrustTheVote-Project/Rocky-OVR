@@ -1419,7 +1419,7 @@ class Registrant < ActiveRecord::Base
       yes_no(volunteer?),
       yes_no(partner_volunteer?),
       ineligible_reason,
-      yes_no(ineligible_age? && (under_18_ok? || automatic_under_18_ok?)),
+      yes_no(complete? && ineligible_age? && (under_18_ok? || automatic_under_18_ok?)),
       created_at && created_at.to_s,
       yes_no(finish_with_state?),
       yes_no(building_via_api_call?),
