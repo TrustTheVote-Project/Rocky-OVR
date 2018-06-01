@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180116192425) do
+ActiveRecord::Schema.define(:version => 20180601202559) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -351,15 +351,15 @@ ActiveRecord::Schema.define(:version => 20180116192425) do
     t.string   "penndot_number"
     t.string   "ssn4"
     t.boolean  "confirm_no_dl_or_ssn"
-    t.string   "voter_signature_image"
+    t.text     "voter_signature_image",         :limit => 255
     t.boolean  "has_assistant"
     t.string   "assistant_name"
     t.string   "assistant_address"
     t.string   "assistant_phone"
     t.boolean  "confirm_assistant_declaration"
     t.boolean  "confirm_declaration"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.string   "registrant_id"
     t.string   "locale"
     t.string   "status"
@@ -369,6 +369,7 @@ ActiveRecord::Schema.define(:version => 20180116192425) do
     t.text     "pa_submission_error"
     t.string   "previous_middle_name"
     t.string   "phone_type"
+    t.string   "signature_method"
   end
 
   create_table "state_registrants_va_registrants", :force => true do |t|

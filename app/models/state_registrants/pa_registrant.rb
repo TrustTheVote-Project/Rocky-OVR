@@ -37,7 +37,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   validates_with PARegistrantValidator
   
   def check_valid_for_state_flow!
-    if self.confirm_no_penndot_number?
+    if self.confirm_no_penndot_number? && self.signature_method == "print"
       self.skip_state_flow!
       self.registrant.state_id_number = self.ssn4
       if self.registrant.state_id_number.blank?

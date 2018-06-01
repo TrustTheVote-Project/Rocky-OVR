@@ -1,13 +1,43 @@
 - content_for :head do
+  %script{src: "https://cdn.jsdelivr.net/npm/cropit@0.5.1/dist/jquery.cropit.min.js"}
   :javascript
+    function registerTouch() {
+      $("#signature_capture").show();      
+    };
+    
     $(document).ready(function() {
+      function adjustSignature() {
+        try {
+          var imageData = $('#signature-cropper').cropit('export');
+          $("#state_registrants_pa_registrant_voter_signature_image").val(imageData);          
+          
+        } catch(err) { console.error(err) }
+      }
+      function selectSignatureType() {
+        if ($("#signature_method_upload:checked").length > 0) {
+          $('#signature-cropper').show().cropit({
+            freeMove: true,
+            minZoom: 'fit',
+            exportZoom: 0.5,
+            onZoomChange: adjustSignature,
+            onOffsetChange: adjustSignature
+          });          
+        } else {
+          $('#signature-cropper').hide()
+        }    
+      } 
+      
       function togglePenndotNumber() {
         if ($("#state_registrants_pa_registrant_confirm_no_penndot_number:checked").length > 0) {
           $("#penndot_set").hide();
-          $("#penndot_message").show();
+          if (!window.IS_TOUCH_ENABLED) {
+            $("#signature_upload").show();            
+          }
         } else {
           $("#penndot_set").show();
           $("#penndot_message").hide();
+          
+          $("#signature_upload").hide();
         }              
       }
 
@@ -45,6 +75,11 @@
       toggleSsn4();      
       $("#state_registrants_pa_registrant_has_assistant").click(toggleAssistant)
       toggleAssistant();
+      
+      $("[name=state_registrants_pa_registrant_signature_method]").click(selectSignatureType)
+      $('.select-image-btn').click(function() {
+        $('.cropit-image-input').click();
+      });
     });
       
       
@@ -58,7 +93,6 @@
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
 
   %ul.flat.party-dropdown
-    
     = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
     
   %fieldset#other_party_set
@@ -70,7 +104,7 @@
     = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
   
   %fieldset#penndot_set
-    %ul.flat.penndot-number    
+    %ul.flat.penndot-number
       = field_li(form, :penndot_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__penndot-number__line"} })
     %p.instructions
       = I18n.t('states.custom.pa.penndot_number_instructions')
@@ -84,7 +118,40 @@
       %span.instructions.error
         = I18n.t('states.custom.pa.penndot_number_missing')
 
+  #signature_capture
+    Capture a signature
+    
+    
+    
+  #signature_upload
+    %p.instructions 
+      You must provide a signature if you do not have a PennDOT ID. You may choose to 
+    %ul#signature_method
+      %li 
+        %input#signature_method_upload{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "upload"}
+        %label{for: "signature_method_upload"} Upload a signature image
+        #signature-cropper
+          .select-image-btn.rollover_button
+            %a 
+              Select an image to upload
 
+          .cropit-preview
+  
+          %input{type: "range", class: "cropit-image-zoom-input"}
+          %input{type: "file", class: "cropit-image-input", style: "display: none;"}
+        = form.hidden_field :voter_signature_image
+
+      %li
+        %input#signature_method_device{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "device"}
+        %label{for: "signature_method_device"} Continue your registration on a touch-enabled device
+      %li
+        %input#signature_method_print{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "print"}
+        %label{for: "signature_method_print"} Print and mail a PDF
+      
+    
+    %p.instructions Or continue on mobile
+    
+  
   %fieldset#ssn4_set
     %ul.flat.ssn4
       = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"} })
@@ -93,7 +160,7 @@
       
     
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_assistant, class_name: "registrant-form__has-assistant__line", required: false}
-  
+    
   %fieldset#assistant_set
     %ul.stacked
       = field_li(form, :assistant_name, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-name__line"} })

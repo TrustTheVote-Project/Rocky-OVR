@@ -109,7 +109,7 @@
         .review__section__content
           = @registrant.penndot_number
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
-          
+    
     - elsif !@registrant.ssn4.blank?
       .review__section
         .review__section__label
@@ -117,6 +117,15 @@
         .review__section__content
           = @registrant.ssn4
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+    
+    - if !@registrant.voter_signature_image.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/pa_registrant.voter_signature_image')
+        .review__section__content
+          %img{src: @registrant.voter_signature_image}
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+      
           
     - unless @registrant.email.blank?
       .review__section

@@ -127,6 +127,23 @@
     }
   }
   form {
+    #signature_capture, #signature_upload {
+      display: none;        
+    }
+    
+    #signature-cropper {
+      display: none;
+      .cropit-preview {
+        border: 1px solid #ccc;
+        width: 362px;
+        height: 122px;
+        cursor: move;
+      }
+      .cropit-image-zoom-input {
+        width: 360px;
+      }
+    }
+    
     ul, ul.flat {
       li.registrant-form__date-of-birth__line {
         width: 130px;
