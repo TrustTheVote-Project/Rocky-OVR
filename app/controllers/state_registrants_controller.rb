@@ -59,6 +59,10 @@ class StateRegistrantsController < RegistrationStep
     params[:step]
   end
   
+  def current_step_name
+    current_state.to_s
+  end
+  
   def current_step
     #@registrant.current_step
     (@registrant.step_index(params[:step]) || @registrant.num_steps)  + 1

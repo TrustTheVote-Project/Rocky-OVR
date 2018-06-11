@@ -1,8 +1,27 @@
 - content_for :head do
+  %script{src: "https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"}
+  %script{src: "https://cdn.jsdelivr.net/npm/jsignature@2.1.2/libs/jSignature.min.js"}
+  
   %script{src: "https://cdn.jsdelivr.net/npm/cropit@0.5.1/dist/jquery.cropit.min.js"}
   :javascript
     function registerTouch() {
-      $("#signature_capture").show();      
+      $("#signature_capture").show();   
+      var canvas = $("canvas#signature_field").get(0);
+      var signaturePad = new SignaturePad(canvas, {
+          minWidth: 1,
+          maxWidth: 1,
+          minDistance: 1,
+          dotSize: 1.0
+      });
+      
+      $("#signature_capture2").show();   
+      jSig = $("#signature_field2").jSignature();
+
+      $("#signature_clear").click(function() {
+        signaturePad.clear();
+        jSig.jSignature("reset") 
+      })
+      
     };
     
     $(document).ready(function() {
@@ -24,7 +43,12 @@
           });          
         } else {
           $('#signature-cropper').hide()
-        }    
+        }
+        if ($("#signature_method_device:checked").length > 0) {
+          $("#continue_on_device").show();
+        } else {
+          $("#continue_on_device").hide();
+        }
       } 
       
       function togglePenndotNumber() {
@@ -119,14 +143,23 @@
         = I18n.t('states.custom.pa.penndot_number_missing')
 
   #signature_capture
-    Capture a signature
+    %canvas#signature_field
     
+    #signature_clear
+      %br 
+      %br
+      Clear Signatures
+      %br 
+      %br
+    
+  #signature_capture2
+    #signature_field2
     
     
   #signature_upload
     %p.instructions 
       You must provide a signature if you do not have a PennDOT ID. You may choose to 
-    %ul#signature_method
+    %ul#signature_method.flat
       %li 
         %input#signature_method_upload{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "upload"}
         %label{for: "signature_method_upload"} Upload a signature image
@@ -144,12 +177,24 @@
       %li
         %input#signature_method_device{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "device"}
         %label{for: "signature_method_device"} Continue your registration on a touch-enabled device
+        #continue_on_device
+          %p.instructions
+            Open this link on a touch-enabled device to finish your registration:
+            = update_state_registrant_url(controller.current_step_name, @registrant.to_param)
+          %p.instructions
+            = label_tag :sms_number_for_continue_on_device, "Text me the link:"
+            = text_field_tag :sms_number_for_continue_on_device, @registrant.phone
+            = rollover_button(:next_step, I18n.t('txt.button.text_me').html_safe)  
+          %p.instructions
+            = label_tag :email_address_for_continue_on_device, "Email me the link:"            
+            = text_field_tag :email_address_for_continue_on_device, @registrant.email
+            = rollover_button(:next_step, I18n.t('txt.button.email_me').html_safe)  
       %li
         %input#signature_method_print{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "print"}
         %label{for: "signature_method_print"} Print and mail a PDF
       
     
-    %p.instructions Or continue on mobile
+    
     
   
   %fieldset#ssn4_set
