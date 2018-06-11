@@ -706,7 +706,7 @@ record_48:
 record_49:
   abbreviation: WI
   name: Wisconsin
-  requires_party: true
+  requires_party: false
   party_tooltip: wisconsin
   id_number_tooltip: wisconsin
   sos_address: Wisconsin Government Accountability Board<br>P.O. Box 7984<br>Madison,
