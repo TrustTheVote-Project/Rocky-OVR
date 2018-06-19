@@ -2,8 +2,8 @@ class PARegistrationRequest
 
   require 'net/http'
 
-  PREFIX = '{"ApplicationData": "<APIOnlineApplicationData xmlns=\"OVRexternaldata\"><record>'
-  POSTFIX = '</record></APIOnlineApplicationData>"}'
+  PREFIX = '<APIOnlineApplicationData xmlns="OVRexternaldata"><record>'
+  POSTFIX = '</record></APIOnlineApplicationData>'
 
   def self.send_request(params)
 
@@ -39,7 +39,9 @@ class PARegistrationRequest
       # TODO escape?
       "<#{k}>#{v}</#{k}>"
     end.join
-    PREFIX + body + POSTFIX
+    return {
+      "ApplicationData" => PREFIX + body + POSTFIX
+    }.to_json
   end
 
   # sample response = "\"<RESPONSE><APPLICATIONID>27042</APPLICATIONID><APPLICATIONDATE>Aug 12 2016  8:37AM</APPLICATIONDATE><SIGNATURE>Submitted with Uploaded Signature</SIGNATURE><ERROR></ERROR></RESPONSE>\""
