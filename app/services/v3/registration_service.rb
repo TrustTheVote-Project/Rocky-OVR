@@ -231,6 +231,7 @@ module V3
         if registrant.state_ovr_data["state_api_validation_modifications"] && registrant.state_ovr_data["state_api_validation_modifications"].any?
           AdminMailer.pa_registration_warning(registrant, registrant.state_ovr_data["state_api_validation_modifications"]).deliver
         end
+        registrant.complete_registration_with_state!
         registrant.save!
       end
     end

@@ -32,8 +32,12 @@ class RegistrantStatus < ActiveRecord::Base
       next if row.to_s.strip.blank?
       state_transaction_id = row[cols[:id_column]]
       state_application_date = row[cols[:date_column]]
-
-      state_application_date = Date.strptime(state_application_date, "%m/%d/%y")
+      
+      if state_application_date =~ /\/\d{4}$/
+        state_application_date = Date.strptime(state_application_date, "%m/%d/%Y")
+      else
+        state_application_date = Date.strptime(state_application_date, "%m/%d/%y")
+      end
       state_status = row[cols[:status_column]]
       state_status_details = row[cols[:status_details_column]]
       reg_statuses[state_transaction_id] = {

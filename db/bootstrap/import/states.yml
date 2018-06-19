@@ -251,8 +251,6 @@ record_16:
   sos_url: http://www.voteks.org/
   sub_18: be_by_next_general_election_november
   registration_deadline: kansas
-  pdf_instructions: kansas
-  email_instructions: kansas
   id_length_min: '4'
   online_registration_url: https://ksvotes.org/registration
 record_17:
@@ -707,7 +705,7 @@ record_48:
 record_49:
   abbreviation: WI
   name: Wisconsin
-  requires_party: true
+  requires_party: false
   party_tooltip: wisconsin
   id_number_tooltip: wisconsin
   sos_address: Wisconsin Government Accountability Board<br>P.O. Box 7984<br>Madison,
