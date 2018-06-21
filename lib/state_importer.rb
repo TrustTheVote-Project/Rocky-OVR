@@ -43,10 +43,12 @@ class StateImporter
     def self.base_uri
       #"http://eod.staging.usvotefoundation.org"
       "https://api.usvotefoundation.org"
+      #"https://electionmanager-new-production.us-east-1.elasticbeanstalk.com"
     end
     
     def self.api_uri
       "/v1/eod"
+      #"/v2/eod"
     end
     
     def self.path(resource_type, params={})
