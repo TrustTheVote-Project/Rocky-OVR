@@ -33,7 +33,7 @@ class CO < StateCustomization
     else     
       partner = registrant.partner ? registrant.partner.organization : nil
       if partner
-        return "#{root_url}&campaign=#{CGI.escape(partner)}"
+        return "#{root_url}?campaign=#{CGI.escape(partner)}"
       else
         return root_url
       end
