@@ -1,7 +1,8 @@
 # used to run only this spec:
-require File.expand_path('../../../app/services/vr_to_pa', __FILE__)
-require File.expand_path('../../../app/services/phone_formatter', __FILE__)
-require 'date'
+#require File.expand_path('../../../app/services/vr_to_pa', __FILE__)
+#require File.expand_path('../../../app/services/phone_formatter', __FILE__)
+#require 'date'
+require File.dirname(__FILE__) + '/../rails_helper'
 
 describe VRToPA do
   let(:input) { raise 'input is not re-defined' }
@@ -13,10 +14,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "444 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
-                    "sub_address" => "Apt 306"
-                },
+                    "sub_address" => "306"
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -35,10 +36,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "222 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
-                    "sub_address" => "Apt 306"
-                },
+                    "sub_address" => "306"
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -57,10 +58,10 @@ describe VRToPA do
             "numbered_thoroughfare_address" => {
                 "complete_address_number" => "",
                 "complete_street_name" => "333 N. Street",
-                "complete_sub_address" => {
+                "complete_sub_address" => [{
                     "sub_address_type" => "APT",
-                    "sub_address" => "Apt 306"
-                },
+                    "sub_address" => "306"
+                }],
                 "complete_place_names" => [
                     {
                         "place_name_type" => "MunicipalJurisdiction",
@@ -113,7 +114,7 @@ describe VRToPA do
         ],
         "signature" => {
             "mime_type" => "image/png",
-            "image" => "?"
+            "image" => "iVBORw0KGgoAAAANSUhEUgAAALQAAAA8CAYAAADPLpCHAAAABHNCSVQICAgIfAhkiAAAALxJREFUeJzt0sEJACAQwDB1/53PJQShJBP00T0zsyDi/A6AlwxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJua/tBHRXM+srAAAAAElFTkSuQmCC"
         },
         "voter_ids" => [
             {
@@ -154,10 +155,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "55",
                     "complete_street_name" => "Assistant Street",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
                         "sub_address" => "555"
-                    },
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -189,7 +190,7 @@ describe VRToPA do
   end
 
   describe 'convert' do
-    subject { adapter.convert }
+    subject { adapter.convert[0] }
     let(:input) { full_input }
 
     it 'returns all values' do
@@ -229,17 +230,17 @@ describe VRToPA do
       expect(subject["Ethnicity"]).to eql("I")
       expect(subject["streetaddress"]).to eql("333 N. Street")
       expect(subject["streetaddress2"]).to eql("")
-      expect(subject["unittype"]).to eql("")
-      expect(subject["unitnumber"]).to eql("Apt 306")
+      expect(subject["unittype"]).to eql("APT")
+      expect(subject["unitnumber"]).to eql("306")
       expect(subject["donthavePermtOrResAddress"]).to eql("")
       expect(subject["county"]).to eql("Registration County")
       expect(subject["municipality"]).to eql("Registration City")
-      expect(subject["mailingaddress"]).to eql("444 N. Street")
+      expect(subject["mailingaddress"]).to eql("444 N. Street, APARTMENT 306")
       expect(subject["mailingcity"]).to eql("Mailing City")
       expect(subject["mailingstate"]).to eql("PA1")
       expect(subject["previousregstate"]).to eql("PA")
       expect(subject["drivers-license"]).to eql("12345678")
-      expect(subject["signatureimage"]).to eql("data:image/png;base64,?")
+      expect(subject["signatureimage"]).to eql("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAA8CAYAAADPLpCHAAAABHNCSVQICAgIfAhkiAAAALxJREFUeJzt0sEJACAQwDB1/53PJQShJBP00T0zsyDi/A6AlwxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJMTQphibF0KQYmhRDk2JoUgxNiqFJua/tBHRXM+srAAAAAElFTkSuQmCC")
       expect(subject["continueAppSubmit"]).to eql("1")
       expect(subject["donthavebothDLandSSN"]).to eql("0")
       expect(subject["needhelptovote"]).to eql("")
@@ -249,7 +250,7 @@ describe VRToPA do
       expect(subject["previousreglastname"]).to eql("PLN")
       expect(subject["previousregfirstname"]).to eql("PFN")
       expect(subject["previousregmiddlename"]).to eql("PMN")
-      expect(subject["previousregaddress"]).to eql("222 N. Street")
+      expect(subject["previousregaddress"]).to eql("222 N. Street, APARTMENT 306")
       expect(subject["previousregcounty"]).to eql("Prev County")
       expect(subject["previousregyear"]).to eql("")
       expect(subject["declaration1"]).to eql("1")
@@ -431,15 +432,15 @@ describe VRToPA do
     end
   end
   describe 'assistance_declaration validation' do
-    subject { adapter.convert }
+    subject { adapter.convert[0] }
     context 'when declaration is true' do
       let(:input) { full_input }
       before(:each) do
         input["additional_info"] = [{"name" => "assistant_declaration", "string_value" => "true"}]
         input["registration_helper"]["name"] = {}
       end
-      it 'requires name, address and phone when true' do
-        expect { subject }.to raise_error("If assistance declaration is true, assistant name, address and phone must be provided.")
+      it 'sets it to false' do
+        expect(subject["assistancedeclaration2"]).to eq("0")
       end
     end
     context 'when declaration is false' do
@@ -451,10 +452,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "1",
                     "complete_street_name" => "Street",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
                         "sub_address" => "100"
-                    },
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -614,10 +615,10 @@ describe VRToPA do
                     "numbered_thoroughfare_address" => {
                         "complete_address_number" => "1",
                         "complete_street_name" => "Street",
-                        "complete_sub_address" => {
+                        "complete_sub_address" => [{
                             "sub_address_type" => "APT",
                             "sub_address" => "100"
-                        },
+                        }],
                         "complete_place_names" => [
                             {
                                 "place_name_type" => "MunicipalJurisdiction",
@@ -687,12 +688,180 @@ describe VRToPA do
       end
     end
   end
+  
+  describe 'unit' do
+    subject { adapter.convert[0] }
+    context 'old format' do 
+      let(:input) { full_input.merge({
+        "registration_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "333 N. Street",
+                "complete_sub_address" => {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "Apt 306"
+                },
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Registration City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Registration County"
+                    }
+                ],
+                "state" => "PA2",
+                "zip_code" => "11111"
+            }
+        }
+      }) }
+      it "popultates unit and unit type" do
+        expect(subject["unittype"]).to eq("APT")
+        expect(subject["unitnumber"]).to eq("Apt 306")
+      end
+    end
+    context 'new format' do 
+      let(:input) { full_input.merge({
+        "registration_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "333 N. Street",
+                "complete_sub_address" => [{
+                  "sub_address_type" => "UNI ",
+                  "sub_address" => " 5E"
+                }],
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Registration City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Registration County"
+                    }
+                ],
+                "state" => "PA2",
+                "zip_code" => "11111"
+            }
+        }
+      }) }
+      it "popultates unit and unit type" do
+        expect(subject["unittype"]).to eq("UNI")
+        expect(subject["unitnumber"]).to eq("5E")
+      end
+    end
+  end
+  
+  describe 'street_address_2' do
+    subject { adapter.convert[0]["streetaddress2"] }
+    context 'empty address' do
+      let(:input) { full_input }
+      it 'returns a blank' do
+        expect(subject).to eq("")
+      end
+    end
+    context "request only inclues unit number" do
+      context "old format" do
+        let(:input) { full_input.merge({
+          "registration_address" => {
+              "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "",
+                  "complete_street_name" => "444 N. Street",
+                  "complete_sub_address" => {
+                      "sub_address_type" => "APT",
+                      "sub_address" => "306"
+                  },
+                  "complete_place_names" => [
+                      {
+                          "place_name_type" => "MunicipalJurisdiction",
+                          "place_name_value" => "Registration City"
+                      },
+                      {
+                          "place_name_type" => "County",
+                          "place_name_value" => "Registration County"
+                      }
+                  ],
+                  "state" => "PA2",
+                  "zip_code" => "11111"                  
+              }
+          }        
+        }) }
+        it "return a blank" do
+          expect(subject).to eq("")
+        end
+      end
+      context "new format" do
+        let(:input) { full_input.merge({
+          "registration_address" => {
+              "numbered_thoroughfare_address" => {
+                  "complete_address_number" => "",
+                  "complete_street_name" => "444 N. Street",
+                  "complete_sub_address" => [{
+                    "sub_address_type" => "UNI",
+                    "sub_address" => "306"
+                  }],
+                  "complete_place_names" => [
+                      {
+                          "place_name_type" => "MunicipalJurisdiction",
+                          "place_name_value" => "Registration City"
+                      },
+                      {
+                          "place_name_type" => "County",
+                          "place_name_value" => "Registration County"
+                      }
+                  ],
+                  "state" => "PA2",
+                  "zip_code" => "11111"
+              }
+          }        
+        }) }
+        it "return a blank" do
+          expect(subject).to eq("")
+        end
+      end
+    end
+    context "includes a LINE2" do
+      let(:input) { full_input.merge({
+        "registration_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "444 N. Street",
+                "complete_sub_address" => [{
+                    "sub_address_type" => "FLR",
+                    "sub_address" => "3rd"
+                    }, {
+                     "sub_address_type"=>"LINE2",
+                     "sub_address" =>" my line 2 " 
+                    }
+                ],
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Registration City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Registration County"
+                    }
+                ],
+                "state" => "PA2",
+                "zip_code" => "11111"
+            }
+        }        
+      }) }
+      it "return a stripped value" do
+        expect(subject).to eq("my line 2")
+      end
+    end
+    
+  end
   describe 'unitnumber' do
-    subject { adapter.unitnumber }
+    subject { adapter.convert }
     context 'too long input' do
       let(:input) { full_input }
       before(:each) do
-        input["registration_address"]["numbered_thoroughfare_address"]["complete_sub_address"]["sub_address"] = "1234567890123456"
+        input["registration_address"]["numbered_thoroughfare_address"]["complete_sub_address"][0]["sub_address"] = "1234567890123456"
       end
       it 'raises error' do
         
@@ -717,10 +886,10 @@ describe VRToPA do
                 "numbered_thoroughfare_address" => {
                     "complete_address_number" => "",
                     "complete_street_name" => "801 N. Monroe",
-                    "complete_sub_address" => {
+                    "complete_sub_address" => [{
                         "sub_address_type" => "APT",
-                        "sub_address" => "Apt 306"
-                    },
+                        "sub_address" => "306"
+                    }],
                     "complete_place_names" => [
                         {
                             "place_name_type" => "MunicipalJurisdiction",
@@ -849,6 +1018,84 @@ describe VRToPA do
       end
     end
   end
+  describe "mailing_address" do
+    subject { adapter.convert[0] }
+    context "with unit and line2 subaddress" do
+      let(:input) do
+        full_input.merge({"mailing_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "222 N. Street",
+                "complete_sub_address" => [{
+                    "sub_address_type" => "SKIPPED",
+                    "sub_address" => "F"
+                },
+                {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "111"
+                },
+                {
+                    "sub_address_type" => "LINE2",
+                    "sub_address" => "Line2 Content"
+                }],
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Previous City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Prev County"
+                    }
+                ],
+                "state" => "PA",
+                "zip_code" => "22222"
+            }
+        }})
+      end
+      it "returns an address with unit and line2 content" do
+        expect(subject["mailingaddress"]).to eq("222 N. Street, APARTMENT 111\nLine2 Content")        
+      end
+      
+    end
+    context "without subaddres" do
+      let(:input) do
+        full_input.merge({"mailing_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "222 N. Street",
+                "complete_sub_address" => [{
+                    "sub_address_type" => "SKIPPED",
+                    "sub_address" => "F"
+                },
+                {
+                    "sub_address_type" => "APT",
+                    "sub_address" => "111"
+                },
+                {
+                    "sub_address_type" => "LINE2",
+                    "sub_address" => "Line2 Content"
+                }],
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Previous City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Prev County"
+                    }
+                ],
+                "state" => "PA",
+                "zip_code" => "22222"
+            }
+        }})
+      end
+      it "returns an address without unit and line2 content" do
+        expect(subject["mailingaddress"]).to eq("222 N. Street, APARTMENT 111\nLine2 Content")        
+      end
+    end
+  end
 
   describe "prev_reg_address" do
     context "empty input" do
@@ -869,6 +1116,32 @@ describe VRToPA do
         expect { adapter.prev_reg_zip }.to raise_error
       end
     end
+    context "line 2 and unit input" do
+      subject { adapter.convert[0] }
+      let(:input) do
+        full_input.merge({"previous_registration_address" => {
+            "numbered_thoroughfare_address" => {
+                "complete_address_number" => "",
+                "complete_street_name" => "222 N. Street",
+                "complete_place_names" => [
+                    {
+                        "place_name_type" => "MunicipalJurisdiction",
+                        "place_name_value" => "Previous City"
+                    },
+                    {
+                        "place_name_type" => "County",
+                        "place_name_value" => "Prev County"
+                    }
+                ],
+                "state" => "PA",
+                "zip_code" => "22222"
+            }
+        }})
+      end
+      it "returns an address with unit and line2 content" do
+        expect(subject["previousregaddress"]).to eq("222 N. Street")        
+      end
+    end
     context "is new registration" do
       let(:input){ 
         {
@@ -876,10 +1149,10 @@ describe VRToPA do
               "numbered_thoroughfare_address" => {
                   "complete_address_number" => "",
                   "complete_street_name" => "222 N. Street",
-                  "complete_sub_address" => {
+                  "complete_sub_address" => [{
                       "sub_address_type" => "APT",
-                      "sub_address" => "Apt 306"
-                  },
+                      "sub_address" => "306"
+                  }],
                   "complete_place_names" => [
                       {
                           "place_name_type" => "MunicipalJurisdiction",
@@ -929,7 +1202,7 @@ describe VRToPA do
             ]
         }
       end
-      it "returns nothing" do
+      it "returns formatted phone" do
         expect(subject).to eql("555-555-5555")
       end
     end
@@ -946,8 +1219,8 @@ describe VRToPA do
             ]
         }
       end
-      it "raise error" do
-        expect { subject }.to raise_error
+      it "removes phone" do
+        expect(subject).to eql("")
       end
     end
   end
@@ -967,7 +1240,7 @@ describe VRToPA do
             "voter_ids" => [
                 {
                     "type" => "drivers_license",
-                    "string_value" => "12345678",
+                    "string_value" => "1234-5678",
                     "attest_no_such_id" => false
                 }
             ]
@@ -984,7 +1257,7 @@ describe VRToPA do
             "voter_ids" => [
                 {
                     "type" => "drivers_license",
-                    "string_value" => "123-45678",
+                    "string_value" => "123-45678-9",
                     "attest_no_such_id" => false
                 }
             ]
@@ -1143,8 +1416,8 @@ describe VRToPA do
     context "invalid email value" do
       let(:email) { " account@super@domain.com  " }
 
-      it "raises error" do
-        expect { subject }.to raise_error /mail/
+      it "remove email" do
+        expect(subject).to eq("")
       end
     end
   end

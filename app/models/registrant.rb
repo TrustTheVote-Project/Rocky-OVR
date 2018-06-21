@@ -830,6 +830,17 @@ class Registrant < ActiveRecord::Base
     end    
   end
   
+  def first_registration?
+    if is_grommet? 
+      pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
+      return pa_adapter.is_new_registration_boolean
+    elsif existing_state_registrant
+      return existing_state_registrant.first_registration?
+    else
+      return !!self.first_registration
+    end    
+  end
+  
   def canvasser_clock_in
     return nil if !is_grommet?
     @canvasser_id ||= self.tracking_source
