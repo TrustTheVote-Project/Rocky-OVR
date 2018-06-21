@@ -90,6 +90,13 @@ describe Api::V3::PartnersController do
         it "returns a JSON body with session_timeout_length" do
           expect(JSON.parse(subject.body)["session_timeout_length"]).to eq(300)
         end
+        it "returns a JSON body with registration_deadline_date as a string representing the deadline" do
+          expect(JSON.parse(subject.body)["registration_deadline_date"]).to eq(RockyConf.ovr_states.PA.registration_deadline.strftime("%Y-%m-%d"))
+        end        
+        it "returns a JSON body with registration_notification_text as a hash of locale-string pairs" do
+          expect(JSON.parse(subject.body)["registration_notification_text"]["en"]).to eq(I18n.t('states.custom.pa.registration_deadline_text', locale: 'en'))          
+          expect(JSON.parse(subject.body)["registration_notification_text"]["es"]).to eq(I18n.t('states.custom.pa.registration_deadline_text', locale: 'es'))          
+        end
       end
       context 'when parter is not allowed' do
         let(:query) {{

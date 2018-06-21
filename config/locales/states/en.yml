@@ -17,7 +17,8 @@ en:
         registration_complete: Registration Complete
         registration_complete_dialog_text: ! '<p>Your application has been sent to the Dept. of Elections to register to vote.</p>'
         
-      pa: 
+      pa:
+        registration_deadline_text: "Deadline to register to vote, or update an existing registration, is Monday, April 9, 2018"
         state_flow_error: There was a problem submitting your registration to Pennsylvania. Please try again later or continue here to create a paper form.
         step_2_header: Basic Info
         step_3_header: Almost Done
