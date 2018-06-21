@@ -127,8 +127,17 @@
     }
   }
   form {
-    #signature_capture, #signature_upload {
+    #signature_capture, #signature_capture2, #signature_upload, #continue_on_device {
       display: none;        
+    }
+    
+    #signature_field, #signature_field2 {
+      border: 1px solid #ccc; 
+    }
+    #signature_field2 {
+      width: 362px;
+      height: 122px;
+      
     }
     
     #signature-cropper {
