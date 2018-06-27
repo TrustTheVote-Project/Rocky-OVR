@@ -43,11 +43,12 @@ class StateImporter
     def self.base_uri
       #"http://eod.staging.usvotefoundation.org"
       #"https://api.usvotefoundation.org"
-      "https://legacy-api.usvotefoundation.org"
+      "https://electionmanager-new-production.us-east-1.elasticbeanstalk.com"
     end
     
     def self.api_uri
-      "/v1/eod"
+      #"/v1/eod"
+      "/v2/eod"
     end
     
     def self.path(resource_type, params={})
@@ -64,7 +65,7 @@ class StateImporter
     
     def self.get(path)
       puts "Getting #{path}"
-      response =  JSON.parse(RestClient.get("#{base_uri}#{path}"))
+      response =  JSON.parse(ZipCodeCountyAddress.get_no_ssl("#{base_uri}#{path}"))
       puts response["meta"]
       return [response["objects"], response["meta"]]
     rescue Exception => e
@@ -97,17 +98,18 @@ class StateImporter
       
       # generate list of data needed
       offices.each do |office|
-        o = office["mailing_address"]
-        region_address_list << OpenStruct.new({
-          name: region_names[office["region"]],
-          address_to: o["address_to"],
-          street1: o["street1"],
-          street2: o["street2"],
-          city: o["city"],
-          state: o["state"],
-          zip: o["zip"],
-          phone: ""
-        })
+        office["addresses"].eadh do |o|
+          region_address_list << OpenStruct.new({
+            name: region_names[office["region"]],
+            address_to: o["address_to"],
+            street1: o["street1"],
+            street2: o["street2"],
+            city: o["city"],
+            state: o["state"],
+            zip: o["zip"],
+            phone: ""
+          })
+        end
       end
       
       return region_address_list

@@ -86,16 +86,18 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   end
   
   def select_address_from_office(office)
-    # First find any "additional_addresses" where 
+    # First find any "addresses" where 
     # "type"=>"name" == "Voter Registration Mailing Address"
-    if office["additional_addresses"] && office["additional_addresses"].is_a?(Array)
-      additional_address = office["additional_addresses"].find {|addr| addr["type"] && addr["type"]["name"]=="Voter Registration Mailing Address"}
-      if additional_address
-        return additional_address["address"]
+    if office["addresses"] && office["addresses"].is_a?(Array)
+      # additional_address = office["addresses"].find {|addr| addr["type"] && addr["type"]["name"]=="Voter Registration Mailing Address"}
+      dom_vr_address = office["addresses"].find {|addr| (addr["functions"] || []).include?("DOM_VR")}
+      if dom_vr_address
+        return dom_vr_address
       end
     end
-    return office["mailing_address"]
+    return nil
   end
+  
   
   
   def self.search_regions(filter_name, filter_value, state_abbr)
@@ -123,12 +125,16 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   
   
   def self.get(path)
-    response =  JSON.parse(RestClient.get("#{StateImporter::CountyAddresses.base_uri}#{path}"))
+    response =  JSON.parse(self.get_no_ssl("#{StateImporter::CountyAddresses.base_uri}#{path}" ))
     return response["objects"]
   rescue Exception => e
     return []
   end
   
+  
+  def self.get_no_ssl(url, headers={}, &block)
+    RestClient::Request.execute(method: :get, url: url, headers: headers, verify_ssl: false, &block)
+  end
   
   
   #address = [row["address to"], row["street 1"], row["street 2"], "#{row["city"]}, #{row["state"]} #{row["zip"]}"].collect{|l| l.strip.blank? ? nil : l}.compact.join("\n")
