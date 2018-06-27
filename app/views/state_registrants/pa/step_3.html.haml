@@ -47,15 +47,21 @@
         } catch(err) { console.error(err) }
       }
       function selectSignatureType() {
-        if ($("#signature_method_upload:checked").length > 0) {
+        if ($("#state_registrants_pa_registrant_signature_method_upload:checked").length > 0) {
+          var imageData = $('#state_registrants_pa_registrant_voter_signature_image').val()
           $('#signature-cropper').show().cropit({
+            imageState: { src:  imageData },
             freeMove: true,
             minZoom: 'fit',
             exportZoom: 0.5,
             onFileChange: showControls,
             onZoomChange: adjustSignature,
             onOffsetChange: adjustSignature
-          });      
+          });    
+          if (imageData != "") {
+            setTimeout(showControls, 1000);
+          }
+            
         } else {
           $('#signature-cropper').hide()
         }
@@ -114,7 +120,8 @@
       $("#state_registrants_pa_registrant_has_assistant").click(toggleAssistant)
       toggleAssistant();
       
-      $("[name=state_registrants_pa_registrant_signature_method]").click(selectSignatureType)
+      $("[name='state_registrants_pa_registrant[signature_method]']").click(selectSignatureType)
+      selectSignatureType();
       $('.select-image-btn').click(function() {
         $('.cropit-image-input').click();
       });
@@ -170,8 +177,8 @@
       You must provide a signature if you do not have a PennDOT ID. You may choose to 
     %ul#signature_method.checkbox.signature-method
       %li
-        %input#signature_method_upload{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "upload"}
-        %label{for: "signature_method_upload"} Upload a signature image
+        = form.radio_button :signature_method, "upload"
+        %label{for: "state_registrants_pa_registrant_signature_method_upload"} Upload a signature image
         #signature-cropper
           %br
           .select-image-btn.rollover_button
@@ -199,8 +206,8 @@
         = form.hidden_field :voter_signature_image
 
       %li
-        %input#signature_method_device{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "device"}
-        %label{for: "signature_method_device"} Continue your registration on a touch-enabled device
+        = form.radio_button :signature_method, "device"
+        %label{for: "state_registrants_pa_registrant_signature_method_device"} Continue your registration on a touch-enabled device
         #continue_on_device
           %p.instructions
             Open this link on a touch-enabled device to finish your registration:
@@ -214,8 +221,8 @@
             = text_field_tag :email_address_for_continue_on_device, @registrant.email
             = rollover_button(:next_step, I18n.t('txt.button.email_me').html_safe)  
       %li
-        %input#signature_method_print{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "print"}
-        %label{for: "signature_method_print"} Print and mail a PDF
+        = form.radio_button :signature_method, "print"
+        %label{for: "state_registrants_pa_registrant_signature_method_print"} Print and mail a PDF
       
     
     
