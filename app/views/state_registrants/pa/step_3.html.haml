@@ -25,6 +25,20 @@
     };
     
     $(document).ready(function() {
+      function showControls() {
+        $("#signature-cropper .controls").show();
+      }
+      function hideControls() {
+        $("#signature-cropper .controls").hide();
+      }
+      function removeSignature() {
+        $('#signature-cropper .cropit-preview-image').removeAttr('src');
+        $('#signature-cropper .cropit-preview-background').removeAttr('src');     
+        $("#state_registrants_pa_registrant_voter_signature_image").val('')   
+        hideControls();
+      }
+      $("#signature-cropper .remove-image-btn").click(removeSignature);
+      
       function adjustSignature() {
         try {
           var imageData = $('#signature-cropper').cropit('export');
@@ -38,9 +52,10 @@
             freeMove: true,
             minZoom: 'fit',
             exportZoom: 0.5,
+            onFileChange: showControls,
             onZoomChange: adjustSignature,
             onOffsetChange: adjustSignature
-          });          
+          });      
         } else {
           $('#signature-cropper').hide()
         }
@@ -59,7 +74,6 @@
           }
         } else {
           $("#penndot_set").show();
-          $("#penndot_message").hide();
           
           $("#signature_upload").hide();
         }              
@@ -137,11 +151,6 @@
     
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
 
-  %fieldset#penndot_message
-    %p.instructions
-      %span.instructions.error
-        = I18n.t('states.custom.pa.penndot_number_missing')
-
   #signature_capture
     %canvas#signature_field
     
@@ -156,22 +165,37 @@
     #signature_field2
     
     
-  #signature_upload
+  %fieldset#signature_upload
     %p.instructions 
       You must provide a signature if you do not have a PennDOT ID. You may choose to 
-    %ul#signature_method.flat
-      %li 
+    %ul#signature_method.checkbox.signature-method
+      %li
         %input#signature_method_upload{type: "radio", name: "state_registrants_pa_registrant_signature_method", value: "upload"}
         %label{for: "signature_method_upload"} Upload a signature image
         #signature-cropper
+          %br
           .select-image-btn.rollover_button
-            %a 
-              Select an image to upload
-
+            %a
+              %span.button-style 
+                Select an image to upload
+          
+          %br
+          %p.instructions
+            Must be an image file (JPEG, PNG, or GIF)
           .cropit-preview
-  
-          %input{type: "range", class: "cropit-image-zoom-input"}
+          
+          .controls{style: "display: none;"}
+            %input{type: "range", class: "cropit-image-zoom-input"}
+            %br
+            %p.instructions
+              Zoom in or out to ensure the signature fits within the box.
+            .remove-image-btn.rollover_button
+              %a
+                %span.button-style 
+                  Remove Image
           %input{type: "file", class: "cropit-image-input", style: "display: none;"}
+          %br
+          %br
         = form.hidden_field :voter_signature_image
 
       %li

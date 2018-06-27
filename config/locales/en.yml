@@ -138,7 +138,7 @@ household member."
         other_party: Other Party
         race: Race
         penndot_number: PennDOT Number
-        confirm_no_penndot_number: I do not know my PennDOT Number.
+        confirm_no_penndot_number: I do not have a PennDOT Number.
         ssn4: Last 4 digits of your social security number
         confirm_no_dl_or_ssn: I do not know the last four digits of my social security number.
         has_assistant: Someone helped me with this form.

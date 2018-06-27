@@ -143,10 +143,14 @@
     #signature-cropper {
       display: none;
       .cropit-preview {
+        display: none;
         border: 1px solid #ccc;
         width: 362px;
         height: 122px;
         cursor: move;
+        &.cropit-image-loaded {
+          display: block;
+        }
       }
       .cropit-image-zoom-input {
         width: 360px;
