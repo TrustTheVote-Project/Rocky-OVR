@@ -1,25 +1,73 @@
 - content_for :head do
   %script{src: "https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"}
-  %script{src: "https://cdn.jsdelivr.net/npm/jsignature@2.1.2/libs/jSignature.min.js"}
   
   %script{src: "https://cdn.jsdelivr.net/npm/cropit@0.5.1/dist/jquery.cropit.min.js"}
   :javascript
+  
+    function resizeCanvas(canvas, signaturePad) {
+      // When zoomed out to less than 100%, for some very strange reason,
+      // some browsers report devicePixelRatio as less than 1
+      // and only part of the canvas is cleared then.
+      var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+
+      // This part causes the canvas to be cleared
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+
+      // This library does not listen for canvas changes, so after the canvas is automatically
+      // cleared by the browser, SignaturePad#isEmpty might still return false, even though the
+      // canvas looks empty, because the internal data of this library wasn't cleared. To make sure
+      // that the state of this library is consistent with visual state of the canvas, you
+      // have to clear it manually.
+      //signaturePad.clear();
+    }
+    
+  
     function registerTouch() {
       $("#signature_capture").show();   
+      $("#signature_upload").hide();
       var canvas = $("canvas#signature_field").get(0);
+      var size = screen.width / 200;
       var signaturePad = new SignaturePad(canvas, {
-          minWidth: 1,
-          maxWidth: 1,
-          minDistance: 1,
-          dotSize: 1.0
+          minWidth: size,
+          maxWidth: size,
+          minDistance: size,
+          dotSize: size
       });
+    
+      //window.onresize = resizeCanvas.bind(this, canvas, signaturePad);
+      
+      $(".capture-signature").click(function() {
+        $("#signature_field_popup").show();
+        resizeCanvas(canvas, signaturePad);
+      })
+      
+      $(".signature_done").click(function() {
+        //export
+        var imageData = signaturePad.toDataURL();
+
+        var img = new Image;
+        img.src = imageData;
+        img.onload = function() {
+          var c = document.createElement('canvas');
+          var ctx = c.getContext('2d')
+          c.width = 180
+          c.height = 60          
+          ctx.drawImage(this, 0, 0, c.width, c.height);
+          sizedImageData = c.toDataURL();
+          $("#state_registrants_pa_registrant_voter_signature_image").val(sizedImageData);        
+          $("#signature_preview img.preview").attr('src', sizedImageData).show();
+          $("#signature_field_popup").hide();
+        }
+      })
       
       $("#signature_capture2").show();   
-      jSig = $("#signature_field2").jSignature();
-
-      $("#signature_clear").click(function() {
+      
+      $(".signature_clear").click(function() {
         signaturePad.clear();
-        jSig.jSignature("reset") 
+        $("#state_registrants_pa_registrant_voter_signature_image").val('');        
+        $("#signature_preview img.preview").attr('src', null).hide();
       })
       
     };
@@ -177,17 +225,34 @@
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
 
   #signature_capture
-    %canvas#signature_field
+    .rollover_button.capture-signature
+      %a
+        %span.button-style
+          Capture Signature
     
-    #signature_clear
+    #signature_field_popup
+      %canvas#signature_field
+      .rollover_button.signature_done
+        %a
+          %span.button-style 
+            Done
+      .signature_clear.button
+        Reset
+    
+    #signature_preview
+      %br
+      %img.preview{src: @registrant.voter_signature_image, display: @registrant.voter_signature_image.blank? ? 'none' : 'block'}
       %br 
       %br
-      Clear Signatures
+      .rollover_button.signature_clear
+        %a
+          %span.button-style 
+            Remove Signature
       %br 
       %br
     
-  #signature_capture2
-    #signature_field2
+  / #signature_capture2
+  /   #signature_field2
     
     
   %fieldset#signature_upload
@@ -217,7 +282,7 @@
             .remove-image-btn.rollover_button
               %a
                 %span.button-style 
-                  Remove Image
+                  Remove Signature
           %input{type: "file", class: "cropit-image-input", style: "display: none;"}
           %br
           %br

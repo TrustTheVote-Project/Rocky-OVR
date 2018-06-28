@@ -131,13 +131,55 @@
       display: none;        
     }
     
-    #signature_field, #signature_field2 {
-      border: 1px solid #ccc; 
+    #signature_field_popup {
+      display: none;
+      background: white;
+      z-index: 10;
+      position: fixed;
+      top: 0px;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      #signature_field {
+        margin-top: 20px;
+      }
+      @media screen and (orientation: portrait) {
+        transform: rotate(90deg);
+        width: 100vh;
+        height: 100vw;
+        transform-origin: left top;
+        left: 100%;
+        #signature_field {
+          height: 33vh;
+          width: 100vh;          
+        }
+      }
+      .signature_done, .signature_clear {
+        margin: 1em;
+      }
+      .signature_done {
+        float: right;
+      }
+      .signature_clear {
+        font-size: 16px;
+        cursor: pointer;
+        float: left;
+      }
     }
-    #signature_field2 {
-      width: 362px;
-      height: 122px;
-      
+    
+    #signature_field {
+      border: 1px solid #ccc; 
+      //width: 362px;
+      //height: 122px;
+      height: 33vw;
+      width: 100vw;
+    }
+    #signature_preview {
+      img.preview {
+        border: 1px solid #ccc;
+        width :180px;
+        height: 60px;
+      }
     }
     
     #signature-cropper, #continue_on_device {

@@ -1,15 +1,5 @@
 function registerTouch() {};
 
-window.IS_TOUCH_ENABLED = false;
-window.addEventListener('touchstart', function onFirstTouch() {
-  // or set some global variable
-  window.IS_TOUCH_ENABLED = true;
-  window.registerTouch();
-  // we only need to know once that a human touched the screen, so we can stop listening now
-  window.removeEventListener('touchstart', onFirstTouch, false);
-}, false);
-
-
 function hideErrors() {
   $('.error').each(function(){ $(this).css('opacity', 0); });
 };
