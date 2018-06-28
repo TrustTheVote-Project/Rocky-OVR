@@ -140,8 +140,12 @@
       
     }
     
-    #signature-cropper {
+    #signature-cropper, #continue_on_device {
       display: none;
+      padding-left: 40px;
+    }
+
+    #signature-cropper {
       .cropit-preview {
         display: none;
         border: 1px solid #ccc;

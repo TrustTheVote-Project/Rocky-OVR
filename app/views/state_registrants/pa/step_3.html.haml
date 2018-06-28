@@ -65,7 +65,7 @@
         } else {
           $('#signature-cropper').hide()
         }
-        if ($("#signature_method_device:checked").length > 0) {
+        if ($("#state_registrants_pa_registrant_signature_method_device:checked").length > 0) {
           $("#continue_on_device").show();
         } else {
           $("#continue_on_device").hide();
@@ -110,6 +110,24 @@
           $("#other_party_set").hide();
         }        
       }
+      
+      function copyLink() {
+        var text = $("#link-to-copy").text().trim();
+        //Create hidden input
+        var el = document.createElement("textarea");
+        el.value = text;
+        //el.style.display='none';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy')
+        document.body.removeChild(el);
+        $("#link-copied").show().fadeOut(3000);
+        
+      }
+      
+      $(".copy-link").click(function() {
+        copyLink();
+      })
       
       $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
       toggleOtherParty();
@@ -209,17 +227,26 @@
         = form.radio_button :signature_method, "device"
         %label{for: "state_registrants_pa_registrant_signature_method_device"} Continue your registration on a touch-enabled device
         #continue_on_device
+          %br
           %p.instructions
             Open this link on a touch-enabled device to finish your registration:
-            = update_state_registrant_url(controller.current_step_name, @registrant.to_param)
+            %span#link-to-copy
+              = update_state_registrant_url(controller.current_step_name, @registrant.to_param)
+            .rollover_button.button.copy-link
+              %a
+                %span.button-style 
+                  Copy Link
+            #link-copied{style: "display: none; text-align: center; font-size: 20px; margin: 20px auto; color: green"}
+              Link Copied!  
+              
           %p.instructions
             = label_tag :sms_number_for_continue_on_device, "Text me the link:"
             = text_field_tag :sms_number_for_continue_on_device, @registrant.phone
-            = rollover_button(:next_step, I18n.t('txt.button.text_me').html_safe)  
+            = rollover_button(:next_step, I18n.t('txt.button.text_me', :id=>:sms_continue_on_device).html_safe)  
           %p.instructions
             = label_tag :email_address_for_continue_on_device, "Email me the link:"            
             = text_field_tag :email_address_for_continue_on_device, @registrant.email
-            = rollover_button(:next_step, I18n.t('txt.button.email_me').html_safe)  
+            = rollover_button(:next_step, I18n.t('txt.button.email_me', :id=>:email_continue_on_device).html_safe)  
       %li
         = form.radio_button :signature_method, "print"
         %label{for: "state_registrants_pa_registrant_signature_method_print"} Print and mail a PDF
@@ -227,7 +254,8 @@
     
     
     
-  
+  %br
+  %br
   %fieldset#ssn4_set
     %ul.flat.ssn4
       = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"} })
