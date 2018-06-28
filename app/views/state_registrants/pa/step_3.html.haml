@@ -57,7 +57,8 @@
           ctx.drawImage(this, 0, 0, c.width, c.height);
           sizedImageData = c.toDataURL();
           $("#state_registrants_pa_registrant_voter_signature_image").val(sizedImageData);        
-          $("#signature_preview img.preview").attr('src', sizedImageData).show();
+          $("#signature_preview img.preview").attr('src', sizedImageData)
+          $("#signature_preview").show();
           $("#signature_field_popup").hide();
         }
       })
@@ -67,7 +68,8 @@
       $(".signature_clear").click(function() {
         signaturePad.clear();
         $("#state_registrants_pa_registrant_voter_signature_image").val('');        
-        $("#signature_preview img.preview").attr('src', null).hide();
+        $("#signature_preview img.preview").attr('src', null)
+        $("#signature_preview").hide();
       })
       
     };
@@ -225,6 +227,8 @@
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
 
   #signature_capture
+    %p.instructions
+      Provide a signature that may be used to verify and match your ballot.
     .rollover_button.capture-signature
       %a
         %span.button-style
@@ -239,9 +243,9 @@
       .signature_clear.button
         Reset
     
-    #signature_preview
+    #signature_preview{ style: "display: #{@registrant.voter_signature_image.blank? ? 'none;' : 'block;'}"}
       %br
-      %img.preview{src: @registrant.voter_signature_image, display: @registrant.voter_signature_image.blank? ? 'none' : 'block'}
+      %img.preview{src: @registrant.voter_signature_image}
       %br 
       %br
       .rollover_button.signature_clear
