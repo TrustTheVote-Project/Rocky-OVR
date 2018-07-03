@@ -95,7 +95,8 @@ class Partner < ActiveRecord::Base
   
   def custom_data
     return {
-        "canvassing_session_timeout_length" => RockyConf.ovr_states.PA.api_settings.canvassing_session_timeout_minutes
+        "canvassing_session_timeout_length" => RockyConf.ovr_states.PA.api_settings.canvassing_session_timeout_minutes,
+        "canvassing_validation_timeout_length" => RockyConf.ovr_states.PA.api_settings.canvassing_validation_timeout_minutes
       }
   rescue
     return {}
