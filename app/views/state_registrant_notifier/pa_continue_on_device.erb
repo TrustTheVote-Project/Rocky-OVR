@@ -11,10 +11,10 @@
 -->
 </style>
 
-<%= I18n.t('email.pa_deliver_on_device.body.greeting', :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %> <br><br>
+<%= I18n.t('email.pa_continue_on_device.body.greeting', :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %> <br><br>
 
 
-<%= I18n.t('email.pa_deliver_on_device.body.main', 
+<%= I18n.t('email.pa_continue_on_device.body.main', 
   :home_state_email_instructions => @home_state_email_instructions,
   :registrant_home_state_name => @registrant_home_state_name,
   :registrar_address=>@registrar_address,
@@ -25,4 +25,4 @@
 <hr style="margin: 20px 0;" />
 
 
-<%= I18n.t('email.pa_deliver_on_device.body.footer', :locale => @locale).html_safe %>
+<%= I18n.t('email.pa_continue_on_device.body.footer', :locale => @locale).html_safe %>
