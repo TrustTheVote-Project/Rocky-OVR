@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180601202559) do
+ActiveRecord::Schema.define(:version => 20180710204718) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20180601202559) do
     t.text     "pixel_tracking_codes"
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
-    t.text     "branding_update_request"
     t.boolean  "enabled_for_grommet",                              :default => false, :null => false
+    t.text     "branding_update_request"
     t.boolean  "active",                                           :default => true,  :null => false
     t.text     "external_conversion_snippet"
     t.text     "replace_system_css"
@@ -351,15 +351,15 @@ ActiveRecord::Schema.define(:version => 20180601202559) do
     t.string   "penndot_number"
     t.string   "ssn4"
     t.boolean  "confirm_no_dl_or_ssn"
-    t.text     "voter_signature_image",         :limit => 255
+    t.text     "voter_signature_image",                :limit => 255
     t.boolean  "has_assistant"
     t.string   "assistant_name"
     t.string   "assistant_address"
     t.string   "assistant_phone"
     t.boolean  "confirm_assistant_declaration"
     t.boolean  "confirm_declaration"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "registrant_id"
     t.string   "locale"
     t.string   "status"
@@ -370,6 +370,8 @@ ActiveRecord::Schema.define(:version => 20180601202559) do
     t.string   "previous_middle_name"
     t.string   "phone_type"
     t.string   "signature_method"
+    t.string   "sms_number_for_continue_on_device"
+    t.string   "email_address_for_continue_on_device"
   end
 
   create_table "state_registrants_va_registrants", :force => true do |t|

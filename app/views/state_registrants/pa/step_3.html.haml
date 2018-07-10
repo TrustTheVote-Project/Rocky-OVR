@@ -77,17 +77,23 @@
     $(document).ready(function() {
       function showControls() {
         $("#signature-cropper .controls").show();
+        $(".select-image-btn").hide();        
+        $(".cropit-preview").show();
       }
       function hideControls() {
         $("#signature-cropper .controls").hide();
+        $(".select-image-btn").show();
+        $(".cropit-preview").hide();                
       }
-      function removeSignature() {
+      function removeSignatureFile() {
         $('#signature-cropper .cropit-preview-image').removeAttr('src');
         $('#signature-cropper .cropit-preview-background').removeAttr('src');     
-        $("#state_registrants_pa_registrant_voter_signature_image").val('')   
+        $("#state_registrants_pa_registrant_voter_signature_image").val('');
+        $(".cropit-image-input").val('');        
         hideControls();
+        
       }
-      $("#signature-cropper .remove-image-btn").click(removeSignature);
+      $("#signature-cropper .remove-image-btn").click(removeSignatureFile);
       
       function adjustSignature() {
         try {
@@ -195,8 +201,6 @@
       });
     });
       
-      
-
 = form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
 
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
@@ -227,12 +231,13 @@
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
 
   #signature_capture
-    %p.instructions
-      Provide a signature that may be used to verify and match your ballot.
     .rollover_button.capture-signature
       %a
         %span.button-style
-          Capture Signature
+          Provide Signature
+    %br
+    %p.instructions
+      Provide a signature that may be used to verify and match your ballot.
     
     #signature_field_popup
       %canvas#signature_field
@@ -300,7 +305,7 @@
           %p.instructions
             Open this link on a touch-enabled device to finish your registration:
             %span#link-to-copy
-              = update_state_registrant_url(controller.current_step_name, @registrant.to_param)
+              = @registrant.signature_capture_url
             .rollover_button.button.copy-link
               %a
                 %span.button-style 
@@ -309,13 +314,13 @@
               Link Copied!  
               
           %p.instructions
-            = label_tag :sms_number_for_continue_on_device, "Text me the link:"
-            = text_field_tag :sms_number_for_continue_on_device, @registrant.phone
-            = rollover_button(:next_step, I18n.t('txt.button.text_me', :id=>:sms_continue_on_device).html_safe)  
+            = form.label :sms_number_for_continue_on_device #, "Text me the link:"
+            = form.text_field :sms_number_for_continue_on_device, value: form.object.sms_number_for_continue_on_device
+            = rollover_button(:next_step, I18n.t('txt.button.text_me', :id=>:sms_continue_on_device).html_safe, name: :sms_continue_on_device)  
           %p.instructions
-            = label_tag :email_address_for_continue_on_device, "Email me the link:"            
-            = text_field_tag :email_address_for_continue_on_device, @registrant.email
-            = rollover_button(:next_step, I18n.t('txt.button.email_me', :id=>:email_continue_on_device).html_safe)  
+            = form.label :email_address_for_continue_on_device #, "Email me the link:"            
+            = form.text_field :email_address_for_continue_on_device, value: form.object.email_address_for_continue_on_device
+            = rollover_button(:next_step, I18n.t('txt.button.email_me', :id=>:email_continue_on_device).html_safe, name: :email_continue_on_device)  
       %li
         = form.radio_button :signature_method, "print"
         %label{for: "state_registrants_pa_registrant_signature_method_print"} Print and mail a PDF

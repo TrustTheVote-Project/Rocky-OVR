@@ -36,6 +36,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   validates_with PARegistrantValidator
   
+  
   def check_valid_for_state_flow!
     if self.confirm_no_penndot_number? && self.signature_method == "print"
       self.skip_state_flow!
@@ -65,9 +66,77 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     'PA'
   end
   
+  def signature_step
+    "step_3"
+  end
+  
   def steps
     %w(step_1 step_2 step_3 step_4 complete)
   end
+  
+  def email_address_for_continue_on_device
+    self.read_attribute(:email_address_for_continue_on_device) || self.email
+  end
+
+  def sms_number_for_continue_on_device
+    self.read_attribute(:sms_number_for_continue_on_device) || self.phone
+  end
+  
+  def should_advance(params)
+    if params.has_key?(:email_continue_on_device) || params.has_key?(:sms_continue_on_device)
+      return false
+    end
+    return params[:skip_advance] != "true"    
+  end
+  
+  include Rails.application.routes.url_helpers
+  def default_url_options
+    ActionMailer::Base.default_url_options
+  end
+  
+  def signature_capture_url
+    update_state_registrant_url(self.signature_step, self.to_param)
+  end
+  
+  def custom_advance(controller, params)
+    # Set flash message?
+    # Actually send the message
+    if params.has_key?(:email_continue_on_device)
+      PANotifier.continue_on_device(self, signature_capture_url).deliver
+      controller.flash[:notice] = "Email sent to #{self.email}"
+    elsif params.has_key?(:sms_continue_on_device)
+      #begin
+        twilio_client.messages.create(
+          :from => "#{twilio_phone_number}",
+          :to => sms_number,
+          :body => I18n.t('messages.update.sms', signature_capture_url: signature_capture_url)
+        )
+      # rescue Exception => e
+      #   raise e.message.to_s
+      # end
+    end    
+  end
+  
+  def sms_number
+    self.sms_number_for_continue_on_device.to_s.gsub(/[^\d]/, '')
+  end
+  
+  def twilio_client
+    @twilio_client ||= Twilio::REST::Client.new twilio_sid, twilio_token      
+  end
+  
+  def twilio_sid
+    @twilio_sid ||= ENV['TWILIO_SID']
+  end
+  
+  def twilio_token
+    @twilio_token ||= ENV["TWILIO_TOKEN"]
+  end
+  
+  def twilio_phone_number 
+    @twilio_phone_number ||= ENV['TWILIO_NUMBER']
+  end
+  
   
   def async_submit_to_online_reg_url
     self.pa_submission_complete = false

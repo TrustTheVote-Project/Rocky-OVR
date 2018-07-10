@@ -10,6 +10,10 @@ gem "rails_config"
 gem "rails", "= 3.2.18"
 gem "aasm", "= 3.0.16"
 
+gem 'twilio-ruby', '~> 4.11.1'
+
+
+
 #gem 'utf8-cleaner'
 gem 'rack-robustness'
 

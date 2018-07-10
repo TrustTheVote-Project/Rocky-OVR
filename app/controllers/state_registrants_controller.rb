@@ -11,7 +11,7 @@ class StateRegistrantsController < RegistrationStep
   
   def update
     @registrant.attributes = params[@registrant.class.table_name.singularize]
-    @registrant.status = params[:step] if params[:skip_advance] != "true"
+    @registrant.status = params[:step] if @registrant.should_advance(params)
     @registrant.check_locale_change
     set_up_locale
     @registrant.save
@@ -19,7 +19,7 @@ class StateRegistrantsController < RegistrationStep
     if !@registrant.use_state_flow? || @registrant.skip_state_flow?
       go_to_paper and return
     end
-    if params[:skip_advance] != "true" && @registrant.valid?
+    if @registrant.should_advance(params) && @registrant.valid?
       @registrant.status = next_step 
       @registrant.save
       if @registrant.complete? && params[:step]==@registrant.step_list[-2]
@@ -29,6 +29,7 @@ class StateRegistrantsController < RegistrationStep
         redirect_to edit_state_registrant_path(@registrant.status, @registrant.to_param)
       end
     else
+      @registrant.custom_advance(self, params)
       render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}"
     end
   end
