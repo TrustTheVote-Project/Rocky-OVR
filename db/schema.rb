@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180710204718) do
+ActiveRecord::Schema.define(:version => 20180710231408) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20180710204718) do
     t.boolean  "active",                                           :default => true,  :null => false
     t.text     "external_conversion_snippet"
     t.text     "replace_system_css"
+    t.string   "pa_api_key"
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"

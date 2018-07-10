@@ -297,9 +297,13 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result
   end
   
+  def pa_api_key
+    self.partner ? self.partner.pa_api_key : nil
+  end
+  
   def submit_to_online_reg_url
     begin
-      result = PARegistrationRequest.send_request(self.to_pa_data)
+      result = PARegistrationRequest.send_request(self.to_pa_data, self.pa_api_key)
       self.pa_submission_complete = true
       self.save
       if result[:error].present?

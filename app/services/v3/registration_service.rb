@@ -169,7 +169,7 @@ module V3
     def self.register_with_pa(registrant)
       pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
       pa_data, validation_modifications = pa_adapter.convert
-      result = PARegistrationRequest.send_request(pa_data)
+      result = PARegistrationRequest.send_request(pa_data, registrant.partner ? registrant.partner.pa_api_key : nil)
       registrant.state_ovr_data["state_api_validation_modifications"] = validation_modifications
       registrant.save!
       if result[:error].present?
