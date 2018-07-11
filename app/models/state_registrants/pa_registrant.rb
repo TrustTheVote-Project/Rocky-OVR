@@ -245,7 +245,8 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['mailingzipcode'] = ''
     end
 
-    result['signatureimage'] = ""
+    result['signatureimage'] = voter_signature_image
+    
     result['continueAppSubmit'] = "1"
     result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn?)
     result['ssn4'] = ""
