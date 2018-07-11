@@ -30,21 +30,11 @@
   Copy the embed code under your preferred interface, and paste that code onto your website, blog, or other web platform.  We suggest you take the code for the "widget" or "iFrame" as those keep users on your website and have the highest completion rates.
   </p>
 
-  <form class="copy_html" action="#" method="get" accept-charset="utf-8">
-    
-    <div>
-      <h2><label for="image_overlay_html">Add a widget button:</label> <span style="font-weight:normal;">(spawns the form in a new window)</span></h2>
-      <p class="plain_text">
-        Best option! This code will create a button or banner on a web page. But instead of taking your users to a separate website or page, the link will result in your voter registration tool being displayed on top of the page users were viewing. That's right, users will not leave your site. To see what it looks like, check out this examples: <span class="floatbox" data-fb-options="<%= @floatbox_options %>"><a href="https://<%= RockyConf.default_url_host %>/?partner=<%= @partner.id %>&source=embed-<%= @partner.widget_image_name %>">Preview</a>
-      </p>  
-      <script type="text/javascript" src="<%= RockyConf.widget_loader_url %>"></script>
-      <p><textarea name="image_overlay_html" readonly="readonly" rows="16" ><%= h @image_overlay_html %></textarea></p>      
-    </div>
-    
+  <form class="copy_html" action="#" method="get" accept-charset="utf-8">   
     
     
     <div>
-      <h2><label for="image_link_html">Add a iFrame:</label></h2>
+      <h2><label for="image_link_html">Add an iFrame:</label></h2>
       <p class="plain_text">
         The code will let you embed the registration experience on your website.
       </p>
