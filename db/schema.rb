@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180711112720) do
+ActiveRecord::Schema.define(:version => 20180716180845) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -19,9 +19,20 @@ ActiveRecord::Schema.define(:version => 20180711112720) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "failed_login_count"
+    t.string   "perishable_token"
+    t.integer  "login_count",        :default => 0, :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
   end
+
+  add_index "admins", ["perishable_token"], :name => "index_admins_on_perishable_token", :unique => true
+  add_index "admins", ["persistence_token"], :name => "index_admins_on_persistence_token", :unique => true
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -124,6 +135,13 @@ ActiveRecord::Schema.define(:version => 20180711112720) do
     t.text     "external_conversion_snippet"
     t.text     "replace_system_css"
     t.string   "pa_api_key"
+    t.integer  "failed_login_count"
+    t.integer  "login_count",                                      :default => 0,     :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"

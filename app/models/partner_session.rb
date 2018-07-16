@@ -26,4 +26,5 @@ class PartnerSession < Authlogic::Session::Base
   find_by_login_method :find_by_login
   allow_http_basic_auth false
   
+  logout_on_timeout true
 end

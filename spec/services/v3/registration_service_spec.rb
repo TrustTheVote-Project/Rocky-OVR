@@ -183,10 +183,13 @@ describe V3::RegistrationService do
                 "numbered_thoroughfare_address" => {
                   "complete_address_number" => "",
                   "complete_street_name" => "801 N. Monroe",
-                  "complete_sub_address" => {
-                    "sub_address_type" => "APT",
-                    "sub_address" => "Apt 306"
-                  },
+                  "complete_sub_address" => [{
+                    "sub_address_type" => "UNI",
+                    "sub_address" => "F"
+                  }, {
+                    "sub_address_type" => "LINE2",
+                    "sub_address" => "C/O Steve"                    
+                  }],
                   "complete_place_names" => [
                     {
                       "place_name_type" => "MunicipalJurisdiction",
@@ -227,10 +230,10 @@ describe V3::RegistrationService do
                 "numbered_thoroughfare_address" => {
                   "complete_address_number" => "",
                   "complete_street_name" => "801 N. Monroe",
-                  "complete_sub_address" => {
+                  "complete_sub_address" => [{
                     "sub_address_type" => "APT",
-                    "sub_address" => "Apt 306"
-                  },
+                    "sub_address" => "306"
+                  }],
                   "complete_place_names" => [
                     {
                       "place_name_type" => "MunicipalJurisdiction",
@@ -327,10 +330,16 @@ describe V3::RegistrationService do
         expect(r.finish_with_state).to eq(true)
         expect(r.partner_volunteer).to eq(true)
         expect(r.home_address).to eq("801 N. Monroe")
-        expect(r.home_unit).to eq("Apt 306")
+        expect(r.home_unit).to eq("APARTMENT 306")
         expect(r.home_city).to eq("Philadelphia")
         expect(r.home_state_abbrev).to eq("VA")
         expect(r.home_zip_code).to eq("22201")
+
+        expect(r.mailing_address).to eq("801 N. Monroe\nC/O Steve")
+        expect(r.mailing_unit).to eq("UNIT F")
+
+        expect(r.prev_address).to eq("801 N. Monroe")
+        expect(r.prev_unit).to eq("APARTMENT Apt 306")
       
         expect(r.prev_first_name).to eq("Aron")
         expect(r.first_name).to eq("Aaron")

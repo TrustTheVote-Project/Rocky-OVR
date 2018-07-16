@@ -732,7 +732,7 @@ class Partner < ActiveRecord::Base
     if self.from_email_verified_at && self.from_email_verified_at > 1.hour.ago
       return true
     else 
-         # if never checked OR checked before 5 minutes ago 
+      # if never checked OR checked before 5 minutes ago 
       if self.from_email_verification_checked_at.nil? || self.from_email_verification_checked_at < 5.minutes.ago
         return self.check_from_email_verification
       else

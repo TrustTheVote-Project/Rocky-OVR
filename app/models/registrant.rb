@@ -593,7 +593,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def self.race_idx(locale, race)
-    I18n.t('txt.registration.races', :locale=>locale).values.collect(&:downcase).index(race.downcase)
+    I18n.t('txt.registration.races', :locale=>locale).values.collect(&:downcase).index(race.to_s.downcase)
   end
 
   # Reset name/prev prefix, suffix, race, party, phone_type
