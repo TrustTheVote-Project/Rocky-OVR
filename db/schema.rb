@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180116192425) do
+ActiveRecord::Schema.define(:version => 20180716180222) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(:version => 20180116192425) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "failed_login_count"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -123,6 +124,8 @@ ActiveRecord::Schema.define(:version => 20180116192425) do
     t.boolean  "active",                                           :default => true,  :null => false
     t.text     "external_conversion_snippet"
     t.text     "replace_system_css"
+    t.string   "pa_api_key"
+    t.integer  "failed_login_count"
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"
@@ -351,15 +354,15 @@ ActiveRecord::Schema.define(:version => 20180116192425) do
     t.string   "penndot_number"
     t.string   "ssn4"
     t.boolean  "confirm_no_dl_or_ssn"
-    t.string   "voter_signature_image"
+    t.text     "voter_signature_image"
     t.boolean  "has_assistant"
     t.string   "assistant_name"
     t.string   "assistant_address"
     t.string   "assistant_phone"
     t.boolean  "confirm_assistant_declaration"
     t.boolean  "confirm_declaration"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "registrant_id"
     t.string   "locale"
     t.string   "status"
@@ -369,6 +372,9 @@ ActiveRecord::Schema.define(:version => 20180116192425) do
     t.text     "pa_submission_error"
     t.string   "previous_middle_name"
     t.string   "phone_type"
+    t.string   "signature_method"
+    t.string   "sms_number_for_continue_on_device"
+    t.string   "email_address_for_continue_on_device"
   end
 
   create_table "state_registrants_va_registrants", :force => true do |t|
