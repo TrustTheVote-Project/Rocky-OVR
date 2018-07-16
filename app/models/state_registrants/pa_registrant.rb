@@ -401,6 +401,18 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     }
   end
   
+  
+  def self.from_registrant(reg)
+    # Swap out partner if no API-key is present
+    if !(reg).partner.primary? && (reg).partner.pa_api_key.blank?
+      # Make it an RTV partner
+      (reg).partner = Partner.primary_partner
+      (reg).save(validate: false)
+    end
+    return super(reg)
+  end
+  
+  
   def set_from_original_registrant
     r = self.registrant
     mappings.each do |k,v|
