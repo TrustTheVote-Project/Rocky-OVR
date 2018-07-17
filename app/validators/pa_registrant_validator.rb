@@ -68,11 +68,16 @@ class PARegistrantValidator < ActiveModel::Validator
         end
         
       end
+      if reg.signature_method == StateRegistrants::PARegistrant::DEVICE_METHOD || reg.signature_method == StateRegistrants::PARegistrant::UPLOAD_METHOD
+        reg.validates_presence_of(:voter_signature_image)
+      end
+      
     end
     
     if reg.at_least_step_3?
       reg.validates_acceptance_of :confirm_declaration, :accept=>true
     end
+    
 
   end
   

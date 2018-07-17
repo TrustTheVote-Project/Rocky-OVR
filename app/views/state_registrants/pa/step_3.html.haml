@@ -240,6 +240,9 @@
     %br
     %p.instructions
       = I18n.t('states.custom.pa.signature_capture.touch_sign_instructions')
+    - if form.object.errors[:voter_signature_image]
+      .error
+        = form.object.errors[:voter_signature_image].join("\n")
     
     #signature_field_popup
       %canvas#signature_field
@@ -269,9 +272,13 @@
   %fieldset#signature_upload
     %p.instructions 
       = I18n.t('states.custom.pa.signature_capture.desktop_provide_signature')
+    - if form.object.errors[:voter_signature_image]
+      %span.error
+        = form.object.errors[:voter_signature_image].join("\n")
+    
     %ul#signature_method.checkbox.signature-method
       %li
-        = form.radio_button :signature_method, "upload"
+        = form.radio_button :signature_method, StateRegistrants::PARegistrant::UPLOAD_METHOD
         %label{for: "state_registrants_pa_registrant_signature_method_upload"} Upload a signature image
         #signature-cropper
           %br
@@ -300,7 +307,7 @@
         = form.hidden_field :voter_signature_image
 
       %li
-        = form.radio_button :signature_method, "device"
+        = form.radio_button :signature_method,  StateRegistrants::PARegistrant::DEVICE_METHOD
         %label{for: "state_registrants_pa_registrant_signature_method_device"} 
           = I18n.t('states.custom.pa.signature_capture.continue_on_device')
         #continue_on_device
@@ -325,7 +332,7 @@
               = I18n.t('states.custom.pa.signature_capture.link_copied')
               
       %li
-        = form.radio_button :signature_method, "print"
+        = form.radio_button :signature_method, StateRegistrants::PARegistrant::PRINT_METHOD
         %label{for: "state_registrants_pa_registrant_signature_method_print"} 
           = I18n.t('states.custom.pa.signature_capture.continue_on_paper')
     

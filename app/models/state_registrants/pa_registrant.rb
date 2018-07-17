@@ -32,13 +32,17 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   COUNTIES =%w(ADAMS ALLEGHENY ARMSTRONG BEAVER BEDFORD BERKS BLAIR BRADFORD BUCKS BUTLER CAMBRIA CAMERON CARBON CENTRE CHESTER CLARION CLEARFIELD CLINTON COLUMBIA CRAWFORD CUMBERLAND DAUPHIN DELAWARE ELK ERIE FAYETTE FOREST FRANKLIN FULTON GREENE HUNTINGDON INDIANA JEFFERSON JUNIATA LACKAWANNA LANCASTER LAWRENCE LEBANON LEHIGH LUZERNE LYCOMING MCKEAN MERCER MIFFLIN MONROE MONTGOMERY MONTOUR NORTHAMPTON NORTHUMBERLAND PERRY PHILADELPHIA PIKE POTTER SCHUYLKILL SNYDER SOMERSET SULLIVAN SUSQUEHANNA TIOGA UNION VENANGO WARREN WASHINGTON WAYNE WESTMORELAND WYOMING YORK)
   
+  DEVICE_METHOD="device".freeze
+  UPLOAD_METHOD="upload".freeze
+  PRINT_METHOD="print".freeze
+  
   include RegistrantMethods
   
   validates_with PARegistrantValidator
   
   
   def check_valid_for_state_flow!
-    if self.confirm_no_penndot_number? && self.signature_method == "print"
+    if self.confirm_no_penndot_number? && self.signature_method == PRINT_METHOD
       self.skip_state_flow!
       self.registrant.state_id_number = self.ssn4
       if self.registrant.state_id_number.blank?
