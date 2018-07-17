@@ -75,7 +75,7 @@ Deadline Alert: April 16, 2018 close of registration date of current election is
           upload_file_zoom: Zoom in or out to ensure the signature fits within the box.
           continue_on_device: Continue your registration on a touch-enabled device
           email_sent: An email has been sent to %{email} with a link to sign your registration on a touch-enabled device.
-          sms_sent: An text message has been sent to %{phone} with a link to sign your registration on a touch-enabled device.
+          sms_sent: A text message has been sent to %{phone} with a link to sign your registration on a touch-enabled device.
           sms_body: "Here's the link you requested to sign your voter registration form: %{signature_capture_url}"
           continue_via_copy: "Or open this link on a touch-enabled device to finish your registration:"
           link_copied: Link Copied!
