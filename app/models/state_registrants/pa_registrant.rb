@@ -103,14 +103,16 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     # Actually send the message
     if params.has_key?(:email_continue_on_device)
       PANotifier.continue_on_device(self, signature_capture_url).deliver
-      controller.flash[:notice] = "Email sent to #{self.email}"
+      controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.email_sent', email: self.email)
     elsif params.has_key?(:sms_continue_on_device)
       #begin
         twilio_client.messages.create(
-          :from => "#{twilio_phone_number}",
+          :from => "+1#{twilio_phone_number}",
           :to => sms_number,
-          :body => I18n.t('messages.update.sms', signature_capture_url: signature_capture_url)
+          :body => I18n.t('states.custom.pa.signature_capture.sms_body', signature_capture_url: signature_capture_url)
         )
+        controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+        
       # rescue Exception => e
       #   raise e.message.to_s
       # end

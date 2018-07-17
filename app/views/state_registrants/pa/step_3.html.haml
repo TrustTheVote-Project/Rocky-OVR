@@ -200,6 +200,8 @@
         $('.cropit-image-input').click();
       });
     });
+
+= flash_messages.html_safe
       
 = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param,controller.current_state)) do |form|
 
@@ -302,6 +304,14 @@
         %label{for: "state_registrants_pa_registrant_signature_method_device"} 
           = I18n.t('states.custom.pa.signature_capture.continue_on_device')
         #continue_on_device
+          %p.instructions
+            = form.label :sms_number_for_continue_on_device #, "Text me the link:"
+            = form.text_field :sms_number_for_continue_on_device, value: form.object.sms_number_for_continue_on_device
+            = rollover_button(:next_step, I18n.t('txt.button.text_me', :id=>:sms_continue_on_device).html_safe, name: :sms_continue_on_device)  
+          %p.instructions
+            = form.label :email_address_for_continue_on_device #, "Email me the link:"            
+            = form.text_field :email_address_for_continue_on_device, value: form.object.email_address_for_continue_on_device
+            = rollover_button(:next_step, I18n.t('txt.button.email_me', :id=>:email_continue_on_device).html_safe, name: :email_continue_on_device)  
           %br
           %p.instructions
             = I18n.t('states.custom.pa.signature_capture.continue_via_copy')
@@ -314,14 +324,6 @@
             #link-copied{style: "display: none; text-align: center; font-size: 20px; margin: 20px auto; color: green"}
               = I18n.t('states.custom.pa.signature_capture.link_copied')
               
-          %p.instructions
-            = form.label :sms_number_for_continue_on_device #, "Text me the link:"
-            = form.text_field :sms_number_for_continue_on_device, value: form.object.sms_number_for_continue_on_device
-            = rollover_button(:next_step, I18n.t('txt.button.text_me', :id=>:sms_continue_on_device).html_safe, name: :sms_continue_on_device)  
-          %p.instructions
-            = form.label :email_address_for_continue_on_device #, "Email me the link:"            
-            = form.text_field :email_address_for_continue_on_device, value: form.object.email_address_for_continue_on_device
-            = rollover_button(:next_step, I18n.t('txt.button.email_me', :id=>:email_continue_on_device).html_safe, name: :email_continue_on_device)  
       %li
         = form.radio_button :signature_method, "print"
         %label{for: "state_registrants_pa_registrant_signature_method_print"} 

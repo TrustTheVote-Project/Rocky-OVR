@@ -107,17 +107,12 @@ en:
 
           Please send question or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'      
     pa_continue_on_device:
-      subject: ! 'Follow this link to complete your registration'
+      subject: ! 'Sign your voter registration form'
       body:
-        greeting: Dear %{registrant_first_name},
-        main: ! 'Follow this link on a touch-enabled device to finish your registration.<br><br>
-            %{registration_url}'
-        footer: ! 'Rock the Vote is committed to preserving your privacy and safe-guarding
-          your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter
-          registration privacy policy</a></strong> for details.<br><br>
-
-
-          Please send question or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'      
+        main: ! 'Here is the link you requested to sign your voter registration form on a touchscreen device:<br><br>
+            %{registration_url}<br><br>
+            This link will expire in 30 minutes.<br><br>
+            If you have any questions or run into any issues, please contact us at <a href="mailto:info@rockthevote.com">info@rockthevote.com</a><br>'
     reminder:
       subject: ! 'Reminder: Mail your voter registration form'
       body:
