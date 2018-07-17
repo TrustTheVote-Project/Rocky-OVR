@@ -1,6 +1,6 @@
 
 
-= form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
   
   = render partial: 'state_registrants/pa/header'
@@ -17,7 +17,7 @@
         = @registrant.middle_name
         = @registrant.last_name
         = @registrant.name_suffix
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
         
     - if @registrant.change_of_name?
       .review__section
@@ -27,14 +27,14 @@
           = @registrant.previous_first_name
           = @registrant.previous_middle_name
           = @registrant.previous_last_name
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
           
     .review__section
       .review__section__label
         = t('activerecord.attributes.state_registrants/pa_registrant.date_of_birth')
       .review__section__content
         = I18n.l @registrant.date_of_birth, format: :long
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
     
     .review__section
       .review__section__label 
@@ -52,7 +52,7 @@
         = "#{@registrant.registration_city}, PA #{@registrant.registration_zip_code}"
         %br
         = "#{@registrant.registration_county} County"
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
         
     - if @registrant.has_mailing_address?
       .review__section
@@ -62,7 +62,7 @@
           = @registrant.mailing_address
           %br
           = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip_code}"
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
           
     - if @registrant.previous_address?
       .review__section
@@ -74,7 +74,7 @@
           = "#{@registrant.previous_city}, #{@registrant.previous_state} #{@registrant.previous_zip_code}"
           %br
           = "#{@registrant.previous_county} County"
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
           
           
           
@@ -85,14 +85,14 @@
         = t('activerecord.attributes.state_registrants/pa_registrant.party')
       .review__section__content
         = @registrant.party.downcase == "other" ? @registrant.other_party : @registrant.party
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
         
       - if @registrant.change_of_party?
         .review__section__label
           = t('activerecord.attributes.state_registrants/pa_registrant.change_of_party')
         .review__section__content
           = @registrant.yes_no_localized(@registrant.change_of_party)
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
           
     - unless @registrant.race.blank?
       .review__section
@@ -100,7 +100,7 @@
           = t('activerecord.attributes.state_registrants/pa_registrant.race')
         .review__section__content
           = @registrant.race
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
           
     - if !@registrant.penndot_number.blank?
       .review__section
@@ -108,7 +108,7 @@
           = t('activerecord.attributes.state_registrants/pa_registrant.penndot_number')
         .review__section__content
           = @registrant.penndot_number
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
     
     - elsif !@registrant.ssn4.blank?
       .review__section
@@ -116,7 +116,7 @@
           = t('activerecord.attributes.state_registrants/pa_registrant.ssn4')
         .review__section__content
           = @registrant.ssn4
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
     
     - if !@registrant.voter_signature_image.blank?
       .review__section
@@ -124,7 +124,7 @@
           = t('activerecord.attributes.state_registrants/pa_registrant.voter_signature_image')
         .review__section__content
           %img{src: @registrant.voter_signature_image}
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
       
           
     - unless @registrant.email.blank?
@@ -141,7 +141,7 @@
         .review__section__content
           = PhoneFormatter.process @registrant.phone
           = @registrant.phone_type
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
           
   
   .declaration-text= t('states.custom.pa.declaration').html_safe
@@ -150,4 +150,4 @@
   
   = rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
   .back    
-    = link_to t('txt.button.back').html_safe, update_state_registrant_path(controller.prev_step, @registrant.to_param)
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

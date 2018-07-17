@@ -95,7 +95,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   end
   
   def signature_capture_url
-    update_state_registrant_url(self.signature_step, self.to_param)
+    update_state_registrant_url(self.to_param, self.signature_step)
   end
   
   def custom_advance(controller, params)

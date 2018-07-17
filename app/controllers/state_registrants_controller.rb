@@ -26,7 +26,7 @@ class StateRegistrantsController < RegistrationStep
         @registrant.async_submit_to_online_reg_url
         redirect_to pending_state_registrant_path(@registrant.to_param)
       else
-        redirect_to edit_state_registrant_path(@registrant.status, @registrant.to_param)
+        redirect_to edit_state_registrant_path(@registrant.to_param, @registrant.status)
       end
     else
       @registrant.custom_advance(self, params)

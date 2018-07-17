@@ -8,11 +8,11 @@ Rocky::Application.routes.draw do
   match "/registrants/map/:state_abbrev", to: "registrants#new"
   match "/share", to: "registrants#share"
   
-  match "/state_registrants/pending/:registrant_id", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
-  match "/state_registrants/complete/:registrant_id", to: "state_registrants#complete", as: "complete_state_registrant", via: :get
+  match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
+  match "/state_registrants/:registrant_id/complete", to: "state_registrants#complete", as: "complete_state_registrant", via: :get
   
-  match "/state_registrants/:step/:registrant_id", to: "state_registrants#edit", as: "edit_state_registrant", via: :get
-  match "/state_registrants/:step/:registrant_id", to: "state_registrants#update", as: "update_state_registrant", via: :put
+  match "/state_registrants/:registrant_id/:step", to: "state_registrants#edit", as: "edit_state_registrant", via: :get
+  match "/state_registrants/:registrant_id/:step", to: "state_registrants#update", as: "update_state_registrant", via: :put
 
   
   
