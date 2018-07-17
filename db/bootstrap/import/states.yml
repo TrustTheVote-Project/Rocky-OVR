@@ -57,7 +57,7 @@ record_2:
   sos_address: Secretary of State<br>Elections Department<br>1700 W. Washington, 7th
     Floor<br>Phoenix, AZ 85007-2888
   sos_phone: (877) 843-8683
-  sos_url: http://www.azsos.gov/election/
+  sos_url: https://azsos.gov/elections
   sub_18: turn_by_next_general_election_november
   online_registration_url: https://servicearizona.com/webapp/evoter/selectLanguage
   registration_deadline: received_29_days
@@ -72,7 +72,7 @@ record_3:
   sos_address: Secretary of State<br>500 Woodlane Street, Suite 256<br>Little Rock,
     AR 72201-8111
   sos_phone: (501) 682-5070
-  sos_url: http://www.sosweb.state.ar.us/elections.html
+  sos_url: https://www.sos.arkansas.gov/elections/
   registration_deadline: postmarked_30_days
   id_length_min: '4'
 record_4:
@@ -111,7 +111,7 @@ record_6:
   sos_address: Secretary of State<br>Elections Division<br>30 Trinity Street<br>Hartford,
     CT 06106
   sos_phone: (860) 509-6100
-  sos_url: http://www.sots.ct.gov/sots/cwp/view.asp?a=3172&q=525432
+  sos_url: https://portal.ct.gov/SOTS/Common-Elements/V5-Template---Redesign/Elections--Voting--Home-Page
   sub_18: once_turned_17
   registration_deadline: connecticut
   online_registration_url: https://voterregistration.ct.gov/OLVR/
@@ -196,7 +196,7 @@ record_12:
   sos_address: Secretary of State<br>Elections Division<br>P.O. Box 83720<br>State
     Capitol Building<br>Boise, ID 83720-0080
   sos_phone: (208) 334-2300
-  sos_url: http://www.sos.idaho.gov/elect/eleindex.htm
+  sos_url: https://idahovotes.gov/
   id_length_min: '4'
   online_registration_url: https://apps.idahovotes.gov/OnlineVoterRegistration
 record_13:
@@ -247,7 +247,7 @@ record_16:
   id_number_tooltip: drivers_license_non_driver_2
   sos_address: Secretary of State<br>Memorial Hall - 1st Floor<br>120 SW 10th Ave.<br>Topeka,
     KS 66612-1594
-  sos_phone: (785) 296-4564
+  sos_phone: (785) 296-4561
   sos_url: http://www.voteks.org/
   sub_18: be_by_next_general_election_november
   registration_deadline: kansas
@@ -270,13 +270,13 @@ record_18:
   requires_race: true
   race_tooltip: requested_with_state_name
   requires_party: true
-  online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
+  online_registration_url: https://www.sos.la.gov/ElectionsAndVoting/Pages/OnlineVoterRegistration.aspx
   party_tooltip: required_for_presidential
   id_number_tooltip: drivers_license_if_issued_with_state_name
   sos_address: Secretary of State<br>Voter Registration<br>P.O. Box 94125<br>Baton
     Rouge, LA 70804-9125
   sos_phone: (225) 922-0900
-  sos_url: http://www.sos.louisiana.gov/tabid/68/Default.aspx
+  sos_url: https://www.sos.la.gov/ElectionsAndVoting/GetElectionInformation/Pages/default.aspx
   sub_18: once_turned_17
   registration_deadline: received_30_days
   id_length_min: '4'
@@ -289,7 +289,7 @@ record_19:
   sos_address: Bureau of Corporations, Elections and Commissions<br>Elections Division<br>101
     State House Station<br>Augusta, ME 04333-0101
   sos_phone: (207) 624-7650
-  sos_url: http://www.state.me.us/sos/cec/elec/
+  sos_url: https://www.maine.gov/sos/cec/elec/index.html
   sub_18: once_turned_17_but
   registration_deadline: received_21_days
   id_length_min: '4'
@@ -412,7 +412,7 @@ record_28:
   sos_address: Secretary of State<br>Elections Division<br>101 North Carson Street,
     Suite 3<br>Carson City, NV 89701-4786
   sos_phone: (775) 684-5705
-  sos_url: https://www.nvsos.gov/VoterSearch/
+  sos_url: https://www.nvsos.gov/sos/elections
   registration_deadline: nevada
   id_length_min: '4'
   online_registration_url: http://www.RegisterToVoteNV.gov
@@ -432,7 +432,7 @@ record_29:
   sos_address: ! 'Elections Office<br>State House, Room 204<br>107 North Main Street<br>Concord,
     N.H. 03301 '
   sos_phone: 603-271-3242
-  sos_url: ''
+  sos_url: http://sos.nh.gov/Elections.aspx
   sub_18: blank
   registration_deadline: received_10_days
 record_30:
@@ -454,7 +454,7 @@ record_31:
   party_tooltip: required_for_primary
   id_number_tooltip: ssn_full_2
   sos_address: Bureau of Elections<br>325 Don Gaspar, Suite 300<br>Santa Fe, NM 87503
-  sos_phone: (800) 477-3632
+  sos_phone: (505) 827-3600
   sos_url: http://www.sos.state.nm.us/
   registration_deadline: postmarked_28_days
   online_registration_url: https://portal.sos.state.nm.us/OVR/(S(od4445h5uj2f5tyucvvhszdf))/WebPages/InstructionsStep1.aspx
@@ -489,7 +489,7 @@ record_33:
   party_tooltip: north_carolina
   id_number_tooltip: drivers_license_or_dmv_with_state_name
   sos_address: State Board of Elections<br>P.O. Box 27255<br>Raleigh, NC 27611-7255
-  sos_phone: (919) 733-7173
+  sos_phone: (919) 814-0700
   sos_url: http://www.ncsbe.gov/
   registration_deadline: received_25_days
   id_length_min: '4'
@@ -507,8 +507,8 @@ record_34:
   id_number_tooltip: blank
   sos_address: Secretary of State State<br>600 E Boulevard Avenue Dept 108<br>Bismarck
     ND 58505-0500
-  sos_phone: ''
-  sos_url: ''
+  sos_phone: (800) 352-0867
+  sos_url: https://vip.sos.nd.gov/PortalList.aspx
   sub_18: blank
 record_35:
   abbreviation: OH
@@ -519,7 +519,7 @@ record_35:
   sos_address: Secretary of State of Ohio<br>Elections Division<br>180 E. Broad Street
     - 15th Floor<br>Columbus, OH 43215
   sos_phone: (614) 466-2585
-  sos_url: http://www.sos.state.oh.us/elections.aspx
+  sos_url: https://www.sos.state.oh.us/elections/
   sub_18: turn_by_next_general_election_november_2
   registration_deadline: received_30_days
   id_length_min: '4'
@@ -659,7 +659,7 @@ record_45:
   sos_address: Office of the Secretary of State<br>Director of Elections<br>128 State
     St<br>Montpelier, VT 05633-1101
   sos_phone: (802) 828-2464
-  sos_url: http://vermont-elections.org/
+  sos_url: https://www.sec.state.vt.us/elections.aspx
   registration_deadline: vermont
   id_length_min: '4'
   online_registration_url: https://olvr.sec.state.vt.us/Registration/
@@ -730,8 +730,8 @@ record_50:
   id_length_min: ''
   id_length_max: ''
   id_number_tooltip: blank
-  sos_address: State Capitol Bldg<br>200 W. 24th St<br>Cheyenne, WY 82002
-  sos_phone: ''
-  sos_url: ''
+  sos_address: Elections Division<br>2020 Carey Avenue<br>Suite 600<br>Cheyenne, WY 82002-0020
+  sos_phone: (307) 777-5860
+  sos_url: http://soswy.state.wy.us/Elections/Default.aspx
   sub_18: turn_by_next_election
   registration_deadline: received_14_days
