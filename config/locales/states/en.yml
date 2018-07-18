@@ -70,7 +70,7 @@ en:
 Deadline Alert: April 16, 2018 close of registration date of current election is the last day to register before the May 15, 2018 election.</p>'
         signature_capture:
           touch_sign_instructions: Provide a signature that may be used to verify and match your ballot.
-          desktop_provide_signature: You must provide a signature if you do not have a PennDOT ID. You may choose to 
+          desktop_provide_signature: If you do not have a PennDOT ID you must provide a signature or choose to print and mail your form. 
           upload_file_instructions: Must be an image file (JPEG, PNG, or GIF)          
           upload_file_zoom: Zoom in or out to ensure the signature fits within the box.
           continue_on_device: Continue your registration on a touch-enabled device

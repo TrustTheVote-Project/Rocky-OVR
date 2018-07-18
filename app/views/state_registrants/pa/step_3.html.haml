@@ -273,9 +273,10 @@
     %p.instructions 
       = I18n.t('states.custom.pa.signature_capture.desktop_provide_signature')
     - if form.object.errors[:voter_signature_image]
-      %span.error
-        = form.object.errors[:voter_signature_image].join("\n")
-    
+      %p.instructions
+        %span.error
+          = form.object.errors[:voter_signature_image].join("\n")
+      
     %ul#signature_method.checkbox.signature-method
       %li
         = form.radio_button :signature_method, StateRegistrants::PARegistrant::UPLOAD_METHOD
