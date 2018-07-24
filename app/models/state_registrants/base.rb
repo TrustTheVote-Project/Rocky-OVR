@@ -115,6 +115,13 @@ class StateRegistrants::Base < ActiveRecord::Base
     self.steps
   end
   
+  def should_advance(params)
+    params[:skip_advance] != "true"
+  end  
+  
+  def custom_advance(controller, params)
+  end
+  
   def advance!
     self.status = next_step
     self.save!

@@ -163,7 +163,7 @@ describe V3::RegistrationService do
           "opt_in_volunteer" => false,
           "partner_opt_in_sms" => true,
           "partner_opt_in_email" => true,
-          "partner_opt_in_volunteer" => false,
+          "partner_opt_in_volunteer" => true,
           "finish_with_state" => true,
           "created_via_api" => true,
           "source_tracking_id" => "Aaron Huttner",
@@ -328,6 +328,7 @@ describe V3::RegistrationService do
         r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
         expect(r.valid?).to eq(true)
         expect(r.finish_with_state).to eq(true)
+        expect(r.partner_volunteer).to eq(true)
         expect(r.home_address).to eq("801 N. Monroe")
         expect(r.home_unit).to eq("APARTMENT 306")
         expect(r.home_city).to eq("Philadelphia")
@@ -459,6 +460,7 @@ describe V3::RegistrationService do
         },
         "open_tracking_id" => "some text",
         "canvasser_name" => "A Name",
+        "device_id"=>"xyz123",
         "clock_in_datetime" => "2016-06-16T19:44:45+00:00",
         "session_timeout_length" => 210
       }}
@@ -493,6 +495,7 @@ describe V3::RegistrationService do
         expect(te.open_tracking_id).to eq("some text")
         expect(te.tracking_data).to eq({
           "canvasser_name" => "A Name",
+          "device_id"=>"xyz123",          
           "clock_in_datetime" => "2016-06-16T19:44:45+00:00",
           "session_timeout_length" => 210          
         })
@@ -511,7 +514,9 @@ describe V3::RegistrationService do
       },
       "open_tracking_id" => "some text",
       "canvasser_name" => "A Name",
-      "clock_out_datetime" => "2016-06-16T19:44:45+00:00",
+      "abandoned_registrations" => 3,
+      "completed_registrations" => 7,
+      "clock_out_datetime" => "2016-06-16T19:44:45+00:00",      
     }}
     it "should create a new TrackingEvent" do
       expect {
@@ -536,6 +541,8 @@ describe V3::RegistrationService do
       expect(te.open_tracking_id).to eq("some text")
       expect(te.tracking_data).to eq({
         "canvasser_name" => "A Name",
+        "abandoned_registrations" => 3,
+        "completed_registrations" => 7,
         "clock_out_datetime" => "2016-06-16T19:44:45+00:00"
       })
     end

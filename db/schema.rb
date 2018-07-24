@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180716180845) do
+ActiveRecord::Schema.define(:version => 20180718122833) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -391,7 +391,10 @@ ActiveRecord::Schema.define(:version => 20180716180845) do
     t.string   "signature_method"
     t.string   "sms_number_for_continue_on_device"
     t.string   "email_address_for_continue_on_device"
+    t.integer  "original_partner_id"
   end
+
+  add_index "state_registrants_pa_registrants", ["original_partner_id"], :name => "pa_registrants_original_partner_id"
 
   create_table "state_registrants_va_registrants", :force => true do |t|
     t.boolean  "confirm_voter_record_update"

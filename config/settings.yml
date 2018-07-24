@@ -210,11 +210,13 @@ ovr_states:
       - en
       - es
   PA:
+    require_age_confirmation: true
     registration_deadline: 2018-04-09 # Must be YYYY-MM-DD format!
     api_settings:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
       canvassing_session_timeout_minutes: 1440
+      canvassing_validation_timeout_minutes: 2880
     redirect_to_online_reg_url: true
     languages:
       - en
