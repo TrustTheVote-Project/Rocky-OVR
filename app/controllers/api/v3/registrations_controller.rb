@@ -116,7 +116,15 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     begin
       gr = GrommetRequest.create(request_params: params)
       gr_id = gr ? gr.id : nil
-    rescue
+      
+      if gr.is_duplicate?
+        # Send notification
+        AdminMailer.grommet_duplication(gr).deliver
+        return pa_success_result
+      end
+      
+    rescue Exception=>e
+      #raise e
     end
     
     # input request structure validation
@@ -152,6 +160,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       pa_error_result(registrant.errors.full_messages, registrant)
     end
   rescue StandardError => e
+    #raise e
     pa_error_result("Error building registrant: #{e.message}", registrant)
   end
 
