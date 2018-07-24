@@ -63,9 +63,12 @@ class StateImporter
       return "#{api_uri}#{p}?#{params.collect{|k,v| "#{k}=#{v}"}.join("&")}"
     end
     
-    def self.get(path)
-      puts "Getting #{path}"
-      response =  JSON.parse(ZipCodeCountyAddress.get_no_ssl("#{base_uri}#{path}"))
+    def self.get(path_or_url)
+      if !path_or_url.starts_with?('http')
+        path_or_url = "#{base_uri}#{path_or_url}"
+      end
+      puts "Getting #{path_or_url}"
+      response =  JSON.parse(ZipCodeCountyAddress.get_ssl(path_or_url))
       puts response["meta"]
       return [response["objects"], response["meta"]]
     rescue Exception => e
@@ -98,7 +101,7 @@ class StateImporter
       
       # generate list of data needed
       offices.each do |office|
-        office["addresses"].eadh do |o|
+        office["addresses"].each do |o|
           region_address_list << OpenStruct.new({
             name: region_names[office["region"]],
             address_to: o["address_to"],

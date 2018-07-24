@@ -125,7 +125,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   
   
   def self.get(path)
-    response =  JSON.parse(self.get_no_ssl("#{StateImporter::CountyAddresses.base_uri}#{path}" ))
+    response =  JSON.parse(self.get_ssl("#{StateImporter::CountyAddresses.base_uri}#{path}" ))
     return response["objects"]
   rescue Exception => e
     return []
@@ -136,6 +136,10 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     RestClient::Request.execute(method: :get, url: url, headers: headers, verify_ssl: false, &block)
   end
   
+  
+  def self.get_ssl(url, headers={}, &block)
+    RestClient::Request.execute(method: :get, url: url, headers: headers, verify_ssl: true, &block)
+  end
   
   #address = [row["address to"], row["street 1"], row["street 2"], "#{row["city"]}, #{row["state"]} #{row["zip"]}"].collect{|l| l.strip.blank? ? nil : l}.compact.join("\n")
   
