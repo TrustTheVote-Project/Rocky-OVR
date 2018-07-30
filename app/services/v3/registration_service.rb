@@ -161,7 +161,7 @@ module V3
       registrant.state_ovr_data["errors"] ||= []
       registrant.state_ovr_data["errors"] << e.message
       registrant.state_ovr_data["errors"] << "Backtrace\n" + e.backtrace.join("\n")
-      registrant.save!
+      registrant.save(validate: false)
       raise e # For delayed-job, will enque the run again            
     end
 
