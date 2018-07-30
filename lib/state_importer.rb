@@ -42,12 +42,13 @@ class StateImporter
     
     def self.base_uri
       #"http://eod.staging.usvotefoundation.org"
-      #"https://api.usvotefoundation.org"
-      "https://legacy-api.usvotefoundation.org"
+      "https://api.usvotefoundation.org"
     end
     
     def self.api_uri
-      "/v1/eod"
+      #"/v1/eod"
+      #"/v2/eod"
+      "/eod/v3"
     end
     
     def self.path(resource_type, params={})
@@ -62,9 +63,12 @@ class StateImporter
       return "#{api_uri}#{p}?#{params.collect{|k,v| "#{k}=#{v}"}.join("&")}"
     end
     
-    def self.get(path)
-      puts "Getting #{path}"
-      response =  JSON.parse(RestClient.get("#{base_uri}#{path}"))
+    def self.get(path_or_url)
+      if !path_or_url.starts_with?('http')
+        path_or_url = "#{base_uri}#{path_or_url}"
+      end
+      puts "Getting #{path_or_url}"
+      response =  JSON.parse(ZipCodeCountyAddress.get_ssl(path_or_url))
       puts response["meta"]
       return [response["objects"], response["meta"]]
     rescue Exception => e
@@ -97,17 +101,18 @@ class StateImporter
       
       # generate list of data needed
       offices.each do |office|
-        o = office["mailing_address"]
-        region_address_list << OpenStruct.new({
-          name: region_names[office["region"]],
-          address_to: o["address_to"],
-          street1: o["street1"],
-          street2: o["street2"],
-          city: o["city"],
-          state: o["state"],
-          zip: o["zip"],
-          phone: ""
-        })
+        office["addresses"].each do |o|
+          region_address_list << OpenStruct.new({
+            name: region_names[office["region"]],
+            address_to: o["address_to"],
+            street1: o["street1"],
+            street2: o["street2"],
+            city: o["city"],
+            state: o["state"],
+            zip: o["zip"],
+            phone: ""
+          })
+        end
       end
       
       return region_address_list
