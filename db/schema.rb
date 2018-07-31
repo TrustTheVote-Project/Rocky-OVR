@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180718122833) do
+ActiveRecord::Schema.define(:version => 20180724102556) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -79,7 +79,10 @@ ActiveRecord::Schema.define(:version => 20180718122833) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.text     "request_params"
+    t.string   "request_hash"
   end
+
+  add_index "grommet_requests", ["request_hash"], :name => "index_grommet_requests_on_request_hash"
 
   create_table "partners", :force => true do |t|
     t.string   "username",                                                            :null => false

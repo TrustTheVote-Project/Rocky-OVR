@@ -1,6 +1,25 @@
 class GrommetRequest < ActiveRecord::Base
   # attr_accessible :title, :body
   
+  after_create :generate_request_hash
+  
+  def generate_request_hash
+    params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
+    if params["rocky_request"] && params["rocky_request"]["voter_records_request"]
+      r = params["rocky_request"]["voter_records_request"]["voter_registration"]
+      d = params["rocky_request"]["voter_records_request"]["generated_date"]
+      key = "#{d}-#{r}"
+      self.request_hash = Digest::MD5.hexdigest(key) 
+      puts key, request_hash
+      save(validate: false)    
+    end
+  end
+    
+    
+  def is_duplicate?
+    self.class.where(request_hash: self.request_hash).length > 1
+  end
+  
   def resubmit
     registrant = nil
     params = YAML::load(self.request_params).with_indifferent_access
