@@ -161,7 +161,7 @@ module V3
       registrant.state_ovr_data["errors"] ||= []
       registrant.state_ovr_data["errors"] << e.message
       registrant.state_ovr_data["errors"] << "Backtrace\n" + e.backtrace.join("\n")
-      registrant.save!
+      registrant.save(validate: false)
       raise e # For delayed-job, will enque the run again            
     end
 
@@ -171,11 +171,11 @@ module V3
       pa_data, validation_modifications = pa_adapter.convert
       result = PARegistrationRequest.send_request(pa_data, registrant.partner ? registrant.partner.pa_api_key : nil)
       registrant.state_ovr_data["state_api_validation_modifications"] = validation_modifications
-      registrant.save!
+      registrant.save(validate: false)
       if result[:error].present?
         registrant.state_ovr_data["errors"] ||= []
         registrant.state_ovr_data["errors"] << result[:error].to_s
-        registrant.save!
+        registrant.save(validate: false)
         raise result[:error].to_s if PA_RETRY_ERRORS.include?(result[:error].to_s)
         
         if result[:error].to_s == "VR_WAPI_Invalidsignaturecontrast"
@@ -223,7 +223,7 @@ module V3
       elsif result[:id].blank? || result[:id]==0
           registrant.state_ovr_data["errors"] ||= []
           registrant.state_ovr_data["errors"] << ["PA returned response with no errors and no transaction ID"]
-          registrant.save!
+          registrant.save(validate: false)
           Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
           AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
       else
@@ -232,7 +232,7 @@ module V3
           AdminMailer.pa_registration_warning(registrant, registrant.state_ovr_data["state_api_validation_modifications"]).deliver
         end
         registrant.complete_registration_with_state!
-        registrant.save!
+        registrant.save(validate: false)
       end
     end
     
