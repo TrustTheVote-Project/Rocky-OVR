@@ -3,6 +3,7 @@ es:
   states:
     custom:
       pa:
+        registration_deadline_text: "La fecha límite para registrarse para votar o actualizar una inscripción existente es el 9 de octubre de 2018."
         state_flow_error: Hubo un problema al enviar su registro a Pennsylvania. Completa registro mediante formulario en papel.
         step_2_header: Información Básica
         step_3_header: Casi Termino
@@ -45,7 +46,7 @@ es:
         submitting: Enviando su aplicación
         confirming: Confirmando la presentación
         registration_complete: Su inscripción estará completa
-        registration_complete_dialog_text: ! '<ul><li>Su solicitud se ha enviado a la oficina de registro de votantes del condado.</li><li>Su inscripción no estará completa hasta que sea procesada y aceptada por la oficina de inscripción de su condado.</li><li>Si acepta, recibirá su Tarjeta de Inscripción de Votante por correo.</li><li>Si en 14 días no ha recibido su Tarjeta de Inscripción de Votante, llame a su oficina de inscripción de votantes.</li><p>Atención: La fecha límite para inscribirse y poder votar en las próximas elecciones 4/16/2018 es 5/15/2018.</p>'
+        registration_complete_dialog_text: ! '<ul><li>Su solicitud se ha enviado a la oficina de registro de votantes del condado.</li><li>Su inscripción no estará completa hasta que sea procesada y aceptada por la oficina de inscripción de su condado.</li><li>Si acepta, recibirá su Tarjeta de Inscripción de Votante por correo.</li><li>Si en 14 días no ha recibido su Tarjeta de Inscripción de Votante, llame a su oficina de inscripción de votantes.</li><p>Atención: La fecha límite para inscribirse y poder votar en las próximas elecciones 11/6/2018 es 10/9/2018.</p>'
       ca:
         online_instructions: Ahora, se puede completar su formulario de inscripción
           de votante en linea con el estado - usando el formulario de la Secretaria
