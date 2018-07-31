@@ -559,9 +559,9 @@ record_38:
   requires_party: true
   parties:
   - democratic
+  - republican
   - green
   - libertarian
-  - republican
   - other
   party_tooltip: required_for_primary_2
   id_number_tooltip: drivers_license_or_ssn_or_none_3
