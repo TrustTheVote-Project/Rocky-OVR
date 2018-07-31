@@ -18,7 +18,7 @@ en:
         registration_complete_dialog_text: ! '<p>Your application has been sent to the Dept. of Elections to register to vote.</p>'
         
       pa:
-        registration_deadline_text: "Deadline to register to vote, or update an existing registration, is Monday, April 9, 2018"
+        registration_deadline_text: "Deadline to register to vote, or update an existing registration, is Tuesday, October 9, 2018"
         state_flow_error: There was a problem submitting your registration to Pennsylvania. Please try again later or continue here to create a paper form.
         step_2_header: Basic Info
         step_3_header: Almost Done
@@ -67,7 +67,7 @@ en:
 <li>If you do not receive your Voter Registration Card within 14 days, contact your county voter registration office.</li>
 </ul>
 <p>
-Deadline Alert: April 16, 2018 close of registration date of current election is the last day to register before the May 15, 2018 election.</p>'
+Deadline Alert: October 9, 2018 close of registration date of current election is the last day to register before the November 6, 2018 election.</p>'
         signature_capture:
           touch_sign_instructions: Provide a signature that may be used to verify and match your ballot.
           desktop_provide_signature: If you do not have a PennDOT ID you must provide a signature or choose to print and mail your form. 
