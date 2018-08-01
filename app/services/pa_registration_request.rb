@@ -5,12 +5,14 @@ class PARegistrationRequest
   PREFIX = '<APIOnlineApplicationData xmlns="OVRexternaldata"><record>'
   POSTFIX = '</record></APIOnlineApplicationData>'
 
-  def self.send_request(params, partner_api_key = nil)
-
+  def self.send_request(params, partner_api_key = nil, locale='en')
+    
+    sysparm_language = locale.to_s.downcase == 'es' ? '1' : '0'
+    
     # print 'PA:REQUEST>> ', params, "\n"
     server = RockyConf.ovr_states.PA.api_settings.api_url # 'https://paovrwebapi.votespa.com'
     api_key = partner_api_key || RockyConf.ovr_states.PA.api_settings.api_key
-    url = "/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=#{api_key}&sysparm_action=SETAPPLICATION&sysparm_Language=0"
+    url = "/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=#{api_key}&sysparm_action=SETAPPLICATION&sysparm_Language=#{sysparm_language}"
 
     uri = URI.parse(server)
     http = Net::HTTP.new(uri.host, uri.port)

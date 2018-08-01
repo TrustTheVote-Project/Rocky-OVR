@@ -234,6 +234,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['unitnumber'] = registration_unit_number
 
     result['city'] = registration_city
+    result['municipality'] = result['city']
 
     result['zipcode'] = registration_zip_code
     result['donthavePermtOrResAddress'] = ''
@@ -279,6 +280,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['previousreglastname'] = previous_last_name
       result['previousregfirstname'] = previous_first_name
       result['previousregmiddlename'] = previous_middle_name
+    else
+      result['previousreglastname'] = nil
+      result['previousregfirstname'] = nil
+      result['previousregmiddlename'] = nil
     end
     if !is_new_registration
       result['previousregaddress'] = previous_address
@@ -286,6 +291,12 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['previousregstate'] = previous_state
       result['previousregzip'] = previous_zip_code
       result['previousregcounty'] = previous_county
+    else
+      result['previousregaddress'] = nil
+      result['previousregcity'] = nil
+      result['previousregstate'] = nil
+      result['previousregzip'] = nil
+      result['previousregcounty'] = nil
     end
     
     
@@ -310,7 +321,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   def submit_to_online_reg_url
     begin
-      result = PARegistrationRequest.send_request(self.to_pa_data, self.pa_api_key)
+      result = PARegistrationRequest.send_request(self.to_pa_data, self.pa_api_key, self.locale)
       self.pa_submission_complete = true
       self.save
       if result[:error].present?

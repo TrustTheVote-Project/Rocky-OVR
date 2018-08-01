@@ -172,7 +172,7 @@ module V3
     def self.register_with_pa(registrant)
       pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
       pa_data, validation_modifications = pa_adapter.convert
-      result = PARegistrationRequest.send_request(pa_data, registrant.partner ? registrant.partner.pa_api_key : nil)
+      result = PARegistrationRequest.send_request(pa_data, registrant.partner ? registrant.partner.pa_api_key : nil, registrant.locale)
       registrant.state_ovr_data["state_api_validation_modifications"] = validation_modifications
       registrant.save(validate: false)
       if result[:error].present?
@@ -569,20 +569,21 @@ module V3
       end
 
       
-      form_locale = attrs.delete(:lang)
-      attrs[:locale] = 'en'
-      additional_info = attrs.delete(:additional_info)
-      #"additional_info"=>[{"name"=>"preferred_language", "string_value"=>"Spanish"}]
-      if additional_info
-        begin
-          additional_info.each do |h|
-            if h[:name] == "preferred_language" && h[:string_value].to_s.downcase == "spanish"
-              attrs[:locale]='es'
-            end
-          end
-        rescue
-        end
-      end
+      #form_locale = attrs.delete(:lang)
+      attrs[:locale] = attrs.delete(:lang)
+      attrs.delete(:additional_info)
+      # additional_info = attrs.delete(:additional_info)
+      # #"additional_info"=>[{"name"=>"preferred_language", "string_value"=>"Spanish"}]
+      # if additional_info
+      #   begin
+      #     additional_info.each do |h|
+      #       if h[:name] == "preferred_language" && h[:string_value].to_s.downcase == "spanish"
+      #         attrs[:locale]='es'
+      #       end
+      #     end
+      #   rescue
+      #   end
+      # end
       attrs[:volunteer] = attrs.delete(:opt_in_volunteer)
       attrs[:partner_volunteer] = attrs.delete(:partner_opt_in_volunteer)
       attrs.delete(:created_via_api)
