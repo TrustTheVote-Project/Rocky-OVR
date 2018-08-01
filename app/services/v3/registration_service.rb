@@ -570,6 +570,7 @@ module V3
 
       
       form_locale = attrs.delete(:lang)
+      attrs[:locale] = 'en'
       additional_info = attrs.delete(:additional_info)
       #"additional_info"=>[{"name"=>"preferred_language", "string_value"=>"Spanish"}]
       if additional_info
