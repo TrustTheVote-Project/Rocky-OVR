@@ -650,11 +650,18 @@ class VRToPA
   RACE_RULES =
       {
           "american indian / alaskan native" => "I",
+          "native american or alaskan native" => "I",
+          "native hawaiian or other pacific islander" => "P",
           "asian / pacific islander" => "A",
+          "asian" => "A",
           "black (not hispanic)" => "B",
+          "black or african american" => "B",
           "hispanic" => "H",
+          "hispanic or latino" => "H",
           "white (not hispanic)" => "W",
-          "other" => "O"
+          "white" => "W",
+          "other" => "O",
+          "two or more races" => "T"
       }
 
   def parse_race(race)
