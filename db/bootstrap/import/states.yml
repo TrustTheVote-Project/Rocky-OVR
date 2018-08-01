@@ -563,6 +563,7 @@ record_38:
   - green
   - libertarian
   - other
+  no_party: none_no_affiliation
   party_tooltip: required_for_primary_2
   id_number_tooltip: drivers_license_or_ssn_or_none_3
   sos_address: Office of the Secretary of the Commonwealth<br>210 North Office Building<br>Harrisburg,
