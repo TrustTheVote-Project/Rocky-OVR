@@ -419,7 +419,6 @@ module V3
       attrs.delete(:registration_helper)
       attrs.delete(:gender)
       attrs.delete(:signature)
-      attrs.delete(:additional_info)
       
       name = attrs.delete(:name)
       if name
@@ -570,7 +569,19 @@ module V3
       end
 
       
-      attrs[:locale] = attrs.delete(:lang)
+      form_locale = attrs.delete(:lang)
+      additional_info = attrs.delete(:additional_info)
+      #"additional_info"=>[{"name"=>"preferred_language", "string_value"=>"Spanish"}]
+      if additional_info
+        begin
+          additional_info.each do |h|
+            if h[:name] == "preferred_language" && h[:string_value].to_s.downcase == "spanish"
+              attrs[:locale]='es'
+            end
+          end
+        rescue
+        end
+      end
       attrs[:volunteer] = attrs.delete(:opt_in_volunteer)
       attrs[:partner_volunteer] = attrs.delete(:partner_opt_in_volunteer)
       attrs.delete(:created_via_api)
