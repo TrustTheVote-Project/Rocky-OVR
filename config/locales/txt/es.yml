@@ -88,14 +88,14 @@ es:
         iii: III
         iv: IV
       races:
-        american_indian_alaskan_native: Indio Americano / Nativo de Alaska
-        asian: Asiático/a #Asiático / Islas del Pacífico
-        black_not_hispanic: Negra (No hispano)
-        hispanic: Hispano
-        mutli_racial: Dos o más razas #Multi-racial
+        asian: Asiático/a  #Asian / Pacific Islander
+        black_not_hispanic: Afroamericano/a
+        hispanic: Hispano/a o Latino/a
+        american_indian_alaskan_native: Nativo Americano/a o Nativo/a de Alaska
         native_hawaiian_or_pacific_islander: Hawaino/a  o isleño/a del pacífico
-        white_not_hispanic: Blanca (no hispano)
-        other: Otra
+        other: Otra raza
+        mutli_racial: Dos o más razas # Multi-racial
+        white_not_hispanic: Caucásico/a
         decline_to_state: Declino comentar
       phone_types:
         mobile: Móvil

@@ -97,14 +97,14 @@ en:
         vi: VI
         vii: VII
       races:
-        american_indian_alaskan_native: American Indian / Alaskan Native
         asian: Asian  #Asian / Pacific Islander
-        black_not_hispanic: Black (not Hispanic)
-        hispanic: Hispanic
+        black_not_hispanic: Black or African American
+        hispanic: Hispanic or Latino
+        american_indian_alaskan_native: Native American or Alaskan Native
         native_hawaiian_or_pacific_islander: "Native Hawaiian or Other Pacific Islander"
-        mutli_racial: Two or More # Multi-racial
-        white_not_hispanic: White (not Hispanic)
         other: Other
+        mutli_racial: Two or More Races # Multi-racial
+        white_not_hispanic: White
         decline_to_state: Decline to State
       phone_types:
         mobile: Mobile
