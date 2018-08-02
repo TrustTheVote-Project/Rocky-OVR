@@ -806,8 +806,9 @@ class Registrant < ActiveRecord::Base
   end
   
   def skip_state_flow?
-    h = state_ovr_data || {}
     !!h[:skip_state_flow]
+  rescue
+    false
   end
   
   def use_state_flow?
