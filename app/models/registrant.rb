@@ -808,7 +808,9 @@ class Registrant < ActiveRecord::Base
   end
   
   def skip_state_flow?
-    !!state_ovr_data[:skip_state_flow]
+    !!h[:skip_state_flow]
+  rescue
+    false
   end
   
   def use_state_flow?
@@ -1466,14 +1468,18 @@ class Registrant < ActiveRecord::Base
   end
 
   def vr_application_submission_modifications
-    (state_ovr_data["state_api_validation_modifications"] || []).join(", ")
+    ([state_ovr_data["state_api_validation_modifications"]].flatten.compact).join(", ")
+  rescue
+    ""
   end
   
   def vr_application_submission_errors
-    (state_ovr_data["errors"] || []).collect do |e| 
+    ([state_ovr_data["errors"]].flatten.compact).collect do |e| 
       e_msg = e.is_a?(Array) ? e.join("\n") : e.to_s
       e_msg =~ /^Backtrace\n/ ? nil : e_msg 
     end.compact.join(", ")
+  rescue
+    ""
   end
   
   def status_text

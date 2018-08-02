@@ -16,7 +16,6 @@ en:
         confirming: Confirming Submission
         registration_complete: Registration Complete
         registration_complete_dialog_text: ! '<p>Your application has been sent to the Dept. of Elections to register to vote.</p>'
-        
       pa:
         registration_deadline_text: "Deadline to register to vote, or update an existing registration, is Tuesday, October 9, 2018"
         state_flow_error: There was a problem submitting your registration to Pennsylvania. Please try again later or continue here to create a paper form.
@@ -88,8 +87,6 @@ Deadline Alert: October 9, 2018 close of registration date of current election i
             provide_signature: Provide Signature
             select_file: Select an image to upload
             copy_link: Copy Link
-            
-            
       ca:
         online_instructions: ! 'You can complete your voter registration online with
 
