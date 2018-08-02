@@ -280,7 +280,8 @@
     %ul#signature_method.checkbox.signature-method
       %li
         = form.radio_button :signature_method, StateRegistrants::PARegistrant::UPLOAD_METHOD
-        %label{for: "state_registrants_pa_registrant_signature_method_upload"} Upload a signature image
+        %label{for: "state_registrants_pa_registrant_signature_method_upload"}
+          = I18n.t('states.custom.pa.signature_capture.upload_signature_image')
         #signature-cropper
           %br
           .select-image-btn.rollover_button
