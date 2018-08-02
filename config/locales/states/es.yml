@@ -102,6 +102,7 @@ es:
           La fecha límite para inscribirse y poder votar en las próximas elecciones
           11/6/2018 es 10/9/2018.</p>'
         signature_capture:
+          upload_signature_image: Cargar una imagen de firma
           touch_sign_instructions: Proporcione una firma que pueda usarse para verificar
             y hacer coincidir su boleta.
           desktop_provide_signature: Si no tiene una identificación de PennDOT, debe
