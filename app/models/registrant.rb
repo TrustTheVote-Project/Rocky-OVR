@@ -1455,7 +1455,9 @@ class Registrant < ActiveRecord::Base
   end
 
   def vr_application_submission_modifications
-    (state_ovr_data["state_api_validation_modifications"] || []).join(", ")
+    ([state_ovr_data["state_api_validation_modifications"]].flatten.compact).join(", ")
+  rescue
+    ""
   end
   
   def vr_application_submission_errors
