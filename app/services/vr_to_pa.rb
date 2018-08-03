@@ -692,7 +692,8 @@ class VRToPA
       "republican" => "R",
       "green"      => "GR",
       "libertarian"=> "LN",
-      "none" => "NF"
+      "none" => "NF",
+      "none (no affiliation)" => "NF"
   }
 
   def party
@@ -788,6 +789,7 @@ class VRToPA
   end
 
   def assisted_person_address
+    full_address = read "registration_helper.address"
     address = read "registration_helper.address.numbered_thoroughfare_address"
     return "" if is_empty(address)
     if any_assitant_declaration.to_s != "1"
@@ -795,15 +797,16 @@ class VRToPA
       return "" 
     end
 
-    line1 = join_non_empty([address["complete_address_number"], address["complete_street_name"]], ' ')
+    line1 = join_non_empty([address["complete_address_number"], address["complete_street_name"], get_unit_type_from_address(full_address), get_unit_number_from_address(full_address)], ' ')
+    line2 = join_non_empty([get_line2_from_address(full_address)], ' ')
     city = query(
         "registration_helper.address.numbered_thoroughfare_address.complete_place_names",
         :place_name_type, 'MunicipalJurisdiction', :place_name_value)
     state = address["state"]
     zip_code = address["zip_code"]
-    line2 = join_non_empty([city, state, zip_code], " ")
+    line3 = join_non_empty([city, state, zip_code], " ")
 
-    join_non_empty([line1, line2], ", ")
+    join_non_empty([line1, line2, line3], ", ")
   end
 
   def assisted_person_phone
