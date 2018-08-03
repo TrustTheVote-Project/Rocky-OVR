@@ -192,9 +192,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   def is_new_registration
     empty_prev_reg = !change_of_address?
     empty_prev_name = !change_of_name?
+    no_party_change = !change_of_party?
     prev_state = previous_state
     prev_state_outside_pa = !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
-    return (empty_prev_reg && empty_prev_name) || prev_state_outside_pa
+    return (empty_prev_reg && empty_prev_name && no_party_change) || prev_state_outside_pa
   end
   
   
