@@ -188,6 +188,10 @@ class VRToPA
   #                 "assertion" => true
   #             },
   #             {
+  #                 "type" => "political_party_change",
+  #                 "assertion" => true
+  #             },
+  #             {
   #                 "type" => "send_copy_in_mail",
   #                 "assertion" => true
   #             },
@@ -249,10 +253,11 @@ class VRToPA
     value = query([:voter_classifications], :type, 'eighteen_on_election_day', :assertion, REQUIRED)
     result['eighteen-on-election-day'] = bool_to_int(value, "eighteen_on_election_day")
 
+    result['ispartychange'] = bool_to_int(is_change_of_party_boolean)
+
     result['isnewregistration'] = is_new_registration
     result['name-update'] = name_update
     result['address-update'] = address_update
-    result['ispartychange'] = ""
     result['isfederalvoter'] = ""
 
     # YYYY-MM-DD is expected
@@ -344,10 +349,24 @@ class VRToPA
   def is_new_registration_boolean
     empty_prev_reg = is_empty(read([:previous_registration_address]))
     empty_prev_name = is_empty(read([:previous_name]))
-    prev_state = read("previous_registration_address.numbered_thoroughfare_address.state")
-    prev_state_outside_pa = !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
-    return (empty_prev_reg && empty_prev_name) || prev_state_outside_pa
+    no_party_change = query([:voter_classifications], :type, 'political_party_change', :assertion) != true
+    return (empty_prev_reg && empty_prev_name && no_party_change) || prev_state_outside_pa
   end
+  
+  def is_change_of_party_boolean
+    value = query([:voter_classifications], :type, 'political_party_change', :assertion)
+    value = false if value.blank?    
+    return value && !prev_state_outside_pa
+  end
+  
+  
+  
+  def prev_state_outside_pa
+    empty_prev_reg = is_empty(read([:previous_registration_address]))
+    prev_state = read("previous_registration_address.numbered_thoroughfare_address.state")
+    return !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
+  end
+  
 
   def is_new_registration
      is_new_registration_boolean ? "1" : "0"
