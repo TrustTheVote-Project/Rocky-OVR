@@ -193,16 +193,19 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     empty_prev_reg = !change_of_address?
     empty_prev_name = !change_of_name?
     no_party_change = !change_of_party?
-    prev_state = previous_state
-    prev_state_outside_pa = !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
     return (empty_prev_reg && empty_prev_name && no_party_change) || prev_state_outside_pa
   end
   
   def is_change_of_party
-    prev_state = previous_state
-    prev_state_outside_pa = !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
     return change_of_party? && !prev_state_outside_pa
   end
+  
+  def prev_state_outside_pa
+    empty_prev_reg = !change_of_address?
+    prev_state = previous_state
+    return !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"    
+  end
+  
   
   
   def to_pa_data
@@ -217,9 +220,6 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['eighteen-on-election-day'] = bool_to_int(self.confirm_will_be_18)
 
     result['isnewregistration'] = bool_to_int(is_new_registration)
-    result['name-update'] = bool_to_int(self.change_of_name?)
-    result['address-update'] = bool_to_int(self.change_of_address?)
-    result['ispartychange'] = bool_to_int(is_change_of_party)
     result['isfederalvoter'] = ""
 
     # YYYY-MM-DD is expected
@@ -282,6 +282,17 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['preferredlanguage'] = self.locale
 
     result['voterregnumber'] = ""
+    
+    if !is_new_registration
+      result['name-update'] = bool_to_int(self.change_of_name?)
+      result['address-update'] = bool_to_int(self.change_of_address?)
+      result['ispartychange'] = bool_to_int(is_change_of_party)
+    else
+      result['name-update'] = "0"
+      result['address-update'] = "0"
+      result['ispartychange'] = "0"
+    end
+    
 
     if !is_new_registration
       result['previousreglastname'] = previous_last_name

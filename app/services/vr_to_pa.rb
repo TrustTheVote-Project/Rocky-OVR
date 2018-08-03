@@ -449,7 +449,7 @@ class VRToPA
   end
 
   def address_update
-    is_new_registration_boolean ? "0" : (is_empty(read([:previous_registration_address])) ? "0" : "1")
+    (is_new_registration_boolean || is_empty(read([:previous_registration_address]))) ? "0" : "1"
   end
 
   def prev_middle_name
@@ -465,7 +465,7 @@ class VRToPA
   end
 
   def name_update
-    is_empty(read([:previous_name])) ? "0" : "1"
+   (is_new_registration_boolean || is_empty(read([:previous_name]))) ? "0" : "1"
   end
 
   def zip_code(section, is_required=true)
