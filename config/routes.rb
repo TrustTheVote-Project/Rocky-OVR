@@ -150,6 +150,10 @@ Rocky::Application.routes.draw do
 
   namespace :admin do
     root :controller => 'partners', :action => 'index'
+    resource :grommet_queue, only: [:show],controller: "grommet_queue" do
+      get :flush
+      put :update_delay
+    end
     resources :partners do
       member do
         get :regen_api_key

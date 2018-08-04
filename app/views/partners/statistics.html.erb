@@ -19,6 +19,16 @@
           <%= label_tag :end_date, 'End Date' %>
           <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
         </div>
+        <%- if current_partner.enabled_for_grommet? %>
+          <div class='csv_type_input'>
+          <br/>
+          <br/>
+            <%= label_tag :generate_grommet, 'Generate Grommet Report' %>
+            <%= check_box_tag :generate_grommet %>
+          <br/>
+          <br/>
+          </div>
+        <%- end %>
         <div class='submit_button'>
           <%= rollover_button "downloadcsv", "Download CSV", id: "downloadcsv"%>
         </div>

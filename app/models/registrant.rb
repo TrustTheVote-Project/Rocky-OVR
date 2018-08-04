@@ -202,7 +202,81 @@ class Registrant < ActiveRecord::Base
     "Submitted Via State API",
     "Submitted Signature to State API"
   ]
+  
+  GROMMET_CSV_HEADER = [
+    "Internal Registrant ID",
+    "Status",
+    "Canvasser Name",
+    "Event Zip",
+    "Event Name",
+    
+    "Tablet ID",
+    "48 hour delay submission",
+    
+    "State API Submission Result",
+    "Language of Form",    
+    "Date of birth",
+    "Email address",
+    "Over 18 affirmation",
 
+    
+    "US citizen affirmation",
+    "Salutation",
+    "First name",
+    "Middle name",
+    "Last name",
+    "Name suffix",
+    "Home address",
+    "Home unit",
+    "Home city",
+    "Home County",
+    "Home state",
+    "Home zip code",
+    "Has mailing address?",
+    "Mailing address",
+    "Mailing unit",
+    "Mailing city",
+    "Mailing County",
+    "Mailing state",
+    "Mailing zip code",
+    
+    "Preferred Language",
+    
+    "Party",
+    "Race",
+    
+    "Mobile Phone",
+    "Home Phone",
+    "Work Phone",
+    
+    "Opt-in to Partner email?",
+    "Opt-in to Partner SMS/robocall",
+    "Survey question 1",
+    "Survey answer 1",
+    "Survey question 2",
+    "Survey answer 2",
+    "Volunteer for partner",
+    "Started registration",
+    "Has State License",
+    "Has SSN",
+    
+    "Submited Signature to State API",
+    "Geo Location",
+    
+    "VR Application Submission Modifications",
+    "VR Application Submission Errors",    
+    "VR Application Status",
+    "VR Application Status Details",
+    "VR Application Status Imported DateTime",
+    "Potential Duplicate?",
+    
+  ]
+
+
+
+  
+  
+  
   attr_protected :status
 
   aasm_column :status
@@ -858,6 +932,13 @@ class Registrant < ActiveRecord::Base
     t && t.tracking_data ? t.tracking_data["clock_out_datetime"] : nil    
   end
   
+  def tablet_id
+    return nil if !is_grommet?
+    @canvasser_id ||= self.tracking_source
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_in").first
+    t && t.tracking_data ? t.tracking_data["device_id"] : nil    
+  end
+  
   
   def grommet_submission
     begin 
@@ -956,6 +1037,35 @@ class Registrant < ActiveRecord::Base
       I18n.t('txt.registration.not_given')
     else
       "#{phone} (#{phone_type})"
+    end
+  end
+  
+  # phone_types:
+  #   mobile: Mobile
+  #   home: Home
+  #   work: Work
+  #   other: Othe
+  def mobile_phone
+    if phone_type_key.to_s == "mobile"
+      return phone
+    else
+      ""
+    end
+  end
+  
+  def work_phone
+    if phone_type_key.to_s == "work"
+      return phone
+    else
+      ""
+    end
+  end
+  
+  def home_phone
+    if phone_type_key.to_s == "home"
+      return phone
+    else
+      ""
     end
   end
 
@@ -1453,6 +1563,76 @@ class Registrant < ActiveRecord::Base
     ]
   end
   
+  def to_grommet_csv_array
+    [
+      self.id,
+      status.humanize,
+      self.tracking_source, #Canvasser Name/ID
+      self.tracking_id, # Event Zip
+      self.open_tracking_id, #Event Name
+      
+      tablet_id, 
+      "", # TODO: Delay
+      
+      api_submission_status,
+      locale_english_name,
+      pdf_date_of_birth,
+      email_address,
+      yes_no( will_be_18_by_election?),
+     
+     
+      yes_no(us_citizen?),
+      name_title,
+      first_name,
+      middle_name,
+      last_name,
+      name_suffix,
+      home_address,
+      home_unit,
+      home_city,
+      home_county,
+      home_state && home_state.abbreviation,
+      home_zip_code,
+      yes_no(has_mailing_address?),
+      mailing_address,
+      mailing_unit,
+      mailing_city,
+      mailing_county,
+      mailing_state_abbrev,
+      mailing_zip_code,
+     
+      grommet_preferred_language, # TODO: Preferred Lanuage selection
+     
+      party,
+      race,
+      
+      mobile_phone,
+      home_phone,
+      work_phone,
+      
+      yes_no(partner_opt_in_email?),
+      yes_no(partner_opt_in_sms?),
+      survey_question_1,
+      survey_answer_1,
+      survey_question_2,
+      survey_answer_2,
+      yes_no(partner_volunteer?),
+      created_at && created_at.to_s,
+      yes_no(has_state_license?),
+      yes_no(has_ssn?),
+      
+      api_submitted_with_signature,
+      geo_location,
+      
+      vr_application_submission_modifications,
+      vr_application_submission_errors,
+      vr_application_status,
+      vr_application_status_details,
+      vr_application_status_datetime
+    ]
+  end
+  
+  
   def vr_application_status
     registrant_status ? registrant_status.state_status : nil
   end
@@ -1467,6 +1647,12 @@ class Registrant < ActiveRecord::Base
 
   def vr_application_submission_modifications
     ([state_ovr_data["state_api_validation_modifications"]].flatten.compact).join(", ")
+  rescue
+    ""
+  end
+  
+  def grommet_preferred_language
+    r.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
   rescue
     ""
   end
