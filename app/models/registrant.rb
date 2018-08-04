@@ -808,6 +808,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def skip_state_flow?
+    h = self.state_ovr_data || {}
     !!h[:skip_state_flow]
   rescue
     false
@@ -1448,9 +1449,6 @@ class Registrant < ActiveRecord::Base
       
       yes_no(submitted_via_state_api?),
       api_submitted_with_signature,
-      
-      canvasser_clock_in,
-      canvasser_clock_out,
       
     ]
   end
