@@ -637,13 +637,15 @@ class Partner < ActiveRecord::Base
         row << ci.tracking_data["clock_in_datetime"] 
         if clock_outs[tracking_source]
           row << clock_outs[tracking_source].tracking_data["clock_out_datetime"]
-          row << clock_outs[tracking_source].tracking_data["clock_out_datetime"] - ci.tracking_data["clock_in_datetime"]
+          shift_seconds = Time.parse(clock_outs[tracking_source].tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])
+          row << shift_seconds / 3600.0
           row << counts[:registrations] / (row.last.to_f / 3600.0)
         else
           row << ""
           row << ""
           row << ""
         end
+        csv << row
       end
     end
     
