@@ -3,3 +3,6 @@ Rocky provides a cloud-hosted service to 3rd-party registrar organizations (3RO)
 Developers: see doc/setup.md
 
 Deployment: see doc/production.md
+
+
+curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"

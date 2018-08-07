@@ -231,7 +231,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['Phone'] = ''
     if !self.phone.blank?
       begin
-        result['Phone'] = PhoneFormatter.process(value)
+        result['Phone'] = PhoneFormatter.process(self.phone)
       rescue
       end
     end

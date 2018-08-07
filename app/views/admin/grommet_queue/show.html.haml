@@ -1,0 +1,22 @@
+- if @jobs.count == 0
+  %h3= "No items in queue"
+  
+%h3 
+  Current Grommet Queue Delay (in hours): 
+  = @hours_delay
+  = form_tag update_delay_admin_grommet_queue_path(:format => :csv), method: :put do 
+    = text_field_tag :delay, @hours_delay
+    = submit_tag "Update Delay"
+    
+- if @jobs.count > 0 
+  %br
+  %br
+  %h3= link_to "Flush Queue (will also set queue delay to 0)", flush_admin_grommet_queue_path
+  %br
+  %br
+  %ul
+    - @jobs.each do |j|
+      %li
+        - h = YAML.load(j.handler)
+        = "Registrant ID: #{h.args[0]}, Run At #{j.run_at}"
+    

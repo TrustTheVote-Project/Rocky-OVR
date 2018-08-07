@@ -153,7 +153,15 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
         registrant.save!
-        V3::RegistrationService.delay.async_register_with_pa(registrant.id)
+        
+        job = V3::RegistrationService.delay(run_at: (Admin::GrommetQueueController.delay).hours.from_now, queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME).async_register_with_pa(registrant.id)
+        
+        begin
+          registrant.state_ovr_data["delayed_job_id"] = job.id
+          registrant.save(validate: false)
+        rescue
+        end
+        
         pa_success_result
       end
     else

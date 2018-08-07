@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180724102556) do
+ActiveRecord::Schema.define(:version => 20180804210818) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -145,6 +145,8 @@ ActiveRecord::Schema.define(:version => 20180724102556) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.boolean  "grommet_csv_ready"
+    t.string   "grommet_csv_file_name"
   end
 
   add_index "partners", ["email"], :name => "index_partners_on_email"
