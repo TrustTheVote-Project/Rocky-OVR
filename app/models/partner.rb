@@ -613,7 +613,7 @@ class Partner < ActiveRecord::Base
     TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_out").each do |co|
       clock_outs[co.source_tracking_id] = co
     end
-    CSV.generate do |csv|
+    csvstr = CSV.generate do |csv|
       csv << SHIFT_REPORT_HEADER
       clock_ins.each do |ci|
         tracking_source = ci.source_tracking_id
@@ -648,7 +648,7 @@ class Partner < ActiveRecord::Base
         csv << row
       end
     end
-    
+    return csvstr
   end
   
   def generate_grommet_registrants_csv(start_date=nil, end_date=nil)
@@ -678,9 +678,9 @@ class Partner < ActiveRecord::Base
       regs.each do |r|
         key = r.pop
         if reg_dups[key] > 1
-          r << "true"
+          r.insert(2, "true")
         else
-          r << "false"
+          r.insert(2, "false")
         end
         csv << r
       end

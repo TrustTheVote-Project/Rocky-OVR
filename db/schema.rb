@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180804210818) do
+ActiveRecord::Schema.define(:version => 20180808021143) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -397,6 +397,9 @@ ActiveRecord::Schema.define(:version => 20180804210818) do
     t.string   "sms_number_for_continue_on_device"
     t.string   "email_address_for_continue_on_device"
     t.integer  "original_partner_id"
+    t.boolean  "partner_opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_volunteer"
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], :name => "pa_registrants_original_partner_id"

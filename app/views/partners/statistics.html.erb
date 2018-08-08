@@ -23,7 +23,7 @@
           <div class='csv_type_input'>
           <br/>
           <br/>
-            <%= label_tag :generate_grommet, 'Generate Grommet Report' %>
+            <%= label_tag :generate_grommet, 'Generate PA App Report' %>
             <%= check_box_tag :generate_grommet %>
           <br/>
           <br/>
@@ -32,6 +32,11 @@
         <div class='submit_button'>
           <%= rollover_button "downloadcsv", "Download CSV", id: "downloadcsv"%>
         </div>
+        <%- if current_partner.enabled_for_grommet? %>
+          <div style="clear:both; padding-top: 3em">
+            <h3><%= link_to "Generate PA App Shift Report", grommet_shift_report_partner_path(format: :csv) %></h3>
+          </div>
+        <%- end %>
       </fieldset>
     <%- end %>
   

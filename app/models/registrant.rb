@@ -206,12 +206,13 @@ class Registrant < ActiveRecord::Base
   GROMMET_CSV_HEADER = [
     "Internal Registrant ID",
     "Status",
+    "Potential Duplicate?",
     "Canvasser Name",
     "Event Zip",
     "Event Name",
     
     "Tablet ID",
-    "48 hour delay submission",
+    "Submission Delay",
     
     "State API Submission Result",
     "Language of Form",    
@@ -251,16 +252,12 @@ class Registrant < ActiveRecord::Base
     
     "Opt-in to Partner email?",
     "Opt-in to Partner SMS/robocall",
-    "Survey question 1",
-    "Survey answer 1",
-    "Survey question 2",
-    "Survey answer 2",
     "Volunteer for partner",
     "Started registration",
     "Has State License",
     "Has SSN",
     
-    "Submited Signature to State API",
+    "Submitted Signature",
     "Geo Location",
     
     "VR Application Submission Modifications",
@@ -268,7 +265,6 @@ class Registrant < ActiveRecord::Base
     "VR Application Status",
     "VR Application Status Details",
     "VR Application Status Imported DateTime",
-    "Potential Duplicate?",
     
   ]
 
@@ -961,7 +957,18 @@ class Registrant < ActiveRecord::Base
     return nil if !submitted_via_state_api?
     if is_grommet?
       if state_ovr_data["pa_transaction_id"].blank?
-        ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
+        if state_ovr_data["errors"] && state_ovr_data["errors"].any?
+          return ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
+        elsif djid = state_ovr_data["delayed_job_id"]
+          begin
+            j = Delayed::Job.find(djid)
+            return "Queued: #{j.run_at.in_time_zone('Eastern Time (US & Canada)')}"
+          rescue
+            return "Unknown"
+          end
+        else
+          return "Unknown"
+        end
       else
         "Success: #{state_ovr_data["pa_transaction_id"]}"
       end
@@ -1612,10 +1619,6 @@ class Registrant < ActiveRecord::Base
       
       yes_no(partner_opt_in_email?),
       yes_no(partner_opt_in_sms?),
-      survey_question_1,
-      survey_answer_1,
-      survey_question_2,
-      survey_answer_2,
       yes_no(partner_volunteer?),
       created_at && created_at.to_s,
       yes_no(has_state_license?),

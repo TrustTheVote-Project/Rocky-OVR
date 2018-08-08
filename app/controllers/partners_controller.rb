@@ -140,6 +140,15 @@ HTML
     redirect_to download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})    
   end
   
+  def grommet_shift_report
+    csvstr = Partner.find(1).generate_grommet_shift_report
+    respond_to do |format|
+      format.csv do
+        send_data csvstr, filename: "shift-report.csv", type: "text/csv"
+      end
+    end    
+  end
+  
   def download_csv
     if params[:generate_grommet]=="1"
       if current_partner.grommet_csv_ready
