@@ -568,7 +568,7 @@ class Partner < ActiveRecord::Base
     "Tablet number",
     "Registrations Collected",
     "Registrations Abandoned",	
-    "Image of Tablet shift report",
+    "Registrations Received",
     "# Opt-in to Partner email?",
     "# Opt-in to Partner sms/robocall?",
     "# Registrations w/DL",
@@ -577,7 +577,7 @@ class Partner < ActiveRecord::Base
     "Registrations w/SSN %",
     "Canvasser Clock IN",
     "Canvasser Clock OUT",
-    "Total Shift Time",
+    "Total Shift Time (Hours)",
     "Registrations per hour"
     
   ]
@@ -616,30 +616,36 @@ class Partner < ActiveRecord::Base
     csvstr = CSV.generate do |csv|
       csv << SHIFT_REPORT_HEADER
       clock_ins.each do |ci|
+        co = clock_outs[ci.source_tracking_id]
         tracking_source = ci.source_tracking_id
         counts = shift_ids[tracking_source]
         row = []
         row << ci.tracking_data["clock_in_datetime"]
         row << tracking_source
         row << ci.tracking_data["canvasser_name"]
-        row << ci.tracking_data["partner_tracking_id"]
-        row << ci.tracking_data["open_tracking_id"]
+        row << ci.partner_tracking_id
+        row << ci.open_tracking_id
         row << ci.tracking_data["device_id"]
+        row << (co ? co.tracking_data["completed_registrations"] : "")
+        row << (co ? co.tracking_data["abandoned_registrations"] : "")
         row << counts[:registrations]
-        row << "" #"Registrations Abandoned",	
-        row << "" #"Image of Tablet shift report",
         row << counts[:email_opt_in]
         row << counts[:sms_opt_in]
         row << counts[:dl_count]
-        row << counts[:dl_count] / counts[:registrations].to_f
+        row << '%.2f' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
         row << counts[:ssn_count]
-        row << counts[:ssn_count] / counts[:registrations].to_f
+        row << '%.2f' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
         row << ci.tracking_data["clock_in_datetime"] 
-        if clock_outs[tracking_source]
-          row << clock_outs[tracking_source].tracking_data["clock_out_datetime"]
-          shift_seconds = Time.parse(clock_outs[tracking_source].tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])
-          row << shift_seconds / 3600.0
-          row << counts[:registrations] / (row.last.to_f / 3600.0)
+        if co
+          row << co.tracking_data["clock_out_datetime"]
+          begin
+            shift_seconds = (Time.parse(co.tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])).to_f
+            row << shift_seconds / 3600.0
+            row << counts[:registrations].to_f / (shift_seconds / 3600.0)
+          rescue
+            row << ""
+            row << ""
+          end
         else
           row << ""
           row << ""
