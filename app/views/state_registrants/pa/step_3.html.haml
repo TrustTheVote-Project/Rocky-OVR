@@ -36,7 +36,7 @@
           maxWidth: size,
           minDistance: size,
           dotSize: size,
-          backgroundColor: "rgb(255,255,255,1)"
+          backgroundColor: "rgba(255,255,255,1)"
       });
       signaturePad.clear();
       
@@ -49,7 +49,7 @@
       
       $(".signature_done").click(function() {
         //export
-        var imageData = signaturePad.toDataURL();
+        var imageData = signaturePad.toDataURL("image/jpeg");
 
         var img = new Image;
         img.src = imageData;
@@ -59,7 +59,7 @@
           c.width = 180
           c.height = 60          
           ctx.drawImage(this, 0, 0, c.width, c.height);
-          sizedImageData = c.toDataURL();
+          sizedImageData = c.toDataURL("image/jpeg");
           $("#state_registrants_pa_registrant_voter_signature_image").val(sizedImageData);        
           $("#signature_preview img.preview").attr('src', sizedImageData)
           $("#signature_preview").show();
