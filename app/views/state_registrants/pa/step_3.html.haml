@@ -11,6 +11,8 @@
       var ratio =  Math.max(window.devicePixelRatio || 1, 1);
 
       // This part causes the canvas to be cleared
+      
+      
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext("2d").scale(ratio, ratio);
@@ -20,7 +22,7 @@
       // canvas looks empty, because the internal data of this library wasn't cleared. To make sure
       // that the state of this library is consistent with visual state of the canvas, you
       // have to clear it manually.
-      //signaturePad.clear();
+      signaturePad.clear();
     }
     
   
@@ -28,14 +30,16 @@
       $("#signature_capture").show();   
       $("#signature_upload").hide();
       var canvas = $("canvas#signature_field").get(0);
-      var size = screen.width / 100;
+      var size = screen.width / 150;
       var signaturePad = new SignaturePad(canvas, {
           minWidth: size,
           maxWidth: size,
           minDistance: size,
-          dotSize: size
+          dotSize: size,
+          backgroundColor: "rgb(255,255,255,1)"
       });
-    
+      signaturePad.clear();
+      
       //window.onresize = resizeCanvas.bind(this, canvas, signaturePad);
       
       $(".capture-signature").click(function() {
@@ -97,7 +101,11 @@
       
       function adjustSignature() {
         try {
-          var imageData = $('#signature-cropper').cropit('export');
+          var imageData = $('#signature-cropper').cropit('export', {
+            type: 'image/jpeg',
+            quality: 1.0,
+            fillBg: '#fff'
+          });
           $("#state_registrants_pa_registrant_voter_signature_image").val(imageData);          
           
         } catch(err) { console.error(err) }
