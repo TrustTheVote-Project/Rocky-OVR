@@ -176,6 +176,15 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     sp
   end
+  
+  def english_state_parties
+    sp = self.registrant.english_state_parties
+    # no_party should be 2nd to last instead of last
+    if sp.length > 1
+      sp[-1], sp[-2] = sp[-2], sp[-1]
+    end
+    sp
+  end
 
 
   def parse_party
