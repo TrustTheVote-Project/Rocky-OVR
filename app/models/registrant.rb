@@ -207,6 +207,7 @@ class Registrant < ActiveRecord::Base
     "Internal Registrant ID",
     "Status",
     "Potential Duplicate?",
+    "Shift ID",
     "Canvasser Name",
     "Event Zip",
     "Event Name",
@@ -914,6 +915,13 @@ class Registrant < ActiveRecord::Base
     end    
   end
   
+  def canvasser_name
+    return nil if !is_grommet?
+    @canvasser_id ||= self.tracking_source
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_in").first
+    t && t.tracking_data ? t.tracking_data["canvasser_name"] : nil    
+  end
+  
   def canvasser_clock_in
     return nil if !is_grommet?
     @canvasser_id ||= self.tracking_source
@@ -1575,6 +1583,7 @@ class Registrant < ActiveRecord::Base
       self.id,
       status.humanize,
       self.tracking_source, #Canvasser Name/ID
+      self.canvasser_name, #Canvasser Name only
       self.tracking_id, # Event Zip
       self.open_tracking_id, #Event Name
       
