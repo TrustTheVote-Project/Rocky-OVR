@@ -433,6 +433,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       "mailing_address" => "mailing_address",
       "mailing_city"  => "mailing_city",
       "mailing_zip_code"  => "mailing_zip_code",
+      
       "change_of_address" => "change_of_address",
       "previous_address"  => "prev_address",
       "previous_city" => "prev_city",
@@ -485,6 +486,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     self.registration_unit_number = unit_info.join(' ')
     self.has_mailing_address = r.has_mailing_address?
+    begin
+      self.mailing_state = r.mailing_state.abbreviation
+    rescue
+    end
     self.save(validate: false)
   end
   
@@ -496,6 +501,9 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     r.home_address = [self.registration_address_1.blank? ? nil : self.registration_address_1, self.registration_address_2.blank? ? nil : self.registration_address_2].compact.join(", ")
     r.home_unit = [self.registration_unit_type.blank? ? nil : self.registration_unit_type, self.registration_unit_number.blank? ? nil : self.registration_unit_number].compact.join(" ")
+    begin 
+      r.mailing_state = GeoState[self.mailing_state]
+    end
     r.save(validate: false)
   end
 end
