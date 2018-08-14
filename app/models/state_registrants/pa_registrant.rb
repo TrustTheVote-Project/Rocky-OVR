@@ -273,15 +273,8 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     
     result['continueAppSubmit'] = "1"
     result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn?)
-    result['ssn4'] = ""
-    result['drivers-license'] = ""
-    unless confirm_no_dl_or_ssn?
-      if confirm_no_penndot_number?
-        result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
-      else
-        result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
-      end
-    end
+    result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
+    result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
     
 
     result['politicalparty'] = parse_party[:politicalparty]

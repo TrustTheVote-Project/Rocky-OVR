@@ -101,9 +101,9 @@ class PARegistrantValidator < ActiveModel::Validator
       reg.validates_presence_of(:penndot_number) 
       reg.errors.add(:penndot_number, :format) unless reg.penndot_number.to_s.gsub(/[^\d]/,'') =~ /^\d{8}$/ || reg.penndot_number.blank?
     end
-    unless reg.confirm_no_dl_or_ssn? || !reg.confirm_no_penndot_number?
-      reg.validates_presence_of(:ssn4)
-      reg.errors.add(:ssn4, :format) unless reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /^\d{4}$/ || reg.ssn4.blank?
+    unless reg.confirm_no_dl_or_ssn?
+      reg.validates_presence_of(:ssn4) if reg.confirm_no_penndot_number? 
+      reg.errors.add(:ssn4, :format) unless (reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /^\d{4}$/) || reg.ssn4.blank?
     end
   end
   
