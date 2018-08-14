@@ -91,7 +91,7 @@ class PARegistrantValidator < ActiveModel::Validator
   end
   
   def validate_phone_present_if_opt_in_sms(reg)
-    if reg.opt_in_sms? && reg.phone.blank?
+    if (reg.opt_in_sms? || reg.partner_opt_in_sms?) && reg.phone.blank?
       reg.errors.add(:phone, :required_if_opt_in)
     end
   end
