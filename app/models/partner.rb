@@ -29,6 +29,7 @@ class Partner < ActiveRecord::Base
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
   end
   
+  include TimeStampHelper
 
   DEFAULT_ID = 1
 
@@ -577,7 +578,7 @@ class Partner < ActiveRecord::Base
     "Registrations w/SSN %",
     "Canvasser Clock IN",
     "Canvasser Clock OUT",
-    "Total Shift Time (Hours)",
+    "Total Shift Hours",
     "Registrations per hour"
     
   ]
@@ -620,7 +621,7 @@ class Partner < ActiveRecord::Base
         tracking_source = ci.source_tracking_id
         counts = shift_ids[tracking_source]
         row = []
-        row << ci.tracking_data["clock_in_datetime"]
+        row << eastern_time(ci.tracking_data["clock_in_datetime"])
         row << tracking_source
         row << ci.tracking_data["canvasser_name"]
         row << ci.partner_tracking_id
@@ -635,9 +636,9 @@ class Partner < ActiveRecord::Base
         row << '%.2f' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
         row << counts[:ssn_count]
         row << '%.2f' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
-        row << ci.tracking_data["clock_in_datetime"] 
+        row << eastern_time(ci.tracking_data["clock_in_datetime"])
         if co
-          row << co.tracking_data["clock_out_datetime"]
+          row << eastern_time(co.tracking_data["clock_out_datetime"])
           begin
             shift_seconds = (Time.parse(co.tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])).to_f
             row << shift_seconds / 3600.0
