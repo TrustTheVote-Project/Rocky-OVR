@@ -439,6 +439,8 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       "previous_zip_code" => "prev_zip_code",
       "opt_in_email"  => "opt_in_email",
       "opt_in_sms"  => "opt_in_sms",
+      "partner_opt_in_email"=>"partner_opt_in_email",
+      "partner_opt_in_sms"=>"partner_opt_in_sms",
       "phone" => "phone",
       "party" => "party",
       "race"  => "race",
