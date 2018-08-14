@@ -797,8 +797,9 @@ class VRToPA
       return "" 
     end
 
-    line1 = join_non_empty([address["complete_address_number"], address["complete_street_name"], get_unit_type_from_address(full_address), get_unit_number_from_address(full_address)], ' ')
+    line1 = join_non_empty([address["complete_address_number"], address["complete_street_name"]], ' ')
     line2 = join_non_empty([get_line2_from_address(full_address)], ' ')
+    units = join_non_empty([get_unit_type_from_address(full_address), get_unit_number_from_address(full_address)], ' ')
     city = query(
         "registration_helper.address.numbered_thoroughfare_address.complete_place_names",
         :place_name_type, 'MunicipalJurisdiction', :place_name_value)
@@ -806,7 +807,7 @@ class VRToPA
     zip_code = address["zip_code"]
     line3 = join_non_empty([city, state, zip_code], " ")
 
-    join_non_empty([line1, line2, line3], ", ")
+    join_non_empty([line1, line2, units, line3], ", ")
   end
 
   def assisted_person_phone
