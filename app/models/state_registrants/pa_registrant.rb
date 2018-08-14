@@ -21,7 +21,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     SPC: "SPACE",
     STO: "STOP",
     STE: "SUITE",
-    TRL: "TRAIL",
+    TRL: "TRAILER",
     TRLR: "TRAILER",
     UNI: "UNIT",
     UPP: "UPPER",
