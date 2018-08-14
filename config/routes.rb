@@ -48,7 +48,7 @@ Rocky::Application.routes.draw do
     member do
       get "statistics"
       post "registrations"
-      get "grommet_shift_report"
+      post "grommet_shift_report"
       get "download_csv"
       get "embed_codes"
     end

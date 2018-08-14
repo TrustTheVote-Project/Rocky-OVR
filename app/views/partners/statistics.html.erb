@@ -30,14 +30,30 @@
           </div>
         <%- end %>
         <div class='submit_button'>
-          <%= rollover_button "downloadcsv", "Download CSV", id: "downloadcsv"%>
+          <%= rollover_button "downloadcsv", "Download Registrations CSV", id: "downloadcsv"%>
         </div>
-        <%- if current_partner.enabled_for_grommet? %>
-          <div style="clear:both; padding-top: 3em">
-            <h3><%= link_to "Generate PA App Shift Report", grommet_shift_report_partner_path(format: :csv) %></h3>
-          </div>
-        <%- end %>
       </fieldset>
+    <%- end %>
+    
+    <%- if current_partner.enabled_for_grommet? %>    
+      <%= form_tag grommet_shift_report_partner_path(:format => :csv), method: :post, :class=> 'form_downloadcsv' do %>
+        <fieldset>
+          <legend>Download PA Shift Report</legend>
+          <p>Leave date fields blank if you would like to download all your registration data.</p>
+          <div class='date_input'>
+            <%= label_tag :start_date, 'Start Date' %>
+            <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+          <div class='date_input'>
+            <%= label_tag :end_date, 'End Date' %>
+            <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+          
+          <div class='submit_button' style="clear: both">
+            <%= rollover_button "downloadcsv", "Download PA Shift Report CSV", id: "downloadshiftcsv"%>
+          </div>
+        </fieldset>
+      <%- end %>
     <%- end %>
   
 
