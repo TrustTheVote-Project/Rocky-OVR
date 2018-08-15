@@ -141,7 +141,10 @@ HTML
   end
   
   def grommet_shift_report
-    csvstr = Partner.find(1).generate_grommet_shift_report
+    start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
+    end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
+    
+    csvstr = current_partner.generate_grommet_shift_report(start_date, end_date)
     respond_to do |format|
       format.csv do
         send_data csvstr, filename: "shift-report.csv", type: "text/csv"
