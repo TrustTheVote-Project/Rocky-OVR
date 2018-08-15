@@ -576,8 +576,8 @@ class Partner < ActiveRecord::Base
     "Registrations w/DL %",
     "# Registrations w/SSN",	
     "Registrations w/SSN %",
-    "Canvasser Clock IN",
-    "Canvasser Clock OUT",
+    "Canvasser Clock IN (EST)",
+    "Canvasser Clock OUT (EST)",
     "Total Shift Hours",
     "Registrations per hour"
     
@@ -616,7 +616,7 @@ class Partner < ActiveRecord::Base
     end
     csvstr = CSV.generate do |csv|
       csv << SHIFT_REPORT_HEADER
-      clock_ins.each do |ci|
+      clock_ins.sort{|a,b| a.tracking_data["clock_in_datetime"] <=> b.tracking_data["clock_in_datetime"]}.each do |ci|
         co = clock_outs[ci.source_tracking_id]
         tracking_source = ci.source_tracking_id
         counts = shift_ids[tracking_source]

@@ -204,7 +204,6 @@ class Registrant < ActiveRecord::Base
   ]
   
   GROMMET_CSV_HEADER = [
-    "Internal Registrant ID",
     "Status",
     "Potential Duplicate?",
     "Shift ID",
@@ -213,7 +212,6 @@ class Registrant < ActiveRecord::Base
     "Event Name",
     
     "Tablet ID",
-    "Submission Delay",
     
     "State API Submission Result",
     "Language of Form",    
@@ -266,6 +264,7 @@ class Registrant < ActiveRecord::Base
     "VR Application Status",
     "VR Application Status Details",
     "VR Application Status Imported DateTime",
+    "Internal Registrant ID",
     
   ]
 
@@ -1559,7 +1558,7 @@ class Registrant < ActiveRecord::Base
       yes_no(partner_volunteer?),
       ineligible_reason,
       yes_no(complete? && ineligible_age? && (under_18_ok? || automatic_under_18_ok?)),
-      created_at && created_at.to_s,
+      created_at && created_at.in_time_zone("America/New_York").to_s,
       yes_no(finish_with_state?),
       yes_no(building_via_api_call?),
       yes_no(has_state_license?),
@@ -1580,7 +1579,6 @@ class Registrant < ActiveRecord::Base
   
   def to_grommet_csv_array
     [
-      self.id,
       status.humanize,
       self.tracking_source, #Canvasser Name/ID
       self.canvasser_name, #Canvasser Name only
@@ -1588,7 +1586,6 @@ class Registrant < ActiveRecord::Base
       self.open_tracking_id, #Event Name
       
       tablet_id, 
-      "", # TODO: Delay
       
       api_submission_status,
       locale_english_name,
@@ -1629,7 +1626,7 @@ class Registrant < ActiveRecord::Base
       yes_no(partner_opt_in_email?),
       yes_no(partner_opt_in_sms?),
       yes_no(partner_volunteer?),
-      created_at && created_at.to_s,
+      created_at && created_at.in_time_zone("America/New_York").to_s,
       yes_no(has_state_license?),
       yes_no(has_ssn?),
       
@@ -1640,7 +1637,8 @@ class Registrant < ActiveRecord::Base
       vr_application_submission_errors,
       vr_application_status,
       vr_application_status_details,
-      vr_application_status_datetime
+      vr_application_status_datetime,
+      self.id     
     ]
   end
   
@@ -1654,7 +1652,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def vr_application_status_datetime
-    registrant_status ? registrant_status.updated_at : nil    
+    registrant_status && registrant_status.updated_at ? registrant_status.updated_at.in_time_zone("America/New_York").to_s : nil    
   end
 
   def vr_application_submission_modifications
