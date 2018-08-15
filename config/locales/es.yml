@@ -137,6 +137,7 @@ es:
         assistant_phone: Número de Teléfono
         sms_number_for_continue_on_device: Enviar enlace por SMS
         email_address_for_continue_on_device: Envíeme por correo electrónico el enlace
+        voter_signature_image: Firma del votante
       registrant:
         date_of_birth: Fecha de Nac
         email_address: Correo Electrónico
