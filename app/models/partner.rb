@@ -578,8 +578,7 @@ class Partner < ActiveRecord::Base
     "Registrations w/SSN %",
     "Canvasser Clock IN (EST)",
     "Canvasser Clock OUT (EST)",
-    "Total Shift Hours",
-    "Registrations per hour"
+    "Total Shift Hours"
     
   ]
   def generate_grommet_shift_report(start_date=nil, end_date=nil)
@@ -642,13 +641,10 @@ class Partner < ActiveRecord::Base
           begin
             shift_seconds = (Time.parse(co.tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])).to_f
             row << shift_seconds / 3600.0
-            row << counts[:registrations].to_f / (shift_seconds / 3600.0)
           rescue
-            row << ""
             row << ""
           end
         else
-          row << ""
           row << ""
           row << ""
         end
