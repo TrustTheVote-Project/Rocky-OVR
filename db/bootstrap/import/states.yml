@@ -571,7 +571,7 @@ record_38:
   sos_phone: (717) 787-5280
   sos_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationStatus.aspx
   registration_deadline: received_30_days
-  online_registration_url: https://www.pavoterservices.beta.pa.gov/Pages/VoterRegistrationApplication.aspx
+  online_registration_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx
 record_39:
   abbreviation: RI
   name: Rhode Island
