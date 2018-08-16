@@ -681,9 +681,9 @@ class Partner < ActiveRecord::Base
       regs.each do |r|
         key = r.pop
         if reg_dups[key] > 1
-          r.insert(2, "true")
+          r.insert(1, "true")
         else
-          r.insert(2, "false")
+          r.insert(1, "false")
         end
         csv << r
       end
