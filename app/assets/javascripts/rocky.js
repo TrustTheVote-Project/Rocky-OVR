@@ -1,3 +1,5 @@
+function registerTouch() {};
+
 function hideErrors() {
   $('.error').each(function(){ $(this).css('opacity', 0); });
 };

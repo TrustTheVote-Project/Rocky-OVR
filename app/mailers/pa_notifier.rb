@@ -26,6 +26,11 @@ class PANotifier < ActionMailer::Base
   def pa_confirmation(registrant)
     setup_registrant_email(registrant, 'pa_confirmation')
   end
+  
+  def continue_on_device(registrant, signature_capture_url)
+    @registration_url = signature_capture_url
+    setup_registrant_email(registrant, 'pa_continue_on_device')    
+  end
 
 
   protected

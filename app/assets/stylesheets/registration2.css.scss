@@ -293,7 +293,7 @@ body {
       display: none !important;
     }
     
-    .rollover_button button {
+    .rollover_button button, .rollover_button span.button-style {
       background-color: #fff;
       background-image: none;
       border: 2px solid #b2272c;
@@ -317,6 +317,13 @@ body {
         color: #fff !important;
         cursor: pointer;
         transition: background 0.9s ease-out, color 0.05s ease-in;
+      }
+    }
+    
+    .rollover_button a {
+      display: block;
+      span.button-style {
+        display: inline-block;
       }
     }
     

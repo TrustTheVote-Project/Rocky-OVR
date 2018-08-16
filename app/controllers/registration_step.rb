@@ -149,7 +149,7 @@ class RegistrationStep < ApplicationController
   end
   
   def state_flow_redirect
-    redirect_to edit_state_registrant_path('step_2', @registrant.to_param)
+    redirect_to edit_state_registrant_path(@registrant.to_param, 'step_2')
   end
   
   def set_params

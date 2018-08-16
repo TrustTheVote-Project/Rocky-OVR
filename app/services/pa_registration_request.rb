@@ -2,15 +2,17 @@ class PARegistrationRequest
 
   require 'net/http'
 
-  PREFIX = '{"ApplicationData": "<APIOnlineApplicationData xmlns=\"OVRexternaldata\"><record>'
-  POSTFIX = '</record></APIOnlineApplicationData>"}'
+  PREFIX = '<APIOnlineApplicationData xmlns="OVRexternaldata"><record>'
+  POSTFIX = '</record></APIOnlineApplicationData>'
 
-  def self.send_request(params)
-
+  def self.send_request(params, partner_api_key = nil, locale='en')
+    
+    sysparm_language = locale.to_s.downcase == 'es' ? '1' : '0'
+    
     # print 'PA:REQUEST>> ', params, "\n"
     server = RockyConf.ovr_states.PA.api_settings.api_url # 'https://paovrwebapi.votespa.com'
-    api_key = RockyConf.ovr_states.PA.api_settings.api_key
-    url = "/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=#{api_key}&sysparm_action=SETAPPLICATION&sysparm_Language=0"
+    api_key = partner_api_key || RockyConf.ovr_states.PA.api_settings.api_key
+    url = "/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=#{api_key}&sysparm_action=SETAPPLICATION&sysparm_Language=#{sysparm_language}"
 
     uri = URI.parse(server)
     http = Net::HTTP.new(uri.host, uri.port)
@@ -39,7 +41,9 @@ class PARegistrationRequest
       # TODO escape?
       "<#{k}>#{v}</#{k}>"
     end.join
-    PREFIX + body + POSTFIX
+    return {
+      "ApplicationData" => PREFIX + body + POSTFIX
+    }.to_json
   end
 
   # sample response = "\"<RESPONSE><APPLICATIONID>27042</APPLICATIONID><APPLICATIONDATE>Aug 12 2016  8:37AM</APPLICATIONDATE><SIGNATURE>Submitted with Uploaded Signature</SIGNATURE><ERROR></ERROR></RESPONSE>\""

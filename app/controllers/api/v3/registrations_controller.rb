@@ -116,7 +116,15 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     begin
       gr = GrommetRequest.create(request_params: params)
       gr_id = gr ? gr.id : nil
-    rescue
+      
+      if gr.is_duplicate?
+        # Send notification
+        AdminMailer.grommet_duplication(gr).deliver
+        return pa_success_result
+      end
+      
+    rescue Exception=>e
+      #raise e
     end
     
     # input request structure validation
@@ -145,13 +153,22 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
         registrant.save!
-        V3::RegistrationService.delay.async_register_with_pa(registrant.id)
+        
+        job = V3::RegistrationService.delay(run_at: (Admin::GrommetQueueController.delay).hours.from_now, queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME).async_register_with_pa(registrant.id)
+        
+        begin
+          registrant.state_ovr_data["delayed_job_id"] = job.id
+          registrant.save(validate: false)
+        rescue
+        end
+        
         pa_success_result
       end
     else
       pa_error_result(registrant.errors.full_messages, registrant)
     end
   rescue StandardError => e
+    #raise e
     pa_error_result("Error building registrant: #{e.message}", registrant)
   end
 

@@ -1,7 +1,9 @@
 ---
 es:
-  'yes': "Sí"
-  'no': "No"
+  'yes': Sí
+  'no': 'No'
+  affirm: NEED TRANSLATION
+  decline: NEED TRANSLATION
   language_name: español
   language_name_translation_instructions: Por favor, indique el nombre de la lengua
     traducida en ese idioma. Por ejemplo, si se está traduciendo japonés, proporcione
@@ -40,11 +42,53 @@ es:
       partner:
         from_email: De correo electrónico
         url: URL
+        registration_instructions_url: NEED TRANSLATION
+      state_registrants/va_registrant:
+        confirm_voter_record_update: NEED TRANSLATION
+        confirm_us_citizen: NEED TRANSLATION
+        ssn: NEED TRANSLATION
+        confirm_no_ssn: NEED TRANSLATION
+        dln: NEED TRANSLATION
+        confirm_no_dln: NEED TRANSLATION
+        name_title: NEED TRANSLATION
+        first_name: NEED TRANSLATION
+        middle_name: NEED TRANSLATION
+        confirm_no_middle_name: NEED TRANSLATION
+        last_name: NEED TRANSLATION
+        name_suffix: NEED TRANSLATION
+        registration_address_1: NEED TRANSLATION
+        registration_address_2: NEED TRANSLATION
+        registration_city: NEED TRANSLATION
+        home_state: NEED TRANSLATION
+        registration_zip_code: NEED TRANSLATION
+        registration_locality: NEED TRANSLATION
+        convicted_of_felony: NEED TRANSLATION
+        right_to_vote_restored: NEED TRANSLATION
+        is_military: NEED TRANSLATION
+        no_usps_address: NEED TRANSLATION
+        is_law_enforcement: NEED TRANSLATION
+        is_court_protected: NEED TRANSLATION
+        is_being_stalked: NEED TRANSLATION
+        is_confidentiality_program: NEED TRANSLATION
+        has_mailing_address: NEED TRANSLATION
+        mailing_address_1: NEED TRANSLATION
+        mailing_address_2: NEED TRANSLATION
+        mailing_city: NEED TRANSLATION
+        mailing_state: NEED TRANSLATION
+        mailing_zip_code: NEED TRANSLATION
+        mailing_locality: NEED TRANSLATION
+        registered_in_other_state: NEED TRANSLATION
+        other_registration_state_abbrev: NEED TRANSLATION
+        interested_in_being_poll_worker: NEED TRANSLATION
+        confirm_affirm_privacy_notice: NEED TRANSLATION
+        confirm_voter_fraud_warning: NEED TRANSLATION
+        confirm_register_to_vote: NEED TRANSLATION
       state_registrants/pa_registrant:
         email: Correo Electrónico
         registration_zip_code: Código Postal
         confirm_declaration: Confirmo que leí y que acepto los términos anteriores.
-        confirm_assistant_declaration: Confirmo que leí y que acepto los términos anteriores.
+        confirm_assistant_declaration: Confirmo que leí y que acepto los términos
+          anteriores.
         date_of_birth: Fecha de Nac
         confirm_us_citizen: Soy ciudadano americano.
         confirm_will_be_18: Tendré 18 años en el próximo día de elecciones.
@@ -58,13 +102,14 @@ es:
         previous_last_name: Apellido
         registration_address_1: Dirección Casa
         registration_address_2: Dirección 2
-        registration_unit_type: ! 'Unidad Número'
-        registration_unit_number: ! 'No.'
+        registration_unit_type: Unidad Número
+        registration_unit_number: No.
         registration_city: Ciudad
         registration_state: Estado
         home_state_abbrev: Estado
         registration_county: Condado donde vive
-        has_mailing_address: Recibo mi correo en una dirección diferente a la provista anteriormente.
+        has_mailing_address: Recibo mi correo en una dirección diferente a la provista
+          anteriormente.
         mailing_address: Dirección
         mailing_city: Ciudad
         mailing_state: Estado
@@ -75,7 +120,7 @@ es:
         previous_zip_code: Código Postal
         previous_county: Condado donde vive
         phone: Teléfono
-        change_of_name:  He cambiado mi nombre.
+        change_of_name: He cambiado mi nombre.
         change_of_address: He cambiado mi dirección.
         change_of_party: He cambiado mi partido político.
         party: Partido
@@ -84,11 +129,15 @@ es:
         penndot_number: Número de Licencia de Conducir de PA
         confirm_no_penndot_number: No sé mi número de PennDOT
         ssn4: Los últimos 4 dígitos de su número de seguro social
-        confirm_no_dl_or_ssn: No sé mi número de los últimos 4 dígitos de su número de seguro social
+        confirm_no_dl_or_ssn: No sé mi número de los últimos 4 dígitos de su número
+          de seguro social
         has_assistant: ¿Alguien se ayudó con este formulario?
         assistant_name: Ayudante Nombre
         assistant_address: Ayudante Dirección
         assistant_phone: Número de Teléfono
+        sms_number_for_continue_on_device: Enviar enlace por SMS
+        email_address_for_continue_on_device: Envíeme por correo electrónico el enlace
+        voter_signature_image: Firma del votante
       registrant:
         date_of_birth: Fecha de Nac
         email_address: Correo Electrónico
@@ -143,6 +192,38 @@ es:
         tell_message: Mensaje
     errors:
       models:
+        state_registrants/va_registrant:
+          blank: NEED TRANSLATION
+          invalid_zip: NEED TRANSLATION
+          attributes:
+            confirm_voter_record_update:
+              accepted: NEED TRANSLATION
+            confirm_us_citizen:
+              accepted: NEED TRANSLATION
+            confirm_voter_fraud_warning:
+              accepted: NEED TRANSLATION
+            confirm_affirm_privacy_notice:
+              accepted: NEED TRANSLATION
+            confirm_no_middle_name:
+              accepted: NEED TRANSLATION
+            phone:
+              invalid: NEED TRANSLATION
+              required_if_opt_in: NEED TRANSLATION
+            assistant_phone:
+              invalid: NEED TRANSLATION
+            date_of_birth:
+              format: NEED TRANSLATION
+              too_old: NEED TRANSLATION
+            ssn:
+              format: NEED TRANSLATION
+            dln:
+              format: NEED TRANSLATION
+            convicted_of_felony:
+              inclusion: NEED TRANSLATION
+            right_to_vote_restored:
+              inclusion: NEED TRANSLATION
+            confirm_register_to_vote:
+              accepted: NEED TRANSLATION
         state_registrants/pa_registrant:
           blank: Requerido
           invalid_zip: Código Postal Invalido
@@ -150,25 +231,33 @@ es:
             confirm_us_citizen:
               accepted: Soy ciudadano de los Estados Unidos!
             confirm_will_be_18:
-              accepted: Tendré por lo menos 18 años en la fecha de las siguientes elecciones.
+              accepted: Tendré por lo menos 18 años en la fecha de las siguientes
+                elecciones.
             confirm_declaration:
-              accepted: He revisado la información anterior, y es verdad y exacta a lo mejor de mi conocimiento.
+              accepted: He revisado la información anterior, y es verdad y exacta
+                a lo mejor de mi conocimiento.
             confirm_assitant_declaration:
               accepted: Confirmo que leí y que acepto los términos anteriores.
             phone:
-              invalid: ! 'Deber ser ***-***-****'
+              invalid: Deber ser ***-***-****
               required_if_opt_in: Si necesita recibir TXT
             assistant_phone:
-              invalid: ! 'Deber ser ***-***-****'
+              invalid: Deber ser ***-***-****
             date_of_birth:
               format: Debe ser MM-DD-AAAA
+              too_old: Debe ser después de 1900
             penndot_number:
               format: Deberían tener 8 dígitos
-              blank: Requerido. Marque "No sé mi número de PennDOT" si no sabes su de identificación PennDOT
+              blank: Requerido. Marque "No sé mi número de PennDOT" si no sabes su
+                de identificación PennDOT
             ssn4:
               format: Los últimos 4 dígitos de su número de seguro social
-              blank: Requerido. Marque "No sé mi número de los últimos 4 dígitos de su número de seguro social" si no sabes los últimos cuatro dígitos de su número de seguro social.
-            
+              blank: Requerido. Marque "No sé mi número de los últimos 4 dígitos de
+                su número de seguro social" si no sabes los últimos cuatro dígitos
+                de su número de seguro social.
+            voter_signature_image:
+              blank: Debe proporcionar un número de PennDOT, o una firma electrónica,
+                o firmar un formulario en papel para completar su solicitud.
         registrant:
           ca_disclosures_error: Para completar su inscripción para votar en el estado
             de California debe aceptar las condiciones arriba mencionadas.
@@ -185,6 +274,7 @@ es:
               invalid: Dirección no válida
             date_of_birth:
               format: Debe ser MM-DD-AAAA
+              too_old: Debe ser después de 1900
             phone:
               invalid: Deber ser ***-***-****
               required_if_opt_in: Si necesita recibir TXT
@@ -192,6 +282,8 @@ es:
               accepted: Debe indicar si la información arriba es correcta
             has_state_license:
               inclusion: Requerido
+            us_citizen:
+              accepted: ¡Debes ser un ciudadano estadounidense!
       messages:
         inclusion: ! '%{attribute} no esta incluida en la lista'
         exclusion: ! '%{attribute} esta reservado'
@@ -227,4 +319,25 @@ es:
       not_confirmed: Tu cuenta no está confirmada.
       not_approved: Tu cuenta no ha sido aprobada.
       no_authentication_details: Faltan detalles de autentificación.
-
+  partners:
+    branding:
+      nav: NEED TRANSLATION
+      title: NEED TRANSLATION
+      description:
+        general: NEED TRANSLATION
+        approval: NEED TRANSLATION
+      preview_warning:
+        not_set: NEED TRANSLATION
+        not_changed: NEED TRANSLATION
+      preview: NEED TRANSLATION
+      approval:
+        title: NEED TRANSLATION
+        status:
+          not_found: NEED TRANSLATION
+          open: ! 'Submitted at %{date}. Approval status: pending.'
+          rejected: The request was rejected %{date}.
+          done: The latest request was fulfilled %{date}.
+        open: NEED TRANSLATION
+        close: NEED TRANSLATION
+        approve: NEED TRANSLATION
+        reject: NEED TRANSLATION

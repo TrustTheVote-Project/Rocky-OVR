@@ -132,14 +132,35 @@ HTML
   def registrations
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
-    current_partner.generate_registrants_csv_async(start_date, end_date)
-    redirect_to download_csv_partner_url
+    if current_partner.enabled_for_grommet? && params[:generate_grommet]=="1"
+      current_partner.generate_grommet_registrants_csv_async(start_date, end_date)
+    else
+      current_partner.generate_registrants_csv_async(start_date, end_date)
+    end
+    redirect_to download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})    
+  end
+  
+  def grommet_shift_report
+    start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
+    end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
+    
+    csvstr = current_partner.generate_grommet_shift_report(start_date, end_date)
+    respond_to do |format|
+      format.csv do
+        send_data csvstr, filename: "shift-report.csv", type: "text/csv"
+      end
+    end    
   end
   
   def download_csv
-    if current_partner.csv_ready
-      redirect_to current_partner.csv_url 
-      #"/csv/#{current_partner.id}/#{current_partner.csv_file_name}"
+    if params[:generate_grommet]=="1"
+      if current_partner.grommet_csv_ready
+        redirect_to current_partner.grommet_csv_url 
+      end
+    else
+      if current_partner.csv_ready
+        redirect_to current_partner.csv_url 
+      end
     end
   end
 

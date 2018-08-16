@@ -98,6 +98,7 @@ class Registrant < ActiveRecord::Base
   
   # CA_EMAIL_REGEX =  /^[a-zA-Z0-9\-\/_\.]+@.*\..*$/ #A-Z a-z 0-9, underscore, dash, and '@' followed by at least one "."
   CA_ADDRESS_REGEX    = /^[a-zA-Z0-9#\-\s,\/\.]*$/ # A-Z a-z 0-9 # dash space, / .
+  CITY_STATE_REGEX = /^[a-zA-Z0-9#\-\s']*$/      # A-Z a-z 0-9 # dash space
   CA_CITY_STATE_REGEX = /^[a-zA-Z0-9#\-\s]*$/      # A-Z a-z 0-9 # dash space
   # OVR_REGEX = /^[a-zA-Z0-9#\-\s,\/\.\+!@\$%\^&\*_=\(\)\[\]\{\};':"\\<>\?\|]*$/
   #white space and hyphen for names; and for addresses phone#s and other stuff, also include special chars such as # ( ) / + 
@@ -130,7 +131,8 @@ class Registrant < ActiveRecord::Base
   validate_fields(PDF_FIELDS, OVR_REGEX, :invalid_for_pdf)
   validate_fields(NAME_FIELDS, OVR_REGEX, :invalid)
   validate_fields(ADDRESS_FIELDS, CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period")
-  validate_fields(CITY_FIELDS, CA_CITY_STATE_REGEX, :invalid)
+  # Moved this validation to registrant_validator for CA-only addresses 
+  #validate_fields(CITY_FIELDS, CA_CITY_STATE_REGEX, :invalid)
   
   # PDF_FIELDS.each do |pdf_field|
   #   validates pdf_field, format: { with: OVR_REGEX , 
@@ -200,7 +202,77 @@ class Registrant < ActiveRecord::Base
     "Submitted Via State API",
     "Submitted Signature to State API"
   ]
+  
+  GROMMET_CSV_HEADER = [
+    "Status",
+    "Potential Duplicate?",
+    "Shift ID",
+    "Canvasser Name",
+    "Event Zip",
+    "Event Name",
+    
+    "Tablet ID",
+    
+    "State API Submission Result",
+    "Language of Form",    
+    "Date of birth",
+    "Email address",
+    "Over 18 affirmation",
 
+    
+    "US citizen affirmation",
+    "Salutation",
+    "First name",
+    "Middle name",
+    "Last name",
+    "Name suffix",
+    "Home address",
+    "Home unit",
+    "Home city",
+    "Home County",
+    "Home state",
+    "Home zip code",
+    "Has mailing address?",
+    "Mailing address",
+    "Mailing unit",
+    "Mailing city",
+    "Mailing County",
+    "Mailing state",
+    "Mailing zip code",
+    
+    "Preferred Language",
+    
+    "Party",
+    "Race",
+    
+    "Mobile Phone",
+    "Home Phone",
+    "Work Phone",
+    
+    "Opt-in to Partner email?",
+    "Opt-in to Partner SMS/robocall",
+    "Volunteer for partner",
+    "Started registration",
+    "Has State License",
+    "Has SSN",
+    
+    "Submitted Signature",
+    "Geo Location",
+    
+    "VR Application Submission Modifications",
+    "VR Application Submission Errors",    
+    "VR Application Status",
+    "VR Application Status Details",
+    "VR Application Status Imported DateTime",
+    "Internal Registrant ID",
+    
+  ]
+
+
+
+  
+  
+  
   attr_protected :status
 
   aasm_column :status
@@ -591,7 +663,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def self.race_idx(locale, race)
-    I18n.t('txt.registration.races', :locale=>locale).values.collect(&:downcase).index(race.downcase)
+    I18n.t('txt.registration.races', :locale=>locale).values.collect(&:downcase).index(race.to_s.downcase)
   end
 
   # Reset name/prev prefix, suffix, race, party, phone_type
@@ -806,6 +878,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def skip_state_flow?
+    h = self.state_ovr_data || {}
     !!h[:skip_state_flow]
   rescue
     false
@@ -830,6 +903,24 @@ class Registrant < ActiveRecord::Base
     end    
   end
   
+  def first_registration?
+    if is_grommet? 
+      pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
+      return pa_adapter.is_new_registration_boolean
+    elsif existing_state_registrant
+      return existing_state_registrant.first_registration?
+    else
+      return !!self.first_registration
+    end    
+  end
+  
+  def canvasser_name
+    return nil if !is_grommet?
+    @canvasser_id ||= self.tracking_source
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_in").first
+    t && t.tracking_data ? t.tracking_data["canvasser_name"] : nil    
+  end
+  
   def canvasser_clock_in
     return nil if !is_grommet?
     @canvasser_id ||= self.tracking_source
@@ -842,6 +933,13 @@ class Registrant < ActiveRecord::Base
     @canvasser_id ||= self.tracking_source
     t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_out").first
     t && t.tracking_data ? t.tracking_data["clock_out_datetime"] : nil    
+  end
+  
+  def tablet_id
+    return nil if !is_grommet?
+    @canvasser_id ||= self.tracking_source
+    t = TrackingEvent.where(source_tracking_id: @canvasser_id, tracking_event_name: "pa_canvassing_clock_in").first
+    t && t.tracking_data ? t.tracking_data["device_id"] : nil    
   end
   
   
@@ -866,7 +964,18 @@ class Registrant < ActiveRecord::Base
     return nil if !submitted_via_state_api?
     if is_grommet?
       if state_ovr_data["pa_transaction_id"].blank?
-        ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
+        if state_ovr_data["errors"] && state_ovr_data["errors"].any?
+          return ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
+        elsif djid = state_ovr_data["delayed_job_id"]
+          begin
+            j = Delayed::Job.find(djid)
+            return "Queued: #{j.run_at.in_time_zone('Eastern Time (US & Canada)')}"
+          rescue
+            return "Unknown"
+          end
+        else
+          return "Unknown"
+        end
       else
         "Success: #{state_ovr_data["pa_transaction_id"]}"
       end
@@ -895,7 +1004,7 @@ class Registrant < ActiveRecord::Base
       begin
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
-      rescue
+      rescue Exception => e
         nil
       end
     else
@@ -942,6 +1051,35 @@ class Registrant < ActiveRecord::Base
       I18n.t('txt.registration.not_given')
     else
       "#{phone} (#{phone_type})"
+    end
+  end
+  
+  # phone_types:
+  #   mobile: Mobile
+  #   home: Home
+  #   work: Work
+  #   other: Othe
+  def mobile_phone
+    if phone_type_key.to_s == "mobile"
+      return phone
+    else
+      ""
+    end
+  end
+  
+  def work_phone
+    if phone_type_key.to_s == "work"
+      return phone
+    else
+      ""
+    end
+  end
+  
+  def home_phone
+    if phone_type_key.to_s == "home"
+      return phone
+    else
+      ""
     end
   end
 
@@ -1420,7 +1558,7 @@ class Registrant < ActiveRecord::Base
       yes_no(partner_volunteer?),
       ineligible_reason,
       yes_no(complete? && ineligible_age? && (under_18_ok? || automatic_under_18_ok?)),
-      created_at && created_at.to_s,
+      created_at && created_at.in_time_zone("America/New_York").to_s,
       yes_no(finish_with_state?),
       yes_no(building_via_api_call?),
       yes_no(has_state_license?),
@@ -1436,11 +1574,74 @@ class Registrant < ActiveRecord::Base
       yes_no(submitted_via_state_api?),
       api_submitted_with_signature,
       
-      canvasser_clock_in,
-      canvasser_clock_out,
-      
     ]
   end
+  
+  def to_grommet_csv_array
+    [
+      status.humanize,
+      self.tracking_source, #Canvasser Name/ID
+      self.canvasser_name, #Canvasser Name only
+      self.tracking_id, # Event Zip
+      self.open_tracking_id, #Event Name
+      
+      tablet_id, 
+      
+      api_submission_status,
+      locale_english_name,
+      pdf_date_of_birth,
+      email_address,
+      yes_no( will_be_18_by_election?),
+     
+     
+      yes_no(us_citizen?),
+      name_title,
+      first_name,
+      middle_name,
+      last_name,
+      name_suffix,
+      home_address,
+      home_unit,
+      home_city,
+      home_county,
+      home_state && home_state.abbreviation,
+      home_zip_code,
+      yes_no(has_mailing_address?),
+      mailing_address,
+      mailing_unit,
+      mailing_city,
+      mailing_county,
+      mailing_state_abbrev,
+      mailing_zip_code,
+     
+      grommet_preferred_language, # TODO: Preferred Lanuage selection
+     
+      party,
+      race,
+      
+      mobile_phone,
+      home_phone,
+      work_phone,
+      
+      yes_no(partner_opt_in_email?),
+      yes_no(partner_opt_in_sms?),
+      yes_no(partner_volunteer?),
+      created_at && created_at.in_time_zone("America/New_York").to_s,
+      yes_no(has_state_license?),
+      yes_no(has_ssn?),
+      
+      api_submitted_with_signature,
+      geo_location,
+      
+      vr_application_submission_modifications,
+      vr_application_submission_errors,
+      vr_application_status,
+      vr_application_status_details,
+      vr_application_status_datetime,
+      self.id     
+    ]
+  end
+  
   
   def vr_application_status
     registrant_status ? registrant_status.state_status : nil
@@ -1451,11 +1652,17 @@ class Registrant < ActiveRecord::Base
   end
   
   def vr_application_status_datetime
-    registrant_status ? registrant_status.updated_at : nil    
+    registrant_status && registrant_status.updated_at ? registrant_status.updated_at.in_time_zone("America/New_York").to_s : nil    
   end
 
   def vr_application_submission_modifications
     ([state_ovr_data["state_api_validation_modifications"]].flatten.compact).join(", ")
+  rescue
+    ""
+  end
+  
+  def grommet_preferred_language
+    r.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
   rescue
     ""
   end

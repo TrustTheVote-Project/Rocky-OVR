@@ -161,6 +161,9 @@ module V3
       registrant.state_ovr_data["errors"] ||= []
       registrant.state_ovr_data["errors"] << e.message
       registrant.state_ovr_data["errors"] << "Backtrace\n" + e.backtrace.join("\n")
+      Rails.logger.error("Unhandled error submitting registrant #{registrant_id} to PA")
+      Rails.logger.error(e.message)
+      Rails.logger.error("Backtrace\n" + e.backtrace.join("\n"))
       registrant.save(validate: false)
       raise e # For delayed-job, will enque the run again            
     end
@@ -169,7 +172,7 @@ module V3
     def self.register_with_pa(registrant)
       pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
       pa_data, validation_modifications = pa_adapter.convert
-      result = PARegistrationRequest.send_request(pa_data)
+      result = PARegistrationRequest.send_request(pa_data, registrant.partner ? registrant.partner.pa_api_key : nil, registrant.locale)
       registrant.state_ovr_data["state_api_validation_modifications"] = validation_modifications
       registrant.save(validate: false)
       if result[:error].present?
@@ -406,6 +409,8 @@ module V3
 
     def self.pa_data_to_attrs(data)
       
+      converter = VRToPA.new("voter_registration" => data)
+      
       attrs = data.clone
       attrs.symbolize_keys! if attrs.respond_to?(:symbolize_keys!)
       
@@ -414,7 +419,6 @@ module V3
       attrs.delete(:registration_helper)
       attrs.delete(:gender)
       attrs.delete(:signature)
-      attrs.delete(:additional_info)
       
       name = attrs.delete(:name)
       if name
@@ -426,14 +430,25 @@ module V3
       end
       
       
-      reg_address = attrs.delete(:registration_address)
-      if reg_address && reg_address = reg_address.delete(:numbered_thoroughfare_address)
+      reg_address_full = attrs.delete(:registration_address)
+      if reg_address_full && reg_address = reg_address_full[:numbered_thoroughfare_address]
         attrs[:home_address]  = [
           reg_address[:complete_address_number],
           reg_address[:complete_street_name]
         ].join(" ").strip
-        attrs[:home_unit] = reg_address[:complete_sub_address] ?  reg_address[:complete_sub_address][:sub_address] : nil
-        # TODO do we know that these are always provided and in order?
+        line2 = converter.get_line2_from_address(reg_address_full)
+        if !line2.blank?
+          attrs[:home_address] = attrs[:home_address] + "\n#{line2}"
+        end
+        unit_type = converter.get_unit_type_from_address(reg_address_full)
+        unit_number = converter.get_unit_number_from_address(reg_address_full)
+        if !unit_number.blank?
+          unit_type_text = StateRegistrants::PARegistrant::UNITS[unit_type.to_s.strip.upcase.to_sym]
+          unit = "#{unit_type_text} #{unit_number}".strip
+          attrs[:home_unit] = unit
+        end
+        
+        
         attrs[:home_city] = reg_address[:complete_place_names] && reg_address[:complete_place_names].any? ? reg_address[:complete_place_names][0][:place_name_value] : nil
         attrs[:home_county] = reg_address[:complete_place_names] && reg_address[:complete_place_names].length > 1 ? reg_address[:complete_place_names][1][:place_name_value] : nil
         attrs[:home_state] = GeoState[reg_address[:state].to_s.upcase] || GeoState.find_by_name(reg_address[:state])
@@ -441,14 +456,26 @@ module V3
       end
       
       reg_equals_mailing = attrs.delete(:registration_address_is_mailing_address)
-      mailing_address = attrs.delete(:mailing_address)
-      if mailing_address && !reg_equals_mailing && mailing_address = mailing_address.delete(:numbered_thoroughfare_address) 
+      mailing_address_full = attrs.delete(:mailing_address)
+      if mailing_address_full && !reg_equals_mailing && mailing_address = mailing_address_full[:numbered_thoroughfare_address]
         attrs[:has_mailing_address] = true
         attrs[:mailing_address]  = [
           mailing_address[:complete_address_number],
           mailing_address[:complete_street_name]
         ].join(" ").strip
-        attrs[:mailing_unit] = mailing_address[:complete_sub_address] ?  mailing_address[:complete_sub_address][:sub_address] : nil
+        
+        line2 = converter.get_line2_from_address(mailing_address_full)
+        if !line2.blank?
+          attrs[:mailing_address] = attrs[:mailing_address] + "\n#{line2}"
+        end
+        unit_type = converter.get_unit_type_from_address(mailing_address_full)
+        unit_number = converter.get_unit_number_from_address(mailing_address_full)
+        if !unit_number.blank?
+          unit_type_text = StateRegistrants::PARegistrant::UNITS[unit_type.to_s.strip.upcase.to_sym]
+          unit = "#{unit_type_text} #{unit_number}".strip
+          attrs[:mailing_unit] = unit
+        end
+        
         attrs[:mailing_city] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].any? ? mailing_address[:complete_place_names][0][:place_name_value] : nil
         attrs[:mailing_county] = mailing_address[:complete_place_names] && mailing_address[:complete_place_names].length > 1 ? mailing_address[:complete_place_names][1][:place_name_value] : nil
         attrs[:mailing_state] = GeoState[mailing_address[:state].to_s.upcase] || GeoState.find_by_name(mailing_address[:state])
@@ -466,14 +493,26 @@ module V3
         attrs[:prev_last_name] = prev_name[:last_name]
         attrs[:prev_name_suffix] = self.fix_pa_suffix(prev_name[:title_suffix])
       end
-      prev_reg = attrs.delete(:previous_registration_address)
-      if prev_reg && prev_reg = prev_reg.delete(:numbered_thoroughfare_address)
+      prev_reg_addr = attrs.delete(:previous_registration_address)
+      if prev_reg_addr && prev_reg = prev_reg_addr[:numbered_thoroughfare_address]
         attrs[:change_of_address] = true
         attrs[:prev_address]  = [
           prev_reg[:complete_address_number],
           prev_reg[:complete_street_name]
         ].join(" ").strip
-        attrs[:prev_unit] = prev_reg[:complete_sub_address] ?  prev_reg[:complete_sub_address][:sub_address] : nil
+        
+        line2 = converter.get_line2_from_address(prev_reg_addr)
+        if !line2.blank?
+          attrs[:prev_address] = attrs[:prev_address] + "\n#{line2}"
+        end
+        unit_type = converter.get_unit_type_from_address(prev_reg_addr)
+        unit_number = converter.get_unit_number_from_address(prev_reg_addr)
+        if !unit_number.blank?
+          unit_type_text = StateRegistrants::PARegistrant::UNITS[unit_type.to_s.strip.upcase.to_sym]
+          unit = "#{unit_type_text} #{unit_number}".strip
+          attrs[:prev_unit] = unit
+        end
+        
         attrs[:prev_city] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].any? ? prev_reg[:complete_place_names][0][:place_name_value] : nil
         attrs[:prev_county] = prev_reg[:complete_place_names] && prev_reg[:complete_place_names].length > 1 ? prev_reg[:complete_place_names][1][:place_name_value] : nil
         attrs[:prev_state] = GeoState[prev_reg[:state].to_s.upcase] || GeoState.find_by_name(prev_reg[:state])
@@ -530,7 +569,21 @@ module V3
       end
 
       
+      #form_locale = attrs.delete(:lang)
       attrs[:locale] = attrs.delete(:lang)
+      attrs.delete(:additional_info)
+      # additional_info = attrs.delete(:additional_info)
+      # #"additional_info"=>[{"name"=>"preferred_language", "string_value"=>"Spanish"}]
+      # if additional_info
+      #   begin
+      #     additional_info.each do |h|
+      #       if h[:name] == "preferred_language" && h[:string_value].to_s.downcase == "spanish"
+      #         attrs[:locale]='es'
+      #       end
+      #     end
+      #   rescue
+      #   end
+      # end
       attrs[:volunteer] = attrs.delete(:opt_in_volunteer)
       attrs[:partner_volunteer] = attrs.delete(:partner_opt_in_volunteer)
       attrs.delete(:created_via_api)

@@ -73,7 +73,8 @@ describe Api::V3::PartnersController do
         allow(Partner).to receive(:find_by_id).with('1').and_return(mock_partner)
         allow(mock_partner).to receive(:enabled_for_grommet?).and_return(true)
         allow(mock_partner).to receive(:custom_data).and_return({
-          "canvassing_session_timeout_length" => 300
+          "canvassing_session_timeout_length" => 300,
+          "canvassing_validation_timeout_length" => 2880
         })
       end
       context 'when partner is allowed' do
@@ -89,6 +90,20 @@ describe Api::V3::PartnersController do
         end
         it "returns a JSON body with session_timeout_length" do
           expect(JSON.parse(subject.body)["session_timeout_length"]).to eq(300)
+        end
+        it "returns a JSON body with validation_timeout_length" do
+          expect(JSON.parse(subject.body)["validation_timeout_length"]).to eq(2880)
+        end
+        it "returns a JSON body with registration_deadline_date as a string representing the deadline" do
+          expect(JSON.parse(subject.body)["registration_deadline_date"]).to eq(RockyConf.ovr_states.PA.registration_deadline.strftime("%Y-%m-%d"))
+        end        
+        it "returns a JSON body with registration_notification_text as a hash of locale-string pairs" do
+          expect(JSON.parse(subject.body)["registration_notification_text"]["en"]).to eq(I18n.t('states.custom.pa.registration_deadline_text', locale: 'en'))          
+          expect(JSON.parse(subject.body)["registration_notification_text"]["es"]).to eq(I18n.t('states.custom.pa.registration_deadline_text', locale: 'es'))          
+        end
+        it "returns a JSON body with volunteer_text as a hash of locale-string pairs" do
+          expect(JSON.parse(subject.body)["volunteer_text"]["en"]).to eq(I18n.t('txt.registration.volunteer', organization: mock_partner.organization,  locale: 'en'))          
+          expect(JSON.parse(subject.body)["volunteer_text"]["es"]).to eq(I18n.t('txt.registration.volunteer', organization: mock_partner.organization, locale: 'es'))          
         end
       end
       context 'when parter is not allowed' do

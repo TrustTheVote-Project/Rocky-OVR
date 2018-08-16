@@ -22,6 +22,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     STO: "STOP",
     STE: "SUITE",
     TRL: "TRAILER",
+    TRLR: "TRAILER",
     UNI: "UNIT",
     UPP: "UPPER",
     CBN: "CABIN",
@@ -32,12 +33,17 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   COUNTIES =%w(ADAMS ALLEGHENY ARMSTRONG BEAVER BEDFORD BERKS BLAIR BRADFORD BUCKS BUTLER CAMBRIA CAMERON CARBON CENTRE CHESTER CLARION CLEARFIELD CLINTON COLUMBIA CRAWFORD CUMBERLAND DAUPHIN DELAWARE ELK ERIE FAYETTE FOREST FRANKLIN FULTON GREENE HUNTINGDON INDIANA JEFFERSON JUNIATA LACKAWANNA LANCASTER LAWRENCE LEBANON LEHIGH LUZERNE LYCOMING MCKEAN MERCER MIFFLIN MONROE MONTGOMERY MONTOUR NORTHAMPTON NORTHUMBERLAND PERRY PHILADELPHIA PIKE POTTER SCHUYLKILL SNYDER SOMERSET SULLIVAN SUSQUEHANNA TIOGA UNION VENANGO WARREN WASHINGTON WAYNE WESTMORELAND WYOMING YORK)
   
+  DEVICE_METHOD="device".freeze
+  UPLOAD_METHOD="upload".freeze
+  PRINT_METHOD="print".freeze
+  
   include RegistrantMethods
   
   validates_with PARegistrantValidator
   
+  
   def check_valid_for_state_flow!
-    if self.confirm_no_penndot_number?
+    if self.confirm_no_penndot_number? && self.signature_method == PRINT_METHOD
       self.skip_state_flow!
       self.registrant.state_id_number = self.ssn4
       if self.registrant.state_id_number.blank?
@@ -65,9 +71,79 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     'PA'
   end
   
+  def signature_step
+    "step_3"
+  end
+  
   def steps
     %w(step_1 step_2 step_3 step_4 complete)
   end
+  
+  def email_address_for_continue_on_device
+    self.read_attribute(:email_address_for_continue_on_device) || self.email
+  end
+
+  def sms_number_for_continue_on_device
+    self.read_attribute(:sms_number_for_continue_on_device) || self.phone
+  end
+  
+  def should_advance(params)
+    if params.has_key?(:email_continue_on_device) || params.has_key?(:sms_continue_on_device)
+      return false
+    end
+    return params[:skip_advance] != "true"    
+  end
+  
+  include Rails.application.routes.url_helpers
+  def default_url_options
+    ActionMailer::Base.default_url_options
+  end
+  
+  def signature_capture_url
+    update_state_registrant_url(self.to_param, self.signature_step)
+  end
+  
+  def custom_advance(controller, params)
+    # Set flash message?
+    # Actually send the message
+    if params.has_key?(:email_continue_on_device)
+      PANotifier.continue_on_device(self, signature_capture_url).deliver
+      controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.email_sent', email: self.email)
+    elsif params.has_key?(:sms_continue_on_device)
+      #begin
+        twilio_client.messages.create(
+          :from => "+1#{twilio_phone_number}",
+          :to => sms_number,
+          :body => I18n.t('states.custom.pa.signature_capture.sms_body', signature_capture_url: signature_capture_url)
+        )
+        controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+        
+      # rescue Exception => e
+      #   raise e.message.to_s
+      # end
+    end    
+  end
+  
+  def sms_number
+    self.sms_number_for_continue_on_device.to_s.gsub(/[^\d]/, '')
+  end
+  
+  def twilio_client
+    @twilio_client ||= Twilio::REST::Client.new twilio_sid, twilio_token      
+  end
+  
+  def twilio_sid
+    @twilio_sid ||= ENV['TWILIO_SID']
+  end
+  
+  def twilio_token
+    @twilio_token ||= ENV["TWILIO_TOKEN"]
+  end
+  
+  def twilio_phone_number 
+    @twilio_phone_number ||= ENV['TWILIO_NUMBER']
+  end
+  
   
   def async_submit_to_online_reg_url
     self.pa_submission_complete = false
@@ -92,6 +168,24 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     VRToPA::RACE_RULES[english_race.to_s.downcase.strip] || ""
   end
   
+  def state_parties
+    sp = self.registrant.state_parties
+    # no_party should be 2nd to last instead of last
+    if sp.length > 1
+      sp[-1], sp[-2] = sp[-2], sp[-1]
+    end
+    sp
+  end
+  
+  def english_state_parties
+    sp = self.registrant.english_state_parties
+    # no_party should be 2nd to last instead of last
+    if sp.length > 1
+      sp[-1], sp[-2] = sp[-2], sp[-1]
+    end
+    sp
+  end
+
 
   def parse_party
     @parsed_party ||= begin
@@ -108,10 +202,20 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   def is_new_registration
     empty_prev_reg = !change_of_address?
     empty_prev_name = !change_of_name?
-    prev_state = previous_state
-    prev_state_outside_pa = !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"
-    return (empty_prev_reg && empty_prev_name) || prev_state_outside_pa
+    no_party_change = !change_of_party?
+    return (empty_prev_reg && empty_prev_name && no_party_change) || prev_state_outside_pa
   end
+  
+  def is_change_of_party
+    return change_of_party? && !prev_state_outside_pa
+  end
+  
+  def prev_state_outside_pa
+    empty_prev_reg = !change_of_address?
+    prev_state = previous_state
+    return !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"    
+  end
+  
   
   
   def to_pa_data
@@ -126,9 +230,6 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['eighteen-on-election-day'] = bool_to_int(self.confirm_will_be_18)
 
     result['isnewregistration'] = bool_to_int(is_new_registration)
-    result['name-update'] = bool_to_int(self.change_of_name?)
-    result['address-update'] = bool_to_int(self.change_of_address?)
-    result['ispartychange'] = bool_to_int(self.change_of_party?)
     result['isfederalvoter'] = ""
 
     # YYYY-MM-DD is expected
@@ -139,7 +240,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['Phone'] = ''
     if !self.phone.blank?
       begin
-        result['Phone'] = PhoneFormatter.process(value)
+        result['Phone'] = PhoneFormatter.process(self.phone)
       rescue
       end
     end
@@ -150,6 +251,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['unitnumber'] = registration_unit_number
 
     result['city'] = registration_city
+    result['municipality'] = result['city']
 
     result['zipcode'] = registration_zip_code
     result['donthavePermtOrResAddress'] = ''
@@ -167,18 +269,12 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['mailingzipcode'] = ''
     end
 
-    result['signatureimage'] = ""
+    result['signatureimage'] = voter_signature_image
+    
     result['continueAppSubmit'] = "1"
     result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn?)
-    result['ssn4'] = ""
-    result['drivers-license'] = ""
-    unless confirm_no_dl_or_ssn?
-      if confirm_no_penndot_number?
-        result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
-      else
-        result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
-      end
-    end
+    result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
+    result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
     
 
     result['politicalparty'] = parse_party[:politicalparty]
@@ -189,11 +285,26 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['preferredlanguage'] = self.locale
 
     result['voterregnumber'] = ""
+    
+    if !is_new_registration
+      result['name-update'] = bool_to_int(self.change_of_name?)
+      result['address-update'] = bool_to_int(self.change_of_address?)
+      result['ispartychange'] = bool_to_int(is_change_of_party)
+    else
+      result['name-update'] = "0"
+      result['address-update'] = "0"
+      result['ispartychange'] = "0"
+    end
+    
 
     if !is_new_registration
       result['previousreglastname'] = previous_last_name
       result['previousregfirstname'] = previous_first_name
       result['previousregmiddlename'] = previous_middle_name
+    else
+      result['previousreglastname'] = nil
+      result['previousregfirstname'] = nil
+      result['previousregmiddlename'] = nil
     end
     if !is_new_registration
       result['previousregaddress'] = previous_address
@@ -201,6 +312,12 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['previousregstate'] = previous_state
       result['previousregzip'] = previous_zip_code
       result['previousregcounty'] = previous_county
+    else
+      result['previousregaddress'] = nil
+      result['previousregcity'] = nil
+      result['previousregstate'] = nil
+      result['previousregzip'] = nil
+      result['previousregcounty'] = nil
     end
     
     
@@ -219,9 +336,13 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result
   end
   
+  def pa_api_key
+    self.partner ? self.partner.pa_api_key : nil
+  end
+  
   def submit_to_online_reg_url
     begin
-      result = PARegistrationRequest.send_request(self.to_pa_data)
+      result = PARegistrationRequest.send_request(self.to_pa_data, self.pa_api_key, self.locale)
       self.pa_submission_complete = true
       self.save
       if result[:error].present?
@@ -305,18 +426,40 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       "mailing_address" => "mailing_address",
       "mailing_city"  => "mailing_city",
       "mailing_zip_code"  => "mailing_zip_code",
+      
       "change_of_address" => "change_of_address",
       "previous_address"  => "prev_address",
       "previous_city" => "prev_city",
       "previous_zip_code" => "prev_zip_code",
       "opt_in_email"  => "opt_in_email",
       "opt_in_sms"  => "opt_in_sms",
+      "partner_opt_in_email"=>"partner_opt_in_email",
+      "partner_opt_in_sms"=>"partner_opt_in_sms",
       "phone" => "phone",
       "party" => "party",
       "race"  => "race",
       "locale"  => "locale"
     }
   end
+  
+  
+  def self.from_registrant(reg)
+    # Swap out partner if no API-key is present
+    original_partner_id = nil
+    if !reg.partner.primary? && reg.partner.pa_api_key.blank?
+      # Make it an RTV partner
+      original_partner_id = reg.partner_id
+      reg.partner = Partner.primary_partner
+      reg.save(validate: false)
+    end
+    sr = super(reg)
+    if original_partner_id
+      sr.original_partner_id = original_partner_id
+      sr.save(validate: false)
+    end
+    return sr
+  end
+  
   
   def set_from_original_registrant
     r = self.registrant
@@ -336,6 +479,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     self.registration_unit_number = unit_info.join(' ')
     self.has_mailing_address = r.has_mailing_address?
+    begin
+      self.mailing_state = r.mailing_state.abbreviation
+    rescue
+    end
     self.save(validate: false)
   end
   
@@ -347,6 +494,9 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     r.home_address = [self.registration_address_1.blank? ? nil : self.registration_address_1, self.registration_address_2.blank? ? nil : self.registration_address_2].compact.join(", ")
     r.home_unit = [self.registration_unit_type.blank? ? nil : self.registration_unit_type, self.registration_unit_number.blank? ? nil : self.registration_unit_number].compact.join(" ")
+    begin 
+      r.mailing_state = GeoState[self.mailing_state]
+    end
     r.save(validate: false)
   end
 end

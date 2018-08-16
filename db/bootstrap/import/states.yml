@@ -559,10 +559,11 @@ record_38:
   requires_party: true
   parties:
   - democratic
+  - republican
   - green
   - libertarian
-  - republican
   - other
+  no_party: none_no_affiliation
   party_tooltip: required_for_primary_2
   id_number_tooltip: drivers_license_or_ssn_or_none_3
   sos_address: Office of the Secretary of the Commonwealth<br>210 North Office Building<br>Harrisburg,
@@ -570,7 +571,7 @@ record_38:
   sos_phone: (717) 787-5280
   sos_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationStatus.aspx
   registration_deadline: received_30_days
-  online_registration_url: https://www.pavoterservices.state.pa.us/Pages/VoterRegistrationApplication.aspx
+  online_registration_url: https://www.pavoterservices.beta.pa.gov/Pages/VoterRegistrationApplication.aspx
 record_39:
   abbreviation: RI
   name: Rhode Island

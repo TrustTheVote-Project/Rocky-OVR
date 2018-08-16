@@ -1,4 +1,4 @@
-= form_for(@registrant, url: update_state_registrant_path(controller.current_state, @registrant.to_param)) do |form|
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
   = render partial: 'state_registrants/va/header'
   
@@ -14,14 +14,14 @@
         = @registrant.middle_name
         = @registrant.last_name
         = @registrant.name_suffix
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
         
     .review__section
       .review__section__label
         = t('activerecord.attributes.registrants.date_of_birth')
       .review__section__content
         = I18n.l @registrant.date_of_birth, format: :long
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
     
     .review__section
       .review__section__label 
@@ -35,7 +35,7 @@
         = "#{@registrant.registration_city}, VA #{@registrant.registration_zip_code}"
         %br
         = "#{@registrant.registration_locality_name}"
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
         
     - if @registrant.has_mailing_address?
       .review__section
@@ -47,7 +47,7 @@
           = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip_code}"
           %br
           = @registrant.mailing_address_locality
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
           
     - if !@registrant.ssn.blank?
       .review__section
@@ -55,7 +55,7 @@
           = t('activerecord.attributes.state_registrants/va_registrant.ssn')
         .review__section__content
           = @registrant.private_ssn
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
 
     - if !@registrant.dln.blank?
       .review__section
@@ -63,7 +63,7 @@
           = t('activerecord.attributes.state_registrants/va_registrant.dln')
         .review__section__content
           = @registrant.dln
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_3', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
           
           
     - unless @registrant.email.blank?
@@ -80,7 +80,7 @@
         .review__section__content
           = PhoneFormatter.process @registrant.phone
           = @registrant.phone_type
-          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path('step_2', @registrant.to_param))
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
   
   
   .declaration-text= t('states.custom.va.voter_fraud_warning').html_safe
@@ -93,4 +93,4 @@
 
   = rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
   .back    
-    = link_to t('txt.button.back').html_safe, update_state_registrant_path(controller.prev_step, @registrant.to_param)
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

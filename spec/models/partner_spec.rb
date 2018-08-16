@@ -1579,6 +1579,10 @@ describe Partner do
       p = Partner.new
       expect(p.custom_data["canvassing_session_timeout_length"]).to eq(RockyConf.ovr_states.PA.api_settings.canvassing_session_timeout_minutes)
     end
+    it "includes canvassing validation timeout length" do
+      p = Partner.new
+      expect(p.custom_data["canvassing_validation_timeout_length"]).to eq(RockyConf.ovr_states.PA.api_settings.canvassing_validation_timeout_minutes)
+    end
   end
   
 

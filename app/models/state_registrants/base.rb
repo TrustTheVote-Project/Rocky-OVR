@@ -6,6 +6,8 @@ class StateRegistrants::Base < ActiveRecord::Base
   delegate :use_state_flow?, :skip_state_flow?, :skip_state_flow!, to: :registrant
   delegate :titles, :suffixes, :races, :state_parties, :phone_types, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, to: :registrant
   delegate :has_phone?, :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
+  
+  delegate :ask_for_partner_volunteers?, to: :registrant
 
   def check_valid_for_state_flow!
     # by default, does nothing
@@ -113,6 +115,13 @@ class StateRegistrants::Base < ActiveRecord::Base
   
   def step_list
     self.steps
+  end
+  
+  def should_advance(params)
+    params[:skip_advance] != "true"
+  end  
+  
+  def custom_advance(controller, params)
   end
   
   def advance!

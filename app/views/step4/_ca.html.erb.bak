@@ -1,0 +1,125 @@
+<% content_for :head do %>
+<script>
+
+$(document).ready(function() {
+  var show_skip_ovr_fields = <%= [params[:show_fields], @show_fields].include?("1") ||  !@registrant.covr_success ? 'true' : 'false' %>;
+  $('.skip_state_registration_link').show();
+  if(!show_skip_ovr_fields) {
+    $('.skip_state_registration').hide();    
+  }
+  $('.skip_state_registration_link').click(function() {
+    $('.skip_state_registration').show();
+  });
+  
+});
+</script>
+<style>
+.disclosures * {
+  font-size: <%= @registrant.disclosures_font_size %>;
+  float: none;
+}
+ul.affirm  .disclosures li {
+  list-style: disc inside none;
+  font-size: <%= @registrant.disclosures_font_size %>;
+  float: none;
+}
+</style>
+<% end %>
+
+
+<%- if @registrant.covr_success %>
+  <h1><%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %></h1>
+  <br/>
+  <h3 class="ovr_step_4"><%= I18n.t('txt.registration.instructions.state_online_registration_sub_header').html_safe %></h3>
+  <%= form.hidden_field :covr_token %>
+  <%= form.hidden_field :covr_success %>
+  <ul class="affirm">
+    <li>
+      <div class="disclosures" style="background: white; overflow-y:scroll; height: <%= @registrant.disclosures_box_height %> ; padding:10px; margin:10px 0; font-size:<%= @registrant.disclosures_font_size %>;">
+        <%- CA.disclosures[@registrant.locale.to_s].each do |num, text| %>
+          <div class="disclosure" style="margin-bottom:2em;">
+            <p class="disclosure_num" style="float:left; "><%= "#{num}.&nbsp;".html_safe %></p>
+            <%= text.html_safe %>
+          </div>
+        <%- end %>
+      </div>
+      
+      <h3>
+        <%= form.check_box :ca_disclosures %>
+        <%= form.label :ca_disclosures, I18n.t('states.custom.ca.ca_disclosures') %>
+      </h3>
+    </li>
+    <li>
+      <div class="error"><%= form.object.errors[:ca_disclosures].join("\n") %></div>
+    </li>
+  </ul>
+    <%= rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev), {:id=>'registrant_state_online_registration',:name=>'registrant_state_online_registration',:value=>'registrant_state_online_registration'}) %>  
+    <script>
+      function testCaDisclosures() {
+        if ($("#registrant_ca_disclosures").get(0).checked) {
+          $("#registrant_state_online_registration").attr('formtarget','_BLANK')
+          return true
+        } else {
+          $("#registrant_state_online_registration").attr('formtarget','')
+          return false
+        }
+      }
+      
+      $(document).ready(function() {
+        testCaDisclosures();
+      });
+      
+      $("#registrant_ca_disclosures").click(function() {
+        testCaDisclosures();
+        return true;
+      })
+      
+      $("#registrant_state_online_registration").click(function() {
+        if (testCaDisclosures()) {
+          console.log("enable sharing");
+          showSharing();
+        }
+        return true;
+      })
+      function showSharing() {
+        setTimeout(function(){
+          console.log("redirect!")
+          window.location.href = "<%= registrant_finish_path(@registrant, :share_only=>true) %>";
+        }, 1000);
+      }
+    </script>
+    
+<div style="text-align:center;">
+  <a href="#" class='skip_state_registration_link' style="display:none; ">
+    <%= I18n.t('txt.button.skip_state_online_registration', :rtv_and_partner_name=>@registrant.rtv_and_partner_name).html_safe %>
+    </a>
+</div>
+  <br/><br/>
+  <br/><br/>
+<%- end %>
+
+<div class="skip_state_registration">
+  
+  <h2><%= t('txt.registration.step_3_header') %></h2>
+  <%= render partial: 'skip_state', locals: { form: form, include_step_2: true } %>
+      
+  <%- if @registrant.use_short_form? %>
+    <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.prepare').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>        
+  <%- else %>
+    <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>  
+  <%- end %>
+
+</div>
+
+<%- if RockyConf.ovr_states.CA.api_settings.debug_in_ui %>
+<h3>XML Request:</h3>
+<pre style="background: white; overflow:scroll; height: 200px; padding:10px; width: 500px; margin:10px 0"> 
+  <%= controller.debug_data[:api_xml_request]%>
+</pre>
+
+<h3>XML Response:</h3>
+<pre style="background: white; overflow:scroll; height: 200px; padding:10px; width: 500px; margin:10px 0"> 
+  <%= controller.debug_data[:api_xml_response]%>
+</pre>
+
+<%- end%>

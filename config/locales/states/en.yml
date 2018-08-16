@@ -16,14 +16,13 @@ en:
         confirming: Confirming Submission
         registration_complete: Registration Complete
         registration_complete_dialog_text: ! '<p>Your application has been sent to the Dept. of Elections to register to vote.</p>'
-        
-      pa: 
+      pa:
         registration_deadline_text: "Deadline to register to vote, or update an existing registration, is Tuesday, October 9, 2018"
         state_flow_error: There was a problem submitting your registration to Pennsylvania. Please try again later or continue here to create a paper form.
         step_2_header: Basic Info
         step_3_header: Almost Done
         step_4_header: Review &amp; Confirm
-        penndot_number_instructions: "If you have a PA driver's license or PennDOT ID card number, you must use it. Your PennDOT is the 8 digit number found on the top right of a PA driver's license OR non-driver's state ID card."
+        penndot_number_instructions: "If you have a PA driver's license or PennDOT ID card number, you must use it. Your PennDOT is the 8 digit number found on the top right of a PA driver's license."
         penndot_number_missing: "If you don't have a PennDOT number, you will need to print a PDF and mail it in to register."
         declaration: "<p><strong>I declare that</strong></p><ul><li>I am a United States citizen and will have been a citizen for at least 1 month on the day of the next election.</li><li>I will be at least 18 years old on the day of the next election.</li><li>I will have lived at the address in section 5 for at least 30 days before the election.</li><li>I am legally qualified to vote.</li></ul><p>I affirm that this information is true. I understand that this declaration is the same as an affidavit, and, if this information is not true, I can be convicted of perjury, and fined up to $15,000, jailed for up to 7 years, or both.</p><p>By checking the box below, you are signing the application electronically. In doing so:</p><ul><li>You agree you have read and accept the terms of the declaration above.</li><li>You understand that your electronic signature on this application will constitute the legal equivalent of your signature for this voter registration application.</li><li>You agree to conduct this voter registration transaction by electronic means and that all laws of the Commonwealth of Pennsylvania will apply to this transaction.</li></ul><p>If you provided your PA driver's license or PennDOT ID number, you understand that the signature from the PennDOT record will constitute your signature on your voter registration record. If you upload an image of your signature, you understand that the signature you upload will constitute your signature on your voter registration record. You understand that you do not have to register electronically, and may use a paper or other non-electronic form of this voter registration application.</p>"        
         assistant_declaration: "<p>If you helped a voter complete this voter registration application, you must also sign the application.</p><p>By checking the box, you are signing the application electronically. In doing so:</p><ul><li>You understand that your electronic signature on this application will constitute the legal equivalent of your signature.</li><li>You agree to sign this application by electronic means and that all laws of the Commonwealth of Pennsylvania will apply.</li></ul>"
@@ -51,6 +50,7 @@ en:
           STO: "STOP"
           STE: "SUITE"
           TRL: "TRAILER"
+          TRLR: "TRAILER"
           UNI: "UNIT"
           UPP: "UPPER"
           CBN: "CABIN"
@@ -68,6 +68,26 @@ en:
 </ul>
 <p>
 Deadline Alert: October 9, 2018 close of registration date of current election is the last day to register before the November 6, 2018 election.</p>'
+        signature_capture:
+          upload_signature_image: Upload a signature image
+          touch_sign_instructions: Provide a signature that may be used to verify and match your ballot.
+          desktop_provide_signature: If you do not have a PennDOT ID you must provide a signature or choose to print and mail your form. 
+          upload_file_instructions: Must be an image file (JPEG, PNG, or GIF)          
+          upload_file_zoom: Zoom in or out to ensure the signature fits within the box.
+          continue_on_device: Continue your registration on a touch-enabled device
+          email_sent: An email has been sent to %{email} with a link to sign your registration on a touch-enabled device.
+          sms_sent: A text message has been sent to %{phone} with a link to sign your registration on a touch-enabled device.
+          sms_body: "Here's the link you requested to sign your voter registration form: %{signature_capture_url}"
+          continue_via_copy: "Or open this link on a touch-enabled device to finish your registration:"
+          link_copied: Link Copied!
+          continue_on_paper: Print and mail a PDF
+          buttons:
+            done: Done
+            reset: Reset
+            remove: Remove Signature
+            provide_signature: Provide Signature
+            select_file: Select an image to upload
+            copy_link: Copy Link
       ca:
         online_instructions: ! 'You can complete your voter registration online with
 
@@ -111,6 +131,7 @@ Deadline Alert: October 9, 2018 close of registration date of current election i
       other: Other
     no_party_label:
       none: None
+      none_no_affiliation: None (No Affiliation)
       decline_to_state: Decline to State
       blank: ''
     tooltips:
@@ -952,21 +973,6 @@ Deadline Alert: October 9, 2018 close of registration date of current election i
         application. The most common "proof" is a photocopy of your birth certificate
 
         or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>'
-      kansas: ! '<b>*Note for First Time Voter Registration Applicants: You must ALSO
-
-        submit proof of citizenship to vote in state elections!</b><br/><i>If this
-
-        is your first time registering in Kansas, your voter registration form must
-
-        also include proof of citizenship to vote in state elections (ie. Governor,
-
-        Secretary of State, & state legislature). Otherwise you will ONLY be eligible
-
-        to vote in federal elections.  The most common "proof" is a photocopy of your
-
-        birth certificate or passport, but a full list of acceptable documentation
-
-        can be found <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">online</a>.</i>'
     pdf_other_instructions:
       blank: ''
       wisconsin: Applicants must always provide a Proof of Residence document when
@@ -996,21 +1002,6 @@ Deadline Alert: October 9, 2018 close of registration date of current election i
         application. The most common "proof" is a photocopy of your birth certificate
 
         or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>'
-      kansas: ! '<b>*Note for First Time Voter Registration Applicants: You must ALSO
-
-        submit proof of citizenship to vote in state elections!</b><br/><i>If this
-
-        is your first time registering in Kansas, your voter registration form must
-
-        also include proof of citizenship to vote in state elections (ie. Governor,
-
-        Secretary of State, & state legislature). Otherwise you will ONLY be eligible
-
-        to vote in federal elections.  The most common "proof" is a photocopy of your
-
-        birth certificate or passport, but a full list of acceptable documentation
-
-        can be found <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">online</a>.</i>'
       wisconsin: ! '<strong>*Note: Applicants must always provide a Proof of Residence
         document when registering in Wisconsin.</strong><br> If you are registering
         by mail, you can use any of the Proof of Residence listed <a href="http://www.gab.wi.gov/publications/voter-guides/proof-of-residence"  target="_blank">here</a>

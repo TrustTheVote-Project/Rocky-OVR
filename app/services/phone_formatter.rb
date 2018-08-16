@@ -7,7 +7,7 @@ class PhoneFormatter
   def self.process(phone_number)
     # Remove non-digits
     v = phone_number.gsub(/[^\d]/,'')
-    if v.size == 1 and v[0] == "1" # Remove initial 1 if it's extra
+    if v.size == 11 and v[0] == "1" # Remove initial 1 if it's extra
       v = v[-10..-1]
     end
 

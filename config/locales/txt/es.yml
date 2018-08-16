@@ -1,11 +1,15 @@
 ---
 es:
   txt:
+    register_to_vote: Registrarse para votar
+    register_to_vote_in: Registrarse en %{state_abbrev}
     unknown_error: ! 'Error desconocido: los administradores de red han sido contactados.'
     error: Algo salió mal.
     try_again: Regresar y volver a intentarlo.
     rtv_and_partner: Rock the Vote y %{partner_name}
     button:
+      text_me: SMS el enlace
+      email_me: Envíame un correo electrónico
       submit: Siguientes pasos
       edit: Editar
       back: ! '&lt; Paso Anterior'
@@ -28,7 +32,8 @@ es:
       in_language_name: En español
       powered_by: ! 'accionado por:'
       progress_indicator: Paso
-      intro_message: El registro de votantes toma un promedio de dos minutos o menos para completar.
+      intro_message: El registro de votantes toma un promedio de dos minutos o menos
+        para completar.
       step_1_header: Nuevo Registro
       step_2_header: Información Personal
       step_3_header: Información adicional para registro
@@ -38,6 +43,7 @@ es:
       step_5_header: Revisar y Confirmar
       stay_informed_header: Para más información
       identification_header: Información sobre identificación
+      already_registered: ¿Ya registrado? <a href="%{url}">Compartir con tus amigos</a>
       survey_title: Preguntas para ti
       preparing_header: Preparando el Formulario...
       download_header: Imprimir Formato
@@ -74,6 +80,8 @@ es:
       not_given: nada
       has_state_license: Tengo una tarjeta de identificación del estado de %{state}
         actual o conducir licencia de
+      has_state_license_eligible: Puede ser elegible para completar su registro de
+        votante usando el sistema de registro de votantes del %{state}.
       has_no_state_license: No tengo una tarjeta de identificación del estado de %{state}
         actual o conducir licencia de
       titles:
@@ -84,18 +92,22 @@ es:
       suffixes:
         jr: Jr.
         sr: Sr.
+        i: I
         ii: II
         iii: III
         iv: IV
+        v: V
+        vi: VI
+        vii: VII
       races:
-        american_indian_alaskan_native: Indio Americano / Nativo de Alaska
-        asian: Asiático/a #Asiático / Islas del Pacífico
-        black_not_hispanic: Negra (No hispano)
-        hispanic: Hispano
-        mutli_racial: Dos o más razas #Multi-racial
+        asian: Asiático/a
+        black_not_hispanic: Afroamericano/a
+        hispanic: Hispano/a o Latino/a
+        american_indian_alaskan_native: Nativo Americano/a o Nativo/a de Alaska
         native_hawaiian_or_pacific_islander: Hawaino/a  o isleño/a del pacífico
-        white_not_hispanic: Blanca (no hispano)
-        other: Otra
+        other: Otra raza
+        mutli_racial: Dos o más razas
+        white_not_hispanic: Caucásico/a
         decline_to_state: Declino comentar
       phone_types:
         mobile: Móvil

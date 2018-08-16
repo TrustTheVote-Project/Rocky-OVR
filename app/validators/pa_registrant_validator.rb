@@ -68,11 +68,16 @@ class PARegistrantValidator < ActiveModel::Validator
         end
         
       end
+      if reg.signature_method != StateRegistrants::PARegistrant::PRINT_METHOD && reg.confirm_no_penndot_number?
+        reg.validates_presence_of(:voter_signature_image)
+      end
+      
     end
     
     if reg.at_least_step_3?
       reg.validates_acceptance_of :confirm_declaration, :accept=>true
     end
+    
 
   end
   
@@ -86,7 +91,7 @@ class PARegistrantValidator < ActiveModel::Validator
   end
   
   def validate_phone_present_if_opt_in_sms(reg)
-    if reg.opt_in_sms? && reg.phone.blank?
+    if (reg.opt_in_sms? || reg.partner_opt_in_sms?) && reg.phone.blank?
       reg.errors.add(:phone, :required_if_opt_in)
     end
   end
@@ -96,9 +101,9 @@ class PARegistrantValidator < ActiveModel::Validator
       reg.validates_presence_of(:penndot_number) 
       reg.errors.add(:penndot_number, :format) unless reg.penndot_number.to_s.gsub(/[^\d]/,'') =~ /^\d{8}$/ || reg.penndot_number.blank?
     end
-    unless reg.confirm_no_dl_or_ssn? || !reg.confirm_no_penndot_number?
-      reg.validates_presence_of(:ssn4)
-      reg.errors.add(:ssn4, :format) unless reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /^\d{4}$/ || reg.ssn4.blank?
+    unless reg.confirm_no_dl_or_ssn?
+      reg.validates_presence_of(:ssn4) if reg.confirm_no_penndot_number? 
+      reg.errors.add(:ssn4, :format) unless (reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /^\d{4}$/) || reg.ssn4.blank?
     end
   end
   
