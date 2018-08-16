@@ -563,7 +563,7 @@ class Partner < ActiveRecord::Base
   SHIFT_REPORT_HEADER = [
     "Date",
     "Unique Shift ID",	
-    "Canvaser Name",	
+    "Canvasser Name",	
     "Event Zip code",
     "Event Location",	
     "Tablet number",
