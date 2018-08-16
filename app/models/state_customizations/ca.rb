@@ -253,6 +253,7 @@ class CA < StateCustomization
   #    CovrAgencyKey=RTV&
   #    PostingAgencyRecordId=BCE31E53-7E91-419Z-904Z-914352C45C34C570P
   def online_reg_url(registrant)
+    return "https://registertovote.ca.gov/"
     base_url = RockyConf.ovr_states.CA.api_settings.web_url_base
     ak = RockyConf.ovr_states.CA.api_settings.web_agency_key
     if registrant.nil?
@@ -270,6 +271,7 @@ class CA < StateCustomization
   
   
   def has_ovr_pre_check?(registrant)
+    return false
     true
   end
   
