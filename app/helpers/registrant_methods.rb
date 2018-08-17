@@ -149,8 +149,6 @@ module RegistrantMethods
     key_for_attribute(:phone_type, 'phone_types')
   end
   
-  
-
   def state_parties
     if requires_party?
       localization ? localization.parties + [ localization.no_party ] : []

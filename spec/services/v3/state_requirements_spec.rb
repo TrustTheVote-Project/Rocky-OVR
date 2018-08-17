@@ -90,20 +90,46 @@ describe V3::StateRequirements do
 
   it 'should return data' do
     s = GeoState['CA']
+    locale = 'en'
+    localization = StateLocalization.where({:state_id  => s.id, :locale => locale}).first
+    
     s.registrar_address = nil
     s.save!
-    V3::StateRequirements.find(:home_state_id => 'CA', :lang => 'en').should == {
+    
+    V3::StateRequirements.find(:home_state_id => 'CA', :lang => locale).should == {
       :requires_party     => true,
       :id_number_msg      => nil,
       :requires_party_msg => nil,
       :sos_address        => nil,
       :no_party_msg       => "Decline to State",
       :sos_phone          => nil,
-      :party_list         => [ "Democratic", "Green", "Libertarian", "Republican", "Other", "None" ],
+      #:party_list         => [ "Democratic", "Green", "Libertarian", "Republican", "Other", "None" ],
+      :party_list         => localization.parties,
+      :race_list          => I18n.t('txt.registration.races', locale: locale).values,
       :sos_url            => nil,
       :requires_race      => true,
       :id_length_min      => nil,
       :sub_18_msg         => "if you will turn 18 by the next election",
+      :requires_race_msg  => nil,
+      :id_length_max      => nil }
+    
+      locale = 'es'
+      localization = StateLocalization.where({:state_id  => s.id, :locale => locale}).first
+    
+    V3::StateRequirements.find(:home_state_id => 'CA', :lang => locale).should == {
+      :requires_party     => true,
+      :id_number_msg      => nil,
+      :requires_party_msg => nil,
+      :sos_address        => nil,
+      :no_party_msg       => localization.no_party,
+      :sos_phone          => nil,
+      #:party_list         => [ "Democratic", "Green", "Libertarian", "Republican", "Other", "None" ],
+      :party_list         => localization.parties,
+      :race_list          => I18n.t('txt.registration.races', locale: locale).values,
+      :sos_url            => nil,
+      :requires_race      => true,
+      :id_length_min      => nil,
+      :sub_18_msg         => localization.sub_18,
       :requires_race_msg  => nil,
       :id_length_max      => nil }
   end
