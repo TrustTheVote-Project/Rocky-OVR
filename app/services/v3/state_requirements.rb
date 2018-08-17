@@ -44,6 +44,7 @@ module V3
         :requires_party_msg => locale.party_tooltip,
         :no_party_msg =>       locale.no_party,
         :party_list =>         locale.parties,
+        :race_list =>          I18n.t('txt.registration.races', :locale=>query[:lang]).values,
         :id_length_min =>      state.id_length_min,
         :id_length_max =>      state.id_length_max,
         :id_number_msg =>      locale.id_number_tooltip,
