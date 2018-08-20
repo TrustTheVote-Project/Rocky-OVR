@@ -232,7 +232,10 @@
   
   %fieldset#penndot_set
     %ul.flat.penndot-number
+      - if @registrant.penndot_retries > 0
+        - @registrant.errors.add(:penndot_number, :pa_invalid)
       = field_li(form, :penndot_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__penndot-number__line"} })
+          
     %p.instructions
       = I18n.t('states.custom.pa.penndot_number_instructions')
 
@@ -280,7 +283,7 @@
   %fieldset#signature_upload
     %p.instructions 
       = I18n.t('states.custom.pa.signature_capture.desktop_provide_signature')
-    - if form.object.errors[:voter_signature_image]
+    - if form.object.errors[:voter_signature_image].any?
       %p.instructions
         %span.error
           = form.object.errors[:voter_signature_image].join("\n")

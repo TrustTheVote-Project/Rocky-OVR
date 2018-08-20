@@ -1,5 +1,7 @@
 class StateRegistrants::Base < ActiveRecord::Base
   self.abstract_class = true
+
+  attr_protected :id, :updated_at, :created_at
   
   include RegistrantMethods
   

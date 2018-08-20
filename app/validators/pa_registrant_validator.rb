@@ -68,7 +68,7 @@ class PARegistrantValidator < ActiveModel::Validator
         end
         
       end
-      if reg.signature_method != StateRegistrants::PARegistrant::PRINT_METHOD && reg.confirm_no_penndot_number?
+      if reg.signature_method != StateRegistrants::PARegistrant::PRINT_METHOD && reg.confirm_no_penndot_number? || reg.penndot_retries > 1
         reg.validates_presence_of(:voter_signature_image)
       end
       

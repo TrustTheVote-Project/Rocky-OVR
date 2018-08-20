@@ -255,11 +255,12 @@ household member."
             penndot_number:
               format: Should be 8 digits
               blank: Required. If you do not have a PA driver's license or PennDOT ID card number, please select "I do not know my PennDOT number."
+              pa_invalid: Your PennDOT number is not valid. Please double-check and try again.
             ssn4:
               format: Should be 4 digits
               blank: Required. If you do not know the last four digits of your social security number, please select "I do not know the last four digits of my social security number.
             voter_signature_image:
-              blank: You must provide a PennDOT number, or an electronic signature, or sign a paper form to complete your application.
+              blank: You must provide a valid PennDOT number, or an electronic signature, or sign a paper form to complete your application.
         registrant:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
