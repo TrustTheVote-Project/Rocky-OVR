@@ -4,7 +4,7 @@
 %h3 
   Current Grommet Queue Delay (in hours): 
   = @hours_delay
-  = form_tag update_delay_admin_grommet_queue_path(:format => :csv), method: :put do 
+  = form_tag update_delay_admin_grommet_queue_path(:format => :csv), method: :patch do 
     = text_field_tag :delay, @hours_delay
     = submit_tag "Update Delay"
     

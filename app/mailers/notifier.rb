@@ -64,7 +64,9 @@ class Notifier < ActionMailer::Base
 
   
   def preview_message(partner, prefix, kind, locale)
-    registrant = Registrant.new(id:0, uid: '00000000', first_name: "FirstName", last_name: "LastName", partner: partner, locale: locale, home_state: GeoState[1])
+    registrant = Registrant.new(first_name: "FirstName", last_name: "LastName", partner: partner, locale: locale, home_state: GeoState[1])
+    registrant.id = 0
+    registrant.uid = '0000000'
     is_preview_found = !!EmailTemplate.get(partner, "#{prefix}#{kind}.#{locale}")
     template_name = is_preview_found ? (prefix + kind) : kind
     begin

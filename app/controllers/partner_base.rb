@@ -62,8 +62,9 @@ class PartnerBase < ApplicationController
   end
 
   def redirect_back_or_default(default)
-    redirect_to(session[:return_to] || default)
+    rt = session[:return_to]
     session[:return_to] = nil
+    redirect_to(rt || default)
   end
 
   def init_nav_class

@@ -69,7 +69,7 @@ class Partner < ActiveRecord::Base
 
   CSV_GENERATION_PRIORITY = Registrant::REMINDER_EMAIL_PRIORITY
 
-  attr_protected :crypted_password, :password_salt, :persistence_token, :perishable_token, :created_at, :updated_at, :api_key, :csv_ready, :csv_file_name, :from_email_verified_at, :from_email_verification_checked_at, :active, :failed_login_count, :login_count, :last_request_at, :current_login_at, :current_login_ip, :last_login_ip, :grommet_csv_ready, :grommet_csv_file_name
+  attr_protected :crypted_password, :password_salt, :persistence_token, :perishable_token, :created_at, :updated_at, :api_key, :csv_ready, :csv_file_name, :from_email_verified_at, :from_email_verification_checked_at, :failed_login_count, :login_count, :last_request_at, :current_login_at, :current_login_ip, :last_login_ip, :grommet_csv_ready, :grommet_csv_file_name
 
   attr_accessor :tmp_asset_directory
 
@@ -920,7 +920,8 @@ protected
     end
     verified = resp.verification_attributes[self.from_email].verification_status == "Success"
     if verified
-      self.update_attributes(from_email_verified_at: DateTime.now)
+      self.from_email_verified_at= DateTime.now
+      self.save
       return true
     else
       return false
@@ -928,7 +929,8 @@ protected
   rescue
     return false
   ensure
-    self.update_attributes(from_email_verification_checked_at: DateTime.now)
+    self.from_email_verification_checked_at = DateTime.now
+    self.save
   end
 
 

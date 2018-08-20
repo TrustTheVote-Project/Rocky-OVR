@@ -6,6 +6,8 @@ class RegistrantStatus < ActiveRecord::Base
   
   serialize :state_data, Hash
   
+  attr_protected :id, :created_at, :updated_at
+  
   def self.get_columns(state)
     case state
     when GeoState["PA"]

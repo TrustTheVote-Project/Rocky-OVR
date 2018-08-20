@@ -28,6 +28,7 @@ class PartnerZip
   extend ActiveModel::Naming
   include ActiveModel::Conversion
   
+  attr_accessor :zip_file
   attr_accessor :tmp_file, :destination, :original_destination, :there_are_errors
   attr_reader :errors
   
@@ -44,15 +45,15 @@ class PartnerZip
     @tmp_file = tmp_file
     @destination = PartnerZip.get_tmp_path
     @original_destination = @destination
-    @errors = []
+    @errors = {'base'=>[]}
     @there_are_errors = false
     if @tmp_file
       # from http://www.markhneedham.com/blog/2008/10/02/ruby-unzipping-a-file-using-rubyzip/
-      Zip::ZipFile.open(@tmp_file.path) { |zip_file|
-         zip_file.each { |f|
+      Zip::ZipFile.open(@tmp_file.path) { |zf|
+         zf.each { |f|
            f_path=File.join(@destination, f.name)
            FileUtils.mkdir_p(File.dirname(f_path))
-           zip_file.extract(f, f_path) unless File.exist?(f_path)
+           zf.extract(f, f_path) unless File.exist?(f_path)
          }
         }
     end
@@ -118,7 +119,7 @@ class PartnerZip
     
   
   def error_messages
-    @errors.collect {|err|
+    @errors['base'].collect {|err|
       if err.is_a?(Array)
         "#{err[0]} <ul><li>#{err[1].full_messages.join("</li><li>")}</li></ul>"
       else
@@ -281,9 +282,9 @@ private
   def add_error(message, partner=nil)
     self.there_are_errors = true
     if partner
-      self.errors << [message, partner.errors]
+      self.errors['base'] << [message, partner.errors]
     else
-      self.errors << message
+      self.errors['base'] << message
     end
   end
   

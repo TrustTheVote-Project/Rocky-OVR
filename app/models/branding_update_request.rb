@@ -106,6 +106,7 @@ class BrandingUpdateRequest
   end
 
   def save!
-    @partner.update_attributes(branding_update_request: @data)
+    @partner.branding_update_request= @data
+    @partner.save
   end
 end

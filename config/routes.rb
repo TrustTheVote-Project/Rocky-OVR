@@ -42,7 +42,7 @@ Rocky::Application.routes.draw do
 
   resource  "partner_session"
   match  "login",  :to => "partner_sessions#new", :as=>'login', via: :get
-  match "logout", :to => "partner_sessions#destroy", :as=>'logout', via: :delete
+  match "logout", :to => "partner_sessions#destroy", :as=>'logout', via: :get
   
   resource "partner", :path_names => {:new => "register", :edit => "profile"} do
     member do
@@ -176,7 +176,7 @@ Rocky::Application.routes.draw do
     end
     resource  "admin_sessions"
     match  "login",  :to => "admin_sessions#new", :as=>'login', via: :get
-    match "logout", :to => "admin_sessions#destroy", :as=>'logout', via: :destroy
+    match "logout", :to => "admin_sessions#destroy", :as=>'logout', via: :get
 
     resource :stats, only: [] do
       get :downloads
