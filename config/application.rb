@@ -1,10 +1,11 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'base64'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  Bundler.require(*Rails.groups)
   unless ENV['NO_PDF']
     Bundler.require(:pdf)
   end
@@ -105,8 +106,8 @@ module Rocky
 
     config.i18n.fallbacks =[:en]
 
-    I18n.enforce_available_locales = false
     
+    I18n.enforce_available_locales = false
     
     config.middleware.use ExceptionNotification::Rack,
       email: {
@@ -114,6 +115,12 @@ module Rocky
         sender_address: %{"Exception Notifier" <no-reply@rockthevote.com>},
         exception_recipients: %w{alex.mekelburg@osetfoundation.org}
     }
+    
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOWALL'
+    }
+
+    config.eager_load = true
     
     
   end

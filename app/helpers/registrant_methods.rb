@@ -1,4 +1,8 @@
 module RegistrantMethods
+  def aasm_current_state
+    aasm.current_state
+  end
+  
   def at_least_step?(step)
     current_step = step_index
     !current_step.nil? && (current_step >= step)
@@ -57,10 +61,10 @@ module RegistrantMethods
   def date_of_birth=(string_value)
     dob = nil
     if string_value.is_a?(String)
-      if matches = string_value.match(/^(\d{1,2})\D+(\d{1,2})\D+(\d{4})$/)
+      if matches = string_value.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
         m,d,y = matches.captures
         dob = Date.civil(y.to_i, m.to_i, d.to_i) rescue string_value
-      elsif matches = string_value.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})$/)
+      elsif matches = string_value.match(/\A(\d{4})\D+(\d{1,2})\D+(\d{1,2})\z/)
         y,m,d = matches.captures
         dob = Date.civil(y.to_i, m.to_i, d.to_i) rescue string_value
       else
@@ -100,10 +104,10 @@ module RegistrantMethods
     else
       @raw_date_of_birth = date_of_birth_before_type_cast
       date = nil
-      if matches = date_of_birth_before_type_cast.to_s.match(/^(\d{1,2})\D+(\d{1,2})\D+(\d{4})$/)
+      if matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
         m,d,y = matches.captures
         date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
-      elsif matches = date_of_birth_before_type_cast.to_s.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})$/)
+      elsif matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{4})\D+(\d{1,2})\D+(\d{1,2})\z/)
         y,m,d = matches.captures
         date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
       end

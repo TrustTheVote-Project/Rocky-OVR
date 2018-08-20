@@ -47,7 +47,7 @@ class EmailTemplate < ActiveRecord::Base
   # Sets the template body (creates or updates as necessary)
   def self.set(partner, name, body)
     return unless partner
-    tmpl = EmailTemplate.find_or_initialize_by_partner_id_and_name(partner.id, name)
+    tmpl = EmailTemplate.find_or_initialize_by(partner_id: partner.id, name: name)
 
     # don't save default values # + some browsers add \r to \n
     body = "" if body.gsub("\r", "") == default(name)
@@ -57,7 +57,7 @@ class EmailTemplate < ActiveRecord::Base
 
   def self.set_subject(partner, name, subject)
     return unless partner
-    tmpl = EmailTemplate.find_or_initialize_by_partner_id_and_name(partner.id, name)
+    tmpl = EmailTemplate.find_or_initialize_by(partner_id: partner.id, name: name)
     subject = "" if subject == default_subject(name)
     tmpl.subject = subject
     tmpl.save!    
@@ -90,7 +90,7 @@ class EmailTemplate < ActiveRecord::Base
   end
 
   def self.default(name)
-    match = name.scan(/^(preview_)?(.+)\.(.+)$/)[0]
+    match = name.scan(/\A(preview_)?(.+)\.(.+)\z/)[0]
     return nil if match.nil?
 
     type = match[1]
@@ -111,7 +111,7 @@ class EmailTemplate < ActiveRecord::Base
   end
 
   def self.default_subject(name)
-    match = name.scan(/^preview_?(.+)\.(.+)$/)[0] || nil
+    match = name.scan(/\Apreview_?(.+)\.(.+)\z/)[0] || nil
     match ? I18n.t("email.#{match[0]}.subject", locale: match[1]) : nil
   end
 end

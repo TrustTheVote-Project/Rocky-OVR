@@ -3,14 +3,14 @@ class PARegistrantValidator < ActiveModel::Validator
   def validate(reg)
     
     if !reg.phone.blank?
-      reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /^\d{10}$/
+      reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/
     end
     #reg.validates_presence_of :phone_type if reg.has_phone?
 
     reg.validates_presence_of :phone_type if reg.has_phone?
 
     if reg.at_least_step_1?
-      reg.validates_format_of :email, :with => Authlogic::Regex.email, :allow_blank => true
+      reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
 
       reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
       reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
@@ -64,7 +64,7 @@ class PARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of(:assistant_phone)
         reg.validates_acceptance_of(:confirm_assistant_declaration, accept: true)
         if !reg.assistant_phone.blank?
-          reg.errors.add(:assistant_phone, :invalid) unless  reg.assistant_phone.to_s.gsub(/[^\d]/,'')=~ /^\d{10}$/
+          reg.errors.add(:assistant_phone, :invalid) unless  reg.assistant_phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/
         end
         
       end
@@ -83,7 +83,7 @@ class PARegistrantValidator < ActiveModel::Validator
   
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
-    reg.validates_format_of(attr_name, {:with => /^\d{5}(-\d{4})?$/, :allow_blank => true});
+    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
       reg.errors.add(attr_name, :invalid_zip, :default => nil, :value => reg.send(attr_name))
@@ -99,11 +99,11 @@ class PARegistrantValidator < ActiveModel::Validator
   def validate_id(reg)
     unless reg.confirm_no_penndot_number?
       reg.validates_presence_of(:penndot_number) 
-      reg.errors.add(:penndot_number, :format) unless reg.penndot_number.to_s.gsub(/[^\d]/,'') =~ /^\d{8}$/ || reg.penndot_number.blank?
+      reg.errors.add(:penndot_number, :format) unless reg.penndot_number.to_s.gsub(/[^\d]/,'') =~ /\A\d{8}\z/ || reg.penndot_number.blank?
     end
     unless reg.confirm_no_dl_or_ssn?
       reg.validates_presence_of(:ssn4) if reg.confirm_no_penndot_number? 
-      reg.errors.add(:ssn4, :format) unless (reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /^\d{4}$/) || reg.ssn4.blank?
+      reg.errors.add(:ssn4, :format) unless (reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /\A\d{4}\z/) || reg.ssn4.blank?
     end
   end
   

@@ -60,7 +60,7 @@ si.commit!
 Before do
   I18n.locale = :en
   begin
-    ActiveResource::Connection.cache.clear
+    #ActiveResource::Connection.cache.clear
   rescue Exception=>e
     puts "features/support/env.rb:65 No cache to clear?"
   end

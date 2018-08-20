@@ -2,14 +2,14 @@ class RegistrantValidator < ActiveModel::Validator
   
   def validate(reg)
     
-    #regexp = /^(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))$/i
+    #regexp = /\A(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))\z/i
     
-    reg.validates_format_of :state_id_number, :with => /^(none|\d{4}|([-*A-Z0-9\s]{7,42}(\s+\d{4})?))$/i, :allow_blank => true
+    reg.validates_format_of :state_id_number, :with => /\A(none|\d{4}|([-*A-Z0-9\s]{7,42}(\s+\d{4})?))\z/i, :allow_blank => true
     
   
 
     reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
-    reg.validates_format_of :email_address, :with => Authlogic::Regex.email, :allow_blank => true
+    reg.validates_format_of :email_address, :with => Authlogic::Regex::EMAIL, :allow_blank => true
     reg.validates_presence_of :phone_type if reg.has_phone?
 
      if reg.at_least_step_1?
@@ -110,7 +110,7 @@ class RegistrantValidator < ActiveModel::Validator
     if reg.telling_friends
       reg.validates_presence_of :tell_from
       reg.validates_presence_of :tell_email
-      reg.validates_format_of :tell_email, :with => Authlogic::Regex.email
+      reg.validates_format_of :tell_email, :with => Authlogic::Regex::EMAIL
       reg.validates_presence_of :tell_recipients
       reg.validates_presence_of :tell_subject
       reg.validates_presence_of :tell_message
@@ -178,7 +178,7 @@ class RegistrantValidator < ActiveModel::Validator
   
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
-    reg.validates_format_of(attr_name, {:with => /^\d{5}(-\d{4})?$/, :allow_blank => true});
+    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
       reg.errors.add(attr_name, :invalid_zip, :default => nil, :value => reg.send(attr_name))

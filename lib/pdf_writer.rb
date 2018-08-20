@@ -74,7 +74,7 @@ class PdfWriter
   end
 
   def method_missing(sym, *args)
-    if sym.to_s =~ /^yes_no_(.+)$/
+    if sym.to_s =~ /\Ayes_no_(.+)\z/
       attribute = $1
       return self.send(:yes_no, (self.send(attribute)))
     else
@@ -107,7 +107,7 @@ class PdfWriter
     I18n.locale = self.locale
     renderer = PdfRenderer.new(self)
 
-    html_string = renderer.render_to_string(
+    html_string = renderer.render(
       'registrants/registrant_pdf', 
       :layout => 'layouts/nvra',
       :encoding => 'utf8',
@@ -252,7 +252,7 @@ class PdfWriter
   private 
   
   def pdf_date_of_birth_format
-    if (/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.match(self.pdf_date_of_birth))
+    if (/\A\d{1,2}\/\d{1,2}\/\d{2,4}\z/.match(self.pdf_date_of_birth))
       return true
     else
       errors.add(:pdf_date_of_birth, "Must be MM/DD/YYYY")

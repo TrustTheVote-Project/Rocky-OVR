@@ -67,7 +67,7 @@ module V3
       end
 
       if !zip_code.blank?
-        raise ArgumentError.new(INVALID_ZIP) unless zip_code.strip =~ /^\d{5}([\-]?\d{4})?$/
+        raise ArgumentError.new(INVALID_ZIP) unless zip_code.strip =~ /\A\d{5}([\-]?\d{4})?\z/
         zip_state = GeoState.for_zip_code(zip_code) || raise(ArgumentError.new(INVALID_ZIP))
       end
 

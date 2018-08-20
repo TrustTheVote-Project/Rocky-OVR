@@ -35,7 +35,7 @@ class Admin::AdminSessionsController < Admin::BaseController
   end
 
   def create
-    @admin_session = AdminSession.new(params[:admin_session])
+    @admin_session = AdminSession.new(params[:admin_session].permit!.to_h)
     if @admin_session.save
       redirect_back_or_default admin_partners_path
     else

@@ -1,14 +1,16 @@
-ruby "1.9.3"
+ruby "2.4.1"
 
 source 'http://rubygems.org'
 
 gem "rake", "10.0.3"
 
 gem "figaro"
-gem "rails_config"
+gem "config"
 
-gem "rails", "= 3.2.18"
-gem "aasm", "= 3.0.16"
+gem "rails", "= 4.2.10"
+gem 'protected_attributes'
+
+gem "aasm", "= 4.12.3"
 
 gem 'twilio-ruby', '~> 4.11.1'
 
@@ -17,9 +19,9 @@ gem 'twilio-ruby', '~> 4.11.1'
 #gem 'utf8-cleaner'
 gem 'rack-robustness'
 
-gem "authlogic", "= 3.4.2"
+gem "authlogic", "= 4.3.0"
 gem 'daemons', '~> 1.1.9'
-gem "paperclip", "~> 3.0"
+gem "paperclip", "~> 5.3.0"
 gem "mysql2"
 #gem "rubyzip"
 gem 'zip-zip'
@@ -42,13 +44,14 @@ gem 'rest-client'
 gem 'diffy'
 gem 'asset_sync'
 gem 'aws-sdk'
+gem 'fog-aws'
 
 group :development do
   gem 'rack-mini-profiler'
 end
 
 group :development, :test do
-  gem 'pry'
+  #gem 'pry'
   gem 'spring-commands-rspec'
   gem "spring-commands-cucumber"
   gem "rspec-rails", "~> 3.2.3"
@@ -64,15 +67,15 @@ group :development, :test do
   gem "shoulda"
   gem 'simplecov', :require => false
   
-  gem "treetop", "= 1.4.10"
+  #gem "treetop", "= 1.4.10"
   # gem "selenium-client", "= 1.2.16"
 
 
-  gem "capistrano", "= 2.15.5", :require=>false
-  gem "rvm-capistrano"
+  # gem "capistrano", "= 2.15.5", :require=>false
+  # gem "rvm-capistrano"
   
   # Pito:
-  gem "hpricot", "0.8.6"
+  # gem "hpricot", "0.8.6"
   gem "sqlite3"
   
   gem "assert_difference"
@@ -85,21 +88,17 @@ group :test do
   gem "webmock"
 end
 
-group :assets do
   gem 'therubyracer'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-end
 
-gem "nokogiri", "= 1.5.9"
+gem "nokogiri", "= 1.8.4"
 gem "mechanize", "= 2.7.1"
-gem "newrelic_rpm", "= 3.6.0.83"
-gem "airbrake"
-gem "ledermann-rails-settings", :require => "rails-settings"
+gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
 
 gem 'json'
 
-gem "delayed_job_active_record", "~> 0.4.4"
+gem "delayed_job_active_record", "~> 4.1"
 
 gem 'exception_notification'

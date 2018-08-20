@@ -28,7 +28,8 @@ class PartnerSessionsController < PartnerBase
   end
 
   def create
-    @partner_session = PartnerSession.new(params[:partner_session])
+    
+    @partner_session = PartnerSession.new(params[:partner_session].permit!.to_h)
     if @partner_session.save
       redirect_back_or_default partner_url
     else

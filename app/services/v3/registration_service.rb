@@ -290,7 +290,7 @@ module V3
       
 
       if since = query[:since]
-        if !(query[:since] =~ /^\d\d\d\d-\d\d-\d\d([T\s]\d\d:\d\d(:\d\d(\+\d\d:\d\d|\s...)?)?)?$/)
+        if !(query[:since] =~ /\A\d\d\d\d-\d\d-\d\d([T\s]\d\d:\d\d(:\d\d(\+\d\d:\d\d|\s...)?)?)?\z/)
           raise InvalidParameterValue.new(:since)          
         else
           cond_str << "created_at >= ?"

@@ -365,7 +365,7 @@ class GeoState < ActiveRecord::Base
   end
   
   def get_localization(locale)
-    localizations.find_or_initialize_by_locale(locale.to_s)
+    localizations.find_or_initialize_by(locale: locale.to_s)
   end
   
   def state_customization

@@ -103,7 +103,7 @@ module ApplicationHelper
   end
 
   def octothorpe(unit)
-    unit =~ /^\d+$/ ? "##{unit}" : unit
+    unit =~ /\A\d+\z/ ? "##{unit}" : unit
   end
 
   def progress_indicator(num_steps)

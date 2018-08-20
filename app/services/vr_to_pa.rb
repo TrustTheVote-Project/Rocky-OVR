@@ -470,7 +470,7 @@ class VRToPA
 
   def zip_code(section, is_required=true)
     v = safe_strip(read([section, :numbered_thoroughfare_address, :zip_code], is_required))
-    if is_empty(v) || v =~ /^\d{5}(-\d{4})?$/
+    if is_empty(v) || v =~ /\A\d{5}(-\d{4})?\z/
       v
     else
       raise ParsingError.new("Invalid ZIP code \"#{v}\". Expected format is NNNNN or NNNNN-NNNN")
@@ -562,7 +562,7 @@ class VRToPA
     dl = query([:voter_ids], :type, 'drivers_license', :string_value)
     dl = "" if is_empty(dl)
     dl = dl.to_s.strip.gsub(/[^\d]/,'')
-    valid = dl == "" || dl =~ /^\d{8}$/
+    valid = dl == "" || dl =~ /\A\d{8}\z/
     raise ParsingError.new("Invalid drivers licence value \"%s\": 8 digits are expected" % dl) unless valid
     dl
   end
@@ -594,7 +594,7 @@ class VRToPA
   SIG_WIDTH = 180
   SIG_HEIGHT = 60
   def process_signature(base64data)
-    image_blob = ActiveSupport::Base64.decode64(base64data)
+    image_blob = Base64.decode64(base64data)
     src = Tempfile.new('src')
     dst = Tempfile.new('dst')
     begin
@@ -610,7 +610,7 @@ class VRToPA
         dst.open
         dst.binmode
         converted = dst.read
-        converted64 = ActiveSupport::Base64.encode64(converted)
+        converted64 = Base64.encode64(converted)
         self.mods << "Converted #{wh} image to #{SIG_WIDTH}x#{SIG_HEIGHT}"
         return converted64.gsub("\n",'')
       else
@@ -709,7 +709,7 @@ class VRToPA
     if is_empty(v)
       ""
     else
-      valid = v.is_a?(String) && v =~ Authlogic::Regex.email
+      valid = v.is_a?(String) && v =~ Authlogic::Regex::EMAIL
       if valid #ParsingError.new("Invalid e-mail value \"#{v}\".") unless valid
         return v
       else
@@ -724,7 +724,7 @@ class VRToPA
     if is_empty(v)
       ""
     else
-      valid = v.is_a?(String) && v =~ /^\d{4}$/
+      valid = v.is_a?(String) && v =~ /\A\d{4}\z/
       raise ParsingError.new("Invalid SSN4 value \"#{v}\", expected: 4 digits value") unless valid
       v
     end

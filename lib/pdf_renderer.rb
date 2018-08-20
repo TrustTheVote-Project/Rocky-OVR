@@ -4,6 +4,7 @@ class PdfRenderer < AbstractController::Base
   include AbstractController::Translation
   include AbstractController::AssetPaths
   include ActionView::Helpers::UrlHelper
+  include ActionView::Rendering
   include Rails.application.routes.url_helpers
   include WickedPdfHelper
   include WickedPdfHelper::Assets

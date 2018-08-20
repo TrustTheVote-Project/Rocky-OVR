@@ -24,5 +24,4 @@
 #***** END LICENSE BLOCK *****
 require 'aasm'
 require 'paperclip'
-require 'newrelic_rpm'
 require 'csv'

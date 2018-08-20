@@ -199,8 +199,8 @@ describe Registrant do
       Registrant.update_all("age = NULL")
       Registrant.update_all("state_id_number = NULL")
       Registrant.backfill_data
-      assert_equal 5, Registrant.find_all_by_age(20).size
-      assert_equal 4, Registrant.find_all_by_age(19).size
+      assert_equal 5, Registrant.where(age: 20).size
+      assert_equal 4, Registrant.where(age: 19).size
     end
 
     it "backfills the official_party_name even when redacted" do
@@ -213,8 +213,8 @@ describe Registrant do
       Registrant.update_all("official_party_name = NULL")
       Registrant.update_all("state_id_number = NULL")
       Registrant.backfill_data
-      assert_equal 10, Registrant.find_all_by_official_party_name("Green").size
-      assert_equal 8, Registrant.find_all_by_official_party_name("None").size
+      assert_equal 10, Registrant.where(official_party_name: "Green").size
+      assert_equal 8, Registrant.where(official_party_name: "None").size
     end
 
     it "backfills barcode" do

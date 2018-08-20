@@ -143,15 +143,15 @@ class Partner < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :url
-  validates_format_of :url, with: /^https?:\/\//, message: "Must start with http(s)://"
+  validates_format_of :url, with: /\Ahttps?:\/\//, message: "Must start with http(s)://"
   validates_presence_of :address
   validates_presence_of :city
   validates_presence_of :state_id
   validates_presence_of :state_abbrev, :message => "State can't be blank."
   validates_presence_of :zip_code
-  validates_format_of :zip_code, :with => /^\d{5}(-\d{4})?$/, :allow_blank => true
+  validates_format_of :zip_code, :with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true
   validates_presence_of :phone
-  validates_format_of :phone, :with => /^\d{3}-\d{3}-\d{4}$/, :message => 'Phone must look like ###-###-####', :allow_blank => true
+  validates_format_of :phone, :with => /\A\d{3}-\d{3}-\d{4}\z/, :message => 'Phone must look like ###-###-####', :allow_blank => true
   validates_presence_of :organization
 
 
@@ -197,8 +197,8 @@ class Partner < ActiveRecord::Base
   
   include PartnerAssets
   
-  scope :government, where(:is_government_partner=>true)
-  scope :standard, where(:is_government_partner=>false)
+  scope :government, -> { where(:is_government_partner=>true) }
+  scope :standard, -> { where(:is_government_partner=>false) }
 
 
   def mobile_redirect_disabled
@@ -443,7 +443,7 @@ class Partner < ActiveRecord::Base
   def government_partner_zip_code_list=(string_list)
     zips = []
     string_list.to_s.split(/[^-\d]/).each do |item|
-      zip = item.strip.match(/^(\d{5}(-\d{4})?)$/).to_s
+      zip = item.strip.match(/\A(\d{5}(-\d{4})?)\z/).to_s
       zips << zip unless zip.blank?
     end
     self.government_partner_zip_codes = zips
@@ -928,7 +928,7 @@ protected
 
 
   def method_missing(method_name, *args, &block)
-    if method_name =~ /^survey_question_(\d+)_([^=]+)(=?)$/
+    if method_name =~ /\Asurvey_question_(\d+)_([^=]+)(=?)\z/
       question_num = $1
       locale = $2.to_s.underscore
       setter = !($3.blank?)
@@ -943,7 +943,7 @@ protected
       else
         return self.send("survey_question_#{question_num}")[locale]
       end
-    elsif method_name =~ /^(.+)_pixel_tracking_code(=?)$/
+    elsif method_name =~ /\A(.+)_pixel_tracking_code(=?)\z/
       email_type = $1.to_s
       setter = !($2.blank?)
       if setter

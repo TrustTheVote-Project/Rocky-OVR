@@ -23,7 +23,7 @@
 #
 #***** END LICENSE BLOCK *****
 require File.dirname(__FILE__) + "/../rails_helper"
-require 'hpricot'
+#require 'hpricot'
 
 describe ApplicationHelper do
   describe "partner_locale_options" do

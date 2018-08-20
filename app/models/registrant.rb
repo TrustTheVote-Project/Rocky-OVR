@@ -92,15 +92,15 @@ class Registrant < ActiveRecord::Base
        "prev_zip_code"
     ]
   
-  OVR_REGEX = /^(\p{Latin}|\P{Letter})*$/
+  OVR_REGEX = /\A(\p{Latin}|\P{Letter})*\z/
   
-  #CA_NAME_REGEX =   /^[a-zA-Z0-9'#,\-\/_\.@\s]*$/ #A-Z a-z 0-9 '#,-/_ .@space
+  #CA_NAME_REGEX =   /\A[a-zA-Z0-9'#,\-\/_\.@\s]*\z/ #A-Z a-z 0-9 '#,-/_ .@space
   
-  # CA_EMAIL_REGEX =  /^[a-zA-Z0-9\-\/_\.]+@.*\..*$/ #A-Z a-z 0-9, underscore, dash, and '@' followed by at least one "."
-  CA_ADDRESS_REGEX    = /^[a-zA-Z0-9#\-\s,\/\.]*$/ # A-Z a-z 0-9 # dash space, / .
-  CITY_STATE_REGEX = /^[a-zA-Z0-9#\-\s']*$/      # A-Z a-z 0-9 # dash space
-  CA_CITY_STATE_REGEX = /^[a-zA-Z0-9#\-\s]*$/      # A-Z a-z 0-9 # dash space
-  # OVR_REGEX = /^[a-zA-Z0-9#\-\s,\/\.\+!@\$%\^&\*_=\(\)\[\]\{\};':"\\<>\?\|]*$/
+  # CA_EMAIL_REGEX =  /\A[a-zA-Z0-9\-\/_\.]+@.*\..*\z/ #A-Z a-z 0-9, underscore, dash, and '@' followed by at least one "."
+  CA_ADDRESS_REGEX    = /\A[a-zA-Z0-9#\-\s,\/\.]*\z/ # A-Z a-z 0-9 # dash space, / .
+  CITY_STATE_REGEX = /\A[a-zA-Z0-9#\-\s']*\z/      # A-Z a-z 0-9 # dash space
+  CA_CITY_STATE_REGEX = /\A[a-zA-Z0-9#\-\s]*\z/      # A-Z a-z 0-9 # dash space
+  # OVR_REGEX = /\A[a-zA-Z0-9#\-\s,\/\.\+!@\$%\^&\*_=\(\)\[\]\{\};':"\\<>\?\|]*\z/
   #white space and hyphen for names; and for addresses phone#s and other stuff, also include special chars such as # ( ) / + 
   
   def self.validate_fields(list, regex, message)
@@ -275,17 +275,53 @@ class Registrant < ActiveRecord::Base
   
   attr_protected :status
 
-  aasm_column :status
-  aasm_initial_state :initial
-  aasm_state :initial
-  aasm_state :step_1
-  aasm_state :step_2, :enter => :generate_barcode
-  aasm_state :step_3
-  aasm_state :step_4
-  aasm_state :step_5
-  aasm_state :complete, :enter => :complete_registration
-  aasm_state :under_18
-  aasm_state :rejected
+  aasm column: :status do
+    state :initial, initial: true
+    state :step_1
+    state :step_2, :enter => :generate_barcode
+    state :step_3
+    state :step_4
+    state :step_5
+    state :complete, :enter => :complete_registration
+    state :under_18
+    state :rejected
+    
+    event :save_or_reject do
+      transitions :to => :rejected, :from => Registrant::STEPS, :guard => :ineligible?
+      [:step_1, :step_2, :step_3, :step_4, :step_5].each do |step|
+        transitions :to => step, :from => step
+      end
+    end
+
+    event :advance_to_step_1 do
+      transitions :to => :step_1, :from => [:initial, :step_1, :step_2, :step_3, :step_4, :rejected]
+    end
+
+    event :advance_to_step_2 do
+      transitions :to => :step_2, :from => [:step_1, :step_2, :step_3, :step_4, :rejected]
+    end
+
+    event :advance_to_step_3 do
+      transitions :to => :step_3, :from => [:step_2, :step_3, :step_4, :rejected]
+    end
+
+    event :advance_to_step_4 do
+      transitions :to => :step_4, :from => [:step_3, :step_4, :rejected]
+    end
+
+    event :advance_to_step_5 do
+      transitions :to => :step_5, :from => [:step_4, :step_5, :rejected]
+    end
+
+    event :complete do
+      transitions :to => :complete, :from => [:step_5]
+    end
+
+    event :request_reminder do
+      transitions :to => :under_18, :from => [:rejected, :step_1]
+    end
+    
+  end
 
   belongs_to :partner
   
@@ -314,7 +350,7 @@ class Registrant < ActiveRecord::Base
     configuration.update(attr_names.extract_options!)
 
     validates_presence_of(attr_names, configuration)
-    validates_format_of(attr_names, configuration.merge(:with => /^\d{5}(-\d{4})?$/, :allow_blank => true));
+    validates_format_of(attr_names, configuration.merge(:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true));
 
     validates_each(attr_names, configuration) do |record, attr_name, value|
       if record.errors[attr_name].empty? && !GeoState.valid_zip_code?(record.send(attr_name))
@@ -403,40 +439,7 @@ class Registrant < ActiveRecord::Base
     (at_least_step_2? || (at_least_step_2? && use_short_form?)) && change_of_address?
   end
 
-  aasm_event :save_or_reject do
-    transitions :to => :rejected, :from => Registrant::STEPS, :guard => :ineligible?
-    [:step_1, :step_2, :step_3, :step_4, :step_5].each do |step|
-      transitions :to => step, :from => step
-    end
-  end
-
-  aasm_event :advance_to_step_1 do
-    transitions :to => :step_1, :from => [:initial, :step_1, :step_2, :step_3, :step_4, :rejected]
-  end
-
-  aasm_event :advance_to_step_2 do
-    transitions :to => :step_2, :from => [:step_1, :step_2, :step_3, :step_4, :rejected]
-  end
-
-  aasm_event :advance_to_step_3 do
-    transitions :to => :step_3, :from => [:step_2, :step_3, :step_4, :rejected]
-  end
-
-  aasm_event :advance_to_step_4 do
-    transitions :to => :step_4, :from => [:step_3, :step_4, :rejected]
-  end
-
-  aasm_event :advance_to_step_5 do
-    transitions :to => :step_5, :from => [:step_4, :step_5, :rejected]
-  end
-
-  aasm_event :complete do
-    transitions :to => :complete, :from => [:step_5]
-  end
-
-  aasm_event :request_reminder do
-    transitions :to => :under_18, :from => [:rejected, :step_1]
-  end
+  
 
   # Builds the record from the API data and sets the correct state
   def self.build_from_api_data(data, api_finish_with_state = false)
@@ -781,7 +784,7 @@ class Registrant < ActiveRecord::Base
 
   # def advance_to!(next_step, new_attributes = {})
   #   self.attributes = new_attributes
-  #   current_status_number = STEPS.index(aasm_current_state)
+  #   current_status_number = STEPS.index(aasm.current_state)
   #   next_status_number = STEPS.index(next_step)
   #   status_number = [current_status_number, next_status_number].max
   #   send("advance_to_#{STEPS[status_number]}!")
@@ -1777,7 +1780,7 @@ class Registrant < ActiveRecord::Base
 
   
   def method_missing(sym, *args)
-    if sym.to_s =~ /^yes_no_(.+)$/
+    if sym.to_s =~ /\Ayes_no_(.+)\z/
       attribute = $1
       return self.send(:yes_no, (self.send(attribute)))
     else
