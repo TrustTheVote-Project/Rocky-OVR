@@ -41,7 +41,7 @@ describe DownloadsController do
 
       it "provides a link to download the PDF" do
         get :show, :registrant_id => @registrant.to_param
-        assert_not_nil assigns[:registrant]
+        assert !assigns[:registrant].nil?
         assert_response :success
         assert_template "show"
         assert_select "span.button a[target=_blank]"
@@ -59,7 +59,7 @@ describe DownloadsController do
         context 'when email address is present' do
           it "renders a preparing page that polls the PDF ready api with the registrant UID and a timeout redirect" do
             get :show, :registrant_id => @registrant.to_param
-            assert_not_nil assigns[:registrant]
+            assert !assigns[:registrant].nil?
             assert assigns[:timeout] == true
             assert_response :success
             assert_template "preparing"
@@ -71,7 +71,7 @@ describe DownloadsController do
             @registrant.email_address = ''
             @registrant.save!
             get :show, :registrant_id => @registrant.to_param
-            assert_not_nil assigns[:registrant]
+            assert !assigns[:registrant].nil?
             assert assigns[:timeout] == false
             assert_response :success
             assert_template "preparing"
@@ -85,15 +85,15 @@ describe DownloadsController do
         end
         it "provides a link to download the PDF" do
           get :show, :registrant_id => @registrant.to_param
-          assert_not_nil assigns[:registrant]
+          assert !assigns[:registrant].nil?
           assert_response :success
           assert_template "preparing"
         end
         context 'when the user has an email address' do
           it "times out preparing page after 30 seconds" do
-            Registrant.update_all("updated_at = '#{35.seconds.ago.to_s(:db)}'", "id = #{@registrant.id}")
+            Registrant.where("id = #{@registrant.id}").update_all("updated_at = '#{35.seconds.ago.to_s(:db)}'")
             get :show, :registrant_id => @registrant.to_param
-            assert_not_nil assigns[:registrant]
+            assert !assigns[:registrant].nil?
             assert_redirected_to registrant_finish_url(@registrant)
           end
         end
@@ -104,9 +104,9 @@ describe DownloadsController do
             @registrant.save!
           end
           it "does not times out preparing page after 30 seconds" do
-            Registrant.update_all("updated_at = '#{125.seconds.ago.to_s(:db)}'", "id = #{@registrant.id}")
+            Registrant.where("id = #{@registrant.id}").update_all("updated_at = '#{125.seconds.ago.to_s(:db)}'")
             get :show, :registrant_id => @registrant.to_param
-            assert_not_nil assigns[:registrant]
+            assert !assigns[:registrant].nil?
             assert_response :success
             assert_template "preparing"
           end

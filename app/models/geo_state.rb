@@ -31,7 +31,7 @@ class GeoState < ActiveRecord::Base
   def self.[](id_or_abbrev)
     init_all_states
     case id_or_abbrev
-    when Fixnum
+    when Integer
       @@all_states_by_id[id_or_abbrev]
     when String
       @@all_states_by_abbrev[id_or_abbrev]

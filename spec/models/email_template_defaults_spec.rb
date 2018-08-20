@@ -36,7 +36,7 @@ describe EmailTemplate do
       type, locale = name.split(".")
       registrant.locale = locale
       allow(registrant).to receive(:home_state_email_instructions).and_return("")
-
+      
       initial_templates[name] = Notifier.send(type, registrant).body.to_s
 
       EmailTemplate.set(partner, name, EmailTemplate.default(name) + "UNIQUE_VALUE_TO_BE_DELETED")

@@ -226,10 +226,10 @@ es:
           %{registrar_address}<br><br>
 
 
-          Si ya ha enviado por correo en el formulario, puede hacer <a href="<%= @cancel_reminders_url
-          %>">clic aquí</a> para dejar de recibir recordatorios sobre enviarlo pulg.  Si
+          Si ya ha enviado por correo en el formulario, puede hacer <a href="%{cancel_reminders_url}">
+          clic aquí</a> para dejar de recibir recordatorios sobre enviarlo pulg.  Si
           quieres revisar el estatus de tu forma de registro del voto, llama a tu
-          Sectretaría de Estado al <%=  %{registrar_phone}, o cheque en línea en %{registrar_url}.<br><br>
+          Sectretaría de Estado al %{registrar_phone}, o cheque en línea en %{registrar_url}.<br><br>
 
 
           Necesitamos tu apoyo para registrar a otras personas.  En este 2012, hay

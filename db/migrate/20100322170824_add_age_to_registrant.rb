@@ -37,7 +37,7 @@ class AddAgeToRegistrant < ActiveRecord::Migration
   def self.up
     add_column "registrants", "age", :integer
 
-    Registrant.find(:all, :conditions => "created_at > '#{60.minutes.ago.to_s(:db)}'").each { |r| r.calculate_age! }
+    Registrant.where("created_at > '#{60.minutes.ago.to_s(:db)}'").each { |r| r.calculate_age! }
   end
 
   def self.down

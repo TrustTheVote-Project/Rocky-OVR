@@ -104,14 +104,14 @@ describe PartnerAssetsFolder do
   describe 'sub_assets' do
     it 'respect sub directories ' do
       test_file = double(
-          public_url: :public_url,
+          public_url: "public_url",
           key: File.join(@partner.assets_path, 'test', 'file.txt'),
           destroy: nil
       )
       directory = double(files: [test_file])
       allow(@paf).to receive(:directory).and_return(directory)
 
-      expect(@paf.asset_url('file.txt', 'test')).to be_eql(:public_url)
+      expect(@paf.asset_url('file.txt', 'test')).to be_eql("public_url")
       expect(@paf.asset_file('file.txt', 'test')).to be_eql(test_file)
     end
   end

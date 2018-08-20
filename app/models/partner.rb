@@ -69,6 +69,8 @@ class Partner < ActiveRecord::Base
 
   CSV_GENERATION_PRIORITY = Registrant::REMINDER_EMAIL_PRIORITY
 
+  attr_protected :crypted_password, :password_salt, :persistence_token, :perishable_token, :created_at, :updated_at, :api_key, :csv_ready, :csv_file_name, :from_email_verified_at, :from_email_verification_checked_at, :active, :failed_login_count, :login_count, :last_request_at, :current_login_at, :current_login_ip, :last_login_ip, :grommet_csv_ready, :grommet_csv_file_name
+
   attr_accessor :tmp_asset_directory
 
   belongs_to :state, :class_name => "GeoState"
@@ -337,10 +339,10 @@ class Partner < ActiveRecord::Base
     conditions = "partner_id = ? AND (status = 'complete' OR status = 'step_5') AND (age BETWEEN ? AND ?)"
     stats = {}
     stats[:age_under_18]  = { :count => Registrant.where([conditions, self, 0 , 17]).count }
-    stats[:age_18_to_29]  = { :count => Registrant.count(:conditions => [conditions, self, 18, 29]) }
-    stats[:age_30_to_39]  = { :count => Registrant.count(:conditions => [conditions, self, 30, 39]) }
-    stats[:age_40_to_64]  = { :count => Registrant.count(:conditions => [conditions, self, 40, 64]) }
-    stats[:age_65_and_up] = { :count => Registrant.count(:conditions => [conditions, self, 65, 199]) }
+    stats[:age_18_to_29]  = { :count => Registrant.where([conditions, self, 18, 29]).count }
+    stats[:age_30_to_39]  = { :count => Registrant.where([conditions, self, 30, 39]).count }
+    stats[:age_40_to_64]  = { :count => Registrant.where([conditions, self, 40, 64]).count }
+    stats[:age_65_and_up] = { :count => Registrant.where([conditions, self, 65, 199]).count }
     total_count = stats.inject(0) {|sum, (key,stat)| sum + stat[:count]}
     stats.each { |key, stat| stat[:percentage] = percentage(stat[:count], total_count) }
     stats
@@ -366,23 +368,23 @@ class Partner < ActiveRecord::Base
   def registration_stats_completion_date
     conditions = "partner_id = ? AND (status = 'complete' OR status = 'step_5') AND created_at >= ?"
     stats = {}
-    stats[:day_count] = {:completed => Registrant.count(:conditions => [conditions, self, 1.day.ago]) }
-    stats[:week_count] = {:completed => Registrant.count(:conditions => [conditions, self, 1.week.ago]) }
-    stats[:month_count] = {:completed => Registrant.count(:conditions => [conditions, self, 1.month.ago]) }
-    stats[:year_to_date_count] =  {:completed => Registrant.count(:conditions => [conditions, self, Time.now.beginning_of_year]) }
-    stats[:year_count] =  {:completed => Registrant.count(:conditions => [conditions, self, 1.year.ago]) }
-    stats[:total_count] = {:completed => Registrant.count(:conditions => ["partner_id = ? AND (status = 'complete' OR status = 'step_5')", self]) }
-    stats[:percent_complete] = {:completed => stats[:total_count][:completed].to_f / Registrant.count(:conditions => ["partner_id = ? AND (status != 'initial')", self]) }
+    stats[:day_count] = {:completed => Registrant.where([conditions, self, 1.day.ago]).count }
+    stats[:week_count] = {:completed => Registrant.where([conditions, self, 1.week.ago]).count }
+    stats[:month_count] = {:completed => Registrant.where([conditions, self, 1.month.ago]).count }
+    stats[:year_to_date_count] =  {:completed => Registrant.where([conditions, self, Time.now.beginning_of_year]).count }
+    stats[:year_count] =  {:completed => Registrant.where([conditions, self, 1.year.ago]).count }
+    stats[:total_count] = {:completed => Registrant.where(["partner_id = ? AND (status = 'complete' OR status = 'step_5')", self]).count }
+    stats[:percent_complete] = {:completed => stats[:total_count][:completed].to_f / Registrant.where(["partner_id = ? AND (status != 'initial')", self]).count }
     
     conditions = "partner_id = ? AND (status = 'complete' OR status = 'step_5') AND created_at >= ? AND pdf_downloaded = ?"
 
-    stats[:day_count][:downloaded] = Registrant.count(:conditions => [conditions, self, 1.day.ago, true])
-    stats[:week_count][:downloaded] = Registrant.count(:conditions => [conditions, self, 1.week.ago, true])
-    stats[:month_count][:downloaded] = Registrant.count(:conditions => [conditions, self, 1.month.ago, true])
-    stats[:year_to_date_count][:downloaded] = Registrant.count(:conditions => [conditions, self, Time.now.beginning_of_year, true])
-    stats[:year_count][:downloaded] = Registrant.count(:conditions => [conditions, self, 1.year.ago, true])
-    stats[:total_count][:downloaded] = Registrant.count(:conditions => ["partner_id = ? AND (status = 'complete' OR status = 'step_5') AND pdf_downloaded = ?", self, true])
-    stats[:percent_complete][:downloaded] = stats[:total_count][:downloaded].to_f / Registrant.count(:conditions => ["partner_id = ? AND (status != 'initial')", self])
+    stats[:day_count][:downloaded] = Registrant.where([conditions, self, 1.day.ago, true]).count
+    stats[:week_count][:downloaded] = Registrant.where([conditions, self, 1.week.ago, true]).count
+    stats[:month_count][:downloaded] = Registrant.where([conditions, self, 1.month.ago, true]).count
+    stats[:year_to_date_count][:downloaded] = Registrant.where([conditions, self, Time.now.beginning_of_year, true]).count
+    stats[:year_count][:downloaded] = Registrant.where([conditions, self, 1.year.ago, true]).count
+    stats[:total_count][:downloaded] = Registrant.where(["partner_id = ? AND (status = 'complete' OR status = 'step_5') AND pdf_downloaded = ?", self, true]).count
+    stats[:percent_complete][:downloaded] = stats[:total_count][:downloaded].to_f / Registrant.where(["partner_id = ? AND (status != 'initial')", self]).count
 
 
     
@@ -464,8 +466,8 @@ class Partner < ActiveRecord::Base
   
   def logo_url=(url)
     @logo_url=url
-    if !(url=~/^http:\/\//)
-      logo_url_errors << "Pleave provide an HTTP url"
+    if !(url=~/^https?:\/\//)
+      logo_url_errors << "Please provide an HTTP(s) url"
     else
       begin
         io = open(url)
@@ -474,6 +476,7 @@ class Partner < ActiveRecord::Base
         self.logo = io
       rescue Exception=>e
         # puts e.message
+        # raise e
         logo_url_errors << "Could not download #{url} for logo"        
       end
     end
@@ -493,15 +496,15 @@ class Partner < ActiveRecord::Base
   
   def partner_css_download_url=(url)
     @partner_css_download_url=url
-    if !(url=~/^http:\/\//)
-      partner_css_download_url_errors << "Pleave provide an HTTP url"
+    if !(url=~/^https?:\/\//)
+      partner_css_download_url_errors << "Please provide an HTTP(s) url"
     else
       begin
         io = open(url)
         @partner_css_download_contents = io.read
         io.close
       rescue Exception=>e
-        # puts e.message
+        puts e.message
         partner_css_download_url_errors << "Could not download #{url} for partner css"        
       end
     end
@@ -554,7 +557,7 @@ class Partner < ActiveRecord::Base
 
     CSV.generate do |csv|
       csv << Registrant::CSV_HEADER
-      registrants.find_each(:batch_size=>500, :include => [:home_state, :mailing_state, :partner, :registrant_status], conditions: conditions) do |reg|
+      registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
         csv << reg.to_csv_array
       end
     end
@@ -594,7 +597,7 @@ class Partner < ActiveRecord::Base
     end
     conditions[0] = conditions[0].join(" AND ")
     shift_ids = {}
-    registrants.find_each(:batch_size=>500, :include => [:home_state, :mailing_state, :partner, :registrant_status], conditions: conditions) do |reg|
+    registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
       shift_ids[reg.tracking_source] ||= {
         registrations: 0,
         email_opt_in: 0,
@@ -670,7 +673,7 @@ class Partner < ActiveRecord::Base
       csv << Registrant::GROMMET_CSV_HEADER
       regs = []
       reg_dups = {}
-      registrants.find_each(:batch_size=>500, :include => [:home_state, :mailing_state, :partner, :registrant_status], conditions: conditions) do |reg|
+      registrants.where(conditions).includes( [:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
         if reg.is_grommet?
           key = "#{reg.first_name} #{reg.last_name} #{reg.home_address}"
           reg_dups[key] ||= 0
@@ -692,13 +695,15 @@ class Partner < ActiveRecord::Base
   
   
   def generate_registrants_csv_async(start_date=nil, end_date=nil)
-    self.update_attributes!(:csv_ready=>false)
+    self.csv_ready=false
+    self.save!
     action = Delayed::PerformableMethod.new(self, :generate_registrants_csv_file, [start_date, end_date])
     Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, Time.now)
   end
   
   def generate_grommet_registrants_csv_async(start_date=nil, end_date=nil)
-    self.update_attributes!(:grommet_csv_ready=>false)
+    self.grommet_csv_ready=false
+    self.save!
     action = Delayed::PerformableMethod.new(self, :generate_grommet_registrants_csv_file, [start_date, end_date])
     Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, Time.now)
   end

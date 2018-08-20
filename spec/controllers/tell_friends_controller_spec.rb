@@ -46,12 +46,12 @@ describe TellFriendsController do
       assert_difference "Delayed::Job.count" do
         post :create, :registrant_id => @registrant.to_param, :tell_friend => tell_params
       end
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:email_sent]
 
       assert :success
 
-      assert_not_nil assigns[:root_url_escaped]
+      assert !assigns[:root_url_escaped].nil?
       assert_template "finishes/show"
     end
 
@@ -67,7 +67,7 @@ describe TellFriendsController do
       assert_difference "Delayed::Job.count", 0 do
         post :create, :registrant_id => @registrant.to_param, :tell_friend => tell_params
       end
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert !assigns[:email_sent]
 
       assert :success

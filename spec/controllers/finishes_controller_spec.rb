@@ -55,9 +55,9 @@ describe FinishesController do
 
     it "shows no share links instead has the iframe" do
       get :show, :registrant_id => @registrant.to_param
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert_response :success
-      assert_template "finish"
+      assert_template "finishes/show"
 
       assert_select "iframe"
 

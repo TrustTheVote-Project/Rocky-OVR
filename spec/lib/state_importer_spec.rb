@@ -214,13 +214,10 @@ YML
       old_stderr = $stderr
       err_output = StringIO.new('')
       $stderr = err_output
-      assert_nothing_raised do
-        silence_output do
-          si = StateImporter.new(file_bad)
-          si.import
-          si.commit!
-        end
-        
+      silence_output do
+        si = StateImporter.new(file_bad)
+        si.import
+        si.commit!
       end
       $stderr = old_stderr
       assert_match /could not import state data/, err_output.string

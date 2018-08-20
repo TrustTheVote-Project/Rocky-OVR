@@ -273,7 +273,7 @@ class Registrant < ActiveRecord::Base
   
   
   
-  attr_protected :status
+  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_remiinder_delivered
 
   aasm column: :status do
     state :initial, initial: true
@@ -487,7 +487,7 @@ class Registrant < ActiveRecord::Base
   
   def self.abandon_stale_records
     id_list = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id)
-    self.find_each(:batch_size=>500, :conditions => ["id in (?)", id_list]) do |reg|
+    self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
       if reg.finish_with_state?
         reg.status = "complete"
         begin
@@ -774,7 +774,8 @@ class Registrant < ActiveRecord::Base
 
 
   def abandon!
-    self.attributes = {:abandoned => true, :state_id_number => nil}
+    self.abandoned = true
+    self.state_id_number = nil
     self.save(:validate=>false)
     if self.state_registrant
       self.state_registrant.cleanup!

@@ -51,7 +51,7 @@ Then /^I should be logged in$/ do
   activate_authlogic
   raise PartnerSession.find.to_s
   
-  assert_not_nil PartnerSession.find #controller.send(:current_partner_session)
+  assert !PartnerSession.find.nil? #controller.send(:current_partner_session)
 end
 
 Then /^I should be logged out$/ do

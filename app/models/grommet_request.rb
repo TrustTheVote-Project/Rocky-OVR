@@ -33,6 +33,7 @@ class GrommetRequest < ActiveRecord::Base
     end    
     registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])    
     registrant.basic_character_replacement!
+    registrant.state_ovr_data ||= {}
     registrant.state_ovr_data["grommet_request_id"] = self.id
     
     if registrant.valid?

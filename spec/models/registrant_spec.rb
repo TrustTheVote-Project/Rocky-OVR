@@ -193,7 +193,7 @@ describe Registrant do
   
   describe "backfill data" do
     it "backfills the age even when redacted" do
-      assert_equal 0, Registrant.find(:all, :conditions => "age IS NOT NULL").size
+      assert_equal 0, Registrant.where("age IS NOT NULL").size
       5.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 241.months.ago.to_date.to_s(:db)) }
       4.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 239.months.ago.to_date.to_s(:db)) }
       Registrant.update_all("age = NULL")
@@ -204,12 +204,12 @@ describe Registrant do
     end
 
     it "backfills the official_party_name even when redacted" do
-      assert_equal 0, Registrant.find(:all, :conditions => "party IS NOT NULL").size
+      assert_equal 0, Registrant.where("party IS NOT NULL").size
       5.times { FactoryGirl.create(:step_5_registrant, :home_zip_code => "94103", :party => "Green") }
       5.times { FactoryGirl.create(:step_5_registrant, :home_zip_code => "94103", :party => "Verde", :locale => "es") }
       4.times { FactoryGirl.create(:step_5_registrant, :home_zip_code => "94103", :party => "Decline to State") }
       4.times { FactoryGirl.create(:step_5_registrant, :home_zip_code => "94103", :party => "Se niega a declarar", :locale => "es") }
-      assert_equal 18, Registrant.find(:all, :conditions => "party IS NOT NULL").size
+      assert_equal 18, Registrant.where("party IS NOT NULL").size
       Registrant.update_all("official_party_name = NULL")
       Registrant.update_all("state_id_number = NULL")
       Registrant.backfill_data
@@ -218,11 +218,11 @@ describe Registrant do
     end
 
     it "backfills barcode" do
-      assert_equal 0, Registrant.find(:all, :conditions => "barcode IS NOT NULL").size
+      assert_equal 0, Registrant.where("barcode IS NOT NULL").size
       5.times { FactoryGirl.create(:step_1_registrant) }
       Registrant.update_all("barcode = NULL")
       Registrant.backfill_data
-      regs = Registrant.find(:all, :conditions => "barcode IS NOT NULL")
+      regs = Registrant.where("barcode IS NOT NULL")
       assert_equal 5, regs.size
       regs.each { |r| assert_match /\*RTV-[0-9A-Z]{6}\*/, r.barcode }
     end
@@ -236,12 +236,12 @@ describe Registrant do
 
     it "should be non nil for saved records" do
       reg = FactoryGirl.create(:step_1_registrant)
-      assert_not_nil reg.to_param
+      assert !reg.to_param.nil?
     end
 
     it "should not be the record id" do
       reg = FactoryGirl.create(:step_1_registrant)
-      assert_not_equal reg.id.to_s, reg.to_param
+      assert reg.id.to_s!=reg.to_param
     end
   end
 
@@ -253,9 +253,9 @@ describe Registrant do
 
     it "should raise AbandonedRecord when registrant is abandoned" do
       reg = FactoryGirl.create(:step_1_registrant, :abandoned => true)
-      assert_raise Registrant::AbandonedRecord do
+      expect {
         Registrant.find_by_param(reg.to_param)
-      end
+      }.to raise_exception(Registrant::AbandonedRecord)
     end
 
     it "should attach registrant to AbandonedRecord exception" do
@@ -271,7 +271,7 @@ describe Registrant do
   describe "localization" do
     it "finds the state localization" do
       reg = FactoryGirl.create(:step_5_registrant)
-      loc = StateLocalization.find(:first, :conditions => {:state_id => reg.home_state_id, :locale => reg.locale})
+      loc = StateLocalization.where({:state_id => reg.home_state_id, :locale => reg.locale}).first
       assert_equal loc, reg.localization
     end
 
@@ -303,39 +303,6 @@ describe Registrant do
       assert_nil reg.party
     end
         
-    it "parses date of birth before validation" do
-      reg = FactoryGirl.build(:step_1_registrant)
-      reg.date_of_birth = "08/27/1978"
-      assert reg.valid?
-      assert_equal Date.parse("Aug 27, 1978"), reg.date_of_birth
-      reg.date_of_birth = "5/3/1978"
-      assert reg.valid?
-      assert_equal Date.parse("May 3, 1978"), reg.date_of_birth
-      reg.date_of_birth = "5-3-1978"
-      assert reg.valid?
-      assert_equal Date.parse("May 3, 1978"), reg.date_of_birth
-
-      reg.date_of_birth = "1978/5/3"
-      assert reg.valid?
-      assert_equal Date.parse("May 3, 1978"), reg.date_of_birth
-      reg.date_of_birth = "1978-5-3"
-      assert reg.valid?
-      assert_equal Date.parse("May 3, 1978"), reg.date_of_birth
-
-      reg.date_of_birth = "2/30/1978"
-      assert reg.invalid?
-      assert !reg.errors[:date_of_birth].empty?
-      assert_equal "2/30/1978", reg.date_of_birth_before_type_cast
-      reg.date_of_birth = "5-3-78"
-      assert reg.invalid?
-      assert !reg.errors[:date_of_birth].empty?
-      assert_equal "5-3-78", reg.date_of_birth_before_type_cast
-      reg.date_of_birth = "May 3, 1978"
-      assert reg.invalid?
-      assert !reg.errors[:date_of_birth].empty?
-      assert_equal "May 3, 1978", reg.date_of_birth_before_type_cast
-    end
-  
     describe "field text validations" do
       Registrant::PDF_FIELDS.each do |field|
         it "only allows latin characters for PDF field #{field}" do
@@ -472,20 +439,6 @@ describe Registrant do
 
       assert_attribute_invalid_with(:step_1_registrant, :home_zip_code => nil, :home_state_id => nil)
       assert_attribute_invalid_with(:step_1_registrant, :home_zip_code => '00000')
-      assert_attribute_invalid_with(:step_1_registrant, :date_of_birth => nil)
-      assert_attribute_invalid_with(:step_1_registrant, :us_citizen => nil)
-    end
-    
-    it "should require has_state_license" do
-      reg = FactoryGirl.build(:step_1_registrant, :has_state_license=>nil)
-      reg.invalid?
-      assert reg.errors[:has_state_license]
-    end
-    
-    it "should require will_be_18_by_election" do
-      reg = FactoryGirl.build(:step_1_registrant, :will_be_18_by_election=>nil)
-      reg.invalid?
-      assert reg.errors[:will_be_18_by_election]
     end
     
     it "should not require email address when collect_email_address is 'no'" do
@@ -532,28 +485,7 @@ describe Registrant do
       assert !reg.ineligible_non_participating_state?
     end
 
-    it "should be ineligible when too young" do
-      reg = FactoryGirl.build(:step_1_registrant, :date_of_birth => 10.years.ago.to_date.to_s(:db))
-      assert reg.valid?
-      assert reg.ineligible?
-      assert reg.ineligible_age?
-      reg = FactoryGirl.build(:step_1_registrant, :date_of_birth => 20.years.ago.to_date.to_s(:db))
-      assert reg.valid?
-      assert reg.eligible?
-      assert !reg.ineligible_age?
-    end
 
-    it "should be ineligible when not a citizen" do
-      reg = FactoryGirl.build(:step_1_registrant, :us_citizen => false)
-      assert reg.valid?
-      assert reg.ineligible?
-      assert reg.ineligible_non_citizen?
-      reg = FactoryGirl.build(:step_1_registrant, :us_citizen => true)
-      assert reg.valid?
-      assert reg.eligible?
-      assert !reg.ineligible_non_citizen?
-    end
-    
     it "does not validate phone is present if rtv or partner mobile opt-in is true" do
       reg = FactoryGirl.build(:step_1_registrant, :phone => "")
       reg.opt_in_sms = true
@@ -562,10 +494,92 @@ describe Registrant do
       reg.should be_valid
     end
     
+    it "should not require state id" do
+      assert_attribute_valid_with(:step_1_registrant, :state_id_number => nil)
+    end
     
   end
 
   describe "step 2" do
+    it "requires pesronal info" do
+      assert_attribute_invalid_with(:step_2_registrant, :date_of_birth => nil)
+      assert_attribute_invalid_with(:step_2_registrant, :us_citizen => nil)
+    end
+    
+    it "should require has_state_license" do
+      reg = FactoryGirl.build(:step_2_registrant, :has_state_license=>nil)
+      reg.invalid?
+      assert reg.errors[:has_state_license]
+    end
+    
+    it "should require will_be_18_by_election" do
+      reg = FactoryGirl.build(:step_2_registrant, :will_be_18_by_election=>nil)
+      reg.invalid?
+      assert reg.errors[:will_be_18_by_election]
+    end
+    
+    it "should be ineligible when too young" do
+      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 10.years.ago.to_date.to_s(:db))
+      assert reg.valid?
+      assert reg.ineligible?
+      assert reg.ineligible_age?
+      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 20.years.ago.to_date.to_s(:db))
+      assert reg.valid?
+      assert reg.eligible?
+      assert !reg.ineligible_age?
+    end
+
+    it "should be ineligible when not a citizen" do
+      reg = FactoryGirl.build(:step_2_registrant, :us_citizen => false)
+      assert !reg.valid?
+      assert reg.ineligible?
+      assert reg.ineligible_non_citizen?
+      reg = FactoryGirl.build(:step_2_registrant, :us_citizen => true)
+      assert reg.valid?
+      assert reg.eligible?
+      assert !reg.ineligible_non_citizen?
+    end
+    
+    
+    
+    
+    
+    
+    
+    
+    it "parses date of birth before validation" do
+      reg = FactoryGirl.build(:step_2_registrant)
+      reg.date_of_birth = "08/27/1978"
+      assert reg.valid?
+      assert_equal Date.parse("Aug 27, 1978"), reg.date_of_birth
+      reg.date_of_birth = "5/3/1978"
+      assert reg.valid?
+      assert_equal Date.parse("May 3, 1978"), reg.date_of_birth
+      reg.date_of_birth = "5-3-1978"
+      assert reg.valid?
+      assert_equal Date.parse("May 3, 1978"), reg.date_of_birth
+
+      reg.date_of_birth = "1978/5/3"
+      assert reg.valid?
+      assert_equal Date.parse("May 3, 1978"), reg.date_of_birth
+      reg.date_of_birth = "1978-5-3"
+      assert reg.valid?
+      assert_equal Date.parse("May 3, 1978"), reg.date_of_birth
+
+      reg.date_of_birth = "2/30/1978"
+      assert reg.invalid?
+      assert !reg.errors[:date_of_birth].empty?
+      assert_equal "2/30/1978", reg.date_of_birth_before_type_cast
+      reg.date_of_birth = "5-3-78"
+      assert reg.invalid?
+      assert !reg.errors[:date_of_birth].empty?
+      assert_equal "5-3-78", reg.date_of_birth_before_type_cast
+      reg.date_of_birth = "May 3, 1978"
+      assert reg.invalid?
+      assert !reg.errors[:date_of_birth].empty?
+      assert_equal "May 3, 1978", reg.date_of_birth_before_type_cast
+    end
+    
     it "should require contact information" do
       assert_attribute_invalid_with(:step_2_registrant, :name_title => nil)
       assert_attribute_invalid_with(:step_2_registrant, :first_name => nil)
@@ -576,9 +590,6 @@ describe Registrant do
     
     
 
-    it "should not require state id" do
-      assert_attribute_valid_with(:step_2_registrant, :state_id_number => nil)
-    end
 
     it "requires mailing address fields if has_mailing_address" do
       assert_attribute_invalid_with(:step_2_registrant, {:mailing_address => nil}, :has_mailing_address => true,)
@@ -1354,7 +1365,7 @@ describe Registrant do
 
     it "should clear sensitive data" do
       reg = FactoryGirl.create(:step_4_registrant)
-      assert_not_nil reg.state_id_number
+      assert !reg.state_id_number.nil?
       reg.abandon!
       assert_nil reg.state_id_number
     end
@@ -1456,7 +1467,9 @@ describe Registrant do
       it "generates PDF with merged data" do
         `rm -f #{@registrant.pdf_file_path}`
         assert_difference(%Q{Dir[File.join(Rails.root, "public/pdfs/#{@registrant.bucket_code}/*")].length}) do
-          @registrant.generate_pdf.to_s
+          expect {
+           @registrant.generate_pdf.to_s 
+          }.to raise_exception
         end
       end
 
@@ -1647,7 +1660,6 @@ describe Registrant do
                      "English",
                      reg.date_of_birth.to_s(:month_day_year),
                      reg.email_address,
-                     "No",
                      "Yes",
                      nil,
                      nil,
@@ -1682,10 +1694,17 @@ describe Registrant do
                      "No",  # volunteer
                      "No",
                      nil,
+                     "No",
                      nil,
                      "No",
                      "No",
                      "Yes",
+                     "No",
+                     "",
+                     "",
+                     nil,
+                     nil,
+                     nil,
                      "No",
                      nil],
                   reg.to_csv_array
@@ -1703,7 +1722,6 @@ describe Registrant do
                      "English",
                      reg.date_of_birth.to_s(:month_day_year),
                      "citizen@example.com",
-                     "No",
                      "Yes",
                      "Mrs.",
                      "Susan",
@@ -1724,7 +1742,7 @@ describe Registrant do
                      "MA",
                      "02135",
                      "Democratic",
-                     "White (not Hispanic)",
+                     "White",
                      "123-456-7890",
                      "Mobile",
                      "Yes",
@@ -1738,11 +1756,18 @@ describe Registrant do
                      "Yes",
                      "Yes",
                      nil,
-                     reg.created_at && reg.created_at.to_s,
+                     "No",
+                     reg.created_at && reg.created_at.in_time_zone("America/New_York").to_s,
                      "No",
                      "Yes",
                      "Yes",
                      "Yes",
+                     "",
+                     "",
+                     nil,
+                     nil,
+                     nil,
+                     "No",
                      nil
                      ],
                  reg.to_csv_array
@@ -1762,7 +1787,6 @@ describe Registrant do
                      "Spanish",
                      reg.date_of_birth.to_s(:month_day_year),
                      "citizen@example.com",
-                     "No",
                      "Yes",
                      "Mrs.",
                      "Susan",
@@ -1783,7 +1807,7 @@ describe Registrant do
                      "MA",
                      "02135",
                      "Democratic",
-                     "White (not Hispanic)",
+                     "White",
                      "123-456-7890",
                      "Mobile",
                      "Yes",
@@ -1797,19 +1821,28 @@ describe Registrant do
                      "Yes",
                      "Yes",
                      nil,
-                     reg.created_at && reg.created_at.to_s,
+                     "No",
+                     reg.created_at && reg.created_at.in_time_zone("America/New_York").to_s,
                      "No",
                      "Yes",
                      "Yes",
                      "Yes",
+                     "",
+                     "",
+                     nil,
+                     nil,
+                     nil,
+                     "No",
                      nil
                      ]
                  
     end
 
     it "renders ineligible CSV" do
-      reg = FactoryGirl.create(:step_1_registrant, :us_citizen => false)
-      assert_equal "Not a US citizen", reg.to_csv_array[-7]
+      reg = FactoryGirl.create(:step_2_registrant)
+      reg.us_citizen = false
+      reg.check_ineligible
+      assert_equal "Not a US citizen", reg.to_csv_array[-14]
     end
     
     it "includes non-english/spanish locale names" do
@@ -1820,17 +1853,18 @@ describe Registrant do
     it "includes geo location and PA tracking id" do
       reg = FactoryGirl.create(:api_v2_maximal_registrant)
       reg.state_ovr_data = {}
+      reg.stub(:grommet_submission).and_return({default: "submission"})
+      reg.state_ovr_data ||= {}
       reg.state_ovr_data["pa_transaction_id"] = "PA ID"
       reg.state_ovr_data["geo_location"] = {"lat"=>1.23, "long"=>2.34} 
       assert_equal [ "Complete",
                      "tracking_source",
                      "part_tracking_id",
                      "open id",
-                     "PA ID",
+                     "Success: PA ID",
                      "English",
                      reg.date_of_birth.to_s(:month_day_year),
                      "citizen@example.com",
-                     "No",
                      "Yes",
                      "Mrs.",
                      "Susan",
@@ -1851,7 +1885,7 @@ describe Registrant do
                      "MA",
                      "02135",
                      nil,
-                     "White (not Hispanic)",
+                     "White",
                      "123-456-7890",
                      "Mobile",
                      "Yes",
@@ -1865,18 +1899,25 @@ describe Registrant do
                      "Yes",
                      "Yes",
                      nil,
-                     reg.created_at && reg.created_at.to_s,
+                     "No",
+                     reg.created_at && reg.created_at.in_time_zone("America/New_York").to_s,
                      "No",
                      "Yes",
                      "Yes",
                      "Yes",
-                     "lat: 1.23 lon: 2.34"
-                     ],
+                     "",
+                     "",
+                     nil,
+                     nil,
+                     nil,
+                     "Yes",
+                     false
+                   ],
                  reg.to_csv_array
     end
 
     it "has a CSV header" do
-      assert_not_nil Registrant::CSV_HEADER
+      assert !Registrant::CSV_HEADER.nil?
 
       reg = FactoryGirl.build(:maximal_registrant)
       assert_equal Registrant::CSV_HEADER.size, reg.to_csv_array.size

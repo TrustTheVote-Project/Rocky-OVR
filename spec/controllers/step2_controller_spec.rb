@@ -55,17 +55,30 @@ describe Step2Controller do
       @registrant = FactoryGirl.create(:step_1_registrant)
     end
 
-    it "should update registrant and complete step 2" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant).reject {|k,v| k == :status }
-      assert_not_nil assigns[:registrant]
+    it "should update registrant and complete step 2 when not using short form" do
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant).reject {|k,v| k == :status }.merge(short_form: 0)
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_2?
       assert_redirected_to registrant_step_3_url(assigns[:registrant])
     end
     
-
+    it "should update registrant and complete after step 2" do
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant).reject {|k,v| k == :status }
+      assert !assigns[:registrant].nil?
+      assert assigns[:registrant].complete?
+      assert_redirected_to registrant_download_url(assigns[:registrant])
+    end
+    
 
     it "should reject invalid input and show form again" do
       put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant, :first_name => nil).reject {|k,v| k == :status }
+      assert assigns[:registrant].step_5?
+      assert assigns[:registrant].reload.step_1?
+      assert_template "show"
+    end
+
+    it "should reject invalid input and show form again when not using short form" do
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant, :first_name => nil).reject {|k,v| k == :status }.merge(short_form: 0)
       assert assigns[:registrant].step_2?
       assert assigns[:registrant].reload.step_1?
       assert_template "show"
@@ -109,7 +122,7 @@ describe Step2Controller do
       it "should go to step 4 if on ovr_flow" do
         @registrant.stub(:in_ovr_flow?) { true }
         put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:maximal_registrant).reject {|k,v| k == :status }
-        assert_not_nil assigns[:registrant]
+        assert !assigns[:registrant].nil?
         assert assigns[:registrant].step_3?
         assert_redirected_to registrant_step_4_url(assigns[:registrant])
       end
@@ -117,7 +130,7 @@ describe Step2Controller do
       it "should go to the confirmation page if using not in ovr_flow" do
         @registrant.stub(:in_ovr_flow?) { false }
         put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:maximal_registrant).reject {|k,v| k == :status }
-        assert_not_nil assigns[:registrant]
+        assert !assigns[:registrant].nil?
         assert assigns[:registrant].complete?
         assert_redirected_to registrant_download_url(assigns[:registrant])
       end

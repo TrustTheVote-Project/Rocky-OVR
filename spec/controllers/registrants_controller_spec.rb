@@ -99,7 +99,7 @@ describe RegistrantsController do
   describe "#new" do
     it "should show the step 1 input form" do
       get :new
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert_template "show"
     end
 
@@ -271,7 +271,7 @@ describe RegistrantsController do
 
     it "should create a new registrant and complete step 1" do
       post :create, :registrant => @reg_attributes
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert_redirected_to registrant_step_2_url(assigns[:registrant])
     end
 
@@ -289,14 +289,14 @@ describe RegistrantsController do
 
     it "should reject invalid input and show form again" do
       post :create, :registrant => @reg_attributes.merge(:home_zip_code => "")
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].new_record?, assigns[:registrant].inspect
       assert_template "show"
     end
 
     it "should keep partner, locale, source, collectemailaddress and tracking for next attempt" do
       post :create, :registrant => @reg_attributes.merge(:home_zip_code => ""), :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :collectemailaddress=>'yes'
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].new_record?, assigns[:registrant].inspect
       assert_template "show"
       assert_select "input[name=partner][value=2]"
@@ -309,7 +309,7 @@ describe RegistrantsController do
     it "should reject ineligible registrants" do
       north_dakota_zip = "58001"
       post :create, :registrant => @reg_attributes.merge(:home_zip_code => north_dakota_zip)
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].ineligible?
       assert assigns[:registrant].ineligible_non_participating_state?
       assert assigns[:registrant].rejected?
@@ -324,7 +324,7 @@ describe RegistrantsController do
 
     it "should update registrant and complete step 1" do
       put :update, :id => @registrant.to_param, :registrant => {:email_address => "new@example.com"}
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_1?
       assert_redirected_to registrant_step_2_url(assigns[:registrant])
     end
@@ -339,7 +339,7 @@ describe RegistrantsController do
     it "should reject ineligible registrants" do
       north_dakota_zip = "58001"
       put :update, :id => @registrant.to_param, :registrant => {:home_zip_code => north_dakota_zip}
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].ineligible?
       assert assigns[:registrant].ineligible_non_participating_state?
       assert assigns[:registrant].rejected?
@@ -351,27 +351,27 @@ describe RegistrantsController do
     describe "missing registration" do
       it "should show 404" do
         assert_nil Registrant.find_by_uid("987654321")
-        assert_raise ActiveRecord::RecordNotFound do
+        expect {
           get :show, :id => "987654321"
-        end
+        }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
 
     describe "completed registration" do
       it "should not be visible" do
         reg = FactoryGirl.create(:completed_registrant)
-        assert_raise ActiveRecord::RecordNotFound do
+        expect {
           get :show, :id => reg.to_param
-        end
+        }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
 
     describe "under-18 finished registration" do
       it "should not be visible" do
         reg = FactoryGirl.create(:under_18_finished_registrant)
-        assert_raise ActiveRecord::RecordNotFound do
+        expect {
           get :show, :id => reg.to_param
-        end
+        }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
   end

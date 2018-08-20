@@ -29,10 +29,11 @@ describe ReminderMailer do
   describe 'deliver_reminders(ids)' do
     it "finds registrants in batches based on ids and calls deliver_reminders" do
       a = double('registrant')
+      relation = double('ActiveRecord::Relation')
       expect(a).to receive(:deliver_reminder_email)
-      expect(Registrant).to receive(:find_each).with({
-        :batch_size=>500,
-        :conditions=> ["id in (?)", [-1,-2]]
+      expect(Registrant).to receive(:where).with(["id in (?)", [-1,-2]]).and_return(relation)
+      expect(relation).to receive(:find_each).with({
+        :batch_size=>500
       }).and_yield(a)
       rm.deliver_reminders([-1,-2])
     end
@@ -52,10 +53,11 @@ describe ReminderMailer do
       frt = double('final_reminder_time')
       expect(rm).to receive(:final_reminder_time) { frt }
       reg =  double('registrant')
+      relation = double('ActiveRecord::Relation')
       expect(reg).to receive(:deliver_final_reminder_email)
-      expect(Registrant).to receive(:find_each).with({
+      expect(Registrant).to receive(:where).with(["reminders_left=0 AND pdf_downloaded = ? AND updated_at < ? AND final_reminder_delivered = ? AND pdf_ready=?", false, frt, false, true ]).and_return(relation)
+      expect(relation).to receive(:find_each).with({
         batch_size: 500,
-        conditions: ["reminders_left=0 AND pdf_downloaded = ? AND updated_at < ? AND final_reminder_delivered = ? AND pdf_ready=?", false, frt, false, true ]
       }).and_yield(reg)
       rm.deliver_final_reminders
     end

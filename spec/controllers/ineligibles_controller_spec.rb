@@ -35,7 +35,7 @@ describe IneligiblesController do
     it "shows not-a-citizen message" do
       @registrant = FactoryGirl.create(:step_1_registrant, :us_citizen => false)
       get :show, :registrant_id => @registrant.to_param
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert_response :success
       assert_select "p.reason", /citizen/
     end
@@ -43,7 +43,7 @@ describe IneligiblesController do
     it "shows state-not-participating message" do
       @registrant = FactoryGirl.create(:step_1_registrant, :home_zip_code => "58111")
       get :show, :registrant_id => @registrant.to_param
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert_response :success
       assert_select "p.reason", /does not register voters/
     end
@@ -61,7 +61,7 @@ describe IneligiblesController do
       @registrant = FactoryGirl.create(:step_1_registrant, :date_of_birth => 16.years.ago.to_date.strftime("%m/%d/%Y"), :opt_in_email=>true)
       assert @registrant.ineligible_age?
       get :show, :registrant_id => @registrant.to_param
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].remind_when_18
       assert assigns[:registrant].opt_in_email
       assert_response :success

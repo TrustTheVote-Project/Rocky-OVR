@@ -37,7 +37,7 @@ class Admin::GrommetQueueController < Admin::BaseController
   end
   
   def flush
-    Delayed::Job.update_all(["run_at=?", DateTime.now], queue: GROMMET_QUEUE_NAME)
+    Delayed::Job.where(queue: GROMMET_QUEUE_NAME).update_all(["run_at=?", DateTime.now])
     Settings.grommet_delay = 0
     redirect_to action: :show
   end

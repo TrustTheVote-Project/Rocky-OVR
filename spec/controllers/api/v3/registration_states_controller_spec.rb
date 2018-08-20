@@ -32,7 +32,7 @@ describe Api::V3::RegistrationStatesController do
       get :index, :format => 'json'
       GeoState.states_with_online_registration.each do |state_abbr|
         state = GeoState[state_abbr]
-        assigns(:data)[:states].should include("name"=>state.abbreviation, "url"=>state.online_reg_url(nil))
+        assigns(:data)[:states].should include(name: state.abbreviation, url: state.online_reg_url(nil))
       end
     end
   end

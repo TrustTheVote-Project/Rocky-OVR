@@ -38,7 +38,7 @@ module RockyDsl
       rescue V3::UnsupportedLanguageError => e
         raise({ :message => e.message , :status => 400}.to_s)
       rescue ActiveRecord::UnknownAttributeError => e
-        name = e.message.split(': ')[1]
+        name = e.attribute
         raise({ :field_name => name, :message => "Invalid parameter type", :status => 400}.to_s)
       end
     end

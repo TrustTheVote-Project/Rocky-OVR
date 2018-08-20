@@ -59,7 +59,7 @@ describe Api::V2::PartnersController do
     end
     it 'should report invalid parameter type' do
       expect_api_error :message => "Invalid parameter type", :field_name => "attr"
-      new_partner { raise(ActiveRecord::UnknownAttributeError, 'unknown attribute: attr') }
+      new_partner { raise(ActiveRecord::UnknownAttributeError.new(Partner.new, 'attr')) }
     end
 
   end

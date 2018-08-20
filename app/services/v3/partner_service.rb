@@ -222,7 +222,7 @@ module V3
     def self.block_protected_attributes(attrs)
       attrs.each do |key,val|
         if !allowed_attrs.include?(key.to_sym)
-          raise ActiveRecord::UnknownAttributeError.new("unknown attribute: #{key.to_s}")
+          raise ActiveRecord::UnknownAttributeError.new(nil, key.to_s)
         end
       end
     end

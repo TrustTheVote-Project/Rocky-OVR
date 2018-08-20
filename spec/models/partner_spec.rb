@@ -97,7 +97,7 @@ describe Partner do
   end
   describe "#logo_url=(URL)" do
     it "opens the file from the URL when saved" do
-      url = "http://www.rockthevote.com/assets/images/structure/home_rtv_logo.png"
+      url = "http://s3.amazonaws.com/rocky-assets/assets/rtv-square-reversed-05e1750046cfd36ec369502624f6daf4.png"
       p = FactoryGirl.build(:partner)
       mock_io = double("StringIO")
       mock_uri = double("URI")
@@ -110,7 +110,7 @@ describe Partner do
       p.should have_received(:open).with(url)
     end
     it "attaches the URL file as the logo" do
-      url = "http://www.rockthevote.com/assets/images/structure/home_rtv_logo.png"
+      url = "https://s3.amazonaws.com/rocky-assets/assets/rtv-square-reversed-05e1750046cfd36ec369502624f6daf4.png"
       p = FactoryGirl.build(:partner)
       p.logo_url = url
       p.save!
@@ -121,10 +121,10 @@ describe Partner do
       p = FactoryGirl.build(:partner)
       p.logo_url = bad_url
       p.should_not be_valid
-      p.errors[:logo_image_URL].should include("Pleave provide an HTTP url")
+      p.errors[:logo_image_URL].should include("Please provide an HTTP(s) url")
     end
     it "adds a validation error if the file can not be downloaded" do
-      bad_url = "http://www.rockthevote.com/assets/images/structure/home_rtv_logo_wrong.png"
+      bad_url = "https://www.rockthevote.org/wp-content/uploads/2017/07/RTV_white_updated_wrong.png"
       p = FactoryGirl.build(:partner)
       p.logo_url = bad_url
       p.should_not be_valid
@@ -136,7 +136,7 @@ describe Partner do
   
   describe "#partner_css_download_url=(URL)" do
     it "opens the file from the URL when saved" do
-      url = "http://www.rockthevote.com/assets/v4/css/base.css"
+      url = "https://s3.amazonaws.com/rocky-assets/assets/registration2.css"
       p = FactoryGirl.build(:partner)
       mock_io = double("StringIO")
       mock_uri = double("URI")
@@ -151,7 +151,7 @@ describe Partner do
       p.should have_received(:open).with(url)
     end
     it "attaches the CSS file as the partner css" do
-      url = "http://www.rockthevote.com/assets/v4/css/base.css"
+      url = "http://s3.amazonaws.com/rocky-assets/assets/registration2.css"
       p = FactoryGirl.build(:partner)
       p.partner_css_download_url = url
       p.save!
@@ -162,7 +162,7 @@ describe Partner do
       p = FactoryGirl.build(:partner)
       p.partner_css_download_url = bad_url
       p.should_not be_valid
-      p.errors[:partner_css_download_URL].should include("Pleave provide an HTTP url")
+      p.errors[:partner_css_download_URL].should include("Please provide an HTTP(s) url")
     end
     it "adds a validation error if the file can not be downloaded" do
       bad_url = "http://www.rockthevote.com/assets/images/structure/home_rtv_logo_wrong.css"
@@ -338,6 +338,7 @@ describe Partner do
         end
         it "copies the CSS files to the partner path (with the correct names) from URLs" do
           pending "Don't need URL designation of assets yet"
+          raise 'not implemented'
         end
         it "does not set the partner as whitelabeled if the path functions fail" do
           @partner.stub(:application_css_present?).and_return(false)
@@ -963,7 +964,7 @@ describe Partner do
         # Florida
         2.times do 
           reg = FactoryGirl.create(:step_5_registrant, :partner=>partner, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
+          reg.update_attributes!(:home_zip_code => "32001", :party => "Decline to State")
         end
         stats = partner.registration_stats_state
         assert_equal 2, stats.length
@@ -1004,44 +1005,44 @@ describe Partner do
     describe "by race" do
       it "should tally registrants by race" do
         partner = FactoryGirl.create(:partner)
-        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Hispanic") }
-        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Multi-racial") }
+        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'en')) }
+        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'en')) }
         stats = partner.registration_stats_race
         assert_equal 2, stats.length
-        assert_equal "Hispanic", stats[0][:race]
+        assert_equal I18n.t('txt.registration.races.hispanic', locale: 'en'), stats[0][:race]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
-        assert_equal "Multi-racial", stats[1][:race]
+        assert_equal I18n.t('txt.registration.races.mutli_racial', locale: 'en'), stats[1][:race]
         assert_equal 2, stats[1][:registrations_count]
         assert_equal 0.4, stats[1][:registrations_percentage]
       end
 
       it "should treat race names in different languages as equivalent" do
         partner = FactoryGirl.create(:partner)
-        4.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Hispanic") }
-        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Hispano", :locale => "es") }
-        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Multi-racial") }
-        1.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Multi-racial", :locale => "es") }
+        4.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'en')) }
+        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'es'), :locale => "es") }
+        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'es')) }
+        1.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'es'), :locale => "es") }
         stats = partner.registration_stats_race
         assert_equal 2, stats.length
-        assert_equal "Hispanic", stats[0][:race]
+        assert_equal I18n.t('txt.registration.races.hispanic', locale: 'en'), stats[0][:race]
         assert_equal 6, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
-        assert_equal "Multi-racial", stats[1][:race]
+        assert_equal I18n.t('txt.registration.races.mutli_racial', locale: 'en'), stats[1][:race]
         assert_equal 4, stats[1][:registrations_count]
         assert_equal 0.4, stats[1][:registrations_percentage]
       end
 
       it "doesn't need both English and Spanish results" do
         partner = FactoryGirl.create(:partner)
-        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Hispanic") }
-        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Multi-racial", :locale => "es") }
+        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'en')) }
+        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'es'), :locale => "es") }
         stats = partner.registration_stats_race
         assert_equal 2, stats.length
-        assert_equal "Hispanic", stats[0][:race]
+        assert_equal I18n.t('txt.registration.races.hispanic', locale: 'en'), stats[0][:race]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
-        assert_equal "Multi-racial", stats[1][:race]
+        assert_equal I18n.t('txt.registration.races.mutli_racial', locale: 'en'), stats[1][:race]
         assert_equal 2, stats[1][:registrations_count]
         assert_equal 0.4, stats[1][:registrations_percentage]
       end
@@ -1049,28 +1050,28 @@ describe Partner do
       it "when the race is blank it is called 'Unknown'" do
         partner = FactoryGirl.create(:partner)
         3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "") }
-        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Multi-racial") }
+        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'en')) }
         stats = partner.registration_stats_race
         assert_equal 2, stats.length
         assert_equal "Unknown", stats[0][:race]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
-        assert_equal "Multi-racial", stats[1][:race]
+        assert_equal I18n.t('txt.registration.races.mutli_racial', locale: 'en'), stats[1][:race]
         assert_equal 2, stats[1][:registrations_count]
         assert_equal 0.4, stats[1][:registrations_percentage]
       end
 
       it "only uses completed/step_5 registrations for stats" do
         partner = FactoryGirl.create(:partner)
-        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Hispanic") }
-        2.times { FactoryGirl.create(:step_4_registrant, :partner => partner, :race => "Hispanic") }
-        2.times { FactoryGirl.create(:step_5_registrant, :partner => partner, :race => "Multi-racial") }
+        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'en')) }
+        2.times { FactoryGirl.create(:step_4_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'en')) }
+        2.times { FactoryGirl.create(:step_5_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'en')) }
         stats = partner.registration_stats_race
         assert_equal 2, stats.length
-        assert_equal "Hispanic", stats[0][:race]
+        assert_equal I18n.t('txt.registration.races.hispanic', locale: 'en'), stats[0][:race]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
-        assert_equal "Multi-racial", stats[1][:race]
+        assert_equal I18n.t('txt.registration.races.mutli_racial', locale: 'en'), stats[1][:race]
         assert_equal 2, stats[1][:registrations_count]
         assert_equal 0.4, stats[1][:registrations_percentage]
       end
@@ -1078,15 +1079,15 @@ describe Partner do
       it "should only include data for this partner" do
         partner = FactoryGirl.create(:partner)
         other_partner = FactoryGirl.create(:partner)
-        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Hispanic") }
-        3.times { FactoryGirl.create(:maximal_registrant, :partner => other_partner, :race => "Hispanic") }
-        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => "Multi-racial") }
+        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'en')) }
+        3.times { FactoryGirl.create(:maximal_registrant, :partner => other_partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'en')) }
+        2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'en')) }
         stats = partner.registration_stats_race
         assert_equal 2, stats.length
-        assert_equal "Hispanic", stats[0][:race]
+        assert_equal I18n.t('txt.registration.races.hispanic', locale: 'en'), stats[0][:race]
         assert_equal 3, stats[0][:registrations_count]
         assert_equal 0.6, stats[0][:registrations_percentage]
-        assert_equal "Multi-racial", stats[1][:race]
+        assert_equal I18n.t('txt.registration.races.mutli_racial', locale: 'en'), stats[1][:race]
         assert_equal 2, stats[1][:registrations_count]
         assert_equal 0.4, stats[1][:registrations_percentage]
       end

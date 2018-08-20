@@ -45,7 +45,7 @@ describe LogosController do
     get :show
     assert_response :success
     assert_template "show"
-    assert_not_nil assigns[:partner]
+    assert !assigns[:partner].nil?
   end
 
   it "can upload a logo" do

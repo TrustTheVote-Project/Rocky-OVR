@@ -51,6 +51,7 @@ FactoryGirl.define do
     home_address    "123 Market St."
     home_city       "San Francisco"
     # home_state      { GeoState['CA'] }
+    state_id_number "NONE"
     has_state_license true
   end
 
@@ -58,7 +59,7 @@ FactoryGirl.define do
     status          "step_3"
     state_id_number "NONE"
     opt_in_sms      false
-    race            "Hispanic"
+    race            "Hispanic or Latino"
     party           "Democratic"
   end
 
@@ -101,7 +102,7 @@ FactoryGirl.define do
     mailing_state_id    { GeoState['MA'].id }
     mailing_zip_code    "02135"
     party               "Decline to State"
-    race                "White (not Hispanic)"
+    race                "White"
     state_id_number     "NONE"
     phone               "123-456-7890"
     phone_type          "Mobile"
@@ -200,7 +201,9 @@ FactoryGirl.define do
     
   end
 
-  factory :partner do
+  
+
+  factory :mass_assigned_partner, class: "partner" do
     sequence(:username)   { |n| "partner_#{n}" }
     email                 { |p| "#{p.username}@example.com" }
     password              "password"
@@ -215,9 +218,13 @@ FactoryGirl.define do
     organization          "Consolidated Amalgamated, Inc."
     survey_question_1_en  "Hello?"
     survey_question_2_en  "Outta here?"
-    api_key               "abc123"
-    
   end
+  
+  factory :partner, parent: :mass_assigned_partner do
+    api_key               "abc123"
+  end
+  
+    
   
 
   factory :government_partner, :parent=>:partner do

@@ -50,7 +50,9 @@ RSpec.describe GrommetRequest, :type => :model do
   before(:each) do
     allow(registrant).to receive(:valid?) { true }
     allow(registrant).to receive(:basic_character_replacement!) 
-    allow(registrant).to receive(:save!)     
+    allow(registrant).to receive(:save!) 
+    allow(registrant).to receive(:state_ovr_data=)    
+    allow(registrant).to receive(:state_ovr_data) { {} }    
     allow(registrant).to receive(:id) { "id" }     
     allow(V3::RegistrationService).to receive(:valid_for_pa_submission) { [] }
     allow(V3::RegistrationService).to receive(:create_pa_registrant) { registrant }

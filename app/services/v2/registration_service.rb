@@ -170,7 +170,7 @@ module V2
     private
 
     def self.block_protected_attributes(attrs)
-      raise ActiveRecord::UnknownAttributeError.new('unknown attribute: state_id_number') if attrs[:state_id_number].present?
+      raise ActiveRecord::UnknownAttributeError.new(nil, 'state_id_number') if attrs[:state_id_number].present?
     end
 
     def self.validate_language(reg)

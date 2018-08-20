@@ -63,7 +63,7 @@ module V1
       regs = partner.registrants
 
       if since = query[:since]
-        regs = regs.all(:conditions => [ "created_at >= ?", Time.parse(since) ])
+        regs = regs.all([ "created_at >= ?", Time.parse(since) ])
       end
 
       regs.map do |reg|
@@ -107,7 +107,7 @@ module V1
     private
 
     def self.block_protected_attributes(attrs)
-      raise ActiveRecord::UnknownAttributeError.new('unknown attribute: state_id_number') if attrs[:state_id_number].present?
+      raise ActiveRecord::UnknownAttributeError.new(nil, 'state_id_number') if attrs[:state_id_number].present?
     end
 
     def self.validate_language(reg)
@@ -162,7 +162,7 @@ module V1
     end
 
     def self.find_partner(partner_id, password)
-      partner = Partner.first(:conditions => { :id => partner_id })
+      partner = Partner.first({ :id => partner_id })
 
       if !partner || !partner.valid_password?(password)
         raise ArgumentError.new(INVALID_PARTNER_OR_PASSWORD)

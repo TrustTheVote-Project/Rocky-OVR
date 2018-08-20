@@ -211,9 +211,9 @@ describe PdfRenderer do
     describe "race" do
       it "should output race" do
         registrant.stub(:requires_race?) { true }
-        pdfg = PdfRenderer.new(registrant) 
+        pdfg = PdfRenderer.new(registrant)
         doc = Nokogiri::XML(pdfg.render_to_string('registrants/registrant_pdf', :layout=>'layouts/nvra'))
-        
+
         assert_equal  registrant.race,
                       doc.css('#race .value').inner_html.strip
       end
@@ -228,12 +228,12 @@ describe PdfRenderer do
                       doc.css('#race .value').inner_html.strip
       end
       it "should output race even if it is not required" do
-        registrant = FactoryGirl.create(:maximal_registrant, :race => "Multi-racial")
+        registrant = FactoryGirl.create(:maximal_registrant, :race => "Two or More Races")
         registrant.stub(:requires_race?) { false }
         pdfg = PdfRenderer.new(registrant) 
         doc = Nokogiri::XML(pdfg.render_to_string('registrants/registrant_pdf', :layout=>'layouts/nvra'))
         
-        assert_equal  "Multi-racial",
+        assert_equal  "Two or More Races",
                       doc.css('#race .value').inner_html.strip
       end
     end

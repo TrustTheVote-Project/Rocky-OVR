@@ -96,6 +96,8 @@ RSpec.configure do |config|
 
   
   config.before(:each) do
+    Rails.cache.clear
+    
     stub_request(:any, %r{http://example-api\.com/api/v3/partners/\d+\.json}).to_return do |req|
       req.uri.to_s =~ /(\d+)\.json(\?.+)?$/
       id = $1

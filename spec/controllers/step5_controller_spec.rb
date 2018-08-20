@@ -47,7 +47,7 @@ describe Step5Controller do
 
     it "should update registrant and complete step 5" do
       put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_5_registrant).reject {|k,v| k == :status }
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].complete?
       assert_redirected_to registrant_download_url(assigns[:registrant])
     end
@@ -66,10 +66,10 @@ describe Step5Controller do
       end
 
       it "can't submit updates twice" do
-        assert_raises(ActiveRecord::RecordNotFound) do
+        expect {
           put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_5_registrant).reject {|k,v| k == :status }
           put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_5_registrant).reject {|k,v| k == :status }
-        end
+        }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
   end

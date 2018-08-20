@@ -65,7 +65,7 @@ class Api::V2::RegistrationsController < Api::V2::BaseController
   rescue V2::UnsupportedLanguageError => e
     jsonp({ :message => e.message }, :status => 400)
   rescue ActiveRecord::UnknownAttributeError => e
-    name = e.message.split(': ')[1]
+    name = e.attribute
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
 
@@ -78,7 +78,7 @@ class Api::V2::RegistrationsController < Api::V2::BaseController
   rescue V2::UnsupportedLanguageError => e
     jsonp({ :message => e.message }, :status => 400)
   rescue ActiveRecord::UnknownAttributeError => e
-    name = e.message.split(': ')[1]
+    name = e.attribute
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
 

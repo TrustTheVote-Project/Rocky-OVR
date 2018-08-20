@@ -46,7 +46,7 @@ describe Api::V1::RegistrationsController do
 
     it 'should report invalid parameter type' do
       expect_api_error :message => "Invalid parameter type", :field_name => "attr"
-      new_registration { raise(ActiveRecord::UnknownAttributeError, 'unknown attribute: attr') }
+      new_registration { raise(ActiveRecord::UnknownAttributeError.new(Registrant.new, 'attr')) }
     end
   end
 

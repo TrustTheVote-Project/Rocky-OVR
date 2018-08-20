@@ -35,7 +35,7 @@ describe QuestionsController do
         get :edit
         assert_response :success
         assert_template "edit"
-        assert_not_nil assigns[:partner]
+        assert !assigns[:partner].nil?
       end
     end
 

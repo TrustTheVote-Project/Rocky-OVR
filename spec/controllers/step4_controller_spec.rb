@@ -34,8 +34,8 @@ describe Step4Controller do
       reg = FactoryGirl.create(:step_3_registrant)
       get :show, :registrant_id => reg.to_param
       assert assigns[:registrant].step_3?
-      assert_not_nil assigns[:question_1]
-      assert_not_nil assigns[:question_2]
+      assert !assigns[:question_1].nil?
+      assert !assigns[:question_2].nil?
       assert_template "show"
     end
 
@@ -99,15 +99,15 @@ describe Step4Controller do
       @registrant = FactoryGirl.create(:step_3_registrant)
     end
 
-    it "should update registrant and complete step 4" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_4_registrant).reject {|k,v| k == :status }
-      assert_not_nil assigns[:registrant]
+    it "should update registrant and complete step 4 when using long form" do
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_4_registrant).reject {|k,v| k == :status }.merge(short_form: 0)
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_4?
       assert_redirected_to registrant_step_5_url(assigns[:registrant])
     end
 
-    it "should reject invalid input and show form again" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_4_registrant, :state_id_number => nil).reject {|k,v| k == :status }
+    it "should reject invalid input and show form again when using long form" do
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_4_registrant, :state_id_number => nil).reject {|k,v| k == :status }.merge(short_form: 0)
       assert assigns[:registrant].step_4?
       assert assigns[:registrant].reload.step_3?
       assert assigns[:show_fields] == "1"
@@ -118,7 +118,7 @@ describe Step4Controller do
       put :update, :registrant_id => @registrant.to_param, 
                    :registrant => FactoryGirl.attributes_for(:step_4_registrant, :has_state_license=>true).reject {|k,v| k == :status },
                    :registrant_state_online_registration => ""
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_4?
       assert assigns[:registrant].using_state_online_registration?
       assert_redirected_to registrant_state_online_registration_url(assigns[:registrant])

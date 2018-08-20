@@ -45,7 +45,7 @@ class Api::V2::PartnersController < Api::V2::BaseController
   rescue V2::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
   rescue ActiveRecord::UnknownAttributeError => e
-    name = e.message.split(': ')[1]
+    name = e.attribute
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
 

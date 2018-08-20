@@ -46,8 +46,8 @@ describe Step3Controller do
       assert assigns[:state_parties]
       assert assigns[:race_tooltip]
       assert assigns[:party_tooltip]
-      assert_not_nil assigns[:question_1]
-      assert_not_nil assigns[:question_2]
+      assert !assigns[:question_1].nil?
+      assert !assigns[:question_2].nil?
       
     end
   end
@@ -59,7 +59,7 @@ describe Step3Controller do
 
     it "should update registrant and complete step 3" do
       put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_3_registrant).reject {|k,v| k == :status }
-      assert_not_nil assigns[:registrant]
+      assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_3?
       assert_redirected_to registrant_step_4_url(assigns[:registrant])
     end

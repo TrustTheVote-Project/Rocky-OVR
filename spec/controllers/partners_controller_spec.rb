@@ -29,13 +29,13 @@ describe PartnersController do
   describe "registering" do
     it "creates a new partner" do
       assert_difference("Partner.count") do
-        post :create, :partner => FactoryGirl.attributes_for(:partner)
+        post :create, :partner => FactoryGirl.attributes_for(:mass_assigned_partner)
       end
-      assert_not_nil assigns[:partner]
+      assert !assigns[:partner].nil?
     end
 
     it "creates a new partner with correct opt-in defaults (true for RTV, false for partner settings)" do
-      post :create, :partner => FactoryGirl.attributes_for(:partner)
+      post :create, :partner => FactoryGirl.attributes_for(:mass_assigned_partner)
       assigns[:partner].rtv_email_opt_in.should be_truthy
       assigns[:partner].partner_email_opt_in.should be_falsey
       assigns[:partner].rtv_sms_opt_in.should be_truthy
@@ -46,7 +46,7 @@ describe PartnersController do
 
     it "requires login, email and password for new partner" do
       assert_difference("Partner.count"=>0) do
-        post :create, :partner => FactoryGirl.attributes_for(:partner, :username => nil)
+        post :create, :partner => FactoryGirl.attributes_for(:mass_assigned_partner, :username => nil)
       end
       assert_template "new"
     end
@@ -100,26 +100,26 @@ describe PartnersController do
 
       it "shows widget html for plain text link" do
         assert_select 'textarea[name=text_link_html][readonly]', 1
-        html = HTML::Node.parse(nil, 0, 0, assigns(:text_link_html))
-        assert_select html, "a[href=https://example.com/?partner=5]"
+        @output_buffer = HTML::Node.parse(nil, 0, 0, assigns(:text_link_html))
+        assert_select "a[href=https://example.com/?partner=5]"
         assert_match />Register to Vote Here</, assigns(:text_link_html)
       end
 
       it "shows widget html for image link" do
         assert_select 'textarea[name=image_link_html][readonly]', 1
         assert_match %r{<img src=.*/images/widget/rtv-100x100-v1.gif}, assigns(:image_link_html)
-        html = HTML::Node.parse(nil, 0, 0, assigns(:image_link_html))
-        assert_select html, "a[href=https://example.com/?partner=5&source=embed-rtv100x100v1]"
+        @output_buffer = HTML::Node.parse(nil, 0, 0, assigns(:image_link_html))
+        assert_select "a[href=https://example.com/?partner=5&source=embed-rtv100x100v1]"
       end
 
-      it "shows widget html for image overlay widget" do
-        assert_select 'textarea[name=image_overlay_html][readonly]', 1
-        html = HTML::Node.parse(nil, 0, 0, assigns(:image_overlay_html))
-        assert_select html, "a[href=https://example.com/?partner=5&source=embed-rtv100x100v1][class=floatbox][data-fb-options='width:618 height:max scrolling:yes']"
-        assert_match %r{<img src=.*/images/widget/rtv-100x100-v1.gif}, assigns(:image_overlay_html)
-        html = HTML::Node.parse(nil, 0, 0, assigns(:image_overlay_html).split("\n").last)
-        #assert_select html, "script[type=text/javascript][src=https://example.com/widget_loader.js]"
-      end
+      # it "shows widget html for image overlay widget" do
+      #   assert_select 'textarea[name=image_overlay_html][readonly]', 1
+      #   html = HTML::Node.parse(nil, 0, 0, assigns(:image_overlay_html))
+      #   assert_select html, "a[href=https://example.com/?partner=5&source=embed-rtv100x100v1][class=floatbox][data-fb-options='width:618 height:max scrolling:yes']"
+      #   assert_match %r{<img src=.*/images/widget/rtv-100x100-v1.gif}, assigns(:image_overlay_html)
+      #   html = HTML::Node.parse(nil, 0, 0, assigns(:image_overlay_html).split("\n").last)
+      #   #assert_select html, "script[type=text/javascript][src=https://example.com/widget_loader.js]"
+      # end
       
       it "shows iframe HTML for version a" do
         assert_select 'textarea[name=iframe_html][readonly]', 1
@@ -147,13 +147,13 @@ describe PartnersController do
       it "shows registration statistics" do
         get :statistics
         assert_response :success
-        assert_not_nil assigns[:stats_by_state]
-        assert_not_nil assigns[:stats_by_completion_date]
-        assert_not_nil assigns[:stats_by_completion_date_finish_with_state]
-        assert_not_nil assigns[:stats_by_race]
-        assert_not_nil assigns[:stats_by_gender]
-        assert_not_nil assigns[:stats_by_age]
-        assert_not_nil assigns[:stats_by_party]
+        assert !assigns[:stats_by_state].nil?
+        assert !assigns[:stats_by_completion_date].nil?
+        assert !assigns[:stats_by_completion_date_finish_with_state].nil?
+        assert !assigns[:stats_by_race].nil?
+        assert !assigns[:stats_by_gender].nil?
+        assert !assigns[:stats_by_age].nil?
+        assert !assigns[:stats_by_party].nil?
       end
     end
 

@@ -33,7 +33,7 @@ class ReminderMailer
   end
 
   def deliver_final_reminders
-    Registrant.find_each(batch_size: 500, conditions: ["reminders_left=0 AND pdf_downloaded = ? AND updated_at < ? AND final_reminder_delivered = ? AND pdf_ready=?", false, final_reminder_time, false, true]) do |reg|
+    Registrant.where(["reminders_left=0 AND pdf_downloaded = ? AND updated_at < ? AND final_reminder_delivered = ? AND pdf_ready=?", false, final_reminder_time, false, true]).find_each(batch_size: 500) do |reg|
       reg.deliver_final_reminder_email
     end
   end
@@ -55,7 +55,7 @@ class ReminderMailer
   end
 
   def deliver_reminders(registrant_ids)
-    Registrant.find_each(:batch_size=>500, :conditions => ["id in (?)", registrant_ids]) do |reg|
+    Registrant.where(["id in (?)", registrant_ids]).find_each(:batch_size=>500) do |reg|
       reg.deliver_reminder_email
     end
   end

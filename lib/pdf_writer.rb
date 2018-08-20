@@ -245,7 +245,7 @@ class PdfWriter
       :encryption => 'AES256', #Make sure its encrypted on their own hard drives
       :public => true
     ) 
-  rescue
+  rescue Exception=>e
     return false   
   end
   

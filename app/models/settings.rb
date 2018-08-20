@@ -44,7 +44,7 @@ class Settings < ActiveRecord::Base
 
   #retrieve all settings as a hash (optionally starting with a given namespace)
   # def self.all(starting_with=nil)
-  #   options = starting_with ? { :conditions => "var LIKE '#{starting_with}%'"} : {}
+  #   options = starting_with ? { "var LIKE '#{starting_with}%'"} : {}
   #   vars = target_scoped.find(:all, {:select => 'var, value'}.merge(options))
   #
   #   result = {}
