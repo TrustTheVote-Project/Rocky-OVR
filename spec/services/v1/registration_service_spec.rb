@@ -36,7 +36,7 @@ describe V1::RegistrationService do
         V1::RegistrationService.create_record(:lang => 'en', :unknown => 'field')
         fail "UnknownAttributeError expected"
       rescue ActiveRecord::UnknownAttributeError => e
-        e.message.should == 'unknown attribute: unknown'
+        e.message.should == "unknown attribute 'unknown' for Registrant."
       end
     end
 
@@ -45,7 +45,7 @@ describe V1::RegistrationService do
         V1::RegistrationService.create_record(:lang => 'en', :state_id_number => '1234')
         fail "UnknownAttributeError expected"
       rescue ActiveRecord::UnknownAttributeError => e
-        e.message.should == 'unknown attribute: state_id_number'
+        e.message.should == "unknown attribute 'state_id_number' for NilClass."
       end
     end
 

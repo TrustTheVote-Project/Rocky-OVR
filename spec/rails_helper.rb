@@ -49,6 +49,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 RSpec.configure do |config|
   config.include AssertDifference
   config.include Paperclip::Shoulda::Matchers
+  config.include(Shoulda::Matchers::ActiveModel, type: :model)
+  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+  
   config.include Authlogic::TestCase
   
   config.include Capybara::RSpecMatchers, :type => :view

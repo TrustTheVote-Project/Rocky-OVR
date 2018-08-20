@@ -125,7 +125,7 @@ describe V2::PartnerService do
         V2::PartnerService.create_record(:unknown_field => 'fieldval')
         fail "UnknownAttributeError expected"
       rescue ActiveRecord::UnknownAttributeError => e
-        e.message.should == 'unknown attribute: unknown_field'
+        e.message.should == "unknown attribute 'unknown_field' for NilClass."
       end
     end
 
@@ -150,7 +150,7 @@ describe V2::PartnerService do
         fail 'ValidationError is expected'
       rescue V2::RegistrationService::ValidationError => e
         e.field.to_s.should    == 'logo_image_URL'
-        e.message.should  == "Pleave provide an HTTP url"
+        e.message.should  == "Please provide an HTTP(s) url"
       end
     end
     it "raise validation errors if the logo URL can not be downloaded" do
@@ -170,7 +170,7 @@ describe V2::PartnerService do
         V2::PartnerService.create_record({:survey_question_1=>true})
         fail 'UnknownAttributeError expected'
       rescue ActiveRecord::UnknownAttributeError => e
-        e.message.should == 'unknown attribute: survey_question_1'
+        e.message.should == "unknown attribute 'survey_question_1' for NilClass."
       end
     end
 
@@ -187,7 +187,7 @@ describe V2::PartnerService do
           organization: "Org Name",
           url: "http://www.google.com",
           privacy_url: "http://www.google.com/privacy",
-          logo_url: "http://www.rockthevote.com/assets/images/structure/home_rtv_logo.png",
+          logo_url: "http://s3.amazonaws.com/rocky-assets/assets/rtv-square-reversed.png",
           name: "Contact Name",
           email: "contact_email@rtv.org",
           phone: "123 234 3456",

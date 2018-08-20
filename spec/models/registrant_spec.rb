@@ -2141,13 +2141,13 @@ describe Registrant do
         end
       end
 
-      it "should log an error to Airbrake if something blows up" do
-        reg = FactoryGirl.create(:maximal_registrant, :reminders_left => 1)
-        reg.stub(:save) { raise 'something blows up' }
-
-        Airbrake.should_receive(:notify).with(kind_of(Hash))
-        reg.deliver_reminder_email
-      end
+      # it "should log an error to Airbrake if something blows up" do
+      #   reg = FactoryGirl.create(:maximal_registrant, :reminders_left => 1)
+      #   reg.stub(:save) { raise 'something blows up' }
+      #
+      #   Airbrake.should_receive(:notify).with(kind_of(Hash))
+      #   reg.deliver_reminder_email
+      # end
     end
   end
   

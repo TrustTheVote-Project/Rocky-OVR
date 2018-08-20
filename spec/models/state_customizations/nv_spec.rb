@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe NV do
-  let(:root_url) { "https://nvsos.gov/sosvoterservices/Registration/step1.aspx?source=rtv&utm_source=rtv&utm_medium=rtv&utm_campaign=rtv" }
+  let(:root_url) { "http://www.RegisterToVoteNV.gov/?source=rtv&utm_source=rtv&utm_medium=rtv&utm_campaign=rtv" }
   it "should inherit from StateCustomization" do
     NV.superclass.should == StateCustomization
   end
@@ -25,7 +25,7 @@ describe NV do
       end
       it "includes an escaped registrant first, middle, last, suffix, zip and locale" do
         nv.online_reg_url(reg).should ==
-          "#{root_url}&fn=First+Name&mn=Middle+Name&ln=Last+Name&lang=aa&zip=12345&sf=mr."
+          "#{root_url}&lang=aa"
       end
     end
   end

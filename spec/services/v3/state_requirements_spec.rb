@@ -96,7 +96,7 @@ describe V3::StateRequirements do
     s.registrar_address = nil
     s.save!
     
-    V3::StateRequirements.where(:home_state_id => 'CA', :lang => locale).first.should == {
+    V3::StateRequirements.find(:home_state_id => 'CA', :lang => locale).should == {
       :requires_party     => true,
       :id_number_msg      => nil,
       :requires_party_msg => nil,
@@ -116,7 +116,7 @@ describe V3::StateRequirements do
       locale = 'es'
       localization = StateLocalization.where({:state_id  => s.id, :locale => locale}).first
     
-    V3::StateRequirements.where(:home_state_id => 'CA', :lang => locale).first.should == {
+    V3::StateRequirements.find(:home_state_id => 'CA', :lang => locale).should == {
       :requires_party     => true,
       :id_number_msg      => nil,
       :requires_party_msg => nil,

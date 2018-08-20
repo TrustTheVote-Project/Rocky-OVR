@@ -2,8 +2,8 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :geo_state
   
-  validates_uniqueness_of :zip
-  validates_presence_of :zip, :geo_state_id
+  validates :zip, uniqueness: true, presence: true
+  validates :geo_state_id, presence: true
   
   serialize :county, Array
   serialize :cities, Array

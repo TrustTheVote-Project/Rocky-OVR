@@ -97,7 +97,7 @@ describe Partner do
   end
   describe "#logo_url=(URL)" do
     it "opens the file from the URL when saved" do
-      url = "http://s3.amazonaws.com/rocky-assets/assets/rtv-square-reversed-05e1750046cfd36ec369502624f6daf4.png"
+      url = "http://s3.amazonaws.com/rocky-assets/assets/rtv-square-reversed.png"
       p = FactoryGirl.build(:partner)
       mock_io = double("StringIO")
       mock_uri = double("URI")
@@ -110,7 +110,7 @@ describe Partner do
       p.should have_received(:open).with(url)
     end
     it "attaches the URL file as the logo" do
-      url = "https://s3.amazonaws.com/rocky-assets/assets/rtv-square-reversed-05e1750046cfd36ec369502624f6daf4.png"
+      url = "https://s3.amazonaws.com/rocky-assets/assets/rtv-square-reversed.png"
       p = FactoryGirl.build(:partner)
       p.logo_url = url
       p.save!

@@ -116,8 +116,9 @@ module V2
         cond_vars << email
       end
 
-      if cond_vars.size > 0 && cond_vars.size == cond_str.size
-        regs = regs.all(:conditions=>[cond_str.join(" AND ")]+cond_vars)
+      if cond_vars.size >
+         0 && cond_vars.size == cond_str.size
+        regs = regs.where([cond_str.join(" AND ")]+cond_vars)
       end
 
       regs.map do |reg|

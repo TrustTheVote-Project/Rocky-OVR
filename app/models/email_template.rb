@@ -38,9 +38,8 @@ class EmailTemplate < ActiveRecord::Base
 
   belongs_to :partner
 
-  validates_presence_of   :partner
-  validates_presence_of   :name
-  validates_uniqueness_of :name, :scope => :partner_id
+  validates :partner, presence: true
+  validates :name, uniqueness: {:scope => :partner_id}, presence: true
 
   
 

@@ -63,7 +63,7 @@ module V1
       regs = partner.registrants
 
       if since = query[:since]
-        regs = regs.all([ "created_at >= ?", Time.parse(since) ])
+        regs = regs.where([ "created_at >= ?", Time.parse(since) ])
       end
 
       regs.map do |reg|
@@ -162,7 +162,7 @@ module V1
     end
 
     def self.find_partner(partner_id, password)
-      partner = Partner.first({ :id => partner_id })
+      partner = Partner.where({ :id => partner_id }).first
 
       if !partner || !partner.valid_password?(password)
         raise ArgumentError.new(INVALID_PARTNER_OR_PASSWORD)
