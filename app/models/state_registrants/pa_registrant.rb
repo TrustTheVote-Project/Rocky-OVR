@@ -37,10 +37,13 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   UPLOAD_METHOD="upload".freeze
   PRINT_METHOD="print".freeze
   
+  INVALID_PENNDOT= "VR_WAPI_InvalidOVRDL".freeze
+  
   include RegistrantMethods
   
   validates_with PARegistrantValidator
   
+  serialize :pa_submission_error, Array
   
   def check_valid_for_state_flow!
     if self.confirm_no_penndot_number? && self.signature_method == PRINT_METHOD
@@ -271,7 +274,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
 
     result['signatureimage'] = voter_signature_image
     
-    result['continueAppSubmit'] = "1"
+    result['continueAppSubmit'] = (confirm_no_penndot_number? || penndot_retries >= 2) ? "1" : "0"
     result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn?)
     result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
     result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
@@ -344,16 +347,20 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     begin
       result = PARegistrationRequest.send_request(self.to_pa_data, self.pa_api_key, self.locale)
       self.pa_submission_complete = true
-      self.save
+      self.pa_submission_error ||= []
       if result[:error].present?
-        self.pa_submission_error = [result[:error].to_s]
-        self.registrant.skip_state_flow!
-        self.save!
-        # No retries for this flow
-        Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-        AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+        self.pa_submission_error.push(result[:error].to_s)
+        if result[:error] == INVALID_PENNDOT && self.penndot_retries < 2
+          self.retry_drivers_license
+        else
+          self.registrant.skip_state_flow!
+          self.save!
+          # No retries for this flow
+          Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
+          AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+        end
       elsif result[:id].blank? || result[:id]==0
-          self.pa_submission_error = ["PA returned response with no errors and no transaction ID"]
+          self.pa_submission_error.push("PA returned response with no errors and no transaction ID")
           #complete it, but go on to PDF generation?
           self.pa_transaction_id = nil
           self.registrant.skip_state_flow!
@@ -367,14 +374,17 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         self.registrant.complete_registration_with_state!
         deliver_confirmation_email
       end
-    rescue
+    rescue Exception => e
+      raise e
       self.pa_transaction_id = nil
       # TODO - make sure original record knows we're skipping PA OVR
       self.registrant.skip_state_flow!
     end
   ensure
-    self.cleanup!
-    self.update_attribute(:pa_submission_complete, true)
+    if self.pa_submission_complete
+      self.cleanup!
+      self.update_attribute(:pa_submission_complete, true)
+    end
   end
   
   # NOTE: This "submitted?", "api_submission_error" and "state_transaction_id" methods must be implemented by all state registrants
@@ -400,6 +410,13 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       # TODO, depending on partner customizations, just use main Notifier class - or refactor to StateRegistrantNotifier for all states
       PANotifier.pa_confirmation(self).deliver
     end
+  end
+  
+  def retry_drivers_license
+    self.pa_submission_complete = false
+    self.penndot_retries += 1
+    self.status = signature_step
+    self.save(validate: false)
   end
   
   

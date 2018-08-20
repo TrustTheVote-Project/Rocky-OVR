@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180808021143) do
-
+ActiveRecord::Schema.define(version: 20180820202202) do
   create_table "admins", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -382,11 +381,11 @@ ActiveRecord::Schema.define(:version => 20180808021143) do
     t.string   "assistant_phone"
     t.boolean  "confirm_assistant_declaration"
     t.boolean  "confirm_declaration"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.string   "registrant_id"
-    t.string   "locale"
-    t.string   "status"
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.string   "registrant_id",                        limit: 255
+    t.string   "locale",                               limit: 255
+    t.string   "status",                               limit: 255
     t.boolean  "confirm_no_penndot_number"
     t.boolean  "pa_submission_complete"
     t.string   "pa_transaction_id"
@@ -400,6 +399,7 @@ ActiveRecord::Schema.define(:version => 20180808021143) do
     t.boolean  "partner_opt_in_sms"
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
+    t.integer  "penndot_retries",                                  default: 0
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], :name => "pa_registrants_original_partner_id"
