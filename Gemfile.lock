@@ -806,7 +806,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multi_test (0.1.2)
-    mysql2 (0.5.2)
+    mysql2 (0.3.21)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
     netrc (0.11.0)
@@ -994,7 +994,7 @@ DEPENDENCIES
   json
   ledermann-rails-settings (~> 2.4)
   mechanize (= 2.7.1)
-  mysql2
+  mysql2 (~> 0.3.18)
   nokogiri (= 1.8.4)
   paperclip (~> 5.3.0)
   protected_attributes

@@ -200,6 +200,15 @@ household member."
         tell_message: Personal Message
     errors:
       models:
+        admin:
+          attributes:
+            password:
+              invalid: Password must be 10 characters, contain at least 1 lowercase letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+        partner:
+          attributes:
+            password:
+              invalid: Password must be 10 characters, contain at least 1 lowercase letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+              
         state_registrants/va_registrant:
           blank: Required
           invalid_zip: Invalid ZIP
