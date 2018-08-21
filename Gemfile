@@ -22,7 +22,8 @@ gem 'rack-robustness'
 gem "authlogic", "= 4.3.0"
 gem 'daemons', '~> 1.1.9'
 gem "paperclip", "~> 5.3.0"
-gem "mysql2"
+gem 'mysql2', '~> 0.3.18'
+
 #gem "rubyzip"
 gem 'zip-zip'
 

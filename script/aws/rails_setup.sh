@@ -9,7 +9,7 @@ cd /var/www/rocky
 source /etc/profile.d/rvm.sh
 #rvm install 2.4.1
 rvm use ruby-2.4.1@rocky8 --create
-gem install bundler -v 1.16
+gem install bundler -v 1.16.3
 bundle install --without development test
 
 # Make sure we have the config files downloaded
