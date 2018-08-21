@@ -68,8 +68,10 @@ class PARegistrantValidator < ActiveModel::Validator
         end
         
       end
-      if reg.signature_method != StateRegistrants::PARegistrant::PRINT_METHOD && reg.confirm_no_penndot_number? || reg.penndot_retries > 1
+      if reg.signature_method != StateRegistrants::PARegistrant::PRINT_METHOD && reg.confirm_no_penndot_number?
         reg.validates_presence_of(:voter_signature_image)
+      elsif reg.penndot_retries > 1
+        reg.errors.add(:voter_signature_image, :too_many_retries) if reg.voter_signature_image.blank?
       end
       
     end
@@ -102,7 +104,7 @@ class PARegistrantValidator < ActiveModel::Validator
       reg.errors.add(:penndot_number, :format) unless reg.penndot_number.to_s.gsub(/[^\d]/,'') =~ /^\d{8}$/ || reg.penndot_number.blank?
     end
     unless reg.confirm_no_dl_or_ssn?
-      reg.validates_presence_of(:ssn4) if reg.confirm_no_penndot_number? 
+      reg.validates_presence_of(:ssn4)
       reg.errors.add(:ssn4, :format) unless (reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /^\d{4}$/) || reg.ssn4.blank?
     end
   end
