@@ -157,6 +157,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   def bool_to_int(v)
     v ? "1" : "0"
   end
+ 
+  def parse_suffix(suffix)
+    suffix.to_s.gsub('.','')
+  end
   
   def parse_gender
     male_titles = RockyConf.enabled_locales.collect { |loc|
@@ -227,7 +231,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['FirstName'] = self.first_name
     result['MiddleName'] = self.middle_name
     result['LastName'] = self.last_name
-    result['TitleSuffix'] = self.name_suffix
+    result['TitleSuffix'] = parse_suffix(self.name_suffix)
 
     result['united-states-citizen'] = bool_to_int(self.confirm_us_citizen)
     result['eighteen-on-election-day'] = bool_to_int(self.confirm_will_be_18)
@@ -275,7 +279,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['signatureimage'] = voter_signature_image
     
     result['continueAppSubmit'] = (confirm_no_penndot_number? || penndot_retries >= 2) ? "1" : "0"
-    result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn?)
+    result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn? && confirm_no_penndot_number?)
     result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
     result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
     
