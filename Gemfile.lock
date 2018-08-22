@@ -992,6 +992,7 @@ DEPENDENCIES
   haml
   jquery-rails (~> 2.1)
   json
+  jwt
   ledermann-rails-settings (~> 2.4)
   mechanize (= 2.7.1)
   mysql2 (~> 0.3.18)

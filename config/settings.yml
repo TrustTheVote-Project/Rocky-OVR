@@ -252,7 +252,8 @@ ovr_states:
     languages:
       - en
     api_settings:
-        api_url: "https://fake-va-endpoint.herokuapp.com"
+        api_url: "https://fake-va-endpoint.herokuapp.com" #https://externalapi.elections.virginia.gov/sandbox/
+        api_username: "RockTheVote_Sandbox"
         api_key: <%= ENV['VA_API_KEY'] %>
   WV:
     redirect_to_online_reg_url: true
