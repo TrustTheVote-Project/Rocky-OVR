@@ -541,6 +541,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   SIG_WIDTH = 180
   SIG_HEIGHT = 60
+  RESOLUTION =  100
   def self.process_signature(base64data, mods=[])
     image_blob = ActiveSupport::Base64.decode64(base64data)
     src = Tempfile.new('src')
@@ -553,7 +554,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       if wh.to_s.strip !="#{SIG_WIDTH}x#{SIG_HEIGHT}"
         dst.close
         #  -background skyblue -extent 100x60
-        cmd = "convert #{src.path} -background white -extent #{SIG_WIDTH}x#{SIG_HEIGHT} #{dst.path}"
+        cmd = "convert #{src.path} -background white -extent #{SIG_WIDTH}x#{SIG_HEIGHT} -density #{RESOLUTION} #{dst.path}"
         `#{cmd}`
         dst.open
         dst.binmode
