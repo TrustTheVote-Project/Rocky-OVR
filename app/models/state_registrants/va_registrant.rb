@@ -224,7 +224,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     payload = {
       "iss" => RockyConf.ovr_states.VA.api_settings.api_username,
       "name" =>RockyConf.ovr_states.VA.api_settings.api_username,
-      "jti" => "{method}-#{self.id}",
+      "jti" => "{method}-#{self.id}-#{t.to_i}",
       "iat" =>  t.to_i,
       "exp" =>  (t+ 600).to_i,
       "key" => api_key
