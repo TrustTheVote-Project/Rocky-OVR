@@ -141,6 +141,8 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
      {"Code" => "199", "Name" => "YORK COUNTY"}]
   end
   
+  serialize :va_submission_error, Array
+  serialize :va_check_error, Array
   
   def requires_mailing_address?
     is_protected? || is_military? || no_usps_address?
@@ -241,7 +243,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   def check_voter_confirmation
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
-    url = File.join(server, "Voter/Confirmation")
+    url = File.join(server, "Voter/Confirmation?format=json")
     response = RestClient.post(url, {
       "LastName"  => self.last_name,
       "FirstName" => self.first_name,
@@ -251,8 +253,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "DobDay" =>  self.date_of_birth.day,
       "DobMonth" =>  self.date_of_birth.month,
       "DriversLicenseNumber" => self.dln,
-      "LocalityName" => self.registration_locality,
-      "Format" => "json"
+      "LocalityName" => self.registration_locality
     }.to_json, va_api_headers("confirmation"))
     self.va_check_response = response.to_s
     result = JSON.parse(response)
@@ -260,7 +261,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     self.va_check_has_dmv_signature = result["HasDmvSignature"]
     self.va_check_voter_id = result["VoterId"]
     #self.pa_submission_complete = true
-    self.save
+    self.save(validate: false)
 
     #if self.va_check_is_registered_voter && !self.va_check_voter_id.blank?
     return true
@@ -345,8 +346,8 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "SendingAgency" => "Rock the Vote", #?
       "Location"  => "register.rockthevote.com", #?
       "SendingAgencyTransactionTimestamp" => self.updated_at.iso8601,
-      "IsTestRecord": !Rails.env.production?,
-      "VoterRegistrations": [
+      "IsTestRecord" => !Rails.env.production?,
+      "VoterRegistrations" => [
         {
           "VoterId" => self.va_check_voter_id,
           "IsUSCitizen" => self.confirm_us_citizen,
@@ -383,7 +384,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
             "State" => self.mailing_state,
             "ZipCode" => self.mailing_state,
             "Locality" => self.mailing_address_locality
-          }
+          },
           "IsProhibited" => self.convicted_of_felony?,
           "IsRightsRestored" => self.right_to_vote_restored?,
           "IsMilitary" => is_military?,
@@ -394,7 +395,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
           "IsBeingStalked" => is_being_stalked?,
           "IsRegisteredInAnotherState" => registered_in_other_state?,
           "NonVARegisteredState" => other_registration_state_abbrev,          
-          "RegisterToVoteConfirmation" => self.confirm_register_to_vote?
+          "RegisterToVoteConfirmation" => self.confirm_register_to_vote?,
           "AcceptPrivacyNotice" => self.confirm_affirm_privacy_notice?,
           "AcceptWarningStatement" => self.confirm_voter_fraud_warning?,
           "HasElectionOfficialInterest" => self.interested_in_being_poll_worker?
@@ -411,28 +412,70 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   
   def submit_to_online_reg_url
     server = RockyConf.ovr_states.VA.api_settings.api_url
-    url = File.join(server, "VoterRegistrationSubmission")
+    url = File.join(server, "Voter/Submit?format=json")
     response = RestClient.post(url, self.to_va_data.to_json, va_api_headers("submission"))
     result = JSON.parse(response)
     
     # TODO - what is the response actually like??
-    self.va_transaction_id = result["ConfirmationID"]
-    self.save!
+    if result["Confirmations"] && result["Confirmations"].any?
+      self.va_transaction_id  = result["Confirmations"][0]["ConfirmationId"]
+      self.save(validate: false)
+    else
+      self.va_submission_error ||= []
+      if result["TransactionErrorMessage"]
+        self.va_submission_error << result["TransactionErrorMessage"]
+      end
+      if result["Errors"] && result["Errors"].any?
+        result["Errors"].each do |error|
+          self.va_submission_error << error
+        end
+      end
+    end
     if !self.va_transaction_id.blank?
       self.update_original_registrant
       self.registrant.complete_registration_with_state!
       #deliver_confirmation_email
     else
-      self.va_submission_error = ["No ID returned from VA submission"].flatten.join("\n")
+      self.va_submission_error ||= []
+      self.va_submission_error << "No ID returned from VA submission"
       self.registrant.skip_state_flow!
     end
   rescue Exception=>e
-    self.va_submission_error = [e.message, e.backtrace].flatten.join("\n")
+    self.va_submission_error ||= []
+    self.va_submission_error << [e.message, e.backtrace].flatten
     self.registrant.skip_state_flow!
   ensure
     self.va_submission_complete = true
     self.save(validate: false)        
   end
+
+  # {
+  #   "TransactonId":0,
+  #   "TransactionTimestamp":"2018-08-23T12:46:27.3851675-04:00",
+  #   "TransactionErrorMessage":"String",
+  #   "VoterRegistrationsAccepted":0,
+  #   "VoterRegistrationsWithErrors":0,
+  #   "Errors":
+  #   [
+  #     {"ErrorId":0,
+  #       "ErrorTimestamp":"2018-08-23T12:46:27.3851675-04:00",
+  #       "VoterSubmissionId":"String",
+  #       "ErrorMessage":"String",
+  #       "FieldErrors":[
+  #         {
+  #           "FieldName":"String",
+  #           "Issue":"String"
+  #         }
+  #       ]
+  #     }
+  #   ],
+  #   "Confirmations":[{
+  #     "ConfirmationId":0,
+  #     "ConfirmationTimestamp":"2018-08-23T12:46:27.3851675-04:00",
+  #     "VoterSubmissionId":"String",
+  #     "ErrorMessage":"String"
+  #   }]
+  # }
 
   def mappings
     {
