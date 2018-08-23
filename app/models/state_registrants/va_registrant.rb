@@ -241,24 +241,25 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   def check_voter_confirmation
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
-    url = File.join(server, "VoterConfirmationRequest")
+    url = File.join(server, "Voter/Confirmation")
     response = RestClient.post(url, {
       "LastName"  => self.last_name,
       "FirstName" => self.first_name,
       "MiddleName" => self.middle_name,
-      "SSN9" => self.ssn,
-      "DOBYear" => self.date_of_birth.year,
-      "DOBDay" =>  self.date_of_birth.day,
-      "DOBMonth" =>  self.date_of_birth.month,
-      "DriversLicenseNo" => self.dln,
+      "Ssn9" => self.ssn,
+      "DobYear" => self.date_of_birth.year,
+      "DobDay" =>  self.date_of_birth.day,
+      "DobMonth" =>  self.date_of_birth.month,
+      "DriversLicenseNumber" => self.dln,
       "LocalityName" => self.registration_locality,
       "Format" => "json"
     }.to_json, va_api_headers("confirmation"))
     self.va_check_response = response.to_s
     result = JSON.parse(response)
     self.va_check_is_registered_voter = result["IsRegisteredVoter"]
-    self.va_check_has_dmv_signature = result["HasDMVSignature"]
-    self.va_check_voter_id = result["VoterID"]
+    self.va_check_has_dmv_signature = result["HasDmvSignature"]
+    self.va_check_voter_id = result["VoterId"]
+    #self.pa_submission_complete = true
     self.save
 
     #if self.va_check_is_registered_voter && !self.va_check_voter_id.blank?
@@ -273,62 +274,133 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     self.save(validate: false)    
   end
   
+  # {
+#     "SendingAgency":"String",
+#     "Location":"String",
+#     "SendingAgencyTimestamp":"0001-01-01T00:00:00.0000000",
+#     "IsTestRecord":false,
+#     "VoterRegistrations": [
+#       {
+#         "VoterId":"String",
+#         "IsUSCitizen":false,
+#         "DMVUSCitizenFlag":"String",
+#         "VoterConsentGiven":false,
+#         "LastName":"String",
+#         "FirstName":"String",
+#         "MiddleName":"String",
+#         "DoesNotHaveMiddleName":false,
+#         "Suffix":"String",
+#         "PreviousLastName":"String",
+#         "PreviousFirstName":"String",
+#         "PreviousMiddleName":"String",
+#         "PreviousSuffix":"String",
+#         "Gender":"String",
+#         "DOB":"String",
+#         "SSN":"String",
+#         "DriversLicenseNo":"String",
+#         "VoterSubmissionId":"String",
+#         "EmailAddress":"String",
+#         "PhoneNumber":"String",
+#         "ResidenceAddress": {
+#           "AddressLine1":"String",
+#           "AddressLine2":"String",
+#           "City":"String",
+#           "State":"String",
+#           "ZipCode":"String",
+#           "Locality":"String",
+#           "Country":"String"
+#           },
+#         "MailingAddress": {
+#           "AddressLine1":"String",
+#           "AddressLine2":"String",
+#           "City":"String",
+#           "State":"String",
+#           "ZipCode":"String",
+#           "Locality":"String",
+#           "Country":"String"
+#         },
+#       "IsProhibited":false,
+#       "IsRightsRestored":false,
+#       "IsMilitary":false,
+#       "IsProtected":false,
+#       "IsLawEnforcement":false,
+#       "IsCourtProtected":false,
+#       "IsConfidentialityProgram":false,
+#       "IsBeingStalked":false,
+#       "IsRegisteredInAnotherState":false,
+#       "NonVARegisteredState":"String",
+#       "RegisterToVoteConfirmation":false,
+#       "VoterNonConsentReason":"String",
+#       "AcceptPrivacyNotice":false,
+#       "AcceptWarningStatement":false,
+#       "IsAddressCorrect":false,
+#       "IsCustomerInformationCorrect":false,
+#       "HasElectionOfficialInterest":false
+#       }
+#       ]
+#     }
+  
   def to_va_data
     {
       "SendingAgency" => "Rock the Vote", #?
       "Location"  => "register.rockthevote.com", #?
       "SendingAgencyTransactionTimestamp" => self.updated_at.iso8601,
-      "VoterSubmissionID" => self.id,
-      "VoterID" => self.va_check_voter_id,
-      "IsUSCitizen" => self.confirm_us_citizen,
-      "VoterConsentGiven" => self.confirm_voter_record_update,
-      "LastName" => self.last_name,
-      "FirstName" => self.first_name,
-      "MiddleName" => self.middle_name,
-      "NoMiddleName" => self.confirm_no_middle_name,
-      "NameSuffix" => self.name_suffix,
-      "PreviousLastName" => self.previous_last_name,
-      "PreviousFirstName" => self.previous_first_name,
-      "PreviousMiddleName" => self.previous_middle_name,
-      "PreviousNameSuffix" => self.previous_name_suffix,
-      "Gender" => self.gender,
-      "DOB" => self.date_of_birth.iso8601,
-      "SSN" => self.ssn,
-      "DriversLicenseNo" => self.dln,
-      "VoterEmailAddress" => self.email,
-      "VoterPhoneNumber" => self.phone,
-      "ResidenceAddressLine1" => self.registration_address_1,
-      "ResidenceAddressLine2" => self.registration_address_2,
-      "ResidenceAddressCity" => self.registration_city,
-      "ResidenceAddressState" => "VA",
-      "ResidenceAddressZipCode" => self.registration_zip_code,
-      "ResidenceAddressLocality" => self.registration_locality,
-      "MailingAddressLine1" => self.mailing_address_1,
-      "MailingAddressLine2" => self.mailing_address_2,
-      "MailingAddressCity" => self.mailing_city,
-      "MailingAddressState" => self.mailing_state,
-      "MailingAddressZipCode" => self.mailing_state,
-      "MailingAddressLocality" => self.mailing_address_locality,
-      "AcceptWarningStatement" => self.confirm_voter_fraud_warning?,
-      "AcceptPrivacyNotice" => self.confirm_affirm_privacy_notice?,
-      "IsProhibited" => self.convicted_of_felony?,
-      "IsRightsRestored" => self.right_to_vote_restored?,
-      "IsMilitary" => is_military?,
-      "IsProtected" => is_protected?,
-      "IsLawEnforcement" => is_law_enforcement?,
-      "IsCourtProtected" => is_court_protected?,
-      "IsConfidentialityProgram" => is_confidentiality_program?,
-      "IsBeingStalked" => is_being_stalked?,
-      "IsRegisteredInAnotherState" => registered_in_other_state?,
-      "NonVARegisteredState" => other_registration_state_abbrev,
+      "IsTestRecord": !Rails.env.production?,
+      "VoterRegistrations": [
+        {
+          "VoterId" => self.va_check_voter_id,
+          "IsUSCitizen" => self.confirm_us_citizen,
+          
+          "VoterConsentGiven" => self.confirm_voter_record_update,
+          "LastName" => self.last_name,
+          "FirstName" => self.first_name,
+          "MiddleName" => self.middle_name,
+          "DoesNotHaveMiddleName" => self.confirm_no_middle_name,
+          "Suffix" => self.name_suffix,
+          "PreviousLastName" => self.previous_last_name,
+          "PreviousFirstName" => self.previous_first_name,
+          "PreviousMiddleName" => self.previous_middle_name,
+          "PreviousSuffix" => self.previous_name_suffix,
+          "Gender" => self.gender,
+          "DOB" => self.date_of_birth.iso8601,
+          "SSN" => self.ssn,
+          "DriversLicenseNo" => self.dln,
+          "VoterSubmissionId" => self.id,
+          "EmailAddress" => self.email,
+          "PhoneNumber" => self.phone,
+          "ResidenceAddress" => {
+            "AddressLine1" => self.registration_address_1,
+            "AddressLine2" => self.registration_address_2,
+            "City" => self.registration_city,
+            "State" => "VA",
+            "ZipCode" => self.registration_zip_code,
+            "Locality" => self.registration_locality
+          },
+          "MailingAddress" => {
+            "AddressLine1" => self.mailing_address_1,
+            "AddressLine2" => self.mailing_address_2,
+            "City" => self.mailing_city,
+            "State" => self.mailing_state,
+            "ZipCode" => self.mailing_state,
+            "Locality" => self.mailing_address_locality
+          }
+          "IsProhibited" => self.convicted_of_felony?,
+          "IsRightsRestored" => self.right_to_vote_restored?,
+          "IsMilitary" => is_military?,
+          "IsProtected" => is_protected?,
+          "IsLawEnforcement" => is_law_enforcement?,
+          "IsCourtProtected" => is_court_protected?,
+          "IsConfidentialityProgram" => is_confidentiality_program?,
+          "IsBeingStalked" => is_being_stalked?,
+          "IsRegisteredInAnotherState" => registered_in_other_state?,
+          "NonVARegisteredState" => other_registration_state_abbrev,          
+          "RegisterToVoteConfirmation" => self.confirm_register_to_vote?
+          "AcceptPrivacyNotice" => self.confirm_affirm_privacy_notice?,
+          "AcceptWarningStatement" => self.confirm_voter_fraud_warning?,
+          "HasElectionOfficialInterest" => self.interested_in_being_poll_worker?
+        }
+      ]
 
-    # RegisterToVoteConfirmation ????
-    # bool
-    # Yes
-    # Indicates that the voter swears information is accurate and wants to send information to Dept. of Elections to register to vote.
-    # 48
-
-      "HasElectionOfficialInterest" => interested_in_being_poll_worker?
     }
   end
   
