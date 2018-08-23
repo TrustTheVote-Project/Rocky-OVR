@@ -2,6 +2,7 @@
 <%- title_options ||= @registrant.titles %>
 <%- first_name_field ||= :first_name %>
 <%- middle_name_field ||= :middle_name %>
+<%- middle_name_required ||= false %>
 <%- last_name_field ||= :last_name %>
 <%- suffix_field ||= :name_suffix %>
 <%- suffix_options ||= @registrant.suffixes %>
@@ -21,7 +22,7 @@
       <span class="error"><%= form.object.errors[first_name_field].join("\n") %></span>
     </li>
     <li class="width_c registrant-form__middle-name__line">
-      <h3><%= form.label middle_name_field %></h3>
+      <h3><%= form.label middle_name_field %><% if middle_name_required %><span class='required'>*</span><% end %></h3>
       <%= field_div form, middle_name_field %>
       <span class="error"><%= form.object.errors[middle_name_field].join("\n") %></span>
     </li>
