@@ -361,14 +361,14 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
           self.save!
           # No retries for this flow
           Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-          AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+          AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver
         end
       elsif result[:id].blank? || result[:id]==0
           self.pa_submission_error.push("PA returned response with no errors and no transaction ID")
           #complete it, but go on to PDF generation?
           self.pa_transaction_id = nil
           self.registrant.skip_state_flow!
-          self.save!
+          self.save(validate: false)
           Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
           AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
       else
@@ -379,10 +379,14 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         deliver_confirmation_email
       end
     rescue Exception => e
-      raise e
+      # Send notification
       self.pa_transaction_id = nil
       # TODO - make sure original record knows we're skipping PA OVR
       self.registrant.skip_state_flow!
+      begin
+        AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver
+      rescue
+      end
     end
   ensure
     if self.pa_submission_complete
