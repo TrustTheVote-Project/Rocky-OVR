@@ -110,7 +110,7 @@
           = @registrant.penndot_number
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
     
-    - elsif !@registrant.ssn4.blank?
+    - if !@registrant.ssn4.blank?
       .review__section
         .review__section__label
           = t('activerecord.attributes.state_registrants/pa_registrant.ssn4')
