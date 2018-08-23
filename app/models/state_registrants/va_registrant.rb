@@ -316,8 +316,8 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "SendingAgency" => "Rock the Vote", #?
       "Location"  => "register.rockthevote.com", #?
       "SendingAgencyTransactionTimestamp" => self.updated_at.iso8601,
-      "IsTestRecord": !Rails.env.production?,
-      "VoterRegistrations": [
+      "IsTestRecord"=> !Rails.env.production?,
+      "VoterRegistrations"=> [
         {
           "VoterId" => self.va_check_voter_id,
           "IsUSCitizen" => self.confirm_us_citizen,
@@ -354,7 +354,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
             "State" => self.mailing_state,
             "ZipCode" => self.mailing_state,
             "Locality" => self.mailing_address_locality
-          }
+          },
           "IsProhibited" => self.convicted_of_felony?,
           "IsRightsRestored" => self.right_to_vote_restored?,
           "IsMilitary" => is_military?,
@@ -365,7 +365,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
           "IsBeingStalked" => is_being_stalked?,
           "IsRegisteredInAnotherState" => registered_in_other_state?,
           "NonVARegisteredState" => other_registration_state_abbrev,          
-          "RegisterToVoteConfirmation" => self.confirm_register_to_vote?
+          "RegisterToVoteConfirmation" => self.confirm_register_to_vote?,
           "AcceptPrivacyNotice" => self.confirm_affirm_privacy_notice?,
           "AcceptWarningStatement" => self.confirm_voter_fraud_warning?,
           "HasElectionOfficialInterest" => self.interested_in_being_poll_worker?
