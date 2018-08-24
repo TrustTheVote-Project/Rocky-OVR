@@ -276,7 +276,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['mailingzipcode'] = ''
     end
 
-    result['signatureimage'] = voter_signature_image
+    result['signatureimage'] = self.class.resize_signature_url(voter_signature_image)
     
     result['continueAppSubmit'] = (confirm_no_penndot_number? || penndot_retries >= 2) ? "1" : "0"
     result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn? && confirm_no_penndot_number?)
@@ -361,14 +361,14 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
           self.save!
           # No retries for this flow
           Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-          AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+          AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver
         end
       elsif result[:id].blank? || result[:id]==0
           self.pa_submission_error.push("PA returned response with no errors and no transaction ID")
           #complete it, but go on to PDF generation?
           self.pa_transaction_id = nil
           self.registrant.skip_state_flow!
-          self.save!
+          self.save(validate: false)
           Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
           AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
       else
@@ -379,10 +379,14 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         deliver_confirmation_email
       end
     rescue Exception => e
-      raise e
+      # Send notification
       self.pa_transaction_id = nil
       # TODO - make sure original record knows we're skipping PA OVR
       self.registrant.skip_state_flow!
+      begin
+        AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver
+      rescue
+      end
     end
   ensure
     if self.pa_submission_complete
@@ -520,4 +524,53 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     r.save(validate: false)
   end
+  
+
+  def self.resize_signature_url(sig_url)
+    regexp = /\Adata:(.+);base64,(.+)\z/
+    if sig_url =~ regexp
+      type = $1
+      data = $2
+      return "data:#{type};base64,#{process_signature(data)[0]}"
+    else
+      return sig_url
+    end
+  # rescue
+  #   return sig_url
+  end
+  
+  SIG_WIDTH = 180
+  SIG_HEIGHT = 60
+  RESOLUTION =  100
+  def self.process_signature(base64data, mods=[])
+    image_blob = ActiveSupport::Base64.decode64(base64data)
+    src = Tempfile.new('src')
+    dst = Tempfile.new('dst')
+    begin
+      src.binmode
+      src.write(image_blob)
+      src.close
+      wh = `identify -format "%wx%h" #{src.path}`
+      if wh.to_s.strip !="#{SIG_WIDTH}x#{SIG_HEIGHT}"
+        dst.close
+        #  -background skyblue -extent 100x60
+        cmd = "convert #{src.path} -background white -extent #{SIG_WIDTH}x#{SIG_HEIGHT} -density #{RESOLUTION} #{dst.path}"
+        `#{cmd}`
+        dst.open
+        dst.binmode
+        converted = dst.read
+        converted64 = ActiveSupport::Base64.encode64(converted)
+        mods << "Converted #{wh} image to #{SIG_WIDTH}x#{SIG_HEIGHT}"
+        return converted64.gsub("\n",''), mods
+      else
+        return base64data, mods
+      end
+    ensure
+       src.close
+       src.unlink   # deletes the temp file
+       dst.close
+       dst.unlink   # deletes the temp file
+    end
+  end
+  
 end

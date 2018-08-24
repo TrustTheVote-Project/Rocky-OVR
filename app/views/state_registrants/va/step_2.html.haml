@@ -22,6 +22,9 @@
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
   = render partial: 'state_registrants/va/header'
   
+  %p.notice= I18n.t('states.custom.va.special_status_notice').html_safe
+    
+  
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_voter_record_update, class_name: "registrant-form__confirm_voter_record_update__line", required: true}
   
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true}

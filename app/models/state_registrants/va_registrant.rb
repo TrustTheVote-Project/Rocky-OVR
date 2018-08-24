@@ -253,8 +253,8 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "DobDay" =>  self.date_of_birth.day,
       "DobMonth" =>  self.date_of_birth.month,
       "DriversLicenseNumber" => self.dln,
-      "LocalityName" => self.registration_locality
-    }.to_json, va_api_headers("confirmation"))
+      "LocalityName" => self.registration_locality_name,
+    }.to_json, {content_type: :json, accept: :json})
     self.va_check_response = response.to_s
     result = JSON.parse(response)
     self.va_check_is_registered_voter = result["IsRegisteredVoter"]
@@ -346,8 +346,8 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "SendingAgency" => "Rock the Vote", #?
       "Location"  => "register.rockthevote.com", #?
       "SendingAgencyTransactionTimestamp" => self.updated_at.iso8601,
-      "IsTestRecord" => !Rails.env.production?,
-      "VoterRegistrations" => [
+      "IsTestRecord"=> false,
+      "VoterRegistrations"=> [
         {
           "VoterId" => self.va_check_voter_id,
           "IsUSCitizen" => self.confirm_us_citizen,
@@ -375,7 +375,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
             "City" => self.registration_city,
             "State" => "VA",
             "ZipCode" => self.registration_zip_code,
-            "Locality" => self.registration_locality
+            "Locality" => self.registration_locality_name
           },
           "MailingAddress" => {
             "AddressLine1" => self.mailing_address_1,
@@ -407,6 +407,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   
   def registration_locality_name
     loc = self.class.localities.detect { |l| l["Code"] == self.registration_locality.to_s }
+    loc ? loc["Name"] : nil
+  end
+  
+  def mailing_address_locality_name
+    loc = self.class.localities.detect { |l| l["Code"] == self.mailing_address_locality.to_s }
     loc ? loc["Name"] : nil
   end
   

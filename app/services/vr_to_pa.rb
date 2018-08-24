@@ -583,45 +583,12 @@ class VRToPA
     type = read([:signature, :mime_type])
     
     if !is_empty(data)
-      data = process_signature(data)
+      data, self.mods = StateRegistrants::PARegistrant.process_signature(data, self.mods)
       return "data:#{type};base64,#{data}"
     else
       return ""
     end
 
-  end
-
-  SIG_WIDTH = 180
-  SIG_HEIGHT = 60
-  def process_signature(base64data)
-    image_blob = Base64.decode64(base64data)
-    src = Tempfile.new('src')
-    dst = Tempfile.new('dst')
-    begin
-      src.binmode
-      src.write(image_blob)
-      src.close
-      wh = `identify -format "%wx%h" #{src.path}`
-      if wh.to_s.strip !="#{SIG_WIDTH}x#{SIG_HEIGHT}"
-        dst.close
-        #  -background skyblue -extent 100x60
-        cmd = "convert #{src.path} -background white -extent #{SIG_WIDTH}x#{SIG_HEIGHT} #{dst.path}"
-        `#{cmd}`
-        dst.open
-        dst.binmode
-        converted = dst.read
-        converted64 = Base64.encode64(converted)
-        self.mods << "Converted #{wh} image to #{SIG_WIDTH}x#{SIG_HEIGHT}"
-        return converted64.gsub("\n",'')
-      else
-        return base64data
-      end
-    ensure
-       src.close
-       src.unlink   # deletes the temp file
-       dst.close
-       dst.unlink   # deletes the temp file
-    end
   end
 
   def query(keys, key, value, output, required=false)
