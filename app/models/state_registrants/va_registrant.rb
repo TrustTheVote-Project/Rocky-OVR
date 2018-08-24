@@ -224,7 +224,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "DobDay" =>  self.date_of_birth.day,
       "DobMonth" =>  self.date_of_birth.month,
       "DriversLicenseNumber" => self.dln,
-      "LocalityName" => self.registration_locality,
+      "LocalityName" => self.registration_locality_name,
       "Format" => "json"
     }.to_json, {content_type: :json, accept: :json})
     self.va_check_response = response.to_s
@@ -345,7 +345,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
             "City" => self.registration_city,
             "State" => "VA",
             "ZipCode" => self.registration_zip_code,
-            "Locality" => self.registration_locality
+            "Locality" => self.registration_locality_name
           },
           "MailingAddress" => {
             "AddressLine1" => self.mailing_address_1,
@@ -353,7 +353,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
             "City" => self.mailing_city,
             "State" => self.mailing_state,
             "ZipCode" => self.mailing_state,
-            "Locality" => self.mailing_address_locality
+            "Locality" => self.mailing_address_locality_name
           },
           "IsProhibited" => self.convicted_of_felony?,
           "IsRightsRestored" => self.right_to_vote_restored?,
@@ -377,6 +377,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   
   def registration_locality_name
     loc = self.class.localities.detect { |l| l["Code"] == self.registration_locality.to_s }
+    loc ? loc["Name"] : nil
+  end
+  
+  def mailing_address_locality_name
+    loc = self.class.localities.detect { |l| l["Code"] == self.mailing_address_locality.to_s }
     loc ? loc["Name"] : nil
   end
   
