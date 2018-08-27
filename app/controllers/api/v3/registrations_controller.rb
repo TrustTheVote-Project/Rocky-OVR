@@ -134,7 +134,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       end
       
     rescue Exception=>e
-      raise e
+      #raise e
     end
     
     # input request structure validation
