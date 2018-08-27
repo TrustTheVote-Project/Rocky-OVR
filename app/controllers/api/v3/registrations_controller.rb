@@ -117,6 +117,16 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       gr = GrommetRequest.create(request_params: params)
       gr_id = gr ? gr.id : nil
       
+      # Also save request headers
+      headers = {}
+      request.headers.each do |k,v|
+        if !k.starts_with?('rack') && !k.starts_with?('action')
+          headers[k] = v
+        end
+      end
+      gr.request_headers = headers
+      gr.save(validate: false)
+      
       if gr.is_duplicate?
         # Send notification
         AdminMailer.grommet_duplication(gr).deliver
@@ -124,7 +134,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       end
       
     rescue Exception=>e
-      #raise e
+      raise e
     end
     
     # input request structure validation

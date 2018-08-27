@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180808021143) do
+ActiveRecord::Schema.define(:version => 20180827214401) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -76,10 +76,11 @@ ActiveRecord::Schema.define(:version => 20180808021143) do
   end
 
   create_table "grommet_requests", :force => true do |t|
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.text     "request_params"
     t.string   "request_hash"
+    t.text     "request_headers"
   end
 
   add_index "grommet_requests", ["request_hash"], :name => "index_grommet_requests_on_request_hash"
@@ -382,8 +383,8 @@ ActiveRecord::Schema.define(:version => 20180808021143) do
     t.string   "assistant_phone"
     t.boolean  "confirm_assistant_declaration"
     t.boolean  "confirm_declaration"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "registrant_id"
     t.string   "locale"
     t.string   "status"
@@ -400,6 +401,7 @@ ActiveRecord::Schema.define(:version => 20180808021143) do
     t.boolean  "partner_opt_in_sms"
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
+    t.integer  "penndot_retries",                      :default => 0
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], :name => "pa_registrants_original_partner_id"
