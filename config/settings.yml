@@ -56,6 +56,7 @@ partner_csv_expiration_minutes: 30
 ovr_states:
   AZ:
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
       - es    

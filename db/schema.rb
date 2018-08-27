@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180820202202) do
+ActiveRecord::Schema.define(version: 20180827214401) do
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
     t.string   "email",              limit: 255
@@ -74,11 +74,12 @@ ActiveRecord::Schema.define(version: 20180820202202) do
     t.string   "online_registration_url", limit: 255
   end
 
-  create_table "grommet_requests", force: :cascade do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+  create_table "grommet_requests", :force => true do |t|
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.text     "request_params"
-    t.string   "request_hash",   limit: 255
+    t.string   "request_hash"
+    t.text     "request_headers"
   end
 
   add_index "grommet_requests", ["request_hash"], name: "index_grommet_requests_on_request_hash"

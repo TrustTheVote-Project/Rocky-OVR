@@ -206,8 +206,8 @@ private
         end
 
         p = Partner.new(data)
-        #assign a random password. Imported partners will need to go through the forgot password process      
-        p.password = Authlogic::Random::friendly_token
+        #assign a random password that is assured to meet the requirements. Imported partners will need to go through the forgot password process      
+        p.password = "MyP@ssw0rd#{Authlogic::Random::friendly_token}"
         p.password_confirmation = p.password
       
         new_partners << p
