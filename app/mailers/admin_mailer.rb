@@ -84,6 +84,14 @@ class AdminMailer < ActionMailer::Base
       body: "#{message}\n\nPA system returned the error:\n\n #{error_list.join("\n")}"
     )
   end
+
+  def va_registration_error(registrant, error_list, message='')
+    
+    mail(
+      subject: "[ROCKY VA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to VA",
+      body: "#{message}\n\nVA system returned the error:\n\n #{error_list.join("\n")}"
+    )
+  end
   
   def pa_registration_warning(registrant, mod_list)
     

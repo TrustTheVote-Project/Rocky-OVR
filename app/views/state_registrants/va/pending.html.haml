@@ -1,13 +1,17 @@
-- content_for :head do 
-  %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}
+- if !@old_registrant #we've cleared it out
+  .step_6
+    %p.instructions= I18n.t('states.custom.va.ineligible_registrant').html_safe
+- else
+  - content_for :head do 
+    %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}
 
-.step_6
-  #preparing_content
-    %h1= t('states.custom.va.submitting')
-    .download{style: "position:relative"}
-      %div
-        %h2.spaced_out
-        %h2.preparing= t('states.custom.va.confirming')
-      %p.preparing
-        = image_tag "reg/spinner.gif"
+  .step_6
+    #preparing_content
+      %h1= t('states.custom.va.submitting')
+      .download{style: "position:relative"}
+        %div
+          %h2.spaced_out
+          %h2.preparing= t('states.custom.va.confirming')
+        %p.preparing
+          = image_tag "reg/spinner.gif"
 

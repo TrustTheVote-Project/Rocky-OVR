@@ -142,7 +142,6 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   end
   
   serialize :va_submission_error, Array
-  serialize :va_check_error, Array
   
   def requires_mailing_address?
     is_protected? || is_military? || no_usps_address?
@@ -178,7 +177,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   end
   
   def submitted?
-    va_submission_complete?
+    va_submission_complete? || (va_check_complete? && va_check_error?)
   end
   
   def state_transaction_id
@@ -257,22 +256,37 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     }.to_json, {content_type: :json, accept: :json})
     self.va_check_response = response.to_s
     result = JSON.parse(response)
+    puts result
+    if result["IsProtected"]
+      set_protected_voter!
+      return false
+    end
     self.va_check_is_registered_voter = result["IsRegisteredVoter"]
     self.va_check_has_dmv_signature = result["HasDmvSignature"]
     self.va_check_voter_id = result["VoterId"]
-    #self.pa_submission_complete = true
     self.save(validate: false)
 
-    #if self.va_check_is_registered_voter && !self.va_check_voter_id.blank?
+    if !self.va_check_has_dmv_signature #Can't submit w/out DMV signature
+      self.va_check_error = true
+      self.registrant.skip_state_flow!
+      return false
+    end
     return true
   rescue Exception=>e
-    raise e.response
     self.va_check_error = true
     self.registrant.skip_state_flow!
+    
+    AdminMailer.va_registration_error(self, [e.message, e.backtrace], "Unhandled error during voter check. Registrant Switched to paper").deliver    
+    
     return false
   ensure
     self.va_check_complete = true
     self.save(validate: false)    
+  end
+  
+  def set_protected_voter!
+    self.registrant.delete
+    self.delete
   end
   
   # {
@@ -444,11 +458,13 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       self.va_submission_error ||= []
       self.va_submission_error << "No ID returned from VA submission"
       self.registrant.skip_state_flow!
+      AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver
     end
   rescue Exception=>e
     self.va_submission_error ||= []
     self.va_submission_error << [e.message, e.backtrace].flatten
     self.registrant.skip_state_flow!
+    AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver
   ensure
     self.va_submission_complete = true
     self.save(validate: false)        

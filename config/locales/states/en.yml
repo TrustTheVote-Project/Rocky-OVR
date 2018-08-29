@@ -4,6 +4,7 @@ en:
     custom:
       va:
         state_flow_error: There was a problem submitting your registration to Virginia. Please try again later or continue here to create a paper form.
+        ineligible_registrant: "We were unable to process your registration. Please visit the Virginia Department of Elections: <a href=\"https://vote.elections.virginia.gov/VoterInformation\">https://vote.elections.virginia.gov/VoterInformation</a>"
         step_2_header: Basic Info
         special_status_notice: "If you are registering as a military or overseas voter, a protected status voter, or applying for permanent absentee status due to a disability, please visit the Virginia Department of Elections: <a href=\"https://vote.elections.virginia.gov/VoterInformation\">https://vote.elections.virginia.gov/VoterInformation</a>"
         voter_classification: Voter Classification

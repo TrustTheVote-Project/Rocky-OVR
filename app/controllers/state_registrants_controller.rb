@@ -24,7 +24,7 @@ class StateRegistrantsController < RegistrationStep
       @registrant.save
       if @registrant.complete? && params[:step]==@registrant.step_list[-2]
         @registrant.async_submit_to_online_reg_url
-        redirect_to pending_state_registrant_path(@registrant.to_param)
+        redirect_to pending_state_registrant_path(@registrant.to_param, state: @registrant.home_state_abbrev.downcase)
       else
         redirect_to edit_state_registrant_path(@registrant.to_param, @registrant.status)
       end
@@ -35,7 +35,14 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def pending
-    @refresh_location = pending_state_registrant_path(@registrant)
+    if !@old_registrant
+      # Skip other processing and render pending w/out variables set
+      render "state_registrants/#{params[:state]}/pending" and return
+    end
+    @refresh_location = pending_state_registrant_path(@registrant, state: @registrant.home_state_abbrev.downcase)
+    if @registrant.skip_state_flow?
+      go_to_paper and return
+    end
     if !@registrant.submitted?
       if @registrant.complete?
         render "state_registrants/#{@registrant.home_state_abbrev.downcase}/pending" and return
@@ -71,6 +78,8 @@ class StateRegistrantsController < RegistrationStep
   def current_step
     #@registrant.current_step
     (@registrant.step_index(params[:step]) || @registrant.num_steps)  + 1
+  rescue
+    1
   end
 
   def next_step
@@ -83,7 +92,11 @@ class StateRegistrantsController < RegistrationStep
 
   private
   def load_state_registrant
-    @old_registrant = Registrant.find_by_param!(params[:registrant_id])
+    begin
+      @old_registrant = Registrant.find_by_param!(params[:registrant_id])
+    rescue
+      return
+    end
     @registrant = @old_registrant.state_registrant
     if !@registrant
       go_to_paper and return
