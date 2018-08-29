@@ -38,8 +38,14 @@ class Admin::PartnersController < Admin::BaseController
     @status_results = RegistrantStatus.import_ovr_status!(csv.path, state, current_admin)
 
     render action: :index
-    
   end
+  
+  def impersonate
+    @partner = Partner.find(params[:id])
+    PartnerSession.create!(@partner)
+    redirect_to partner_path
+  end
+  
 
   def show
     @partner = Partner.find(params[:id])

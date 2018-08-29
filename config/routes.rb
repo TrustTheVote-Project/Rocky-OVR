@@ -158,6 +158,7 @@ Rocky::Application.routes.draw do
     resources :partners do
       member do
         get :regen_api_key
+        get :impersonate
         post :publish
       end
       collection do 
