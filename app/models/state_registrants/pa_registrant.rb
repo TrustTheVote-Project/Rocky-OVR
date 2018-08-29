@@ -543,7 +543,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   SIG_HEIGHT = 60
   RESOLUTION =  100
   def self.process_signature(base64data, mods=[])
-    image_blob = ActiveSupport::Base64.decode64(base64data)
+    image_blob = Base64.decode64(base64data)
     src = Tempfile.new('src')
     dst = Tempfile.new('dst')
     begin
@@ -559,7 +559,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         dst.open
         dst.binmode
         converted = dst.read
-        converted64 = ActiveSupport::Base64.encode64(converted)
+        converted64 = Base64.encode64(converted)
         mods << "Converted #{wh} image to #{SIG_WIDTH}x#{SIG_HEIGHT}"
         return converted64.gsub("\n",''), mods
       else
