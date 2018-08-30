@@ -354,7 +354,7 @@ class Registrant < ActiveRecord::Base
 
     validates_each(attr_names, configuration) do |record, attr_name, value|
       if record.errors[attr_name].empty? && !GeoState.valid_zip_code?(record.send(attr_name))
-        record.errors.add(attr_name, :invalid_zip, :default => configuration[:message], :value => value)
+        record.errors.add(attr_name, :invalid, :default => configuration[:message], :value => value)
       end
     end
   end
