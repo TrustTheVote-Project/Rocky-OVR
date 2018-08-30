@@ -88,7 +88,7 @@ class PARegistrantValidator < ActiveModel::Validator
     reg.validates_format_of(attr_name, {:with => /^\d{5}(-\d{4})?$/, :allow_blank => true});
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
-      reg.errors.add(attr_name, :invalid_zip, :default => nil, :value => reg.send(attr_name))
+      reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
     end
   end
   
