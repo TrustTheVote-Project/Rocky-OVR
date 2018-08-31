@@ -263,6 +263,8 @@
             = I18n.t('states.custom.pa.signature_capture.buttons.done')
       .signature_clear.button
         = I18n.t('states.custom.pa.signature_capture.buttons.reset')
+      .signature_capture_insructions
+        %span= I18n.t('states.custom.pa.signature_capture.rotation_instructions')
     
     #signature_preview{ style: "display: #{@registrant.voter_signature_image.blank? ? 'none;' : 'block;'}"}
       %br

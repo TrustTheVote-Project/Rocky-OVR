@@ -166,6 +166,9 @@
       #signature_field {
         margin-top: 20px;
       }
+      .signature_capture_insructions {
+        display: none;
+      }
       @media screen and (orientation: portrait) {
         transform: rotate(90deg);
         width: 100vh;
@@ -175,6 +178,26 @@
         #signature_field {
           height: 33vh;
           width: 100vh;          
+        }
+        .signature_capture_insructions {
+          display: block;
+          position: absolute;
+          bottom: 0;
+          top: 0;
+          left: 0;
+          right: 0;
+          padding: 00px;
+          text-align: center;
+          background: rgba(255,255,255,.8);
+          span {
+            font-size: 20px;
+            line-height: 1.6em;
+            transform: rotate(-90deg) translateX(0) translateY(50%);
+            display: block;
+            padding: 20px;
+            width: 100vw;
+            height: 100vw;
+          }
         }
       }
       .signature_done, .signature_clear {
