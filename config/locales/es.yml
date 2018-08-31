@@ -131,7 +131,7 @@ es:
         ssn4: Los últimos 4 dígitos de su número de seguro social
         confirm_no_dl_or_ssn: No sé mi número de los últimos 4 dígitos de su número
           de seguro social
-        has_assistant: ¿Alguien se ayudó con este formulario?
+        has_assistant: "¿Alguien se ayudó con este formulario?"
         assistant_name: Ayudante Nombre
         assistant_address: Ayudante Dirección
         assistant_phone: Número de Teléfono
@@ -192,6 +192,16 @@ es:
         tell_message: Mensaje
     errors:
       models:
+        admin:
+          attributes:
+            password:
+              invalid: Password must be 10 characters, contain at least 1 lowercase
+                letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+        partner:
+          attributes:
+            password:
+              invalid: Password must be 10 characters, contain at least 1 lowercase
+                letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
         state_registrants/va_registrant:
           blank: NEED TRANSLATION
           invalid_zip: NEED TRANSLATION
@@ -250,6 +260,8 @@ es:
               format: Deberían tener 8 dígitos
               blank: Requerido. Marque "No sé mi número de PennDOT" si no sabes su
                 de identificación PennDOT
+              pa_invalid: Su número de PennDOT no es válido. Por favor, verifique
+                de nuevo y vuelva a intentarlo.
             ssn4:
               format: Los últimos 4 dígitos de su número de seguro social
               blank: Requerido. Marque "No sé mi número de los últimos 4 dígitos de
@@ -258,6 +270,8 @@ es:
             voter_signature_image:
               blank: Debe proporcionar un número de PennDOT, o una firma electrónica,
                 o firmar un formulario en papel para completar su solicitud.
+              too_many_retries: Después de dos errores PennDOT, debe proporcionar
+                una firma electrónica.
         registrant:
           ca_disclosures_error: Para completar su inscripción para votar en el estado
             de California debe aceptar las condiciones arriba mencionadas.
@@ -283,28 +297,28 @@ es:
             has_state_license:
               inclusion: Requerido
             us_citizen:
-              accepted: ¡Debes ser un ciudadano estadounidense!
+              accepted: "¡Debes ser un ciudadano estadounidense!"
       messages:
-        inclusion: ! '%{attribute} no esta incluida en la lista'
-        exclusion: ! '%{attribute} esta reservado'
-        invalid: ! '%{attribute} es inválido'
-        invalid_for_pdf: ! '%{attribute} debe ser proporcionada en Inglés'
-        confirmation: ! '%{attribute} no concuerda con la confirmación'
-        accepted: ! '%{attribute} debe ser aceptada'
-        empty: ! '%{attribute} no puede estar vacio'
-        blank: ! '%{attribute} no puede estar en blanco'
-        too_long: ! '%{attribute} es muy largo (máximo %{count} caracteres)'
-        too_short: ! '%{attribute} es muy corto (mínimo %{count} caracteres)'
-        wrong_length: ! '%{attribute} tamaño incorrecto (deber ser %{count} caracteres)'
-        taken: ! '%{attribute} ya fue tomado'
-        not_a_number: ! '%{attribute} no es un número'
-        greater_than: ! '%{attribute} debe ser mayor a %{count}'
-        greater_than_or_equal_to: ! '%{attribute} deber ser mayor a o igual a %{count}'
-        equal_to: ! '%{attribute} debe ser igual a %{count}'
-        less_than: ! '%{attribute} debe ser menor a %{count}'
-        less_than_or_equal_to: ! '%{attribute} debe ser menor a o igual a %{count}'
-        odd: ! '%{attribute} debe ser impar'
-        even: ! '%{attribute} debe ser par'
+        inclusion: "%{attribute} no esta incluida en la lista"
+        exclusion: "%{attribute} esta reservado"
+        invalid: "%{attribute} es inválido"
+        invalid_for_pdf: "%{attribute} debe ser proporcionada en Inglés"
+        confirmation: "%{attribute} no concuerda con la confirmación"
+        accepted: "%{attribute} debe ser aceptada"
+        empty: "%{attribute} no puede estar vacio"
+        blank: "%{attribute} no puede estar en blanco"
+        too_long: "%{attribute} es muy largo (máximo %{count} caracteres)"
+        too_short: "%{attribute} es muy corto (mínimo %{count} caracteres)"
+        wrong_length: "%{attribute} tamaño incorrecto (deber ser %{count} caracteres)"
+        taken: "%{attribute} ya fue tomado"
+        not_a_number: "%{attribute} no es un número"
+        greater_than: "%{attribute} debe ser mayor a %{count}"
+        greater_than_or_equal_to: "%{attribute} deber ser mayor a o igual a %{count}"
+        equal_to: "%{attribute} debe ser igual a %{count}"
+        less_than: "%{attribute} debe ser menor a %{count}"
+        less_than_or_equal_to: "%{attribute} debe ser menor a o igual a %{count}"
+        odd: "%{attribute} debe ser impar"
+        even: "%{attribute} debe ser par"
   authlogic:
     error_messages:
       login_blank: Login no puede estar en blanco.
@@ -334,7 +348,7 @@ es:
         title: NEED TRANSLATION
         status:
           not_found: NEED TRANSLATION
-          open: ! 'Submitted at %{date}. Approval status: pending.'
+          open: 'Submitted at %{date}. Approval status: pending.'
           rejected: The request was rejected %{date}.
           done: The latest request was fulfilled %{date}.
         open: NEED TRANSLATION
