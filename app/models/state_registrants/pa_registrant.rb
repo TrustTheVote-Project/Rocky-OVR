@@ -46,7 +46,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   serialize :pa_submission_error, Array
   
   def check_valid_for_state_flow!
-    if self.confirm_no_penndot_number? && self.signature_method == PRINT_METHOD
+    if self.signature_method == PRINT_METHOD
       self.skip_state_flow!
       self.registrant.state_id_number = self.ssn4
       if self.registrant.state_id_number.blank?
