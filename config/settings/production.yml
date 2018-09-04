@@ -13,7 +13,7 @@ states_with_online_registration:
   - LA
   - MN
   - NV
-  #- WA
+  - WA
   - AK
   - AL
   - CO
