@@ -101,7 +101,7 @@ ovr_states:
       - en
       - es
   WA:
-    redirect_to_online_reg_url: false
+    redirect_to_online_reg_url: true
     languages:
       - en
   AK:
