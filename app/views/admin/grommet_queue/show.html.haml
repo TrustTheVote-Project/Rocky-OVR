@@ -1,3 +1,10 @@
+%h2 Grommet Request Report Download:
+
+= link_to "Download grommet request CSV report", request_report_admin_grommet_queue_path(format: :csv)
+
+
+%h2 Delay Queue:
+
 - if @jobs.count == 0
   %h3= "No items in queue"
   

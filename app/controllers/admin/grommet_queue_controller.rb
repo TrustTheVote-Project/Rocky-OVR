@@ -47,4 +47,10 @@ class Admin::GrommetQueueController < Admin::BaseController
     redirect_to action: :show
   end
 
+  def request_report
+    respond_to do |format|
+      format.csv { send_data GrommetRequest.request_results_report_csv, :filename => "grommet_requests.csv" }
+    end     
+  end
+
 end

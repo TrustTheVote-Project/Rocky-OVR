@@ -153,6 +153,7 @@ Rocky::Application.routes.draw do
     root :controller => 'partners', :action => 'index'
     resource :grommet_queue, only: [:show],controller: "grommet_queue" do
       get :flush
+      get :request_report, format: :csv
       patch :update_delay
     end
     resources :partners do

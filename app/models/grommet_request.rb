@@ -52,5 +52,35 @@ class GrommetRequest < ActiveRecord::Base
       raise registrant.errors.full_messages.join("\n")
     end
   end
+
+  def self.request_results_report_csv
+    # Only look at registrants within the last 4 months to narrow the scope. If want full scope, go back to March 29, 2018
+    start_date = 4.months.ago
+    rs = Registrant.where("created_at > ?", start_date).where(home_state_id: GeoState["PA"].id).where("state_ovr_data IS NOT NULL")
+    gs = GrommetRequest.where('created_at > ?', start_date + 2.days)
+    r_reqs = {}
+    rs.find_each do |r|
+      if r.is_grommet? && !r.state_ovr_data["grommet_request_id"].blank?
+        r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.state_ovr_data["pa_transaction_id"]]
+      end
+    end
+    
+    csvstr = CSV.generate do |csv|
+      csv << ["Grommet Request ID", "Registrant ID", "PA Transaction ID", "Is Duplicate Of"]
+      gs.find_each do |g|
+        if r_reqs[g.id.to_s]
+          csv << [g.id] + r_reqs[g.id.to_s]
+        else
+          if !g.request_hash.blank?
+            other_ids = gs.where(request_hash: g.request_hash).where("id != ?", g.id) 
+            csv << [g.id,nil,nil,nil,other_ids.pluck(:id)]
+          else
+            csv << [g.id]
+          end
+        end
+      end
+    end
+    return csvstr
+  end
   
 end
