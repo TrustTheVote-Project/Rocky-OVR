@@ -70,7 +70,7 @@ class GrommetRequest < ActiveRecord::Base
       gs.find_each do |g|
         params = YAML.load(g.request_params)
         req = params["rocky_request"]
-        rep_fields = [req["partner_id"], req["voter_records_request"]["generated_date"], g.created_at, req["source_tracking_id"], req["open_tracking_id"], req["partner_tracking_id"]]
+        rep_fields = [req["partner_id"], req["voter_records_request"]["generated_date"], g.created_at, req["source_tracking_id"], req["open_tracking_id"], req["partner_tracking_id"], req["voter_records_request"]["voter_registration"]["name"]["first_name"], req["voter_records_request"]["voter_registration"]["name"]["last_name"]]
         if r_reqs[g.id.to_s]
           csv << [g.id] + rep_fields + r_reqs[g.id.to_s]
         else
