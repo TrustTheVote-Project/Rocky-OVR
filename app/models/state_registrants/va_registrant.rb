@@ -263,7 +263,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     end
     self.va_check_is_registered_voter = result["IsRegisteredVoter"]
     self.va_check_has_dmv_signature = result["HasDmvSignature"]
-    self.va_check_voter_id = result["VoterId"]
+    self.va_check_voter_id = result["VoterID"]
     self.save(validate: false)
 
     if !self.va_check_has_dmv_signature #Can't submit w/out DMV signature
