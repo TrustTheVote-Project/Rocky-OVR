@@ -400,19 +400,19 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
             "Locality" => self.mailing_address_locality
           },
           "IsProhibited" => self.convicted_of_felony?,
-          "IsRightsRestored" => self.right_to_vote_restored?,
-          "IsMilitary" => is_military?,
-          "IsProtected" => is_protected?,
-          "IsLawEnforcement" => is_law_enforcement?,
-          "IsCourtProtected" => is_court_protected?,
-          "IsConfidentialityProgram" => is_confidentiality_program?,
-          "IsBeingStalked" => is_being_stalked?,
+          "IsRightsRestored" => self.right_to_vote_restored,
+          # "IsMilitary" => is_military?,
+          # "IsProtected" => is_protected?,
+          # "IsLawEnforcement" => is_law_enforcement?,
+          # "IsCourtProtected" => is_court_protected?,
+          # "IsConfidentialityProgram" => is_confidentiality_program?,
+          # "IsBeingStalked" => is_being_stalked?,
           "IsRegisteredInAnotherState" => registered_in_other_state?,
           "NonVARegisteredState" => other_registration_state_abbrev,          
           "RegisterToVoteConfirmation" => self.confirm_register_to_vote?,
           "AcceptPrivacyNotice" => self.confirm_affirm_privacy_notice?,
           "AcceptWarningStatement" => self.confirm_voter_fraud_warning?,
-          "HasElectionOfficialInterest" => self.interested_in_being_poll_worker?
+          #"HasElectionOfficialInterest" => self.interested_in_being_poll_worker?
         }
       ]
 
