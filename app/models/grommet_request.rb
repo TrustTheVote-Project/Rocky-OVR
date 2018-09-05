@@ -66,16 +66,19 @@ class GrommetRequest < ActiveRecord::Base
     end
     
     csvstr = CSV.generate do |csv|
-      csv << ["Grommet Request ID", "Registrant ID", "PA Transaction ID", "Is Duplicate Of"]
+      csv << ["Grommet Request ID", "Partner ID", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "Is Duplicate Of"]
       gs.find_each do |g|
+        params = YAML.load(g.request_params)
+        req = params["rocky_request"]
+        rep_fields = [req["partner_id"], req["voter_records_request"]["generated_date"], g.created_at, req["source_tracking_id"], req["open_tracking_id"], req["partner_tracking_id"]]
         if r_reqs[g.id.to_s]
-          csv << [g.id] + r_reqs[g.id.to_s]
+          csv << [g.id] + rep_fields + r_reqs[g.id.to_s]
         else
           if !g.request_hash.blank?
             other_ids = gs.where(request_hash: g.request_hash).where("id != ?", g.id) 
-            csv << [g.id,nil,nil,nil,other_ids.pluck(:id)]
+            csv << [g.id] + rep_fields + [nil,nil,nil,other_ids.pluck(:id)]
           else
-            csv << [g.id]
+            csv << [g.id] + rep_fields
           end
         end
       end
