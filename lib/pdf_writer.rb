@@ -55,7 +55,8 @@ class PdfWriter
       :pdf_english_race,
       :pdf_date_of_birth,
       :pdf_barcode,
-      :created_at
+      :created_at,
+      :pdf_assistant_info
       
   validates_presence_of :id, :uid, :home_state_id, :pdf_barcode, :locale, :registration_instructions_url, :state_registrar_address, :registration_deadline, :pdf_date_of_birth, :created_at
   validate :pdf_date_of_birth_format

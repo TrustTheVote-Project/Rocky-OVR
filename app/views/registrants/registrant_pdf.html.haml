@@ -302,7 +302,7 @@
       %tr#blockD
         %td.block_number D
         %td.box1
-          .value
+          .value= @registrant.pdf_assistant_info
     %h4.bottom_half_footer
       = form_prompt('pdf.nvra.page2.bottom_half_footer' ).to_s.html_safe
 

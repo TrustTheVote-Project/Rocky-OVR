@@ -727,6 +727,11 @@ class Registrant < ActiveRecord::Base
     user_code = id.to_s(36).rjust(6, "0")
     "*#{RockyConf.sponsor.barcode_prefix}-#{user_code}*".upcase
   end
+  
+  def pdf_assistant_info
+    return nil unless state_registrant
+    return state_registrant.pdf_assistant_info
+  end
 
   def state_id_tooltip
     localization.id_number_tooltip
@@ -1357,7 +1362,8 @@ class Registrant < ActiveRecord::Base
       :pdf_english_race => pdf_english_race,
       :pdf_date_of_birth => pdf_date_of_birth,
       :pdf_barcode => pdf_barcode,
-      :created_at => created_at.to_param 
+      pdf_assistant_info: pdf_assistant_info,
+      :created_at => created_at.to_param
     }
   end
   

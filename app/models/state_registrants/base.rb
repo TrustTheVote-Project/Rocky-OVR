@@ -28,7 +28,9 @@ class StateRegistrants::Base < ActiveRecord::Base
     sr
   end
   
-  
+  def pdf_assistant_info
+    nil
+  end
   
   def name_title_key
     key_for_attribute(:name_title, 'titles')

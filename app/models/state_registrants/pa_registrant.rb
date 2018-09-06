@@ -343,6 +343,13 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result
   end
   
+  def pdf_assistant_info
+    [assistant_name, assistant_address, assistant_phone].collect do |ai|
+      ai.blank? ? nil : ai
+    end.compact.join(", ")
+  end
+  
+  
   def pa_api_key
     self.partner ? self.partner.pa_api_key : nil
   end
