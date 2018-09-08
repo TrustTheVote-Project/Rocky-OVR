@@ -1358,7 +1358,7 @@ class Registrant < ActiveRecord::Base
       :state_registrar_address => state_registrar_address,
       :registration_deadline => registration_deadline,
       :party => party,
-      :english_party_name => english_party_name,
+      :english_party_name => pdf_english_party_name,
       :pdf_english_race => pdf_english_race,
       :pdf_date_of_birth => pdf_date_of_birth,
       :pdf_barcode => pdf_barcode,
