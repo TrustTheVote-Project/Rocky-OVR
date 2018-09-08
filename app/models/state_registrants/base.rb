@@ -32,6 +32,10 @@ class StateRegistrants::Base < ActiveRecord::Base
     nil
   end
   
+  def has_other_party?
+    false
+  end
+  
   def name_title_key
     key_for_attribute(:name_title, 'titles')
   end
