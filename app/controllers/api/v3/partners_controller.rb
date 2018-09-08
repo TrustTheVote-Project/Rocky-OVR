@@ -69,7 +69,7 @@ class Api::V3::PartnersController < Api::V3::BaseController
         
         
         # TODO: should the jsonp method use JSON.generate for unencoded utf-8 responses?
-        render json: JSON.generate({
+        json_str = JSON.generate({
           is_valid: true,
           partner_name: partner.organization,
           session_timeout_length: partner.custom_data["canvassing_session_timeout_length"],
@@ -78,7 +78,16 @@ class Api::V3::PartnersController < Api::V3::BaseController
           registration_notification_text: deadline_messages,
           volunteer_text: volunteer_messages
         })
+        begin
+          Rails.logger.info("Responding to partnerIdValidation request for #{params[:partner_id]} with: #{json_str}")
+        rescue
+        end
+        render json: json_str
       else
+        begin
+          Rails.logger.info("Responding to partnerIdValidation request for #{params[:partner_id]} with: #{{is_valid: false}}")
+        rescue
+        end
         jsonp({
           is_valid: false
         })      
