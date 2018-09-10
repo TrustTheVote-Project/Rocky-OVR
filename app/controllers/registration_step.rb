@@ -113,7 +113,7 @@ class RegistrationStep < ApplicationController
 
   def find_registrant(special_case = nil, p = params)
     @registrant = Registrant.find_by_param!(p[:registrant_id] || p[:id])
-    if detect_state_flow
+    if detect_state_flow && special_case.nil?
       state_flow_redirect
     else
       if (@registrant.complete? || @registrant.under_18?) && special_case.nil?
