@@ -714,7 +714,7 @@ class Partner < ActiveRecord::Base
     "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.csv_file_name)}"    
   end
   def grommet_csv_url
-    "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.grommet_csv_file_name)}"    
+    "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.grommet_csv_file_name.to_s)}"    
   end
   
   def generate_registrants_csv_file(start_date=nil, end_date = nil)
