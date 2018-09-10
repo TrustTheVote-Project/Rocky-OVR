@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180827214401) do
+ActiveRecord::Schema.define(version: 20180910170029) do
+
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
     t.string   "email",              limit: 255
@@ -34,10 +35,10 @@ ActiveRecord::Schema.define(version: 20180827214401) do
   add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",               default: 0
-    t.integer  "attempts",               default: 0
-    t.text     "handler"
-    t.string   "last_error", limit: 255
+    t.integer  "priority",                    default: 0
+    t.integer  "attempts",                    default: 0
+    t.text     "handler",    limit: 16777215
+    t.text     "last_error", limit: 16777215
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
@@ -74,11 +75,11 @@ ActiveRecord::Schema.define(version: 20180827214401) do
     t.string   "online_registration_url", limit: 255
   end
 
-  create_table "grommet_requests", :force => true do |t|
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+  create_table "grommet_requests", force: :cascade do |t|
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.text     "request_params"
-    t.string   "request_hash"
+    t.string   "request_hash",    limit: 255
     t.text     "request_headers"
   end
 

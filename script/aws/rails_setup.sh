@@ -17,7 +17,8 @@ aws s3 cp s3://rocky-cloudformation-assets/database.$RAILS_ENV.yml config/databa
 aws s3 cp s3://rocky-cloudformation-assets/.env.$RAILS_ENV .env.$RAILS_ENV --region us-west-2
 cat /home/ec2-user/aws_env_vars.txt >> .env.$RAILS_ENV
 
-NUM_PDF_WORKERS=4
+NUM_PDF_WORKERS=3
+NUM_UTIL_WORKERS=1
 if [ $RAILS_ENV == 'staging' ]; then
     NUM_PDF_WORKERS=2
 fi
@@ -59,10 +60,13 @@ if [ $SERVER_ROLE == 'util' ]; then
     # make sure the script is executable
     chmod u+x script/*worker
     
-    # enable and start the regular jobs worker (for report generation)
+    # enable and start the regular jobs worker (for report generation and API registrations)
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner stop
     sleep 5
-    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
+    for run in $(seq 1 $NUM_UTIL_WORKERS)
+    do
+        RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
+    done
 
     # enable and start the cloudwatch queue reporter (for PDFs autoscaling)
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_cloudwatch_runner stop
@@ -104,6 +108,16 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     mkdir -p tmp/pids
     # make sure the script is executable
     chmod u+x script/*worker
+    
+    # enable and start the regular jobs worker (for report generation and API registrations)
+    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner stop
+    sleep 5
+    for run in $(seq 1 $NUM_UTIL_WORKERS)
+    do
+        RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
+    done
+    
+    
     # restart the PDF workers
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no_wait
     sleep 10
