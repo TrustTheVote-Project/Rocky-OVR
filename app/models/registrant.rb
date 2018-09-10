@@ -876,7 +876,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def skip_state_flow!
-    self.state_ovr_data ||= []
+    self.state_ovr_data ||= {}
     self.state_ovr_data[:skip_state_flow] = true
     self.finish_with_state = false
     self.save(validate: false)
