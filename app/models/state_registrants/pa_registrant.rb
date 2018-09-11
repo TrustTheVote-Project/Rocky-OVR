@@ -193,9 +193,12 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     sp
   end
 
+  def has_other_party?
+    return parse_party[:politicalparty] == "OTH" && !self.other_party.blank?
+  end
 
   def parse_party
-    @parsed_party ||= begin
+    parsed_party ||= begin
       v = VRToPA::PARTIES_NAMES[english_party_name.to_s.downcase.strip]
       v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: other_party}
     end
