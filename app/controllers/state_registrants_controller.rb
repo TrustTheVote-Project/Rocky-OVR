@@ -94,7 +94,11 @@ class StateRegistrantsController < RegistrationStep
   def load_state_registrant
     begin
       @old_registrant = Registrant.find_by_param!(params[:registrant_id])
-    rescue
+    rescue Registrant::AbandonedRecord => exception
+      reg = exception.registrant
+      redirect_to registrants_timeout_url(partner_locale_options(reg.partner.id, reg.locale, reg.tracking_source))
+      return
+    rescue 
       return
     end
     @registrant = @old_registrant.state_registrant
