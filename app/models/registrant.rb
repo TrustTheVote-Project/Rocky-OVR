@@ -37,6 +37,7 @@ class Registrant < ActiveRecord::Base
   include Lolrus
   include Rails.application.routes.url_helpers
   include RegistrantMethods
+  include TimeStampHelper
   
   serialize :state_ovr_data, Hash
 
@@ -1636,7 +1637,7 @@ class Registrant < ActiveRecord::Base
       yes_no(partner_opt_in_email?),
       yes_no(partner_opt_in_sms?),
       yes_no(partner_volunteer?),
-      created_at && created_at.in_time_zone("America/New_York").to_s,
+      vr_generated_at,
       yes_no(has_state_license?),
       yes_no(has_ssn?),
       
@@ -1652,6 +1653,11 @@ class Registrant < ActiveRecord::Base
     ]
   end
   
+  def vr_generated_at
+    eastern_time(state_ovr_data["voter_records_request"]["generated_date"])
+  rescue
+    nil
+  end
   
   def vr_application_status
     registrant_status ? registrant_status.state_status : nil
