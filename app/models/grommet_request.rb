@@ -3,6 +3,8 @@ class GrommetRequest < ActiveRecord::Base
   
   after_create :generate_request_hash
   
+  serialize :request_params, Hash
+  
   def generate_request_hash
     params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
     if params["rocky_request"] && params["rocky_request"]["voter_records_request"]
@@ -22,7 +24,8 @@ class GrommetRequest < ActiveRecord::Base
   
   def resubmit
     registrant = nil
-    params = YAML::load(self.request_params).with_indifferent_access
+    params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
+    params = params.with_indifferent_access
     [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
       value = params
       keys.each do |key|
@@ -68,7 +71,8 @@ class GrommetRequest < ActiveRecord::Base
     csvstr = CSV.generate do |csv|
       csv << ["Grommet Request ID", "Partner ID", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "Is Duplicate Of"]
       gs.find_each do |g|
-        params = YAML.load(g.request_params)
+        params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
+        params = params.with_indifferent_access
         req = params["rocky_request"]
         rep_fields = [req["partner_id"], req["voter_records_request"]["generated_date"], g.created_at, req["source_tracking_id"], req["open_tracking_id"], req["partner_tracking_id"], req["voter_records_request"]["voter_registration"]["name"]["first_name"], req["voter_records_request"]["voter_registration"]["name"]["last_name"]]
         if r_reqs[g.id.to_s]
