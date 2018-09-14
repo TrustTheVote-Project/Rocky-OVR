@@ -331,6 +331,7 @@ class Registrant < ActiveRecord::Base
   belongs_to :prev_state,    :class_name => "GeoState"
 
   has_one :registrant_status
+  has_one :pdf_delivery
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
@@ -1249,12 +1250,30 @@ class Registrant < ActiveRecord::Base
     generate_pdf(true)
   end
   
+  def mail_redacted_pdf
+    d = self.pdf_delivery #should have been created in queue_pdf_delivery
+    if !d
+      d = self.create_pdf_delivery
+    end
+    d.generate_pdf!
+    return d.pdf_ready?
+  end
+  
   def queue_pdf
     klass = PdfGeneration
     if self.email_address.blank?
       klass = PriorityPdfGeneration
     end
     klass.create!(:registrant_id=>self.id)
+  end
+  
+  def queue_pdf_delivery
+    d = self.pdf_delivery
+    if !d
+      d = self.create_pdf_delivery
+      klass= PdfDeliveryGeneration
+      klass.create!(:registrant_id=>self.id)    
+    end
   end
   
   def download_pdf
@@ -1335,6 +1354,8 @@ class Registrant < ActiveRecord::Base
       :home_unit => home_unit,        
       :home_city => home_city,
       :home_state_id => home_state_abbrev,       
+      :state_id_tooltip => state_id_tooltip,
+      :has_mailing_address => has_mailing_address?,
       :mailing_address => mailing_address,    
       :mailing_unit => mailing_unit,      
       :mailing_city => mailing_city,       

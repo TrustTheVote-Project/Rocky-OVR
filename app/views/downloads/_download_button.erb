@@ -13,9 +13,17 @@
                             :target => "_blank") %></p>
   <p><%= I18n.t('txt.registration.instructions.download') %></p>
 </div>
+
 <div id="download_no_js">
   <div class="text">
     <p>After you have downloaded your registration form, you can continue on and let your friends know they can register to vote too.</p>
   </div>
   <p><%= rollover_image_link(:keep_going, I18n.t('txt.button.keep_going'), registrant_finish_path(@registrant)) %></p>
+</div>
+
+<div class="assistance-with-printing download">
+  <h2><%= I18n.t('txt.registration.instructions.download_assitance_header') %></h2>
+  <p class="centered"><%= rollover_image_link(:get_assistance, I18n.t('txt.button.download_assistance'), pdf_assistance_registrant_download_path(@registrant),
+                            :target => "_blank") %></p>
+  <p><%= I18n.t('txt.registration.instructions.download_assitance') %></p>
 </div>
