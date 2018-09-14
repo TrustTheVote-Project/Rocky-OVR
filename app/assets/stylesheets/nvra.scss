@@ -75,6 +75,11 @@ span.smaller_prompt {
   font-size: 1.5 * $fs;
   line-height: 3 * $fs;
   padding: 2 * $fs;
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
 }
 
 #page_1 {

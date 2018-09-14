@@ -21,7 +21,8 @@ class PdfWriter
         :home_address,       
         :home_unit,        
         :home_city,
-        :home_state_id,    
+        :home_state_id,  
+        :home_state_name,  
         :state_id_tooltip,
         :has_mailing_address,
         :mailing_address,    
@@ -238,7 +239,9 @@ class PdfWriter
   end   
   
   def self.upload_pdf_to_printer(path, url_path)
-    return PdfDelivery.transfer(path)
+    puts path
+    return false
+    #return PdfDelivery.transfer(path)
   end
   
   def self.upload_pdf_to_s3(path, url_path)
