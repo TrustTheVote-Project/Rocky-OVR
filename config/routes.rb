@@ -25,6 +25,7 @@ Rocky::Application.routes.draw do
     resource "download", :only => :show do
       member do
         get 'pdf'
+        get 'pdf_assistance'
       end
     end
     resource "finish", :only => :show
