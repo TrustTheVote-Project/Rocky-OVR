@@ -33,7 +33,7 @@ class PdfDeliveryGeneration
       # puts "Generated #{r.pdf_path}"
       delete_from_queue(message)
     else
-      Rails.logger.error "FAILED to generate #{self.class.name} #{message}"
+      Rails.logger.error "FAILED to generate #{self.name} #{message}"
     end
   end
   

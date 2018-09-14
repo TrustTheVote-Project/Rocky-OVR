@@ -48,6 +48,22 @@ class PdfDelivery < ActiveRecord::Base
     return false   
   end
   
+  def self.to_csv_string
+    return CSV.generate do |csv|
+      first = true
+      self.all.includes({:registrant=>[:home_state]}).find_each do |d|
+        pdf_hash = d.registrant.to_pdf_hash
+        pdf_hash.delete(:state_id_number)
+        if first
+          csv << pdf_hash.keys
+          first = false
+        end
+        csv << pdf_hash.values
+      end
+    end
+  end
+  
+  
   # URL is ftp.garnerprint.com
   # User name:whenwevote
   # Password: redfq86#
