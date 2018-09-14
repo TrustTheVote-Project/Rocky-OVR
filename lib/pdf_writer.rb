@@ -240,7 +240,7 @@ class PdfWriter
   
   def self.upload_pdf_to_printer(path, url_path)
     puts path
-    return false
+    return PdfDelivery.store_in_s3(path, url_path)
     #return PdfDelivery.transfer(path)
   end
   

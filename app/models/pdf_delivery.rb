@@ -24,6 +24,30 @@ class PdfDelivery < ActiveRecord::Base
     save(validate: false)
   end
   
+  
+  def self.store_in_s3(path, url_path)
+    connection = Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :region                   => 'us-west-2'
+    })
+    bucket_name = "rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}"
+    directory = connection.directories.get(bucket_name)
+    date_stamp = Date.today.strftime("%Y-%m-%d")
+    file = directory.files.create(
+      :key    => "redacted/#{date_stamp}/#{url_path.gsub(/^\//,'')}",
+      :body   => File.open(path).read,
+      :content_type => "application/pdf",
+      :encryption => 'AES256', #Make sure its encrypted on their own hard drives
+      :public => true
+    ) 
+  rescue Exception=>e
+    raise e
+    
+    return false   
+  end
+  
   # URL is ftp.garnerprint.com
   # User name:whenwevote
   # Password: redfq86#
