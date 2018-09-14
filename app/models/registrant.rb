@@ -1255,8 +1255,7 @@ class Registrant < ActiveRecord::Base
     if !d
       d = self.create_pdf_delivery
     end
-    d.generate_pdf!
-    return d.pdf_ready?
+    return d.generate_pdf!
   end
   
   def queue_pdf
@@ -1334,6 +1333,10 @@ class Registrant < ActiveRecord::Base
     self.pdf_ready = true
     redact_sensitive_data
     save
+  end
+  
+  def can_request_pdf_assitance?
+    self.locale.to_s == 'en'
   end
   
   def to_pdf_hash
