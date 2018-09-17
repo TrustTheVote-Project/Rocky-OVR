@@ -234,7 +234,7 @@
     %ul.flat.penndot-number
       - if @registrant.penndot_retries > 0
         - @registrant.errors.add(:penndot_number, :pa_invalid)
-      = field_li(form, :penndot_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__penndot-number__line"} })
+      = field_li(form, :penndot_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__penndot-number__line"}, class_name: "inspectletIgnore" })
           
     %p.instructions
       = I18n.t('states.custom.pa.penndot_number_instructions')
