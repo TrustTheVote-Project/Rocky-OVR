@@ -1360,7 +1360,7 @@ class Registrant < ActiveRecord::Base
               TN
               TX
               WY)
-    return list.includes?(home_state_abbrev)
+    return list.include?(home_state_abbrev)
   end
   def can_request_pdf_assistance?
     self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 37284 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
