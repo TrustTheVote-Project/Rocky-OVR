@@ -1338,8 +1338,32 @@ class Registrant < ActiveRecord::Base
     save
   end
   
+  def home_state_enabled_for_pdf_assitance?
+    list = %w(AL
+              AR
+              FL
+              GA
+              ID
+              IL
+              LA
+              ME
+              MI
+              MO
+              MA
+              MT
+              NC
+              NJ
+              NY
+              OK
+              SC
+              SD
+              TN
+              TX
+              WY)
+    return list.include?(home_state_abbrev)
+  end
   def can_request_pdf_assistance?
-    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 37284 : self.partner_id == 1)
+    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 37284 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
   end
   
   def to_pdf_hash
