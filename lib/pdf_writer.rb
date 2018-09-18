@@ -21,7 +21,10 @@ class PdfWriter
         :home_address,       
         :home_unit,        
         :home_city,
-        :home_state_id,       
+        :home_state_id,  
+        :home_state_name,  
+        :state_id_tooltip,
+        :has_mailing_address,
         :mailing_address,    
         :mailing_unit,      
         :mailing_city,       
@@ -100,13 +103,13 @@ class PdfWriter
   end
 
 
-  def registrant_to_html_string
+  def registrant_to_html_string(for_printer = false)
     return false if self.locale.blank? || self.home_state_id.blank?
     prev_locale = I18n.locale
 
 
     I18n.locale = self.locale
-    renderer = PdfRenderer.new(self)
+    renderer = PdfRenderer.new(self, for_printer)
 
     html_string = renderer.render(
       'registrants/registrant_pdf', 
@@ -137,12 +140,12 @@ class PdfWriter
     end
   end
 
-  def generate_pdf(force_write = false)
-    html_string = registrant_to_html_string
+  def generate_pdf(force_write = false, for_printer = false)
+    html_string = registrant_to_html_string(for_printer)
     return false if !html_string
 
     if force_write || !pdf_exists?
-      PdfWriter.write_pdf_from_html_string(html_string, pdf_file_path, self.locale, pdf_file_dir, pdf_path)
+      PdfWriter.write_pdf_from_html_string(html_string, pdf_file_path, self.locale, pdf_file_dir, pdf_path, for_printer)
     end
     # lets assume if there's no error raise, the file got generated (to limit FS operations)
     return true
@@ -206,7 +209,7 @@ class PdfWriter
 
 
 
-  def self.write_pdf_from_html_string(html_string, path, locale, pdf_file_dir, url_path)
+  def self.write_pdf_from_html_string(html_string, path, locale, pdf_file_dir, url_path, for_printer=false)
     pdf = WickedPdf.new.pdf_from_string(
       html_string,
       :disable_internal_links         => false,
@@ -220,15 +223,26 @@ class PdfWriter
       f << pdf.force_encoding('UTF-8')
     end
     # And then upload it to s3
-    uploaded = self.upload_pdf_to_s3(path, url_path)
+    uploaded = nil
+    if for_printer
+      uploaded = self.upload_pdf_to_printer(path, url_path)
+    else
+      uploaded = self.upload_pdf_to_s3(path, url_path)
+    end
     # If it got there, delete the tmp file
     if uploaded
       File.delete(path)
     else
-      raise "File #{path} not uploaded to S3"
+      raise "File #{path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
       # Handle failed upload to S3 - it's probably raising an error
     end
   end   
+  
+  def self.upload_pdf_to_printer(path, url_path)
+    puts path
+    return PdfDelivery.store_in_s3(path, url_path)
+    #return PdfDelivery.transfer(path)
+  end
   
   def self.upload_pdf_to_s3(path, url_path)
     connection = Fog::Storage.new({

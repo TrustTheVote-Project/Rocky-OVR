@@ -331,6 +331,7 @@ class Registrant < ActiveRecord::Base
   belongs_to :prev_state,    :class_name => "GeoState"
 
   has_one :registrant_status
+  has_one :pdf_delivery
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
@@ -1249,12 +1250,32 @@ class Registrant < ActiveRecord::Base
     generate_pdf(true)
   end
   
+  def mail_redacted_pdf
+    d = self.pdf_delivery #should have been created in queue_pdf_delivery
+    if !d
+      d = self.create_pdf_delivery
+    end
+    # Don't send reminders
+    self.reminders_left = 0
+    self.save(validate: false)
+    return d.generate_pdf!
+  end
+  
   def queue_pdf
     klass = PdfGeneration
     if self.email_address.blank?
       klass = PriorityPdfGeneration
     end
     klass.create!(:registrant_id=>self.id)
+  end
+  
+  def queue_pdf_delivery
+    d = self.pdf_delivery
+    if !d
+      d = self.create_pdf_delivery
+      klass= PdfDeliveryGeneration
+      klass.create!(:registrant_id=>self.id)    
+    end
   end
   
   def download_pdf
@@ -1317,6 +1338,34 @@ class Registrant < ActiveRecord::Base
     save
   end
   
+  def home_state_enabled_for_pdf_assitance?
+    list = %w(AL
+              AR
+              FL
+              GA
+              ID
+              IL
+              LA
+              ME
+              MI
+              MO
+              MA
+              MT
+              NC
+              NJ
+              NY
+              OK
+              SC
+              SD
+              TN
+              TX
+              WY)
+    return list.include?(home_state_abbrev)
+  end
+  def can_request_pdf_assistance?
+    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 37284 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
+  end
+  
   def to_pdf_hash
     {
       :id =>  id,
@@ -1334,7 +1383,10 @@ class Registrant < ActiveRecord::Base
       :home_address => home_address,       
       :home_unit => home_unit,        
       :home_city => home_city,
-      :home_state_id => home_state_abbrev,       
+      :home_state_id => home_state_abbrev,  
+      :home_state_name => home_state && home_state.name,     
+      :state_id_tooltip => state_id_tooltip,
+      :has_mailing_address => has_mailing_address?,
       :mailing_address => mailing_address,    
       :mailing_unit => mailing_unit,      
       :mailing_city => mailing_city,       

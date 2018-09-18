@@ -52,5 +52,5 @@ class Admin::GrommetQueueController < Admin::BaseController
       format.csv { send_data GrommetRequest.request_results_report_csv, :filename => "grommet_requests.csv" }
     end     
   end
-
+  
 end
