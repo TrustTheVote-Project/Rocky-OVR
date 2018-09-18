@@ -2,6 +2,7 @@ Rocky::Application.routes.draw do
   
   root :to => "registrants#landing"
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui", via: :get
+  match "/pdf_assistance_report", to: "application#pdf_assistance_report", via: :get, format: :csv
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout', via: :get
   match "/registrants/new/:state_abbrev", to: "registrants#new", via: :get
   match "/registrants/map", to: "registrants#new", via: :get
@@ -155,7 +156,6 @@ Rocky::Application.routes.draw do
     resource :grommet_queue, only: [:show],controller: "grommet_queue" do
       get :flush
       get :request_report, format: :csv
-      get :pdf_assistance_report, format: :csv
       patch :update_delay
     end
     resources :partners do

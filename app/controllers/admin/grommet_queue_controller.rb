@@ -53,10 +53,4 @@ class Admin::GrommetQueueController < Admin::BaseController
     end     
   end
   
-  def pdf_assistance_report
-    respond_to do |format|
-      format.csv { send_data PdfDelivery.to_csv_string, :filename => "pdf_assistance_report.csv" }
-    end         
-  end
-
 end
