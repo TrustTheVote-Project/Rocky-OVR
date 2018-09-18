@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180910170029) do
+ActiveRecord::Schema.define(version: 20180914110348) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -155,6 +155,17 @@ ActiveRecord::Schema.define(version: 20180910170029) do
   add_index "partners", ["persistence_token"], name: "index_partners_on_persistence_token"
   add_index "partners", ["username"], name: "index_partners_on_username"
   add_index "partners", ["whitelabeled"], name: "index_partners_on_whitelabeled"
+
+  create_table "pdf_deliveries", force: :cascade do |t|
+    t.integer  "registrant_id"
+    t.integer  "delivery_attempts"
+    t.boolean  "deliverd_to_printer"
+    t.boolean  "pdf_ready"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "pdf_deliveries", ["registrant_id"], name: "index_pdf_deliveries_on_registrant_id"
 
   create_table "pdf_generations", force: :cascade do |t|
     t.integer  "registrant_id"
