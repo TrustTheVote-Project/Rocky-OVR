@@ -37,6 +37,17 @@ class ApplicationController < ActionController::Base
       render layout: false
     end
   end
+  
+  def pdf_assistance_report
+    if params[:api_key] != ENV['PDF_PRINT_API_KEY']
+      raise ActionController::RoutingError.new('Not Found')
+    else
+      respond_to do |format|
+        format.csv { send_data PdfDelivery.to_csv_string, :filename => "pdf_assistance_report.csv" }
+      end         
+    end
+  end
+  
 
   protected
 

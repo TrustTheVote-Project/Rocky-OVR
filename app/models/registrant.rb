@@ -1255,6 +1255,9 @@ class Registrant < ActiveRecord::Base
     if !d
       d = self.create_pdf_delivery
     end
+    # Don't send reminders
+    self.reminders_left = 0
+    self.save(validate: false)
     return d.generate_pdf!
   end
   
@@ -1335,8 +1338,8 @@ class Registrant < ActiveRecord::Base
     save
   end
   
-  def can_request_pdf_assitance?
-    self.locale.to_s == 'en'
+  def can_request_pdf_assistance?
+    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 37284 : self.partner_id == 1)
   end
   
   def to_pdf_hash

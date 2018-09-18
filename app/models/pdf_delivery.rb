@@ -54,11 +54,21 @@ class PdfDelivery < ActiveRecord::Base
       self.all.includes({:registrant=>[:home_state]}).find_each do |d|
         pdf_hash = d.registrant.to_pdf_hash
         pdf_hash.delete(:state_id_number)
+        registrar_address = pdf_hash.delete(:state_registrar_address)
         if first
-          csv << pdf_hash.keys
+          csv << pdf_hash.keys + [
+            :state_registrar_address_1,
+            :state_registrar_address_2,
+            :state_registrar_address_3,
+            :state_registrar_address_4,
+            :state_registrar_address_5,
+            :state_registrar_address_6,
+            :state_registrar_address_7,
+          ]
           first = false
         end
-        csv << pdf_hash.values
+        csv << pdf_hash.values + registrar_address.split(/<br\/?>/)
+        
       end
     end
   end
