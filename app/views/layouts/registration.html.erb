@@ -6,6 +6,18 @@
   <title>Online Voter Registration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   
+  <!-- Begin Inspectlet Asynchronous Code -->
+  <script type="text/javascript">
+  (function() {
+  window.__insp = window.__insp || [];
+  __insp.push(['wid', 541589450]);
+  var ldinsp = function(){
+  if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=541589450&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+  setTimeout(ldinsp, 0);
+  })();
+  </script>
+  <!-- End Inspectlet Asynchronous Code -->
+  
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
   <script>
     WebFont.load({
@@ -99,6 +111,14 @@
       window.removeEventListener('touchstart', onFirstTouch, false);
     }, false);
   } 
+</script>
+
+<script>
+$(document).ready(function(){
+    $('#state_registrants_pa_registrant_penndot_number').addClass('inspectletIgnore');
+    $('#state_registrants_pa_registrant_ssn4').addClass('inspectletIgnore');
+    $('#registrant_state_id_number').addClass('inspectletIgnore');
+});
 </script>
 </body>
 </html>
