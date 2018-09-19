@@ -253,7 +253,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "DobMonth" =>  self.date_of_birth.month,
       "DriversLicenseNumber" => self.dln,
       "LocalityName" => self.registration_locality_name,
-    }.to_json, {content_type: :json, accept: :json})
+    }.to_json, va_api_headers("check"))
     self.va_check_response = response.to_s
     result = JSON.parse(response)
     puts result
