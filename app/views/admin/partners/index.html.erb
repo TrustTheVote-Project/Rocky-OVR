@@ -12,11 +12,7 @@
 <%- end %>
 
 <%- if @status_results %>
-  <ul>
-    <% @status_results.each do |state_id, message| %>
-      <li>ID <%= state_id%>: <%= message %></li>
-    <%- end %>
-  </ul>
+  <%= @status_results %>
 <%- end%>
 
 

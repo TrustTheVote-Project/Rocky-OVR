@@ -35,7 +35,9 @@ class Admin::PartnersController < Admin::BaseController
     
     state = GeoState.find(params[:geo_state])
     csv = params[:statuses_csv]
-    @status_results = RegistrantStatus.import_ovr_status!(csv.path, state, current_admin)
+    RegistrantStatus.import_ovr_status!(csv.path, state, current_admin)
+    
+    @status_results = "Your results will be emailed to #{current_admin.email}"
 
     render action: :index
   end
