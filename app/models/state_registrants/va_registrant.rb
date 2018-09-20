@@ -243,18 +243,24 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
     url = File.join(server, "Voter/Confirmation?format=json")
-    response = RestClient::Request.execute(method: :get, url: url, payload: {
-      "LastName"  => self.last_name,
-      "FirstName" => self.first_name,
-      "MiddleName" => self.middle_name,
-      "Ssn9" => self.ssn,
-      "DobYear" => self.date_of_birth.year,
-      "DobDay" =>  self.date_of_birth.day,
-      "DobMonth" =>  self.date_of_birth.month,
-      "DriversLicenseNumber" => self.dln,
-      "LocalityName" => self.registration_locality_name,
-    }.to_json, headers: va_api_headers("check"))
+    result = nil
+    begin
+      response = RestClient::Request.execute(method: :get, url: url, payload: {
+        "LastName"  => self.last_name,
+        "FirstName" => self.first_name,
+        "MiddleName" => self.middle_name,
+        "Ssn9" => self.ssn,
+        "DobYear" => self.date_of_birth.year,
+        "DobDay" =>  self.date_of_birth.day,
+        "DobMonth" =>  self.date_of_birth.month,
+        "DriversLicenseNumber" => self.dln,
+        "LocalityName" => self.registration_locality_name,
+      }.to_json, headers: va_api_headers("check"))
+    rescue Exception => error
+      response = error.response
+    end
     self.va_check_response = response.to_s
+    self.save(validate: false)
     result = JSON.parse(response)
     puts result
     if result["IsProtected"]
