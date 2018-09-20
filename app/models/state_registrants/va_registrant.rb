@@ -557,10 +557,3 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     r.save(validate: false)
   end    
 end
-tate = GeoState[self.mailing_state]
-    else
-      r.mailing_state = nil
-    end
-    r.save(validate: false)
-  end    
-end
