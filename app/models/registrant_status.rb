@@ -155,7 +155,24 @@ class RegistrantStatus < ActiveRecord::Base
         end
       end
     end
-    notify_admin("#{valid_row_count} rows processed. #{reg_statuses_results}", admin_user)
+    notify_admin(build_message(valid_row_count, reg_statuses_results), admin_user)
+  end
+  
+  def self.build_message(rc, status_results)
+    str = []
+    str << "#{rc} rows processed.\n\n"
+    status_results.each do |k,v|
+      if v.is_a?(Hash)
+        str << "#{k}:"
+        v.each do |k2,v2|
+          str<< "    #{k2} => #{v2}"
+        end
+      else
+        str << "#{k}: #{v}"        
+      end
+      str << "\n"
+    end
+    str.join("\n")
   end
   
   def self.notify_admin(results, user)
