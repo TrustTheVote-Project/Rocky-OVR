@@ -543,6 +543,15 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       val = r.send(v)
       self.send("#{k}=", val)
     end
+    regs = r.home_address.to_s.split(', ')
+    self.registration_address_1 = regs[0]
+    self.registration_address_2 = regs[1..regs.length].to_a.join(', ')
+
+    mails = r.mailing_address.to_s.split(', ')
+    self.mailing_address_1 = mails[0]
+    self.mailing_address_2 = mails[1..mails.length].to_a.join(', ')
+    
+    
     if r.mailing_state
       self.mailing_state = r.mailing_state.abbreviation
     end
@@ -555,6 +564,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       val = self.send(k)
       r.send("#{v}=", val)
     end
+    
+    r.home_address = [self.registration_address_1, self.registration_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+    r.mailing_address = [self.mailing_address_1, self.mailing_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+    
     if !self.mailing_state.blank? #always an abbrev
       r.mailing_state = GeoState[self.mailing_state]
     else
