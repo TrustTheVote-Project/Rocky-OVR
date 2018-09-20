@@ -117,11 +117,14 @@ es:
             dentro de la caja.
           continue_on_device: Continúa tu registro en un dispositivo táctil
           email_sent: Se ha enviado un correo electrónico a %{email} con un enlace
-            para firmar su registro en un dispositivo con capacidad táctil.
+            para firmar su registro en un dispositivo con capacidad táctil. Este enlace
+            caducará en 30 minutos.
           sms_sent: Se ha enviado un mensaje de texto a %{phone} con un enlace para
-            firmar su registro en un dispositivo con capacidad táctil.
-          sms_body: Aquí está el enlace que solicitó para firmar su formulario de
-            inscripción de votante:%{signature_capture_url}
+            firmar su registro en un dispositivo con capacidad táctil. Este enlace
+            caducará en 30 minutos.
+          sms_body: |-
+            Aquí está el enlace que solicitó para firmar su formulario de inscripción de votante: %{signature_capture_url}
+            Este enlace caducará en 30 minutos.
           continue_via_copy: 'O abra este enlace en un dispositivo táctil para completar
             su registro:'
           link_copied: Enlace copiado
