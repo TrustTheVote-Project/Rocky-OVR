@@ -86,10 +86,13 @@ class RegistrantStatus < ActiveRecord::Base
     cols = self.get_columns(state)
 
     imports = CSV.parse(csv.gsub(/\r\n/,"\n"), {:headers=>true}) #,  :encoding => 'windows-1251:utf-8'
+    valid_row_count = 0
     imports.each do |row|
       next if row.to_s.strip.blank?
       state_transaction_id = row[cols[:id_column]]
       state_application_date = row[cols[:date_column]]
+      next if state_transaction_id.blank?
+      next if state_application_date.blank?
       
       if state_application_date =~ /\/\d{4}$/
         state_application_date = Date.strptime(state_application_date, "%m/%d/%Y")
@@ -114,7 +117,7 @@ class RegistrantStatus < ActiveRecord::Base
       if state_application_date > max_date
         max_date = state_application_date
       end
-      
+      valid_row_count += 1
     end
     
     reg_statuses_results = {}
@@ -152,7 +155,7 @@ class RegistrantStatus < ActiveRecord::Base
         end
       end
     end
-    notify_admin(reg_statuses_results, admin_user)
+    notify_admin("#{valid_row_count} rows processed. #{reg_statuses_results}", admin_user)
   end
   
   def self.notify_admin(results, user)

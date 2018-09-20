@@ -25,12 +25,12 @@
 class Admin::PartnersController < Admin::BaseController
 
   def index
-    @partners = Partner.standard
+    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 5)
     @partner_zip = PartnerZip.new(nil)
   end
 
   def upload_registrant_statuses
-    @partners = Partner.standard
+    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 5)
     @partner_zip = PartnerZip.new(nil)
     
     state = GeoState.find(params[:geo_state])

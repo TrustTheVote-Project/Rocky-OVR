@@ -12,7 +12,7 @@
 <%- end %>
 
 <%- if @status_results %>
-  <%= @status_results %>
+  <h2><%= @status_results %></h2>
 <%- end%>
 
 
@@ -24,7 +24,11 @@
   <%= f.submit 'Upload' %>
 <%- end %>
   
-
+<br/>
+<br/>
+<%= will_paginate @partners %>
+<br/>
+<br/>
 <table id="partners">
   <thead>
     <tr>
@@ -53,3 +57,8 @@
     <%- end %>
   </tbody>
 </table>
+<br/>
+<br/>
+<%= will_paginate @partners %>
+<br/>
+<br/>
