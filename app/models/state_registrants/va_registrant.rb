@@ -243,7 +243,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
     url = File.join(server, "Voter/Confirmation?format=json")
-    response = RestClient.post(url, {
+    response = RestClient::Request.execute(method: :get, url: url, payload: {
       "LastName"  => self.last_name,
       "FirstName" => self.first_name,
       "MiddleName" => self.middle_name,
@@ -253,7 +253,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "DobMonth" =>  self.date_of_birth.month,
       "DriversLicenseNumber" => self.dln,
       "LocalityName" => self.registration_locality_name,
-    }.to_json, va_api_headers("check"))
+    }.to_json, headers: va_api_headers("check"))
     self.va_check_response = response.to_s
     result = JSON.parse(response)
     puts result
