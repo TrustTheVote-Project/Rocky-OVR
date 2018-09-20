@@ -243,9 +243,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
     url = File.join(server, "Voter/Confirmation?format=json")
-    RestClient::Request.execute(method: :get, url: url,
-                                      payload: json.to_json, headers: headers)
-    response = Request.execute(method: :get, url: url, payload: {
+    response = RestClient::Request.execute(method: :get, url: url, payload: {
       "LastName"  => self.last_name,
       "FirstName" => self.first_name,
       "MiddleName" => self.middle_name,
@@ -553,6 +551,13 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     end
     if !self.mailing_state.blank? #always an abbrev
       r.mailing_state = GeoState[self.mailing_state]
+    else
+      r.mailing_state = nil
+    end
+    r.save(validate: false)
+  end    
+end
+tate = GeoState[self.mailing_state]
     else
       r.mailing_state = nil
     end
