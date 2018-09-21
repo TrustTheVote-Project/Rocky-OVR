@@ -336,7 +336,15 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     
     result['assistedpersonname'] = assistant_name
     result['assistedpersonAddress'] = assistant_address
-    result['assistedpersonphone'] = assistant_phone
+
+    if !self.assistant_phone.blank?
+      begin
+        result['assistedpersonphone'] = PhoneFormatter.process(self.assistant_phone)
+      rescue
+      end
+    end
+    
+    
     result['assistancedeclaration2'] = confirm_assistant_declaration
     result['ispollworker'] = ""
     result['bilingualinterpreter'] = ""
