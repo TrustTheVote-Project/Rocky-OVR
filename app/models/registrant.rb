@@ -1349,7 +1349,7 @@ class Registrant < ActiveRecord::Base
               ME
               MI
               MO
-              MA
+              MS
               MT
               NC
               NJ
