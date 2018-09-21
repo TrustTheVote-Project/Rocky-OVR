@@ -14,7 +14,7 @@ gem "aasm", "= 4.12.3"
 
 gem 'twilio-ruby', '~> 4.11.1'
 
-
+gem 'will_paginate'
 
 #gem 'utf8-cleaner'
 gem 'rack-robustness'

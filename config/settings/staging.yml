@@ -72,6 +72,13 @@ ovr_states:
     api_settings:
       api_url: "https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
 
+  VA:
+    api_settings:
+        api_url: https://externalapi.elections.virginia.gov/sandbox/
+        api_username: "RockTheVote_Sandbox"
+        api_key: <%= ENV['VA_API_KEY'] %>
+
+
 enabled_locales:
   - en
   - es

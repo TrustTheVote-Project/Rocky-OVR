@@ -12,11 +12,7 @@
 <%- end %>
 
 <%- if @status_results %>
-  <ul>
-    <% @status_results.each do |state_id, message| %>
-      <li>ID <%= state_id%>: <%= message %></li>
-    <%- end %>
-  </ul>
+  <h2><%= @status_results %></h2>
 <%- end%>
 
 
@@ -28,7 +24,11 @@
   <%= f.submit 'Upload' %>
 <%- end %>
   
-
+<br/>
+<br/>
+<%= will_paginate @partners %>
+<br/>
+<br/>
 <table id="partners">
   <thead>
     <tr>
@@ -57,3 +57,8 @@
     <%- end %>
   </tbody>
 </table>
+<br/>
+<br/>
+<%= will_paginate @partners %>
+<br/>
+<br/>

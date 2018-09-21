@@ -242,28 +242,23 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   def check_voter_confirmation
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
-    url = File.join(server, "Voter/Confirmation?format=json")
-    response = RestClient::Request.execute(method: :get, url: url, payload: {
-      "LastName"  => self.last_name,
-      "FirstName" => self.first_name,
-      "MiddleName" => self.middle_name,
-      "Ssn9" => self.ssn,
-      "DobYear" => self.date_of_birth.year,
-      "DobDay" =>  self.date_of_birth.day,
-      "DobMonth" =>  self.date_of_birth.month,
-      "DriversLicenseNumber" => self.dln,
-      "LocalityName" => self.registration_locality_name,
-    }.to_json, headers: va_api_headers("check"))
+    url = File.join(server, "Voter/Confirmation?lastName=#{self.last_name}&firstName=#{self.first_name}&Ssn9=#{self.ssn.to_s.gsub(/[^\d]/,'')}&driversLicenseNumber=#{self.dln.to_s.gsub(/\s-/, '')}&dobYear=#{self.date_of_birth.year}&dobDay=#{self.date_of_birth.day}&dobMonth=#{self.date_of_birth.month}&localityName=#{self.registration_locality_name}&format=json")
+    result = nil
+    begin
+      response = RestClient::Request.execute(method: :get, url: url, headers: va_api_headers("check"))
+    rescue Exception => error
+      response = error.response
+    end
     self.va_check_response = response.to_s
+    self.save(validate: false)
     result = JSON.parse(response)
-    puts result
     if result["IsProtected"]
       set_protected_voter!
       return false
     end
     self.va_check_is_registered_voter = result["IsRegisteredVoter"]
     self.va_check_has_dmv_signature = result["HasDmvSignature"]
-    self.va_check_voter_id = result["VoterID"]
+    self.va_check_voter_id = result["VoterId"]
     self.save(validate: false)
 
     if !self.va_check_has_dmv_signature #Can't submit w/out DMV signature
@@ -537,6 +532,15 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       val = r.send(v)
       self.send("#{k}=", val)
     end
+    regs = r.home_address.to_s.split(', ')
+    self.registration_address_1 = regs[0]
+    self.registration_address_2 = regs[1..regs.length].to_a.join(', ')
+
+    mails = r.mailing_address.to_s.split(', ')
+    self.mailing_address_1 = mails[0]
+    self.mailing_address_2 = mails[1..mails.length].to_a.join(', ')
+    
+    
     if r.mailing_state
       self.mailing_state = r.mailing_state.abbreviation
     end
@@ -549,6 +553,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       val = self.send(k)
       r.send("#{v}=", val)
     end
+    
+    r.home_address = [self.registration_address_1, self.registration_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+    r.mailing_address = [self.mailing_address_1, self.mailing_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+    
     if !self.mailing_state.blank? #always an abbrev
       r.mailing_state = GeoState[self.mailing_state]
     else

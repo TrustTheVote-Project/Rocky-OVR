@@ -52,6 +52,14 @@ class AdminMailer < ActionMailer::Base
     )
   end
   
+  def import_results(result_list, email)
+    mail(
+      subject: "Registrant Status Import Complete",
+      to: email,
+      body: "Results: \n\n#{result_list}"
+    )
+  end
+  
   
   def pa_no_registrant_error(registrant_id)
     mail(
