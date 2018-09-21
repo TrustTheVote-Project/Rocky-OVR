@@ -336,7 +336,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     
     result['assistedpersonname'] = assistant_name
     result['assistedpersonAddress'] = assistant_address
-
+    result['assistedpersonphone'] = ""
     if !self.assistant_phone.blank?
       begin
         result['assistedpersonphone'] = PhoneFormatter.process(self.assistant_phone)
