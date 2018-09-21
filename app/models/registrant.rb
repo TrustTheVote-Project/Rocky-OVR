@@ -1016,7 +1016,6 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
-        puts e.message
         nil
       end
     else
