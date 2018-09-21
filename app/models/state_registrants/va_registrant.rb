@@ -262,7 +262,6 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     self.va_check_response = response.to_s
     self.save(validate: false)
     result = JSON.parse(response)
-    puts result
     if result["IsProtected"]
       set_protected_voter!
       return false
