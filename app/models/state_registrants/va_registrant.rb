@@ -203,6 +203,14 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     4
   end
   
+  def first_registration?
+    # If the check response has 
+    return !JSON.parse(va_check_response)["IsRegisteredVoter"]
+  rescue
+    nil
+  end
+  
+  
   
   def async_submit_to_online_reg_url
     self.va_submission_complete = false
