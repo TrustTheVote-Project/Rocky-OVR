@@ -1358,8 +1358,7 @@ class Registrant < ActiveRecord::Base
               SC
               SD
               TN
-              TX
-              WY)
+              TX)
     return list.include?(home_state_abbrev)
   end
   def can_request_pdf_assistance?
