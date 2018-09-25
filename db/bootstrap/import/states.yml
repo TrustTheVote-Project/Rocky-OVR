@@ -252,7 +252,7 @@ record_16:
   sub_18: be_by_next_general_election_november
   registration_deadline: kansas
   id_length_min: '4'
-  online_registration_url: https://ksvotes.org/registration
+  online_registration_url: https://www.KSVotes.org/ref?ref=rockthevote
 record_17:
   abbreviation: KY
   name: Kentucky
