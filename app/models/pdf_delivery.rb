@@ -51,7 +51,7 @@ class PdfDelivery < ActiveRecord::Base
   def self.to_csv_string
     return CSV.generate do |csv|
       first = true
-      self.all.includes({:registrant=>[:home_state]}).find_each do |d|
+      self.all.includes({:registrant=>[:home_state, :mailing_state, :partner, :registrant_status]}).find_each do |d|
         pdf_hash = d.registrant.to_pdf_hash
         pdf_hash.delete(:state_id_number)
         pdf_hash.delete(:state_id_tooltip)

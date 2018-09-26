@@ -292,9 +292,12 @@ en:
           unaffiliated voters may choose to vote either a partisan ballot or a non-partisan
           ballot.
         rhode_island: |-
-          If you want to affiliate to vote, list the party. If you leave
-          the box blank or list an unrecognized political party, you will be listed
-          as unaffiliated.
+          In Rhode Island, a person must register with a party if he/she
+          wishes to take part in that party's primary election. A person who fails
+          to register with a party at the time of registration may, if he/ she chooses,
+          register with a party on the day of that party's primary and take part in
+          that party's primary election. If a person does not register with a party,
+          he/she can still vote in general elections and nonpartisan primary elections.
         tennessee: |-
           Tennessee does not register by political party. When you wish to
           vote in a primary election, you will have to declare a party at that time.
@@ -386,8 +389,7 @@ en:
           take part in that party's primary election, caucus, or convention (unless
           otherwise permitted by a political party).
         required_for_primary_no_change_30_days: |-
-          You must register with a party if
-          you want to take part in that party's primary election, caucus, or convention.
+          You must register with a party if you want to take part in that party's primary election, caucus, or convention.
           You may not change your party affiliation status within 30 days of a partisan
           primary election.
         required_for_primary_2_months: |-
@@ -429,27 +431,17 @@ en:
           last four digits of your Social Security number.  If you do not have any
           of these numbers, please enter "NONE" and a unique identifying number will
           be assigned to you by the state.
-        oklahoma: |-
-          Your Oklahoma driver's license number is required. If you do not
-          have an Oklahoma driver's license, the last four digits of your Social Security
-          number are required. If you do not have either number, please enter "NONE"
-          and the state will assign an identification number to you.
+        oklahoma: Your Oklahoma driver’s license number is requested. If you do not
+          have a driver's license number, the last four digits of your social security
+          number are required. (Oklahoma Title 26, Section 4-112)
         wisconsin: |-
-          If you have been issued and have a current and valid WI driver's
-          license or WI DOT-issued identification card (ID), you must provide the
-          number. If you have been issued a WI driver's license, which is revoked,
-          suspended, or expired, please provide that number and the last 4 digits
-          of your social security number, separated by a space. If you have not been
-          issued a WI driver's license or a WI DOT-issued ID, you must provide the
-          last 4 digits of your social security number. If you do not have a WI driver's
-          license, a WI DOT-issued ID or a social security number, please write "NEITHER."
+          Provide your unexpired Wisconsin driver license or DOT-issued ID
+          card number. If you do not have a current and valid DOT-issued driver license
+          or ID card, provide the last four digits of your social security number.
         south_dakota: |-
-          Your driver's license number is required. If you do not have
+          Your driver’s license number is requested. If you do not have
           a valid driver's license, you must provide the last four digits of your
-          Social Security number. If you do not have either a driver's license or
-          a Social Security number, you must register at your county auditor's office
-          and sign a statement verifying the fact that you have neither a South Dakota
-          driver's license nor Social Security number.
+          social security number.
         ssn_requested: |-
           Your Social Security number is requested.  Providing this information
           is voluntary.   If you do not provide your Social Security number, you must
@@ -466,9 +458,9 @@ en:
           to you by the state.
         ssn_or_none_3: Your full Social Security number is required.
         ssn_or_none_4: |-
-          Your full Social Security number is required.  (If you do not
-          have a Social Security number, enter "NONE" and the state will assign you
-          an identification number.)
+          Your full social security number is required. Social security
+          number, if any, is required for purposes of identification and to avoid
+          duplicate registration (TCA 2.2.116).
         ssn_or_none_5: |-
           Please provide your Social Security number.  If you do not
           have a Social Security number, please enter "NONE" and a number will be
@@ -508,11 +500,9 @@ en:
           you have neither, please enter "NONE" and a unique identifying number will
           be assigned to you.
         drivers_license_or_other_with_state_name_3: |-
-          You must provide your %{state_name}
-          driver's license number.  If you  do not have a %{state_name} driver's license
-          number, then you must provide the last four digits of your Social Security
-          number.  If you do not have a driver's license or a Social Security  number,
-          please enter "NONE" and the state will assign you an identification number.
+          You are required to provide your
+          current and valid %{state_name} driver's license number or, if you don’t
+          have one, the last four digits of your social security number.
         drivers_license_or_other_with_state_name_4: |-
           You must provide your %{state_name}
           driver's license number.  If you do not have a driver's license number,
@@ -684,7 +674,8 @@ en:
       california: |-
         postmarked or submitted to an elections office (or NVRA voter registration
         agency) on or before 15 days prior to Election Day (to vote in that election)
-      colorado: must be received at least 8 days before an election in order to receive
+      colorado: |-
+        must be received at least 8 days before an election in order to receive
         a mail ballot, but you can still register to vote in person through Election
         Day. If you register after the 8th day, you must visit one of the Voter Service
         and Polling Centers to get a ballot.
@@ -761,10 +752,10 @@ en:
         or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>
     pdf_other_instructions:
       blank: ''
-      wisconsin: Applicants must always provide a Proof of Residence document when
-        registering in Wisconsin. If you are registering by mail, you can use any
-        of the Proof of Residence listed in the link above that must include the voter’s
-        name and current address.
+      wisconsin: |-
+        Visit https://myvote.wi.gov up to 20 days before the election if
+        the voter has a current and valid Wisconsin driver license or state-issued
+        ID card.
     email_instructions:
       blank: ''
       arizona: |-

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180914110348) do
+ActiveRecord::Schema.define(version: 20180925153459) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -329,19 +329,19 @@ ActiveRecord::Schema.define(version: 20180914110348) do
   create_table "state_localizations", force: :cascade do |t|
     t.integer  "state_id"
     t.string   "locale",                    limit: 64
-    t.string   "parties",                   limit: 1024
+    t.string   "parties",                   limit: 20480
     t.string   "no_party",                  limit: 255
-    t.string   "not_participating_tooltip", limit: 1024
-    t.string   "race_tooltip",              limit: 1024
-    t.string   "id_number_tooltip",         limit: 1024
+    t.string   "not_participating_tooltip", limit: 20480
+    t.string   "race_tooltip",              limit: 20480
+    t.string   "id_number_tooltip",         limit: 20480
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "party_tooltip",             limit: 1024
-    t.string   "sub_18",                    limit: 1024
-    t.string   "registration_deadline",     limit: 1024
-    t.string   "pdf_instructions",          limit: 1024
-    t.string   "email_instructions",        limit: 1024
-    t.string   "pdf_other_instructions",    limit: 1024
+    t.string   "party_tooltip",             limit: 20480
+    t.string   "sub_18",                    limit: 20480
+    t.string   "registration_deadline",     limit: 20480
+    t.string   "pdf_instructions",          limit: 20480
+    t.string   "email_instructions",        limit: 20480
+    t.string   "pdf_other_instructions",    limit: 20480
   end
 
   add_index "state_localizations", ["state_id"], name: "index_state_localizations_on_state_id"
