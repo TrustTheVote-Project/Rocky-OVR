@@ -183,7 +183,7 @@ household member."
         prev_middle_name: Middle
         prev_last_name: Last
         prev_name_suffix: Suffix
-        change_of_address: I have changed my address.
+        change_of_address: I have changed my address since the last time I registered to vote.
         prev_address: Address
         prev_unit: ! 'Unit/Lot #'
         prev_city: City
