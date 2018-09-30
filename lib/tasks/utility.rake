@@ -4,6 +4,10 @@ namespace :utility do
     Registrant.process_ui_records
   end
   
+  desc "Stop any passenger processes that use too much memory"
+  task :cleanup_processes => :environment do
+    PassengerMonitor.cleanup
+  end
   
   desc "Mark all stale registrations as abandoned and redact sensitive data"
   task :timeout_stale_registrations => :environment do

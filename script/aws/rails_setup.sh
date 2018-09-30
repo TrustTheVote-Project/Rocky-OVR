@@ -95,7 +95,21 @@ fi
 if [ $SERVER_ROLE == 'web' ]; then
     echo "I'm a web server"
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
+    
     touch tmp/restart.txt
+    
+    # Passenger monitoring Crontab is for WEB only
+    cd ~
+    aws s3 cp s3://rocky-cloudformation-assets/web-crontab . --region us-west-2
+    sed -i 's/RAILS_ENV/'"$RAILS_ENV"'/' ./web-crontab
+    
+    # Make sure the cron scripts are executable
+    chmod u+x /var/www/rocky/script/cron_cleanup_processes
+    
+    crontab -r
+    # Cat the crontab contents into the crontab editor
+    (crontab -l 2>/dev/null; cat ./web-crontab) | crontab -
+    
 fi
 
 if [ $SERVER_ROLE == 'pdf' ]; then
