@@ -258,7 +258,7 @@ module V3
     # end
 
     # Lists records for the given registrant
-    ALLOWED_PARAMETERS = [:partner_id, :gpartner_id, :partner_api_key, :gpartner_api_key, :since, :email, :callback]
+    ALLOWED_PARAMETERS = [:partner_id, :gpartner_id, :partner_api_key, :gpartner_api_key, :since, :before, :email, :callback]
     def self.find_records(query)
       query ||= {}
 
@@ -297,7 +297,18 @@ module V3
           cond_vars << Time.parse(since)
         end
       end
-
+      
+      
+      if before = query[:before]
+        if !(query[:before] =~ /\A\d\d\d\d-\d\d-\d\d([T\s]\d\d:\d\d(:\d\d(\+\d\d:\d\d|\s...)?)?)?\z/)
+          raise InvalidParameterValue.new(:before)          
+        else
+          cond_str << "created_at <= ?"
+          cond_vars << Time.parse(before)
+        end
+      end
+      
+      
       if email = query[:email]
         cond_str << "email_address = ?"
         cond_vars << email
