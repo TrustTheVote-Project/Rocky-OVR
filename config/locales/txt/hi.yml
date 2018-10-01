@@ -5,7 +5,7 @@ hi:
       गया है (Unknown error)'
     error: कुछ ग़लत हुआ है
     try_again: वापस जायें और फिर कॉरिश करें
-    rtv_and_partner: Rock the vote और %{partner_name}
+    rtv_and_partner: Rock the Vote और %{partner_name}
     button:
       submit: अगला कदम
       edit: संपादन करना
@@ -26,7 +26,7 @@ hi:
       skip_state_online_registration: ! '&gt; नही धन्यवाद, मैं %{rtv_and_partner_name}
         के साथ जारी (कंटिन्यू) रखूँगी/ रखूँगा और अपना फॉर्म बाद में भेजूँगी/भेजूँगा'
     registration:
-      in_language_name: अँग्रेज़ी में
+      in_language_name: हिंदी में
       powered_by: ! 'द्वारा संचालित:'
       progress_indicator: ! 'कदम:'
       step_1_header: नये रिजिस्ट्रॅंट
