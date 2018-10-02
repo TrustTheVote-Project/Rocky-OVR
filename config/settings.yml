@@ -72,7 +72,7 @@ ovr_states:
       api_posting_entity_name: RTV
       debug_in_ui: false
       log_all_requests: false
-      disclosures_url: https://a8e83b219df9c88311b3-01fbb794ac405944f26ec8749fe8fe7b.ssl.cf1.rackcdn.com/discl/
+      disclosures_url: https://covr.cdn.sos.ca.gov/discl/
       web_url_base: https://covr.sos.ca.gov
       disclosures_box_height: 170px
       web_agency_key: RTV
