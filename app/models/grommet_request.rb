@@ -86,12 +86,12 @@ class GrommetRequest < ActiveRecord::Base
     r_reqs = {}
     rs.find_each do |r|
       if r.is_grommet? && !r.state_ovr_data["grommet_request_id"].blank?
-        r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.state_ovr_data["pa_transaction_id"]]
+        r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.state_ovr_data["pa_transaction_id"], r.state_ovr_data["errors"]]
       end
     end
     
     csvstr = CSV.generate do |csv|
-      csv << ["Grommet Request ID", "Partner ID", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "Is Duplicate Of"]
+      csv << ["Grommet Request ID", "Partner ID", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "PA Errors", "Is Duplicate Of"]
       gs.find_each do |g|
         params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
         params = params.with_indifferent_access
@@ -113,12 +113,12 @@ class GrommetRequest < ActiveRecord::Base
           begin
             req["voter_records_request"]["voter_registration"]["name"]["first_name"]
           rescue
-            nil
+            ""
           end,
           begin
             req["voter_records_request"]["voter_registration"]["name"]["last_name"]
           rescue
-            nil
+            ""
           end
           ]
         if r_reqs[g.id.to_s]

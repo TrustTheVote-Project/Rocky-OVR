@@ -271,7 +271,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['mailingaddress'] = mailing_address
       result['mailingcity'] = mailing_city
       result['mailingstate'] = mailing_state
-      result['mailingzipcode'] = mailing_zip_code
+      result['mailingzipcode'] = mailing_zip_code.to_s.gsub(/[^\d]/,'')[0...5]
     else
       result['mailingaddress'] = ''
       result['mailingcity'] = ''
@@ -320,7 +320,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['previousregaddress'] = previous_address
       result['previousregcity'] = previous_city
       result['previousregstate'] = previous_state
-      result['previousregzip'] = previous_zip_code
+      result['previousregzip'] = previous_zip_code.to_s.gsub(/[^\d]/,'')[0...5]
       result['previousregcounty'] = previous_county
     else
       result['previousregaddress'] = nil
