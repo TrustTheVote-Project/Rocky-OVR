@@ -1340,8 +1340,6 @@ class Registrant < ActiveRecord::Base
   
   def home_state_enabled_for_pdf_assitance?
     list = %w(AL
-              ME
-              NJ
               SD)
     return list.include?(home_state_abbrev)
   end
