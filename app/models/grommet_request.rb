@@ -56,6 +56,28 @@ class GrommetRequest < ActiveRecord::Base
     end
   end
 
+  def self.upload_request_results_report_csv
+    contents = GrommetRequest.request_results_report_csv
+    connection = Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :region                   => 'us-west-2'
+    })
+    bucket_name = "rtv-reports"
+    directory = connection.directories.get(bucket_name)
+    file = directory.files.create(
+      :key    => "#{Rails.env}/grommet_requests.csv",
+      :body   => contents,
+      :content_type => "text/csv",
+      :encryption => 'AES256', #Make sure its encrypted on their own hard drives
+      :public => true
+    )
+    Settings.grommet_csv_ready = true
+    Settings.grommet_csv_generated_at = DateTime.now
+    Settings.grommet_csv_url = "https://s3-us-west-2.amazonaws.com/rtv-reports/#{Rails.env}/grommet_requests.csv"
+  end
+
   def self.request_results_report_csv
     # Only look at registrants within the last 4 months to narrow the scope. If want full scope, go back to March 29, 2018
     start_date = 4.months.ago
@@ -74,7 +96,31 @@ class GrommetRequest < ActiveRecord::Base
         params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
         params = params.with_indifferent_access
         req = params["rocky_request"]
-        rep_fields = [req["partner_id"], req["voter_records_request"]["generated_date"], g.created_at, req["source_tracking_id"], req["open_tracking_id"], req["partner_tracking_id"], req["voter_records_request"]["voter_registration"]["name"]["first_name"], req["voter_records_request"]["voter_registration"]["name"]["last_name"]]
+        if req.nil?
+          next
+        end
+        rep_fields = [
+          req["partner_id"], 
+          begin
+            req["voter_records_request"]["generated_date"]
+          rescue
+            nil
+          end, 
+          g.created_at, 
+          req["source_tracking_id"], 
+          req["open_tracking_id"], 
+          req["partner_tracking_id"], 
+          begin
+            req["voter_records_request"]["voter_registration"]["name"]["first_name"]
+          rescue
+            nil
+          end,
+          begin
+            req["voter_records_request"]["voter_registration"]["name"]["last_name"]
+          rescue
+            nil
+          end
+          ]
         if r_reqs[g.id.to_s]
           csv << [g.id] + rep_fields + r_reqs[g.id.to_s]
         else

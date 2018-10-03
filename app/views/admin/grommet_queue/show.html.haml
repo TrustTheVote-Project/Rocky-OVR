@@ -1,7 +1,13 @@
 %h2 Grommet Request Report Download:
 
-= link_to "Download grommet request CSV report", request_report_admin_grommet_queue_path(format: :csv)
-
+%p
+  - if Settings.grommet_csv_ready || Settings.grommet_csv_ready == nil
+    - if Settings.grommet_csv_ready
+      = link_to "Download grommet CSV report generated on #{Settings.grommet_csv_generated_at}", Settings.grommet_csv_url
+    %br 
+    = link_to "Generated new grommet request CSV report", request_report_admin_grommet_queue_path(format: :csv)
+  - else
+    Generating new grommet csv report...
 
 %h2 Delay Queue:
 
