@@ -19,7 +19,11 @@ class GrommetRequest < ActiveRecord::Base
     
     
   def is_duplicate?
-    self.class.where(request_hash: self.request_hash).length > 1
+    self != self.class.where(request_hash: self.request_hash).order(:id).first
+  end
+  
+  def has_duplicates?
+    self.class.where(request_hash: self.request_hash).count > 1
   end
   
   def resubmit
@@ -90,8 +94,18 @@ class GrommetRequest < ActiveRecord::Base
       end
     end
     
+    req_hashes= {}
+    gs.find_each do |g|
+      if !g.request_hash.blank?
+        req_hashes[g.request_hash] ||= []
+        req_hashes[g.request_hash].push(g.id)
+      end
+    end
+
     csvstr = CSV.generate do |csv|
-      csv << ["Grommet Request ID", "Partner ID", "Grommet Version", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "PA Errors", "Is Duplicate Of"]
+      csv << ["Grommet Request ID", "Partner ID", "Grommet Version", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "PA Errors", "Is Duplicate Of","Is Duplicated By"]
+      
+      
       gs.find_each do |g|
         params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
         params = params.with_indifferent_access
@@ -134,8 +148,18 @@ class GrommetRequest < ActiveRecord::Base
           csv << [g.id] + rep_fields + r_reqs[g.id.to_s]
         else
           if !g.request_hash.blank?
-            other_ids = gs.where(request_hash: g.request_hash).where("id != ?", g.id) 
-            csv << [g.id] + rep_fields + [nil,nil,nil,other_ids.pluck(:id)]
+            rh_ids = req_hashes[g.request_hash].dup
+            if rh_ids.length <= 1
+              csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil]
+            else
+              # Am I the first
+              first_id = rh_ids.shift
+              if first_id == g.id
+                csv << [g.id] + rep_fields + [nil,nil,nil,nil,rh_ids]
+              else
+                csv << [g.id] + rep_fields + [nil,nil,nil,first_id,nil]
+              end              
+            end
           else
             csv << [g.id] + rep_fields
           end
