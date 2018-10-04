@@ -6,3 +6,5 @@ Deployment: see doc/production.md
 
 
 curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"
+
+curl -vX POST https://staging.rocky.rockthevote.com/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"

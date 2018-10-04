@@ -85,14 +85,24 @@ class GrommetRequest < ActiveRecord::Base
   def self.request_results_report_csv
     # Only look at registrants within the last 4 months to narrow the scope. If want full scope, go back to March 29, 2018
     start_date = 4.months.ago
-    rs = Registrant.where("created_at > ?", start_date).where(home_state_id: GeoState["PA"].id).where("state_ovr_data IS NOT NULL")
+    rs = Registrant.where("created_at > ?", start_date).where("state_ovr_data IS NOT NULL")
     gs = GrommetRequest.where('created_at > ?', start_date + 2.days)
     r_reqs = {}
+    
+    dj_ids = Delayed::Job.all.pluck(:id)
+    
     rs.find_each do |r|
       if r.is_grommet? && !r.state_ovr_data["grommet_request_id"].blank?
-        r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.state_ovr_data["pa_transaction_id"], r.state_ovr_data["errors"]]
+        in_queue = ""
+        dj_id = r.state_ovr_data["delayed_job_id"]
+        if dj_id && dj_ids.include?(dj_id)
+          in_queue = "queued"
+        end
+        r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.home_state_abbrev, in_queue, r.state_ovr_data["pa_transaction_id"], r.state_ovr_data["errors"]]
       end
     end
+    
+    
     
     req_hashes= {}
     gs.find_each do |g|
@@ -103,7 +113,7 @@ class GrommetRequest < ActiveRecord::Base
     end
 
     csvstr = CSV.generate do |csv|
-      csv << ["Grommet Request ID", "Partner ID", "Grommet Version", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "PA Errors", "Is Duplicate Of","Is Duplicated By"]
+      csv << ["Grommet Request ID", "Partner ID", "Grommet Version", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "Registrant Home State", "In Queue", "PA Transaction ID", "PA Errors", "Is Duplicate Of","Is Duplicated By"]
       
       
       gs.find_each do |g|
@@ -150,14 +160,14 @@ class GrommetRequest < ActiveRecord::Base
           if !g.request_hash.blank?
             rh_ids = req_hashes[g.request_hash].dup
             if rh_ids.length <= 1
-              csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil]
+              csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,nil]
             else
               # Am I the first
               first_id = rh_ids.shift
               if first_id == g.id
-                csv << [g.id] + rep_fields + [nil,nil,nil,nil,rh_ids]
+                csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,rh_ids]
               else
-                csv << [g.id] + rep_fields + [nil,nil,nil,first_id,nil]
+                csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,first_id,nil]
               end              
             end
           else
