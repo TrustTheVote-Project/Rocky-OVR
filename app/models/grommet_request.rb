@@ -91,7 +91,7 @@ class GrommetRequest < ActiveRecord::Base
     end
     
     csvstr = CSV.generate do |csv|
-      csv << ["Grommet Request ID", "Partner ID", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "PA Errors", "Is Duplicate Of"]
+      csv << ["Grommet Request ID", "Partner ID", "Grommet Version", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "PA Transaction ID", "PA Errors", "Is Duplicate Of"]
       gs.find_each do |g|
         params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
         params = params.with_indifferent_access
@@ -100,7 +100,16 @@ class GrommetRequest < ActiveRecord::Base
           next
         end
         rep_fields = [
-          req["partner_id"], 
+          req["partner_id"],
+          begin
+            if g.request_headers.to_s =~ /HTTP_GROMMET_VERSION\"=>\"([\d\.]+)\"/
+              $1
+            else
+              nil
+            end
+          rescue
+            nil
+          end,
           begin
             req["voter_records_request"]["generated_date"]
           rescue
