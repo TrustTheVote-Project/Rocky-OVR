@@ -173,6 +173,11 @@
       }
       li.registrant-form__ssn__line,  li.registrant-form__dln__line {
         margin-top: 2em;
+        @media(max-width: 600px) {
+          h3 {
+            height: 50px;
+          }          
+        }
         .error {
           height: auto;
           line-height: 1.5em;
