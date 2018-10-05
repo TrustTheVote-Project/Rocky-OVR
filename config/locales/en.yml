@@ -63,6 +63,7 @@ en:
         registration_address_2: Address Line 2
         registration_city: City
         home_state: State
+        home_state_abbrev: State        
         registration_zip_code: ZIP
         registration_locality: Locality
         
