@@ -5,7 +5,7 @@
 %li{:class=>"#{class_name} #{required ? 'registrant-form__required-checkbox' : ''}"}
   %h3
     = form.check_box field 
-    = form.label field, "#{(field_label || form.object.class.human_attribute_name(field).html_safe)}#{required ? "<span class='required'>*</span>" : ''}".html_safe
+    = form.label field, "#{(field_label || form.object.class.human_attribute_name(field).html_safe)}#{required ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''}".html_safe
     - if tooltip
       = tooltip_tag(tooltip)
     %span.error= form.object.errors[field].join("\n")
