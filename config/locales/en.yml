@@ -2,6 +2,7 @@
 en:
   'yes': "Yes"
   'no': "No"
+  required: " (Required)"
   affirm: Affirm
   decline: Decline
   language_name: English
