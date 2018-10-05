@@ -31,6 +31,16 @@
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_name, class_name: "registrant-form__change-of-name__line", required: false, tooltip: :previous_name}
 
+  %fieldset#prev_name_set
+    = hidden_field_tag "javascript_disabled", "1"
+    %legend
+      %span= I18n.t('txt.registration.previous_name')
+    %ul.stacked
+      = field_li(form, :previous_first_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-first-name__line'} , skip_tooltip: true })
+      = field_li(form, :previous_middle_name, {required: false, label_options: nil, li_options: {class: 'registrant-form__prev-middle-name__line'}, skip_tooltip: true })
+      = field_li(form, :previous_last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-last-name__line'} , skip_tooltip: true })
+
+
   %ul.flat
     = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'registrant-form__date-of-birth__line'} })
 
@@ -40,14 +50,6 @@
   
 
 
-  %fieldset#prev_name_set
-    = hidden_field_tag "javascript_disabled", "1"
-    %legend
-      %span= I18n.t('txt.registration.previous_name')
-    %ul.stacked
-      = field_li(form, :previous_first_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-first-name__line'} , skip_tooltip: true })
-      = field_li(form, :previous_middle_name, {required: false, label_options: nil, li_options: {class: 'registrant-form__prev-middle-name__line'}, skip_tooltip: true })
-      = field_li(form, :previous_last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-last-name__line'} , skip_tooltip: true })
 
   
   %fieldset
