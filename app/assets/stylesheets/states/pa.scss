@@ -275,6 +275,10 @@
       }
       li.registrant-form__ssn4__line {
         margin-top: 2em;
+        width: auto;
+        input {
+          width: auto;
+        }
       }
     }
     ul.party-dropdown, ul.race-dropdown, ul.other-party {
