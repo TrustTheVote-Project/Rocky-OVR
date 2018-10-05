@@ -273,6 +273,12 @@
           padding: .5em 0;
         }
       }
+      li.registrant-form__penndot-number__line {
+        width: auto;
+        input {
+          width: auto;
+        }
+      }
       li.registrant-form__ssn4__line {
         margin-top: 2em;
         width: auto;
