@@ -146,6 +146,10 @@
     }
   }
   form {
+    #signature_capture {
+      margin-top: 20px;
+    }
+    
     #signature_capture, #signature_capture2, #continue_on_device {
       display: none;        
     }
