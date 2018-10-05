@@ -113,7 +113,8 @@ module ApplicationHelper
       when 0 then "progress-current"
       else "progress-todo"
       end
-      content_tag :li, step_index, :class => progress
+      step_value = progress == 'progress-done' ? "&#x2713;".html_safe : step_index
+      content_tag :li, step_value, :class => progress
     end.join
   end
 

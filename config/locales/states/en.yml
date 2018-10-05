@@ -7,14 +7,15 @@ en:
           Please try again later or continue here to create a paper form.
         ineligible_registrant: 'We were unable to process your registration. Please
           visit the Virginia Department of Elections: <a href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>'
-        step_2_header: Basic Info
+        step_2_header: Your Basic Info
+        step_2_subheader: We need to let the state know who you are and to check your eligibility
         special_status_notice: 'If you are registering as a military or overseas voter,
           a protected status voter, or applying for permanent absentee status due
           to a disability, please visit the Virginia Department of Elections: <a href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>'
         voter_classification: Voter Classification
         protected_voter: I am providing a Virginia P.O. Box to protect my residence
           address from public disclosure because
-        step_3_header: Almost Done
+        step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
         voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE
           IN AN ELECTION OR MAKING A MATERIALLY FALSE STATEMENT ON THIS FORM CONSTITUTES
@@ -44,8 +45,9 @@ en:
           registration, is Tuesday, October 9, 2018
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
           Please try again later or continue here to create a paper form.
-        step_2_header: Basic Info
-        step_3_header: Almost Done
+        step_2_header: Your Basic Info
+        step_2_subheader: We need to let the state know who you are and to check your eligibility
+        step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
         penndot_number_instructions: If you have a PA driver's license or PennDOT
           ID card number, you must use it. Your PennDOT is the 8 digit number found
