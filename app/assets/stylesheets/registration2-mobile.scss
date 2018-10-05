@@ -160,8 +160,9 @@ $mobile-min-width: 300px - $tooltip-offset;
         }
         .required {
           &:after {
-           content: "(required)"; 
-           text-style: italic;
+           content: " (required)"; 
+           font-style: italic;
+           font-size: 90%;
           }
         }
     }
