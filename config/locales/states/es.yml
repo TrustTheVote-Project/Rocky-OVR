@@ -23,6 +23,7 @@ es:
         state_flow_error: Hubo un problema al enviar su registro a Pennsylvania. Completa
           registro mediante formulario en papel.
         step_2_header: Información Básica
+        step_2_subheader: Necesitamos decirle al estado quién es usted y verificar su elegibilidad
         step_3_header: Casi Termino
         step_4_header: Revisar y Confirmar
         penndot_number_instructions: Ingrese el número de licencia de conducir de
