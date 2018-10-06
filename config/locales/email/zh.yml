@@ -172,7 +172,7 @@ zh:
     chaser:
       subject: 你仍然可以登記投票
       body:
-        main: 哎呀%{registrant_first_name_with_space}
+        main: 
     thank_you_external:
       subject: 感谢您使用网上选民登记工具
       body:

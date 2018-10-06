@@ -113,7 +113,8 @@ module ApplicationHelper
       when 0 then "progress-current"
       else "progress-todo"
       end
-      content_tag :li, step_index, :class => progress
+      step_value = progress == 'progress-done' ? "&#x2713;".html_safe : step_index
+      content_tag :li, step_value, :class => progress
     end.join
   end
 
@@ -125,7 +126,7 @@ module ApplicationHelper
   end
   
   def field_li(form, field, options={})
-    required = options[:required] ? "<span class='required'>*</span>" : ''
+    required = options[:required] ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''
     label = content_tag(:h3, (form.send(:label, field, options[:label_options]) + required.html_safe).html_safe)
     tooltip = content_tag(:div, tooltip_tag(field, options[:tooltip_content]).html_safe, class: 'tooltip') unless options[:skip_tooltip]
     error = "<span class='error'>#{form.object.errors[field].join("\n")}</span>"
