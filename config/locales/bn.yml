@@ -1,5 +1,6 @@
 ---
 bn:
+  required: " (প্রয়োজনীয়)"
   language_name: বাংলা
   language_name_translation_instructions: বাংলা
   locales:

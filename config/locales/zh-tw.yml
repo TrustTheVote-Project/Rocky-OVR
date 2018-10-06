@@ -2,6 +2,7 @@
 zh-tw:
   language_name: 中文（繁体）
   language_name_translation_instructions: 請使用翻譯的語言來表示翻譯語言的名稱，例如，如果你正在翻譯日語，請使用日語中表示“日語”（語言名稱）的詞彙。
+  required: " (必須填寫)"
   locales:
     bn:
       name: 孟加拉語

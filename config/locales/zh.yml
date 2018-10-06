@@ -2,6 +2,7 @@
 zh:
   language_name: 中文（简体）
   language_name_translation_instructions: 请使用翻译的语言来表示翻译语言的名称。例如，如果您正在翻译日语，请使用日语中表示“日语”（语言名称）的词汇。
+  required: " (必须填写)"
   locales:
     bn:
       name: 孟加拉语
