@@ -2,6 +2,7 @@
 th:
   language_name: ภาษาไทย
   language_name_translation_instructions: ภาษาไทย
+  required: " (กรอกข้อมูลที่จำเป็นไม่ครบ)"
   locales:
     bn:
       name: ภาษาเบงกาลี

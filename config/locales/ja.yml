@@ -3,6 +3,7 @@ ja:
   language_name: 日本語
   language_name_translation_instructions: 翻訳された言語の名前をその言語で表示してください。たとえばあなたが日本語を翻訳しているのであれば、
     "日本語"（言語の名前）と日本語で表示してください。
+  required: " (必須)"
   locales:
     bn:
       name: バングラディッシュ語

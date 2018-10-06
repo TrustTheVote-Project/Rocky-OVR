@@ -2,6 +2,7 @@
 ur:
   language_name: اردو
   language_name_translation_instructions: اردو
+  required: " (مطلوبہ)"
   locales:
     bn:
       name: بنگالی
