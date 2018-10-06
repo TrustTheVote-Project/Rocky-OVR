@@ -40,6 +40,7 @@
       = field_li(form, :previous_middle_name, {required: false, label_options: nil, li_options: {class: 'registrant-form__prev-middle-name__line'}, skip_tooltip: true })
       = field_li(form, :previous_last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-last-name__line'} , skip_tooltip: true })
 
+  %br
 
   %ul.flat
     = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'registrant-form__date-of-birth__line'} })
@@ -104,7 +105,7 @@
       = field_li(form, :previous_county, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__prev-county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })  
   
         
-  
+   %br
   
   %fieldset
     %ul.stacked
