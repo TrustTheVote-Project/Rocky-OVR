@@ -620,7 +620,7 @@ class Partner < ActiveRecord::Base
     end
     csvstr = CSV.generate do |csv|
       csv << SHIFT_REPORT_HEADER
-      clock_ins.sort{|a,b| a.tracking_data["clock_in_datetime"] <=> b.tracking_data["clock_in_datetime"]}.each do |ci|
+      clock_ins.sort{|a,b|( a.tracking_data["clock_in_datetime"] || "") <=> (b.tracking_data["clock_in_datetime"] || "")}.each do |ci|
         co = clock_outs[ci.source_tracking_id]
         tracking_source = ci.source_tracking_id
         counts = shift_ids[tracking_source]
