@@ -488,29 +488,53 @@ class Registrant < ActiveRecord::Base
   end
   
   def self.abandon_stale_records
-    id_list = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id)
-    self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
-      if reg.finish_with_state?
-        reg.status = "complete"
-        begin
-          reg.deliver_thank_you_for_state_online_registration_email
-        rescue Exception => e
-          Rails.logger.error(e)
-          # raise e
-        end
-      else 
-        # Send chase email
-        begin
-          reg.deliver_chaser_email
-        rescue Exception => e
-          Rails.logger.error(e)
-        end
-      end
-      reg.abandon!
-      Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
-      if reg.is_fake?
-        reg.destroy
+    id_list = []
+    uid_list = []
+    pa_registrants = {}
+    va_registrants = {}
+    distribute_reads do 
+      both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
+      both_ids.each do |id, uid|
+        id_list << id
+        uid_list << uid
       end      
+      StateRegistrants::PARegistrant.where(registrant_id: uid_list).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
+      StateRegistrants::VARegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+    
+      self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
+        #StateRegistrants::PARegistrant
+        if reg.use_state_flow?
+          sr  = nil
+          case reg.home_state_abbrev
+          when "PA"
+            sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
+          when "VA"
+            sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+          end
+          reg.instance_variable_set(:@existing_state_registrant, sr)
+        end
+        if reg.finish_with_state?
+          reg.status = "complete"
+          begin
+            reg.deliver_thank_you_for_state_online_registration_email
+          rescue Exception => e
+            Rails.logger.error(e)
+            # raise e
+          end
+        else 
+          # Send chase email
+          begin
+            reg.deliver_chaser_email
+          rescue Exception => e
+            Rails.logger.error(e)
+          end
+        end
+        reg.abandon!
+        Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
+        if reg.is_fake?
+          reg.destroy
+        end      
+      end
     end
   end
 

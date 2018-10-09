@@ -84,99 +84,101 @@ class GrommetRequest < ActiveRecord::Base
 
   def self.request_results_report_csv
     # Only look at registrants within the last 4 months to narrow the scope. If want full scope, go back to March 29, 2018
-    start_date = 4.months.ago
-    rs = Registrant.where("created_at > ?", start_date).where("state_ovr_data IS NOT NULL")
-    gs = GrommetRequest.where('created_at > ?', start_date + 2.days)
-    r_reqs = {}
+    distribute_reads(failover: false) do
+      start_date = 4.months.ago
+      rs = Registrant.where("created_at > ?", start_date).where("state_ovr_data IS NOT NULL")
+      gs = GrommetRequest.where('created_at > ?', start_date + 2.days)
+      r_reqs = {}
     
-    dj_ids = Delayed::Job.all.pluck(:id)
+      dj_ids = Delayed::Job.all.pluck(:id)
     
-    rs.find_each do |r|
-      if r.is_grommet? && !r.state_ovr_data["grommet_request_id"].blank?
-        in_queue = ""
-        dj_id = r.state_ovr_data["delayed_job_id"]
-        if dj_id && dj_ids.include?(dj_id)
-          in_queue = "queued"
+      rs.find_each do |r|
+        if r.is_grommet? && !r.state_ovr_data["grommet_request_id"].blank?
+          in_queue = ""
+          dj_id = r.state_ovr_data["delayed_job_id"]
+          if dj_id && dj_ids.include?(dj_id)
+            in_queue = "queued"
+          end
+          r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.home_state_abbrev, in_queue, r.state_ovr_data["pa_transaction_id"], r.state_ovr_data["errors"]]
         end
-        r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.home_state_abbrev, in_queue, r.state_ovr_data["pa_transaction_id"], r.state_ovr_data["errors"]]
       end
-    end
     
     
     
-    req_hashes= {}
-    gs.find_each do |g|
-      if !g.request_hash.blank?
-        req_hashes[g.request_hash] ||= []
-        req_hashes[g.request_hash].push(g.id)
-      end
-    end
-
-    csvstr = CSV.generate do |csv|
-      csv << ["Grommet Request ID", "Partner ID", "Grommet Version", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "Registrant Home State", "In Queue", "PA Transaction ID", "PA Errors", "Is Duplicate Of","Is Duplicated By"]
-      
-      
+      req_hashes= {}
       gs.find_each do |g|
-        params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
-        params = params.with_indifferent_access
-        req = params["rocky_request"]
-        if req.nil?
-          next
+        if !g.request_hash.blank?
+          req_hashes[g.request_hash] ||= []
+          req_hashes[g.request_hash].push(g.id)
         end
-        rep_fields = [
-          req["partner_id"],
-          begin
-            if g.request_headers.to_s =~ /HTTP_GROMMET_VERSION\"=>\"([\d\.]+)\"/
-              $1
-            else
-              nil
-            end
-          rescue
-            nil
-          end,
-          begin
-            req["voter_records_request"]["generated_date"]
-          rescue
-            nil
-          end, 
-          g.created_at, 
-          req["source_tracking_id"], 
-          req["open_tracking_id"], 
-          req["partner_tracking_id"], 
-          begin
-            req["voter_records_request"]["voter_registration"]["name"]["first_name"]
-          rescue
-            ""
-          end,
-          begin
-            req["voter_records_request"]["voter_registration"]["name"]["last_name"]
-          rescue
-            ""
+      end
+
+      csvstr = CSV.generate do |csv|
+        csv << ["Grommet Request ID", "Partner ID", "Grommet Version", "Generated At", "Submitted At", "Session ID", "Event Location", "Event Zip", "First Name", "Last Name", "Registrant ID", "Registrant Home State", "In Queue", "PA Transaction ID", "PA Errors", "Is Duplicate Of","Is Duplicated By"]
+      
+      
+        gs.find_each do |g|
+          params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
+          params = params.with_indifferent_access
+          req = params["rocky_request"]
+          if req.nil?
+            next
           end
-          ]
-        if r_reqs[g.id.to_s]
-          csv << [g.id] + rep_fields + r_reqs[g.id.to_s]
-        else
-          if !g.request_hash.blank?
-            rh_ids = req_hashes[g.request_hash].dup
-            if rh_ids.length <= 1
-              csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,nil]
-            else
-              # Am I the first
-              first_id = rh_ids.shift
-              if first_id == g.id
-                csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,rh_ids]
+          rep_fields = [
+            req["partner_id"],
+            begin
+              if g.request_headers.to_s =~ /HTTP_GROMMET_VERSION\"=>\"([\d\.]+)\"/
+                $1
               else
-                csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,first_id,nil]
-              end              
+                nil
+              end
+            rescue
+              nil
+            end,
+            begin
+              req["voter_records_request"]["generated_date"]
+            rescue
+              nil
+            end, 
+            g.created_at, 
+            req["source_tracking_id"], 
+            req["open_tracking_id"], 
+            req["partner_tracking_id"], 
+            begin
+              req["voter_records_request"]["voter_registration"]["name"]["first_name"]
+            rescue
+              ""
+            end,
+            begin
+              req["voter_records_request"]["voter_registration"]["name"]["last_name"]
+            rescue
+              ""
             end
+            ]
+          if r_reqs[g.id.to_s]
+            csv << [g.id] + rep_fields + r_reqs[g.id.to_s]
           else
-            csv << [g.id] + rep_fields
+            if !g.request_hash.blank?
+              rh_ids = req_hashes[g.request_hash].dup
+              if rh_ids && rh_ids.length <= 1
+                csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,nil]
+              else
+                # Am I the first
+                first_id = rh_ids.shift if rh_ids
+                if first_id == g.id
+                  csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,rh_ids]
+                else
+                  csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,first_id,nil]
+                end              
+              end
+            else
+              csv << [g.id] + rep_fields
+            end
           end
         end
       end
+      return csvstr
     end
-    return csvstr
   end
   
 end
