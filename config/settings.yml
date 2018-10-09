@@ -228,7 +228,7 @@ ovr_states:
       - en
       - es
   RI:
-    redirect_to_online_reg_url: ture
+    redirect_to_online_reg_url: true
     languages:
       - en
       - es
