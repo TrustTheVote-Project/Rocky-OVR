@@ -24,6 +24,9 @@ gem 'daemons', '~> 1.1.9'
 gem "paperclip", "~> 5.3.0"
 gem 'mysql2', '~> 0.3.18'
 
+gem 'distribute_reads'
+
+
 gem "rubyzip", '~> 1.2.2'
 gem 'zip-zip'
 
