@@ -60,19 +60,21 @@ class ReportGenerator
   end
   
   def self.generate_registrants(t, time_span)
-    registrants = Registrant.where("created_at > ?", t-time_span.hours).includes(:home_state)
-    csv_str = CsvFormatter.wrap do |csv|
-      csv << headers = self.registrant_fields.dup
-      CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
-      CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
+    distribute_reads do
+      registrants = Registrant.where("created_at > ?", t-time_span.hours).includes(:home_state)
+      csv_str = CsvFormatter.wrap do |csv|
+        csv << headers = self.registrant_fields.dup
+        CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
+        CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
 
-      registrants.each do |r|
-        reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) }
-        csv << reg_attributes
+        registrants.each do |r|
+          reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) }
+          csv << reg_attributes
+        end
       end
+      file_name = self.file_name("registrants", t, time_span)
+      self.save_csv_to_s3(csv_str, file_name)
     end
-    file_name = self.file_name("registrants", t, time_span)
-    self.save_csv_to_s3(csv_str, file_name)
   end
   
   def self.file_name(base, time, time_period)
