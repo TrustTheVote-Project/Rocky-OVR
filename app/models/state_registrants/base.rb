@@ -72,9 +72,10 @@ class StateRegistrants::Base < ActiveRecord::Base
     end
   end
   
-  def registrant
-    @registrant ||= Registrant.find_by_uid(self.registrant_id)
-  end
+  belongs_to :registrant, primary_key: :uid
+  # def registrant
+  #   @registrant ||= Registrant.find_by_uid(self.registrant_id)
+  # end
   
   def uid
     self.registrant_id
