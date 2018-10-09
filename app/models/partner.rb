@@ -548,21 +548,40 @@ class Partner < ActiveRecord::Base
   def generate_registrants_csv(start_date=nil, end_date=nil)
     conditions = [[]]
     if start_date
-      conditions[0] << " created_at >= ? "
+      conditions[0] << " registrants.created_at >= ? "
       conditions << start_date
     end
     if end_date
-      conditions[0] << " created_at < ? "
+      conditions[0] << " registrants.created_at < ? "
       conditions << end_date + 1.day
     end
     conditions[0] = conditions[0].join(" AND ")
 
-    CSV.generate do |csv|
-      csv << Registrant::CSV_HEADER
-      registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-        csv << reg.to_csv_array
+    #preloads
+    
+    #distribute_reads do
+      pa_registrants = {}
+      StateRegistrants::PARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_pa_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
+      va_registrants = {}
+      StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      
+      return CSV.generate do |csv|
+        csv << Registrant::CSV_HEADER
+        registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
+          if reg.use_state_flow?
+            sr  = nil
+            case reg.home_state_abbrev
+            when "PA"
+              sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
+            when "VA"
+              sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+            end
+            reg.instance_variable_set(:@existing_state_registrant, sr)
+          end
+          csv << reg.to_csv_array
+        end
       end
-    end
+    #end
   end
   
   SHIFT_REPORT_HEADER = [

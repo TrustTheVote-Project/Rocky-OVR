@@ -25,7 +25,7 @@ class RegistrantStatus < ActiveRecord::Base
   def self.get_state_registrants(state) 
     case state.abbreviation
     when "PA"
-      return StateRegistrants::PARegistrant
+      return StateRegistrants::PARegistrant.includes(:registrant)
     end
     return nil
   end
@@ -149,7 +149,8 @@ class RegistrantStatus < ActiveRecord::Base
           reg_statuses_results[state_id] = "No registrants matched #{reg_data}"
         else
           reg = regs.first
-          data = reg_data.merge({registrant_id: reg.id})
+          reg_id = regs.is_a?(Registrant) ? reg.id : reg.registrant.id
+          data = reg_data.merge({registrant_id: reg_id})
           RegistrantStatus.create!(data)
           reg_statuses_results[state_id] = "Created status record"          
         end
