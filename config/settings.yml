@@ -137,7 +137,7 @@ ovr_states:
     languages:
       - en    
   FL:
-    redirect_to_online_reg_url: false
+    redirect_to_online_reg_url: true
     languages:
       - en
       - es
