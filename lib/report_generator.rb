@@ -60,7 +60,7 @@ class ReportGenerator
   end
   
   def self.generate_registrants(t, time_span)
-    distribute_reads do
+    #distribute_reads do
       registrants = Registrant.where("created_at > ?", t-time_span.hours).includes(:home_state)
       # Also preload all PA and VA state registrants?
       pa_registrants = {}
@@ -90,7 +90,7 @@ class ReportGenerator
       end
       file_name = self.file_name("registrants", t, time_span)
       self.save_csv_to_s3(csv_str, file_name)
-    end
+    #end
   end
   
   def self.file_name(base, time, time_period)
