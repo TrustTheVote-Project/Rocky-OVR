@@ -61,7 +61,7 @@ en:
         state's election officials. Sometimes processing can take several weeks.
       finish_reminder_2: If you want to check on the status of your voter registration
         form, you can find contact information for your Secretary of State at our
-        <a href="http://www.rockthevote.com/election-center/" target="_blank">Election
+        <a href="https://www.rockthevote.org/voting-information/" target="_blank">Election
         Center</a>.
       ineligible_header: ! 'Sorry, we aren''t able to help you register to vote.<BR>
 
@@ -115,11 +115,10 @@ en:
         work: Work
         other: Other
       instructions:
-        overseas: ! '<b>Note</b>: Some states offer online voter registration. <a
-          href=''http://www.rockthevote.com/voter-registration/online-application-system/online.html''
-          target=''_blank''>Learn more.</a> If you are an American citizen living
-          abroad or a uniformed military voter, <a href=''http://www.rockthevote.com/voting-is-easy/voting-rights/overseas-rights/overseas.html''
-          target=''_blank''>click here</a> to register to vote.'
+        overseas: |-
+          <b>REMINDER</b>: Many states have deadlines to register to vote for the November 6, 2018 election. Check out your options and deadlines <a href='https://www.rockthevote.org/voting-information/' target='_blank'>here</a>.</br></br>
+
+          <b>Note</b>: Some states offer online voter registration. <a href='https://www.rockthevote.org/online/' target='_blank'>Learn more.</a> If you are an American citizen living abroad or a uniformed military voter, <a href='http://www.rockthevote.com/voting-is-easy/voting-rights/overseas-rights/overseas.html' target='_blank'>click here</a> to register to vote.
         opt_in_email: We will send you timely election reminders, your polling place
           location, and information about music and issues.
         under_18: Hey, it looks like you aren't 18 yet. That's cool. In %{state_name},
