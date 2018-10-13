@@ -1363,9 +1363,10 @@ class Registrant < ActiveRecord::Base
   end
   
   def home_state_enabled_for_pdf_assitance?
-    list = %w(AL
-              SD)
-    return list.include?(home_state_abbrev)
+    return false
+    # list = %w(AL
+    #           SD)
+    # return list.include?(home_state_abbrev)
   end
   
   def can_request_pdf_assistance?
