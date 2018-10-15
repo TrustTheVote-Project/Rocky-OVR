@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180925153459) do
+ActiveRecord::Schema.define(version: 20181015155717) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -483,6 +483,9 @@ ActiveRecord::Schema.define(version: 20180925153459) do
     t.boolean  "has_mailing_address"
     t.boolean  "confirm_register_to_vote"
     t.string   "phone_type",                      limit: 255
+    t.boolean  "partner_opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_volunteer"
   end
 
   create_table "tracking_events", force: :cascade do |t|
