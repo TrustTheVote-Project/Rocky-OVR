@@ -60,7 +60,8 @@
 <table id="statistics" cellspacing="0">
   <tr>
     <td id="left_column">
-      <div class="stats" id="stats_by_state">
+      <%- if @stats_by_state %>
+      <div class="stats" id="stats_by_state">        
         <table cellspacing="0">
           <thead><tr><th colspan="3">Applications by State</th></tr></thead>
           <tbody>
@@ -74,15 +75,19 @@
           </tbody>
         </table>
       </div>
+      <%- end %>
       
     </td>
 
     <td id="right_column">
+      <%- if @stats_by_completion_date %>
       <%= render :partial => 'stats_by_completion_date' %>
-
+      <%- end %>
+      <%- if @stats_by_completion_date_finish_with_state %>
       <%= render :partial => 'finish_with_state_stats_by_completion_date' %>
-
+      <%- end %>
       <% reset_cycle %>
+      <%- if @stats_by_race %>
       <div class="stats" id="stats_by_race">
         <table cellspacing="0">
           <thead><tr><th colspan="3">Applications by Ethnicity</th></tr></thead>
@@ -97,8 +102,10 @@
           </tbody>
         </table>
       </div>
+      <%- end %>
 
       <% reset_cycle %>
+      <%- if @stats_by_gender %>
       <div class="stats" id="stats_by_gender">
         <table cellspacing="0">
           <thead><tr><th colspan="3">Applications by Gender</th></tr></thead>
@@ -113,8 +120,9 @@
           </tbody>
         </table>
       </div>
-
+      <% end %>
       <% reset_cycle %>
+      <% if @stats_by_age%>
       <div class="stats" id="stats_by_age">
         <table cellspacing="0">
           <thead><tr><th colspan="3">Applications by Age</th></tr></thead>
@@ -147,8 +155,9 @@
           </tbody>
         </table>
       </div>
-
+      <% end %>
       <% reset_cycle %>
+      <% if @stats_by_party %>
       <div class="stats" id="stats_by_party">
         <table cellspacing="0">
           <thead><tr><th colspan="3">Applications by Party</th></tr></thead>
@@ -163,6 +172,7 @@
           </tbody>
         </table>
       </div>
+      <% end %>
     </td>
   </tr>
 </table>
