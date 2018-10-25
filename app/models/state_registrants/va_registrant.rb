@@ -527,6 +527,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "opt_in_email"  => "opt_in_email",
       "opt_in_sms"  => "opt_in_sms",
       "phone" => "phone",
+      "partner_opt_in_email"=>"partner_opt_in_email",
+      "partner_opt_in_sms"=>"partner_opt_in_sms",
+      "partner_volunteer"=>"partner_volunteer",
+      
 
       "locale"  => "locale"
     }
