@@ -1460,7 +1460,11 @@ class Registrant < ActiveRecord::Base
   end
   
   def send_emails?
-    !email_address.blank? && collect_email_address? && (!building_via_api_call? || send_confirmation_reminder_emails?)
+    !email_address.blank? && !is_blacklisted(email_address) && collect_email_address? && (!building_via_api_call? || send_confirmation_reminder_emails?)
+  end
+  
+  def is_blacklisted(email_address)
+    email_address.to_s.downcase == "test@test.com"
   end
 
   def deliver_confirmation_email
@@ -1505,7 +1509,14 @@ class Registrant < ActiveRecord::Base
   
   def deliver_final_reminder_email
     if send_emails? && !final_reminder_delivered && !pdf_downloaded && pdf_ready?
-      Notifier.final_reminder(self).deliver
+      begin
+        Notifier.final_reminder(self).deliver
+      rescue
+        # If we can't deliver, just stop
+      end
+      self.final_reminder_delivered = true
+      self.save(validate: false)
+    elsif !pdf_downloaded && pdf_ready?
       self.final_reminder_delivered = true
       self.save(validate: false)
     end
