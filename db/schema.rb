@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181015155717) do
+ActiveRecord::Schema.define(version: 20181127114114) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -314,6 +314,12 @@ ActiveRecord::Schema.define(version: 20181015155717) do
   add_index "registrants", ["status", "partner_id", "race"], name: "index_registrants_by_race"
   add_index "registrants", ["status"], name: "index_registrants_on_status"
   add_index "registrants", ["uid"], name: "index_registrants_on_uid"
+
+  create_table "ses_notifications", force: :cascade do |t|
+    t.text     "request_params"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "settings", force: :cascade do |t|
     t.string   "var",         limit: 255, null: false

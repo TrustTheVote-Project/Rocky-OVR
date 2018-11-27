@@ -15,7 +15,7 @@ Rocky::Application.routes.draw do
   match "/state_registrants/:registrant_id/:step", to: "state_registrants#edit", as: "edit_state_registrant", via: :get
   match "/state_registrants/:registrant_id/:step", to: "state_registrants#update", as: "update_state_registrant", via: :patch
 
-  
+  match "/get-bounce-notification", to: "ses#bounce", via: [:get, :post]
   
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
