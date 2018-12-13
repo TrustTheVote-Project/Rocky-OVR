@@ -238,6 +238,7 @@ es:
           llamar al 1-800-345-VOTE o visitar www.ss.ca.gov/elections/elections_d.htm
           para saber qué partidos políticos les permiten participar en su elección
           primaria a los votantes no afiliados.
+        colorado: ''
         idaho: No necesita registrarse con un partido político para poder registrarse
           para votar.
         indiana: La ley de Indiana no les permite a las personas indicar su afiliación
@@ -356,6 +357,7 @@ es:
           social. El Estado también solicita el número de su licencia de conducir
           de Oklahoma. Si no posee ninguno de estos números, ingrese "NINGUNO", y
           el Estado le asignará un número de identificación.
+        texas: ''
         wisconsin: Si se le ha emitido y tiene una licencia de conducir o tarjeta
           de identidad emitida por el Departamento de Transporte actual y válida,
           debe proporcionar el número. Si tiene una licencia de conducir que haya

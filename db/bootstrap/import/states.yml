@@ -93,7 +93,7 @@ record_5:
   abbreviation: CO
   name: Colorado
   requires_party: false
-  party_tooltip: required_for_primary_2_months
+  party_tooltip: colorado
   id_number_tooltip: colorado
   sos_address: Secretary of State<br>1700 Broadway, Suite 200<br>Denver, CO 80290
   sos_phone: "(303) 894-2200"
@@ -629,7 +629,7 @@ record_43:
   name: Texas
   requires_party: false
   party_tooltip: not_required
-  id_number_tooltip: drivers_license_non_driver_with_state_name
+  id_number_tooltip: texas
   sos_address: Office of the Secretary of State<br>Elections Division<br>P.O. Box
     12060<br>Austin, TX 78711-2060
   sos_phone: "(800) 252-VOTE"

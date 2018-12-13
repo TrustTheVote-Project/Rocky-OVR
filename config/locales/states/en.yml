@@ -272,6 +272,9 @@ en:
           can call 1-800-345-VOTE or visit www.ss.ca.gov/elections/elections_d.htm
           to learn which political parties are allowing nonaffiliated voters to participate
           in their primary election.
+        colorado: |-
+          You may register with a party. If you leave this section blank you will not be
+          registered with any party.
         idaho: |-
           You must register with a party if you want to participate in that
           party's election. Enter your Political Party Preference. Options: Constitution,
@@ -439,6 +442,12 @@ en:
         oklahoma: Your Oklahoma driver’s license number is requested. If you do not
           have a driver's license number, the last four digits of your social security
           number are required. (Oklahoma Title 26, Section 4-112)
+        texas: You must provide your Texas driver’s license or Texas personal
+          identification number to register to vote. If you do not have a Texas driver’s
+          license or Texas personal identification card then you will have to provide at
+          least the last four digits of your social security number. If you have neither,
+          please write "NONE" on the form. A unique identifying number will instead be
+          assigned to you by your State.
         wisconsin: |-
           Provide your unexpired Wisconsin driver license or DOT-issued ID
           card number. If you do not have a current and valid DOT-issued driver license
