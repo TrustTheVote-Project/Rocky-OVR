@@ -112,6 +112,7 @@ tl:
           silang gawin ito. Maaari kang tumawag sa 1-800-345-VOTE o bumisita sa www.ss.ca.gov/elections/elections_d.htm
           para malaman kung anong partido ang pumapayag sa mga walang kaugnayang botante
           na makilahok sa kanilang pangunahing halalan.
+        colorado: ''
         idaho: ! 'Kailangan mong magrehistro sa isang partido kung nais mong lumahok
           sa halalan ng nasabing partido. Ipasok ang iyong kinikilingang partidong
           politikal. Pumili sa: Constitution, Demokratiko,  Libertarian, Republikano
@@ -269,6 +270,7 @@ tl:
           numero ng iyong Social Security ay kinakailangan.  Kung wala ka ng alinmang
           numero, mangyaring ipasok ang "WALA" at ang estado ay magtatalaga ng isang
           numerong pagkakakilanlan para sa iyo.
+        texas: ''
         wisconsin: Kung ikaw ay binigyan at mayroong pangkasalukuyan at valid na lisensiya
           ng pagmamaneho sa WI o ID card na ibinigay ng WI DOT, dapat mong ibigay
           ang numero. Kung ang ibinigay na lisensya ng pagmamaneho sa WI ay binawi,

@@ -6,6 +6,7 @@ es:
         state_flow_error: NEED TRANSLATION
         ineligible_registrant: NEED TRANSLATION
         step_2_header: NEED TRANSLATION
+        step_2_subheader: "."
         special_status_notice: NEED TRANSLATION
         voter_classification: NEED TRANSLATION
         protected_voter: NEED TRANSLATION
@@ -23,7 +24,8 @@ es:
         state_flow_error: Hubo un problema al enviar su registro a Pennsylvania. Completa
           registro mediante formulario en papel.
         step_2_header: Información Básica
-        step_2_subheader: Necesitamos decirle al estado quién es usted y verificar su elegibilidad
+        step_2_subheader: Necesitamos decirle al estado quién es usted y verificar
+          su elegibilidad
         step_3_header: Casi Termino
         step_4_header: Revisar y Confirmar
         penndot_number_instructions: Ingrese el número de licencia de conducir de
@@ -236,6 +238,7 @@ es:
           llamar al 1-800-345-VOTE o visitar www.ss.ca.gov/elections/elections_d.htm
           para saber qué partidos políticos les permiten participar en su elección
           primaria a los votantes no afiliados.
+        colorado: ''
         idaho: No necesita registrarse con un partido político para poder registrarse
           para votar.
         indiana: La ley de Indiana no les permite a las personas indicar su afiliación
@@ -326,12 +329,14 @@ es:
           los últimos cuatro dígitos de su número de Seguro Social. Si no posee ninguno
           de estos tipos de identificación, ingrese "NINGUNO" y el Estado le asignará
           un número de identificación único.
-        colorado: Debe proporcionar el número de su licencia de conducir de Colorado
-          o su número de identificación. No incluya los guiones. Si no tiene una licencia
-          de conducir o un número de identificación, debe proporcionar los últimos
-          cuatro dígitos de su número de seguro social. Si no posee ninguno de estos
-          tipos de identificación, ingrese "NINGUNO", y el Estado le asignará un número
-          de identificación único.
+        colorado: Su formulario de inscripción de votante debe contener el número
+          de su licencia de conducir del estado o el número de identificación de los
+          no conductores emitido por el estado. Si no tiene una licencia de conducir
+          ni identificación de no conductor, tiene que incluir las últimas cuatro
+          cifras de su número del Seguro Social. Si no tiene una licencia de conducir,
+          ni una licencia de identificación de no conductor, ni un número del Seguro
+          Social, escriba “NONE” (NINGUNO) en el formulario. El secretario de estado
+          le asignará un número.
         georgia: Debe proporcionar el número de su licencia de conducir de Georgia
           o el número de identificación emitido por el Estado. Si no tiene ninguno
           de estos números, debe proporcionar los últimos cuatro dígitos de su número
@@ -352,6 +357,7 @@ es:
           social. El Estado también solicita el número de su licencia de conducir
           de Oklahoma. Si no posee ninguno de estos números, ingrese "NINGUNO", y
           el Estado le asignará un número de identificación.
+        texas: ''
         wisconsin: Si se le ha emitido y tiene una licencia de conducir o tarjeta
           de identidad emitida por el Departamento de Transporte actual y válida,
           debe proporcionar el número. Si tiene una licencia de conducir que haya
@@ -563,10 +569,10 @@ es:
       california: Sello postal o presentarse a la oficina de elecciones (o agencia
         de registro electoral NVRA) en o antes de 15 días antes del Día de la elección
         (a votar en la elección)
-      colorado: must be received at least 8 days before an election in order to receive
-        a mail ballot, but you can still register to vote in person through Election
-        Day. If you register after the 8th day, you must visit one of the Voter Service
-        and Polling Centers to get a ballot.
+      colorado: Puede inscribirse hasta el día de las elecciones. Debe inscribirse
+        8 días o más antes del día de las elecciones para que se le envíe un voto
+        por correo. Si se inscribe menos de 8 días antes del día de las elecciones,
+        deberá presentarse personalmente en su condado para votar.
       connecticut: Matasellos 7 días antes de la elección o recibido en persona 7
         días antes de las elecciones
       delaware: Matasellos de la cuarta el sábado antes de una elección primaria o
@@ -583,9 +589,15 @@ es:
         antes de la elección
       nebraska: Matasellos de la tercera el Viernes antes de las elecciones, o recibido
         en persona a las 6pm del segundo viernes antes de las elecciones
-      nevada: Tiene que tener el cello del correo 31 días antes de la elección, o
-        en línea por un plazo de 21 días antes de la elección, o recibido en persona
-        a la oficina del vendedor 21 días antes de la elección.
+      nevada: La fecha límite para la inscripción de votantes por correo es el cuarto
+        martes antes de cualquier elección primaria o general. Esta es la fecha en
+        la que la solicitud de inscripción de votantes por correo debe ser matasellada.
+        La inscripción de votantes en persona permanece disponible hasta las 7:00
+        p. m. del tercer martes anterior a cualquier elección primaria o general.
+        Puede inscribirse para votar en persona solo si se presenta en la oficina
+        del Secretario del condado/Secretario a cargo del Registro de votantes. La
+        fecha límite para la inscripción de votantes en línea en www.RegisterToVoteNV.gov
+        es el jueves anterior al primer día del período de votación anticipada.
       rhode_island: Recibido 30 días antes de la elección. Formularios de registro
         de votantes por correo recibido después de la fecha límite serán aceptadas,
         siempre y cuando el matasellos de correo o antes el límite para el registro

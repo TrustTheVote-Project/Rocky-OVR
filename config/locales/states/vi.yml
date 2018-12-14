@@ -101,6 +101,7 @@ vi:
           vậy. Bạn có thể gọi số 1-800-345-VOTE hoặc ghé thăm www.ss.ca.gov/elections/elections_d.htm
           để biết các đảng chính trị cho phép cử tri không liên kết tham gia bỏ phiếu
           trong cuộc bầu cử chính của họ.
+        colorado: ''
         idaho: ! 'Bạn phải đăng ký với một đảng nếu bạn muốn tham gia vào cuộc bầu
           cử của đảng đó. Ghi vào Ưu tiên Đảng Chính Trị của bạn. Lựa chọn: Hiến pháp,
           Dân chủ, Tự do, Cộng hòa hoặc không liên kết (không có sở thích đối với
@@ -233,6 +234,7 @@ vi:
         oklahoma: Bốn số cuối của số an sinh xã hội của bạn được yêu cầu. Bang cũng
           yêu cầu số giấy phép lái xe Oklahoma của bạn. Nếu bạn không có số nào, vui
           lòng nhập vào chữ "NONE" và bang sẽ chỉ định một mã số riêng cho bạn.
+        texas: ''
         wisconsin: Nếu bạn đã được cấp bằng lái xe Wisconsin hiện tại và hợp lệ, hoặc
           thẻ căn cước (ID) do DOT WI  cấp,  bạn phải cung cấp số của nó. Nếu giấy
           phép lái xe WI của bạn bị thu hồi, đình chỉ, hoặc đã hết hạn, vui lòng cung
