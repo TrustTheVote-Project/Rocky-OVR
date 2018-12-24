@@ -1,0 +1,18 @@
+<form id="ksvotes" method="POST" action="<%= @online_registration_iframe_url %>" style="display: none;">
+  <input name="name_first" value="<%= @registrant.first_name %>">
+  <input name="name_last" value="<%= @registrant.last_name %>">
+  <input name="dob" value="<%= @registrant.pdf_date_of_birth %>">
+  <input name="email" value="<%= @registrant.email_address %>">
+  <input name="phone" value="<%= @registrant.phone %>">
+  <button>Submit</button>
+</form>
+
+<h2>
+  <%= t('states.custom.ks.redirect_to_online_registration') %>
+</h2>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#ksvotes").submit();    
+  })
+</script>
