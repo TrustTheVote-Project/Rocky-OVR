@@ -99,7 +99,7 @@ class Registrant < ActiveRecord::Base
   
   # CA_EMAIL_REGEX =  /\A[a-zA-Z0-9\-\/_\.]+@.*\..*\z/ #A-Z a-z 0-9, underscore, dash, and '@' followed by at least one "."
   CA_ADDRESS_REGEX    = /\A[a-zA-Z0-9#\-\s,\/\.]*\z/ # A-Z a-z 0-9 # dash space, / .
-  CITY_STATE_REGEX = /\A[a-zA-Z0-9#\-\s']*\z/      # A-Z a-z 0-9 # dash space
+  CITY_STATE_REGEX = /\A[a-zA-Z0-9#\-\s'\.]*\z/      # A-Z a-z 0-9 # dash space ' .
   CA_CITY_STATE_REGEX = /\A[a-zA-Z0-9#\-\s]*\z/      # A-Z a-z 0-9 # dash space
   # OVR_REGEX = /\A[a-zA-Z0-9#\-\s,\/\.\+!@\$%\^&\*_=\(\)\[\]\{\};':"\\<>\?\|]*\z/
   #white space and hyphen for names; and for addresses phone#s and other stuff, also include special chars such as # ( ) / + 
