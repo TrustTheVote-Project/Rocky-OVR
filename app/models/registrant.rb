@@ -833,6 +833,14 @@ class Registrant < ActiveRecord::Base
   def home_state_name
     home_state && home_state.name
   end
+  def home_state_system_name
+    name = home_state&.online_registration_system_name
+    if home_state && !name
+      name = I18n.t("states.online_registration_system_name", locale: locale, state_name: home_state_name)
+    end
+    name      
+  end
+  
   def home_state_abbrev
     home_state && home_state.abbreviation
   end

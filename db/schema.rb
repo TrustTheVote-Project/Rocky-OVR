@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181127115859) do
+ActiveRecord::Schema.define(version: 20190125201539) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -71,19 +71,20 @@ ActiveRecord::Schema.define(version: 20181127115859) do
   add_index "email_templates", ["partner_id", "name"], name: "index_email_templates_on_partner_id_and_name", unique: true
 
   create_table "geo_states", force: :cascade do |t|
-    t.string   "name",                    limit: 21
-    t.string   "abbreviation",            limit: 2
+    t.string   "name",                            limit: 21
+    t.string   "abbreviation",                    limit: 2
     t.boolean  "requires_race"
     t.boolean  "requires_party"
     t.boolean  "participating"
     t.integer  "id_length_min"
     t.integer  "id_length_max"
-    t.string   "registrar_address",       limit: 255
-    t.string   "registrar_phone",         limit: 255
+    t.string   "registrar_address",               limit: 255
+    t.string   "registrar_phone",                 limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "registrar_url",           limit: 255
-    t.string   "online_registration_url", limit: 255
+    t.string   "registrar_url",                   limit: 255
+    t.string   "online_registration_url",         limit: 255
+    t.string   "online_registration_system_name"
   end
 
   create_table "grommet_requests", force: :cascade do |t|

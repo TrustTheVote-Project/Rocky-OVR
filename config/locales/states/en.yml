@@ -3,7 +3,7 @@ en:
   states:
     custom:
       ks:
-        redirect_to_online_registration: We're redirecting you to the Kansas online voter registration system.
+        redirect_to_online_registration: We're redirecting you to the VoteKS online voter registration system.
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.
@@ -793,3 +793,4 @@ en:
         document when registering in Wisconsin.</strong><br> If you are registering
         by mail, you can use any of the Proof of Residence listed <a href="http://www.gab.wi.gov/publications/voter-guides/proof-of-residence"  target="_blank">here</a>
         that must include the voter’s name and current address.'
+    online_registration_system_name: "%{state_name} Secretary of State"
