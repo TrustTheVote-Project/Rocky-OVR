@@ -204,6 +204,17 @@ class Partner < ActiveRecord::Base
   scope :government, -> { where(:is_government_partner=>true) }
   scope :standard, -> { where(:is_government_partner=>false) }
 
+  def self.deactivate_stale_partners!
+    partners = Partner.inactive.where("active != ?", false).each do |p|
+      p.active = false
+      p.save(validate: false)
+    end
+    
+    # Email list of partners that were deactivated
+    # partner id, email, organization name, phone, first/last name, date of deactivation
+    
+  end
+
   def self.inactive
     active_partner_ids = Registrant.where("created_at > ? ", 3.months.ago).pluck(:partner_id)
     active_partner_ids << DEFAULT_ID # Make sure main partner never gets deactivated
