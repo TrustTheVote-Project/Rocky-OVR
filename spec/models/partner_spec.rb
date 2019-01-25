@@ -36,6 +36,27 @@ describe Partner do
       p.api_key.should_not be_blank
     end
   end
+  
+  describe ".deactivate_stale_partners!" do
+    let(:p1) { FactoryGirl.create(:partner) }
+    let(:p2) { FactoryGirl.create(:partner) }
+    it "finds login-active partners without recent registrants and sets active to false" do
+      r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
+      r2 = FactoryGirl.create(:step_1_registrant, partner: p2, created_at: 1.day.ago)
+      Partner.deactivate_stale_partners!
+      p1.reload
+      p2.reload
+      expect(p1.active).to eq(false)
+      expect(p2.active).to eq(true)
+    end
+    it "email list of deactivated partners to admin" do
+      r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
+      r2 = FactoryGirl.create(:step_1_registrant, partner: p2, created_at: 1.day.ago)
+      expect {
+        Partner.deactivate_stale_partners!
+      }.to change { ActionMailer::Base.deliveries.count }.by(1)      
+    end  
+  end
 
   describe ".inactive" do
     let(:p1) { FactoryGirl.create(:partner) }

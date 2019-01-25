@@ -210,8 +210,9 @@ class Partner < ActiveRecord::Base
       p.save(validate: false)
     end
     
-    # Email list of partners that were deactivated
-    # partner id, email, organization name, phone, first/last name, date of deactivation
+    if partners.any?
+      AdminMailer.deactivate_partners(partners).deliver
+    end
     
   end
 
