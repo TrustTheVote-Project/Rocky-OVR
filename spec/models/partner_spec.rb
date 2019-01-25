@@ -37,6 +37,18 @@ describe Partner do
     end
   end
 
+  describe ".inactive" do
+    let(:p1) { FactoryGirl.create(:partner) }
+    let(:p2) { FactoryGirl.create(:partner) }
+    it "returns partners with no recent started registrations" do
+      r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
+      r2 = FactoryGirl.create(:step_1_registrant, partner: p2, created_at: 1.day.ago)
+      inactive_partner_ids = Partner.inactive.pluck(:id)      
+      expect(inactive_partner_ids).to include(p1.id)
+      expect(inactive_partner_ids).not_to include(p2.id)
+    end
+  end
+
   describe "survey questions for non en/es" do
     let(:p) { FactoryGirl.create(:partner) }
     describe "survey_question_1_zh-tw" do

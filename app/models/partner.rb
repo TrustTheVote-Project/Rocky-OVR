@@ -204,6 +204,11 @@ class Partner < ActiveRecord::Base
   scope :government, -> { where(:is_government_partner=>true) }
   scope :standard, -> { where(:is_government_partner=>false) }
 
+  def self.inactive
+    active_partner_ids = Registrant.where("created_at > ? ", 3.months.ago).pluck(:partner_id)
+    active_partner_ids << DEFAULT_ID # Make sure main partner never gets deactivated
+    Partner.where("id not in (?)", active_partner_ids.uniq)
+  end
 
   def mobile_redirect_disabled
     self.id == 14557 
