@@ -24,4 +24,5 @@
 #***** END LICENSE BLOCK *****
 class AdminSession < Authlogic::Session::Base
   logout_on_timeout true
+  consecutive_failed_logins_limit 10
 end

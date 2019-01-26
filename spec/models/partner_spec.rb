@@ -36,6 +36,47 @@ describe Partner do
       p.api_key.should_not be_blank
     end
   end
+  
+  describe ".deactivate_stale_partners!" do
+    let(:p1) { FactoryGirl.create(:partner, last_login_at: 1.day.ago) }
+    let(:p2) { FactoryGirl.create(:partner, last_login_at: 1.day.ago) }
+    let(:p3) { FactoryGirl.create(:partner, last_login_at: 100.day.ago) }
+    
+    it "finds login-active partners without recent registrants and sets active to false" do
+      r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
+      r2 = FactoryGirl.create(:step_1_registrant, partner: p2, created_at: 1.day.ago)
+      r3 = FactoryGirl.create(:step_1_registrant, partner: p3, created_at: 1.day.ago)
+      Partner.deactivate_stale_partners!
+      p1.reload
+      p2.reload
+      p3.reload
+      expect(p1.active).to eq(false)
+      expect(p2.active).to eq(true)
+      expect(p3.active).to eq(false)
+    end
+    it "email list of deactivated partners to admin" do
+      r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
+      r2 = FactoryGirl.create(:step_1_registrant, partner: p2, created_at: 1.day.ago)
+      expect {
+        Partner.deactivate_stale_partners!
+      }.to change { ActionMailer::Base.deliveries.count }.by(1)      
+    end  
+  end
+
+  describe ".inactive" do
+    let(:p1) { FactoryGirl.create(:partner, last_login_at: 1.day.ago) }
+    let(:p2) { FactoryGirl.create(:partner, last_login_at: 1.day.ago) }
+    let(:p3) { FactoryGirl.create(:partner, last_login_at: 100.day.ago) }
+    it "returns partners with no recent started registrations" do
+      r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
+      r2 = FactoryGirl.create(:step_1_registrant, partner: p2, created_at: 1.day.ago)
+      r3 = FactoryGirl.create(:step_1_registrant, partner: p3, created_at: 1.day.ago)
+      inactive_partner_ids = Partner.inactive.pluck(:id)      
+      expect(inactive_partner_ids).to include(p1.id)
+      expect(inactive_partner_ids).to include(p3.id) # not logged in
+      expect(inactive_partner_ids).not_to include(p2.id)
+    end
+  end
 
   describe "survey questions for non en/es" do
     let(:p) { FactoryGirl.create(:partner) }
