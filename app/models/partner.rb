@@ -217,9 +217,10 @@ class Partner < ActiveRecord::Base
   end
 
   def self.inactive
-    active_partner_ids = Registrant.where("created_at > ? ", 3.months.ago).pluck(:partner_id)
+    date = 90.days.ago
+    active_partner_ids = Registrant.where("created_at > ? ", date).pluck(:partner_id)
     active_partner_ids << DEFAULT_ID # Make sure main partner never gets deactivated
-    Partner.where("id not in (?)", active_partner_ids.uniq)
+    Partner.where("id not in (?) OR last_login_at < ?", active_partner_ids.uniq, date)
   end
 
   def mobile_redirect_disabled
