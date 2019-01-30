@@ -30,4 +30,9 @@ namespace :utility do
     ReportGenerator.send("generate_#{args[:hours]}")
   end
   
+  desc "Deactivate partners without recent registrations"
+  task :deactivate_stale_partners => :environment do
+    Partner.deactivate_stale_partners!
+  end
+  
 end
