@@ -305,7 +305,7 @@ en:
 
           Thank you for using %{registrant_rtv_and_partner_name}''s online voter registration
           tool to begin the voter registration process. You should have been able
-          to complete the process on the %{state_name} Secretary of State''s website.<br><br>
+          to complete the process on the %{system_name}''s website.<br><br>
 
 
           If you have questions or concerns, you can check the status of your voter
