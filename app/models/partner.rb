@@ -204,6 +204,24 @@ class Partner < ActiveRecord::Base
   scope :government, -> { where(:is_government_partner=>true) }
   scope :standard, -> { where(:is_government_partner=>false) }
 
+  def self.deactivate_stale_partners!
+    partners = Partner.inactive.where("active != ?", false).each do |p|
+      p.active = false
+      p.save(validate: false)
+    end
+    
+    if partners.any?
+      AdminMailer.deactivate_partners(partners).deliver
+    end
+    
+  end
+
+  def self.inactive
+    date = 90.days.ago
+    active_partner_ids = Registrant.where("created_at > ? ", date).pluck(:partner_id)
+    active_partner_ids << DEFAULT_ID # Make sure main partner never gets deactivated
+    Partner.where("id not in (?) OR last_login_at < ?", active_partner_ids.uniq, date)
+  end
 
   def mobile_redirect_disabled
     self.id == 14557 

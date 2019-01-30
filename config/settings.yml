@@ -23,6 +23,7 @@ admin:
   from_address: "alex.mekelburg@osetfoundation.org"
   branding_from: "Rock the Vote <info@rockthevote.com>"
   branding_to: "david@rockthevote.com, jen@rockthevote.com, melissa@rockthevote.com"
+  partner_status_to: "david@rockthevote.com, jen@rockthevote.com, melissa@rockthevote.com, alex.mekelburg@osetfoundation.org"
   admin_recipients: "errors@rockthevote.com, alex.mekelburg@osetfoundation.org"
   translation_recipients: "david@rockthevote.com, alex.mekelburg@osetfoundation.org"
 
@@ -167,7 +168,7 @@ ovr_states:
     languages:
       - en
   KS:
-    redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: false # We have ks.html.erb that takes care of the redirect
     require_id: false
     languages:
       - en
