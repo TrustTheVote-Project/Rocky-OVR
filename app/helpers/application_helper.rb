@@ -128,6 +128,11 @@ module ApplicationHelper
   def required_message_for(object, field_name)
     I18n.t("activerecord.errors.models.#{object.class.name.underscore}.attributes.#{field_name}.blank", default: I18n.t("activerecord.errors.models.#{object.class.name.underscore}.blank"), locale: object.locale)
   end
+
+  def require_accept_message_for(object, field_name)
+    I18n.t("activerecord.errors.models.#{object.class.name.underscore}.attributes.#{field_name}.accepted", default: I18n.t("activerecord.errors.models.#{object.class.name.underscore}.accepted"), locale: object.locale)
+  end
+
   
   def field_li(form, field, options={})
     required = options[:required] ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''
@@ -160,6 +165,10 @@ module ApplicationHelper
       options[:data] ||= {}
       options[:data]["client-validation-required".to_sym] = required_message_for(form.object, field)
     end
+    if options.delete(:require_accept)
+      options[:data] ||= {}
+      options[:data]["client-validation-require-accept".to_sym] = require_accept_message_for(form.object, field)
+    end
     content_tag(:div, form.send( selector, field, {:size => nil}.merge(options) ).html_safe, :class => class_name).html_safe
   end
 
@@ -169,6 +178,10 @@ module ApplicationHelper
     if options.delete(:required)
       html_options[:data] ||= {}
       html_options[:data]["client-validation-required".to_sym] = required_message_for(form.object, field)
+    end
+    if options.delete(:require_accept)
+      options[:data] ||= {}
+      options[:data]["client-validation-require-accept".to_sym] = require_accept_message_for(form.object, field)
     end
     
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
