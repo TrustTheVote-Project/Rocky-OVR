@@ -77,6 +77,7 @@ Rocky::Application.routes.draw do
   
   
   resources "password_resets", :only => [:new, :create, :edit, :update]
+  resources :admin_password_resets, :only => [ :new, :create, :edit, :update ]
 
   resources "state_configurations", :only=>[:index, :show] do
     collection do
@@ -178,7 +179,8 @@ Rocky::Application.routes.draw do
         post :reject_request
       end
     end
-    resource  "admin_sessions"
+    resource  "admin_sessions" 
+    match 'reset_admin_passwords', to: "base#reset_admin_passwords", as: 'reset_admin_passwords', via: :get
     match  "login",  :to => "admin_sessions#new", :as=>'login', via: :get
     match "logout", :to => "admin_sessions#destroy", :as=>'logout', via: :get
 

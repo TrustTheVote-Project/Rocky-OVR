@@ -32,6 +32,16 @@ class Admin::BaseController < ApplicationController
 
   helper_method :current_admin
 
+  def reset_admin_passwords
+    current_admin_session.destroy
+    Admin.all.each do |a|
+      # TODO - also change the password so login doesn't work?
+      a.deliver_password_reset_instructions!
+    end
+    flash[:message] = "Admin password reset instructions sent."
+    redirect_to '/admin'
+  end
+
   private
 
   def authenticate
@@ -69,5 +79,6 @@ class Admin::BaseController < ApplicationController
     EmailTemplate.publish_templates(partner)
     partner.update_attributes(whitelabeled: true) unless partner.whitelabeled?
   end
+  
 
 end
