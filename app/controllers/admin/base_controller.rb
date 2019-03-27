@@ -36,9 +36,12 @@ class Admin::BaseController < ApplicationController
     current_admin_session.destroy
     Admin.all.each do |a|
       # TODO - also change the password so login doesn't work?
+      a.password = a.password_confirmation = 'aBc123!@' + SecureRandom.hex(10) + 'a'
+      a.save!
       a.deliver_password_reset_instructions!
     end
     flash[:message] = "Admin password reset instructions sent."
+    current_admin_session.destroy
     redirect_to '/admin'
   end
 
