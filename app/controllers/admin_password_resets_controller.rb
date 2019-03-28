@@ -31,16 +31,16 @@ class AdminPasswordResetsController < PartnerBase
   def edit
   end
 
-  # def create
-  #   if @admin = Admin.find_by_login(params[:login])
-  #     @admin.deliver_password_reset_instructions!
-  #     flash[:message] = "Instructions to reset your password have been emailed to you. Please check your email."
-  #     redirect_to login_url
-  #   else
-  #     flash[:warning] = "No account was found with that username or email address"
-  #     render "new"
-  #   end
-  # end
+  def create
+    if @admin = Admin.find_by_email(params[:login])
+      @admin.deliver_password_reset_instructions!
+      flash[:message] = "Instructions to reset your password have been emailed to you. Please check your email."
+      redirect_to admin_login_url
+    else
+      flash[:warning] = "No account was found with that username or email address"
+      render "new"
+    end
+  end
 
   def update
     pw = params[:admin] && params[:admin][:password]
@@ -64,7 +64,7 @@ class AdminPasswordResetsController < PartnerBase
   def load_admin_using_perishable_token
     unless @admin = Admin.find_using_perishable_token(params[:id])
       flash[:warning] = "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
-      redirect_to login_url
+      redirect_to admin_login_url
     end
   end
 end
