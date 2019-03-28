@@ -273,7 +273,7 @@ record_18:
   requires_party: true
   online_registration_url: https://www.sos.la.gov/ElectionsAndVoting/Pages/OnlineVoterRegistration.aspx
   party_tooltip: required_for_presidential
-  id_number_tooltip: drivers_license_if_issued_with_state_name
+  id_number_tooltip: louisiana
   sos_address: Secretary of State<br>Voter Registration<br>P.O. Box 94125<br>Baton
     Rouge, LA 70804-9125
   sos_phone: "(225) 922-0900"
