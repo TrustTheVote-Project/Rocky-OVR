@@ -42,6 +42,16 @@ class Notifier < ActionMailer::Base
          :to => admin.email,
          :date => Time.now.to_s(:db))
   end
+  
+  def admin_password_reset_required(admin)
+    @url = "http://#{RockyConf.default_url_host}#{new_admin_password_reset_path}"
+    
+    
+    mail(:subject=> "Password Reset Required",
+         :from => RockyConf.from_address,
+         :to => admin.email,
+         :date => Time.now.to_s(:db))
+  end
 
   def confirmation(registrant)
     setup_registrant_email(registrant, 'confirmation')

@@ -38,10 +38,10 @@ class Admin::BaseController < ApplicationController
       # TODO - also change the password so login doesn't work?
       a.password = a.password_confirmation = 'aBc123!@' + SecureRandom.hex(10) + 'a'
       a.save!
-      a.deliver_password_reset_instructions!
+      Notifier.admin_password_reset_required(a).deliver_now
     end
-    flash[:message] = "Admin password reset instructions sent."
     current_admin_session.destroy
+    flash[:message] = "Admin password reset instructions sent."
     redirect_to '/admin'
   end
 
