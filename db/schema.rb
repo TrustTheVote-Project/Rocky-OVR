@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190125201539) do
+ActiveRecord::Schema.define(version: 20190329144200) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -19,16 +19,17 @@ ActiveRecord::Schema.define(version: 20190125201539) do
     t.string   "crypted_password",   limit: 255
     t.string   "password_salt",      limit: 255
     t.string   "persistence_token",  limit: 255
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.integer  "failed_login_count"
     t.string   "perishable_token",   limit: 255
-    t.integer  "login_count",                    default: 0, null: false
+    t.integer  "login_count",                    default: 0,    null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip",   limit: 255
     t.string   "last_login_ip",      limit: 255
+    t.boolean  "active",                         default: true, null: false
   end
 
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true

@@ -29,4 +29,10 @@ class Admin < ActiveRecord::Base
   end
   # Symbols: $@$!%*?&
   validates_format_of :password, with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, allow_blank: true
+  
+  def deliver_password_reset_instructions!
+    reset_perishable_token!
+    Notifier.admin_password_reset_instructions(self).deliver
+  end
+  
 end
