@@ -10,6 +10,7 @@ class RegistrantValidator < ActiveModel::Validator
 
     reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
     reg.validates_format_of :email_address, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+    validate_email(reg)
     reg.validates_presence_of :phone_type if reg.has_phone?
 
      if reg.at_least_step_1?
@@ -174,6 +175,14 @@ class RegistrantValidator < ActiveModel::Validator
       return true
     end    
     return false
+  end
+  
+  def validate_email(reg)
+    unless reg.email_address.blank?
+      if EmailAddress.is_blacklisted?(reg.email_address)
+        reg.errors.add(:email_address, :invalid)
+      end
+    end
   end
   
   def validates_zip_code(reg, attr_name)

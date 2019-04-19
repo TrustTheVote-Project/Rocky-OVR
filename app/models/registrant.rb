@@ -1472,7 +1472,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def is_blacklisted(email_address)
-    email_address.to_s.downcase == "test@test.com" || EmailAddress.is_blacklisted?(email_address)
+    EmailAddress.is_blacklisted?(email_address)
   end
 
   def deliver_confirmation_email
