@@ -179,7 +179,7 @@ class RegistrantValidator < ActiveModel::Validator
   
   def validate_email(reg)
     unless reg.email_address.blank?
-      if EmailAddress.is_blacklisted?(reg.email_address)
+      if EmailAddress.is_blacklisted?(reg.email_address) && !reg.building_via_api_call?
         reg.errors.add(:email_address, :invalid)
       end
     end
