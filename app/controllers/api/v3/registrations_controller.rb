@@ -33,6 +33,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       :partner_id       => params[:partner_id],
       :partner_api_key  => params[:partner_API_key],
       :since            => params[:since],
+      :before           => params[:before],
       :email            => params[:email]
     }
 

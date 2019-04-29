@@ -11,33 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180827214401) do
+ActiveRecord::Schema.define(version: 20190329144200) do
+
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
     t.string   "email",              limit: 255
     t.string   "crypted_password",   limit: 255
     t.string   "password_salt",      limit: 255
     t.string   "persistence_token",  limit: 255
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.integer  "failed_login_count"
     t.string   "perishable_token",   limit: 255
-    t.integer  "login_count",                    default: 0, null: false
+    t.integer  "login_count",                    default: 0,    null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip",   limit: 255
     t.string   "last_login_ip",      limit: 255
+    t.boolean  "active",                         default: true, null: false
   end
 
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
   add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",               default: 0
-    t.integer  "attempts",               default: 0
-    t.text     "handler"
-    t.string   "last_error", limit: 255
+    t.integer  "priority",                    default: 0
+    t.integer  "attempts",                    default: 0
+    t.text     "handler",    limit: 16777215
+    t.text     "last_error", limit: 16777215
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
@@ -46,6 +48,17 @@ ActiveRecord::Schema.define(version: 20180827214401) do
     t.datetime "updated_at"
     t.string   "queue",      limit: 255
   end
+
+  create_table "email_addresses", force: :cascade do |t|
+    t.string   "email_address"
+    t.boolean  "blacklisted"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "email_addresses", ["blacklisted", "email_address"], name: "index_email_addresses_on_blacklisted_and_email_address"
+  add_index "email_addresses", ["blacklisted"], name: "index_email_addresses_on_blacklisted"
+  add_index "email_addresses", ["email_address"], name: "index_email_addresses_on_email_address"
 
   create_table "email_templates", force: :cascade do |t|
     t.integer  "partner_id",             null: false
@@ -59,26 +72,27 @@ ActiveRecord::Schema.define(version: 20180827214401) do
   add_index "email_templates", ["partner_id", "name"], name: "index_email_templates_on_partner_id_and_name", unique: true
 
   create_table "geo_states", force: :cascade do |t|
-    t.string   "name",                    limit: 21
-    t.string   "abbreviation",            limit: 2
+    t.string   "name",                            limit: 21
+    t.string   "abbreviation",                    limit: 2
     t.boolean  "requires_race"
     t.boolean  "requires_party"
     t.boolean  "participating"
     t.integer  "id_length_min"
     t.integer  "id_length_max"
-    t.string   "registrar_address",       limit: 255
-    t.string   "registrar_phone",         limit: 255
+    t.string   "registrar_address",               limit: 255
+    t.string   "registrar_phone",                 limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "registrar_url",           limit: 255
-    t.string   "online_registration_url", limit: 255
+    t.string   "registrar_url",                   limit: 255
+    t.string   "online_registration_url",         limit: 255
+    t.string   "online_registration_system_name"
   end
 
-  create_table "grommet_requests", :force => true do |t|
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+  create_table "grommet_requests", force: :cascade do |t|
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.text     "request_params"
-    t.string   "request_hash"
+    t.string   "request_hash",    limit: 255
     t.text     "request_headers"
   end
 
@@ -154,6 +168,17 @@ ActiveRecord::Schema.define(version: 20180827214401) do
   add_index "partners", ["persistence_token"], name: "index_partners_on_persistence_token"
   add_index "partners", ["username"], name: "index_partners_on_username"
   add_index "partners", ["whitelabeled"], name: "index_partners_on_whitelabeled"
+
+  create_table "pdf_deliveries", force: :cascade do |t|
+    t.integer  "registrant_id"
+    t.integer  "delivery_attempts"
+    t.boolean  "deliverd_to_printer"
+    t.boolean  "pdf_ready"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "pdf_deliveries", ["registrant_id"], name: "index_pdf_deliveries_on_registrant_id"
 
   create_table "pdf_generations", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -303,6 +328,12 @@ ActiveRecord::Schema.define(version: 20180827214401) do
   add_index "registrants", ["status"], name: "index_registrants_on_status"
   add_index "registrants", ["uid"], name: "index_registrants_on_uid"
 
+  create_table "ses_notifications", force: :cascade do |t|
+    t.text     "request_params"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string   "var",         limit: 255, null: false
     t.text     "value"
@@ -317,19 +348,19 @@ ActiveRecord::Schema.define(version: 20180827214401) do
   create_table "state_localizations", force: :cascade do |t|
     t.integer  "state_id"
     t.string   "locale",                    limit: 64
-    t.string   "parties",                   limit: 1024
+    t.string   "parties",                   limit: 20480
     t.string   "no_party",                  limit: 255
-    t.string   "not_participating_tooltip", limit: 1024
-    t.string   "race_tooltip",              limit: 1024
-    t.string   "id_number_tooltip",         limit: 1024
+    t.string   "not_participating_tooltip", limit: 20480
+    t.string   "race_tooltip",              limit: 20480
+    t.string   "id_number_tooltip",         limit: 20480
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "party_tooltip",             limit: 1024
-    t.string   "sub_18",                    limit: 1024
-    t.string   "registration_deadline",     limit: 1024
-    t.string   "pdf_instructions",          limit: 1024
-    t.string   "email_instructions",        limit: 1024
-    t.string   "pdf_other_instructions",    limit: 1024
+    t.string   "party_tooltip",             limit: 20480
+    t.string   "sub_18",                    limit: 20480
+    t.string   "registration_deadline",     limit: 20480
+    t.string   "pdf_instructions",          limit: 20480
+    t.string   "email_instructions",        limit: 20480
+    t.string   "pdf_other_instructions",    limit: 20480
   end
 
   add_index "state_localizations", ["state_id"], name: "index_state_localizations_on_state_id"
@@ -471,6 +502,9 @@ ActiveRecord::Schema.define(version: 20180827214401) do
     t.boolean  "has_mailing_address"
     t.boolean  "confirm_register_to_vote"
     t.string   "phone_type",                      limit: 255
+    t.boolean  "partner_opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_volunteer"
   end
 
   create_table "tracking_events", force: :cascade do |t|

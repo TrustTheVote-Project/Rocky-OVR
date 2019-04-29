@@ -210,4 +210,13 @@ module RegistrantMethods
     end
   end
   
+  def pdf_english_party_name
+    if self.respond_to?(:state_registrant) && state_registrant && state_registrant.has_other_party?
+      return state_registrant.other_party
+    else
+      return english_party_name
+    end    
+  end
+  
+
 end

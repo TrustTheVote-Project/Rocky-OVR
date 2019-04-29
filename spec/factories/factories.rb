@@ -206,8 +206,8 @@ FactoryGirl.define do
   factory :mass_assigned_partner, class: "partner" do
     sequence(:username)   { |n| "partner_#{n}" }
     email                 { |p| "#{p.username}@example.com" }
-    password              "password"
-    password_confirmation "password"
+    password              "MyP@ssw0rd"
+    password_confirmation "MyP@ssw0rd"
     name                  { |p| p.username && p.username.humanize }
     url                   { |p| "http://#{p.username}.example.com" }
     address               "123 Liberty Ave."

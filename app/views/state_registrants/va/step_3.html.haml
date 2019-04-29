@@ -47,13 +47,13 @@
 
   %fieldset#ssn_set
     %ul.flat.ssn
-      = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password} })
+      = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 11, maxlength: 11} })
       
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_ssn, class_name: "registrant-form__no-ssn__line", required: false}
     
   %fieldset#dln-set
     %ul.flat.dln
-      = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"} })
+      = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
     
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__no-ssn__line", required: false}
     

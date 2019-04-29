@@ -14,7 +14,7 @@ gem "aasm", "= 4.12.3"
 
 gem 'twilio-ruby', '~> 4.11.1'
 
-
+gem 'will_paginate'
 
 #gem 'utf8-cleaner'
 gem 'rack-robustness'
@@ -23,6 +23,9 @@ gem "authlogic", "= 4.3.0"
 gem 'daemons', '~> 1.1.9'
 gem "paperclip", "~> 5.3.0"
 gem 'mysql2', '~> 0.3.18'
+
+gem 'distribute_reads'
+
 
 gem "rubyzip", '~> 1.2.2'
 gem 'zip-zip'
@@ -83,6 +86,10 @@ group :development, :test do
   
   gem "assert_difference"
   
+end
+
+group :staging2, :staging, :production do
+  gem 'passenger', "= 5.3.4"
 end
 
 group :test do

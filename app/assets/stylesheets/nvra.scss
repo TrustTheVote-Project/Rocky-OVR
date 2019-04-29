@@ -50,6 +50,37 @@ span.smaller_prompt {
 	line-height:.6em;
 }
 
+//
+//We want to use a #10 envelope and we can get them with the window to the right. 
+//The placement of the window would be 1/2" up from bottom and 7/8" from the right
+//
+//The window is 1 1/8" x 4.5". The placement is 7/8" from the right and 1/2" from the bottom.
+
+#page_mailing_address {
+  height: 1100;
+  width: 850;
+  .address {
+    display: block;
+    margin-top: 1010px; //1100 - 50 - 112.5;
+    margin-left: 350px;
+    width: 465px;
+    height: 125px;
+    border: 0px solid #000;
+    font-size: $fs;
+    line-height: 1.5 * $fs
+  }
+}
+
+#state_instructinos {
+  font-size: 1.5 * $fs;
+  line-height: 3 * $fs;
+  padding: 2 * $fs;
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+}
 
 #page_1 {
 	#logo {

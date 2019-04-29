@@ -4,6 +4,7 @@ tl:
   language_name_translation_instructions: Mangyaring ibigay ang pangalan ng naisaling
     wika sa wikang ito. Halimbawa kung ikaw ay nagsasalin sa Hapon, ibigay ang salitang
     "Hapon" (ang pangalan ng wika).
+  required: " (Kailangan)"
   locales:
     bn:
       name: Bengali

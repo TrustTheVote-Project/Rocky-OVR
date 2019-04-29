@@ -1,0 +1,21 @@
+<h1>Reset Password</h1>
+
+<p>Fill out the form below and instructions to reset your password will be emailed to you.</p>
+
+<div class="login">
+  <%= form_tag :admin_password_resets, :id => "new_admin_password_resets" do %>
+    <fieldset>
+      <legend>Reset</legend>
+      <ul class="stacked">
+        <li class="width_a">
+          <h3><label>Email Address</label></h3>
+          <div><input type="text" value="" name="login" id="login"></div>
+          <span class="error"></span>
+        </li>
+      </ul>
+    </fieldset>
+    <div>
+      <%= partner_rollover_button("reset", "reset") %>
+    </div>
+  <% end %>
+</div>

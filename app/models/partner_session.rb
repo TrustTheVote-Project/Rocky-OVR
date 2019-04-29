@@ -27,4 +27,5 @@ class PartnerSession < Authlogic::Session::Base
   allow_http_basic_auth false
   
   logout_on_timeout true
+  consecutive_failed_logins_limit 10
 end

@@ -5,7 +5,6 @@ class PARegistrantValidator < ActiveModel::Validator
     if !reg.phone.blank?
       reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/
     end
-    #reg.validates_presence_of :phone_type if reg.has_phone?
 
     reg.validates_presence_of :phone_type if reg.has_phone?
 
@@ -62,6 +61,7 @@ class PARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of(:assistant_name)
         reg.validates_presence_of(:assistant_address)
         reg.validates_presence_of(:assistant_phone)
+        
         reg.validates_acceptance_of(:confirm_assistant_declaration, accept: true)
         if !reg.assistant_phone.blank?
           reg.errors.add(:assistant_phone, :invalid) unless  reg.assistant_phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/

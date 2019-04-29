@@ -55,5 +55,12 @@ class DownloadsController < RegistrationStep
       redirect_to pdf_path
     end
   end
+  
+  def pdf_assistance
+    find_registrant(:download)
+    @registrant.queue_pdf_delivery
+    # Render because we just assume it'll go through
+  end
+  
 
 end

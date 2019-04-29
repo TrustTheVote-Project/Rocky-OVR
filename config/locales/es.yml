@@ -2,6 +2,7 @@
 es:
   'yes': Sí
   'no': 'No'
+  required: " (Requerido)"
   affirm: NEED TRANSLATION
   decline: NEED TRANSLATION
   language_name: español

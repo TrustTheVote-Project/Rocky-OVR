@@ -2,6 +2,7 @@
 hi:
   language_name: हिन्दी
   language_name_translation_instructions: हिन्दी
+  required: " (माँगा हुआ)"
   locales:
     bn:
       name: बंगाली

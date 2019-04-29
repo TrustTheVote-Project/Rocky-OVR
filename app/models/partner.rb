@@ -204,6 +204,24 @@ class Partner < ActiveRecord::Base
   scope :government, -> { where(:is_government_partner=>true) }
   scope :standard, -> { where(:is_government_partner=>false) }
 
+  def self.deactivate_stale_partners!
+    partners = Partner.inactive.where("active != ?", false).each do |p|
+      p.active = false
+      p.save(validate: false)
+    end
+    
+    if partners.any?
+      AdminMailer.deactivate_partners(partners).deliver
+    end
+    
+  end
+
+  def self.inactive
+    date = 90.days.ago
+    active_partner_ids = Registrant.where("created_at > ? ", date).pluck(:partner_id)
+    active_partner_ids << DEFAULT_ID # Make sure main partner never gets deactivated
+    Partner.where("id not in (?) AND (last_login_at < ? OR last_login_at is NULL) AND (current_login_at < ? OR current_login_at IS NULL) AND updated_at < ?", active_partner_ids.uniq, date, date, date)
+  end
 
   def mobile_redirect_disabled
     self.id == 14557 
@@ -548,19 +566,38 @@ class Partner < ActiveRecord::Base
   def generate_registrants_csv(start_date=nil, end_date=nil)
     conditions = [[]]
     if start_date
-      conditions[0] << " created_at >= ? "
+      conditions[0] << " registrants.created_at >= ? "
       conditions << start_date
     end
     if end_date
-      conditions[0] << " created_at < ? "
+      conditions[0] << " registrants.created_at < ? "
       conditions << end_date + 1.day
     end
     conditions[0] = conditions[0].join(" AND ")
 
-    CSV.generate do |csv|
-      csv << Registrant::CSV_HEADER
-      registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-        csv << reg.to_csv_array
+    #preloads
+    
+    distribute_reads(failover: false) do
+      pa_registrants = {}
+      StateRegistrants::PARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_pa_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
+      va_registrants = {}
+      StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      
+      return CSV.generate do |csv|
+        csv << Registrant::CSV_HEADER
+        registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
+          if reg.use_state_flow?
+            sr  = nil
+            case reg.home_state_abbrev
+            when "PA"
+              sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
+            when "VA"
+              sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+            end
+            reg.instance_variable_set(:@existing_state_registrant, sr)
+          end
+          csv << reg.to_csv_array
+        end
       end
     end
   end
@@ -599,64 +636,66 @@ class Partner < ActiveRecord::Base
     end
     conditions[0] = conditions[0].join(" AND ")
     shift_ids = {}
-    registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-      shift_ids[reg.tracking_source] ||= {
-        registrations: 0,
-        email_opt_in: 0,
-        sms_opt_in: 0,
-        ssn_count: 0,
-        dl_count: 0
-      } #TrackingEvent.source_tracking_id
-      shift_ids[reg.tracking_source][:registrations] += 1
-      shift_ids[reg.tracking_source][:email_opt_in] += 1 if reg.partner_opt_in_email?
-      shift_ids[reg.tracking_source][:sms_opt_in] += 1 if reg.partner_opt_in_sms?
-      shift_ids[reg.tracking_source][:ssn_count] += 1 if reg.has_ssn?
-      shift_ids[reg.tracking_source][:dl_count] += 1 if reg.has_state_license?
-    end
-    clock_ins = TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_in")
-    clock_outs = {}
-    TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_out").each do |co|
-      clock_outs[co.source_tracking_id] = co
-    end
-    csvstr = CSV.generate do |csv|
-      csv << SHIFT_REPORT_HEADER
-      clock_ins.sort{|a,b| a.tracking_data["clock_in_datetime"] <=> b.tracking_data["clock_in_datetime"]}.each do |ci|
-        co = clock_outs[ci.source_tracking_id]
-        tracking_source = ci.source_tracking_id
-        counts = shift_ids[tracking_source]
-        row = []
-        row << eastern_time(ci.tracking_data["clock_in_datetime"])
-        row << tracking_source
-        row << ci.tracking_data["canvasser_name"]
-        row << ci.partner_tracking_id
-        row << ci.open_tracking_id
-        row << ci.tracking_data["device_id"]
-        row << (co ? co.tracking_data["completed_registrations"] : "")
-        row << (co ? co.tracking_data["abandoned_registrations"] : "")
-        row << counts[:registrations]
-        row << counts[:email_opt_in]
-        row << counts[:sms_opt_in]
-        row << counts[:dl_count]
-        row << '%.2f %' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
-        row << counts[:ssn_count]
-        row << '%.2f %' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
-        row << eastern_time(ci.tracking_data["clock_in_datetime"])
-        if co
-          row << eastern_time(co.tracking_data["clock_out_datetime"])
-          begin
-            shift_seconds = (Time.parse(co.tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])).to_f
-            row << shift_seconds / 3600.0
-          rescue
+    distribute_reads(failover: false) do
+      registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
+        shift_ids[reg.tracking_source] ||= {
+          registrations: 0,
+          email_opt_in: 0,
+          sms_opt_in: 0,
+          ssn_count: 0,
+          dl_count: 0
+        } #TrackingEvent.source_tracking_id
+        shift_ids[reg.tracking_source][:registrations] += 1
+        shift_ids[reg.tracking_source][:email_opt_in] += 1 if reg.partner_opt_in_email?
+        shift_ids[reg.tracking_source][:sms_opt_in] += 1 if reg.partner_opt_in_sms?
+        shift_ids[reg.tracking_source][:ssn_count] += 1 if reg.has_ssn?
+        shift_ids[reg.tracking_source][:dl_count] += 1 if reg.has_state_license?
+      end
+      clock_ins = TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_in")
+      clock_outs = {}
+      TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_out").each do |co|
+        clock_outs[co.source_tracking_id] = co
+      end
+      csvstr = CSV.generate do |csv|
+        csv << SHIFT_REPORT_HEADER
+        clock_ins.sort{|a,b|( a.tracking_data["clock_in_datetime"] || "") <=> (b.tracking_data["clock_in_datetime"] || "")}.each do |ci|
+          co = clock_outs[ci.source_tracking_id]
+          tracking_source = ci.source_tracking_id
+          counts = shift_ids[tracking_source]
+          row = []
+          row << eastern_time(ci.tracking_data["clock_in_datetime"])
+          row << tracking_source
+          row << ci.tracking_data["canvasser_name"]
+          row << ci.partner_tracking_id
+          row << ci.open_tracking_id
+          row << ci.tracking_data["device_id"]
+          row << (co ? co.tracking_data["completed_registrations"] : "")
+          row << (co ? co.tracking_data["abandoned_registrations"] : "")
+          row << counts[:registrations]
+          row << counts[:email_opt_in]
+          row << counts[:sms_opt_in]
+          row << counts[:dl_count]
+          row << '%.2f %' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
+          row << counts[:ssn_count]
+          row << '%.2f %' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
+          row << eastern_time(ci.tracking_data["clock_in_datetime"])
+          if co
+            row << eastern_time(co.tracking_data["clock_out_datetime"])
+            begin
+              shift_seconds = (Time.parse(co.tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])).to_f
+              row << shift_seconds / 3600.0
+            rescue
+              row << ""
+            end
+          else
+            row << ""
             row << ""
           end
-        else
-          row << ""
-          row << ""
+          csv << row
         end
-        csv << row
       end
+      return csvstr
     end
-    return csvstr
   end
   
   def generate_grommet_registrants_csv(start_date=nil, end_date=nil)
@@ -671,26 +710,28 @@ class Partner < ActiveRecord::Base
     end
     conditions[0] = conditions[0].join(" AND ")
 
-    CSV.generate do |csv|
-      csv << Registrant::GROMMET_CSV_HEADER
-      regs = []
-      reg_dups = {}
-      registrants.where(conditions).includes( [:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-        if reg.is_grommet?
-          key = "#{reg.first_name} #{reg.last_name} #{reg.home_address}"
-          reg_dups[key] ||= 0
-          reg_dups[key] += 1
-          regs << [reg.to_grommet_csv_array, key].flatten
+    distribute_reads(failover: false) do
+      return CSV.generate do |csv|
+        csv << Registrant::GROMMET_CSV_HEADER
+        regs = []
+        reg_dups = {}
+        registrants.where(conditions).includes( [:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
+          if reg.is_grommet?
+            key = "#{reg.first_name} #{reg.last_name} #{reg.home_address}"
+            reg_dups[key] ||= 0
+            reg_dups[key] += 1
+            regs << [reg.to_grommet_csv_array, key].flatten
+          end
         end
-      end
-      regs.each do |r|
-        key = r.pop
-        if reg_dups[key] > 1
-          r.insert(1, "true")
-        else
-          r.insert(1, "false")
+        regs.each do |r|
+          key = r.pop
+          if reg_dups[key] > 1
+            r.insert(1, "true")
+          else
+            r.insert(1, "false")
+          end
+          csv << r
         end
-        csv << r
       end
     end
   end
@@ -714,7 +755,7 @@ class Partner < ActiveRecord::Base
     "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.csv_file_name)}"    
   end
   def grommet_csv_url
-    "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.grommet_csv_file_name)}"    
+    "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.grommet_csv_file_name.to_s)}"    
   end
   
   def generate_registrants_csv_file(start_date=nil, end_date = nil)

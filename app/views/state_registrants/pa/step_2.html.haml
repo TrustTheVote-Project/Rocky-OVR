@@ -26,15 +26,8 @@
 
   = render partial: 'state_registrants/pa/header'
   
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true}
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__will-be-18-by-election__line", required: true}
   
-  %ul.flat
-    = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'registrant-form__date-of-birth__line'} })
-    
   = render partial: 'step2/name', locals: {form: form}
-  
-
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_name, class_name: "registrant-form__change-of-name__line", required: false, tooltip: :previous_name}
 
@@ -46,6 +39,17 @@
       = field_li(form, :previous_first_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-first-name__line'} , skip_tooltip: true })
       = field_li(form, :previous_middle_name, {required: false, label_options: nil, li_options: {class: 'registrant-form__prev-middle-name__line'}, skip_tooltip: true })
       = field_li(form, :previous_last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-last-name__line'} , skip_tooltip: true })
+
+  %br
+  %ul.flat
+    = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'registrant-form__date-of-birth__line'} })
+
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
+  
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__will-be-18-by-election__line", required: true, require_accepted: true}
+  
+
+
 
   
   %fieldset
@@ -97,12 +101,9 @@
       = field_li(form, :previous_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
       = field_li(form, :previous_zip_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
     %ul.stacked
-      = field_li(form, :previous_county, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__prev-county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })  
+      = field_li(form, :previous_county, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__prev-county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })
   
-        
-  
-  
-  %fieldset
+  %fieldset.phone
     %ul.stacked
       = field_li(form, :phone, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone__line"}})
       = field_li(form, :phone_type, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone-type__line"}, select_options: @registrant.phone_types,field_options: {include_blank: true} })

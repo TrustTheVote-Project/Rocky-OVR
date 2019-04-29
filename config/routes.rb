@@ -2,6 +2,7 @@ Rocky::Application.routes.draw do
   
   root :to => "registrants#landing"
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui", via: :get
+  match "/pdf_assistance_report", to: "application#pdf_assistance_report", via: :get, format: :csv
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout', via: :get
   match "/registrants/new/:state_abbrev", to: "registrants#new", via: :get
   match "/registrants/map", to: "registrants#new", via: :get
@@ -14,7 +15,7 @@ Rocky::Application.routes.draw do
   match "/state_registrants/:registrant_id/:step", to: "state_registrants#edit", as: "edit_state_registrant", via: :get
   match "/state_registrants/:registrant_id/:step", to: "state_registrants#update", as: "update_state_registrant", via: :patch
 
-  
+  match "/get-bounce-notification", to: "ses#bounce", via: [:get, :post]
   
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
@@ -25,6 +26,7 @@ Rocky::Application.routes.draw do
     resource "download", :only => :show do
       member do
         get 'pdf'
+        get 'pdf_assistance'
       end
     end
     resource "finish", :only => :show
@@ -75,6 +77,7 @@ Rocky::Application.routes.draw do
   
   
   resources "password_resets", :only => [:new, :create, :edit, :update]
+  resources :admin_password_resets, :only => [ :new, :create, :edit, :update ]
 
   resources "state_configurations", :only=>[:index, :show] do
     collection do
@@ -176,7 +179,8 @@ Rocky::Application.routes.draw do
         post :reject_request
       end
     end
-    resource  "admin_sessions"
+    resource  "admin_sessions" 
+    match 'reset_admin_passwords', to: "base#reset_admin_passwords", as: 'reset_admin_passwords', via: :get
     match  "login",  :to => "admin_sessions#new", :as=>'login', via: :get
     match "logout", :to => "admin_sessions#destroy", :as=>'logout', via: :get
 

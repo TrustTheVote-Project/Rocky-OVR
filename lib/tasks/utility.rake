@@ -4,6 +4,10 @@ namespace :utility do
     Registrant.process_ui_records
   end
   
+  desc "Stop any passenger processes that use too much memory"
+  task :cleanup_processes => :environment do
+    PassengerMonitor.cleanup
+  end
   
   desc "Mark all stale registrations as abandoned and redact sensitive data"
   task :timeout_stale_registrations => :environment do
@@ -24,6 +28,11 @@ namespace :utility do
   desc "Generate Reports for RTV"
   task :generate_rtv_reports, [:hours]  => [:environment] do |t, args|
     ReportGenerator.send("generate_#{args[:hours]}")
+  end
+  
+  desc "Deactivate partners without recent registrations"
+  task :deactivate_stale_partners => :environment do
+    Partner.deactivate_stale_partners!
   end
   
 end

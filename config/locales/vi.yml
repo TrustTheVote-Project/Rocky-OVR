@@ -2,6 +2,7 @@
 vi:
   language_name: Tiếng Anh
   language_name_translation_instructions: Tiếng Anh
+  required: " (Yêu cầu)"  
   locales:
     bn:
       name: Bengali

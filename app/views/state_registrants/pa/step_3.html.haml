@@ -219,6 +219,8 @@
 
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
 
+  %br
+  
   %ul.flat.party-dropdown
     = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
     
@@ -234,7 +236,7 @@
     %ul.flat.penndot-number
       - if @registrant.penndot_retries > 0
         - @registrant.errors.add(:penndot_number, :pa_invalid)
-      = field_li(form, :penndot_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__penndot-number__line"} })
+      = field_li(form, :penndot_number, {skip_tooltip: true, required: true, field_options: {size: 12, maxlength: 8}, li_options: {class: "registrant-form__penndot-number__line"} })
           
     %p.instructions
       = I18n.t('states.custom.pa.penndot_number_instructions')
@@ -356,7 +358,7 @@
   %br
   %fieldset#ssn4_set
     %ul.flat.ssn4
-      = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"} })
+      = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"}, field_options: {size: 6, maxlength: 4} })
       
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dl_or_ssn, class_name: "registrant-form__no-ssn4__line", required: false}
       

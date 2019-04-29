@@ -1,0 +1,8 @@
+<%- if @registrant.can_request_pdf_assistance? %>
+<div class="assistance-with-printing download">
+  <h2><%= I18n.t('txt.registration.instructions.download_assitance_header') %></h2>
+  <p class="centered" onclick="window.open('<%=pdf_assistance_registrant_download_path(@registrant)%>','_blank'); window.location='<%= registrant_finish_path(@registrant) %>';"><%= rollover_image_link(:get_assistance, I18n.t('txt.button.download_assistance'), pdf_assistance_registrant_download_path(@registrant),
+                            :target => "_blank") %></p>
+  <p><%= I18n.t('txt.registration.instructions.download_assitance') %></p>
+</div>
+<%- end %>

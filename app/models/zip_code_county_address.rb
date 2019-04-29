@@ -90,7 +90,10 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     # "type"=>"name" == "Voter Registration Mailing Address"
     if office["addresses"] && office["addresses"].is_a?(Array)
       # additional_address = office["addresses"].find {|addr| addr["type"] && addr["type"]["name"]=="Voter Registration Mailing Address"}
-      dom_vr_address = office["addresses"].find {|addr| (addr["functions"] || []).include?("DOM_VR")}
+      # Look for is_regular_mail first
+      dom_vr_address = office["addresses"].find {|addr| addr["is_regular_mail"] && (addr["functions"] || []).include?("DOM_VR")}
+      # Otherwise take the first that includes DOM_VR
+      dom_vr_address ||= office["addresses"].find {|addr| (addr["functions"] || []).include?("DOM_VR")}
       if dom_vr_address
         return dom_vr_address
       end
