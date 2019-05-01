@@ -286,7 +286,7 @@ household member."
             prev_zip_code:
               invalid: Use ZIP or ZIP+4
             email_address:
-              invalid: Not a valid address
+              invalid: Not a valid email
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
@@ -329,7 +329,7 @@ household member."
       login_invalid: Username should use only letters, numbers, spaces, and .-_@ please.
       consecutive_failed_logins_limit_exceeded: Consecutive failed logins limit exceeded,
         account is disabled.
-      email_invalid: Email is not a valid address.
+      email_invalid: Email is not valid.
       password_blank: Password can not be blank.
       password_invalid: Login/password combination is not valid.
       not_active: Your account is not active.
