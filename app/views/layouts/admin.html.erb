@@ -22,7 +22,8 @@
           <%= link_to "Dashboard", admin_partners_path, class: @nav_class[:dashboard] %>|
           <%= link_to "Grommet Queue", admin_grommet_queue_path, class: @nav_class[:grommet_queue] %>|
           <%= link_to "Whitelabel requests (#{branding_open_requests_count})", requests_admin_whitelabel_path, class: @nav_class[:whitelabel] %>|
-          <%= link_to "PDF Download Stats", downloads_admin_stats_path, class: @nav_class[:statistics] %>
+          <%= link_to "PDF Download Stats", downloads_admin_stats_path, class: @nav_class[:statistics] %>|
+          <%= link_to "Blocked Emails", admin_emails_path, class: @nav_class[:emails] %>
         </p>
       </div>
     <% else %>
