@@ -30,7 +30,6 @@ ul.affirm  .disclosures li {
 <%- if @registrant.covr_success %>
   <h1><%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %></h1>
   <br/>
-  <h3 class="ovr_step_4"><%= I18n.t('txt.registration.instructions.state_online_registration_sub_header').html_safe %></h3>
   <%= form.hidden_field :covr_token %>
   <%= form.hidden_field :covr_success %>
   <ul class="affirm">

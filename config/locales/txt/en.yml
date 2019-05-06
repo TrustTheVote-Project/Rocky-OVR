@@ -25,8 +25,7 @@ en:
       share_facebook: Post It!
       share_twitter: Tweet It!
       share_google_buzz: Share on Google!
-      state_online_registration: I'd like to submit<br/> my form online with<br/>
-        %{state} now.
+      state_online_registration: Finish your<br/>voter registration<br/> online with %{state}.
       skip_state_online_registration: ! '&gt; No Thanks, I''ll continue with %{rtv_and_partner_name}
         and send in my form later.'
     registration:
@@ -146,8 +145,7 @@ en:
         finish_tell_recipients: (separated by commas)
         finish_email_sent: Email sent!
         finish_update_status: Don't forget to update your status on Facebook and Twitter!
-        state_online_registration: Hang on. You are eligible to register online in
-          your state.
+        state_online_registration: Because you have a %{state} ID, you are eligible to complete your registration online with your state.
         state_online_registration_sub_header: Click below to complete the registration
           process right now with your state.
         leave_state_online_registration: You can complete your voter registration

@@ -208,17 +208,8 @@ body {
     
   .step_4 {
     h1 {
-      text-transform: uppercase;
-      display: block;
-      height: auto;
       text-align: center;
-      font-size: 24px;
-      color: #c62129;
-      background: black; 
-      padding: 15px 3px;
-      line-height: 1.4em;
-      width: 80%;
-      margin: 0px auto;
+      line-height: 1.6em;
     }
     h3.ovr_step_4 {
       color: #666;
@@ -229,6 +220,10 @@ body {
       line-height: 1.4em;
       
       width: 70%;
+    }
+
+    .rollover_button button {
+      line-height: 1.35em;
     }
     
     ul {
