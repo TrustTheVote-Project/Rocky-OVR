@@ -34,14 +34,14 @@ function validateBooleanField(errorMessage) {
     return
   }
   var val = $(field).is(":checked")
-  console.log(val)
+  //console.log(val)
   var parent = $(field).parent()
   var errorField = $(field).siblings(".error")
   var currentError = errorField.text();
   var messageIdx = currentError.indexOf(errorMessage)
   if (!val) {
     // Add if not present
-    console.log("hi", errorMessage, errorField)
+    //console.log("hi", errorMessage, errorField)
     if (messageIdx == -1) {
       errorField.text([currentError, errorMessage].join(" "))
     }       
@@ -52,7 +52,7 @@ function validateBooleanField(errorMessage) {
       currentError.splice(messageIdx, errorMessage.length)
       errorField.text(currentError.join(''))
     } 
-    console.log(errorField.text())
+    //console.log(errorField.text())
     if (errorField.text().replace(/\s/g, '') == '') {
       parent.removeClass('has_error') 
     }

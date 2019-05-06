@@ -82,7 +82,7 @@ module RegistrantMethods
     if @raw_date_of_birth
       @raw_date_of_birth
     elsif date_of_birth
-      "%d-%d-%d" % [date_of_birth.month, date_of_birth.mday, date_of_birth.year]
+      "%02d-%02d-%d" % [date_of_birth.month, date_of_birth.mday, date_of_birth.year]
     else
       nil
     end
