@@ -15,7 +15,8 @@
           queryString = queryString + key + "=" + value;
         }
       }
-      var url = "<%= Rails.env.development? ? 'http' : 'https' %>://<%= RockyConf.ui_url_host %>";
+      var baseUrl = "<%= Rails.env.development? ? 'http' : 'https' %>://<%= RockyConf.ui_url_host %>";
+      var url = baseUrl;
       if (queryString != "") {
         url = url + "?" + queryString;
       }
@@ -23,11 +24,12 @@
 
       var script = w.document.createElement('script');
       script.onload = this.onScriptLoad.bind(this);
-      script.src = "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.1.1/iframeResizer.js";
+      var scriptUrl = "<%= asset_url 'iframeResizer.min.js' %>";
+      script.src = scriptUrl //baseUrl + "/assets/iframeResizer.min.js";
       w.document.head.appendChild(script);
     },
     onScriptLoad: function() {
-      iFrameResize({ log: true, checkOrigin: false }, "#" + this.id)
+      iFrameResize({ log: <%= Rails.env.development? %>, checkOrigin: false }, "#" + this.id)
     },
     
   }
