@@ -19,7 +19,7 @@
       if (queryString != "") {
         url = url + "?" + queryString;
       }
-      document.write("<iframe id=\""+this.id+"\"src=\""+url+"\" width=\"100%\" scrolling=\"no\" height=\"400\" frameborder=\"0\"></iframe")
+      document.write("<iframe id=\""+this.id+"\"src=\""+url+"\" width=\"100%\" scrolling=\"no\" height=\"400\" frameborder=\"0\"></iframe>")
 
       var script = w.document.createElement('script');
       script.onload = this.onScriptLoad.bind(this);
