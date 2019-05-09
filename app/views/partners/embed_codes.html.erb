@@ -33,11 +33,28 @@
   <form class="copy_html" action="#" method="get" accept-charset="utf-8">   
     
     <div>
-      <h2><label for="image_link_html">Add an iFrame:</label></h2>
+      <h2><label for="image_link_html">Add our Javascript Coe:</label></h2>
       <p class="plain_text">
-        The code will let you embed the registration experience on your website.
+        Place this script tag in the <head> of your HTML:
       </p>
-      <p><textarea name="iframe_html" readonly="readonly" rows="10" ><%= h @iframe_html %></textarea></p>      
+      <p><textarea name="js_src" readonly="readonly" rows="4" ><%= h @js_src_tag %></textarea></p>      
+      <p class="plain_text">
+        Place this script code wherever you want the registration form to show up.
+      </p>
+      <p><textarea name="js_script" readonly="readonly" rows="6" ><%= h @js_script %></textarea></p>      
+      <p class="plain_text">
+        Other optional parameters include:
+      </p>
+      <textarea name="js_script" readonly="readonly" rows="10" >
+source: "string",
+tracking: "string",
+state: "string", // 2-letter state abbreviation (capital letters) e.g. "CA"
+home_zip_code: "string", // 5-digit zip code
+email_address: "string",
+first_name: "string",
+last_name: "string",
+locale: "string" // 2-letter locale code (lower case) e.g. "es"
+      </textarea>
     </div>
     
     
