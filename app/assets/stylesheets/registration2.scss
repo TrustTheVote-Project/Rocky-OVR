@@ -501,6 +501,23 @@ body {
         }
         &.registrant-form__date-of-birth__line {
           width: 25%;
+          &--month {
+            h3 {
+              width: 300%;
+            }
+          }
+          &--month, &--day {
+            width: 2em;
+          }
+          &--day, &--year {
+            .tooltip, h3 * {
+              display: none;
+            }            
+          }
+          &--year {
+            width: 4em;
+          }
+          
         }
         &.registrant-form__race__line {
           width: 85%;

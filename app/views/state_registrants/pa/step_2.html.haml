@@ -42,7 +42,9 @@
 
   %br
   %ul.flat
-    = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'registrant-form__date-of-birth__line'} })
+    = field_li(form, :date_of_birth_month, {required: true, label_options: nil, field_name: :date_of_birth, field_options: {:value => form.object.date_of_birth&.month, placeholder: 'MM', type: 'tel'}, li_options: {class: 'registrant-form__date-of-birth__line registrant-form__date-of-birth__line--month'} })
+    = field_li(form, :date_of_birth_day, {required: true, label_options: nil, field_options: {:value => form.object.date_of_birth&.day, placeholder: 'DD', type: 'tel'}, li_options: {class: 'registrant-form__date-of-birth__line registrant-form__date-of-birth__line--day'} })
+    = field_li(form, :date_of_birth_year, {required: true, label_options: nil, field_options: {:value => form.object.date_of_birth&.year, placeholder: 'YYYY', type: 'tel'}, li_options: {class: 'registrant-form__date-of-birth__line registrant-form__date-of-birth__line--year'} })
 
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
   

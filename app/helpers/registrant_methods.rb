@@ -76,7 +76,32 @@ module RegistrantMethods
     write_attribute(:date_of_birth, dob)
   end
 
+  def date_of_birth_day=(string_value)
+    @date_of_birth_day= string_value
+    set_date_of_birth_from_parts
+  end
+  def date_of_birth_month=(string_value)
+    @date_of_birth_month= string_value
+    set_date_of_birth_from_parts
+  end
+  def date_of_birth_year=(string_value)
+    @date_of_birth_year= string_value
+    set_date_of_birth_from_parts
+  end
   
+  def date_of_birth_from_parts
+    "%02d-%02d-%d" % [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year]
+  end
+  
+  def date_of_birth_parts
+    [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year]
+  end
+  
+  def set_date_of_birth_from_parts
+    if date_of_birth_parts.compact.length == 3
+      self.date_of_birth = date_of_birth_from_parts      
+    end
+  end
   
   def form_date_of_birth
     if @raw_date_of_birth
@@ -103,6 +128,7 @@ module RegistrantMethods
       errors.add(:date_of_birth, :blank)
     else
       @raw_date_of_birth = date_of_birth_before_type_cast
+      raise @raw_date_of_birth.to_s
       date = nil
       if matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
         m,d,y = matches.captures
