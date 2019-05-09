@@ -445,7 +445,7 @@ class VRToPA
     line1 = [line1, unit].compact.join(", ")
     line2 = get_line2_from_address(read([:mailing_address]))
     line2 = line2.blank? ? nil : line2
-    return [line1, line2].compact.join(", ")
+    return [line1, line2].compact.join("\n")
   end
 
   def address_update
