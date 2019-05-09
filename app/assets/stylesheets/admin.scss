@@ -31,3 +31,17 @@ table.assets .name {
 }
 
 @import '_partner_whitelabel';
+
+table.emails {
+  margin: 1em 0 2em;
+  tr {
+    td {
+      border-top: 1px solid #ccc;
+    }
+    &:hover {
+      td {
+        background-color: #ccccff;
+      }
+    }
+  }
+}
