@@ -11,7 +11,15 @@
   <h2><%= I18n.t('txt.registration.instructions.download_2') %></h2>
   <p class="centered" onclick="window.open('<%=pdf_registrant_download_path(@registrant)%>','_blank'); window.location='<%= registrant_finish_path(@registrant) %>';"><%= rollover_image_link(:print, I18n.t('txt.button.download'), pdf_registrant_download_path(@registrant),
                             :target => "_blank") %></p>
-  <p><%= I18n.t('txt.registration.instructions.download') %></p>
+  <p>
+    <%- if !@registrant.home_state.online_reg_enabled?(@registrant.locale) %>
+      <%= I18n.t('txt.registration.instructions.state_not_enabled_download', state: @registrant.home_state.name) %>
+    <%- elsif !@registrant.has_state_license? && @registrant.will_be_18_by_election? %>
+      <%= I18n.t('txt.registration.instructions.no_id_download', state: @registrant.home_state.name) %>
+    <% else %>
+      <%= I18n.t('txt.registration.instructions.download', state: @registrant.home_state.name) %>
+    <% end %>
+  </p>
 </div>
 
 <div id="download_no_js">
