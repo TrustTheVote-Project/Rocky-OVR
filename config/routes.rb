@@ -159,6 +159,9 @@ Rocky::Application.routes.draw do
       get :request_report, format: :csv
       patch :update_delay
     end
+    resources :emails, except: [:new, :edit, :show ]
+    resources :domains, except: [:new, :edit, :show, :index]
+    
     resources :partners do
       member do
         get :regen_api_key
