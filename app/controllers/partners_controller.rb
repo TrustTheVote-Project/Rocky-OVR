@@ -101,6 +101,15 @@ HTML
 </a>
 <script type="text/javascript" src="https://register2.rockthevote.com#{widget_loader_path}"></script>
 HTML
+    @js_src_tag = "<script type=\"text/javascript\"  src=\"https://#{RockyConf.ui_url_host}/assets/rtv-iframe.js\"></script>"
+    @js_script =
+<<-SCRIPT
+<script type="text/javascript">
+    RtvIframe.init({
+      partner: #{partner_id}
+    })
+</script>
+SCRIPT
 
     @iframe_html = "<iframe src=\"https://register.rockthevote.com/?partner=#{partner_id}&source=iframe\" width=\"100%\" height=\"1200\" marginheight=\"0\" frameborder=\"0\"></iframe>"
     
