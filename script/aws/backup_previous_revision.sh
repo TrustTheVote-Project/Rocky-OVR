@@ -6,4 +6,4 @@ sudo chgrp ec2-user /var/www/rocky-last-deploy
 sudo mkdir -p /var/www/rocky
 sudo chown ec2-user /var/www/rocky
 sudo chgrp ec2-user /var/www/rocky
-cp -rf /var/www/rocky /var/www/rocky-last-deploy
+rm /var/www/rocky-last-deploy/rocky/public/pdf & cp -r /var/www/rocky /var/www/rocky-last-deploy
