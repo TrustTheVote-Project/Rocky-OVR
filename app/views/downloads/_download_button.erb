@@ -12,7 +12,7 @@
   <p class="centered" onclick="window.open('<%=pdf_registrant_download_path(@registrant)%>','_blank'); window.location='<%= registrant_finish_path(@registrant) %>';"><%= rollover_image_link(:print, I18n.t('txt.button.download'), pdf_registrant_download_path(@registrant),
                             :target => "_blank") %></p>
   <p>
-    <%- if !@registrant.home_state.online_reg_enabled?(@registrant.locale) %>
+    <%- if !@registrant.home_state.online_reg_enabled?(@registrant.locale) && !@registrant.home_state.use_state_flow?(@registrant)%>
       <%= I18n.t('txt.registration.instructions.state_not_enabled_download', state: @registrant.home_state.name) %>
     <%- elsif !@registrant.has_state_license? && @registrant.will_be_18_by_election? %>
       <%= I18n.t('txt.registration.instructions.no_id_download', state: @registrant.home_state.name) %>
