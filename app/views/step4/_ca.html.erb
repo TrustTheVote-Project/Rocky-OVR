@@ -52,7 +52,7 @@ ul.affirm  .disclosures li {
       <div class="error"><%= form.object.errors[:ca_disclosures].join("\n") %></div>
     </li>
   </ul>
-    <%= rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev), {:id=>'registrant_state_online_registration',:name=>'registrant_state_online_registration',:value=>'registrant_state_online_registration'}) %>  
+    <%= rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_name), {:id=>'registrant_state_online_registration',:name=>'registrant_state_online_registration',:value=>'registrant_state_online_registration'}) %>  
     <script>
       function testCaDisclosures() {
         if ($("#registrant_ca_disclosures").get(0).checked) {
