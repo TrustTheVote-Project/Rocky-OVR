@@ -33,15 +33,12 @@
   <form class="copy_html" action="#" method="get" accept-charset="utf-8">   
     
     <div>
-      <h2><label for="image_link_html">Add our Javascript Coe:</label></h2>
+      <h2><label for="image_link_html">Add our embed code:</label></h2>
       <p class="plain_text">
-        Place this script tag in the <head> of your HTML:
+        Place this script tag in the &lt;body&gt; of your HTML where you want the interface to display:
       </p>
-      <p><textarea name="js_src" readonly="readonly" rows="4" ><%= h @js_src_tag %></textarea></p>      
-      <p class="plain_text">
-        Place this script code wherever you want the registration form to show up.
-      </p>
-      <p><textarea name="js_script" readonly="readonly" rows="6" ><%= h @js_script %></textarea></p>      
+      <p><textarea name="js_src" readonly="readonly" rows="10" ><%= h @js_src_tag %>
+<%= h @js_script %></textarea></p>      
       <p class="plain_text">
         Other optional parameters include:
       </p>
