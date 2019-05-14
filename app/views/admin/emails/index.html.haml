@@ -1,0 +1,53 @@
+%h3 Blocked Domains
+%br
+= form_for @new_domain, url: admin_domains_path do |f|
+  = f.text_field :domain
+  - if @new_domain.errors[:domain].any?
+    .error
+      = @new_domain.errors[:domain].join("<br/>").html_safe
+  %br
+  = f.submit "Add Domain To Block List"
+  
+%table.emails
+  %thead
+    %tr
+      %th Domain
+      %th Blocked?
+      %th
+  %tbody
+    - @domains.each do |d|
+      %tr
+        %td= d.domain
+        %td= d.blacklisted?
+        %td
+          = link_to "Remove from block list", admin_domain_path(d), method: :delete, confirm: "Are you sure you want to remove domain #{d.domain} from the block list?"
+          
+          
+%h3 Blocked Emails
+%br
+
+= form_for @new_email, url: admin_emails_path do |f|
+  = f.text_field :email_address
+  - if @new_email.errors[:email_address].any?
+    .error
+      = @new_email.errors[:email_address].join("<br/>").html_safe
+  %br
+  = f.submit "Add Email To Block List"
+%table.emails
+  %thead
+    %tr
+      %th Email
+      %th Blocked?
+      %th
+  %tbody
+    %tr
+      %td test@test.com
+      %td true
+      %td Hard-coded, cannot remove
+    - @emails.each do |email|
+      %tr
+        %td= email.email_address
+        %td= email.blacklisted?
+        %td
+          = link_to "Remove from block list", admin_email_path(email), method: :delete, confirm: "Are you sure you want to remove #{email.email_address} from the block list?"
+          

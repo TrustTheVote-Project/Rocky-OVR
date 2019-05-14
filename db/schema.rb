@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190329144200) do
+ActiveRecord::Schema.define(version: 20190419174516) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 20190329144200) do
   add_index "email_addresses", ["blacklisted", "email_address"], name: "index_email_addresses_on_blacklisted_and_email_address"
   add_index "email_addresses", ["blacklisted"], name: "index_email_addresses_on_blacklisted"
   add_index "email_addresses", ["email_address"], name: "index_email_addresses_on_email_address"
+
+  create_table "email_domains", force: :cascade do |t|
+    t.string   "domain"
+    t.boolean  "blacklisted"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "email_domains", ["blacklisted", "domain"], name: "index_email_domains_on_blacklisted_and_domain"
+  add_index "email_domains", ["blacklisted"], name: "index_email_domains_on_blacklisted"
+  add_index "email_domains", ["domain"], name: "index_email_domains_on_domain"
 
   create_table "email_templates", force: :cascade do |t|
     t.integer  "partner_id",             null: false

@@ -46,7 +46,7 @@ mobile_browsers:
 widget_loader_url: https://s3.amazonaws.com/ovr/widget_loader.js
 hours_before_first_reminder: 24
 hours_between_first_and_second_reminder: 24
-hours_between_second_and_final_reminder: 24
+hours_between_second_and_final_reminder: 48
 minutes_before_abandoned: 30
 # hours_before_first_reminder: 1
 # hours_between_first_and_second_reminder: 1
@@ -130,13 +130,13 @@ ovr_states:
   DC:
     redirect_to_online_reg_url: true
     languages:
-      - en    
+      - en
   DE:
     redirect_to_online_reg_url: true
     require_age_confirmation: true
     require_id: false
     languages:
-      - en    
+      - en
   FL:
     redirect_to_online_reg_url: true
     languages:
