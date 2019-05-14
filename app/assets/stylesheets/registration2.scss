@@ -501,14 +501,14 @@ body {
           margin-right: 0%;
         }
         &.registrant-form__date-of-birth__line {
-          width: 25%;
+          margin-right: 5px;
           &--month {
             h3 {
-              width: 300%;
+              width: 50px * 2 + 70px + 5px *3;
             }
           }
           &--month, &--day {
-            width: 2em;
+            width: 50px;
           }
           &--day, &--year {
             .tooltip, h3 * {
@@ -516,7 +516,8 @@ body {
             }            
           }
           &--year {
-            width: 4em;
+            width: 70px;
+            margin-right: 5px + $tooltip-offset;
           }
           
         }
@@ -529,7 +530,7 @@ body {
         }
         
         &.registrant-form__phone__line {
-          width: 60%;
+          width: 50%;
           margin-right: 5%;          
         }
         &.registrant-form__phone-type__line {
@@ -608,12 +609,10 @@ body {
     ul.flat.dob-and-phone {
       li, li.width_f {
         &.registrant-form__date-of-birth__line {
-          width: 25%;
-          margin-right: 5%;
         }
       
         &.registrant-form__phone__line {
-          width: 45%;
+          width: 30%;
           margin-right: 5%;          
         }
         &.registrant-form__phone-type__line {

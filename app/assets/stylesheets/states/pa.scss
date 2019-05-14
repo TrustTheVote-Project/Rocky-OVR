@@ -257,20 +257,7 @@
     
     ul, ul.flat {
       li.registrant-form__date-of-birth__line {
-        width: 130px;
-        &--month {
-          h3 {
-            width: 130px;
-          }
-        }
-        &--month, &--day {
-          width: 50px;
-          margin-right: 10px;
-        }
-        &--year {
-          width: 100px;
-          margin-right: 10px;
-        }
+        
       }
       li.registrant-form__home-address__line {
         width: 100%;

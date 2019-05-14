@@ -80,13 +80,11 @@ $mobile-min-width: 300px - $tooltip-offset;
             }
             li, li.width_f {
               &.registrant-form__date-of-birth__line {
-                width: 100%;
               }
             }
             &.dob-and-phone {
               li, li.width_f {
                 &.registrant-form__date-of-birth__line {
-                  width: 100%;
                 }
                 &.registrant-form__phone__line {
                   width: 55%;
