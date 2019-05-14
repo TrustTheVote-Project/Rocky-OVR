@@ -146,6 +146,7 @@ en:
         finish_email_sent: Email sent!
         finish_update_status: Don't forget to update your status on Facebook and Twitter!
         state_online_registration: Because you have a %{state} ID, you are eligible to complete your registration online with your state.
+        state_online_registration_id_not_required: You are eligible to complete your registration online with %{state}.
         state_online_registration_sub_header: Click below to complete the registration
           process right now with your state.
         leave_state_online_registration: You can complete your voter registration

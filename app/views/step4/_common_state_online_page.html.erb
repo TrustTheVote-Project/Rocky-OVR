@@ -15,7 +15,13 @@ $(document).ready(function() {
 </script>
 <% end %>
 
-<h1><%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %></h1>
+<h1>
+  <%- if @registrant.home_state.require_id? %>
+    <%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %>
+  <%- else %>
+    <%= I18n.t('txt.registration.instructions.state_online_registration_id_not_required', :state=>@registrant.home_state_abbrev).html_safe %>
+  <%- end %>
+</h1>
 <br/>
 
 
