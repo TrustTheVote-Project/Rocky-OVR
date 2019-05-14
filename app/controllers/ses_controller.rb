@@ -5,7 +5,8 @@ class SesController < ApplicationController
     json = params
     begin     
       json = JSON.parse(request.raw_post)
-    rescue
+    rescue Exception => e
+      raise e
     end
     SesNotification.create(request_params: json)
     #logger.info "bounce callback from AWS with #{json}"
@@ -19,11 +20,13 @@ class SesController < ApplicationController
       http.get(uri.request_uri)
     else
       # Process bounces
-      json['bounce']['bouncedRecipients'].each do |recipient|
-        #logger.info "AWS SES received a bounce on an email send attempt to #{recipient['emailAddress']}"
-        e = EmailAddress.find_or_create_by(email_address: recipient['emailAddress'].to_s.strip)
-        e.blacklisted = true
-        e.save
+      if json['bounce'] && json['bounce']['bouncedRecipients']
+        json['bounce']['bouncedRecipients'].each do |recipient|
+          #logger.info "AWS SES received a bounce on an email send attempt to #{recipient['emailAddress']}"
+          e = EmailAddress.find_or_create_by(email_address: recipient['emailAddress'].to_s.strip)
+          e.blacklisted = true
+          e.save
+        end
       end
     end
     render nothing: true, status: 200
