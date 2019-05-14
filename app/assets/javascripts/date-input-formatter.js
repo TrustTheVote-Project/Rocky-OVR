@@ -1,5 +1,5 @@
 var formatPartialDateInput = function(el, event) {
-  console.log(el, event);
+  //console.log(el, event);
   if (event.type=='propertychange' && event.originalEvent.propertyName != 'value') {
     return
   }
@@ -27,7 +27,7 @@ var formatPartialDateInput = function(el, event) {
     }    
   }
   if (!isYear && input.length == 2 && isValid) {
-    $(el).parents(".registrant-form__date-of-birth__line").next('.registrant-form__date-of-birth__line').find("input").focus();
+    $(el).next("input").focus();
   }
   if (!isYear && input.length > 2) {
     input = input.substr(0,2)

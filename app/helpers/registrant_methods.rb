@@ -98,7 +98,7 @@ module RegistrantMethods
   end
   
   def set_date_of_birth_from_parts
-    if date_of_birth_parts.compact.length == 3
+    if date_of_birth_parts.collect{|p| p.blank? ? nil : p }.compact.length == 3
       self.date_of_birth = date_of_birth_from_parts      
     end
   end
