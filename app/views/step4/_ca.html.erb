@@ -28,9 +28,14 @@ ul.affirm  .disclosures li {
 
 
 <%- if @registrant.covr_success %>
-  <h1><%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %></h1>
+  <h1>  
+    <%- if @registrant.home_state.require_id? %>
+      <%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %>
+    <%- else %>
+      <%= I18n.t('txt.registration.instructions.state_online_registration_id_not_required', :state=>@registrant.home_state_abbrev).html_safe %>
+    <%- end %>
+  </h1>
   <br/>
-  <h3 class="ovr_step_4"><%= I18n.t('txt.registration.instructions.state_online_registration_sub_header').html_safe %></h3>
   <%= form.hidden_field :covr_token %>
   <%= form.hidden_field :covr_success %>
   <ul class="affirm">
@@ -53,7 +58,7 @@ ul.affirm  .disclosures li {
       <div class="error"><%= form.object.errors[:ca_disclosures].join("\n") %></div>
     </li>
   </ul>
-    <%= rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev), {:id=>'registrant_state_online_registration',:name=>'registrant_state_online_registration',:value=>'registrant_state_online_registration'}) %>  
+    <%= rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_name), {:id=>'registrant_state_online_registration',:name=>'registrant_state_online_registration',:value=>'registrant_state_online_registration'}) %>  
     <script>
       function testCaDisclosures() {
         if ($("#registrant_ca_disclosures").get(0).checked) {

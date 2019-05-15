@@ -209,17 +209,8 @@ body {
     
   .step_4 {
     h1 {
-      text-transform: uppercase;
-      display: block;
-      height: auto;
       text-align: center;
-      font-size: 24px;
-      color: #c62129;
-      background: black; 
-      padding: 15px 3px;
-      line-height: 1.4em;
-      width: 80%;
-      margin: 0px auto;
+      line-height: 1.6em;
     }
     h3.ovr_step_4 {
       color: #666;
@@ -230,6 +221,10 @@ body {
       line-height: 1.4em;
       
       width: 70%;
+    }
+
+    .rollover_button button {
+      line-height: 1.35em;
     }
     
     ul {
@@ -507,6 +502,11 @@ body {
         }
         &.registrant-form__date-of-birth__line {
           width: 25%;
+          input {
+            width: auto;
+            padding: 5px 5px;
+            text-align: center;
+          }
         }
         &.registrant-form__race__line {
           width: 85%;
@@ -662,10 +662,10 @@ body {
 
   .download p {
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 3em;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 15px;
+    margin-top: 3em;
   	line-height: 1.6em;
     text-align: center;
     color: $grey;

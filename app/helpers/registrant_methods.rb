@@ -76,13 +76,38 @@ module RegistrantMethods
     write_attribute(:date_of_birth, dob)
   end
 
+  def date_of_birth_day=(string_value)
+    @date_of_birth_day= string_value
+    set_date_of_birth_from_parts
+  end
+  def date_of_birth_month=(string_value)
+    @date_of_birth_month= string_value
+    set_date_of_birth_from_parts
+  end
+  def date_of_birth_year=(string_value)
+    @date_of_birth_year= string_value
+    set_date_of_birth_from_parts
+  end
   
+  def date_of_birth_from_parts
+    "%02d-%02d-%d" % [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year]
+  end
+  
+  def date_of_birth_parts
+    [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year]
+  end
+  
+  def set_date_of_birth_from_parts
+    if date_of_birth_parts.collect{|p| p.blank? ? nil : p }.compact.length == 3
+      self.date_of_birth = date_of_birth_from_parts      
+    end
+  end
   
   def form_date_of_birth
     if @raw_date_of_birth
       @raw_date_of_birth
     elsif date_of_birth
-      "%d-%d-%d" % [date_of_birth.month, date_of_birth.mday, date_of_birth.year]
+      "%02d-%02d-%d" % [date_of_birth.month, date_of_birth.mday, date_of_birth.year]
     else
       nil
     end
