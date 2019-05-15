@@ -503,9 +503,12 @@ body {
         &.registrant-form__date-of-birth__line {
           width: 25%;
           input {
-            width: auto;
+            width: 55px;
             padding: 5px 5px;
             text-align: center;
+            &:last-child {
+              width: 75px;
+            }
           }
         }
         &.registrant-form__race__line {
@@ -596,12 +599,12 @@ body {
     ul.flat.dob-and-phone {
       li, li.width_f {
         &.registrant-form__date-of-birth__line {
-          width: 25%;
+          width: 37%;
           margin-right: 5%;
         }
       
         &.registrant-form__phone__line {
-          width: 45%;
+          width: 33%;
           margin-right: 5%;          
         }
         &.registrant-form__phone-type__line {
