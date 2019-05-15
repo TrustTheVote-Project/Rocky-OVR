@@ -15,15 +15,20 @@ $(document).ready(function() {
 </script>
 <% end %>
 
-<h1><%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %></h1>
+<h1>
+  <%- if @registrant.home_state.require_id? %>
+    <%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %>
+  <%- else %>
+    <%= I18n.t('txt.registration.instructions.state_online_registration_id_not_required', :state=>@registrant.home_state_abbrev).html_safe %>
+  <%- end %>
+</h1>
 <br/>
-<h3 class="ovr_step_4"><%= I18n.t('txt.registration.instructions.state_online_registration_sub_header').html_safe %></h3>
 
 
 
 
 
-  <%= rollover_button(:state_online_registration, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe, {:id=>'registrant_state_online_registration',:name=>'registrant_state_online_registration',:value=>'registrant_state_online_registration'}) %>  
+  <%= rollover_button(:state_online_registration, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_name).html_safe, {:id=>'registrant_state_online_registration',:name=>'registrant_state_online_registration',:value=>'registrant_state_online_registration'}) %>  
   <%- if @registrant.has_home_state_online_redirect? || @registrant.has_home_state_online_registration_view? %>
     <script>
       $(document).ready(function() {
