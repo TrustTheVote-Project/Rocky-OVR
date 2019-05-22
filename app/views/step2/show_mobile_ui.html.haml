@@ -1,17 +1,68 @@
 = content_for :head do 
   :javascript
     var currentStep = 2;
+    var progressMap = {
+      2: 10, //Eligibility
+      3: 20, // Name
+      4: 30, // Name part 2
+      5: 40, // Home Address
+      6: 50, // Mailing Address
+      7: 55, // Previous Address
+      8: 60, // Identification
+      9: 65, // Personal Information
+      //Download page goes up to 80%
+    }
+    
+    function shouldSkipStep() {
+      if (currentStep == 4) {
+        return !$("#registrant_change_of_name").is(":checked")
+      }
+      if (currentStep == 6) {
+        return !$("#registrant_has_mailing_address").is(":checked")
+      }
+      if (currentStep == 7) {
+        return !$("#registrant_change_of_address").is(":checked")
+      }
+      return false;
+    }
+    
     function updateProgressBar() {
-      var newPercent =  ((currentStep-1) * 10) + "%"
+      var newPercent =  progressMap[currentStep] + "%"
       $("#dynamic-progress-bar .filler").css("width", newPercent);
-      $("#dynamic-progress-bar .content").text(newPercent);
+      $("#dynamic-progress-bar .content").text(newPercent);      
     }
     
     function currentStepValid() {
-      return true;
+      var isValid = true;
+      
+      // Force validations to run
+      $("#step-" + currentStep + " [data-client-validation-required]").each(function() {
+        var errorMessage = $(this).data("client-validation-required")
+        var fn = validateField.bind(this)
+        fn(errorMessage)
+      })
+      
+      $("#step-" + currentStep + " [data-client-validation-require-accept]").each(function() {
+        var errorMessage = $(this).data("client-validation-require-accept");
+        var fn = validateBooleanField.bind(this)
+        fn(errorMessage)
+      })
+      
+      
+      $("#step-" + currentStep + " .error").each(function() {
+        if ($(this).text().trim() != '') {
+          isValid = false;
+        }
+      });
+      return isValid;
     }
     
     function renderCurrentStep() {
+      if (shouldSkipStep()) {
+        currentStep += 1;
+        return renderCurrentStep();        
+      }
+      
       $('.dynamic-step').hide();
       $(".back").show();
       $(".next").show();
@@ -30,9 +81,12 @@
     }
     
     function changeStep(e, direction) {
-      e.preventDefault();
-      if (currentStepValid()) {
+      if (e) {
+        e.preventDefault()
+      };
+      if (currentStepValid() || direction < 0) {
         currentStep = currentStep + direction;
+        window.location.hash = '#' + currentStep;        
         renderCurrentStep();          
       }
       return false;      
@@ -49,8 +103,11 @@
     
     $(document).ready(function() {
       $('#javascript_disabled').remove();
-      
-      currentStep = 2;  
+      if (window.location.hash && window.location.hash.trim() != '') {
+        currentStep = parseInt(window.location.hash.substr(1,window.location.hash.length-1))
+      } else {
+        currentStep = 2;          
+      }
       setUpNav();
       renderCurrentStep();
     });
@@ -130,7 +187,7 @@
           %a 
             %button
               %span Next Step
-      .next.next-link.prepare
+      .next.next--link.prepare
         = rollover_button(:prepare, I18n.t('txt.button.prepare'))
   
     
