@@ -1,0 +1,15 @@
+@import 'registration2-variables';
+
+body {
+  #main {
+    .new-mobile-ui {
+      .required {
+        &--text {
+          //display: none !important;
+        }
+      }
+    }
+  }
+}
+    
+ 

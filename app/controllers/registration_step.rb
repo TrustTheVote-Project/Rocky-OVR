@@ -36,6 +36,7 @@ class RegistrationStep < ApplicationController
 
   def show
     find_registrant
+    set_ab_test
     set_up_view_variables
   end
 
@@ -138,6 +139,15 @@ class RegistrationStep < ApplicationController
     @partner_id = @partner.id
     set_params
   end
+  
+  def set_ab_test
+    if @registrant && t = @registrant.ab_tests.where(name: AbTest::MOBILE_UI).first
+      @mobile_ui_test = t
+    else
+      @mobile_ui_test = AbTest.assign_mobile_ui_test(@registrant, self)
+    end
+  end
+  
   
   def detect_state_flow
     

@@ -1,0 +1,120 @@
+= content_for :head do 
+  :javascript
+    var currentStep = 2;
+    function updateProgressBar() {
+      
+    }
+    
+    function renderCurrentStep() {
+      $('.dynamic-step').hide();
+      $(".next--link").hide();
+      $(".back--link").hide();
+      $("#step-" + currentStep).show();
+      if (currentStep == 2) {
+        $(".back").hide();
+        $(".back--link").show();
+      }
+      if (currentStep == 9) {
+        $(".next").hide();
+        $(".next--link").show();        
+      }
+      updateProgressBar();
+    }
+    
+    function setUpNav() {
+      $(".next--virtual").click(function() {
+        currentStep = currentStep + 1;
+        renderCurrentStep();
+      })
+      $(".back--virtual").click(function() {
+        currentStep = currentStep + 1;
+        renderCurrentStep();
+      })
+    }
+    
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+      
+      currentStep = 2;  
+      setUpNav();
+      renderCurrentStep();
+    });
+
+.new-mobile-ui
+  = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
+    #dynamic-progress-bar
+      Show Progress from steps
+    
+    .dynamic-step#step-2
+      %h1 Eligibility
+      %p All fields marked with an asterisk (*) are rquired
+      %ul.flat.dob-and-phone
+        = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+      %ul.checkbox.checkbox-step-1
+        %li.spacer= "&nbsp;"
+        %li.registrant-form__us-citizen__line
+          %h3
+            = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
+            = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
+            %span.error= form.object.errors[:us_citizen].join("\n")
+      - if @registrant.require_age_confirmation?
+        %ul.checkbox.checkbox-step-1
+          %li.spacer
+          %li.registrant-form__will-be-18-by-election__line
+            %h3
+              = form.check_box :will_be_18_by_election
+              = form.label :will_be_18_by_election
+              %span.error= form.object.errors[:will_be_18_by_election].join("\n")
+  
+    .dynamic-step#step-3  
+      = render partial: 'name', locals: {form: form}
+
+    .dynamic-step#step-4
+      = render partial: 'previous_name', locals: { form: form }
+    
+    .dynamic-step#step-5  
+      = render partial: "registrants/home_address_without_mailing", locals: { form: form }
+    
+    .dynamic-step#step-6
+      = render partial: "registrants/mailing_address", locals: { form: form }
+
+    .dynamic-step#step-7
+      = render partial: 'previous_address_mobile', locals: { form: form }
+
+    .dynamic-step#step-8
+      %h1 Identification
+      .state-id-number
+        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+    
+    
+    .dynamic-step#step-9
+      %h1 Personal Information
+      = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
+      %ul.flat.dob-and-phone
+        = render :partial=> "registrants/phone", :locals=>{:form=>form}
+
+      %fieldset.no_border.opt-ins
+        = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
+        = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
+    
+        = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+
+
+    .dynamic-navigation
+      -# .back only shown when first step, .prepare only shown when last step
+      .back.back--link
+        = link_to t('txt.button.back').html_safe, registrant_path(@registrant)
+      .back.back--virtual <
+      .next.next--virtual
+        .button.rollover_button
+          %a 
+            %button
+              %span Next Step
+        .button.rollover_button
+          %a 
+            %button
+              %span Next Step
+      .next.next-link.prepare
+        = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+  
+    
