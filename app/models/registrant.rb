@@ -1028,7 +1028,10 @@ class Registrant < ActiveRecord::Base
   end
   
   def existing_state_registrant
-    @existing_state_registrant ||= if use_state_flow?      
+    return @existing_state_registrant if @existing_state_registrant
+    return nil if @existing_state_registrant_fetched
+    @existing_state_registrant_fetched = true
+    @existing_state_registrant ||= if use_state_flow?  
       state_registrant_type = "StateRegistrants::#{home_state_abbrev}Registrant"
       begin
         model = state_registrant_type.constantize
