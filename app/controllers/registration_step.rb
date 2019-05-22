@@ -38,10 +38,12 @@ class RegistrationStep < ApplicationController
     find_registrant
     set_ab_test
     set_up_view_variables
+    render_show
   end
 
   def update
     find_registrant    
+    set_ab_test
     @registrant.attributes = params[:registrant]
     @registrant.check_locale_change
     if detect_state_flow
@@ -85,7 +87,7 @@ class RegistrationStep < ApplicationController
 
   def attempt_to_advance
     if params[:skip_advance] == "true"
-      render 'show' and return
+      render_show and return
     end
     
     advance_to_next_step
@@ -100,8 +102,12 @@ class RegistrationStep < ApplicationController
       end
     else
       set_show_skip_state_fields
-      render "show"
+      render_show
     end
+  end
+  
+  def render_show
+    render "show"
   end
 
   def set_show_skip_state_fields

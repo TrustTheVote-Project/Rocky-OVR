@@ -25,8 +25,7 @@
 class Step2Controller < RegistrationStep
   CURRENT_STEP = 2
 
-  def show
-    super
+  def render_show
     if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW
       render "show_mobile_ui"
     else

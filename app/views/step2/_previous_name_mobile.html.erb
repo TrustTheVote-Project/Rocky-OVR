@@ -1,0 +1,39 @@
+<%- title_field ||= :prev_name_title %>
+<%- title_options ||= @registrant.titles %>
+<%- first_name_field ||= :prev_first_name %>
+<%- middle_name_field ||= :prev_middle_name %>
+<%- last_name_field ||= :prev_last_name %>
+<%- suffix_field ||= :prev_name_suffix %>
+<%- suffix_options ||= @registrant.suffixes %>
+
+
+<fieldset id="prev_name_set">
+  <legend><span><%= I18n.t('txt.registration.previous_name') %></span></legend>
+  <ul class="stacked">
+    <li class="width_d registrant-form__prev-name-title__line">
+      <h3><%= form.label title_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= select_div form, title_field, title_options,{ :include_blank => true, required: true }%>
+      <span class="error"><%= form.object.errors[title_field].join("\n") %></span>
+    </li>
+    <li class="width_b registrant-form__prev-first-name__line">
+      <h3><%= form.label first_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, first_name_field, {:size => 15, required: true} %>
+      <span class="error"><%= form.object.errors[first_name_field].join("\n") %></span>
+    </li>
+    <li class="width_c registrant-form__prev-middle-name__line">
+      <h3><%= form.label middle_name_field %></h3>
+      <%= field_div form, middle_name_field, :size => 10 %>
+      <span class="error"><%= form.object.errors[middle_name_field].join("\n") %></span>
+    </li>
+    <li class="width_b registrant-form__prev-last-name__line">
+      <h3><%= form.label last_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, last_name_field, {:size => 15, required: true} %>
+      <span class="error"><%= form.object.errors[last_name_field].join("\n") %></span>
+    </li>
+    <li class="width_d registrant-form__prev-name-suffix__line">
+      <h3><%= form.label suffix_field %></h3>
+      <div><%= form.select suffix_field,  suffix_options, :include_blank => t('txt.registration.select_none') %></div>
+      <span class="error"><%= form.object.errors[suffix_field].join("\n") %></span>
+    </li>
+  </ul>
+</fieldset>

@@ -2,11 +2,19 @@
   :javascript
     var currentStep = 2;
     function updateProgressBar() {
-      
+      var newPercent =  ((currentStep-1) * 10) + "%"
+      $("#dynamic-progress-bar .filler").css("width", newPercent);
+      $("#dynamic-progress-bar .content").text(newPercent);
+    }
+    
+    function currentStepValid() {
+      return true;
     }
     
     function renderCurrentStep() {
       $('.dynamic-step').hide();
+      $(".back").show();
+      $(".next").show();
       $(".next--link").hide();
       $(".back--link").hide();
       $("#step-" + currentStep).show();
@@ -21,14 +29,21 @@
       updateProgressBar();
     }
     
+    function changeStep(e, direction) {
+      e.preventDefault();
+      if (currentStepValid()) {
+        currentStep = currentStep + direction;
+        renderCurrentStep();          
+      }
+      return false;      
+    }
+    
     function setUpNav() {
-      $(".next--virtual").click(function() {
-        currentStep = currentStep + 1;
-        renderCurrentStep();
+      $(".next--virtual").click(function(e) {
+        return changeStep(e, 1);
       })
-      $(".back--virtual").click(function() {
-        currentStep = currentStep + 1;
-        renderCurrentStep();
+      $(".back--virtual").click(function(e) {
+        return changeStep(e, -1);
       })
     }
     
@@ -43,7 +58,8 @@
 .new-mobile-ui
   = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
     #dynamic-progress-bar
-      Show Progress from steps
+      .filler{style: "width: 10%"}
+      .content 10%
     
     .dynamic-step#step-2
       %h1 Eligibility
@@ -67,10 +83,10 @@
               %span.error= form.object.errors[:will_be_18_by_election].join("\n")
   
     .dynamic-step#step-3  
-      = render partial: 'name', locals: {form: form}
+      = render partial: 'name_mobile', locals: {form: form}
 
     .dynamic-step#step-4
-      = render partial: 'previous_name', locals: { form: form }
+      = render partial: 'previous_name_mobile', locals: { form: form }
     
     .dynamic-step#step-5  
       = render partial: "registrants/home_address_without_mailing", locals: { form: form }
@@ -104,12 +120,12 @@
       -# .back only shown when first step, .prepare only shown when last step
       .back.back--link
         = link_to t('txt.button.back').html_safe, registrant_path(@registrant)
-      .back.back--virtual <
-      .next.next--virtual
+      .back.back--virtual 
         .button.rollover_button
           %a 
             %button
-              %span Next Step
+              %span <
+      .next.next--virtual
         .button.rollover_button
           %a 
             %button

@@ -3,6 +3,21 @@
 body {
   #main {
     .new-mobile-ui {
+      #dynamic-progress-bar {
+        width: 100%;
+        height: 2em;
+        padding: .5em;
+        color: white;
+        background: lighten($red, 50%);
+        .filler {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          background: $red;
+          transition: width .5s;
+        }
+      }
       .required {
         &--text {
           //display: none !important;
