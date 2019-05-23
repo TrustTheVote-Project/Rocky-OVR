@@ -90,7 +90,7 @@ module RegistrantMethods
   end
   
   def date_of_birth_from_parts
-    "%02d-%02d-%d" % [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year]
+    "%02d-%02d-%d" % [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year].collect(&:to_i)
   end
   
   def date_of_birth_parts
@@ -99,7 +99,13 @@ module RegistrantMethods
   
   def set_date_of_birth_from_parts
     if date_of_birth_parts.collect{|p| p.blank? ? nil : p }.compact.length == 3
-      self.date_of_birth = date_of_birth_from_parts      
+      dmy_string = date_of_birth_from_parts 
+      if matches = dmy_string.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{1,4})\z/)
+        m,d,y = matches.captures
+        self.date_of_birth = Date.civil(y.to_i, m.to_i, d.to_i) 
+      end
+    else
+      self.date_of_birth = nil
     end
   end
   
@@ -128,6 +134,7 @@ module RegistrantMethods
       errors.add(:date_of_birth, :blank)
     else
       @raw_date_of_birth = date_of_birth_before_type_cast
+      raise date_of_birth_before_type_cast.to_s
       date = nil
       if matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
         m,d,y = matches.captures
