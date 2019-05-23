@@ -134,7 +134,6 @@ module RegistrantMethods
       errors.add(:date_of_birth, :blank)
     else
       @raw_date_of_birth = date_of_birth_before_type_cast
-      raise date_of_birth_before_type_cast.to_s
       date = nil
       if matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
         m,d,y = matches.captures
