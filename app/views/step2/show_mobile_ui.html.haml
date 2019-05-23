@@ -58,10 +58,6 @@
     }
     
     function renderCurrentStep() {
-      if (shouldSkipStep()) {
-        currentStep += 1;
-        return renderCurrentStep();        
-      }
       
       $('.dynamic-step').hide();
       $(".back").show();
@@ -86,6 +82,9 @@
       };
       if (currentStepValid() || direction < 0) {
         currentStep = currentStep + direction;
+        if (shouldSkipStep()) {
+          currentStep += direction;
+        }
         window.location.hash = '#' + currentStep;        
         renderCurrentStep();          
       }
