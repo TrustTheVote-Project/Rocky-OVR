@@ -85,7 +85,12 @@
         while (shouldSkipStep()) {
           currentStep += direction;
         }
-        window.location.hash = '#' + currentStep;        
+        window.location.hash = '#' + currentStep;
+        if (window.ga) {
+          window.ga('send', 'pageview', {
+           'page': location.pathname + location.hash
+          });          
+        }
         renderCurrentStep();          
       }
       return false;      
