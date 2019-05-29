@@ -50,6 +50,15 @@
   </script>
 
 <%- end %>
+<%- if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
+<div class="new-mobile-ui">
+  <div id="dynamic-progress-bar">
+    <div class="filler" style="width: 80%"></div>
+    <div class="content">80%</div>
+  </div>
+</div>
+<%- end %>
+
 <div id="preparing_content">
   <h1><%= I18n.t('txt.registration.download_header') %></h1>
   <div class="download" style="position:relative">

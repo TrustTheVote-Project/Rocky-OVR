@@ -4,7 +4,7 @@
     %span.required 
       *
       %span.required--text{style: 'display:none;'}= I18n.t('required')
-  %div{class: form.object.errors[:date_of_birth].any? ? 'has_error' : ''}
+  %div{class: form.object.errors[:date_of_birth].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, :date_of_birth)}}
     = form.text_field :date_of_birth_month, value: form.object.date_of_birth_month, placeholder: 'MM', type: 'tel', size: 2
     = form.text_field :date_of_birth_day, value: form.object.date_of_birth_day, placeholder: 'DD', type: 'tel', size: 2
     = form.text_field :date_of_birth_year, value: form.object.date_of_birth_year, placeholder: 'YYYY', type: 'tel', size: 4

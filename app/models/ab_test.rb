@@ -8,7 +8,8 @@ class AbTest < ActiveRecord::Base
     return nil if registrant.nil?
     return nil if registrant.javascript_disabled?
     return nil if registrant.home_state_allows_ovr?
-    is_mobile = true
+    return nil if registrant.locale != 'en'
+    is_mobile = false
     agent = controller.request.user_agent.to_s.downcase
     RockyConf.mobile_browsers.each do |b|
       if agent =~ /#{b}/

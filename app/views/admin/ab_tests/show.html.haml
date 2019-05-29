@@ -1,0 +1,12 @@
+%table
+  %tr
+    %th Assignment
+    %th Started
+    %th Registrant Status
+    
+
+  - @ab_tests.each do |t|
+    %tr
+      %td= t.assignment
+      %td= t.created_at
+      %td= t.registrant.status

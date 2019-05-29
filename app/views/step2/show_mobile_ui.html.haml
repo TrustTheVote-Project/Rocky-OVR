@@ -82,7 +82,7 @@
       };
       if (currentStepValid() || direction < 0) {
         currentStep = currentStep + direction;
-        if (shouldSkipStep()) {
+        while (shouldSkipStep()) {
           currentStep += direction;
         }
         window.location.hash = '#' + currentStep;        
@@ -100,12 +100,25 @@
       })
     }
     
+    function jumpToFirstError() {
+      var errors = $(".has_error")
+      if (errors.length > 0) {
+        console.log("found error")
+        var firstError = errors[0]
+        var stepDiv = $(firstError).parents(".dynamic-step").get(0);
+        var stepNum = parseInt(stepDiv.id.replace("step-",''));
+        currentStep = stepNum;
+      }
+    }
+    
     $(document).ready(function() {
       $('#javascript_disabled').remove();
       if (window.location.hash && window.location.hash.trim() != '') {
         currentStep = parseInt(window.location.hash.substr(1,window.location.hash.length-1))
       } else {
-        currentStep = 2;          
+        currentStep = 2;  
+        // Jump to a page that has an error?
+        jumpToFirstError();
       }
       setUpNav();
       renderCurrentStep();
@@ -162,7 +175,7 @@
     .dynamic-step#step-9
       %h1 Personal Information
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
-      %ul.flat.dob-and-phone
+      %ul.flat.dob-and-phone.clear-fix
         = render :partial=> "registrants/phone", :locals=>{:form=>form}
 
       %fieldset.no_border.opt-ins
@@ -175,7 +188,10 @@
     .dynamic-navigation
       -# .back only shown when first step, .prepare only shown when last step
       .back.back--link
-        = link_to t('txt.button.back').html_safe, registrant_path(@registrant)
+        .button.rollover_button
+          = link_to registrant_path(@registrant) do
+            %button
+              %span <
       .back.back--virtual 
         .button.rollover_button
           %a 

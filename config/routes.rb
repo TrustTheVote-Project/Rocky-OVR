@@ -160,6 +160,7 @@ Rocky::Application.routes.draw do
       patch :update_delay
     end
     resources :emails, except: [:new, :edit, :show ]
+    resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]
     
     resources :partners do
