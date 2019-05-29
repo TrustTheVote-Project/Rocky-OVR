@@ -76,21 +76,30 @@ module RegistrantMethods
     write_attribute(:date_of_birth, dob)
   end
 
+  def date_of_birth_day
+    date_of_birth&.day || @date_of_birth_day
+  end
   def date_of_birth_day=(string_value)
     @date_of_birth_day= string_value
     set_date_of_birth_from_parts
+  end
+  def date_of_birth_month
+    date_of_birth&.month || @date_of_birth_month
   end
   def date_of_birth_month=(string_value)
     @date_of_birth_month= string_value
     set_date_of_birth_from_parts
   end
+  def date_of_birth_year
+    date_of_birth&.year || @date_of_birth_year
+  end    
   def date_of_birth_year=(string_value)
     @date_of_birth_year= string_value
     set_date_of_birth_from_parts
   end
   
   def date_of_birth_from_parts
-    "%02d-%02d-%d" % [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year]
+    "%02d-%02d-%d" % [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year].collect(&:to_i)
   end
   
   def date_of_birth_parts
@@ -99,7 +108,16 @@ module RegistrantMethods
   
   def set_date_of_birth_from_parts
     if date_of_birth_parts.collect{|p| p.blank? ? nil : p }.compact.length == 3
-      self.date_of_birth = date_of_birth_from_parts      
+      dmy_string = date_of_birth_from_parts 
+      if matches = dmy_string.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{1,4})\z/)
+        m,d,y = matches.captures
+        begin
+          self.date_of_birth = Date.civil(y.to_i, m.to_i, d.to_i) 
+        rescue
+        end
+      end
+    else
+      self.date_of_birth = nil
     end
   end
   
@@ -125,7 +143,11 @@ module RegistrantMethods
       return
     end
     if date_of_birth_before_type_cast.blank?
-      errors.add(:date_of_birth, :blank)
+      if date_of_birth_parts.compact.length == 3
+        errors.add(:date_of_birth, :invalid)
+      else
+        errors.add(:date_of_birth, :blank)
+      end
     else
       @raw_date_of_birth = date_of_birth_before_type_cast
       date = nil
