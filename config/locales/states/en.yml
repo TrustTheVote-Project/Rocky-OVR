@@ -455,9 +455,9 @@ en:
           last four digits of your Social Security number.  If you do not have any
           of these numbers, please enter "NONE" and a unique identifying number will
           be assigned to you by the state.
-        oklahoma: You must provide one of these numbers: either your valid Oklahoma
+        oklahoma: "You must provide one of these numbers: either your valid Oklahoma
           driver's license number or state identification card number or the last four
-          digits of your Social Security number.
+          digits of your Social Security number."
         texas: You must provide your Texas driver’s license or Texas personal
           identification number to register to vote. If you do not have a Texas driver’s
           license or Texas personal identification card then you will have to provide at
