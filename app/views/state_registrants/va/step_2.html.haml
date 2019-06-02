@@ -32,9 +32,10 @@
 
       
   %br
-  %ul.stacked
-    = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'registrant-form__date-of-birth__line'} })
-  
+  %ul.flat
+    = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+    
+    
   = render partial: 'state_registrants/va/name', locals: {form: form}
     
   %fieldset

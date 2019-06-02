@@ -136,9 +136,10 @@ module ApplicationHelper
   
   def field_li(form, field, options={})
     required = options[:required] ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''
-    label = content_tag(:h3, (form.send(:label, field, options[:label_options]) + required.html_safe).html_safe)
-    tooltip = content_tag(:div, tooltip_tag(field, options[:tooltip_content]).html_safe, class: 'tooltip') unless options[:skip_tooltip]
-    error = "<span class='error'>#{form.object.errors[field].join("\n")}</span>"
+    field_name = options[:field_name] || field
+    label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe).html_safe)
+    tooltip = content_tag(:div, tooltip_tag(field_name, options[:tooltip_content]).html_safe, class: 'tooltip') unless options[:skip_tooltip]
+    error = "<span class='error'>#{form.object.errors[field_name].join("\n")}</span>"
     field_html = nil
     if options[:required]
       options[:field_options] ||= {}
