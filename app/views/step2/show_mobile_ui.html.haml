@@ -88,7 +88,8 @@
         window.location.hash = '#' + currentStep;
         if (window.ga) {
           console.log("track pageview at", window.location.pathname + window.location.hash)
-          window.ga('send', 'pageview', window.location.pathname + window.location.hash);          
+          window.ga('set', 'page',  window.location.pathname + window.location.hash)
+          window.ga('send', 'pageview');          
         }
         renderCurrentStep();          
       }
