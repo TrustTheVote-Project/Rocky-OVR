@@ -7,7 +7,8 @@ gem "rake", "10.0.3"
 gem "figaro"
 gem "config"
 
-gem "rails", "= 4.2.10"
+gem "rails", "= 4.2.11.1"
+
 gem 'protected_attributes'
 
 gem "aasm", "= 4.12.3"
@@ -103,7 +104,7 @@ end
   gem 'coffee-rails'
   gem 'uglifier'
 
-gem "nokogiri", "= 1.8.4"
+gem "nokogiri", ">= 1.8.5"
 gem "mechanize", "= 2.7.1"
 gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
 
