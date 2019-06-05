@@ -91,7 +91,7 @@
             var trackers = ga.getAll();
             var tracker = trackers[0];
             if (tracker) {
-              tracker.set('page',  window.location.pathname + window.location.hash)
+              tracker.set('page',  window.location.pathname + '/part-' + currentStep)
               tracker.send('pageview');
             }
           });
