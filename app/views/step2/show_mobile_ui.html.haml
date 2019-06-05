@@ -87,9 +87,14 @@
         }
         window.location.hash = '#' + currentStep;
         if (window.ga) {
-          console.log("track pageview at", window.location.pathname + window.location.hash)
-          window.ga('set', 'page',  window.location.pathname + window.location.hash)
-          window.ga('send', 'pageview');          
+          ga(function() {
+            var trackers = ga.getAll();
+            var tracker = trackers[0];
+            if (tracker) {
+              tracker.set('page',  window.location.pathname + window.location.hash)
+              tracker.send('pageview');
+            }
+          });
         }
         renderCurrentStep();          
       }
