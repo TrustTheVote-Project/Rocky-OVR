@@ -13,6 +13,16 @@
       //Download page goes up to 80%
     }
     
+    if (window.ga) {
+      ga(function() {
+        var trackers = ga.getAll();
+        var tracker = trackers[0];
+        if (tracker) {
+          tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
+        }
+      });
+    }
+    
     function shouldSkipStep() {
       if (currentStep == 4) {
         return !$("#registrant_change_of_name").is(":checked")
