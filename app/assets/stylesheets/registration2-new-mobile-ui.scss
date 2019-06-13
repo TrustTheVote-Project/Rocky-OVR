@@ -1,42 +1,81 @@
 @import 'registration2-variables';
 
-body {
-  #main {
-    .new-mobile-ui {
-      #dynamic-progress-bar {
-        width: 100%;
-        height: 2em;
-        margin: 1em 0;
-        padding: .4em .3em;
-        color: white;
-        background: lighten($red, 50%);
-        .filler {
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          background: $red;
-          transition: width .5s;
-        }
-        .content {
-          font-size: 1.3em;
-          line-height: 1em;
-        }
+body.new-mobile-ui {
+  padding-bottom: 105px + 62px;
+  #main {    
+    padding-bottom: 12px;
+    #dynamic-progress-bar {
+      width: 100%;
+      height: 2em;
+      margin: 1em 0;
+      padding: .4em .3em;
+      color: white;
+      background: lighten($red, 50%);
+      .filler {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background: $red;
+        transition: width .5s;
       }
-      .required {
-        &--text {
-          //display: none !important;
-        }
+      .content {
+        font-size: 1.3em;
+        line-height: 1em;
       }
-      .dynamic-navigation {
-        display: flex;
-        justify-content: center;
-        .back, .next {
-          margin: 0px 10px;
+    }
+    .required {
+      &--text {
+        //display: none !important;
+      }
+    }
+    .dynamic-navigation {
+      position: fixed;
+      background: white;
+      bottom: 105px;
+      height: 62px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .back, .next {
+        margin: 0px 10px;
+      }
+      .button {
+        margin: 12px auto;
+      }
+    }
+    form {
+      padding-bottom: 0;
+      .state-id-number {
+        margin-top: 1em;
+      }
+      fieldset.opt-ins {
+        margin-top: 0;
+      }
+      ul li {
+        &.registrant-form__us-citizen__line, &.registrant-form__change-of-name__line {
+          margin-top: 0;
         }
+        
+        &.registrant-form__name-title__line, &.registrant-form__prev-name-title__line {
+          margin-right: 5%;
+          width: 45%;
+        }
+        &.registrant-form__name-suffix__line, &.registrant-form__prev-name-suffix__line {
+          width: 45%;
+          margin-left: 5%;
+        }
+        
       }
     }
   }
+
+  #sticky_footer {
+    position: fixed;        
+  }
+  
 }
     
  

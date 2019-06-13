@@ -23,11 +23,9 @@
 <% end -%>
 <%- if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
   <%- completion = "85%"%>
-  <div class="new-mobile-ui">
-    <div id="dynamic-progress-bar">
-      <div class="filler" style="width: <%= completion %>"></div>
-      <div class="content"><%= completion %></div>
-    </div>
+  <div id="dynamic-progress-bar">
+    <div class="filler" style="width: <%= completion %>"></div>
+    <div class="content"><%= completion %></div>
   </div>
 <%- end %>
 <h1><%= I18n.t('txt.registration.download_header') %></h1>

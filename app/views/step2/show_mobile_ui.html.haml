@@ -68,7 +68,7 @@
     }
     
     function renderCurrentStep() {
-      
+      window.scrollTo(0,0);
       $('.dynamic-step').hide();
       $(".back").show();
       $(".next").show();
@@ -144,14 +144,14 @@
       renderCurrentStep();
     });
 
-.new-mobile-ui
-  = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
-    #dynamic-progress-bar
-      .filler{style: "width: 10%"}
-      .content 10%
-    
-    .dynamic-step#step-2
-      %h1 Eligibility
+= form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
+  #dynamic-progress-bar
+    .filler{style: "width: 10%"}
+    .content 10%
+  
+  .dynamic-step#step-2
+    %fieldset
+      %legend Eligibility
       %p All fields marked with an asterisk (*) are rquired
       %ul.flat.dob-and-phone
         = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
@@ -170,59 +170,61 @@
               = form.check_box :will_be_18_by_election
               = form.label :will_be_18_by_election
               %span.error= form.object.errors[:will_be_18_by_election].join("\n")
+
+  .dynamic-step#step-3  
+    = render partial: 'name_mobile', locals: {form: form}
+
+  .dynamic-step#step-4
+    = render partial: 'previous_name_mobile', locals: { form: form }
   
-    .dynamic-step#step-3  
-      = render partial: 'name_mobile', locals: {form: form}
-
-    .dynamic-step#step-4
-      = render partial: 'previous_name_mobile', locals: { form: form }
-    
-    .dynamic-step#step-5  
-      = render partial: "registrants/home_address_without_mailing", locals: { form: form }
-    
-    .dynamic-step#step-6
-      = render partial: "registrants/mailing_address", locals: { form: form }
-
-    .dynamic-step#step-7
-      = render partial: 'previous_address_mobile', locals: { form: form }
-
-    .dynamic-step#step-8
-      %h1 Identification
-      .state-id-number
-        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
-    
-    
-    .dynamic-step#step-9
-      %h1 Personal Information
-      = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
-      %ul.flat.dob-and-phone.clear-fix
-        = render :partial=> "registrants/phone", :locals=>{:form=>form}
-
-      %fieldset.no_border.opt-ins
-        = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
-        = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
-    
-        = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
-
-
-    .dynamic-navigation
-      -# .back only shown when first step, .prepare only shown when last step
-      .back.back--link
-        .button.rollover_button
-          = link_to registrant_path(@registrant) do
-            %button
-              %span <
-      .back.back--virtual 
-        .button.rollover_button
-          %a 
-            %button
-              %span <
-      .next.next--virtual
-        .button.rollover_button
-          %a 
-            %button
-              %span Next Step
-      .next.next--link.prepare
-        = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+  .dynamic-step#step-5  
+    = render partial: "registrants/home_address_without_mailing", locals: { form: form }
   
-    
+  .dynamic-step#step-6
+    = render partial: "registrants/mailing_address", locals: { form: form }
+
+  .dynamic-step#step-7
+    = render partial: 'previous_address_mobile', locals: { form: form }
+
+  .dynamic-step#step-8
+    %fieldset
+      %legend Identification
+    .state-id-number
+      = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+  
+  
+  .dynamic-step#step-9
+    %fieldset
+      %legend Personal Information
+    = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
+    %ul.flat.dob-and-phone.clear-fix
+      = render :partial=> "registrants/phone", :locals=>{:form=>form}
+
+    %fieldset.no_border.opt-ins
+      = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
+      = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
+  
+      = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+
+
+  .dynamic-navigation
+    -# .back only shown when first step, .prepare only shown when last step
+    .back.back--link
+      .button.rollover_button
+        = link_to registrant_path(@registrant) do
+          %button
+            %span <
+    .back.back--virtual 
+      .button.rollover_button
+        %a 
+          %button
+            %span <
+    .next.next--virtual
+      .button.rollover_button
+        %a 
+          %button
+            %span Next Step
+    .next.next--link.prepare
+      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+
+  

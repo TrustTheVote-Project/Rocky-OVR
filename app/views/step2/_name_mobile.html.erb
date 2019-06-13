@@ -16,6 +16,11 @@
       <%= select_div form, title_field, title_options, {:include_blank => true, required: true} %>
       <span class="error"><%= form.object.errors[title_field].join("\n") %></span>
     </li>
+    <li class="width_d registrant-form__name-suffix__line">
+      <h3><%= form.label suffix_field %></h3>
+      <div><%= form.select suffix_field, suffix_options, :include_blank => t('txt.registration.select_none') %></div>
+    </li>
+    
     <li class="width_b registrant-form__first-name__line">
       <h3><%= form.label first_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
       <%= field_div form, first_name_field,  required: true %>
@@ -30,10 +35,6 @@
       <h3><%= form.label last_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
       <%= field_div form, last_name_field, required: true %>
       <span class="error"><%= form.object.errors[last_name_field].join("\n") %></span>
-    </li>
-    <li class="width_d registrant-form__name-suffix__line">
-      <h3><%= form.label suffix_field %></h3>
-      <div><%= form.select suffix_field, suffix_options, :include_blank => t('txt.registration.select_none') %></div>
     </li>
   </ul>
 </fieldset>
