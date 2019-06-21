@@ -13,16 +13,6 @@
       //Download page goes up to 80%
     }
     
-    if (window.ga) {
-      ga(function() {
-        var trackers = ga.getAll();
-        var tracker = trackers[0];
-        if (tracker) {
-          tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
-        }
-      });
-    }
-    
     function shouldSkipStep() {
       if (currentStep == 4) {
         return !$("#registrant_change_of_name").is(":checked")
@@ -133,6 +123,18 @@
     
     $(document).ready(function() {
       $('#javascript_disabled').remove();
+      
+      if (window.ga) {
+        ga(function() {
+          var trackers = ga.getAll();
+          var tracker = trackers[0];
+          if (tracker) {
+            tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
+          }
+        });
+      }
+      
+      
       if (window.location.hash && window.location.hash.trim() != '') {
         currentStep = parseInt(window.location.hash.substr(1,window.location.hash.length-1))
       } else {

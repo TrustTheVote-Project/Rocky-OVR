@@ -1,21 +1,24 @@
 <% content_for :head do -%>
   <script type="text/javascript" charset="utf-8">
-    <%- if @mobile_ui_test %>
-      <%- if @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
-        var value = "NEW"
-      <%- else %>
-        var value = "OLD"        
+    $(document).ready(function() {
+      <%- if @mobile_ui_test %>
+        <%- if @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
+          var value = "NEW";
+        <%- else %>
+          var value = "OLD";
+        <%- end %>
+        if (window.ga) {
+          ga(function() {
+            var trackers = ga.getAll();
+            var tracker = trackers[0];
+            if (tracker) {
+              tracker.send('event', 'mobile-ui-ab-test', 'finish-page', value);
+            }
+          });
+        }
       <%- end %>
-      if (window.ga) {
-        ga(function() {
-          var trackers = ga.getAll();
-          var tracker = trackers[0];
-          if (tracker) {
-            tracker.send('event', 'mobile-ui-ab-test', 'finish-page', value);
-          }
-        });
-      }
-    <%- end %>
+    })
+
   </script>
 <% end %>
 
