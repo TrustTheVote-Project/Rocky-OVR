@@ -35,7 +35,8 @@ class RegistrationStep < ApplicationController
   end
 
   def show
-    find_registrant
+    redirected = find_registrant
+    return if redirected == :redirected
     set_ab_test
     set_up_view_variables
     render_show
@@ -122,6 +123,7 @@ class RegistrationStep < ApplicationController
     @registrant = Registrant.find_by_param!(p[:registrant_id] || p[:id])
     if detect_state_flow && special_case.nil?
       state_flow_redirect
+      return :redirected
     else
       if (@registrant.complete? || @registrant.under_18?) && special_case.nil?
         raise ActiveRecord::RecordNotFound

@@ -69,11 +69,6 @@
 
     <div id="main">
       <div id="main_inner" class="step_<%= controller.current_step %>">
-        <%- if @mobile_ui_test %>
-          mobile ui test assigned to: <%= @mobile_ui_test.assignment %>
-        <%- else %>
-          No mobile ui test A/B assignment made
-        <%- end %>
         <%= yield %>
       </div>
     </div>
