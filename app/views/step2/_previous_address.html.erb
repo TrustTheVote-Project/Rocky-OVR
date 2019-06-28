@@ -27,7 +27,7 @@
   </li>
     <li class="width_b registrant-form__prev-unit__line">
       <h3><%= form.label :prev_unit %></h3>
-      <%= field_div form, :prev_unit, {:size => 15, required: true} %>
+      <%= field_div form, :prev_unit, {:size => 15} %>
       <span class="error"><%= form.object.errors[:prev_unit].join("\n") %></span>
     </li>
   </ul>
