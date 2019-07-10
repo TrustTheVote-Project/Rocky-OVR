@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190419174516) do
+ActiveRecord::Schema.define(version: 20190522163543) do
+
+  create_table "ab_tests", force: :cascade do |t|
+    t.integer  "registrant_id"
+    t.string   "name"
+    t.string   "assignment"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "ab_tests", ["name", nil], name: "index_ab_tests_on_name_and_assigment"
+  add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
+  add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255

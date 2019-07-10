@@ -1,0 +1,49 @@
+<%- title_field ||= :name_title %>
+<%- title_options ||= @registrant.titles %>
+<%- first_name_field ||= :first_name %>
+<%- middle_name_field ||= :middle_name %>
+<%- middle_name_required ||= false %>
+<%- last_name_field ||= :last_name %>
+<%- suffix_field ||= :name_suffix %>
+<%- suffix_options ||= @registrant.suffixes %>
+
+
+<fieldset>
+  <legend><span><%= I18n.t('txt.registration.name') %></span><%= tooltip_tag :registrant_name %></legend>
+  <ul class="stacked">
+    <li class="width_d registrant-form__name-title__line">
+      <h3><%= form.label title_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= select_div form, title_field, title_options, {:include_blank => true, required: true} %>
+      <span class="error"><%= form.object.errors[title_field].join("\n") %></span>
+    </li>
+    <li class="width_d registrant-form__name-suffix__line">
+      <h3><%= form.label suffix_field %></h3>
+      <div><%= form.select suffix_field, suffix_options, :include_blank => t('txt.registration.select_none') %></div>
+    </li>
+    
+    <li class="width_b registrant-form__first-name__line">
+      <h3><%= form.label first_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, first_name_field,  required: true %>
+      <span class="error"><%= form.object.errors[first_name_field].join("\n") %></span>
+    </li>
+    <li class="width_c registrant-form__middle-name__line">
+      <h3><%= form.label middle_name_field %><% if middle_name_required %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><% end %></h3>
+      <%= field_div form, middle_name_field,  required: middle_name_required %>
+      <span class="error"><%= form.object.errors[middle_name_field].join("\n") %></span>
+    </li>
+    <li class="width_b registrant-form__last-name__line">
+      <h3><%= form.label last_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, last_name_field, required: true %>
+      <span class="error"><%= form.object.errors[last_name_field].join("\n") %></span>
+    </li>
+  </ul>
+</fieldset>
+
+<fieldset class='no_border'>
+  <ul class="checkbox checkbox-with-tooltip">
+    <li class="spacer">&nbsp;</li>
+    <li class="registrant-form__change-of-name__line">
+      <h3><%= form.check_box :change_of_name %> <%= form.label :change_of_name, I18n.t('activerecord.attributes.registrant.change_of_name') %> <%= tooltip_tag(:previous_name) %></h3>
+    </li>
+  </ul>
+</fieldset>

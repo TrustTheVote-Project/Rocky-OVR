@@ -22,37 +22,23 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class StateOnlineRegistrationsController < RegistrationStep
-
+class Admin::AbTestsController < Admin::BaseController
+  before_action :load_variables
+  def index
+  end
+  
   def show
-    find_registrant
-    set_ab_test
-    set_up_view_variables
-    
-    if @registrant.has_home_state_online_redirect? && !@online_registration_iframe_url.blank?
-      render :html => "<html><body><script>parent.location.href='#{@online_registration_iframe_url}';</script></body></html>".html_safe
-      #redirect_to @online_registration_iframe_url
-    elsif @registrant.has_home_state_online_registration_view?
-      render :action=> @registrant.home_state_online_registration_view
-      
-    else
-      render :action => :show
-    end
-  end
-
-protected
-  
-  def set_up_view_variables
-    set_up_share_variables    
-    
-    @online_registration_iframe_url = @registrant.home_state_online_reg_url
-        
+    sample_ab_test = AbTest.find(params[:id])
+    @ab_tests = AbTest.where(name: sample_ab_test.name).includes(:registrant)
   end
   
-  def find_registrant
-    super
-    @registrant.update_attributes(:finish_with_state=>true)
+  private
+  def load_variables
+    @ab_tests = AbTest.group(:name)
   end
   
+  def init_nav_class
+    @nav_class = {ab_tests: :current}
+  end
   
 end
