@@ -45,9 +45,9 @@ class RegistrationStep < ApplicationController
   def update
     redirected = find_registrant
     return if redirected == :redirected
-    set_ab_test
     @registrant.attributes = params[:registrant]
     @registrant.check_locale_change
+    set_ab_test
     if detect_state_flow
       @registrant.save(validate: false)
       state_flow_redirect
