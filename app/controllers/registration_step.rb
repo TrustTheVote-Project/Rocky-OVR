@@ -43,7 +43,8 @@ class RegistrationStep < ApplicationController
   end
 
   def update
-    find_registrant    
+    redirected = find_registrant
+    return if redirected == :redirected
     set_ab_test
     @registrant.attributes = params[:registrant]
     @registrant.check_locale_change
@@ -53,7 +54,8 @@ class RegistrationStep < ApplicationController
     else
       set_up_locale
       set_up_view_variables
-      attempt_to_advance
+      rendered = attempt_to_advance
+      return if rendered == :rendered
     end
   end
 
@@ -88,22 +90,22 @@ class RegistrationStep < ApplicationController
 
   def attempt_to_advance
     if params[:skip_advance] == "true"
-      render_show and return
+      render_show 
+      return :rendered
     end
-    
     advance_to_next_step
 
     if @registrant.valid?
       @registrant.save_or_reject!
       
       if @registrant.eligible?
-        redirect_when_eligible
+        redirect_when_eligible and return
       else
-        redirect_to registrant_ineligible_url(@registrant)
+        redirect_to(registrant_ineligible_url(@registrant)) and return
       end
     else
       set_show_skip_state_fields
-      render_show
+      render_show and return :rendererd
     end
   end
   
