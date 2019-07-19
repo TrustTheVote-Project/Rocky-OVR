@@ -257,6 +257,10 @@ ovr_states:
         api_url: "https://externalapi.elections.virginia.gov/v2"
         api_username: "RockTheVote"
         api_key: <%= ENV['VA_API_KEY'] %>
+  WA:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
   WV:
     redirect_to_online_reg_url: true
     languages:
