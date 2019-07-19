@@ -39,6 +39,8 @@ class Registrant < ActiveRecord::Base
   include RegistrantMethods
   include TimeStampHelper
   
+  has_many :ab_tests
+  
   serialize :state_ovr_data, Hash
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]

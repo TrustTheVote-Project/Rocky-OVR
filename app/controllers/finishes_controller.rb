@@ -29,6 +29,7 @@ class FinishesController < RegistrationStep
 
   def show
     find_registrant(:finish)
+    set_ab_test
     @registrant_finish_iframe_url = @registrant.finish_iframe_url
     @pdf_ready = false
     if params[:reminders]

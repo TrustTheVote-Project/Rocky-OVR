@@ -1,10 +1,46 @@
+function clearErrors() {
+  var isGroup = false;
+  var groupInputs = $(this).find("input");
+  var parent = null;
+  if (groupInputs.length > 0) {
+    isGroup = true;
+  }
+  if (isGroup) {
+    parent = $(this);
+  } else {
+    parent = $(this).parent()
+  }
+  var errorField = parent.siblings(".error")
+  parent.removeClass('has_error') 
+  errorField.text('')
+}
 function validateField(errorMessage) {
   var field = this;
   if (!field) {
     return;
   }
-  var val = $(field).val()
-  var parent = $(field).parent()
+  var isGroup = false;
+  var groupInputs = $(this).find("input");
+  if (groupInputs.length > 0) {
+    isGroup = true;
+  }
+  var val = ''
+  var parent = null;
+  if (isGroup) {
+    var groupVal = null
+    for(var i=0,ii=groupInputs.length;i<ii;i++) {
+      var input = groupInputs[i];
+      var v = $(input).val()
+      if (groupVal == null || groupVal.length > v.length) {
+        groupVal = v;
+      }
+    }
+    val = groupVal;
+    parent = $(field);
+  } else {
+    val = $(field).val()
+    parent = $(field).parent()
+  }
   var errorField = parent.siblings(".error")
   var currentError = errorField.text();
   var messageIdx = currentError.indexOf(errorMessage)
@@ -63,9 +99,18 @@ function validateBooleanField(errorMessage) {
 function initValidations() {
   $("[data-client-validation-required]").each(function() {
     var errorMessage = $(this).data("client-validation-required")
-    $(this).blur(validateField.bind(this, errorMessage))
-    $(this).change(validateField.bind(this, errorMessage))
-    $(this).keyup(validateField.bind(this, errorMessage))
+    if (this.tagName == "DIV") {
+      $(this).find("input:last-child").blur(validateField.bind(this, errorMessage))
+      $(this).find("input:last-child").change(validateField.bind(this, errorMessage))
+      $(this).find("input:last-child").keyup(validateField.bind(this, errorMessage))    
+      $(this).keydown(clearErrors.bind(this))    
+    } else {
+      $(this).blur(validateField.bind(this, errorMessage))
+      $(this).change(validateField.bind(this, errorMessage))
+      $(this).keyup(validateField.bind(this, errorMessage))    
+      $(this).keydown(clearErrors.bind(this))    
+    }
+    
   })
   
   $("[data-client-validation-require-accept]").each(function() {
