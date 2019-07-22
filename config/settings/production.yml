@@ -41,6 +41,7 @@ states_with_online_registration:
   - UT
   - VT
   - VA
+  - WA
   - WI
   - WV
 
@@ -54,6 +55,9 @@ ovr_states:
       web_agency_key: RTV
       web_url_base: https://covr.sos.ca.gov
       disclosures_url: https://covr.cdn.sos.ca.gov/discl/
+  WA:
+    languages:
+      - en
 
 enabled_locales:
   - en

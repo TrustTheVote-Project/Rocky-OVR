@@ -72,6 +72,10 @@ ovr_states:
     api_settings:
       api_url: "https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
 
+  WA:
+    languages:
+      - en
+      
   VA:
     api_settings:
         api_url: https://externalapi.elections.virginia.gov/sandbox/
