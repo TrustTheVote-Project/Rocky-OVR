@@ -26,8 +26,9 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
   before_filter :ensure_https
+  before_filter :strict_transport_security
 
-  before_filter :authenticate_everything, :if => lambda { !%w{ development test production loadtest }.include?(Rails.env) }
+  before_filter :authenticate_everything, :if => lambda { !%w{ development test production loadtest staging }.include?(Rails.env) }
 
 
   def vr_to_pa_debug_ui
@@ -63,6 +64,12 @@ class ApplicationController < ActionController::Base
       url.scheme = "https"
       redirect_to(url.to_s)
       false
+    end
+  end
+  
+  def strict_transport_security
+    if request.ssl?
+      response.headers['Strict-Transport-Security'] = "max-age=31536000; includeSubDomains"
     end
   end
   
