@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   before_filter :ensure_https
   before_filter :strict_transport_security
 
-  before_filter :authenticate_everything, :if => lambda { !%w{ development test production loadtest staging }.include?(Rails.env) }
+  before_filter :authenticate_everything, :if => lambda { !%w{ development test production loadtest }.include?(Rails.env) }
 
 
   def vr_to_pa_debug_ui
