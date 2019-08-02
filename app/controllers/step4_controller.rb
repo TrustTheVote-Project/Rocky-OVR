@@ -36,9 +36,11 @@ class Step4Controller < RegistrationStep
       @registrant.ovr_pre_check(self)
     end
     if @registrant.skip_survey_and_opt_ins? && !@registrant.in_ovr_flow?
-    
       attempt_to_advance
     end
+  end
+  
+  def render_show
   end
   
   def update
