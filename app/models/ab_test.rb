@@ -7,7 +7,7 @@ class AbTest < ActiveRecord::Base
   def self.assign_mobile_ui_test(registrant, controller)
     return nil if registrant.nil?
     return nil if registrant.javascript_disabled?
-    return nil if registrant.home_state_allows_ovr?
+    return nil if registrant.home_state_allows_ovr_ignoring_license?
     return nil if registrant.locale != 'en'
     return nil if registrant.partner != Partner.primary_partner
     is_mobile = false
