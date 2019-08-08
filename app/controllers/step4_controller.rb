@@ -31,16 +31,16 @@ class Step4Controller < RegistrationStep
   end
   
   def show
-    super
+    redirected = find_registrant
+    return if redirected == :redirected
+    set_ab_test
+    set_up_view_variables
     if @registrant.has_ovr_pre_check?
       @registrant.ovr_pre_check(self)
     end
     if @registrant.skip_survey_and_opt_ins? && !@registrant.in_ovr_flow?
       attempt_to_advance
     end
-  end
-  
-  def render_show
   end
   
   def update
