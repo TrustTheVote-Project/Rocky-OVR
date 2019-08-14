@@ -91,14 +91,14 @@ body.new-mobile-ui {
 }
 
 
-@media all and (device-width: 768px) and (device-height: 1024px) {
+@media only screen and (min-width: 1024px) {
   body.new-mobile-ui #main .dynamic-navigation {
     position: inherit;
     top: 50px;
   }
   li.width_b.registrant-form__first-name__line {
     clear: both;
-    width: 40%;
+    width: 40% !important;
   }
   #main form ul li.registrant-form__last-name__line {
     width: 40%;
