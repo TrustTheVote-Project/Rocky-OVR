@@ -98,15 +98,14 @@ body.new-mobile-ui {
   }
   li.width_b.registrant-form__first-name__line {
     clear: both;
-    width: 40% !important;
   }
-  #main form ul li.registrant-form__last-name__line {
+  li.width_b.registrant-form__first-name__line, li.width_b.registrant-form__last-name__line, li.width_b.registrant-form__prev-first-name__line, li.width_b.registrant-form__prev-last-name__line {
     width: 40% !important;
   }
   li.width_b.registrant-form__last-name__line, li.width_b.registrant-form__prev-last-name__line {
     margin-right: 0 !important;
   }
-  #main form ul li.registrant-form__middle-name__line {
-	  width: 16%;
+ li.width_c.registrant-form__prev-middle-name__line, li.width_c.registrant-form__prev-middle-name__line {
+	  width: 16% !important;
   }
 }
