@@ -89,5 +89,24 @@ body.new-mobile-ui {
     margin: 400px auto 0 auto;
   }
 }
-    
- 
+
+
+@media all and (device-width: 768px) and (device-height: 1024px) {
+  body.new-mobile-ui #main .dynamic-navigation {
+    position: inherit;
+    top: 50px;
+  }
+  li.width_b.registrant-form__first-name__line {
+    clear: both;
+    width: 40%;
+  }
+  #main form ul li.registrant-form__last-name__line {
+    width: 40%;
+  }
+  li.width_b.registrant-form__last-name__line, li.width_b.registrant-form__prev-last-name__line {
+    margin-right: 0 !important;
+  }
+  #main form ul li.registrant-form__middle-name__line {
+	  width: 16%;
+  }
+}
