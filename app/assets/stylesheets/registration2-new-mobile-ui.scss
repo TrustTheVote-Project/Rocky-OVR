@@ -91,7 +91,7 @@ body.new-mobile-ui {
 }
 
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
   body.new-mobile-ui #main .dynamic-navigation {
     position: inherit;
     top: 50px;
@@ -101,7 +101,7 @@ body.new-mobile-ui {
     width: 40% !important;
   }
   #main form ul li.registrant-form__last-name__line {
-    width: 40%;
+    width: 40% !important;
   }
   li.width_b.registrant-form__last-name__line, li.width_b.registrant-form__prev-last-name__line {
     margin-right: 0 !important;
