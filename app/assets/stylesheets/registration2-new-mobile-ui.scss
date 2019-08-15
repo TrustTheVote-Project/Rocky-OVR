@@ -89,5 +89,23 @@ body.new-mobile-ui {
     margin: 400px auto 0 auto;
   }
 }
-    
- 
+
+
+@media only screen and (min-width: 768px) {
+  body.new-mobile-ui #main .dynamic-navigation {
+    position: inherit;
+    top: 50px;
+  }
+  li.width_b.registrant-form__first-name__line {
+    clear: both;
+  }
+  li.width_b.registrant-form__first-name__line, li.width_b.registrant-form__last-name__line, li.width_b.registrant-form__prev-first-name__line, li.width_b.registrant-form__prev-last-name__line {
+    width: 40% !important;
+  }
+  li.width_b.registrant-form__last-name__line, li.width_b.registrant-form__prev-last-name__line {
+    margin-right: 0 !important;
+  }
+  li.width_c.registrant-form__middle-name__line, li.width_c.registrant-form__prev-middle-name__line {
+	  width: 16% !important;
+  }
+}
