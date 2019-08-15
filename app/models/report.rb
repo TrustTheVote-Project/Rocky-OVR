@@ -28,22 +28,37 @@ class Report < ActiveRecord::Base
     r.concatenate
   end
   
-  def self.write_report_file(fn, contents)
-    full_fn = Rails.root.join("tmp_reports", fn)
-    FileUtils.mkdir_p(Rails.root.join("tmp_reports"))
-    File.open(full_fn, "w+") do |f|
-      f.write contents
-    end
+  def s3_connection
+    @connection ||= Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :region                   => 'us-west-2'
+    })    
   end
   
-  def self.read_report_file(fn)
-    full_fn = Rails.root.join("tmp_reports", fn)
-    FileUtils.mkdir_p(Rails.root.join("tmp_reports"))
-    c = ""
-    File.open(full_fn, "r") do |f|
-      c = f.read
-    end
-    return c
+  def directory
+    @directory ||= s3_connection.directories.get('rocky-report-objects')
+    
+  end
+  
+  def s3_key(fn)
+    "#{Rails.env}/#{id}/#{fn}"
+  end
+  
+  def write_report_file(fn, contents)
+    directory.files.create(
+      :key    => s3_key(fn),
+      :body   => contents,
+      :content_type => "text/csv",
+      :encryption => 'AES256', #Make sure its encrypted on their own hard drives
+      :public => false
+    )
+  end
+  
+  def read_report_file(fn)
+    file = directory.files.get(s3_key(fn))
+    return file.body
   end
   
   def file_name(count=nil)
@@ -75,7 +90,7 @@ class Report < ActiveRecord::Base
     csvstr = self.send("generate_#{report_type}",current_index)
     if use_parts
       fn = file_name(current_index)
-      Report.write_report_file(fn, csvstr)
+      self.write_report_file(fn, csvstr)
       self.current_index += THRESHOLD
       self.save
       if self.current_index < self.record_count
@@ -94,7 +109,7 @@ class Report < ActiveRecord::Base
       csvheadstr = CSV.generate do |csv|
         csv << csv_header
       end
-      Report.write_report_file(file_name, "#{csvheadstr}#{csvstr}")
+      self.write_report_file(file_name, "#{csvheadstr}#{csvstr}")
       self.current_index = self.record_count
       self.status = Status.complete
       self.save!
@@ -109,10 +124,10 @@ class Report < ActiveRecord::Base
     
     (0..(self.record_count / THRESHOLD)).each do |i|
       fn = file_name(i*THRESHOLD)
-      csvstr += "#{Report.read_report_file(fn)}"
+      csvstr += "#{self.read_report_file(fn)}"
     end
     
-    Report.write_report_file(file_name, csvstr)
+    self.write_report_file(file_name, csvstr)
     self.status = Status.complete
     self.save!
     
