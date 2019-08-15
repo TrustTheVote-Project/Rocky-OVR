@@ -564,16 +564,14 @@ class Partner < ActiveRecord::Base
   end
 
   def generate_registrants_csv(start_date=nil, end_date=nil)
-    conditions = [[]]
-    if start_date
-      conditions[0] << " registrants.created_at >= ? "
-      conditions << start_date
-    end
-    if end_date
-      conditions[0] << " registrants.created_at < ? "
-      conditions << end_date + 1.day
-    end
-    conditions[0] = conditions[0].join(" AND ")
+    r = Report.new({
+      report_type: Report::REGISTRANTS_REPORT,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!    
+    return
 
     #preloads
     
@@ -624,17 +622,15 @@ class Partner < ActiveRecord::Base
     
   ]
   def generate_grommet_shift_report(start_date=nil, end_date=nil)
+    r = Report.new({
+      report_type: Report::GROMMET_SHIFT_REPORT,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!
+    
     # get the same registrant list
-    conditions = [[]]
-    if start_date
-      conditions[0] << " created_at >= ? "
-      conditions << start_date
-    end
-    if end_date
-      conditions[0] << " created_at < ? "
-      conditions << end_date + 1.day
-    end
-    conditions[0] = conditions[0].join(" AND ")
     shift_ids = {}
     distribute_reads(failover: false) do
       registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
@@ -699,16 +695,14 @@ class Partner < ActiveRecord::Base
   end
   
   def generate_grommet_registrants_csv(start_date=nil, end_date=nil)
-    conditions = [[]]
-    if start_date
-      conditions[0] << " created_at >= ? "
-      conditions << start_date
-    end
-    if end_date
-      conditions[0] << " created_at < ? "
-      conditions << end_date + 1.day
-    end
-    conditions[0] = conditions[0].join(" AND ")
+    r = Report.new({
+      report_type: Report::GROMMET_REGISTRANTS_REPORT,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!
+    return 
 
     distribute_reads(failover: false) do
       return CSV.generate do |csv|
