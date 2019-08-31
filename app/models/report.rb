@@ -1,4 +1,6 @@
 class Report < ActiveRecord::Base
+  include TimeStampHelper
+  
   GROMMET_SHIFT_REPORT="grommet_shift_report".freeze
   GROMMET_REGISTRANTS_REPORT="grommet_registrants_report".freeze
   REGISTRANTS_REPORT="registrants_report".freeze
