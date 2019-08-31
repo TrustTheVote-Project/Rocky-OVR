@@ -322,8 +322,8 @@ module V4
         status: r.status,
         record_count: r.record_count,
         current_index: r.current_index,
-        status_url: g_partner ? Rails.application.routes.url_helpers.api_v4_gregistrant_report_url(r, host: RockyConf.pdf_host_name) : Rails.application.routes.url_helpers.api_v4_registrant_report_url(r, host: RockyConf.pdf_host_name),
-        download_url: r.status == Report::Status.complete ? (g_partner ? Rails.application.routes.url_helpers.api_v4_download_gregistrant_report_url(r, host: RockyConf.pdf_host_name) : Rails.application.routes.url_helpers.download_api_v4_registrant_report_url(r, host: RockyConf.pdf_host_name)) : nil
+        status_url: g_partner ? Rails.application.routes.url_helpers.api_v4_gregistrant_report_url(r, host: RockyConf.api_host_name) : Rails.application.routes.url_helpers.api_v4_registrant_report_url(r, host: RockyConf.api_host_name),
+        download_url: r.status == Report::Status.complete ? (g_partner ? Rails.application.routes.url_helpers.api_v4_download_gregistrant_report_url(r, host: RockyConf.api_host_name) : Rails.application.routes.url_helpers.download_api_v4_registrant_report_url(r, host: RockyConf.api_host_name)) : nil
       }
 
       # distribute_reads do
@@ -408,8 +408,8 @@ module V4
         status: r.status,
         record_count: r.record_count,
         current_index: r.current_index,
-        status_url: g_partner ? Rails.application.routes.url_helpers.api_v4_gregistrant_report_url(r, host: RockyConf.pdf_host_name) : Rails.application.routes.url_helpers.api_v4_registrant_report_url(r, host: RockyConf.pdf_host_name),
-        download_url: r.status == Report::Status.complete.to_s ? (g_partner ? Rails.application.routes.url_helpers.api_v4_download_gregistrant_report_url(r, host: RockyConf.pdf_host_name) : Rails.application.routes.url_helpers.download_api_v4_registrant_report_url(r, host: RockyConf.pdf_host_name)) : nil
+        status_url: g_partner ? Rails.application.routes.url_helpers.api_v4_gregistrant_report_url(r, host: RockyConf.api_host_name) : Rails.application.routes.url_helpers.api_v4_registrant_report_url(r, host: RockyConf.api_host_name),
+        download_url: r.status == Report::Status.complete.to_s ? (g_partner ? Rails.application.routes.url_helpers.api_v4_download_gregistrant_report_url(r, host: RockyConf.api_host_name) : Rails.application.routes.url_helpers.download_api_v4_registrant_report_url(r, host: RockyConf.api_host_name)) : nil
       }
     end
 
