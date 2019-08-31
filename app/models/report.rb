@@ -4,28 +4,71 @@ class Report < ActiveRecord::Base
   REGISTRANTS_REPORT="registrants_report".freeze
   QUEUE_NAME = "reports".freeze
   THRESHOLD = 100
+  
+  
+  SHIFT_REPORT_HEADER = [
+    "Date",
+    "Unique Shift ID",	
+    "Canvasser Name",	
+    "Event Zip code",
+    "Event Location",	
+    "Tablet number",
+    "Registrations Collected",
+    "Registrations Abandoned",	
+    "Registrations Received",
+    "# Opt-in to Partner email?",
+    "# Opt-in to Partner sms/robocall?",
+    "# Registrations w/DL",
+    "Registrations w/DL %",
+    "# Registrations w/SSN",	
+    "Registrations w/SSN %",
+    "Canvasser Clock IN (EST)",
+    "Canvasser Clock OUT (EST)",
+    "Total Shift Hours"    
+  ]
+  
   Status = OpenStruct.new({
     queued: :queued,
     building: :building,
     merging: :merging,
-    complete: :complete
+    complete: :complete,
+    post_processing: :post_processing,
+    failed: :failed
   })
 
   belongs_to :partner
-  serialize :data, Hash
+  has_many :report_data
+  serialize :filters, Hash
+
 
   def self.run(report_id)
     begin
       r = Report.find(report_id)
     rescue
-      puts "Couldn't find report"
+      Rails.logger.error("Couldn't find report with id #{report_id}")
+      return
     end
     r.run if r
   end
-  
+
   def self.concatenate(report_id)
     r = Report.find(report_id)
     r.concatenate
+  end
+  
+  def title
+    case self.report_type
+    when GROMMET_SHIFT_REPORT
+      return "PA Shift Report"
+    when GROMMET_REGISTRANTS_REPORT
+      return "PA APP Registrants Report"
+    when REGISTRANTS_REPORT
+      return "Registrants Report"
+    end
+  end
+  
+  def download_file_name
+    [title, start_date ? start_date.strftime("%Y%m%d") : "through", end_date ? end_date.strftime("%Y%m%d") : created_at.strftime("%Y%m%d")].join("_").parameterize + ".csv"
   end
   
   def s3_connection
@@ -56,6 +99,10 @@ class Report < ActiveRecord::Base
     )
   end
   
+  def read
+    read_report_file(file_name)
+  end
+  
   def read_report_file(fn)
     file = directory.files.get(s3_key(fn))
     return file.body
@@ -80,10 +127,18 @@ class Report < ActiveRecord::Base
     self.save!    
     # If count > threshold, build up in parts
     generate_report
+  rescue Exception => e
+    handle_error(e)
+  end
+  
+  def handle_error(e)
+    self.status = Status.failed
+    self.error = [e.message, e.backtrace].join("\n")
+    self.save
   end
   
   def use_parts
-    self.record_count > THRESHOLD
+    self.record_count > THRESHOLD && report_type != GROMMET_SHIFT_REPORT
   end
   
   def generate_report
@@ -118,19 +173,35 @@ class Report < ActiveRecord::Base
   
   def concatenate
     # Get all the files 
-    csvstr = CSV.generate do |csv|
-      csv << csv_header
-    end
-    
+    csvstr = ""
     (0..(self.record_count / THRESHOLD)).each do |i|
       fn = file_name(i*THRESHOLD)
       csvstr += "#{self.read_report_file(fn)}"
     end
+    csvstr = post_process(csvstr)
+
+    csvstr = CSV.generate do |csv|
+      csv << csv_header
+    end + csvstr
+
     
     self.write_report_file(file_name, csvstr)
     self.status = Status.complete
     self.save!
-    
+  rescue Exception => e
+    handle_error(e)    
+  end
+  
+  def post_process(csvstr)
+    if self.respond_to?("post_process_#{report_type}")
+      self.status = Status.post_processing
+      self.save
+      return self.send("post_process_#{report_type}", csvstr)
+    else
+      return csvstr
+    end
+  ensure
+    self.report_data.destroy_all    
   end
   
   def selector
@@ -159,13 +230,26 @@ class Report < ActiveRecord::Base
       conditions[0] << " registrants.created_at < ? "
       conditions << end_date + 1.day
     end
+    if filters && filters[:email_address] && !filters[:email_address].blank?
+      conditions[0] << " email_address = ? "
+      conditions << filters[:email_address]
+    end
     conditions[0] = conditions[0].join(" AND ")
     return conditions
   end
   
   def registrants_report_selector
-    @registrants_report_selector ||= partner.registrants.where(registrants_report_conditions)
+    if filters && filters[:home_state_id] || filters[:home_zip_code]
+      if filters[:home_state_id]
+        @registrants_report_selector ||= Registrant.where(home_state_id: filters[:home_state_id]).where(registrants_report_conditions)
+      elsif filters[:home_zip_code]
+        @registrants_report_selector ||= Registrant.where(home_zip_code: filters[:home_zip_code]).where(registrants_report_conditions)
+      end
+    else
+      @registrants_report_selector ||= partner.registrants.where(registrants_report_conditions)
+    end
   end
+  
   
   def generate_registrants_report(start=0)
     distribute_reads(failover: false) do
@@ -208,42 +292,120 @@ class Report < ActiveRecord::Base
   
 
   
+  def grommet_registrants_report_csv_header
+    Registrant::GROMMET_CSV_HEADER
+  end
+  
+  
   def grommet_shift_report_selector
     @grommet_shift_report_selector ||= partner.registrants.where(grommet_shift_report_conditions)
   end
   
-  def generate_grommet_registrants_report(start=nil)
-    self.data ||= {}
-    reg_dups = self.data[:reg_dups] || {}
-    
+  def grommet_shift_report_csv_header
+    Report::SHIFT_REPORT_HEADER
+  end
+  
+  def generate_grommet_shift_report(start=0)
+    shift_ids = {}
     distribute_reads(failover: false) do
-      csv_string = CSV.generate do |csv|
-        csv << Registrant::GROMMET_CSV_HEADER if start == nil
-        regs = []
-        registrants.where(conditions).includes( [:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-          if reg.is_grommet?
-            key = "#{reg.first_name} #{reg.last_name} #{reg.home_address}"
-            reg_dups[key] ||= 0
-            reg_dups[key] += 1
-            regs << [reg.to_grommet_csv_array, key].flatten
-          end
+      selector.includes([:home_state, :mailing_state, :partner, :registrant_status]).find_in_batches(:batch_size=>THRESHOLD) do |batch|
+        batch.each do |reg|
+          shift_ids[reg.tracking_source] ||= {
+            registrations: 0,
+            email_opt_in: 0,
+            sms_opt_in: 0,
+            ssn_count: 0,
+            dl_count: 0
+          } #TrackingEvent.source_tracking_id
+          shift_ids[reg.tracking_source][:registrations] += 1
+          shift_ids[reg.tracking_source][:email_opt_in] += 1 if reg.partner_opt_in_email?
+          shift_ids[reg.tracking_source][:sms_opt_in] += 1 if reg.partner_opt_in_sms?
+          shift_ids[reg.tracking_source][:ssn_count] += 1 if reg.has_ssn?
+          shift_ids[reg.tracking_source][:dl_count] += 1 if reg.has_state_license?
+          # This is a one-shot report, so generate it here.
         end
-        regs.each do |r|
-          key = r.pop
-          if reg_dups[key] > 1
-            r.insert(1, "true")
+        self.current_index += THRESHOLD
+        self.save
+      end
+      clock_ins = TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_in")
+      clock_outs = {}
+      TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_out").each do |co|
+        clock_outs[co.source_tracking_id] = co
+      end
+      csvstr = CSV.generate do |csv|
+        clock_ins.sort{|a,b|( a.tracking_data["clock_in_datetime"] || "") <=> (b.tracking_data["clock_in_datetime"] || "")}.each do |ci|
+          co = clock_outs[ci.source_tracking_id]
+          tracking_source = ci.source_tracking_id
+          counts = shift_ids[tracking_source]
+          row = []
+          row << eastern_time(ci.tracking_data["clock_in_datetime"])
+          row << tracking_source
+          row << ci.tracking_data["canvasser_name"]
+          row << ci.partner_tracking_id
+          row << ci.open_tracking_id
+          row << ci.tracking_data["device_id"]
+          row << (co ? co.tracking_data["completed_registrations"] : "")
+          row << (co ? co.tracking_data["abandoned_registrations"] : "")
+          row << counts[:registrations]
+          row << counts[:email_opt_in]
+          row << counts[:sms_opt_in]
+          row << counts[:dl_count]
+          row << '%.2f %' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
+          row << counts[:ssn_count]
+          row << '%.2f %' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
+          row << eastern_time(ci.tracking_data["clock_in_datetime"])
+          if co
+            row << eastern_time(co.tracking_data["clock_out_datetime"])
+            begin
+              shift_seconds = (Time.parse(co.tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])).to_f
+              row << shift_seconds / 3600.0
+            rescue
+              row << ""
+            end
           else
-            r.insert(1, "false")
+            row << ""
+            row << ""
           end
-          csv << r
+          csv << row
         end
       end
-      
-      self.data[:reg_dups] = reg_dups
-      self.save
-      return csv_string
+      return csvstr
     end
-    
+  end
+  
+  def generate_grommet_registrants_report(start=0)
+    distribute_reads(failover: false) do
+      csv_string = CSV.generate do |csv|
+        selector.includes( [:home_state, :mailing_state, :partner, :registrant_status]).offset(start).limit(THRESHOLD).each do |reg|
+          if reg.is_grommet?
+            key = "#{reg.first_name} #{reg.last_name} #{reg.home_address}"
+            rd = report_data.find_or_create_by(key: key, report_id: self.id)
+            rd.i_value ||= 0
+            rd.i_value += 1
+            rd.save
+            csv << ([reg.to_grommet_csv_array, key].flatten)
+          end
+        end
+      end
+      return csv_string
+    end    
+  end
+  
+  def post_process_grommet_registrants_report(csvstr)
+    csv = CSV.new(csvstr)
+    new_str = CSV.generate do |newcsv|
+      csv.each do |row|
+        key = row.pop
+        rd = self.report_data.where(key: key).first
+        if rd && rd.i_value && rd.i_value > 1
+          row.insert(1, "true")
+        else
+          row.insert(1, "false")
+        end
+        newcsv << row
+      end
+    end
+    return new_str
   end
   
   def grommet_registrants_report_conditions

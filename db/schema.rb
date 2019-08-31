@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190815171832) do
+ActiveRecord::Schema.define(version: 20190830235131) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -351,6 +351,20 @@ ActiveRecord::Schema.define(version: 20190815171832) do
   add_index "registrants", ["status"], name: "index_registrants_on_status"
   add_index "registrants", ["uid"], name: "index_registrants_on_uid"
 
+  create_table "report_data", force: :cascade do |t|
+    t.integer  "report_id"
+    t.string   "key"
+    t.string   "s_value"
+    t.integer  "i_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "h_value"
+  end
+
+  add_index "report_data", ["key"], name: "index_report_data_on_key"
+  add_index "report_data", ["report_id", "key"], name: "index_report_data_on_report_id_and_key"
+  add_index "report_data", ["report_id"], name: "index_report_data_on_report_id"
+
   create_table "reports", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
@@ -361,6 +375,8 @@ ActiveRecord::Schema.define(version: 20190815171832) do
     t.string   "status"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.text     "filters"
+    t.text     "error"
   end
 
   create_table "ses_notifications", force: :cascade do |t|

@@ -532,7 +532,7 @@ class Partner < ActiveRecord::Base
   
   
   def generate_random_password
-    self.password = random_key
+    self.password = random_key + "!@1aA" + random_key
     self.password_confirmation = self.password
   end
 
@@ -575,52 +575,32 @@ class Partner < ActiveRecord::Base
 
     #preloads
     
-    distribute_reads(failover: false) do
-      pa_registrants = {}
-      StateRegistrants::PARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_pa_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
-      va_registrants = {}
-      StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
-      
-      return CSV.generate do |csv|
-        csv << Registrant::CSV_HEADER
-        registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-          if reg.use_state_flow?
-            sr  = nil
-            case reg.home_state_abbrev
-            when "PA"
-              sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
-            when "VA"
-              sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
-            end
-            reg.instance_variable_set(:@existing_state_registrant, sr)
-          end
-          csv << reg.to_csv_array
-        end
-      end
-    end
+    # distribute_reads(failover: false) do
+    #   pa_registrants = {}
+    #   StateRegistrants::PARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_pa_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
+    #   va_registrants = {}
+    #   StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+    #
+    #   return CSV.generate do |csv|
+    #     csv << Registrant::CSV_HEADER
+    #     registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
+    #       if reg.use_state_flow?
+    #         sr  = nil
+    #         case reg.home_state_abbrev
+    #         when "PA"
+    #           sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
+    #         when "VA"
+    #           sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+    #         end
+    #         reg.instance_variable_set(:@existing_state_registrant, sr)
+    #       end
+    #       csv << reg.to_csv_array
+    #     end
+    #   end
+    # end
   end
   
-  SHIFT_REPORT_HEADER = [
-    "Date",
-    "Unique Shift ID",	
-    "Canvasser Name",	
-    "Event Zip code",
-    "Event Location",	
-    "Tablet number",
-    "Registrations Collected",
-    "Registrations Abandoned",	
-    "Registrations Received",
-    "# Opt-in to Partner email?",
-    "# Opt-in to Partner sms/robocall?",
-    "# Registrations w/DL",
-    "Registrations w/DL %",
-    "# Registrations w/SSN",	
-    "Registrations w/SSN %",
-    "Canvasser Clock IN (EST)",
-    "Canvasser Clock OUT (EST)",
-    "Total Shift Hours"
-    
-  ]
+  
   def generate_grommet_shift_report(start_date=nil, end_date=nil)
     r = Report.new({
       report_type: Report::GROMMET_SHIFT_REPORT,
@@ -630,68 +610,10 @@ class Partner < ActiveRecord::Base
     })
     r.queue!
     
+    return
+    
     # get the same registrant list
-    shift_ids = {}
-    distribute_reads(failover: false) do
-      registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-        shift_ids[reg.tracking_source] ||= {
-          registrations: 0,
-          email_opt_in: 0,
-          sms_opt_in: 0,
-          ssn_count: 0,
-          dl_count: 0
-        } #TrackingEvent.source_tracking_id
-        shift_ids[reg.tracking_source][:registrations] += 1
-        shift_ids[reg.tracking_source][:email_opt_in] += 1 if reg.partner_opt_in_email?
-        shift_ids[reg.tracking_source][:sms_opt_in] += 1 if reg.partner_opt_in_sms?
-        shift_ids[reg.tracking_source][:ssn_count] += 1 if reg.has_ssn?
-        shift_ids[reg.tracking_source][:dl_count] += 1 if reg.has_state_license?
-      end
-      clock_ins = TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_in")
-      clock_outs = {}
-      TrackingEvent.where(source_tracking_id: shift_ids.keys, tracking_event_name: "pa_canvassing_clock_out").each do |co|
-        clock_outs[co.source_tracking_id] = co
-      end
-      csvstr = CSV.generate do |csv|
-        csv << SHIFT_REPORT_HEADER
-        clock_ins.sort{|a,b|( a.tracking_data["clock_in_datetime"] || "") <=> (b.tracking_data["clock_in_datetime"] || "")}.each do |ci|
-          co = clock_outs[ci.source_tracking_id]
-          tracking_source = ci.source_tracking_id
-          counts = shift_ids[tracking_source]
-          row = []
-          row << eastern_time(ci.tracking_data["clock_in_datetime"])
-          row << tracking_source
-          row << ci.tracking_data["canvasser_name"]
-          row << ci.partner_tracking_id
-          row << ci.open_tracking_id
-          row << ci.tracking_data["device_id"]
-          row << (co ? co.tracking_data["completed_registrations"] : "")
-          row << (co ? co.tracking_data["abandoned_registrations"] : "")
-          row << counts[:registrations]
-          row << counts[:email_opt_in]
-          row << counts[:sms_opt_in]
-          row << counts[:dl_count]
-          row << '%.2f %' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
-          row << counts[:ssn_count]
-          row << '%.2f %' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
-          row << eastern_time(ci.tracking_data["clock_in_datetime"])
-          if co
-            row << eastern_time(co.tracking_data["clock_out_datetime"])
-            begin
-              shift_seconds = (Time.parse(co.tracking_data["clock_out_datetime"]) - Time.parse(ci.tracking_data["clock_in_datetime"])).to_f
-              row << shift_seconds / 3600.0
-            rescue
-              row << ""
-            end
-          else
-            row << ""
-            row << ""
-          end
-          csv << row
-        end
-      end
-      return csvstr
-    end
+
   end
   
   def generate_grommet_registrants_csv(start_date=nil, end_date=nil)
@@ -703,142 +625,9 @@ class Partner < ActiveRecord::Base
     })
     r.queue!
     return 
-
-    distribute_reads(failover: false) do
-      return CSV.generate do |csv|
-        csv << Registrant::GROMMET_CSV_HEADER
-        regs = []
-        reg_dups = {}
-        registrants.where(conditions).includes( [:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-          if reg.is_grommet?
-            key = "#{reg.first_name} #{reg.last_name} #{reg.home_address}"
-            reg_dups[key] ||= 0
-            reg_dups[key] += 1
-            regs << [reg.to_grommet_csv_array, key].flatten
-          end
-        end
-        regs.each do |r|
-          key = r.pop
-          if reg_dups[key] > 1
-            r.insert(1, "true")
-          else
-            r.insert(1, "false")
-          end
-          csv << r
-        end
-      end
-    end
   end
   
   
-  def generate_registrants_csv_async(start_date=nil, end_date=nil)
-    self.csv_ready=false
-    self.save!
-    action = Delayed::PerformableMethod.new(self, :generate_registrants_csv_file, [start_date, end_date])
-    Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, Time.now)
-  end
-  
-  def generate_grommet_registrants_csv_async(start_date=nil, end_date=nil)
-    self.grommet_csv_ready=false
-    self.save!
-    action = Delayed::PerformableMethod.new(self, :generate_grommet_registrants_csv_file, [start_date, end_date])
-    Delayed::Job.enqueue(action, CSV_GENERATION_PRIORITY, Time.now)
-  end
-  
-  def csv_url
-    "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.csv_file_name)}"    
-  end
-  def grommet_csv_url
-    "https://s3-us-west-2.amazonaws.com/rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}/#{File.join(self.id.to_s, self.grommet_csv_file_name.to_s)}"    
-  end
-  
-  def generate_registrants_csv_file(start_date=nil, end_date = nil)
-    time_stamp = end_date || Time.now
-    self.csv_file_name = self.generate_csv_file_name(time_stamp, start_date)
-    file = File.open(csv_file_path, "w")
-    file.write generate_registrants_csv(start_date, end_date).force_encoding 'utf-8'
-    file.close
-    # UPLOAD TO S3
-    upload_registrants_csv_file
-    
-    File.delete(csv_file_path)
-    
-    self.csv_ready = true
-    self.save!
-  end
-  
-  def generate_grommet_registrants_csv_file(start_date=nil, end_date = nil)
-    time_stamp = end_date || Time.now
-    self.grommet_csv_file_name = self.generate_grommet_csv_file_name(time_stamp, start_date)
-    file = File.open(grommet_csv_file_path, "w")
-    file.write generate_grommet_registrants_csv(start_date, end_date).force_encoding 'utf-8'
-    file.close
-    # UPLOAD TO S3
-    upload_grommet_registrants_csv_file
-    
-    File.delete(grommet_csv_file_path)
-    
-    self.grommet_csv_ready = true
-    self.save!
-  end
-  
-  def upload_registrants_csv_file
-    upload_csv_file(csv_file_path, self.csv_file_name)
-  end
-  
-  def upload_grommet_registrants_csv_file
-    upload_csv_file(grommet_csv_file_path, self.grommet_csv_file_name)
-  end
-  
-  def upload_csv_file(file_path, file_name)
-    connection = Fog::Storage.new({
-      :provider                 => 'AWS',
-      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
-      :region                   => 'us-west-2'
-    })
-    
-    bucket_name = "rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}"
-    directory = connection.directories.get(bucket_name)
-    file = directory.files.create(
-      :key    => File.join(self.id.to_s, file_name),
-      :body   => File.open(file_path, "r").read,
-      :content_type => "text/csv",
-      :encryption => 'AES256', #Make sure its encrypted on their own hard drives
-      :public => true
-    )  
-  end
-  
-  def delete_registrants_csv_file(file_name)
-    if File.exists?(csv_file_path(file_name))
-      File.delete(csv_file_path(file_name))
-    end
-  end
-  
-  def generate_csv_file_name(end_time, start_date=nil)
-    obfuscate = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)}" )
-    "csv-#{obfuscate}-#{start_date ? "#{start_date.strftime('%Y%m%d')}-" : '' }#{end_time.strftime('%Y%m%d')}.csv"
-  end
-
-  def generate_grommet_csv_file_name(end_time, start_date=nil)
-    obfuscate = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)}" )
-    "csv-grommet-#{obfuscate}-#{start_date ? "#{start_date.strftime('%Y%m%d')}-" : '' }#{end_time.strftime('%Y%m%d')}.csv"
-  end
-
-  
-  def csv_file_path(file_name = nil)
-    File.join(csv_path, file_name || self.csv_file_name)
-  end
-  def grommet_csv_file_path(file_name = nil)
-    File.join(csv_path, file_name || self.grommet_csv_file_name)
-  end
-  def csv_path
-    path = File.join(Rails.root, "csv", self.id.to_s)
-    FileUtils.mkdir_p(path)
-    path
-  end
-  
-
   def widget_image_name
     WIDGET_IMAGES.detect { |widget| widget[0] == self.widget_image }[1]
   end

@@ -7,7 +7,8 @@
   </p>
 </div>
 
-    <%= form_tag registrations_partner_path(:format => :csv), method: :post, :class=> 'form_downloadcsv' do %>
+    <%= link_to "See All Reports", reports_partner_path %>
+    <%= form_tag registrations_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
         <legend>Download your registration data</legend>
         <p>Leave date fields blank if you would like to download all your registration data.</p>
@@ -36,7 +37,7 @@
     <%- end %>
     
     <%- if current_partner.enabled_for_grommet? %>    
-      <%= form_tag grommet_shift_report_partner_path(:format => :csv), method: :post, :class=> 'form_downloadcsv' do %>
+      <%= form_tag grommet_shift_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
         <fieldset>
           <legend>Download PA Shift Report</legend>
           <p>Leave date fields blank if you would like to download all your registration data.</p>

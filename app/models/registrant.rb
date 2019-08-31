@@ -444,7 +444,7 @@ class Registrant < ActiveRecord::Base
   end
 
   
-
+  attr_accessor :api_version
   # Builds the record from the API data and sets the correct state
   def self.build_from_api_data(data, api_finish_with_state = false)
     r = Registrant.new(data)

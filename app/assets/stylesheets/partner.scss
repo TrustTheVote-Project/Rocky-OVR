@@ -453,6 +453,23 @@ ul.clear li {
   width: 100%;
 }
 
+table.table {
+  th {
+    font-weight: bold;
+  }
+  th, td {
+    padding: 3px 8px;
+    border-bottom: 1px solid #ccc;
+  }
+  tr {
+    &:hover {
+      td {
+        background: #eee;
+      }
+    }
+  }
+}
+
 td#left_column, td#right_column {
   vertical-align: top;
 }

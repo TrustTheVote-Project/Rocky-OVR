@@ -1,0 +1,29 @@
+%h2 
+  = link_to "Click here to refresh progress updates", ''
+
+%table.table
+  %thead
+    %tr
+      %th Report Type
+      %th Date Range
+      %th Requested At
+      %th Status
+      %th
+      
+  %tbody
+    - @reports.each do |r|
+      %tr{class: r.status}
+        %td= r.title
+        %td 
+          - if r.start_date || r.end_date 
+            = "#{r.start_date ? r.start_date.strftime("%Y-%m-%d") : ''} to #{r.end_date ? r.end_date.strftime("%Y-%m-%d") : ''}"
+        %td= r.created_at
+        %td
+          - if r.status == Report::Status.complete.to_s
+            = "#{r.record_count} records #{r.status.humanize}"
+          - else
+            = "#{r.status.humanize}: #{r.current_index} of #{r.record_count} records"
+        %td
+        %td
+          - if r.status == Report::Status.complete.to_s
+            = link_to "Download", download_csv_partner_url(report_id: r.id)
