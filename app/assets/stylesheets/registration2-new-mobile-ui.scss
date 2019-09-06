@@ -91,7 +91,7 @@ body.new-mobile-ui {
 }
 
 
-@media only screen and (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   body.new-mobile-ui #main .dynamic-navigation {
     position: inherit;
     top: 50px;
