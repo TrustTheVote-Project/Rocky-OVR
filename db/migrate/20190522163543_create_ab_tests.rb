@@ -8,6 +8,6 @@ class CreateAbTests < ActiveRecord::Migration
     end
     add_index :ab_tests, :registrant_id
     add_index :ab_tests, :name
-    add_index :ab_tests, [:name, :assigment]
+    add_index :ab_tests, [:name, :assignment]
   end
 end

@@ -163,6 +163,8 @@ FactoryGirl.define do
     building_via_api_call true
     will_be_18_by_election true
   end
+  factory :api_v4_maximal_registrant, :parent => :api_v3_maximal_registrant do 
+  end
   factory :pdf_ready_maximal_registrant, :parent => :maximal_registrant do
     pdf_ready true
   end
@@ -245,6 +247,11 @@ FactoryGirl.define do
     partner_email_opt_in        true
     rtv_sms_opt_in              true
     partner_sms_opt_in          true
+  end
+  
+  factory :report do
+    status :queued
+    id 1
   end
 end
 
