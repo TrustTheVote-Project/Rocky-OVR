@@ -8,8 +8,8 @@ class CreateAbTests < ActiveRecord::Migration
         t.timestamps null: false
       end
     end
-    add_index :ab_tests, :registrant_id
-    add_index :ab_tests, :name
-    add_index :ab_tests, [:name, :assignment]
+    add_index(:ab_tests, :registrant_id) unless ActiveRecord::Base.connection.index_exists?(:ab_tests, :registrant_id)
+    add_index(:ab_tests, :name) unless  ActiveRecord::Base.connection.index_exists?(:ab_tests, :name) 
+    add_index(:ab_tests, [:name, :assignment]) unless  ActiveRecord::Base.connection.index_exists?(:ab_tests, [:name, :assignment])
   end
 end
