@@ -1,7 +1,13 @@
-%h2 
-  = link_to "Click here to refresh progress updates", ''
+%h2 All Reports
+%p 
+  The table below lists the reports that you have already created, and also any that are in-progress -- shown in bold font. The "Status" columns tells you how far along the in-progress reports are. You can click the Update Progress button below to refresh the table for up to date progress. When an in-progress report is completed, the status changes, and you get a “Download” link to get the report.
 
-%table.table
+%p 
+  Update progress by clicking refresh button
+  = link_to '' do
+    %button Refresh Progress
+
+%table.report-table
   %thead
     %tr
       %th Report Type
@@ -19,11 +25,12 @@
             = "#{r.start_date ? r.start_date.strftime("%Y-%m-%d") : ''} to #{r.end_date ? r.end_date.strftime("%Y-%m-%d") : ''}"
         %td= r.created_at
         %td
-          - if r.status == Report::Status.complete.to_s
+          - if r.status == Report::Status.queued.to_s
+            = r.status.humanize
+          - elsif r.status == Report::Status.complete.to_s
             = "#{r.record_count} records #{r.status.humanize}"
           - else
             = "#{r.status.humanize}: #{r.current_index} of #{r.record_count} records"
-        %td
         %td
           - if r.status == Report::Status.complete.to_s
             = link_to "Download", download_csv_partner_url(report_id: r.id)

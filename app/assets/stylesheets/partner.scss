@@ -453,15 +453,29 @@ ul.clear li {
   width: 100%;
 }
 
-table.table {
+table.report-table {
   th {
-    font-weight: bold;
+    font-size: 1.3em;
   }
   th, td {
-    padding: 3px 8px;
+    padding: 5px 8px;
     border-bottom: 1px solid #ccc;
   }
   tr {
+    td {
+      font-weight: bold;
+    }
+    &.failed {
+      td {
+        font-weight: normal;
+        color: red;        
+      }
+    }
+    &.complete {
+      td {
+        font-weight: normal;        
+      }
+    }
     &:hover {
       td {
         background: #eee;
