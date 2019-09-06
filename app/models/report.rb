@@ -134,9 +134,10 @@ class Report < ActiveRecord::Base
   end
   
   def handle_error(e)
-    self.status = Status.failed
-    self.error = [e.message, e.backtrace].join("\n")
-    self.save
+    r = Report.find(self.id)
+    r.status = Status.failed
+    r.error = [e.message, e.backtrace].join("\n").to_s.force_encoding("UTF-8")
+    r.save
   end
   
   def use_parts
