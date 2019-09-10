@@ -94,7 +94,7 @@ class Api::V4::RegistrantReportsController < Api::V4::BaseController
     partner = V4::PartnerService.find_partner(id, api_key)
     report = Report.find_by_id(params[:id])
     if report.nil? || report.partner != partner
-      raise(ArgumentError.new(V4::RegistrationService::REPORT_PERMISSIONS_ERROR)) if r.partner != partner
+      raise(ArgumentError.new(V4::RegistrationService::REPORT_PERMISSIONS_ERROR)) if report.partner != partner
     end
     return report
   end
