@@ -6,7 +6,7 @@
     <%= RockyConf.sponsor.partner_comarketing_text.html_safe %>
   </p>
 </div>
-  <form class="form_downloadcsv">
+  <div class="form_downloadcsv">
     <fieldset>
       <legend>Download Existing Reports of Registrant Data</legend>
       <p>You can view and download all reports you've generated within the last 30 days.</p>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </fieldset>
-  </form>
+  </div>
     <%= form_tag registrations_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
         <legend>Generate a New Report with Your Registration Data</legend>
