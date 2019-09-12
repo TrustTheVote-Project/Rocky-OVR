@@ -39,7 +39,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
     jsonp({
       :registrations => V3::RegistrationService.find_records(query), 
-      :deprecation_message=>"This report generation API will not be available after Sept 15, 2019. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
+      :deprecation_message=>"This report generation API will not be available after Sept 19, 2019. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
     })
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
@@ -55,7 +55,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
     jsonp({
       :registrations => V3::RegistrationService.find_records(query),
-      :deprecation_message=>"This report generation API will not be available after Sept 15, 2019. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
+      :deprecation_message=>"This report generation API will not be available after Sept 19, 2019. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
     })
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
