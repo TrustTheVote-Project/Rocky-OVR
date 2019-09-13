@@ -106,7 +106,7 @@ record_6:
   abbreviation: CT
   name: Connecticut
   requires_party: true
-  party_tooltip: required_for_primary
+  party_tooltip: connecticut
   id_number_tooltip: drivers_license_or_photo_id_and_other
   sos_address: Secretary of State<br>Elections Division<br>30 Trinity Street<br>Hartford,
     CT 06106
@@ -203,7 +203,7 @@ record_13:
   abbreviation: IL
   name: Illinois
   requires_party: true
-  party_tooltip: party_not_required
+  party_tooltip: illinois
   id_number_tooltip: drivers_license_or_ssn_or_none_2
   sos_address: State Board of Elections<br>2329 S. MacArthur Boulevard<br>Springfield,
     IL 62704
@@ -576,9 +576,10 @@ record_38:
 record_39:
   abbreviation: RI
   name: Rhode Island
+  race_tooltip: rhode_island
   requires_party: true
   party_tooltip: rhode_island
-  id_number_tooltip: drivers_license_current_and_valid_with_state_name
+  id_number_tooltip: rhode_island
   sos_address: Rhode Island State Board of Elections<br>50 Branch Avenue<br>Providence,
     RI 02904-2790
   sos_phone: "(401) 222-2345"

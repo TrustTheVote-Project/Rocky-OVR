@@ -247,6 +247,8 @@ en:
           does not require information about your race or ethnicity.  However, we
           would appreciate this information in order  to measure the effectiveness
           of our voter registration efforts.
+        rhode_island: |-
+          Leave blank.
         virginia: |-
           The Commonwealth of Virginia does not request information about
           your race or ethnicity.  However, we would appreciate this information in
@@ -462,6 +464,13 @@ en:
         oklahoma: "You must provide one of these numbers: either your valid Oklahoma
           driver's license number or state identification card number or the last four
           digits of your Social Security number."
+        rhode_island: "The applicant shall be required to provide their Rhode Island
+          driver's license or State ID number if the applicant has been issued a current
+          and valid Rhode Island driver's license or State ID. In the case of an applicant
+          who has not been issued a current and valid driver's license or State ID, they
+          must provide the last four (4) digits of their social security number. An
+          applicant, who has neither, will be assigned a unique identifying number by the
+          State of Rhode Island."
         texas: You must provide your Texas driver’s license or Texas personal
           identification number to register to vote. If you do not have a Texas driver’s
           license or Texas personal identification card then you will have to provide at
