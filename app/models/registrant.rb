@@ -37,6 +37,9 @@ class Registrant < ActiveRecord::Base
   include Lolrus
   include Rails.application.routes.url_helpers
   include RegistrantMethods
+  include TimeStampHelper
+  
+  has_many :ab_tests
   
   serialize :state_ovr_data, Hash
 
@@ -98,7 +101,7 @@ class Registrant < ActiveRecord::Base
   
   # CA_EMAIL_REGEX =  /\A[a-zA-Z0-9\-\/_\.]+@.*\..*\z/ #A-Z a-z 0-9, underscore, dash, and '@' followed by at least one "."
   CA_ADDRESS_REGEX    = /\A[a-zA-Z0-9#\-\s,\/\.]*\z/ # A-Z a-z 0-9 # dash space, / .
-  CITY_STATE_REGEX = /\A[a-zA-Z0-9#\-\s']*\z/      # A-Z a-z 0-9 # dash space
+  CITY_STATE_REGEX = /\A[a-zA-Z0-9#\-\s'\.]*\z/      # A-Z a-z 0-9 # dash space ' .
   CA_CITY_STATE_REGEX = /\A[a-zA-Z0-9#\-\s]*\z/      # A-Z a-z 0-9 # dash space
   # OVR_REGEX = /\A[a-zA-Z0-9#\-\s,\/\.\+!@\$%\^&\*_=\(\)\[\]\{\};':"\\<>\?\|]*\z/
   #white space and hyphen for names; and for addresses phone#s and other stuff, also include special chars such as # ( ) / + 
@@ -330,6 +333,7 @@ class Registrant < ActiveRecord::Base
   belongs_to :prev_state,    :class_name => "GeoState"
 
   has_one :registrant_status
+  has_one :pdf_delivery
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
@@ -486,29 +490,53 @@ class Registrant < ActiveRecord::Base
   end
   
   def self.abandon_stale_records
-    id_list = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id)
-    self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
-      if reg.finish_with_state?
-        reg.status = "complete"
-        begin
-          reg.deliver_thank_you_for_state_online_registration_email
-        rescue Exception => e
-          Rails.logger.error(e)
-          raise e
-        end
-      else 
-        # Send chase email
-        begin
-          reg.deliver_chaser_email
-        rescue Exception => e
-          Rails.logger.error(e)
-        end
-      end
-      reg.abandon!
-      Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
-      if reg.is_fake?
-        reg.destroy
+    id_list = []
+    uid_list = []
+    pa_registrants = {}
+    va_registrants = {}
+    distribute_reads do 
+      both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
+      both_ids.each do |id, uid|
+        id_list << id
+        uid_list << uid
       end      
+      StateRegistrants::PARegistrant.where(registrant_id: uid_list).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
+      StateRegistrants::VARegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+    
+      self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
+        #StateRegistrants::PARegistrant
+        if reg.use_state_flow?
+          sr  = nil
+          case reg.home_state_abbrev
+          when "PA"
+            sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
+          when "VA"
+            sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+          end
+          reg.instance_variable_set(:@existing_state_registrant, sr)
+        end
+        if reg.finish_with_state?
+          reg.status = "complete"
+          begin
+            reg.deliver_thank_you_for_state_online_registration_email
+          rescue Exception => e
+            Rails.logger.error(e)
+            # raise e
+          end
+        else 
+          # Send chase email
+          begin
+            reg.deliver_chaser_email
+          rescue Exception => e
+            Rails.logger.error(e)
+          end
+        end
+        reg.abandon!
+        Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
+        if reg.is_fake?
+          reg.destroy
+        end      
+      end
     end
   end
 
@@ -807,6 +835,14 @@ class Registrant < ActiveRecord::Base
   def home_state_name
     home_state && home_state.name
   end
+  def home_state_system_name
+    name = home_state&.online_registration_system_name
+    if home_state && !name
+      name = I18n.t("states.online_registration_system_name", locale: locale, state_name: home_state_name)
+    end
+    name      
+  end
+  
   def home_state_abbrev
     home_state && home_state.abbreviation
   end
@@ -876,7 +912,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def skip_state_flow!
-    self.state_ovr_data ||= []
+    self.state_ovr_data ||= {}
     self.state_ovr_data[:skip_state_flow] = true
     self.finish_with_state = false
     self.save(validate: false)
@@ -1248,12 +1284,32 @@ class Registrant < ActiveRecord::Base
     generate_pdf(true)
   end
   
+  def mail_redacted_pdf
+    d = self.pdf_delivery #should have been created in queue_pdf_delivery
+    if !d
+      d = self.create_pdf_delivery
+    end
+    # Don't send reminders
+    self.reminders_left = 0
+    self.save(validate: false)
+    return d.generate_pdf!
+  end
+  
   def queue_pdf
     klass = PdfGeneration
     if self.email_address.blank?
       klass = PriorityPdfGeneration
     end
     klass.create!(:registrant_id=>self.id)
+  end
+  
+  def queue_pdf_delivery
+    d = self.pdf_delivery
+    if !d
+      d = self.create_pdf_delivery
+      klass= PdfDeliveryGeneration
+      klass.create!(:registrant_id=>self.id)    
+    end
   end
   
   def download_pdf
@@ -1316,6 +1372,17 @@ class Registrant < ActiveRecord::Base
     save
   end
   
+  def home_state_enabled_for_pdf_assitance?
+    return false
+    # list = %w(AL
+    #           SD)
+    # return list.include?(home_state_abbrev)
+  end
+  
+  def can_request_pdf_assistance?
+    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 37284 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
+  end
+  
   def to_pdf_hash
     {
       :id =>  id,
@@ -1333,7 +1400,10 @@ class Registrant < ActiveRecord::Base
       :home_address => home_address,       
       :home_unit => home_unit,        
       :home_city => home_city,
-      :home_state_id => home_state_abbrev,       
+      :home_state_id => home_state_abbrev,  
+      :home_state_name => home_state && home_state.name,     
+      :state_id_tooltip => state_id_tooltip,
+      :has_mailing_address => has_mailing_address?,
       :mailing_address => mailing_address,    
       :mailing_unit => mailing_unit,      
       :mailing_city => mailing_city,       
@@ -1358,7 +1428,7 @@ class Registrant < ActiveRecord::Base
       :state_registrar_address => state_registrar_address,
       :registration_deadline => registration_deadline,
       :party => party,
-      :english_party_name => english_party_name,
+      :english_party_name => pdf_english_party_name,
       :pdf_english_race => pdf_english_race,
       :pdf_date_of_birth => pdf_date_of_birth,
       :pdf_barcode => pdf_barcode,
@@ -1400,7 +1470,11 @@ class Registrant < ActiveRecord::Base
   end
   
   def send_emails?
-    !email_address.blank? && collect_email_address? && (!building_via_api_call? || send_confirmation_reminder_emails?)
+    !email_address.blank? && !is_blacklisted(email_address) && collect_email_address? && (!building_via_api_call? || send_confirmation_reminder_emails?)
+  end
+  
+  def is_blacklisted(email_address)
+    EmailAddress.is_blacklisted?(email_address)
   end
 
   def deliver_confirmation_email
@@ -1445,7 +1519,14 @@ class Registrant < ActiveRecord::Base
   
   def deliver_final_reminder_email
     if send_emails? && !final_reminder_delivered && !pdf_downloaded && pdf_ready?
-      Notifier.final_reminder(self).deliver
+      begin
+        Notifier.final_reminder(self).deliver
+      rescue
+        # If we can't deliver, just stop
+      end
+      self.final_reminder_delivered = true
+      self.save(validate: false)
+    elsif !pdf_downloaded && pdf_ready?
       self.final_reminder_delivered = true
       self.save(validate: false)
     end
@@ -1636,7 +1717,7 @@ class Registrant < ActiveRecord::Base
       yes_no(partner_opt_in_email?),
       yes_no(partner_opt_in_sms?),
       yes_no(partner_volunteer?),
-      created_at && created_at.in_time_zone("America/New_York").to_s,
+      vr_generated_at,
       yes_no(has_state_license?),
       yes_no(has_ssn?),
       
@@ -1652,6 +1733,11 @@ class Registrant < ActiveRecord::Base
     ]
   end
   
+  def vr_generated_at
+    eastern_time(state_ovr_data["voter_records_request"]["generated_date"])
+  rescue
+    nil
+  end
   
   def vr_application_status
     registrant_status ? registrant_status.state_status : nil

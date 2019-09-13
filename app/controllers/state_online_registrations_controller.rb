@@ -25,7 +25,10 @@
 class StateOnlineRegistrationsController < RegistrationStep
 
   def show
-    super
+    find_registrant
+    set_ab_test
+    set_up_view_variables
+    
     if @registrant.has_home_state_online_redirect? && !@online_registration_iframe_url.blank?
       render :html => "<html><body><script>parent.location.href='#{@online_registration_iframe_url}';</script></body></html>".html_safe
       #redirect_to @online_registration_iframe_url

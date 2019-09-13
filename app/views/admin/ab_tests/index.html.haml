@@ -1,0 +1,5 @@
+- counts = @ab_tests.count
+- @ab_tests.each do |ab_test|
+  %h3
+    = link_to ab_test.name, admin_ab_test_path(ab_test.id)
+    = "(#{counts[ab_test.name]})"

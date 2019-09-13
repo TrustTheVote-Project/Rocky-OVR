@@ -8,6 +8,6 @@ class PdfGeneration
   def self.queue_url
     ENV["SQS_QUEUE_URL"]
   end
-    
+  
   
 end

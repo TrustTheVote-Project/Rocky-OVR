@@ -25,15 +25,17 @@
   %p.notice= I18n.t('states.custom.va.special_status_notice').html_safe
     
   
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_voter_record_update, class_name: "registrant-form__confirm_voter_record_update__line", required: true}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_voter_record_update, class_name: "registrant-form__confirm_voter_record_update__line", required: true, require_accepted: true}
   
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
   
 
       
+  %br
   %ul.flat
-    = field_li(form, :date_of_birth, {required: true, label_options: nil, field_options: {:value => form.object.form_date_of_birth, placeholder: 'MM-DD-YYYY'}, li_options: {class: 'registrant-form__date-of-birth__line'} })
-  
+    = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+    
+    
   = render partial: 'state_registrants/va/name', locals: {form: form}
     
   %fieldset
@@ -88,6 +90,10 @@
       
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization => h("Rock the Vote")).html_safe}
   
+    - if @registrant.partner.partner_sms_opt_in && !@registrant.partner.primary?
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_sms, class_name: "registrant-form__partner-opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization=>h(@registrant.partner.organization)).html_safe }
+  
+  
   - if @registrant.email.blank?
     %fieldset
       %ul.stacked
@@ -96,8 +102,12 @@
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
   
+    - if @registrant.partner.partner_email_opt_in && !@registrant.partner.primary?
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_email, class_name: "registrant-form__partner-opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization=>h(@registrant.partner.organization)).html_safe }
   
-  
+  - if @registrant.ask_for_partner_volunteers?
+    %fieldset.no_border
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_volunteer, class_name: "registrant-form__partner-volunteer", required: false, field_label: t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe }
   
 
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  

@@ -35,21 +35,27 @@ class RegistrationStep < ApplicationController
   end
 
   def show
-    find_registrant
+    redirected = find_registrant
+    return if redirected == :redirected
+    set_ab_test
     set_up_view_variables
+    render_show
   end
 
   def update
-    find_registrant    
+    redirected = find_registrant
+    return if redirected == :redirected
     @registrant.attributes = params[:registrant]
     @registrant.check_locale_change
+    set_ab_test
     if detect_state_flow
       @registrant.save(validate: false)
       state_flow_redirect
     else
       set_up_locale
       set_up_view_variables
-      attempt_to_advance
+      rendered = attempt_to_advance
+      return if rendered == :rendered
     end
   end
 
@@ -84,23 +90,27 @@ class RegistrationStep < ApplicationController
 
   def attempt_to_advance
     if params[:skip_advance] == "true"
-      render 'show' and return
+      render_show 
+      return :rendered
     end
-    
     advance_to_next_step
 
     if @registrant.valid?
       @registrant.save_or_reject!
       
       if @registrant.eligible?
-        redirect_when_eligible
+        redirect_when_eligible and return
       else
-        redirect_to registrant_ineligible_url(@registrant)
+        redirect_to(registrant_ineligible_url(@registrant)) and return
       end
     else
       set_show_skip_state_fields
-      render "show"
+      render_show and return :rendererd
     end
+  end
+  
+  def render_show
+    render "show"
   end
 
   def set_show_skip_state_fields
@@ -113,8 +123,9 @@ class RegistrationStep < ApplicationController
 
   def find_registrant(special_case = nil, p = params)
     @registrant = Registrant.find_by_param!(p[:registrant_id] || p[:id])
-    if detect_state_flow
+    if detect_state_flow && special_case.nil?
       state_flow_redirect
+      return :redirected
     else
       if (@registrant.complete? || @registrant.under_18?) && special_case.nil?
         raise ActiveRecord::RecordNotFound
@@ -138,6 +149,15 @@ class RegistrationStep < ApplicationController
     @partner_id = @partner.id
     set_params
   end
+  
+  def set_ab_test
+    if @registrant && t = @registrant.ab_tests.where(name: AbTest::MOBILE_UI).first
+      @mobile_ui_test = t
+    else
+      @mobile_ui_test = AbTest.assign_mobile_ui_test(@registrant, self)
+    end
+  end
+  
   
   def detect_state_flow
     

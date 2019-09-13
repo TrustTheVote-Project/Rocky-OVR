@@ -193,9 +193,12 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     sp
   end
 
+  def has_other_party?
+    return parse_party[:politicalparty] == "OTH" && !self.other_party.blank?
+  end
 
   def parse_party
-    @parsed_party ||= begin
+    parsed_party ||= begin
       v = VRToPA::PARTIES_NAMES[english_party_name.to_s.downcase.strip]
       v ? {politicalparty: v, otherpoliticalparty: ""} : {politicalparty: "OTH", otherpoliticalparty: other_party}
     end
@@ -268,7 +271,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['mailingaddress'] = mailing_address
       result['mailingcity'] = mailing_city
       result['mailingstate'] = mailing_state
-      result['mailingzipcode'] = mailing_zip_code
+      result['mailingzipcode'] = mailing_zip_code.to_s.gsub(/[^\d]/,'')[0...5]
     else
       result['mailingaddress'] = ''
       result['mailingcity'] = ''
@@ -317,7 +320,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['previousregaddress'] = previous_address
       result['previousregcity'] = previous_city
       result['previousregstate'] = previous_state
-      result['previousregzip'] = previous_zip_code
+      result['previousregzip'] = previous_zip_code.to_s.gsub(/[^\d]/,'')[0...5]
       result['previousregcounty'] = previous_county
     else
       result['previousregaddress'] = nil
@@ -333,7 +336,15 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     
     result['assistedpersonname'] = assistant_name
     result['assistedpersonAddress'] = assistant_address
-    result['assistedpersonphone'] = assistant_phone
+    result['assistedpersonphone'] = ""
+    if !self.assistant_phone.blank?
+      begin
+        result['assistedpersonphone'] = PhoneFormatter.process(self.assistant_phone)
+      rescue
+      end
+    end
+    
+    
     result['assistancedeclaration2'] = confirm_assistant_declaration
     result['ispollworker'] = ""
     result['bilingualinterpreter'] = ""
@@ -467,6 +478,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       "opt_in_sms"  => "opt_in_sms",
       "partner_opt_in_email"=>"partner_opt_in_email",
       "partner_opt_in_sms"=>"partner_opt_in_sms",
+      "partner_volunteer"=>"partner_volunteer",
       "phone" => "phone",
       "party" => "party",
       "race"  => "race",

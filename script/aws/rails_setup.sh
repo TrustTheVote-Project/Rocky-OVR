@@ -17,7 +17,8 @@ aws s3 cp s3://rocky-cloudformation-assets/database.$RAILS_ENV.yml config/databa
 aws s3 cp s3://rocky-cloudformation-assets/.env.$RAILS_ENV .env.$RAILS_ENV --region us-west-2
 cat /home/ec2-user/aws_env_vars.txt >> .env.$RAILS_ENV
 
-NUM_PDF_WORKERS=4
+NUM_PDF_WORKERS=3
+NUM_UTIL_WORKERS=1
 if [ $RAILS_ENV == 'staging' ]; then
     NUM_PDF_WORKERS=2
 fi
@@ -37,6 +38,7 @@ if [ $SERVER_ROLE == 'util' ]; then
     # Make sure the cron scripts are executable
     chmod u+x /var/www/rocky/script/cron_mail_reminders
     chmod u+x /var/www/rocky/script/cron_timeout_stale_registrations
+    chmod u+x /var/www/rocky/script/cron_deactivate_stale_partners
     chmod u+x /var/www/rocky/script/generate_rtv_reports
     
     crontab -r
@@ -59,10 +61,13 @@ if [ $SERVER_ROLE == 'util' ]; then
     # make sure the script is executable
     chmod u+x script/*worker
     
-    # enable and start the regular jobs worker (for report generation)
+    # enable and start the regular jobs worker (for report generation and API registrations)
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner stop
     sleep 5
-    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
+    for run in $(seq 1 $NUM_UTIL_WORKERS)
+    do
+        RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
+    done
 
     # enable and start the cloudwatch queue reporter (for PDFs autoscaling)
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_cloudwatch_runner stop
@@ -91,7 +96,21 @@ fi
 if [ $SERVER_ROLE == 'web' ]; then
     echo "I'm a web server"
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
+    
     touch tmp/restart.txt
+    
+    # Passenger monitoring Crontab is for WEB only
+    cd ~
+    aws s3 cp s3://rocky-cloudformation-assets/web-crontab . --region us-west-2
+    sed -i 's/RAILS_ENV/'"$RAILS_ENV"'/' ./web-crontab
+    
+    # Make sure the cron scripts are executable
+    chmod u+x /var/www/rocky/script/cron_cleanup_processes
+    
+    crontab -r
+    # Cat the crontab contents into the crontab editor
+    (crontab -l 2>/dev/null; cat ./web-crontab) | crontab -
+    
 fi
 
 if [ $SERVER_ROLE == 'pdf' ]; then
@@ -104,6 +123,16 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     mkdir -p tmp/pids
     # make sure the script is executable
     chmod u+x script/*worker
+    
+    # enable and start the regular jobs worker (for report generation and API registrations)
+    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner stop
+    sleep 5
+    for run in $(seq 1 $NUM_UTIL_WORKERS)
+    do
+        RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
+    done
+    
+    
     # restart the PDF workers
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no_wait
     sleep 10

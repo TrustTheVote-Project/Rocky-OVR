@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.qtip.min
+//= require validation.js
+//= require date-input-formatter.js
 //= require rocky
 //= require registration

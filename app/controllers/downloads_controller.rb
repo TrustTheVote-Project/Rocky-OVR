@@ -29,6 +29,7 @@ class DownloadsController < RegistrationStep
   
   def show
     find_registrant(:download)
+    set_ab_test
     @attempt = (params[:cno] || 1).to_i
     @refresh_location = @attempt >= 10 ? registrant_finish_path(@registrant) : registrant_download_path(@registrant, :cno=>@attempt+1)
     if @registrant.pdf_ready?
@@ -55,5 +56,12 @@ class DownloadsController < RegistrationStep
       redirect_to pdf_path
     end
   end
+  
+  def pdf_assistance
+    find_registrant(:download)
+    @registrant.queue_pdf_delivery
+    # Render because we just assume it'll go through
+  end
+  
 
 end

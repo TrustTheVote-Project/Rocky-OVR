@@ -25,6 +25,15 @@
 class Step2Controller < RegistrationStep
   CURRENT_STEP = 2
 
+  def render_show
+    if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW
+      render "show_mobile_ui" and return
+    else
+      render "show" and return
+    end
+  end
+  
+
   def update  
     # get rid of home_state_name
     if params[:registrant]
@@ -93,5 +102,7 @@ class Step2Controller < RegistrationStep
       @question_1 = @registrant.question_1
       @question_2 = @registrant.question_2
     end
+  rescue
+    # Allow this to fail from step 1?
   end
 end

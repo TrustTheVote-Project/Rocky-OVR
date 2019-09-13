@@ -9,7 +9,7 @@
   clear: both;
 }
 
-input[type=text] {
+input[type=text], input[type=tel] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -20,6 +20,7 @@ input[type=text] {
 
 body {
   width: 100%;
+  height: auto;
   margin: 0px auto;
   background-attachment: scroll;
   background-clip: border-box;
@@ -208,17 +209,8 @@ body {
     
   .step_4 {
     h1 {
-      text-transform: uppercase;
-      display: block;
-      height: auto;
       text-align: center;
-      font-size: 24px;
-      color: #c62129;
-      background: black; 
-      padding: 15px 3px;
-      line-height: 1.4em;
-      width: 80%;
-      margin: 0px auto;
+      line-height: 1.6em;
     }
     h3.ovr_step_4 {
       color: #666;
@@ -229,6 +221,10 @@ body {
       line-height: 1.4em;
       
       width: 70%;
+    }
+
+    .rollover_button button {
+      line-height: 1.35em;
     }
     
     ul {
@@ -354,7 +350,7 @@ body {
           float: none;
           text-align: left;
           width: auto;
-          color: #aaa;
+          color: #757575;
           height: $label-height;
           font-size: $label-font-size;
           line-height: 1em;
@@ -506,6 +502,14 @@ body {
         }
         &.registrant-form__date-of-birth__line {
           width: 25%;
+          input {
+            width: 55px;
+            padding: 5px 5px;
+            text-align: center;
+            &:last-child {
+              width: 75px;
+            }
+          }
         }
         &.registrant-form__race__line {
           width: 85%;
@@ -595,12 +599,12 @@ body {
     ul.flat.dob-and-phone {
       li, li.width_f {
         &.registrant-form__date-of-birth__line {
-          width: 25%;
+          width: 37%;
           margin-right: 5%;
         }
       
         &.registrant-form__phone__line {
-          width: 45%;
+          width: 33%;
           margin-right: 5%;          
         }
         &.registrant-form__phone-type__line {
@@ -661,10 +665,10 @@ body {
 
   .download p {
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 3em;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 15px;
+    margin-top: 3em;
   	line-height: 1.6em;
     text-align: center;
     color: $grey;
@@ -812,3 +816,4 @@ body {
 }
 
 @import 'registration2-mobile';
+@import 'registration2-new-mobile-ui';

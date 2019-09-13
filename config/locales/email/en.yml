@@ -49,7 +49,7 @@ en:
           Your friends at Rock the Vote<br><br>
 
 
-          P.S. Visit <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visit <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           for more information on voting, the elections, and the issues you care about,
           as well as for tools to start your own voter registration campaign.<br><br>'
         send_to_friends: ! '<em><strong>Copy and paste the following in your favorite
@@ -168,7 +168,7 @@ en:
           Your friends at Rock the Vote<br><br>
 
 
-          P.S. Visit <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visit <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           for more information on voting, the elections, and the issues you care about,
           as well as for tools to start your own voter registration campaign.<br><br>'
         send_to_friends: ! '<em><strong>Copy and paste the following in an email message
@@ -246,7 +246,7 @@ en:
           Your friends at Rock the Vote<br><br>
 
 
-          P.S. Visit <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visit <strong><a href="httpw://www.rockthevote.org/">www.rockthevote.org</a></strong>
           for more information on voting, the elections, and the issues you care about,
           as well as for tools to start your own voter registration campaign.<br><br>'
         send_to_friends: ! '<em><strong>Copy and paste the following in an email message
@@ -286,7 +286,7 @@ en:
         main: ! 'Hey%{registrant_first_name_with_space},<br><br>
 
           I noticed that you didn’t finish filling out your online voter registration
-          form. Registering with %{rtv_and_partner_name}''s online tool takes less
+          form. Registering with %{registrant_rtv_and_partner_name}''s online tool takes less
           time than it takes to…<br> Make popcorn<br> Take a Buzzfeed quiz<br> Listen
           to a Beyoncé song<br><br>
 
@@ -294,7 +294,7 @@ en:
           your voice today by finishing the registration process and making sure you
           are ready for the next election!<br><br>
 
-          %{rtv_and_partner_name}<br><br>
+          %{registrant_rtv_and_partner_name}<br><br>
 
           %{rtv_link}'
     thank_you_external:
@@ -303,15 +303,15 @@ en:
         main: ! 'Dear %{registrant_first_name},<br><br>
 
 
-          Thank you for using %{rtv_and_partner_name}''s online voter registration
+          Thank you for using %{registrant_rtv_and_partner_name}''s online voter registration
           tool to begin the voter registration process. You should have been able
-          to complete the process on the %{state_name} Secretary of State''s website.<br><br>
+          to complete the process on the %{system_name}''s website.<br><br>
 
 
           If you have questions or concerns, you can check the status of your voter
           registration by calling the %{state_abbr} Secretary of State''s Office at
           %{registrar_phone}, or checking online at %{registrar_url}. Please contact
-          %{rtv_and_partner_name} directly if you encountered any issues with the
+          %{registrant_rtv_and_partner_name} directly if you encountered any issues with the
           registration process.<br><br>
 
 
@@ -325,7 +325,7 @@ en:
           Your friends at Rock the Vote<br><br>
 
 
-          P.S. Visit <strong><a href="https://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visit <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           for more information on voting, the elections, and the issues you care about.
           You can also find tools to start your own voter registration campaign in
           your community.<br><br>'

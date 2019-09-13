@@ -24,12 +24,32 @@
 #***** END LICENSE BLOCK *****
 class Notifier < ActionMailer::Base
   def password_reset_instructions(partner)
-    @url = "http://#{RockyConf.pdf_host_name}#{edit_password_reset_path(:id => partner.perishable_token)}"
+    @url = "http://#{RockyConf.default_url_host}#{edit_password_reset_path(:id => partner.perishable_token)}"
     
     
     mail(:subject=> "Password Reset Instructions",
          :from => RockyConf.from_address,
          :to => partner.email,
+         :date => Time.now.to_s(:db))
+  end
+  
+  def admin_password_reset_instructions(admin)
+    @url = "http://#{RockyConf.default_url_host}#{edit_admin_password_reset_path(:id => admin.perishable_token)}"
+    
+    
+    mail(:subject=> "Password Reset Instructions",
+         :from => RockyConf.from_address,
+         :to => admin.email,
+         :date => Time.now.to_s(:db))
+  end
+  
+  def admin_password_reset_required(admin)
+    @url = "http://#{RockyConf.default_url_host}#{new_admin_password_reset_path}"
+    
+    
+    mail(:subject=> "Password Reset Required",
+         :from => RockyConf.from_address,
+         :to => admin.email,
          :date => Time.now.to_s(:db))
   end
 
@@ -143,6 +163,7 @@ class Notifier < ActionMailer::Base
     @registrant_last_name = registrant.last_name.to_s.html_safe
     @registrant_rtv_and_partner_name = registrant.rtv_and_partner_name.to_s.html_safe
     @registrant_home_state_name = registrant.home_state_name.to_s.html_safe
+    @registrant_home_state_system_name = registrant.home_state_system_name.to_s.html_safe
     @registrant_home_state_abbrev = registrant.home_state_abbrev.to_s.html_safe
     @rtv_link = "<strong><a href=\"http://register.rockthevote.com/?partner=#{registrant.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
     @home_state_email_instructions = registrant.home_state_email_instructions.blank? ? '' : (registrant.home_state_email_instructions + "<br/><br/>").to_s.html_safe

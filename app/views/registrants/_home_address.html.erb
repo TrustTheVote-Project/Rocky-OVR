@@ -12,8 +12,8 @@ $(document).ready(function() {
   <legend><span><%= I18n.t('txt.registration.home_address') %></span><%= tooltip_tag :home_address %></legend>
   <ul class="stacked">
     <li class="width_a registrant-form__home-address__line">
-      <h3><%= form.label :home_address %><span class='required'>*</span></h3>
-      <%= field_div form, :home_address %>
+      <h3><%= form.label :home_address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :home_address, required: true %>
       <span class="error"><%= form.object.errors[:home_address].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__home-unit__line">
@@ -23,18 +23,18 @@ $(document).ready(function() {
   </ul>
   <ul class="stacked">
     <li class="width_a registrant-form__home-city__line">
-      <h3><%= form.label :home_city %><span class='required'>*</span></h3>
-      <%= field_div form, :home_city %>
+      <h3><%= form.label :home_city %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :home_city, required: true %>
       <span class="error"><%= form.object.errors[:home_city].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__home-state-abbrev__line">
-      <h3><%= form.label :home_state_abbrev %><span class='required'>*</span></h3>
+      <h3><%= form.label :home_state_abbrev %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
       <%= field_div form, :home_state_abbrev, :disabled => true %>
       <span class="error"><%= form.object.errors[:home_state_name].join("\n") %></span>
     </li>
     <li class="width_c registrant-form__home-zip-code__line">
-      <h3><%= form.label :home_zip_code %><span class='required'>*</span></h3>
-      <%= field_div form, :home_zip_code, :size => 8 %>
+      <h3><%= form.label :home_zip_code %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :home_zip_code, {:size => 8, required: true} %>
       <span class="error"><%= form.object.errors[:home_zip_code].join("\n") %></span>
     </li>
   </ul>
@@ -50,12 +50,11 @@ $(document).ready(function() {
 </fieldset>
 
 <fieldset id="mailing_address_set">
-  <%= hidden_field_tag "javascript_disabled", "1"  %>
   <legend><span><%= I18n.t('txt.registration.mailing_address') %></span><%= tooltip_tag :mailing_address %></legend>
   <ul class="stacked">
     <li class="width_a registrant-form__mailing-address__line">
-      <h3><%= form.label :mailing_address %><span class='required'>*</span></h3>
-      <%= field_div form, :mailing_address %>
+      <h3><%= form.label :mailing_address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :mailing_address, required: true %>
       <span class="error"><%= form.object.errors[:mailing_address].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__mailing-unit__line">
@@ -65,18 +64,18 @@ $(document).ready(function() {
   </ul>
   <ul class="stacked">
     <li class="width_a registrant-form__mailing-city__line">
-      <h3><%= form.label :mailing_city %><span class='required'>*</span></h3>
-      <%= field_div form, :mailing_city %>
+      <h3><%= form.label :mailing_city %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :mailing_city, required: true %>
       <span class="error"><%= form.object.errors[:mailing_city].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__mailing-state-abbrev__line">
-      <h3><%= form.label :mailing_state_abbrev %><span class='required'>*</span></h3>
-      <div><%= form.select :mailing_state_abbrev, GeoState.collection_for_select %></div>
+      <h3><%= form.label :mailing_state_abbrev %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <div><%= form.select :mailing_state_abbrev, GeoState.collection_for_select, required: true %></div>
       <span class="error"><%= form.object.errors[:mailing_state_id].join("\n") %></span>
     </li>
     <li class="width_c registrant-form__mailing-zip-code__line">
-      <h3><%= form.label :mailing_zip_code %><span class='required'>*</span></h3>
-      <%= field_div form, :mailing_zip_code, :size => 10, :maxlength => 10 %>
+      <h3><%= form.label :mailing_zip_code %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :mailing_zip_code, {:size => 10, :maxlength => 10, required: true }%>
       <span class="error"><%= form.object.errors[:mailing_zip_code].join("\n") %></span>
     </li>
   </ul>

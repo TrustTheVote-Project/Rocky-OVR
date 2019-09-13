@@ -4,6 +4,7 @@ ilo:
   language_name_translation_instructions: ! 'Ited mo iti nagan iti sao nga naggappuan
     iti tinatranscriba mo. Ehemplo: no ilipat mo ti sao nga Hapon, isurat mo nga "Hapon"
     (iti orihinal nga nagan).'
+  required: " (Masapul)"
   locales:
     bn:
       name: Bengali

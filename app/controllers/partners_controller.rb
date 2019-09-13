@@ -101,6 +101,15 @@ HTML
 </a>
 <script type="text/javascript" src="https://register2.rockthevote.com#{widget_loader_path}"></script>
 HTML
+    @js_src_tag = "<script type=\"text/javascript\"  src=\"https://#{RockyConf.ui_url_host}/assets/rtv-iframe.js\"></script>"
+    @js_script =
+<<-SCRIPT
+<script type="text/javascript">
+    RtvIframe.init({
+      partner: #{partner_id}
+    })
+</script>
+SCRIPT
 
     @iframe_html = "<iframe src=\"https://register.rockthevote.com/?partner=#{partner_id}&source=iframe\" width=\"100%\" height=\"1200\" marginheight=\"0\" frameborder=\"0\"></iframe>"
     
@@ -122,11 +131,11 @@ HTML
     @partner = current_partner
     @stats_by_state = @partner.registration_stats_state
     @stats_by_completion_date = @partner.registration_stats_completion_date
-    @stats_by_completion_date_finish_with_state = @partner.registration_stats_finish_with_state_completion_date
-    @stats_by_race = @partner.registration_stats_race
-    @stats_by_gender = @partner.registration_stats_gender
-    @stats_by_age = @partner.registration_stats_age
-    @stats_by_party = @partner.registration_stats_party
+    #@stats_by_completion_date_finish_with_state = @partner.registration_stats_finish_with_state_completion_date
+    #@stats_by_race = @partner.registration_stats_race
+    #@stats_by_gender = @partner.registration_stats_gender
+    #@stats_by_age = @partner.registration_stats_age
+    #@stats_by_party = @partner.registration_stats_party
   end
 
   def registrations

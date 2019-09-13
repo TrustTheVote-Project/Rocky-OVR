@@ -7,14 +7,15 @@ gem "rake", "10.0.3"
 gem "figaro"
 gem "config"
 
-gem "rails", "= 4.2.10"
+gem "rails", "= 4.2.11.1"
+
 gem 'protected_attributes'
 
 gem "aasm", "= 4.12.3"
 
 gem 'twilio-ruby', '~> 4.11.1'
 
-
+gem 'will_paginate'
 
 #gem 'utf8-cleaner'
 gem 'rack-robustness'
@@ -23,6 +24,9 @@ gem "authlogic", "= 4.3.0"
 gem 'daemons', '~> 1.1.9'
 gem "paperclip", "~> 5.3.0"
 gem 'mysql2', '~> 0.3.18'
+
+gem 'distribute_reads'
+
 
 gem "rubyzip", '~> 1.2.2'
 gem 'zip-zip'
@@ -85,6 +89,10 @@ group :development, :test do
   
 end
 
+group :staging2, :staging, :production do
+  gem 'passenger', "= 5.3.4"
+end
+
 group :test do
   gem "timecop"
   gem "capybara-webkit", "~> 1.15.1"
@@ -96,7 +104,7 @@ end
   gem 'coffee-rails'
   gem 'uglifier'
 
-gem "nokogiri", "= 1.8.4"
+gem "nokogiri", ">= 1.8.5"
 gem "mechanize", "= 2.7.1"
 gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
 

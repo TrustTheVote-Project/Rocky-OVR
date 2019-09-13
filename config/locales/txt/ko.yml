@@ -92,7 +92,7 @@ ko:
         work: 직장
         other: 기타
       instructions:
-        overseas: ! '<b>주의</b>: 해외 거주 중인 미국 시민권자 또는 현역 미군 군인일 경우 <a href=''http://www.rockthevote.com/voting-is-easy/voting-rights/overseas-rights/overseas.html''
+        overseas: ! '<b>주의</b>: 해외 거주 중인 미국 시민권자 또는 현역 미군 군인일 경우 <a href=''https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote''
           target=''_blank''>별도의 웹사이트</a> 에서 등록하십시오.'
         opt_in_email: 선거 정보와 투표소 위치 그리고 음악과 이슈에 대한 정보를 보내드리겠습니다.
         under_18: ! '아직 나이 18세가 되지 않으셨습니다. 하지만 %{state_name} 주에서는 등록을 하실 수가 있습니다.

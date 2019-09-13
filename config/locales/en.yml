@@ -2,6 +2,7 @@
 en:
   'yes': "Yes"
   'no': "No"
+  required: " (Required)"
   affirm: Affirm
   decline: Decline
   language_name: English
@@ -63,6 +64,7 @@ en:
         registration_address_2: Address Line 2
         registration_city: City
         home_state: State
+        home_state_abbrev: State
         registration_zip_code: ZIP
         registration_locality: Locality
         
@@ -132,7 +134,7 @@ household member."
         previous_county: County
         phone: Phone
         change_of_name: I have changed my name.
-        change_of_address: I have changed my address.
+        change_of_address: I have changed my address since the last time I registered to vote.
         change_of_party: I have changed my political party.
         party: Political Party
         other_party: Other Party
@@ -183,7 +185,7 @@ household member."
         prev_middle_name: Middle
         prev_last_name: Last
         prev_name_suffix: Suffix
-        change_of_address: I have changed my address.
+        change_of_address: I have changed my address since the last time I registered to vote.
         prev_address: Address
         prev_unit: ! 'Unit/Lot #'
         prev_city: City
@@ -284,7 +286,7 @@ household member."
             prev_zip_code:
               invalid: Use ZIP or ZIP+4
             email_address:
-              invalid: Not a valid address
+              invalid: Not a valid email
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
@@ -327,7 +329,7 @@ household member."
       login_invalid: Username should use only letters, numbers, spaces, and .-_@ please.
       consecutive_failed_logins_limit_exceeded: Consecutive failed logins limit exceeded,
         account is disabled.
-      email_invalid: Email is not a valid address.
+      email_invalid: Email is not valid.
       password_blank: Password can not be blank.
       password_invalid: Login/password combination is not valid.
       not_active: Your account is not active.

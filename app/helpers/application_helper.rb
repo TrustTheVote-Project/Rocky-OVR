@@ -113,7 +113,8 @@ module ApplicationHelper
       when 0 then "progress-current"
       else "progress-todo"
       end
-      content_tag :li, step_index, :class => progress
+      step_value = progress == 'progress-done' ? "&#x2713;".html_safe : step_index
+      content_tag :li, step_value, :class => progress
     end.join
   end
 
@@ -124,12 +125,26 @@ module ApplicationHelper
       :title => content
   end
   
+  def required_message_for(object, field_name)
+    I18n.t("activerecord.errors.models.#{object.class.name.underscore}.attributes.#{field_name}.blank", default: I18n.t("activerecord.errors.models.#{object.class.name.underscore}.blank"), locale: object.locale)
+  end
+
+  def require_accept_message_for(object, field_name)
+    I18n.t("activerecord.errors.models.#{object.class.name.underscore}.attributes.#{field_name}.accepted", default: I18n.t("activerecord.errors.models.#{object.class.name.underscore}.accepted"), locale: object.locale)
+  end
+
+  
   def field_li(form, field, options={})
-    required = options[:required] ? "<span class='required'>*</span>" : ''
-    label = content_tag(:h3, (form.send(:label, field, options[:label_options]) + required.html_safe).html_safe)
-    tooltip = content_tag(:div, tooltip_tag(field, options[:tooltip_content]).html_safe, class: 'tooltip') unless options[:skip_tooltip]
-    error = "<span class='error'>#{form.object.errors[field].join("\n")}</span>"
+    required = options[:required] ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''
+    field_name = options[:field_name] || field
+    label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe).html_safe)
+    tooltip = content_tag(:div, tooltip_tag(field_name, options[:tooltip_content]).html_safe, class: 'tooltip') unless options[:skip_tooltip]
+    error = "<span class='error'>#{form.object.errors[field_name].join("\n")}</span>"
     field_html = nil
+    if options[:required]
+      options[:field_options] ||= {}
+      options[:field_options][:required] = true
+    end
     if options[:select_options]
       field_html = select_div(form, field, options[:select_options], options[:field_options])
     elsif options[:radio_options]
@@ -147,17 +162,36 @@ module ApplicationHelper
     selector = "#{kind}_field"
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
     class_name = [options.delete(:class), has_error].compact.join(' ')
+    if options.delete(:required)
+      options[:data] ||= {}
+      options[:data]["client-validation-required".to_sym] = required_message_for(form.object, field)
+    end
+    if options.delete(:require_accept)
+      options[:data] ||= {}
+      options[:data]["client-validation-require-accept".to_sym] = require_accept_message_for(form.object, field)
+    end
     content_tag(:div, form.send( selector, field, {:size => nil}.merge(options) ).html_safe, :class => class_name).html_safe
   end
 
   def select_div(form, field, contents, options={})
     options ||= {}
+    html_options = {}
+    if options.delete(:required)
+      html_options[:data] ||= {}
+      html_options[:data]["client-validation-required".to_sym] = required_message_for(form.object, field)
+    end
+    if options.delete(:require_accept)
+      options[:data] ||= {}
+      options[:data]["client-validation-require-accept".to_sym] = require_accept_message_for(form.object, field)
+    end
+    
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
-    content_tag(:div, form.select(field, contents, options), :class => has_error)
+    content_tag(:div, form.select(field, contents, options, html_options), :class => has_error)
   end
   
   def radio_div(form, field, radio_options, options={})
     options ||= {}
+    
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
     radio_buttons = radio_options.collect do |text, value|
       radio = form.radio_button(field, value).html_safe

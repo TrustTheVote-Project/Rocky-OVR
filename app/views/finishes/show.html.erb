@@ -1,3 +1,27 @@
+<% content_for :head do -%>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      <%- if @mobile_ui_test %>
+        <%- if @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
+          var value = "NEW";
+        <%- else %>
+          var value = "OLD";
+        <%- end %>
+        if (window.ga) {
+          ga(function() {
+            var trackers = ga.getAll();
+            var tracker = trackers[0];
+            if (tracker) {
+              tracker.send('event', 'mobile-ui-ab-test', 'finish-page', value);
+            }
+          });
+        }
+      <%- end %>
+    })
+
+  </script>
+<% end %>
+
 <% if @stop_reminders -%>
   <h1><%= I18n.t('txt.registration.finish_reminder_header').html_safe %></h1>
   <div class="fulltext">
@@ -11,11 +35,29 @@
     <%= @registrant.partner.external_conversion_snippet.to_s.html_safe %>
   <%- end %>  
   
+  
+  <%- if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
+    <%- completion = "80%"%>
+    <%- if @pdf_ready %>
+      <%- completion = "85%" %>
+    <%- end %>
+    <%- if @registrant && @registrant.pdf_downloaded %>
+      <%- completion = "90%" %>
+    <%- end %>
+    
+    <div id="dynamic-progress-bar">
+      <div class="filler" style="width: <%= completion %>"></div>
+      <div class="content"><%= completion %></div>
+    </div>
+  <%- end %>
+  
+  
   <% if !@share_only && !@pdf_ready %>
     <h1><%= I18n.t('txt.registration.finish_pdf_delay_header').html_safe %> </h1>
     <div class="fulltext">
       <p><%= I18n.t('txt.registration.finish_pdf_delay').html_safe %></p>
     </div>
+    <%= render 'downloads/pdf_assitance_button' %>
   <% end %>
 <% end -%>
 

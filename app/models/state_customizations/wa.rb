@@ -25,7 +25,7 @@
 
 class WA < StateCustomization
   def online_reg_url(registrant)
-    root_url ="https://weiapplets.sos.wa.gov/MyVoteOLVR/MyVoteOLVR"
+    root_url ="https://voter.votewa.gov/WhereToVote.aspx"
     return root_url if registrant.nil?
     fn = CGI.escape registrant.first_name.to_s
     ln = CGI.escape registrant.last_name.to_s

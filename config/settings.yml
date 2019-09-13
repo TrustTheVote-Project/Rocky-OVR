@@ -22,7 +22,8 @@ partner_wiki_url: "http://wiki.rockthevote.com"
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
   branding_from: "Rock the Vote <info@rockthevote.com>"
-  branding_to: "david@rockthevote.com, jen@rockthevote.com"
+  branding_to: "david@rockthevote.com, jen@rockthevote.com, melissa@rockthevote.com"
+  partner_status_to: "david@rockthevote.com, jen@rockthevote.com, melissa@rockthevote.com, alex.mekelburg@osetfoundation.org"
   admin_recipients: "errors@rockthevote.com, alex.mekelburg@osetfoundation.org"
   translation_recipients: "david@rockthevote.com, alex.mekelburg@osetfoundation.org"
 
@@ -35,7 +36,7 @@ paperclip_options:
   path: ":rails_root/public/system/:attachment/:id/:style/:filename"
   url: "/system/:attachment/:id/:style/:filename"
 
-mobile_redirect_url: https://register2.rockthevote.com
+mobile_redirect_url: https://register.rockthevote.com
 mobile_browsers:
   - mobile
   - webos
@@ -43,14 +44,14 @@ mobile_browsers:
   - iphone
   
 widget_loader_url: https://s3.amazonaws.com/ovr/widget_loader.js
-#hours_before_first_reminder: 120
-#hours_between_first_and_second_reminder: 72
-#hours_between_second_and_final_reminder: 72
-#minutes_before_abandoned: 30
-hours_before_first_reminder: 1
-hours_between_first_and_second_reminder: 1
-hours_between_second_and_final_reminder: 1
-minutes_before_abandoned: 10
+hours_before_first_reminder: 24
+hours_between_first_and_second_reminder: 24
+hours_between_second_and_final_reminder: 48
+minutes_before_abandoned: 30
+# hours_before_first_reminder: 1
+# hours_between_first_and_second_reminder: 1
+# hours_between_second_and_final_reminder: 1
+# minutes_before_abandoned: 30
 ui_timeout_minutes: 30
 pdf_expiration_days: 14
 pdf_no_email_expiration_minutes: 10
@@ -72,7 +73,7 @@ ovr_states:
       api_posting_entity_name: RTV
       debug_in_ui: false
       log_all_requests: false
-      disclosures_url: https://a8e83b219df9c88311b3-01fbb794ac405944f26ec8749fe8fe7b.ssl.cf1.rackcdn.com/discl/
+      disclosures_url: https://covr.cdn.sos.ca.gov/discl/
       web_url_base: https://covr.sos.ca.gov
       disclosures_box_height: 170px
       web_agency_key: RTV
@@ -104,10 +105,6 @@ ovr_states:
     languages:
       - en
       - es
-  WA:
-    redirect_to_online_reg_url: true
-    languages:
-      - en
   AK:
     redirect_to_online_reg_url: true
     languages:
@@ -129,13 +126,13 @@ ovr_states:
   DC:
     redirect_to_online_reg_url: true
     languages:
-      - en    
+      - en
   DE:
     redirect_to_online_reg_url: true
     require_age_confirmation: true
     require_id: false
     languages:
-      - en    
+      - en
   FL:
     redirect_to_online_reg_url: true
     languages:
@@ -167,7 +164,7 @@ ovr_states:
     languages:
       - en
   KS:
-    redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: false # We have ks.html.erb that takes care of the redirect
     require_id: false
     languages:
       - en
@@ -217,7 +214,7 @@ ovr_states:
       - es
   PA:
     require_age_confirmation: true
-    registration_deadline: 2018-11-06 # Must be YYYY-MM-DD format!
+    registration_deadline: 2019-05-21 # Must be YYYY-MM-DD format!
     api_settings:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
@@ -228,7 +225,7 @@ ovr_states:
       - en
       - es
   RI:
-    redirect_to_online_reg_url: ture
+    redirect_to_online_reg_url: true
     languages:
       - en
       - es
@@ -257,9 +254,13 @@ ovr_states:
     languages:
       - en
     api_settings:
-        api_url: "https://fake-va-endpoint.herokuapp.com" #https://externalapi.elections.virginia.gov/sandbox/
-        api_username: "RockTheVote_Sandbox"
+        api_url: "https://externalapi.elections.virginia.gov/v2"
+        api_username: "RockTheVote"
         api_key: <%= ENV['VA_API_KEY'] %>
+  WA:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
   WV:
     redirect_to_online_reg_url: true
     languages:

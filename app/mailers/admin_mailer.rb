@@ -25,6 +25,14 @@
 class AdminMailer < ActionMailer::Base
   default from: RockyConf.admin.from_address, to: RockyConf.admin.admin_recipients
   
+  def deactivate_partners(partners)
+    @partners = partners
+    mail(
+      to: RockyConf.admin.partner_status_to,
+      subject: "[ROCKY#{environment_subject}] Inactive Parters Login Disabled"
+    )
+  end
+  
   def open_branding_request(branding_request)
     mail(
       from: RockyConf.admin.branding_from,
@@ -49,6 +57,14 @@ class AdminMailer < ActionMailer::Base
       from: RockyConf.admin.branding_from,
       to: branding_request.partner.email,
       body: "Hey there,\n\nYour recent uploads to the Rock the Vote voter registration tool have been rejected. Please update and resubmit.\n\n#{partner_branding_url}\n\nThanks\nRock the Vote"
+    )
+  end
+  
+  def import_results(result_list, email)
+    mail(
+      subject: "Registrant Status Import Complete",
+      to: email,
+      body: "Results: \n\n#{result_list}"
     )
   end
   

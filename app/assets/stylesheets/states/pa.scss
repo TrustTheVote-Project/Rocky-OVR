@@ -146,6 +146,10 @@
     }
   }
   form {
+    #signature_capture {
+      margin-top: 20px;
+    }
+    
     #signature_capture, #signature_capture2, #continue_on_device {
       display: none;        
     }
@@ -247,9 +251,13 @@
       }
     }
     
+    fieldset.phone {
+      margin-top: 2em;
+    }
+    
     ul, ul.flat {
       li.registrant-form__date-of-birth__line {
-        width: 130px;
+        width: 100%;
       }
       li.registrant-form__home-address__line {
         width: 100%;
@@ -269,8 +277,18 @@
           padding: .5em 0;
         }
       }
+      li.registrant-form__penndot-number__line {
+        width: auto;
+        input {
+          width: auto;
+        }
+      }
       li.registrant-form__ssn4__line {
         margin-top: 2em;
+        width: auto;
+        input {
+          width: auto;
+        }
       }
     }
     ul.party-dropdown, ul.race-dropdown, ul.other-party {
@@ -281,5 +299,15 @@
         margin-right: 0;
       }
     }
+  }
+}
+
+.declaration-text {
+  border: 1px solid #e6e6e6;
+  background: #f6f6f6;
+  padding: 15px;
+  strong {
+    font-size: 20px;
+    font-weight: bold;
   }
 }

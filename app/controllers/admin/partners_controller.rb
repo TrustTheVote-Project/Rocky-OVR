@@ -25,17 +25,19 @@
 class Admin::PartnersController < Admin::BaseController
 
   def index
-    @partners = Partner.standard
+    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 1000)
     @partner_zip = PartnerZip.new(nil)
   end
 
   def upload_registrant_statuses
-    @partners = Partner.standard
+    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 1000)
     @partner_zip = PartnerZip.new(nil)
     
     state = GeoState.find(params[:geo_state])
     csv = params[:statuses_csv]
-    @status_results = RegistrantStatus.import_ovr_status!(csv.path, state, current_admin)
+    RegistrantStatus.import_ovr_status!(csv.path, state, current_admin)
+    
+    @status_results = "Your results will be emailed to #{current_admin.email}"
 
     render action: :index
   end

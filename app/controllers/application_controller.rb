@@ -26,8 +26,9 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
   before_filter :ensure_https
+  before_filter :strict_transport_security
 
-  before_filter :authenticate_everything, :if => lambda { !%w{ development test production loadtest }.include?(Rails.env) }
+  before_filter :authenticate_everything, :if => lambda { !%w{ development test production loadtest staging }.include?(Rails.env) }
 
 
   def vr_to_pa_debug_ui
@@ -37,6 +38,17 @@ class ApplicationController < ActionController::Base
       render layout: false
     end
   end
+  
+  def pdf_assistance_report
+    if params[:api_key] != ENV['PDF_PRINT_API_KEY']
+      raise ActionController::RoutingError.new('Not Found')
+    else
+      respond_to do |format|
+        format.csv { send_data PdfDelivery.to_csv_string, :filename => "pdf_assistance_report.csv" }
+      end         
+    end
+  end
+  
 
   protected
 
@@ -52,6 +64,12 @@ class ApplicationController < ActionController::Base
       url.scheme = "https"
       redirect_to(url.to_s)
       false
+    end
+  end
+  
+  def strict_transport_security
+    if request.ssl?
+      response.headers['Strict-Transport-Security'] = "max-age=31536000; includeSubDomains"
     end
   end
   

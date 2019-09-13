@@ -2,6 +2,7 @@
 ko:
   language_name: 한국어
   language_name_translation_instructions: 한국어
+  required: " (តម្រូវអោយមាន)"
   locales:
     bn:
       name: 벵골의
@@ -89,7 +90,7 @@ ko:
       models:
         registrant:
           ca_disclosures_error: California  정부와 유권자 등록을 완료하기 위해서는 아래의 내용에 동의하셔야 합니다.
-          blank: 필수
+          blank: តម្រូវអោយមាន
           invalid_zip: ZIP 코드 에러
           attributes:
             home_zip_code:

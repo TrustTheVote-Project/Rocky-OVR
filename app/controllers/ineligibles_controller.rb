@@ -26,11 +26,16 @@ class IneligiblesController < RegistrationStep
   CURRENT_STEP = 1
 
   def show
-    super
+    redirected = find_registrant
+    return if redirected == :redirected
+    set_ab_test
+    set_up_view_variables
     if @registrant.ineligible_age? &&
         !(@registrant.ineligible_non_participating_state? || @registrant.ineligible_non_citizen?)
       @registrant.remind_when_18 = true
       render "under_18"
+    else
+      render_show
     end
   end
 

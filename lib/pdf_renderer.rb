@@ -16,8 +16,9 @@ class PdfRenderer < AbstractController::Base
   
   attr_accessor :registrant, :state, :logo_image_tag, :locale, :registrant_instructions_link
   
-  def initialize(registrant)
+  def initialize(registrant, for_printer = false)
     super()
+    @for_printer = for_printer
     @locale =registrant.locale
     @registrant=registrant
     @logo_image_path = self.logo_image_path

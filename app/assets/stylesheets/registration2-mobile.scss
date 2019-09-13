@@ -78,6 +78,17 @@ $mobile-min-width: 300px - $tooltip-offset;
                 }
               } 
             }
+            li, li.width_f {
+              &.registrant-form__date-of-birth__line {
+                width: 100%;
+                input {
+                  width: 55px;
+                  &:last-child {
+                    width: 75px;
+                  }
+                }
+              }
+            }
             &.dob-and-phone {
               li, li.width_f {
                 &.registrant-form__date-of-birth__line {
@@ -151,6 +162,13 @@ $mobile-min-width: 300px - $tooltip-offset;
                 white-space: normal;
               }
             }
+          }
+        }
+        .required {
+          &--text {
+            display: inline !important;
+            font-style: italic;
+            font-size: 90%;
           }
         }
     }

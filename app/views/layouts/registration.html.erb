@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <%= javascript_include_tag "iframeResizer.contentWindow.min.js" %>
+  
   <script>
     WebFont.load({
       google: {
@@ -29,7 +31,7 @@
   </script>
   <%= yield :head %>
 </head>
-<body class="<%= 'primary-partner' if @partner && @partner.primary? %>">
+<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
     <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
@@ -100,5 +102,6 @@
     }, false);
   } 
 </script>
+
 </body>
 </html>
