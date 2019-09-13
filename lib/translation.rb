@@ -76,11 +76,11 @@ class Translation
   end
   
   def self.css_path(locale)
-    css_dir.join("#{locale}.css.scss").to_s
+    css_dir.join("#{locale}.scss").to_s
   end
   
   def self.nvra_css_path(locale)
-    nvra_css_dir.join("#{locale}.css.scss").to_s
+    nvra_css_dir.join("#{locale}.scss").to_s
   end
   
   def self.has_css?(locale)

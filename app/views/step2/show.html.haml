@@ -150,4 +150,4 @@
     = link_to t('txt.button.back').html_safe, registrant_path(@registrant)
     
 - if @registrant.use_short_form?
-  %p.already-registered= I18n.t('txt.registration.already_registered', url: ( "/share?registrant_finish_iframe_url=#{CGI.escape(@registrant.finish_iframe_url)}")).html_safe
+  %p.already-registered= I18n.t('txt.registration.already_registered', url: ( "/share?partner=#{@registrant.partner_id}&registrant_finish_iframe_url=#{CGI.escape(@registrant.finish_iframe_url)}")).html_safe

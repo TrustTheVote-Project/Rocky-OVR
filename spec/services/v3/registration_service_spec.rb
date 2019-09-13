@@ -58,6 +58,25 @@ describe V3::RegistrationService do
         e.message.should  == "Required"
       end
     end
+    
+    it 'should NOT raise validation errors for invalid email' do
+      begin
+        V3::RegistrationService.create_record({     :lang                              => 'en',
+          :partner_id                        => 1,
+          :send_confirmation_reminder_emails => '1',
+          :date_of_birth                     => '10-24-1975',
+          :email_address                     => 'test@test.com',
+          :home_zip_code                     => '02110',
+          :us_citizen                        => '1',
+          :name_title                        => 'Mr.',
+          :last_name                         => 'Smith'
+        })        
+        fail 'ValidationError is expected'
+      rescue V3::RegistrationService::ValidationError => e
+        e.field.to_s.should_not    == 'email_address'
+        e.message.should_not  == "Not a valid email"
+      end
+    end
 
     it 'should raise an error if the language is unknown even if everything else is bad' do
       lambda {

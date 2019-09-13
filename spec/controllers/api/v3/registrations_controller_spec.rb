@@ -410,12 +410,12 @@ describe Api::V3::RegistrationsController do
   end
   
   def registrations(&block)
-    query = { :partner_id => nil, :partner_api_key => nil, :since => nil, :email=>nil }
+    query = { :partner_id => nil, :partner_api_key => nil, :since => nil, :before => nil, :email=>nil }
     V3::RegistrationService.stub(:find_records).with(query, &block)
     get :index, :format => 'json'
   end
   def gregistrations(&block)
-    query = { :gpartner_id => nil, :gpartner_api_key => nil, :since => nil, :email=>nil }
+    query = { :gpartner_id => nil, :gpartner_api_key => nil, :since => nil, :before => nil, :email=>nil }
     V3::RegistrationService.stub(:find_records).with(query, &block)
     get :index_gpartner, :format => 'json'
   end
