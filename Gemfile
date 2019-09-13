@@ -95,7 +95,7 @@ end
 
 group :test do
   gem "timecop"
-  gem "capybara-webkit", "~> 1.5.2"
+  gem "capybara-webkit", "~> 1.15.1"
   gem "webmock"
 end
 
@@ -104,7 +104,8 @@ end
   gem 'coffee-rails'
   gem 'uglifier'
 
-gem "nokogiri", ">= 1.8.5"
+gem "nokogiri", ">= 1.10.4"
+
 gem "mechanize", "= 2.7.1"
 gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
 
