@@ -277,20 +277,24 @@ en:
         colorado: |-
           You may register with a party. If you leave this section blank you will not be
           registered with any party.
-        idaho: |-
-          You must register with a party if you want to participate in that
-          party's election. Enter your Political Party Preference. Options: Constitution,
+        connecticut: |-
+          This is optional, but you must register with a party if you want to take part
+          in that party’s primary election, caucus, or convention.
+        idaho: "You must register with a party if you want to participate in that party's
+          election. Enter your Political Party Preference. Options: Constitution,
           Democratic, Libertarian, Republican or Unaffiliated (i.e. no party preference).
-          If this field is left blank, you will receive on only the Unaffiliated ballot.
+          If this field is left blank, you will receive on only the Unaffiliated ballot."
+        illinois: "Leave Blank. Exception: for primary elections, unless a voter only
+          wishes to vote on public questions, a party preference should be indicated"
         indiana: |-
           Indiana law does not permit a person to indicate their party affiliation,
           if any, as part of their registration record.  You will have to declare
           your party affiliation prior to voting in a primary election.
         massachusetts: |-
-          If you do not designate a political party, you will be registered
-          as unenrolled (commonly referred to as independent).  Unenrolled voters
-          may participate in party primaries and general elections. There are currently
-          three political parties (Democrat, Republican, Green-Rainbow)
+          If you do not designate a party or political designation in this box, you will
+          be registered as unenrolled, which is commonly referred to as independent.
+          Unenrolled voters and voters registered in political designations may vote in
+          party primaries.
         mississippi: |-
           Mississippi does not have party registration.  Therefore, you
           do not have to register with a party if you want to take part in that party's
@@ -301,12 +305,12 @@ en:
           unaffiliated voters may choose to vote either a partisan ballot or a non-partisan
           ballot.
         rhode_island: |-
-          In Rhode Island, a person must register with a party if he/she
-          wishes to take part in that party's primary election. A person who fails
-          to register with a party at the time of registration may, if he/ she chooses,
-          register with a party on the day of that party's primary and take part in
-          that party's primary election. If a person does not register with a party,
-          he/she can still vote in general elections and nonpartisan primary elections.
+          In Rhode Island, a person must register with a party if they wish to take part
+          in that party's primary election. A person who fails to register with a party at
+          the time of registration may, if they choose, register with a party on the day
+          of that party's primary and take part in that party's primary election. If a
+          person does not register with a party, they can still vote in general elections
+          and nonpartisan primary elections.
         tennessee: |-
           Tennessee does not register by political party. When you wish to
           vote in a primary election, you will have to declare a party at that time.
