@@ -204,12 +204,12 @@ record_13:
   name: Illinois
   requires_party: true
   party_tooltip: illinois
-  id_number_tooltip: drivers_license_or_ssn_or_none_2
+  id_number_tooltip: illinois
   sos_address: State Board of Elections<br>2329 S. MacArthur Boulevard<br>Springfield,
     IL 62704
   sos_phone: "(217) 782-4141"
   sos_url: http://www.elections.il.gov/
-  registration_deadline: postmarked_27_days
+  registration_deadline: illinois
   id_length_min: '4'
   online_registration_url: https://ova.elections.il.gov/Step0.aspx
   sub_18: be_by_next_general_election_november

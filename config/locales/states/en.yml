@@ -287,7 +287,7 @@ en:
           Democratic, Libertarian, Republican or Unaffiliated (i.e. no party preference).
           If this field is left blank, you will receive on only the Unaffiliated ballot."
         illinois: "Leave Blank. Exception: for primary elections, unless a voter only
-          wishes to vote on public questions, a party preference should be indicated"
+          wishes to vote on public questions, a party preference should be indicated."
         indiana: |-
           Indiana law does not permit a person to indicate their party affiliation,
           if any, as part of their registration record.  You will have to declare
@@ -438,6 +438,17 @@ en:
           the last four digits of your Social Security number.  If you do not have
           any of the requested identification numbers, please enter "NONE" and you
           will be assigned a unique identification number by the state.
+        illinois: "Illinois requires either the Driver's License (or Secretary of State
+          ID Card) or the last 4 digits of Social Security Number. For people who do not
+          have either of those items, and have not registered in Illinois before, a mail
+          in registration form should be accompanied by a copy of other identifying
+          information: you must send, with this application, either (i) a copy of a
+          current and valid photo identification, or (ii) a copy of a current utility
+          bill, bank statement, government check, paycheck, or other government document
+          that shows the name and address of the voter. If you do not provide the
+          information required above, then you will be required to provide election
+          officials with either (i) or (ii) described above the first time you vote at a
+          voting place."
         indiana: |-
           You must provide your ten-digit Indiana driver's license number or
           Bureau of Motor Vehicles ID number.  If you do not have a driver's license
@@ -737,6 +748,9 @@ en:
         postmarked by the fourth Saturday before a general or primary election,
         or 10 days before a special election
       georgia: postmarked by the fifth Monday before the election
+      illinois: |-
+        Online Registration is available until 16 days before the election and in-person
+        registration is available through Election Day.
       iowa: |-
         received in-person 10 days before General and Primary Elections (11 days
         before all other elections), or postmarked 15 days before Election Day.
