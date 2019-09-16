@@ -576,7 +576,7 @@ record_38:
 record_39:
   abbreviation: RI
   name: Rhode Island
-  race_tooltip: rhode_island
+  race_tooltip: not_required_but_appreciated_with_state_name
   requires_party: true
   party_tooltip: rhode_island
   id_number_tooltip: rhode_island
@@ -584,7 +584,7 @@ record_39:
     RI 02904-2790
   sos_phone: "(401) 222-2345"
   sos_url: http://www.elections.state.ri.us/
-  registration_deadline: rhode_island
+  registration_deadline: postmarked_30_days
   id_length_min: '4'
   online_registration_url: https://vote.sos.ri.gov/
 record_40:
