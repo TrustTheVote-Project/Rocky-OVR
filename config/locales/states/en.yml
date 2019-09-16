@@ -429,6 +429,9 @@ en:
           a state issued identification or a social security number, please write
           "NONE" on the form. A unique identifying number will be assigned by the
           State.
+        connecticut: |-
+          Connecticut Driver's License Number, or if none, the last four digits of your
+          Social Security Number.
         georgia: |-
           You must provide your Georgia driver's license number or state-issued
           identification number.  If you do not have either of those, you must provide
@@ -728,8 +731,8 @@ en:
         less than 8 days before election day, then you must appear in person in your
         county to vote.
       connecticut: |-
-        postmarked 7 days before the election or received in person 7
-        days before the election
+        postmarked seven (7) days before the election; postmarked five (5) days before
+        the primary
       delaware: |-
         postmarked by the fourth Saturday before a general or primary election,
         or 10 days before a special election

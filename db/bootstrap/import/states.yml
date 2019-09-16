@@ -107,7 +107,7 @@ record_6:
   name: Connecticut
   requires_party: true
   party_tooltip: connecticut
-  id_number_tooltip: drivers_license_or_photo_id_and_other
+  id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: Secretary of State<br>Elections Division<br>30 Trinity Street<br>Hartford,
     CT 06106
   sos_phone: "(860) 509-6100"
