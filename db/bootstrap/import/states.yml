@@ -156,7 +156,7 @@ record_9:
   sos_url: http://election.dos.state.fl.us/
   sub_18: when_is_16
   id_length_min: '4'
-  online_registration_url: https://registertovoteflorida.gov/en/Registration/Eligibility
+  online_registration_url: https://registertovoteflorida.gov/eligibilityreactive
 record_10:
   abbreviation: GA
   name: Georgia
