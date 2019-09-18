@@ -29,33 +29,16 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
   # Lists registrations
   def index
-    query = {
-      :partner_id       => params[:partner_id],
-      :partner_api_key  => params[:partner_API_key],
-      :since            => params[:since],
-      :before           => params[:before],
-      :email            => params[:email]
-    }
-
     jsonp({
-      :registrations => V3::RegistrationService.find_records(query), 
-      :deprecation_message=>"This report generation API will not be available after Sept 19, 2019. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
+      :deprecation_message=>"This report generation API is no longer available. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
     })
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
   end
 
   def index_gpartner
-    query = {
-      :gpartner_id       => params[:gpartner_id],
-      :gpartner_api_key  => params[:gpartner_API_key],
-      :since            => params[:since],
-      :email            => params[:email]
-    }
-
     jsonp({
-      :registrations => V3::RegistrationService.find_records(query),
-      :deprecation_message=>"This report generation API will not be available after Sept 19, 2019. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
+      :deprecation_message=>"This report generation API is no longer available. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
     })
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
