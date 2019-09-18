@@ -277,20 +277,24 @@ en:
         colorado: |-
           You may register with a party. If you leave this section blank you will not be
           registered with any party.
-        idaho: |-
-          You must register with a party if you want to participate in that
-          party's election. Enter your Political Party Preference. Options: Constitution,
+        connecticut: |-
+          This is optional, but you must register with a party if you want to take part
+          in that party’s primary election, caucus, or convention.
+        idaho: "You must register with a party if you want to participate in that party's
+          election. Enter your Political Party Preference. Options: Constitution,
           Democratic, Libertarian, Republican or Unaffiliated (i.e. no party preference).
-          If this field is left blank, you will receive on only the Unaffiliated ballot.
+          If this field is left blank, you will receive on only the Unaffiliated ballot."
+        illinois: "Leave Blank. Exception: for primary elections, unless a voter only
+          wishes to vote on public questions, a party preference should be indicated."
         indiana: |-
           Indiana law does not permit a person to indicate their party affiliation,
           if any, as part of their registration record.  You will have to declare
           your party affiliation prior to voting in a primary election.
         massachusetts: |-
-          If you do not designate a political party, you will be registered
-          as unenrolled (commonly referred to as independent).  Unenrolled voters
-          may participate in party primaries and general elections. There are currently
-          three political parties (Democrat, Republican, Green-Rainbow)
+          If you do not designate a party or political designation in this box, you will
+          be registered as unenrolled, which is commonly referred to as independent.
+          Unenrolled voters and voters registered in political designations may vote in
+          party primaries.
         mississippi: |-
           Mississippi does not have party registration.  Therefore, you
           do not have to register with a party if you want to take part in that party's
@@ -301,12 +305,12 @@ en:
           unaffiliated voters may choose to vote either a partisan ballot or a non-partisan
           ballot.
         rhode_island: |-
-          In Rhode Island, a person must register with a party if he/she
-          wishes to take part in that party's primary election. A person who fails
-          to register with a party at the time of registration may, if he/ she chooses,
-          register with a party on the day of that party's primary and take part in
-          that party's primary election. If a person does not register with a party,
-          he/she can still vote in general elections and nonpartisan primary elections.
+          In Rhode Island, a person must register with a party if they wish to take part
+          in that party's primary election. A person who fails to register with a party at
+          the time of registration may, if they choose, register with a party on the day
+          of that party's primary and take part in that party's primary election. If a
+          person does not register with a party, they can still vote in general elections
+          and nonpartisan primary elections.
         tennessee: |-
           Tennessee does not register by political party. When you wish to
           vote in a primary election, you will have to declare a party at that time.
@@ -423,12 +427,26 @@ en:
           a state issued identification or a social security number, please write
           "NONE" on the form. A unique identifying number will be assigned by the
           State.
+        connecticut: |-
+          Connecticut Driver's License Number, or if none, the last four digits of your
+          Social Security Number.
         georgia: |-
           You must provide your Georgia driver's license number or state-issued
           identification number.  If you do not have either of those, you must provide
           the last four digits of your Social Security number.  If you do not have
           any of the requested identification numbers, please enter "NONE" and you
           will be assigned a unique identification number by the state.
+        illinois: "Illinois requires either the Driver's License (or Secretary of State
+          ID Card) or the last 4 digits of Social Security Number. For people who do not
+          have either of those items, and have not registered in Illinois before, a mail
+          in registration form should be accompanied by a copy of other identifying
+          information: you must send, with this application, either (i) a copy of a
+          current and valid photo identification, or (ii) a copy of a current utility
+          bill, bank statement, government check, paycheck, or other government document
+          that shows the name and address of the voter. If you do not provide the
+          information required above, then you will be required to provide election
+          officials with either (i) or (ii) described above the first time you vote at a
+          voting place."
         indiana: |-
           You must provide your ten-digit Indiana driver's license number or
           Bureau of Motor Vehicles ID number.  If you do not have a driver's license
@@ -455,9 +473,22 @@ en:
           last four digits of your Social Security number.  If you do not have any
           of these numbers, please enter "NONE" and a unique identifying number will
           be assigned to you by the state.
+        massachusetts: |-
+          Federal law requires that you provide your driver's license number to register
+          to vote. If you do not have a current and valid Massachusetts' driver's license
+          then you must provide the last four (4) digits of your social security number.
+          If you have neither, you must write "NONE" in the box and a unique identifying
+          number will be assigned to you.
         oklahoma: "You must provide one of these numbers: either your valid Oklahoma
           driver's license number or state identification card number or the last four
           digits of your Social Security number."
+        rhode_island: "The applicant shall be required to provide their Rhode Island
+          driver's license or State ID number if the applicant has been issued a current
+          and valid Rhode Island driver's license or State ID. In the case of an applicant
+          who has not been issued a current and valid driver's license or State ID, they
+          must provide the last four (4) digits of their social security number. An
+          applicant, who has neither, will be assigned a unique identifying number by the
+          State of Rhode Island."
         texas: You must provide your Texas driver’s license or Texas personal
           identification number to register to vote. If you do not have a Texas driver’s
           license or Texas personal identification card then you will have to provide at
@@ -709,12 +740,15 @@ en:
         less than 8 days before election day, then you must appear in person in your
         county to vote.
       connecticut: |-
-        postmarked 7 days before the election or received in person 7
-        days before the election
+        postmarked seven (7) days before the election; postmarked five (5) days before
+        the primary
       delaware: |-
         postmarked by the fourth Saturday before a general or primary election,
         or 10 days before a special election
       georgia: postmarked by the fifth Monday before the election
+      illinois: |-
+        Online Registration is available until 16 days before the election and in-person
+        registration is available through Election Day.
       iowa: |-
         received in-person 10 days before General and Primary Elections (11 days
         before all other elections), or postmarked 15 days before Election Day.
@@ -738,10 +772,6 @@ en:
         at the office of the County Clerk/Registrar of Voters. The deadline for online
         voter registration at www.RegisterToVoteNV.gov is the Thursday preceding the
         first day of the early voting period.
-      rhode_island: |-
-        received 30 days before the election. Mailed voter registration
-        forms received after the deadline will be accepted as long as the mail is
-        postmarked on or before the voter registration deadline.
       utah: |-
         postmarked 30 days before the election, or received in person 15 days
         before the election

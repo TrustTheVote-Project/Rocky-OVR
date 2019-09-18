@@ -24,16 +24,16 @@
 #***** END LICENSE BLOCK *****
 require File.expand_path(File.dirname(__FILE__) + '/../../rails_helper')
 
-describe V3::RegistrationService do
+describe V4::RegistrationService do
 
   describe 'create_record' do
     it 'should raise an error if the language is unknown' do
-      lambda { V3::RegistrationService.create_record(:lang => 'unknown') }.should raise_error V3::UnsupportedLanguageError
+      lambda { V4::RegistrationService.create_record(:lang => 'unknown') }.should raise_error V4::UnsupportedLanguageError
     end
 
     it 'should raise an error if the field is unknown' do
       begin
-        V3::RegistrationService.create_record(:lang => 'en', :unknown => 'field')
+        V4::RegistrationService.create_record(:lang => 'en', :unknown => 'field')
         fail "UnknownAttributeError expected"
       rescue ActiveRecord::UnknownAttributeError => e
         e.message.should == "unknown attribute 'unknown' for Registrant."
@@ -42,7 +42,7 @@ describe V3::RegistrationService do
 
     it 'should not know state_id_number field' do
       begin
-        V3::RegistrationService.create_record(:lang => 'en', :state_id_number => '1234')
+        V4::RegistrationService.create_record(:lang => 'en', :state_id_number => '1234')
         fail "UnknownAttributeError expected"
       rescue ActiveRecord::UnknownAttributeError => e
         e.message.should == "unknown attribute 'state_id_number' for NilClass."
@@ -51,17 +51,17 @@ describe V3::RegistrationService do
 
     it 'should raise validation errors when the record is invalid' do
       begin
-        V3::RegistrationService.create_record(:lang => 'en')
+        V4::RegistrationService.create_record(:lang => 'en')
         fail 'ValidationError is expected'
-      rescue V3::RegistrationService::ValidationError => e
+      rescue V4::RegistrationService::ValidationError => e
         e.field.to_s.should    == 'date_of_birth'
         e.message.should  == "Required"
       end
     end
-    
-    it 'should NOT raise validation errors for invalid email' do
+
+    it 'should raise validation errors for invalid email' do
       begin
-        V3::RegistrationService.create_record({     :lang                              => 'en',
+        V4::RegistrationService.create_record({     :lang                              => 'en',
           :partner_id                        => 1,
           :send_confirmation_reminder_emails => '1',
           :date_of_birth                     => '10-24-1975',
@@ -72,23 +72,25 @@ describe V3::RegistrationService do
           :last_name                         => 'Smith'
         })        
         fail 'ValidationError is expected'
-      rescue V3::RegistrationService::ValidationError => e
-        e.field.to_s.should_not    == 'email_address'
-        e.message.should_not  == "Not a valid email"
+      rescue V4::RegistrationService::ValidationError => e
+        e.field.to_s.should    == 'email_address'
+        e.message.should  == "Not a valid email"
       end
     end
 
+    
+
     it 'should raise an error if the language is unknown even if everything else is bad' do
       lambda {
-        V3::RegistrationService.create_record(:lang => 'ex', :home_state_id => 1)
-      }.should raise_error V3::UnsupportedLanguageError
+        V4::RegistrationService.create_record(:lang => 'ex', :home_state_id => 1)
+      }.should raise_error V4::UnsupportedLanguageError
     end
 
     it 'should raise an error if the language is not given' do
       begin
-        V3::RegistrationService.create_record(:home_state_id => 'NY')
+        V4::RegistrationService.create_record(:home_state_id => 'NY')
         fail 'ValidationError is expected'
-      rescue V3::RegistrationService::ValidationError => e
+      rescue V4::RegistrationService::ValidationError => e
         e.field.to_s.should    == 'lang'
         e.message.should  == 'Required'
       end
@@ -97,9 +99,9 @@ describe V3::RegistrationService do
     [1,2].each do |qnum|
       it "should raise an error if answer #{qnum} is provided without question #{qnum}" do
         begin
-          V3::RegistrationService.create_record("survey_answer_#{qnum}" => 'An Answer')
+          V4::RegistrationService.create_record("survey_answer_#{qnum}" => 'An Answer')
           fail 'SurveyQuestionError is expected'
-        rescue V3::RegistrationService::SurveyQuestionError => e
+        rescue V4::RegistrationService::SurveyQuestionError => e
           e.message.should == "Question #{qnum} required when Answer #{qnum} provided"
         end
       end
@@ -107,8 +109,8 @@ describe V3::RegistrationService do
     [1,2].each do |qnum|
       it "should not raise an error if answer #{qnum} is provided with question #{qnum}" do
         begin
-          V3::RegistrationService.create_record("survey_answer_#{qnum}" => 'An Answer', "survey_question_#{qnum}"=>"A Question")
-        rescue V3::RegistrationService::SurveyQuestionError => e
+          V4::RegistrationService.create_record("survey_answer_#{qnum}" => 'An Answer', "survey_question_#{qnum}"=>"A Question")
+        rescue V4::RegistrationService::SurveyQuestionError => e
           fail 'SurveyQuestionError is not expected'
         rescue
         end
@@ -116,7 +118,7 @@ describe V3::RegistrationService do
     end
 
     it 'should deal with states passed as strings' do
-      V3::RegistrationService.data_to_attrs({
+      V4::RegistrationService.data_to_attrs({
         :mailing_state => "", :home_state => "1", :prev_state => "AL"
       }).should == {
         :mailing_state_id => nil,
@@ -127,7 +129,7 @@ describe V3::RegistrationService do
 
     context 'complete record' do
       before(:each) do
-        @reg = FactoryGirl.create(:api_v3_maximal_registrant, :status => 'step_5')
+        @reg = FactoryGirl.create(:api_v4_maximal_registrant, :status => 'step_5')
         @reg.stub(:enqueue_complete_registration_via_api)
         Registrant.stub(:build_from_api_data).with({}, false) { @reg }
       end
@@ -135,25 +137,25 @@ describe V3::RegistrationService do
       describe "async setting" do
         it "should pass async to build_from_api data" do
           @reg.should_receive(:enqueue_complete_registration_via_api).with(true)
-          V3::RegistrationService.create_record({async: true}).should
+          V4::RegistrationService.create_record({async: true}).should
 
           @reg.should_receive(:enqueue_complete_registration_via_api).with(false)
-          V3::RegistrationService.create_record({async: false}).should
+          V4::RegistrationService.create_record({async: false}).should
         end
         it "should default to true" do
           @reg.should_receive(:enqueue_complete_registration_via_api).with(true)
-          V3::RegistrationService.create_record({}).should
+          V4::RegistrationService.create_record({}).should
         end
       end
       it 'should save the record and generate PDF' do
-        V3::RegistrationService.create_record({}).should
+        V4::RegistrationService.create_record({}).should
       end
     end
   end
 
   describe 'create_record_finish_with_state' do
     it 'should save the record' do
-      reg = V3::RegistrationService.create_record({
+      reg = V4::RegistrationService.create_record({
         # Lang is supposed to be required?
         :lang                              => 'en',
         :partner_id                        => 0,
@@ -344,7 +346,7 @@ describe V3::RegistrationService do
     describe 'create_pa_registrant' do
 
       it 'builds a finish-with-state rocky registrant instance from the params' do
-        r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+        r = V4::RegistrationService.create_pa_registrant(json_request["rocky_request"])
         expect(r.valid?).to eq(true)
         expect(r.finish_with_state).to eq(true)
         expect(r.partner_volunteer).to eq(true)
@@ -370,13 +372,13 @@ describe V3::RegistrationService do
       end
     
       it 'puts the voter_records_request hash, geo_location and open_tracking_id into registrant state_ovr_data' do
-        r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+        r = V4::RegistrationService.create_pa_registrant(json_request["rocky_request"])
         expect(r.state_ovr_data["voter_records_request"]).to eq(json_request["rocky_request"]["voter_records_request"])
         expect(r.state_ovr_data["geo_location"]).to eq(json_request["rocky_request"]["geo_location"])
         expect(r.open_tracking_id).to eq(json_request["rocky_request"]["open_tracking_id"])
       end
       it "allows a canvasser_name field in the \"voter_records_request\" field" do
-        r = V3::RegistrationService.create_pa_registrant(json_request["rocky_request"])
+        r = V4::RegistrationService.create_pa_registrant(json_request["rocky_request"])
         expect(r.state_ovr_data["voter_records_request"]["canvasser_name"]).to eq("Canvasser Name")
         
       end
@@ -392,7 +394,7 @@ describe V3::RegistrationService do
         allow(VRToPA).to receive(:new).with("hash") { pa_adapter }
         allow(pa_adapter).to receive(:convert)
       end
-      subject { V3::RegistrationService.valid_for_pa_submission(registrant) }
+      subject { V4::RegistrationService.valid_for_pa_submission(registrant) }
       it "initiates a VRToPA conversion" do
         expect(VRToPA).to receive(:new).with("hash") { pa_adapter }
         expect(subject).to eq([])
@@ -414,7 +416,7 @@ describe V3::RegistrationService do
       it "commits the rocky registrant to the DB"
       
       describe "invalid signature VR_WAPI_Invalidsignaturecontrast" do
-        let(:r) { V3::RegistrationService.create_pa_registrant(json_request["rocky_request"]) }
+        let(:r) { V4::RegistrationService.create_pa_registrant(json_request["rocky_request"]) }
         before(:each) do
           allow(PARegistrationRequest).to receive(:send_request).and_return({:error=>"VR_WAPI_Invalidsignaturecontrast"})
         end
@@ -436,7 +438,7 @@ describe V3::RegistrationService do
           it "raises an error and removes the signature if there's a DL" do
             expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to_not be_nil
             expect {
-              V3::RegistrationService.register_with_pa(r)
+              V4::RegistrationService.register_with_pa(r)
             }.to raise_error("registrant has bad sig, removing and resubmitting")
             expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to be_nil
         
@@ -460,7 +462,7 @@ describe V3::RegistrationService do
           it "also raises an error if there's no DL" do
             expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to_not be_nil
             expect {
-              V3::RegistrationService.register_with_pa(r)
+              V4::RegistrationService.register_with_pa(r)
             }.to raise_error("registrant has bad sig, removing and resubmitting")
             expect(r.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]).to be_nil
         
@@ -487,22 +489,22 @@ describe V3::RegistrationService do
       #   bad_data = data
       #   bad_data.delete(:open_tracking_id)
       #   expect {
-      #     V3::RegistrationService.track_clock_in_event(data)
-      #   }.to raise_error(V3::RegistrationService::ValidationError)
+      #     V4::RegistrationService.track_clock_in_event(data)
+      #   }.to raise_error(V4::RegistrationService::ValidationError)
       # end
       it "should create a new TrackingEvent" do
         expect {
-          V3::RegistrationService.track_clock_in_event(data)
+          V4::RegistrationService.track_clock_in_event(data)
         }.to change {
           TrackingEvent.count
         }.by(1)
       end  
       it "creates a new tracking event via open data plus the event name" do
         expect(TrackingEvent).to receive(:create_from_data).with(data.merge(tracking_event_name: "pa_canvassing_clock_in"))
-        V3::RegistrationService.track_clock_in_event(data)
+        V4::RegistrationService.track_clock_in_event(data)
       end
       it "stores the data we expect" do
-        V3::RegistrationService.track_clock_in_event(data)
+        V4::RegistrationService.track_clock_in_event(data)
         te = TrackingEvent.last
         expect(te.tracking_event_name).to eq("pa_canvassing_clock_in")
         expect(te.source_tracking_id).to eq("123457689")
@@ -539,17 +541,17 @@ describe V3::RegistrationService do
     }}
     it "should create a new TrackingEvent" do
       expect {
-        V3::RegistrationService.track_clock_out_event(data)
+        V4::RegistrationService.track_clock_out_event(data)
       }.to change {
         TrackingEvent.count
       }.by(1)
     end  
     it "creates a new tracking event via open data" do
       expect(TrackingEvent).to receive(:create_from_data).with(data.merge(tracking_event_name: "pa_canvassing_clock_out"))
-      V3::RegistrationService.track_clock_out_event(data)
+      V4::RegistrationService.track_clock_out_event(data)
     end
     it "stores the data we expect" do
-      V3::RegistrationService.track_clock_out_event(data)
+      V4::RegistrationService.track_clock_out_event(data)
       te = TrackingEvent.last
       expect(te.source_tracking_id).to eq("123457689")
       expect(te.partner_tracking_id).to eq("22201")
@@ -570,142 +572,72 @@ describe V3::RegistrationService do
   
 
   describe 'data_to_attrs' do
-    specify { V3::RegistrationService.send(:data_to_attrs, {}).should == {} }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :lang  => 'ex' }).should == { :locale => 'ex' } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :survey_question_1 => 'q1' }).should == { :original_survey_question_1 => 'q1' } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :survey_question_2 => 'q2' }).should == { :original_survey_question_2 => 'q2' } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :source_tracking_id => 'sourceid' }).should == { :tracking_source => 'sourceid' } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :partner_tracking_id => 'partnertrackid' }).should == { :tracking_id => 'partnertrackid' } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :opt_in_volunteer => true }).should == { :volunteer => true } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :partner_opt_in_volunteer => true }).should == { :partner_volunteer => true } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :home_state_id => 'NY', :mailing_state => 'ca', :prev_state_id => 'Nj' }).should == { :home_state_id => 33, :mailing_state_id => 5, :prev_state_id => 31 } } # See geo_states.csv
-    specify { V3::RegistrationService.send(:data_to_attrs, { :id_number => 'id' }).should == { :state_id_number => 'id' } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :IsEighteenOrOlder => true }).should == { :will_be_18_by_election => true } }
-    specify { V3::RegistrationService.send(:data_to_attrs, { :is_eighteen_or_older => false }).should == { :will_be_18_by_election => false } }
+    specify { V4::RegistrationService.send(:data_to_attrs, {}).should == {} }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :lang  => 'ex' }).should == { :locale => 'ex' } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :survey_question_1 => 'q1' }).should == { :original_survey_question_1 => 'q1' } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :survey_question_2 => 'q2' }).should == { :original_survey_question_2 => 'q2' } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :source_tracking_id => 'sourceid' }).should == { :tracking_source => 'sourceid' } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :partner_tracking_id => 'partnertrackid' }).should == { :tracking_id => 'partnertrackid' } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :opt_in_volunteer => true }).should == { :volunteer => true } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :partner_opt_in_volunteer => true }).should == { :partner_volunteer => true } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :home_state_id => 'NY', :mailing_state => 'ca', :prev_state_id => 'Nj' }).should == { :home_state_id => 33, :mailing_state_id => 5, :prev_state_id => 31 } } # See geo_states.csv
+    specify { V4::RegistrationService.send(:data_to_attrs, { :id_number => 'id' }).should == { :state_id_number => 'id' } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :IsEighteenOrOlder => true }).should == { :will_be_18_by_election => true } }
+    specify { V4::RegistrationService.send(:data_to_attrs, { :is_eighteen_or_older => false }).should == { :will_be_18_by_election => false } }
     
   end
 
-  describe 'find_records' do
+  describe 'create_report' do
     it 'should return an error for invalid partner ID' do
       partner = FactoryGirl.create(:partner, :api_key=>"key")
       lambda {
-        V3::RegistrationService.find_records(:partner_id => 0, :partner_api_key => partner.api_key)
-      }.should raise_error V3::PartnerService::INVALID_PARTNER_OR_API_KEY
+        V4::RegistrationService.create_report(:partner_id => 0, :partner_api_key => partner.api_key)
+      }.should raise_error V4::PartnerService::INVALID_PARTNER_OR_API_KEY
     end
 
     it 'should return an error for invalid api_key' do
       partner = FactoryGirl.create(:partner, :api_key=>"key")
       lambda {
-        V3::RegistrationService.find_records(:partner_id => Partner.first.id, :partner_api_key => 'not_the_key')
-      }.should raise_error V3::PartnerService::INVALID_PARTNER_OR_API_KEY
+        V4::RegistrationService.create_report(:partner_id => Partner.first.id, :partner_api_key => 'not_the_key')
+      }.should raise_error V4::PartnerService::INVALID_PARTNER_OR_API_KEY
     end
     
     it "should return an error for invlaid 'since' value" do
       partner = FactoryGirl.create(:partner, :api_key=>"key")
       lambda {
-        V3::RegistrationService.find_records(:partner_id => partner.id, :partner_api_key=>partner.api_key, :since => "abcdef")
-      }.should raise_error V3::RegistrationService::InvalidParameterValue
+        V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key=>partner.api_key, :since => "abcdef")
+      }.should raise_error V4::RegistrationService::InvalidParameterValue
     end
     it "should return an error for unsupported parameters" do
       partner = FactoryGirl.create(:partner, :api_key=>"key")
       lambda {
-        V3::RegistrationService.find_records(:partner_id => Partner.first.id, :some_field => "abcdef")
-      }.should raise_error V3::RegistrationService::InvalidParameterType
+        V4::RegistrationService.create_report(:partner_id => Partner.first.id, :some_field => "abcdef")
+      }.should raise_error V4::RegistrationService::InvalidParameterType
     end
 
 
-    it 'should return the list of registrants' do
+    it 'should start a report with the given params' do
       partner = FactoryGirl.create(:partner, :api_key=>"key")
-      reg = FactoryGirl.create(:api_v3_maximal_registrant, :partner => partner)
+      reg = FactoryGirl.create(:api_v4_maximal_registrant, :partner => partner)
+      V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key => partner.api_key).should == { :status=>"queued", :record_count=>nil, :current_index=>nil, :status_url=>"http://example-pdf.com/api/v4/registrant_reports/#{Report.last.id}", :download_url=>nil}
+      
+      
+      V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key => partner.api_key, email: "test@test.com")
+      Report.last.filters[:email_address].should == "test@test.com"
 
-      V3::RegistrationService.find_records(:partner_id => partner.id, :partner_api_key => partner.api_key).should == [
-        { :status               => 'complete',
-          :will_be_18_by_election => reg.will_be_18_by_election?,
-          :create_time          => reg.created_at.to_s,
-          :complete_time        => reg.updated_at.to_s,
-          :lang                 => reg.locale,
-          :first_reg            => reg.first_registration?,
-          :home_zip_code        => reg.home_zip_code,
-          :us_citizen           => reg.us_citizen?,
-          :name_title           => reg.name_title,
-          :first_name           => reg.first_name,
-          :middle_name          => reg.middle_name,
-          :last_name            => reg.last_name,
-          :name_suffix          => reg.name_suffix,
-          :home_address         => reg.home_address,
-          :home_unit            => reg.home_unit,
-          :home_city            => reg.home_city,
-          :home_state_id        => reg.home_state_id,
-          :has_mailing_address  => reg.has_mailing_address,
-          :mailing_address      => reg.mailing_address,
-          :mailing_unit         => reg.mailing_unit,
-          :mailing_city         => reg.mailing_city,
-          :mailing_state_id     => reg.mailing_state_id,
-          :mailing_zip_code     => reg.mailing_zip_code,
-          :race                 => reg.race,
-          :party                => reg.party,
-          :phone                => reg.phone,
-          :phone_type           => reg.phone_type,
-          :email_address        => reg.email_address,
-          :opt_in_email         => reg.opt_in_email,
-          :opt_in_sms           => reg.opt_in_sms,
-          :opt_in_volunteer     => reg.volunteer?,
-          :partner_opt_in_email => reg.partner_opt_in_email,
-          :partner_opt_in_sms   => reg.partner_opt_in_sms,
-          :partner_opt_in_volunteer    => reg.partner_volunteer,
-          :survey_question_1    => partner.send("survey_question_1_#{reg.locale}"),
-          :survey_answer_1      => reg.survey_answer_1,
-          :survey_question_2    => partner.send("survey_question_1_#{reg.locale}"),
-          :survey_answer_2      => reg.survey_answer_2,
-          :finish_with_state    => reg.finish_with_state?,
-          :created_via_api      => reg.building_via_api_call?,
-          :tracking_source      => reg.tracking_source,
-          :tracking_id         => reg.tracking_id,
-          :dob                  => reg.pdf_date_of_birth}
-      ]
-    end
+      V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key => partner.api_key, since: "2020-01-01")
+      Report.last.start_date.strftime("%Y-%m-%d").should == "2020-01-01"
+      
+      V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key => partner.api_key, :before => "2000-01-01")
+      Report.last.end_date.strftime("%Y-%m-%d").should == "2000-01-01"
 
-    it 'should not list registrants before the since date' do
-      partner = FactoryGirl.create(:partner, :api_key=>"key")
-      reg = FactoryGirl.create(:api_v3_maximal_registrant, :partner => partner)
+      V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key => partner.api_key, since: "1999-01-01", :before => "2000-01-01", email: "test@test.com")
+      Report.last.start_date.strftime("%Y-%m-%d").should == "1999-01-01"
+      Report.last.end_date.strftime("%Y-%m-%d").should == "2000-01-01"
 
-      V3::RegistrationService.find_records(:partner_id => partner.id, :partner_api_key => partner.api_key, :since => 1.minute.from_now.to_s).should == []
-    end
-
-    it 'should filter by email address' do
-      partner = FactoryGirl.create(:partner, :api_key=>"key")
-      reg = FactoryGirl.create(:api_v3_maximal_registrant, :partner => partner, :email_address=>"test@osdv.org")
-      reg2 = FactoryGirl.create(:api_v3_maximal_registrant, :partner => partner, :email_address=>"test2@osdv.org")
-
-      res = V3::RegistrationService.find_records(:partner_id => partner.id,
-        :partner_api_key => partner.api_key,
-        :email => "test@osdv.org")
-      res.first[:email_address].should == reg.email_address
-      res.should have(1).registrant
-      res2 = V3::RegistrationService.find_records(:partner_id => partner.id,
-        :partner_api_key => partner.api_key,
-        :email => "test2@osdv.org")
-      res2.first[:email_address].should == reg2.email_address
-      res2.should have(1).registrant
-    end
-
-
-    it 'should filter by email address and since date' do
-      partner = FactoryGirl.create(:partner, :api_key=>"key")
-      reg = FactoryGirl.create(:api_v3_maximal_registrant, :partner => partner, :email_address=>"test@osdv.org")
-      reg2 = FactoryGirl.create(:api_v3_maximal_registrant, :partner => partner, :email_address=>"test2@osdv.org")
-
-      V3::RegistrationService.find_records(:partner_id => partner.id,
-        :partner_api_key => partner.api_key,
-        :email => "test@osdv.org",
-        :since => 1.minute.from_now.to_s).should == []
-
-      res = V3::RegistrationService.find_records(:partner_id => partner.id,
-          :partner_api_key => partner.api_key,
-          :email => "test@osdv.org",
-          :since => 1.day.ago.to_s)
-      res.first[:email_address].should == reg.email_address
-      res.should have(1).registrant
+      Report.last.filters[:email_address].should == "test@test.com"
+      
+      
     end
 
     context "when a gpartner_id is passed in" do
@@ -717,15 +649,15 @@ describe V3::RegistrationService do
       context "when the gpartner ID is invalid" do
         it "should return an error" do
           lambda {
-            V3::RegistrationService.find_records(:gpartner_id => 0, :gpartner_api_key => @partner.api_key)
-          }.should raise_error V3::PartnerService::INVALID_PARTNER_OR_API_KEY
+            V4::RegistrationService.create_report(:gpartner_id => 0, :gpartner_api_key => @partner.api_key)
+          }.should raise_error V4::PartnerService::INVALID_PARTNER_OR_API_KEY
         end
       end
       context "when the API key doesn't match" do
         it "should return an error" do
           lambda {
-            V3::RegistrationService.find_records(:gpartner_id => @partner.id, :gpartner_api_key => 'not_the_key')
-          }.should raise_error V3::PartnerService::INVALID_PARTNER_OR_API_KEY          
+            V4::RegistrationService.create_report(:gpartner_id => @partner.id, :gpartner_api_key => 'not_the_key')
+          }.should raise_error V4::PartnerService::INVALID_PARTNER_OR_API_KEY          
         end
       end
       context "when the gpartner zips are set by state" do
@@ -735,23 +667,24 @@ describe V3::RegistrationService do
           @partner.save!
         end
         it "should return registrants for that state" do
-          results = V3::RegistrationService.find_records(:gpartner_id => @partner.id, :gpartner_api_key => @partner.api_key)
-          results.should have(1).registrants
-          results.first[:email_address].should == @ma_reg.email_address
+          V4::RegistrationService.create_report(:gpartner_id => @partner.id, :gpartner_api_key => @partner.api_key)
+          Report.last.run
+          Report.last.record_count.should == 1
         end
       end
       context "when the gpartner zips are set by zip-code list" do
         it "should return registrants for those zip codes only (regardless of state)" do
           @partner.government_partner_zip_code_list = "02113, 90000"
           @partner.save!
-          results = V3::RegistrationService.find_records(:gpartner_id => @partner.id, :gpartner_api_key => @partner.api_key)
-          results.should have(1).registrants
-          results.first[:email_address].should == @ca_reg.email_address
+          results = V4::RegistrationService.create_report(:gpartner_id => @partner.id, :gpartner_api_key => @partner.api_key)
+          Report.last.run
+          Report.last.record_count.should == 1
 
           @partner.government_partner_zip_code_list = "02110, 90000"
           @partner.save!
-          results = V3::RegistrationService.find_records(:gpartner_id => @partner.id, :gpartner_api_key => @partner.api_key)
-          results.should have(2).registrants
+          V4::RegistrationService.create_report(:gpartner_id => @partner.id, :gpartner_api_key => @partner.api_key)
+          Report.last.run
+          Report.last.record_count.should == 2
         end        
       end
     end
@@ -769,17 +702,17 @@ describe V3::RegistrationService do
     it "raises an error when the registrant isn't found" do
       Registrant.stub(:find_by_uid).and_return(nil)
       lambda {
-        V3::RegistrationService.check_pdf_ready(query)
-      }.should raise_error(V3::RegistrationService::InvalidUIDError)
+        V4::RegistrationService.check_pdf_ready(query)
+      }.should raise_error(V4::RegistrationService::InvalidUIDError)
     end
     
     it "finds the registrant" do
       Registrant.should_receive(:find_by_uid).with("123")
-      V3::RegistrationService.check_pdf_ready(query).should be_truthy
+      V4::RegistrationService.check_pdf_ready(query).should be_truthy
     end
     it "returns false if the registrant pdf is not ready" do
       reg.stub(:pdf_ready?).and_return(false)
-      V3::RegistrationService.check_pdf_ready(query).should be_falsey
+      V4::RegistrationService.check_pdf_ready(query).should be_falsey
     end
   end
 
@@ -801,24 +734,24 @@ describe V3::RegistrationService do
     it "raises an error when the registrant isn't found" do
       Registrant.stub(:find_by_uid).and_return(nil)
       lambda {
-        V3::RegistrationService.stop_reminders(query)
-      }.should raise_error(V3::RegistrationService::InvalidUIDError)
+        V4::RegistrationService.stop_reminders(query)
+      }.should raise_error(V4::RegistrationService::InvalidUIDError)
     end
     it "finds the registrant" do
       Registrant.should_receive(:find_by_uid).with("123")
-      V3::RegistrationService.stop_reminders(query)
+      V4::RegistrationService.stop_reminders(query)
     end
     it "sets the registrant reminders_left to 0" do
       reg.should_receive(:update_attributes).with(:reminders_left=>0)
-      V3::RegistrationService.stop_reminders(query)
+      V4::RegistrationService.stop_reminders(query)
     end
     it "returns wether the update was successful" do
-      V3::RegistrationService.stop_reminders(query)[:reminders_stopped].should be_truthy
+      V4::RegistrationService.stop_reminders(query)[:reminders_stopped].should be_truthy
       reg.stub(:update_attributes).and_return(false)
-      V3::RegistrationService.stop_reminders(query)[:reminders_stopped].should be_falsey      
+      V4::RegistrationService.stop_reminders(query)[:reminders_stopped].should be_falsey      
     end
     it "returns first name, last name and email address" do
-      r = V3::RegistrationService.stop_reminders(query)
+      r = V4::RegistrationService.stop_reminders(query)
       r[:email_address].should == "email_addr"
       r[:first_name].should == "fn"
       r[:last_name].should == "ln"
@@ -839,16 +772,16 @@ describe V3::RegistrationService do
   #   let(:partner) { FactoryGirl.create(:partner, :api_key=>"key") }
   #   it "checks partner API key" do
   #     lambda {
-  #       V3::RegistrationService.bulk_create(data_list, 0,  "asdasd")
-  #     }.should raise_error V3::PartnerService::INVALID_PARTNER_OR_API_KEY
+  #       V4::RegistrationService.bulk_create(data_list, 0,  "asdasd")
+  #     }.should raise_error V4::PartnerService::INVALID_PARTNER_OR_API_KEY
   #   end
   #
   #   it "creates a reg record for each item in the api-style data list" do
   #     data_list.each do |data_item|
-  #       V3::RegistrationService.stub(:block_protected_attributes)
-  #       V3::RegistrationService.should_receive(:block_protected_attributes).with(data_item)
-  #       V3::RegistrationService.stub(:data_to_attrs)
-  #       V3::RegistrationService.should_receive(:data_to_attrs).with(data_item).and_return(data_item)
+  #       V4::RegistrationService.stub(:block_protected_attributes)
+  #       V4::RegistrationService.should_receive(:block_protected_attributes).with(data_item)
+  #       V4::RegistrationService.stub(:data_to_attrs)
+  #       V4::RegistrationService.should_receive(:data_to_attrs).with(data_item).and_return(data_item)
   #       reg = mock_model(Registrant)
   #       reg.stub(:status=)
   #       reg.stub(:save!)
@@ -857,11 +790,11 @@ describe V3::RegistrationService do
   #       reg.should_receive(:status=).with(data_item[:status])
   #       reg.should_receive(:save!)
   #     end
-  #     V3::RegistrationService.bulk_create(data_list, partner.id, partner.api_key)
+  #     V4::RegistrationService.bulk_create(data_list, partner.id, partner.api_key)
   #   end
   #
   #   it "returns a 1-1 array of success/failures for the data list" do
-  #     results = V3::RegistrationService.bulk_create(data_list, partner.id, partner.api_key)
+  #     results = V4::RegistrationService.bulk_create(data_list, partner.id, partner.api_key)
   #     results[0][0].should be_truthy
   #     results[1][0].should be_falsey
   #     results[2][0].should be_truthy

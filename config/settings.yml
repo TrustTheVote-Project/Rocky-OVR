@@ -22,8 +22,8 @@ partner_wiki_url: "http://wiki.rockthevote.com"
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
   branding_from: "Rock the Vote <info@rockthevote.com>"
-  branding_to: "david@rockthevote.com, jen@rockthevote.com, melissa@rockthevote.com"
-  partner_status_to: "david@rockthevote.com, jen@rockthevote.com, melissa@rockthevote.com, alex.mekelburg@osetfoundation.org"
+  branding_to: "david@rockthevote.com, melissa@rockthevote.com"
+  partner_status_to: "david@rockthevote.com, melissa@rockthevote.com, alex.mekelburg@osetfoundation.org"
   admin_recipients: "errors@rockthevote.com, alex.mekelburg@osetfoundation.org"
   translation_recipients: "david@rockthevote.com, alex.mekelburg@osetfoundation.org"
 

@@ -444,7 +444,7 @@ class Registrant < ActiveRecord::Base
   end
 
   
-
+  attr_accessor :api_version
   # Builds the record from the API data and sets the correct state
   def self.build_from_api_data(data, api_finish_with_state = false)
     r = Registrant.new(data)
@@ -1030,7 +1030,10 @@ class Registrant < ActiveRecord::Base
   end
   
   def existing_state_registrant
-    @existing_state_registrant ||= if use_state_flow?      
+    return @existing_state_registrant if @existing_state_registrant
+    return nil if @existing_state_registrant_fetched
+    @existing_state_registrant_fetched = true
+    @existing_state_registrant ||= if use_state_flow?  
       state_registrant_type = "StateRegistrants::#{home_state_abbrev}Registrant"
       begin
         model = state_registrant_type.constantize
@@ -1040,8 +1043,10 @@ class Registrant < ActiveRecord::Base
       end
     else
       nil
-    end    
+    end
+    return @existing_state_registrant    
   end
+  
   
   def state_registrant
     if use_state_flow?

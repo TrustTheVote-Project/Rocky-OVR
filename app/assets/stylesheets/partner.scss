@@ -222,7 +222,7 @@ div.login {
   margin: 0 auto;
 }
 
-form.form_downloadcsv {
+form.form_downloadcsv, div.form_downloadcsv {
   overflow: hidden;
   display: block;
   position: relative;
@@ -451,6 +451,37 @@ ul.clear li {
 .stats table {
   border: 1px solid #c0c0c0;
   width: 100%;
+}
+
+table.report-table {
+  th {
+    font-size: 1.3em;
+  }
+  th, td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #ccc;
+  }
+  tr {
+    td {
+      font-weight: bold;
+    }
+    &.failed {
+      td {
+        font-weight: normal;
+        color: red;        
+      }
+    }
+    &.complete {
+      td {
+        font-weight: normal;        
+      }
+    }
+    &:hover {
+      td {
+        background: #eee;
+      }
+    }
+  }
 }
 
 td#left_column, td#right_column {

@@ -106,8 +106,8 @@ record_6:
   abbreviation: CT
   name: Connecticut
   requires_party: true
-  party_tooltip: required_for_primary
-  id_number_tooltip: drivers_license_or_photo_id_and_other
+  party_tooltip: connecticut
+  id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: Secretary of State<br>Elections Division<br>30 Trinity Street<br>Hartford,
     CT 06106
   sos_phone: "(860) 509-6100"
@@ -203,13 +203,13 @@ record_13:
   abbreviation: IL
   name: Illinois
   requires_party: true
-  party_tooltip: party_not_required
-  id_number_tooltip: drivers_license_or_ssn_or_none_2
+  party_tooltip: illinois
+  id_number_tooltip: illinois
   sos_address: State Board of Elections<br>2329 S. MacArthur Boulevard<br>Springfield,
     IL 62704
   sos_phone: "(217) 782-4141"
   sos_url: http://www.elections.il.gov/
-  registration_deadline: postmarked_27_days
+  registration_deadline: illinois
   id_length_min: '4'
   online_registration_url: https://ova.elections.il.gov/Step0.aspx
   sub_18: be_by_next_general_election_november
@@ -319,7 +319,7 @@ record_21:
   - republican
   - unenrolled
   - other
-  id_number_tooltip: drivers_license_or_other_with_state_name_2
+  id_number_tooltip: massachusetts
   sos_address: Secretary of the Commonwealth<br>Elections Division<br>One Ashburton
     Place - Room 1705<br>Boston, MA 02108
   sos_phone: "(800) 462-VOTE"
@@ -576,14 +576,15 @@ record_38:
 record_39:
   abbreviation: RI
   name: Rhode Island
+  race_tooltip: not_required_but_appreciated_with_state_name
   requires_party: true
   party_tooltip: rhode_island
-  id_number_tooltip: drivers_license_current_and_valid_with_state_name
+  id_number_tooltip: rhode_island
   sos_address: Rhode Island State Board of Elections<br>50 Branch Avenue<br>Providence,
     RI 02904-2790
   sos_phone: "(401) 222-2345"
   sos_url: http://www.elections.state.ri.us/
-  registration_deadline: rhode_island
+  registration_deadline: postmarked_30_days
   id_length_min: '4'
   online_registration_url: https://vote.sos.ri.gov/
 record_40:

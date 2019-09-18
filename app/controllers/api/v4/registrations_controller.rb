@@ -22,56 +22,21 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-require "#{Rails.root}/app/services/v3"
-class Api::V3::RegistrationsController < Api::V3::BaseController
+require "#{Rails.root}/app/services/v4"
+class Api::V4::RegistrationsController < Api::V4::BaseController
 
-
-
-  # Lists registrations
-  def index
-    query = {
-      :partner_id       => params[:partner_id],
-      :partner_api_key  => params[:partner_API_key],
-      :since            => params[:since],
-      :before           => params[:before],
-      :email            => params[:email]
-    }
-
-    jsonp({
-      :registrations => V3::RegistrationService.find_records(query), 
-      :deprecation_message=>"This report generation API will not be available after Sept 19, 2019. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
-    })
-  rescue ArgumentError => e
-    jsonp({ :message => e.message }, :status => 400)
-  end
-
-  def index_gpartner
-    query = {
-      :gpartner_id       => params[:gpartner_id],
-      :gpartner_api_key  => params[:gpartner_API_key],
-      :since            => params[:since],
-      :email            => params[:email]
-    }
-
-    jsonp({
-      :registrations => V3::RegistrationService.find_records(query),
-      :deprecation_message=>"This report generation API will not be available after Sept 19, 2019. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
-    })
-  rescue ArgumentError => e
-    jsonp({ :message => e.message }, :status => 400)
-  end
 
 
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
   def create
-    r = V3::RegistrationService.create_record(params[:registration])
+    r = V4::RegistrationService.create_record(params[:registration])
     jsonp :pdfurl => "https://#{RockyConf.pdf_host_name}#{r.pdf_download_path}", :uid=>r.uid
-  rescue V3::RegistrationService::ValidationError => e
+  rescue V4::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
-  rescue V3::RegistrationService::SurveyQuestionError => e
+  rescue V4::RegistrationService::SurveyQuestionError => e
     jsonp({ :message => e.message }, :status=>400)
-  rescue V3::UnsupportedLanguageError => e
+  rescue V4::UnsupportedLanguageError => e
     jsonp({ :message => e.message }, :status => 400)
   rescue ActiveRecord::UnknownAttributeError => e
     name = e.attribute
@@ -80,11 +45,11 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
   # Creates the record
   def create_finish_with_state
-    result = V3::RegistrationService.create_record(params[:registration], true)
+    result = V4::RegistrationService.create_record(params[:registration], true)
     jsonp :registrations => result.to_finish_with_state_array
-  rescue V3::RegistrationService::ValidationError => e
+  rescue V4::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
-  rescue V3::UnsupportedLanguageError => e
+  rescue V4::UnsupportedLanguageError => e
     jsonp({ :message => e.message }, :status => 400)
   rescue ActiveRecord::UnknownAttributeError => e
     name = e.attribute
@@ -97,9 +62,9 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     data.delete(:format)
     data.delete(:controller)
     data.delete(:action)
-    V3::RegistrationService.track_clock_in_event(data)
+    V4::RegistrationService.track_clock_in_event(data)
     jsonp({}, status: 200)
-  rescue V3::RegistrationService::ValidationError => e
+  rescue V4::RegistrationService::ValidationError => e
     jsonp({ :message => e.message }, status: 400)
   end
 
@@ -109,9 +74,9 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     data.delete(:format)
     data.delete(:controller)
     data.delete(:action)
-    V3::RegistrationService.track_clock_out_event(data)
+    V4::RegistrationService.track_clock_out_event(data)
     jsonp({}, status: 200)
-  rescue V3::RegistrationService::ValidationError => e
+  rescue V4::RegistrationService::ValidationError => e
     jsonp({ :message => e.message }, status: 400)
   end
 
@@ -155,7 +120,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     end
 
     # 1. Build a rocky registrant record based on all of the fields
-    registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])
+    registrant = V4::RegistrationService.create_pa_registrant(params[:rocky_request])
     # 1a. do subsititutions for invalid chars
     registrant.basic_character_replacement!
     registrant.state_ovr_data["grommet_request_id"] = gr_id # lets store the original request for reference
@@ -163,7 +128,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     # 2.Check if the registrant is internally valid
     if registrant.valid?
       # If valid for rocky, ensure that it's valid for PA submissions
-      pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)
+      pa_validation_errors = V4::RegistrationService.valid_for_pa_submission(registrant)
       if pa_validation_errors.any?
         pa_error_result(pa_validation_errors, registrant)
       else
@@ -171,7 +136,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
         # This will commit the registrant with the response code
         registrant.save!
         
-        job = V3::RegistrationService.delay(run_at: (Admin::GrommetQueueController.delay).hours.from_now, queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME).async_register_with_pa(registrant.id)
+        job = V4::RegistrationService.delay(run_at: (Admin::GrommetQueueController.delay).hours.from_now, queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME).async_register_with_pa(registrant.id)
         
         begin
           registrant.state_ovr_data["delayed_job_id"] = job.id
@@ -223,7 +188,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     headers['Access-Control-Allow-Headers'] = '*'
     headers['Access-Control-Max-Age'] = "1728000"
 
-    jsonp :pdf_ready => V3::RegistrationService.check_pdf_ready(query), :UID=>params[:UID]
+    jsonp :pdf_ready => V4::RegistrationService.check_pdf_ready(query), :UID=>params[:UID]
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
@@ -238,14 +203,14 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     headers['Access-Control-Allow-Headers'] = '*'
     headers['Access-Control-Max-Age'] = "1728000"
 
-    jsonp V3::RegistrationService.stop_reminders(query).merge(:UID=>params[:UID])
+    jsonp V4::RegistrationService.stop_reminders(query).merge(:UID=>params[:UID])
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
 
   def bulk
     jsonp({
-        :registrants_added=>V3::RegistrationService.bulk_create(params[:registrants], params[:partner_id], params[:partner_API_key])
+        :registrants_added=>V4::RegistrationService.bulk_create(params[:registrants], params[:partner_id], params[:partner_API_key])
     })
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)

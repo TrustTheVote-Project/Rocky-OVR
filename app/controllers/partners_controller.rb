@@ -137,39 +137,41 @@ SCRIPT
     #@stats_by_age = @partner.registration_stats_age
     #@stats_by_party = @partner.registration_stats_party
   end
+  
+  def reports
+    @reports = Report.where(partner_id: current_partner.id).order("created_at DESC")
+  end
 
   def registrations
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
     if current_partner.enabled_for_grommet? && params[:generate_grommet]=="1"
-      current_partner.generate_grommet_registrants_csv_async(start_date, end_date)
+      current_partner.generate_grommet_registrants_csv(start_date, end_date)
     else
-      current_partner.generate_registrants_csv_async(start_date, end_date)
+      current_partner.generate_registrants_csv(start_date, end_date)
     end
-    redirect_to download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})    
+    redirect_to reports_partner_url #download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})    
   end
   
   def grommet_shift_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
     
-    csvstr = current_partner.generate_grommet_shift_report(start_date, end_date)
-    respond_to do |format|
-      format.csv do
-        send_data csvstr, filename: "shift-report.csv", type: "text/csv"
-      end
-    end    
+    current_partner.generate_grommet_shift_report(start_date, end_date)
+    redirect_to reports_partner_url
   end
   
   def download_csv
-    if params[:generate_grommet]=="1"
-      if current_partner.grommet_csv_ready
-        redirect_to current_partner.grommet_csv_url 
-      end
+    report = Report.find_by_id(params[:report_id])
+    if report.nil? || report.partner != current_partner
+      flash[:warning] = "You don't have permissions to view that report"
+      redirect_to reports_partner_url
     else
-      if current_partner.csv_ready
-        redirect_to current_partner.csv_url 
-      end
+      send_data report.read, filename: report.download_file_name, type: "text/csv"
+      # respond_to do |format|
+      #   format.csv do
+      #   end
+      # end
     end
   end
 

@@ -24,7 +24,7 @@
 #***** END LICENSE BLOCK *****
 require File.expand_path(File.dirname(__FILE__) + '/../../../rails_helper')
 
-describe Api::V3::RegistrationsController do
+describe Api::V4::RegistrationsController do
 
   describe 'create' do
     it 'should return URL of PDF to be generated' do
@@ -37,12 +37,12 @@ describe Api::V3::RegistrationsController do
 
     it 'should catch invalid fields' do
       expect_api_error :message => "Error message", :field_name => "invalid_field"
-      new_registration { raise V3::RegistrationService::ValidationError.new('invalid_field', 'Error message') }
+      new_registration { raise V4::RegistrationService::ValidationError.new('invalid_field', 'Error message') }
     end
 
     it 'should report unsupported language' do
       expect_api_error :message => 'Unsupported language'
-      new_registration { raise V3::UnsupportedLanguageError }
+      new_registration { raise V4::UnsupportedLanguageError }
     end
 
     it 'should report invalid parameter type' do
@@ -53,7 +53,7 @@ describe Api::V3::RegistrationsController do
     [ 1, 2 ].each do |qnum|
       it "should report error when an answer is provided without a question" do
         expect_api_error :message =>"Question #{qnum} required when Answer #{qnum} provided"
-        new_registration { raise(V3::RegistrationService::SurveyQuestionError.new("Question #{qnum} required when Answer #{qnum} provided")) }
+        new_registration { raise(V4::RegistrationService::SurveyQuestionError.new("Question #{qnum} required when Answer #{qnum} provided")) }
       end
     end
   end
@@ -73,7 +73,7 @@ describe Api::V3::RegistrationsController do
       expect(subject.code).to eq("200")
     end
     it "should call the track_clock_in_event service method" do
-      expect(V3::RegistrationService).to receive(:track_clock_in_event).with(json_data)
+      expect(V4::RegistrationService).to receive(:track_clock_in_event).with(json_data)
       subject
     end
   end
@@ -85,7 +85,7 @@ describe Api::V3::RegistrationsController do
       expect(subject.code).to eq("200")
     end
     it "should call the track_clock_out_event service method" do
-      expect(V3::RegistrationService).to receive(:track_clock_out_event).with(json_data)
+      expect(V4::RegistrationService).to receive(:track_clock_out_event).with(json_data)
       subject
     end
   end
@@ -262,12 +262,12 @@ describe Api::V3::RegistrationsController do
     end
 
     context 'successful registration' do
-      let(:valid_registrant) { FactoryGirl.create(:api_v3_maximal_registrant) }
+      let(:valid_registrant) { FactoryGirl.create(:api_v4_maximal_registrant) }
       before(:each) do
         valid_registrant.state_ovr_data = {}
-        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(valid_registrant)
-        allow(V3::RegistrationService).to receive(:valid_for_pa_submission).and_return([])
-        allow(V3::RegistrationService).to receive(:register_with_pa).with(valid_registrant) { |r| r.state_ovr_data["pa_transaction_id"]="APP_ID"}
+        allow(V4::RegistrationService).to receive(:create_pa_registrant).and_return(valid_registrant)
+        allow(V4::RegistrationService).to receive(:valid_for_pa_submission).and_return([])
+        allow(V4::RegistrationService).to receive(:register_with_pa).with(valid_registrant) { |r| r.state_ovr_data["pa_transaction_id"]="APP_ID"}
       end
       it 'should return a 200 response' do
         expect(subject.code).to eql "200"
@@ -275,7 +275,7 @@ describe Api::V3::RegistrationsController do
       it 'should queue the PA registration' do
         expect(valid_registrant).to receive(:save!) 
         mock_delay = double("Delay")
-        expect(V3::RegistrationService).to receive(:delay).and_return(mock_delay)
+        expect(V4::RegistrationService).to receive(:delay).and_return(mock_delay)
         expect(mock_delay).to receive(:async_register_with_pa).with(valid_registrant.id)
         subject
       end
@@ -289,7 +289,7 @@ describe Api::V3::RegistrationsController do
     context 'registrant record fails rocky validation' do
       let(:invalid_registrant) { double(Registrant, valid?: false, errors: double("Errors", full_messages: ["Message One", "Message Two"])).as_null_object}
       before(:each) do
-        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
+        allow(V4::RegistrationService).to receive(:create_pa_registrant).and_return(invalid_registrant)
       end
       it 'should return a 400 response' do
         expect(subject.status).to be_eql(400)
@@ -304,11 +304,11 @@ describe Api::V3::RegistrationsController do
       end
     end
     context 'registrant record fails PA validation' do
-      let(:valid_registrant) { FactoryGirl.create(:api_v3_maximal_registrant) }
+      let(:valid_registrant) { FactoryGirl.create(:api_v4_maximal_registrant) }
       
       before(:each) do
-        allow(V3::RegistrationService).to receive(:create_pa_registrant).and_return(valid_registrant)
-        allow(V3::RegistrationService).to receive(:valid_for_pa_submission).and_return(["PA Error One", "PA Error Two"])        
+        allow(V4::RegistrationService).to receive(:create_pa_registrant).and_return(valid_registrant)
+        allow(V4::RegistrationService).to receive(:valid_for_pa_submission).and_return(["PA Error One", "PA Error Two"])        
       end
       it 'should return a 400 response' do
         expect(subject.status).to eq(400)
@@ -322,29 +322,6 @@ describe Api::V3::RegistrationsController do
         ])
       end
     end
-  end
-
-  describe 'index' do
-    it 'should catch errors' do
-      expect_api_error :message => 'error'
-      registrations { raise ArgumentError.new('error') }
-    end
-
-    it 'should return registrations' do
-      expect_api_response :registrations => [ :reg1, :reg2 ]
-      registrations { [ :reg1, :reg2 ] }
-    end
-  end
-  
-  describe "index_gpartner" do
-    it 'should catch errors' do
-      expect_api_error :message => 'error'
-      gregistrations { raise ArgumentError.new('error') }
-    end
-    it 'should return registrations' do
-      expect_api_response :registrations => [ :reg1, :reg2 ]
-      gregistrations { [ :reg1, :reg2 ] }
-    end    
   end
 
   describe 'pdf_ready' do
@@ -393,42 +370,42 @@ describe Api::V3::RegistrationsController do
 
   def pdf_ready(&block)
     query = { :UID=>"1234"}
-    V3::RegistrationService.stub(:check_pdf_ready).with(query, &block)
+    V4::RegistrationService.stub(:check_pdf_ready).with(query, &block)
     get :pdf_ready, query.merge(:format=>'json')
   end
   
   def stop_reminders(&block)
     query = { :UID=>"1234"}
-    V3::RegistrationService.stub(:stop_reminders).with(query, &block)
+    V4::RegistrationService.stub(:stop_reminders).with(query, &block)
     post :stop_reminders, query.merge(:format=>'json')
   end
   def bulk(&block)
     query = { :registrants=>[], :partner_id=>1, :partner_API_key=>"1"}
-    V3::RegistrationService.stub(:bulk_create).with([], 1, "1", &block)
+    V4::RegistrationService.stub(:bulk_create).with([], 1, "1", &block)
     post :bulk, query.merge(:format=>'json')
     
   end
   
   def registrations(&block)
-    query = { :partner_id => nil, :partner_api_key => nil, :since => nil, :before => nil, :email=>nil }
-    V3::RegistrationService.stub(:find_records).with(query, &block)
+    query = { :partner_id => nil, :partner_api_key => nil, :since => nil, :email=>nil }
+    V4::RegistrationService.stub(:find_records).with(query, &block)
     get :index, :format => 'json'
   end
   def gregistrations(&block)
-    query = { :gpartner_id => nil, :gpartner_api_key => nil, :since => nil, :before => nil, :email=>nil }
-    V3::RegistrationService.stub(:find_records).with(query, &block)
+    query = { :gpartner_id => nil, :gpartner_api_key => nil, :since => nil, :email=>nil }
+    V4::RegistrationService.stub(:find_records).with(query, &block)
     get :index_gpartner, :format => 'json'
   end
 
   def new_registration(&block)
     data = {}
-    V3::RegistrationService.stub(:create_record).with(data, &block)
+    V4::RegistrationService.stub(:create_record).with(data, &block)
     post :create, :format => 'json', :registration => data
   end
 
   def new_finish_with_state_registration(&block)
     data = { 'lang' => 'en', 'partner_id' => Partner.first.id }
-    V3::RegistrationService.stub(:create_record).with(data, true, &block)
+    V4::RegistrationService.stub(:create_record).with(data, true, &block)
     post :create_finish_with_state, :format => 'json', :registration => data
   end
 
