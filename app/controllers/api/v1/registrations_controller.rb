@@ -27,13 +27,9 @@ class Api::V1::RegistrationsController < Api::V1::BaseController
 
   # Lists registrations
   def index
-    query = {
-      :partner_id       => params[:partner_id],
-      :partner_password => params[:partner_password],
-      :since            => params[:since]
-    }
-
-    jsonp :registrations => V1::RegistrationService.find_records(query)
+    jsonp({
+      :deprecation_message=>"This report generation API is no longer available. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
+    })        
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
   end
