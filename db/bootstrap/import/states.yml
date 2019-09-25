@@ -524,7 +524,7 @@ record_35:
   sub_18: turn_by_next_general_election_november_2
   registration_deadline: received_30_days
   id_length_min: '4'
-  online_registration_url: https://olvr.sos.state.oh.us/ovru/modify.aspx
+  online_registration_url: https://olvr.ohiosos.gov
 record_36:
   abbreviation: OK
   name: Oklahoma
