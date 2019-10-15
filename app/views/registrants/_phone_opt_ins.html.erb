@@ -6,8 +6,8 @@
       <li class="spacer">&nbsp;</li>
       <li class='registrant-form__opt-in-sms__line'>
         <h3>
-          <%= form.check_box :opt_in_sms %>
-          <%= form.label :opt_in_sms, t('txt.registration.opt_in_sms', :checked => false, :organization=>h("Rock the Vote")).html_safe %>
+          <%= form.check_box :opt_in_sms, :checked => false %>
+          <%= form.label :opt_in_sms, t('txt.registration.opt_in_sms', :organization=>h("Rock the Vote")).html_safe %>
 
         </h3>
       </li>
@@ -18,8 +18,8 @@
       <li class="spacer">&nbsp;</li>
       <li class='registrant-form__partner-opt-in-sms__line'>
         <h3>
-          <%= form.check_box :partner_opt_in_sms %>
-          <%= form.label :partner_opt_in_sms, t('txt.registration.opt_in_sms', :checked => false, :organization=>h(@registrant.partner.organization)).html_safe %>
+          <%= form.check_box :partner_opt_in_sms, :checked => false %>
+          <%= form.label :partner_opt_in_sms, t('txt.registration.opt_in_sms', :organization=>h(@registrant.partner.organization)).html_safe %>
         </h3>
       </li>
     </ul>
