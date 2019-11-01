@@ -407,7 +407,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def any_phone_opt_ins?
-    partner.rtv_sms_opt_in || partner.partner_sms_opt_in || partner.primary?
+    partner.rtv_sms_opt_in || partner.partner_sms_opt_in? || partner.primary?
   end
   
   def ask_for_primary_volunteers?
@@ -443,11 +443,11 @@ class Registrant < ActiveRecord::Base
     (at_least_step_2? || (at_least_step_2? && use_short_form?)) && change_of_address?
   end
 
-  
   attr_accessor :api_version
   # Builds the record from the API data and sets the correct state
   def self.build_from_api_data(data, api_finish_with_state = false)
     r = Registrant.new(data)
+    r.partner_opt_in_sms = false unless r.partner && (r.partner.primary? || r.partner.partner_sms_opt_in)
     r.building_via_api_call   = true
     r.finish_with_state       = api_finish_with_state
     r.has_state_license = true if api_finish_with_state
