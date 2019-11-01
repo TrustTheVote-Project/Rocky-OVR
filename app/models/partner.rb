@@ -150,6 +150,8 @@ class Partner < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :url
   validates_format_of :url, with: /\Ahttps?:\/\//, message: "Must start with http(s)://"
+  validates_format_of :terms_url, with: /\Ahttps?:\/\/.+\..+/, message: "Must start with http(s)://", allow_blank: true
+  validates_format_of :privacy_url, with: /\Ahttps?:\/\/.+\..+/, message: "Must start with http(s)://", allow_blank: true
   validates_presence_of :address
   validates_presence_of :city
   validates_presence_of :state_id

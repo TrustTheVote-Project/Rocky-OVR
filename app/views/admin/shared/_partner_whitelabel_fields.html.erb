@@ -94,18 +94,21 @@
           <%= f.label :short_code %>
         </h3>
         <%= field_div f, :short_code %>
+        <span class="error"><%= @partner.errors[:short_code].join("\n") %></span>        
       </li>
       <li class="width_h">
         <h3>
           <%= f.label :terms_url %>
         </h3>
         <%= field_div f, :terms_url %>
+        <span class="error"><%= @partner.errors[:terms_url].join("\n") %></span>        
       </li>
       <li class="width_h">
         <h3>
           <%= f.label :privacy_url %>
         </h3>
         <%= field_div f, :privacy_url %>
+        <span class="error"><%= @partner.errors[:privacy_url].join("\n") %></span>
       </li>
         
     </ul>
