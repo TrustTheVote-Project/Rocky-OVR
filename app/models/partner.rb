@@ -31,6 +31,8 @@ class Partner < ActiveRecord::Base
   end
   validates_format_of :password, with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, allow_blank: true
   
+  validate :sms_opt_in_requirements
+  
   include TimeStampHelper
 
   DEFAULT_ID = 1
@@ -840,6 +842,14 @@ protected
   
   def random_key
     Digest::SHA1.hexdigest([Time.now, (1..10).map { rand.to_s}].join('--'))
+  end
+
+  private
+  
+  def sms_opt_in_requirements
+    if partner_sms_opt_in && (terms_url.blank? || privacy_url.blank? || short_code.blank?)
+      errors.add(:partner_sms_opt_in, "Must provide terms url, privacy url and short code before allowing SMS opt-in")
+    end
   end
 
 end

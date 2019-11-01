@@ -83,8 +83,31 @@
         <h3>
           <%= f.check_box :partner_sms_opt_in %>
           <%= f.label :partner_sms_opt_in, 'Ask for partner SMS opt-in' %>
+          <span class="error"><%= @partner.errors[:partner_sms_opt_in].join("\n") %></span>
+          
         </h3>
       </li>
+    </ul>
+    <ul class="stacked">
+      <li class="width_h">
+        <h3>
+          <%= f.label :short_code %>
+        </h3>
+        <%= field_div f, :short_code %>
+      </li>
+      <li class="width_h">
+        <h3>
+          <%= f.label :terms_url %>
+        </h3>
+        <%= field_div f, :terms_url %>
+      </li>
+      <li class="width_h">
+        <h3>
+          <%= f.label :privacy_url %>
+        </h3>
+        <%= field_div f, :privacy_url %>
+      </li>
+        
     </ul>
     <ul class="checkbox">
       <li>

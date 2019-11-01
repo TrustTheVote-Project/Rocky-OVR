@@ -1,3 +1,6 @@
+sms_short_code: 799683
+terms_url: "https://www.rockthevote.org/privacy-policy/"
+privacy_url: "https://www.rockthevote.org/privacy-policy/"
 sponsor:
   allow_ask_for_volunteers: true
   barcode_prefix: "RTV"

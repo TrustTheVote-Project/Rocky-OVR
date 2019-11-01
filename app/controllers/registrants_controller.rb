@@ -108,16 +108,16 @@ class RegistrantsController < RegistrationStep
       @registrant.opt_in_email = true
       @registrant.opt_in_sms = true
     else
-      if @registrant.partner.rtv_email_opt_in
+      if @registrant.partner.rtv_email_opt_in?
         @registrant.opt_in_email = true
       end
-      if @registrant.partner.rtv_sms_opt_in
+      if @registrant.partner.rtv_sms_opt_in?
         @registrant.opt_in_sms = true
       end 
-      if @registrant.partner.partner_email_opt_in
+      if @registrant.partner.partner_email_opt_in?
         @registrant.partner_opt_in_email = true
       end
-      if @registrant.partner.partner_sms_opt_in
+      if @registrant.partner.partner_sms_opt_in?
         @registrant.partner_opt_in_sms = true
       end
     end
