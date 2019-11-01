@@ -603,7 +603,8 @@ body {
     }
     span.compliance {
       display: inline-block;
-      font-size: $label-font-size - 3px;
+      font-size: 12px;
+      color: #666;
       line-height: 1.4em;
       padding: 0 0 1em 23px;
       margin: 0 0 1em 0;
