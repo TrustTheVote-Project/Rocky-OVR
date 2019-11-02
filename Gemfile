@@ -28,7 +28,7 @@ gem 'mysql2', '~> 0.3.18'
 gem 'distribute_reads'
 
 
-gem "rubyzip", '~> 1.2.2'
+gem "rubyzip", '~> 1.3.0'
 gem 'zip-zip'
 
 gem "dotenv-rails", '~> 0.7.0'
