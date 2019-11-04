@@ -67,6 +67,7 @@ class Admin::PartnersController < Admin::BaseController
       flash[:message]= "Partner Updated"
       redirect_to edit_admin_partner_path
     else
+      flash[:warning]= "There was en error updating the partner"
       render :edit
     end
   end

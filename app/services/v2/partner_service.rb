@@ -53,7 +53,6 @@ module V2
         :rtv_sms_opt_in,
         :ask_for_volunteers,
         :partner_email_opt_in,
-        :partner_sms_opt_in,
         :is_government_partner,
         :government_partner_state_id,
         :government_partner_zip_codes,
