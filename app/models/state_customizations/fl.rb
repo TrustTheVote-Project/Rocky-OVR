@@ -25,11 +25,11 @@
 
 class FL < StateCustomization
   def online_reg_url(registrant)
-    root_url ="https://registertovoteflorida.gov/en/Registration/Eligibility"
+    root_url ="https://registertovoteflorida.gov/eligibilityreactive"
     return root_url if registrant.nil?
     lang = registrant.locale.to_s.downcase
     if lang == 'es'
-      return "https://registertovoteflorida.gov/es/Registration/Eligibility"
+      return "https://registertovoteflorida.gov/home"
     else
       return root_url
     end
