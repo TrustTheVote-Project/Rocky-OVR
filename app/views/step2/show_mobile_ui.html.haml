@@ -23,6 +23,9 @@
       if (currentStep == 7) {
         return !$("#registrant_change_of_address").is(":checked")
       }
+      if (currentStep == 8) {
+        return $("[name='registrant[has_state_license]']").length == 0
+      }
       return false;
     }
     
@@ -54,6 +57,7 @@
           isValid = false;
         }
       });
+      console.log(isValid);
       return isValid;
     }
     
@@ -145,6 +149,49 @@
       setUpNav();
       renderCurrentStep();
     });
+    
+- if @registrant.home_state_allows_ovr_ignoring_license?
+  - content_for :head do
+    :javascript
+      $(document).ready(function() {
+        function hasStateLicenseSelected() {
+          var hasStateLicense = true;
+          var hasStateLicenseRadio = $('input[name="registrant[has_state_license]"]:checked'); //a radio must have 1 selected
+          if (hasStateLicenseRadio.length > 0 && hasStateLicenseRadio.val()!="1") {
+            hasStateLicense = false;
+          } 
+          
+          // If check-18 checkbox is present, that must also be selected
+          var willBe18 = true;
+          var willBe18Checkbox = $('input[name="registrant[will_be_18_by_election]"]');
+          if (willBe18Checkbox.length > 0 && !willBe18Checkbox.is(":checked")) {
+            willBe18 = false;
+          }
+          return hasStateLicense && willBe18;
+        }
+        function toggleHasStateLicense() {
+          if (hasStateLicenseSelected()) {
+             $('.skip_state_registration').hide(); 
+            var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required");
+            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", val)
+            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", null)
+            clearErrors.bind($('.skip_state_registration #registrant_state_id_number').get(0))();
+            
+             $('.use_state_registration').show();  
+             $("#main").removeClass('skipping_state_registration').addClass('using_state_registration');  
+          } else {
+            $('.skip_state_registration').show();
+            var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required");
+            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", val)
+            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", null)
+            $('.use_state_registration').hide();    
+            $("#main").addClass('skipping_state_registration').removeClass('using_state_registration');  
+          }
+        }
+        toggleHasStateLicense();
+        $('input[name="registrant[has_state_license]"]').click(toggleHasStateLicense);  
+        $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
+      });
 
 = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
   #dynamic-progress-bar
@@ -191,14 +238,35 @@
   .dynamic-step#step-8
     %fieldset
       %legend Identification
-    .state-id-number
-      = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+    - if @registrant.home_state_allows_ovr_ignoring_license?
+      - if @registrant.require_id?
+        %ul.radio
+          %li.registrant-form__has-state-license__line.has_license
+            %h3
+              = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
+              = form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev)
+            .use_state_registration.checkbox-explanation
+              %p= I18n.t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name)
+        %ul.radio
+          %li.registrant-form__has-no-state-license__line
+            %h3
+              = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
+              = form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev)
+
+      .skip_state_registration
+        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+        
+
+    - else 
+      .state-id-number
+        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
   
   
   .dynamic-step#step-9
     %fieldset
       %legend Personal Information
-    = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
+    .skip_state_registration
+      = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
     %ul.flat.dob-and-phone.clear-fix
       = render :partial=> "registrants/phone", :locals=>{:form=>form}
 
@@ -227,6 +295,11 @@
           %button
             %span Next Step
     .next.next--link.prepare
-      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
-
+      - if  @registrant.home_state_allows_ovr_ignoring_license?
+        .use_state_registration
+          = rollover_button(:prepare, I18n.t('txt.button.submit'))
+      .skip_state_registration
+        = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+      
+      
   
