@@ -24,7 +24,9 @@
         return !$("#registrant_change_of_address").is(":checked")
       }
       if (currentStep == 8) {
-        return $("[name='registrant[has_state_license]']").length == 0
+        var inOvrFlow = "#{@registrant.home_state_allows_ovr_ignoring_license?}" == "true";
+        var reqId = "#{@registrant.require_id?}" == "true";
+        return inOvrFlow && !reqId
       }
       return false;
     }
@@ -171,21 +173,21 @@
         }
         function toggleHasStateLicense() {
           if (hasStateLicenseSelected()) {
-             $('.skip_state_registration').hide(); 
+            $('.skip_state_registration').hide(); 
             var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required");
             $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", val)
             $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", null)
             clearErrors.bind($('.skip_state_registration #registrant_state_id_number').get(0))();
             
-             $('.use_state_registration').show();  
-             $("#main").removeClass('skipping_state_registration').addClass('using_state_registration');  
+            $('.use_state_registration').show();  
+            //$("#main").removeClass('skipping_state_registration').addClass('using_state_registration');  
           } else {
             $('.skip_state_registration').show();
             var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required");
             $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", val)
             $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", null)
             $('.use_state_registration').hide();    
-            $("#main").addClass('skipping_state_registration').removeClass('using_state_registration');  
+            //$("#main").addClass('skipping_state_registration').removeClass('using_state_registration');  
           }
         }
         toggleHasStateLicense();
@@ -200,8 +202,8 @@
   
   .dynamic-step#step-2
     %fieldset
-      %legend Eligibility
-      %p All fields marked with an asterisk (*) are rquired
+      %legend= t 'txt.registration.mobile_ui.step_2.title'
+      %p= t 'txt.registration.mobile_ui.step_2.instructions'
       %ul.flat.dob-and-phone
         = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
       %ul.checkbox.checkbox-step-1
@@ -237,7 +239,7 @@
 
   .dynamic-step#step-8
     %fieldset
-      %legend Identification
+      %legend= t('txt.registration.mobile_ui.step_8.title')
     - if @registrant.home_state_allows_ovr_ignoring_license?
       - if @registrant.require_id?
         %ul.radio
@@ -264,7 +266,7 @@
   
   .dynamic-step#step-9
     %fieldset
-      %legend Personal Information
+      %legend= t('txt.registration.mobile_ui.step_9.title')
     .skip_state_registration
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
     %ul.flat.dob-and-phone.clear-fix
@@ -293,7 +295,7 @@
       .button.rollover_button
         %a 
           %button
-            %span Next Step
+            %span=t 'txt.button.submit'
     .next.next--link.prepare
       - if  @registrant.home_state_allows_ovr_ignoring_license?
         .use_state_registration

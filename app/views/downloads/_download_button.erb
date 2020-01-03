@@ -22,7 +22,7 @@
       
   </script>
 <% end -%>
-<%- if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
+<%- if @use_mobile_ui %>
   <%- completion = "85%"%>
   <div id="dynamic-progress-bar">
     <div class="filler" style="width: <%= completion %>"></div>

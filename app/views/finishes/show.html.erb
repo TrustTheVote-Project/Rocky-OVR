@@ -36,7 +36,7 @@
   <%- end %>  
   
   
-  <%- if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
+  <%- if  @use_mobile_ui %>
     <%- completion = "80%"%>
     <%- if @pdf_ready %>
       <%- completion = "85%" %>

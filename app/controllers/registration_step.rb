@@ -74,6 +74,7 @@ class RegistrationStep < ApplicationController
 
 
   def set_up_view_variables
+    @use_mobile_ui = determine_mobile_ui(@registrant)
   end
   
   def set_up_share_variables
@@ -151,11 +152,11 @@ class RegistrationStep < ApplicationController
   end
   
   def set_ab_test
-    if @registrant && t = @registrant.ab_tests.where(name: AbTest::MOBILE_UI).first
-      @mobile_ui_test = t
-    else
-      @mobile_ui_test = AbTest.assign_mobile_ui_test(@registrant, self)
-    end
+    # if @registrant && t = @registrant.ab_tests.where(name: AbTest::MOBILE_UI).first
+    #   @mobile_ui_test = t
+    # else
+    #   @mobile_ui_test = AbTest.assign_mobile_ui_test(@registrant, self)
+    # end
   end
   
   
@@ -188,9 +189,28 @@ class RegistrationStep < ApplicationController
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     @home_state ||= @home_zip_code ? GeoState.for_zip_code(@home_zip_code.strip) : nil
     
+    
+    
     if !@state_abbrev.blank?
       @short_form = true
     end
+  end
+  
+  def determine_mobile_ui(registrant)
+    return nil if registrant.nil?
+    return nil if registrant.javascript_disabled?
+    #return nil if registrant.home_state_allows_ovr_ignoring_license?
+    #return nil if registrant.locale != 'en'
+    return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
+    is_mobile = false
+    agent = self.request.user_agent.to_s.downcase
+    RockyConf.mobile_browsers.each do |b|
+      if agent =~ /#{b}/
+        is_mobile = true
+      end
+    end
+    return nil if !is_mobile
+    return true
   end
   
   # def redirect_app_role
