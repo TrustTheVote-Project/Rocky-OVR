@@ -27,27 +27,17 @@ class Api::V2::RegistrationsController < Api::V2::BaseController
 
   # Lists registrations
   def index
-    query = {
-      :partner_id       => params[:partner_id],
-      :partner_api_key  => params[:partner_API_key],
-      :since            => params[:since],
-      :email            => params[:email]
-    }
-
-    jsonp :registrations => V2::RegistrationService.find_records(query)
+    jsonp({
+      :deprecation_message=>"This report generation API is no longer available. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
+    })    
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
   end
   
   def index_gpartner
-    query = {
-      :gpartner_id       => params[:gpartner_id],
-      :gpartner_api_key  => params[:gpartner_API_key],
-      :since            => params[:since],
-      :email            => params[:email]
-    }
-
-    jsonp :registrations => V2::RegistrationService.find_records(query)
+    jsonp({
+      :deprecation_message=>"This report generation API is no longer available. Please use V4. https://rock-the-vote.github.io/Voter-Registration-Tool-API-Docs/"
+    })
   rescue ArgumentError => e
     jsonp({ :message => e.message }, :status => 400)
   end

@@ -107,7 +107,7 @@ record_6:
   name: Connecticut
   requires_party: true
   party_tooltip: connecticut
-  id_number_tooltip: drivers_license_or_photo_id_and_other
+  id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: Secretary of State<br>Elections Division<br>30 Trinity Street<br>Hartford,
     CT 06106
   sos_phone: "(860) 509-6100"
@@ -156,7 +156,7 @@ record_9:
   sos_url: http://election.dos.state.fl.us/
   sub_18: when_is_16
   id_length_min: '4'
-  online_registration_url: https://registertovoteflorida.gov/en/Registration/Eligibility
+  online_registration_url: https://registertovoteflorida.gov/eligibilityreactive
 record_10:
   abbreviation: GA
   name: Georgia
@@ -204,12 +204,12 @@ record_13:
   name: Illinois
   requires_party: true
   party_tooltip: illinois
-  id_number_tooltip: drivers_license_or_ssn_or_none_2
+  id_number_tooltip: illinois
   sos_address: State Board of Elections<br>2329 S. MacArthur Boulevard<br>Springfield,
     IL 62704
   sos_phone: "(217) 782-4141"
   sos_url: http://www.elections.il.gov/
-  registration_deadline: postmarked_27_days
+  registration_deadline: illinois
   id_length_min: '4'
   online_registration_url: https://ova.elections.il.gov/Step0.aspx
   sub_18: be_by_next_general_election_november
@@ -339,6 +339,7 @@ record_22:
   sos_phone: "(517) 373-2540"
   sos_url: http://www.michigan.gov/sos/0,1607,7-127-1633---,00.html
   registration_deadline: postmarked_30_days
+  online_registration_url: https://mvic.sos.state.mi.us/RegisterVoter?Length=0
   id_length_min: '4'
 record_23:
   abbreviation: MN
@@ -524,7 +525,7 @@ record_35:
   sub_18: turn_by_next_general_election_november_2
   registration_deadline: received_30_days
   id_length_min: '4'
-  online_registration_url: https://olvr.sos.state.oh.us/ovru/modify.aspx
+  online_registration_url: https://olvr.ohiosos.gov
 record_36:
   abbreviation: OK
   name: Oklahoma
@@ -576,7 +577,7 @@ record_38:
 record_39:
   abbreviation: RI
   name: Rhode Island
-  race_tooltip: rhode_island
+  race_tooltip: not_required_but_appreciated_with_state_name
   requires_party: true
   party_tooltip: rhode_island
   id_number_tooltip: rhode_island
@@ -584,7 +585,7 @@ record_39:
     RI 02904-2790
   sos_phone: "(401) 222-2345"
   sos_url: http://www.elections.state.ri.us/
-  registration_deadline: rhode_island
+  registration_deadline: postmarked_30_days
   id_length_min: '4'
   online_registration_url: https://vote.sos.ri.gov/
 record_40:

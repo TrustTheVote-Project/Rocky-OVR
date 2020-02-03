@@ -6,10 +6,12 @@
       <li class="spacer">&nbsp;</li>
       <li class='registrant-form__opt-in-sms__line'>
         <h3>
-          <%= form.check_box :opt_in_sms %>
+          <%= form.check_box :opt_in_sms, :checked => false %>
           <%= form.label :opt_in_sms, t('txt.registration.opt_in_sms', :organization=>h("Rock the Vote")).html_safe %>
-
         </h3>
+        <span class='compliance'>
+          <%= t('txt.registration.opt_in_sms_compliance', organization: h("Rock the Vote"), short_code: RockyConf.sms_short_code, terms_url: RockyConf.terms_url, privacy_url: RockyConf.privacy_url).html_safe%>
+        </span>
       </li>
     </ul>
   <%- end %>
@@ -18,9 +20,12 @@
       <li class="spacer">&nbsp;</li>
       <li class='registrant-form__partner-opt-in-sms__line'>
         <h3>
-          <%= form.check_box :partner_opt_in_sms %>
+          <%= form.check_box :partner_opt_in_sms, :checked => false %>
           <%= form.label :partner_opt_in_sms, t('txt.registration.opt_in_sms', :organization=>h(@registrant.partner.organization)).html_safe %>
         </h3>
+        <span class='compliance'>
+          <%= t('txt.registration.opt_in_sms_compliance', organization: h(@registrant.partner.organization), short_code: @registrant.partner.short_code, terms_url: @registrant.partner.terms_url, privacy_url: @registrant.partner.privacy_url).html_safe%>
+        </span>
       </li>
     </ul>
   <%- end %>

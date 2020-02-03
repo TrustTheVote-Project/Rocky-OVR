@@ -1,3 +1,6 @@
+sms_short_code: 788683
+terms_url: "https://www.rockthevote.org/mobile-terms-and-conditions/"
+privacy_url: "https://www.rockthevote.org/privacy-policy/"
 sponsor:
   allow_ask_for_volunteers: true
   barcode_prefix: "RTV"
@@ -22,8 +25,8 @@ partner_wiki_url: "http://wiki.rockthevote.com"
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
   branding_from: "Rock the Vote <info@rockthevote.com>"
-  branding_to: "david@rockthevote.com, jen@rockthevote.com, melissa@rockthevote.com"
-  partner_status_to: "david@rockthevote.com, jen@rockthevote.com, melissa@rockthevote.com, alex.mekelburg@osetfoundation.org"
+  branding_to: "david@rockthevote.com, melissa@rockthevote.com"
+  partner_status_to: "david@rockthevote.com, melissa@rockthevote.com, alex.mekelburg@osetfoundation.org"
   admin_recipients: "errors@rockthevote.com, alex.mekelburg@osetfoundation.org"
   translation_recipients: "david@rockthevote.com, alex.mekelburg@osetfoundation.org"
 
@@ -181,6 +184,10 @@ ovr_states:
     languages:
       - en
       - es
+  MI:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
   MO:
     redirect_to_online_reg_url: true
     require_age_confirmation: true
@@ -214,7 +221,7 @@ ovr_states:
       - es
   PA:
     require_age_confirmation: true
-    registration_deadline: 2019-11-05 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
+    registration_deadline: 2020-04-28 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
     api_settings:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>

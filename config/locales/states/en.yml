@@ -45,7 +45,7 @@ en:
           Dept. of Elections to register to vote.</p>"
       pa:
         registration_deadline_text: Deadline to register to vote, or update an existing
-          registration, is October 7, 2019
+          registration, is 03/30/2020
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
           Please try again later or continue here to create a paper form.
         step_2_header: Your Basic Info
@@ -126,8 +126,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 10/7/2019 close of registration date of
-          current election is the last day to register before the Nov. 5, 2019
+          </ul> <p> Deadline Alert: 03/30/2020 close of registration date of
+          current election is the last day to register before the 04/28/2020
           election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
@@ -247,8 +247,6 @@ en:
           does not require information about your race or ethnicity.  However, we
           would appreciate this information in order  to measure the effectiveness
           of our voter registration efforts.
-        rhode_island: |-
-          Leave blank.
         virginia: |-
           The Commonwealth of Virginia does not request information about
           your race or ethnicity.  However, we would appreciate this information in
@@ -287,7 +285,7 @@ en:
           Democratic, Libertarian, Republican or Unaffiliated (i.e. no party preference).
           If this field is left blank, you will receive on only the Unaffiliated ballot."
         illinois: "Leave Blank. Exception: for primary elections, unless a voter only
-          wishes to vote on public questions, a party preference should be indicated"
+          wishes to vote on public questions, a party preference should be indicated."
         indiana: |-
           Indiana law does not permit a person to indicate their party affiliation,
           if any, as part of their registration record.  You will have to declare
@@ -429,12 +427,26 @@ en:
           a state issued identification or a social security number, please write
           "NONE" on the form. A unique identifying number will be assigned by the
           State.
+        connecticut: |-
+          Connecticut Driver's License Number, or if none, the last four digits of your
+          Social Security Number.
         georgia: |-
           You must provide your Georgia driver's license number or state-issued
           identification number.  If you do not have either of those, you must provide
           the last four digits of your Social Security number.  If you do not have
           any of the requested identification numbers, please enter "NONE" and you
           will be assigned a unique identification number by the state.
+        illinois: "Illinois requires either the Driver's License (or Secretary of State
+          ID Card) or the last 4 digits of Social Security Number. For people who do not
+          have either of those items, and have not registered in Illinois before, a mail
+          in registration form should be accompanied by a copy of other identifying
+          information: you must send, with this application, either (i) a copy of a
+          current and valid photo identification, or (ii) a copy of a current utility
+          bill, bank statement, government check, paycheck, or other government document
+          that shows the name and address of the voter. If you do not provide the
+          information required above, then you will be required to provide election
+          officials with either (i) or (ii) described above the first time you vote at a
+          voting place."
         indiana: |-
           You must provide your ten-digit Indiana driver's license number or
           Bureau of Motor Vehicles ID number.  If you do not have a driver's license
@@ -728,12 +740,15 @@ en:
         less than 8 days before election day, then you must appear in person in your
         county to vote.
       connecticut: |-
-        postmarked 7 days before the election or received in person 7
-        days before the election
+        postmarked seven (7) days before the election; postmarked five (5) days before
+        the primary
       delaware: |-
         postmarked by the fourth Saturday before a general or primary election,
         or 10 days before a special election
       georgia: postmarked by the fifth Monday before the election
+      illinois: |-
+        Online Registration is available until 16 days before the election and in-person
+        registration is available through Election Day.
       iowa: |-
         received in-person 10 days before General and Primary Elections (11 days
         before all other elections), or postmarked 15 days before Election Day.
@@ -757,10 +772,6 @@ en:
         at the office of the County Clerk/Registrar of Voters. The deadline for online
         voter registration at www.RegisterToVoteNV.gov is the Thursday preceding the
         first day of the early voting period.
-      rhode_island: |-
-        received 30 days before the election. Mailed voter registration
-        forms received after the deadline will be accepted as long as the mail is
-        postmarked on or before the voter registration deadline.
       utah: |-
         postmarked 30 days before the election, or received in person 15 days
         before the election

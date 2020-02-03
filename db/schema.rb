@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190830235131) do
+ActiveRecord::Schema.define(version: 20191101150558) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(version: 20190830235131) do
     t.string   "last_login_ip",                      limit: 255
     t.boolean  "grommet_csv_ready"
     t.string   "grommet_csv_file_name",              limit: 255
+    t.string   "short_code"
+    t.string   "terms_url"
   end
 
   add_index "partners", ["email"], name: "index_partners_on_email"
