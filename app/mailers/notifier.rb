@@ -23,6 +23,17 @@
 #
 #***** END LICENSE BLOCK *****
 class Notifier < ActionMailer::Base
+  
+  def partner_terms_of_use(partner)
+    @name = partner.name
+    @name = "Friend" if @name.blank?
+    @tou_url = "https://www.rockthevote.org/resources/online-voter-registration-tool/#toggle5503"
+    mail(subject: "Rock the Vote Terms of Use",
+         from: RockyConf.from_address,
+         to: partner.email,
+         date: Time.now.to_s(:db))
+  end
+  
   def password_reset_instructions(partner)
     @url = "http://#{RockyConf.default_url_host}#{edit_password_reset_path(:id => partner.perishable_token)}"
     
