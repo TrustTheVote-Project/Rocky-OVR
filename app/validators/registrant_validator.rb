@@ -31,7 +31,7 @@ class RegistrantValidator < ActiveModel::Validator
     end
     
     if (reg.at_least_step_1? && (!reg.use_short_form? || reg.home_state_id.blank?)) ||
-       (reg.at_least_step_2? && reg.use_short_form? )
+       (reg.at_least_step_1? && reg.use_short_form? )
       validates_zip_code  reg,    :home_zip_code
     end
     
@@ -186,6 +186,10 @@ class RegistrantValidator < ActiveModel::Validator
   end
   
   def validates_zip_code(reg, attr_name)
+    value = reg.send(attr_name)
+    if value && value.length > 10
+      reg.send("#{attr_name}=", value.to_s[0...10])
+    end
     reg.validates_presence_of(attr_name)
     reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
 
