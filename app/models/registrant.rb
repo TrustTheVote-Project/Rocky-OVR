@@ -376,7 +376,7 @@ class Registrant < ActiveRecord::Base
   before_create :generate_uid
   before_create :set_dl_defaults
 
-  before_save :set_questions, :set_finish_with_state, :set_will_be_18
+  before_save :set_questions, :set_finish_with_state, :set_will_be_18, :limit_zip_codes
 
   attr_accessor :telling_friends, :new_locale, :input_locale
 
@@ -1922,4 +1922,14 @@ class Registrant < ActiveRecord::Base
     self.finish_with_state = false unless self.home_state_online_reg_enabled?
     return true
   end
+  
+  def limit_zip_codes
+    [:home_zip_code, :mailing_zip_code, :prev_zip_code].each do |attr_name|
+      value = self.send(attr_name)
+      if value && value.length > 10
+        self.send("#{attr_name}=", value.to_s[0...10])
+      end
+    end
+  end
+  
 end
