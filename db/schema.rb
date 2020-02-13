@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20191101150558) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "ab_tests", ["name", nil], name: "index_ab_tests_on_name_and_assigment"
+  add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
 

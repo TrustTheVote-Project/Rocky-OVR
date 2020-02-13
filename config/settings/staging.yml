@@ -76,6 +76,10 @@ ovr_states:
   WA:
     languages:
       - en
+      - es
+      - zh
+      - vi
+      - ko
       
   VA:
     api_settings:
