@@ -44,8 +44,10 @@ en:
         registration_complete_dialog_text: "<p>Your application has been sent to the
           Dept. of Elections to register to vote.</p>"
       pa:
-        registration_deadline_text: Deadline to register to vote, or update an existing
-          registration, is 03/30/2020
+        registration_deadline_text: 4/13/2020 is the last day to register before the
+        4/28/2020 election. If you are not a U.S. citizen and a resident of Pennsylvania
+        at least 30 days before the next election, you CANNOT register to vote. If you
+        have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
           Please try again later or continue here to create a paper form.
         step_2_header: Your Basic Info
@@ -126,8 +128,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 03/30/2020 close of registration date of
-          current election is the last day to register before the 04/28/2020
+          </ul> <p> Deadline Alert: 4/13/2020 close of registration date of
+          current election is the last day to register before the next
           election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
