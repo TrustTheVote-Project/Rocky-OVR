@@ -339,6 +339,7 @@ record_22:
   sos_phone: "(517) 373-2540"
   sos_url: http://www.michigan.gov/sos/0,1607,7-127-1633---,00.html
   registration_deadline: postmarked_30_days
+  online_registration_url: https://mvic.sos.state.mi.us/RegisterVoter?Length=0
   id_length_min: '4'
 record_23:
   abbreviation: MN
@@ -571,7 +572,7 @@ record_38:
     PA 17120-0029
   sos_phone: "(717) 787-5280"
   sos_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationStatus.aspx
-  registration_deadline: received_30_days
+  registration_deadline: received_15_days
   online_registration_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx
 record_39:
   abbreviation: RI

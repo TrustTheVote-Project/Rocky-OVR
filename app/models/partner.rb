@@ -146,6 +146,7 @@ class Partner < ActiveRecord::Base
   validates :registration_instructions_url, :url_format=>true
   
   after_save :write_partner_css_download_contents
+  after_create :deliver_terms_of_use_email
 
   validates_presence_of :name
   validates_presence_of :url
@@ -847,6 +848,13 @@ protected
   end
 
   private
+  
+  def deliver_terms_of_use_email
+    if !email.blank?
+      Notifier.partner_terms_of_use(self).deliver
+    end
+  #rescue
+  end
   
   def sms_opt_in_requirements
     if partner_sms_opt_in && (terms_url.blank? || privacy_url.blank? || short_code.blank?)

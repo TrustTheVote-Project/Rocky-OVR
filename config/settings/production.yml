@@ -26,7 +26,9 @@ states_with_online_registration:
   - ID
   - KS
   - KY
+  - MA
   - MD
+  - MI
   - MO
   - NE
   - NM
@@ -57,6 +59,10 @@ ovr_states:
   WA:
     languages:
       - en
+      - es
+      - zh
+      - vi
+      - ko
 
 enabled_locales:
   - en
