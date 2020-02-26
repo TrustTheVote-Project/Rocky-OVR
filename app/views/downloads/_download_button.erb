@@ -1,5 +1,5 @@
 <%- if @use_mobile_ui %>
-  <%- completion = "80%"%>
+  <%- completion = "85%"%>
   <div id="dynamic-progress-bar">
     <div class="filler" style="width: <%= completion %>"></div>
     <div class="content"><%= completion %></div>
@@ -8,9 +8,11 @@
 <h1><%= I18n.t('txt.registration.download_header') %></h1>
 <div class="download">
   <h2><%= I18n.t('txt.registration.instructions.download_2') %></h2>
-  <%= I18n.t('txt.registration.instructions.download_3').html_safe %>
   <p class="centered" onclick="window.open('<%=pdf_registrant_download_path(@registrant)%>','_blank'); window.location='<%= registrant_finish_path(@registrant) %>';"><%= rollover_image_link(:print, I18n.t('txt.button.download'), pdf_registrant_download_path(@registrant),
                             :target => "_blank") %></p>
+
+  <%= I18n.t('txt.registration.instructions.download_3').html_safe %>
+
   <p>
     <%- if !@registrant.home_state.online_reg_enabled?(@registrant.locale) && !@registrant.home_state.use_state_flow?(@registrant)%>
       <%= I18n.t('txt.registration.instructions.state_not_enabled_download', state: @registrant.home_state.name) %>
