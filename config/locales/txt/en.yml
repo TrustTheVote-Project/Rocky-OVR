@@ -129,6 +129,7 @@ en:
         download: You will need to print & mail or deliver your registration form to your local elections office.
         download_2: You won't be registered unless you print, sign and mail in your
           form!
+        download_3: <p>Don't have access to a printer right now? We've emailed you a copy of your form to print later.
         state_not_enabled_download: Because %{state} does not have online registration, you will need to print & mail or deliver your registration form to your local elections office.
         no_id_download: Because you don't have a %{state} ID, you will need to print & mail or deliver your registration form to your local elections office.
         download_assitance_header: ""

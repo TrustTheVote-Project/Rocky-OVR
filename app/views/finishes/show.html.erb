@@ -1,27 +1,3 @@
-<% content_for :head do -%>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      <%- if @mobile_ui_test %>
-        <%- if @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW %>
-          var value = "NEW";
-        <%- else %>
-          var value = "OLD";
-        <%- end %>
-        if (window.ga) {
-          ga(function() {
-            var trackers = ga.getAll();
-            var tracker = trackers[0];
-            if (tracker) {
-              tracker.send('event', 'mobile-ui-ab-test', 'finish-page', value);
-            }
-          });
-        }
-      <%- end %>
-    })
-
-  </script>
-<% end %>
-
 <% if @stop_reminders -%>
   <h1><%= I18n.t('txt.registration.finish_reminder_header').html_safe %></h1>
   <div class="fulltext">

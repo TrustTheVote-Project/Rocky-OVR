@@ -130,15 +130,15 @@
     $(document).ready(function() {
       $('#javascript_disabled').remove();
       
-      if (window.ga) {
-        ga(function() {
-          var trackers = ga.getAll();
-          var tracker = trackers[0];
-          if (tracker) {
-            tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
-          }
-        });
-      }
+      // if (window.ga) {
+      //   ga(function() {
+      //     var trackers = ga.getAll();
+      //     var tracker = trackers[0];
+      //     if (tracker) {
+      //       tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
+      //     }
+      //   });
+      // }
       
       
       if (window.location.hash && window.location.hash.trim() != '') {
@@ -284,12 +284,12 @@
     .back.back--link
       .button.rollover_button
         = link_to registrant_path(@registrant) do
-          %button
+          %button{type: "button"}
             %span <
     .back.back--virtual 
       .button.rollover_button
         %a 
-          %button
+          %button{type: "button"}
             %span <
     .next.next--virtual
       .button.rollover_button
