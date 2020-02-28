@@ -2,7 +2,7 @@ ruby "2.4.1"
 
 source 'http://rubygems.org'
 
-gem "rake", "10.0.3"
+gem "rake", "12.3.3"
 
 gem "figaro"
 gem "config"
