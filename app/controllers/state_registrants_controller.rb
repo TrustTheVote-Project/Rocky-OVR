@@ -6,7 +6,8 @@ class StateRegistrantsController < RegistrationStep
     
   def edit
     set_up_locale
-    render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}"
+    @use_mobile_ui = determine_mobile_ui(@registrant)
+    render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}#{@use_mobile_ui ? '_mobile' : ''}"
   end
   
   def update
@@ -30,7 +31,8 @@ class StateRegistrantsController < RegistrationStep
       end
     else
       @registrant.custom_advance(self, params)
-      render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}"
+      @use_mobile_ui = determine_mobile_ui(@registrant)
+      render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}#{@use_mobile_ui ? '_mobile' : ''}"
     end
   end
   

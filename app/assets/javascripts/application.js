@@ -16,4 +16,5 @@
 //= require validation.js
 //= require date-input-formatter.js
 //= require rocky
+//= require dynamic-nav
 //= require registration

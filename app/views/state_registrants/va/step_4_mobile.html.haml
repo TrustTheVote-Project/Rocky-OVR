@@ -1,0 +1,96 @@
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/va/header_mobile', locals: {percentage: 80}
+  
+  
+  .review            
+  
+    .review__section
+      .review__section__label 
+        = t('txt.registration.name')
+      .review__section__content
+        = @registrant.name_title
+        = @registrant.first_name
+        = @registrant.middle_name
+        = @registrant.last_name
+        = @registrant.name_suffix
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+        
+    .review__section
+      .review__section__label
+        = t('activerecord.attributes.registrants.date_of_birth')
+      .review__section__content
+        = I18n.l @registrant.date_of_birth, format: :long
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+    
+    .review__section
+      .review__section__label 
+        = t('txt.registration.home_address')
+      .review__section__content
+        = @registrant.registration_address_1
+        - if !@registrant.registration_address_2.blank?
+          %br
+          = @registrant.registration_address_2
+        %br
+        = "#{@registrant.registration_city}, VA #{@registrant.registration_zip_code}"
+        %br
+        = "#{@registrant.registration_locality_name}"
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+        
+    - if @registrant.has_mailing_address?
+      .review__section
+        .review__section__label 
+          = t('txt.registration.mailing_address') 
+        .review__section__content
+          = @registrant.mailing_address_1
+          %br
+          = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip_code}"
+          %br
+          = @registrant.mailing_address_locality
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+          
+    - if !@registrant.ssn.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/va_registrant.ssn')
+        .review__section__content
+          = @registrant.private_ssn
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
+
+    - if !@registrant.dln.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/va_registrant.dln')
+        .review__section__content
+          = @registrant.dln
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
+          
+          
+    - unless @registrant.email.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.registrants.email_address')
+        .review__section__content
+          = @registrant.email
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), registrant_path(@registrant))
+    - unless @registrant.phone.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.registrants.phone')
+        .review__section__content
+          = PhoneFormatter.process @registrant.phone
+          = @registrant.phone_type
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+  
+  
+  .declaration-text= t('states.custom.va.voter_fraud_warning').html_safe
+    
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_voter_fraud_warning, class_name: "registrant-form__confirm-voter-fraud-warning__line", required: true}
+
+
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_register_to_vote, class_name: "registrant-form__confirm-register-to-vote__line", required: true}
+  
+
+  = rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
+  .back    
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

@@ -1,133 +1,35 @@
 = content_for :head do 
   :javascript
-    var currentStep = 2;
-    var progressMap = {
-      2: 10, //Eligibility
-      3: 20, // Name
-      4: 30, // Name part 2
-      5: 40, // Home Address
-      6: 50, // Mailing Address
-      7: 55, // Previous Address
-      8: 60, // Identification
-      9: 65, // Personal Information
-      //Download page goes up to 80%
-    }
-    
-    function shouldSkipStep() {
-      if (currentStep == 4) {
-        return !$("#registrant_change_of_name").is(":checked")
-      }
-      if (currentStep == 6) {
-        return !$("#registrant_has_mailing_address").is(":checked")
-      }
-      if (currentStep == 7) {
-        return !$("#registrant_change_of_address").is(":checked")
-      }
-      if (currentStep == 8) {
-        var inOvrFlow = "#{@registrant.home_state_allows_ovr_ignoring_license?}" == "true";
-        var reqId = "#{@registrant.require_id?}" == "true";
-        return inOvrFlow && !reqId
-      }
-      return false;
-    }
-    
-    function updateProgressBar() {
-      var newPercent =  progressMap[currentStep] + "%"
-      $("#dynamic-progress-bar .filler").css("width", newPercent);
-      $("#dynamic-progress-bar .content").text(newPercent);      
-    }
-    
-    function currentStepValid() {
-      var isValid = true;
-      
-      // Force validations to run
-      $("#step-" + currentStep + " [data-client-validation-required]").each(function() {
-        var errorMessage = $(this).data("client-validation-required")
-        var fn = validateField.bind(this)
-        fn(errorMessage)
-      })
-      
-      $("#step-" + currentStep + " [data-client-validation-require-accept]").each(function() {
-        var errorMessage = $(this).data("client-validation-require-accept");
-        var fn = validateBooleanField.bind(this)
-        fn(errorMessage)
-      })
-      
-      
-      $("#step-" + currentStep + " .error").each(function() {
-        if ($(this).text().trim() != '') {
-          isValid = false;
-        }
-      });
-      console.log(isValid);
-      return isValid;
-    }
-    
-    function renderCurrentStep() {
-      window.scrollTo(0,0);
-      $('.dynamic-step').hide();
-      $(".back").show();
-      $(".next").show();
-      $(".next--link").hide();
-      $(".back--link").hide();
-      $("#step-" + currentStep).show();
-      if (currentStep == 2) {
-        $(".back").hide();
-        $(".back--link").show();
-      }
-      if (currentStep == 9) {
-        $(".next").hide();
-        $(".next--link").show();        
-      }
-      updateProgressBar();
-    }
-    
-    function changeStep(e, direction) {
-      if (e) {
-        e.preventDefault()
-      };
-      if (currentStepValid() || direction < 0) {
-        currentStep = currentStep + direction;
-        while (shouldSkipStep()) {
-          currentStep += direction;
-        }
-        window.location.hash = '#' + currentStep;
-        if (window.ga) {
-          ga(function() {
-            var trackers = ga.getAll();
-            var tracker = trackers[0];
-            if (tracker) {
-              tracker.set('page',  window.location.pathname + '/part-' + currentStep)
-              tracker.send('pageview');
-            }
-          });
-        }
-        renderCurrentStep();          
-      }
-      return false;      
-    }
-    
-    function setUpNav() {
-      $(".next--virtual").click(function(e) {
-        return changeStep(e, 1);
-      })
-      $(".back--virtual").click(function(e) {
-        return changeStep(e, -1);
-      })
-    }
-    
-    function jumpToFirstError() {
-      var errors = $(".has_error")
-      if (errors.length > 0) {
-        console.log("found error")
-        var firstError = errors[0]
-        var stepDiv = $(firstError).parents(".dynamic-step").get(0);
-        var stepNum = parseInt(stepDiv.id.replace("step-",''));
-        currentStep = stepNum;
-      }
-    }
-    
     $(document).ready(function() {
+      var shouldSkipStep = function shouldSkipStep(currentStep) {
+        if (currentStep == 4) {
+          return !$("#registrant_change_of_name").is(":checked")
+        }
+        if (currentStep == 6) {
+          return !$("#registrant_has_mailing_address").is(":checked")
+        }
+        if (currentStep == 7) {
+          return !$("#registrant_change_of_address").is(":checked")
+        }
+        if (currentStep == 8) {
+          var inOvrFlow = "#{@registrant.home_state_allows_ovr_ignoring_license?}" == "true";
+          var reqId = "#{@registrant.require_id?}" == "true";
+          return inOvrFlow && !reqId
+        }
+        return false;
+      }
+      
+      initDynamicNav( 2, 2, 9, {
+        2: 10, //Eligibility
+        3: 20, // Name
+        4: 30, // Name part 2
+        5: 40, // Home Address
+        6: 50, // Mailing Address
+        7: 55, // Previous Address
+        8: 60, // Identification
+        9: 65, // Personal Information
+        //Download page goes up to 80%
+      }, shouldSkipStep);
       $('#javascript_disabled').remove();
       
       // if (window.ga) {
@@ -141,15 +43,7 @@
       // }
       
       
-      if (window.location.hash && window.location.hash.trim() != '') {
-        currentStep = parseInt(window.location.hash.substr(1,window.location.hash.length-1))
-      } else {
-        currentStep = 2;  
-        // Jump to a page that has an error?
-        jumpToFirstError();
-      }
-      setUpNav();
-      renderCurrentStep();
+      
     });
     
 - if @registrant.home_state_allows_ovr_ignoring_license?
