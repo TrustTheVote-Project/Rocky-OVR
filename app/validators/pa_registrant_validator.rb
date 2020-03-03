@@ -6,7 +6,7 @@ class PARegistrantValidator < ActiveModel::Validator
       reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/
     end
 
-    #reg.validates_presence_of :phone_type if reg.has_phone?
+    reg.validates_presence_of :phone_type if reg.has_phone?
 
     if reg.at_least_step_1?
       reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
@@ -50,11 +50,13 @@ class PARegistrantValidator < ActiveModel::Validator
       end
 
       validate_phone_present_if_opt_in_sms(reg)
+      
+      validate_race(reg)        
+      validate_party(reg)
+      
     end
     
     if reg.at_least_step_2?
-      validate_race(reg)        
-      validate_party(reg)
       
       validate_id(reg)
       if reg.has_assistant?

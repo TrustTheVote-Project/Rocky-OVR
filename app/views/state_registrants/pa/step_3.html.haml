@@ -166,14 +166,7 @@
       }
       
       
-      function toggleOtherParty() {
-        var party = $("#state_registrants_pa_registrant_party").val().toLowerCase()
-        if (party=='other' || party=='otros') {
-          $("#other_party_set").show();          
-        } else {
-          $("#other_party_set").hide();
-        }        
-      }
+
       
       function copyLink() {
         var text = $("#link-to-copy").text().trim();
@@ -193,8 +186,6 @@
         copyLink();
       })
       
-      $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
-      toggleOtherParty();
       $("#state_registrants_pa_registrant_confirm_no_penndot_number").click(togglePenndotNumber)
       togglePenndotNumber();      
       $("#state_registrants_pa_registrant_confirm_no_dl_or_ssn").click(toggleSsn4)
@@ -217,20 +208,7 @@
 
   = render partial: 'state_registrants/pa/header'
 
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
 
-  %br
-  
-  %ul.flat.party-dropdown
-    = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
-    
-  %fieldset#other_party_set
-    %ul.flat.other-party
-      = field_li(form, :other_party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__other-party__line"}})
-    
-  
-  %ul.flat.race-dropdown
-    = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
   
   %fieldset#penndot_set
     %ul.flat.penndot-number

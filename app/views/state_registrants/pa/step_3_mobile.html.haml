@@ -165,14 +165,7 @@
       }
       
       
-      function toggleOtherParty() {
-        var party = $("#state_registrants_pa_registrant_party").val().toLowerCase()
-        if (party=='other' || party=='otros') {
-          $("#other_party_set").show();          
-        } else {
-          $("#other_party_set").hide();
-        }        
-      }
+      
       
       function copyLink() {
         var text = $("#link-to-copy").text().trim();
@@ -192,8 +185,6 @@
         copyLink();
       })
       
-      $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
-      toggleOtherParty();
       $("#state_registrants_pa_registrant_confirm_no_penndot_number").click(togglePenndotNumber)
       togglePenndotNumber();      
       $("#state_registrants_pa_registrant_confirm_no_dl_or_ssn").click(toggleSsn4)
@@ -207,15 +198,6 @@
         $('.cropit-image-input').click();
       });
       
-      
-      var shouldSkipStep = function shouldSkipStep(currentStep) { return false; }
-
-      initDynamicNav( 5, 5, 6, {
-        5: 50, // Personal Information
-        6: 70, // Personal Information
-        //Download page goes up to 80%
-      }, shouldSkipStep);
-      
     });
 
 = flash_messages.html_safe
@@ -227,55 +209,7 @@
   = render partial: 'state_registrants/header_mobile', locals: {percentage: 50}
 
 
-  .dynamic-step#step-5
-    %fieldset
-      %legend= t('txt.registration.mobile_ui.step_9.title')
   
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
-
-    %br
-  
-    %ul.flat.party-dropdown
-      = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
-    
-    %fieldset#other_party_set
-      %ul.flat.other-party
-        = field_li(form, :other_party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__other-party__line"}})
-    
-  
-    %ul.flat.race-dropdown
-      = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
-      
-    %fieldset.phone
-      %ul.stacked
-        = field_li(form, :phone, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone__line"}})
-        = field_li(form, :phone_type, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone-type__line"}, select_options: @registrant.phone_types,field_options: {include_blank: true} })
-      
-      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization => h("Rock the Vote")).html_safe}
-      %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h("Rock the Vote"), short_code: RockyConf.sms_short_code, terms_url: RockyConf.terms_url, privacy_url: RockyConf.privacy_url).html_safe
-    
-      - if @registrant.partner.partner_sms_opt_in? && !@registrant.partner.primary?
-        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_sms, class_name: "registrant-form__partner-opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization=>h(@registrant.partner.organization)).html_safe }
-        %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h(@registrant.partner.organization), short_code: @registrant.partner.short_code, terms_url: @registrant.partner.terms_url, privacy_url: @registrant.partner.privacy_url).html_safe
-      
-      
-    - if @registrant.email.blank?
-      %fieldset
-        %ul.stacked
-          = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
-  
-    %fieldset.no_border
-      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
-  
-      - if @registrant.partner.partner_email_opt_in && !@registrant.partner.primary?
-        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_email, class_name: "registrant-form__partner-opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization=>h(@registrant.partner.organization)).html_safe }
-  
-    
-    - if @registrant.ask_for_partner_volunteers?
-      %fieldset.no_border
-        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_volunteer, class_name: "registrant-form__partner-volunteer", required: false, field_label: t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe }
-
-
   .dynamic-step#step-6
     %fieldset
       %legend= t('txt.registration.mobile_ui.step_8.title')
@@ -434,15 +368,7 @@
         = link_to update_state_registrant_path(@registrant.to_param, controller.prev_step) do
           %button{type: "button"}
             %span <
-    .back.back--virtual 
-      .button.rollover_button
-        %a 
-          %button{type: "button"}
-            %span <
-    .next.next--virtual
-      .button.rollover_button
-        %a 
-          %button
-            %span=t 'txt.button.submit'
+
     .next.next--link.prepare
-      = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)
+      = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) 
+  
