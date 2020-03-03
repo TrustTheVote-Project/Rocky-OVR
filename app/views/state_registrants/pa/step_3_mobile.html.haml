@@ -1,0 +1,448 @@
+- content_for :head do
+  %script{src: "https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"}
+  
+  %script{src: "https://cdn.jsdelivr.net/npm/cropit@0.5.1/dist/jquery.cropit.min.js"}
+  :javascript
+    function resizeCanvas(canvas, signaturePad) {
+      // When zoomed out to less than 100%, for some very strange reason,
+      // some browsers report devicePixelRatio as less than 1
+      // and only part of the canvas is cleared then.
+      var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+
+      // This part causes the canvas to be cleared
+      
+      
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+
+      // This library does not listen for canvas changes, so after the canvas is automatically
+      // cleared by the browser, SignaturePad#isEmpty might still return false, even though the
+      // canvas looks empty, because the internal data of this library wasn't cleared. To make sure
+      // that the state of this library is consistent with visual state of the canvas, you
+      // have to clear it manually.
+      signaturePad.clear();
+    }
+    
+  
+    function registerTouch() {
+      $("#signature_capture").show();   
+      $("#signature_upload").hide();
+      var canvas = $("canvas#signature_field").get(0);
+      var size = screen.width / 150;
+      var signaturePad = new SignaturePad(canvas, {
+          minWidth: size,
+          maxWidth: size,
+          minDistance: size,
+          dotSize: size,
+          backgroundColor: "rgba(255,255,255,1)"
+      });
+      signaturePad.clear();
+      
+      //window.onresize = resizeCanvas.bind(this, canvas, signaturePad);
+      
+      $(".capture-signature").click(function() {
+        $("#signature_field_popup").show();
+        resizeCanvas(canvas, signaturePad);
+      })
+      
+      $(".signature_done").click(function() {
+        //export
+        var imageData = signaturePad.toDataURL("image/jpeg");
+
+        var img = new Image;
+        img.src = imageData;
+        img.onload = function() {
+          var c = document.createElement('canvas');
+          var ctx = c.getContext('2d')
+          c.width = 180
+          c.height = 60          
+          ctx.drawImage(this, 0, 0, c.width, c.height);
+          sizedImageData = c.toDataURL("image/jpeg");
+          $("#state_registrants_pa_registrant_voter_signature_image").val(sizedImageData);        
+          $("#signature_preview img.preview").attr('src', sizedImageData)
+          $("#signature_preview").show();
+          $("#signature_field_popup").hide();
+        }
+      })
+      
+      $("#signature_capture2").show();   
+      
+      $(".signature_clear").click(function() {
+        signaturePad.clear();
+        $("#state_registrants_pa_registrant_voter_signature_image").val('');        
+        $("#signature_preview img.preview").attr('src', null)
+        $("#signature_preview").hide();
+      })
+      
+    };
+    
+    $(document).ready(function() {
+      function showControls() {
+        $("#signature-cropper .controls").show();
+        $(".select-image-btn").hide();        
+        $(".cropit-preview").show();
+      }
+      function hideControls() {
+        $("#signature-cropper .controls").hide();
+        $(".select-image-btn").show();
+        $(".cropit-preview").hide();                
+      }
+      function removeSignatureFile() {
+        $('#signature-cropper .cropit-preview-image').removeAttr('src');
+        $('#signature-cropper .cropit-preview-background').removeAttr('src');     
+        $("#state_registrants_pa_registrant_voter_signature_image").val('');
+        $(".cropit-image-input").val('');        
+        hideControls();
+        
+      }
+      $("#signature-cropper .remove-image-btn").click(removeSignatureFile);
+      
+      function adjustSignature() {
+        try {
+          var imageData = $('#signature-cropper').cropit('export', {
+            type: 'image/jpeg',
+            quality: 1.0,
+            fillBg: '#fff'
+          });
+          $("#state_registrants_pa_registrant_voter_signature_image").val(imageData);          
+          
+        } catch(err) { console.error(err) }
+      }
+      function selectSignatureType() {
+        if ($("#state_registrants_pa_registrant_signature_method_upload:checked").length > 0) {
+          var imageData = $('#state_registrants_pa_registrant_voter_signature_image').val()
+          $('#signature-cropper').show().cropit({
+            imageState: { src:  imageData },
+            freeMove: true,
+            minZoom: 'fit',
+            exportZoom: 0.5,
+            onFileChange: showControls,
+            onZoomChange: adjustSignature,
+            onOffsetChange: adjustSignature
+          });    
+          if (imageData != "") {
+            setTimeout(showControls, 1000);
+          }
+            
+        } else {
+          $('#signature-cropper').hide()
+        }
+        if ($("#state_registrants_pa_registrant_signature_method_device:checked").length > 0) {
+          $("#continue_on_device").show();
+        } else {
+          $("#continue_on_device").hide();
+        }
+      } 
+      
+      function togglePenndotNumber() {
+        if ($("#state_registrants_pa_registrant_confirm_no_penndot_number:checked").length > 0) {
+          $("#penndot_set").hide();
+          // if (!window.IS_TOUCH_ENABLED) {
+          //   $("#signature_upload").show();
+          // }
+        } else {
+          $("#penndot_set").show();
+          
+          // $("#signature_upload").hide();
+        }              
+      }
+
+      function toggleSsn4() {
+        if ($("#state_registrants_pa_registrant_confirm_no_dl_or_ssn:checked").length > 0 ) {
+          $(".registrant-form__ssn4__line").hide();
+        } else {
+          $(".registrant-form__ssn4__line").show();
+        }
+      }
+      
+      function toggleAssistant() {
+        if ($("#state_registrants_pa_registrant_has_assistant:checked").length > 0) {
+          $("#assistant_set").show();
+        } else {
+          $("#assistant_set").hide();
+        }        
+      }
+      
+      
+      function toggleOtherParty() {
+        var party = $("#state_registrants_pa_registrant_party").val().toLowerCase()
+        if (party=='other' || party=='otros') {
+          $("#other_party_set").show();          
+        } else {
+          $("#other_party_set").hide();
+        }        
+      }
+      
+      function copyLink() {
+        var text = $("#link-to-copy").text().trim();
+        //Create hidden input
+        var el = document.createElement("textarea");
+        el.value = text;
+        //el.style.display='none';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy')
+        document.body.removeChild(el);
+        $("#link-copied").show().fadeOut(3000);
+        
+      }
+      
+      $(".copy-link").click(function() {
+        copyLink();
+      })
+      
+      $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
+      toggleOtherParty();
+      $("#state_registrants_pa_registrant_confirm_no_penndot_number").click(togglePenndotNumber)
+      togglePenndotNumber();      
+      $("#state_registrants_pa_registrant_confirm_no_dl_or_ssn").click(toggleSsn4)
+      toggleSsn4();      
+      $("#state_registrants_pa_registrant_has_assistant").click(toggleAssistant)
+      toggleAssistant();
+      
+      $("[name='state_registrants_pa_registrant[signature_method]']").click(selectSignatureType)
+      selectSignatureType();
+      $('.select-image-btn').click(function() {
+        $('.cropit-image-input').click();
+      });
+      
+      
+      var shouldSkipStep = function shouldSkipStep(currentStep) { return false; }
+
+      initDynamicNav( 5, 5, 6, {
+        5: 50, // Personal Information
+        6: 70, // Personal Information
+        //Download page goes up to 80%
+      }, shouldSkipStep);
+      
+    });
+
+= flash_messages.html_safe
+      
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param,controller.current_state)) do |form|
+
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 50}
+
+
+  .dynamic-step#step-5
+    %fieldset
+      %legend= t('txt.registration.mobile_ui.step_9.title')
+  
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
+
+    %br
+  
+    %ul.flat.party-dropdown
+      = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
+    
+    %fieldset#other_party_set
+      %ul.flat.other-party
+        = field_li(form, :other_party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__other-party__line"}})
+    
+  
+    %ul.flat.race-dropdown
+      = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
+      
+    %fieldset.phone
+      %ul.stacked
+        = field_li(form, :phone, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone__line"}})
+        = field_li(form, :phone_type, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone-type__line"}, select_options: @registrant.phone_types,field_options: {include_blank: true} })
+      
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization => h("Rock the Vote")).html_safe}
+      %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h("Rock the Vote"), short_code: RockyConf.sms_short_code, terms_url: RockyConf.terms_url, privacy_url: RockyConf.privacy_url).html_safe
+    
+      - if @registrant.partner.partner_sms_opt_in? && !@registrant.partner.primary?
+        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_sms, class_name: "registrant-form__partner-opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization=>h(@registrant.partner.organization)).html_safe }
+        %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h(@registrant.partner.organization), short_code: @registrant.partner.short_code, terms_url: @registrant.partner.terms_url, privacy_url: @registrant.partner.privacy_url).html_safe
+      
+      
+    - if @registrant.email.blank?
+      %fieldset
+        %ul.stacked
+          = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
+  
+    %fieldset.no_border
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
+  
+      - if @registrant.partner.partner_email_opt_in && !@registrant.partner.primary?
+        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_email, class_name: "registrant-form__partner-opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization=>h(@registrant.partner.organization)).html_safe }
+  
+    
+    - if @registrant.ask_for_partner_volunteers?
+      %fieldset.no_border
+        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_volunteer, class_name: "registrant-form__partner-volunteer", required: false, field_label: t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe }
+
+
+  .dynamic-step#step-6
+    %fieldset
+      %legend= t('txt.registration.mobile_ui.step_8.title')
+    
+  
+    %fieldset#penndot_set
+      %ul.flat.penndot-number
+        - if @registrant.penndot_retries > 0
+          - @registrant.errors.add(:penndot_number, :pa_invalid)
+        = field_li(form, :penndot_number, {skip_tooltip: true, required: true, field_options: {size: 12, maxlength: 8}, li_options: {class: "registrant-form__penndot-number__line"} })
+          
+      %p.instructions
+        = I18n.t('states.custom.pa.penndot_number_instructions')
+
+  
+    
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
+
+    #signature_capture
+      .rollover_button.capture-signature
+        %a
+          %span.button-style
+            = I18n.t('states.custom.pa.signature_capture.buttons.provide_signature')
+      %br
+      %p.instructions
+        = I18n.t('states.custom.pa.signature_capture.touch_sign_instructions')
+      - if form.object.errors[:voter_signature_image]
+        .error
+          = form.object.errors[:voter_signature_image].join("\n")
+    
+      #signature_field_popup
+        %canvas#signature_field
+        .rollover_button.signature_done
+          %a
+            %span.button-style 
+              = I18n.t('states.custom.pa.signature_capture.buttons.done')
+        .signature_clear.button
+          = I18n.t('states.custom.pa.signature_capture.buttons.reset')
+        .signature_capture_insructions
+          %span= I18n.t('states.custom.pa.signature_capture.rotation_instructions')
+    
+      #signature_preview{ style: "display: #{@registrant.voter_signature_image.blank? ? 'none;' : 'block;'}"}
+        %br
+        %img.preview{src: @registrant.voter_signature_image}
+        %br 
+        %br
+        .rollover_button.signature_clear
+          %a
+            %span.button-style 
+              = I18n.t('states.custom.pa.signature_capture.buttons.remove')
+        %br 
+        %br
+    
+    / #signature_capture2
+    /   #signature_field2
+    
+    
+    %fieldset#signature_upload
+      %p.instructions 
+        = I18n.t('states.custom.pa.signature_capture.desktop_provide_signature')
+      - if form.object.errors[:voter_signature_image].any?
+        %p.instructions
+          %span.error
+            = form.object.errors[:voter_signature_image].join("\n")
+      
+      %ul#signature_method.checkbox.signature-method
+        %li
+          = form.radio_button :signature_method, StateRegistrants::PARegistrant::UPLOAD_METHOD
+          %label{for: "state_registrants_pa_registrant_signature_method_upload"}
+            = I18n.t('states.custom.pa.signature_capture.upload_signature_image')
+          #signature-cropper
+            %br
+            .select-image-btn.rollover_button
+              %a
+                %span.button-style 
+                  = I18n.t('states.custom.pa.signature_capture.buttons.select_file')
+          
+            %br
+            %p.instructions
+            
+            .cropit-preview
+          
+            .controls{style: "display: none;"}
+              %input{type: "range", class: "cropit-image-zoom-input"}
+              %br
+              %p.instructions
+                = I18n.t('states.custom.pa.signature_capture.upload_file_zoom')
+              .remove-image-btn.rollover_button
+                %a
+                  %span.button-style 
+                    = I18n.t('states.custom.pa.signature_capture.buttons.remove')
+            %input{type: "file", class: "cropit-image-input", style: "display: none;"}
+            %br
+            %br
+          = form.hidden_field :voter_signature_image
+
+        %li
+          = form.radio_button :signature_method,  StateRegistrants::PARegistrant::DEVICE_METHOD
+          %label{for: "state_registrants_pa_registrant_signature_method_device"} 
+            = I18n.t('states.custom.pa.signature_capture.continue_on_device')
+          #continue_on_device
+            %p.instructions
+              = form.label :sms_number_for_continue_on_device #, "Text me the link:"
+              = form.text_field :sms_number_for_continue_on_device, value: form.object.sms_number_for_continue_on_device
+              = rollover_button(:next_step, I18n.t('txt.button.text_me', :id=>:sms_continue_on_device).html_safe, name: :sms_continue_on_device)  
+            %p.instructions
+              = form.label :email_address_for_continue_on_device #, "Email me the link:"            
+              = form.text_field :email_address_for_continue_on_device, value: form.object.email_address_for_continue_on_device
+              = rollover_button(:next_step, I18n.t('txt.button.email_me', :id=>:email_continue_on_device).html_safe, name: :email_continue_on_device)  
+            %br
+            %p.instructions
+              = I18n.t('states.custom.pa.signature_capture.continue_via_copy')
+              %span#link-to-copy
+                = @registrant.signature_capture_url
+              .rollover_button.button.copy-link
+                %a
+                  %span.button-style 
+                    = I18n.t('states.custom.pa.signature_capture.buttons.copy_link')
+              #link-copied{style: "display: none; text-align: center; font-size: 20px; margin: 20px auto; color: green"}
+                = I18n.t('states.custom.pa.signature_capture.link_copied')
+              
+        %li
+          = form.radio_button :signature_method, StateRegistrants::PARegistrant::PRINT_METHOD
+          %label{for: "state_registrants_pa_registrant_signature_method_print"} 
+            = I18n.t('states.custom.pa.signature_capture.continue_on_paper')
+    
+    
+    %br
+    %br
+    %fieldset#ssn4_set
+      %ul.flat.ssn4
+        = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"}, field_options: {size: 6, maxlength: 4} })
+      
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dl_or_ssn, class_name: "registrant-form__no-ssn4__line", required: false}
+      
+    
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_assistant, class_name: "registrant-form__has-assistant__line", required: false}
+    
+    %fieldset#assistant_set
+      %ul.stacked
+        = field_li(form, :assistant_name, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-name__line"} })
+      %ul.stacked
+        = field_li(form, :assistant_address, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-address__line"} })
+      %ul.stacked
+        = field_li(form, :assistant_phone, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-phone__line"} })
+    
+      .declaration-text
+        = t('states.custom.pa.assistant_declaration').html_safe
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_assistant_declaration, class_name: "registrant-form__assistant-confirmation__line", required: true}
+
+
+  .dynamic-navigation
+    -# .back only shown when first step, .prepare only shown when last step
+    .back.back--link
+      .button.rollover_button
+        = link_to update_state_registrant_path(@registrant.to_param, controller.prev_step) do
+          %button{type: "button"}
+            %span <
+    .back.back--virtual 
+      .button.rollover_button
+        %a 
+          %button{type: "button"}
+            %span <
+    .next.next--virtual
+      .button.rollover_button
+        %a 
+          %button
+            %span=t 'txt.button.submit'
+    .next.next--link.prepare
+      = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)

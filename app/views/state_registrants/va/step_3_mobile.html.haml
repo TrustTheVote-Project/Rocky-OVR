@@ -30,7 +30,7 @@
 
 = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
-  = render partial: 'state_registrants/va/header_mobile', locals: {percentage: 80}
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 80}
   
   .declaration-text= t('states.custom.va.privacy_notice').html_safe
   
