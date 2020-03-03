@@ -249,7 +249,7 @@ en:
       mobile_ui:
         step_2:
           title: Eligibility
-          instructions: All fields marked with an asterisk (*) are rquired
+          instructions: All fields marked with an asterisk (*) are required
         step_8:
           title: Identification
         step_9:
