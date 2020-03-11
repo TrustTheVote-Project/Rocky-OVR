@@ -20,7 +20,8 @@
         if ($("#state_registrants_va_registrant_registered_in_other_state:checked").length > 0) {
           $(".registrant-form__other-registration-state-abbrev__line").show();
         } else {
-          $(".registrant-form__other-registration-state-abbrev__line").hide();            
+          $(".registrant-form__other-registration-state-abbrev__line").hide();  
+          clearErrors.bind($("#state_registrants_va_registrant_other_registration_state_abbrev"))();          
         }
       }
       $("#state_registrants_va_registrant_registered_in_other_state").click(toggleOtherStateReg);

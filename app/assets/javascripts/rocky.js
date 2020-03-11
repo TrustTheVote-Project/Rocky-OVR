@@ -14,6 +14,10 @@ function toggleFieldSet(checkbox, set, rule, speed) {
     $(set).fadeIn(speed);
   } else {
     $(set).fadeOut(speed);
+    $(set).find(".has_error input, .has_error select").each(function() {
+      console.log(this);
+      clearErrors.bind(this)();
+    })
     $(rule).show(0);
   }
 };
