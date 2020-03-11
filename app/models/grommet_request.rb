@@ -60,8 +60,8 @@ class GrommetRequest < ActiveRecord::Base
     end
   end
 
-  def self.upload_request_results_report_csv
-    contents = GrommetRequest.request_results_report_csv
+  def self.upload_request_results_report_csv(start_date = 4.months.ago, end_date = 1.minute.ago)
+    contents = GrommetRequest.request_results_report_csv(start_date, end_date)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
@@ -82,12 +82,11 @@ class GrommetRequest < ActiveRecord::Base
     Settings.grommet_csv_url = "https://s3-us-west-2.amazonaws.com/rtv-reports/#{Rails.env}/grommet_requests.csv"
   end
 
-  def self.request_results_report_csv
+  def self.request_results_report_csv(start_date, end_date)
     # Only look at registrants within the last 4 months to narrow the scope. If want full scope, go back to March 29, 2018
     distribute_reads(failover: false) do
-      start_date = 4.months.ago
-      rs = Registrant.where("created_at > ?", start_date).where("state_ovr_data IS NOT NULL")
-      gs = GrommetRequest.where('created_at > ?', start_date + 2.days)
+      rs = Registrant.where("created_at > ? AND created_at < ?", start_date, end_date).where("state_ovr_data IS NOT NULL")
+      gs = GrommetRequest.where('created_at > ? AND created_at < ?', start_date + 2.days, end_date)
       r_reqs = {}
     
       dj_ids = Delayed::Job.all.pluck(:id)
