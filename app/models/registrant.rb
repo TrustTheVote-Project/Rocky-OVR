@@ -494,6 +494,7 @@ class Registrant < ActiveRecord::Base
     uid_list = []
     pa_registrants = {}
     va_registrants = {}
+    mi_registrants = {}
     distribute_reads do 
       both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
       both_ids.each do |id, uid|
@@ -502,6 +503,7 @@ class Registrant < ActiveRecord::Base
       end      
       StateRegistrants::PARegistrant.where(registrant_id: uid_list).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MIRegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
         #StateRegistrants::PARegistrant
@@ -512,6 +514,8 @@ class Registrant < ActiveRecord::Base
             sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
           when "VA"
             sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+          when "MI"
+            sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
           end
           reg.instance_variable_set(:@existing_state_registrant, sr)
         end
@@ -1055,6 +1059,7 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
+        raise e
         nil
       end
     else

@@ -1,0 +1,10 @@
+- if @use_mobile_ui
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
+
+%h1
+  = I18n.t 'states.custom.mi.registration_complete'
+
+.declaration-text
+  = I18n.t('states.custom.mi.registration_complete_dialog_text').html_safe
+
+= render "finishes/finish_iframe"

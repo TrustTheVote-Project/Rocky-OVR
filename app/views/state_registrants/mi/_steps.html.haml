@@ -1,0 +1,5 @@
+#progress-bar
+  %ol
+    %li.progress-title= t('txt.registration.progress_indicator').html_safe
+    = progress_indicator(@num_steps).html_safe
+
