@@ -45,6 +45,18 @@ en:
           rather than Rock the Vote.
         url: URL
         registration_instructions_url: PDF instructions URL
+      state_registrants/mi_registrant:
+        confirm_us_citizen: I am a United States citizen.
+        confirm_will_be_18: I will be at least 18 years old before voting the next election.
+        is_30_day_resident: I will have lived in my city or township in Michigan for 30 days before voting in the next election.
+        registration_cancellation_authorized: I authorize the cancellation of any previous registration.
+        digital_signature_authorized: I authorize the Secretary of State to use my stored digital signature for voter registration.
+        full_name: Full Name (as printed on your Michigan driver's license or state ID)
+        dln: Michigan Driver's License or state ID number (no dashes or spaces)
+        date_of_birth: Birthdate
+        eye_color_code: Eye color (as printed on your license or state ID)
+        ssn4: Social Security Number (Last 4 digits)
+          
       state_registrants/va_registrant:
         confirm_voter_record_update: I consent to update my voter record with the
           state or to register to vote if I am not yet registered with Virginia
@@ -216,6 +228,16 @@ en:
             password:
               invalid: Password must be 10 characters, contain at least 1 lowercase
                 letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+        state_registrants/mi_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          attributes:
+            confirm_us_citizen:
+              accepted: You must be a US citizen to register to vote.
+            confirm_will_be_18:
+              accepted: You must be 18 by the next election to register to vote.
+          
+          
         state_registrants/va_registrant:
           blank: Required
           invalid_zip: Invalid ZIP

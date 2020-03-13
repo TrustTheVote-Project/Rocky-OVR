@@ -86,7 +86,6 @@ class StateRegistrants::Base < ActiveRecord::Base
   
   def set_default_opt_ins
     self.opt_in_email = true
-    #self.opt_in_sms = true
   end
   
   def current_step

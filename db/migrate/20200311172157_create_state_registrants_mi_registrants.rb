@@ -40,9 +40,11 @@ class CreateStateRegistrantsMiRegistrants < ActiveRecord::Migration
       t.string :registration_county
       
       t.boolean :has_mailing_address
+      t.string :mailing_attention
       t.string :mailing_address_type
       t.string :mailing_box_id
       t.string :mailing_box_group_type
+      
       t.string :mailing_box_group_id
       t.string :mailing_address_1
       t.string :mailing_address_2

@@ -445,6 +445,7 @@ ActiveRecord::Schema.define(version: 20200311172157) do
     t.string   "registration_zip_code"
     t.string   "registration_county"
     t.boolean  "has_mailing_address"
+    t.string   "mailing_attention"
     t.string   "mailing_address_type"
     t.string   "mailing_box_id"
     t.string   "mailing_box_group_type"

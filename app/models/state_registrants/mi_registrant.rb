@@ -1,6 +1,22 @@
 class StateRegistrants::MIRegistrant < StateRegistrants::Base
+  include StateRegistrants::MIRegistrant::EyeColor
+
+  validates_with MIRegistrantValidator
+  
+
+  def state_transaction_id
+    #mi_transaction_id
+  end
+  
+  def cleanup!
+    # TODO make sure we don't keep SSN
+    self.ssn4 = nil
+    self.dln = nil
+    self.save(validate: false)
+  end
+  
   def default_state_abbrev
-    'PA'
+    'MI'
   end
   def steps
     %w(step_1 step_2 step_3 step_4 complete)
@@ -8,6 +24,26 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   def num_steps
     4
   end
+  
+  def complete?
+    status == step_list.last && valid? #&& confirm_affirm_privacy_notice? && confirm_voter_fraud_warning?
+  end
+  
+  def async_submit_to_online_reg_url
+    self.registrant.skip_state_flow!
+    # self.mi_submission_complete = false
+    # self.save
+    # self.delay.submit_to_online_reg_url
+  end
+  
+  def submitted?
+    self.registrant.skip_state_flow?
+  end
+  
+  def submit_to_online_reg_url
+  end
+  
+  
   
   def mappings
     {

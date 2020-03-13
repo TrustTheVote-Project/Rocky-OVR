@@ -4,6 +4,25 @@ en:
     custom:
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
+      mi:
+        step_2_header:
+        step_3_header: Personal Information
+        step_3_notice: The personal information you use to register to vote must match the personal information on your Michigan driver’s license or state ID.
+        eye_color:
+          UNK: No Eye Color
+          BLK: Black
+          BLU: Blue
+          BRO: Brown
+          GRN: Green
+          GRY: Gray
+          HAZ: Hazel
+          MAR: Maroon
+          MUL: Multicolor
+          PNK: Pink
+          
+          
+          
+          
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.
