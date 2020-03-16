@@ -95,13 +95,15 @@
     .content 10%
   
   .dynamic-step#step-2
+    - if @registrant.state_flow_error?
+      .state-flow-error
+        %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
+    
+    
     %fieldset
       %legend= t 'txt.registration.mobile_ui.step_2.title'
       %p= t 'txt.registration.mobile_ui.step_2.instructions'
       
-      - if @registrant.state_flow_error?
-        .state-flow-error
-          %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
       
       
       %ul.flat.dob-and-phone
