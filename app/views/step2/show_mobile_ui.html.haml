@@ -98,6 +98,12 @@
     %fieldset
       %legend= t 'txt.registration.mobile_ui.step_2.title'
       %p= t 'txt.registration.mobile_ui.step_2.instructions'
+      
+      - if @registrant.state_flow_error?
+        .state-flow-error
+          %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
+      
+      
       %ul.flat.dob-and-phone
         = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
       %ul.checkbox.checkbox-step-1
