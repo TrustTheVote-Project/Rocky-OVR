@@ -56,7 +56,13 @@ en:
         date_of_birth: Birthdate
         eye_color_code: Eye color (as printed on your license or state ID)
         ssn4: Social Security Number (Last 4 digits)
-          
+        registration_address_number: Street Number  
+        registration_address_street_name: Street Name
+        registration_address_street_type: Street Type
+        registration_city: City
+        registration_zip_code: ZIP Code
+        mailing_same_as_residential_address: Mailing address is same as residential address
+        
       state_registrants/va_registrant:
         confirm_voter_record_update: I consent to update my voter record with the
           state or to register to vote if I am not yet registered with Virginia
@@ -236,8 +242,14 @@ en:
               accepted: You must be a US citizen to register to vote.
             confirm_will_be_18:
               accepted: You must be 18 by the next election to register to vote.
-          
-          
+            is_30_day_resident:
+              accepted: You must live in the same city or township in Michigan before voting in the next election in order to register online.
+            registration_cancellation_authorized:
+              accepted: You must authorize the cancellation of your previous registration in order to register online.
+            digital_signature_authorized:
+              accepted: You must authorize the use of your stored digital signature in order to register online.
+            registration_address_street_type:
+              invalid: "Street type is invalid."
         state_registrants/va_registrant:
           blank: Required
           invalid_zip: Invalid ZIP

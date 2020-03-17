@@ -36,6 +36,11 @@ class StateRegistrantsController < RegistrationStep
     end
   end
   
+  def skip_state_flow
+    @registrant.registrant.skip_state_flow!
+    go_to_paper
+  end
+  
   def pending
     if !@old_registrant
       # Skip other processing and render pending w/out variables set

@@ -1,6 +1,7 @@
 class StateRegistrants::MIRegistrant < StateRegistrants::Base
   include StateRegistrants::MIRegistrant::EyeColor
-
+  include StateRegistrants::MIRegistrant::StreetType
+  
   validates_with MIRegistrantValidator
   
 
@@ -37,13 +38,19 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   end
   
   def submitted?
-    self.registrant.skip_state_flow?
+    false
+    #self.registrant.skip_state_flow?
   end
   
   def submit_to_online_reg_url
   end
   
-  
+  def mailing_same_as_residential_address
+    !has_mailing_address
+  end
+  def mailing_same_as_residential_address=(val)
+    self.has_mailing_address = !val
+  end
   
   def mappings
     {
@@ -84,6 +91,7 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
       val = r.send(v)
       self.send("#{k}=", val)
     end
+    self.full_name = [r.first_name, r.middle_name, r.last_name].compact.join(" ")
     # regs = r.home_address.to_s.split(', ')
     # self.registration_address_1 = regs[0]
     # self.registration_address_2 = regs[1..regs.length].to_a.join(', ')
@@ -104,6 +112,10 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
       val = self.send(k)
       r.send("#{v}=", val)
     end
+    
+    names = self.full_name.to_s.split(/\s+/)
+    r.first_name = names.shift
+    r.last_name = names.join(" ")
     
     # r.home_address = [self.registration_address_1, self.registration_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
     # r.mailing_address = [self.mailing_address_1, self.mailing_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')

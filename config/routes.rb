@@ -10,6 +10,7 @@ Rocky::Application.routes.draw do
   match "/share", to: "registrants#share", via: :get
   
   match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
+  match "/state_registrants/:registrant_id/skip_state_flow", to: "state_registrants#skip_state_flow", as: "skip_state_flow_registrant", via: :get
   match "/state_registrants/:registrant_id/complete", to: "state_registrants#complete", as: "complete_state_registrant", via: :get
   
   match "/state_registrants/:registrant_id/:step", to: "state_registrants#edit", as: "edit_state_registrant", via: :get

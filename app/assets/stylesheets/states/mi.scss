@@ -1,1 +1,25 @@
 @import "_base";
+
+span.error {
+  white-space: normal;
+}
+
+#main {
+  form {
+    ul {
+      li {
+        &.registrant-form__home-address-number__line {
+          width: 20%;
+          margin-right: 5%;
+        }
+        &.registrant-form__home-address-street-name__line {
+          width: 50%;
+          margin-right: 5%;
+        }
+        &.registrant-form__home-address-street-type__line {
+          width: 20%;
+        }
+      }
+    }
+  }
+}

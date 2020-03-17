@@ -27,14 +27,14 @@
 
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__confirm_will_be_18__line", required: true, require_accepted: true}
 
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_30_day_resident, class_name: "registrant-form__is_30_day_resident__line", required: false}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_30_day_resident, class_name: "registrant-form__is_30_day_resident__line", required: true, require_accepted: true}
 
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registration_cancellation_authorized, class_name: "registrant-form__registration_cancellation_authorized__line", required: false}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registration_cancellation_authorized, class_name: "registrant-form__registration_cancellation_authorized__line", required: true, require_accepted: true}
 
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :digital_signature_authorized, class_name: "registrant-form__digital_signature_authorized__line", required: false}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :digital_signature_authorized, class_name: "registrant-form__digital_signature_authorized__line", required: true, require_accepted: true}
   
   
-
+  = render partial: 'state_registrants/mi/skip_online_registration'
 
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
   .back

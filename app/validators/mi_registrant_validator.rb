@@ -29,6 +29,10 @@ class MIRegistrantValidator < ActiveModel::Validator
     if reg.at_least_step_3?
 
       reg.validates_presence_of   :registration_address_number
+      reg.validates_presence_of   :registration_address_street_name
+      reg.validates_presence_of   :registration_address_street_type
+      validates_street_type reg
+      
       
       reg.validates_presence_of   :registration_city 
       validates_zip_code  reg,    :registration_zip_code
@@ -59,6 +63,12 @@ class MIRegistrantValidator < ActiveModel::Validator
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
     end
+  end
+  
+  def validates_street_type(reg)
+    if reg.registration_address_street_type.present? && !reg.street_types.values.collect(&:capitalize).include?(reg.registration_address_street_type.capitalize)
+      reg.errors.add(:registration_address_street_type, :invalid)
+    end    
   end
   
   def validate_phone_present_if_opt_in_sms(reg)

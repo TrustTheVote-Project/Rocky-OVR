@@ -5,7 +5,10 @@ en:
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
       mi:
-        step_2_header:
+        state_flow_error: There was a problem submitting your registration to Michigan. Please try again later or continue here to create a paper form.
+        by_paper_header: Complete Registration By Paper          
+        skip_online_registration: If you are not eligible to regiser online, <a href="%{url}">click here</a> to create paper registration to print, sign and mail.
+        step_2_header: Eligibility
         step_3_header: Personal Information
         step_3_notice: The personal information you use to register to vote must match the personal information on your Michigan driver’s license or state ID.
         eye_color:
@@ -19,6 +22,7 @@ en:
           MAR: Maroon
           MUL: Multicolor
           PNK: Pink
+        valid_street_types: "Valid Street types include: %{types}"
         redirect_to_online_registration: We're directing you to the VoteKS online
           voter registration system.
       va:
@@ -37,6 +41,7 @@ en:
           address from public disclosure because
         step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
+        by_paper_header: Review &amp; Confirm
         voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE
           IN AN ELECTION OR MAKING A MATERIALLY FALSE STATEMENT ON THIS FORM CONSTITUTES
           THE CRIME OF ELECTION FRAUD, WHICH IS PUNISHABLE UNDER VIRGINIA LAW AS A
@@ -72,6 +77,7 @@ en:
           eligibility
         step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
+        by_paper_header: Review &amp; Confirm
         penndot_number_instructions: If you have a PA driver's license or PennDOT
           ID card number, you must use it. Your PennDOT is the 8 digit number found
           on the top right of a PA driver's license.

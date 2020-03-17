@@ -15,7 +15,7 @@
 
           
   - if @registrant.skip_state_flow?
-    %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.step_4_header").html_safe
+    %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.by_paper_header").html_safe
 
   = render partial: 'name', locals: {form: form}
 

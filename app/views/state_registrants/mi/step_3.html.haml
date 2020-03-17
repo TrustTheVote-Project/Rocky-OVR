@@ -20,7 +20,7 @@
     = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
     
   %ul.flat
-    = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+    = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form, skip_tooltip: true}
 
   %ul.flat.eye-color-dropdown
     = field_li(form, :eye_color_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__eye-color__line"}, select_options: @registrant.eye_colors, field_options: {include_blank: true} })
@@ -29,6 +29,7 @@
     = field_li(form, :ssn4, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 4, maxlength: 4} })
       
     
+  = render partial: 'state_registrants/mi/skip_online_registration'
   
 
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
