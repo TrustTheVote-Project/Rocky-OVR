@@ -19,10 +19,8 @@ en:
           MAR: Maroon
           MUL: Multicolor
           PNK: Pink
-          
-          
-          
-          
+        redirect_to_online_registration: We're directing you to the VoteKS online
+          voter registration system.
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.
@@ -63,10 +61,10 @@ en:
         registration_complete_dialog_text: "<p>Your application has been sent to the
           Dept. of Elections to register to vote.</p>"
       pa:
-        registration_deadline_text: "4/13/2020 is the last day to register before the
-        4/28/2020 election. If you are not a U.S. citizen and a resident of Pennsylvania
-        at least 30 days before the next election, you CANNOT register to vote. If you
-        have any questions, please call 1.877.VOTESPA (1.877.868.3772)."
+        registration_deadline_text: 4/13/2020 is the last day to register before the
+          4/28/2020 election. If you are not a U.S. citizen and a resident of Pennsylvania
+          at least 30 days before the next election, you CANNOT register to vote.
+          If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
           Please try again later or continue here to create a paper form.
         step_2_header: Your Basic Info
@@ -147,9 +145,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 4/13/2020 close of registration date of
-          current election is the last day to register before the 4/28/2020
-          election.</p>"
+          </ul> <p> Deadline Alert: 4/13/2020 is the last day to register before the
+          4/28/2020 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
@@ -301,12 +298,12 @@ en:
         connecticut: |-
           This is optional, but you must register with a party if you want to take part
           in that party’s primary election, caucus, or convention.
-        idaho: "You must register with a party if you want to participate in that party's
-          election. Enter your Political Party Preference. Options: Constitution,
+        idaho: 'You must register with a party if you want to participate in that
+          party''s election. Enter your Political Party Preference. Options: Constitution,
           Democratic, Libertarian, Republican or Unaffiliated (i.e. no party preference).
-          If this field is left blank, you will receive on only the Unaffiliated ballot."
-        illinois: "Leave Blank. Exception: for primary elections, unless a voter only
-          wishes to vote on public questions, a party preference should be indicated."
+          If this field is left blank, you will receive on only the Unaffiliated ballot.'
+        illinois: 'Leave Blank. Exception: for primary elections, unless a voter only
+          wishes to vote on public questions, a party preference should be indicated.'
         indiana: |-
           Indiana law does not permit a person to indicate their party affiliation,
           if any, as part of their registration record.  You will have to declare
@@ -457,36 +454,35 @@ en:
           the last four digits of your Social Security number.  If you do not have
           any of the requested identification numbers, please enter "NONE" and you
           will be assigned a unique identification number by the state.
-        illinois: "Illinois requires either the Driver's License (or Secretary of State
-          ID Card) or the last 4 digits of Social Security Number. For people who do not
-          have either of those items, and have not registered in Illinois before, a mail
-          in registration form should be accompanied by a copy of other identifying
-          information: you must send, with this application, either (i) a copy of a
-          current and valid photo identification, or (ii) a copy of a current utility
-          bill, bank statement, government check, paycheck, or other government document
-          that shows the name and address of the voter. If you do not provide the
-          information required above, then you will be required to provide election
-          officials with either (i) or (ii) described above the first time you vote at a
-          voting place."
+        illinois: 'Illinois requires either the Driver''s License (or Secretary of
+          State ID Card) or the last 4 digits of Social Security Number. For people
+          who do not have either of those items, and have not registered in Illinois
+          before, a mail in registration form should be accompanied by a copy of other
+          identifying information: you must send, with this application, either (i)
+          a copy of a current and valid photo identification, or (ii) a copy of a
+          current utility bill, bank statement, government check, paycheck, or other
+          government document that shows the name and address of the voter. If you
+          do not provide the information required above, then you will be required
+          to provide election officials with either (i) or (ii) described above the
+          first time you vote at a voting place.'
         indiana: |-
           You must provide your ten-digit Indiana driver's license number or
           Bureau of Motor Vehicles ID number.  If you do not have a driver's license
           or State of Indiana BMV ID card, please enter the last four digits of your
           Social Security number. If you have none of these, type NONE.
-        louisiana: |-
-          You must provide your Louisiana driver's license number or Louisiana special 
-          identification card number, if issued. If not issued, you must provide at least 
-          the last four digits of your social security number, if issued. The full social 
-          security number may be provided on a voluntary basis. If the applicant has 
-          neither a Louisiana driver's license, a Louisiana special identification card, 
-          or a social security number, the applicant shall attach one of the following 
-          items to his application: (a) a copy of a current and valid photo 
-          identification; or (b) a copy of a current utility bill, bank statement, 
-          government check, paycheck, or other government document that shows the name and 
-          address of applicant. Neither the registrar nor the Department of State shall 
-          disclose the social security number of a registered voter or circulate the social 
-          security numbers of registered voters on commercial lists (R.S. 18:104 and 154; 
-          42 U.S.C. § 405).
+        louisiana: "You must provide your Louisiana driver's license number or Louisiana
+          special \nidentification card number, if issued. If not issued, you must
+          provide at least \nthe last four digits of your social security number,
+          if issued. The full social \nsecurity number may be provided on a voluntary
+          basis. If the applicant has \nneither a Louisiana driver's license, a Louisiana
+          special identification card, \nor a social security number, the applicant
+          shall attach one of the following \nitems to his application: (a) a copy
+          of a current and valid photo \nidentification; or (b) a copy of a current
+          utility bill, bank statement, \ngovernment check, paycheck, or other government
+          document that shows the name and \naddress of applicant. Neither the registrar
+          nor the Department of State shall \ndisclose the social security number
+          of a registered voter or circulate the social \nsecurity numbers of registered
+          voters on commercial lists (R.S. 18:104 and 154; \n42 U.S.C. § 405)."
         maryland: |-
           If you have a current, valid Maryland driver's license or a Motor
           Vehicle Administration identification card, you must enter the driver's
@@ -500,22 +496,22 @@ en:
           then you must provide the last four (4) digits of your social security number.
           If you have neither, you must write "NONE" in the box and a unique identifying
           number will be assigned to you.
-        oklahoma: "You must provide one of these numbers: either your valid Oklahoma
-          driver's license number or state identification card number or the last four
-          digits of your Social Security number."
-        rhode_island: "The applicant shall be required to provide their Rhode Island
+        oklahoma: 'You must provide one of these numbers: either your valid Oklahoma
+          driver''s license number or state identification card number or the last
+          four digits of your Social Security number.'
+        rhode_island: The applicant shall be required to provide their Rhode Island
           driver's license or State ID number if the applicant has been issued a current
           and valid Rhode Island driver's license or State ID. In the case of an applicant
-          who has not been issued a current and valid driver's license or State ID, they
-          must provide the last four (4) digits of their social security number. An
-          applicant, who has neither, will be assigned a unique identifying number by the
-          State of Rhode Island."
-        texas: You must provide your Texas driver’s license or Texas personal
-          identification number to register to vote. If you do not have a Texas driver’s
-          license or Texas personal identification card then you will have to provide at
-          least the last four digits of your social security number. If you have neither,
-          please write "NONE" on the form. A unique identifying number will instead be
-          assigned to you by your State.
+          who has not been issued a current and valid driver's license or State ID,
+          they must provide the last four (4) digits of their social security number.
+          An applicant, who has neither, will be assigned a unique identifying number
+          by the State of Rhode Island.
+        texas: You must provide your Texas driver’s license or Texas personal identification
+          number to register to vote. If you do not have a Texas driver’s license
+          or Texas personal identification card then you will have to provide at least
+          the last four digits of your social security number. If you have neither,
+          please write "NONE" on the form. A unique identifying number will instead
+          be assigned to you by your State.
         wisconsin: |-
           Provide your unexpired Wisconsin driver license or DOT-issued ID
           card number. If you do not have a current and valid DOT-issued driver license
