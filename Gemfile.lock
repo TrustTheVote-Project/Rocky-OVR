@@ -654,9 +654,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.15.1)
-      capybara (>= 2.3, < 4.0)
-      json
     climate_control (0.2.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -983,7 +980,6 @@ DEPENDENCIES
   asset_sync
   authlogic (= 4.3.0)
   aws-sdk
-  capybara-webkit (~> 1.15.1)
   coffee-rails
   config
   cucumber-rails (= 1.4.2)

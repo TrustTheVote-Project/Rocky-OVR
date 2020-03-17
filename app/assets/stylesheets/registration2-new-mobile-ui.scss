@@ -75,7 +75,10 @@ body.new-mobile-ui {
         
       }
     }
-    .step_6 h1, #preparing_content h1, .step_7 h1 {
+    .step_6 h1 {
+      margin: 28px auto 0;
+    }
+    #preparing_content h1, .step_7 h1 {
         text-align: left;
         padding: 1em 0 0;
         margin: 0;

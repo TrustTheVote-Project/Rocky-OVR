@@ -107,7 +107,7 @@
 }
 
 
-#main {
+#main, body.new-mobile-ui #main {
   .step_4 {
     h1 {
       text-transform: none;
@@ -163,6 +163,21 @@
     ul {
       li.registrant-form__required-checkbox {
         width: 90%;
+        @media(max-width: 600px) {
+          width: 100%;
+        }
+      }
+      
+      li.registrant-form__confirm_voter_record_update__line {
+        @media(max-width: 600px) {
+          width: 100%;
+        }
+      }
+      
+      li.registrant-form__name-suffix__line {
+        @media(max-width: 600px) {
+          margin-left: 0;
+        }
       }
       
       li.registrant-form__date-of-birth__line {

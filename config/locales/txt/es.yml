@@ -250,6 +250,7 @@ es:
           nombre anterior.
         previous_address: Si te has cambiado de dirección desde tu ultimo registro,
           favor de proveer la dirección anterior.
+      
     status_text:
       message: Acabo de inscribirme para votar y tú también puedes!
       under_18_message: Asegúrese de que usted inscribirse para votar. ¡ Es fácil!

@@ -7,9 +7,9 @@ class AbTest < ActiveRecord::Base
   def self.assign_mobile_ui_test(registrant, controller)
     return nil if registrant.nil?
     return nil if registrant.javascript_disabled?
-    return nil if registrant.home_state_allows_ovr_ignoring_license?
-    return nil if registrant.locale != 'en'
-    return nil if registrant.partner != Partner.primary_partner
+    #return nil if registrant.home_state_allows_ovr_ignoring_license?
+    #return nil if registrant.locale != 'en'
+    #return nil if registrant.partner != Partner.primary_partner
     is_mobile = false
     agent = controller.request.user_agent.to_s.downcase
     RockyConf.mobile_browsers.each do |b|
@@ -18,7 +18,7 @@ class AbTest < ActiveRecord::Base
       end
     end
     return nil if !is_mobile
-    t = self.assign(MOBILE_UI, [MOBILE_UI_OLD, MOBILE_UI_NEW], registrant)
+    t = self.assign(MOBILE_UI, [MOBILE_UI_NEW, MOBILE_UI_NEW], registrant)
     t.save!
     return t
   end

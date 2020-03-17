@@ -26,7 +26,7 @@ class Step2Controller < RegistrationStep
   CURRENT_STEP = 2
 
   def render_show
-    if @mobile_ui_test && @mobile_ui_test.assignment == AbTest::MOBILE_UI_NEW
+    if @use_mobile_ui
       render "show_mobile_ui" and return
     else
       render "show" and return
@@ -88,6 +88,7 @@ class Step2Controller < RegistrationStep
 
 
   def set_up_view_variables
+    super
     @registrant.mailing_state ||= @registrant.home_state
     @registrant.prev_state ||= @registrant.home_state
     

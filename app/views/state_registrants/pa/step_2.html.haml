@@ -17,6 +17,18 @@
       $("#state_registrants_pa_registrant_previous_state").change(togglePreviousAddressCounty)
       togglePreviousAddressCounty();
       
+      function toggleOtherParty() {
+        var party = $("#state_registrants_pa_registrant_party").val().toLowerCase()
+        if (party=='other' || party=='otros') {
+          $("#other_party_set").show();          
+        } else {
+          $("#other_party_set").hide();
+        }        
+      }
+      
+      $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
+      toggleOtherParty();
+      
     });
 
 
@@ -133,6 +145,23 @@
     %fieldset.no_border
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_volunteer, class_name: "registrant-form__partner-volunteer", required: false, field_label: t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe }
   
+  
+  %br
+  %br
+
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
+
+  
+  %ul.flat.party-dropdown
+    = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
+    
+  %fieldset#other_party_set
+    %ul.flat.other-party
+      = field_li(form, :other_party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__other-party__line"}})
+    
+  
+  %ul.flat.race-dropdown
+    = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
     
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
   .back

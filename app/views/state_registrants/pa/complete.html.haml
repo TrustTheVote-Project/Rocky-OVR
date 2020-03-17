@@ -1,3 +1,6 @@
+- if @use_mobile_ui
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
+
 %h1
   = I18n.t 'states.custom.pa.registration_complete'
 

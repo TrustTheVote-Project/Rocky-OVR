@@ -16,7 +16,7 @@ function clearErrors() {
 }
 function validateField(errorMessage) {
   var field = this;
-  if (!field) {
+  if (!field || !$(field).is(':visible')) {
     return;
   }
   var isGroup = false;
@@ -30,9 +30,18 @@ function validateField(errorMessage) {
     var groupVal = null
     for(var i=0,ii=groupInputs.length;i<ii;i++) {
       var input = groupInputs[i];
-      var v = $(input).val()
-      if (groupVal == null || groupVal.length > v.length) {
-        groupVal = v;
+      if (input.type=='radio') {
+        // here we want to find if any value is present
+        if ($(input).is(":checked")) {
+          groupVal = '1';
+          break;
+        }
+      } else {
+        var v = $(input).val()
+        // Here we want to find the shortest value and to sure all values are present
+        if (groupVal == null || groupVal.length > v.length) {
+          groupVal = v;
+        }        
       }
     }
     val = groupVal;
@@ -118,7 +127,7 @@ function initValidations() {
     $(this).change(validateBooleanField.bind(this,errorMessage))
   })
   
-  var fields = $("input, select, textarea");
+  var fields = $("input, select, textarea, div.radio-button");
   var validatePrevious = function(element) {
     for (var i=0,ii=fields.length;i<ii;i++) {
       var field = fields[i]

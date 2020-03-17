@@ -1,150 +1,93 @@
 = content_for :head do 
   :javascript
-    var currentStep = 2;
-    var progressMap = {
-      2: 10, //Eligibility
-      3: 20, // Name
-      4: 30, // Name part 2
-      5: 40, // Home Address
-      6: 50, // Mailing Address
-      7: 55, // Previous Address
-      8: 60, // Identification
-      9: 65, // Personal Information
-      //Download page goes up to 80%
-    }
-    
-    function shouldSkipStep() {
-      if (currentStep == 4) {
-        return !$("#registrant_change_of_name").is(":checked")
-      }
-      if (currentStep == 6) {
-        return !$("#registrant_has_mailing_address").is(":checked")
-      }
-      if (currentStep == 7) {
-        return !$("#registrant_change_of_address").is(":checked")
-      }
-      return false;
-    }
-    
-    function updateProgressBar() {
-      var newPercent =  progressMap[currentStep] + "%"
-      $("#dynamic-progress-bar .filler").css("width", newPercent);
-      $("#dynamic-progress-bar .content").text(newPercent);      
-    }
-    
-    function currentStepValid() {
-      var isValid = true;
-      
-      // Force validations to run
-      $("#step-" + currentStep + " [data-client-validation-required]").each(function() {
-        var errorMessage = $(this).data("client-validation-required")
-        var fn = validateField.bind(this)
-        fn(errorMessage)
-      })
-      
-      $("#step-" + currentStep + " [data-client-validation-require-accept]").each(function() {
-        var errorMessage = $(this).data("client-validation-require-accept");
-        var fn = validateBooleanField.bind(this)
-        fn(errorMessage)
-      })
-      
-      
-      $("#step-" + currentStep + " .error").each(function() {
-        if ($(this).text().trim() != '') {
-          isValid = false;
-        }
-      });
-      return isValid;
-    }
-    
-    function renderCurrentStep() {
-      window.scrollTo(0,0);
-      $('.dynamic-step').hide();
-      $(".back").show();
-      $(".next").show();
-      $(".next--link").hide();
-      $(".back--link").hide();
-      $("#step-" + currentStep).show();
-      if (currentStep == 2) {
-        $(".back").hide();
-        $(".back--link").show();
-      }
-      if (currentStep == 9) {
-        $(".next").hide();
-        $(".next--link").show();        
-      }
-      updateProgressBar();
-    }
-    
-    function changeStep(e, direction) {
-      if (e) {
-        e.preventDefault()
-      };
-      if (currentStepValid() || direction < 0) {
-        currentStep = currentStep + direction;
-        while (shouldSkipStep()) {
-          currentStep += direction;
-        }
-        window.location.hash = '#' + currentStep;
-        if (window.ga) {
-          ga(function() {
-            var trackers = ga.getAll();
-            var tracker = trackers[0];
-            if (tracker) {
-              tracker.set('page',  window.location.pathname + '/part-' + currentStep)
-              tracker.send('pageview');
-            }
-          });
-        }
-        renderCurrentStep();          
-      }
-      return false;      
-    }
-    
-    function setUpNav() {
-      $(".next--virtual").click(function(e) {
-        return changeStep(e, 1);
-      })
-      $(".back--virtual").click(function(e) {
-        return changeStep(e, -1);
-      })
-    }
-    
-    function jumpToFirstError() {
-      var errors = $(".has_error")
-      if (errors.length > 0) {
-        console.log("found error")
-        var firstError = errors[0]
-        var stepDiv = $(firstError).parents(".dynamic-step").get(0);
-        var stepNum = parseInt(stepDiv.id.replace("step-",''));
-        currentStep = stepNum;
-      }
-    }
-    
     $(document).ready(function() {
+      var shouldSkipStep = function shouldSkipStep(currentStep) {
+        if (currentStep == 4) {
+          return !$("#registrant_change_of_name").is(":checked")
+        }
+        if (currentStep == 6) {
+          return !$("#registrant_has_mailing_address").is(":checked")
+        }
+        if (currentStep == 7) {
+          return !$("#registrant_change_of_address").is(":checked")
+        }
+        if (currentStep == 8) {
+          var inOvrFlow = "#{@registrant.home_state_allows_ovr_ignoring_license?}" == "true";
+          var reqId = "#{@registrant.require_id?}" == "true";
+          return inOvrFlow && !reqId
+        }
+        return false;
+      }
+      
+      initDynamicNav( 2, 2, 9, {
+        2: 10, //Eligibility
+        3: 20, // Name
+        4: 30, // Name part 2
+        5: 40, // Home Address
+        6: 50, // Mailing Address
+        7: 55, // Previous Address
+        8: 60, // Identification
+        9: 65, // Personal Information
+        //Download page goes up to 80%
+      }, shouldSkipStep);
       $('#javascript_disabled').remove();
       
-      if (window.ga) {
-        ga(function() {
-          var trackers = ga.getAll();
-          var tracker = trackers[0];
-          if (tracker) {
-            tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
-          }
-        });
-      }
+      // if (window.ga) {
+      //   ga(function() {
+      //     var trackers = ga.getAll();
+      //     var tracker = trackers[0];
+      //     if (tracker) {
+      //       tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
+      //     }
+      //   });
+      // }
       
       
-      if (window.location.hash && window.location.hash.trim() != '') {
-        currentStep = parseInt(window.location.hash.substr(1,window.location.hash.length-1))
-      } else {
-        currentStep = 2;  
-        // Jump to a page that has an error?
-        jumpToFirstError();
-      }
-      setUpNav();
-      renderCurrentStep();
+      
     });
+    
+- if @registrant.home_state_allows_ovr_ignoring_license?
+  - content_for :head do
+    :javascript
+      $(document).ready(function() {
+        function hasStateLicenseSelected() {
+          var hasStateLicense = true;
+          var hasStateLicenseRadio = $('input[name="registrant[has_state_license]"]:checked'); //a radio must have 1 selected
+          if (hasStateLicenseRadio.length > 0 && hasStateLicenseRadio.val()!="1") {
+            hasStateLicense = false;
+          } 
+          
+          // If check-18 checkbox is present, that must also be selected
+          var willBe18 = true;
+          var willBe18Checkbox = $('input[name="registrant[will_be_18_by_election]"]');
+          if (willBe18Checkbox.length > 0 && !willBe18Checkbox.is(":checked")) {
+            willBe18 = false;
+          }
+          return hasStateLicense && willBe18;
+        }
+        function toggleHasStateLicense() {
+          if (hasStateLicenseSelected()) {
+            $('.skip_state_registration').hide(); 
+            var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required");
+            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", val)
+            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", null)
+            clearErrors.bind($('.skip_state_registration #registrant_state_id_number').get(0))();
+            
+            $('.use_state_registration').show();  
+            //$("#main").removeClass('skipping_state_registration').addClass('using_state_registration');  
+          } else {
+            $('.skip_state_registration').show();
+            var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required");
+            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", val)
+            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", null)
+            $('.use_state_registration').hide();    
+            //$("#main").addClass('skipping_state_registration').removeClass('using_state_registration');  
+          }
+        }
+        toggleHasStateLicense();
+        $('input[name="registrant[has_state_license]"]').click(toggleHasStateLicense);  
+        $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
+      });
 
 = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
   #dynamic-progress-bar
@@ -152,9 +95,17 @@
     .content 10%
   
   .dynamic-step#step-2
+    - if @registrant.state_flow_error?
+      .state-flow-error
+        %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
+    
+    
     %fieldset
-      %legend Eligibility
-      %p All fields marked with an asterisk (*) are rquired
+      %legend= t 'txt.registration.mobile_ui.step_2.title'
+      %p= t 'txt.registration.mobile_ui.step_2.instructions'
+      
+      
+      
       %ul.flat.dob-and-phone
         = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
       %ul.checkbox.checkbox-step-1
@@ -190,15 +141,36 @@
 
   .dynamic-step#step-8
     %fieldset
-      %legend Identification
-    .state-id-number
-      = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+      %legend= t('txt.registration.mobile_ui.step_8.title')
+    - if @registrant.home_state_allows_ovr_ignoring_license?
+      - if @registrant.require_id?
+        %ul.radio
+          %li.registrant-form__has-state-license__line.has_license
+            %h3
+              = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
+              = form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev)
+            .use_state_registration.checkbox-explanation
+              %p= I18n.t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name)
+        %ul.radio
+          %li.registrant-form__has-no-state-license__line
+            %h3
+              = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
+              = form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev)
+
+      .skip_state_registration
+        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+        
+
+    - else 
+      .state-id-number
+        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
   
   
   .dynamic-step#step-9
     %fieldset
-      %legend Personal Information
-    = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
+      %legend= t('txt.registration.mobile_ui.step_9.title')
+    .skip_state_registration
+      = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
     %ul.flat.dob-and-phone.clear-fix
       = render :partial=> "registrants/phone", :locals=>{:form=>form}
 
@@ -214,19 +186,24 @@
     .back.back--link
       .button.rollover_button
         = link_to registrant_path(@registrant) do
-          %button
+          %button{type: "button"}
             %span <
     .back.back--virtual 
       .button.rollover_button
         %a 
-          %button
+          %button{type: "button"}
             %span <
     .next.next--virtual
       .button.rollover_button
         %a 
           %button
-            %span Next Step
+            %span=t 'txt.button.submit'
     .next.next--link.prepare
-      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
-
+      - if  @registrant.home_state_allows_ovr_ignoring_license?
+        .use_state_registration
+          = rollover_button(:prepare, I18n.t('txt.button.submit'))
+      .skip_state_registration
+        = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+      
+      
   
