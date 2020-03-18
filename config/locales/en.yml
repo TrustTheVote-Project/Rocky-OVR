@@ -62,6 +62,12 @@ en:
         registration_city: City
         registration_zip_code: ZIP Code
         mailing_same_as_residential_address: Mailing address is same as residential address
+        mailing_address_1: "Street Number"
+        mailing_address_2: "Street Name"
+        mailing_address_3: "Street Type"
+        mailing_city: "City"
+        mailing_state: "State"
+        mailing_zip_code: "ZIP Code"
         
       state_registrants/va_registrant:
         confirm_voter_record_update: I consent to update my voter record with the

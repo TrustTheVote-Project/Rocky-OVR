@@ -1,6 +1,7 @@
 class StateRegistrants::MIRegistrant < StateRegistrants::Base
   include StateRegistrants::MIRegistrant::EyeColor
   include StateRegistrants::MIRegistrant::StreetType
+  include StateRegistrants::MIRegistrant::MailingAddress
   
   validates_with MIRegistrantValidator
   
@@ -49,7 +50,8 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     !has_mailing_address
   end
   def mailing_same_as_residential_address=(val)
-    self.has_mailing_address = !val
+    self.has_mailing_address = val #converts to boolean
+    self.has_mailing_address = !self.has_mailing_address
   end
   
   def mappings
