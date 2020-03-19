@@ -264,6 +264,10 @@ en:
               accepted: You must authorize the use of your stored digital signature in order to register online.
             registration_address_street_type:
               invalid: "Street type is invalid."
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+            
         state_registrants/va_registrant:
           blank: Required
           invalid_zip: Invalid ZIP
