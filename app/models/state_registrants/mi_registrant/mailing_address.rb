@@ -1,11 +1,15 @@
 module StateRegistrants::MIRegistrant::MailingAddress
-  
-  TYPES = %w(
-    STANDARD
-    PO_BOX
-    MILITARY
-    INTERNATIONAL
-  )     
+
+  STANDARD_TYPE= "STANDARD".freeze
+  PO_BOX_TYPE = "PO_BOX".freeze
+  MILITARY_TYPE= "MILITARY".freeze
+  INTERNATIONAL_TYPE = "INTERNATIONAL".freeze
+  TYPES = [
+    STANDARD_TYPE,
+    PO_BOX_TYPE,
+    MILITARY_TYPE,
+    INTERNATIONAL_TYPE
+  ]
   # STANDARD
   # :mailing_address_1 Number
   # :mailing_address_2 Name

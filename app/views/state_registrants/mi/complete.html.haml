@@ -5,6 +5,6 @@
   = I18n.t 'states.custom.mi.registration_complete'
 
 .declaration-text
-  = I18n.t('states.custom.mi.registration_complete_dialog_text').html_safe
+  = I18n.t('states.custom.mi.registration_complete_dialog_text', state_transaction_id: @registrant.state_transaction_id).html_safe
 
 = render "finishes/finish_iframe"

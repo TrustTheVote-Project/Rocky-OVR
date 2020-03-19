@@ -126,7 +126,7 @@
   }
 }
 
-#main {
+#main, body.new-mobile-ui #main  {
   p.instructions {
     margin-top: 0;
   }
@@ -139,7 +139,7 @@
     
     ul, ul.flat {
       li.registrant-form__date-of-birth__line {
-        width: 100%;
+        width: 100%  !important;
       }
       li.registrant-form__home-address__line {
         width: 100%;
@@ -167,5 +167,11 @@
         margin-right: 0;
       }
     }
+  }
+}
+
+.declaration-text {
+  strong {
+    font-weight: bold;
   }
 }

@@ -8,7 +8,7 @@ class MIRegistrantValidator < ActiveModel::Validator
     
     if reg.at_least_step_1?
       reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
-
+      reg.validates_format_of :email, with: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
       #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
     end
     if reg.at_least_step_1?
@@ -21,9 +21,12 @@ class MIRegistrantValidator < ActiveModel::Validator
 
     if reg.at_least_step_2?
       reg.validates_presence_of   :full_name
+      reg.validates_length_of :full_name, maximum: 255
+      reg.validates_format_of :full_name, with: /\A(?=.{1,255}$)[a-zA-Z]+(?:[-=_.`;'\s][a-zA-Z]+)*\z/
       reg.validate_date_of_birth
       reg.validates_presence_of :dln
       reg.validates_presence_of :ssn4
+      reg.validates_format_of :ssn4, with: /\A\d{4}\z/
       reg.validates_presence_of :eye_color_code
     end
     
@@ -31,11 +34,15 @@ class MIRegistrantValidator < ActiveModel::Validator
 
       reg.validates_presence_of   :registration_address_number
       reg.validates_presence_of   :registration_address_street_name
+      reg.validates_format_of :registration_address_street_name, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+      reg.validates_length_of :registration_address_street_name, maximum: 255
       reg.validates_presence_of   :registration_address_street_type
       validates_street_type reg
       
       
       reg.validates_presence_of   :registration_city 
+      reg.validates_length_of :registration_city, maximum: 255
+      reg.validates_format_of :registration_city, with: /\A(?=.{1,255}$)[a-zA-Z]+(?:[-=_.`;'\s][a-zA-Z]+)*\z/
       validates_zip_code  reg,    :registration_zip_code
       
       validate_phone_present_if_opt_in_sms(reg)
@@ -47,11 +54,28 @@ class MIRegistrantValidator < ActiveModel::Validator
     end
     
     
-    if reg.has_mailing_address? 
+    if reg.has_mailing_address? && reg.at_least_step_3?
+      reg.validates_presence_of :mailing_address_type
       reg.validates_presence_of :mailing_address_1
       reg.validates_presence_of :mailing_city
       reg.validates_presence_of :mailing_state
-      validates_zip_code reg,    :mailing_zip_code
+      
+      if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::STANDARD_TYPE
+        reg.validates_presence_of :mailing_address_2
+        reg.validates_presence_of :mailing_address_3
+        validates_zip_code reg,    :mailing_zip_code
+      end
+      if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::MILITARY_TYPE
+        reg.validates_presence_of :mailing_address_2
+        reg.validates_presence_of :mailing_address_3
+        validates_zip_code reg,    :mailing_zip_code
+      end
+      if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::INTERNATIONAL_TYPE
+        reg.validates_presence_of :mailing_country
+        reg.validates_format_of :mailing_country, with: /\A[a-zA-Z\s\/',\.-]*\z/
+        reg.validates_presence_of :mailing_zip_code
+        reg.validates_format_of :mailing_zip_code, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+      end
     end
     
 

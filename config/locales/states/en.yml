@@ -43,10 +43,9 @@ en:
             mailing_address_3: Address Line 3
             mailing_zip_code: Postal Code
             mailing_country: Country
-          
+        registration_complete: Congratulations, you’re registered to vote!
+        registration_complete_dialog_text: "<p>Your local clerk will mail you a voter information card within 3 weeks.  Save this receipt until you receive a voter information card.</p><br/><p>Your transaction ID: <strong>%{state_transaction_id}</strong></p><br/>"
         valid_street_types: "Valid Street types include: %{types}"
-        redirect_to_online_registration: We're directing you to the VoteKS online
-          voter registration system.
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.

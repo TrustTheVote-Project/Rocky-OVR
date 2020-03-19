@@ -39,7 +39,7 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   end
   
   def submitted?
-    false
+    self.mi_submission_complete?
     #self.registrant.skip_state_flow?
   end
   
@@ -47,10 +47,14 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     
     # Do the actual submission
     # if failed, call self.registrant.skip_state_flow!
-    # if successs, set submission complete and transaction ID
+    if self.full_name.downcase.strip== "error error"
+      self.registrant.skip_state_flow!
+    else
+      self.mi_transaction_id = "ABC123SAMPLEID"
+    end
+  ensure
     self.mi_submission_complete = true
-    self.mi_transaction_id = "sample-transaction-id"
-    self.save
+    self.save(validate: false)  
   end
   
   def mailing_same_as_residential_address
@@ -125,11 +129,12 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     names = self.full_name.to_s.split(/\s+/)
     r.first_name = names.shift
     r.last_name = names.join(" ")
-
-    street_address = [self.registration_address_number, self.registration_address_street_name, self.registration_address_street_type].collect{|v| v.blank? ? nil : v}.compact.join(' ')
-    r.home_address = [street_address, self.registration_unit_number].collect{|v| v.blank? ? nil : v}.compact.join(' ')
-    mailing_street = [self.mailing_address_1, self.mailing_address_2, self.mailing_address_3].collect{|v| v.blank? ? nil : v}.compact.join(', ')
-    r.mailing_address = [mailing_street, self.mailing_address_unit_number].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+    r.state_id_number = self.dln.blank? ? self.ssn4 : self.dln
+    r.home_address = [self.registration_address_number, self.registration_address_street_name, self.registration_address_street_type].collect{|v| v.blank? ? nil : v}.compact.join(' ')
+    r.home_unit = self.registration_unit_number
+    r.mailing_address = [self.mailing_address_1, self.mailing_address_2, self.mailing_address_3].collect{|v| v.blank? ? nil : v}.compact.join(' ')
+    r.mailing_unit = self.mailing_address_unit_number
+    r.mailing_state = GeoState[self.mailing_state]
     #
     # if !self.mailing_state.blank? #always an abbrev
     #   r.mailing_state = GeoState[self.mailing_state]

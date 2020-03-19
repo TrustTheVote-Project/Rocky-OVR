@@ -246,6 +246,12 @@ en:
           blank: Required
           invalid_zip: Invalid ZIP
           attributes:
+            full_name:
+              invalid: Full Name is invalid.
+              too_long:
+                one: "Full Name is too long (maximum is 1 character)"
+                other: "Full Name is too long (maximum is %{count} characters)"
+              
             confirm_us_citizen:
               accepted: You must be a US citizen to register to vote.
             confirm_will_be_18:
