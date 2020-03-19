@@ -180,7 +180,7 @@ module StateRegistrants::MIRegistrant::StreetType
   
   def registration_address_street_type=(value)
     street_types.each do |k,v|
-      if [k.downcase, v.downcase].include?(value.downcase.strip)
+      if [k.downcase, v.downcase].include?(value.downcase.strip.gsub(/[^a-z]/,""))
         return super(v.capitalize)
       end
     end

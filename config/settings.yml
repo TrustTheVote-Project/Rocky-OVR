@@ -188,6 +188,7 @@ ovr_states:
     api_settings:
       api_url: "MI"
     redirect_to_online_reg_url: true
+    require_age_confirmation: true
     languages:
       - en
     

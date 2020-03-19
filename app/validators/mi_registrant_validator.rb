@@ -14,8 +14,9 @@ class MIRegistrantValidator < ActiveModel::Validator
     if reg.at_least_step_1?
       reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
       reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
-      
-
+      reg.validates_acceptance_of  :is_30_day_resident, :accept=>true
+      reg.validates_acceptance_of  :registration_cancellation_authorized, :accept=>true
+      reg.validates_acceptance_of  :digital_signature_authorized, :accept=>true
     end
 
     if reg.at_least_step_2?

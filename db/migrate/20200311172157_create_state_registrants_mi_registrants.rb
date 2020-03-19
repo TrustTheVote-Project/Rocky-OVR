@@ -33,7 +33,6 @@ class CreateStateRegistrantsMiRegistrants < ActiveRecord::Migration
       t.string :registration_address_number
       t.string :registration_address_street_name
       t.string :registration_address_street_type
-      t.string :registration_unit_type
       t.string :registration_unit_number
       t.string :registration_city
       t.string :registration_zip_code
@@ -44,6 +43,7 @@ class CreateStateRegistrantsMiRegistrants < ActiveRecord::Migration
       t.string :mailing_address_1
       t.string :mailing_address_2
       t.string :mailing_address_3
+      t.string :mailing_address_unit_number
       t.string :mailing_city # Or military place name
       t.string :mailing_state
       t.string :mailing_country
@@ -60,6 +60,10 @@ class CreateStateRegistrantsMiRegistrants < ActiveRecord::Migration
       
       
       t.string :phone
+      
+      t.boolean :mi_submission_complete
+      t.integer :submission_attempts, default: 0
+      t.string  :mi_transaction_id
       
       
       t.timestamps null: false

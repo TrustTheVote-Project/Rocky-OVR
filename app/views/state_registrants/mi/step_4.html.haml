@@ -45,6 +45,8 @@
     - if form.object.errors[:registration_address_street_type].any?
       %p= I18n.t('states.custom.mi.valid_street_types', types: @registrant.matching_street_types)
     %ul.stacked
+      = field_li(form, :registration_unit_number, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__home-address-unit-number__line"}, field_options: {autocomplete: "off"}})
+    %ul.stacked
       = field_li(form, :registration_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
       = field_li(form, :home_state_abbrev, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-state-abbrev__line"} })
       = field_li(form, :registration_zip_code, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
@@ -62,9 +64,11 @@
       = field_li(form, :mailing_address_type, {skip_tooltip: true, required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__mailing-address-type__line"}, select_options: @registrant.mailing_address_types, field_options: {include_blank: false}})
     #mailing_address_standard.mailing-address-type-group      
       %ul.stacked
-        = field_li(form, :mailing_address_1, {skip_tooltip: true, required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
-        = field_li(form, :mailing_address_2, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
-        = field_li(form, :mailing_address_3, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
+        = field_li(form, :mailing_address_1, {skip_tooltip: true, required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-number__line"}})
+        = field_li(form, :mailing_address_2, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-street-name__line"}})
+        = field_li(form, :mailing_address_3, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-street-type__line"}})
+      %ul.stacked
+        = field_li(form, :mailing_address_unit_number, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-unit-number__line"}})
       %ul.stacked
         = field_li(form, :mailing_city, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-city__line"} })
         = field_li(form, :mailing_state, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true, disabled: true}})
@@ -90,11 +94,11 @@
     #mailing_address_international.mailing-address-type-group      
       %ul.stacked
         = field_li(form, :mailing_address_1, {skip_tooltip: true, required: true, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_1'),field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
-        = field_li(form, :mailing_address_2, {skip_tooltip: true, required: true, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_2'),field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
-        = field_li(form, :mailing_address_3, {skip_tooltip: true, required: true, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_3'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
+        = field_li(form, :mailing_address_2, {skip_tooltip: true, required: false, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_2'),field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
+        = field_li(form, :mailing_address_3, {skip_tooltip: true, required: false, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_3'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
       %ul.stacked
-        = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-zip-code__line"} })   
-        = field_li(form, :mailing_country, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-city__line"} })
+        = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: true, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_zip_code'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-zip-code__line"} })   
+        = field_li(form, :mailing_country, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-country__line"} })
   
   
   %fieldset.phone

@@ -59,12 +59,14 @@ en:
         registration_address_number: Street Number  
         registration_address_street_name: Street Name
         registration_address_street_type: Street Type
+        registration_unit_number: Apt/Unit
         registration_city: City
         registration_zip_code: ZIP Code
         mailing_same_as_residential_address: Mailing address is same as residential address
         mailing_address_1: "Street Number"
         mailing_address_2: "Street Name"
         mailing_address_3: "Street Type"
+        mailing_address_unit_number: "Apt/Unit"
         mailing_city: "City"
         mailing_state: "State"
         mailing_zip_code: "ZIP Code"

@@ -7,7 +7,7 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   
 
   def state_transaction_id
-    #mi_transaction_id
+    self.mi_transaction_id
   end
   
   def cleanup!
@@ -32,10 +32,10 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   end
   
   def async_submit_to_online_reg_url
-    self.registrant.skip_state_flow!
-    # self.mi_submission_complete = false
-    # self.save
-    # self.delay.submit_to_online_reg_url
+    #self.registrant.skip_state_flow!
+    self.mi_submission_complete = false
+    self.save
+    self.delay.submit_to_online_reg_url
   end
   
   def submitted?
@@ -44,6 +44,13 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   end
   
   def submit_to_online_reg_url
+    
+    # Do the actual submission
+    # if failed, call self.registrant.skip_state_flow!
+    # if successs, set submission complete and transaction ID
+    self.mi_submission_complete = true
+    self.mi_transaction_id = "sample-transaction-id"
+    self.save
   end
   
   def mailing_same_as_residential_address
@@ -118,9 +125,11 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     names = self.full_name.to_s.split(/\s+/)
     r.first_name = names.shift
     r.last_name = names.join(" ")
-    
-    # r.home_address = [self.registration_address_1, self.registration_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
-    # r.mailing_address = [self.mailing_address_1, self.mailing_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+
+    street_address = [self.registration_address_number, self.registration_address_street_name, self.registration_address_street_type].collect{|v| v.blank? ? nil : v}.compact.join(' ')
+    r.home_address = [street_address, self.registration_unit_number].collect{|v| v.blank? ? nil : v}.compact.join(' ')
+    mailing_street = [self.mailing_address_1, self.mailing_address_2, self.mailing_address_3].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+    r.mailing_address = [mailing_street, self.mailing_address_unit_number].collect{|v| v.blank? ? nil : v}.compact.join(', ')
     #
     # if !self.mailing_state.blank? #always an abbrev
     #   r.mailing_state = GeoState[self.mailing_state]

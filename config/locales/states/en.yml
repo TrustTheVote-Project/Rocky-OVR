@@ -11,6 +11,7 @@ en:
         step_2_header: Eligibility
         step_3_header: Personal Information
         step_3_notice: The personal information you use to register to vote must match the personal information on your Michigan driver’s license or state ID.
+        step_4_header: Address
         eye_color:
           UNK: No Eye Color
           BLK: Black
@@ -34,13 +35,14 @@ en:
             mailing_address_1: Box Group Type
             mailing_address_2: Box Group Number
             mailing_address_3: Box Number
-            mailing_city: Quasi City
-            mailing_state: Quasi State
+            mailing_city: APO/FPO
+            mailing_state: AA/AE/AP
           international:
             mailing_address_1: Address Line 1
             mailing_address_2: Address Line 2
             mailing_address_3: Address Line 3
-            mailing_zip_code: ZIP/POSTAL Code
+            mailing_zip_code: Postal Code
+            mailing_country: Country
           
         valid_street_types: "Valid Street types include: %{types}"
         redirect_to_online_registration: We're directing you to the VoteKS online

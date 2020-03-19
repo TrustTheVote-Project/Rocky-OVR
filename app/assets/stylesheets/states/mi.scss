@@ -19,6 +19,24 @@ span.error {
         &.registrant-form__home-address-street-type__line {
           width: 20%;
         }
+        &.registrant-form__home-address-unit-number__line {
+          width: 70%;
+          margin-right: 30%;
+        }
+      }
+    }
+    #mailing_address_international {
+      ul {
+        li {
+          &.registrant-form__home-zip-code__line {
+            margin-right: 5%;
+            width: 25%;
+          } 
+          &.registrant-form__home-country__line {
+            width: 70%;
+            margin-right: 0;
+          } 
+        }
       }
     }
   }
