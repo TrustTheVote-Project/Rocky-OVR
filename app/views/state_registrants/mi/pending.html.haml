@@ -1,6 +1,27 @@
 - if !@old_registrant #we've cleared it out
   .step_6
     %p.instructions= I18n.t('states.custom.mi.ineligible_registrant').html_safe
+- elsif @registrant && @registrant.response_outcome == StateRegistrants::MIRegistrant::ApiService::RESPONSE_ALLOW_RETRY
+  .step_6
+    #preparing_content
+      %h1 There was an issue with your submission
+      - if @registrant.dln_not_found?
+        %p.notice
+          Your Drivers License did not match our records.
+        %p.notice
+          You can
+          = link_to "make a change", update_state_registrant_path(@registrant.to_param, 'step_4')
+          to your ID number and try again.
+      - if @registrant.address_not_found?
+        %p.notice
+          Your Registration Address did not match our records.
+        %p.notice
+          You can
+          = link_to "make a change", update_state_registrant_path(@registrant.to_param, 'step_4')
+          to your address and try again.
+      %p.notice= I18n.t('states.custom.mi.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe    
+          
+          
 - else
   - content_for :head do 
     %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}

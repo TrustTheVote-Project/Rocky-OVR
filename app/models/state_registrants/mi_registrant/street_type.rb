@@ -156,7 +156,7 @@ module StateRegistrants::MIRegistrant::StreetType
   end
   
   def street_type_code
-    name = registration_address_street_type.downcase.strip
+    name = registration_address_street_type.to_s.downcase.strip
     street_types.each do |k,v|
       if [k.downcase, v.downcase].include?(name)
         return k

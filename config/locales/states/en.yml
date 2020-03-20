@@ -14,7 +14,8 @@ en:
             mailing_address_1: Enter the number only
         state_flow_error: There was a problem submitting your registration to Michigan. Please try again later or continue here to create a paper form.
         by_paper_header: Complete Registration By Paper          
-        skip_online_registration: If you do not havea Michigan driver's license or state ID, <a href="%{url}">click here</a> to create a paper registration form to print, sign and mail.
+        skip_online_registration: <a href="%{url}">Click here</a> to create a paper registration form to print, sign and mail.
+        skip_online_registration_no_dln: If you do not havea Michigan driver's license or state ID, <a href="%{url}">click here</a> to create a paper registration form to print, sign and mail.
         step_2_header: Eligibility
         step_3_header: Personal Information
         step_3_notice: The personal information you use to register to vote must match the personal information on your Michigan driver’s license or state ID.
@@ -51,6 +52,10 @@ en:
             mailing_zip_code: Postal Code
             mailing_country: Country
         registration_complete: Congratulations, you’re registered to vote!
+        registration_complete_success_type:
+          new: <p>You've submitted a new voter registration.<p>
+          existing: <p>You're already registered at this addrses.<p>
+          updated: <p>You've updated your voter registration to a new address.<p>
         registration_complete_dialog_text: "<p>Your local clerk will mail you a voter information card within 3 weeks.  Save this receipt until you receive a voter information card.</p><br/><p>Your transaction ID: <strong>%{state_transaction_id}</strong></p><br/>"
         valid_street_types: "Valid Street types include: %{types}"
       va:

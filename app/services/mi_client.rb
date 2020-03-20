@@ -53,7 +53,8 @@ class MiClient
     headers.each do |key, value|
       request.add_field(key, value)
     end
-    request.set_form_data(body) if body.any?
+    #request.set_form_data(body) if body.any?
+    request.body = body.to_json if body.any?
 
     Rails.logger.debug "MI:REQUEST>> #{uri.inspect}"
 
