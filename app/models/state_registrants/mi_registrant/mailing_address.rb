@@ -37,7 +37,7 @@ module StateRegistrants::MIRegistrant::MailingAddress
     %w(UNIT CMR PSC)
   end
   def mailing_military_cities
-    %w(APO FPO)
+    %w(APO FPO DPO)
   end
   def mailing_military_states
     %w(AA AE AP)
