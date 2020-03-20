@@ -1,6 +1,23 @@
 module StateRegistrants::MIRegistrant::ApiService
   
+  RESPONSE_FAILURE="RESPONSE_FAILURE".freeze
+  RESPONSE_INVALID_DLN="RESPONSE_INVALID_DLN".freeze
+  RESPONSE_SUCCESS="RESPONSE_SUCCESS".freeze
+  RESPONSE_RETRY="RESPONSE_RETRY".freeze
+  
+  RESPONSE_OUTCOMES = [
+    RESPONSE_FAILURE, #Go to paper, send error message notification
+    RESPONSE_INVALID_DLN, #Go to paper, no error to send?
+    RESPONSE_SUCCESS, #Success!
+    RESPONSE_RETRY, #requeue
+  ]
+  
+  def response_outcome(mi_api_voter_status_id)
+    switch(mi_api_voter_status_id)
+  end
+  
   #response codes
+  # GO to paper
   # 0.0: Error message attached
   # 4.0: Failure: Address update failed ?
   # 5.0: Underage Voter
@@ -22,6 +39,14 @@ module StateRegistrants::MIRegistrant::ApiService
     self.mi_submission_complete?
     #self.registrant.skip_state_flow?
   end
+  
+  def async_submit_to_online_reg_url
+    #self.registrant.skip_state_flow!
+    self.mi_submission_complete = false
+    self.save
+    self.delay.submit_to_online_reg_url
+  end
+  
   
   def submit_to_online_reg_url
     

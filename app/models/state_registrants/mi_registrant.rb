@@ -42,12 +42,6 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     status == step_list.last && valid? #&& confirm_affirm_privacy_notice? && confirm_voter_fraud_warning?
   end
   
-  def async_submit_to_online_reg_url
-    #self.registrant.skip_state_flow!
-    self.mi_submission_complete = false
-    self.save
-    self.delay.submit_to_online_reg_url
-  end
   
 
   
