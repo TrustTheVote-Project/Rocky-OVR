@@ -146,6 +146,10 @@ class StateRegistrants::Base < ActiveRecord::Base
     update_original_registrant
   end
   
+  def custom_state_flow_error_message
+    return nil
+  end
+  
   # Whether the user has gone through all steps/data entry
   def complete?
     raise NotImplementedError

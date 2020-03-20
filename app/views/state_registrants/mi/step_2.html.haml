@@ -34,6 +34,17 @@
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :digital_signature_authorized, class_name: "registrant-form__digital_signature_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.digital_signature_authorized', url: @registrant.skip_state_flow_registrant_path)}
   
   
+  
+  %fieldset.updated-dln-recently
+    %ul.stacked.radio
+      = field_li(form, :updated_dln_recently, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
+
+  %fieldset.requested-duplicate-dln-today
+    %ul.stacked.radio
+      = field_li(form, :requested_duplicate_dln_today, {skip_tooltip: true, required: true, radio_options: [[t("no"), false], [t("yes"), true]]})
+      
+  
+
   -#= render partial: 'state_registrants/mi/skip_online_registration'
 
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  

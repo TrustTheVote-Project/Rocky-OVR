@@ -113,7 +113,6 @@ class StateRegistrantsController < RegistrationStep
     end
     @registrant = @old_registrant.state_registrant
     if !@registrant
-      raise 'a'
       go_to_paper and return
     else
       @num_steps = @registrant.num_steps

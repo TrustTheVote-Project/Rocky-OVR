@@ -21,6 +21,14 @@ class MIRegistrantValidator < ActiveModel::Validator
       if !reg.digital_signature_authorized
         reg.errors.add(:digital_signature_authorized, I18n.t('states.custom.mi.custom_errors.digital_signature_authorized', url: reg.skip_state_flow_registrant_path).html_safe)
       end
+      
+      if reg.updated_dln_recently != false
+        reg.errors.add(:updated_dln_recently, I18n.t('states.custom.mi.custom_errors.updated_dln_recently', url: reg.skip_state_flow_registrant_path).html_safe)
+      end
+      if reg.requested_duplicate_dln_today != false
+        reg.errors.add(:requested_duplicate_dln_today, I18n.t('states.custom.mi.custom_errors.requested_duplicate_dln_today', url: reg.skip_state_flow_registrant_path).html_safe)
+      end
+      
     end
 
     if reg.at_least_step_2?

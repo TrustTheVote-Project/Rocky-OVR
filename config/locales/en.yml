@@ -46,6 +46,8 @@ en:
         url: URL
         registration_instructions_url: PDF instructions URL
       state_registrants/mi_registrant:
+        updated_dln_recently: Have you updated your driver’s license or state ID address with the Secretary of State within the last 10 days?
+        requested_duplicate_dln_today: Have you applied for a duplicate driver’s license or state ID today?
         confirm_us_citizen: I am a United States citizen.
         confirm_will_be_18: I will be at least 18 years old before voting the next election.
         is_30_day_resident: I will have lived in my city or township in Michigan for 30 days before voting in the next election.

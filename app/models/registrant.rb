@@ -926,6 +926,10 @@ class Registrant < ActiveRecord::Base
     skip_state_flow? && state_registrant && state_registrant.submitted?
   end
   
+  def custom_state_flow_error_message
+    state_flow_error? && state_registrant.custom_state_flow_error_message
+  end
+  
   def skip_state_flow?
     h = self.state_ovr_data || {}
     !!h[:skip_state_flow]

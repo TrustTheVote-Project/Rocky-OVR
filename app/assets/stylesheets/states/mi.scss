@@ -52,5 +52,32 @@ span.error, .flat span.error {
         }
       }
     }
+    ul.radio {
+      li {
+        h3 {
+          float: none;
+          text-align: left;
+          width: auto;
+          color: #757575;
+          height: auto;
+          font-size: 16px;
+          line-height: 1.4em;
+          margin: 1em 0;
+        }
+      }
+    }
+    .radio-buttons {
+      label {
+        display: block;
+        height: 40px;
+        input {
+          display: inline-block;
+          width: auto;
+          height: 1em;
+          margin-right: 5px;
+          margin-left: 20px;
+        }
+      }
+    }
   }
 }

@@ -6,10 +6,13 @@ en:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
       mi:
         custom_errors:
+          dln_is_expired: <h3><br/>Your driver's license is expired.</h3>
           registration_cancellation_authorized: If you are not willing to authorize cancellation of your previous registration, then you can  <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
           digital_signature_authorized: If you are not willing to authorize use of your digital signature, then you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
           dln: A valid Michigan Driver's License or state ID is required for all-online voter registration. If you don't have one, you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
           ssn4: A social security number is required for all-online voter registration. If you don't have one, you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          updated_dln_recently: You can not register online if you have updated your address recently. <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+          requested_duplicate_dln_today: You can not register online if you have requested a duplicate license today. <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
           po_box:
             mailing_address_1: Enter the number only
         state_flow_error: There was a problem submitting your registration to Michigan. Please try again later or continue here to create a paper form.
@@ -56,7 +59,7 @@ en:
           new: <p>You've submitted a new voter registration.<p>
           existing: <p>You're already registered at this addrses.<p>
           updated: <p>You've updated your voter registration to a new address.<p>
-        registration_complete_dialog_text: "<p>Your local clerk will mail you a voter information card within 3 weeks.  Save this receipt until you receive a voter information card.</p><br/><p>Your transaction ID: <strong>%{state_transaction_id}</strong></p><br/>"
+        registration_complete_dialog_text: "<p>Your local clerk will mail you a voter information card within 3 weeks.</p><br/>"
         valid_street_types: "Valid Street types include: %{types}"
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.

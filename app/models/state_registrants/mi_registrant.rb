@@ -92,7 +92,7 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
       val = r.send(v)
       self.send("#{k}=", val)
     end
-    self.full_name = [r.first_name, r.middle_name, r.last_name].compact.join(" ")
+    self.full_name = [r.first_name, r.middle_name, r.last_name].collect{|v| v.blank? ? nil : v}.compact.join(" ")
     # regs = r.home_address.to_s.split(', ')
     # self.registration_address_1 = regs[0]
     # self.registration_address_2 = regs[1..regs.length].to_a.join(', ')
@@ -116,7 +116,7 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     
     names = self.full_name.to_s.split(/\s+/)
     r.first_name = names.shift
-    r.last_name = names.join(" ")
+    r.last_name = names.collect(&:strip).join(" ")
     r.state_id_number = self.dln.blank? ? self.ssn4 : self.dln
     r.home_address = [self.registration_address_number, self.registration_address_street_name, self.registration_address_street_type].collect{|v| v.blank? ? nil : v}.compact.join(' ')
     r.home_unit = self.registration_unit_number

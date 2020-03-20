@@ -12,8 +12,17 @@ module StateRegistrants::MIRegistrant::MailingAddress
   ]
   # STANDARD
   # :mailing_address_1 Number
+  def mailing_address_number
+    mailing_address_1
+  end
   # :mailing_address_2 Name
+  def mailing_address_street_name
+    mailing_address_2
+  end
   # :mailing_address_3 Type
+  def mailing_address_street_type
+    mailing_address_3
+  end
   # :mailing_city 
   # :mailing_state
   # :mailing_zip_code
@@ -21,6 +30,9 @@ module StateRegistrants::MIRegistrant::MailingAddress
   
   # PO Box
   # :mailing_address_1 Number
+  def mailing_po_box_number
+    mailing_address_1
+  end
   # :mailing_city 
   # :mailing_state
   # :mailing_zip_code
@@ -28,8 +40,17 @@ module StateRegistrants::MIRegistrant::MailingAddress
   
   # Military
   # :mailing_address_1 - UNIT, CMR or PSC
+  def mailing_military_group_type
+    mailing_address_1
+  end
   # :mailing_address_2 - Box Group ID
+  def mailing_military_group_number
+    mailing_address_2
+  end
   # :mailing_address_3 - Box Number
+  def mailing_military_box_number
+    mailing_address_3
+  end
   # :mailing_city APO or FPO
   # :mailing_state AA, AE or AP
   # :mailing_zip_code 5 digits exactly
@@ -48,6 +69,9 @@ module StateRegistrants::MIRegistrant::MailingAddress
   # :mailing_address_1
   # :mailing_address_2
   # :mailing_address_3 (1,2,3 get concatenated into DeliveryAddress in 1 line)
+  def mailing_international_address
+    [mailing_address_1, mailing_address_2, mailing_address_3].collect {|v| v.blank? ? nil : v }.compact.join(", ")
+  end
   # :mailing_zip_code
   # :mailing_country
             

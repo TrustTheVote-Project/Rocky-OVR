@@ -40,6 +40,10 @@ module StateRegistrants::MIRegistrant::ApiService
   # 12.0: Ineligible
 
   # 6.0: Expired License, send to paper with note
+  def custom_state_flow_error_message
+    return I18n.t('states.custom.mi.custom_errors.dln_is_expired') if self.mi_api_voter_status_id.to_s == "6.0"
+  end
+  
 
   # 1.0: Success: New Registration
   # 2.0: Success: Already REgistrered at this address
@@ -126,7 +130,7 @@ module StateRegistrants::MIRegistrant::ApiService
           "StringValue"=> "#{self.eye_color_code}"
         }
       ],
-      "Form"=> 2,
+      "Form"=> "other",
       "FormSpecified"=> true,
       "GeneratedDate"=> self.created_at&.iso8601(7), #"2020-02-18T12:52:05.9622405-05:00",
       "Issuer"=> "RockTheVote",
@@ -210,31 +214,31 @@ module StateRegistrants::MIRegistrant::ApiService
             "Assertion"=> self.updated_dln_recently  ? 1 : 0,
             "OtherAssertion"=> nil,
             "OtherType"=> "DLNAddressUpdate",
-            "Type"=> 14 # "other" # 14
+            "Type"=> "other" # 14
           },
     	    {
             "Assertion"=> self.requested_duplicate_dln_today ? 1 : 0,
             "OtherAssertion"=> nil,
             "OtherType"=> "DLNDuplicate",
-            "Type"=> 14 #"other" # 14
+            "Type"=> "other" # 14
           },
     	    {
             "Assertion"=> self.is_30_day_resident ? 1 : 0,
             "OtherAssertion"=> nil,
             "OtherType"=> "IsThirtyDayResident",
-            "Type"=> 14 #"other" # 14
+            "Type"=> "other" # 14
           },
     	    {
             "Assertion"=> self.registration_cancellation_authorized ? 1 : 0,
             "OtherAssertion"=> nil,
             "OtherType"=> "RegistrationCancellationAuthorized",
-            "Type"=> 14 # "other" # 14
+            "Type"=> "other" # 14
           },
     	    {
             "Assertion"=> self.digital_signature_authorized ? 1 : 0,
             "OtherAssertion"=> nil,
             "OtherType"=> "DigitalSignatureAuthorized",
-            "Type"=> 14 #"other" # 14
+            "Type"=> "other" # 14
           }
         ],
         "VoterId"=> [
@@ -272,57 +276,124 @@ module StateRegistrants::MIRegistrant::ApiService
     end
   end
   
+  def nist_mailing_unit_number
+    if self.mailing_address_unit_number.blank?
+      return {}
+    else
+      return {
+        "CompleteSubaddress"=>  {
+          "SubaddressType"=> "APT",
+          "SubaddressIdentifier"=> "#{self.mailing_address_unit_number}"
+        } 
+      }
+    end
+  end
+  
   def nist_mailing_address
-    return {}
+    return {} if !self.has_mailing_address?
     # TODO - flesh this out
-    {
-      "MailingAddress"=> {
-        "NumberedThoroughfareAddress_type"=> {
-          "CompleteAddressNumber"=> {
-            "AddressNumberPrefix"=> {
-              "Value"=> nil
-            },
-            "AddressNumber"=> "#{self.registration_address_1}",
-            "AddressNumberSuffix"=> {
-              "Value"=> nil
-            }
-          },
-          "CompleteStreetName"=> {
-            "StreetNamePreModifier"=> {
-              "Value"=> nil
-            },
-            "StreetNamePreDirectional"=> {
-              "Value"=> nil
-            },
-            "StreetNamePreType"=> {
-              "Value"=> nil
-            },
-            "StreetName"=> "CABOT",
-            "StreetNamePostType"=> {
-              "Value"=> "DR"
-            },
-            "StreetNamePostDirectional"=> {
-              "Value"=> nil
-            },
-            "StreetNamePostModifier"=> {
-              "Value"=> nil
-            }
-          },
-          "CompletePlaceName"=> {
-            "PlaceName"=> [
-              {
-                "PlaceNameType"=> "MunicipalJurisdiction", #1,
-                "PlaceNameTypeSpecified"=> true,
-                "Value"=> "FLINT"
+    if self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::STANDARD_TYPE
+      return {
+        "MailingAddress"=> {
+          "NumberedThoroughfareAddress_type"=> {
+            "CompleteAddressNumber"=> {
+              "AddressNumberPrefix"=> {
+                "Value"=> nil
+              },
+              "AddressNumber"=> "#{self.mailing_address_number}",
+              "AddressNumberSuffix"=> {
+                "Value"=> nil
               }
-            ]
-          },
-          "StateName"=> "MI",
-          "ZipCode"=> "48532",
-          "CountryName"=> "UNITED STATES"
+            },
+            "CompleteStreetName"=> {
+              "StreetNamePreModifier"=> {
+                "Value"=> nil
+              },
+              "StreetNamePreDirectional"=> {
+                "Value"=> nil
+              },
+              "StreetNamePreType"=> {
+                "Value"=> nil
+              },
+              "StreetName"=> "#{self.mailing_address_street_name}",
+              "StreetNamePostType"=> {
+                "Value"=> "#{self.mailing_address_street_type}"
+              },
+              "StreetNamePostDirectional"=> {
+                "Value"=> nil
+              },
+              "StreetNamePostModifier"=> {
+                "Value"=> nil
+              }
+            },
+            "CompletePlaceName"=> {
+              "PlaceName"=> [
+                {
+                  "PlaceNameType"=> "MunicipalJurisdiction", #1,
+                  "PlaceNameTypeSpecified"=> true,
+                  "Value"=> "#{self.mailing_city}"
+                }
+              ]
+            },
+            "StateName"=> "#{self.mailing_state}",
+            "ZipCode"=> "#{self.mailing_zip_code}",
+            "CountryName"=> "USA"
+          }.merge(nist_mailing_unit_number)
         }
       }
-    }
+    elsif self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
+      return {
+        "MailingAddress"=> {
+          "USPSPostalDeliveryBox" => {
+            "USPSBox"=> {
+              "USPSBoxType"=> "PO BOX",
+              "USPSBoxId" => "#{self.mailing_po_box_number}"
+            },
+            "CompletePlaceName"=> {
+              "PlaceName"=> [
+                {
+                  "PlaceNameType"=> "MunicipalJurisdiction", #1,
+                  "PlaceNameTypeSpecified"=> true,
+                  "Value"=> "#{self.mailing_city}"
+                }
+              ]
+            },
+            "StateName"=> "#{self.mailing_state}",
+            "ZipCode"=> "#{self.mailing_zip_code}",
+            "CountryName"=> "USA"
+          }
+        }
+      }
+    elsif self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::MILITARY_TYPE
+      return {
+        "MailingAddress"=> {
+          "USPSPostalDeliveryRoute" => {
+            "USPSRoute"=> {
+              "USPSBoxGroupType" => "#{self.mailing_military_group_type}", # User selected UNIT, CMR, or PSC
+              "USPSBoxGroupId:" => "#{self.mailing_military_group_number}", # User provided numeric string
+            },
+            "USPSBox"=> {
+              "USPSBoxType"=> "BOX",
+              "USPSBoxId" => "#{self.mailing_military_box_number}"
+            },
+            "CompletePlaceName"=> "#{self.mailing_city}",
+            "StateName"=> "#{self.mailing_state}",
+            "ZipCode"=> "#{self.mailing_zip_code}",
+            "CountryName"=> "USA"
+          }
+        }
+      }
+    elsif self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::INTERNATIONAL_TYPE
+      return {
+        "MailingAddress"=> {
+          "GeneralAddressClass" => {
+            "DeliveryAddress"=> "#{self.mailing_international_address}",
+            "ZipCode"=> "#{self.mailing_zip_code}",
+            "CountryName"=> "#{self.mailing_country}"
+          }
+        }
+      }  
+    end
   end
   
 end
