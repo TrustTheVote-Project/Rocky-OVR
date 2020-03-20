@@ -139,11 +139,12 @@ module ApplicationHelper
     field_name = options[:field_name] || field
     label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe).html_safe)
     tooltip = content_tag(:div, tooltip_tag(field_name, options[:tooltip_content]).html_safe, class: 'tooltip') unless options[:skip_tooltip]
-    error = "<span class='error'>#{form.object.errors[field_name].join("\n")}</span>"
+    error = "<span class='error'>#{form.object.errors[field_name].join("\n").html_safe}</span>".html_safe
     field_html = nil
     if options[:required]
       options[:field_options] ||= {}
       options[:field_options][:required] = true
+      options[:field_options][:required_message] = options[:required_message]
     end
     if options[:select_options]
       field_html = select_div(form, field, options[:select_options], options[:field_options])
@@ -164,7 +165,7 @@ module ApplicationHelper
     class_name = [options.delete(:class), has_error].compact.join(' ')
     if options.delete(:required)
       options[:data] ||= {}
-      options[:data]["client-validation-required".to_sym] = required_message_for(form.object, field)
+      options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
     end
     if options.delete(:require_accept)
       options[:data] ||= {}

@@ -15,18 +15,28 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
       reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
       reg.validates_acceptance_of  :is_30_day_resident, :accept=>true
-      reg.validates_acceptance_of  :registration_cancellation_authorized, :accept=>true
-      reg.validates_acceptance_of  :digital_signature_authorized, :accept=>true
+      if !reg.registration_cancellation_authorized
+        reg.errors.add(:registration_cancellation_authorized, I18n.t('states.custom.mi.custom_errors.registration_cancellation_authorized', url: reg.skip_state_flow_registrant_path).html_safe)
+      end
+      if !reg.digital_signature_authorized
+        reg.errors.add(:digital_signature_authorized, I18n.t('states.custom.mi.custom_errors.digital_signature_authorized', url: reg.skip_state_flow_registrant_path).html_safe)
+      end
     end
 
     if reg.at_least_step_2?
       reg.validates_presence_of   :full_name
       reg.validates_length_of :full_name, maximum: 255
-      reg.validates_format_of :full_name, with: /\A(?=.{1,255}$)[a-zA-Z]+(?:[-=_.`;'\s][a-zA-Z]+)*\z/
+      reg.validates_format_of :full_name, with: /\A(?=.{1,255}$)[a-zA-Z]+(?:[-=_.`;'\s][a-zA-Z]+)*\z/, allow_blank: true
       reg.validate_date_of_birth
-      reg.validates_presence_of :dln
-      reg.validates_presence_of :ssn4
-      reg.validates_format_of :ssn4, with: /\A\d{4}\z/
+      if reg.dln.blank?
+        reg.errors.add(:dln, I18n.t('states.custom.mi.custom_errors.dln', url: reg.skip_state_flow_registrant_path))
+      end
+      reg.validates_format_of :dln, with: /\A[a-zA-Z]\d{12}\z/, allow_blank: true
+      
+      if reg.ssn4.blank?
+        reg.errors.add(:ssn4, I18n.t('states.custom.mi.custom_errors.ssn4', url: reg.skip_state_flow_registrant_path))
+      end
+      reg.validates_format_of :ssn4, with: /\A\d{4}\z/, allow_blank: true
       reg.validates_presence_of :eye_color_code
     end
     
@@ -64,6 +74,9 @@ class MIRegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :mailing_address_2
         reg.validates_presence_of :mailing_address_3
         validates_zip_code reg,    :mailing_zip_code
+      end
+      if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
+        reg.validates_format_of :mailing_address_1, with: /\A[\d\s-]+\z/, message: I18n.t('states.custom.mi.custom_errors.po_box.mailing_address_1'), allow_blank: true
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::MILITARY_TYPE
         reg.validates_presence_of :mailing_address_2

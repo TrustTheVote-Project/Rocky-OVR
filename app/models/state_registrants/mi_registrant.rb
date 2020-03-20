@@ -2,9 +2,13 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   include StateRegistrants::MIRegistrant::EyeColor
   include StateRegistrants::MIRegistrant::StreetType
   include StateRegistrants::MIRegistrant::MailingAddress
+  include StateRegistrants::MIRegistrant::ApiService
   
   validates_with MIRegistrantValidator
   
+  def skip_state_flow_registrant_path
+    Rails.application.routes.url_helpers.skip_state_flow_registrant_path(self)
+  end
 
   def state_transaction_id
     self.mi_transaction_id
@@ -15,6 +19,13 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     self.ssn4 = nil
     self.dln = nil
     self.save(validate: false)
+  end
+  
+  
+  def dln=(val)
+    # remove any non-letter/digit prior to validation
+    val = val.to_s.upcase.gsub(/[^A-Z\d]/,'')
+    super(val)
   end
   
   def default_state_abbrev
@@ -38,24 +49,7 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     self.delay.submit_to_online_reg_url
   end
   
-  def submitted?
-    self.mi_submission_complete?
-    #self.registrant.skip_state_flow?
-  end
-  
-  def submit_to_online_reg_url
-    
-    # Do the actual submission
-    # if failed, call self.registrant.skip_state_flow!
-    if self.full_name.downcase.strip== "error error"
-      self.registrant.skip_state_flow!
-    else
-      self.mi_transaction_id = "ABC123SAMPLEID"
-    end
-  ensure
-    self.mi_submission_complete = true
-    self.save(validate: false)  
-  end
+
   
   def mailing_same_as_residential_address
     !has_mailing_address
@@ -132,7 +126,11 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     r.state_id_number = self.dln.blank? ? self.ssn4 : self.dln
     r.home_address = [self.registration_address_number, self.registration_address_street_name, self.registration_address_street_type].collect{|v| v.blank? ? nil : v}.compact.join(' ')
     r.home_unit = self.registration_unit_number
-    r.mailing_address = [self.mailing_address_1, self.mailing_address_2, self.mailing_address_3].collect{|v| v.blank? ? nil : v}.compact.join(' ')
+    if self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
+      r.mailing_address = "PO BOX #{self.mailing_address_1}"
+    else
+      r.mailing_address = [self.mailing_address_1, self.mailing_address_2, self.mailing_address_3].collect{|v| v.blank? ? nil : v}.compact.join(' ')
+    end
     r.mailing_unit = self.mailing_address_unit_number
     r.mailing_state = GeoState[self.mailing_state]
     #

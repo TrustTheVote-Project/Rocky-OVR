@@ -29,12 +29,12 @@
 
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_30_day_resident, class_name: "registrant-form__is_30_day_resident__line", required: true, require_accepted: true}
 
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registration_cancellation_authorized, class_name: "registrant-form__registration_cancellation_authorized__line", required: true, require_accepted: true}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registration_cancellation_authorized, class_name: "registrant-form__registration_cancellation_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.registration_cancellation_authorized', url: @registrant.skip_state_flow_registrant_path)}
 
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :digital_signature_authorized, class_name: "registrant-form__digital_signature_authorized__line", required: true, require_accepted: true}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :digital_signature_authorized, class_name: "registrant-form__digital_signature_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.digital_signature_authorized', url: @registrant.skip_state_flow_registrant_path)}
   
   
-  = render partial: 'state_registrants/mi/skip_online_registration'
+  -#= render partial: 'state_registrants/mi/skip_online_registration'
 
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
   .back

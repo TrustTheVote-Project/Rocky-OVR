@@ -244,6 +244,11 @@ input, textarea {
 
 .error {
   color: #B2272C;
+  a, a:link, a:visited {
+    color: #434343;
+    text-decoration: underline;
+  }
+  
 }
 
 

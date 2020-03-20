@@ -4,6 +4,11 @@ span.error {
   white-space: normal;
 }
 
+span.error, .flat span.error {
+  min-height: 24px;
+  height: auto;
+}
+
 #main {
   form {
     ul {

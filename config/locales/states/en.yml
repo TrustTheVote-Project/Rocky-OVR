@@ -5,9 +5,16 @@ en:
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
       mi:
+        custom_errors:
+          registration_cancellation_authorized: If you are not willing to authorize cancellation of your previous registration, then you can  <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          digital_signature_authorized: If you are not willing to authorize use of your digital signature, then you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          dln: A valid Michigan Driver's License or state ID is required for all-online voter registration. If you don't have one, you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          ssn4: A social security number is required for all-online voter registration. If you don't have one, you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          po_box:
+            mailing_address_1: Enter the number only
         state_flow_error: There was a problem submitting your registration to Michigan. Please try again later or continue here to create a paper form.
         by_paper_header: Complete Registration By Paper          
-        skip_online_registration: If you are not eligible to regiser online, <a href="%{url}">click here</a> to create paper registration to print, sign and mail.
+        skip_online_registration: If you do not havea Michigan driver's license or state ID, <a href="%{url}">click here</a> to create a paper registration form to print, sign and mail.
         step_2_header: Eligibility
         step_3_header: Personal Information
         step_3_notice: The personal information you use to register to vote must match the personal information on your Michigan driver’s license or state ID.
