@@ -10,12 +10,12 @@ class MiClient
   end
 
   # payload = JSON.parse(File.read('spec/fixtures/files/voter_nist.json'))
-  # MiClient.post_voter_nist(payload)
+  # MiClient.post_voter_nist(payload, registrant_id: 'REG#1234')
   # MI:RESPONSE>> #<Net::HTTPOK 200 OK readbody=true>
   # MI:RESPONSE>> {"SenderName":"TESTOVR","IsValid":false, ...
-  def self.post_voter_nist(payload)
+  def self.post_voter_nist(payload, log_context={})
     headers = {'Content-Type' => 'text/json'}
-    send(:post, 'api/OnlineVoter/PostOnlineVoter_Nist', body: payload, headers: headers)
+    send(:post, 'api/OnlineVoter/PostOnlineVoter_Nist', body: payload, headers: headers, log_context: log_context)
   end
 
   # MiClient.street_match(sender_name: 'TESTOVR', address_line_1: '1125 PALMER LN', city: 'EAST LANSING', zip_code: '48823')
@@ -30,7 +30,7 @@ class MiClient
     send(:get, 'api/OnlineVoter/GetOnlineVoterStreetMatch', body: body, headers: headers)
   end
 
-  def self.send(method, path, body: {}, params: {}, headers: {})
+  def self.send(method, path, body: {}, params: {}, headers: {}, log_context: {})
     uri = URI.join(RockyConf.ovr_states.MI.api_settings.api_url, path)
     uri.query = params.to_query if params.any?
 
@@ -58,8 +58,8 @@ class MiClient
 
     Rails.logger.debug "MI:REQUEST>> #{uri.inspect}"
 
-    response = begin 
-      http.request(request)
+    response = begin
+      RequestLog.send_and_log(http, request, MiCensor, log_context)
     rescue StandardError => e
       raise NetworkingError, e
     end
