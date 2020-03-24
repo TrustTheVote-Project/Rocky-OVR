@@ -186,7 +186,7 @@ ovr_states:
       - es
   MI:
     api_settings:
-      api_url: "MI"
+      api_url: https://test-mvicapi.sos.state.mi.us
     redirect_to_online_reg_url: true
     require_age_confirmation: true
     languages:
