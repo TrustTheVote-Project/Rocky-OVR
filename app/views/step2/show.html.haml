@@ -5,7 +5,7 @@
 - if @registrant.state_flow_error?
   .state-flow-error
     %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
-    = @registrant.custom_state_flow_error_message.html_safe
+    = @registrant.custom_state_flow_error_message.to_s.html_safe
     
 = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
   - if @registrant.use_short_form?

@@ -37,11 +37,11 @@
   
   %fieldset.updated-dln-recently
     %ul.stacked.radio
-      = field_li(form, :updated_dln_recently, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
+      = field_li(form, :updated_dln_recently, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.updated_dln_recently'), radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
 
   %fieldset.requested-duplicate-dln-today
     %ul.stacked.radio
-      = field_li(form, :requested_duplicate_dln_today, {skip_tooltip: true, required: true, radio_options: [[t("no"), false], [t("yes"), true]]})
+      = field_li(form, :requested_duplicate_dln_today, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.requested_duplicate_dln_today'), radio_options: [[t("no"), false], [t("yes"), true]]})
       
   
 

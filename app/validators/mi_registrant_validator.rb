@@ -51,10 +51,12 @@ class MIRegistrantValidator < ActiveModel::Validator
     if reg.at_least_step_3?
 
       reg.validates_presence_of   :registration_address_number
+      reg.validates_format_of :registration_address_number, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       reg.validates_presence_of   :registration_address_street_name
       reg.validates_format_of :registration_address_street_name, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       reg.validates_length_of :registration_address_street_name, maximum: 255
       reg.validates_presence_of   :registration_address_street_type
+      reg.validates_format_of :registration_address_street_type, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       validates_street_type reg
       
       

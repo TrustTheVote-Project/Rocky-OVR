@@ -4,9 +4,10 @@ span.error {
   white-space: normal;
 }
 
-span.error, .flat span.error {
+span.error, .flat span.error, .stacked span.error {
   min-height: 24px;
   height: auto;
+  line-height: 16px;
 }
 
 #main {

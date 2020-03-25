@@ -195,7 +195,7 @@ module ApplicationHelper
     html_options = {}
     if options.delete(:required)
       html_options[:data] ||= {}
-      html_options[:data]["client-validation-required".to_sym] = required_message_for(form.object, field)
+      html_options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
     end
     
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
