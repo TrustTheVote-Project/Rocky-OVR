@@ -6,7 +6,7 @@ class RequestLog < ActiveRecord::Base
 
   def log_request(http, request)
     request_data = RequestLog.build_request_data(http, request)
-    update_attributes(MiCensor.protect(request_data))
+    update_attributes(MiCensor.protect(request_data, RequestLogSession.registrant))
   end
 
   def log_response(response, duration, error)
@@ -15,7 +15,7 @@ class RequestLog < ActiveRecord::Base
       .merge(build_error_messages(error))
       .merge(RequestLog.build_duration_data(duration, :network_duration_ms))
 
-    update_attributes(MiCensor.protect(response_data))
+    update_attributes(MiCensor.protect(response_data, RequestLogSession.registrant))
   end
 
   def log_total_duration(duration, error=nil)
@@ -23,7 +23,7 @@ class RequestLog < ActiveRecord::Base
       .build_duration_data(duration, :total_duration_ms)
       .merge(build_error_messages(error))
 
-    update_attributes(MiCensor.protect(data))
+    update_attributes(MiCensor.protect(data, RequestLogSession.registrant))
   end
 
   def self.build_request_data(http, request)

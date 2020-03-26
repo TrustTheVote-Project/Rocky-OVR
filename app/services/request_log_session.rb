@@ -28,6 +28,10 @@ class RequestLogSession
     current_parameters.request_log
   end
 
+  def self.registrant
+    current_parameters.registrant
+  end
+
   def self.make_call_with_logging(registrant:, client_id:, &block)
     @current_parameters = Concurrent::ThreadLocalVar.new { Parameters.new(registrant, client_id: client_id) }
     instance = current_parameters.request_log
