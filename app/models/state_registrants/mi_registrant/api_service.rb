@@ -89,35 +89,37 @@ module StateRegistrants::MIRegistrant::ApiService
   end
   
   def submit_to_online_reg_url
-    begin 
-      self.submission_attempts ||= 0
-      self.submission_attempts += 1    
-      response = MiClient.post_voter_nist(self.to_nist_format)
-      self.mi_api_voter_status_id = response["VoterStatusId"]
-      self.save(validate: false)
-      outcome = self.response_outcome
-      if outcome == RESPONSE_FAILURE || outcome == RESPONSE_INVALID_DLN
-        handle_api_error
-      elsif outcome == RESPONSE_SUCCESS
-        mi_id = begin
-          response["VoterErrors"]["SenderRecordId"]
-        rescue
-          nil
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client') do
+      begin 
+        self.submission_attempts ||= 0
+        self.submission_attempts += 1    
+        response = MiClient.post_voter_nist(self.to_nist_format)
+        self.mi_api_voter_status_id = response["VoterStatusId"]
+        self.save(validate: false)
+        outcome = self.response_outcome
+        if outcome == RESPONSE_FAILURE || outcome == RESPONSE_INVALID_DLN
+          handle_api_error
+        elsif outcome == RESPONSE_SUCCESS
+          mi_id = begin
+            response["VoterErrors"]["SenderRecordId"]
+          rescue
+            nil
+          end
+          self.mi_transaction_id = mi_id || self.uid
+          self.mi_submission_complete = true
+          self.save(validate: false)
+        elsif outcome == RESPONSE_ALLOW_RETRY
+          self.mi_submission_complete = false
+          self.save(validate: false)
+        elsif outcome == RESPONSE_BUSY
+          self.mi_submission_complete = false
+          self.save(validate: false)
+          self.delay.submit_to_online_reg_url
         end
-        self.mi_transaction_id = mi_id || self.uid
-        self.mi_submission_complete = true
-        self.save(validate: false)
-      elsif outcome == RESPONSE_ALLOW_RETRY
-        self.mi_submission_complete = false
-        self.save(validate: false)
-      elsif outcome == RESPONSE_BUSY
-        self.mi_submission_complete = false
-        self.save(validate: false)
-        self.delay.submit_to_online_reg_url
+      rescue Exception => e
+        RequestLogSession.request_log_instance.log_error(e)
+        handle_api_error
       end
-    rescue Exception => e
-      raise e
-      handle_api_error
     end
   end
   
@@ -150,7 +152,6 @@ module StateRegistrants::MIRegistrant::ApiService
         "DateOfBirthSpecified"=> true,
         "Name" => {
             "FirstName": nil,
-            "LastName": nil,
             "LastName": self.full_name,
             "MiddleName": [],
             "Prefix": nil,

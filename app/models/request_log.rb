@@ -18,6 +18,10 @@ class RequestLog < ActiveRecord::Base
     update_attributes(MiCensor.protect(response_data))
   end
 
+  def log_error(error)
+    update_attributes(MiCensor.protect(build_error_messages(error)))
+  end
+
   def log_total_duration(duration, error=nil)
     data = RequestLog
       .build_duration_data(duration, :total_duration_ms)
