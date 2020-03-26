@@ -33,6 +33,7 @@ class MiClient
   def self.send(method, path, body: {}, params: {}, headers: {})
     uri = URI.join(RockyConf.ovr_states.MI.api_settings.api_url, path)
     uri.query = params.to_query if params.any?
+    RequestLogSession.request_log_instance.log_uri(uri)
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = uri.scheme == 'https'
@@ -58,8 +59,8 @@ class MiClient
 
     Rails.logger.debug "MI:REQUEST>> #{uri.inspect}"
 
-    response = begin 
-      http.request(request)
+    response = begin
+      RequestLogSession.send_and_log(http, request)
     rescue StandardError => e
       raise NetworkingError, e
     end

@@ -10,7 +10,7 @@
           Your Drivers License did not match our records.
         %p.notice
           You can
-          = link_to "make a change", update_state_registrant_path(@registrant.to_param, 'step_4')
+          = link_to "make a change", update_state_registrant_path(@registrant.to_param, 'step_3')
           to your ID number and try again.
       - if @registrant.address_not_found?
         %p.notice

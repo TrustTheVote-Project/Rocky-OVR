@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200320150251) do
+ActiveRecord::Schema.define(version: 20200322002933) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20200320150251) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
+  add_index "ab_tests", ["name", nil], name: "index_ab_tests_on_name_and_assigment"
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
 
@@ -380,6 +380,25 @@ ActiveRecord::Schema.define(version: 20200320150251) do
     t.text     "filters"
     t.text     "error"
   end
+
+  create_table "request_logs", force: :cascade do |t|
+    t.string   "client_id"
+    t.string   "registrant_id"
+    t.string   "request_uri"
+    t.text     "request_body"
+    t.string   "request_headers"
+    t.integer  "response_code"
+    t.text     "response_body"
+    t.text     "error_messages"
+    t.integer  "network_duration_ms"
+    t.integer  "total_duration_ms"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "request_logs", ["client_id"], name: "index_request_logs_on_client_id"
+  add_index "request_logs", ["registrant_id"], name: "index_request_logs_on_registrant_id"
+  add_index "request_logs", ["response_code"], name: "index_request_logs_on_response_code"
 
   create_table "ses_notifications", force: :cascade do |t|
     t.text     "request_params"
