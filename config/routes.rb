@@ -203,6 +203,7 @@ Rocky::Application.routes.draw do
     resources :emails, except: [:new, :edit, :show ]
     resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]
+    resources :request_logs, only: [:index, :show]
     
     resources :partners do
       member do

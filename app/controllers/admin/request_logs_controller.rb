@@ -22,40 +22,43 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class Admin::GrommetQueueController < Admin::BaseController
-  GROMMET_QUEUE_NAME = "grommet_queue".freeze
-  
-  def self.delay
-    Settings.grommet_delay.to_i
-  rescue
-    48    
-  end
-  
-  def show
-    @jobs = Delayed::Job.where(queue: GROMMET_QUEUE_NAME)
-    @hours_delay = Admin::GrommetQueueController.delay
-  end
-  
-  def flush
-    Delayed::Job.where(queue: GROMMET_QUEUE_NAME).update_all(["run_at=?", DateTime.now])
-    Settings.grommet_delay = 0
-    redirect_to action: :show
-  end
-  
-  def update_delay
-    Settings.grommet_delay = params[:delay]
-    redirect_to action: :show
+class Admin::RequestLogsController < Admin::BaseController
+  helper_method :try_format_json, :add_postfix, :truncate
+
+  def index
+    @request_logs = RequestLog.paginate(:page => params[:page], :per_page => 1000)
   end
 
-  def request_report
-    Settings.grommet_csv_ready = false
-    GrommetRequest.delay.upload_request_results_report_csv
-    redirect_to action: :show
+  def show
+    @request_log = RequestLog.find(params[:id])
   end
 
   private
 
   def init_nav_class
-    @nav_class = {grommet_queue: :current}
-  end  
+    @nav_class = {request_logs: :current}
+  end
+
+  def try_format_json(text)
+    return 'Empty' if text.blank?
+    json = JSON.parse(text)
+    JSON.pretty_generate(json)
+  rescue JSON::ParserError
+    text
+  end
+
+  def add_postfix(value, postfix)
+    if value.present?
+      "#{value} #{postfix}"
+    else
+      value
+    end
+  end
+
+  def truncate(value, size)
+    if value.present? && value.respond_to?(:size)
+      return "#{value[0, size]}..." if value.size > size
+    end
+    value
+  end
 end
