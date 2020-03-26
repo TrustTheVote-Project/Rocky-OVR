@@ -1,74 +1,57 @@
 class RequestLog < ActiveRecord::Base
 
-  RequestData = Struct.new(:request_host, :request_path, :request_headers, :request_body) do
-    def initialize(request_host:, request_path:, request_headers:, request_body:)
-      super(request_host, request_path, request_headers, request_body)
-    end
+  def log_uri(uri)
+    update_attributes(request_uri: uri)
   end
 
-  ResponseData = Struct.new(:response_code, :response_body, :error_class, :error_message) do
-    def initialize(response_code:, response_body:, error_class:, error_message:)
-      super(response_code, response_body, error_class, error_message)
-    end
+  def log_request(http, request)
+    request_data = RequestLog.build_request_data(http, request)
+    update_attributes(MiCensor.protect(request_data))
   end
 
-  def self.send_and_log(http, request, censor, log_context={})
-    error = nil
-    result = nil
-    duration = 0
-    start_time = nil
+  def log_response(response, duration, error)
+    response_data = RequestLog
+      .build_response_data(response)
+      .merge(build_error_messages(error))
+      .merge(RequestLog.build_duration_data(duration, :network_duration_ms))
 
-    log = pre_log(build_request_data(http, request), censor, log_context)
-    begin
-      start_time = Time.now
-      response = http.request(request)
-    rescue => e
-      error = e
-    ensure
-      duration = Time.now - start_time
-    end
-    log.post_log(build_response_data(response, error), duration)
-
-    raise error if error.present?
-    response
+    update_attributes(MiCensor.protect(response_data))
   end
 
-  def self.pre_log(request_data, censor, log_context)
-    params = request_data
-      .to_h
-      .merge(log_context)
-      .merge(client_id: censor.client_id)
+  def log_total_duration(duration, error=nil)
+    data = RequestLog
+      .build_duration_data(duration, :total_duration_ms)
+      .merge(build_error_messages(error))
 
-    self.create!(censor.protect(params))
-  end
-
-  def post_log(response_data, duration)
-    params = response_data
-      .to_h
-      .merge(duration_ms: duration.in_milliseconds.to_i)
-
-    update_attributes(params)
+    update_attributes(MiCensor.protect(data))
   end
 
   def self.build_request_data(http, request)
-    params = {
-      request_host: http.address,
-      request_path: request.path,
+    {
       request_body: request.body,
-      request_headers: request.each_header.map { |h,v| "#{h}=#{v}" }.join(";")
+      request_headers: request.each_header.map { |h,v| "#{h}=#{v}" }.join(";"),
     }
-
-    RequestLog::RequestData.new(params)
   end
 
-  def self.build_response_data(response, error)
-    params = {
+  def self.build_response_data(response)
+    {
       response_code: response&.code,
       response_body: response&.body,
-      error_class: error&.class&.name,
-      error_message: error&.message,
     }
+  end
 
-    RequestLog::ResponseData.new(params)
+  def self.build_duration_data(duration, key)
+    {
+      key => duration.in_milliseconds.to_i,
+    }
+  end
+
+  def build_error_messages(error)
+    new_error = nil
+    if error.present?
+      new_error = "#{error.class.name}: #{error.message}"
+    end
+
+    { error_messages: [error_messages, new_error].compact.join("\n") }
   end
 end

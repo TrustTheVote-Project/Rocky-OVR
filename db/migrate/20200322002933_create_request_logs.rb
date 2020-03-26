@@ -1,17 +1,16 @@
 class CreateRequestLogs < ActiveRecord::Migration
   def change
     create_table :request_logs do |t|
-      t.string :client_id
-      t.string :registrant_id
-      t.string :request_host
-      t.string :request_path
+      t.string :client_id, index: true
+      t.string :registrant_id, index: true
+      t.string :request_uri
       t.text :request_body
       t.string :request_headers
-      t.integer :response_code
+      t.integer :response_code, index: true
       t.text :response_body
-      t.string :error_class
-      t.text :error_message
-      t.integer :duration_ms
+      t.text :error_messages
+      t.integer :network_duration_ms
+      t.integer :total_duration_ms
 
 
       t.timestamps null: false
