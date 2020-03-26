@@ -3,6 +3,8 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   include StateRegistrants::MIRegistrant::StreetType
   include StateRegistrants::MIRegistrant::MailingAddress
   include StateRegistrants::MIRegistrant::ApiService
+
+  SENSITIVE_ATTRIBUTES = [:ssn4, :dln]
   
   validates_with MIRegistrantValidator
   
@@ -16,9 +18,9 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   
   def cleanup!
     # TODO make sure we don't keep SSN
-    self.ssn4 = nil
-    self.dln = nil
-    self.save(validate: false)
+    empty_values = SENSITIVE_ATTRIBUTES.zip([]).to_h
+    assign_attributes(empty_values)
+    save(validate: false)
   end
   
   
