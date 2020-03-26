@@ -1,0 +1,28 @@
+
+%p
+  = will_paginate @request_logs
+
+%table
+  %thead
+    %tr
+      %th Client
+      %th Registrant ID
+      %th URI
+      %th Response Code
+      %th Errors
+      %th Duration
+      %th Created at 
+      %th
+  %tbody
+    - @request_logs.each do |rec|
+      %tr
+        %td= rec.client_id
+        %td= rec.registrant_id
+        %td= rec.request_uri&.gsub('https://', '')
+        %td= rec.response_code
+        %td= truncate(rec.error_messages, 30)
+        %td= add_postfix(rec.network_duration_ms, 'ms')
+        %td= rec.created_at
+        %td= link_to 'Show', admin_request_log_path(rec)
+%p
+  = will_paginate @request_logs
