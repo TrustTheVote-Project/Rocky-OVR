@@ -50,11 +50,13 @@ class PARegistrantValidator < ActiveModel::Validator
       end
 
       validate_phone_present_if_opt_in_sms(reg)
+      
+      validate_race(reg)        
+      validate_party(reg)
+      
     end
     
     if reg.at_least_step_2?
-      validate_race(reg)        
-      validate_party(reg)
       
       validate_id(reg)
       if reg.has_assistant?

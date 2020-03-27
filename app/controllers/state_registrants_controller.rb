@@ -6,7 +6,8 @@ class StateRegistrantsController < RegistrationStep
     
   def edit
     set_up_locale
-    render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}"
+    @use_mobile_ui = determine_mobile_ui(@registrant)
+    render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}#{@use_mobile_ui ? '_mobile' : ''}"
   end
   
   def update
@@ -30,13 +31,15 @@ class StateRegistrantsController < RegistrationStep
       end
     else
       @registrant.custom_advance(self, params)
-      render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}"
+      @use_mobile_ui = determine_mobile_ui(@registrant)
+      render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}#{@use_mobile_ui ? '_mobile' : ''}"
     end
   end
   
   def pending
     if !@old_registrant
       # Skip other processing and render pending w/out variables set
+      @use_mobile_ui = determine_mobile_ui(@registrant)
       render "state_registrants/#{params[:state]}/pending" and return
     end
     @refresh_location = pending_state_registrant_path(@registrant, state: @registrant.home_state_abbrev.downcase)
@@ -45,6 +48,7 @@ class StateRegistrantsController < RegistrationStep
     end
     if !@registrant.submitted?
       if @registrant.complete?
+        @use_mobile_ui = determine_mobile_ui(@registrant)
         render "state_registrants/#{@registrant.home_state_abbrev.downcase}/pending" and return
       else
         redirect_to edit_state_registrant_path(@registrant.to_param, @registrant.status)
@@ -62,6 +66,7 @@ class StateRegistrantsController < RegistrationStep
   
   def complete
     set_up_locale
+    @use_mobile_ui = determine_mobile_ui(@registrant)
     @registrant_finish_iframe_url = @registrant.finish_iframe_url
     render "state_registrants/#{@registrant.home_state_abbrev.downcase}/complete"    
   end

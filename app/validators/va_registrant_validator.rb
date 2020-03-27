@@ -59,14 +59,17 @@ class VARegistrantValidator < ActiveModel::Validator
       
       validate_phone_present_if_opt_in_sms(reg)
     end
-    
-    if reg.at_least_step_2?
-      reg.validates_acceptance_of :confirm_affirm_privacy_notice, :accept=>true
 
+    if reg.at_least_step_2?
       reg.validates_inclusion_of :convicted_of_felony, :in => [true, false]
       if reg.convicted_of_felony?
         reg.validates_inclusion_of :right_to_vote_restored, :in => [true, false]
       end
+    end
+    
+    if reg.at_least_step_2?
+      reg.validates_acceptance_of :confirm_affirm_privacy_notice, :accept=>true
+
       
       unless reg.confirm_no_ssn?
         reg.validates_presence_of :ssn

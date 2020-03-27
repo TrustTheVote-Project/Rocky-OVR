@@ -129,6 +129,7 @@ en:
         download: You will need to print & mail or deliver your registration form to your local elections office.
         download_2: You won't be registered unless you print, sign and mail in your
           form!
+        download_3: <p>Don't have access to a printer right now? We've emailed your form to print later.</p>
         state_not_enabled_download: Because %{state} does not have online registration, you will need to print & mail or deliver your registration form to your local elections office.
         no_id_download: Because you don't have a %{state} ID, you will need to print & mail or deliver your registration form to your local elections office.
         download_assitance_header: ""
@@ -245,6 +246,15 @@ en:
           enter your previous name.
         previous_address: If you have moved since your last registration, enter your
           previous address.
+      mobile_ui:
+        step_2:
+          title: Eligibility
+          instructions: All fields marked with an asterisk (*) are required
+        step_8:
+          title: Identification
+        step_9:
+          title: Personal Information
+        
     status_text:
       message: I just registered to vote and you can too!
       under_18_message: Make sure you register to vote. It's easy!

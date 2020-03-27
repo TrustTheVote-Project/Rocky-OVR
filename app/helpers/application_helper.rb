@@ -191,13 +191,18 @@ module ApplicationHelper
   
   def radio_div(form, field, radio_options, options={})
     options ||= {}
+    html_options = {}
+    if options.delete(:required)
+      html_options[:data] ||= {}
+      html_options[:data]["client-validation-required".to_sym] = required_message_for(form.object, field)
+    end
     
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
     radio_buttons = radio_options.collect do |text, value|
       radio = form.radio_button(field, value).html_safe
       form.label("#{field}_#{value}", "#{radio} #{text}".html_safe).html_safe
     end.join("\n").html_safe
-    content_tag(:div, radio_buttons, :class => "#{has_error} radio-buttons")
+    content_tag(:div, radio_buttons, html_options.merge(:class => "#{has_error} radio-buttons"))
   end
 
   def rollover_button(name, text, button_options={})

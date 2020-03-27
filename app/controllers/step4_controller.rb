@@ -90,6 +90,7 @@ class Step4Controller < RegistrationStep
   end
 
   def set_up_view_variables
+    super
     @state_id_tooltip = @registrant.state_id_tooltip
     
     @state_parties = @registrant.state_parties

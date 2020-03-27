@@ -1,6 +1,9 @@
 - content_for :head do 
   %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}
 
+- if @use_mobile_ui
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 95}
+
 .step_6
   #preparing_content
     %h1= t('states.custom.pa.submitting')
