@@ -56,7 +56,6 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.validates_presence_of   :registration_address_street_name
       reg.validates_format_of :registration_address_street_name, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       reg.validates_length_of :registration_address_street_name, maximum: 255
-      reg.validates_presence_of   :registration_address_street_type
       reg.validates_format_of :registration_address_street_type, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       validates_street_type reg
       
@@ -83,7 +82,7 @@ class MIRegistrantValidator < ActiveModel::Validator
       
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::STANDARD_TYPE
         reg.validates_presence_of :mailing_address_2
-        reg.validates_presence_of :mailing_address_3
+        #reg.validates_presence_of :mailing_address_3
         validates_zip_code reg,    :mailing_zip_code
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
