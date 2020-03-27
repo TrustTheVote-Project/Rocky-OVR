@@ -59,10 +59,10 @@ en:
             mailing_country: Country
         registration_complete: Congratulations, you’re registered to vote!
         registration_complete_success_type:
-          new: <p>You've submitted a new voter registration.<p>
+          new: "<p>You've submitted a new voter registration.<p><p>Your local clerk will mail you a voter information card within 3 weeks.</p><br/>"
           existing: <p>You're already registered at this address.<p>
           updated: <p>You've updated your voter registration to a new address:<p><p>%{address}<br/>%{city}, %{state} %{zip_code}</p>
-        registration_complete_dialog_text: "<p>Your local clerk will mail you a voter information card within 3 weeks.</p><br/>"
+        registration_complete_dialog_text: ""
         valid_street_types: "Valid Street types include: %{types}"
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
