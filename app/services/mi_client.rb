@@ -14,7 +14,7 @@ class MiClient
   # MI:RESPONSE>> #<Net::HTTPOK 200 OK readbody=true>
   # MI:RESPONSE>> {"SenderName":"TESTOVR","IsValid":false, ...
   def self.post_voter_nist(payload)
-    return {"VoterStatusId" => "0.0"}
+    #return {"VoterStatusId" => "0.0"}
     headers = {'Content-Type' => 'text/json'}
     send(:post, 'api/OnlineVoter/PostOnlineVoter_Nist', body: payload, headers: headers)
   end
