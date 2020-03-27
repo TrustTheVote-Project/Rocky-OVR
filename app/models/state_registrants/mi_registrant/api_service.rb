@@ -45,7 +45,11 @@ module StateRegistrants::MIRegistrant::ApiService
 
   # 6.0: Expired License, send to paper with note
   def custom_state_flow_error_message
-    return I18n.t('states.custom.mi.custom_errors.dln_is_expired') if self.mi_api_voter_status_id.to_s == "6.0"
+    if self.mi_api_voter_status_id.to_s == "6.0"
+      return I18n.t('states.custom.mi.custom_errors.dln_is_expired',  url: skip_state_flow_registrant_path) 
+    else
+      return I18n.t("states.custom.mi.custom_errors.mi_api_error",  url: skip_state_flow_registrant_path)
+    end
   end
   
 
@@ -76,7 +80,6 @@ module StateRegistrants::MIRegistrant::ApiService
   end
   
   def async_submit_to_online_reg_url
-    #self.registrant.skip_state_flow!
     self.mi_submission_complete = false
     self.mi_api_voter_status_id = nil
     self.submission_attempts = 0 # This is only triggered by a user resubmitting, so reset attempts
@@ -85,9 +88,9 @@ module StateRegistrants::MIRegistrant::ApiService
   end
   
   def handle_api_error
-    self.mi_submission_complete = true
+    # self.mi_submission_complete = true
     # Depending on error type, send notification?
-    self.registrant.skip_state_flow!
+    # self.registrant.skip_state_flow!
   ensure
     AdminMailer.mi_registration_error(self, self.response_outcome, "Registrant Switched to paper").deliver
     self.save(validate: false)
@@ -166,7 +169,6 @@ module StateRegistrants::MIRegistrant::ApiService
         self.save(validate: false)
         response = MiClient.post_voter_nist(self.to_nist_format)
         self.mi_api_voter_status_id = response["VoterStatusId"]
-        self.save(validate: false)
         outcome = self.response_outcome
         if outcome == RESPONSE_FAILURE || outcome == RESPONSE_INVALID_DLN
           handle_api_error
@@ -190,9 +192,10 @@ module StateRegistrants::MIRegistrant::ApiService
           self.save(validate: false)
         elsif outcome == RESPONSE_BUSY
           self.mi_submission_complete = false
-          self.save(validate: false)
           # DONT run async_submit_to_online_reg_url which resets # attempts
           if self.submission_attempts < 2
+            self.mi_api_voter_status_id = nil
+            self.save(validate: false)
             self.delay(run_at: 5.seconds.from_now).submit_to_online_reg_url
           else
             #Let user finish with paper

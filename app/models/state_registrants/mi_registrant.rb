@@ -112,6 +112,9 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   def registration_address_line_1
     [self.registration_address_number, self.registration_address_street_name, self.registration_address_street_type, self.registration_address_post_directional].collect{|v| v.blank? ? nil : v}.compact.join(' ')
   end
+  def registration_address_full
+    [self.registration_address_line_1, self.registration_unit_number].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+  end
   
   def update_original_registrant
     r = self.registrant

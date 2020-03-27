@@ -36,6 +36,7 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.validates_length_of :full_name, maximum: 255
       reg.validates_format_of :full_name, with: /\A(?=.{1,255}$)[a-zA-Z]+(?:[-=_.`;'\s][a-zA-Z]+)*\z/, allow_blank: true
       reg.validate_date_of_birth
+      validate_age(reg)
       if reg.dln.blank?
         reg.errors.add(:dln, I18n.t('states.custom.mi.custom_errors.dln', url: reg.skip_state_flow_registrant_path))
       end
@@ -102,6 +103,14 @@ class MIRegistrantValidator < ActiveModel::Validator
     end
     
 
+  end
+  
+  def validate_age(reg)
+    return if reg.date_of_birth.blank?
+    earliest_date = Date.today - 17.years - 6.months
+    if reg.date_of_birth > earliest_date
+      reg.errors.add(:date_of_birth, :too_young)
+    end
   end
   
   def validates_zip_code(reg, attr_name)

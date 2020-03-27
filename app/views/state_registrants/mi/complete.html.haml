@@ -5,7 +5,7 @@
   = I18n.t 'states.custom.mi.registration_complete'
 
 .declaration-text
-  = I18n.t("states.custom.mi.registration_complete_success_type.#{@registrant.mi_api_voter_status_success_type}").html_safe
-  = I18n.t('states.custom.mi.registration_complete_dialog_text', state_transaction_id: @registrant.state_transaction_id).html_safe
+  = I18n.t("states.custom.mi.registration_complete_success_type.#{@registrant.mi_api_voter_status_success_type}", address: @registrant.registration_address_full, city: @registrant.registration_city, zip_code: @registrant.registration_zip_code, state: @registrant.home_state_abbrev).html_safe
+  = I18n.t('states.custom.mi.registration_complete_dialog_text').html_safe
 
 = render "finishes/finish_iframe"

@@ -272,6 +272,7 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              too_young: You must be at least 17.5 years old to register to vote
             
         state_registrants/va_registrant:
           blank: Required
