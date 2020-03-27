@@ -109,6 +109,13 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     self.save(validate: false)
   end
   
+  def registration_address_line_1
+    [self.registration_address_number, self.registration_address_street_name, self.registration_address_street_type, self.registration_address_post_directional].collect{|v| v.blank? ? nil : v}.compact.join(' ')
+  end
+  def registration_address_full
+    [self.registration_address_line_1, self.registration_unit_number].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+  end
+  
   def update_original_registrant
     r = self.registrant
     mappings.each do |k,v|
@@ -120,7 +127,7 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     r.first_name = names.shift
     r.last_name = names.collect(&:strip).join(" ")
     r.state_id_number = self.dln.blank? ? self.ssn4 : self.dln
-    r.home_address = [self.registration_address_number, self.registration_address_street_name, self.registration_address_street_type].collect{|v| v.blank? ? nil : v}.compact.join(' ')
+    r.home_address = self.registration_address_line_1
     r.home_unit = self.registration_unit_number
     if self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
       r.mailing_address = "PO BOX #{self.mailing_address_1}"

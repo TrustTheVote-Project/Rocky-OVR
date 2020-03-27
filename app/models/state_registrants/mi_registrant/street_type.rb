@@ -170,9 +170,7 @@ module StateRegistrants::MIRegistrant::StreetType
   end
   
   def matching_street_types
-    if registration_address_street_type.blank?
-      return all_street_types
-    else
+    unless registration_address_street_type.blank?
       letter = registration_address_street_type.downcase[0]
       street_types.values.select {|v| v.downcase.starts_with?(letter)}.collect{|v| v.capitalize}.join(", ")
     end

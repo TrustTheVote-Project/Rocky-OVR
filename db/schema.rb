@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200322002933) do
+ActiveRecord::Schema.define(version: 20200327163329) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20200322002933) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "ab_tests", ["name", nil], name: "index_ab_tests_on_name_and_assigment"
+  add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
 
@@ -479,11 +479,13 @@ ActiveRecord::Schema.define(version: 20200322002933) do
     t.boolean  "partner_volunteer"
     t.string   "phone"
     t.boolean  "mi_submission_complete"
-    t.integer  "submission_attempts",                  default: 0
+    t.integer  "submission_attempts",                   default: 0
     t.string   "mi_transaction_id"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.string   "mi_api_voter_status_id"
+    t.string   "registration_address_post_directional"
+    t.text     "registration_address_matches"
   end
 
   add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"

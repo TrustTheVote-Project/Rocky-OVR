@@ -21,7 +21,31 @@
           to your address and try again.
       %p.notice= I18n.t('states.custom.mi.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe    
           
-          
+- elsif @registrant && @registrant.response_outcome == StateRegistrants::MIRegistrant::ApiService::RESPONSE_ADDRESS_AMBIGUOUS && @registrant.registration_address_match_list.any?
+  .step_6
+    #preparing_content
+      %h1 There was an issue with your submission
+      %p.notice
+        Your address was not found. Is one of these the correct address?
+      = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, 'step_4')) do |form|        
+        %ul.mi-address-options      
+          - @registrant.registration_address_match_list.each_with_index do |match, idx|
+            %li
+              = form.radio_button :address_match_select_index, idx
+              = form.label :"address_match_select_index_#{idx}" do
+                = match.address_line_1
+                - unless match.address_line_2.blank? 
+                  %br
+                  = match.address_line_2
+                %br
+                = "#{match.city}, MI #{match.zip_code}"
+        = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
+      
+      %p.notice= I18n.t('states.custom.mi.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe    
+- elsif @registrant.mi_api_voter_status_id? #error message
+  .state-flow-error
+    = @registrant.custom_state_flow_error_message.to_s.html_safe
+    
 - else
   - content_for :head do 
     %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}

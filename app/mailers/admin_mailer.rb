@@ -109,6 +109,13 @@ class AdminMailer < ActionMailer::Base
     )
   end
   
+  def mi_registration_error(registrant, outcome, message='') 
+    mail(
+      subject: "[ROCKY MI INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to MI",
+      body: "#{message}\n\nMI system returned:\n\n outcome: #{outcome}\nstatus_id:#{registrant.mi_api_voter_status_id.to_s}"
+    )
+  end
+  
   def pa_registration_warning(registrant, mod_list)
     
     mail(

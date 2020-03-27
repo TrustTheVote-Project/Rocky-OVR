@@ -36,6 +36,7 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.validates_length_of :full_name, maximum: 255
       reg.validates_format_of :full_name, with: /\A(?=.{1,255}$)[a-zA-Z]+(?:[-=_.`;'\s][a-zA-Z]+)*\z/, allow_blank: true
       reg.validate_date_of_birth
+      validate_age(reg)
       if reg.dln.blank?
         reg.errors.add(:dln, I18n.t('states.custom.mi.custom_errors.dln', url: reg.skip_state_flow_registrant_path))
       end
@@ -55,7 +56,6 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.validates_presence_of   :registration_address_street_name
       reg.validates_format_of :registration_address_street_name, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       reg.validates_length_of :registration_address_street_name, maximum: 255
-      reg.validates_presence_of   :registration_address_street_type
       reg.validates_format_of :registration_address_street_type, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       validates_street_type reg
       
@@ -82,7 +82,7 @@ class MIRegistrantValidator < ActiveModel::Validator
       
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::STANDARD_TYPE
         reg.validates_presence_of :mailing_address_2
-        reg.validates_presence_of :mailing_address_3
+        #reg.validates_presence_of :mailing_address_3
         validates_zip_code reg,    :mailing_zip_code
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
@@ -102,6 +102,14 @@ class MIRegistrantValidator < ActiveModel::Validator
     end
     
 
+  end
+  
+  def validate_age(reg)
+    return if reg.date_of_birth.blank?
+    earliest_date = Date.today - 17.years - 6.months
+    if reg.date_of_birth > earliest_date
+      reg.errors.add(:date_of_birth, :too_young)
+    end
   end
   
   def validates_zip_code(reg, attr_name)
