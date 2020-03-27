@@ -49,8 +49,8 @@ en:
         updated_dln_recently: Have you updated your driver’s license or state ID address with the Secretary of State within the last 10 days?
         requested_duplicate_dln_today: Have you applied for a duplicate driver’s license or state ID today?
         confirm_us_citizen: I am a United States citizen.
-        confirm_will_be_18: I will be at least 18 years old before voting the next election.
-        is_30_day_resident: I will have lived in my city or township in Michigan for 30 days before voting in the next election.
+        confirm_will_be_18: I am at least 17.5 years old and will vote only after I am 18.
+        is_30_day_resident: I am a Michigan resident and will vote only after I have lived in my city or township for at least 30 days.
         registration_cancellation_authorized: I authorize the cancellation of any previous registration.
         digital_signature_authorized: I authorize the Secretary of State to use my stored digital signature for voter registration.
         full_name: Full Name (as printed on your Michigan driver's license or state ID)
@@ -61,9 +61,11 @@ en:
         registration_address_number: Street Number  
         registration_address_street_name: Street Name
         registration_address_street_type: Street Type
+        registration_address_post_directional: Direction
         registration_unit_number: Apt/Unit
         registration_city: City
         registration_zip_code: ZIP Code
+        phone: Phone Number (for election use only)
         mailing_same_as_residential_address: Mailing address is same as residential address
         mailing_address_1: "Street Number"
         mailing_address_2: "Street Name"

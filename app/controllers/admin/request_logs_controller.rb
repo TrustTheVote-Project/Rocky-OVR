@@ -26,7 +26,7 @@ class Admin::RequestLogsController < Admin::BaseController
   helper_method :try_format_json, :add_postfix, :truncate
 
   def index
-    @request_logs = RequestLog.paginate(:page => params[:page], :per_page => 1000)
+    @request_logs = RequestLog.paginate(:page => params[:page], :per_page => 100)
   end
 
   def show

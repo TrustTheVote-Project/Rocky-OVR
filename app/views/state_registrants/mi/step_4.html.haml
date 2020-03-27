@@ -42,6 +42,7 @@
       = field_li(form, :registration_address_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-address-number__line"}})
       = field_li(form, :registration_address_street_name, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address-street-name__line"}})
       = field_li(form, :registration_address_street_type, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-address-street-type__line"}, field_options: {autocomplete: "off"}})
+      = field_li(form, :registration_address_post_directional, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__home-address-post-directional__line"}, field_options: {autocomplete: "off", include_blank: true}, select_options: StateRegistrants::MIRegistrant::PostDirectional::VALUES})
     - if form.object.errors[:registration_address_street_type].any?
       %p= I18n.t('states.custom.mi.valid_street_types', types: @registrant.matching_street_types)
     %ul.stacked

@@ -19,7 +19,7 @@
   
     
   %ul.flat.dln
-    = field_li(form, :dln, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.dln', url: @registrant.skip_state_flow_registrant_path), li_options: {class: "registrant-form__dln__line"}, field_options: {autocomplete: "off", size: 12, maxlength: 26} })
+    = field_li(form, :dln, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.dln', url: @registrant.skip_state_flow_registrant_path), li_options: {class: "registrant-form__dln__line"}, field_options: {autocomplete: "off", size: 12, maxlength: 19} })
     
   %ul.flat
     = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form, skip_tooltip: true}

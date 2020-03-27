@@ -5,10 +5,12 @@ module StateRegistrants::MIRegistrant::ApiService
   RESPONSE_SUCCESS="RESPONSE_SUCCESS".freeze
   RESPONSE_ALLOW_RETRY="RESPONSE_ALLOW_RETRY".freeze
   RESPONSE_BUSY="RESPONSE_BUSY".freeze
+  RESPONSE_ADDRESS_AMBIGUOUS="RESPONSE_ADDRESS_AMBIGUOUS".freeze
   
   RESPONSE_OUTCOMES = [
     RESPONSE_FAILURE, #Go to paper, send error message notification
     RESPONSE_INVALID_DLN, #Go to paper, no error to send?
+    RESPONSE_ADDRESS_AMBIGUOUS,
     RESPONSE_SUCCESS, #Success!
     RESPONSE_ALLOW_RETRY, #
     RESPONSE_BUSY, #requeue
@@ -16,8 +18,10 @@ module StateRegistrants::MIRegistrant::ApiService
   
   def response_outcome
     case self.mi_api_voter_status_id.to_s
-    when "0.0", "4.0", "5.0", "9.0", "12.0"
+    when "0.0", "5.0", "9.0", "12.0"
       return RESPONSE_FAILURE
+    when "4.0"
+      return RESPONSE_ADDRESS_AMBIGUOUS
     when "6.0"
       return RESPONSE_INVALID_DLN
     when "1.0", "2.0", "3.0"
@@ -34,7 +38,7 @@ module StateRegistrants::MIRegistrant::ApiService
   #response codes
   # GO to paper
   # 0.0: Error message attached
-  # 4.0: Failure: Address update failed ?
+  # 4.0: Failure: Address update failed ? (ambiguous)
   # 5.0: Underage Voter
   # 9.0: Adressed matched ?
   # 12.0: Ineligible
@@ -46,7 +50,7 @@ module StateRegistrants::MIRegistrant::ApiService
   
 
   # 1.0: Success: New Registration
-  # 2.0: Success: Already REgistrered at this address
+  # 2.0: Success: Already Registrered at this address
   # 3.0: Success: Address updated
   def mi_api_voter_status_success_type
     return "new" if self.mi_api_voter_status_id.to_s == "1.0"
@@ -67,7 +71,6 @@ module StateRegistrants::MIRegistrant::ApiService
     self.mi_api_voter_status_id.to_s == "8.0"
   end
   
-  
   def submitted?
     self.mi_submission_complete?
   end
@@ -76,6 +79,7 @@ module StateRegistrants::MIRegistrant::ApiService
     #self.registrant.skip_state_flow!
     self.mi_submission_complete = false
     self.mi_api_voter_status_id = nil
+    self.submission_attempts = 0 # This is only triggered by a user resubmitting, so reset attempts
     self.save
     self.delay.submit_to_online_reg_url
   end
@@ -85,7 +89,73 @@ module StateRegistrants::MIRegistrant::ApiService
     # Depending on error type, send notification?
     self.registrant.skip_state_flow!
   ensure
+    AdminMailer.mi_registration_error(self, self.response_outcome, "Registrant Switched to paper").deliver
     self.save(validate: false)
+  end
+  
+  def address_match_select_index
+    nil
+  end
+
+  def address_match_select_index=(val)
+    # Set user-entered address to matched address idx
+    matches = begin
+      JSON.parse(self.registration_address_matches) || []
+    rescue
+      []
+    end
+    match = matches[val.to_i]
+    set_address_from_match(match)
+  end
+  
+  def set_address_from_match(match)
+    self.registration_address_street_name = [match["StreetPrefix"], match["StreetName"]].compact.join(" ")
+    self.registration_address_street_type = match["StreetType"]
+    self.registration_address_post_directional = match["StreetSuffix"]
+    self.registration_city = match["City"]
+    self.registration_zip_code = match["ZipCode"]
+    self.mi_submission_complete = false
+    self.mi_api_voter_status_id = nil
+    self.registration_address_matches = nil
+    self.submission_attempts = 0 # This is only triggered by a user resubmitting, so reset attempts
+    self.save    
+  end
+  
+  def check_address
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client') do
+      response = MiClient.street_match(sender_name: "RockTheVote", address_line_1: self.registration_address_line_1, city: self.registration_city, zip_code: self.registration_zip_code)
+      if response["HasMatch"] && response["MatchingStreets"] && response["MatchingStreets"].length > 0
+        if response["MatchingStreets"].length > 1
+          self.registration_address_matches = response["MatchingStreets"].to_json
+          self.save(validate: false)
+        else
+          self.set_address_from_match(response["MatchingStreets"][0])
+          self.async_submit_to_online_reg_url
+          # Set address from single match
+        end
+      else
+        handle_api_error
+      end
+    end
+  rescue
+    handle_api_error
+  end
+  
+  def registration_address_match_list
+    matches = begin
+      JSON.parse(self.registration_address_matches) || []
+    rescue
+      []
+    end
+    matches.collect do |m|
+      line_1 = ["StreetPrefix", "StreetName", "StreetType", "StreetSuffix"].collect{|k| m[k]}.collect{|v| v.blank? ? nil : v}.compact.join(" ")
+      OpenStruct.new({
+        address_line_1: "#{self.registration_address_number} #{line_1}",
+        address_line_2: "#{self.registration_unit_number}",
+        city: m["City"],
+        zip_code: m["ZipCode"]
+      })
+    end
   end
   
   def submit_to_online_reg_url
@@ -93,6 +163,7 @@ module StateRegistrants::MIRegistrant::ApiService
       begin 
         self.submission_attempts ||= 0
         self.submission_attempts += 1    
+        self.save(validate: false)
         response = MiClient.post_voter_nist(self.to_nist_format)
         self.mi_api_voter_status_id = response["VoterStatusId"]
         self.save(validate: false)
@@ -107,18 +178,36 @@ module StateRegistrants::MIRegistrant::ApiService
           end
           self.mi_transaction_id = mi_id || self.uid
           self.mi_submission_complete = true
+          self.registrant.complete_registration_with_state!
           self.save(validate: false)
         elsif outcome == RESPONSE_ALLOW_RETRY
+          self.mi_submission_complete = false
+          self.save(validate: false)
+        elsif outcome == RESPONSE_ADDRESS_AMBIGUOUS
+          # Get potential matches
+          self.delay.check_address
           self.mi_submission_complete = false
           self.save(validate: false)
         elsif outcome == RESPONSE_BUSY
           self.mi_submission_complete = false
           self.save(validate: false)
-          self.delay.submit_to_online_reg_url
+          # DONT run async_submit_to_online_reg_url which resets # attempts
+          if self.submission_attempts < 2
+            self.delay(run_at: 5.seconds.from_now).submit_to_online_reg_url
+          else
+            #Let user finish with paper
+            handle_api_error
+          end
         end
       rescue Exception => e
+        # unhandled exception, try again
         RequestLogSession.request_log_instance.log_error(e)
-        handle_api_error
+        if self.submission_attempts < 2
+          self.delay(run_at: 5.seconds.from_now).submit_to_online_reg_url
+        else
+          # Go to paper
+          handle_api_error
+        end
       end
     end
   end
@@ -177,7 +266,7 @@ module StateRegistrants::MIRegistrant::ApiService
                 "Value"=> self.street_type_code
               },
               "StreetNamePostDirectional"=> {
-                "Value"=> nil
+                "Value"=> self.registration_address_post_directional
               },
               "StreetNamePostModifier"=> {
                 "Value"=> nil
