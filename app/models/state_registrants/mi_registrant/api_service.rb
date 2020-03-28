@@ -170,8 +170,10 @@ module StateRegistrants::MIRegistrant::ApiService
         response = MiClient.post_voter_nist(self.to_nist_format)
         self.mi_api_voter_status_id = response["VoterStatusId"] || "-1" #ensure non-nil value
         outcome = self.response_outcome
-        if outcome == RESPONSE_FAILURE || outcome == RESPONSE_INVALID_DLN
+        if outcome == RESPONSE_FAILURE
           handle_api_error
+        elsif outcome == RESPONSE_INVALID_DLN
+          self.save(validate: false)
         elsif outcome == RESPONSE_SUCCESS
           mi_id = begin
             response["VoterErrors"]["SenderRecordId"]
