@@ -168,7 +168,7 @@ module StateRegistrants::MIRegistrant::ApiService
         self.submission_attempts += 1    
         self.save(validate: false)
         response = MiClient.post_voter_nist(self.to_nist_format)
-        self.mi_api_voter_status_id = response["VoterStatusId"]
+        self.mi_api_voter_status_id = response["VoterStatusId"] || "-1" #ensure non-nil value
         outcome = self.response_outcome
         if outcome == RESPONSE_FAILURE || outcome == RESPONSE_INVALID_DLN
           handle_api_error
@@ -209,6 +209,7 @@ module StateRegistrants::MIRegistrant::ApiService
           self.delay(run_at: 5.seconds.from_now).submit_to_online_reg_url
         else
           # Go to paper
+          self.mi_api_voter_status_id ||= "-1"
           handle_api_error
         end
       end
@@ -233,7 +234,7 @@ module StateRegistrants::MIRegistrant::ApiService
         "ContactMethod"=> [
           {
             "Type"=> "phone", #1,
-            "Value"=> "#{self.phone}"
+            "Value"=> "#{self.phone.to_s.gsub(/[^\d]/,'')}"
           },
           {
             "Type"=> "email", #0,

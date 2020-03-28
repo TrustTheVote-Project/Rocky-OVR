@@ -249,6 +249,7 @@ en:
         state_registrants/mi_registrant:
           blank: Required
           invalid_zip: Invalid ZIP
+          address_length: Address is too long.
           attributes:
             full_name:
               invalid: Full Name is invalid.

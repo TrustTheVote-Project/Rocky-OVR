@@ -58,6 +58,8 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.validates_length_of :registration_address_street_name, maximum: 255
       reg.validates_format_of :registration_address_street_type, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       validates_street_type reg
+      validate_address_line(reg, [:registration_address_street_name, :registration_address_number, :registration_address_street_type, :registration_address_post_directional])
+      
       
       
       reg.validates_presence_of   :registration_city 
@@ -83,17 +85,22 @@ class MIRegistrantValidator < ActiveModel::Validator
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::STANDARD_TYPE
         reg.validates_presence_of :mailing_address_2
         #reg.validates_presence_of :mailing_address_3
+        validate_address_line(reg, [:mailing_address_2, :mailing_address_1, :mailing_address_3])
+        
         validates_zip_code reg,    :mailing_zip_code
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
         reg.validates_format_of :mailing_address_1, with: /\A[\d\s-]+\z/, message: I18n.t('states.custom.mi.custom_errors.po_box.mailing_address_1'), allow_blank: true
+        validate_address_line(reg, [:mailing_address_1])        
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::MILITARY_TYPE
         reg.validates_presence_of :mailing_address_2
         reg.validates_presence_of :mailing_address_3
         validates_zip_code reg,    :mailing_zip_code
+        validate_address_line(reg, [:mailing_address_2, :mailing_address_1, :mailing_address_3])
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::INTERNATIONAL_TYPE
+        #validate_address_line(reg, [:mailing_address_1, :mailing_address_2, :mailing_address_3])        
         reg.validates_presence_of :mailing_country
         reg.validates_format_of :mailing_country, with: /\A[a-zA-Z\s\/',\.-]*\z/
         reg.validates_presence_of :mailing_zip_code
@@ -120,6 +127,14 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
     end
   end
+  
+  def validate_address_line(reg, methods)
+    concatenated = methods.collect{|m| reg.send(m)}.join(" ")
+    if concatenated.length > 50
+      reg.errors.add(methods.first, :address_length)
+    end
+  end
+  
   
   def validates_street_type(reg)
     if reg.registration_address_street_type.present? && !reg.street_types.values.collect(&:capitalize).include?(reg.registration_address_street_type.capitalize)
