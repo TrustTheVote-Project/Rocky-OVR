@@ -1,3 +1,6 @@
+- if @use_mobile_ui
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 95}
+
 - if !@old_registrant #we've cleared it out
   .step_6
     %p.instructions= I18n.t('states.custom.mi.ineligible_registrant').html_safe
@@ -50,8 +53,6 @@
   - content_for :head do 
     %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}
 
-  - if @use_mobile_ui
-    = render partial: 'state_registrants/header_mobile', locals: {percentage: 95}
 
   .step_6
     #preparing_content

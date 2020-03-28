@@ -65,6 +65,8 @@ en:
         registration_unit_number: Apt/Unit
         registration_city: City
         registration_zip_code: ZIP Code
+        home_state: State
+        home_state_abbrev: State
         phone: Phone Number (for election use only)
         mailing_same_as_residential_address: Mailing address is same as residential address
         mailing_address_1: "Street Number"

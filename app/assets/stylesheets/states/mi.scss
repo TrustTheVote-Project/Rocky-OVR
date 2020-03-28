@@ -68,6 +68,16 @@ span.error, .flat span.error, .stacked span.error {
             margin-right: 0;
           } 
         }
+        @media(max-width: 600px) {
+          li {
+            &.registrant-form__home-zip-code__line {
+              width: 40%;
+            } 
+            &.registrant-form__home-country__line {
+              width: 55%;
+            } 
+          }
+        }
       }
     }
     ul.radio {

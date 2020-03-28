@@ -3,54 +3,37 @@
     $(document).ready(function() {
       $('#javascript_disabled').remove();
       
-      function toggleSsn() {
-        if ($("#state_registrants_mi_registrant_confirm_no_ssn:checked").length > 0 ) {
-          $(".registrant-form__ssn__line").hide();
-        } else {
-          $(".registrant-form__ssn__line").show();
-        }
-      }        
-      $("#state_registrants_mi_registrant_confirm_no_ssn").click(toggleSsn)
-      toggleSsn();      
-
-      function toggleDln() {
-        if ($("#state_registrants_mi_registrant_confirm_no_dln:checked").length > 0 ) {
-          $(".registrant-form__dln__line").hide();
-        } else {
-          $(".registrant-form__dln__line").show();
-        }
-      }        
-      $("#state_registrants_mi_registrant_confirm_no_dln").click(toggleDln)
-      toggleDln();      
-      
-
-      
     });
 
 
 = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
-  = render partial: 'state_registrants/header_mobile', locals: {percentage: 80}
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 40}
+
+  .dynamic-step#step-3
+    %h1
+      %p.notice= I18n.t('states.custom.mi.skip_online_registration_no_dln', url: skip_state_flow_registrant_path(@registrant)).html_safe
+
+      
+    %br
+    = render partial: 'state_registrants/mi/name', locals: {form: form}
   
-  .declaration-text= t('states.custom.mi.privacy_notice').html_safe
-  
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_affirm_privacy_notice, class_name: "registrant-form__confirm-affirm-privacy-notice__line", required: true}
+    
+    %ul.flat.dln
+      = field_li(form, :dln, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.dln', url: @registrant.skip_state_flow_registrant_path), li_options: {class: "registrant-form__dln__line"}, field_options: {autocomplete: "off", size: 12, maxlength: 19} })
+    
+    %ul.flat
+      = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form, skip_tooltip: true}
+
+    %ul.flat.eye-color-dropdown
+      = field_li(form, :eye_color_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__eye-color__line"}, select_options: @registrant.eye_colors, field_options: {include_blank: true} })
+
+    %ul.flat.ssn
+      = field_li(form, :ssn4, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.ssn4', url: @registrant.skip_state_flow_registrant_path), li_options: {class: "registrant-form__ssn__line"}, field_options: {autocomplete: "off", type: :password, size: 4, maxlength: 4} })
+      
     
 
-  %fieldset#ssn_set
-    %ul.flat.ssn
-      = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 11, maxlength: 11} })
-      
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_ssn, class_name: "registrant-form__no-ssn__line", required: false}
-    
-  %fieldset#dln-set
-    %ul.flat.dln
-      = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
-    
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__no-ssn__line", required: false}
-    
   .dynamic-navigation
-    -# .back only shown when first step, .prepare only shown when last step
     .back.back--link
       .button.rollover_button
         = link_to update_state_registrant_path(@registrant.to_param, controller.prev_step) do
@@ -60,4 +43,3 @@
     .next.next--link.prepare
       = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) 
   
-     

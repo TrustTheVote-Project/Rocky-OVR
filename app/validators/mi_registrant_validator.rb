@@ -79,25 +79,29 @@ class MIRegistrantValidator < ActiveModel::Validator
     if reg.has_mailing_address? && reg.at_least_step_3?
       reg.validates_presence_of :mailing_address_type
       reg.validates_presence_of :mailing_address_1
-      reg.validates_presence_of :mailing_city
-      reg.validates_presence_of :mailing_state
       
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::STANDARD_TYPE
         reg.validates_presence_of :mailing_address_2
         #reg.validates_presence_of :mailing_address_3
         validate_address_line(reg, [:mailing_address_2, :mailing_address_1, :mailing_address_3])
         
+        reg.validates_presence_of :mailing_city
+        reg.validates_presence_of :mailing_state
         validates_zip_code reg,    :mailing_zip_code
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
         reg.validates_format_of :mailing_address_1, with: /\A[\d\s-]+\z/, message: I18n.t('states.custom.mi.custom_errors.po_box.mailing_address_1'), allow_blank: true
         validate_address_line(reg, [:mailing_address_1])        
+        reg.validates_presence_of :mailing_city
+        reg.validates_presence_of :mailing_state
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::MILITARY_TYPE
         reg.validates_presence_of :mailing_address_2
         reg.validates_presence_of :mailing_address_3
         validates_zip_code reg,    :mailing_zip_code
         validate_address_line(reg, [:mailing_address_2, :mailing_address_1, :mailing_address_3])
+        reg.validates_presence_of :mailing_city
+        reg.validates_presence_of :mailing_state
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::INTERNATIONAL_TYPE
         #validate_address_line(reg, [:mailing_address_1, :mailing_address_2, :mailing_address_3])        
