@@ -10,18 +10,21 @@ span.error, .flat span.error, .stacked span.error {
   line-height: 16px;
 }
 
-ul.mi-address-options {
-  font-size: 16px;
-  line-height: 1.4em;
-  li {
-    margin: 1.5em 0;
-    float: none;
-    display: flex;
-  }
-}
 
 #main {
   form {
+    ul.mi-address-options {
+      font-size: 16px;
+      line-height: 1.4em;
+      li {
+        margin: 1.5em 0;
+        float: none;
+        display: flex;
+        label {
+          margin-left: .5em;
+        }
+      }
+    }
     ul {
       li {
         &.registrant-form__home-address-number__line {
