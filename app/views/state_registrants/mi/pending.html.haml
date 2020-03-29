@@ -10,11 +10,11 @@
       %h1 There was an issue with your submission
       - if @registrant.dln_not_found?
         %p.notice
-          Your Drivers License did not match our records.
+          Your Drivers License information did not match our records.
         %p.notice
           You can
-          = link_to "make a change", update_state_registrant_path(@registrant.to_param, 'step_3')
-          to your ID number and try again.
+          = link_to "update your submission", update_state_registrant_path(@registrant.to_param, 'step_3')
+          and try again. Make sure the information exactly matches what is printed on your ID.
       - if @registrant.address_not_found?
         %p.notice
           Your Registration Address did not match our records.
