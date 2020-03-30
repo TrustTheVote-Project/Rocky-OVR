@@ -197,8 +197,8 @@ class RegistrationStep < ApplicationController
   end
   
   def determine_mobile_ui(registrant)
-    return nil if registrant.nil?
-    return nil if registrant.javascript_disabled?
+    #return nil if registrant.nil?
+    #return nil if registrant.javascript_disabled?
     #return nil if registrant.home_state_allows_ovr_ignoring_license?
     #return nil if registrant.locale != 'en'
     # return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?

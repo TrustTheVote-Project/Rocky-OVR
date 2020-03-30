@@ -36,7 +36,7 @@ module ApplicationHelper
 
   def preview_partner_css(partner, registrant, include_mobile)
     stylesheets = []
-    if !partner.replace_system_css?(:preview)
+    if !partner.replace_system_css?(:preview) || include_mobile
       stylesheets << 'application'
       if registrant.use_state_flow? && !registrant.skip_state_flow?
         stylesheets << 'registration2'
@@ -46,7 +46,11 @@ module ApplicationHelper
       end
     end
     stylesheets += registrant_css
-    stylesheets << ((registrant && !registrant.use_short_form?) ? partner.partner_css_url(:preview) : partner.partner2_css_url(:preview))
+    if registrant && !registrant.use_short_form?
+      stylesheets << partner.partner_css_url(:preview)
+    elsif !include_mobile
+      stylesheets << partner.partner2_css_url(:preview))
+    end
     stylesheets << partner.partner2_mobile_css_url(:preview) if include_mobile
     return stylesheets.compact
   end
@@ -57,8 +61,8 @@ module ApplicationHelper
     end
     wl = partner && partner.whitelabeled?
     stylesheets = []
-    if !partner || !partner.replace_system_css?
-      if registrant && registrant.use_state_flow? && !registrant.skip_state_flow?
+    if !partner || !partner.replace_system_css? || include_mobile
+      if registrant && registrant.use_state_flow? && !registrant.skip_state_flow? 
         stylesheets << "application"
         stylesheets << 'registration2'
         stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
@@ -76,7 +80,7 @@ module ApplicationHelper
     if partner && registrant && !registrant.use_short_form?
       stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
     else
-      stylesheets << partner.partner2_css_url if wl && partner.partner2_css_present?
+      stylesheets << partner.partner2_css_url if !include_mobile && wl && partner.partner2_css_present?
       stylesheets << partner.partner2_mobile_css_url if include_mobile && wl && partner.partner2_mobile_css_present?      
     end
     stylesheets
