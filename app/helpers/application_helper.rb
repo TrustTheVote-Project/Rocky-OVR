@@ -49,7 +49,7 @@ module ApplicationHelper
     if registrant && !registrant.use_short_form?
       stylesheets << partner.partner_css_url(:preview)
     elsif !include_mobile
-      stylesheets << partner.partner2_css_url(:preview))
+      stylesheets << partner.partner2_css_url(:preview)
     end
     stylesheets << partner.partner2_mobile_css_url(:preview) if include_mobile
     return stylesheets.compact
