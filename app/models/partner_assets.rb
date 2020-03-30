@@ -28,6 +28,7 @@ module PartnerAssets
   REG_CSS = "registration.css"
   PART_CSS = "partner.css"
   PART2_CSS = "partner2.css"
+  PART2_MOBILE_CSS = "partner2mobile.css"
   PDF_LOGO = "pdf_logo" #.jpeg, .jpg or .gif
 
   def self.extension(name)
@@ -74,6 +75,9 @@ module PartnerAssets
   end
   def partner2_css_present?(group=nil)
     folder.asset_file_exists?(PART2_CSS, group)
+  end
+  def partner2_mobile_css_present?(group=nil)
+    folder.asset_file_exists?(PART2_MOBILE_CSS, group)
   end
   
   def pdf_logo_present?(group = nil)
@@ -164,12 +168,18 @@ module PartnerAssets
   def partner2_css_url(group = nil)
     folder.asset_url(PART2_CSS, group)
   end
+  def partner2_mobile_css_url(group = nil)
+    folder.asset_url(PART2_MOBILE_CSS, group)
+  end
 
   def partner_css_path(group = nil)
     File.join(partner_path, group.to_s, PART_CSS)
   end
   def partner2_css_path(group = nil)
     File.join(partner_path, group.to_s, PART2_CSS)
+  end
+  def partner2_mobile_css_path(group = nil)
+    File.join(partner_path, group.to_s, PART2_MOBILE_CSS)
   end
 
   def absolute_old_assets_path

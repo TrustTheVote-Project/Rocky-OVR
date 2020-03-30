@@ -34,7 +34,7 @@ module ApplicationHelper
     opts
   end
 
-  def preview_partner_css(partner, registrant)
+  def preview_partner_css(partner, registrant, include_mobile)
     stylesheets = []
     if !partner.replace_system_css?(:preview)
       stylesheets << 'application'
@@ -47,12 +47,13 @@ module ApplicationHelper
     end
     stylesheets += registrant_css
     stylesheets << ((registrant && !registrant.use_short_form?) ? partner.partner_css_url(:preview) : partner.partner2_css_url(:preview))
+    stylesheets << partner.partner2_mobile_css_url(:preview) if include_mobile
     return stylesheets.compact
   end
 
-  def partner_css(partner = @partner, registrant=@registrant)
+  def partner_css(partner = @partner, registrant=@registrant, include_mobile = @use_mobile_ui)
     if params.has_key?(:preview_custom_assets) || registrant.try(:is_fake)
-      return preview_partner_css(partner, registrant)
+      return preview_partner_css(partner, registrant, include_mobile)
     end
     wl = partner && partner.whitelabeled?
     stylesheets = []
@@ -76,6 +77,7 @@ module ApplicationHelper
       stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
     else
       stylesheets << partner.partner2_css_url if wl && partner.partner2_css_present?
+      stylesheets << partner.partner2_mobile_css_url if include_mobile && wl && partner.partner2_mobile_css_present?      
     end
     stylesheets
   end
