@@ -6,13 +6,13 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/
     end
     
-    #if reg.at_least_step_1?
+    if reg.at_least_step_1?
       reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
       reg.validates_format_of :email, with: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-      reg.validates_length_of :email, maximum: 80
+      #reg.validates_length_of :email, maximum: 80
       
       #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
-      #end
+    end
     if reg.at_least_step_1?
       reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
       reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
