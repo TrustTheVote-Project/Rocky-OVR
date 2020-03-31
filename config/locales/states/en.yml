@@ -18,6 +18,7 @@ en:
           requested_duplicate_dln_today: You can not register online if you have requested a duplicate license today. <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
           po_box:
             mailing_address_1: Enter the number only
+            mailing_address_1_length: PO Box is too long (maximum is %{count} characters).
         state_flow_error: ''
         by_paper_header: Complete Registration By Paper          
         skip_online_registration: <a href="%{url}">Click here</a> to create a paper registration form to print, sign and mail.

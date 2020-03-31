@@ -6,11 +6,13 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/
     end
     
-    if reg.at_least_step_1?
+    #if reg.at_least_step_1?
       reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
       reg.validates_format_of :email, with: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+      reg.validates_length_of :email, maximum: 80
+      
       #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
-    end
+      #end
     if reg.at_least_step_1?
       reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
       reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
@@ -60,10 +62,11 @@ class MIRegistrantValidator < ActiveModel::Validator
       validates_street_type reg
       validate_address_line(reg, [:registration_address_street_name, :registration_address_number, :registration_address_street_type, :registration_address_post_directional])
       
+      reg.validates_length_of :registration_unit_number, maximum: 50
       
       
       reg.validates_presence_of   :registration_city 
-      reg.validates_length_of :registration_city, maximum: 255
+      reg.validates_length_of :registration_city, maximum: 100
       reg.validates_format_of :registration_city, with: /\A(?=.{1,255}$)[a-zA-Z]+(?:[-=_.`;'\s][a-zA-Z]+)*\z/
       validates_zip_code  reg,    :registration_zip_code
       
@@ -84,16 +87,23 @@ class MIRegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :mailing_address_2
         #reg.validates_presence_of :mailing_address_3
         validate_address_line(reg, [:mailing_address_2, :mailing_address_1, :mailing_address_3])
-        
+        reg.validates_length_of :mailing_address_unit_number, maximum: 50
         reg.validates_presence_of :mailing_city
+        reg.validates_length_of :mailing_city, maximum: 50
         reg.validates_presence_of :mailing_state
+        reg.validates_length_of :mailing_state, maximum: 2
+        
         validates_zip_code reg,    :mailing_zip_code
+        
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
         reg.validates_format_of :mailing_address_1, with: /\A[\d\s-]+\z/, message: I18n.t('states.custom.mi.custom_errors.po_box.mailing_address_1'), allow_blank: true
-        validate_address_line(reg, [:mailing_address_1])        
+        reg.validates_length_of :mailing_address_1, maximum: 50, message: I18n.t('states.custom.mi.custom_errors.po_box.mailing_address_1_length')
         reg.validates_presence_of :mailing_city
+        reg.validates_length_of :mailing_city, maximum: 50
         reg.validates_presence_of :mailing_state
+        reg.validates_length_of :mailing_state, maximum: 2
+        
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::MILITARY_TYPE
         reg.validates_presence_of :mailing_address_2
@@ -101,13 +111,22 @@ class MIRegistrantValidator < ActiveModel::Validator
         validates_zip_code reg,    :mailing_zip_code
         validate_address_line(reg, [:mailing_address_2, :mailing_address_1, :mailing_address_3])
         reg.validates_presence_of :mailing_city
+        reg.validates_length_of :mailing_city, maximum: 50
+        
         reg.validates_presence_of :mailing_state
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::INTERNATIONAL_TYPE
         #validate_address_line(reg, [:mailing_address_1, :mailing_address_2, :mailing_address_3])        
+        reg.validates_length_of :mailing_address_1, maximum: 50, message: :address_length
+        reg.validates_length_of :mailing_address_2, maximum: 50, message: :address_length
+        reg.validates_length_of :mailing_address_3, maximum: 50, message: :address_length
+        
         reg.validates_presence_of :mailing_country
         reg.validates_format_of :mailing_country, with: /\A[a-zA-Z\s\/',\.-]*\z/
+        reg.validates_length_of :mailing_country, maximum: 50
         reg.validates_presence_of :mailing_zip_code
+        reg.validates_length_of :mailing_zip_code, maximum: 50
+        
         reg.validates_format_of :mailing_zip_code, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       end
     end
@@ -125,7 +144,7 @@ class MIRegistrantValidator < ActiveModel::Validator
   
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
-    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
+    reg.validates_format_of(attr_name, {:with => /\A\d{5}\z/, :allow_blank => true});
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
