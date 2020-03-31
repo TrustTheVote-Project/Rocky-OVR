@@ -159,12 +159,18 @@ body {
     select {
       -webkit-appearance: none;
       -moz-appearance: none;
+      -ms-appearance: none;
+      -o-appearance: none;
+      appearance: none;
       background: #fff image-url('reg/select-arrow.png') no-repeat right center;
       font-size: 14px;
       padding: 6px 40px 6px 5px;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
       height: 34px;
       border: 0;
+    }
+    select::-ms-expand {
+      display: none;
     }
   }
   
@@ -372,6 +378,9 @@ body {
           select {
             -webkit-appearance: none;
             -moz-appearance: none;
+            -ms-appearance: none;
+            -o-appearance: none;
+            appearance: none;
             background: #fff image-url('reg/select-arrow.png') no-repeat right center;
             font-size: 14px;
             padding: 6px 40px 6px 5px;
@@ -380,6 +389,9 @@ body {
             width: 100%;
             border: $input-border;
             border-radius: 0;
+          }
+          select::-ms-expand {
+            display: none;
           }
           &.has_error {
            select {
