@@ -88,6 +88,8 @@
         $('input[name="registrant[has_state_license]"]').click(toggleHasStateLicense);  
         $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
       });
+- if @registrant.has_custom_zip_code_partial?
+  = render partial: @registrant.custom_zip_code_partial
 
 = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
   #dynamic-progress-bar

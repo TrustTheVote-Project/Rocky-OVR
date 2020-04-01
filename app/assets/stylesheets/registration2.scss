@@ -180,6 +180,18 @@ body {
       font-size:15px;
     }
   }
+  .special-zip-message {
+    p {
+      font-size:15px;
+    }
+    ul {
+      list-style: disc;
+      li {
+        font-size:15px;
+        margin: 1em 0;  
+      }
+    }
+  }
   
   p {
     margin: 2em 0;

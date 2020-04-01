@@ -5,6 +5,10 @@ en:
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
       mi:
+        wi_zip:
+          message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?
+          register_in_wi: I want to register to vote in the state of Wisconsin
+          register_in_mi: I want to register to vote in the state of Michigan
         registration:
           home_address: Residential Address
         custom_errors:
