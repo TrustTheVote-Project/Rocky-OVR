@@ -10,6 +10,7 @@
         %th Organization
         %th E-Mail
         %th Assets
+        %th Replace Default CSS?
         %th Preview
         %th
         %th
@@ -27,6 +28,11 @@
           - p.folder.list_named_urls.sort_by(&:first).each do |pair|
             = link_to pair[0], pair[1]
             %br
+        %td
+          - if request.open?
+            = p.replace_system_css_preview ? 'yes' : 'no'
+          - else 
+            = p.replace_system_css_live ? 'yes' : 'no'
         %td
           = link_to "Preview", p.preview_custom_assets_link, target: '_blank'
         - if request.open?
