@@ -440,7 +440,7 @@ module StateRegistrants::MIRegistrant::ApiService
     elsif self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::PO_BOX_TYPE
       return {
         "MailingAddress"=> {
-          "USPSPostalDeliveryBox" => {
+          "USPSPostalDeliveryBox_type" => {
             "USPSBox"=> {
               "USPSBoxType"=> "PO BOX",
               "USPSBoxId" => "#{self.mailing_po_box_number}"
@@ -463,7 +463,7 @@ module StateRegistrants::MIRegistrant::ApiService
     elsif self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::MILITARY_TYPE
       return {
         "MailingAddress"=> {
-          "USPSPostalDeliveryRoute" => {
+          "USPSPostalDeliveryRoute_type" => {
             "USPSRoute"=> {
               "USPSBoxGroupType" => "#{self.mailing_military_group_type}", # User selected UNIT, CMR, or PSC
               "USPSBoxGroupId:" => "#{self.mailing_military_group_number}", # User provided numeric string
@@ -482,7 +482,7 @@ module StateRegistrants::MIRegistrant::ApiService
     elsif self.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::INTERNATIONAL_TYPE
       return {
         "MailingAddress"=> {
-          "GeneralAddressClass" => {
+          "GeneralAddressClass_type" => {
             "DeliveryAddress"=> "#{self.mailing_international_address}",
             "ZipCode"=> "#{self.mailing_zip_code}",
             "CountryName"=> "#{self.mailing_country}"

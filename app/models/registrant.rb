@@ -1070,6 +1070,14 @@ class Registrant < ActiveRecord::Base
       nil
     end
   end
+  
+  def has_custom_zip_code_partial?
+    File.exists?(File.join(Rails.root, 'app/views/', "registrants/zip_codes/_zip#{home_zip_code}.html.erb"))
+  end
+  
+  def custom_zip_code_partial
+    "registrants/zip_codes/zip#{home_zip_code}"
+  end
 
   def custom_step_4_partial
     is_fake? ? "fake_state_online_page" : "#{home_state.abbreviation.downcase}"

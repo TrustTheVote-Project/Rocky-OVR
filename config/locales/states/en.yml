@@ -5,6 +5,10 @@ en:
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
       mi:
+        wi_zip:
+          message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?
+          register_in_wi: I want to register to vote in the state of Wisconsin
+          register_in_mi: I want to register to vote in the state of Michigan
         registration:
           home_address: Residential Address
         custom_errors:
@@ -18,6 +22,7 @@ en:
           requested_duplicate_dln_today: You can not register online if you have requested a duplicate license today. <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
           po_box:
             mailing_address_1: Enter the number only
+            mailing_address_1_length: PO Box is too long (maximum is %{count} characters).
         state_flow_error: ''
         by_paper_header: Complete Registration By Paper          
         skip_online_registration: <a href="%{url}">Click here</a> to create a paper registration form to print, sign and mail.
