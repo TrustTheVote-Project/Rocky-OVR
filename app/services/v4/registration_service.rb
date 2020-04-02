@@ -152,9 +152,9 @@ module V4
     end
     
     def self.async_register_with_pa(registrant_id)
+      registrant = Registrant.find_by_id(registrant_id)
       RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'PARegistrationRequest::Grommet') do
         begin
-          registrant = Registrant.find(registrant_id)
           if registrant.nil?
             AdminMailer.pa_no_registrant_error(registrant_id).deliver
             return
@@ -167,6 +167,7 @@ module V4
           Rails.logger.error(e.message)
           Rails.logger.error("Backtrace\n" + e.backtrace.join("\n"))
           registrant.save(validate: false)
+          RequestLogSession.request_log_instance.log_error("Raise exception to retry later.")
           raise e # For delayed-job, will enque the run again            
         end
       end
@@ -230,6 +231,8 @@ module V4
               registrant.save(validate: false)
               RequestLogSession.request_log_instance.log_error("registrant has invalid zip+4, changing to 5-digit zip code and resubmitting")              
               raise "registrant has invalid zip+4, changing to 5-digit zip code and resubmitting"
+            else
+              RequestLogSession.request_log_instance.log_error("registrant has invalid zip but could not fix it.")                            
             end
           end
         

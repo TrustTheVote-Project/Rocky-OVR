@@ -27,7 +27,6 @@ class PARegistrationRequest
 
     request.body = prepare_request(params)
     
-    
     Rails.logger.debug 'PA:REQUEST>> '+ request.body.to_s
 
     response = begin
