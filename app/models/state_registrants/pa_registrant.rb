@@ -366,44 +366,53 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   end
   
   def submit_to_online_reg_url
-    begin
-      result = PARegistrationRequest.send_request(self.to_pa_data, self.pa_api_key, self.locale)
-      self.pa_submission_complete = true
-      self.pa_submission_error ||= []
-      if result[:error].present?
-        self.pa_submission_error.push(result[:error].to_s)
-        if result[:error] == INVALID_PENNDOT && self.penndot_retries < 2
-          self.retry_drivers_license
-        else
-          self.registrant.skip_state_flow!
-          self.save!
-          # No retries for this flow
-          Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-          AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver
-        end
-      elsif result[:id].blank? || result[:id]==0
-          self.pa_submission_error.push("PA returned response with no errors and no transaction ID")
-          #complete it, but go on to PDF generation?
-          self.pa_transaction_id = nil
-          self.registrant.skip_state_flow!
-          self.save(validate: false)
-          Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-          AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
-      else
-        self.pa_transaction_id = result[:id]
-        self.save!
-        self.update_original_registrant
-        self.registrant.complete_registration_with_state!
-        deliver_confirmation_email
-      end
-    rescue Exception => e
-      # Send notification
-      self.pa_transaction_id = nil
-      # TODO - make sure original record knows we're skipping PA OVR
-      self.registrant.skip_state_flow!
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'PARegistrationRequest::Rocky') do
       begin
-        AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver
-      rescue
+        result = PARegistrationRequest.send_request(self.to_pa_data, self.pa_api_key, self.locale)
+        self.pa_submission_complete = true
+        self.pa_submission_error ||= []
+        if result[:error].present?
+          self.pa_submission_error.push(result[:error].to_s)
+          RequestLogSession.request_log_instance.log_error(result[:error].to_s)
+          if result[:error] == INVALID_PENNDOT && self.penndot_retries < 2
+            self.retry_drivers_license
+            RequestLogSession.request_log_instance.log_error(INVALID_PENNDOT)
+            RequestLogSession.request_log_instance.log_error("Allowing user to retry.")
+          else
+            RequestLogSession.request_log_instance.log_error("Registrant switched to paper.")            
+            self.registrant.skip_state_flow!
+            self.save!
+            # No retries for this flow
+            Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
+            AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver
+          end
+        elsif result[:id].blank? || result[:id]==0
+            self.pa_submission_error.push("PA returned response with no errors and no transaction ID")
+            RequestLogSession.request_log_instance.log_error("PA returned response with no errors and no transaction ID. Registrant Switched to paper.")
+            
+            #complete it, but go on to PDF generation?
+            self.pa_transaction_id = nil
+            self.registrant.skip_state_flow!
+            self.save(validate: false)
+            Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
+            AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+        else
+          self.pa_transaction_id = result[:id]
+          self.save!
+          self.update_original_registrant
+          self.registrant.complete_registration_with_state!
+          deliver_confirmation_email
+        end
+      rescue Exception => e
+        # Send notification
+        RequestLogSession.request_log_instance.log_error(e)
+        RequestLogSession.request_log_instance.log_error("Registrant Switched to paper.")
+        self.pa_transaction_id = nil
+        self.registrant.skip_state_flow!
+        begin
+          AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver
+        rescue
+        end
       end
     end
   ensure

@@ -6,7 +6,7 @@ class RequestLog < ActiveRecord::Base
 
   def log_request(http, request)
     request_data = RequestLog.build_request_data(http, request)
-    update_attributes(MiCensor.protect(request_data, RequestLogSession.registrant))
+    update_attributes(RequestLogSession.censor.protect(request_data, RequestLogSession.registrant))
   end
 
   def log_response(response, duration, error)
@@ -15,11 +15,11 @@ class RequestLog < ActiveRecord::Base
       .merge(build_error_messages(error))
       .merge(RequestLog.build_duration_data(duration, :network_duration_ms))
 
-    update_attributes(MiCensor.protect(response_data, RequestLogSession.registrant))
+    update_attributes(RequestLogSession.censor.protect(response_data, RequestLogSession.registrant))
   end
 
   def log_error(error)
-    update_attributes(MiCensor.protect(build_error_messages(error)))
+    update_attributes(RequestLogSession.censor.protect(build_error_messages(error)))
   end
 
   def log_total_duration(duration, error=nil)
@@ -27,7 +27,7 @@ class RequestLog < ActiveRecord::Base
       .build_duration_data(duration, :total_duration_ms)
       .merge(build_error_messages(error))
 
-    update_attributes(MiCensor.protect(data, RequestLogSession.registrant))
+    update_attributes(RequestLogSession.censor.protect(data, RequestLogSession.registrant))
   end
 
   def self.build_request_data(http, request)
@@ -53,7 +53,11 @@ class RequestLog < ActiveRecord::Base
   def build_error_messages(error)
     new_error = nil
     if error.present?
-      new_error = "#{error.class.name}: #{error.message}"
+      if error.is_a?(Exception)
+        new_error = "#{error.class.name}: #{error.message}"
+      else
+        new_error = "#{error}"
+      end
     end
 
     { error_messages: [error_messages, new_error].compact.join("\n") }

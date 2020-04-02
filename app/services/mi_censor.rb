@@ -1,4 +1,4 @@
-class MiCensor
+class MICensor
 
   def self.protect(original_params, registrant=nil)
     begin

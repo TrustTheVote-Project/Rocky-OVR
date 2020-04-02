@@ -57,7 +57,7 @@ class Admin::RequestLogsController < Admin::BaseController
 
   def truncate(value, size)
     if value.present? && value.respond_to?(:size)
-      return "#{value[0, size]}..." if value.size > size
+      return "#{value.strip[0, size]}..." if value.size > size
     end
     value
   end

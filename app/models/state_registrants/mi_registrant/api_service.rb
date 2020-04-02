@@ -162,7 +162,7 @@ module StateRegistrants::MIRegistrant::ApiService
   end
   
   def submit_to_online_reg_url
-    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client') do
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client', censor: MICensor) do
       begin 
         self.submission_attempts ||= 0
         self.submission_attempts += 1    
