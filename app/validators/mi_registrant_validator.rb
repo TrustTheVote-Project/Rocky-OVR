@@ -8,8 +8,6 @@ class MIRegistrantValidator < ActiveModel::Validator
     
     if reg.at_least_step_1?
       reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
-      reg.validates_format_of :email, with: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-      #reg.validates_length_of :email, maximum: 80
       
       #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
     end
@@ -53,6 +51,9 @@ class MIRegistrantValidator < ActiveModel::Validator
     
     if reg.at_least_step_3?
 
+      reg.validates_format_of :email, with: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+      reg.validates_length_of :email, maximum: 80
+      
       reg.validates_presence_of   :registration_address_number
       reg.validates_format_of :registration_address_number, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       reg.validates_presence_of   :registration_address_street_name
