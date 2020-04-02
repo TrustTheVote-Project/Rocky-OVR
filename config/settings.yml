@@ -194,6 +194,10 @@ ovr_states:
     require_id: false
     languages:
       - en
+  NC:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
   NE:
     redirect_to_online_reg_url: true
     languages:
