@@ -125,7 +125,7 @@ module StateRegistrants::MIRegistrant::ApiService
   end
   
   def check_address
-    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client') do
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client', censor: MICensor) do
       response = MiClient.street_match(sender_name: "RockTheVote", address_line_1: self.registration_address_line_1, city: self.registration_city, zip_code: self.registration_zip_code)
       if response["HasMatch"] && response["MatchingStreets"] && response["MatchingStreets"].length > 0
         if response["MatchingStreets"].length > 1

@@ -153,7 +153,7 @@ module V4
     
     def self.async_register_with_pa(registrant_id)
       registrant = Registrant.find_by_id(registrant_id)
-      RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'PARegistrationRequest::Grommet') do
+      RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'PARegistrationRequest::Grommet', censor: PACensor) do
         begin
           if registrant.nil?
             AdminMailer.pa_no_registrant_error(registrant_id).deliver

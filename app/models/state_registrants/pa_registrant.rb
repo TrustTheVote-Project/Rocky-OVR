@@ -366,7 +366,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   end
   
   def submit_to_online_reg_url
-    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'PARegistrationRequest::Rocky') do
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'PARegistrationRequest::Rocky', censor: PACensor) do
       begin
         result = PARegistrationRequest.send_request(self.to_pa_data, self.pa_api_key, self.locale)
         self.pa_submission_complete = true

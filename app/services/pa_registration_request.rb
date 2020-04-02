@@ -2,6 +2,10 @@ class PARegistrationRequest
 
   require 'net/http'
 
+  class NetworkingError < StandardError; end
+  class InvalidResponseError < NetworkingError; end
+
+
   PREFIX = '<APIOnlineApplicationData xmlns="OVRexternaldata"><record>'
   POSTFIX = '</record></APIOnlineApplicationData>'
 
