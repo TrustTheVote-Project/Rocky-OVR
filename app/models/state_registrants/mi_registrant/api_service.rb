@@ -464,15 +464,25 @@ module StateRegistrants::MIRegistrant::ApiService
       return {
         "MailingAddress"=> {
           "USPSPostalDeliveryRoute_type" => {
-            "USPSRoute"=> {
-              "USPSBoxGroupType" => "#{self.mailing_military_group_type}", # User selected UNIT, CMR, or PSC
-              "USPSBoxGroupId:" => "#{self.mailing_military_group_number}", # User provided numeric string
+            "USPSAddress" => {
+              "USPSRoute"=> {
+                "USPSBoxGroupType" => "#{self.mailing_military_group_type}", # User selected UNIT, CMR, or PSC
+                "USPSBoxGroupId" => "#{self.mailing_military_group_number}", # User provided numeric string
+              },
+              "USPSBox"=> {
+                "USPSBoxType"=> "BOX",
+                "USPSBoxId" => "#{self.mailing_military_box_number}"
+              } 
             },
-            "USPSBox"=> {
-              "USPSBoxType"=> "BOX",
-              "USPSBoxId" => "#{self.mailing_military_box_number}"
+            "CompletePlaceName"=> {
+              "PlaceName"=> [
+                {
+                  "PlaceNameType"=> "MunicipalJurisdiction", #1,
+                  "PlaceNameTypeSpecified"=> true,
+                  "Value"=> "#{self.mailing_city}"
+                }
+              ]
             },
-            "CompletePlaceName"=> "#{self.mailing_city}",
             "StateName"=> "#{self.mailing_state}",
             "ZipCode"=> "#{self.mailing_zip_code}",
             "CountryName"=> "USA"
