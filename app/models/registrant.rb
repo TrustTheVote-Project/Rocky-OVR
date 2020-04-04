@@ -1936,7 +1936,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def set_finish_with_state
-    self.finish_with_state = false unless self.home_state_online_reg_enabled?
+    self.finish_with_state = false unless (self.home_state_online_reg_enabled? || self.state_ovr_data[:force_finish_with_state])
     return true
   end
   

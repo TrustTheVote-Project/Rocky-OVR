@@ -32,6 +32,14 @@ class FinishesController < RegistrationStep
     set_ab_test
     @registrant_finish_iframe_url = @registrant.finish_iframe_url
     @pdf_ready = false
+    if params[:finish_with_state]
+      @registrant.state_ovr_data[:force_finish_with_state] = true
+      @registrant.finish_with_state = true
+      if params[:home_state]
+        @registrant.home_state = GeoState[params[:home_state]]
+      end
+      @registrant.save(validate: false)
+    end
     if params[:reminders]
       @registrant.update_attributes(:reminders_left => 0, final_reminder_delivered: true)
       @stop_reminders = true

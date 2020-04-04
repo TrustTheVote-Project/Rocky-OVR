@@ -57,6 +57,9 @@ class RegistrantsController < RegistrationStep
   # GET /registrants/new
   def new
     set_up_locale
+    
+    @use_mobile_ui = determine_mobile_ui(@registrant)
+    
     # if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
     #   redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
     # else
@@ -104,6 +107,8 @@ class RegistrantsController < RegistrationStep
                                     :short_form => @short_form,
                                     :collect_email_address => @collect_email_address))
                                     
+    @use_mobile_ui = determine_mobile_ui(@registrant)
+    
     if @registrant.partner.primary?
       @registrant.opt_in_email = true
       # @registrant.opt_in_sms = true
