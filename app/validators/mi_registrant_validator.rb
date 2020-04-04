@@ -125,10 +125,10 @@ class MIRegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :mailing_country
         reg.validates_format_of :mailing_country, with: /\A[a-zA-Z\s\/',\.-]*\z/
         reg.validates_length_of :mailing_country, maximum: 50
-        reg.validates_presence_of :mailing_zip_code
+        #reg.validates_presence_of :mailing_zip_code
         reg.validates_length_of :mailing_zip_code, maximum: 50
         
-        reg.validates_format_of :mailing_zip_code, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+        reg.validates_format_of :mailing_zip_code, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/, allow_blank: true
       end
     end
     
