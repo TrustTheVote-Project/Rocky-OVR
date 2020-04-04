@@ -76,6 +76,7 @@ en:
         mailing_city: "City"
         mailing_state: "State"
         mailing_zip_code: "ZIP Code"
+        mailing_country: Country
         
       state_registrants/va_registrant:
         confirm_voter_record_update: I consent to update my voter record with the
