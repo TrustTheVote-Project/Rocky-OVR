@@ -45,7 +45,7 @@
         = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
       
       %p.notice= I18n.t('states.custom.mi.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe    
-- elsif @registrant.mi_api_voter_status_id? #error message
+- elsif @registrant.mi_api_voter_status_id? && !@registrant.mi_pending? #error message
   .state-flow-error
     = @registrant.custom_state_flow_error_message.to_s.html_safe
     
