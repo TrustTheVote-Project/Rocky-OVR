@@ -64,6 +64,7 @@ class MIRegistrantValidator < ActiveModel::Validator
       validate_address_line(reg, [:registration_address_street_name, :registration_address_number, :registration_address_street_type, :registration_address_post_directional])
       
       reg.validates_length_of :registration_unit_number, maximum: 50
+      reg.validates_format_of :registration_unit_number, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       
       
       reg.validates_presence_of   :registration_city 
@@ -83,6 +84,12 @@ class MIRegistrantValidator < ActiveModel::Validator
     if reg.has_mailing_address? && reg.at_least_step_3?
       reg.validates_presence_of :mailing_address_type
       reg.validates_presence_of :mailing_address_1
+      reg.validates_format_of :mailing_address_1, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+      reg.validates_format_of :mailing_address_2, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+      reg.validates_format_of :mailing_address_3, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+      reg.validates_format_of :mailing_address_unit_number, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+      reg.validates_format_of :mailing_city, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+      
       
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::STANDARD_TYPE
         reg.validates_presence_of :mailing_address_2
@@ -104,6 +111,7 @@ class MIRegistrantValidator < ActiveModel::Validator
         reg.validates_length_of :mailing_city, maximum: 50
         reg.validates_presence_of :mailing_state
         reg.validates_length_of :mailing_state, maximum: 2
+        validates_zip_code reg,    :mailing_zip_code
         
       end
       if reg.mailing_address_type == StateRegistrants::MIRegistrant::MailingAddress::MILITARY_TYPE
