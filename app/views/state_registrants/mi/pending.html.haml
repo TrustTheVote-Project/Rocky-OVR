@@ -10,7 +10,9 @@
       %h1 There was an issue with your submission
       - if @registrant.dln_not_found?
         %p.notice
-          Please review your personal information again and resubmit. 
+          Please
+          = link_to 'review your personal information', update_state_registrant_path(@registrant.to_param, 'step_3')
+          again and resubmit. 
         %p.notice
           If you’ve re-checked your personal information, you can 
           = I18n.t('states.custom.mi.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe
