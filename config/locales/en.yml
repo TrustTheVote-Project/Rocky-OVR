@@ -262,11 +262,14 @@ en:
             dln:
               invalid: Must be one letter followed by 12 numbers.
             confirm_us_citizen:
-              accepted: You must be a US citizen to register to vote.
+              accepted: You must be a United States citizen to register to vote.
             confirm_will_be_18:
-              accepted: You must be 18 by the next election to register to vote.
+              accepted: Michigan law requires voters to be 17.5 before they can register. Please revisit this site when you are eligible!
             is_30_day_resident:
-              accepted: You must live in the same city or township in Michigan before voting in the next election in order to register online.
+              accepted:
+                To register to vote in Michigan you must be a Michigan resident (at the time you register) and a resident of your city or township for at least 30 days (when you vote).
+                <br><br>
+                If you’re a college student, you may choose to register to vote either at your campus address or your previous address – whichever one you consider to be your residential address.
             registration_cancellation_authorized:
               accepted: You must authorize the cancellation of your previous registration in order to register online.
             digital_signature_authorized:

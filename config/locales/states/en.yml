@@ -12,21 +12,41 @@ en:
         registration:
           home_address: Residential Address
         custom_errors:
-          dln_is_expired: <h2>Your driver's license is expired.</h2><p><a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
-          mi_api_error: <h2>There was a problem submitting your registration to Michigan.</h2><p>Please try again later or <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.</p>
-          registration_cancellation_authorized: If you are not willing to authorize cancellation of your previous registration, then you can  <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
-          digital_signature_authorized: If you are not willing to authorize use of your digital signature, then you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          dln_is_expired:
+            <h2>There was a problem submitting your registration to Michigan.</h2>
+            <p>
+            According to Michigan records, your driver’s license or state ID has expired. As a result, you are not able to complete online voter registration.
+            However, you can <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+            </p>
+          mi_api_error: 
+            <h2>There was a problem submitting your registration to Michigan.</h2>
+            <p>The Michigan voter registration system is currently unavailable. Please try again later or <a href="%{url}">click here</a> to create a paper registration form to print, sign, and mail.</p>
+          registration_cancellation_authorized: 
+            To register to vote on this website, you must also give us permission to cancel your voter registration at any other address.
+            <br><br>
+            If you are not willing to authorize cancellation of your previous registration, then you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          digital_signature_authorized: 
+            To register to vote using this website, you must give the Secretary of State permission to use the digital image of your signature stored during your previous Secretary of State transaction.
+            <br><br>
+            If you are not willing to authorize use of your digital signature, then you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
           dln: A valid Michigan Driver's License or state ID is required for all-online voter registration. If you don't have one, you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
           ssn4: A social security number is required for all-online voter registration. If you don't have one, you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
-          updated_dln_recently: You can not register online if you have updated your address recently. <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
-          requested_duplicate_dln_today: You can not register online if you have requested a duplicate license today. <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+          updated_dln_recently: 
+            You said you recently updated your driver's license or state ID address. Because it takes 11 days to update address changes in our system, we're not ready to register you to vote online.
+            <br><br>
+            If you can't wait, you can <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+          requested_duplicate_dln_today: 
+            You said you applied for a duplicate driver's license or state ID today. Because these take a day to process, we can't register you to vote online until tomorrow.
+            <br><br>
+            If you can't wait, you can <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.            
+
           po_box:
             mailing_address_1: Enter the number only
             mailing_address_1_length: PO Box is too long (maximum is %{count} characters).
         state_flow_error: ''
         by_paper_header: Complete Registration By Paper          
-        skip_online_registration: <a href="%{url}">Click here</a> to create a paper registration form to print, sign and mail.
-        skip_online_registration_no_dln: If you do not have a Michigan driver's license or state ID, <a href="%{url}">click here</a> to create a paper registration form to print, sign and mail.
+        skip_online_registration: <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+        skip_online_registration_no_dln: If you do not have a Michigan driver's license or state ID, <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
         step_2_header: Eligibility
         step_3_header: Personal Information
         step_3_notice: The personal information you use to register to vote must match the personal information on your Michigan driver’s license or state ID.
@@ -64,9 +84,10 @@ en:
             mailing_country: Country
         registration_complete: Congratulations, you’re registered to vote!
         registration_complete_success_type:
-          new: "<p>You've submitted a new voter registration.<p><p>Your local clerk will mail you a voter information card within 3 weeks.</p><br/>"
+          new: "<p>You've submitted a new voter registration.<p><p>Your local clerk will mail you a voter information card within 3 weeks.</p>"
           existing: <p>You're already registered at this address.<p>
-          updated: <p>You've updated your voter registration to a new address:<p><p>%{address}<br/>%{city}, %{state} %{zip_code}</p><p>Your local clerk will mail you a voter information card within 3 weeks.</p><br/>
+          updated: <p>You've updated your voter registration to a new address:<p><p>%{address}<br/>%{city}, %{state} %{zip_code}</p><p>Your local clerk will mail you a voter information card within 3 weeks.</p>
+        registration_complete_less_than_18: <p>You will be eligible to vote as soon as you turn 18 years old.</p> 
         registration_complete_dialog_text: ""
         valid_street_types: "Valid Street types include: %{types}"
       va:

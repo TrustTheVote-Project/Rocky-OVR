@@ -10,11 +10,10 @@
       %h1 There was an issue with your submission
       - if @registrant.dln_not_found?
         %p.notice
-          Your Drivers License information did not match our records.
+          Please review your personal information again and resubmit. 
         %p.notice
-          You can
-          = link_to "update your submission", update_state_registrant_path(@registrant.to_param, 'step_3')
-          and try again. Make sure the information exactly matches what is printed on your ID.
+          If you’ve re-checked your personal information, you can 
+          = I18n.t('states.custom.mi.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe
       - if @registrant.address_not_found?
         %p.notice
           Your Registration Address did not match our records.
@@ -22,7 +21,7 @@
           You can
           = link_to "make a change", update_state_registrant_path(@registrant.to_param, 'step_4')
           to your address and try again.
-      %p.notice= I18n.t('states.custom.mi.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe    
+        %p.notice= I18n.t('states.custom.mi.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe
           
 - elsif @registrant && @registrant.response_outcome == StateRegistrants::MIRegistrant::ApiService::RESPONSE_ADDRESS_AMBIGUOUS && @registrant.registration_address_match_list.any?
   .step_6
