@@ -139,6 +139,9 @@ module StateRegistrants::MIRegistrant::ApiService
           # Set address from single match
         end
       else
+        # no matches for a 4.0 request - unrealistic case 
+        self.mi_api_voter_status_id = '-1'
+        self.save(validate: false)
         handle_api_error
       end
     end
