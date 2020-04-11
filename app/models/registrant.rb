@@ -503,7 +503,7 @@ class Registrant < ActiveRecord::Base
       end      
       StateRegistrants::PARegistrant.where(registrant_id: uid_list).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
-      StateRegistrants::MIRegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MIRegistrant.where(registrant_id: uid_list).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
         #StateRegistrants::PARegistrant
@@ -527,7 +527,7 @@ class Registrant < ActiveRecord::Base
             Rails.logger.error(e)
             # raise e
           end
-        else 
+        elsif reg.existing_state_registrant.nil? || reg.existing_state_registrant.send_chase_email?
           # Send chase email
           begin
             reg.deliver_chaser_email

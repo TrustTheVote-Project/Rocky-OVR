@@ -145,5 +145,8 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     # end
     r.save(validate: false)
   end    
-  
+
+  def send_chase_email?
+    mi_api_voter_status_id.nil?
+  end
 end
