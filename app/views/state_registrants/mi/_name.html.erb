@@ -3,7 +3,7 @@
   <ul class="stacked">
     <li class="width_b registrant-form__last-full_name__line">
       <h3><%= form.label :full_name %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :full_name, required: true %>
+      <%= field_div form, :full_name, required: true, maxlength: 255 %>
       <span class="error"><%= form.object.errors[:full_name].join("\n") %></span>
     </li>
   </ul>
