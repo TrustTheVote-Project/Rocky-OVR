@@ -46,12 +46,12 @@ span.error, .flat span.error, .stacked span.error {
           width: 70%;
           margin-right: 30%;
         }
-        &.registrant-form__home-address-box-group__line, &.registrant-form__home-address-box-group-id__line, &.registrant-form__home-address-box-group-number__line {
-          width: 30%;
+        &.registrant-form__home-address-box-group__line {
+          width: 45%;
           margin-right: 5%;
         }
-        &.registrant-form__home-address-box-group-number__line {
-          margin-right: 0;
+        &.registrant-form__home-address-box-group-id__line {
+          width: 50%;
         }
         
       }

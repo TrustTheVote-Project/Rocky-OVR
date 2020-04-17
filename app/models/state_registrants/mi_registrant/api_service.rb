@@ -504,7 +504,8 @@ module StateRegistrants::MIRegistrant::ApiService
       return {
         "MailingAddress"=> {
           "GeneralAddressClass_type" => {
-            "DeliveryAddress"=> "#{self.mailing_international_address}",
+            "DeliveryAddress"=> "#{self.mailing_address_1}",
+            "StateName"=> "#{self.mailing_international_address2}",
             "ZipCode"=> "#{self.mailing_zip_code}",
             "CountryName"=> "#{self.mailing_country}"
           }

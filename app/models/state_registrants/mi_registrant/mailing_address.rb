@@ -69,8 +69,8 @@ module StateRegistrants::MIRegistrant::MailingAddress
   # :mailing_address_1
   # :mailing_address_2
   # :mailing_address_3 (1,2,3 get concatenated into DeliveryAddress in 1 line)
-  def mailing_international_address
-    [mailing_address_1, mailing_address_2, mailing_address_3].collect {|v| v.blank? ? nil : v }.compact.join(", ")
+  def mailing_international_address2
+    [mailing_address_2, mailing_address_3].collect {|v| v.blank? ? nil : v }.compact.join(", ")
   end
   # :mailing_zip_code
   # :mailing_country
