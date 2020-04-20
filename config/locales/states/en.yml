@@ -16,7 +16,7 @@ en:
             <h2>There was a problem submitting your registration to Michigan.</h2>
             <p>
             According to Michigan records, your driver’s license or state ID has expired. As a result, you are not able to complete online voter registration.
-            However, you can <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+            </p><p>However, you can <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
             </p>
           mi_api_error: 
             <h2>There was a problem submitting your registration to Michigan.</h2>
