@@ -6,6 +6,7 @@ ui_url_host: "register.rockthevote.com"
 
 
 states_with_online_registration:
+  - AZ
   - CA
   - DE
   - DC

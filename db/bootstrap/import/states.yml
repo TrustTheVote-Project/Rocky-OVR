@@ -331,7 +331,7 @@ record_21:
 record_22:
   abbreviation: MI
   name: Michigan
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_personal_identification_with_state_name
   sos_address: Michigan Department of State<br>Bureau of Elections<br>P.O. Box 20126<br>Lansing,
