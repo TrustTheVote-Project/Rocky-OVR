@@ -8,24 +8,24 @@ class RequestLogSession
 
   def self.send_and_log(http, request)
     response = nil
-    instance = current_parameters.request_log
+    instance = current_parameters&.request_log
 
-    instance.log_request(http, request)
+    instance.log_request(http, request) if instance
     timing = Timing.measure do
       response = http.request(request)
     end
-    instance.log_response(response, timing.duration, timing.error)
+    instance.log_response(response, timing.duration, timing.error) if instance
 
     raise timing.error if timing.error.present?
     response
   end
 
   def self.current_parameters
-    @current_parameters.value
+    @current_parameters&.value
   end
 
   def self.request_log_instance
-    current_parameters.request_log
+    current_parameters&.request_log
   end
 
   def self.registrant
