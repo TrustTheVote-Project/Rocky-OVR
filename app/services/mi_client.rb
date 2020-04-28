@@ -43,13 +43,6 @@ class MiClient
     OpenSSL::X509::Certificate.new(ENV['MI_CERT_CA'])
   end
   
-  def self.cert_store
-    store = OpenSSL::X509::Store.new
-    store.add_cert(self.cert)
-    store.add_cert(self.ca_cert)
-    return store
-  end
-    
 
   def self.send(method, path, body: {}, params: {}, headers: {})
     uri = URI.join(RockyConf.ovr_states.MI.api_settings.api_url, path)
@@ -60,7 +53,8 @@ class MiClient
     http.use_ssl = uri.scheme == 'https'
     # FIXME use proper CA file
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    http.cert_store = self.cert_store
+    http.cert = self.cert
+    http.key = self.cert_key
     http.read_timeout = 125
 
     klass = case method
