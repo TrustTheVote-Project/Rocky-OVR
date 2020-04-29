@@ -86,7 +86,6 @@ class StateRegistrants::Base < ActiveRecord::Base
   
   def set_default_opt_ins
     self.opt_in_email = true
-    #self.opt_in_sms = true
   end
   
   def current_step
@@ -147,6 +146,10 @@ class StateRegistrants::Base < ActiveRecord::Base
     update_original_registrant
   end
   
+  def custom_state_flow_error_message
+    return nil
+  end
+  
   # Whether the user has gone through all steps/data entry
   def complete?
     raise NotImplementedError
@@ -195,5 +198,8 @@ class StateRegistrants::Base < ActiveRecord::Base
   def update_original_registrant
     raise NotImplementedError
   end
-  
+
+  def send_chase_email?
+    true
+  end
 end

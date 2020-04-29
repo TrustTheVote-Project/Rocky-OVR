@@ -20,11 +20,18 @@
 = form_for(@registrant) do |form|
   = render :partial => 'form', :object => form
   - if !@registrant.use_short_form?
-    %p= I18n.t('txt.registration.instructions.overseas').html_safe
+    %p
+      = I18n.t('txt.registration.instructions.online').html_safe
+    %p  
+      = I18n.t('txt.registration.instructions.overseas').html_safe
     = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)
     
 - if @registrant.use_short_form?
-  %p.overseas-instructions= I18n.t('txt.registration.instructions.overseas').html_safe
+  %p.overseas-instructions
+    = I18n.t('txt.registration.instructions.online').html_safe
+    %br
+    %br
+    = I18n.t('txt.registration.instructions.overseas').html_safe
   %p.already-registered= I18n.t('txt.registration.already_registered', url: ( "/share?partner=#{@registrant.partner_id}&registrant_finish_iframe_url=#{CGI.escape(@registrant.finish_iframe_url)}")).html_safe
   
 

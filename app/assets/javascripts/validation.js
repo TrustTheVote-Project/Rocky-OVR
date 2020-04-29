@@ -12,7 +12,7 @@ function clearErrors() {
   }
   var errorField = parent.siblings(".error")
   parent.removeClass('has_error') 
-  errorField.text('')
+  errorField.html('')
 }
 function validateField(errorMessage) {
   var field = this;
@@ -51,22 +51,22 @@ function validateField(errorMessage) {
     parent = $(field).parent()
   }
   var errorField = parent.siblings(".error")
-  var currentError = errorField.text();
+  var currentError = errorField.html();
   var messageIdx = currentError.indexOf(errorMessage)
   if (!val || val == '') {
     // Add if not present
     if (messageIdx == -1) {
-      errorField.text([currentError, errorMessage].join(" "))
+      errorField.html([currentError, errorMessage].join(" "))
     }       
     parent.addClass('has_error') 
   } else {
     if (messageIdx >= 0) {
       currentError = currentError.split('')
       currentError.splice(messageIdx, errorMessage.length)
-      errorField.text(currentError.join(''))
+      errorField.html(currentError.join(''))
     } 
     //console.log(errorField.text())
-    if (errorField.text().replace(/\s/g, '') == '') {
+    if (errorField.html().replace(/\s/g, '') == '') {
       parent.removeClass('has_error') 
     }
            
@@ -82,23 +82,23 @@ function validateBooleanField(errorMessage) {
   //console.log(val)
   var parent = $(field).parent()
   var errorField = $(field).siblings(".error")
-  var currentError = errorField.text();
+  var currentError = errorField.html();
   var messageIdx = currentError.indexOf(errorMessage)
   if (!val) {
     // Add if not present
     //console.log("hi", errorMessage, errorField)
     if (messageIdx == -1) {
-      errorField.text([currentError, errorMessage].join(" "))
+      errorField.html([currentError, errorMessage].join(" "))
     }       
     parent.addClass('has_error') 
   } else {
     if (messageIdx >= 0) {
       currentError = currentError.split('')
       currentError.splice(messageIdx, errorMessage.length)
-      errorField.text(currentError.join(''))
+      errorField.html(currentError.join(''))
     } 
     //console.log(errorField.text())
-    if (errorField.text().replace(/\s/g, '') == '') {
+    if (errorField.html().replace(/\s/g, '') == '') {
       parent.removeClass('has_error') 
     }
            

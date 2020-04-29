@@ -2,7 +2,8 @@
 - field_label ||= nil
 - class_name ||= ''
 - require_accepted ||= nil
+- require_accepted_message ||= nil
 
 %ul.checkbox.checkbox-step-1
   %li.spacer= "&nbsp;".html_safe
-  = render partial: 'registrants/generic/inline_checkbox', locals: { form: form, field: field, class_name: class_name, required: required, require_accepted: require_accepted, tooltip: tooltip, field_label: field_label}
+  = render partial: 'registrants/generic/inline_checkbox', locals: { form: form, field: field, class_name: class_name, required: required, require_accepted: require_accepted, require_accepted_message: require_accepted_message, tooltip: tooltip, field_label: field_label}

@@ -494,6 +494,7 @@ class Registrant < ActiveRecord::Base
     uid_list = []
     pa_registrants = {}
     va_registrants = {}
+    mi_registrants = {}
     distribute_reads do 
       both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
       both_ids.each do |id, uid|
@@ -502,6 +503,7 @@ class Registrant < ActiveRecord::Base
       end      
       StateRegistrants::PARegistrant.where(registrant_id: uid_list).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MIRegistrant.where(registrant_id: uid_list).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
         #StateRegistrants::PARegistrant
@@ -512,6 +514,8 @@ class Registrant < ActiveRecord::Base
             sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
           when "VA"
             sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+          when "MI"
+            sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
           end
           reg.instance_variable_set(:@existing_state_registrant, sr)
         end
@@ -523,7 +527,7 @@ class Registrant < ActiveRecord::Base
             Rails.logger.error(e)
             # raise e
           end
-        else 
+        elsif reg.existing_state_registrant.nil? || reg.existing_state_registrant.send_chase_email?
           # Send chase email
           begin
             reg.deliver_chaser_email
@@ -922,6 +926,10 @@ class Registrant < ActiveRecord::Base
     skip_state_flow? && state_registrant && state_registrant.submitted?
   end
   
+  def custom_state_flow_error_message
+    state_flow_error? && state_registrant.custom_state_flow_error_message
+  end
+  
   def skip_state_flow?
     h = self.state_ovr_data || {}
     !!h[:skip_state_flow]
@@ -1055,11 +1063,20 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
+        #raise e
         nil
       end
     else
       nil
     end
+  end
+  
+  def has_custom_zip_code_partial?
+    File.exists?(File.join(Rails.root, 'app/views/', "registrants/zip_codes/_zip#{home_zip_code}.html.erb"))
+  end
+  
+  def custom_zip_code_partial
+    "registrants/zip_codes/zip#{home_zip_code}"
   end
 
   def custom_step_4_partial
@@ -1919,7 +1936,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def set_finish_with_state
-    self.finish_with_state = false unless self.home_state_online_reg_enabled?
+    self.finish_with_state = false unless (self.home_state_online_reg_enabled? || self.state_ovr_data[:force_finish_with_state])
     return true
   end
   

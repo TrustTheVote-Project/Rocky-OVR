@@ -1,0 +1,137 @@
+{
+  "AdditionalInfo": [
+    {
+      "Name": "EyeColor",
+      "StringValue": ""
+    }
+  ],
+  "Form": 2,
+  "FormSpecified": true,
+  "GeneratedDate": "2020-02-18T12:52:05.9622405-05:00",
+  "Issuer": "TESTOVR",
+  "OtherForm": "MI Form ED 121",
+  "Subject": {
+    "ContactMethod": [
+      {
+        "Type": 1,
+        "Value": "8102221152"
+      },
+      {
+        "Type": 0,
+        "Value": "DUBOVSKYT@MICHIGAN.GOV"
+      }
+    ],
+    "DateOfBirth": "1980-01-01T00:00:00",
+    "DateOfBirthSpecified": true,
+    "MailingAddress": {
+      "NumberedThoroughfareAddress_type": {
+        "CompleteAddressNumber": {
+          "AddressNumberPrefix": {
+            "Value": null
+          },
+          "AddressNumber": "1234",
+          "AddressNumberSuffix": {
+            "Value": null
+          }
+        },
+        "CompleteStreetName": {
+          "StreetNamePreModifier": {
+            "Value": null
+          },
+          "StreetNamePreDirectional": {
+            "Value": null
+          },
+          "StreetNamePreType": {
+            "Value": null
+          },
+          "StreetName": "CABOT",
+          "StreetNamePostType": {
+            "Value": "DR"
+          },
+          "StreetNamePostDirectional": {
+            "Value": null
+          },
+          "StreetNamePostModifier": {
+            "Value": null
+          }
+        },
+        "CompletePlaceName": {
+          "PlaceName": [
+            {
+              "PlaceNameType": 1,
+              "PlaceNameTypeSpecified": true,
+              "Value": "FLINT"
+            },
+            {
+              "PlaceNameType": 2,
+              "PlaceNameTypeSpecified": true,
+              "Value": "78"
+            }
+          ]
+        },
+        "StateName": "MI",
+        "ZipCode": "48532",
+        "CountryName": "UNITED STATES"
+      }
+    },
+    "ResidenceAddress": {
+      "NumberedThoroughfareAddress_type": {
+        "CompleteAddressNumber": {
+          "AddressNumber": " "
+        },
+        "CompleteStreetName": {
+          "StreetNamePreModifier": {
+            "Value": null
+          },
+          "StreetNamePreDirectional": {
+            "Value": null
+          },
+          "StreetNamePreType": {
+            "Value": null
+          },
+          "StreetName": " ",
+          "StreetNamePostType": {
+            "Value": " "
+          },
+          "StreetNamePostDirectional": {
+            "Value": null
+          },
+          "StreetNamePostModifier": {
+            "Value": null
+          }
+        },
+        "CompleteSubaddress": {
+          "SubaddressType": "APT",
+          "SubaddressIdentifier": "3A"
+        },
+        "CompletePlaceName": {
+          "PlaceName": [
+            {
+              "PlaceNameType": 1,
+              "PlaceNameTypeSpecified": true,
+              "Value": " "
+            },
+            {
+              "PlaceNameType": 2,
+              "PlaceNameTypeSpecified": true,
+              "Value": "78"
+            }
+          ]
+        },
+        "StateName": "MI",
+        "ZipCode": "",
+        "CountryName": ""
+      }
+    },
+    "ResidenceAddressIsMailingAddress": true,
+    "ResidenceAddressIsMailingAddressSpecified": true,
+    "VoterClassification": [
+      
+    ]
+  },
+  "TransactionId": "",
+  "Type": [
+    "registration"
+  ],
+  "VendorApplicationId": "TrustTheVote-Rocky v2020.3"
+}

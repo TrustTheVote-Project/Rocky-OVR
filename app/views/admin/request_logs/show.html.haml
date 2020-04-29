@@ -1,0 +1,37 @@
+
+= link_to 'Back', :back
+- rec = @request_log
+%p
+  %strong Client ID
+  = rec.client_id
+%p
+  %strong URI
+  = rec.request_uri
+%p
+  %strong Registrant ID
+  =rec.registrant_id
+%p
+  %strong Response Code
+  =rec.response_code
+%p
+  %strong Errors
+  %ul
+  - rec.error_messages&.split("\n")&.each do |msg|
+    %li= msg
+%p
+  %strong Request Duration
+  = add_postfix(rec.network_duration_ms, 'ms')
+%p
+  %strong Total Duration
+  = add_postfix(rec.total_duration_ms, 'ms')
+%p
+  %strong Created At
+  = rec.created_at
+%p
+  %strong Request
+  %pre= try_format_json(rec.request_body)
+%p
+  %strong Response
+  %pre= try_format_json(rec.response_body)
+
+= link_to 'Back', :back

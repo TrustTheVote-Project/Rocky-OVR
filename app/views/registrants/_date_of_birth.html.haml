@@ -1,3 +1,4 @@
+- skip_tooltip ||= false
 %li.registrant-form__date-of-birth__line
   %h3
     = form.label :date_of_birth
@@ -8,5 +9,6 @@
     = form.text_field :date_of_birth_month, value: form.object.date_of_birth_month, placeholder: 'MM', type: 'tel', size: 2
     = form.text_field :date_of_birth_day, value: form.object.date_of_birth_day, placeholder: 'DD', type: 'tel', size: 2
     = form.text_field :date_of_birth_year, value: form.object.date_of_birth_year, placeholder: 'YYYY', type: 'tel', size: 4
-  %div.tooltip= tooltip_tag(:date_of_birth)
+  - unless skip_tooltip
+    %div.tooltip= tooltip_tag(:date_of_birth)
   %span.error= form.object.errors[:date_of_birth].join("\n")

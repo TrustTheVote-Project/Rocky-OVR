@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191101150558) do
+ActiveRecord::Schema.define(version: 20200327163329) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -381,6 +381,25 @@ ActiveRecord::Schema.define(version: 20191101150558) do
     t.text     "error"
   end
 
+  create_table "request_logs", force: :cascade do |t|
+    t.string   "client_id"
+    t.string   "registrant_id"
+    t.string   "request_uri"
+    t.text     "request_body"
+    t.string   "request_headers"
+    t.integer  "response_code"
+    t.text     "response_body"
+    t.text     "error_messages"
+    t.integer  "network_duration_ms"
+    t.integer  "total_duration_ms"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "request_logs", ["client_id"], name: "index_request_logs_on_client_id"
+  add_index "request_logs", ["registrant_id"], name: "index_request_logs_on_registrant_id"
+  add_index "request_logs", ["response_code"], name: "index_request_logs_on_response_code"
+
   create_table "ses_notifications", force: :cascade do |t|
     t.text     "request_params"
     t.datetime "created_at",     null: false
@@ -417,6 +436,59 @@ ActiveRecord::Schema.define(version: 20191101150558) do
   end
 
   add_index "state_localizations", ["state_id"], name: "index_state_localizations_on_state_id"
+
+  create_table "state_registrants_mi_registrants", force: :cascade do |t|
+    t.string   "registrant_id"
+    t.string   "locale"
+    t.string   "status"
+    t.string   "email"
+    t.datetime "submitted_at"
+    t.boolean  "updated_dln_recently"
+    t.boolean  "requested_duplicate_dln_today"
+    t.boolean  "confirm_us_citizen"
+    t.boolean  "confirm_will_be_18"
+    t.boolean  "is_30_day_resident"
+    t.boolean  "registration_cancellation_authorized"
+    t.boolean  "digital_signature_authorized"
+    t.string   "full_name"
+    t.string   "dln"
+    t.date     "date_of_birth"
+    t.string   "eye_color_code"
+    t.string   "ssn4"
+    t.string   "registration_address_number"
+    t.string   "registration_address_street_name"
+    t.string   "registration_address_street_type"
+    t.string   "registration_unit_number"
+    t.string   "registration_city"
+    t.string   "registration_zip_code"
+    t.string   "registration_county"
+    t.boolean  "has_mailing_address"
+    t.string   "mailing_address_type"
+    t.string   "mailing_address_1"
+    t.string   "mailing_address_2"
+    t.string   "mailing_address_3"
+    t.string   "mailing_address_unit_number"
+    t.string   "mailing_city"
+    t.string   "mailing_state"
+    t.string   "mailing_country"
+    t.string   "mailing_zip_code"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "partner_opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_volunteer"
+    t.string   "phone"
+    t.boolean  "mi_submission_complete"
+    t.integer  "submission_attempts",                   default: 0
+    t.string   "mi_transaction_id"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "mi_api_voter_status_id"
+    t.string   "registration_address_post_directional"
+    t.text     "registration_address_matches"
+  end
+
+  add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"
 
   create_table "state_registrants_pa_registrants", force: :cascade do |t|
     t.string   "email",                                limit: 255
@@ -488,6 +560,7 @@ ActiveRecord::Schema.define(version: 20191101150558) do
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id"
+  add_index "state_registrants_pa_registrants", ["registrant_id"], name: "pa_registrants_registrant_id"
 
   create_table "state_registrants_va_registrants", force: :cascade do |t|
     t.boolean  "confirm_voter_record_update"
@@ -559,6 +632,8 @@ ActiveRecord::Schema.define(version: 20191101150558) do
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
   end
+
+  add_index "state_registrants_va_registrants", ["registrant_id"], name: "va_registrants_registrant_id"
 
   create_table "tracking_events", force: :cascade do |t|
     t.string   "tracking_event_name", limit: 255

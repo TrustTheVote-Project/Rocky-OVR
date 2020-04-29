@@ -52,5 +52,10 @@ class Admin::GrommetQueueController < Admin::BaseController
     GrommetRequest.delay.upload_request_results_report_csv
     redirect_to action: :show
   end
-  
+
+  private
+
+  def init_nav_class
+    @nav_class = {grommet_queue: :current}
+  end  
 end

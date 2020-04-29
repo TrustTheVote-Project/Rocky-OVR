@@ -41,6 +41,8 @@ $mobile-min-width: 300px - $tooltip-offset;
             li, li.width_f {
               h3 {
                 font-size: 13px;
+                height: auto;
+                min-height: 25px;
               }
               &.registrant-form__home-zip__button {
                 button {
@@ -50,7 +52,8 @@ $mobile-min-width: 300px - $tooltip-offset;
               }
               &.registrant-form__us-citizen__line,
               &.registrant-form__will-be-18-by-election__line,
-              &.registrant-form__change-of-name__line {
+              &.registrant-form__change-of-name__line,
+              &.registrant-form__required-checkbox {
                 width: 100%;
                 margin-top: 30px;
                 h3 {
