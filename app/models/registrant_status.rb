@@ -73,7 +73,7 @@ class RegistrantStatus < ActiveRecord::Base
   def self.run_import!(key, state_id, admin_user_id)
     directory = s3connection.directories.get(bucket_name)
     file = directory.files.get(key)
-    
+    return if !file
     csv = file.body
     
     state = GeoState.find(state_id)

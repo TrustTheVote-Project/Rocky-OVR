@@ -8,7 +8,8 @@
     %div.whitelabeled
       %ul.checkbox
         %li
-          %h3= "Custom 2-step CSS"
+          %h3
+            %strong= "Custom 2-step CSS"
           %ul.clear
             - if @partner.partner2_css_present?(:preview)
               %li
@@ -17,7 +18,7 @@
                 remove
             
             - if @partner.partner2_css_present?
-              %li= link_to "Approved Version", @partner.partner2_css_url
+              %li= link_to "Previuosly Approved Version", @partner.partner2_css_url
             - if !@partner.partner2_css_present?(:preview) && !@partner.partner2_css_present?
               %li None uploaded
         %li.width_e
@@ -26,5 +27,23 @@
           %h3
             = f.check_box :replace_system_css_preview
             = f.label :replace_system_css_preview, "Remove Rock the Vote default CSS completely. (you will need to re-write all classes in your custom 'partner.css' file)"
+          
+        %li
+          %br
+          %h3
+            %strong= "Custom Mobile CSS"
+          %ul.clear
+            - if @partner.partner2_mobile_css_present?(:preview)
+              %li
+                = link_to "Not Approved Version", @partner.partner2_mobile_css_url(:preview)
+                = check_box_tag "remove[partner2_mobile.css]"
+                remove
+            
+            - if @partner.partner2_mobile_css_present?
+              %li= link_to "Previously Approved Version", @partner.partner2_mobile_css_url
+            - if !@partner.partner2_mobile_css_present?(:preview) && !@partner.partner2_mobile_css_present?
+              %li None uploaded
+        %li.width_e
+          %div= file_field_tag 'css_files[partner2_mobile]'
 
   = partner_rollover_button 'update', 'Update'

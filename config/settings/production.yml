@@ -10,6 +10,7 @@ states_with_online_registration:
   - CA
   - DE
   - DC
+  - FL
   - LA
   - MN
   - NV
@@ -17,7 +18,6 @@ states_with_online_registration:
   - AL
   - CO
   - CT
-  - FL
   - GA
   - HI
   - IL
@@ -57,6 +57,10 @@ ovr_states:
       web_agency_key: RTV
       web_url_base: https://covr.sos.ca.gov
       disclosures_url: https://covr.cdn.sos.ca.gov/discl/
+  MI:
+    api_settings:
+      api_url: https://mvicapi.sos.state.mi.us
+    
   WA:
     languages:
       - en

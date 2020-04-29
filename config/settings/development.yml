@@ -5,7 +5,7 @@ from_address: "Rock The Vote <rocky-dev@gmail.com>"
 default_url_host: "localhost:3000"
 ui_url_host: "localhost:3000"
 
-
+minutes_before_abandoned: 1
 hours_before_first_reminder: 0.0333
 hours_between_first_and_second_reminder: 0.0333
 hours_between_second_and_final_reminder: 0.0333
@@ -37,7 +37,11 @@ ovr_states:
   MA:
     languages:
       - en
-  
+  MI:
+    api_settings:
+      api_url: https://mi-testing-endpoint.herokuapp.com #api_url: https://test-mvicapi.sos.state.mi.us      
+    languages:
+      - en
 
 states_with_online_registration:
   - AZ
@@ -62,6 +66,7 @@ states_with_online_registration:
   - KS
   - MD
   - MA
+  - MI
   - NE
   - NM
   - NY

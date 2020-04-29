@@ -35,6 +35,7 @@ states_with_online_registration:
   - KS
   - KY
   - MA
+  - MI
   - MO
   - NE
   - NM
@@ -85,6 +86,9 @@ ovr_states:
         api_url: "https://fake-va-endpoint.herokuapp.com" #https://externalapi.elections.virginia.gov/sandbox/
         api_username: "RockTheVote_Sandbox"
         api_key: <%= ENV['VA_API_KEY'] %>
+  MI:
+    api_settings:
+      api_url: https://test-mvicapi.sos.state.mi.us
 
   
       

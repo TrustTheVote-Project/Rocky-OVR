@@ -5,6 +5,10 @@
 - if @registrant.state_flow_error?
   .state-flow-error
     %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
+    = @registrant.custom_state_flow_error_message.to_s.html_safe
+
+- if @registrant.has_custom_zip_code_partial?
+  = render partial: @registrant.custom_zip_code_partial
     
 = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
   - if @registrant.use_short_form?
@@ -15,7 +19,11 @@
 
           
   - if @registrant.skip_state_flow?
-    %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.step_4_header").html_safe
+    %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.by_paper_header").html_safe
+    %p= I18n.t('txt.registration.instructions.overseas').html_safe
+    
+
+    
 
   = render partial: 'name', locals: {form: form}
 

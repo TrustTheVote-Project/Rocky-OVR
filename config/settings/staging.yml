@@ -70,6 +70,12 @@ ovr_states:
       disclosures_url: https://covr.cdn.sos.ca.gov/discl/
       web_agency_key: RTV    
       
+  MI:
+    api_settings:
+      api_url: https://mi-testing-endpoint.herokuapp.com #api_url: https://test-mvicapi.sos.state.mi.us      
+    languages:
+      - en
+      
   PA:
     api_settings:
       api_url: "https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"

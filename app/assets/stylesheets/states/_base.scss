@@ -1,0 +1,190 @@
+#form_header {
+  margin-bottom: 22px;
+  &:after {
+    clear: both;
+    display: block;
+    content: " ";
+  }
+}
+#progress-bar {
+  float: right;
+  li {
+    float: left;
+    width: 27px;
+    height: 22px;
+    margin: 0 2px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 23px;
+    
+    background-repeat: no-repeat;
+    &.progress-title {
+      padding-right: 5px;
+      font-size: 12px;
+      min-width: 50px;
+    } 
+    &.progress-done {
+      -moz-border-bottom-colors: none;
+      -moz-border-left-colors: none;
+      -moz-border-right-colors: none;
+      -moz-border-top-colors: none;
+      background-color: #94e71e;
+      background-image: none;
+      border-bottom-color: #ccc;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-image-outset: 0 0 0 0;
+      border-image-repeat: stretch stretch;
+      border-image-slice: 100% 100% 100% 100%;
+      border-image-source: none;
+      border-image-width: 1 1 1 1;
+      border-left-color: #ccc;
+      border-left-style: solid;
+      border-left-width: 1px;
+      border-right-color: #ccc;
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-top-color: #ccc;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-radius: 4px;
+    }
+    &.progress-current {
+      -moz-border-bottom-colors: none;
+      -moz-border-left-colors: none;
+      -moz-border-right-colors: none;
+      -moz-border-top-colors: none;
+      background-color: #eeeeee;
+      background-image: none;
+      border-bottom-color: #ccc;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-image-outset: 0 0 0 0;
+      border-image-repeat: stretch stretch;
+      border-image-slice: 100% 100% 100% 100%;
+      border-image-source: none;
+      border-image-width: 1 1 1 1;
+      border-left-color: #ccc;
+      border-left-style: solid;
+      border-left-width: 1px;
+      border-right-color: #ccc;
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-top-color: #ccc;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-radius: 4px;
+    }
+    &.progress-todo {
+      -moz-border-bottom-colors: none;
+      -moz-border-left-colors: none;
+      -moz-border-right-colors: none;
+      -moz-border-top-colors: none;
+      background-color: #c7c7c7;
+      background-image: none;
+      border-bottom-color: #ccc;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-image-outset: 0 0 0 0;
+      border-image-repeat: stretch stretch;
+      border-image-slice: 100% 100% 100% 100%;
+      border-image-source: none;
+      border-image-width: 1 1 1 1;
+      border-left-color: #ccc;
+      border-left-style: solid;
+      border-left-width: 1px;
+      border-right-color: #ccc;
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-top-color: #ccc;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-radius: 4px;
+    }
+  }
+}
+
+.flash {
+  width: 100%;
+  margin: 10px auto;
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-color: blue;
+    background-color: #ddf;
+  }
+}
+
+#main, body.new-mobile-ui #main  {
+  .step_4 {
+    h1 {
+      text-transform: none;
+      display: inline;
+      font-size: 18px;
+      color: black;
+      background: transparent;
+      padding: 0;
+      width: auto;
+      margin: 0;
+    }
+  }
+  
+  p.instructions {
+    margin-top: 0;
+  }
+  
+  form {
+
+    fieldset.phone {
+      margin-top: 2em;
+    }
+    
+    ul, ul.flat {
+      li.registrant-form__date-of-birth__line {
+        width: 100%  !important;
+      }
+      li.registrant-form__home-address__line {
+        width: 100%;
+      }
+      li.registrant-form__home-unit-type__line {
+        width: 50%;
+        margin-right: 5%;
+      }
+      li.registrant-form__home-unit-number__line {
+        width: 45%;
+      }
+      li.registrant-form__ssn4__line {
+        margin-top: 2em;
+        width: auto;
+        input {
+          width: auto;
+        }
+      }
+    }
+    ul.party-dropdown, ul.race-dropdown, ul.other-party {
+      width: 100%;
+      float: none;
+      li, li.registrant-form__race__line {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.declaration-text {
+  strong {
+    font-weight: bold;
+  }
+}

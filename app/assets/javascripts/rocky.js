@@ -8,8 +8,9 @@ function revealErrors() {
   $('.error').each(function() { $(this).animate({opacity: 1}); });
 };
 
-function toggleFieldSet(checkbox, set, rule, speed) {
-	if ( $(checkbox).is(':checked') ) {
+function toggleFieldSet(checkbox, set, rule, speed, hideOnCheck) {
+  var show = hideOnCheck ? !$(checkbox).is(':checked') : $(checkbox).is(':checked')
+	if (show) {
     $(rule).hide(0);
     $(set).fadeIn(speed);
   } else {
@@ -22,10 +23,11 @@ function toggleFieldSet(checkbox, set, rule, speed) {
   }
 };
 
-function checkboxTogglesSet(checkbox, set, rule) {
-  toggleFieldSet(checkbox, set, rule, 0);
+function checkboxTogglesSet(checkbox, set, rule, hideOnCheck) {
+  hideOnCheck = hideOnCheck || false;
+  toggleFieldSet(checkbox, set, rule, 0, hideOnCheck);
   $(checkbox).change(function () {
-    toggleFieldSet(checkbox, set, rule, 'fast');
+    toggleFieldSet(checkbox, set, rule, 'fast', hideOnCheck);
   });
 };
 

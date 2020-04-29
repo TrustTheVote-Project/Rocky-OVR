@@ -3,8 +3,93 @@ en:
   states:
     custom:
       ks:
-        redirect_to_online_registration: We're directing you to the VoteKS online
-          voter registration system.
+        redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
+      mi:
+        wi_zip:
+          message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?
+          register_in_wi: I want to register to vote in the state of Wisconsin
+          register_in_mi: I want to register to vote in the state of Michigan
+        registration:
+          home_address: Residential Address
+        custom_errors:
+          dln_is_expired:
+            <h2>There was a problem submitting your registration to Michigan.</h2>
+            <p>
+            According to Michigan records, your driver’s license or state ID has expired. As a result, you are not able to complete online voter registration.
+            </p><p>However, you can <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+            </p>
+          mi_api_error: 
+            <h2>There was a problem submitting your registration to Michigan.</h2>
+            <p>The Michigan voter registration system is currently unavailable. Please try again later or <a href="%{url}">click here</a> to create a paper registration form to print, sign, and mail.</p>
+          registration_cancellation_authorized: 
+            To register to vote on this website, you must also give us permission to cancel your voter registration at any other address.
+            <br><br>
+            If you are not willing to authorize cancellation of your previous registration, then you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          digital_signature_authorized: 
+            To register to vote using this website, you must give the Secretary of State permission to use the digital image of your signature stored during your previous Secretary of State transaction.
+            <br><br>
+            If you are not willing to authorize use of your digital signature, then you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          dln: A valid Michigan Driver's License or state ID is required for all-online voter registration. If you don't have one, you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          ssn4: A social security number is required for all-online voter registration. If you don't have one, you can <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+          updated_dln_recently: 
+            You said you recently updated your driver's license or state ID address. Because it takes 11 days to update address changes in our system, we're not ready to register you to vote online.
+            <br><br>
+            If you can't wait, you can <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+          requested_duplicate_dln_today: 
+            You said you applied for a duplicate driver's license or state ID today. Because these take a day to process, we can't register you to vote online until tomorrow.
+            <br><br>
+            If you can't wait, you can <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.            
+
+          po_box:
+            mailing_address_1: Enter the number only
+            mailing_address_1_length: PO Box is too long (maximum is %{count} characters).
+        state_flow_error: ''
+        by_paper_header: Complete Registration By Paper          
+        skip_online_registration: <a href="%{url}">Click here</a> to create a paper registration form to download, print, sign, and mail.
+        skip_online_registration_no_dln: If you do not have a Michigan driver's license or state ID, <a href="%{url}">click here</a> to create a paper registration form to download, print, sign, and mail.
+        step_2_header: Eligibility
+        step_3_header: Personal Information
+        step_3_notice: The personal information you use to register to vote must match the personal information on your Michigan driver’s license or state ID.
+        step_4_header: Address
+        eye_color:
+          UNK: No Eye Color
+          BLK: Black
+          BLU: Blue
+          BRO: Brown
+          GRN: Green
+          GRY: Gray
+          HAZ: Hazel
+          MAR: Maroon
+          MUL: Multicolor
+          PNK: Pink
+        mailing_address_types:
+          STANDARD: Standard
+          PO_BOX: PO Box
+          MILITARY: Military
+          INTERNATIONAL: International
+        mailing_address:
+          po_box:
+            mailing_address_1: PO Box Number
+          military:
+            mailing_address_1: Box Group Type (Unit/CMR/PSC)
+            mailing_address_2: Box Group Number
+            mailing_address_3: Box Number
+            mailing_city: APO/FPO/DPO
+            mailing_state: AA/AE/AP
+          international:
+            mailing_address_1: Address Line 1
+            mailing_address_2: Address Line 2
+            mailing_address_3: Address Line 3
+            mailing_zip_code: Postal Code
+            mailing_country: Country
+        registration_complete: Congratulations, you’re registered to vote!
+        registration_complete_success_type:
+          new: "<p>You've submitted a new voter registration.<p><p>Your local clerk will mail you a voter information card within 3 weeks.</p>"
+          existing: <p>You're already registered at this address.<p>
+          updated: <p>You've updated your voter registration to a new address:<p><p>%{address}<br/>%{city}, %{state} %{zip_code}</p><p>Your local clerk will mail you a voter information card within 3 weeks.</p>
+        registration_complete_less_than_18: <p>You will be eligible to vote as soon as you turn 18 years old.</p> 
+        registration_complete_dialog_text: ""
+        valid_street_types: "Valid Street types include: %{types}"
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.
@@ -21,6 +106,7 @@ en:
           address from public disclosure because
         step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
+        by_paper_header: Review &amp; Confirm
         voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE
           IN AN ELECTION OR MAKING A MATERIALLY FALSE STATEMENT ON THIS FORM CONSTITUTES
           THE CRIME OF ELECTION FRAUD, WHICH IS PUNISHABLE UNDER VIRGINIA LAW AS A
@@ -56,6 +142,7 @@ en:
           eligibility
         step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
+        by_paper_header: Review &amp; Confirm
         penndot_number_instructions: If you have a PA driver's license or PennDOT
           ID card number, you must use it. Your PennDOT is the 8 digit number found
           on the top right of a PA driver's license.

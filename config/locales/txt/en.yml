@@ -115,8 +115,8 @@ en:
         work: Work
         other: Other
       instructions:
-        overseas: |-
-          <b>Note</b>: Some states offer online voter registration. <a href='https://www.rockthevote.org/online/' target='_blank'>Learn more.</a><br /><br />U.S. citizen living abroad or uniformed services member? <a href='https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote' target='_blank'>Request your ballot with Overseas Vote</a>.
+        online: "<b>Note</b>: Some states offer online voter registration. <a href='https://www.rockthevote.org/online/' target='_blank'>Learn more.</a>"
+        overseas: "U.S. citizen living abroad or uniformed services member? <a href='https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote' target='_blank'>Request your ballot with Overseas Vote</a>."
         opt_in_email: We will send you timely election reminders, your polling place
           location, and information about music and issues.
         under_18: Hey, it looks like you aren't 18 yet. That's cool. In %{state_name},

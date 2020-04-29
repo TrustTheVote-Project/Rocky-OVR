@@ -128,6 +128,14 @@
         </h3>
       </li>
     </ul>
+    <ul class="checkbox">
+      <li>
+        <h3>
+          <%= f.check_box :replace_system_css_live %>
+          <%= f.label :replace_system_css_live, 'Remove Default System CSS' %>
+        </h3>
+      </li>
+    </ul>
     
     
     <%= render partial: 'admin/shared/custom_css' %>
