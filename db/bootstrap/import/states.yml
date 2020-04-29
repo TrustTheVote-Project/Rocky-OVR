@@ -496,6 +496,7 @@ record_33:
   sos_url: http://www.ncsbe.gov/
   registration_deadline: received_25_days
   id_length_min: '4'
+  online_registration_url: https://www.ncdot.gov/dmv/offices-services/online/Pages/voter-registration-application.aspx
 record_34:
   abbreviation: ND
   name: North Dakota
