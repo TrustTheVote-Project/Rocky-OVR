@@ -1063,7 +1063,7 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
-        raise e
+        #raise e
         nil
       end
     else
