@@ -1,7 +1,7 @@
 class RequestLogSession
   Parameters = Struct.new(:request_log, :registrant, :context) do
     def initialize(registrant, context={ client_id: 'unknown' })
-      instance = RequestLog.create!(context.merge(registrant_id: registrant.registrant_id))
+      instance = RequestLog.create!(context.merge(registrant_id: registrant&.registrant_id))
       super(instance, registrant)
     end
   end

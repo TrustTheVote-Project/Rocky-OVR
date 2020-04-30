@@ -60,6 +60,20 @@ pdf_expiration_days: 14
 pdf_no_email_expiration_minutes: 10
 partner_csv_expiration_minutes: 30
 
+blocks_configuration:
+  url: https://svtesting.blocks.work
+  partners:
+    26292:
+      turf_id: 416
+      canvasser_id: 128
+      location_id: 266
+      staging_location_id: 267
+    991:
+      turf_id: 417
+      canvasser_id: 129
+      location_id: 266
+      staging_location_id: 267
+      
   
 ovr_states:
   AZ:
