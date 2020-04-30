@@ -16,7 +16,7 @@
 %p
   %strong Errors
   %ul
-  - rec.error_messages&.split("\n")&.each do |msg|
+  - rec.error_messages&.strip&.split("\n")&.each do |msg|
     %li= msg
 %p
   %strong Request Duration
