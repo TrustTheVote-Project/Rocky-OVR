@@ -337,6 +337,14 @@ class Registrant < ActiveRecord::Base
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
+  #has_one :registrant_shift
+  # TODO make this create relation
+  #These IDs are often externally created, but we can't garauntee the shift object with a matching UID has been created first
+  def shift_id=(val) 
+    #RegistrantShift.create_or_initialize(shift_uid: val, registrant_uid: self.uid)
+    #self.shift_uid = val
+  end
+
   def self.state_attr_accessor(*args)
     [args].flatten.each do |arg|
       define_method(arg) do

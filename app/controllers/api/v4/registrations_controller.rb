@@ -25,7 +25,9 @@
 require "#{Rails.root}/app/services/v4"
 class Api::V4::RegistrationsController < Api::V4::BaseController
 
-
+  def hello
+    jsonp({hello: "hello"}, status: 200)
+  end
 
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
@@ -62,6 +64,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     data.delete(:format)
     data.delete(:controller)
     data.delete(:action)
+    data.delete(:registration)
     V4::RegistrationService.track_clock_in_event(data)
     jsonp({}, status: 200)
   rescue V4::RegistrationService::ValidationError => e
@@ -74,6 +77,8 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     data.delete(:format)
     data.delete(:controller)
     data.delete(:action)
+    data.delete(:registration)
+    
     V4::RegistrationService.track_clock_out_event(data)
     jsonp({}, status: 200)
   rescue V4::RegistrationService::ValidationError => e
