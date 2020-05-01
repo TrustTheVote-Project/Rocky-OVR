@@ -103,7 +103,7 @@ class Step2Controller < RegistrationStep
       @question_1 = @registrant.question_1
       @question_2 = @registrant.question_2
     end
-  rescue
+    #rescue
     # Allow this to fail from step 1?
   end
 end

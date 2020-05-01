@@ -100,7 +100,7 @@
           = field_li(form, :mailing_address_2, {skip_tooltip: true, required: false, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_2'),field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
           = field_li(form, :mailing_address_3, {skip_tooltip: true, required: false, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_3'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
         %ul.stacked
-          = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: true, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_zip_code'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-zip-code__line"} })   
+          = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: false, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_zip_code'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-zip-code__line"} })   
           = field_li(form, :mailing_country, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-country__line"} })
   
   
@@ -118,10 +118,9 @@
         %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h(@registrant.partner.organization), short_code: @registrant.partner.short_code, terms_url: @registrant.partner.terms_url, privacy_url: @registrant.partner.privacy_url).html_safe
       
   
-    - if @registrant.email.blank?
-      %fieldset
-        %ul.stacked
-          = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
+    %fieldset
+      %ul.stacked
+        = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
   
     %fieldset.no_border
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}

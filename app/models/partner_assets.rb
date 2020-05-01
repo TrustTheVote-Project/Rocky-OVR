@@ -57,7 +57,7 @@ module PartnerAssets
   end
 
   def any_css_present?
-    application_css_present? || registration_css_present? || partner_css_present? || partner2_css_present?
+    application_css_present? || registration_css_present? || partner_css_present? || partner2_css_present? || partner2_mobile_css_present?
   end
 
   def application_css_present?

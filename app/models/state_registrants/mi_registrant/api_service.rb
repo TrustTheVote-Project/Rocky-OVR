@@ -126,6 +126,8 @@ module StateRegistrants::MIRegistrant::ApiService
   
   def check_address
     RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client', censor: MICensor) do
+      self.submission_attempts += 1    
+      self.save(validate: false)
       response = MiClient.street_match(sender_name: "RockTheVote", address_line_1: self.registration_address_line_1, city: self.registration_city, zip_code: self.registration_zip_code)
       if response["HasMatch"] && response["MatchingStreets"] && response["MatchingStreets"].length > 0
         if response["MatchingStreets"].length > 1
@@ -137,10 +139,19 @@ module StateRegistrants::MIRegistrant::ApiService
           # Set address from single match
         end
       else
+        # no matches for a 4.0 request - unrealistic case 
+        self.mi_api_voter_status_id = '-1'
+        self.save(validate: false)
         handle_api_error
       end
     end
   rescue
+    if self.submission_attempts < 4
+      self.delay(run_at: 5.seconds.from_now).check_address
+    else
+      self.mi_api_voter_status_id = "-1"
+      self.save(validate: false)
+    end
     handle_api_error
   end
   
@@ -464,15 +475,25 @@ module StateRegistrants::MIRegistrant::ApiService
       return {
         "MailingAddress"=> {
           "USPSPostalDeliveryRoute_type" => {
-            "USPSRoute"=> {
-              "USPSBoxGroupType" => "#{self.mailing_military_group_type}", # User selected UNIT, CMR, or PSC
-              "USPSBoxGroupId:" => "#{self.mailing_military_group_number}", # User provided numeric string
+            "USPSAddress" => {
+              "USPSRoute"=> {
+                "USPSBoxGroupType" => "#{self.mailing_military_group_type}", # User selected UNIT, CMR, or PSC
+                "USPSBoxGroupId" => "#{self.mailing_military_group_number}", # User provided numeric string
+              },
+              "USPSBox"=> {
+                "USPSBoxType"=> "BOX",
+                "USPSBoxId" => "#{self.mailing_military_box_number}"
+              } 
             },
-            "USPSBox"=> {
-              "USPSBoxType"=> "BOX",
-              "USPSBoxId" => "#{self.mailing_military_box_number}"
+            "CompletePlaceName"=> {
+              "PlaceName"=> [
+                {
+                  "PlaceNameType"=> "MunicipalJurisdiction", #1,
+                  "PlaceNameTypeSpecified"=> true,
+                  "Value"=> "#{self.mailing_city}"
+                }
+              ]
             },
-            "CompletePlaceName"=> "#{self.mailing_city}",
             "StateName"=> "#{self.mailing_state}",
             "ZipCode"=> "#{self.mailing_zip_code}",
             "CountryName"=> "USA"
@@ -483,7 +504,8 @@ module StateRegistrants::MIRegistrant::ApiService
       return {
         "MailingAddress"=> {
           "GeneralAddressClass_type" => {
-            "DeliveryAddress"=> "#{self.mailing_international_address}",
+            "DeliveryAddress"=> "#{self.mailing_address_1}",
+            "StateName"=> "#{self.mailing_international_address2}",
             "ZipCode"=> "#{self.mailing_zip_code}",
             "CountryName"=> "#{self.mailing_country}"
           }

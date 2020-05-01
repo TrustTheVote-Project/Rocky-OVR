@@ -10,6 +10,7 @@ states_with_online_registration:
   - CA
   - DE
   - DC
+  - FL
   - LA
   - MN
   - NV
@@ -17,7 +18,6 @@ states_with_online_registration:
   - AL
   - CO
   - CT
-  - FL
   - GA
   - HI
   - IL

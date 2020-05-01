@@ -198,5 +198,8 @@ class StateRegistrants::Base < ActiveRecord::Base
   def update_original_registrant
     raise NotImplementedError
   end
-  
+
+  def send_chase_email?
+    true
+  end
 end

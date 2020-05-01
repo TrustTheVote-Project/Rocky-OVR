@@ -44,8 +44,9 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     status == step_list.last && valid? #&& confirm_affirm_privacy_notice? && confirm_voter_fraud_warning?
   end
   
-  
-
+  def mi_pending?
+    response_outcome == ApiService::RESPONSE_ADDRESS_AMBIGUOUS && !mi_submission_complete
+  end
   
   def mailing_same_as_residential_address
     !has_mailing_address
@@ -144,5 +145,8 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
     # end
     r.save(validate: false)
   end    
-  
+
+  def send_chase_email?
+    mi_api_voter_status_id.nil?
+  end
 end
