@@ -31,15 +31,30 @@ class MiClient
     send(:get, 'api/OnlineVoter/GetOnlineVoterStreetMatch', body: body, headers: headers)
   end
 
+  def self.cert_key
+    OpenSSL::PKey::RSA.new(ENV['MI_CERT_KEY'])
+  end
+  
+  def self.cert
+    OpenSSL::X509::Certificate.new(ENV['MI_CERT'])
+  end
+  
+  def self.ca_cert
+    OpenSSL::X509::Certificate.new(ENV['MI_CERT_CA'])
+  end
+  
+
   def self.send(method, path, body: {}, params: {}, headers: {})
     uri = URI.join(RockyConf.ovr_states.MI.api_settings.api_url, path)
     uri.query = params.to_query if params.any?
-    RequestLogSession.request_log_instance.log_uri(uri)
+    RequestLogSession.request_log_instance.log_uri(uri) if RequestLogSession.request_log_instance
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = uri.scheme == 'https'
     # FIXME use proper CA file
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.cert = self.cert
+    http.key = self.cert_key
     http.read_timeout = 125
 
     klass = case method
