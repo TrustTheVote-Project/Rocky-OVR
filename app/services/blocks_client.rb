@@ -19,6 +19,19 @@ class BlocksClient
     
     send(:post, path, body: body, headers: headers)    
   end
+  
+  def self.add_metadata_to_form(form_id, meta_data={}, token:)
+    #591
+    path = "forms/#{form_id}/add_metadata"
+    headers = {'Content-Type' => 'application/json'}
+    body = {
+      content: {
+        firstName: "test-value"
+      },
+      jwt: token
+    }
+    send(:put, path, body: body, headers: headers)    
+  end
 
   def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected:, token:)
     path = "shifts"
@@ -38,7 +51,7 @@ class BlocksClient
     send(:post, path, body: body, headers: headers)
   end
   
-  def self.upload_registrations(shift_id, registrations, shift_status: "voter_registration", token:)
+  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_delivery", token:)
     path = "shifts/#{shift_id}/digital_batch"
     headers = {'Content-Type' => 'application/json'}
     
@@ -49,7 +62,7 @@ class BlocksClient
       },
       jwt: token
     }
-    send(:post, path, body: body, headers: header) 
+    send(:post, path, body: body, headers: headers) 
   end
   
   BASE_PATH = "/api/v1/external/"
@@ -70,6 +83,8 @@ class BlocksClient
       Net::HTTP::Get
     when :post
       Net::HTTP::Post
+    when :put
+      Net::HTTP::Put
     else
       raise ArgumentError
     end

@@ -61,6 +61,7 @@ pdf_no_email_expiration_minutes: 10
 partner_csv_expiration_minutes: 30
 
 blocks_configuration:
+  shift_length: 24
   url: https://svtesting.blocks.work
   partners:
     26292:

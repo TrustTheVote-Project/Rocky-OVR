@@ -12,6 +12,7 @@ hours_between_second_and_final_reminder: 0.0333
 pdf_expiration_days: .25
 
 blocks_configuration:
+  shift_length: 1
   url: https://svtesting.blocks.work
   partners:
     1:

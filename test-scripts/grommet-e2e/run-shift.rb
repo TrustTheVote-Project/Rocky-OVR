@@ -22,7 +22,7 @@ run(CLOCK_IN, base_args)
 
 
 NUM_REGISTRATIONS.times do
-  first_name = ""# "ERROR" # Set virst name to error code or ERROR or EMPTY or FORMAT or TIMEOUT see https://fake-pa-endpoint.herokuapp.com/
+  first_name = "ERROR"# "ERROR" # Set virst name to error code or ERROR or EMPTY or FORMAT or TIMEOUT see https://fake-pa-endpoint.herokuapp.com/
   run(REGISTER, [base_args, first_name].flatten)
 end
 
