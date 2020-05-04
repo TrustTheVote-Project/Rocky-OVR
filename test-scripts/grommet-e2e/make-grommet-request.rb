@@ -4,7 +4,7 @@ require 'rest-client'
 #curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"
 URL = "http://localhost:3000/api/v4/voterregistrationrequest"
 
-def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1)
+def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, address: "5501 Walnut St." )
    json =<<EOJ
   {
     "rocky_request": {
@@ -76,7 +76,7 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
               }
             ]
           },
-          "date_of_birth": "2016-06-16",
+          "date_of_birth": "1990-06-16",
           "mailing_address": {
             "numbered_thoroughfare_address": {
               "complete_address_number": "",
@@ -128,7 +128,7 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
           "registration_address": {
             "numbered_thoroughfare_address": {
               "complete_address_number": "",
-              "complete_street_name": "5501 Walnut St.",
+              "complete_street_name": "#{address}",
               "complete_sub_address":
                 {
                   "sub_address_type": "APT",
@@ -235,11 +235,11 @@ EOJ
   return JSON.parse(json)
 end
 
-def submit_registration(session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, first_name: "Test")
-  grommet_request_json = grommet_json(session_id: session_id, partner_tracking_id: partner_tracking_id, partner_id: partner_id, first_name: first_name)
+def submit_registration(session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, first_name: "Test", address: "5501 Walnut St.")
+  grommet_request_json = grommet_json(session_id: session_id, partner_tracking_id: partner_tracking_id, partner_id: partner_id, first_name: first_name, address: address)
   resp = RestClient.post(URL, grommet_request_json.to_json, {content_type: :json, accept: :json})
   return resp
 end
 
-options = {session_id: ARGV[0], partner_tracking_id: ARGV[1], partner_id: ARGV[2], first_name: ARGV[3]}.compact
+options = {session_id: ARGV[0], partner_tracking_id: ARGV[1], partner_id: ARGV[2], first_name: ARGV[3], address: ARGV[4]}.compact
 puts submit_registration(options)
