@@ -1,8 +1,9 @@
 require 'rest-client'
 require 'json'
+require_relative './domain.rb'
 
 #curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"
-URL = "http://localhost:3000/api/v4/clockOut"
+URL = "#{BASE_DOMAIN}/api/v4/clockOut"
 
 def clock_out_json(session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, abandoned_registrations: 0, completed_registrations: 0)
   json =<<EOJ

@@ -4,13 +4,16 @@
 require 'json'
 require 'rest-client'
 
+require_relative './domain.rb'
+
 #curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"
-URL = "http://localhost:3000/api/v4/registrations.json"
+URL = "#{BASE_DOMAIN}/api/v4/registrations.json"
 
 def api_json(first_name: "Test", partner_id: 1, address: "5501 Walnut St." )
    json =<<EOJ
-  {"registration": {
-    "lang": "en",
+  {
+    "registration": {
+      "lang": "en",
       "date_of_birth": "1979-06-16",      
       "email_address": "alex.mekelburg@osetfoundation.org",
       "first_name": "#{first_name}",
@@ -20,7 +23,7 @@ def api_json(first_name: "Test", partner_id: 1, address: "5501 Walnut St." )
       "home_zip_code": "19001",
       "last_name": "User",
       "name_title": "Mr.",
-      "partner_id": "1",
+      "partner_id": "#{partner_id}",
       "party": "Democratic",
       "race": "Other",
       "id_number": "1234",
@@ -44,5 +47,5 @@ def submit_registration(partner_id: 1, first_name: "Test", address: "5501 Walnut
   end
 end
 
-options = {partner_id: ARGV[2], first_name: ARGV[3], address: ARGV[4]}.compact
+options = {partner_id: ARGV[0], first_name: ARGV[1], address: ARGV[2]}.compact
 puts submit_registration(options)

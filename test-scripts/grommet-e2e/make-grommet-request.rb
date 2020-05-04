@@ -1,8 +1,9 @@
 require 'json'
 require 'rest-client'
+require_relative './domain.rb'
 
 #curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"
-URL = "http://localhost:3000/api/v4/voterregistrationrequest"
+URL = "#{BASE_DOMAIN}/api/v4/voterregistrationrequest"
 
 def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, address: "5501 Walnut St." )
    json =<<EOJ
@@ -237,8 +238,12 @@ end
 
 def submit_registration(session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, first_name: "Test", address: "5501 Walnut St.")
   grommet_request_json = grommet_json(session_id: session_id, partner_tracking_id: partner_tracking_id, partner_id: partner_id, first_name: first_name, address: address)
-  resp = RestClient.post(URL, grommet_request_json.to_json, {content_type: :json, accept: :json})
-  return resp
+  begin
+    resp = RestClient.post(URL, grommet_request_json.to_json, {content_type: :json, accept: :json})
+    return resp
+  rescue Exception => e
+    return e.message, e.http_body
+  end  
 end
 
 options = {session_id: ARGV[0], partner_tracking_id: ARGV[1], partner_id: ARGV[2], first_name: ARGV[3], address: ARGV[4]}.compact
