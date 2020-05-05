@@ -114,6 +114,16 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
       #raise e
     end
     
+    # Also create a CanvassingShiftGrommet request
+    begin
+      shift_id = params[:rocky_request][:shift_id]
+      if gr_id && !shift_id.blank?
+        CanvassingShiftGrommetRequest.create(shift_external_id: shift_id, grommet_request_id: gr_id)
+      end
+    rescue Exception=>e
+      # alert?
+    end
+    
     # input request structure validation
     [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
       value = params

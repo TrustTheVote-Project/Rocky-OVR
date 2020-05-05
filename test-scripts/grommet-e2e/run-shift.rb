@@ -1,4 +1,5 @@
 NUM_REGISTRATIONS = 5
+NUM_API_REGISTRATIONS = 0
 
 path = File.expand_path(__FILE__).split("/")
 path.pop
@@ -22,11 +23,11 @@ base_args = [session_id, partner_tracking_id, partner_id]
 run(CLOCK_IN, base_args)
 
 error_cases = [
-  [:first_name, "VR_WAPI_Invalidsignaturecontrast"], # Grommet removes and resubmites
+  [:first_name, "VR_WAPI_Invalidsignaturecontrast"], # Grommet removes and resubmits - but our tests always fail bc name isn't changed
   [:first_name, "VR_WAPI_InvalidOVRPreviousCounty"], # Gives up
   [:address, "wrong@field.com"] # Rocky errors and never submits to PA
 ]
-error_idx = 0
+error_idx = 2 # make sure we start with a non-registrant
 
 
 NUM_REGISTRATIONS.times do |i|
@@ -48,7 +49,7 @@ NUM_REGISTRATIONS.times do |i|
   sleep(1)
 end
 
-NUM_REGISTRATIONS.times do |i|
+NUM_API_REGISTRATIONS.times do |i|
   first_name = "Test-#{i}"
   run(API_REGISTER, [partner_id, first_name].flatten)
   sleep(1)

@@ -99,17 +99,17 @@ module V4
     def self.track_clock_in_event(data)
       # Expect data to have certain elements
       data = ActiveSupport::HashWithIndifferentAccess.new(data)
-      # error_message = validate_data_attributes(data, %w(source_tracking_id partner_tracking_id open_tracking_id canvasser_name clock_in_datetime session_timeout_length))
+      
+      # error_message = validate_data_attributes(data, %w(shift_id canvasser_name partner_id clock_in_datetime))
       # if data.has_key?("geo_location") && !data["geo_location"].is_a?(Hash)
-      #     error_message += " Geo location must be a hash".
-      #   end
+      #   error_message += " Geo location must be a hash".
       # end
-      #
       # if !error_message.blank?
-      #   raise ValidationError.new("attributes", error_message)
+      #   #raise ValidationError.new("attributes", error_message)
       # end
       
-      TrackingEvent.create_from_data(data.merge(tracking_event_name: "pa_canvassing_clock_in"))
+      shift = CanvassingShift.find_or_create_by(shift_external_id: data[:shift_id])
+      shift.set_attributes_from_data!(data)
     end
 
     def self.track_clock_out_event(data)
@@ -125,8 +125,9 @@ module V4
       #   raise ValidationError.new("attributes", error_message)
       # end
       
-      
-      TrackingEvent.create_from_data(data.merge(tracking_event_name: "pa_canvassing_clock_out"))
+      # Allow either clock-in or clock-out to happen first
+      shift = CanvassingShift.find_or_create_by(shift_external_id: data[:shift_id])
+      shift.set_attributes_from_data!(data)
     end
     
     def self.create_pa_registrant(orig_data)

@@ -1,7 +1,6 @@
 class CreateCanvassingShifts < ActiveRecord::Migration
   def change
     create_table :canvassing_shifts do |t|
-      t.integer :canvasser_id
       t.integer :partner_id
       t.string :shift_location
       t.text :geo_location
@@ -19,13 +18,17 @@ class CreateCanvassingShifts < ActiveRecord::Migration
       t.integer :abandoned_registrations
       t.integer :completed_registrations
       
+      t.string :canvasser_name
+      t.string :canvasser_phone
+      
       t.timestamps null: false
     end
-    add_index :canvassing_shifts, :canvasser_id
     add_index :canvassing_shifts, :partner_id
+    add_index :canvassing_shifts, :shift_location
     add_index :canvassing_shifts, :shift_external_id
     add_index :canvassing_shifts, :source_tracking_id
     add_index :canvassing_shifts, :partner_tracking_id
+    add_index :canvassing_shifts, [:partner_id, :canvasser_name], name: :canvasser_index
     
   end
 end
