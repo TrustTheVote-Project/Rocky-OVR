@@ -5,6 +5,21 @@ default_url_host: "register.rockthevote.com"
 ui_url_host: "register.rockthevote.com"
 
 
+blocks_configuration:
+  shift_length: 24
+  url: https://svtesting.blocks.work
+  partners:
+    26292:
+      turf_id: 416
+      canvasser_id: 128
+      location_id: 266
+      staging_location_id: 267
+    991:
+      turf_id: 417
+      canvasser_id: 129
+      location_id: 266
+      staging_location_id: 267
+
 states_with_online_registration:
   - AZ
   - CA

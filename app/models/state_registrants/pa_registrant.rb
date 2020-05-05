@@ -408,6 +408,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         RequestLogSession.request_log_instance.log_error(e)
         RequestLogSession.request_log_instance.log_error("Registrant Switched to paper.")
         self.pa_transaction_id = nil
+        self.pa_submission_complete = true #need to mark as submitted in case we didn't get to that step before raising error
         self.registrant.skip_state_flow!
         begin
           AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver
