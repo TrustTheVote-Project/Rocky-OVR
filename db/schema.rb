@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200327163329) do
+ActiveRecord::Schema.define(version: 20200505143617) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -46,6 +46,50 @@ ActiveRecord::Schema.define(version: 20200327163329) do
 
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
   add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
+
+  create_table "canvassers", force: :cascade do |t|
+    t.string   "canvasser_external_id"
+    t.string   "name"
+    t.string   "phone"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "canvassers", ["canvasser_external_id"], name: "index_canvassers_on_canvasser_external_id"
+
+  create_table "canvassing_shift_registrations", force: :cascade do |t|
+    t.string   "registrant_id"
+    t.string   "shift_external_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "canvassing_shift_registrations", ["registrant_id"], name: "index_canvassing_shift_registrations_on_registrant_id"
+  add_index "canvassing_shift_registrations", ["shift_external_id"], name: "index_canvassing_shift_registrations_on_shift_external_id"
+
+  create_table "canvassing_shifts", force: :cascade do |t|
+    t.integer  "canvasser_id"
+    t.integer  "partner_id"
+    t.string   "shift_location"
+    t.text     "geo_location"
+    t.string   "shift_external_id"
+    t.string   "source_tracking_id"
+    t.string   "partner_tracking_id"
+    t.string   "open_tracking_id"
+    t.string   "device_id"
+    t.datetime "clock_in_datetime"
+    t.datetime "clock_out_datetime"
+    t.integer  "abandoned_registrations"
+    t.integer  "completed_registrations"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "canvassing_shifts", ["canvasser_id"], name: "index_canvassing_shifts_on_canvasser_id"
+  add_index "canvassing_shifts", ["partner_id"], name: "index_canvassing_shifts_on_partner_id"
+  add_index "canvassing_shifts", ["partner_tracking_id"], name: "index_canvassing_shifts_on_partner_tracking_id"
+  add_index "canvassing_shifts", ["shift_external_id"], name: "index_canvassing_shifts_on_shift_external_id"
+  add_index "canvassing_shifts", ["source_tracking_id"], name: "index_canvassing_shifts_on_source_tracking_id"
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",                    default: 0
