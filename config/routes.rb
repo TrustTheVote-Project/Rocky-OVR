@@ -204,6 +204,7 @@ Rocky::Application.routes.draw do
     resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]
     resources :request_logs, only: [:index, :show]
+    resources :blocks_submissions, only: [:index]
     
     resources :partners do
       member do
