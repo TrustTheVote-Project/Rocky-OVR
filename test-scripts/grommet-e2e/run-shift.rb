@@ -16,7 +16,7 @@ end
 
 session_id = "'My Session::#{Time.now.to_i}'"
 partner_tracking_id = "'customid'"
-partner_id = 2
+partner_id = 1
 
 base_args = [session_id, partner_tracking_id, partner_id]
 
@@ -27,7 +27,7 @@ error_cases = [
   [:first_name, "VR_WAPI_InvalidOVRPreviousCounty"], # Gives up
   [:address, "wrong@field.com"] # Rocky errors and never submits to PA
 ]
-error_idx = 2 # make sure we start with a non-registrant
+error_idx = 0 # make sure we start with a non-registrant
 
 
 NUM_REGISTRATIONS.times do |i|
