@@ -15,7 +15,7 @@ ui_timeout_minutes: 5
 
 
 blocks_configuration:
-  shift_length: 24
+  shift_length: 1
   url: https://svtesting.blocks.work
   partners:
     26292:
