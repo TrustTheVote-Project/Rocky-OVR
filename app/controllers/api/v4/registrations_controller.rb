@@ -172,9 +172,9 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
   def pa_success_result
     data = {
         registration_success: true,
-        errors: []
+        #errors: []
     }
-    jsonp(data)
+    jsonp(data, :status => 200)
   end
 
   def pa_error_result(errors, registrant=nil)
@@ -182,15 +182,16 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
       errors = [errors]
     end
     data = {
-        registration_success: false,
-        transaction_id: nil,
-        errors: errors
+        registration_success: true
+        #registration_success: false
+        #transaction_id: nil,
+        #errors: errors
     }
 
     Rails.logger.warn("Grommet Registration Error for params:\n#{params}\n\nErrors:\n#{errors}")
     AdminMailer.grommet_registration_error(errors, registrant).deliver
 
-    jsonp(data, :status => 400)
+    jsonp(data, :status => 200)
   end
 
   def pdf_ready
