@@ -36,7 +36,7 @@ class BlocksService
     end
   end
   
-  def upload_complete_shift_for_partner(partner, registrants, start_time, end_time, shift_type: "voter_registration")
+  def upload_complete_shift_for_partner(partner, registrants, start_time, end_time, shift_type: "digital_voter_registration")
     config = RockyConf.blocks_configuration.partners[partner.id]
     soft_count_cards_total_collected = registrants.count
     if config
