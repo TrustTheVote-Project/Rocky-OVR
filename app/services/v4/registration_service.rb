@@ -152,93 +152,109 @@ module V4
     end
     
     def self.async_register_with_pa(registrant_id)
-      registrant = Registrant.find(registrant_id)
-      if registrant.nil?
-        AdminMailer.pa_no_registrant_error(registrant_id).deliver
-        return
+      registrant = Registrant.find_by_id(registrant_id)
+      RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'PARegistrationRequest::Grommet', censor: PACensor) do
+        begin
+          if registrant.nil?
+            AdminMailer.pa_no_registrant_error(registrant_id).deliver
+            return
+          end
+          register_with_pa(registrant)
+        rescue StandardError => e
+          return if registrant.nil?
+          RequestLogSession.request_log_instance.log_error(e)
+          Rails.logger.error("Unhandled error submitting registrant #{registrant_id} to PA")
+          Rails.logger.error(e.message)
+          Rails.logger.error("Backtrace\n" + e.backtrace.join("\n"))
+          registrant.save(validate: false)
+          RequestLogSession.request_log_instance.log_error("Raise exception to retry later.")
+          raise e # For delayed-job, will enque the run again            
+        end
       end
-      register_with_pa(registrant)
-    rescue StandardError => e
-      return if registrant.nil?
-      registrant.state_ovr_data["errors"] ||= []
-      registrant.state_ovr_data["errors"] << e.message
-      registrant.state_ovr_data["errors"] << "Backtrace\n" + e.backtrace.join("\n")
-      Rails.logger.error("Unhandled error submitting registrant #{registrant_id} to PA")
-      Rails.logger.error(e.message)
-      Rails.logger.error("Backtrace\n" + e.backtrace.join("\n"))
-      registrant.save(validate: false)
-      raise e # For delayed-job, will enque the run again            
     end
 
     PA_RETRY_ERRORS = %w(VR_WAPI_PennDOTServiceDown VR_WAPI_ServiceError VR_WAPI_SystemError)
     def self.register_with_pa(registrant)
-      pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
-      pa_data, validation_modifications = pa_adapter.convert
-      result = PARegistrationRequest.send_request(pa_data, registrant.partner ? registrant.partner.pa_api_key : nil, registrant.locale)
-      registrant.state_ovr_data["state_api_validation_modifications"] = validation_modifications
-      registrant.save(validate: false)
-      if result[:error].present?
-        registrant.state_ovr_data["errors"] ||= []
-        registrant.state_ovr_data["errors"] << result[:error].to_s
+        pa_adapter = VRToPA.new(registrant.state_ovr_data["voter_records_request"])
+        pa_data, validation_modifications = pa_adapter.convert
+        result = PARegistrationRequest.send_request(pa_data, registrant.partner ? registrant.partner.pa_api_key : nil, registrant.locale)
+        registrant.state_ovr_data["state_api_validation_modifications"] = validation_modifications
         registrant.save(validate: false)
-        raise result[:error].to_s if PA_RETRY_ERRORS.include?(result[:error].to_s)
-        
-        if result[:error].to_s == "VR_WAPI_Invalidsignaturecontrast"
-          # resubmit
-          registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
-          registrant.state_ovr_data["state_api_validation_modifications"] ||= []
-          registrant.state_ovr_data["state_api_validation_modifications"] << "Removed signature due to PA error #{result[:error].to_s}"
-          registrant.save(validate: false)
-          raise "registrant has bad sig, removing and resubmitting"
-        end
-        
-        if result[:error].to_s == "VR_WAPI_InvalidOVRzipcode"
-          registration_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"]
-          mailing_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"]
-          previous_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"]
-          
-          fixed_zip = false
-          registrant.state_ovr_data["state_api_validation_modifications"] ||= []
-          if registration_zip && registration_zip =~/\d{5}-\d{4}/
-            fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"] = registration_zip.gsub(/-\d{4}$/,'')
-            registrant.state_ovr_data["state_api_validation_modifications"] << "Changed registration zipcode #{registration_zip} to #{fz}"
-            fixed_zip = true            
-          end
-          if mailing_zip && mailing_zip =~/\d{5}-\d{4}/
-            fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"] = mailing_zip.gsub(/-\d{4}$/,'')
-            registrant.state_ovr_data["state_api_validation_modifications"] << "Changed mailing zipcode #{mailing_zip} to #{fz}"
-            fixed_zip = true
-          end
-          if previous_zip && previous_zip =~/\d{5}-\d{4}/
-            fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"] = previous_zip.gsub(/-\d{4}$/,'')
-            registrant.state_ovr_data["state_api_validation_modifications"] << "Changed previous zipcode #{previous_zip} to #{fz}"
-            fixed_zip = true
-          end
-          # resubmit
-          if fixed_zip
-            registrant.save(validate: false)
-            raise "registrant has invalid zip+4, changing to 5-digit zip code and resubmitting"
-          end
-        end
-        
-        
-        
-        Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
-        AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
-      elsif result[:id].blank? || result[:id]==0
+        if result[:error].present?
           registrant.state_ovr_data["errors"] ||= []
-          registrant.state_ovr_data["errors"] << ["PA returned response with no errors and no transaction ID"]
+          registrant.state_ovr_data["errors"] << result[:error].to_s
+          RequestLogSession.request_log_instance.log_error(result[:error].to_s)
           registrant.save(validate: false)
+          if PA_RETRY_ERRORS.include?(result[:error].to_s)
+            RequestLogSession.request_log_instance.log_error("Raising error to retry job.")
+            raise result[:error].to_s #initiates a retry of the delayed job
+          end
+            
+          if result[:error].to_s == "VR_WAPI_Invalidsignaturecontrast"
+            # resubmit
+            RequestLogSession.request_log_instance.log_error("Removing signature and retring job.")
+            registrant.state_ovr_data["voter_records_request"]["voter_registration"]["signature"]=nil
+            registrant.state_ovr_data["state_api_validation_modifications"] ||= []
+            registrant.state_ovr_data["state_api_validation_modifications"] << "Removed signature due to PA error #{result[:error].to_s}"
+            registrant.save(validate: false)
+            raise "registrant has bad sig, removing and resubmitting"
+          end
+        
+          if result[:error].to_s == "VR_WAPI_InvalidOVRzipcode"
+            registration_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"]
+            mailing_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"]
+            previous_zip = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"] && registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"]
+          
+            fixed_zip = false
+            registrant.state_ovr_data["state_api_validation_modifications"] ||= []
+            if registration_zip && registration_zip =~/\d{5}-\d{4}/
+              fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["registration_address"]["numbered_thoroughfare_address"]["zip_code"] = registration_zip.gsub(/-\d{4}$/,'')
+              registrant.state_ovr_data["state_api_validation_modifications"] << "Changed registration zipcode #{registration_zip} to #{fz}"
+              RequestLogSession.request_log_instance.log_error(registrant.state_ovr_data["state_api_validation_modifications"].last)
+            
+              fixed_zip = true            
+            end
+            if mailing_zip && mailing_zip =~/\d{5}-\d{4}/
+              fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["mailing_address"]["numbered_thoroughfare_address"]["zip_code"] = mailing_zip.gsub(/-\d{4}$/,'')
+              registrant.state_ovr_data["state_api_validation_modifications"] << "Changed mailing zipcode #{mailing_zip} to #{fz}"
+              RequestLogSession.request_log_instance.log_error(registrant.state_ovr_data["state_api_validation_modifications"].last)
+              fixed_zip = true
+            end
+            if previous_zip && previous_zip =~/\d{5}-\d{4}/
+              fz = registrant.state_ovr_data["voter_records_request"]["voter_registration"]["previous_registration_address"]["numbered_thoroughfare_address"]["zip_code"] = previous_zip.gsub(/-\d{4}$/,'')
+              registrant.state_ovr_data["state_api_validation_modifications"] << "Changed previous zipcode #{previous_zip} to #{fz}"
+              RequestLogSession.request_log_instance.log_error(registrant.state_ovr_data["state_api_validation_modifications"].last)
+              fixed_zip = true
+            end
+            # resubmit
+            if fixed_zip
+              registrant.save(validate: false)
+              RequestLogSession.request_log_instance.log_error("registrant has invalid zip+4, changing to 5-digit zip code and resubmitting")              
+              raise "registrant has invalid zip+4, changing to 5-digit zip code and resubmitting"
+            else
+              RequestLogSession.request_log_instance.log_error("registrant has invalid zip but could not fix it.")                            
+            end
+          end
+        
+        
+        
           Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
           AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
-      else
-        registrant.state_ovr_data['pa_transaction_id'] = result[:id]
-        if registrant.state_ovr_data["state_api_validation_modifications"] && registrant.state_ovr_data["state_api_validation_modifications"].any?
-          AdminMailer.pa_registration_warning(registrant, registrant.state_ovr_data["state_api_validation_modifications"]).deliver
+        elsif result[:id].blank? || result[:id]==0
+            registrant.state_ovr_data["errors"] ||= []
+            registrant.state_ovr_data["errors"] << ["PA returned response with no errors and no transaction ID"]
+            RequestLogSession.request_log_instance.log_error("PA returned response with no errors and no transaction ID")                          
+            registrant.save(validate: false)
+            Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
+            AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
+        else
+          registrant.state_ovr_data['pa_transaction_id'] = result[:id]
+          if registrant.state_ovr_data["state_api_validation_modifications"] && registrant.state_ovr_data["state_api_validation_modifications"].any?
+            AdminMailer.pa_registration_warning(registrant, registrant.state_ovr_data["state_api_validation_modifications"]).deliver
+          end
+          registrant.complete_registration_with_state!
+          registrant.save(validate: false)
         end
-        registrant.complete_registration_with_state!
-        registrant.save(validate: false)
-      end
     end
     
     # def self.bulk_create(data_list, partner_id, partner_api_key)

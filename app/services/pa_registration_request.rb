@@ -2,6 +2,10 @@ class PARegistrationRequest
 
   require 'net/http'
 
+  class NetworkingError < StandardError; end
+  class InvalidResponseError < NetworkingError; end
+
+
   PREFIX = '<APIOnlineApplicationData xmlns="OVRexternaldata"><record>'
   POSTFIX = '</record></APIOnlineApplicationData>'
 
@@ -15,6 +19,8 @@ class PARegistrationRequest
     url = "/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=#{api_key}&sysparm_action=SETAPPLICATION&sysparm_Language=#{sysparm_language}"
 
     uri = URI.parse(server)
+    RequestLogSession.request_log_instance.log_uri(uri)
+
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -24,9 +30,14 @@ class PARegistrationRequest
     request.add_field('Cache-Control', 'no-cache')
 
     request.body = prepare_request(params)
+    
     Rails.logger.debug 'PA:REQUEST>> '+ request.body.to_s
 
-    response = http.request(request)
+    response = begin
+      RequestLogSession.send_and_log(http, request)
+    rescue StandardError => e
+      raise NetworkingError, e
+    end
 
     Rails.logger.debug 'PA:RESPONSE>> ' + response.to_s
     Rails.logger.debug 'PA:RESPONSE>> ' + response.body.to_s

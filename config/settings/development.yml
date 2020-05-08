@@ -11,6 +11,21 @@ hours_between_first_and_second_reminder: 0.0333
 hours_between_second_and_final_reminder: 0.0333
 pdf_expiration_days: .25
 
+blocks_configuration:
+  shift_length: 2
+  url: https://svtesting.blocks.work
+  partners:
+    1:
+      turf_id: 416
+      canvasser_id: 128
+      location_id: 266
+      staging_location_id: 267
+    2:
+      turf_id: 417
+      canvasser_id: 129
+      location_id: 266
+      staging_location_id: 267
+      
 ovr_states:
   CA:
     api_settings:

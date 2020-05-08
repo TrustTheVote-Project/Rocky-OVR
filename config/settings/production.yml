@@ -5,6 +5,91 @@ default_url_host: "register.rockthevote.com"
 ui_url_host: "register.rockthevote.com"
 
 
+blocks_configuration:
+  shift_length: 24
+  url: https://svpa.blocks.im
+  partners:
+    38368:
+      turf_id: 19000000007
+      canvasser_id: 19000000006
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    38368:
+      turf_id: 19000000015
+      canvasser_id: 19000000007
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    36862:
+      turf_id: 19000000021
+      canvasser_id: 19000000008
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    35318:
+      turf_id: 19000000023
+      canvasser_id: 19000000022
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37067:
+      turf_id: 19000000024
+      canvasser_id: 19000000023
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37279:
+      turf_id: 19000000025
+      canvasser_id: 19000000010
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37281:
+      turf_id: 19000000027
+      canvasser_id: 19000000012
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    35988:
+      turf_id: 19000000028
+      canvasser_id: 19000000013
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    36857:
+      turf_id: 19000000029
+      canvasser_id: 19000000014
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    36866:
+      turf_id: 19000000030
+      canvasser_id: 19000000015
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37928:
+      turf_id: 19000000031
+      canvasser_id: 19000000016
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    36063:
+      turf_id: 19000000032
+      canvasser_id: 19000000017
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    36845:
+      turf_id: 19000000033
+      canvasser_id: 19000000018
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37302:
+      turf_id: 19000000034
+      canvasser_id: 19000000019
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37302:
+      turf_id: 19000000035
+      canvasser_id: 19000000020
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    35379:
+      turf_id: 19000000036
+      canvasser_id: 19000000021
+      location_id: 19000000002
+      staging_location_id: 19000000003
+
 states_with_online_registration:
   - AZ
   - CA

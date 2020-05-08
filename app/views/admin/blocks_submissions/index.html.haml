@@ -1,0 +1,29 @@
+%h3 Queued Jobs:
+%ul
+  - @jobs.each do |j|
+    %li
+      - h = YAML.load(j.handler)
+      = "Job ID #{j.id}: Bulk Shift Submission will run at #{j.run_at} for shift starting #{h.args[0]}"
+    
+
+%p
+  = will_paginate @blocks_submissions
+
+%table
+  %thead
+    %tr
+      %th Shift Start
+      %th Shift End
+      %th Started Run
+      %th Finished Run
+      %th Partners Submitted
+  %tbody
+    - @blocks_submissions.each do |rec|
+      %tr
+        %td= rec.shift_start
+        %td= rec.shift_end
+        %td= rec.created_at
+        %td= rec.updated_at
+        %td= rec.partners_submitted.to_s
+%p
+  = will_paginate @blocks_submissions
