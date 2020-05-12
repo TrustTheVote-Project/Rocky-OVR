@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200505154447) do
+ActiveRecord::Schema.define(version: 20200506180850) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 20200505154447) do
 
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
   add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
+
+  create_table "blocks_service_bulk_submissions", force: :cascade do |t|
+    t.datetime "shift_start"
+    t.datetime "shift_end"
+    t.text     "partners_submitted"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "canvassing_shift_grommet_requests", force: :cascade do |t|
     t.string   "grommet_request_id"

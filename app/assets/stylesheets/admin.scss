@@ -28,6 +28,11 @@ table.assets .name {
 }
 #header {
   background-image: url(https://s3.amazonaws.com/rocky-assets/assets/admin/header_admin_tools.gif);
+  height: 120px;
+  p {
+    bottom: auto;
+    top: 90px;
+  }
 }
 
 @import '_partner_whitelabel';

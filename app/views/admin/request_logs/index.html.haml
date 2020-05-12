@@ -2,6 +2,15 @@
 %p
   = will_paginate @request_logs
 
+%p
+  Filter By Client:
+  %form{action: ''}
+    %select{name: :client_id}
+      %option{value: ''}= ''
+      - @clients.each do |c|
+        %option{value: c}= c
+    %button Filter
+    
 %table
   %thead
     %tr
