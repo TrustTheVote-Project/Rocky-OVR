@@ -68,7 +68,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     V4::RegistrationService.track_clock_in_event(data)
     jsonp({}, status: 200)
   rescue V4::RegistrationService::ValidationError => e
-    jsonp({ :message => e.message }, status: 400)
+    jsonp({ :message => e.message }, status: 200)
   end
 
   def clock_out
@@ -82,7 +82,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     V4::RegistrationService.track_clock_out_event(data)
     jsonp({}, status: 200)
   rescue V4::RegistrationService::ValidationError => e
-    jsonp({ :message => e.message }, status: 400)
+    jsonp({ :message => e.message }, status: 200)
   end
 
   def create_pa

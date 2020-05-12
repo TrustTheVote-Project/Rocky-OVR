@@ -65,8 +65,8 @@ class Api::V4::PartnersController < Api::V4::BaseController
     elsif Gem::Version.new(params[:grommet_version]) < Gem::Version.new(min_version)
       jsonp({
         is_valid: false,
-        message: "App version must be at least #{min_version}"
-      }, status: 400)
+        errors: ["App version must be at least #{min_version}"]
+      })
     else
       partner = Partner.find_by_id(params[:partner_id])
       if partner && partner.enabled_for_grommet?
