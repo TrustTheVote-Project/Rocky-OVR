@@ -44,8 +44,9 @@ class BlocksFormDisposition < ActiveRecord::Base
     if self.registrant
       status[:pa_submission_status] = registrant.api_submission_status
       status[:pa_response_errors] = registrant.state_ovr_data["errors"]
-      status[:pa_transaction_id] = state_ovr_data["pa_transaction_id"]
+      status[:pa_transaction_id] = registrant.state_ovr_data["pa_transaction_id"]
     end
+    return status
   end
 
   def request_status

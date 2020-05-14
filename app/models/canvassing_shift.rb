@@ -67,7 +67,7 @@ class CanvassingShift < ActiveRecord::Base
     end
   end
   
-  def form_martches_request(form_result, r)
+  def form_matches_request(form_result, r)
     built_form = if r.is_a?(Registrant)
       BlocksService.form_from_registrant(r)
     elsif r.is_a?(GrommetRequest)
@@ -91,8 +91,9 @@ class CanvassingShift < ActiveRecord::Base
         @regs << r
       end
       self.grommet_requests.each do |req|
-      unless registrant_grommet_ids.include?(req.id)
-        @regs << req
+        unless registrant_grommet_ids.include?(req.id)
+          @regs << req
+        end
       end
     end
     return @regs
