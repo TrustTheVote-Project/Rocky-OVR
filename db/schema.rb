@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200506180850) do
+ActiveRecord::Schema.define(version: 20200514140305) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(version: 20200506180850) do
 
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
   add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
+
+  create_table "blocks_form_dispositions", force: :cascade do |t|
+    t.integer  "grommet_request_id"
+    t.string   "registrant_id"
+    t.integer  "blocks_form_id"
+    t.boolean  "final_state_submitted", default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "blocks_form_dispositions", ["blocks_form_id"], name: "index_blocks_form_dispositions_on_blocks_form_id"
+  add_index "blocks_form_dispositions", ["grommet_request_id"], name: "index_blocks_form_dispositions_on_grommet_request_id"
+  add_index "blocks_form_dispositions", ["registrant_id"], name: "index_blocks_form_dispositions_on_registrant_id"
 
   create_table "blocks_service_bulk_submissions", force: :cascade do |t|
     t.datetime "shift_start"
@@ -90,8 +103,9 @@ ActiveRecord::Schema.define(version: 20200506180850) do
     t.integer  "completed_registrations"
     t.string   "canvasser_name"
     t.string   "canvasser_phone"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "submitted_to_blocks",     default: false
   end
 
   add_index "canvassing_shifts", ["partner_id", "canvasser_name"], name: "canvasser_index"

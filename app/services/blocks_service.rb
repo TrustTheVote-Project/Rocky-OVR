@@ -20,6 +20,13 @@ class BlocksService
     }
   end
   
+  def self.form_from_grommet_request(r)
+    registrant = V4::RegistrationService.create_pa_registrant(params[:rocky_request])    
+    registrant.basic_character_replacement!
+    registrant.state_ovr_data ||= {}
+    return self.form_from_registrant(registrant)
+  end
+  
   def initialize
     # call this immediately and outside of another RequestLogSession call
     get_token
@@ -34,6 +41,39 @@ class BlocksService
       @token = BlocksClient.get_token["jwt"]
       return @token
     end
+  end
+  
+  def upload_canvassing_shift(shift, shift_type: "digital_voter_registration")
+    partner_id = shift.partner_id
+    turf_id = RockyConf.blocks_configuration.partners&.[](partner_id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    
+    
+    location_id = RockyConf.blocks_configuration.default_location_id #shift.shift_location || 
+    staging_location_id = RockyConf.blocks_configuration.default_staging_location_id
+    canvasser = create_canvasser(turf_id: turf_id,  email: "", last_name: shift.canvasser_name, phone_number: shift.canvasser_phone)
+    canvasser_id = canvasser["canvasser"]["id"]
+    
+    soft_count_cards_total_collected = shift.grommet_requests.count
+    
+    forms = shift.registrations_or_requests.map do |r|
+      if r.is_a?(Registrant)
+        BlocksService.form_from_registrant(r)
+      elsif r.is_a?(GrommetRequest)
+        BlocksService.form_from_grommet_request(r) 
+      end
+    end
+    
+    shift = create_shift({
+      canvasser_id: canvasser_id,
+      location_id: location_id,
+      staging_location_id: staging_location_id, 
+      shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
+      shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
+      shift_type: shift_type, 
+      soft_count_cards_total_collected: soft_count_cards_total_collected      
+    })
+    shift_id = shift["shift"]["id"]
+    upload_registrations(shift_id, forms)
   end
   
   def upload_complete_shift_for_partner(partner, registrants, start_time, end_time, shift_type: "digital_voter_registration")
@@ -64,6 +104,12 @@ class BlocksService
   def add_metadata_to_form(form_id, meta_data={})
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
       return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token)
+    end
+  end
+
+  def create_canvasser(canvasser_data)
+    RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
+      return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token}))
     end
   end
 

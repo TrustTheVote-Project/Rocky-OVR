@@ -33,6 +33,22 @@ class BlocksClient
     send(:put, path, body: body, headers: headers)    
   end
 
+  def self.create_canvasser(first_name: "Canvasser", last_name:, phone_number:, email:, turf_id:, token:)
+    path = "turfs/#{turf_id}/canvassers/upsert"
+    
+    headers = {'Content-Type' => 'application/json'}
+    body = {
+      canvasser: {
+        first_name: first_name,
+        last_name: last_name,
+        phone_number: phone_number,
+        email: email
+      },
+      jwt: token
+    }
+    send(:patch, path, body: body, headers: headers)
+  end
+
   def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected:, token:)
     path = "shifts"
     headers = {'Content-Type' => 'application/json'}
@@ -85,6 +101,8 @@ class BlocksClient
       Net::HTTP::Post
     when :put
       Net::HTTP::Put
+    when :patch
+      Net::HTTP::Patch
     else
       raise ArgumentError
     end
