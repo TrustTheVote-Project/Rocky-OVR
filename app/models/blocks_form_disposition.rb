@@ -4,12 +4,19 @@ class BlocksFormDisposition < ActiveRecord::Base
   belongs_to :grommet_request
   belongs_to :registrant, primary_key: :uid
 
+  def self.submit_updates!
+    self.where(final_state_submitted: false).each do |blocks_form_disposition|
+      blocks_form_disposition.update_blocks_form
+    end
+  end
+
   def update_blocks_form
     status = request_status
     # Make call to update form from blocks_form_id to `status`
     if status_complete?(status)
       self.update_attributes(final_state_submitted: true)
     end
+    # TODO or do we enqueue each individual as it's own?
   end
   
   def status_complete?(status)
