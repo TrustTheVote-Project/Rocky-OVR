@@ -58,9 +58,10 @@ class CanvassingShift < ActiveRecord::Base
         reg_req = registrations_or_requests[i]
         # Make sure form_result maps to reg_req
         if form_matches_request(form_result, reg_req)
+          form_id = form_result["id"]
           registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
           grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
-          GrommetRequestDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+          BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
         end
       end
     end
