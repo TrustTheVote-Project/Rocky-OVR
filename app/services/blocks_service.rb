@@ -50,7 +50,7 @@ class BlocksService
     
     location_id = RockyConf.blocks_configuration.default_location_id #shift.shift_location || 
     staging_location_id = RockyConf.blocks_configuration.default_staging_location_id
-    canvasser = create_canvasser(turf_id: turf_id,  email: "", last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
+    canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
     canvasser_id = canvasser["canvasser"]["id"]
     
     soft_count_cards_total_collected = shift.grommet_requests.count
