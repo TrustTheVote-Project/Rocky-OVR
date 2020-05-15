@@ -826,7 +826,7 @@ GEM
     protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
     public_suffix (3.0.3)
-    rack (1.6.11)
+    rack (1.6.13)
     rack-mini-profiler (1.0.0)
       rack (>= 1.2.0)
     rack-robustness (1.1.0)
