@@ -45,8 +45,11 @@
 
     = form_for @new_canvassing_shift, url: start_shift_path do |form|
       %ul.stacked
-        = field_li(form, :canvasser_name, {skip_tooltip: true, required: true})
+        = field_li(form, :canvasser_first_name, {skip_tooltip: true, required: true})
+        = field_li(form, :canvasser_last_name, {skip_tooltip: true, required: true})
         = field_li(form, :canvasser_phone, {skip_tooltip: true, required: true})
+        = field_li(form, :canvasser_email, {skip_tooltip: true, required: true})
+        = field_li(form, :shift_location, {skip_tooltip: true, required: true, select_options: CanvassingShift.location_options(@partner), field_options: {include_blank: true}})
       = hidden_field_tag "partner_id", @partner&.id
       = hidden_field_tag "source_tracking_id", @source_tracking
       = hidden_field_tag "partner_tracking_id", @partner_tracking

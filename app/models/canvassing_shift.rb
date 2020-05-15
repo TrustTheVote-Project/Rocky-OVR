@@ -11,6 +11,13 @@ class CanvassingShift < ActiveRecord::Base
 
   after_save :check_submit_to_blocks
 
+  def self.location_options(partner)
+    return [
+      ["TBD A", 1],
+      ["TBD B", 2],
+    ]
+  end
+
   def locale
     :en
   end
