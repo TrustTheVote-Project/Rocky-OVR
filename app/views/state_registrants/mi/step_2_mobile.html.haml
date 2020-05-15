@@ -49,10 +49,9 @@
   .dynamic-navigation
     .back.back--link
       .button.rollover_button
-        = link_to update_state_registrant_path(@registrant.to_param, controller.prev_step) do
+        = link_to registrant_path(@registrant.registrant) do
           %button{type: "button"}
             %span <
-
     .next.next--link.prepare
       = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) 
   
