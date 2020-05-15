@@ -33,7 +33,7 @@ class BlocksClient
     send(:put, path, body: body, headers: headers)    
   end
 
-  def self.create_canvasser(first_name: "Canvasser", last_name:, phone_number:, email:, turf_id:, token:)
+  def self.create_canvasser(first_name:, last_name:, phone_number:, email:, turf_id:, token:)
     path = "turfs/#{turf_id}/canvassers/upsert"
     
     headers = {'Content-Type' => 'application/json'}
