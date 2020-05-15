@@ -44,6 +44,12 @@ en:
       name: Chinese (Simplified)
   activerecord:
     attributes:
+      canvassing_shift:
+        canvasser_first_name: First Name
+        canvasser_last_name: Last Name
+        canvasser_phone: Phone
+        canvasser_email: Email
+        shift_location: Location 
       partner:
         from_email: Edit "from" email address to send autoresponders from your organization,
           rather than Rock the Vote.
@@ -248,6 +254,8 @@ en:
             password:
               invalid: Password must be 10 characters, contain at least 1 lowercase
                 letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+        canvassing_shift:
+          blank: Required
         partner:
           attributes:
             password:

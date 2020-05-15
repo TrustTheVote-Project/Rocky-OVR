@@ -43,6 +43,8 @@ class BlocksService
     end
   end
   
+  
+  
   def upload_canvassing_shift(shift, shift_type: "digital_voter_registration")
     partner_id = shift.partner_id
     turf_id = RockyConf.blocks_configuration.partners&.[](partner_id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
@@ -102,6 +104,18 @@ class BlocksService
       shift_id = shift["shift"]["id"]
       upload_registrations(shift_id, forms)
     end
+  end
+  
+  def get_locations(partner)
+    turf_id = RockyConf.blocks_configuration.partners&.[](partner.id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    unless turf_id.blank?
+      RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
+        return BlocksClient.get_locations(turf_id, token: self.token)
+      end
+    end
+    return {
+      "locations" => []
+    }
   end
   
   #add_metadata_to_form(form_id, meta_data={}, token:)

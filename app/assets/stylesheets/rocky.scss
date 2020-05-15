@@ -17,6 +17,17 @@ html, body {
 #canvassing-shift {
   font-size: 12px;
   line-height: 1.3em;
+  form {
+    .first-name__line, .last-name__line, 
+    .phone__line, .email__line {
+      width: 50%;
+    }
+    .first-name__line,
+    .phone__line {
+      width: 45%;
+      margin-right: 5%;
+    }
+  }
 }
 
 body {

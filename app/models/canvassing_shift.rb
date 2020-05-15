@@ -12,10 +12,15 @@ class CanvassingShift < ActiveRecord::Base
   after_save :check_submit_to_blocks
 
   def self.location_options(partner)
-    return [
-      ["TBD A", 1],
-      ["TBD B", 2],
-    ]
+    b = BlocksService.new
+    locations = b.get_locations(partner)&.[]("locations")
+    if locations && locations.any?
+      return locations.map {|obj| [obj[:name], obj[:id]]}
+    else
+      return [
+        ["Default Location", RockyConf.blocks_configuration.default_location_id],
+      ]
+    end
   end
 
   def locale

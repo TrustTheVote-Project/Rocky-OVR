@@ -20,6 +20,12 @@ class BlocksClient
     send(:post, path, body: body, headers: headers)    
   end
   
+  def self.get_locations(turf_id, token:)
+    path = "turfs/#{turf_id}/locations"
+    headers = {'Content-Type' => 'application/json'}
+    send(:get, path, body: {jwt: token}, headers: headers)
+  end
+  
   def self.add_metadata_to_form(form_id, meta_data={}, token:)
     #591
     path = "forms/#{form_id}/add_metadata"

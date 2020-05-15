@@ -41,7 +41,7 @@ class CanvassingShiftsController < ApplicationController
       @canvassing_shift.clock_out_datetime = DateTime.now
       @canvassing_shift.set_counts
       @canvassing_shift.save!
-      flash[:message] = "#{@canvassing_shift.canvasser_name} clocked out at #{l @canvassing_shift.clock_out_datetime}"
+      flash[:message] = "#{@canvassing_shift.canvasser_name} clocked out at #{l @canvassing_shift.clock_out_datetime&.in_time_zone("America/New_York"), format: :short}"
     end
     session[:canvassing_shift_id] = nil
     redirect_to action: :new
@@ -57,7 +57,7 @@ class CanvassingShiftsController < ApplicationController
   private
   
   def cs_params
-    params.require(:canvassing_shift).permit(:canvasser_name, :canvasser_phone)
+    params.require(:canvassing_shift).permit(:canvasser_first_name, :canvasser_last_name, :canvasser_phone, :canvasser_phone, :shift_location)
   end
   
   def find_partner
