@@ -14,6 +14,17 @@ class CanvassingShift < ActiveRecord::Base
   def locale
     :en
   end
+  
+  def canvasser_name
+    [canvasser_first_name, canvasser_last_name].join(" ")
+  end
+  
+  def canvasser_name=(name)
+    name_parts = name.split(" ")
+    self.canvasser_first_name = name_parts.shift
+    self.canvasser_last_name = name_parts.join(" ") #Remaining parts
+    canvasser_name
+  end
 
   def set_attributes_from_data!(data)
     set_attribute_from_data(:shift_location, data, :canvass_location_id)
@@ -23,7 +34,10 @@ class CanvassingShift < ActiveRecord::Base
       geo_location
       open_tracking_id
       canvasser_name
+      canvasser_first_name
+      canvasser_last_name
       canvasser_phone
+      canvasser_email
       clock_in_datetime
       clock_out_datetime
       device_id
