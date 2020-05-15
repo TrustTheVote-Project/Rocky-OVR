@@ -7,11 +7,16 @@ html, body {
   min-height: 100%;
 }
 
-#pre-header {
+#canvasser-notice {
   background-color: #67c6fd;
-  padding: 3px;
+  padding: 5px;
   text-align: center;
+  font-size: 14px;
+}
+
+#canvassing-shift {
   font-size: 12px;
+  line-height: 1.3em;
 }
 
 body {

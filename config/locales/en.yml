@@ -1,5 +1,9 @@
 ---
 en:
+  time:
+    formats:
+      short: "%B %d, %l:%M %p"
+        
   'yes': 'Yes'
   'no': 'No'
   required: "(Required)"

@@ -1,0 +1,4 @@
+- if @canvassing_shift
+  #canvasser-notice.canvasser
+    = "This registration is being completed within a canvassing shift for #{@canvassing_shift.canvasser_name}."
+    %a= link_to "See shift details.", start_shift_path
