@@ -38,6 +38,8 @@ class Registrant < ActiveRecord::Base
   include RegistrantMethods
   include TimeStampHelper
   
+  scope :abandoned, -> {where(abandoned: true)}
+  
   has_many :ab_tests
   
   serialize :state_ovr_data, Hash

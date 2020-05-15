@@ -53,7 +53,9 @@ class BlocksService
     canvasser = create_canvasser(turf_id: turf_id,  email: "", last_name: shift.canvasser_name, phone_number: shift.canvasser_phone)
     canvasser_id = canvasser["canvasser"]["id"]
     
-    soft_count_cards_total_collected = shift.grommet_requests.count
+    soft_count_cards_total_collected = shift.abandoned_registrations + shift.completed_registrations
+    soft_count_cards_complete_collected = shift.completed_registrations
+    soft_count_cards_incomplete_collected = shift.abandoned_registrations
     
     forms = shift.registrations_or_requests.map do |r|
       if r.is_a?(Registrant)
@@ -70,7 +72,9 @@ class BlocksService
       shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
       shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
       shift_type: shift_type, 
-      soft_count_cards_total_collected: soft_count_cards_total_collected      
+      soft_count_cards_total_collected: soft_count_cards_total_collected,
+      soft_count_cards_complete_collected: soft_count_cards_complete_collected,
+      soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
     })
     shift_id = shift["shift"]["id"]
     upload_registrations(shift_id, forms)

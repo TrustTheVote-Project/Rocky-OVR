@@ -70,7 +70,7 @@ class BlocksFormDisposition < ActiveRecord::Base
           status[:pa_response_errors] = sr.pa_submission_error || []
           status[:pa_transaction_id] = sr.pa_transaction_id
           status[:transitioned_to_paper] = registrant.state_ovr_data[:skip_state_flow] == true
-          if transitioned_to_paper
+          if status[:transitioned_to_paper]
             status[:completed_on_paper] = registrant.complete?
             status[:abandoned_on_paper] = registrant.abandoned?
           end

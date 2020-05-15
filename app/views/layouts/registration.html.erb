@@ -52,7 +52,12 @@
     <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
   <div id="container">
-
+    <%- if @canvassing_shift %>
+      <div id="pre-header" class="canvasser">
+        This registration is being completed within a canvassing shift for
+        <%= @canvassing_shift.canvasser_name %>
+      </div>
+    <%- end %>
   <% if @partner && @partner.custom_logo? -%>
     <%- if !@registrant || @registrant.short_form? %>
       <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">

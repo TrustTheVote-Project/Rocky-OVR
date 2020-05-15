@@ -18,6 +18,10 @@ Rocky::Application.routes.draw do
 
   match "/get-bounce-notification", to: "ses#bounce", via: [:get, :post]
   
+  match "/start_shift", to: "canvassing_shifts#new", via: :get
+  match "/start_shift", to: "canvassing_shifts#create", via: :post
+  match "/end_shift", to: "canvassing_shifts#clock_out", via: :get
+  
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
     resource "step_2", :controller => "step2", :only => [:show, :update]

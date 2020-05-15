@@ -49,7 +49,7 @@ class BlocksClient
     send(:patch, path, body: body, headers: headers)
   end
 
-  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected:, token:)
+  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected:, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, token:)
     path = "shifts"
     headers = {'Content-Type' => 'application/json'}
     body = {
@@ -61,6 +61,8 @@ class BlocksClient
         shift_end: shift_end,
         shift_type: shift_type,
         soft_count_cards_total_collected: soft_count_cards_total_collected,
+        soft_count_cards_complete_collected: soft_count_cards_complete_collected,
+        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
       },
       jwt: token
     }

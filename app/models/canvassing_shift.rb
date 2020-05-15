@@ -11,6 +11,10 @@ class CanvassingShift < ActiveRecord::Base
 
   after_save :check_submit_to_blocks
 
+  def locale
+    :en
+  end
+
   def set_attributes_from_data!(data)
     set_attribute_from_data(:shift_location, data, :canvass_location_id)
     %w(partner_id 
@@ -33,6 +37,11 @@ class CanvassingShift < ActiveRecord::Base
     return self
   end
   
+  def set_counts
+    self.abandoned_registrations = registrants.abandoned.count
+    self.completed_registrations = registrants.complete.count
+  end
+  
   def is_ready_to_submit?
     self.clock_in_datetime && self.clock_out_datetime
   end
@@ -45,7 +54,7 @@ class CanvassingShift < ActiveRecord::Base
 
   def check_submit_to_blocks
     if !submitted_to_blocks? && is_ready_to_submit?
-      self.delay.submit_to_blocks
+      self.delay.submit_to_blocks # TODO: should delay for amount of abandoned time?
     end
   end
 
@@ -86,7 +95,7 @@ class CanvassingShift < ActiveRecord::Base
     if !@regs
       @regs = []
       registrant_grommet_ids = []
-      self.registrants.each do |r| 
+      self.registrants.complete.each do |r| 
         registrant_grommet_ids << r.state_ovr_data["grommet_request_id"]
         @regs << r
       end
@@ -97,6 +106,10 @@ class CanvassingShift < ActiveRecord::Base
       end
     end
     return @regs
+  end
+  
+  def generate_shift_external_id
+    self.shift_external_id = "web-" + Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{canvasser_name} -- #{partner_id}" )
   end
   
   

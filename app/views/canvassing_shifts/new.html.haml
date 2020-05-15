@@ -1,0 +1,54 @@
+.notice= flash_messages.html_safe
+%br
+%br
+
+- if @canvassing_shift
+  %h1 Ongoing Shift
+  %br
+  %h2 
+    Currently in shift for 
+    = @canvassing_shift.canvasser_name
+    started at
+    = I18n.l @canvassing_shift.clock_in_datetime
+    
+  %ul
+    %li
+      = @canvassing_shift.registrants.count
+      started registration(s)
+    %li
+      = @canvassing_shift.registrants.complete.count
+      completed registration(s)
+    %li
+      = @canvassing_shift.registrants.abandoned.count
+      abandoned registration(s)
+    
+  %form
+    .button.rollover_button
+      = link_to new_registrant_path(partner: @canvassing_shift.partner_id) do
+        %button{type: "button"}
+          %span Start new registration
+
+  %br
+  %br
+  %br
+  %br
+
+  %form
+    .button.rollover_button
+      = link_to end_shift_path do
+        %button{type: "button"}
+          %span Clock Out
+  
+- else
+  %h1 Start New Shift
+
+  = form_for @new_canvassing_shift, url: start_shift_path do |form|
+    %ul.stacked
+      = field_li(form, :canvasser_name, {skip_tooltip: true, required: true})
+      = field_li(form, :canvasser_phone, {skip_tooltip: true, required: true})
+    = hidden_field_tag "partner_id", @partner&.id
+    = hidden_field_tag "source_tracking_id", @source_tracking
+    = hidden_field_tag "partner_tracking_id", @partner_tracking
+    = hidden_field_tag "open_tracking_id", @open_tracking
+
+    = rollover_button(:start_shift, "Start Shift") #I18n.t('txt.button.submit').html_safe  

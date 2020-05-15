@@ -28,6 +28,7 @@ class RegistrationStep < ApplicationController
 
   layout "registration"
   before_filter :find_partner
+  before_filter :find_canvassing_shift
 
   rescue_from Registrant::AbandonedRecord do |exception|
     reg = exception.registrant
