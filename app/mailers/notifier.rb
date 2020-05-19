@@ -27,7 +27,9 @@ class Notifier < ActionMailer::Base
   def partner_terms_of_use(partner)
     @name = partner.name
     @name = "Friend" if @name.blank?
-    @tou_url = "https://www.rockthevote.org/resources/online-voter-registration-tool/#toggle5503"
+    @tou_url = "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/partner-ovr-tool-faqs/#termsofuse"
+    @partner_signup_url = "https://docs.google.com/forms/d/e/1FAIpQLSck6XJO2SQeSIenDpuHgNBUop9ENtvsGhMWLFYQDsy-VgO8pg/viewform"
+    @partner_tool_faqs = "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/partner-ovr-tool-faqs/partner-ovr-tool-faqs/"
     mail(subject: "Rock the Vote Terms of Use",
          from: RockyConf.from_address,
          to: partner.email,
