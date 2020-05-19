@@ -22,26 +22,22 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class Admin::RequestLogsController < Admin::BaseController
+class Admin::BlocksSubmissionsController < Admin::BaseController
   helper_method :try_format_json, :add_postfix, :truncate
 
   def index
-    logs = RequestLog
-    if !params[:client_id].blank?
-      logs = logs.where(client_id: params[:client_id])
-    end
-    @request_logs = logs.paginate(:page => params[:page], :per_page => 100).order("created_at DESC")
-    @clients = RequestLog.all.pluck(:client_id).uniq
+    @blocks_submissions = BlocksServiceBulkSubmission.paginate(:page => params[:page], :per_page => 100).order("shift_start DESC")
+    @jobs = Delayed::Job.where(queue: BlocksServiceBulkSubmission::QUEUE_NAME)
   end
 
-  def show
-    @request_log = RequestLog.find(params[:id])
-  end
+  # def show
+  #   @request_log = RequestLog.find(params[:id])
+  # end
 
   private
 
   def init_nav_class
-    @nav_class = {request_logs: :current}
+    @nav_class = {blocks_submissions: :current}
   end
 
   def try_format_json(text)

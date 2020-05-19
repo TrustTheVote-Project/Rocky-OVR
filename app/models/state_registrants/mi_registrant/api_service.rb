@@ -125,7 +125,7 @@ module StateRegistrants::MIRegistrant::ApiService
   end
   
   def check_address
-    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client') do
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client', censor: MICensor) do
       self.submission_attempts += 1    
       self.save(validate: false)
       response = MiClient.street_match(sender_name: "RockTheVote", address_line_1: self.registration_address_line_1, city: self.registration_city, zip_code: self.registration_zip_code)
@@ -173,7 +173,7 @@ module StateRegistrants::MIRegistrant::ApiService
   end
   
   def submit_to_online_reg_url
-    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client') do
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'mi_client', censor: MICensor) do
       begin 
         self.submission_attempts ||= 0
         self.submission_attempts += 1    

@@ -58,6 +58,18 @@ module RegistrantMethods
     attribute ? I18n.t('yes', self.locale) : I18n.t('no', self.locale)
   end
   
+  def male_titles
+    RockyConf.enabled_locales.collect { |loc|
+      I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
+    }.flatten.uniq
+  end
+  
+  def gender
+    return 'M' if male_titles.include?(self.name_title)
+    return 'F' if !self.name_title.blank?
+    return ''   
+  end
+  
   def date_of_birth=(string_value)
     dob = nil
     if string_value.is_a?(String)

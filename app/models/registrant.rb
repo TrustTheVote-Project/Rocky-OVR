@@ -29,8 +29,7 @@ class Registrant < ActiveRecord::Base
     attr_reader :registrant
     def initialize(registrant)
       @registrant = registrant
-    end
-    
+    end    
   end
 
   include AASM
@@ -943,17 +942,6 @@ class Registrant < ActiveRecord::Base
   
   def submitted_via_state_api?
      (!skip_state_flow? && existing_state_registrant && existing_state_registrant.submitted?) || is_grommet?
-  end
-  
-  def first_registration?
-    if is_grommet? 
-      pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
-      return pa_adapter.is_new_registration_boolean
-    elsif existing_state_registrant
-      return existing_state_registrant.first_registration?
-    else
-      return !!self.first_registration
-    end    
   end
   
   def first_registration?
