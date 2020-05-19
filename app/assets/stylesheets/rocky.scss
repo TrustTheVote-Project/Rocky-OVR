@@ -12,6 +12,16 @@ html, body {
   padding: 5px;
   text-align: center;
   font-size: 14px;
+  &.canvasser--complete-registrant {
+    background-color: #00ff66;
+  }
+}
+
+#canvasser-flash {
+  .notice ul {
+    font-size: 14px;
+    margin: 1em;
+  }
 }
 
 #canvassing-shift {

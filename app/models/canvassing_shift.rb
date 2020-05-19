@@ -8,6 +8,11 @@ class CanvassingShift < ActiveRecord::Base
 
 
   validates_presence_of :shift_external_id
+  
+  attr_accessor :building_via_web
+  
+  validates_presence_of [:canvasser_first_name, :canvasser_last_name, :partner_id, :canvasser_phone, :canvasser_email, :shift_location], if: :building_via_web
+
 
   after_save :check_submit_to_blocks
 
@@ -15,7 +20,8 @@ class CanvassingShift < ActiveRecord::Base
     b = BlocksService.new
     locations = b.get_locations(partner)&.[]("locations")
     if locations && locations.any?
-      return locations.map {|obj| [obj[:name], obj[:id]]}
+      puts locations
+      return locations.map {|obj| [obj["name"], obj["id"]]}
     else
       return [
         ["Default Location", RockyConf.blocks_configuration.default_location_id],

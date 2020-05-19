@@ -7,8 +7,20 @@ class CanvassingShiftsController < ApplicationController
   before_filter :find_partner
   before_filter :find_canvassing_shift
   
+  def show
+    if !@canvassing_shift
+      redirect_to action: :set_partner
+    end
+  end
+  
+  def set_partner
+    @partners = Partner.where(id: RockyConf.blocks_configuration.partners.keys.collect(&:to_s))
+  end
   
   def new
+    if !params[:partner]
+      redirect_to action: :set_partner
+    end
     @new_canvassing_shift = CanvassingShift.new
   end
   
@@ -22,6 +34,7 @@ class CanvassingShiftsController < ApplicationController
     @new_canvassing_shift.generate_shift_external_id
     @new_canvassing_shift.shift_location ||= RockyConf.blocks_configuration.default_location_id
     @new_canvassing_shift.clock_in_datetime = DateTime.now
+    @new_canvassing_shift.building_via_web = true
     if @new_canvassing_shift.save
       # If existing shift, clock it out
       if @canvassing_shift
@@ -29,14 +42,14 @@ class CanvassingShiftsController < ApplicationController
         @canvassing_shift.save!
       end
       session[:canvassing_shift_id] = @new_canvassing_shift.id
-      redirect_to new_registrant_path(partner: @partner.id)
+      redirect_to action: :show
     else
       render action: :new
     end
     
   end
   
-  def clock_out
+  def end_shift
     if @canvassing_shift
       @canvassing_shift.clock_out_datetime = DateTime.now
       @canvassing_shift.set_counts
@@ -44,7 +57,7 @@ class CanvassingShiftsController < ApplicationController
       flash[:message] = "#{@canvassing_shift.canvasser_name} clocked out at #{l @canvassing_shift.clock_out_datetime&.in_time_zone("America/New_York"), format: :short}"
     end
     session[:canvassing_shift_id] = nil
-    redirect_to action: :new
+    redirect_to action: :set_partner
   end
   
   
@@ -57,7 +70,7 @@ class CanvassingShiftsController < ApplicationController
   private
   
   def cs_params
-    params.require(:canvassing_shift).permit(:canvasser_first_name, :canvasser_last_name, :canvasser_phone, :canvasser_phone, :shift_location)
+    params.require(:canvassing_shift).permit(:canvasser_first_name, :canvasser_last_name, :canvasser_phone, :canvasser_email, :shift_location)
   end
   
   def find_partner

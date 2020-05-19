@@ -1,0 +1,49 @@
+= render partial: 'header'
+
+
+#canvassing-shift
+
+  %p 
+    %b Canvasser Shift Status:
+    %br
+    &nbsp;&nbsp; Shift in Progress for 
+    = @canvassing_shift.canvasser_name
+    %br
+    &nbsp;&nbsp; started at
+    = I18n.l @canvassing_shift.clock_in_datetime&.in_time_zone("America/New_York"), format: :short
+    EST 
+  %ul
+    %li
+      - complete_count = @canvassing_shift.registrants.complete.count
+      = complete_count
+      completed registration(s)
+      - api_count = @canvassing_shift.registrants.complete.find_all {|r| !r.state_transaction_id.blank? }.size
+      %br
+      &nbsp;&nbsp;
+      = api_count
+      via api
+      %br
+      &nbsp;&nbsp;
+      = complete_count - api_count
+      via paper
+      
+    %li
+      = @canvassing_shift.registrants.count - @canvassing_shift.registrants.complete.count
+      abandoned registration(s)
+  
+  %form
+    .button.rollover_button
+      = link_to new_registrant_path(partner: @canvassing_shift.partner_id) do
+        %button{type: "button"}
+          %span Start new registration
+
+  %br
+  %br
+  %br
+  %br
+
+  %form
+    .button.rollover_button
+      = link_to end_shift_canvassing_shifts_path do
+        %button{type: "button"}
+          %span End Shift

@@ -962,6 +962,10 @@ class Registrant < ActiveRecord::Base
     home_state && home_state.use_state_flow?(self)
   end
   
+  def submitted?
+    existing_state_registrant.nil? || existing_state_registrant.submitted?
+  end
+  
   def submitted_via_state_api?
      (!skip_state_flow? && existing_state_registrant && existing_state_registrant.submitted?) || is_grommet?
   end
@@ -1021,6 +1025,14 @@ class Registrant < ActiveRecord::Base
   def api_submitted_with_signature
     return nil if !is_grommet? # Right now sigs only come from grommet
     return !grommet_submission["signature"].blank?    
+  end
+  
+  def state_transaction_id
+    if is_grommet?
+      return state_ovr_data["pa_transaction_id"]
+    else
+      return existing_state_registrant&.state_transaction_id
+    end
   end
   
   def api_submission_status
