@@ -30,7 +30,7 @@ class BlocksFormDisposition < ActiveRecord::Base
 
       pa_submission_status: "", 
       pa_response_errors: [],
-      pa_transaction_id: nil, #int | nil
+      pa_transaction_id: nil, #string | nil
 
       transitioned_to_paper: nil, #true | false | nil
       completed_on_paper: nil, #true | false | nil
