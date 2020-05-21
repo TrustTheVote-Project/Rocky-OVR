@@ -10,11 +10,6 @@ blocks_configuration:
   url: https://svpa.blocks.im
   partners:
     38368:
-      turf_id: 19000000007
-      canvasser_id: 19000000006
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    38368:
       turf_id: 19000000015
       canvasser_id: 19000000007
       location_id: 19000000002
@@ -72,11 +67,6 @@ blocks_configuration:
     36845:
       turf_id: 19000000033
       canvasser_id: 19000000018
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37302:
-      turf_id: 19000000034
-      canvasser_id: 19000000019
       location_id: 19000000002
       staging_location_id: 19000000003
     37302:
