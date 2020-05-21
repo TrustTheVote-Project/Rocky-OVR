@@ -12,7 +12,17 @@ class CanvassingShift < ActiveRecord::Base
   attr_accessor :building_via_web
   
   validates_presence_of [:canvasser_first_name, :canvasser_last_name, :partner_id, :canvasser_phone, :canvasser_email, :shift_location], if: :building_via_web
-
+  validates_format_of :canvasser_phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, if: :building_via_web, allow_blank: true
+  validates_format_of :canvasser_email, :with => Authlogic::Regex::EMAIL, if: :building_via_web, allow_blank: true
+  
+  def validate_phone_present_if_opt_in_sms(reg)
+    return true if reg.building_via_api_call?
+    if (reg.opt_in_sms? || reg.partner_opt_in_sms?) && reg.phone.blank?
+      reg.errors.add(:phone, :required_if_opt_in)
+    end
+  end
+  
+  
 
   after_save :check_submit_to_blocks
 
