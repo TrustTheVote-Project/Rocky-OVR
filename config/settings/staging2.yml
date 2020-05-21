@@ -20,7 +20,7 @@ blocks_configuration:
   shift_length: 1
   url: https://svtesting.blocks.work
   partners:
-    26292:
+    1:
       turf_id: 416
       canvasser_id: 128
       location_id: 266
