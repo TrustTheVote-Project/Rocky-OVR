@@ -152,7 +152,7 @@ module V3
     def self.async_register_with_pa(registrant_id)
       registrant = Registrant.find(registrant_id)
       if registrant.nil?
-        AdminMailer.pa_no_registrant_error(registrant_id).deliver
+        AdminMailer.pa_no_registrant_error(registrant_id).deliver_now
         return
       end
       register_with_pa(registrant)
@@ -222,17 +222,17 @@ module V3
         
         
         Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
-        AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
+        AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver_now
       elsif result[:id].blank? || result[:id]==0
           registrant.state_ovr_data["errors"] ||= []
           registrant.state_ovr_data["errors"] << ["PA returned response with no errors and no transaction ID"]
           registrant.save(validate: false)
           Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")
-          AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver
+          AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver_now
       else
         registrant.state_ovr_data['pa_transaction_id'] = result[:id]
         if registrant.state_ovr_data["state_api_validation_modifications"] && registrant.state_ovr_data["state_api_validation_modifications"].any?
-          AdminMailer.pa_registration_warning(registrant, registrant.state_ovr_data["state_api_validation_modifications"]).deliver
+          AdminMailer.pa_registration_warning(registrant, registrant.state_ovr_data["state_api_validation_modifications"]).deliver_now
         end
         registrant.complete_registration_with_state!
         registrant.save(validate: false)

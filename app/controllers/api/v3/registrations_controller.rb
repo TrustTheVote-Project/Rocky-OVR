@@ -119,7 +119,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
       
       if gr.is_duplicate?
         # Send notification
-        AdminMailer.grommet_duplication(gr).deliver
+        AdminMailer.grommet_duplication(gr).deliver_now
         return pa_success_result
       end
       
@@ -191,7 +191,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     }
 
     Rails.logger.warn("Grommet Registration Error for params:\n#{params}\n\nErrors:\n#{errors}")
-    AdminMailer.grommet_registration_error(errors, registrant).deliver
+    AdminMailer.grommet_registration_error(errors, registrant).deliver_now
 
     jsonp(data, :status => 400)
   end

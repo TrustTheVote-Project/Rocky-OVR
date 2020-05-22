@@ -201,7 +201,7 @@ describe VRToPA do
       expect(subject["assistancedeclaration2"]).to eql("1")
       expect(subject["donthavebothDLandSSN"]).to eql("0")
       expect(subject["assistedpersonname"]).to eql("Assistant Name")
-      expect(subject["assistedpersonAddress"]).to eql("55 Assistant Street, Assistant City Assistant State 22222")
+      expect(subject["assistedpersonAddress"]).to eql("55 Assistant Street, APT 555, Assistant City Assistant State 22222")
       expect(subject["assistedpersonphone"]).to eql("123-456-7890")
       expect(subject["city"]).to eql("Registration City")
       expect(subject["mailingcity"]).to eql("Mailing City")
@@ -223,7 +223,7 @@ describe VRToPA do
       expect(subject["eighteen-on-election-day"]).to eql("1")
       expect(subject["name-update"]).to eql("1")
       expect(subject["address-update"]).to eql("1")
-      expect(subject["ispartychange"]).to eql("")
+      expect(subject["ispartychange"]).to eql("0")
       expect(subject["isfederalvoter"]).to eql("")
       expect(subject["DateOfBirth"]).to eql("2016-06-16")
       expect(subject["Gender"]).to eql("M")
@@ -637,7 +637,7 @@ describe VRToPA do
         }
       end
       it 'loads full address' do
-        expect(subject).to eql('1 Street, City State 22222')
+        expect(subject).to eql('1 Street, APT 100, City State 22222')
       end
     end
   end
