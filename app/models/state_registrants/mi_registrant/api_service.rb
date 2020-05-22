@@ -92,7 +92,7 @@ module StateRegistrants::MIRegistrant::ApiService
     # Depending on error type, send notification?
     # self.registrant.skip_state_flow!
   ensure
-    AdminMailer.mi_registration_error(self, self.response_outcome, "Registrant Switched to paper").deliver
+    AdminMailer.mi_registration_error(self, self.response_outcome, "Registrant Switched to paper").deliver_now
     self.save(validate: false)
   end
   

@@ -178,7 +178,7 @@ class RegistrantStatus < ActiveRecord::Base
   
   def self.notify_admin(results, user)
     email = user.email
-    AdminMailer.import_results(results, email).deliver
+    AdminMailer.import_results(results, email).deliver_now
   end
   
   

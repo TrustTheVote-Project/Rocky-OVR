@@ -26,7 +26,7 @@ class BrandingUpdateRequest
   def open
     update_status(STATUS.open)
     begin
-      AdminMailer.open_branding_request(self).deliver
+      AdminMailer.open_branding_request(self).deliver_now
     rescue
     end
   end
@@ -38,7 +38,7 @@ class BrandingUpdateRequest
   def done
     update_status(STATUS.done)
     begin
-      AdminMailer.approve_branding_request(self).deliver
+      AdminMailer.approve_branding_request(self).deliver_now
     rescue
     end
   end
@@ -46,7 +46,7 @@ class BrandingUpdateRequest
   def reject
     update_status(STATUS.rejected)
     begin
-      AdminMailer.reject_branding_request(self).deliver
+      AdminMailer.reject_branding_request(self).deliver_now
     rescue
     end
   end

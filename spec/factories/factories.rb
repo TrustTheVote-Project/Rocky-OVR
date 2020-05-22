@@ -198,7 +198,7 @@ FactoryGirl.define do
     rtv_sms_opt_in false
     ask_for_volunteers true
     partner_email_opt_in true
-    partner_sms_opt_in true
+    #partner_sms_opt_in true
     
     
   end
@@ -247,6 +247,9 @@ FactoryGirl.define do
     partner_email_opt_in        true
     rtv_sms_opt_in              true
     partner_sms_opt_in          true
+    short_code "11-1111"
+    terms_url "https://www.google.com"
+    privacy_url "https://www.google.com"
   end
   
   factory :report do

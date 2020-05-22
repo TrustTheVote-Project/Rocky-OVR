@@ -279,7 +279,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     self.va_check_error = true
     self.registrant.skip_state_flow!
     
-    AdminMailer.va_registration_error(self, [e.message, e.backtrace], "Unhandled error during voter check. Registrant Switched to paper").deliver    
+    AdminMailer.va_registration_error(self, [e.message, e.backtrace], "Unhandled error during voter check. Registrant Switched to paper").deliver_now    
     
     return false
   ensure
@@ -461,13 +461,13 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       self.va_submission_error ||= []
       self.va_submission_error << "No ID returned from VA submission"
       self.registrant.skip_state_flow!
-      AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver
+      AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver_now
     end
   rescue Exception=>e
     self.va_submission_error ||= []
     self.va_submission_error << [e.message, e.backtrace].flatten
     self.registrant.skip_state_flow!
-    AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver
+    AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver_now
   ensure
     self.va_submission_complete = true
     self.save(validate: false)        

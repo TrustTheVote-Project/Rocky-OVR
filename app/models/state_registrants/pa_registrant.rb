@@ -110,7 +110,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     # Set flash message?
     # Actually send the message
     if params.has_key?(:email_continue_on_device)
-      PANotifier.continue_on_device(self, signature_capture_url).deliver
+      PANotifier.continue_on_device(self, signature_capture_url).deliver_now
       controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.email_sent', email: self.email)
     elsif params.has_key?(:sms_continue_on_device)
       #begin
@@ -384,7 +384,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
             self.save!
             # No retries for this flow
             Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-            AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver
+            AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver_now
           end
         elsif result[:id].blank? || result[:id]==0
             self.pa_submission_error.push("PA returned response with no errors and no transaction ID")
@@ -395,7 +395,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
             self.registrant.skip_state_flow!
             self.save(validate: false)
             Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-            AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+            AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver_now
         else
           self.pa_transaction_id = result[:id]
           self.save!
@@ -411,7 +411,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         self.pa_submission_complete = true #need to mark as submitted in case we didn't get to that step before raising error
         self.registrant.skip_state_flow!
         begin
-          AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver
+          AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver_now
         rescue
         end
       end
@@ -444,7 +444,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   def deliver_confirmation_email
     if send_emails?
       # TODO, depending on partner customizations, just use main Notifier class - or refactor to StateRegistrantNotifier for all states
-      PANotifier.pa_confirmation(self).deliver
+      PANotifier.pa_confirmation(self).deliver_now
     end
   end
   

@@ -131,7 +131,7 @@ describe V4::RegistrationService do
       before(:each) do
         @reg = FactoryGirl.create(:api_v4_maximal_registrant, :status => 'step_5')
         @reg.stub(:enqueue_complete_registration_via_api)
-        Registrant.stub(:build_from_api_data).with({}, false) { @reg }
+        Registrant.stub(:build_from_api_data).with({api_version: "4"}, false) { @reg }
       end
       
       describe "async setting" do
@@ -187,6 +187,7 @@ describe V4::RegistrationService do
           "partner_opt_in_volunteer" => true,
           "finish_with_state" => true,
           "created_via_api" => true,
+          "shift_id": "shift-id",
           "source_tracking_id" => "Aaron Huttner",
           "partner_tracking_id" => "22201",
           "geo_location" => {
@@ -473,6 +474,9 @@ describe V4::RegistrationService do
     
     describe "track_clock_in_event" do
       let(:data) {{
+        "partner_id" => 1,
+        "canvass_location_id" => "123",
+        "shift_id" => "shift-id",
         "source_tracking_id" => "123457689",
         "partner_tracking_id" => "22201",
         "geo_location" => {
@@ -481,9 +485,9 @@ describe V4::RegistrationService do
         },
         "open_tracking_id" => "some text",
         "canvasser_name" => "A Name",
+        "canvasser_phone" => "123 123 1234",
         "device_id"=>"xyz123",
-        "clock_in_datetime" => "2016-06-16T19:44:45+00:00",
-        "session_timeout_length" => 210
+        "clock_in_datetime" => "2016-06-16T19:44:45+00:00"
       }}
       # it "raises an error if fields are missing" do
       #   bad_data = data
@@ -492,34 +496,35 @@ describe V4::RegistrationService do
       #     V4::RegistrationService.track_clock_in_event(data)
       #   }.to raise_error(V4::RegistrationService::ValidationError)
       # end
-      it "should create a new TrackingEvent" do
+      it "should create a new CanvassingShift" do
         expect {
           V4::RegistrationService.track_clock_in_event(data)
         }.to change {
-          TrackingEvent.count
+          CanvassingShift.count
         }.by(1)
       end  
-      it "creates a new tracking event via open data plus the event name" do
-        expect(TrackingEvent).to receive(:create_from_data).with(data.merge(tracking_event_name: "pa_canvassing_clock_in"))
+      it "creates a new CanvassingShift with the given data" do
+        mock_shift = double(CanvassingShift)
+        expect(CanvassingShift).to receive(:find_or_create_by).with(shift_external_id: data["shift_id"]).and_return(mock_shift)
+        expect(mock_shift).to receive(:set_attributes_from_data!).with(data)
         V4::RegistrationService.track_clock_in_event(data)
       end
       it "stores the data we expect" do
         V4::RegistrationService.track_clock_in_event(data)
-        te = TrackingEvent.last
-        expect(te.tracking_event_name).to eq("pa_canvassing_clock_in")
-        expect(te.source_tracking_id).to eq("123457689")
-        expect(te.partner_tracking_id).to eq("22201")
-        expect(te.geo_location).to eq({
+        cs = CanvassingShift.last
+        expect(cs.source_tracking_id).to eq("123457689")
+        expect(cs.partner_tracking_id).to eq("22201")
+        expect(cs.geo_location).to eq({
           "lat" => 123.00, 
           "long" => -123.00
-        })
-        expect(te.open_tracking_id).to eq("some text")
-        expect(te.tracking_data).to eq({
-          "canvasser_name" => "A Name",
-          "device_id"=>"xyz123",          
-          "clock_in_datetime" => "2016-06-16T19:44:45+00:00",
-          "session_timeout_length" => 210          
-        })
+        }.to_s)
+        expect(cs.partner_id).to eq(1)
+        expect(cs.shift_external_id).to eq("shift-id")
+        expect(cs.open_tracking_id).to eq("some text")
+        expect(cs.canvasser_name).to eq("A Name")
+        expect(cs.canvasser_phone).to eq("123 123 1234")
+        expect(cs.device_id).to eq("xyz123")
+        expect(cs.clock_in_datetime).to eq(DateTime.parse("2016-06-16T19:44:45+00:00"))
       end
     end
     
@@ -527,6 +532,7 @@ describe V4::RegistrationService do
   
   describe "track_clock_out_event" do
     let(:data) {{
+      "shift_id" => "shift-id",
       "source_tracking_id" => "123457689",
       "partner_tracking_id" => "22201",
       "geo_location" => {
@@ -543,29 +549,30 @@ describe V4::RegistrationService do
       expect {
         V4::RegistrationService.track_clock_out_event(data)
       }.to change {
-        TrackingEvent.count
+        CanvassingShift.count
       }.by(1)
     end  
     it "creates a new tracking event via open data" do
-      expect(TrackingEvent).to receive(:create_from_data).with(data.merge(tracking_event_name: "pa_canvassing_clock_out"))
+      mock_shift = double(CanvassingShift)
+      expect(CanvassingShift).to receive(:find_or_create_by).with(shift_external_id: data["shift_id"]).and_return(mock_shift)
+      expect(mock_shift).to receive(:set_attributes_from_data!).with(data)
       V4::RegistrationService.track_clock_out_event(data)
     end
     it "stores the data we expect" do
       V4::RegistrationService.track_clock_out_event(data)
-      te = TrackingEvent.last
-      expect(te.source_tracking_id).to eq("123457689")
-      expect(te.partner_tracking_id).to eq("22201")
-      expect(te.geo_location).to eq({
+      cs = CanvassingShift.last
+      expect(cs.source_tracking_id).to eq("123457689")
+      expect(cs.partner_tracking_id).to eq("22201")
+      expect(cs.geo_location).to eq({
         "lat" => 123.00, 
         "long" => -123.00
-      })
-      expect(te.open_tracking_id).to eq("some text")
-      expect(te.tracking_data).to eq({
-        "canvasser_name" => "A Name",
-        "abandoned_registrations" => 3,
-        "completed_registrations" => 7,
-        "clock_out_datetime" => "2016-06-16T19:44:45+00:00"
-      })
+      }.to_s)
+      expect(cs.open_tracking_id).to eq("some text")
+      expect(cs.shift_external_id).to eq("shift-id")
+      expect(cs.canvasser_name).to eq("A Name")
+      expect(cs.abandoned_registrations).to eq(3)
+      expect(cs.completed_registrations).to eq(7)
+      expect(cs.clock_out_datetime).to eq(DateTime.parse("2016-06-16T19:44:45+00:00"))
     end
   end
   
@@ -619,7 +626,7 @@ describe V4::RegistrationService do
     it 'should start a report with the given params' do
       partner = FactoryGirl.create(:partner, :api_key=>"key")
       reg = FactoryGirl.create(:api_v4_maximal_registrant, :partner => partner)
-      V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key => partner.api_key).should == { :status=>"queued", :record_count=>nil, :current_index=>nil, :status_url=>"http://example-pdf.com/api/v4/registrant_reports/#{Report.last.id}", :download_url=>nil}
+      V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key => partner.api_key).should == { :status=>"queued", :record_count=>nil, :current_index=>nil, :status_url=>"http://example-api.com/api/v4/registrant_reports/#{Report.last.id}", :download_url=>nil}
       
       
       V4::RegistrationService.create_report(:partner_id => partner.id, :partner_api_key => partner.api_key, email: "test@test.com")

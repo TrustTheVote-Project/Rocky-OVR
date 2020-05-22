@@ -1523,20 +1523,20 @@ class Registrant < ActiveRecord::Base
 
   def deliver_confirmation_email
     if send_emails?
-      Notifier.confirmation(self).deliver
+      Notifier.confirmation(self).deliver_now
       enqueue_reminder_emails
     end
   end
   
   def deliver_chaser_email
     if send_emails?
-      Notifier.chaser(self).deliver
+      Notifier.chaser(self).deliver_now
     end
   end
   
   def deliver_thank_you_for_state_online_registration_email
     if send_emails?
-      Notifier.thank_you_external(self).deliver
+      Notifier.thank_you_external(self).deliver_now
     end
   end
 
@@ -1550,7 +1550,7 @@ class Registrant < ActiveRecord::Base
 
   def deliver_reminder_email
     if reminders_left > 0 && send_emails?
-      Notifier.reminder(self).deliver
+      Notifier.reminder(self).deliver_now
       self.reminders_left = reminders_left - 1
       self.save(validate: false)
     end
@@ -1564,7 +1564,7 @@ class Registrant < ActiveRecord::Base
   def deliver_final_reminder_email
     if send_emails? && !final_reminder_delivered && !pdf_downloaded && pdf_ready?
       begin
-        Notifier.final_reminder(self).deliver
+        Notifier.final_reminder(self).deliver_now
       rescue
         # If we can't deliver, just stop
       end

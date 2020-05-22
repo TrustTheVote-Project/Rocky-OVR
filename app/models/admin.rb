@@ -32,7 +32,7 @@ class Admin < ActiveRecord::Base
   
   def deliver_password_reset_instructions!
     reset_perishable_token!
-    Notifier.admin_password_reset_instructions(self).deliver
+    Notifier.admin_password_reset_instructions(self).deliver_now
   end
   
 end
