@@ -1,5 +1,5 @@
 - if @canvassing_shift && @registrant
-  - if @registrant.complete? && @registrant.submitted?
+  - if (@registrant.is_a?(Registrant) ? @registrant.complete? : @registrant.registrant.complete?)
     #canvasser-notice.canvasser.canvasser--complete-registrant
       = "This registration was completed with canvasser #{@canvassing_shift.canvasser_name}."
       %a= link_to "Return to see Shift Status.", canvassing_shifts_path

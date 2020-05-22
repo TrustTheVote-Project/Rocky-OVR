@@ -80,8 +80,8 @@ class CanvassingShift < ActiveRecord::Base
   end
   
   def set_counts
-    self.abandoned_registrations = registrants.abandoned.count
     self.completed_registrations = registrants.complete.count
+    self.abandoned_registrations = registrants.count - self.completed_registrations    
   end
   
   def is_ready_to_submit?
