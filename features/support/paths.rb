@@ -99,12 +99,20 @@ module NavigationHelpers
       edit_admin_partner_path(Partner.first)
     when /the partner branding page/
       partner_branding_path
+    when /the start shift page/
+      set_partner_canvassing_shifts_path
+    when /the shift creation page for partner="(\d+)"/
+      new_canvassing_shifts_path(partner: $1)
+    when /the shift creation page/
+      new_canvassing_shifts_path
+    when /the shift status page/
+      canvassing_shifts_path      
     # Add more mappings here.
     # Here is a more fancy example:
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
-
+    
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"

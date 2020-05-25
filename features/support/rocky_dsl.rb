@@ -13,6 +13,32 @@ module RockyDsl
     
   end
   
+  def stub_blocks_api
+    WebMock.stub_request(:post, "https://svtesting.blocks.work/api/v1/external/account/sign_in").
+      with(
+        body: "{\"email\":null,\"password\":null}",
+        headers: {
+    	  'Accept'=>'*/*',
+    	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+    	  'Content-Type'=>'application/json',
+    	  'User-Agent'=>'Ruby'
+        }).
+      to_return(status: 200, body: "{\"jwt\": \"abc\"}", headers: {})    
+            
+    WebMock.stub_request(:get, "https://svtesting.blocks.work/api/v1/external/turfs/234/locations").
+      with(
+        body: "{\"jwt\":\"abc\"}",
+        headers: {
+    	  'Accept'=>'*/*',
+    	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+    	  'Content-Type'=>'application/json',
+    	  'User-Agent'=>'Ruby'
+        }).
+      to_return(status: 200, body: "{\"locations\":[]}", headers: {})
+                    
+  end
+  
+  
   def stub_partners
     Partner.any_instance.stub(:valid_api_key?).and_return(true)
     WebMock.stub_request(:any, %r{http://example-api\.com/api/v3/partners/\d+\.json}).to_return do |req|

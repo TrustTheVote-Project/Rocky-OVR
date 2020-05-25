@@ -4,7 +4,6 @@ class CanvassingShiftsController < ApplicationController
   include ApplicationHelper
 
   layout "registration"
-  before_filter :find_partner
   before_filter :find_canvassing_shift
   
   def show
@@ -21,12 +20,14 @@ class CanvassingShiftsController < ApplicationController
     if !params[:partner]
       redirect_to action: :set_partner
     end
+    find_partner
     @new_canvassing_shift = CanvassingShift.new
   end
   
   def create
     @new_canvassing_shift = CanvassingShift.new(cs_params)
     @new_canvassing_shift.partner_id = params[:partner_id]
+    @partner = Partner.find_by_id(params[:partner_id])
     @new_canvassing_shift.source_tracking_id = params[:source_tracking_id]
     @new_canvassing_shift.partner_tracking_id = params[:partner_tracking_id]
     @new_canvassing_shift.open_tracking_id = params[:open_tracking_id]

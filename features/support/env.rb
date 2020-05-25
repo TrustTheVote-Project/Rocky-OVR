@@ -52,9 +52,9 @@ GeoState.county_addresses_file =  Rails.root.join("spec/fixtures/files/county_ad
 GeoState.zip_code_database_file =  Rails.root.join("spec/fixtures/files/county_addressing/zip_code_database.csv")
 
 
-si = StateImporter.new
-si.import
-si.commit!
+# si = StateImporter.new
+# si.import
+# si.commit!
 
 
 Before do
@@ -69,6 +69,7 @@ Before do
   stub_ca_disclosures
   
   stub_bulk_process
+  stub_blocks_api
 end
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.

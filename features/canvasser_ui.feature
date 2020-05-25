@@ -1,92 +1,121 @@
 Feature: Canvasser UI
-  
+
   So that registrations can be attributed to a canvassing shift
   As a canvasser
   I want to start a new canvassing on my browser
-    
-    Background:
-      Blocks API is mocked
-    
-    @wip
-    Scenario: Canvasser Landing Page
-      Should not see notice
-      Should see welcome text
-      Should see partner select box
 
-    @wip
+    @passing
+    Scenario: Canvasser Landing Page
+      When I go to the start shift page
+      Then I should not see the canvassing notice bar
+      And I should see "Canvasser Web Portal"
+      And I should see "Select Partner"
+      And I should see a field for "partner"
+
+    @passing
     Scenario: Select Parter
       Given the following partner exists:
-      (set IDs in )
-        | name         | organization      |
-        | Partner Name | Organization Name |
+        | id  | name           | organization        |
+        | 123 | Partner Name 2 | Organization Name 2 |
+      And the following partner exists:
+        | id  | name           | organization        |
+        | 124 | Partner Name 3 | Organization Name 3 |
+
       When I go to the start shift page
-      I should see the partner selects
-      When I select partner 1
+      Then "partner" select box should contain "Organization Name 2"
+      And "partner" select box should contain "Organization Name 3"
+      When I select "Organization Name 2" from "partner"
       And I click "Next"
-      Then I should be on the shift creation page with the partner selected
-      
-    @wip
+      Then I should be on the shift creation page
+      And the "#partner_id" hidden field should be "123"
+
+    @passing
     Scenario: Create Shift Required Fields
-      Given that I go to the shift creation page for partner=123
-      When I click "Start Shift"
-      I should see all fields are required
+      Given the following partner exists:
+        | id  | name           | organization        |
+        | 123 | Partner Name 2 | Organization Name 2 |
+      When I go to the shift creation page for partner="123"
+      And I click "Start Shift"
+      Then the "#partner_id" hidden field should be "123"
+      And the "First Name" field should be required
+      And the "Last Name" field should be required
+      And the "Phone" field should be required
+      And the "Email" field should be required
+      And the "Location" field should be required
 
-    @wip
+    @passing
     Scenario: Create Shift Formatted Fields
-      Given that I go to the shift creation page for partner=123
-      When I fill out the shift form
-      And I fill in phone with "123"
-      And I fill in email with "abc"
+      Given the following partner exists:
+        | id  | name           | organization        |
+        | 123 | Partner Name 2 | Organization Name 2 |
+      When I go to the shift creation page for partner="123"
+      And I fill in "Phone" with "123"
+      And I fill in "Email" with "abc"
       And I click "Start Shift"
-      Then I should see a format error for canvasser_phone
-      And I should see a format error for canvasser_email
+      Then the "#partner_id" hidden field should be "123"
+      And the "Phone" field should have a format error
+      And the "Email" field should have a format error
 
-
-    @wip
+    @passing
     Scenario: Create Shift
-      Given that I go to the shift creation page for partner=123
-      When I fill out the shift form
+      Given the following partner exists:
+        | id  | name           | organization        |
+        | 123 | Partner Name 2 | Organization Name 2 |
+      When I go to the shift creation page for partner="123"
+      And I fill in "First Name" with "Test"
+      And I fill in "Last Name" with "Test"
+      And I fill in "Phone" with "123-123-1234"
+      And I fill in "Email" with "abc@def.ghi"
+      And I select "Default Location" from "Location"
       And I click "Start Shift"
-      Then I should see the shift status page
-      And I should see "0 registrations completed"
-      And I should see "0 registrations abandoned"
-      And I should see a button for "New Registration"
+      Then I should be on the shift status page
+      And I should see "0 completed registration(s)"
+      And I should see "0 via paper"
+      And I should see "0 via api"
+      And I should see "0 abandoned registration(s)"
+      And I should see a button for "Start new registration"
       And I should see a button for "End Shift"
-      
-    @wip
+
+    @passing
     Scenario: Register via Shift
-      Given that I started a new shift
-      When I go tot he shift status page
-      And I click "New Registration"
-      Then I should be on the new registration page
+      Given that I started a new shift for partner="123"
+      When I go to the shift status page
+      Then I should see "0 completed registration(s)"
+      And I follow "Start new registration"
+      And show the page
+      Then I should be on a new registration page for partner="123"
       And I should see the canvassing notice bar
       And I fill in "Email" with "test@rtv.org"
-      And I fill in "Zip Code" with "19000"
+      And I fill in "ZIP Code" with "19000"
       And I click "Next"
-      Then I should be on the registration step 2 page
+      Then I should see "Your Basic Info"
       And I should see the canvassing notice bar
-    
+
     @wip
     Scenario: Complete shift registration
       Given that I started a new shift
-      When I complete a registration for that shift
-      # Should there be different versions for opted-in paper, error-paper and via API?
-      I should see the canvassing notice bar with a link to the shift status page
-      
-    @wip
+      When I complete a PA paper registration for that shift
+      Then I should see the canvassing notice bar with a link to the shift status page
+
+    Scenario: Complete shift registration
+      Given that I started a new shift
+      When I complete a PA online registration for that shift
+      Then I should see the canvassing notice bar with a link to the shift status page
+
+    Scenario: Complete shift registration
+      Given that I started a new shift
+      When I complete a PA paper fallback registration for that shift
+      Then I should see the canvassing notice bar with a link to the shift status page
+
     Scenario: Canvassing status
       Given that I started a new shift with "3" complete registrations and "2" abandoned registrations
       When I go to the shift status page
       Then I should see "3 registrations completed"
       And I should see "2 registrations abandoned"
-      
-    @wip
+
     Scenario: End Shift
       Given that I started a new shift with "3" complete registrations and "2" abandoned registrations
       When I go to the shift status page
       And I click "End Shift"
       Then I should be on the start shift page
       And I should see the shift end message
-      
-      
-    

@@ -45,6 +45,11 @@ When /^I press "([^\"]*)"$/ do |button|
   click_button(button)
 end
 
+When /^I click "([^\"]*)"$/ do |button|
+  click_button(button)
+end
+
+
 When /^I follow "([^\"]*)"$/ do |link|
   #raise page.body.to_s
   click_link(link)
@@ -137,6 +142,11 @@ Then /^the "([^\"]*)" field should contain "([^\"]*)"$/ do |field, value|
   field_labeled(field).value.should =~ /#{value}/
 end
 
+Then /^the "([^\"]*)" hidden field should be "([^\"]*)"$/ do |field_id, value|
+  expect(page.find(field_id).value).to eq(value)
+end
+
+
 Then /^the "([^\"]*)" field should not contain "([^\"]*)"$/ do |field, value|
   field_labeled(field).value.should_not =~ /#{value}/
 end
@@ -156,6 +166,15 @@ end
 
 Then /^I should not see a field for "([^\"]*)"$/ do |label|
   page.should_not have_field(label)
+end
+
+Then(/^the "(.*?)" field should be required$/) do |field|
+  #expect(field_labeled(field).find(:xpath, '..')[:class]).to include("has_error")
+  expect(field_labeled(field).find(:xpath, '..').find('+.error').text).to include("Required")
+end
+
+Then(/^the "(.*?)" field should have a format error$/) do |field|
+  expect(field_labeled(field).find(:xpath, '..').find('+.error').text).to include("is invalid")
 end
 
 

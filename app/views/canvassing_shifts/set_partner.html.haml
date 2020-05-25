@@ -5,6 +5,6 @@
   %h2 Select Partner
   %br
   = form_tag new_canvassing_shifts_path, {method: :get} do
-    = select_tag :partner, options_from_collection_for_select(@partners, "id", "name"), include_blank: true
+    = select_tag :partner, options_from_collection_for_select(@partners, "id", "organization"), include_blank: true
     
     = rollover_button(:next, "Next") #I18n.t('txt.button.submit').html_safe  
