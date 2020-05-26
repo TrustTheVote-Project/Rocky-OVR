@@ -35,6 +35,11 @@ Then(/^I should see the canvassing notice bar$/) do
   page.should have_selector("#canvasser-notice")
 end
 
+
+Then(/^I should see the canvassing notice bar with a link to the shift status page$/) do
+  page.should have_selector("#canvasser-notice a[href='#{canvassing_shifts_path}']")
+end
+
 Then /^"([^"]*)" select box should contain "([^"]*)"$/ do |dropdown, text|
   puts Partner.all.collect {|p| [p.id, p.name]}
   #save_and_open_page
@@ -46,9 +51,78 @@ Given(/^that I started a new shift for partner="(\d+)"$/) do |partner_id|
   @partner = FactoryGirl.create(:partner, id: partner_id)
   step %{I go to the shift creation page for partner="#{partner_id}"}
   step %{I fill in "First Name" with "Test"}
-  step %{I fill in "Last Name" with "Test"}
+  step %{I fill in "Last Name" with "Canvasser"}
   step %{I fill in "Phone" with "123-123-1234"}
   step %{I fill in "Email" with "abc@def.ghi"}
   step %{I select "Default Location" from "Location"}
   step %{I click "Start Shift"}
+  @canvassing_shift = CanvassingShift.last
+end
+
+
+When(/^I complete a PA paper registration for that shift$/) do
+  @canvassing_shift ||= CanvassingShift.last
+  @registrant = FactoryGirl.create(:completed_registrant, {
+    home_zip_code: "19000",
+    home_state: GeoState["PA"]
+  })
+  @registrant.shift_id = @canvassing_shift.shift_external_id
+  @registrant.save!
+end
+
+
+When(/^I complete a PA online registration for that shift$/) do
+  @canvassing_shift ||= CanvassingShift.last
+
+  @registrant = FactoryGirl.create(:step_5_registrant, {
+    home_zip_code: "19000"
+  })
+  @registrant.shift_id = @canvassing_shift.shift_external_id
+  @registrant.save!
+  @state_registrant = @registrant.state_registrant
+  @state_registrant.pa_submission_complete = true
+  @state_registrant.pa_transaction_id = "12345"
+  @state_registrant.save
+  @state_registrant.update_original_registrant
+  @state_registrant.registrant.complete_registration_with_state!
+end
+
+
+When(/^I complete a PA paper fallback registration for that shift$/) do
+  @canvassing_shift ||= CanvassingShift.last
+
+  @registrant = FactoryGirl.create(:step_5_registrant, {
+    home_zip_code: "19000"
+  })
+  @registrant.shift_id = @canvassing_shift.shift_external_id
+  @registrant.save!
+  @state_registrant = @registrant.state_registrant
+  @state_registrant.pa_submission_complete = true
+  @state_registrant.pa_transaction_id = nil
+  @state_registrant.save
+  @state_registrant.registrant.skip_state_flow!
+  @state_registrant.registrant.complete!
+end
+
+Given(/^I complete "(.*?)" registrations$/) do |count|
+  @canvassing_shift ||= CanvassingShift.last
+  count.to_i.times do
+    registrant = FactoryGirl.create(:completed_registrant, {
+      home_zip_code: "19000",
+      home_state: GeoState["PA"]
+    })
+    registrant.shift_id = @canvassing_shift.shift_external_id
+    registrant.save!
+  end
+end
+
+Given(/^I start "(.*?)" abandoned$/) do |count|
+  @canvassing_shift ||= CanvassingShift.last
+  count.to_i.times do
+    registrant = FactoryGirl.create(:step_2_registrant, {
+      home_state: GeoState["PA"]
+    })
+    registrant.shift_id = @canvassing_shift.shift_external_id
+    registrant.save!
+  end
 end

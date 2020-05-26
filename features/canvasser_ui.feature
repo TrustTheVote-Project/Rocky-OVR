@@ -63,7 +63,7 @@ Feature: Canvasser UI
         | 123 | Partner Name 2 | Organization Name 2 |
       When I go to the shift creation page for partner="123"
       And I fill in "First Name" with "Test"
-      And I fill in "Last Name" with "Test"
+      And I fill in "Last Name" with "Canvasser"
       And I fill in "Phone" with "123-123-1234"
       And I fill in "Email" with "abc@def.ghi"
       And I select "Default Location" from "Location"
@@ -91,31 +91,42 @@ Feature: Canvasser UI
       Then I should see "Your Basic Info"
       And I should see the canvassing notice bar
 
-    @wip
-    Scenario: Complete shift registration
-      Given that I started a new shift
+    @passing
+    Scenario: Complete shift registration via paper
+      Given that I started a new shift for partner="123"
       When I complete a PA paper registration for that shift
+      And I go to the download page
       Then I should see the canvassing notice bar with a link to the shift status page
 
-    Scenario: Complete shift registration
-      Given that I started a new shift
+    @passing
+    Scenario: Complete shift registration via API
+      Given that I started a new shift for partner="123"
       When I complete a PA online registration for that shift
+      And I go to the state registrant finish page
       Then I should see the canvassing notice bar with a link to the shift status page
 
-    Scenario: Complete shift registration
-      Given that I started a new shift
+    @passing
+    Scenario: Complete shift registration via paper due to API error
+      Given that I started a new shift for partner="123"
       When I complete a PA paper fallback registration for that shift
+      And I go to the download page
       Then I should see the canvassing notice bar with a link to the shift status page
 
+    @passing
     Scenario: Canvassing status
-      Given that I started a new shift with "3" complete registrations and "2" abandoned registrations
+      Given that I started a new shift for partner="123"
+      And I complete "3" registrations
+      And I start "2" abandoned
       When I go to the shift status page
-      Then I should see "3 registrations completed"
-      And I should see "2 registrations abandoned"
+      Then I should see "3 completed registration(s)"
+      And I should see "2 abandoned registration(s)"
 
+    @passing
     Scenario: End Shift
-      Given that I started a new shift with "3" complete registrations and "2" abandoned registrations
+      Given that I started a new shift for partner="123"
+      And I complete "3" registrations
+      And I start "2" abandoned
       When I go to the shift status page
-      And I click "End Shift"
+      And I follow "End Shift"
       Then I should be on the start shift page
-      And I should see the shift end message
+      And I should see "Test Canvasser clocked out"

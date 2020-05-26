@@ -106,13 +106,15 @@ module NavigationHelpers
     when /the shift creation page/
       new_canvassing_shifts_path
     when /the shift status page/
-      canvassing_shifts_path      
+      canvassing_shifts_path
+    when /the state registrant finish page/
+      complete_state_registrant_path(@state_registrant)
     # Add more mappings here.
     # Here is a more fancy example:
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
-    
+
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"
