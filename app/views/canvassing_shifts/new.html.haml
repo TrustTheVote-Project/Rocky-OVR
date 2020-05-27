@@ -1,19 +1,46 @@
 = render partial: 'header'
 
+:javascript
+  window.confirmPartnerSelection = function() {
+    $("#canvassing-shift-form").show();
+    $("#partner-confirmation").hide();
+  }
+  $(document).ready(function() {
+    $("#canvassing-shift-form").hide();
+  })
+
 #canvassing-shift
 
-  %h2= "Start New Canvassing Shift for #{@partner.organization}"
-  %p To start a new canvassing shift, enter your personal information and shift information below.
-  = form_for @new_canvassing_shift, url: canvassing_shifts_path do |form|
-    %ul.stacked
-      = field_li(form, :canvasser_first_name, {skip_tooltip: true, required: true, li_options: {class: "first-name__line"}})
-      = field_li(form, :canvasser_last_name, {skip_tooltip: true, required: true, li_options: {class: "last-name__line"}})
-      = field_li(form, :canvasser_phone, {skip_tooltip: true, required: true, li_options: {class: "phone__line"}})
-      = field_li(form, :canvasser_email, {skip_tooltip: true, required: true, li_options: {class: "email__line"}})
-      = field_li(form, :shift_location, {skip_tooltip: true, required: true, select_options: CanvassingShift.location_options(@partner), field_options: {include_blank: true}, li_options: {class: "location__line"}})
-    = hidden_field_tag "partner_id", @partner&.id
-    = hidden_field_tag "source_tracking_id", @source_tracking
-    = hidden_field_tag "partner_tracking_id", @partner_tracking
-    = hidden_field_tag "open_tracking_id", @open_tracking
+  #partner-confirmation
+    %h2
+      = "You've selected:"
+      %br
+      = @partner.organization
+    %p Is this correct?
+    %form
+      .button.rollover_button
+        %a{onClick: "window.confirmPartnerSelection()"}
+          %button{type: "button"}
+            %span Yes
+      .button.rollover_button
+        = link_to :back do
+          %button{type: "button"}
+            %span No
+  
+  #canvassing-shift-form
+    %h2
+      = "Start New Canvassing Shift for #{@partner.organization}"
+    %p To start a new canvassing shift, enter your personal information and shift information below.
+    = form_for @new_canvassing_shift, url: canvassing_shifts_path do |form|
+      %ul.stacked
+        = field_li(form, :canvasser_first_name, {skip_tooltip: true, required: true, li_options: {class: "first-name__line"}})
+        = field_li(form, :canvasser_last_name, {skip_tooltip: true, required: true, li_options: {class: "last-name__line"}})
+        = field_li(form, :canvasser_phone, {skip_tooltip: true, required: true, li_options: {class: "phone__line"}})
+        = field_li(form, :canvasser_email, {skip_tooltip: true, required: true, li_options: {class: "email__line"}})
+        = field_li(form, :shift_location, {skip_tooltip: true, required: true, select_options: CanvassingShift.location_options(@partner), field_options: {include_blank: true}, li_options: {class: "location__line"}})
+      = hidden_field_tag "partner_id", @partner&.id
+      = hidden_field_tag "source_tracking_id", @source_tracking
+      = hidden_field_tag "partner_tracking_id", @partner_tracking
+      = hidden_field_tag "open_tracking_id", @open_tracking
 
-    = rollover_button(:start_shift, "Start Shift") #I18n.t('txt.button.submit').html_safe
+      = rollover_button(:start_shift, "Start Shift") #I18n.t('txt.button.submit').html_safe

@@ -191,10 +191,11 @@ class RegistrationStep < ApplicationController
     @home_state ||= @home_zip_code ? GeoState.for_zip_code(@home_zip_code.strip) : nil
 
     @shift_id = params[:shift_id]
+    @canvassing_shift ||= nil
     if !@shift_id.blank?
-      shift = CanvassingShift.find_by_shift_external_id(@shift_id)
-      if shift
-        @partner_id = shift.partner_id || @partner_id
+      @canvassing_shift = CanvassingShift.find_by_shift_external_id(@shift_id)
+      if @canvassing_shift
+        @partner_id = @canvassing_shift.partner_id || @partner_id
         @partner= Partner.find_by_id(@partner_id) || @partner
       end
     end

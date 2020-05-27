@@ -40,6 +40,11 @@ Then(/^I should see the canvassing notice bar with a link to the shift status pa
   page.should have_selector("#canvasser-notice a[href='#{canvassing_shifts_path}']")
 end
 
+Then(/^I should not see the canvassing notice bar with a link to the shift status page$/) do
+  page.should_not have_selector("#canvasser-notice a")
+end
+
+
 Then /^"([^"]*)" select box should contain "([^"]*)"$/ do |dropdown, text|
   puts Partner.all.collect {|p| [p.id, p.name]}
   #save_and_open_page
@@ -130,4 +135,10 @@ end
 Then(/^I should see a URL for starting a registartion for that shift$/) do
   @canvassing_shift ||= CanvassingShift.last
   expect(page.text).to include(@canvassing_shift.new_registrant_url)
+end
+
+
+Given(/^the followig canvassing shift exists:$/) do |table|
+  # table is a Cucumber::Ast::Table
+  @canvassing_shift = CanvassingShift.create(table.hashes.first)
 end

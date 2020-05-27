@@ -109,6 +109,8 @@ module NavigationHelpers
       canvassing_shifts_path
     when /the state registrant finish page/
       complete_state_registrant_path(@state_registrant)
+    when /the new registration page for that shift/
+      new_registrant_path(shift_id: @canvassing_shift.shift_external_id)
     # Add more mappings here.
     # Here is a more fancy example:
     #

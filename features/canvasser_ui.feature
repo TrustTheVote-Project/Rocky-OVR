@@ -143,3 +143,29 @@ Feature: Canvasser UI
       And I follow "End Shift"
       Then I should be on the start shift page
       And I should see "Test Canvasser clocked out"
+      
+    @passing
+    Scenario: Canvassing Link
+      Given the following partner exists:
+        | id  | name           | organization        |
+        | 123 | Partner Name 2 | Organization Name 2 |
+      And the followig canvassing shift exists:
+        | partner_id | shift_external_id |
+        | 123        | web-123           |
+      When I go to the new registration page for that shift
+      Then I should be on a new registration page for partner="123"
+      And I should see the canvassing notice bar
+    
+    @passing
+    Scenario: Complete shift registration via paper
+      Given the following partner exists:
+        | id  | name           | organization        |
+        | 123 | Partner Name 2 | Organization Name 2 |
+      And the followig canvassing shift exists:
+        | partner_id | shift_external_id |
+        | 123        | web-123           |
+      When I complete a PA paper registration for that shift
+      And I go to the download page
+      Then I should see the canvassing notice bar
+      And I should not see the canvassing notice bar with a link to the shift status page
+    
