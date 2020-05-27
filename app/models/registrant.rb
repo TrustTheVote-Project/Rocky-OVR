@@ -348,6 +348,11 @@ class Registrant < ActiveRecord::Base
   def shift_id
     @shift_id || nil
   end
+  has_one :canvassing_shift_registrant, primary_key: :uid
+  has_one :canvassing_shift, through: :canvassing_shift_registrant, primary_key: :shift_external_id, foreign_key: :shift_external_id
+  
+  
+  
   
   def ensure_shift
     if !self.shift_id.blank?
