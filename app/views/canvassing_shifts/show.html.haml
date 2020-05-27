@@ -3,15 +3,15 @@
 
 #canvassing-shift
 
-  %p 
+  %p
     %b Canvasser Shift Status:
     %br
-    &nbsp;&nbsp; Shift in Progress for 
+    &nbsp;&nbsp; Shift in Progress for
     = @canvassing_shift.canvasser_name
     %br
     &nbsp;&nbsp; started at
     = I18n.l @canvassing_shift.clock_in_datetime&.in_time_zone("America/New_York"), format: :short
-    EST 
+    EST
   %ul
     %li
       - complete_count = @canvassing_shift.registrants.complete.count
@@ -26,11 +26,16 @@
       &nbsp;&nbsp;
       = complete_count - api_count
       via paper
-      
+
     %li
       = @canvassing_shift.registrants.count - @canvassing_shift.registrants.complete.count
       abandoned registration(s)
-  
+
+  %p
+    Share this URL for someone to start a new registration:
+    %br
+    %b
+      = @canvassing_shift.new_registrant_url
   %form
     .button.rollover_button
       = link_to new_registrant_path(partner: @canvassing_shift.partner_id) do

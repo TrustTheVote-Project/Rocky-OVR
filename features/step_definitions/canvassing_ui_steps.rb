@@ -126,3 +126,8 @@ Given(/^I start "(.*?)" abandoned$/) do |count|
     registrant.save!
   end
 end
+
+Then(/^I should see a URL for starting a registartion for that shift$/) do
+  @canvassing_shift ||= CanvassingShift.last
+  expect(page.text).to include(@canvassing_shift.new_registrant_url)
+end

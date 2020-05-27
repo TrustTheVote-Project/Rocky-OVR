@@ -9,25 +9,37 @@ Feature: Canvasser UI
       When I go to the start shift page
       Then I should not see the canvassing notice bar
       And I should see "Canvasser Web Portal"
-      And I should see "Select Partner"
+      And I should see "Enter Partner ID"
       And I should see a field for "partner"
 
     @passing
-    Scenario: Select Parter
+    Scenario: Select Partner
       Given the following partner exists:
         | id  | name           | organization        |
         | 123 | Partner Name 2 | Organization Name 2 |
       And the following partner exists:
         | id  | name           | organization        |
         | 124 | Partner Name 3 | Organization Name 3 |
-
       When I go to the start shift page
-      Then "partner" select box should contain "Organization Name 2"
-      And "partner" select box should contain "Organization Name 3"
-      When I select "Organization Name 2" from "partner"
+      And I fill in "partner" with "123"
       And I click "Next"
       Then I should be on the shift creation page
+      And I should see "Start New Canvassing Shift for Organization Name 2"
       And the "#partner_id" hidden field should be "123"
+
+    @passing
+    Scenario: Invalid Partner
+      Given the following partner exists:
+        | id  | name           | organization        |
+        | 123 | Partner Name 2 | Organization Name 2 |
+      And the following partner exists:
+        | id  | name           | organization        |
+        | 124 | Partner Name 3 | Organization Name 3 |
+      When I go to the start shift page
+      And I fill in "partner" with "999"
+      And I click "Next"
+      Then I should be on the start shift page
+      And I should see "Partner 999 not available for canvassing shifts"
 
     @passing
     Scenario: Create Shift Required Fields
@@ -74,6 +86,7 @@ Feature: Canvasser UI
       And I should see "0 via api"
       And I should see "0 abandoned registration(s)"
       And I should see a button for "Start new registration"
+      And I should see a URL for starting a registartion for that shift
       And I should see a button for "End Shift"
 
     @passing
