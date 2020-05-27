@@ -35,6 +35,7 @@ module StateRegistrants::MIRegistrant::ApiService
     end      
   end
   
+  
   #response codes
   # GO to paper
   # 0.0: Error message attached
@@ -50,6 +51,11 @@ module StateRegistrants::MIRegistrant::ApiService
     else
       return I18n.t("states.custom.mi.custom_errors.mi_api_error",  url: skip_state_flow_registrant_path)
     end
+  end
+  
+
+  def first_registration?
+    !(["2.0", "3.0"].include?(self.mi_api_voter_status_id.to_s))
   end
   
 
