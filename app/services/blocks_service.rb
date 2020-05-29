@@ -6,7 +6,9 @@ class BlocksService
       eligible_voting_age: true, #r.ineligible_age checks for is==18 *now* not by deadline?
       email_address: r.email_address,
       first_name: r.first_name,
+      middle_name: r.middle_name,
       last_name: r.last_name,
+      name_suffix: r.english_name_suffix,
       gender: r.gender,
       phone_number: r.phone,
       signature: r.is_grommet? ? r.api_submitted_with_signature : !r.existing_state_registrant&.voter_signature_image.blank?,
@@ -16,7 +18,8 @@ class BlocksService
       voting_state: r.home_state_abbrev,
       voting_street_address_one: r.home_address,
       voting_street_address_two: r.home_unit,
-      voting_zipcode: r.home_zip_code
+      voting_zipcode: r.home_zip_code,
+      ethnicity: r.english_race,
     }
   end
   
