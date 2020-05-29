@@ -1,0 +1,27 @@
+<%- content_for :head do %>
+  <meta http-equiv="refresh" content="3;URL='<%= @pdf_url %>'" />    
+<%- end %>
+
+
+<%- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank? %>
+  <%= @registrant.partner.external_conversion_snippet.to_s.html_safe %>
+<%- end %>  
+
+
+<%- if @use_mobile_ui %>
+  <%- completion = "100%"%>
+  <div id="dynamic-progress-bar">
+    <div class="filler" style="width: <%= completion %>"></div>
+    <div class="content"><%= completion %></div>
+  </div>
+<%- end %>
+
+
+
+<div id="preparing_content">
+  <h1><%= I18n.t('txt.registration.preparing_header') %></h1>
+  <div class="download" style="position:relative">
+    <p class="preparing"><%= image_tag "reg/spinner.gif" %></p>
+    <p><%= I18n.t('txt.registration.instructions.download_2') %></p>
+  </div>
+</div>

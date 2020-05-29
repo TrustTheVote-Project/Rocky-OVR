@@ -65,8 +65,10 @@ class ReportGenerator
       # Also preload all PA and VA state registrants?
       pa_registrants = {}
       va_registrants = {}
+      mi_registrants = {}
       StateRegistrants::PARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MIRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
       csv_str = CsvFormatter.wrap do |csv|
         csv << headers = self.registrant_fields.dup
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
@@ -81,6 +83,8 @@ class ReportGenerator
               sr = pa_registrants[r.uid] || StateRegistrants::PARegistrant.new
             when "VA"
               sr = va_registrants[r.uid] || StateRegistrants::VARegistrant.new
+            when "MI"
+              sr = mi_registrants[r.uid] || StateRegistrants::MIRegistrant.new
             end
             r.instance_variable_set(:@existing_state_registrant, sr)
           end
