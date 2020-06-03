@@ -336,6 +336,26 @@ class Registrant < ActiveRecord::Base
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
+  #has_one :registrant_shift
+  # TODO make this create relation
+  #These IDs are often externally created, but we can't garauntee the shift object with a matching UID has been created first
+  def shift_id=(val) 
+    @shift_id = val
+    ensure_shift if !self.uid.blank?
+  end
+  def shift_id
+    @shift_id || nil
+  end
+  
+  def ensure_shift
+    if !self.shift_id.blank?
+      # begin
+        CanvassingShiftRegistrant.find_or_create_by!(shift_external_id: self.shift_id, registrant_id: self.uid)
+      # rescue
+      # end
+    end
+  end
+
   def self.state_attr_accessor(*args)
     [args].flatten.each do |arg|
       define_method(arg) do
@@ -1873,6 +1893,8 @@ class Registrant < ActiveRecord::Base
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
+    ensure_shift if !self.shift_id.blank?
+    return self.uid
   end
   
   def set_dl_defaults

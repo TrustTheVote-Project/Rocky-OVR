@@ -27,8 +27,7 @@ blocks_configuration:
       canvasser_id: 129
       location_id: 266
       staging_location_id: 267
-      
-      
+
 states_with_online_registration:
   - AZ
   - CA

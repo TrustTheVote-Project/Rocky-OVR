@@ -51,11 +51,22 @@ class Api::V4::PartnersController < Api::V4::BaseController
   
   
   def partner_id_validation
-    if params[:partner_id].blank?
+    min_version = RockyConf.ovr_states.PA.grommet_min_version || "3.0.0"
+    if params[:partner_id].blank? 
       jsonp({
         is_valid: false,
         message: "Missing Parameter: partner_id"
       }, status: 400)
+    elsif params[:grommet_version].blank? 
+      jsonp({
+        is_valid: false,
+        message: "Missing Parameter: grommet_version"
+      }, status: 400)
+    elsif Gem::Version.new(params[:grommet_version]) < Gem::Version.new(min_version)
+      jsonp({
+        is_valid: false,
+        errors: ["App version must be at least #{min_version}"]
+      })
     else
       partner = Partner.find_by_id(params[:partner_id])
       if partner && partner.enabled_for_grommet?
@@ -72,11 +83,11 @@ class Api::V4::PartnersController < Api::V4::BaseController
         json_str = JSON.generate({
           is_valid: true,
           partner_name: partner.organization,
-          session_timeout_length: partner.custom_data["canvassing_session_timeout_length"],
-          validation_timeout_length: partner.custom_data["canvassing_validation_timeout_length"],
+          valid_locations: [{ id: 1, name: "TBD Location 1", id: 2, name: "TBD Location 2"}],
           registration_deadline_date: RockyConf.ovr_states.PA.registration_deadline.strftime("%Y-%m-%d"),
           registration_notification_text: deadline_messages,
-          volunteer_text: volunteer_messages
+          volunteer_text: volunteer_messages,
+          errors: []
         })
         begin
           Rails.logger.info("Responding to partnerIdValidation request for #{params[:partner_id]} with: #{json_str}")
@@ -89,7 +100,8 @@ class Api::V4::PartnersController < Api::V4::BaseController
         rescue
         end
         jsonp({
-          is_valid: false
+          is_valid: false,
+          errors: ["Not valid grommet partner"]
         })      
       end
     end

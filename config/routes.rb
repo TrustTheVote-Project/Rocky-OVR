@@ -186,6 +186,7 @@ Rocky::Application.routes.draw do
       match 'gregistrant_reports/:id', :format => 'json', :controller => 'registrant_reports', :action => 'gshow', :via => :get, as: 'gregistrant_report'
       match 'gregistrant_reports/:id/download', :format => 'json', :controller => 'registrant_reports', :action => 'gdownload', :via => :get, as: 'download_gregistrant_report'
       
+      match 'hello', format: 'json', controller: 'registrations', action: 'hello', via: :get
       match 'voterregistrationrequest', format: 'json', controller: 'registrations', action: 'create_pa', via: :post
       match 'clockIn', format: 'json', controller: 'registrations', action: 'clock_in', via: :post
       match 'clockOut', format: 'json', controller: 'registrations', action: 'clock_out', via: :post

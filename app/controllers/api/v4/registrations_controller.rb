@@ -25,7 +25,9 @@
 require "#{Rails.root}/app/services/v4"
 class Api::V4::RegistrationsController < Api::V4::BaseController
 
-
+  def hello
+    jsonp({hello: "hello"}, status: 200)
+  end
 
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
@@ -72,7 +74,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
       jsonp({}, status: 200)
     end
   rescue V4::RegistrationService::ValidationError => e
-    jsonp({ :message => e.message }, status: 400)
+    jsonp({ :message => e.message }, status: 200)
   end
 
   def clock_out
@@ -92,7 +94,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
       jsonp({}, status: 200)
     end
   rescue V4::RegistrationService::ValidationError => e
-    jsonp({ :message => e.message }, status: 400)
+    jsonp({ :message => e.message }, status: 200)
   end
 
   def create_pa
@@ -122,6 +124,16 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
       
     rescue Exception=>e
       #raise e
+    end
+    
+    # Also create a CanvassingShiftGrommet request
+    begin
+      shift_id = params[:rocky_request][:shift_id]
+      if gr_id && !shift_id.blank?
+        CanvassingShiftGrommetRequest.create(shift_external_id: shift_id, grommet_request_id: gr_id)
+      end
+    rescue Exception=>e
+      # alert?
     end
     
     # input request structure validation
@@ -172,9 +184,9 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
   def pa_success_result
     data = {
         registration_success: true,
-        errors: []
+        #errors: []
     }
-    jsonp(data)
+    jsonp(data, :status => 200)
   end
 
   def pa_error_result(errors, registrant=nil)
@@ -182,15 +194,16 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
       errors = [errors]
     end
     data = {
-        registration_success: false,
-        transaction_id: nil,
-        errors: errors
+        registration_success: true
+        #registration_success: false
+        #transaction_id: nil,
+        #errors: errors
     }
 
     Rails.logger.warn("Grommet Registration Error for params:\n#{params}\n\nErrors:\n#{errors}")
     AdminMailer.grommet_registration_error(errors, registrant).deliver_now
 
-    jsonp(data, :status => 400)
+    jsonp(data, :status => 200)
   end
 
   def pdf_ready
