@@ -857,7 +857,7 @@ class Registrant < ActiveRecord::Base
   def home_zip_code=(zip)
     self[:home_zip_code] = zip
     if zip && !zip.blank?
-      self.home_state = nil
+      #self.home_state = nil
       self.home_state_id = (s = GeoState.for_zip_code(zip.strip)) ? s.id : self.home_state_id
     end
   end
