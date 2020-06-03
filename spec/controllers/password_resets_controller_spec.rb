@@ -86,7 +86,7 @@ describe PasswordResetsController do
     end
 
     it "should work" do
-      put :update, :id => partner.perishable_token, :partner => {:password => 'newpassword', :password_confirmation => 'newpassword'}
+      put :update, :id => partner.perishable_token, :partner => {:password => 'MyN3wP4ssw0rd!', :password_confirmation => 'MyN3wP4ssw0rd!'}
       assert_redirected_to login_url
       flash[:success].should =~ /Password successfully updated/i
     end

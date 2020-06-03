@@ -30,13 +30,12 @@ describe Step2Controller do
   end
   
   describe "#show" do
+    let(:reg) { FactoryGirl.create(:step_1_registrant, home_zip_code: "03900") }
     it "should show the step 2 input form" do
-      reg = FactoryGirl.create(:step_1_registrant)
       get :show, :registrant_id => reg.to_param
       assert_template "show"
     end
     it "sets up tooltip and party variables" do
-      reg = FactoryGirl.create(:step_1_registrant)
       reg.stub(:state_parties) { true } 
       reg.stub(:race_tooltip) { true } 
       reg.stub(:party_tooltip) { true } 
@@ -52,7 +51,7 @@ describe Step2Controller do
 
   describe "#update" do
     before(:each) do
-      @registrant = FactoryGirl.create(:step_1_registrant)
+      @registrant = FactoryGirl.create(:step_1_registrant, home_zip_code: "03900")
     end
 
     it "should update registrant and complete step 2 when not using short form" do
