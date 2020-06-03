@@ -578,8 +578,8 @@ class Registrant < ActiveRecord::Base
   end
 
   def localization
-    home_state_id && locale ?
-        StateLocalization.where({:state_id  => home_state_id, :locale => locale}).first : nil
+    home_state_id ?
+        StateLocalization.where({:state_id  => home_state_id, :locale => (locale || "en")}).first : nil
   end
   
   def en_localization
@@ -792,23 +792,23 @@ class Registrant < ActiveRecord::Base
   end
 
   def state_id_tooltip
-    localization.id_number_tooltip
+    localization&.id_number_tooltip
   end
 
   def race_tooltip
-    localization.race_tooltip
+    localization&.race_tooltip
   end
 
   def party_tooltip
-    localization.party_tooltip
+    localization&.party_tooltip
   end
 
   def home_state_not_participating_text
-    localization.not_participating_tooltip
+    localization&.not_participating_tooltip
   end
   
   def registration_deadline
-    localization.registration_deadline
+    localization&.registration_deadline
   end
   
   def state_registrar_address
@@ -817,7 +817,7 @@ class Registrant < ActiveRecord::Base
   
   [:pdf_instructions, :email_instructions, :pdf_other_instructions].each do |state_data|
     define_method("home_state_#{state_data}") do
-      localization.send(state_data)
+      localization&.send(state_data)
     end
   end
   
@@ -832,7 +832,7 @@ class Registrant < ActiveRecord::Base
   def under_18_instructions_for_home_state
     I18n.t('txt.registration.instructions.under_18',
             :state_name => home_state.name,
-            :state_rule => localization.sub_18).html_safe
+            :state_rule => localization&.sub_18).html_safe
   end
 
 

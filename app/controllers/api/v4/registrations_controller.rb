@@ -59,28 +59,40 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
   end
 
   def clock_in
-    data = params.deep_dup
-    data.delete(:debug_info)
-    data.delete(:format)
-    data.delete(:controller)
-    data.delete(:action)
-    data.delete(:registration)
-    V4::RegistrationService.track_clock_in_event(data)
-    jsonp({}, status: 200)
+    if params[:shift_id].blank? 
+      jsonp({
+        message: "Missing Parameter: shift_id"
+      }, status: 400)
+    else
+      data = params.deep_dup
+      data.delete(:debug_info)
+      data.delete(:format)
+      data.delete(:controller)
+      data.delete(:action)
+      data.delete(:registration)
+      V4::RegistrationService.track_clock_in_event(data)
+      jsonp({}, status: 200)
+    end
   rescue V4::RegistrationService::ValidationError => e
     jsonp({ :message => e.message }, status: 200)
   end
 
   def clock_out
-    data = params.deep_dup
-    data.delete(:debug_info)
-    data.delete(:format)
-    data.delete(:controller)
-    data.delete(:action)
-    data.delete(:registration)
+    if params[:shift_id].blank? 
+      jsonp({
+        message: "Missing Parameter: shift_id"
+      }, status: 400)
+    else
+      data = params.deep_dup
+      data.delete(:debug_info)
+      data.delete(:format)
+      data.delete(:controller)
+      data.delete(:action)
+      data.delete(:registration)
     
-    V4::RegistrationService.track_clock_out_event(data)
-    jsonp({}, status: 200)
+      V4::RegistrationService.track_clock_out_event(data)
+      jsonp({}, status: 200)
+    end
   rescue V4::RegistrationService::ValidationError => e
     jsonp({ :message => e.message }, status: 200)
   end

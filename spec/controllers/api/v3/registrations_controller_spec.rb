@@ -326,23 +326,23 @@ describe Api::V3::RegistrationsController do
 
   describe 'index' do
     it 'should catch errors' do
-      expect_api_error :message => 'error'
+      expect_api_deprecation_response
       registrations { raise ArgumentError.new('error') }
     end
 
     it 'should return registrations' do
-      expect_api_response :registrations => [ :reg1, :reg2 ]
+      expect_api_deprecation_response
       registrations { [ :reg1, :reg2 ] }
     end
   end
   
   describe "index_gpartner" do
     it 'should catch errors' do
-      expect_api_error :message => 'error'
+      expect_api_deprecation_response
       gregistrations { raise ArgumentError.new('error') }
     end
     it 'should return registrations' do
-      expect_api_response :registrations => [ :reg1, :reg2 ]
+      expect_api_deprecation_response
       gregistrations { [ :reg1, :reg2 ] }
     end    
   end

@@ -31,7 +31,7 @@ describe RegistrationStep do
     @partner = FactoryGirl.create(:partner, id: 123)
     Partner.stub(:find_by_id).and_return(@partner)
     Partner.stub(:find).and_return(@partner)
-    @reg = FactoryGirl.create(:step_5_registrant, :partner => @partner)
+    @reg = FactoryGirl.create(:step_5_registrant, :partner => @partner, home_zip_code: "02113")
   end
 
   it 'should set partner fields' do

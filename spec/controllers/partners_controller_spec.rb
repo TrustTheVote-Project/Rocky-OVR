@@ -121,9 +121,9 @@ describe PartnersController do
       #   #assert_select html, "script[type=text/javascript][src=https://example.com/widget_loader.js]"
       # end
       
-      it "shows iframe HTML for version a" do
-        assert_select 'textarea[name=iframe_html][readonly]', 1
-        expect(assigns(:iframe_html)).to eq('<iframe src="https://register.rockthevote.com/?partner=5&source=iframe" width="100%" height="1200" marginheight="0" frameborder="0"></iframe>')        
+      it "shows iframe JS script for version a" do
+        assert_select 'textarea[name=js_src][readonly]', 1
+        expect(assigns(:js_src_tag)).to eq("<script type=\"text/javascript\"  src=\"https://#{RockyConf.ui_url_host}/assets/rtv-iframe.js\"></script>")      
       end
 
       it "shows facebook share" do
@@ -149,11 +149,12 @@ describe PartnersController do
         assert_response :success
         assert !assigns[:stats_by_state].nil?
         assert !assigns[:stats_by_completion_date].nil?
-        assert !assigns[:stats_by_completion_date_finish_with_state].nil?
-        assert !assigns[:stats_by_race].nil?
-        assert !assigns[:stats_by_gender].nil?
-        assert !assigns[:stats_by_age].nil?
-        assert !assigns[:stats_by_party].nil?
+        # Removed te below stats sections
+        assert assigns[:stats_by_completion_date_finish_with_state].nil?
+        assert assigns[:stats_by_race].nil?
+        assert assigns[:stats_by_gender].nil?
+        assert assigns[:stats_by_age].nil?
+        assert assigns[:stats_by_party].nil?
       end
     end
 
@@ -181,51 +182,52 @@ describe PartnersController do
 
     describe "GET #registrations" do
       it "triggers a CSV generation" do
-        controller.current_partner.stub(:generate_registrants_csv_async)
+        controller.current_partner.stub(:generate_registrants_csv)
         get :registrations
-        controller.current_partner.should have_received(:generate_registrants_csv_async)
+        controller.current_partner.should have_received(:generate_registrants_csv)
       end
       it "parses dates" do
-        controller.current_partner.stub(:generate_registrants_csv_async)
+        controller.current_partner.stub(:generate_registrants_csv)
         get :registrations, start_date: "09/20/2014", end_date: "10/01/2015"
-        controller.current_partner.should have_received(:generate_registrants_csv_async).with(Date.parse("2014-09-20"), Date.parse("2015-10-01"))
+        controller.current_partner.should have_received(:generate_registrants_csv).with(Date.parse("2014-09-20"), Date.parse("2015-10-01"))
       end
       it "works with only one date" do
-        controller.current_partner.stub(:generate_registrants_csv_async)
+        controller.current_partner.stub(:generate_registrants_csv)
         get :registrations, end_date: "10/01/2015"
-        controller.current_partner.should have_received(:generate_registrants_csv_async).with(nil, Date.parse("2015-10-01"))
+        controller.current_partner.should have_received(:generate_registrants_csv).with(nil, Date.parse("2015-10-01"))
         
       end
       
-      it "redirects to the download_csv action" do
-        controller.current_partner.stub(:generate_registrants_csv_async)
+      it "redirects to the reports page" do
+        controller.current_partner.stub(:generate_registrants_csv)
         get :registrations
-        assert_redirected_to download_csv_partner_url
+        assert_redirected_to reports_partner_url
       end      
     end
-    describe "GET #download_csv" do
-      context "when csv_ready is true" do
-        before(:each) do
-          controller.current_partner.stub(:csv_ready) { true }
-          controller.current_partner.stub(:id) { "123" }
-          controller.current_partner.stub(:csv_file_name) { "fn.csv" }
-        end
-        it "redirects to the CSV url" do
-          get :download_csv
-          response.should redirect_to controller.current_partner.csv_url 
-        end
-      end
-      context "when csv_ready is false" do
-        render_views
-        before(:each) do
-          controller.current_partner.stub(:csv_ready) { false }
-        end
-        it "renders the template with a redirect-to-self and a delay of 10 seconds" do
-          get :download_csv
-          assert_select "meta[content=5]"
-          assert_select "meta[http-equiv=refresh]"
-        end
-      end
-    end
+    # TODO test report gen tool
+    # describe "GET #download_csv" do
+    #   context "when csv_ready is true" do
+    #     before(:each) do
+    #       controller.current_partner.stub(:csv_ready) { true }
+    #       controller.current_partner.stub(:id) { "123" }
+    #       controller.current_partner.stub(:csv_file_name) { "fn.csv" }
+    #     end
+    #     it "redirects to the CSV url" do
+    #       get :download_csv
+    #       response.should redirect_to controller.current_partner.csv_url
+    #     end
+    #   end
+    #   context "when csv_ready is false" do
+    #     render_views
+    #     before(:each) do
+    #       controller.current_partner.stub(:csv_ready) { false }
+    #     end
+    #     it "renders the template with a redirect-to-self and a delay of 10 seconds" do
+    #       get :download_csv
+    #       assert_select "meta[content=5]"
+    #       assert_select "meta[http-equiv=refresh]"
+    #     end
+    #   end
+    # end
   end
 end
