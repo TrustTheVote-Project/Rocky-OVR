@@ -48,11 +48,17 @@ describe PartnerZip do
       pz.create.should be_falsey
     end
     it "looks in folder when the zip file unzips to a subdirectory" do
+      p = double(Partner).as_null_object
+      allow(p).to receive(:valid?).and_return(true)  
+      allow(Partner).to receive(:new).and_return(p) #Assume partner creation is successful
       @file = File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', 'ejs_good_partners1.zip'))
       pz = PartnerZip.new(@file)
       pz.create.should be_truthy    
     end
     it "looks into nested folders when the zip file unzips to a subdirectory" do
+      p = double(Partner).as_null_object
+      allow(p).to receive(:valid?).and_return(true)  
+      allow(Partner).to receive(:new).and_return(p) #Assume partner creation is successful
       @file = File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', 'ejs_good_partners2.zip'))
       pz = PartnerZip.new(@file)
       pz.create.should be_truthy      
@@ -66,9 +72,9 @@ describe PartnerZip do
       @file = File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', 'invalid_partners.zip'))
       pz = PartnerZip.new(@file)
       pz.create.should be_falsey
-      pz.errors.collect{|a,b| a}.should include("Row 1 is invalid")
-      pz.errors.collect{|a,b| a}.should include("Row 2 is invalid")
-      pz.errors.collect{|a,b| a}.should include("Row 3 is invalid")
+      pz.errors['base'].collect{|a,b| a}.should include("Row 1 is invalid")
+      pz.errors['base'].collect{|a,b| a}.should include("Row 2 is invalid")
+      pz.errors['base'].collect{|a,b| a}.should include("Row 3 is invalid")
     end
     it "creates partners when all is valid and attaches CSVs and email templates when whitelabeled" do
       @file = File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', 'four_good_partners.zip'))

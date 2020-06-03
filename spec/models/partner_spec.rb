@@ -38,12 +38,11 @@ describe Partner do
   end
   
   describe ".deactivate_stale_partners!" do
-    let(:p1) { FactoryGirl.create(:partner, last_login_at: 1.day.ago) }
-    let(:p2) { FactoryGirl.create(:partner, last_login_at: 1.day.ago) }
-    let(:p3) { FactoryGirl.create(:partner, last_login_at: 100.day.ago) }
-    
-    it "finds login-active partners without recent registrants and sets active to false" do
-      r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
+    let(:p1) { FactoryGirl.create(:partner, last_login_at: 100.day.ago, current_login_at: nil, updated_at: 1.year.ago) }
+    let(:p2) { FactoryGirl.create(:partner, last_login_at: 1.day.ago, current_login_at: nil, updated_at: 1.year.ago) }
+    let(:p3) { FactoryGirl.create(:partner, last_login_at: 100.day.ago, current_login_at: nil, updated_at: 1.year.ago) } #login-inactive
+    it "finds login-inactive partners without recent registrants and sets active to false" do
+      r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago) #registration-inactive
       r2 = FactoryGirl.create(:step_1_registrant, partner: p2, created_at: 1.day.ago)
       r3 = FactoryGirl.create(:step_1_registrant, partner: p3, created_at: 1.day.ago)
       Partner.deactivate_stale_partners!
@@ -52,7 +51,7 @@ describe Partner do
       p3.reload
       expect(p1.active).to eq(false)
       expect(p2.active).to eq(true)
-      expect(p3.active).to eq(false)
+      expect(p3.active).to eq(true)
     end
     it "email list of deactivated partners to admin" do
       r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
@@ -64,16 +63,16 @@ describe Partner do
   end
 
   describe ".inactive" do
-    let(:p1) { FactoryGirl.create(:partner, last_login_at: 1.day.ago) }
-    let(:p2) { FactoryGirl.create(:partner, last_login_at: 1.day.ago) }
-    let(:p3) { FactoryGirl.create(:partner, last_login_at: 100.day.ago) }
-    it "returns partners with no recent started registrations" do
+    let(:p1) { FactoryGirl.create(:partner, last_login_at: 100.day.ago, updated_at: 1.year.ago) }
+    let(:p2) { FactoryGirl.create(:partner, last_login_at: 1.day.ago, updated_at: 1.year.ago) }
+    let(:p3) { FactoryGirl.create(:partner, last_login_at: 100.day.ago, updated_at: 1.year.ago) }
+    it "returns partners with no recent started registrations and no recent logins" do
       r1 = FactoryGirl.create(:step_1_registrant, partner: p1, created_at: 1.year.ago)
       r2 = FactoryGirl.create(:step_1_registrant, partner: p2, created_at: 1.day.ago)
       r3 = FactoryGirl.create(:step_1_registrant, partner: p3, created_at: 1.day.ago)
       inactive_partner_ids = Partner.inactive.pluck(:id)      
       expect(inactive_partner_ids).to include(p1.id)
-      expect(inactive_partner_ids).to include(p3.id) # not logged in
+      expect(inactive_partner_ids).not_to include(p3.id) # has a recent registration
       expect(inactive_partner_ids).not_to include(p2.id)
     end
   end
@@ -471,6 +470,7 @@ describe Partner do
         paf.stub("asset_file_exists?").with("registration.css").and_return(false)
         paf.stub("asset_file_exists?").with("partner.css").and_return(false)
         paf.stub("asset_file_exists?").with("partner2.css", nil).and_return(false)
+        paf.stub("asset_file_exists?").with("partner2mobile.css", nil).and_return(false)
 
         partner.any_css_present?.should be_falsey
       end
@@ -765,198 +765,14 @@ describe Partner do
 
   describe "CSV" do
     let(:partner) { FactoryGirl.create(:partner) }
-    it "can generate CSV of all registrants" do
-      registrants = []
-      3.times { registrants << FactoryGirl.create(:maximal_registrant, :partner => partner) }
-      registrants << FactoryGirl.create(:step_1_registrant, :partner => partner)
-
-      other_partner = FactoryGirl.create(:partner)
-      registrants << FactoryGirl.create(:maximal_registrant, :partner => other_partner)
-
-      csv = CSV.parse(partner.generate_registrants_csv)
-      assert_equal 5, csv.length # including header
-      assert_equal Registrant::CSV_HEADER, csv[0]
-      assert_equal registrants[0].to_csv_array, csv[1]
-      assert_equal registrants[1].to_csv_array, csv[2]
-      assert_equal registrants[2].to_csv_array, csv[3]
-      assert_equal registrants[3].to_csv_array, csv[4]
-    end
+    # TODO test report generation
+    it "can generate CSV of all registrants"
     
-    it "can generate CSV for registrants within a time span" do
-      registrants = []
-      3.times {|i| registrants << FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at=> i.months.ago) }
-      registrants << FactoryGirl.create(:step_1_registrant, :partner => partner, :created_at=> 3.months.ago)
+    it "can generate CSV for registrants within a time span"
+    # registrants = []
+    # 3.times {|i| registrants << FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at=> i.months.ago) }
+    # registrants << FactoryGirl.create(:step_1_registrant, :partner => partner, :created_at=> 3.months.ago)
 
-      csv = CSV.parse(partner.generate_registrants_csv(2.months.ago.beginning_of_day, 1.months.ago.beginning_of_day))
-      assert_equal 3, csv.length # including header
-      assert_equal Registrant::CSV_HEADER, csv[0]
-      assert_equal registrants[1].to_csv_array, csv[1]
-      assert_equal registrants[2].to_csv_array, csv[2]
-
-
-      csv = CSV.parse(partner.generate_registrants_csv(2.months.ago.beginning_of_day))
-      assert_equal 4, csv.length # including header
-      assert_equal Registrant::CSV_HEADER, csv[0]
-      assert_equal registrants[0].to_csv_array, csv[1]
-      assert_equal registrants[1].to_csv_array, csv[2]
-      assert_equal registrants[2].to_csv_array, csv[3]
-
-
-      csv = CSV.parse(partner.generate_registrants_csv(nil, 1.months.ago.beginning_of_day))
-      assert_equal 4, csv.length # including header
-      assert_equal Registrant::CSV_HEADER, csv[0]
-      assert_equal registrants[1].to_csv_array, csv[1]
-      assert_equal registrants[2].to_csv_array, csv[2]
-      assert_equal registrants[3].to_csv_array, csv[3]
-
-    end
-
-    describe "#generate_registrants_csv_async" do
-      before(:each) do
-        @partner= FactoryGirl.create(:partner, :csv_ready=>true)
-        @t = Time.now
-        Time.stub(:now).and_return(@t)
-        Delayed::PerformableMethod.stub(:new).and_return("action")
-        Delayed::Job.stub(:enqueue)
-      end
-      it "sets the csv_ready for the partner to false" do
-        @partner.csv_ready.should be_truthy
-        @partner.generate_registrants_csv_async
-        @partner.reload
-        @partner.csv_ready.should be_falsey
-      end
-      it "sets up a delayed job to generate the csv" do
-        @partner.generate_registrants_csv_async
-        Delayed::PerformableMethod.should have_received(:new).with(@partner, :generate_registrants_csv_file, [nil, nil])
-        Delayed::Job.should have_received(:enqueue).with("action", Partner::CSV_GENERATION_PRIORITY, @t)
-      end
-    end
-    describe "#generate_csv_file_name" do
-      it "generates obfuscated file name" do
-        Digest::SHA1.stub(:hexdigest).and_return("obfuscate")
-        d = DateTime.now
-        Partner.new.generate_csv_file_name(d).should == "csv-obfuscate-#{d.strftime('%Y%m%d')}.csv"
-        #Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
-      end
-    end
-    describe "#csv_file_path" do
-      it "returns the path to the file name in the record" do
-        @partner = FactoryGirl.create(:partner)        
-        @partner.stub(:csv_file_name) { "a_file_name.ext" }
-        @partner.stub(:csv_path) { "/some/path" }
-        FileUtils.stub(:mkdir_p)
-        @partner.csv_file_path.should == "/some/path/a_file_name.ext"
-      end
-    end
-    describe "#csv_path" do
-      it "creates the path to the partner csv directory" do
-        @partner = FactoryGirl.create(:partner)
-        FileUtils.stub(:mkdir_p)
-        @partner.csv_path
-        FileUtils.should have_received(:mkdir_p).with(File.join(Rails.root, "csv", @partner.id.to_s))
-      end
-      it "returns the path to the partner csv directory" do
-        @partner = FactoryGirl.create(:partner)
-        FileUtils.stub(:mkdir_p)
-        @partner.csv_path.should == File.join(Rails.root, "csv", @partner.id.to_s)
-      end
-    end
-    describe "#generate_registrants_csv_file" do
-      before(:each) do
-        @partner = FactoryGirl.create(:partner)    
-        @partner.stub(:upload_registrants_csv_file)    
-        @t = Time.now
-        @file = double("mock_object")
-        Time.stub(:now) { @t }
-        @partner.stub(:generate_csv_file_name) { "fn.csv" }
-        @partner.stub(:generate_registrants_csv) { "generated_csv" }
-        @partner.stub(:csv_ready=)
-        @partner.stub(:save!)
-        File.stub(:open) { @file }
-        File.stub(:delete)
-        @file.stub(:write) { true }
-        @file.stub(:close) { true }
-        
-        Delayed::PerformableMethod.stub(:new) { "action" }
-        Delayed::Job.stub(:enqueue)
-      end
-      it "generates obfuscated file names in partner directories with date/time stamp" do
-        @partner.generate_registrants_csv_file
-        @partner.should have_received(:generate_csv_file_name).with(@t, nil)
-      end
-      it "saves newest export into csv/[partner_id] directory" do
-        @partner.generate_registrants_csv_file
-        File.should have_received(:open).with(@partner.csv_file_path, "w")
-        @file.should have_received(:write).with("generated_csv")
-      end
-      it "sets csv_ready to true" do
-        @partner.generate_registrants_csv_file
-        @partner.should have_received(:csv_ready=).with(true)
-      end
-      it "saves the obfuscated file name in the partner record" do
-        @partner.generate_registrants_csv_file
-        @partner.csv_file_name.should == "fn.csv"
-        @partner.should have_received(:save!)
-      end
-      it "uploads the file to s3" do
-        @partner.generate_registrants_csv_file
-        @partner.should have_received(:upload_registrants_csv_file)
-      end
-      it "deletes the local file" do
-        @partner.generate_registrants_csv_file
-        File.should have_received(:delete).with(@partner.csv_file_path)
-      end
-      
-    end
-    
-    # def upload_registrants_csv_file
-    #   connection = Fog::Storage.new({
-    #     :provider                 => 'AWS',
-    #     :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
-    #     :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
-    #     :region                   => 'us-west-2'
-    #   })
-    #
-    #   bucket_name = "rocky-reports#{Rails.env.production? ? '' : "-#{Rails.env}"}"
-    #   directory = connection.directories.get(bucket_name)
-    #   file = directory.files.create(
-    #     :key    => File.join(self.id.to_s, self.csv_file_name),
-    #     :body   => File.open(csv_file_path, "r").read,
-    #     :content_type => "text/csv",
-    #     :encryption => 'AES256', #Make sure its encrypted on their own hard drives
-    #     :public => true
-    #   )
-    # end
-    
-    
-    describe "#upload_registrants_csv_file" do
-      it "connects to S3 annd places a file" do
-        partner = FactoryGirl.create(:partner)
-        partner.csv_file_name = "name"
-        connection = double(Fog::Storage)
-        dirs = double("dirs")
-        dir = double("dir")
-        files = double("files")
-        expect(Fog::Storage).to receive(:new) { connection }
-        expect(connection).to receive(:directories) { dirs }
-        expect(dirs).to receive(:get).with("rocky-reports-test") { dir }
-        
-        file_io = double("file_io")
-        expect(file_io).to receive(:read) { "body" }
-        expect(File).to  receive(:open).with(partner.csv_file_path, "r") { file_io }
-        
-        expect(dir).to receive(:files) { files }
-        expect(files).to receive(:create).with({
-          key: File.join(partner.id.to_s, partner.csv_file_name),
-          body: "body",
-          content_type: "text/csv",
-          encryption: "AES256",
-          public: true
-        })
-        partner.upload_registrants_csv_file
-      end
-    end
-    
   end
 
   describe "registration statistics" do
@@ -1062,7 +878,7 @@ describe Partner do
         partner = FactoryGirl.create(:partner)
         4.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'en')) }
         2.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.hispanic', locale: 'es'), :locale => "es") }
-        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'es')) }
+        3.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'en')) }
         1.times { FactoryGirl.create(:maximal_registrant, :partner => partner, :race => I18n.t('txt.registration.races.mutli_racial', locale: 'es'), :locale => "es") }
         stats = partner.registration_stats_race
         assert_equal 2, stats.length

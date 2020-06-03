@@ -35,7 +35,7 @@ describe Notifier do
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should =~ /A request to reset your password has been made/i
-      email.body.should include(RockyConf.pdf_host_name)
+      email.body.should include(RockyConf.default_url_host)
       email.body.should include(partner.perishable_token)
     end
   end
