@@ -53,8 +53,10 @@ class DownloadsController < RegistrationStep
     if !@registrant.pdf_ready?
       redirect_to registrant_finish_path(@registrant, not_ready: true)
     else
-      pdf_path = @registrant.download_pdf
-      redirect_to pdf_path
+      set_ab_test
+      set_up_view_variables
+      @pdf_url = @registrant.download_pdf
+      #redirect_to pdf_path
     end
   end
   
