@@ -52,7 +52,7 @@ describe PdfGeneration do
   
   describe '.receive_and_generate' do
     let(:r) { double(Registrant, pdf_ready?: false) }
-    let(:message) { double(Object, body: "1") }
+    let(:message) { double(Object, body: "PdfGeneration::1") }
     before(:each) do
       PdfGeneration.stub(:retrieve_from_queue).and_return(message)
       Registrant.stub(:find).and_return(r)

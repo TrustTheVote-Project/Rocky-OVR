@@ -26,7 +26,7 @@
 require 'rails_helper'
 
 describe WA do
-  let(:root_url) { "https://weiapplets.sos.wa.gov/MyVoteOLVR/MyVoteOLVR" }
+  let(:root_url) { WA::ROOT_URL }
   it "should inherit from StateCustomization" do
     WA.superclass.should == StateCustomization
   end

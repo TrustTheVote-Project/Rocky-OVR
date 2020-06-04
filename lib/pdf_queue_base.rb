@@ -15,6 +15,8 @@ module PdfQueueBase
   end
   
   def queue_registrant(registrant_id)
+    puts self.class.to_s
+    puts queue_url
     resp = queue.send_message({
       queue_url: queue_url, # required
       message_body: "#{self.name}::#{registrant_id}", # required

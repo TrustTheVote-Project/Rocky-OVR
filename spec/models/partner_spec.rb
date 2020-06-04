@@ -38,7 +38,7 @@ describe Partner do
   end
   
   describe ".deactivate_stale_partners!" do
-    let(:p1) { FactoryGirl.create(:partner, last_login_at: 100.day.ago, current_login_at: nil, updated_at: 1.year.ago) }
+    let(:p1) { FactoryGirl.create(:partner, last_login_at: 100.day.ago, current_login_at: nil, updated_at: 1.year.ago, id: 101) }
     let(:p2) { FactoryGirl.create(:partner, last_login_at: 1.day.ago, current_login_at: nil, updated_at: 1.year.ago) }
     let(:p3) { FactoryGirl.create(:partner, last_login_at: 100.day.ago, current_login_at: nil, updated_at: 1.year.ago) } #login-inactive
     it "finds login-inactive partners without recent registrants and sets active to false" do
