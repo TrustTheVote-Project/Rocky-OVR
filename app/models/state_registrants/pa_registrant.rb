@@ -113,17 +113,21 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       PANotifier.continue_on_device(self, signature_capture_url).deliver_now
       controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.email_sent', email: self.email)
     elsif params.has_key?(:sms_continue_on_device)
-      #begin
-        twilio_client.messages.create(
-          :from => "+1#{twilio_phone_number}",
-          :to => sms_number,
-          :body => I18n.t('states.custom.pa.signature_capture.sms_body', signature_capture_url: signature_capture_url)
-        )
-        controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
-        
-      # rescue Exception => e
-      #   raise e.message.to_s
-      # end
+      if sms_number =~ /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/
+        begin
+          twilio_client.messages.create(
+            :from => "+1#{twilio_phone_number}",
+            :to => sms_number,
+            :body => I18n.t('states.custom.pa.signature_capture.sms_body', signature_capture_url: signature_capture_url)
+          )
+          controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+        rescue Twilio::REST::RequestError
+          self.errors.add(:sms_number_for_continue_on_device, :format)
+        end
+      else
+        #controller.flash[:warning] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+        self.errors.add(:sms_number_for_continue_on_device, :format)
+      end
     end    
   end
   

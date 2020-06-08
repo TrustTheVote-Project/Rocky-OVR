@@ -308,9 +308,13 @@
         %label{for: "state_registrants_pa_registrant_signature_method_device"} 
           = I18n.t('states.custom.pa.signature_capture.continue_on_device')
         #continue_on_device
-          %p.instructions
+          %p.instructions{class: ('has_error' if form.object.errors[:sms_number_for_continue_on_device].present?) }
             = form.label :sms_number_for_continue_on_device #, "Text me the link:"
             = form.text_field :sms_number_for_continue_on_device, value: form.object.sms_number_for_continue_on_device
+            - if form.object.errors[:sms_number_for_continue_on_device]
+              .error
+                = form.object.errors[:sms_number_for_continue_on_device].join("\n")
+            
             = rollover_button(:next_step, I18n.t('txt.button.text_me', :id=>:sms_continue_on_device).html_safe, name: :sms_continue_on_device)  
           %p.instructions
             = form.label :email_address_for_continue_on_device #, "Email me the link:"            
