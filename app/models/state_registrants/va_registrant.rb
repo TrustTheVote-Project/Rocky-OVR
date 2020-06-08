@@ -250,12 +250,26 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   def check_voter_confirmation
     # Submit to voter confirmation request for eligibility
     server = RockyConf.ovr_states.VA.api_settings.api_url
-    url = File.join(server, "Voter/Confirmation?lastName=#{self.last_name}&firstName=#{self.first_name}&Ssn9=#{self.ssn.to_s.gsub(/[^\d]/,'')}&driversLicenseNumber=#{self.dln.to_s.gsub(/\s-/, '')}&dobYear=#{self.date_of_birth.year}&dobDay=#{self.date_of_birth.day}&dobMonth=#{self.date_of_birth.month}&localityName=#{self.registration_locality_name}&format=json")
+    url = File.join(server, "Voter/Confirmation" +"?"+ RestClient::Payload::UrlEncoded.new({
+      "lastName" => self.last_name,
+      "firstName" => self.first_name,
+      "Ssn9" => self.ssn.to_s.gsub(/[^\d]/,''),
+      "driversLicenseNumber" => self.dln.to_s.gsub(/\s-/, ''),
+      "dobYear" => self.date_of_birth.year,
+      "dobDay" => self.date_of_birth.day,
+      "dobMonth" => self.date_of_birth.month, 
+      "localityName" => self.registration_locality_name,
+      "format" => "json"
+    }).to_s)
     result = nil
     begin
       response = RestClient::Request.execute(method: :get, url: url, headers: va_api_headers("check"))
     rescue Exception => error
-      response = error.response
+      if error.respond_to?(:response)
+        response = error.response
+      else
+        response = error.message
+      end
     end
     self.va_check_response = response.to_s
     self.save(validate: false)
@@ -403,7 +417,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
             "Locality" => self.mailing_address_locality
           },
           "IsProhibited" => self.convicted_of_felony?,
-          "IsRightsRestored" => self.right_to_vote_restored,
+          "IsRightsRestored" =>self.convicted_of_felony? ? self.right_to_vote_restored : nil,
           # "IsMilitary" => is_military?,
           # "IsProtected" => is_protected?,
           # "IsLawEnforcement" => is_law_enforcement?,

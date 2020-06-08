@@ -287,8 +287,8 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     
     result['continueAppSubmit'] = (confirm_no_penndot_number? || penndot_retries >= 2) ? "1" : "0"
     result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn? && confirm_no_penndot_number?)
-    result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
-    result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
+    result['ssn4'] = confirm_no_dl_or_ssn? ? '' : ssn4.to_s.gsub(/[^\d]/,'')
+    result['drivers-license'] = confirm_no_penndot_number? ? '' : penndot_number.to_s.gsub(/[^\d]/,'')
     
 
     result['politicalparty'] = parse_party[:politicalparty]
