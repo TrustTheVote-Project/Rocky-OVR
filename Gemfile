@@ -2,7 +2,8 @@ ruby "2.4.1"
 
 source 'http://rubygems.org'
 
-gem "rake", "10.0.3"
+gem "rake", "12.3.3"
+gem "excon", ">= 0.71.0"
 
 gem "figaro"
 gem "config"
@@ -28,7 +29,7 @@ gem 'mysql2', '~> 0.3.18'
 gem 'distribute_reads'
 
 
-gem "rubyzip", '~> 1.2.2'
+gem "rubyzip", '~> 1.3.0'
 gem 'zip-zip'
 
 gem "dotenv-rails", '~> 0.7.0'
@@ -61,7 +62,7 @@ group :development, :test do
   #gem 'pry'
   gem 'spring-commands-rspec'
   gem "spring-commands-cucumber"
-  gem "rspec-rails", "~> 3.2.3"
+  gem "rspec-rails", "~> 3.9"
   gem 'rspec-collection_matchers'
   gem 'rspec-activemodel-mocks'
   
@@ -83,7 +84,7 @@ group :development, :test do
   
   # Pito:
   # gem "hpricot", "0.8.6"
-  gem "sqlite3"
+  gem "sqlite3", "= 1.3.13"
   
   gem "assert_difference"
   
@@ -104,7 +105,7 @@ end
   gem 'coffee-rails'
   gem 'uglifier'
 
-gem "nokogiri", ">= 1.10.4"
+gem "nokogiri", ">= 1.10.8"
 
 gem "mechanize", "= 2.7.1"
 gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
