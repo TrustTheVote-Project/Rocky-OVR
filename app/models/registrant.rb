@@ -94,7 +94,9 @@ class Registrant < ActiveRecord::Base
        "prev_zip_code"
     ]
   
-  OVR_REGEX = /\A(\p{Latin}|\P{Letter})*\z/
+  OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
+  #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
+  DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
   
   #CA_NAME_REGEX =   /\A[a-zA-Z0-9'#,\-\/_\.@\s]*\z/ #A-Z a-z 0-9 '#,-/_ .@space
   
@@ -141,6 +143,8 @@ class Registrant < ActiveRecord::Base
   #     message: :invalid_for_pdf }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
   # end
   
+  SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
+  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
   
   
   

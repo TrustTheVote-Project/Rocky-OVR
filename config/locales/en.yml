@@ -356,6 +356,7 @@ en:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
           blank: Required
+          invalid: "%{attribute} is invalid."
           invalid_zip: Invalid ZIP
           attributes:
             home_zip_code:
