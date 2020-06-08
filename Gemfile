@@ -36,7 +36,7 @@ gem "dotenv-rails", '~> 0.7.0'
 gem "haml"
 
 gem "rails-i18n", '~> 0.7.3'
-gem 'jquery-rails', '~> 3.1.3'
+gem 'jquery-rails', '~> 4.4.0'
 
 gem 'dalli'
 

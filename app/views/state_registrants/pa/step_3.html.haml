@@ -3,6 +3,7 @@
   
   %script{src: "https://cdn.jsdelivr.net/npm/cropit@0.5.1/dist/jquery.cropit.min.js"}
   :javascript
+    jQuery.event.addProp('dataTransfer')
   
     function resizeCanvas(canvas, signaturePad) {
       // When zoomed out to less than 100%, for some very strange reason,
@@ -120,7 +121,8 @@
             exportZoom: 0.5,
             onFileChange: showControls,
             onZoomChange: adjustSignature,
-            onOffsetChange: adjustSignature
+            onOffsetChange: adjustSignature,
+            allowDragNDrop: false
           });    
           if (imageData != "") {
             setTimeout(showControls, 1000);
