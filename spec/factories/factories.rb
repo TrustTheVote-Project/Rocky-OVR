@@ -29,7 +29,8 @@ FactoryGirl.define do
     locale          "en"
     sequence(:email_address) { |n| "registrant_#{n}@example.com" }
     date_of_birth   20.years.ago.to_date.strftime("%m/%d/%Y")
-    home_zip_code   "15215"  # == Pennsylvania
+    #home_zip_code   "15215"  # == Pennsylvania
+    home_zip_code   "03900"  # == Maine
     us_citizen      true
     has_state_license true
     will_be_18_by_election true

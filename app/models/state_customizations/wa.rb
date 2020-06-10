@@ -24,8 +24,10 @@
 #***** END LICENSE BLOCK *****
 
 class WA < StateCustomization
+  ROOT_URL = "https://olvr.votewa.gov/default.aspx"
+  
   def online_reg_url(registrant)
-    root_url ="https://olvr.votewa.gov/default.aspx"
+    root_url = ROOT_URL
     return root_url if registrant.nil?
     fn = CGI.escape registrant.first_name.to_s
     ln = CGI.escape registrant.last_name.to_s

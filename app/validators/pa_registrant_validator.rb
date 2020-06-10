@@ -1,6 +1,13 @@
 class PARegistrantValidator < ActiveModel::Validator
   
+  VALIDATABLE_ATTRS = StateRegistrants::PARegistrant.attribute_names
+    #.reject{|attr| NON_VALIDATABLE_ATTRS.include?(attr)}
+  
   def validate(reg)
+    
+    # Validate all fields against db regex
+    
+    reg.validates_format_of VALIDATABLE_ATTRS, with: Registrant::DB_REGEX
     
     if !reg.phone.blank?
       reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/

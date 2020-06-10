@@ -1,5 +1,4 @@
 Feature: Canvasser UI
-
   So that registrations can be attributed to a canvassing shift
   As a canvasser
   I want to start a new canvassing on my browser
@@ -168,4 +167,3 @@ Feature: Canvasser UI
       And I go to the download page
       Then I should see the canvassing notice bar
       And I should not see the canvassing notice bar with a link to the shift status page
-    

@@ -66,14 +66,14 @@ describe Translation do
   
   describe "self.has_css?(locale)" do
     it "checks for a locale css file" do
-      File.should_receive("exists?").with(Rails.root.join("app/assets/stylesheets/locales/abc.css.scss").to_s)
+      File.should_receive("exists?").with(Rails.root.join("app/assets/stylesheets/locales/abc.scss").to_s)
       Translation.has_css?("abc")
     end
   end
   
   describe "self.has_nvra_css?(locale)" do
     it "checks for a nvra locale css file" do
-      File.should_receive("exists?").with(Rails.root.join("app/assets/stylesheets/nvra/locales/abc.css.scss").to_s)
+      File.should_receive("exists?").with(Rails.root.join("app/assets/stylesheets/nvra/locales/abc.scss").to_s)
       Translation.has_nvra_css?("abc")
     end
   end

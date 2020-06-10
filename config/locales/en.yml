@@ -338,6 +338,8 @@ en:
               accepted: You must confirm that you agree to the terms above.
             confirm_assitant_declaration:
               accepted: You must confirm that you agree to the terms above.
+            sms_number_for_continue_on_device:
+              format: 'Please provide a valid number'
             phone:
               invalid: 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT
@@ -366,6 +368,7 @@ en:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
           blank: Required
+          invalid: "%{attribute} is invalid."
           invalid_zip: Invalid ZIP
           attributes:
             home_zip_code:

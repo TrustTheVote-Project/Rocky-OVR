@@ -1,6 +1,10 @@
 class MIRegistrantValidator < ActiveModel::Validator
   
+  VALIDATABLE_ATTRS = StateRegistrants::MIRegistrant.attribute_names
+  
   def validate(reg)
+    
+    reg.validates_format_of VALIDATABLE_ATTRS, with: Registrant::DB_REGEX
     
     if !reg.phone.blank?
       reg.errors.add(:phone, :invalid) unless  reg.phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/

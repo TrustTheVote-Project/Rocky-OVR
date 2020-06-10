@@ -353,6 +353,8 @@ describe Registrant do
           r.should be_valid
           r.send("#{field}=", "AZaz09'#,-/_.@ " + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
           r.should_not be_valid
+          r.send("#{field}=", "John 🙂 Doe" + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
+          r.should_not be_valid
           r.errors[field].should_not be_empty
         end
       end
@@ -372,29 +374,65 @@ describe Registrant do
           r.errors[field].should_not be_empty
           r.send("#{field}=", "AZaz09@")
           r.should_not be_valid
+          r.send("#{field}=", "Jane 🙂 Doe" + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
+          r.should_not be_valid
+          
           r.errors[field].should_not be_empty
         end
       end
 
       Registrant::CITY_FIELDS.each do |field|
-        it "only allows 'A-Z a-z 0-9 # dash space' in city-state field #{field}" do
+        it "only allows 'A-Z a-z 0-9 # dash space ' .' in city-state field #{field}" do
           r = Registrant.new
           r.stub(:has_mailing_address?).and_return(true)
           r.stub(:change_of_name?).and_return(true)
           r.stub(:change_of_address?).and_return(true)
           r.send("#{field}=", "AZaz09#- ")
           r.should be_valid
+          
+          r.send("#{field}=", "AZaz09# - .'")
+          r.should be_valid
+          r.errors[field].should be_empty
+
           r.send("#{field}=", "AZaz09#,")
           r.should_not be_valid
           r.errors[field].should_not be_empty
-          r.send("#{field}=", "AZaz09#.")
-          r.should_not be_valid
-          r.errors[field].should_not be_empty
+          
+          
           r.send("#{field}=", "AZaz09#/")
           r.should_not be_valid
+          
+          r.send("#{field}=", "Boston 🙂" + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
+          r.should_not be_valid
+          
+          
           r.errors[field].should_not be_empty
         end
       end
+      
+      it "doesn't allow emoji in survey questions" do
+        r = Registrant.new
+        expect(r).to be_valid
+        expect(r.errors[:survey_answer_1]).to be_blank
+        expect(r.errors[:survey_answer_2]).to be_blank
+
+        r.survey_answer_1 = "My Answer 🙂"
+        r.survey_answer_2 = "My Answer 🙂"
+        expect(r).to_not be_valid
+        expect(r.errors[:survey_answer_1]).to_not be_blank
+        expect(r.errors[:survey_answer_2]).to_not be_blank
+      end
+      it "does allow foreign characters in survey questions" do
+        r = Registrant.new
+
+        r.survey_answer_1 = "My Answer អត្ថបទ"
+        r.survey_answer_2 = "My Answer テキスト"
+        expect(r).to be_valid
+        expect(r.errors[:survey_answer_1]).to be_blank
+        expect(r.errors[:survey_answer_2]).to be_blank
+        
+      end
+      
     end
   end
   
@@ -456,7 +494,7 @@ describe Registrant do
       reg = FactoryGirl.build(:step_1_registrant, :home_zip_code => 'ABCDE')
       reg.invalid?
 
-      assert_equal ["Use ZIP or ZIP+4"], [reg.errors[:home_zip_code]].flatten
+      assert_equal ["Use ZIP (xxxxx) or ZIP+4 (xxxxx-xxxx)"], [reg.errors[:home_zip_code]].flatten
     end
 
     it "should not require contact information" do
@@ -602,7 +640,7 @@ describe Registrant do
       reg = FactoryGirl.build(:step_2_registrant, :has_mailing_address => true, :mailing_zip_code => 'ABCDE')
       reg.invalid?
 
-      assert_equal ["Use ZIP or ZIP+4"], [reg.errors[:mailing_zip_code]].flatten
+      assert_equal ["Use ZIP (xxxxx) or ZIP+4 (xxxxx-xxxx)"], [reg.errors[:mailing_zip_code]].flatten
     end
 
     it "should limit number of simultaneous errors on mailing_zip_code" do
@@ -727,7 +765,7 @@ describe Registrant do
         reg = FactoryGirl.build(:step_2_registrant, :short_form=>true, :change_of_address => true, :prev_zip_code => 'ABCDE')
         reg.invalid?
 
-        assert_equal ["Use ZIP or ZIP+4"], [reg.errors[:prev_zip_code]].flatten
+        assert_equal ["Use ZIP (xxxxx) or ZIP+4 (xxxxx-xxxx)"], [reg.errors[:prev_zip_code]].flatten
       end
 
       it "should limit number of simultaneous errors on prev_zip_code" do
@@ -771,7 +809,7 @@ describe Registrant do
       reg = FactoryGirl.build(:step_2_registrant, :prev_zip_code => 'ABCDE', :change_of_address => true)
       reg.invalid?
 
-      assert_equal ["Use ZIP or ZIP+4"], [reg.errors[:prev_zip_code]].flatten
+      assert_equal ["Use ZIP (xxxxx) or ZIP+4 (xxxxx-xxxx)"], [reg.errors[:prev_zip_code]].flatten
     end
 
     it "should limit number of simultaneous errors on prev_zip_code" do
@@ -1148,21 +1186,21 @@ describe Registrant do
   describe "custom_step_4_partial" do
     it "returns a filename of a view partial based on the state abbreviation" do
       reg = FactoryGirl.build(:step_4_registrant)
-      reg.custom_step_4_partial.should == "pa"
+      reg.custom_step_4_partial.should == "me"
     end
   end
   
   describe "has_home_state_online_registration_instructions?" do
     it "returns true if the state has a partial based on the state abbreviation" do
       reg = FactoryGirl.build(:step_1_registrant)
-      File.stub(:exists?).with(File.join(Rails.root,'app/views/state_online_registrations/_pa_instructions.html.erb')) { true }
+      File.stub(:exists?).with(File.join(Rails.root,'app/views/state_online_registrations/_me_instructions.html.erb')) { true }
       reg.has_home_state_online_registration_instructions?.should be_truthy
     end    
   end
   describe "home_state_online_registration_instructions_partial" do
     it "returns a filename of a view partial based on the state abbreviation" do
       reg = FactoryGirl.build(:step_2_registrant)
-      reg.home_state_online_registration_instructions_partial.should == "pa_instructions"
+      reg.home_state_online_registration_instructions_partial.should == "me_instructions"
     end
   end
 
@@ -1170,14 +1208,14 @@ describe Registrant do
   describe "has_home_state_online_registration_view?" do
     it "returns true if the state has a partial based on the state abbreviation" do
       reg = FactoryGirl.build(:step_1_registrant)
-      File.stub(:exists?).with(File.join(Rails.root,'app/views/state_online_registrations/pa.html.erb')) { true }
+      File.stub(:exists?).with(File.join(Rails.root,'app/views/state_online_registrations/me.html.erb')) { true }
       reg.has_home_state_online_registration_view?.should be_truthy
     end    
   end
   describe "home_state_online_registration_view" do
     it "returns a filename of a view partial based on the state abbreviation" do
       reg = FactoryGirl.build(:step_2_registrant)
-      reg.home_state_online_registration_view.should == "pa"
+      reg.home_state_online_registration_view.should == "me"
     end
   end
 
@@ -1403,7 +1441,7 @@ describe Registrant do
       end
       
       it "should not send a chaser email" do
-        stale_state_online_reg = FactoryGirl.create(:step_2_registrant, :updated_at => (RockyConf.minutes_before_abandoned.minutes + 10).seconds.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>true)
+        stale_state_online_reg = FactoryGirl.create(:step_2_registrant, home_zip_code: "02113", :updated_at => (RockyConf.minutes_before_abandoned.minutes + 1).minutes.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>true)
         expect {
           Registrant.abandon_stale_records
         }.to change { ActionMailer::Base.deliveries.count }.by(1)
@@ -1411,8 +1449,8 @@ describe Registrant do
       end
       
       it "should send a thank you email if registrant chose to finish online with state" do
-        stale_state_online_reg = FactoryGirl.create(:step_2_registrant, :updated_at => (RockyConf.minutes_before_abandoned.minutes + 10).seconds.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>true)
-        stale_reg = FactoryGirl.create(:step_2_registrant, :updated_at => (RockyConf.minutes_before_abandoned.minutes + 10).seconds.ago, :finish_with_state=>false)
+        stale_state_online_reg = FactoryGirl.create(:step_2_registrant, home_zip_code: "02113", :updated_at => (RockyConf.minutes_before_abandoned.minutes + 1).minutes.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>true)
+        stale_reg = FactoryGirl.create(:step_2_registrant, home_zip_code: "02113", :updated_at => (RockyConf.minutes_before_abandoned.minutes + 10).seconds.ago, :finish_with_state=>false)
       
         expect {
           Registrant.abandon_stale_records
@@ -1670,8 +1708,8 @@ describe Registrant do
                      nil,
                      nil,
                      nil,
-                     "PA",
-                     "15215",
+                     "ME",
+                     "03900",
                      "No",
                      nil,
                      nil,
@@ -1996,7 +2034,7 @@ describe Registrant do
     
     it "sends the final_reminder email" do
       email = double("email")
-      expect(email).to receive(:deliver)
+      expect(email).to receive(:deliver_now)
       expect(Notifier).to receive(:final_reminder).with(r) { email }
       r.deliver_final_reminder_email
     end
@@ -2009,11 +2047,11 @@ describe Registrant do
       before(:each) do
         r.stub(:send_emails?).and_return(false)
       end
-      it "does nothing" do
+      it "does not send emails, but marks as delivered" do
         assert_difference('ActionMailer::Base.deliveries.size', 0) do
           r.deliver_final_reminder_email
         end
-        expect(r.final_reminder_delivered).to eq(false)
+        expect(r.final_reminder_delivered).to eq(true)
       end
     end
     context 'if PDF has been downloaded' do
