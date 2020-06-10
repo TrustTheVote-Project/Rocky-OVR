@@ -267,7 +267,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['city'] = registration_city
     result['municipality'] = result['city']
 
-    result['zipcode'] = registration_zip_code.gsub(/[^\d]/,'')[0...5]
+    result['zipcode'] = registration_zip_code.to_s.gsub(/[^\d]/,'')[0...5]
     result['donthavePermtOrResAddress'] = ''
     result['county'] = registration_county
 

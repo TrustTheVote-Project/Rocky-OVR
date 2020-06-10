@@ -247,10 +247,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "Authorization" => "Bearer #{token}"
     }
   end
-  def check_voter_confirmation
-    # Submit to voter confirmation request for eligibility
+  
+  def check_voter_confirmation_url
     server = RockyConf.ovr_states.VA.api_settings.api_url
-    url = File.join(server, "Voter/Confirmation" +"?"+ RestClient::Payload::UrlEncoded.new({
+    File.join(server, "Voter/Confirmation" +"?"+ RestClient::Payload::UrlEncoded.new({
       "lastName" => self.last_name,
       "firstName" => self.first_name,
       "Ssn9" => self.ssn.to_s.gsub(/[^\d]/,''),
@@ -261,6 +261,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "localityName" => self.registration_locality_name,
       "format" => "json"
     }).to_s)
+  end
+  
+  def check_voter_confirmation
+    # Submit to voter confirmation request for eligibility
+    url = check_voter_confirmation_url
     result = nil
     begin
       response = RestClient::Request.execute(method: :get, url: url, headers: va_api_headers("check"))
@@ -273,7 +278,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     end
     self.va_check_response = response.to_s
     self.save(validate: false)
-    result = JSON.parse(response)
+    result = JSON.parse(response.to_s)
     if result["IsProtected"]
       set_protected_voter!
       return false

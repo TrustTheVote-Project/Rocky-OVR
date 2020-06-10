@@ -353,6 +353,8 @@ describe Registrant do
           r.should be_valid
           r.send("#{field}=", "AZaz09'#,-/_.@ " + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
           r.should_not be_valid
+          r.send("#{field}=", "John 🙂 Doe" + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
+          r.should_not be_valid
           r.errors[field].should_not be_empty
         end
       end
@@ -372,6 +374,9 @@ describe Registrant do
           r.errors[field].should_not be_empty
           r.send("#{field}=", "AZaz09@")
           r.should_not be_valid
+          r.send("#{field}=", "Jane 🙂 Doe" + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
+          r.should_not be_valid
+          
           r.errors[field].should_not be_empty
         end
       end
@@ -396,9 +401,38 @@ describe Registrant do
           
           r.send("#{field}=", "AZaz09#/")
           r.should_not be_valid
+          
+          r.send("#{field}=", "Boston 🙂" + I18n.t('txt.registration.in_language_name', :locale=>:zh, :default => "").to_s)
+          r.should_not be_valid
+          
+          
           r.errors[field].should_not be_empty
         end
       end
+      
+      it "doesn't allow emoji in survey questions" do
+        r = Registrant.new
+        expect(r).to be_valid
+        expect(r.errors[:survey_answer_1]).to be_blank
+        expect(r.errors[:survey_answer_2]).to be_blank
+
+        r.survey_answer_1 = "My Answer 🙂"
+        r.survey_answer_2 = "My Answer 🙂"
+        expect(r).to_not be_valid
+        expect(r.errors[:survey_answer_1]).to_not be_blank
+        expect(r.errors[:survey_answer_2]).to_not be_blank
+      end
+      it "does allow foreign characters in survey questions" do
+        r = Registrant.new
+
+        r.survey_answer_1 = "My Answer អត្ថបទ"
+        r.survey_answer_2 = "My Answer テキスト"
+        expect(r).to be_valid
+        expect(r.errors[:survey_answer_1]).to be_blank
+        expect(r.errors[:survey_answer_2]).to be_blank
+        
+      end
+      
     end
   end
   
