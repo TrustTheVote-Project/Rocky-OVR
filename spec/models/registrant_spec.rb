@@ -2326,4 +2326,40 @@ describe Registrant do
     end
     
   end
+  
+  context "shifts" do
+    describe "shift_id=" do
+      it "sets the internal shift_id attribute" do
+        r = Registrant.new
+        r.shift_id = "123"
+        expect(r.instance_variable_get(:@shift_id)).to eq("123")
+      end
+      it "creates shift if UID is present" do
+        r = Registrant.new
+        r.uid = "abc"
+        expect(r).to receive(:ensure_shift)
+        r.shift_id = "123"
+      end
+    end
+    describe "generate_uid" do
+      it "creates shift if shift_id is present" do
+        r = Registrant.new
+        r.instance_variable_set(:@shift_id, "123")
+        expect(r).to receive(:ensure_shift)
+        r.send(:generate_uid)
+      end      
+    end
+    describe "ensure_shift" do 
+      let(:shift_id) { "123" }
+      let(:uid) { "abc" }
+      it "creates a shift if uid and shift_id are present" do
+        r = Registrant.new
+        r.uid = uid
+        r.instance_variable_set(:@shift_id, "123")
+        expect(CanvassingShiftRegistrant).to receive(:find_or_create_by!).with({shift_external_id: shift_id, registrant_id: uid})
+        r.ensure_shift
+      end
+    end
+  end
+  
 end

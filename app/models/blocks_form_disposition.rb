@@ -12,7 +12,7 @@ class BlocksFormDisposition < ActiveRecord::Base
 
   def update_blocks_form
     status = request_status
-    # Make call to update form from blocks_form_id to `status`
+    # TODO: Make call to update form from blocks_form_id to `status`
     if status_complete?(status)
       self.update_attributes(final_state_submitted: true)
     end

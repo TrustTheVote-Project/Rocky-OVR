@@ -109,16 +109,17 @@ class CanvassingShift < ActiveRecord::Base
       service = BlocksService.new
       forms = service.upload_canvassing_shift(self)
       self.update_attributes(submitted_to_blocks: true)
-      forms.each_with_index do |form_result, i|
-        reg_req = registrations_or_requests[i]
-        # Make sure form_result maps to reg_req
-        if form_matches_request(form_result, reg_req)
-          form_id = form_result["id"]
-          registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
-          grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
-          BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
-        end
-      end
+      # TODO: don't create form dispositions until we can confirm an ID match
+      # forms.each_with_index do |form_result, i|
+      #   reg_req = registrations_or_requests[i]
+      #   # Make sure form_result maps to reg_req
+      #   if form_matches_request(form_result, reg_req)
+      #     form_id = form_result["id"]
+      #     registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
+      #     grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
+      #     BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+      #   end
+      # end
     end
   end
 

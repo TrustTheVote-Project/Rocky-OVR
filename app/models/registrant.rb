@@ -359,7 +359,7 @@ class Registrant < ActiveRecord::Base
   
   
   def ensure_shift
-    if !self.shift_id.blank?
+    if !self.shift_id.blank? && !self.uid.blank?
       # begin
         CanvassingShiftRegistrant.find_or_create_by!(shift_external_id: self.shift_id, registrant_id: self.uid)
       # rescue
