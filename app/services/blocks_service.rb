@@ -23,8 +23,8 @@ class BlocksService
     }
   end
   
-  def self.form_from_grommet_request(r)
-    registrant = V4::RegistrationService.create_pa_registrant(params[:rocky_request])    
+  def self.form_from_grommet_request(req)
+    registrant = V4::RegistrationService.create_pa_registrant(req.request_params[:rocky_request])    
     registrant.basic_character_replacement!
     registrant.state_ovr_data ||= {}
     return self.form_from_registrant(registrant)
@@ -48,39 +48,13 @@ class BlocksService
   
   
   
+  
+  
   def upload_canvassing_shift(shift, shift_type: "digital_voter_registration")
-    partner_id = shift.partner_id
-    turf_id = RockyConf.blocks_configuration.partners&.[](partner_id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    shift_params = build_canvassing_shift_blocks_hash(shift, shift_type)
+    forms = build_blocks_forms_from_canvassing_shift(shift)
     
-    
-    location_id = RockyConf.blocks_configuration.default_location_id #shift.shift_location || 
-    staging_location_id = RockyConf.blocks_configuration.default_staging_location_id
-    canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
-    canvasser_id = canvasser["canvasser"]["id"]
-    
-    soft_count_cards_total_collected = shift.abandoned_registrations + shift.completed_registrations
-    soft_count_cards_complete_collected = shift.completed_registrations
-    soft_count_cards_incomplete_collected = shift.abandoned_registrations
-    
-    forms = shift.registrations_or_requests.map do |r|
-      if r.is_a?(Registrant)
-        BlocksService.form_from_registrant(r)
-      elsif r.is_a?(GrommetRequest)
-        BlocksService.form_from_grommet_request(r) 
-      end
-    end
-    
-    shift = create_shift({
-      canvasser_id: canvasser_id,
-      location_id: location_id,
-      staging_location_id: staging_location_id, 
-      shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
-      shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
-      shift_type: shift_type, 
-      soft_count_cards_total_collected: soft_count_cards_total_collected,
-      soft_count_cards_complete_collected: soft_count_cards_complete_collected,
-      soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
-    })
+    shift = create_shift(shift_params)
     shift_id = shift["shift"]["id"]
     upload_registrations(shift_id, forms)
   end
@@ -144,6 +118,46 @@ class BlocksService
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
       return BlocksClient.upload_registrations(shift_id, forms, token: self.token)
     end
+  end
+  
+  private
+  def build_blocks_forms_from_canvassing_shift(shift)
+    return shift.registrations_or_requests.map do |r|
+      if r.is_a?(Registrant)
+        BlocksService.form_from_registrant(r)
+      elsif r.is_a?(GrommetRequest)
+        BlocksService.form_from_grommet_request(r) 
+      end
+    end
+  end
+  
+  def build_canvassing_shift_blocks_hash(shift, shift_type)
+    partner_id = shift.partner_id
+    turf_id = RockyConf.blocks_configuration.partners&.[](partner_id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    
+    
+    location_id = RockyConf.blocks_configuration.default_location_id #shift.shift_location || 
+    staging_location_id = RockyConf.blocks_configuration.default_staging_location_id
+    canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
+    canvasser_id = canvasser["canvasser"]["id"]
+    
+    soft_count_cards_total_collected = shift.abandoned_registrations + shift.completed_registrations
+    soft_count_cards_complete_collected = shift.completed_registrations
+    soft_count_cards_incomplete_collected = shift.abandoned_registrations
+    
+    
+    
+    return {
+      canvasser_id: canvasser_id,
+      location_id: location_id,
+      staging_location_id: staging_location_id, 
+      shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
+      shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
+      shift_type: shift_type, 
+      soft_count_cards_total_collected: soft_count_cards_total_collected,
+      soft_count_cards_complete_collected: soft_count_cards_complete_collected,
+      soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
+    }
   end
   
 end
