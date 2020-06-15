@@ -31,9 +31,7 @@ class BlocksClient
     path = "forms/#{form_id}/add_metadata"
     headers = {'Content-Type' => 'application/json'}
     body = {
-      content: {
-        firstName: "test-value"
-      },
+      content: meta_data,
       jwt: token
     }
     send(:put, path, body: body, headers: headers)    
