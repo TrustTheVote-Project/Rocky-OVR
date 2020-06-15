@@ -82,9 +82,6 @@ describe BlocksService do
       end
     end
   
-    describe "build_canvassing_shift" do
-      it "builds blocks shift args from an instance of canvassing_shift"
-    end
   
     describe "upload_canvassing_shift" do 
       before(:each) do
@@ -100,8 +97,138 @@ describe BlocksService do
         })
         s.upload_canvassing_shift(shift)
       end
-      it "calls upload registratinos for the shift ID and forms"
+      it "calls upload registrations for the shift ID and forms" do
+        shift = double(CanvassingShift)
+        forms = double("FormsList")
+        allow(s).to receive(:create_shift).and_return({
+          "shift"=> {"id" => "shift_id"}
+        })
+        expect(s).to receive(:build_blocks_forms_from_canvassing_shift).with(shift).and_return(forms)
+        expect(s).to receive(:upload_registrations).with("shift_id", forms)
+        s.upload_canvassing_shift(shift)
+      end
     end
+    
+    
+    describe "get_locations" do
+      let(:partner) { FactoryGirl.create(:partner) }
+      let(:turf_id) { "123" }
+      before(:each) do 
+        allow(RockyConf).to receive(:blocks_configuration).and_return(OpenStruct.new({
+          partners: {
+            partner.id => OpenStruct.new({turf_id: turf_id})
+          }          
+        }))
+      end
+      it "calls get_locations on the blocks client with logging" do
+        expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
+        expect(BlocksClient).to receive(:get_locations).with(turf_id, token: s.token)        
+        s.get_locations(partner)
+      end
+    end
+    describe "add_metadata_to_form" do
+      it "makes call to BlocksClient with logging and added token" do
+        input1 = double("Input")
+        input2 = double("Input")
+        expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
+        expect(BlocksClient).to receive("add_metadata_to_form").with(input1, input2, token: s.token)        
+        s.add_metadata_to_form(input1, input2)
+      end      
+    end
+    describe "create_canvasser" do
+      it "makes call to BlocksClient with logging and added token" do
+        input1 = {first_name: "val", last_name: "val", phone_number: "val", email: "val", turf_id: "val"}
+        expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
+        expect(BlocksClient).to receive("create_canvasser").with(**input1, token: s.token)
+        s.create_canvasser(input1)
+      end            
+    end
+    describe "create_shift" do
+      it "makes call to BlocksClient with logging and added token" do
+        input1 = {canvasser_id: "val", location_id: "val", staging_location_id: "val", shift_start: "val", shift_end: "val", shift_type: "val", soft_count_cards_total_collected: "val"}
+        expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
+        expect(BlocksClient).to receive("create_shift").with(**input1, token: s.token)        
+        s.create_shift(input1)
+      end            
+    end
+    describe "upload_registrations" do
+      it "makes call to BlocksClient with logging and added token" do
+        input1 = double("Input")
+        input2 = double("Input")
+        expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
+        expect(BlocksClient).to receive("upload_registrations").with(input1, input2, token: s.token)        
+        s.upload_registrations(input1, input2)
+      end      
+      
+    end
+    
+    
+    describe "build_blocks_forms_from_canvassing_shift" do
+      it "builds a list of form items from canvassing shift registrations/grommet requests" do
+        reg_type = double(Registrant)
+        reg_type.stub(:is_a?).with(Registrant).and_return(true)
+        req_type = double(GrommetRequest)
+        req_type.stub(:is_a?).with(Registrant).and_return(false)
+        req_type.stub(:is_a?).with(GrommetRequest).and_return(true)
+        shift = double(CanvassingShift)
+        expect(shift).to receive(:registrations_or_requests).and_return([
+          reg_type,
+          req_type
+        ])
+        expect(BlocksService).to receive(:form_from_registrant).with(reg_type).and_return("reg args")
+        expect(BlocksService).to receive(:form_from_grommet_request).with(req_type).and_return("req args")
+        expect(s.send(:build_blocks_forms_from_canvassing_shift,shift)).to eq(["reg args", "req args"])
+      end
+    end
+
+
+    describe "build_canvassing_shift_blocks_hash" do
+      it "builds blocks shift args from an instance of canvassing_shift" do
+        partner = FactoryGirl.create(:partner)
+        turf_id = "123"
+        shift = CanvassingShift.new
+        shift.partner_id = partner.id
+        shift.canvasser_first_name = "First Name"
+        shift.canvasser_last_name = "Last Name"
+        shift.canvasser_email = "email"
+        shift.canvasser_phone = "phone"
+        shift.abandoned_registrations = 1
+        shift.completed_registrations  = 5
+        shift.clock_in_datetime = 2.hours.ago
+        shift.clock_out_datetime = 1.hour.ago
+        
+        canvasser_args = {
+          turf_id: turf_id,
+          last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone
+        }
+        
+        expect(RockyConf).to receive(:blocks_configuration).and_return(OpenStruct.new({
+          partners: {
+            partner.id => OpenStruct.new({turf_id: turf_id})
+          },
+          default_location_id: "default_location",
+          default_staging_location_id: "staging_location"          
+        })).at_least(1).times
+        
+        expect(s).to receive(:create_canvasser).with(canvasser_args).and_return({"canvasser"=>{"id"=>"canvasser_id"}})
+        
+        expect(s.send(:build_canvassing_shift_blocks_hash, shift, "shift type")).to eq({
+          canvasser_id: "canvasser_id",
+          location_id: "default_location",
+          staging_location_id: "staging_location", 
+          shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
+          shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
+          shift_type: "shift type", 
+          soft_count_cards_total_collected: shift.abandoned_registrations + shift.completed_registrations,
+          soft_count_cards_complete_collected: shift.completed_registrations,
+          soft_count_cards_incomplete_collected: shift.abandoned_registrations
+        })
+        
+      end
+    end
+    
+    
+    
   end
   
 

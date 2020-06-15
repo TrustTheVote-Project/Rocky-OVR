@@ -141,11 +141,9 @@ class BlocksService
     canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
     canvasser_id = canvasser["canvasser"]["id"]
     
-    soft_count_cards_total_collected = shift.abandoned_registrations + shift.completed_registrations
-    soft_count_cards_complete_collected = shift.completed_registrations
+    soft_count_cards_total_collected      = shift.abandoned_registrations + shift.completed_registrations
+    soft_count_cards_complete_collected   = shift.completed_registrations
     soft_count_cards_incomplete_collected = shift.abandoned_registrations
-    
-    
     
     return {
       canvasser_id: canvasser_id,
