@@ -589,7 +589,7 @@ record_39:
   sos_url: http://www.elections.state.ri.us/
   registration_deadline: postmarked_30_days
   id_length_min: '4'
-  online_registration_url: https://vote.sos.ri.gov/
+  online_registration_url: https://vote.sos.ri.gov/Home/RegistertoVote?ActiveFlag=1
 record_40:
   abbreviation: SC
   name: South Carolina
