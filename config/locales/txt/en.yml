@@ -72,7 +72,7 @@ en:
       mailing_address: Mailing Address
       previous_name: Previous Name
       previous_address: Previous Address
-      opt_in_sms: Send me txt messages from %{organization}.
+      opt_in_sms: Send me text messages from %{organization}.
       opt_in_sms_compliance: By signing up, you consent to receive periodic text messages from %{organization} (%{short_code}). Message and data rates may apply. Text HELP for info or STOP to stop receiving messages. No purchase necessary. See <a href="%{terms_url}" target="_blank" rel="noopener">terms and conditions</a> and <a href="%{privacy_url}"  target="_blank" rel="noopener">privacy policy</a>.
       opt_in_email: Receive emails from %{organization}.
       remind_when_18: Send me a reminder on my 18th birthday.
