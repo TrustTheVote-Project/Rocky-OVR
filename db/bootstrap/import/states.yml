@@ -496,7 +496,7 @@ record_33:
   sos_url: http://www.ncsbe.gov/
   registration_deadline: received_25_days
   id_length_min: '4'
-  online_registration_url: https://www.ncdot.gov/dmv/offices-services/online/Pages/voter-registration-application.aspx
+  online_registration_url: https://payments.ncdot.gov/service/nc_voter_registration/workflow/nc_voter_reg_standalone_entry/1?initialTalkObject=%7B%22dashboard%22%3A%7B%22serviceOfferingId%22%3A%22nc_voter_registration%22%2C%22licenses%22%3A%5B%5D%7D%7D
 record_34:
   abbreviation: ND
   name: North Dakota
@@ -589,7 +589,7 @@ record_39:
   sos_url: http://www.elections.state.ri.us/
   registration_deadline: postmarked_30_days
   id_length_min: '4'
-  online_registration_url: https://vote.sos.ri.gov/
+  online_registration_url: https://vote.sos.ri.gov/Home/RegistertoVote?ActiveFlag=1
 record_40:
   abbreviation: SC
   name: South Carolina
