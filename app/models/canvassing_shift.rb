@@ -15,22 +15,12 @@ class CanvassingShift < ActiveRecord::Base
   validates_format_of :canvasser_phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, if: :building_via_web, allow_blank: true
   validates_format_of :canvasser_email, :with => Authlogic::Regex::EMAIL, if: :building_via_web, allow_blank: true
 
-  def validate_phone_present_if_opt_in_sms(reg)
-    return true if reg.building_via_api_call?
-    if (reg.opt_in_sms? || reg.partner_opt_in_sms?) && reg.phone.blank?
-      reg.errors.add(:phone, :required_if_opt_in)
-    end
-  end
-
-
-
   after_save :check_submit_to_blocks
 
   def self.location_options(partner)
     b = BlocksService.new
-    locations = b.get_locations(partner)&.[]("locations")
+    locations = begin b.get_locations(partner)&.[]("locations") rescue nil end;
     if locations && locations.any?
-      puts locations
       return locations.map {|obj| [obj["name"], obj["id"]]}
     else
       return [
@@ -48,12 +38,12 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def canvasser_name
-    [canvasser_first_name, canvasser_last_name].join(" ")
+    [canvasser_first_name.to_s.strip, canvasser_last_name.to_s.strip].collect{|n| n.blank? ? nil : n}.compact.join(" ")
   end
 
   def canvasser_name=(name)
-    name_parts = name.split(" ")
-    self.canvasser_first_name = name_parts.shift
+    name_parts = name.to_s.strip.split(" ")
+    self.canvasser_first_name = name_parts.shift || ""
     self.canvasser_last_name = name_parts.join(" ") #Remaining parts
     canvasser_name
   end
@@ -89,14 +79,10 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def is_ready_to_submit?
-    self.clock_in_datetime && self.clock_out_datetime
+    !!(self.clock_in_datetime && self.clock_out_datetime)
   end
 
-  def set_attribute_from_data(attribute_name, data, data_attribute=nil)
-    data_attribute ||= attribute_name
-    #only update if not nil
-    self.send("#{attribute_name}=", data[data_attribute]) if !data[data_attribute].blank?
-  end
+  
 
   def check_submit_to_blocks
     if !submitted_to_blocks? && is_ready_to_submit?
@@ -122,20 +108,21 @@ class CanvassingShift < ActiveRecord::Base
       # end
     end
   end
-
-  def form_matches_request(form_result, r)
-    built_form = if r.is_a?(Registrant)
-      BlocksService.form_from_registrant(r)
-    elsif r.is_a?(GrommetRequest)
-      BlocksService.form_from_grommet_request(r)
-    end
-
-    return true if form_result["first_name"]==built_form[:first_name] && form_result["last_name"]==built_form[:last_name] && form_result["date_of_birth"] == built_form[:date_of_birth]
-
-    raise "NO MATCH"
-
-    return false
-  end
+  
+  # TODO: Used to ensure blocks ID matches this request
+  # def form_matches_request(form_result, r)
+  #   built_form = if r.is_a?(Registrant)
+  #     BlocksService.form_from_registrant(r)
+  #   elsif r.is_a?(GrommetRequest)
+  #     BlocksService.form_from_grommet_request(r)
+  #   end
+  #
+  #   return true if form_result["first_name"]==built_form[:first_name] && form_result["last_name"]==built_form[:last_name] && form_result["date_of_birth"] == built_form[:date_of_birth]
+  #
+  #   raise "NO MATCH"
+  #
+  #   return false
+  # end
 
   def registrations_or_requests
     @regs ||= nil
@@ -159,5 +146,12 @@ class CanvassingShift < ActiveRecord::Base
     self.shift_external_id = "web-" + Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{canvasser_name} -- #{partner_id}" )
   end
 
+
+  private
+  def set_attribute_from_data(attribute_name, data, data_attribute=nil)
+    data_attribute ||= attribute_name
+    #only update if not nil
+    self.send("#{attribute_name}=", data[data_attribute]) if !data[data_attribute].blank?
+  end
 
 end
