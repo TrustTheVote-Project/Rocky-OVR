@@ -183,7 +183,7 @@ module V4
         registrant.save(validate: false)
         if result[:error].present?
           registrant.state_ovr_data["errors"] ||= []
-          registrant.state_ovr_data["errors"] << result[:error].to_s
+          registrant.state_ovr_data["errors"] << "#{DateTime.now}: #{result[:error].to_s}"
           RequestLogSession.request_log_instance&.log_error(result[:error].to_s)
           registrant.save(validate: false)
           if PA_RETRY_ERRORS.include?(result[:error].to_s)
@@ -243,7 +243,7 @@ module V4
           AdminMailer.pa_registration_error(registrant, registrant.state_ovr_data["errors"]).deliver_now
         elsif result[:id].blank? || result[:id]==0
             registrant.state_ovr_data["errors"] ||= []
-            registrant.state_ovr_data["errors"] << ["PA returned response with no errors and no transaction ID"]
+            registrant.state_ovr_data["errors"] << ["#{DateTime.now}: PA returned response with no errors and no transaction ID"]
             RequestLogSession.request_log_instance&.log_error("PA returned response with no errors and no transaction ID")                          
             registrant.save(validate: false)
             Rails.logger.warn("PA Registration Error for registrant id: #{registrant.id} params:\n#{registrant.state_ovr_data}\n\nErrors:\n#{registrant.state_ovr_data["errors"]}")

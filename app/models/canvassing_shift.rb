@@ -95,34 +95,45 @@ class CanvassingShift < ActiveRecord::Base
       service = BlocksService.new
       forms = service.upload_canvassing_shift(self)
       self.update_attributes(submitted_to_blocks: true)
-      # TODO: don't create form dispositions until we can confirm an ID match
-      # forms.each_with_index do |form_result, i|
-      #   reg_req = registrations_or_requests[i]
-      #   # Make sure form_result maps to reg_req
-      #   if form_matches_request(form_result, reg_req)
-      #     form_id = form_result["id"]
-      #     registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
-      #     grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
-      #     BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
-      #   end
-      # end
+      registrations_or_requests.each_with_index do |reg_req, i|
+        form_result = get_form_from_reg_req(reg_req, forms, i)
+        # Make sure form_result maps to reg_req
+        if form_result #form_matches_request(form_result, reg_req)
+          form_id = form_result["id"]
+          registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
+          grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
+          BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+        else
+          # Send notification?
+        end
+      end
     end
   end
   
+  def get_form_from_reg_req(reg_req, forms, i)
+    # Expect the index to match
+    form = forms[i]
+    return form if form_matches_request(form, reg_req)
+    # Otherwise, loop through to find a match
+    forms.each do |form|
+      return form if form_matches_request(form, reg_req)
+    end
+    return nil
+  end
+  
+  
   # TODO: Used to ensure blocks ID matches this request
-  # def form_matches_request(form_result, r)
-  #   built_form = if r.is_a?(Registrant)
-  #     BlocksService.form_from_registrant(r)
-  #   elsif r.is_a?(GrommetRequest)
-  #     BlocksService.form_from_grommet_request(r)
-  #   end
-  #
-  #   return true if form_result["first_name"]==built_form[:first_name] && form_result["last_name"]==built_form[:last_name] && form_result["date_of_birth"] == built_form[:date_of_birth]
-  #
-  #   raise "NO MATCH"
-  #
-  #   return false
-  # end
+  def form_matches_request(form_result, r)
+    built_form = if r.is_a?(Registrant)
+      BlocksService.form_from_registrant(r)
+    elsif r.is_a?(GrommetRequest)
+      BlocksService.form_from_grommet_request(r)
+    end
+
+    return true if form_result["first_name"]==built_form[:first_name] && form_result["last_name"]==built_form[:last_name] && form_result["date_of_birth"] == built_form[:date_of_birth]
+
+    return false
+  end
 
   def registrations_or_requests
     @regs ||= nil

@@ -5,22 +5,23 @@ class BlocksFormDisposition < ActiveRecord::Base
   belongs_to :registrant, primary_key: :uid
 
   def self.submit_updates!
+    service = BlocksService.new
     self.where(final_state_submitted: false).each do |blocks_form_disposition|
-      blocks_form_disposition.update_blocks_form
+      blocks_form_disposition.update_blocks_form(service)
     end
   end
 
-  def update_blocks_form
-    status = request_status
-    # TODO: Make call to update form from blocks_form_id to `status`
+  def update_blocks_form(service = nil)
+    service ||= BlocksService.new
+    status  = request_status
+    service.add_metadata_to_form(blocks_form_id, status)
     if status_complete?(status)
       self.update_attributes(final_state_submitted: true)
     end
-    # TODO or do we enqueue each individual as it's own?
   end
   
   def status_complete?(status)
-    return (status[:pa_transaction_id] || status[:completed_on_paper] || status[:abandoned_on_paper])
+    return (status[:pa_transaction_id] || status[:completed_on_paper] || status[:abandoned_on_paper] || status[:is_pa_registrant]==false)
   end
 
   
@@ -76,7 +77,8 @@ class BlocksFormDisposition < ActiveRecord::Base
           end
           return status
         else
-          raise "Registrant has neighter StateRegistrant nor Grommet data"
+          return {is_pa_registrant: false } if registrant.home_state != GeoState['PA']
+          #raise "Registrant #{registrant.id} has neighter StateRegistrant nor Grommet data"
         end
       end
     else

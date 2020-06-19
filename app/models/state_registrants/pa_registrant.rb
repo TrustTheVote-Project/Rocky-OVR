@@ -376,7 +376,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         self.pa_submission_complete = true
         self.pa_submission_error ||= []
         if result[:error].present?
-          self.pa_submission_error.push(result[:error].to_s)
+          self.pa_submission_error.push("#{DateTime.now}: #{result[:error]}")
           RequestLogSession.request_log_instance.log_error(result[:error].to_s)
           if result[:error] == INVALID_PENNDOT && self.penndot_retries < 2
             self.retry_drivers_license
@@ -391,7 +391,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
             AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver_now
           end
         elsif result[:id].blank? || result[:id]==0
-            self.pa_submission_error.push("PA returned response with no errors and no transaction ID")
+            self.pa_submission_error.push("#{DateTime.now}: PA returned response with no errors and no transaction ID")
             RequestLogSession.request_log_instance.log_error("PA returned response with no errors and no transaction ID. Registrant Switched to paper.")
             
             #complete it, but go on to PDF generation?

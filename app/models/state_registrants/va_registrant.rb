@@ -464,11 +464,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     else
       self.va_submission_error ||= []
       if result["TransactionErrorMessage"]
-        self.va_submission_error << result["TransactionErrorMessage"]
+        self.va_submission_error << "#{DateTime.now}: #{result["TransactionErrorMessage"]}"
       end
       if result["Errors"] && result["Errors"].any?
         result["Errors"].each do |error|
-          self.va_submission_error << error
+          self.va_submission_error << "#{DateTime.now}: #{error}"
         end
       end
     end
@@ -478,7 +478,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       #deliver_confirmation_email
     else
       self.va_submission_error ||= []
-      self.va_submission_error << "No ID returned from VA submission"
+      self.va_submission_error << "#{DateTime.now}: No ID returned from VA submission"
       self.registrant.skip_state_flow!
       AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver_now
     end
