@@ -1,4 +1,4 @@
-NUM_REGISTRATIONS = 5
+NUM_REGISTRATIONS = 10
 NUM_API_REGISTRATIONS = 0
 
 path = File.expand_path(__FILE__).split("/")
@@ -33,7 +33,7 @@ error_idx = 0 # make sure we start with a non-registrant
 NUM_REGISTRATIONS.times do |i|
   first_name = "Valid-Name"
   address = "1-Main-St"
-  if i % 5 == 0
+  if i % 3 == 0
     if error_idx >= error_cases.length
       error_idx = 0
     end

@@ -28,6 +28,7 @@ class Admin::BlocksSubmissionsController < Admin::BaseController
   def index
     @blocks_submissions = BlocksServiceBulkSubmission.paginate(:page => params[:page], :per_page => 100).order("shift_start DESC")
     @jobs = Delayed::Job.where(queue: BlocksServiceBulkSubmission::QUEUE_NAME)
+    @metadata_job = BlocksFormDispositionJob.delayed_job
   end
 
   # def show

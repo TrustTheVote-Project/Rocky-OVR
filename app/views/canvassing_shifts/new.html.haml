@@ -1,4 +1,3 @@
-= render partial: 'header'
 
 :javascript
   window.confirmPartnerSelection = function() {
@@ -10,6 +9,8 @@
   })
 
 #canvassing-shift
+
+  = render partial: 'header'
 
   #partner-confirmation
     %h2
@@ -30,7 +31,7 @@
   #canvassing-shift-form
     %h2
       = "Start New Canvassing Shift for #{@partner.organization}"
-    %p To start a new canvassing shift, enter your personal information and shift information below.
+    %p To start a new canvassing shift, enter your personal information and shift information below. Please double-check and confirm your information, this will be used to identify your shift and track your progress.
     = form_for @new_canvassing_shift, url: canvassing_shifts_path do |form|
       %ul.stacked
         = field_li(form, :canvasser_first_name, {skip_tooltip: true, required: true, li_options: {class: "first-name__line"}})

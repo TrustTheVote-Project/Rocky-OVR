@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200515160823) do
+ActiveRecord::Schema.define(version: 20200619180934) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20200515160823) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "queue",      limit: 255
+    t.string   "cron"
   end
 
   create_table "email_addresses", force: :cascade do |t|

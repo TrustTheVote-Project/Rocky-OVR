@@ -113,5 +113,6 @@ gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
 gem 'json'
 
 gem "delayed_job_active_record", "~> 4.1"
+gem 'delayed_cron_job'
 
 gem 'exception_notification'

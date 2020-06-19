@@ -58,7 +58,7 @@ class BlocksFormDisposition < ActiveRecord::Base
       if registrant.is_grommet?
         return grommet_request_status
       else
-        status[:has_validation_errors] = !registrant.valid?
+        status[:has_validation_errors] = false #By definition all submittable registrant records are valid
         sr = registrant.existing_state_registrant
         if sr
           if sr.pa_submission_complete

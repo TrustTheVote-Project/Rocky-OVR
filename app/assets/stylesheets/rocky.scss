@@ -24,9 +24,22 @@ html, body {
   }
 }
 
-#canvassing-shift {
-  font-size: 12px;
+#main #canvassing-shift {
+  font-size: 14px;
+  p {
+    margin: 1em 0;
+    font-size: 14px;
+  }
   line-height: 1.3em;
+  ul {
+    margin-left:20px;
+  }
+  h1 {
+    margin: 1em 0;
+  }
+  h2 {
+    margin: .5em 0;
+  }
   form {
     .first-name__line, .last-name__line, 
     .phone__line, .email__line {

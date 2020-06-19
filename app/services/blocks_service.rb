@@ -123,12 +123,14 @@ class BlocksService
   private
   def build_blocks_forms_from_canvassing_shift(shift)
     return shift.registrations_or_requests.map do |r|
-      if r.is_a?(Registrant)
+      if r.is_a?(Registrant) #&& r.complete? forms with PA errors won't be complete. but some incomplete regs might fail blocks validation?
         BlocksService.form_from_registrant(r)
       elsif r.is_a?(GrommetRequest)
         BlocksService.form_from_grommet_request(r) 
+      else
+        nil
       end
-    end
+    end.compact
   end
   
   def build_canvassing_shift_blocks_hash(shift, shift_type)

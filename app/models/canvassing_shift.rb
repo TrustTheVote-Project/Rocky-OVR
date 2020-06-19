@@ -36,6 +36,10 @@ class CanvassingShift < ActiveRecord::Base
   def new_registrant_url
     Rails.application.routes.url_helpers.new_registrant_url(shift_id: self.shift_external_id, host: RockyConf.default_url_host)
   end
+  
+  def show_shift_url
+    Rails.application.routes.url_helpers.canvassing_shifts_url(host: RockyConf.default_url_host)
+  end
 
   def canvasser_name
     [canvasser_first_name.to_s.strip, canvasser_last_name.to_s.strip].collect{|n| n.blank? ? nil : n}.compact.join(" ")
@@ -104,7 +108,7 @@ class CanvassingShift < ActiveRecord::Base
           grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
           BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
         else
-          # Send notification?
+          puts "No form reesult for #{reg_req} #{i}"
         end
       end
     end
@@ -115,8 +119,8 @@ class CanvassingShift < ActiveRecord::Base
     form = forms[i]
     return form if form_matches_request(form, reg_req)
     # Otherwise, loop through to find a match
-    forms.each do |form|
-      return form if form_matches_request(form, reg_req)
+    forms.each do |form_result|
+      return form_result if form_matches_request(form_result, reg_req)
     end
     return nil
   end
@@ -124,11 +128,14 @@ class CanvassingShift < ActiveRecord::Base
   
   # TODO: Used to ensure blocks ID matches this request
   def form_matches_request(form_result, r)
+    return false if form_result.nil? || r.nil?
     built_form = if r.is_a?(Registrant)
       BlocksService.form_from_registrant(r)
     elsif r.is_a?(GrommetRequest)
       BlocksService.form_from_grommet_request(r)
     end
+    
+    puts built_form, form_result, r.class
 
     return true if form_result["first_name"]==built_form[:first_name] && form_result["last_name"]==built_form[:last_name] && form_result["date_of_birth"] == built_form[:date_of_birth]
 
@@ -140,7 +147,7 @@ class CanvassingShift < ActiveRecord::Base
     if !@regs
       @regs = []
       registrant_grommet_ids = []
-      self.registrants.complete.each do |r|
+      self.registrants.each do |r|
         registrant_grommet_ids << r.state_ovr_data["grommet_request_id"]
         @regs << r
       end

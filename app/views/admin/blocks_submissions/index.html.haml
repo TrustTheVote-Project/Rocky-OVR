@@ -1,3 +1,9 @@
+%h3 Metadata Submissions:
+- if @metadata_job
+  %p= "Next run at #{@metadata_job.run_at}"
+- else
+  %p Not scheduled!
+
 %h3 Queued Jobs:
 %ul
   - @jobs.each do |j|
