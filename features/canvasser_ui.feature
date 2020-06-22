@@ -23,8 +23,8 @@ Feature: Canvasser UI
       And I fill in "partner" with "123"
       And I click "Next"
       Then I should be on the shift creation page
-      And I should see "Start New Canvassing Shift for Organization Name 2"
-      And the "#partner_id" hidden field should be "123"
+      Then I should see "Start New Canvassing Shift for Organization Name 2"
+      Then the "#partner_id" hidden field should be "123"
 
     @passing
     Scenario: Invalid Partner
@@ -47,8 +47,7 @@ Feature: Canvasser UI
         | 123 | Partner Name 2 | Organization Name 2 |
       When I go to the shift creation page for partner="123"
       And I click "Start Shift"
-      Then the "#partner_id" hidden field should be "123"
-      And the "First Name" field should be required
+      Then the "First Name" field should be required
       And the "Last Name" field should be required
       And the "Phone" field should be required
       And the "Email" field should be required
@@ -80,11 +79,13 @@ Feature: Canvasser UI
       And I select "Default Location" from "Location"
       And I click "Start Shift"
       Then I should be on the shift status page
-      And I should see "0 completed registration(s)"
-      And I should see "0 via paper"
-      And I should see "0 via api"
-      And I should see "0 abandoned registration(s)"
-      And I should see a button for "Start new registration"
+      And I should see "0 registration(s) marked as complete"
+      And I should see "0 registration(s) redirected to Secretary of State's website"
+      And I should see "0 registration(s) printed out to be mailed"
+      And I should see "0 registration(s) submitted to Secretary of State's API"
+      And I should see "0 registration(s) marked as abandoned"
+      And I should see "0 registration(s) in progress"
+      And I should see a link for "Start New Registration"
       And I should see a URL for starting a registartion for that shift
       And I should see a button for "End Shift"
 
@@ -92,8 +93,8 @@ Feature: Canvasser UI
     Scenario: Register via Shift
       Given that I started a new shift for partner="123"
       When I go to the shift status page
-      Then I should see "0 completed registration(s)"
-      And I follow "Start new registration"
+      Then I should see "0 registration(s) marked as complete"
+      And I follow "Start New Registration"
       And show the page
       Then I should be on a new registration page for partner="123"
       And I should see the canvassing notice bar
@@ -130,8 +131,8 @@ Feature: Canvasser UI
       And I complete "3" registrations
       And I start "2" abandoned
       When I go to the shift status page
-      Then I should see "3 completed registration(s)"
-      And I should see "2 abandoned registration(s)"
+      Then I should see "3 registration(s) marked as complete"
+      And I should see "2 registration(s) in progress"
 
     @passing
     Scenario: End Shift

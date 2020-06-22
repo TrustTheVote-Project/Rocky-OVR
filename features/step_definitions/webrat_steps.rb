@@ -132,7 +132,9 @@ Then /^I should see "([^\"]*)"$/ do |text|
   page.should have_content(text)
 end
 
-
+When(/^I wait (\d+) seconds$/) do |seconds|
+  sleep seconds.to_i
+end
 
 Then /^I should not see "([^\"]*)"$/ do |text|
   page.should_not have_content(text)
@@ -143,7 +145,9 @@ Then /^the "([^\"]*)" field should contain "([^\"]*)"$/ do |field, value|
 end
 
 Then /^the "([^\"]*)" hidden field should be "([^\"]*)"$/ do |field_id, value|
+  Capybara.ignore_hidden_elements = false
   expect(page.find(field_id).value).to eq(value)
+  Capybara.ignore_hidden_elements = true
 end
 
 

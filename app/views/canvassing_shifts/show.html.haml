@@ -19,17 +19,17 @@
     - abandoned_count = @canvassing_shift.registrants.abandoned.where.not(status: :complete).count
     %li
       = complete_count
-      registration(s) marked as compete
+      registration(s) marked as complete
       %ul
         %li
           = finish_with_state_count
           registration(s) redirected to Secretary of State's website
         %li
           = complete_count - (api_count + finish_with_state_count)
-          registration(s) printed out to be maiked
+          registration(s) printed out to be mailed
         %li
           = api_count
-          registration(s) submitted by Secretary of State's API
+          registration(s) submitted to Secretary of State's API
 
     %li
       = abandoned_count
