@@ -284,8 +284,8 @@ RSpec.describe CanvassingShift, type: :model do
       expect(c.registrants.count).to eq(4)
       expect(c.grommet_requests.count).to eq(5)
       expect(c.registrations_or_requests).to eq([
-        c.registrants.complete,
-        c.grommet_requests.last(2)
+        c.registrants,
+        c.grommet_requests.last(1)
       ].flatten)
       
     end
