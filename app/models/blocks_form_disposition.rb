@@ -5,9 +5,12 @@ class BlocksFormDisposition < ActiveRecord::Base
   belongs_to :registrant, primary_key: :uid
 
   def self.submit_updates!
-    service = BlocksService.new
-    self.where(final_state_submitted: false).each do |blocks_form_disposition|
-      blocks_form_disposition.update_blocks_form(service)
+    updatable = self.where(final_state_submitted: false)
+    if updatable.any?
+      service = BlocksService.new
+      updatable.each do |blocks_form_disposition|
+        blocks_form_disposition.update_blocks_form(service)
+      end
     end
   end
 

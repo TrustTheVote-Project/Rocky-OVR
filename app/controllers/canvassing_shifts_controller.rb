@@ -21,7 +21,8 @@ class CanvassingShiftsController < ApplicationController
       flash[:message] = "Partner #{params[:partner]} not available for canvassing shifts"
       redirect_to action: :set_partner
     end
-
+    @confirmed_partner = false
+    
     @new_canvassing_shift = CanvassingShift.new
   end
 
@@ -46,6 +47,7 @@ class CanvassingShiftsController < ApplicationController
       session[:canvassing_shift_id] = @new_canvassing_shift.id
       redirect_to action: :show
     else
+      @confirmed_partner = true
       render action: :new
     end
 

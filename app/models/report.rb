@@ -4,6 +4,7 @@ class Report < ActiveRecord::Base
   GROMMET_SHIFT_REPORT="grommet_shift_report".freeze
   GROMMET_REGISTRANTS_REPORT="grommet_registrants_report".freeze
   REGISTRANTS_REPORT="registrants_report".freeze
+  REGISTRANTS_REPORT_EXTENDED="registrants_report_extended".freeze
   QUEUE_NAME = "reports".freeze
   THRESHOLD = 100
   
@@ -66,6 +67,8 @@ class Report < ActiveRecord::Base
       return "PA APP Registrants Report"
     when REGISTRANTS_REPORT
       return "Registrants Report"
+    when REGISTRANTS_REPORT_EXTENDED
+      return "Registrants Report Extended"
     end
   end
   
@@ -222,6 +225,9 @@ class Report < ActiveRecord::Base
   def registrants_report_csv_header
     Registrant::CSV_HEADER
   end
+  def registrants_report_extended_csv_header
+    Registrant::CSV_HEADER_EXTENDED
+  end
   
   def registrants_report_conditions    
     conditions = [[]]
@@ -241,6 +247,10 @@ class Report < ActiveRecord::Base
     return conditions
   end
   
+  def registrants_report_extended_conditions
+    registrants_report_conditions
+  end
+  
   def registrants_report_selector
     if filters && filters[:home_state_id] || filters[:home_zip_code]
       if filters[:home_state_id]
@@ -253,13 +263,20 @@ class Report < ActiveRecord::Base
     end
   end
   
+  def registrants_report_extended_selector
+    @registrants_report_extended_selector ||= registrants_report_selector.includes({:canvassing_shift_registrant => :canvassing_shift})    
+  end
   
-  def generate_registrants_report(start=0)
+  
+  def generate_registrants_report(start=0, csv_method=:to_csv_array)
     distribute_reads(failover: false) do
       pa_registrants = {}
       StateRegistrants::PARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_pa_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       va_registrants = {}
       StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      mi_registrants = {}
+      StateRegistrants::MIRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+
       
       return CSV.generate do |csv|
         selector.includes([:home_state, :mailing_state, :partner, :registrant_status]).offset(start).limit(THRESHOLD).each do |reg|
@@ -270,13 +287,19 @@ class Report < ActiveRecord::Base
               sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
             when "VA"
               sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+            when "MI"
+              sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
             end
             reg.instance_variable_set(:@existing_state_registrant, sr)
           end
-          csv << reg.to_csv_array
+          csv << reg.send(csv_method)
         end
       end
     end
+  end
+  
+  def generate_registrants_report_extended(start=0)
+    generate_registrants_report(start, :to_csv_extended_array)
   end
   
   def grommet_shift_report_conditions

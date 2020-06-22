@@ -4,15 +4,19 @@
     $("#canvassing-shift-form").show();
     $("#partner-confirmation").hide();
   }
-  $(document).ready(function() {
+  window.initializeConfirmPartner = function () {
     $("#canvassing-shift-form").hide();
+    $("#partner-confirmation").show();
+  }
+  $(document).ready(function() {
+    #{!@confirmed_partner ? 'initializeConfirmPartner()' : ''}
   })
 
 #canvassing-shift
 
   = render partial: 'header'
 
-  #partner-confirmation
+  #partner-confirmation{style: "display: none"}
     %h2
       = "You've selected:"
       %br

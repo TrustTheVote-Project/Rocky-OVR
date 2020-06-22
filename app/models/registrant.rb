@@ -211,6 +211,14 @@ class Registrant < ActiveRecord::Base
     "Submitted Signature to State API"
   ]
   
+  CSV_HEADER_EXTENDED = [
+    "Registrant UID",
+    CSV_HEADER,
+    "Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
+    "Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
+    "Shift ID", #canvassing_shift_registrant.external_id
+  ].flatten
+  
   GROMMET_CSV_HEADER = [
     "Status",
     "Potential Duplicate?",
@@ -557,6 +565,7 @@ class Registrant < ActiveRecord::Base
             Rails.logger.error(e)
             # raise e
           end
+          reg.save
         elsif reg.existing_state_registrant.nil? || reg.existing_state_registrant.send_chase_email?
           # Send chase email
           begin
@@ -565,8 +574,10 @@ class Registrant < ActiveRecord::Base
             Rails.logger.error(e)
           end
         end
-        reg.abandon!
-        Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
+        unless reg.complete?
+          reg.abandon! 
+          Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
+        end
         if reg.is_fake?
           reg.destroy
         end      
@@ -1655,6 +1666,18 @@ class Registrant < ActiveRecord::Base
       return nil
     end
   end
+
+
+  def to_csv_extended_array
+     [
+      self.uid,
+      self.to_csv_array,
+      self.is_grommet? ? "Tablet" : (building_via_api_call? ? "Rocky API" : "Web"), #"Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
+      finish_with_state? ? "Redirected to SOS" : (submitted_via_state_api? ? "Submitted Via State API" : "Paper"), #"Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
+      self.canvassing_shift_registrant&.shift_external_id, #"Shift ID"
+    ].flatten
+  end
+  
 
   def to_csv_array
     [

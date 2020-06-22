@@ -277,7 +277,7 @@ module V4
     # end
 
     # Lists records for the given registrant
-    ALLOWED_PARAMETERS = [:partner_id, :gpartner_id, :partner_api_key, :gpartner_api_key, :since, :before, :email, :callback]
+    ALLOWED_PARAMETERS = [:partner_id, :gpartner_id, :partner_api_key, :gpartner_api_key, :since, :before, :email, :callback, :report_type]
     def self.create_report(query)
       query ||= {}
 
@@ -289,6 +289,12 @@ module V4
           raise InvalidParameterType.new(k)
         end
       end
+      report_type = Report::REGISTRANTS_REPORT
+      if query[:report_type] && query[:report_type].to_s.downcase == "extended"
+        report_type = Report::REGISTRANTS_REPORT_EXTENDED
+      end
+      
+      
       
       filters = {}
       g_partner = false
@@ -328,7 +334,7 @@ module V4
       filters[:email_address] = query[:email]
       
       r = Report.new({
-        report_type: Report::REGISTRANTS_REPORT,
+        report_type: report_type,
         start_date: start_date,
         end_date: end_date,
         filters: filters,
