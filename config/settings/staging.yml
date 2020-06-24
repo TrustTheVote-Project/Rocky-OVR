@@ -93,7 +93,7 @@ ovr_states:
       
   PA:
     api_settings:
-      api_url: "https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
+      api_url: "https://fake-pa-endpoint.herokuapp.com" #"https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
 
   WA:
     languages:
@@ -105,7 +105,7 @@ ovr_states:
       
   VA:
     api_settings:
-        api_url: https://externalapi.elections.virginia.gov/sandbox/
+        api_url: "https://fake-va-endpoint.herokuapp.com" # https://externalapi.elections.virginia.gov/sandbox/
         api_username: "RockTheVote_Sandbox"
         api_key: <%= ENV['VA_API_KEY'] %>
 
