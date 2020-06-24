@@ -7,7 +7,7 @@ RSpec.describe CanvassingShift, type: :model do
     subject { CanvassingShift.new }
     context "when building from web" do
       before(:each) do
-        subject.building_via_web = true
+        subject.shift_source = CanvassingShift::SOURCE_WEB
       end
       it { is_expected.to validate_presence_of(:canvasser_first_name) }
       it { is_expected.to validate_presence_of(:canvasser_last_name) }
@@ -18,7 +18,7 @@ RSpec.describe CanvassingShift, type: :model do
     end
     context "when not building from web" do
       before(:each) do
-        subject.building_via_web = false
+        subject.shift_source = CanvassingShift::SOURCE_GROMMET
       end
       it { is_expected.not_to validate_presence_of(:canvasser_first_name) }
       it { is_expected.not_to validate_presence_of(:canvasser_last_name) }
@@ -165,7 +165,7 @@ RSpec.describe CanvassingShift, type: :model do
   describe "set_counts" do
     context "for web shifts with registrations" do
       it "sets completed registrations to number of complete registrations" do
-        c = CanvassingShift.create(shift_external_id: "shift-id")
+        c = CanvassingShift.create!(shift_external_id: "shift-id", shift_source: CanvassingShift::SOURCE_WEB, canvasser_first_name: "F", canvasser_last_name: "L", canvasser_phone: "1231231234", canvasser_email: "test@test.com", shift_location: "123", partner: FactoryGirl.create(:partner))
         3.times do
           r = FactoryGirl.create(:completed_registrant)
           r.shift_id = "shift-id"
@@ -174,15 +174,19 @@ RSpec.describe CanvassingShift, type: :model do
         expect(c.completed_registrations).to eq(3)        
       end
       it "sets abandoned registrations to number of total registrations minus complete ones" do
-        c = CanvassingShift.create(shift_external_id: "shift-id")
+        c = CanvassingShift.create!(shift_external_id: "shift-id", shift_source: CanvassingShift::SOURCE_WEB, canvasser_first_name: "F", canvasser_last_name: "L", canvasser_phone: "1231231234", canvasser_email: "test@test.com", shift_location: "123", partner: FactoryGirl.create(:partner))
         r = FactoryGirl.create(:completed_registrant)
         r.shift_id = "shift-id"
+        r.abandon!
         r = FactoryGirl.create(:step_1_registrant)
         r.shift_id = "shift-id"
+        r.abandon!
         r = FactoryGirl.create(:step_3_registrant)
         r.shift_id = "shift-id"
+        r.abandon!
         r = FactoryGirl.create(:step_5_registrant)
         r.shift_id = "shift-id"
+        r.abandon!
         c.set_counts
         expect(c.registrants.count).to eq(4)
         expect(c.abandoned_registrations).to eq(3)        
@@ -267,7 +271,7 @@ RSpec.describe CanvassingShift, type: :model do
   describe "registrations_or_requests" do
     it "returns a consolidated lists of registrations or un-realized grommet requests" do
       shift_id = "shift-id"
-      c = CanvassingShift.create(shift_external_id: shift_id)
+      c = CanvassingShift.create(shift_external_id: shift_id, shift_source: CanvassingShift::SOURCE_GROMMET)
       5.times do |i|
         req = GrommetRequest.create
         CanvassingShiftGrommetRequest.create(shift_external_id: shift_id, grommet_request_id: req.id)

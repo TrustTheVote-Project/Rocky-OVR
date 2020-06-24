@@ -37,7 +37,7 @@ class CanvassingShiftsController < ApplicationController
     @new_canvassing_shift.generate_shift_external_id
     @new_canvassing_shift.shift_location ||= RockyConf.blocks_configuration.default_location_id
     @new_canvassing_shift.clock_in_datetime = DateTime.now
-    @new_canvassing_shift.building_via_web = true
+    @new_canvassing_shift.shift_source = CanvassingShift::SOURCE_WEB
     if @new_canvassing_shift.save
       # If existing shift, clock it out
       if @canvassing_shift

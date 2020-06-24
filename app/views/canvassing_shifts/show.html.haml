@@ -14,9 +14,9 @@
     EST
   %ul
     - finish_with_state_count = @canvassing_shift.registrants.where(finish_with_state: true).count
-    - complete_count = @canvassing_shift.registrants.where("status = ? or finish_with_state = ?", :complete, true).count
+    - complete_count = @canvassing_shift.web_complete_registrants.count
     - api_count = @canvassing_shift.registrants.complete.find_all {|r| !r.state_transaction_id.blank? }.size
-    - abandoned_count = @canvassing_shift.registrants.abandoned.where.not(status: :complete).count
+    - abandoned_count = @canvassing_shift.web_abandoned_registrants.count
     %li
       = complete_count
       registration(s) marked as complete

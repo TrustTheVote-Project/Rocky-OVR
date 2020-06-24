@@ -6,14 +6,20 @@ class CanvassingShift < ActiveRecord::Base
   has_many :canvassing_shift_grommet_requests, foreign_key: :shift_external_id, primary_key: :shift_external_id
   has_many :grommet_requests, through: :canvassing_shift_grommet_requests
 
+  belongs_to :partner
 
   validates_presence_of :shift_external_id
 
-  attr_accessor :building_via_web
+  SOURCE_WEB= 'WEB'.freeze
+  SOURCE_GROMMET = 'GROMMET'.freeze
+  SOURCES = [
+    SOURCE_WEB,
+    SOURCE_GROMMET
+  ].freeze
 
-  validates_presence_of [:canvasser_first_name, :canvasser_last_name, :partner_id, :canvasser_phone, :canvasser_email, :shift_location], if: :building_via_web
-  validates_format_of :canvasser_phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, if: :building_via_web, allow_blank: true
-  validates_format_of :canvasser_email, :with => Authlogic::Regex::EMAIL, if: :building_via_web, allow_blank: true
+  validates_presence_of [:canvasser_first_name, :canvasser_last_name, :partner_id, :canvasser_phone, :canvasser_email, :shift_location], if: :is_web?
+  validates_format_of :canvasser_phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, if: :is_web?, allow_blank: true
+  validates_format_of :canvasser_email, :with => Authlogic::Regex::EMAIL, if: :is_web?, allow_blank: true
 
   after_save :check_submit_to_blocks
 
@@ -29,6 +35,13 @@ class CanvassingShift < ActiveRecord::Base
     end
   end
 
+  def is_web?
+    self.shift_source == SOURCE_WEB
+  end
+  def is_grommet?
+    self.shift_source == SOURCE_GROMMET
+  end
+  
   def locale
     :en
   end
@@ -77,9 +90,16 @@ class CanvassingShift < ActiveRecord::Base
     return self
   end
 
+  def web_complete_registrants
+    self.registrants.where("status = ? or finish_with_state = ?", :complete, true)
+  end
+  def web_abandoned_registrants
+    self.registrants.abandoned.where.not(status: :complete)
+  end
+
   def set_counts
-    self.completed_registrations = registrants.complete.count
-    self.abandoned_registrations = registrants.count - self.completed_registrations
+    self.completed_registrations = web_complete_registrants.count
+    self.abandoned_registrations = web_abandoned_registrants.count
   end
 
   def is_ready_to_submit?
@@ -145,16 +165,22 @@ class CanvassingShift < ActiveRecord::Base
   def registrations_or_requests
     @regs ||= nil
     if !@regs
-      @regs = []
-      registrant_grommet_ids = []
-      self.registrants.each do |r|
-        registrant_grommet_ids << r.state_ovr_data["grommet_request_id"]
-        @regs << r
-      end
-      self.grommet_requests.each do |req|
-        unless registrant_grommet_ids.include?(req.id)
-          @regs << req
+      if self.is_web?
+        @regs = self.web_complete_registrants
+      elsif self.is_grommet?
+        @regs = []
+        registrant_grommet_ids = []
+        self.registrants.each do |r|
+          registrant_grommet_ids << r.state_ovr_data["grommet_request_id"]
+          @regs << r
         end
+        self.grommet_requests.each do |req|
+          unless registrant_grommet_ids.include?(req.id)
+            @regs << req
+          end
+        end
+      else
+        @regs = []
       end
     end
     return @regs
