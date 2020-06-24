@@ -2,6 +2,11 @@
 en:
   states:
     custom:
+      nc:
+        state_online_registration:
+          header: Because you have an NC Driver License and/or DMV-issued ID, you are eligible to complete your registration online with your state.
+          instructions: Have your NC ID number ready and click the button below to continue. On the DMV website, click "Continue to myNCDMV Services," then "Continue as a guest" to submit your voter registration online.
+
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
       mi:
@@ -131,8 +136,8 @@ en:
         registration_complete_dialog_text: "<p>Your application has been sent to the
           Dept. of Elections to register to vote.</p>"
       pa:
-        registration_deadline_text: 5/18/2020 is the last day to register before the
-          6/2/2020 election. If you are not a U.S. citizen and a resident of Pennsylvania
+        registration_deadline_text: 10/19/2020 is the last day to register before the
+          11/03/2020 election. If you are not a U.S. citizen and a resident of Pennsylvania
           at least 30 days before the next election, you CANNOT register to vote.
           If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -216,8 +221,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 5/18/2020 is the last day to register before the
-          6/2/2020 election.</p>"
+          </ul> <p> Deadline Alert: 10/19/2020 is the last day to register before the
+          11/03/2020 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
