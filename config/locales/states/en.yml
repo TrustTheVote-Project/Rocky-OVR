@@ -4,7 +4,7 @@ en:
     custom:
       nc:
         state_online_registration:
-          header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV
+          header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.
           instructions: 
             "Here's how to finish your registration:
             <br/>1. Have your NC ID number ready.
