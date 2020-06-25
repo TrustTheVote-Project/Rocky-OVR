@@ -6,4 +6,4 @@
 * added integrations to submit canvasser shifts and registrations to the Blocks system
 * added api v4 param (report_type) to registrant CSV report creation to request extended CSV format, e.g.
 
-curl -X POST "https://<domain>/api/v4/registrant_reports?partner_id=<partner_id>&partner_API_key=<apikey>&since=2020-01-01&report_type=extended" -d ''
+  curl -X POST "https://<domain>/api/v4/registrant_reports?partner_id=<partner_id>&partner_API_key=<apikey>&since=2020-01-01&report_type=extended" -d ''
