@@ -23,6 +23,10 @@ class CanvassingShift < ActiveRecord::Base
 
   after_save :check_submit_to_blocks
 
+  def self.enabled_state_ids
+    @@enabled_state_ids ||= RockyConf.blocks_configuration.states.collect {|abbrev| GeoState[abbrev].id }
+  end
+
   def self.location_options(partner)
     b = BlocksService.new
     locations = begin b.get_locations(partner)&.[]("locations") rescue nil end;
@@ -166,7 +170,7 @@ class CanvassingShift < ActiveRecord::Base
     @regs ||= nil
     if !@regs
       if self.is_web?
-        @regs = self.web_complete_registrants
+        @regs = self.web_complete_registrants.where(home_state_id: CanvassingShift.enabled_state_ids)
       elsif self.is_grommet?
         @regs = []
         registrant_grommet_ids = []

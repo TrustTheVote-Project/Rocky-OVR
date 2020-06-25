@@ -18,6 +18,11 @@ from_address: "rocky@example.com"
 default_url_host: "register.example.com"
 ui_url_host: "register5.example.com"
 
+blocks_configuration:
+  states:
+    - PA
+    - VA
+
 
 # this URL (if present) is shown as a WIKI nav menu item in the Partner portal
 partner_wiki_url: "http://wiki.rockthevote.com"

@@ -14,6 +14,9 @@ minutes_before_abandoned: 5
 ui_timeout_minutes: 5
 
 blocks_configuration:
+  states:
+    - PA
+    - VA
   default_turf_id: 416
   default_location_id: 266
   default_staging_location_id: 267

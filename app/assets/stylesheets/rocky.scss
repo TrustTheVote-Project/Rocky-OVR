@@ -33,12 +33,22 @@ html, body {
   line-height: 1.3em;
   ul {
     margin-left:20px;
+    li {
+      strong {
+        font-weight: bold;
+      }
+    }
   }
   h1 {
     margin: 1em 0;
+    font-size: 22px;
   }
   h2 {
     margin: .5em 0;
+    line-height: 1.6em;
+    strong {
+      font-size: 110%;
+    }
   }
   form {
     .first-name__line, .last-name__line, 
