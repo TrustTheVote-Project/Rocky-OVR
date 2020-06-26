@@ -1,0 +1,13 @@
+#canvassing-shift
+  = render partial: 'header'
+  
+  %p Welcome to Rock the Vote’s canvasser web portal. Please begin by entering your Partner ID number.  This will be validated on the next page.
+  %p 
+    If you are unsure of your Partner ID number, please contact your supervisor or reach out to 
+    %a{href: "mailto:ovrtool@rockthevote.org"} ovrtool@rockthevote.org
+  %h2 Enter Partner ID
+  %br
+  = form_tag new_canvassing_shifts_path, {method: :get} do
+    = text_field_tag :partner
+
+    = rollover_button(:next, "Next") #I18n.t('txt.button.submit').html_safe

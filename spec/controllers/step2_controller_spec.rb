@@ -30,13 +30,12 @@ describe Step2Controller do
   end
   
   describe "#show" do
+    let(:reg) { FactoryGirl.create(:step_1_registrant, home_zip_code: "03900") }
     it "should show the step 2 input form" do
-      reg = FactoryGirl.create(:step_1_registrant)
       get :show, :registrant_id => reg.to_param
       assert_template "show"
     end
     it "sets up tooltip and party variables" do
-      reg = FactoryGirl.create(:step_1_registrant)
       reg.stub(:state_parties) { true } 
       reg.stub(:race_tooltip) { true } 
       reg.stub(:party_tooltip) { true } 
@@ -52,33 +51,34 @@ describe Step2Controller do
 
   describe "#update" do
     before(:each) do
-      @registrant = FactoryGirl.create(:step_1_registrant)
+      @registrant = FactoryGirl.create(:step_1_registrant, home_zip_code: "03900")
     end
 
     it "should update registrant and complete step 2 when not using short form" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant).reject {|k,v| k == :status }.merge(short_form: 0)
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant, home_zip_code: "03900").reject {|k,v| k == :status }.merge(short_form: 0)
       assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_2?
       assert_redirected_to registrant_step_3_url(assigns[:registrant])
     end
     
     it "should update registrant and complete after step 2" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant).reject {|k,v| k == :status }
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_5_registrant, home_zip_code: "03900").reject {|k,v| k == :status }
       assert !assigns[:registrant].nil?
+      pp assigns[:registrant].home_state_id
       assert assigns[:registrant].complete?
       assert_redirected_to registrant_download_url(assigns[:registrant])
     end
     
 
     it "should reject invalid input and show form again" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant, :first_name => nil).reject {|k,v| k == :status }
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant, :first_name => nil, home_zip_code: "03900").reject {|k,v| k == :status }
       assert assigns[:registrant].step_5?
       assert assigns[:registrant].reload.step_1?
       assert_template "show"
     end
 
     it "should reject invalid input and show form again when not using short form" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant, :first_name => nil).reject {|k,v| k == :status }.merge(short_form: 0)
+      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_2_registrant, :first_name => nil, home_zip_code: "03900").reject {|k,v| k == :status }.merge(short_form: 0)
       assert assigns[:registrant].step_2?
       assert assigns[:registrant].reload.step_1?
       assert_template "show"
@@ -86,7 +86,7 @@ describe Step2Controller do
 
     it "should notice disabled javascript and override has_mailing_address" do
       put :update, :registrant_id => @registrant.to_param,
-                   :registrant => FactoryGirl.attributes_for(:step_2_registrant, :mailing_address => "submitted", :has_mailing_address => "0").reject {|k,v| k == :status },
+                   :registrant => FactoryGirl.attributes_for(:step_2_registrant, :mailing_address => "submitted", :has_mailing_address => "0", home_zip_code: "03900").reject {|k,v| k == :status },
                    :javascript_disabled => "1"
       assert assigns[:registrant].invalid?
       assert_template "show"
@@ -95,12 +95,12 @@ describe Step2Controller do
     
     it "should notice disabled javascript and override has_prev_address" do
       put :update, :registrant_id => @registrant.to_param,
-                   :registrant => FactoryGirl.attributes_for(:step_2_registrant, :prev_address => "submitted", :change_of_address => "0").reject {|k,v| k == :status },
+                   :registrant => FactoryGirl.attributes_for(:step_2_registrant, :prev_address => "submitted", :change_of_address => "0", home_zip_code: "03900").reject {|k,v| k == :status },
                    :javascript_disabled => "1"
       assert assigns[:registrant].invalid?
       assert_template "show"
       put :update, :registrant_id => @registrant.to_param,
-                   :registrant => FactoryGirl.attributes_for(:step_2_registrant, :prev_first_name => "submitted", :change_of_name => "0").reject {|k,v| k == :status },
+                   :registrant => FactoryGirl.attributes_for(:step_2_registrant, :prev_first_name => "submitted", :change_of_name => "0", home_zip_code: "03900").reject {|k,v| k == :status },
                    :javascript_disabled => "1"
       assert assigns[:registrant].invalid?
       assert_template "show"
@@ -108,7 +108,7 @@ describe Step2Controller do
 
     it "should respect when has_mailing_address is checked and javascript disabled" do
       put :update, :registrant_id => @registrant.to_param,
-                   :registrant => FactoryGirl.attributes_for(:step_2_registrant, :mailing_address => "", :has_mailing_address => "1").reject {|k,v| k == :status },
+                   :registrant => FactoryGirl.attributes_for(:step_2_registrant, :mailing_address => "", :has_mailing_address => "1", home_zip_code: "03900").reject {|k,v| k == :status },
                    :javascript_disabled => "1"
       assert assigns[:registrant].invalid?
       assert_template "show"

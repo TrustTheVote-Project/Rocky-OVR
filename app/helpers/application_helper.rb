@@ -257,4 +257,10 @@ module ApplicationHelper
     BrandingUpdateRequest.all.count { |x| x.open? }
   end
 
+  def find_canvassing_shift
+    @canvassing_shift ||= nil
+    if session[:canvassing_shift_id]
+      @canvassing_shift = CanvassingShift.find_by_id(session[:canvassing_shift_id])
+    end
+  end
 end

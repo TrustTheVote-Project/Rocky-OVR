@@ -7,6 +7,62 @@ html, body {
   min-height: 100%;
 }
 
+#canvasser-notice {
+  background-color: #67c6fd;
+  padding: 5px;
+  text-align: center;
+  font-size: 14px;
+  &.canvasser--complete-registrant {
+    background-color: #00ff66;
+  }
+}
+
+#canvasser-flash {
+  .notice ul {
+    font-size: 14px;
+    margin: 1em;
+  }
+}
+
+#main #canvassing-shift {
+  font-size: 14px;
+  p {
+    margin: 1em 0;
+    font-size: 14px;
+  }
+  line-height: 1.3em;
+  ul {
+    margin-left:20px;
+    li {
+      strong {
+        font-weight: bold;
+      }
+    }
+  }
+  h1 {
+    margin: 1em 0;
+    font-size: 22px;
+  }
+  h2 {
+    margin: .5em 0;
+    line-height: 1.6em;
+    strong {
+      font-size: 110%;
+    }
+  }
+  form {
+    .first-name__line, .last-name__line, 
+    .phone__line, .email__line {
+      width: 50%;
+    }
+    .first-name__line,
+    .phone__line {
+      width: 45%;
+      margin-right: 5%;
+    }
+  }
+}
+
 body {
   background-color: #2a2a2a;
   font-family: Helvetica, Arial, sans-serif;
@@ -36,7 +92,7 @@ legend { font-size: 14px; }
 a { text-decoration: none; }
 a:link    { color: #B2272C; }
 a:visited { color: #B2272C; }
-a:hover   { color: #000000; }
+a:hover   { color: #000000; font-weight: bold;}
 a:active  { color: #666666; }
 
 p {

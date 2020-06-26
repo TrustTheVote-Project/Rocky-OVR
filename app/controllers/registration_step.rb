@@ -28,6 +28,7 @@ class RegistrationStep < ApplicationController
 
   layout "registration"
   before_filter :find_partner
+  before_filter :find_canvassing_shift
 
   rescue_from Registrant::AbandonedRecord do |exception|
     reg = exception.registrant
@@ -76,7 +77,7 @@ class RegistrationStep < ApplicationController
   def set_up_view_variables
     @use_mobile_ui = determine_mobile_ui(@registrant)
   end
-  
+
   def set_up_share_variables
     @root_url_escaped = CGI::escape(root_url)
     # @registrant.tell_message ||=
@@ -87,18 +88,18 @@ class RegistrationStep < ApplicationController
     #     I18n.t('email.tell_friend.body', :rtv_url => root_url(:source => "email"))
     #   end
   end
-  
+
 
   def attempt_to_advance
     if params[:skip_advance] == "true"
-      render_show 
+      render_show
       return :rendered
     end
     advance_to_next_step
 
     if @registrant.valid?
       @registrant.save_or_reject!
-      
+
       if @registrant.eligible?
         redirect_when_eligible and return
       else
@@ -109,7 +110,7 @@ class RegistrationStep < ApplicationController
       render_show and return :rendererd
     end
   end
-  
+
   def render_show
     render "show"
   end
@@ -140,7 +141,7 @@ class RegistrationStep < ApplicationController
       if @registrant.finish_with_state? && special_case != :tell_friend && special_case != :finish
         @registrant.update_attributes(:finish_with_state=>false)
       end
-    
+
     end
 
   end
@@ -150,7 +151,7 @@ class RegistrationStep < ApplicationController
     @partner_id = @partner.id
     set_params
   end
-  
+
   def set_ab_test
     # if @registrant && t = @registrant.ab_tests.where(name: AbTest::MOBILE_UI).first
     #   @mobile_ui_test = t
@@ -158,21 +159,21 @@ class RegistrationStep < ApplicationController
     #   @mobile_ui_test = AbTest.assign_mobile_ui_test(@registrant, self)
     # end
   end
-  
-  
+
+
   def detect_state_flow
-    
+
     if @registrant && @registrant.use_state_flow? && !@registrant.skip_state_flow? && current_step != 1
       # PASS registrant over to state flow, creating a new state-specific registrant
       return true
-    end      
+    end
     false
   end
-  
+
   def state_flow_redirect
     redirect_to edit_state_registrant_path(@registrant.to_param, 'step_2')
   end
-  
+
   def set_params
     @source = params[:source]
     @tracking = params[:tracking]
@@ -188,21 +189,30 @@ class RegistrationStep < ApplicationController
     @home_zip_code = params[:home_zip_code]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     @home_state ||= @home_zip_code ? GeoState.for_zip_code(@home_zip_code.strip) : nil
-    
-    
-    
+
+    @shift_id = params[:shift_id]
+    @canvassing_shift ||= nil
+    if !@shift_id.blank?
+      @canvassing_shift = CanvassingShift.find_by_shift_external_id(@shift_id)
+      if @canvassing_shift
+        @partner_id = @canvassing_shift.partner_id || @partner_id
+        @partner= Partner.find_by_id(@partner_id) || @partner
+      end
+    end
+
+
     if !@state_abbrev.blank?
       @short_form = true
     end
   end
-  
+
   def determine_mobile_ui(registrant)
     return false if registrant.nil?
     #return nil if registrant.javascript_disabled?
     #return nil if registrant.home_state_allows_ovr_ignoring_license?
     #return nil if registrant.locale != 'en'
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
-    return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?   
+    return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
     is_mobile = false
     agent = self.request.user_agent.to_s.downcase
@@ -214,7 +224,7 @@ class RegistrationStep < ApplicationController
     return nil if !is_mobile
     return true
   end
-  
+
   # def redirect_app_role
   #   if ENV['ROCKY_ROLE'] == 'web'
   #     redirect_to "//#{RockyConf.ui_url_host}"

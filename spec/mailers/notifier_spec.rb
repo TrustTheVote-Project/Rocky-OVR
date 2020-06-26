@@ -31,11 +31,11 @@ describe Notifier do
     it "delivers the expected email" do
       partner = FactoryGirl.create(:partner)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.password_reset_instructions(partner).deliver
+        Notifier.password_reset_instructions(partner).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should =~ /A request to reset your password has been made/i
-      email.body.should include(RockyConf.pdf_host_name)
+      email.body.should include(RockyConf.default_url_host)
       email.body.should include(partner.perishable_token)
     end
   end
@@ -44,7 +44,7 @@ describe Notifier do
     it "delivers the expected email" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.confirmation(registrant).deliver
+        Notifier.confirmation(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -61,7 +61,7 @@ describe Notifier do
       registrant.home_state.registrar_address = "this-is-the-address"
       registrant.home_state.registrar_url = "this-is-the-url"
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.confirmation(registrant).deliver
+        Notifier.confirmation(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -75,7 +75,7 @@ describe Notifier do
     it "includes pixel tracking" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.confirmation(registrant).deliver
+        Notifier.confirmation(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=confirmation_open")
@@ -84,7 +84,7 @@ describe Notifier do
     it "includes cancel reminders link" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.confirmation(registrant).deliver
+        Notifier.confirmation(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should match(%r{https://.*/registrants/#{registrant.to_param}/finish\?reminders=stop})
@@ -95,7 +95,7 @@ describe Notifier do
     it "includes state-specific note" do
       registrant = FactoryGirl.create(:maximal_registrant, :home_state=>GeoState['AZ'])
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.confirmation(registrant).deliver
+        Notifier.confirmation(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should include("arizona-email-instructions")
@@ -108,7 +108,7 @@ describe Notifier do
       EmailTemplate.set_subject(partner, 'confirmation.en', '<%= @registrant_first_name %>, Here is your pdf')
       
       
-      Notifier.confirmation(registrant).deliver
+      Notifier.confirmation(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.body.should match(%r{PDF: http://.*source=email})
       email.subject.should == 'First, Here is your pdf'
@@ -119,7 +119,7 @@ describe Notifier do
     it "includes rtv link with original sponsor and email source" do
       partner    = FactoryGirl.create(:partner)
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
-      Notifier.confirmation(registrant).deliver
+      Notifier.confirmation(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       
       email.body.should include("http://register.rockthevote.com/?partner=#{partner.id}&source=email-confirmation")
@@ -129,7 +129,7 @@ describe Notifier do
       partner    = FactoryGirl.create(:partner, :whitelabeled => true, :from_email=>"custom@partner.org")
       partner.stub(:from_email_verified?).and_return(true)
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
-      Notifier.confirmation(registrant).deliver
+      Notifier.confirmation(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.from.should include("custom@partner.org")      
     end
@@ -137,7 +137,7 @@ describe Notifier do
       partner    = FactoryGirl.create(:partner, :whitelabeled => true, :from_email=>"custom@partner.org")
       partner.stub(:from_email_verified?).and_return(false)
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
-      Notifier.confirmation(registrant).deliver
+      Notifier.confirmation(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.from.should include("rocky@example.com")      
     end
@@ -148,7 +148,7 @@ describe Notifier do
     it "delivers the expected email" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.thank_you_external(registrant).deliver
+        Notifier.thank_you_external(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.to.should include(registrant.email_address)
@@ -167,7 +167,7 @@ describe Notifier do
       partner.thank_you_external_pixel_tracking_code="<some code for <%= @registrant.uid %> />"
       
 
-      Notifier.thank_you_external(registrant).deliver
+      Notifier.thank_you_external(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.body.should match(%r{HI: test the template})
       email.body.should include("<some code for #{registrant.uid} />")
@@ -178,14 +178,14 @@ describe Notifier do
       partner    = FactoryGirl.create(:partner, :whitelabeled => true, :from_email=>"custom@partner.org")
       partner.stub(:from_email_verified?).and_return(true)
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
-      Notifier.thank_you_external(registrant).deliver
+      Notifier.thank_you_external(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.from.should include("custom@partner.org")      
     end
     it "includes pixel tracking" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.thank_you_external(registrant).deliver
+        Notifier.thank_you_external(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=state_integrated_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
@@ -197,7 +197,7 @@ describe Notifier do
     it "delivers the expected email" do
       registrant = FactoryGirl.create(:maximal_registrant, :reminders_left  => 1)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.reminder(registrant).deliver
+        Notifier.reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -214,7 +214,7 @@ describe Notifier do
       registrant.home_state.registrar_address = "this-is-the-address"
       registrant.home_state.registrar_url = "this-is-the-url"
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.reminder(registrant).deliver
+        Notifier.reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -227,7 +227,7 @@ describe Notifier do
     it "includes pixel tracking" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.reminder(registrant).deliver
+        Notifier.reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=reminder_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
@@ -235,7 +235,7 @@ describe Notifier do
     
     it "delivers the expected email in a different locale" do
       registrant = FactoryGirl.create(:maximal_registrant, :locale => 'es')
-      Notifier.reminder(registrant).deliver
+      Notifier.reminder(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
       
@@ -245,7 +245,7 @@ describe Notifier do
     it "includes cancel reminders link" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.reminder(registrant).deliver
+        Notifier.reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -257,7 +257,7 @@ describe Notifier do
       partner.stub(:from_email_verified?).and_return(true)
       
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
-      Notifier.reminder(registrant).deliver
+      Notifier.reminder(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.from.should include("custom@partner.org")      
     end
@@ -268,7 +268,7 @@ describe Notifier do
     it "delivers the expected email" do
       registrant = FactoryGirl.create(:maximal_registrant, :reminders_left  => 0)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.final_reminder(registrant).deliver
+        Notifier.final_reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -285,7 +285,7 @@ describe Notifier do
       registrant.home_state.registrar_address = "this-is-the-address"
       registrant.home_state.registrar_url = "this-is-the-url"
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.final_reminder(registrant).deliver
+        Notifier.final_reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -298,7 +298,7 @@ describe Notifier do
     it "includes pixel tracking" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.final_reminder(registrant).deliver
+        Notifier.final_reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=final_reminder_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
@@ -306,7 +306,7 @@ describe Notifier do
     
     it "delivers the expected email in a different locale" do
       registrant = FactoryGirl.create(:maximal_registrant, :locale => 'es')
-      Notifier.final_reminder(registrant).deliver
+      Notifier.final_reminder(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
       
@@ -316,7 +316,7 @@ describe Notifier do
     it "includes cancel reminders link" do
       registrant = FactoryGirl.create(:maximal_registrant)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.final_reminder(registrant).deliver
+        Notifier.final_reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -329,7 +329,7 @@ describe Notifier do
       partner.stub(:from_email_verified?).and_return(true)
       
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
-      Notifier.final_reminder(registrant).deliver
+      Notifier.final_reminder(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.from.should include("custom@partner.org")      
     end
@@ -341,7 +341,7 @@ describe Notifier do
     it "delivers the expected email" do
       registrant = FactoryGirl.create(:maximal_registrant, :reminders_left  => 1)
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.chaser(registrant).deliver
+        Notifier.chaser(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
@@ -353,7 +353,7 @@ describe Notifier do
     
     it "delivers the expected email in a different locale" do
       registrant = FactoryGirl.create(:maximal_registrant, :locale => 'es')
-      Notifier.chaser(registrant).deliver
+      Notifier.chaser(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.from.should include(RockyConf.from_address)
       
@@ -363,7 +363,7 @@ describe Notifier do
     it "includes pixel tracking" do
       registrant = FactoryGirl.create(:maximal_registrant, :locale=> 'es')
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.chaser(registrant).deliver
+        Notifier.chaser(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=chase_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
@@ -376,7 +376,7 @@ describe Notifier do
       EmailTemplate.set_subject(partner, 'chaser.en', '<%= @registrant_first_name %>, You can still register to vote')
       partner.chaser_pixel_tracking_code="<some code for <%= @registrant.uid %> />"
       
-      Notifier.chaser(registrant).deliver
+      Notifier.chaser(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       email.body.should include("You didn't finish")
       email.body.should include("<some code for #{registrant.uid} />")
@@ -388,7 +388,7 @@ describe Notifier do
     it "includes rtv link with original sponsor and email source" do
       partner    = FactoryGirl.create(:partner)
       registrant = FactoryGirl.create(:maximal_registrant, :partner => partner, :locale => 'en')
-      Notifier.chaser(registrant).deliver
+      Notifier.chaser(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       
       email.body.should include("http://register.rockthevote.com/?partner=#{partner.id}&source=email-chaser")
@@ -406,7 +406,7 @@ describe Notifier do
         :tell_message => "I registered to vote and you can too."
       }
       assert_difference('ActionMailer::Base.deliveries.size', 1) do
-        Notifier.tell_friends(tell_params).deliver
+        Notifier.tell_friends(tell_params).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
       email.from.should include(tell_params[:tell_email])

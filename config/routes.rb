@@ -18,6 +18,13 @@ Rocky::Application.routes.draw do
 
   match "/get-bounce-notification", to: "ses#bounce", via: [:get, :post]
   
+  resource :canvassing_shifts, path: "shift" do
+    member do
+      get 'end_shift'
+      get 'set_partner'
+    end
+  end
+  
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
     resource "step_2", :controller => "step2", :only => [:show, :update]
@@ -186,6 +193,7 @@ Rocky::Application.routes.draw do
       match 'gregistrant_reports/:id', :format => 'json', :controller => 'registrant_reports', :action => 'gshow', :via => :get, as: 'gregistrant_report'
       match 'gregistrant_reports/:id/download', :format => 'json', :controller => 'registrant_reports', :action => 'gdownload', :via => :get, as: 'download_gregistrant_report'
       
+      match 'hello', format: 'json', controller: 'registrations', action: 'hello', via: :get
       match 'voterregistrationrequest', format: 'json', controller: 'registrations', action: 'create_pa', via: :post
       match 'clockIn', format: 'json', controller: 'registrations', action: 'clock_in', via: :post
       match 'clockOut', format: 'json', controller: 'registrations', action: 'clock_out', via: :post

@@ -179,7 +179,7 @@ describe PdfWriter do
     it "uses the PdfRenderer" do
       renderer = double(PdfRenderer)
       renderer.stub(:render).and_return("html output")
-      PdfRenderer.should_receive(:new).with(pw).and_return(renderer)
+      PdfRenderer.should_receive(:new).with(pw, false).and_return(renderer)
       pw.registrant_to_html_string.should == "html output"
     end
   end

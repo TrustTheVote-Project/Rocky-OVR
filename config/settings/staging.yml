@@ -13,8 +13,10 @@ pdf_expiration_days: .25
 minutes_before_abandoned: 5
 ui_timeout_minutes: 5
 
-
 blocks_configuration:
+  default_turf_id: 416
+  default_location_id: 266
+  default_staging_location_id: 267
   shift_length: 1
   url: https://svtesting.blocks.work
   partners:
@@ -28,7 +30,6 @@ blocks_configuration:
       canvasser_id: 129
       location_id: 266
       staging_location_id: 267
-      
 
 states_with_online_registration:
   - AZ
@@ -95,7 +96,7 @@ ovr_states:
       
   PA:
     api_settings:
-      api_url: "https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
+      api_url: "https://fake-pa-endpoint.herokuapp.com" #"https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
 
   WA:
     languages:
@@ -107,7 +108,7 @@ ovr_states:
       
   VA:
     api_settings:
-        api_url: https://externalapi.elections.virginia.gov/sandbox/
+        api_url: "https://fake-va-endpoint.herokuapp.com" # https://externalapi.elections.virginia.gov/sandbox/
         api_username: "RockTheVote_Sandbox"
         api_key: <%= ENV['VA_API_KEY'] %>
 

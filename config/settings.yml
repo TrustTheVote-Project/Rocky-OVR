@@ -18,6 +18,11 @@ from_address: "rocky@example.com"
 default_url_host: "register.example.com"
 ui_url_host: "register5.example.com"
 
+blocks_configuration:
+  states:
+    - PA
+    - VA
+
 
 # this URL (if present) is shown as a WIKI nav menu item in the Partner portal
 partner_wiki_url: "http://wiki.rockthevote.com"
@@ -229,6 +234,7 @@ ovr_states:
       - es
   PA:
     require_age_confirmation: true
+    grommet_min_version: "3.0.0"
     registration_deadline: 2020-11-03 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
     api_settings:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"

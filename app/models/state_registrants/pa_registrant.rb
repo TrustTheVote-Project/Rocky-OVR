@@ -58,7 +58,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
 
   
   def complete?
-    status == step_list.last && valid? && confirm_declaration?
+    status == step_list.last && (valid? || submitted?) && confirm_declaration?
   end
   
   def cleanup!
@@ -110,20 +110,24 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     # Set flash message?
     # Actually send the message
     if params.has_key?(:email_continue_on_device)
-      PANotifier.continue_on_device(self, signature_capture_url).deliver
+      PANotifier.continue_on_device(self, signature_capture_url).deliver_now
       controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.email_sent', email: self.email)
     elsif params.has_key?(:sms_continue_on_device)
-      #begin
-        twilio_client.messages.create(
-          :from => "+1#{twilio_phone_number}",
-          :to => sms_number,
-          :body => I18n.t('states.custom.pa.signature_capture.sms_body', signature_capture_url: signature_capture_url)
-        )
-        controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
-        
-      # rescue Exception => e
-      #   raise e.message.to_s
-      # end
+      if sms_number =~ /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/
+        begin
+          twilio_client.messages.create(
+            :from => "+1#{twilio_phone_number}",
+            :to => sms_number,
+            :body => I18n.t('states.custom.pa.signature_capture.sms_body', signature_capture_url: signature_capture_url)
+          )
+          controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+        rescue Twilio::REST::RequestError
+          self.errors.add(:sms_number_for_continue_on_device, :format)
+        end
+      else
+        #controller.flash[:warning] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+        self.errors.add(:sms_number_for_continue_on_device, :format)
+      end
     end    
   end
   
@@ -263,7 +267,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['city'] = registration_city
     result['municipality'] = result['city']
 
-    result['zipcode'] = registration_zip_code.gsub(/[^\d]/,'')[0...5]
+    result['zipcode'] = registration_zip_code.to_s.gsub(/[^\d]/,'')[0...5]
     result['donthavePermtOrResAddress'] = ''
     result['county'] = registration_county
 
@@ -283,8 +287,8 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     
     result['continueAppSubmit'] = (confirm_no_penndot_number? || penndot_retries >= 2) ? "1" : "0"
     result['donthavebothDLandSSN'] = bool_to_int(confirm_no_dl_or_ssn? && confirm_no_penndot_number?)
-    result['ssn4'] = ssn4.to_s.gsub(/[^\d]/,'')
-    result['drivers-license'] = penndot_number.to_s.gsub(/[^\d]/,'')
+    result['ssn4'] = confirm_no_dl_or_ssn? ? '' : ssn4.to_s.gsub(/[^\d]/,'')
+    result['drivers-license'] = confirm_no_penndot_number? ? '' : penndot_number.to_s.gsub(/[^\d]/,'')
     
 
     result['politicalparty'] = parse_party[:politicalparty]
@@ -372,7 +376,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         self.pa_submission_complete = true
         self.pa_submission_error ||= []
         if result[:error].present?
-          self.pa_submission_error.push(result[:error].to_s)
+          self.pa_submission_error.push("#{DateTime.now}: #{result[:error]}")
           RequestLogSession.request_log_instance.log_error(result[:error].to_s)
           if result[:error] == INVALID_PENNDOT && self.penndot_retries < 2
             self.retry_drivers_license
@@ -384,10 +388,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
             self.save!
             # No retries for this flow
             Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-            AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver
+            AdminMailer.pa_registration_error(self, self.pa_submission_error, "Registrant Switched to paper").deliver_now
           end
         elsif result[:id].blank? || result[:id]==0
-            self.pa_submission_error.push("PA returned response with no errors and no transaction ID")
+            self.pa_submission_error.push("#{DateTime.now}: PA returned response with no errors and no transaction ID")
             RequestLogSession.request_log_instance.log_error("PA returned response with no errors and no transaction ID. Registrant Switched to paper.")
             
             #complete it, but go on to PDF generation?
@@ -395,7 +399,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
             self.registrant.skip_state_flow!
             self.save(validate: false)
             Rails.logger.warn("PA Registration Error for StateRegistrants::PARegistrant id: #{self.id} params:\n#{self.to_pa_data}\n\nErrors:\n#{self.pa_submission_error}")
-            AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver
+            AdminMailer.pa_registration_error(self, self.pa_submission_error).deliver_now
         else
           self.pa_transaction_id = result[:id]
           self.save!
@@ -411,7 +415,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
         self.pa_submission_complete = true #need to mark as submitted in case we didn't get to that step before raising error
         self.registrant.skip_state_flow!
         begin
-          AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver
+          AdminMailer.pa_registration_error(self, self.pa_submission_error, "Unhandled exception #{e.messsage}\n#{e.backtrace} - Registrant switched to paper").deliver_now
         rescue
         end
       end
@@ -444,7 +448,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   def deliver_confirmation_email
     if send_emails?
       # TODO, depending on partner customizations, just use main Notifier class - or refactor to StateRegistrantNotifier for all states
-      PANotifier.pa_confirmation(self).deliver
+      PANotifier.pa_confirmation(self).deliver_now
     end
   end
   

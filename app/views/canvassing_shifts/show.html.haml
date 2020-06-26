@@ -1,0 +1,65 @@
+#canvassing-shift
+  = render partial: 'header'
+  %p
+    Your shift has started!  Please begin sharing the unique URL created below.  As people start voter registration applications with your unique URL, the number of completed and abandoned registrations will increase.  These numbers will be updated upon refresh of this page. Registrations are considered abandoned if a registrant starts but does not complete the process after 30 minutes.
+    
+  %h3 Canvasser Shift Summary
+  %ul
+    %li 
+      Shift in progress for:
+      %strong= @canvassing_shift.canvasser_name
+    %li
+      Shift start time:
+      %strong
+        = I18n.l @canvassing_shift.clock_in_datetime&.in_time_zone("America/New_York"), format: :short
+        EST
+  %br
+  %ul
+    - finish_with_state_count = @canvassing_shift.registrants.where(finish_with_state: true).count
+    - complete_count = @canvassing_shift.web_complete_registrants.count
+    - api_count = @canvassing_shift.registrants.complete.find_all {|r| !r.state_transaction_id.blank? }.size
+    - abandoned_count = @canvassing_shift.web_abandoned_registrants.count
+    - printed_count = complete_count - (api_count + finish_with_state_count)
+    %li
+      %strong= complete_count
+      = "registration#{complete_count == 1 ? '' : 's'} marked as complete"
+      %ul
+        %li
+          %strong= finish_with_state_count
+          = "registration#{finish_with_state_count == 1 ? '' : 's'} redirected to Secretary of State's website"
+        %li
+          %strong= printed_count
+          = "registration#{printed_count == 1 ? '' : 's'} printed out to be mailed"
+        %li
+          %strong= api_count
+          = "registration#{api_count == 1 ? '' : 's'} submitted to Secretary of State's API"
+
+    %li
+      %strong= abandoned_count
+      = "registration#{abandoned_count == 1 ? '' : 's'} marked as abandoned"
+    %li
+      - in_progress_count = @canvassing_shift.registrants.count - (complete_count + abandoned_count)
+      %strong= in_progress_count
+      = "registration#{in_progress_count == 1 ? '' : 's'} in progress"
+  
+  %p 
+    Please save this URL 
+    = "(#{@canvassing_shift.show_shift_url})" 
+    to mark the shift as ended, submit this shift-specific information, and track our progress collectively.
+
+  %p{style: "font-size: 20px;"}
+    %b Share this URL for someone to start a new registration:
+    %br
+    = @canvassing_shift.new_registrant_url
+      
+  %p or
+  = link_to "Start New Registration", new_registrant_path(partner: @canvassing_shift.partner_id)
+  %br
+  %br
+  %br
+
+  %form
+    .button.rollover_button
+      = link_to end_shift_canvassing_shifts_path do
+        %button{type: "button"}
+          %span End Shift

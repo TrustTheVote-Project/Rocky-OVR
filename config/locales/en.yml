@@ -1,5 +1,9 @@
 ---
 en:
+  time:
+    formats:
+      short: "%B %d, %l:%M %p"
+        
   'yes': 'Yes'
   'no': 'No'
   required: "(Required)"
@@ -40,6 +44,12 @@ en:
       name: Chinese (Simplified)
   activerecord:
     attributes:
+      canvassing_shift:
+        canvasser_first_name: First Name
+        canvasser_last_name: Last Name
+        canvasser_phone: Phone
+        canvasser_email: Email
+        shift_location: Location 
       partner:
         from_email: Edit "from" email address to send autoresponders from your organization,
           rather than Rock the Vote.
@@ -244,6 +254,8 @@ en:
             password:
               invalid: Password must be 10 characters, contain at least 1 lowercase
                 letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+        canvassing_shift:
+          blank: Required
         partner:
           attributes:
             password:
@@ -326,6 +338,8 @@ en:
               accepted: You must confirm that you agree to the terms above.
             confirm_assitant_declaration:
               accepted: You must confirm that you agree to the terms above.
+            sms_number_for_continue_on_device:
+              format: 'Please provide a valid number'
             phone:
               invalid: 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT
@@ -354,6 +368,7 @@ en:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
           blank: Required
+          invalid: "%{attribute} is invalid."
           invalid_zip: Invalid ZIP
           attributes:
             home_zip_code:

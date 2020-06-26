@@ -139,32 +139,23 @@ describe ZipCodeCountyAddress do
       }])
       expect(z.lookup_office_address("123")).to be_nil
     end
-    it "returns additional_address of type=>name=>Voter Registration Mailing Address" do
+    it "returns addresses of is_regular_mail=>true and functions=>[DOM_VR]" do
       ZipCodeCountyAddress.stub(:get).and_return([{
-        "additional_addresses"=>[
+        "addresses"=>[
           {
-            "address"=>{
-              "street1"=> "The Wrong Street",
-              "city"=>    "B",
-              "state"=>   "AA",
-              "zip"=>     "00000"
-            },
-            "type"=>{
-              "id"=>11,
-              "name"=>"The wrong type"
-            }
+            "street1"=> "The Wrong Street",
+            "city"=>    "B",
+            "state"=>   "AA",
+            "zip"=>     "00000",
+            "is_regular_mail"=>true,            
           },
           {
-            "address"=>{
-              "street1"=> "The Right Street",
-              "city"=>    "Boston",
-              "state"=>   "MA",
-              "zip"=>     "02110"
-            },
-            "type"=>{
-              "id"=>11,
-              "name"=>"Voter Registration Mailing Address"
-            }
+            "street1"=> "The Right Street",
+            "city"=>    "Boston",
+            "state"=>   "MA",
+            "zip"=>     "02110",
+            "is_regular_mail"=>true,
+            "functions"=> ["ABC", "DOM_VR", "DEF"]
           }          
         ],
         "mailing_address"=> {
@@ -176,38 +167,41 @@ describe ZipCodeCountyAddress do
       }])
       expect(z.lookup_office_address("123")).to eq("The Right Street\nBoston, MA, 02110")      
     end
-    it "returns multiline address when a mailing_address is found" do
+    it "returns first address with DOM_VR function regardless of is_regular_mail setting" do
       ZipCodeCountyAddress.stub(:get).and_return([{
+        "addresses"=>[
+          {
+            "street1"=> "The Wrong Street",
+            "city"=>    "B",
+            "state"=>   "AA",
+            "zip"=>     "00000",
+            "is_regular_mail"=>true,            
+          },
+          {
+            "street1"=> "The Right Street",
+            "city"=>    "Boston",
+            "state"=>   "MA",
+            "zip"=>     "02110",
+            "functions"=> ["ABC", "DOM_VR", "DEF"]
+          },
+          {
+            "street1"=> "Another Wrong Street",
+            "city"=>    "Boston",
+            "state"=>   "MA",
+            "zip"=>     "02110",
+            "functions"=> ["ABC", "DOM_VR", "DEF"]
+          }          
+        ],
         "mailing_address"=> {
           "street1"=> "The Street",
-          "city"=>    "Boston",
-          "state"=>   "MA",
-          "zip"=>     "02110"
+          "city"=>    "Oston",
+          "state"=>   "MM",
+          "zip"=>     "111111"
         }
       }])
-      expect(z.lookup_office_address("123")).to eq("The Street\nBoston, MA, 02110")
-      ZipCodeCountyAddress.stub(:get).and_return([{
-        "mailing_address"=> {
-          "address_to"=> "Person at",
-          "street2"=> "Line 2",
-          "city"=>    "Boston",
-          "state"=>   "MA",
-          "zip"=>     "02110"
-        }
-      }])
-      expect(z.lookup_office_address("123")).to eq("Person at\nLine 2\nBoston, MA, 02110")
-      ZipCodeCountyAddress.stub(:get).and_return([{
-        "mailing_address"=> {
-          "address_to"=> "Person at",
-          "street1"=> "Line 1",
-          "street2"=> "Line 2",
-          "city"=>    "Boston",
-          "state"=>   "MA",
-          "zip"=>     "02110"
-        }
-      }])
-      expect(z.lookup_office_address("123")).to eq("Person at\nLine 1\nLine 2\nBoston, MA, 02110")
+      expect(z.lookup_office_address("123")).to eq("The Right Street\nBoston, MA, 02110")            
     end
+
   end
   
   

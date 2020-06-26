@@ -216,7 +216,7 @@ class Partner < ActiveRecord::Base
     end
     
     if partners.any?
-      AdminMailer.deactivate_partners(partners).deliver
+      AdminMailer.deactivate_partners(partners).deliver_now
     end
     
   end
@@ -565,7 +565,7 @@ class Partner < ActiveRecord::Base
 
   def deliver_password_reset_instructions!
     reset_perishable_token!
-    Notifier.password_reset_instructions(self).deliver
+    Notifier.password_reset_instructions(self).deliver_now
   end
 
   def generate_registrants_csv(start_date=nil, end_date=nil)
@@ -851,7 +851,7 @@ protected
   
   def deliver_terms_of_use_email
     if !email.blank?
-      Notifier.partner_terms_of_use(self).deliver
+      Notifier.partner_terms_of_use(self).deliver_now
     end
   #rescue
   end

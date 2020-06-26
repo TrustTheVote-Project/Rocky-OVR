@@ -31,7 +31,7 @@ describe Admin::PartnersController do
   describe 'index' do
     it 'should render the index' do
       get :index
-      assigns(:partners).should == Partner.standard
+      assigns(:partners).should == Partner.standard.paginate(:page => 1, :per_page => 1000)
       response.should render_template :index
     end
   end

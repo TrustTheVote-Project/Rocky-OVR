@@ -151,9 +151,10 @@ describe DownloadsController do
         registrant.pdf_downloaded.should == true
         registrant.pdf_downloaded_at.should_not be_nil
       end
-      it 'redirects to pdf file' do
+      it 'renders a page to pdf file' do
         get :pdf, registrant_id: registrant.to_param
-        assert_redirected_to registrant.pdf_url
+        assert_template("pdf")
+        expect(response.body).to include("<meta http-equiv=\"refresh\" content=\"3;URL='#{registrant.pdf_url}'\" />")
       end
     end
     
