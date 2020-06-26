@@ -749,16 +749,14 @@ body {
     line-height: 24px;
     overflow-x: hidden;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-    #container {
-      background-attachment: scroll;
-      background-clip: border-box;
-      background-color: #fff;
-      background-image: image-url('reg/container-repeater.gif');
-      background-origin: padding-box;
-      background-position: 0 0;
-      background-repeat: repeat-x;
-      background-size: auto auto;    
-    }
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #fff;
+    background-image: image-url('reg/container-repeater.gif');
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    background-size: auto auto;    
 }
  html {
 	overflow-x:hidden; 

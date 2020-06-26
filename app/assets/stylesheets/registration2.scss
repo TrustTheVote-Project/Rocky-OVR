@@ -22,17 +22,15 @@ body {
   width: 100%;
   height: auto;
   margin: 0px auto;
-  #container {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #fff;
-    background-image: image-url('reg/container-repeater.gif');
-    background-origin: padding-box;
-    background-position: 0 0;
-    background-repeat: repeat-x;
-    background-size: auto auto;
-    padding-bottom: 60px;
-  }
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: #fff;
+  background-image: image-url('reg/container-repeater.gif');
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  background-size: auto auto;
+  padding-bottom: 60px;
 
   
   #sticky_footer {
