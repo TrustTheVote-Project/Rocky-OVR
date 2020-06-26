@@ -99,7 +99,10 @@ class PartnerZip
       :rtv_email_opt_in, :rtv_sms_opt_in, :ask_for_volunteers, 
       :partner_email_opt_in, :partner_sms_opt_in, :partner_ask_for_volunteers, 
       :tmp_asset_directory, :asset_directory, :registration_instructions_url, :external_tracking_snippet,
-      :widget_image,:privacy_url,:is_government_partner,:government_partner_state,:government_partner_state_id,:government_partner_zip_codes]    
+      :terms_url,	:privacy_url,	:short_code,
+      :widget_image,:privacy_url,
+      :is_government_partner,:government_partner_state,
+      :government_partner_state_id,:government_partner_zip_codes]    
   end
   
   def self.allowed_columns

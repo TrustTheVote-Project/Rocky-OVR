@@ -74,6 +74,7 @@ class RegistrantsController < RegistrationStep
         last_name: @last_name,
         home_state: @home_state,
         home_zip_code: @home_zip_code,
+        shift_id: @shift_id,
         is_fake: params.keys.include?('preview_custom_assets')
       }
       create
@@ -90,6 +91,7 @@ class RegistrantsController < RegistrationStep
           last_name: @last_name,
           home_state: @home_state,
           home_zip_code: @home_zip_code,
+          shift_id: @shift_id,
           is_fake: params.keys.include?('preview_custom_assets')
       )
       render "show"
@@ -108,6 +110,9 @@ class RegistrantsController < RegistrationStep
                                     :collect_email_address => @collect_email_address))
                                     
     @use_mobile_ui = determine_mobile_ui(@registrant)
+    @registrant.shift_id = @shift_id if @shift_id
+    @registrant.shift_id = @canvassing_shift.shift_external_id if @canvassing_shift
+    
     
     if @registrant.partner.primary?
       @registrant.opt_in_email = true
@@ -135,6 +140,7 @@ class RegistrantsController < RegistrationStep
   def advance_to_next_step
     @registrant.advance_to_step_1
   end
+  
 
   def next_url
     registrant_step_2_url(@registrant)

@@ -26,19 +26,20 @@ class RequestLogSession
   end
 
   def self.current_parameters
+    @@current_parameters ||= nil
     @@current_parameters&.value
   end
 
   def self.request_log_instance
-    current_parameters.request_log
+    current_parameters&.request_log
   end
 
   def self.registrant
-    current_parameters.registrant
+    current_parameters&.registrant
   end
   
   def self.censor
-    current_parameters.censor
+    current_parameters&.censor
   end
 
   def self.make_call_with_logging(registrant:, client_id:, censor: nil, &block)

@@ -30,3 +30,21 @@ ovr_states:
       - en
       - es
  
+
+blocks_configuration:
+  default_turf_id: 123
+  default_location_id: 123 
+  default_staging_location_id: 123
+  shift_length: 1
+  url: https://svtesting.blocks.work
+  partners:
+    123:
+      turf_id: 234
+      canvasser_id: 345
+      location_id: 456
+      staging_location_id: 567
+    124:
+      turf_id: 1234
+      canvasser_id: 1345
+      location_id: 1456
+      staging_location_id: 1567

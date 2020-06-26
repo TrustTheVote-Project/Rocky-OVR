@@ -38,6 +38,8 @@ class Registrant < ActiveRecord::Base
   include RegistrantMethods
   include TimeStampHelper
   
+  scope :abandoned, -> {where(abandoned: true)}
+  
   has_many :ab_tests
   
   serialize :state_ovr_data, Hash
@@ -94,7 +96,9 @@ class Registrant < ActiveRecord::Base
        "prev_zip_code"
     ]
   
-  OVR_REGEX = /\A(\p{Latin}|\P{Letter})*\z/
+  OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
+  #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
+  DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
   
   #CA_NAME_REGEX =   /\A[a-zA-Z0-9'#,\-\/_\.@\s]*\z/ #A-Z a-z 0-9 '#,-/_ .@space
   
@@ -141,6 +145,8 @@ class Registrant < ActiveRecord::Base
   #     message: :invalid_for_pdf }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
   # end
   
+  SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
+  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
   
   
   
@@ -204,6 +210,14 @@ class Registrant < ActiveRecord::Base
     "Submitted Via State API",
     "Submitted Signature to State API"
   ]
+  
+  CSV_HEADER_EXTENDED = [
+    "Registrant UID",
+    CSV_HEADER,
+    "Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
+    "Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
+    "Shift ID", #canvassing_shift_registrant.external_id
+  ].flatten
   
   GROMMET_CSV_HEADER = [
     "Status",
@@ -335,6 +349,31 @@ class Registrant < ActiveRecord::Base
   has_one :pdf_delivery
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
+
+  #has_one :registrant_shift
+  # TODO make this create relation
+  #These IDs are often externally created, but we can't garauntee the shift object with a matching UID has been created first
+  def shift_id=(val) 
+    @shift_id = val
+    ensure_shift if !self.uid.blank?
+  end
+  def shift_id
+    @shift_id || nil
+  end
+  has_one :canvassing_shift_registrant, primary_key: :uid
+  has_one :canvassing_shift, through: :canvassing_shift_registrant, primary_key: :shift_external_id, foreign_key: :shift_external_id
+  
+  
+  
+  
+  def ensure_shift
+    if !self.shift_id.blank? && !self.uid.blank?
+      # begin
+        CanvassingShiftRegistrant.find_or_create_by!(shift_external_id: self.shift_id, registrant_id: self.uid)
+      # rescue
+      # end
+    end
+  end
 
   def self.state_attr_accessor(*args)
     [args].flatten.each do |arg|
@@ -526,6 +565,7 @@ class Registrant < ActiveRecord::Base
             Rails.logger.error(e)
             # raise e
           end
+          reg.save
         elsif reg.existing_state_registrant.nil? || reg.existing_state_registrant.send_chase_email?
           # Send chase email
           begin
@@ -534,8 +574,10 @@ class Registrant < ActiveRecord::Base
             Rails.logger.error(e)
           end
         end
-        reg.abandon!
-        Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
+        unless reg.complete?
+          reg.abandon! 
+          Rails.logger.info "Registrant #{reg.id} abandoned at #{Time.now}"
+        end
         if reg.is_fake?
           reg.destroy
         end      
@@ -551,8 +593,8 @@ class Registrant < ActiveRecord::Base
   end
 
   def localization
-    home_state_id && locale ?
-        StateLocalization.where({:state_id  => home_state_id, :locale => locale}).first : nil
+    home_state_id ?
+        StateLocalization.where({:state_id  => home_state_id, :locale => (locale || "en")}).first : nil
   end
   
   def en_localization
@@ -765,23 +807,23 @@ class Registrant < ActiveRecord::Base
   end
 
   def state_id_tooltip
-    localization.id_number_tooltip
+    localization&.id_number_tooltip
   end
 
   def race_tooltip
-    localization.race_tooltip
+    localization&.race_tooltip
   end
 
   def party_tooltip
-    localization.party_tooltip
+    localization&.party_tooltip
   end
 
   def home_state_not_participating_text
-    localization.not_participating_tooltip
+    localization&.not_participating_tooltip
   end
   
   def registration_deadline
-    localization.registration_deadline
+    localization&.registration_deadline
   end
   
   def state_registrar_address
@@ -790,7 +832,7 @@ class Registrant < ActiveRecord::Base
   
   [:pdf_instructions, :email_instructions, :pdf_other_instructions].each do |state_data|
     define_method("home_state_#{state_data}") do
-      localization.send(state_data)
+      localization&.send(state_data)
     end
   end
   
@@ -805,7 +847,7 @@ class Registrant < ActiveRecord::Base
   def under_18_instructions_for_home_state
     I18n.t('txt.registration.instructions.under_18',
             :state_name => home_state.name,
-            :state_rule => localization.sub_18).html_safe
+            :state_rule => localization&.sub_18).html_safe
   end
 
 
@@ -830,7 +872,6 @@ class Registrant < ActiveRecord::Base
   def home_zip_code=(zip)
     self[:home_zip_code] = zip
     if zip && !zip.blank?
-      self.home_state = nil
       self.home_state_id = (s = GeoState.for_zip_code(zip.strip)) ? s.id : self.home_state_id
     end
   end
@@ -940,6 +981,10 @@ class Registrant < ActiveRecord::Base
     home_state && home_state.use_state_flow?(self)
   end
   
+  def submitted?
+    existing_state_registrant.nil? || existing_state_registrant.submitted?
+  end
+  
   def submitted_via_state_api?
      (!skip_state_flow? && existing_state_registrant && existing_state_registrant.submitted?) || is_grommet?
   end
@@ -999,6 +1044,14 @@ class Registrant < ActiveRecord::Base
   def api_submitted_with_signature
     return nil if !is_grommet? # Right now sigs only come from grommet
     return !grommet_submission["signature"].blank?    
+  end
+  
+  def state_transaction_id
+    if is_grommet?
+      return state_ovr_data["pa_transaction_id"]
+    else
+      return existing_state_registrant&.state_transaction_id
+    end
   end
   
   def api_submission_status
@@ -1489,20 +1542,20 @@ class Registrant < ActiveRecord::Base
 
   def deliver_confirmation_email
     if send_emails?
-      Notifier.confirmation(self).deliver
+      Notifier.confirmation(self).deliver_now
       enqueue_reminder_emails
     end
   end
   
   def deliver_chaser_email
     if send_emails?
-      Notifier.chaser(self).deliver
+      Notifier.chaser(self).deliver_now
     end
   end
   
   def deliver_thank_you_for_state_online_registration_email
     if send_emails?
-      Notifier.thank_you_external(self).deliver
+      Notifier.thank_you_external(self).deliver_now
     end
   end
 
@@ -1516,7 +1569,7 @@ class Registrant < ActiveRecord::Base
 
   def deliver_reminder_email
     if reminders_left > 0 && send_emails?
-      Notifier.reminder(self).deliver
+      Notifier.reminder(self).deliver_now
       self.reminders_left = reminders_left - 1
       self.save(validate: false)
     end
@@ -1530,7 +1583,7 @@ class Registrant < ActiveRecord::Base
   def deliver_final_reminder_email
     if send_emails? && !final_reminder_delivered && !pdf_downloaded && pdf_ready?
       begin
-        Notifier.final_reminder(self).deliver
+        Notifier.final_reminder(self).deliver_now
       rescue
         # If we can't deliver, just stop
       end
@@ -1613,6 +1666,18 @@ class Registrant < ActiveRecord::Base
       return nil
     end
   end
+
+
+  def to_csv_extended_array
+     [
+      self.uid,
+      self.to_csv_array,
+      self.is_grommet? ? "Tablet" : (building_via_api_call? ? "Rocky API" : "Web"), #"Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
+      finish_with_state? ? "Redirected to SOS" : (submitted_via_state_api? ? "Submitted Via State API" : "Paper"), #"Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
+      self.canvassing_shift_registrant&.shift_external_id, #"Shift ID"
+    ].flatten
+  end
+  
 
   def to_csv_array
     [
@@ -1873,6 +1938,8 @@ class Registrant < ActiveRecord::Base
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
+    ensure_shift if !self.shift_id.blank?
+    return self.uid
   end
   
   def set_dl_defaults

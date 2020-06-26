@@ -38,21 +38,21 @@ class GrommetRequest < ActiveRecord::Base
         end
       end
     end    
-    registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])    
+    registrant = V4::RegistrationService.create_pa_registrant(params[:rocky_request])    
     registrant.basic_character_replacement!
     registrant.state_ovr_data ||= {}
     registrant.state_ovr_data["grommet_request_id"] = self.id
     
     if registrant.valid?
       # If valid for rocky, ensure that it's valid for PA submissions
-      pa_validation_errors = V3::RegistrationService.valid_for_pa_submission(registrant)
+      pa_validation_errors = V4::RegistrationService.valid_for_pa_submission(registrant)
       if pa_validation_errors.any?
         raise pa_validation_errors.inspect
       else
         # If there are no errors, make the submission to PA
         # This will commit the registrant with the response code
         registrant.save!
-        V3::RegistrationService.delay.async_register_with_pa(registrant.id)
+        V4::RegistrationService.delay.async_register_with_pa(registrant.id)
         return true
       end
     else

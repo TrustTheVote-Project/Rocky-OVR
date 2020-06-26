@@ -22,15 +22,18 @@ body {
   width: 100%;
   height: auto;
   margin: 0px auto;
-  background-attachment: scroll;
-  background-clip: border-box;
-  background-color: #fff;
-  background-image: image-url('reg/container-repeater.gif');
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-repeat: repeat-x;
-  background-size: auto auto;
-  padding-bottom: 60px;
+  #container {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #fff;
+    background-image: image-url('reg/container-repeater.gif');
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    background-size: auto auto;
+    padding-bottom: 60px;
+  }
+
   
   #sticky_footer {
     background-image: image-url('reg/container-repeater.gif');
@@ -668,7 +671,8 @@ body {
   .back {
     text-align: center;
   }
-
+  
+  .continue_shift .rollover_button a,
   .download .rollover_button a {
     background-color: #fff;
     background-image: none;

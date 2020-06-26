@@ -71,3 +71,4 @@ server.crt
 server.csr
 server.key
 server.pass.key
+wa-example-requests

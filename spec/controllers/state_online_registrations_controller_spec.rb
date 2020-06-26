@@ -30,14 +30,14 @@ describe StateOnlineRegistrationsController do
   end
   
   describe "#show" do
+    let(:reg) { FactoryGirl.create(:step_1_registrant, home_zip_code: "02113")}
     it "assigns the current registrant" do
-      reg = FactoryGirl.create(:step_1_registrant)
       get :show, :registrant_id => reg.to_param
       assert assigns[:registrant]
     end
     it "sets the finish_with_state flag for the registrant to true" do
-      reg = FactoryGirl.create(:step_1_registrant)
-      GeoState.stub(:states_with_online_registration).and_return([reg.home_state_abbrev])
+      state_abbr = reg.home_state_abbrev
+      GeoState.stub(:states_with_online_registration).and_return([state_abbr])
       reg.finish_with_state.should be_falsey
       get :show, :registrant_id => reg.to_param
       assigns[:registrant].finish_with_state.should be_truthy
@@ -48,7 +48,6 @@ describe StateOnlineRegistrationsController do
       assert assigns[:online_registration_iframe_url]
     end
     it "renders the show template" do
-      reg = FactoryGirl.create(:step_1_registrant)
       get :show, :registrant_id => reg.to_param
       assert_template "show"
     end

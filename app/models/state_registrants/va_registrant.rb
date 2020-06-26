@@ -247,19 +247,38 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "Authorization" => "Bearer #{token}"
     }
   end
+  
+  def check_voter_confirmation_url
+    server = RockyConf.ovr_states.VA.api_settings.api_url
+    File.join(server, "Voter/Confirmation" +"?"+ RestClient::Payload::UrlEncoded.new({
+      "lastName" => self.last_name,
+      "firstName" => self.first_name,
+      "Ssn9" => self.ssn.to_s.gsub(/[^\d]/,''),
+      "driversLicenseNumber" => self.dln.to_s.gsub(/\s-/, ''),
+      "dobYear" => self.date_of_birth.year,
+      "dobDay" => self.date_of_birth.day,
+      "dobMonth" => self.date_of_birth.month, 
+      "localityName" => self.registration_locality_name,
+      "format" => "json"
+    }).to_s)
+  end
+  
   def check_voter_confirmation
     # Submit to voter confirmation request for eligibility
-    server = RockyConf.ovr_states.VA.api_settings.api_url
-    url = File.join(server, "Voter/Confirmation?lastName=#{self.last_name}&firstName=#{self.first_name}&Ssn9=#{self.ssn.to_s.gsub(/[^\d]/,'')}&driversLicenseNumber=#{self.dln.to_s.gsub(/\s-/, '')}&dobYear=#{self.date_of_birth.year}&dobDay=#{self.date_of_birth.day}&dobMonth=#{self.date_of_birth.month}&localityName=#{self.registration_locality_name}&format=json")
+    url = check_voter_confirmation_url
     result = nil
     begin
       response = RestClient::Request.execute(method: :get, url: url, headers: va_api_headers("check"))
     rescue Exception => error
-      response = error.response
+      if error.respond_to?(:response)
+        response = error.response
+      else
+        response = error.message
+      end
     end
     self.va_check_response = response.to_s
     self.save(validate: false)
-    result = JSON.parse(response)
+    result = JSON.parse(response.to_s)
     if result["IsProtected"]
       set_protected_voter!
       return false
@@ -279,7 +298,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     self.va_check_error = true
     self.registrant.skip_state_flow!
     
-    AdminMailer.va_registration_error(self, [e.message, e.backtrace], "Unhandled error during voter check. Registrant Switched to paper").deliver    
+    AdminMailer.va_registration_error(self, [e.message, e.backtrace], "Unhandled error during voter check. Registrant Switched to paper").deliver_now    
     
     return false
   ensure
@@ -403,7 +422,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
             "Locality" => self.mailing_address_locality
           },
           "IsProhibited" => self.convicted_of_felony?,
-          "IsRightsRestored" => self.right_to_vote_restored,
+          "IsRightsRestored" =>self.convicted_of_felony? ? self.right_to_vote_restored : nil,
           # "IsMilitary" => is_military?,
           # "IsProtected" => is_protected?,
           # "IsLawEnforcement" => is_law_enforcement?,
@@ -445,11 +464,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     else
       self.va_submission_error ||= []
       if result["TransactionErrorMessage"]
-        self.va_submission_error << result["TransactionErrorMessage"]
+        self.va_submission_error << "#{DateTime.now}: #{result["TransactionErrorMessage"]}"
       end
       if result["Errors"] && result["Errors"].any?
         result["Errors"].each do |error|
-          self.va_submission_error << error
+          self.va_submission_error << "#{DateTime.now}: #{error}"
         end
       end
     end
@@ -459,15 +478,15 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       #deliver_confirmation_email
     else
       self.va_submission_error ||= []
-      self.va_submission_error << "No ID returned from VA submission"
+      self.va_submission_error << "#{DateTime.now}: No ID returned from VA submission"
       self.registrant.skip_state_flow!
-      AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver
+      AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver_now
     end
   rescue Exception=>e
     self.va_submission_error ||= []
     self.va_submission_error << [e.message, e.backtrace].flatten
     self.registrant.skip_state_flow!
-    AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver
+    AdminMailer.va_registration_error(self, self.va_submission_error, "Registrant Switched to paper").deliver_now
   ensure
     self.va_submission_complete = true
     self.save(validate: false)        

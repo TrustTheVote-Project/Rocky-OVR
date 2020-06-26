@@ -23,6 +23,13 @@ class BlocksService
     }
   end
   
+  def self.form_from_grommet_request(req)
+    registrant = V4::RegistrationService.create_pa_registrant(req.request_params[:rocky_request])    
+    registrant.basic_character_replacement!
+    registrant.state_ovr_data ||= {}
+    return self.form_from_registrant(registrant)
+  end
+  
   def initialize
     # call this immediately and outside of another RequestLogSession call
     get_token
@@ -37,6 +44,19 @@ class BlocksService
       @token = BlocksClient.get_token["jwt"]
       return @token
     end
+  end
+  
+  
+  
+  
+  
+  def upload_canvassing_shift(shift, shift_type: "digital_voter_registration")
+    shift_params = build_canvassing_shift_blocks_hash(shift, shift_type)
+    forms = build_blocks_forms_from_canvassing_shift(shift)
+    
+    shift = create_shift(shift_params)
+    shift_id = shift["shift"]["id"]
+    upload_registrations(shift_id, forms)
   end
   
   def upload_complete_shift_for_partner(partner, registrants, start_time, end_time, shift_type: "digital_voter_registration")
@@ -63,10 +83,28 @@ class BlocksService
     end
   end
   
+  def get_locations(partner)
+    turf_id = RockyConf.blocks_configuration.partners&.[](partner.id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    unless turf_id.blank?
+      RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
+        return BlocksClient.get_locations(turf_id, token: self.token)
+      end
+    end
+    return {
+      "locations" => []
+    }
+  end
+  
   #add_metadata_to_form(form_id, meta_data={}, token:)
   def add_metadata_to_form(form_id, meta_data={})
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
       return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token)
+    end
+  end
+
+  def create_canvasser(canvasser_data)
+    RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
+      return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token}))
     end
   end
 
@@ -80,6 +118,46 @@ class BlocksService
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
       return BlocksClient.upload_registrations(shift_id, forms, token: self.token)
     end
+  end
+  
+  private
+  def build_blocks_forms_from_canvassing_shift(shift)
+    return shift.registrations_or_requests.map do |r|
+      if r.is_a?(Registrant) #&& r.complete? forms with PA errors won't be complete. but some incomplete regs might fail blocks validation?
+        BlocksService.form_from_registrant(r)
+      elsif r.is_a?(GrommetRequest)
+        BlocksService.form_from_grommet_request(r) 
+      else
+        nil
+      end
+    end.compact
+  end
+  
+  def build_canvassing_shift_blocks_hash(shift, shift_type)
+    partner_id = shift.partner_id
+    turf_id = RockyConf.blocks_configuration.partners&.[](partner_id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    
+    
+    location_id = RockyConf.blocks_configuration.default_location_id #shift.shift_location || 
+    staging_location_id = RockyConf.blocks_configuration.default_staging_location_id
+    canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
+    canvasser_id = canvasser["canvasser"]["id"]
+    
+    soft_count_cards_total_collected      = shift.abandoned_registrations + shift.completed_registrations
+    soft_count_cards_complete_collected   = shift.completed_registrations
+    soft_count_cards_incomplete_collected = shift.abandoned_registrations
+    
+    return {
+      canvasser_id: canvasser_id,
+      location_id: location_id,
+      staging_location_id: staging_location_id, 
+      shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
+      shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
+      shift_type: shift_type, 
+      soft_count_cards_total_collected: soft_count_cards_total_collected,
+      soft_count_cards_complete_collected: soft_count_cards_complete_collected,
+      soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
+    }
   end
   
 end

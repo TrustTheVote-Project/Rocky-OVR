@@ -8,13 +8,15 @@ URL = "#{BASE_DOMAIN}/api/v4/clockOut"
 def clock_out_json(session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, abandoned_registrations: 0, completed_registrations: 0)
   json =<<EOJ
   {
-    "source_tracking_id": "#{session_id}",
+    "shift_id": "#{session_id}",
+    "source_tracking_id": "Custom Tracking Value",
     "partner_tracking_id": "#{partner_tracking_id}",
     "geo_location": {
       "lat": 123,
       "long": -123
     },
     "open_tracking_id": "metro canvasing",
+    "canvasser_name": "Test Canvasser",
     "abandoned_registrations": #{abandoned_registrations},
     "completed_registrations": #{completed_registrations},
     "clock_out_datetime": "#{DateTime.now.new_offset(0)}"  

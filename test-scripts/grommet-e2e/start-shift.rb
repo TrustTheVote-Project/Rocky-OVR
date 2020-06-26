@@ -8,7 +8,10 @@ URL = "#{BASE_DOMAIN}/api/v4/clockIn"
 def clock_in_json(session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1)
   json =<<EOJ
   {
-    "source_tracking_id": "#{session_id}",
+    "partner_id": "#{partner_id}",
+    "canvass_location_id": "location-123",
+    "shift_id": "#{session_id}",
+    "source_tracking_id": "Custom Tracking Value",
     "partner_tracking_id": "#{partner_tracking_id}",
     "geo_location": {
       "lat": 123,
@@ -16,9 +19,9 @@ def clock_in_json(session_id: "Test Canvasser::123457689", partner_tracking_id: 
     },
     "open_tracking_id": "metro canvasing",
     "canvasser_name": "Test Canvasser",
+    "canvasser_phone": "123-123-1234",
     "device_id": "234834",
-    "clock_in_datetime": "#{DateTime.now.new_offset(0)}",
-    "session_timeout_length": 210
+    "clock_in_datetime": "#{DateTime.now.new_offset(0)}"
   }
 EOJ
   return JSON.parse(json)

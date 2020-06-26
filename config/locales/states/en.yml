@@ -2,6 +2,16 @@
 en:
   states:
     custom:
+      nc:
+        state_online_registration:
+          header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.
+          instructions: 
+            "Here's how to finish your registration:
+            <br/>1. Have your NC ID number ready.
+            <br/>2. Click the button below to continue.
+            <br/>3. On the DMV website, click \"Continue to myNCDMV Services.\"
+            <br/>4. Click \"Continue as a guest\" and submit your voter registration online."
+
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
       mi:

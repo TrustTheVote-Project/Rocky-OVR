@@ -99,6 +99,18 @@ module NavigationHelpers
       edit_admin_partner_path(Partner.first)
     when /the partner branding page/
       partner_branding_path
+    when /the start shift page/
+      set_partner_canvassing_shifts_path
+    when /the shift creation page for partner="(\d+)"/
+      new_canvassing_shifts_path(partner: $1)
+    when /the shift creation page/
+      new_canvassing_shifts_path
+    when /the shift status page/
+      canvassing_shifts_path
+    when /the state registrant finish page/
+      complete_state_registrant_path(@state_registrant)
+    when /the new registration page for that shift/
+      new_registrant_path(shift_id: @canvassing_shift.shift_external_id)
     # Add more mappings here.
     # Here is a more fancy example:
     #

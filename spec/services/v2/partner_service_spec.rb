@@ -212,7 +212,7 @@ describe V2::PartnerService do
           rtv_sms_opt_in: false,
           ask_for_volunteers: true,
           partner_email_opt_in: true,
-          partner_sms_opt_in: true,
+          #partner_sms_opt_in: true,
           is_government_partner: true,
           government_partner_zip_codes: ["02113", "02110"],
           partner_css_download_url: "http://www.google.com"

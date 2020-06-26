@@ -230,6 +230,7 @@ module RegistrantMethods
     if party.blank?
       I18n.t('states.no_party_label.none')
     else
+      return party unless en_localization
       return party if en_localization[:parties].include?(party)
       if locale.to_s == "en"
         return party == en_localization.no_party ? I18n.t('states.no_party_label.none') : party

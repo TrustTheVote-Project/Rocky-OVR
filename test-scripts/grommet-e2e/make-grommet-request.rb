@@ -20,7 +20,8 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
       "partner_opt_in_volunteer": false,
       "finish_with_state": true,
       "created_via_api": true,
-      "source_tracking_id": "#{session_id}",
+      "shift_id": "#{session_id}",
+      "source_tracking_id": "Source Tracking Value",
       "partner_tracking_id": "#{partner_tracking_id}",
       "geo_location": {
         "lat": 123,

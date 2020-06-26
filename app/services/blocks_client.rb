@@ -20,20 +20,40 @@ class BlocksClient
     send(:post, path, body: body, headers: headers)    
   end
   
+  def self.get_locations(turf_id, token:)
+    path = "turfs/#{turf_id}/locations"
+    headers = {'Content-Type' => 'application/json'}
+    send(:get, path, body: {jwt: token}, headers: headers)
+  end
+  
   def self.add_metadata_to_form(form_id, meta_data={}, token:)
     #591
     path = "forms/#{form_id}/add_metadata"
     headers = {'Content-Type' => 'application/json'}
     body = {
-      content: {
-        firstName: "test-value"
-      },
+      content: meta_data,
       jwt: token
     }
     send(:put, path, body: body, headers: headers)    
   end
 
-  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected:, token:)
+  def self.create_canvasser(first_name:, last_name:, phone_number:, email:, turf_id:, token:)
+    path = "turfs/#{turf_id}/canvassers/upsert"
+    
+    headers = {'Content-Type' => 'application/json'}
+    body = {
+      canvasser: {
+        first_name: first_name,
+        last_name: last_name,
+        phone_number: phone_number,
+        email: email
+      },
+      jwt: token
+    }
+    send(:patch, path, body: body, headers: headers)
+  end
+
+  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected:, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, token:)
     path = "shifts"
     headers = {'Content-Type' => 'application/json'}
     body = {
@@ -45,6 +65,8 @@ class BlocksClient
         shift_end: shift_end,
         shift_type: shift_type,
         soft_count_cards_total_collected: soft_count_cards_total_collected,
+        soft_count_cards_complete_collected: soft_count_cards_complete_collected,
+        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
       },
       jwt: token
     }
@@ -85,6 +107,8 @@ class BlocksClient
       Net::HTTP::Post
     when :put
       Net::HTTP::Put
+    when :patch
+      Net::HTTP::Patch
     else
       raise ArgumentError
     end
