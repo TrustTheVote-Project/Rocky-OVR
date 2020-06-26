@@ -48,10 +48,9 @@
     to mark the shift as ended, submit this shift-specific information, and track our progress collectively.
 
   %p{style: "font-size: 20px;"}
-    Share this URL for someone to start a new registration:
+    %b Share this URL for someone to start a new registration:
     %br
-    %b
-      = @canvassing_shift.new_registrant_url
+    = @canvassing_shift.new_registrant_url
       
   %p or
   = link_to "Start New Registration", new_registrant_path(partner: @canvassing_shift.partner_id)
