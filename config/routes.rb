@@ -25,6 +25,8 @@ Rocky::Application.routes.draw do
     end
   end
   
+  resources "abrs", :only => [:new, :create, :show, :update] 
+  
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
     resource "step_2", :controller => "step2", :only => [:show, :update]

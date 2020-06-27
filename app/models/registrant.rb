@@ -669,21 +669,7 @@ class Registrant < ActiveRecord::Base
     end
   end
   
-  def titles
-    TITLE_KEYS.collect {|key| I18n.t("txt.registration.titles.#{key}", :locale=>locale)}
-  end
-
-  def suffixes
-    SUFFIX_KEYS.collect {|key| I18n.t("txt.registration.suffixes.#{key}", :locale=>locale)}
-  end
-
-  def races
-    RACE_KEYS.collect {|key| I18n.t("txt.registration.races.#{key}", :locale=>locale)}
-  end
   
-  def phone_types
-    PHONE_TYPE_KEYS.collect {|key| I18n.t("txt.registration.phone_types.#{key}", :locale=>locale)}
-  end
 
   def name_title_key
     key_for_attribute(:name_title, 'titles')

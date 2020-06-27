@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200624182013) do
+ActiveRecord::Schema.define(version: 20200627194800) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -24,6 +24,31 @@ ActiveRecord::Schema.define(version: 20200624182013) do
   add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
+
+  create_table "abrs", force: :cascade do |t|
+    t.string   "uid"
+    t.integer  "partner_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "name_suffix"
+    t.string   "address"
+    t.string   "city"
+    t.integer  "home_state_id"
+    t.string   "zip"
+    t.string   "gender"
+    t.string   "email"
+    t.string   "phone"
+    t.date     "date_of_birth"
+    t.boolean  "javascript_disabled", default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "abrs", ["email"], name: "index_abrs_on_email"
+  add_index "abrs", ["home_state_id"], name: "index_abrs_on_home_state_id"
+  add_index "abrs", ["partner_id"], name: "index_abrs_on_partner_id"
+  add_index "abrs", ["uid"], name: "index_abrs_on_uid"
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255

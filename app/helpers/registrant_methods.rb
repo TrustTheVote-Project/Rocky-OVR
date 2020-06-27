@@ -180,7 +180,21 @@ module RegistrantMethods
     end
   end
   
+  def titles
+    Registrant::TITLE_KEYS.collect {|key| I18n.t("txt.registration.titles.#{key}", :locale=>locale)}
+  end
+
+  def suffixes
+    Registrant::SUFFIX_KEYS.collect {|key| I18n.t("txt.registration.suffixes.#{key}", :locale=>locale)}
+  end
+
+  def races
+    Registrant::RACE_KEYS.collect {|key| I18n.t("txt.registration.races.#{key}", :locale=>locale)}
+  end
   
+  def phone_types
+    Registrant::PHONE_TYPE_KEYS.collect {|key| I18n.t("txt.registration.phone_types.#{key}", :locale=>locale)}
+  end
   
   def key_for_attribute(attr_name, i18n_list)
     return nil if !self.respond_to?(attr_name)
@@ -195,6 +209,7 @@ module RegistrantMethods
   def english_races
     Registrant.english_races
   end
+
 
 
   
