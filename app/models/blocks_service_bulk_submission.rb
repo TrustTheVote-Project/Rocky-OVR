@@ -59,8 +59,7 @@ class BlocksServiceBulkSubmission < ActiveRecord::Base
       end      
     end
     self.save
-  ensure
-    # Schedule the next job
+    # Schedule the next job if successful. If error through DJ will requeue current job.
     BlocksServiceBulkSubmission.delay(run_at: next_run_time, queue: QUEUE_NAME).create_virtual_pa_partner_shifts(shift_end)
   end
   
