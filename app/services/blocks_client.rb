@@ -64,9 +64,9 @@ class BlocksClient
         shift_start: shift_start,
         shift_end: shift_end,
         shift_type: shift_type,
-        soft_count_cards_total_collected: soft_count_cards_total_collected,
-        soft_count_cards_complete_collected: soft_count_cards_complete_collected,
-        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
+        soft_count_cards_total_collected: soft_count_cards_total_collected || 0,
+        soft_count_cards_complete_collected: soft_count_cards_complete_collected || 0,
+        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected || 0
       },
       jwt: token
     }

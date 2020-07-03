@@ -52,8 +52,10 @@
     %br
     = @canvassing_shift.new_registrant_url
       
-  %p or
-  = link_to "Start New Registration", new_registrant_path(partner: @canvassing_shift.partner_id)
+  %p
+    = link_to "Start Registration", new_registrant_path(partner: @canvassing_shift.partner_id)
+    %br
+    Please only use the Start Registration link if you're filling out this registration form for the registrant (only permitted in limited states), or if they're filling out the registration form on your device.  If you have any questions, please discuss with your supervisor. 
   %br
   %br
   %br
