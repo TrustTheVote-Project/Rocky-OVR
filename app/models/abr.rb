@@ -7,6 +7,15 @@ class Abr < ActiveRecord::Base
     'en'
   end
   
+  def use_state_flow?
+    #TBD
+    false
+  end
+  
+  def use_short_form?
+    true
+  end
+  
   def require_email_address?
     true
   end

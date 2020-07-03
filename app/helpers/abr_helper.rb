@@ -11,6 +11,7 @@ module AbrHelper
   end
   
   def set_params
+    @locale = 'en'
     @source = params[:source]
     @tracking = params[:tracking]
     @email = params[:email]

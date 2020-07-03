@@ -55,7 +55,7 @@ module ApplicationHelper
     return stylesheets.compact
   end
 
-  def partner_css(partner = @partner, registrant=@registrant, include_mobile = @use_mobile_ui)
+  def partner_css(partner = @partner, registrant=@registrant || @abr, include_mobile = @use_mobile_ui)
     if params.has_key?(:preview_custom_assets) || registrant.try(:is_fake)
       return preview_partner_css(partner, registrant, include_mobile)
     end
@@ -86,7 +86,7 @@ module ApplicationHelper
     stylesheets
   end
   
-  def registrant_css(registrant = @registrant, locale = @locale)
+  def registrant_css(registrant = @registrant || @abr, locale = @locale)
     stylesheets = []
     locale ||= registrant ? registrant.locale : nil
     if !locale.nil?
