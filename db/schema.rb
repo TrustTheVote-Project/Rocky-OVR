@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200627194800) do
+ActiveRecord::Schema.define(version: 20200703200105) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20200627194800) do
   create_table "blocks_form_dispositions", force: :cascade do |t|
     t.integer  "grommet_request_id"
     t.string   "registrant_id"
-    t.integer  "blocks_form_id"
+    t.string   "blocks_form_id"
     t.boolean  "final_state_submitted", default: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
