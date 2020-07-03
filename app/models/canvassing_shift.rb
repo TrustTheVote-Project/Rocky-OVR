@@ -33,10 +33,14 @@ class CanvassingShift < ActiveRecord::Base
     if locations && locations.any?
       return locations.map {|obj| [obj["name"], obj["id"]]}
     else
-      return [
-        ["Default Location", RockyConf.blocks_configuration.default_location_id],
-      ]
+      default_location_id = begin
+        RockyConf.blocks_configuration.partners[partner.id].location_id || RockyConf.blocks_configuration.default_location_id
+      rescue
+        RockyConf.blocks_configuration.default_location_id
+      end
+      return [["Default Location", default_location_id]] if default_location_id
     end
+    return []
   end
 
   def is_web?
