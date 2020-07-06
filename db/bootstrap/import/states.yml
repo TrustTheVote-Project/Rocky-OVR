@@ -517,7 +517,7 @@ record_34:
 record_35:
   abbreviation: OH
   name: Ohio
-  requires_party: true
+  requires_party: false
   party_tooltip: not_part_of_registration
   id_number_tooltip: ssn_requested
   sos_address: Secretary of State of Ohio<br>Elections Division<br>180 E. Broad Street
