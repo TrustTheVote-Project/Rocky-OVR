@@ -21,4 +21,22 @@ class AbrsController < ApplicationController
     )
     render "show"
   end
+  
+  def create
+    @abr = Abr.new(abr_params)
+    @abr.partner_id = @partner_id
+    if @abr.save
+      redirect_to step_2_abr_path(@abr)
+    else
+      render :show
+    end
+  end
+  
+  def step_2
+    @abr = Abr.find(params[:id])
+  end
+  
+  def abr_params
+    params.require(:abr).permit(:first_name, :middle_name, :last_name, :name_suffix, :email, :address, :city, :zip, :date_of_birth_month, :date_of_birth_day, :date_of_birth_year)
+  end
 end

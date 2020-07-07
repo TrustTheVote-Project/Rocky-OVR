@@ -22,24 +22,14 @@ $(document).ready(function() {
   </li>
 </ul>
 
-<ul class="flat registrant-form__home-zip">
-  <li class="width_f registrant-form__home-zip__line">
-    <h3 class='registrant-form__home-zip__line__label'><%= form.label :zip %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-    <%= field_div form, :zip, class: 'registrant-form__home-zip__line__input', required: true %>
-    <div class="tooltip registrant-form__home-zip__line__tooltip"><%= tooltip_tag :zip %></div>
-    <span class="error registrant-form__home-zip__line__error"><%= form.object.errors[:zip].join("\n") %></span>
-  </li>
-  <li class="registrant-form__home-zip__button">
-      <%= rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) %>
-  </li>  
-  
-</ul>
+<%= render partial: "address", locals: {form: form} %>
 
 <ul class="flat">
   <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>
 </ul>
 
 
+<%= rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) %>
 
 
 

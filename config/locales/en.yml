@@ -364,6 +364,10 @@ en:
                 or sign a paper form to complete your application.
               too_many_retries: After two unsuccessful PennDOT submissions you must
                 provide an electronic signature.
+        abr:
+          blank: Requried
+          invalid: "%{attribute} is invalid."
+          
         registrant:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.

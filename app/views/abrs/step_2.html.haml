@@ -1,0 +1,12 @@
+%h1= t('txt.abr.step_2_header')
+
+= form_for(@abr) do |form|
+  = render partial: "mailing_address", locals: {form: form}
+    
+  Driver's License / State ID
+  %br
+  Phone & Opt-ins?
+  %br
+  Political Party (required for primary elections)
+  
+
