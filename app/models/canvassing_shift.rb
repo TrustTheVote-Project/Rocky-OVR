@@ -163,8 +163,11 @@ class CanvassingShift < ActiveRecord::Base
       BlocksService.form_from_grommet_request(r)
     end
     
-    puts built_form, form_result, r.class
-
+    uid = form_result["metadata"].try(:[], "rtv_uid")
+    unless uid.blank?
+      return uid == built_form[:metadata][:rtv_uid]
+    end
+    
     return true if form_result["first_name"]==built_form[:first_name] && form_result["last_name"]==built_form[:last_name] && form_result["date_of_birth"] == built_form[:date_of_birth]
 
     return false

@@ -84,7 +84,9 @@ class BlocksClient
       },
       jwt: token
     }
-    send(:post, path, body: body, headers: headers) 
+    result = send(:post, path, body: body, headers: headers) 
+    pp result
+    return result
   end
   
   BASE_PATH = "/api/v1/external/"
