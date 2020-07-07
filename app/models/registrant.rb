@@ -36,6 +36,7 @@ class Registrant < ActiveRecord::Base
   include Lolrus
   include Rails.application.routes.url_helpers
   include RegistrantMethods
+  include RegistrantAbrMethods
   include TimeStampHelper
   
   scope :abandoned, -> {where(abandoned: true)}
@@ -440,14 +441,7 @@ class Registrant < ActiveRecord::Base
     collect_email_address.to_s.downcase.strip != 'no'
   end
   
-  def any_email_opt_ins?
-    collect_email_address? && (partner.rtv_email_opt_in || partner.primary? || partner.partner_email_opt_in)
-  end
-  
-  def any_phone_opt_ins?
-    partner.rtv_sms_opt_in || partner.partner_sms_opt_in? || partner.primary?
-  end
-  
+
   def ask_for_primary_volunteers?
     partner.primary? ? partner.ask_for_volunteers? : RockyConf.sponsor.allow_ask_for_volunteers && partner.ask_for_volunteers?
   end
@@ -587,10 +581,6 @@ class Registrant < ActiveRecord::Base
 
   ### instance methods
   attr_accessor :attest_true
-
-  def to_param
-    uid
-  end
 
   def localization
     home_state_id ?
@@ -862,23 +852,11 @@ class Registrant < ActiveRecord::Base
     end
   end
 
-  def home_state_name
-    home_state && home_state.name
-  end
-  def home_state_system_name
-    name = home_state&.online_registration_system_name
-    if home_state && !name
-      name = I18n.t("states.online_registration_system_name", locale: locale, state_name: home_state_name)
-    end
-    name      
-  end
   
-  def home_state_abbrev
-    home_state && home_state.abbreviation
-  end
   
-  def home_state_online_reg_url
-    home_state && home_state.online_reg_url(self)
+  
+  def decorate_for_state(controller = nil)
+    home_state ? home_state.decorate_registrant(self, controller) : nil
   end
   
   def has_home_state_online_redirect?
@@ -896,38 +874,7 @@ class Registrant < ActiveRecord::Base
   def ovr_pre_check(controller = nil)
     home_state ? home_state.ovr_pre_check(self, controller) : nil
   end
-
-  def decorate_for_state(controller = nil)
-    home_state ? home_state.decorate_registrant(self, controller) : nil
-  end
   
-  def mailing_state_abbrev=(abbrev)
-    self.mailing_state = GeoState[abbrev]
-  end
-
-  def mailing_state_abbrev
-    mailing_state && mailing_state.abbreviation
-  end
-  
-  def mailing_state_name
-    mailing_state && mailing_state.name
-  end
-
-  def prev_state_abbrev=(abbrev)
-    self.prev_state = GeoState[abbrev]
-  end
-
-  def prev_state_abbrev
-    prev_state && prev_state.abbreviation
-  end
-
-  def prev_state_name
-    prev_state && prev_state.name
-  end
-
-  def home_state_online_reg_enabled?
-    !home_state.nil? && home_state.online_reg_enabled?(locale, self)
-  end
   
   def in_ovr_flow?
     home_state_allows_ovr?

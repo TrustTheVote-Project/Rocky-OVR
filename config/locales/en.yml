@@ -196,6 +196,35 @@ en:
         sms_number_for_continue_on_device: 'Text me the link:'
         email_address_for_continue_on_device: 'Email me the link:'
         voter_signature_image: Voter Signature Image
+      abr:
+        date_of_birth: Date of Birth
+        email: Email Address
+        zip: ZIP Code
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        address: Address
+        unit: 'Unit/Lot #'
+        city: City
+        state_name: State
+        state_abbrev: State
+        has_mailing_address: I get my mail at a different address from the one above.
+        mailing_address: Address
+        mailing_unit: 'Unit/Lot #'
+        mailing_city: City
+        mailing_state_abbrev: State
+        mailing_zip_code: Zip
+        party: Party
+        race: Race
+        state_id_number: ID Number
+        phone: Phone
+        phone_type: Type
+        opt_in_email: Receive emails
+        opt_in_sms: Receive text messages
+        attest_true: I have reviewed the above information, and it is true and accurate
+          to the best of my knowledge.
       registrant:
         date_of_birth: Date of Birth
         email_address: Email Address

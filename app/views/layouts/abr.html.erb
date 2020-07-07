@@ -51,7 +51,7 @@
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
     <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
-  <%= render 'shared/canvasser_notice' %>
+  <%-# render 'shared/canvasser_notice' %>
   <div id="container">
   <% if @partner && @partner.custom_logo? -%>
     <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
@@ -60,7 +60,7 @@
   <% end -%>
       <div class='header-text'>
         <%- if @abr && @abr.home_state_abbrev %>
-          <%= t 'txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_name %>
+          <%= t 'txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev %>
         <%- else%>
           <%= t 'txt.request_absentee_ballot' %>
         <%- end %>

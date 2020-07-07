@@ -1,12 +1,26 @@
 %h1= t('txt.abr.step_2_header')
 
 = form_for(@abr) do |form|
-  = render partial: "mailing_address", locals: {form: form}
+  = render partial: 'step', locals: { form: form }
     
-  Driver's License / State ID
-  %br
-  Phone & Opt-ins?
-  %br
-  Political Party (required for primary elections)
-  
+  = render partial: "state_id_number", locals: {form: form}
 
+  = render partial: "party", locals: {form: form}
+  
+  = render partial: "mailing_address", locals: {form: form}
+  
+  %ul.flat
+    = render :partial=> "registrants/phone", :locals=>{:form=>form}
+  = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
+  = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
+  
+  - if  @abr.home_state_allows_oabr?
+    .use_state_abr
+      = rollover_button(:prepare, I18n.t('txt.button.submit'))
+  - else
+    .skip_state_abr
+      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+
+  .back
+    = link_to t('txt.button.back').html_safe, abr_path(@abr)
+    

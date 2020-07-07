@@ -1,7 +1,7 @@
 module AbrHelper
 
   def current_step
-    self.class::CURRENT_STEP
+    @current_step
   end
 
   def find_partner

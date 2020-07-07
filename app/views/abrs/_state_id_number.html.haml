@@ -1,0 +1,10 @@
+%ul.flat
+  %li.registrant-form__state-id-number__line
+    %h3
+      = form.label :state_id_number 
+      %span.required 
+        *
+        %span.required--text{style: 'display:none;'}
+          = I18n.t('required')
+    = field_div form, :state_id_number, {:size => 35, required: true}
+    %span.error= form.object.errors[:state_id_number].join("\n")

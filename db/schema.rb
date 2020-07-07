@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200707152406) do
+ActiveRecord::Schema.define(version: 20200707195747) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -47,9 +47,15 @@ ActiveRecord::Schema.define(version: 20200707152406) do
     t.string   "mailing_city"
     t.integer  "mailing_state_id"
     t.string   "mailing_zip_code"
-    t.string   "state_id"
+    t.string   "state_id_number"
     t.string   "party"
+    t.string   "phone_type"
     t.boolean  "add_to_permanent_early_voting_list"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_opt_in_sms"
+    t.boolean  "has_mailing_address"
   end
 
   add_index "abrs", ["email"], name: "index_abrs_on_email"

@@ -1,6 +1,7 @@
 %h1= t('txt.abr.step_1_header')
 
 = form_for(@abr) do |form|
+  = render partial: 'step', locals: { form: form }
   = render :partial => 'form', :object => form
     
   %p.overseas-instructions

@@ -1,3 +1,21 @@
+<% content_for :head do %>
+<script>
+$(document).ready(function() {
+  checkboxTogglesSet($('#abr_has_mailing_address'), $('#mailing_address_set'), $('#mailing_address_rule'));
+  $('#javascript_disabled').remove();
+});
+</script>
+<% end %>
+
+<fieldset class='no_border'>
+  <ul class="checkbox">
+    <li class="spacer">&nbsp;</li>
+    <li class='registrant-form__has-mailing-address__line'>
+      <h3><%= form.check_box :has_mailing_address %> <%= form.label :has_mailing_address %></h3>
+    </li>
+  </ul>
+</fieldset>
+
 <fieldset id="mailing_address_set">
   <legend><span><%= I18n.t('txt.registration.mailing_address') %></span><%= tooltip_tag :mailing_address %></legend>
   <ul class="stacked">

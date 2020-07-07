@@ -3,6 +3,8 @@ en:
   txt:
     register_to_vote: Register To Vote
     register_to_vote_in: Register in %{state_abbrev}
+    request_absentee_ballot_in: Request Absentee Ballot In %{state_abbrev}
+    request_absentee_ballot: Request Absentee Ballot
     unknown_error: ! 'Unknown error: the web administrators have been contacted.'
     error: Something went wrong.
     try_again: Go back and try again.

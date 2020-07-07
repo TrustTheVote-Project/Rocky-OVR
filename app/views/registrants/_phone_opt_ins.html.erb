@@ -1,4 +1,5 @@
 <%- show_hr ||= false %>
+<%- @registrant ||= form.object %>
 
 <%- if @registrant.any_phone_opt_ins? %>
   <%- if @registrant.partner.rtv_sms_opt_in || @registrant.partner.primary? %>
