@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200707195747) do
+ActiveRecord::Schema.define(version: 20200708163438) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -537,6 +537,7 @@ ActiveRecord::Schema.define(version: 20200707195747) do
     t.integer  "total_duration_ms"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "abr_id"
   end
 
   add_index "request_logs", ["client_id"], name: "index_request_logs_on_client_id"

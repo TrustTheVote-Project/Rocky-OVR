@@ -4,10 +4,10 @@ class RequestLogSession
       return request_data
     end
   end
-  Parameters = Struct.new(:request_log, :context, :censor, :registrant) do
-    def initialize(registrant=nil, context={ client_id: 'unknown' }, censor=nil)
-      instance = RequestLog.create!(context.merge(registrant_id: registrant&.uid))
-      super(instance, context, censor || BaseCensor, registrant)
+  Parameters = Struct.new(:request_log, :context, :censor, :registrant, :abr) do
+    def initialize(registrant=nil, context={ client_id: 'unknown' }, censor=nil, abr=nil)
+      instance = RequestLog.create!(context.merge(registrant_id: registrant&.uid, abr_id: abr&.uid))
+      super(instance, context, censor || BaseCensor, registrant, abr)
     end
   end
 
@@ -38,12 +38,16 @@ class RequestLogSession
     current_parameters&.registrant
   end
   
+  def self.abr
+    current_parameters&.abr
+  end
+  
   def self.censor
     current_parameters&.censor
   end
 
-  def self.make_call_with_logging(registrant:, client_id:, censor: nil, &block)
-    @@current_parameters = Concurrent::ThreadLocalVar.new { Parameters.new(registrant, {client_id: client_id}, censor) }
+  def self.make_call_with_logging(registrant:, client_id:, censor: nil, abr: nil, &block)
+    @@current_parameters = Concurrent::ThreadLocalVar.new { Parameters.new(registrant, {client_id: client_id}, censor, abr) }
     instance = current_parameters.request_log
 
     timing = Timing.measure(&block)

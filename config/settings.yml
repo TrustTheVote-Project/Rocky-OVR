@@ -27,6 +27,11 @@ blocks_configuration:
 # this URL (if present) is shown as a WIKI nav menu item in the Partner portal
 partner_wiki_url: "http://wiki.rockthevote.com"
 
+catalist:
+  audience: catalist_api_mr_prod
+  url: https://api.catalist.us
+  auth_url: https://auth.catalist.us
+  
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
   branding_from: "Rock the Vote <info@rockthevote.com>"
