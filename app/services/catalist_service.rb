@@ -71,10 +71,11 @@ class CatalistService
   #     "mailaddrstate"=>"XX",
   #     "mailaddrzip"=>"XXXXX",
   #     "phone"=>nil,
-  #     "voterstatus"=>"active",
+  #     "voterstatus"=>"active", #active, inactive, multipleAppearances, unregistered, unmatchedMember;
   #     "additionalProperties"=>{}}],
-  #  "matchMethod"=>"STANDARD",
+  #  "matchMethod"=>"STANDARD", #  standard, name, name-address, distance, email, phon 
   #  "status"=>"OK"}
+  # {"count"=>0, "mrPersons"=>[], "matchMethod"=>"STANDARD", "status"=>"OK"} 
   def retrieve(abr)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'catalist', censor: CatalistCensor, abr: abr) do
       params = CatalistService.abr_to_catalist_params(abr)
