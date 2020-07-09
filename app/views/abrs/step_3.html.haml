@@ -4,14 +4,11 @@
 = form_for(@abr) do |form|
   = render partial: 'step', locals: { form: form }
 
-  - if @abr.should_check_registration?
-    - if @abr.last_check.is_match?
-      %p It looks like you're registered to vote. Please confirm that this is you.
-      = render partial: 'catalist_lookup', locals: { catalist_lookup: @abr.last_check}
-      %p [] Yes, this is me. I want to continue requesting and absentee ballot.
-      %p [] No, this is not me. I want to start a new registration[link]
-    - else
-      %p How did you get here?
+  - if @abr.should_check_registration? && @abr.last_check.is_match?
+    %p It looks like you're registered to vote. Please confirm that this is you.
+    = render partial: 'catalist_lookup', locals: { catalist_lookup: @abr.last_check}
+    %p [] Yes, this is me. I want to continue requesting an absentee ballot.
+    %p [] No, this is not me. I want to start a new registration[link]. I want to try again[link] (?)
   
   .step_3_form_fields
     = render partial: "state_id_number", locals: {form: form}
@@ -25,12 +22,7 @@
     = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
     = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
   
-  - if  @abr.home_state_allows_oabr?
-    .use_state_abr
-      = rollover_button(:prepare, I18n.t('txt.button.submit'))
-  - else
-    .skip_state_abr
-      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+  = rollover_button(:prepare, I18n.t('txt.button.prepare'))
 
   .back
     = link_to t('txt.button.back').html_safe, step_2_abr_path(@abr)

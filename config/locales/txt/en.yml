@@ -30,6 +30,10 @@ en:
       state_online_registration: Finish your<br/>voter registration<br/> online with %{state}.
       skip_state_online_registration: ! '&gt; No Thanks, I''ll continue with %{rtv_and_partner_name}
         and send in my form later.'
+      state_online_abr: Finish your<br/>absentee request<br/> online with %{state}.
+      skip_state_online_abr: ! '&gt; No Thanks, I''ll continue with %{rtv_and_partner_name}
+        and send in my form later.'
+      
     registration:
       in_language_name: In English
       powered_by: ! 'powered by:'

@@ -39,11 +39,11 @@ class Abr < ActiveRecord::Base
   end
   
   def home_state_allows_oabr?
-    false
+    home_state && home_state.online_abr_enabled?(self)
   end
   
-  def check_if_registered
-    false # TODO implement logic base on partner ID and possibly other params
+  def home_state_oabr_url
+    home_state && home_state.oabr_url
   end
   
   def locale

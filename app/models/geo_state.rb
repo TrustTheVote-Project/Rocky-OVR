@@ -26,7 +26,7 @@ class GeoState < ActiveRecord::Base
 
   has_many :localizations, :class_name => 'StateLocalization', :foreign_key => 'state_id'
   
-  delegate :online_reg_url, :redirect_to_online_reg_url, :has_ovr_pre_check?, :ovr_pre_check, :decorate_registrant, :enabled_for_language?, :require_age_confirmation?, :require_id?, :automatic_under_18_ok?, :use_state_flow?, :to=>:state_customization
+  delegate :online_reg_url, :redirect_to_online_reg_url, :has_ovr_pre_check?, :ovr_pre_check, :decorate_registrant, :enabled_for_language?, :require_age_confirmation?, :require_id?, :automatic_under_18_ok?, :use_state_flow?, :online_abr_enabled?, :oabr_url, :to=>:state_customization
 
   def self.[](id_or_abbrev)
     init_all_states
@@ -375,6 +375,7 @@ class GeoState < ActiveRecord::Base
   def online_reg_enabled?(locale, reg=nil)
     GeoState.states_with_online_registration.include?(self.abbreviation) && self.enabled_for_language?(locale, reg)
   end
+  
   
   def registrar_address(zip_code=nil)
     county_address_zip = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first

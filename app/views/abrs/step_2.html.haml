@@ -1,6 +1,26 @@
 %h1= t('txt.abr.step_2_header')
 
 = form_for(@abr) do |form|
+  - if @abr.home_state_allows_oabr?
+    %h3= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.header")
+    %p.instructions= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.instructions")
+    = rollover_button(:state_online_registration, I18n.t('txt.button.state_online_abr', :state=>@abr.home_state_name).html_safe, {:id=>'abr_state_online_abr',:name=>'abr_state_online_abr',:value=>'abr_state_online_abr'}) 
+    :javascript
+      $(document).ready(function() {
+        $("#abr_state_online_abr").attr('formtarget','_BLANK')      
+      });
+    
+      $("#abr_state_online_abr").click(function() {
+        showSharing();
+        return true;
+      })
+      function showSharing() {
+        setTimeout(function(){
+          //console.log("redirect!")
+          window.location.href = "#{finish_abr_path(@abr, :share_only=>true)}";
+        }, 1000);
+      }
+    
   = render partial: 'step', locals: { form: form }
   
   = render partial: 'name', locals: {form: form}

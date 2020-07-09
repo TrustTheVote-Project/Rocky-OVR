@@ -42,15 +42,21 @@ class AbrsController < ApplicationController
     end
   end
   
+  
   def update
     @abr = Abr.find_by_uid(params[:id])
     @current_step = begin params[:current_step].to_i rescue 1 end
-    @abr.current_step = @current_step + 1
-    @abr.set_max_step(@current_step)
-    if @abr.update_attributes(abr_params)
-      perform_next_step
+    if !params[:abr_state_online_abr].nil? && @abr.home_state_allows_oabr?
+      redirect_to @abr.home_state_oabr_url
+      # Don't try to advance, just rediretct
     else
-      perform_current_step
+      @abr.current_step = @current_step + 1
+      @abr.set_max_step(@current_step)
+      if @abr.update_attributes(abr_params)
+        perform_next_step
+      else
+        perform_current_step
+      end
     end
   end
   
@@ -66,14 +72,14 @@ class AbrsController < ApplicationController
     render step_3_view(@abr)
   end
   
-  def abr_params
-    params.require(:abr).permit(:first_name, :middle_name, :last_name, :name_suffix, :email, :address, :city, :zip, :date_of_birth_month, :date_of_birth_day, :date_of_birth_year, :votercheck, :state_id_number, :phone, :phone_type, :add_to_permanent_early_voting_list,
-    :opt_in_email,
-    :opt_in_sms,
-    :partner_opt_in_email,
-    :partner_opt_in_sms,
-    :has_mailing_address)
+  def download
+    find_abr
   end
+
+  def finish
+    find_abr
+  end
+  
   
   def not_registered
     @abr = Abr.find_by_uid(params[:id])
@@ -87,6 +93,14 @@ class AbrsController < ApplicationController
   end
   
   private
+  def abr_params
+    params.require(:abr).permit(:first_name, :middle_name, :last_name, :name_suffix, :email, :address, :city, :zip, :date_of_birth_month, :date_of_birth_day, :date_of_birth_year, :votercheck, :state_id_number, :phone, :phone_type, :add_to_permanent_early_voting_list,
+    :opt_in_email,
+    :opt_in_sms,
+    :partner_opt_in_email,
+    :partner_opt_in_sms,
+    :has_mailing_address)
+  end
   
   def find_abr
     @abr = Abr.find_by_uid(params[:id])
@@ -114,13 +128,13 @@ class AbrsController < ApplicationController
         redirect_to not_registered_abr_path(@abr)
       end
     elsif @current_step == 3
-      render :step_3
+      redirect_to download_abr_path(@abr)
     end
   end
   
   def step_2_view(abr)
     potential_view = "step_2_#{abr.home_state_abbrev.to_s.downcase}"
-    File.exists?(File.join(Rails.root, 'app/views/abrs/', potential_view)) ? potential_view : "step_2"
+    File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml")) ? potential_view : "step_2"
   end
   
   def step_3_view(abr)

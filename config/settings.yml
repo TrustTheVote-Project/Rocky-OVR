@@ -70,6 +70,16 @@ pdf_expiration_days: 14
 pdf_no_email_expiration_minutes: 10
 partner_csv_expiration_minutes: 30
 
+absentee_states:
+  AK:
+    online_req_url: https://absenteeballotapplication.alaska.gov/
+  DE:
+    online_req_url: https://ivote.de.gov/voterlogin.aspx    
+  FL:
+    online_req_url: https://dos.elections.myflorida.com/supervisors/
+  OH:
+  TX:
+  WY:
   
 ovr_states:
   AZ:

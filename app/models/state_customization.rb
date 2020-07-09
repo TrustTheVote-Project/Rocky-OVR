@@ -74,6 +74,19 @@ class StateCustomization
     RockyConf.ovr_states[state.abbreviation]
   end
   
+  def abr_settings
+    RockyConf.absentee_states[state.abbreviation]
+  end
+  
+  def online_abr_enabled?(abr)
+    oabr_url.present?
+  end
+  
+  def oabr_url
+    abr_settings&.online_req_url
+  end
+  
+  
   def has_ovr_pre_check?(registrant)
     false
   end

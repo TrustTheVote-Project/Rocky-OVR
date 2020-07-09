@@ -2,6 +2,10 @@
 en:
   states:
     custom:
+      ak:
+        state_online_abr:
+          header: You can request an Absentee Ballot online directly with the state of Alaska
+          instructions: If you have a valid Alaska driver's license etc....
       nc:
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.
