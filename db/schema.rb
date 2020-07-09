@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200708163438) do
+ActiveRecord::Schema.define(version: 20200709013325) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 20200708163438) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "match"
   end
 
   add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email"

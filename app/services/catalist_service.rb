@@ -18,18 +18,6 @@ class CatalistService
     end
   end
   
-  def self.abr_to_catalist_params(abr)
-    {
-      first: abr.first_name,
-      last: abr.last_name,
-      address: abr.address,
-      city: abr.city,
-      state: abr.home_state_abbrev,
-      zip: abr.zip,
-      birthdate: format_birthdate(abr.date_of_birth)
-    }
-  end
-  
   def initialize
     # call this immediately and outside of another RequestLogSession call
     get_token
@@ -76,16 +64,11 @@ class CatalistService
   #  "matchMethod"=>"STANDARD", #  standard, name, name-address, distance, email, phon 
   #  "status"=>"OK"}
   # {"count"=>0, "mrPersons"=>[], "matchMethod"=>"STANDARD", "status"=>"OK"} 
-  def retrieve(abr)
-    RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'catalist', censor: CatalistCensor, abr: abr) do
-      params = CatalistService.abr_to_catalist_params(abr)
+  def retrieve(params:, registrant: nil, abr: nil)
+    RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'catalist', censor: CatalistCensor, abr: abr) do
       return CatalistClient.retrieve(params: params, token: self.token)
     end
   end
 
-  private 
-  def self.format_birthdate(date)
-    return date.strftime("%m%d%Y")
-  end
 
 end

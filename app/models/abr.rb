@@ -2,6 +2,9 @@ class Abr < ActiveRecord::Base
   include RegistrantMethods
   include RegistrantAbrMethods
   
+  has_many :abrs_catalist_lookups
+  has_many :catalist_lookups, through: :abrs_catalist_lookups
+  
   belongs_to :home_state,    :class_name => "GeoState"
   belongs_to :mailing_state, :class_name => "GeoState"
   belongs_to :partner
@@ -56,6 +59,12 @@ class Abr < ActiveRecord::Base
     return self.uid
   end
   
+  def check_registration
+    AbrsCatalistLookup.create_lookup(self)
+  end
   
+  def last_check
+    catalist_lookups.last
+  end
   
 end
