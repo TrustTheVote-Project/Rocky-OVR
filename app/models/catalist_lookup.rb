@@ -28,6 +28,35 @@ class CatalistLookup < ActiveRecord::Base
     return !matched_data.nil?
   end
   
+  # {"count"=>1,
+  #  "mrPersons"=>
+  #   [{"dwid"=>"1231231",
+  #     "matchRate"=>1.0,
+  #     "distanceScore"=>nil,
+  #     "distance"=>nil,
+  #     "matchMethod"=>nil,
+  #     "firstname"=>"A",
+  #     "middlename"=>"M",
+  #     "lastname"=>"M",
+  #     "namesuffix"=>nil,
+  #     "gender"=>"male",
+  #     "birthdate"=>"XXXX-XX-XX",
+  #     "regaddrline1"=>"XXXX",
+  #     "regaddrline2"=>"",
+  #     "regaddrcity"=>"XXXX",
+  #     "regaddrstate"=>"XX",
+  #     "regaddrzip"=>"XXXXX",
+  #     "mailaddrline1"=>"XXXXX",
+  #     "mailaddrline2"=>"",
+  #     "mailaddrcity"=>"XXXX",
+  #     "mailaddrstate"=>"XX",
+  #     "mailaddrzip"=>"XXXXX",
+  #     "phone"=>nil,
+  #     "voterstatus"=>"active", #active, inactive, multipleAppearances, unregistered, unmatchedMember;
+  #     "additionalProperties"=>{}}],
+  #  "matchMethod"=>"STANDARD", #  standard, name, name-address, distance, email, phon 
+  #  "status"=>"OK"}
+  # {"count"=>0, "mrPersons"=>[], "matchMethod"=>"STANDARD", "status"=>"OK"} 
   def matched_data
     lookup! if self.match.blank?
     return nil if match["count"] == 0 || match["mrPersons"].blank? || match["mrPersons"].length == 0
@@ -36,6 +65,27 @@ class CatalistLookup < ActiveRecord::Base
     end
     return nil
   end
+  
+  def match_name
+    matched_data && "#{matched_data["firstname"]} #{matched_data["middlename"]} #{matched_data["lastname"]}"
+  end
+  def match_address1
+    matched_data && "#{matched_data["regaddrline1"]}"
+  end
+  def match_address2
+    matched_data && "#{matched_data["regaddrline2"]}"
+  end
+  def match_city
+    matched_data && "#{matched_data["regaddrcity"]}"
+  end
+  def match_state
+    matched_data && "#{matched_data["regaddrstate"]}"
+  end
+  def match_zip
+    matched_data && "#{matched_data["regaddrzip"]}"
+  end
+  
+  
   
   def state_abbrev
     state && state.abbreviation

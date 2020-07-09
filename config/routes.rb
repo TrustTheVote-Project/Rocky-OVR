@@ -30,6 +30,7 @@ Rocky::Application.routes.draw do
       get "step_2"
       get "step_3"
       get "not_registered"
+      get "registration"
     end
   end
   

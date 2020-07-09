@@ -79,6 +79,13 @@ class AbrsController < ApplicationController
     @abr = Abr.find_by_uid(params[:id])
   end
   
+  def registration
+    find_abr
+    @registrant = @abr.to_registrant
+    @registrant.save!
+    redirect_to registrant_step_2_path(@registrant)
+  end
+  
   private
   
   def find_abr
@@ -104,7 +111,7 @@ class AbrsController < ApplicationController
       if @abr.can_continue?
         redirect_to step_3_abr_path(@abr)
       else
-        redirect_to not_registered_path(@abr)
+        redirect_to not_registered_abr_path(@abr)
       end
     elsif @current_step == 3
       render :step_3

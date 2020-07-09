@@ -99,4 +99,25 @@ class Abr < ActiveRecord::Base
     catalist_lookups.last
   end
   
+  def to_registrant
+    registrant = Registrant.new({
+      partner_id: partner_id,
+      # TODO tracking params
+      first_name: first_name,
+      middle_name: middle_name,
+      last_name: last_name,
+      name_suffix: name_suffix,
+      home_address: address,
+      home_city: city,
+      home_zip_code: zip,
+      home_state_id: home_state_id,
+      email_address: email,
+      date_of_birth: date_of_birth
+    })
+    registrant.locale = locale
+    registrant.short_form = true
+    registrant.status = :step_1
+    registrant
+  end
+  
 end
