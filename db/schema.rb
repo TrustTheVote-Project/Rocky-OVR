@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200709125210) do
+ActiveRecord::Schema.define(version: 20200709192000) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -532,9 +532,9 @@ ActiveRecord::Schema.define(version: 20200709125210) do
   create_table "request_logs", force: :cascade do |t|
     t.string   "client_id"
     t.string   "registrant_id"
-    t.string   "request_uri"
+    t.text     "request_uri"
     t.text     "request_body"
-    t.string   "request_headers"
+    t.text     "request_headers"
     t.integer  "response_code"
     t.text     "response_body"
     t.text     "error_messages"
