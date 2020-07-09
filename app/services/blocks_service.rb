@@ -20,6 +20,9 @@ class BlocksService
       voting_street_address_two: r.home_unit,
       voting_zipcode: r.home_zip_code,
       ethnicity: r.english_race,
+      metadata: {
+        rtv_uid: r.uid
+      }
     }
   end
   
@@ -27,6 +30,7 @@ class BlocksService
     registrant = V4::RegistrationService.create_pa_registrant(req.request_params[:rocky_request])    
     registrant.basic_character_replacement!
     registrant.state_ovr_data ||= {}
+    registrant.uid = "grommet-request-#{req.id}"
     return self.form_from_registrant(registrant)
   end
   
