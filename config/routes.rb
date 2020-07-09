@@ -28,7 +28,8 @@ Rocky::Application.routes.draw do
   resources "abrs", :only => [:new, :create, :show, :update] do
     member do
       get "step_2"
-      put "step_2"
+      get "step_3"
+      get "not_registered"
     end
   end
   

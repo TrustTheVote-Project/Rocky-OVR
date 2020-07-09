@@ -1,0 +1,29 @@
+%h1= t('txt.abr.step_3_header')
+
+- if @abr.should_check_registration?
+  = @abr.last_check.match
+
+= form_for(@abr) do |form|
+  = render partial: 'step', locals: { form: form }
+    
+  = render partial: "state_id_number", locals: {form: form}
+
+  = render partial: "party", locals: {form: form}
+  
+  = render partial: "mailing_address", locals: {form: form}
+  
+  %ul.flat
+    = render :partial=> "registrants/phone", :locals=>{:form=>form}
+  = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
+  = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
+  
+  - if  @abr.home_state_allows_oabr?
+    .use_state_abr
+      = rollover_button(:prepare, I18n.t('txt.button.submit'))
+  - else
+    .skip_state_abr
+      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+
+  .back
+    = link_to t('txt.button.back').html_safe, step_2_abr_path(@abr)
+    

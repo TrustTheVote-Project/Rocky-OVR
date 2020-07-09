@@ -12,6 +12,7 @@ module AbrHelper
   
   def set_params
     @locale = 'en'
+    @votercheck = params[:votercheck].to_s.downcase
     @source = params[:source]
     @tracking = params[:tracking]
     @email = params[:email]

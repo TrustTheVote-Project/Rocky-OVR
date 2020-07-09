@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200709013325) do
+ActiveRecord::Schema.define(version: 20200709125210) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(version: 20200709013325) do
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_opt_in_sms"
     t.boolean  "has_mailing_address"
+    t.string   "votercheck"
+    t.string   "current_step"
+    t.string   "max_step"
   end
 
   add_index "abrs", ["email"], name: "index_abrs_on_email"
@@ -330,6 +333,7 @@ ActiveRecord::Schema.define(version: 20200709013325) do
     t.string   "grommet_csv_file_name",              limit: 255
     t.string   "short_code"
     t.string   "terms_url"
+    t.boolean  "enabled_for_catalist_api"
   end
 
   add_index "partners", ["email"], name: "index_partners_on_email"

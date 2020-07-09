@@ -13,6 +13,11 @@
       <%= field_div form, :city, required: true %>
       <span class="error"><%= form.object.errors[:city].join("\n") %></span>
     </li>
+    <li class="width_b registrant-form__home-state-abbrev__line">
+      <h3><%= form.label :home_state_abbrev %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :home_state_abbrev, :disabled => true %>
+      <span class="error"><%= form.object.errors[:home_state_name].join("\n") %></span>
+    </li>    
     <li class="width_c registrant-form__home-zip-code__line">
       <h3><%= form.label :zip %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
       <%= field_div form, :zip, {:size => 8, required: true} %>

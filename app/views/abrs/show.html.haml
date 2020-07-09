@@ -2,12 +2,10 @@
 
 = form_for(@abr) do |form|
   = render partial: 'step', locals: { form: form }
-  = render :partial => 'form', :object => form
+  = render partial: 'form', :object => form
     
   %p.overseas-instructions
     = I18n.t('txt.registration.instructions.online').html_safe
     %br
     %br
     = I18n.t('txt.registration.instructions.overseas').html_safe
-  
-

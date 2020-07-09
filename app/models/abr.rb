@@ -9,14 +9,30 @@ class Abr < ActiveRecord::Base
   belongs_to :mailing_state, :class_name => "GeoState"
   belongs_to :partner
   
-  validates_presence_of :first_name
-  validates_presence_of :last_name
-  validates_presence_of :address
-  validates_presence_of :city
+  validates_presence_of :first_name, if: :advancing_to_step_3?
+  validates_presence_of :last_name, if: :advancing_to_step_3?
+  validates_presence_of :address, if: :advancing_to_step_3?
+  validates_presence_of :city, if: :advancing_to_step_3?
+  validates_presence_of :date_of_birth, if: :advancing_to_step_3?
   validates_presence_of :zip
-  validates_presence_of :date_of_birth
+
+  def advancing_to_step?(num)
+    (current_step || "0").to_i >= num
+  end
+
+  def advancing_to_step_2?
+    advancing_to_step?(2)
+  end
+
+  def advancing_to_step_3?
+    advancing_to_step?(3)
+  end
   
   before_create :generate_uid
+  
+  def set_max_step(step)
+    self.max_step = [(self.max_step || "0").to_i, step.to_i].max
+  end
   
   def collect_email_address?
     true
@@ -57,6 +73,22 @@ class Abr < ActiveRecord::Base
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email} -- #{zip}" )
     return self.uid
+  end
+  
+  def can_continue?
+    if !should_check_registration?
+      return true
+    end
+    check_registration
+    return last_check.is_match?
+  end
+  
+  def should_check_registration?
+    self.votercheck.to_s.strip.downcase == 'yes' && partner_enabled_for_votercheck?
+  end
+  
+  def partner_enabled_for_votercheck?
+    self.partner.primary? || partner.enabled_for_catalist_api?
   end
   
   def check_registration
