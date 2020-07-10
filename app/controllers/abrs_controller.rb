@@ -43,11 +43,11 @@ class AbrsController < ApplicationController
   end
   
   def state_online
-    @abr = Abr.find_by_uid(params[:id])    
+    find_abr
   end
   
   def state_online_redirect
-    @abr = Abr.find_by_uid(params[:id])
+    find_abr
     render :html => "<html><body><script>parent.location.href='#{@abr.home_state_oabr_url}';</script></body></html>".html_safe    
   end
   
@@ -95,11 +95,11 @@ class AbrsController < ApplicationController
   
   
   def not_registered
-    @abr = Abr.find_by_uid(params[:id])
+    find_abr
   end
   
   def registration
-    @abr = Abr.find_by_uid(params[:id])
+    find_abr
     @registrant = @abr.to_registrant
     @registrant.save!
     redirect_to registrant_step_2_path(@registrant)
@@ -119,7 +119,7 @@ class AbrsController < ApplicationController
   def find_abr
     @abr = Abr.find_by_uid(params[:id])
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
-    @abr.update_attributes(current_step: @current_step)  
+    @abr.update_attributes(current_step: @current_step) if @current_step
   end
   
   def perform_current_step
