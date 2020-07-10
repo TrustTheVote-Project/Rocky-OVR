@@ -42,13 +42,20 @@ class AbrsController < ApplicationController
     end
   end
   
+  def state_online
+    @abr = Abr.find_by_uid(params[:id])    
+  end
+  
+  def state_online_redirect
+    @abr = Abr.find_by_uid(params[:id])
+    render :html => "<html><body><script>parent.location.href='#{@abr.home_state_oabr_url}';</script></body></html>".html_safe    
+  end
   
   def update
     @abr = Abr.find_by_uid(params[:id])
     @current_step = begin params[:current_step].to_i rescue 1 end
-    if !params[:abr_state_online_abr].nil? && @abr.home_state_allows_oabr?
-      redirect_to @abr.home_state_oabr_url
-      # Don't try to advance, just rediretct
+    if !params[:abr_state_online_abr].nil? && @abr.eligible_for_oabr?
+      redirect_to state_online_redirect_abr_path(@abr)
     else
       @abr.current_step = @current_step + 1
       @abr.set_max_step(@current_step)
@@ -69,14 +76,20 @@ class AbrsController < ApplicationController
   def step_3
     @current_step = 3
     find_abr
-    render step_3_view(@abr)
+    if @abr.can_continue?
+      render step_3_view(@abr)      
+    else
+      redirect_to not_registered_abr_path(@abr)
+    end
   end
   
   def download
+    @current_step = 4
     find_abr
   end
 
   def finish
+    @current_step = 5 #final
     find_abr
   end
   
@@ -86,11 +99,12 @@ class AbrsController < ApplicationController
   end
   
   def registration
-    find_abr
+    @abr = Abr.find_by_uid(params[:id])
     @registrant = @abr.to_registrant
     @registrant.save!
     redirect_to registrant_step_2_path(@registrant)
   end
+  
   
   private
   def abr_params
@@ -114,7 +128,7 @@ class AbrsController < ApplicationController
     elsif @current_step == 2
       render step_2_view(@abr)
     elsif @current_step == 3
-      render step_3_view(@abr)      
+      render step_3_view(@abr)
     end
   end
   
@@ -122,10 +136,10 @@ class AbrsController < ApplicationController
     if @current_step == 1
       redirect_to step_2_abr_path(@abr)
     elsif @current_step == 2
-      if @abr.can_continue?
-        redirect_to step_3_abr_path(@abr)
+      if @abr.eligible_for_oabr?
+        redirect_to state_online_abr_path(@abr)
       else
-        redirect_to not_registered_abr_path(@abr)
+        redirect_to step_3_abr_path(@abr)        
       end
     elsif @current_step == 3
       redirect_to download_abr_path(@abr)

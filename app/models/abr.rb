@@ -38,6 +38,10 @@ class Abr < ActiveRecord::Base
     true
   end
   
+  def eligible_for_oabr?
+    home_state_allows_oabr?
+  end
+  
   def home_state_allows_oabr?
     home_state && home_state.online_abr_enabled?(self)
   end
@@ -79,7 +83,7 @@ class Abr < ActiveRecord::Base
     if !should_check_registration?
       return true
     end
-    check_registration
+    check_registration_if_updated
     return last_check.is_match?
   end
   
@@ -89,6 +93,16 @@ class Abr < ActiveRecord::Base
   
   def partner_enabled_for_votercheck?
     self.partner.primary? || partner.enabled_for_catalist_api?
+  end
+  
+  def check_registration_if_updated
+    lc = self.last_check
+    return check_registration unless lc
+    new_params = AbrsCatalistLookup.abr_to_catalist_lookup_params(self)
+    new_params.each do |k,v|
+      return check_registration unless lc.send(k) == v
+    end
+    return lc
   end
   
   def check_registration

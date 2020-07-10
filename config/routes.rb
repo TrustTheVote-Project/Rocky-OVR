@@ -7,6 +7,7 @@ Rocky::Application.routes.draw do
   match "/registrants/new/:state_abbrev", to: "registrants#new", via: :get
   match "/registrants/map", to: "registrants#new", via: :get
   match "/registrants/map/:state_abbrev", to: "registrants#new", via: :get
+  match "/abrs", to: "abrs#new", via: :get
   match "/share", to: "registrants#share", via: :get
   
   match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
@@ -33,6 +34,8 @@ Rocky::Application.routes.draw do
       get "registration"
       get "download"
       get "finish"
+      get "state_online"
+      get "state_online_redirect"
     end
   end
   
