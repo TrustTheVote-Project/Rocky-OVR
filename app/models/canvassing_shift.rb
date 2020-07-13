@@ -33,10 +33,14 @@ class CanvassingShift < ActiveRecord::Base
     if locations && locations.any?
       return locations.map {|obj| [obj["name"], obj["id"]]}
     else
-      return [
-        ["Default Location", RockyConf.blocks_configuration.default_location_id],
-      ]
+      default_location_id = begin
+        RockyConf.blocks_configuration.partners[partner.id].location_id || RockyConf.blocks_configuration.default_location_id
+      rescue
+        RockyConf.blocks_configuration.default_location_id
+      end
+      return [["Default Location", default_location_id]] if default_location_id
     end
+    return []
   end
 
   def is_web?
@@ -159,8 +163,11 @@ class CanvassingShift < ActiveRecord::Base
       BlocksService.form_from_grommet_request(r)
     end
     
-    puts built_form, form_result, r.class
-
+    uid = form_result["metadata"].try(:[], "rtv_uid")
+    unless uid.blank?
+      return uid == built_form[:metadata][:rtv_uid]
+    end
+    
     return true if form_result["first_name"]==built_form[:first_name] && form_result["last_name"]==built_form[:last_name] && form_result["date_of_birth"] == built_form[:date_of_birth]
 
     return false

@@ -20,6 +20,9 @@ class BlocksService
       voting_street_address_two: r.home_unit,
       voting_zipcode: r.home_zip_code,
       ethnicity: r.english_race,
+      metadata: {
+        rtv_uid: r.uid
+      }
     }
   end
   
@@ -27,6 +30,7 @@ class BlocksService
     registrant = V4::RegistrationService.create_pa_registrant(req.request_params[:rocky_request])    
     registrant.basic_character_replacement!
     registrant.state_ovr_data ||= {}
+    registrant.uid = "grommet-request-#{req.id}"
     return self.form_from_registrant(registrant)
   end
   
@@ -138,8 +142,8 @@ class BlocksService
     turf_id = RockyConf.blocks_configuration.partners&.[](partner_id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
     
     
-    location_id = RockyConf.blocks_configuration.default_location_id #shift.shift_location || 
-    staging_location_id = RockyConf.blocks_configuration.default_staging_location_id
+    location_id = shift.shift_location || RockyConf.blocks_configuration.default_location_id
+    staging_location_id = RockyConf.blocks_configuration.default_staging_location_id || shift.shift_location
     canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
     canvasser_id = canvasser["canvasser"]["id"]
     
