@@ -180,7 +180,7 @@ class Report < ActiveRecord::Base
   def concatenate
     # Get all the files 
     csvstr = ""
-    (0..(self.record_count / THRESHOLD)).each do |i|
+    (0..((self.record_count-1) / THRESHOLD)).each do |i|
       fn = file_name(i*THRESHOLD)
       csvstr += "#{self.read_report_file(fn)}"
     end

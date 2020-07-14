@@ -125,8 +125,10 @@ class CanvassingShift < ActiveRecord::Base
   def submit_to_blocks
     if !submitted_to_blocks? && is_ready_to_submit?
       service = BlocksService.new
-      forms = service.upload_canvassing_shift(self)
-      self.update_attributes(submitted_to_blocks: true)
+      created_shift = service.upload_canvassing_shift(self)
+      forms = created_shift[:forms]
+      shift = created_shift[:shift]
+      self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
       registrations_or_requests.each_with_index do |reg_req, i|
         form_result = get_form_from_reg_req(reg_req, forms, i)
         # Make sure form_result maps to reg_req
