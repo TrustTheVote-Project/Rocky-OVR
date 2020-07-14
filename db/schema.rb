@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200703200105) do
+ActiveRecord::Schema.define(version: 20200714133549) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -40,15 +40,42 @@ ActiveRecord::Schema.define(version: 20200703200105) do
     t.string   "email"
     t.string   "phone"
     t.date     "date_of_birth"
-    t.boolean  "javascript_disabled", default: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.boolean  "javascript_disabled",                default: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "mailing_address"
+    t.string   "mailing_city"
+    t.integer  "mailing_state_id"
+    t.string   "mailing_zip_code"
+    t.string   "state_id_number"
+    t.string   "party"
+    t.string   "phone_type"
+    t.boolean  "add_to_permanent_early_voting_list"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_opt_in_sms"
+    t.boolean  "has_mailing_address"
+    t.string   "votercheck"
+    t.string   "current_step"
+    t.string   "max_step"
   end
 
   add_index "abrs", ["email"], name: "index_abrs_on_email"
   add_index "abrs", ["home_state_id"], name: "index_abrs_on_home_state_id"
   add_index "abrs", ["partner_id"], name: "index_abrs_on_partner_id"
   add_index "abrs", ["uid"], name: "index_abrs_on_uid"
+
+  create_table "abrs_catalist_lookups", force: :cascade do |t|
+    t.integer  "abr_id"
+    t.integer  "catalist_lookup_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "abrs_catalist_lookups", ["abr_id", "catalist_lookup_id"], name: "abrs_catalist_join_index"
+  add_index "abrs_catalist_lookups", ["abr_id"], name: "index_abrs_catalist_lookups_on_abr_id"
+  add_index "abrs_catalist_lookups", ["catalist_lookup_id"], name: "index_abrs_catalist_lookups_on_catalist_lookup_id"
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -134,6 +161,7 @@ ActiveRecord::Schema.define(version: 20200703200105) do
     t.string   "canvasser_last_name"
     t.string   "canvasser_email"
     t.string   "shift_source"
+    t.string   "blocks_shift_id"
   end
 
   add_index "canvassing_shifts", ["canvasser_first_name", "canvasser_last_name"], name: "shift_canvasser_name_index"
@@ -143,6 +171,28 @@ ActiveRecord::Schema.define(version: 20200703200105) do
   add_index "canvassing_shifts", ["shift_external_id"], name: "index_canvassing_shifts_on_shift_external_id"
   add_index "canvassing_shifts", ["shift_location"], name: "index_canvassing_shifts_on_shift_location"
   add_index "canvassing_shifts", ["source_tracking_id"], name: "index_canvassing_shifts_on_source_tracking_id"
+
+  create_table "catalist_lookups", force: :cascade do |t|
+    t.string   "first"
+    t.string   "middle"
+    t.string   "last"
+    t.string   "suffix"
+    t.string   "gender"
+    t.date     "birthdate"
+    t.string   "address"
+    t.string   "city"
+    t.integer  "state_id"
+    t.string   "zip"
+    t.string   "county"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "match"
+  end
+
+  add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email"
+  add_index "catalist_lookups", ["state_id"], name: "index_catalist_lookups_on_state_id"
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",                    default: 0
@@ -284,6 +334,7 @@ ActiveRecord::Schema.define(version: 20200703200105) do
     t.string   "grommet_csv_file_name",              limit: 255
     t.string   "short_code"
     t.string   "terms_url"
+    t.boolean  "enabled_for_catalist_api"
   end
 
   add_index "partners", ["email"], name: "index_partners_on_email"
@@ -482,9 +533,9 @@ ActiveRecord::Schema.define(version: 20200703200105) do
   create_table "request_logs", force: :cascade do |t|
     t.string   "client_id"
     t.string   "registrant_id"
-    t.string   "request_uri"
+    t.text     "request_uri"
     t.text     "request_body"
-    t.string   "request_headers"
+    t.text     "request_headers"
     t.integer  "response_code"
     t.text     "response_body"
     t.text     "error_messages"
@@ -492,6 +543,7 @@ ActiveRecord::Schema.define(version: 20200703200105) do
     t.integer  "total_duration_ms"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "abr_id"
   end
 
   add_index "request_logs", ["client_id"], name: "index_request_logs_on_client_id"

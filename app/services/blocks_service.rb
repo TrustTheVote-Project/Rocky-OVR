@@ -60,7 +60,14 @@ class BlocksService
     
     shift = create_shift(shift_params)
     shift_id = shift["shift"]["id"]
-    upload_registrations(shift_id, forms)
+    form_responses = []
+    if forms.any?
+      form_responses = upload_registrations(shift_id, forms)
+    end
+    return {
+      shift: shift,
+      forms: form_responses
+    }
   end
   
   def upload_complete_shift_for_partner(partner, registrants, start_time, end_time, shift_type: "digital_voter_registration")
