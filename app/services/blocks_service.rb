@@ -21,7 +21,13 @@ class BlocksService
       voting_zipcode: r.home_zip_code,
       ethnicity: r.english_race,
       metadata: {
-        rtv_uid: r.uid
+        rtv_uid: r.uid,
+        sms_opt_in: r.partner_opt_in_sms?,
+        robo_call_opt_in: r.partner_opt_in_sms?,
+        email_opt_in: r.partner_opt_in_email?,
+        preferred_language: r.is_grommet? ? r.grommet_preferred_language : r.locale,
+        volunteer_with_partner: r.partner_volunteer?,
+        phone_type: r.phone_type
       }
     }
   end
@@ -133,7 +139,7 @@ class BlocksService
   
   private
   def build_blocks_forms_from_canvassing_shift(shift)
-    return shift.registrations_or_requests.map do |r|
+    return shift.registrants_or_requests.map do |r|
       if r.is_a?(Registrant) #&& r.complete? forms with PA errors won't be complete. but some incomplete regs might fail blocks validation?
         BlocksService.form_from_registrant(r)
       elsif r.is_a?(GrommetRequest)

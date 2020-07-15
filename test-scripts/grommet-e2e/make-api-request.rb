@@ -13,7 +13,7 @@ def api_json(first_name: "Test", partner_id: 1, address: "5501 Walnut St." )
    json =<<EOJ
   {
     "registration": {
-      "lang": "en",
+      "lang": "#{rand(2)==1 ? 'en' : 'es' }",
       "date_of_birth": "1979-06-16",      
       "email_address": "alex.mekelburg@osetfoundation.org",
       "first_name": "#{first_name}",

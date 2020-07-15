@@ -129,7 +129,7 @@ class CanvassingShift < ActiveRecord::Base
       forms = created_shift[:forms]
       shift = created_shift[:shift]
       self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
-      registrations_or_requests.each_with_index do |reg_req, i|
+      registrants_or_requests.each_with_index do |reg_req, i|
         form_result = get_form_from_reg_req(reg_req, forms, i)
         # Make sure form_result maps to reg_req
         if form_result #form_matches_request(form_result, reg_req)
@@ -175,7 +175,7 @@ class CanvassingShift < ActiveRecord::Base
     return false
   end
 
-  def registrations_or_requests
+  def registrants_or_requests
     @regs ||= nil
     if !@regs
       if self.is_web?

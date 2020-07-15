@@ -15,9 +15,9 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
       "opt_in_email": false,
       "opt_in_sms": false,
       "opt_in_volunteer": false,
-      "partner_opt_in_sms": true,
-      "partner_opt_in_email": true,
-      "partner_opt_in_volunteer": false,
+      "partner_opt_in_sms": false,
+      "partner_opt_in_email": #{rand(2) == 0 ? 'true' : 'false'},
+      "partner_opt_in_volunteer": true,
       "finish_with_state": true,
       "created_via_api": true,
       "shift_id": "#{session_id}",
@@ -222,7 +222,7 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
           "additional_info": [
             {
               "name": "preferred_language",
-              "string_value": "Spanish"
+              "string_value": "Italian"
             },
             {
               "name": "assistant_declaration",

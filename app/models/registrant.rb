@@ -1835,7 +1835,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def grommet_preferred_language
-    r.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
+    self.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
   rescue
     ""
   end

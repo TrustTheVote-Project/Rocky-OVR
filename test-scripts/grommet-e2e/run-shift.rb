@@ -1,4 +1,4 @@
-NUM_REGISTRATIONS = 10
+NUM_REGISTRATIONS = 5
 NUM_API_REGISTRATIONS = 0
 
 path = File.expand_path(__FILE__).split("/")
