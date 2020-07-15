@@ -43,9 +43,10 @@ class BlocksServiceBulkSubmission < ActiveRecord::Base
       registrants = []
       if partner
         self.partners_submitted[pid] = {}
-        started_registrants = partner.registrants.where(home_state: GeoState["PA"]).where("created_at >= ? AND created_at < ?", shift_start, shift_end)
+        started_registrants = partner.registrants.includes(:canvassing_shift_registrant).where(home_state: GeoState["PA"]).where("created_at >= ? AND created_at < ?", shift_start, shift_end)
         started_registrants.each do |r|
-          registrants << r if (r.status == 'complete' || r.submitted_via_state_api?)
+          # only include complete or submitted registrants that aren't part of another canvassing shift
+          registrants << r if (r.status == 'complete' || r.submitted_via_state_api?) && r.canvassing_shift_registrant.nil?
         end
         if registrants.any?
           self.partners_submitted[pid] = "Submitting #{registrants.count} Registrants"
