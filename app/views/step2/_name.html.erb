@@ -18,7 +18,7 @@
     </li>
     <li class="width_b registrant-form__first-name__line">
       <h3><%= form.label first_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, first_name_field,  field_options: {autocomplete: "given-name"}, required: true %>
+      <%= field_div form, first_name_field,  autocomplete: "given-name", required: true %>
       <span class="error"><%= form.object.errors[first_name_field].join("\n") %></span>
     </li>
     <li class="width_c registrant-form__middle-name__line">
@@ -28,7 +28,7 @@
     </li>
     <li class="width_b registrant-form__last-name__line">
       <h3><%= form.label last_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, last_name_field, field_options: {autocomplete: "family-name"}, required: true %>
+      <%= field_div form, last_name_field, autocomplete: "family-name", required: true %>
       <span class="error"><%= form.object.errors[last_name_field].join("\n") %></span>
     </li>
     <li class="width_d registrant-form__name-suffix__line">
