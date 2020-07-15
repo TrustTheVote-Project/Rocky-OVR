@@ -1,7 +1,7 @@
 class BlocksService
   
   def self.form_from_registrant(r)
-    {
+    form = {
       date_of_birth: r.date_of_birth&.to_s("%Y-%m-%d"),
       eligible_voting_age: true, #r.ineligible_age checks for is==18 *now* not by deadline?
       email_address: r.email_address,
@@ -30,6 +30,11 @@ class BlocksService
         phone_type: r.phone_type
       }
     }
+    begin
+      form[:metadata][:original_blocks_shift_id] = r.canvassing_shift.blocks_shift_id if r.canvassing_shift
+    rescue
+    end
+    return form
   end
   
   def self.form_from_grommet_request(req)
