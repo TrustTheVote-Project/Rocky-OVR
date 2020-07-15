@@ -195,6 +195,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     'VA'
   end
   
+  def registration_county
+    registration_locality_name
+  end
+  
   def steps
     %w(step_1 step_2 step_3 step_4 complete)
   end

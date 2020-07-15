@@ -11,7 +11,7 @@ class BlocksService
       name_suffix: r.english_name_suffix,
       gender: r.gender,
       phone_number: r.phone,
-      signature: r.is_grommet? ? r.api_submitted_with_signature : !r.existing_state_registrant&.voter_signature_image.blank?,
+      signature: r.is_grommet? ? r.api_submitted_with_signature : !r.existing_state_registrant&.voter_signature_image&.blank?,
       us_citizen: !!r.us_citizen,
       county: r.is_grommet? ? r.home_county : r.existing_state_registrant&.registration_county,
       voting_city: r.home_city,
