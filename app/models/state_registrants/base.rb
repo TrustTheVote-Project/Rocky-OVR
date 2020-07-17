@@ -28,6 +28,17 @@ class StateRegistrants::Base < ActiveRecord::Base
     sr
   end
   
+  def voter_signature_image
+    read_attribute(:voter_signature_image)
+  rescue
+    nil
+  end
+  
+  def registration_county
+    read_attribute(:registration_county)
+  end
+  
+  
   def pdf_assistant_info
     nil
   end

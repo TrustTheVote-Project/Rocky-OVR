@@ -1,6 +1,29 @@
 ---
 en:
   txt:
+    abr:
+      step_1_header: Step 1 Header
+      step_1_instructions: <p>Step 1 Instructions</p>
+      step_2_header: Step 2 Header
+      step_2_instructions: <p>Step 2 Instructions</p>
+      step_3_header: Step 3 Header
+      step_3_instructions: <p>Step 3 Instructions</p>
+      skip_state_online_abr:  "I would like to continue with creating a paper form."
+      preparing_header: We're generating your file
+      preparing_instructions: Once the file is ready, you can download it.
+      download_header: Download Page Header
+      download_instructions: <p>Download Instructions</p>
+      finish_header: Thank you for request your absentee ballot with the state of %{state_name}
+      finish_instructions: <p>Finish Instructions</p>
+      match:
+        confirm: It looks like you are registered to vote. Please confirm that this is you.
+        confirm_yes: <p>Yes, this is me. I want to continue requesting an absentee ballot.</p>
+        confirm_no:  <p>No, this is not me.</p><ul><li>I want to <a href="%{registration_url}">start a new registration</a>.</li><li>I want to change my information and <a href="%{back_url}">try again</a>.</li></ul>
+
+        address: "Address:"
+      not_registered_header: Voter Registration Not Found
+      not_registered_instructions: <p>It looks like you don't have an active voter registration record in %{state_name}.</p>
+      not_registered_link: <p>Would you like to <a href="%{url}">registration to vote</a>?</p>
     register_to_vote: Register To Vote
     register_to_vote_in: Register in %{state_abbrev}
     request_absentee_ballot_in: Request Absentee Ballot In %{state_abbrev}

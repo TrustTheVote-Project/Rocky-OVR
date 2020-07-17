@@ -108,7 +108,7 @@ module V4
       #   #raise ValidationError.new("attributes", error_message)
       # end
       
-      shift = CanvassingShift.find_or_create_by(shift_external_id: data[:shift_id])
+      shift = CanvassingShift.find_or_create_by(shift_external_id: data[:shift_id], shift_source: CanvassingShift::SOURCE_GROMMET)
       shift.set_attributes_from_data!(data)
     end
 
@@ -126,7 +126,7 @@ module V4
       # end
       
       # Allow either clock-in or clock-out to happen first
-      shift = CanvassingShift.find_or_create_by(shift_external_id: data[:shift_id])
+      shift = CanvassingShift.find_or_create_by(shift_external_id: data[:shift_id], shift_source: CanvassingShift::SOURCE_GROMMET)
       shift.set_attributes_from_data!(data)
     end
     

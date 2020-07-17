@@ -1,3 +1,7 @@
-%h1= "Thanks for finishing your absentee ballot request with #{@abr.home_state_name}"
+%h2= t('txt.abr.finish_header', state_name: @abr.home_state_name)
 
-%p TBD Share links/urls?
+= t('txt.abr.finish_instructions').html_safe
+
+= t("states.custom.#{@abr.home_state_abbrev}.finish_instructions", default: "").html_safe
+
+%p TBD Share links/urls? iFrame?

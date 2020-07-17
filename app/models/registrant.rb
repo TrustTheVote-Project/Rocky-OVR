@@ -218,6 +218,7 @@ class Registrant < ActiveRecord::Base
     "Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
     "Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
     "Shift ID", #canvassing_shift_registrant.external_id
+    "Blocks Shift ID", #canvassing_shift.blocks_shift_id
   ].flatten
   
   GROMMET_CSV_HEADER = [
@@ -1608,6 +1609,7 @@ class Registrant < ActiveRecord::Base
       self.is_grommet? ? "Tablet" : (building_via_api_call? ? "Rocky API" : "Web"), #"Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
       finish_with_state? ? "Redirected to SOS" : (submitted_via_state_api? ? "Submitted Via State API" : "Paper"), #"Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
       self.canvassing_shift_registrant&.shift_external_id, #"Shift ID"
+      self.canvassing_shift&.blocks_shift_id, #BLocks Shift ID
     ].flatten
   end
   
@@ -1766,7 +1768,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def grommet_preferred_language
-    r.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
+    self.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
   rescue
     ""
   end

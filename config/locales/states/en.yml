@@ -106,6 +106,10 @@ en:
         registration_complete_less_than_18: <p>You will be eligible to vote as soon as you turn 18 years old.</p> 
         registration_complete_dialog_text: ""
         valid_street_types: "Valid Street types include: %{types}"
+      or:
+        abr:
+          header: Absentee Requests In Oregon
+          instructions: <p>There is no absentee ballot request in Oregon. All registered voters will receive a vote-by-mail ballot.</p>
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.

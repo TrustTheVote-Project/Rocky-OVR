@@ -125,9 +125,11 @@ class CanvassingShift < ActiveRecord::Base
   def submit_to_blocks
     if !submitted_to_blocks? && is_ready_to_submit?
       service = BlocksService.new
-      forms = service.upload_canvassing_shift(self)
-      self.update_attributes(submitted_to_blocks: true)
-      registrations_or_requests.each_with_index do |reg_req, i|
+      created_shift = service.upload_canvassing_shift(self)
+      forms = created_shift[:forms]
+      shift = created_shift[:shift]
+      self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
+      registrants_or_requests.each_with_index do |reg_req, i|
         form_result = get_form_from_reg_req(reg_req, forms, i)
         # Make sure form_result maps to reg_req
         if form_result #form_matches_request(form_result, reg_req)
@@ -163,14 +165,17 @@ class CanvassingShift < ActiveRecord::Base
       BlocksService.form_from_grommet_request(r)
     end
     
-    puts built_form, form_result, r.class
-
+    uid = form_result["metadata"].try(:[], "rtv_uid")
+    unless uid.blank?
+      return uid == built_form[:metadata][:rtv_uid]
+    end
+    
     return true if form_result["first_name"]==built_form[:first_name] && form_result["last_name"]==built_form[:last_name] && form_result["date_of_birth"] == built_form[:date_of_birth]
 
     return false
   end
 
-  def registrations_or_requests
+  def registrants_or_requests
     @regs ||= nil
     if !@regs
       if self.is_web?

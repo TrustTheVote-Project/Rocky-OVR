@@ -1,6 +1,7 @@
 class Abr < ActiveRecord::Base
   include RegistrantMethods
   include RegistrantAbrMethods
+  include AbrPdfGeneration
   
   has_many :abrs_catalist_lookups
   has_many :catalist_lookups, through: :abrs_catalist_lookups
@@ -67,6 +68,21 @@ class Abr < ActiveRecord::Base
     true
   end
   
+  def complete?
+    (current_step || "0").to_i >= 4
+  end
+  
+  def download_pdf
+    self.pdf_downloaded = true
+    self.pdf_downloaded_at = DateTime.now
+    self.save
+    return pdf_url
+  end
+  
+  
+  
+  
+  
   def zip=(zip)
     self[:zip] = zip
     if zip && !zip.blank?
@@ -132,6 +148,16 @@ class Abr < ActiveRecord::Base
     registrant.short_form = true
     registrant.status = :step_1
     registrant
+  end
+  
+  def self.find_by_param(param)
+    abr = find_by_uid(param)
+    raise AbandonedRecord.new(abr) if abr && abr.abandoned?
+    abr
+  end
+
+  def self.find_by_param!(param)
+    find_by_param(param) || begin raise ActiveRecord::RecordNotFound end
   end
   
 end

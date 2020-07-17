@@ -1,16 +1,31 @@
-%h1= t('txt.abr.step_3_header')
+:javascript
+  $(document).ready(function() {
+    var section = $(".step_3_form_fields");
+    $("#confirm_match").click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      section.show();
+    })
+    
+  })
+  
+%h2= t('txt.abr.step_3_header')
+
+= t('txt.abr.step_3_instructions').html_safe
 
 
 = form_for(@abr) do |form|
   = render partial: 'step', locals: { form: form }
 
   - if @abr.should_check_registration? && @abr.last_check.is_match?
-    %p It looks like you're registered to vote. Please confirm that this is you.
+    %p= t('txt.abr.match.confirm')
     = render partial: 'catalist_lookup', locals: { catalist_lookup: @abr.last_check}
-    %p [] Yes, this is me. I want to continue requesting an absentee ballot.
-    %p [] No, this is not me. I want to start a new registration[link]. I want to try again[link] (?)
+    .confirm#confirm_match
+      = t('txt.abr.match.confirm_yes').html_safe      
+    .reject
+      = t('txt.abr.match.confirm_no', registration_url: registration_abr_path(@abr), back_url: step_2_abr_path(@abr)).html_safe
   
-  .step_3_form_fields
+  .step_3_form_fields{style: @abr.should_check_registration? && @abr.last_check.is_match? ? "display: none" : ''}
     = render partial: "state_id_number", locals: {form: form}
 
     = render partial: "party", locals: {form: form}

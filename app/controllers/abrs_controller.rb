@@ -83,19 +83,32 @@ class AbrsController < ApplicationController
     end
   end
   
-  def download
+  def preparing
     @current_step = 4
-    find_abr
+    find_abr(:preparing)
+    @attempt = (params[:cno] || 1).to_i
+    @refresh_location = @attempt >= 10 ? finish_abr_path(@abr) : download_abr_path(@abr, :cno=>@attempt+1)
+  end
+  
+  def downlaod
+    find_abr(:download)    
+    if !@abr.pdf_ready?
+      redirect_to finish_abr_path(@abr, not_ready: true)
+    else
+      @pdf_url = @abr.download_pdf
+    end    
   end
 
   def finish
     @current_step = 5 #final
-    find_abr
+    find_abr(:finish)
   end
   
   
   def not_registered
-    find_abr
+    #should we prevent a user from going back?
+    #@current_step = 5 #final
+    find_abr(:not_registered)
   end
   
   def registration
@@ -116,9 +129,10 @@ class AbrsController < ApplicationController
     :has_mailing_address)
   end
   
-  def find_abr
-    @abr = Abr.find_by_uid(params[:id])
+  def find_abr(special_case = nil)
+    @abr = Abr.find_by_param!(params[:id])
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
+    raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil?
     @abr.update_attributes(current_step: @current_step) if @current_step
   end
   
@@ -152,7 +166,8 @@ class AbrsController < ApplicationController
   end
   
   def step_3_view(abr)
-    :step_3
+    potential_view = "step_3_#{abr.home_state_abbrev.to_s.downcase}"
+    File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml")) ? potential_view : "step_3"
   end
   
 end
