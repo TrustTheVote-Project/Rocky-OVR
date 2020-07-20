@@ -32,7 +32,6 @@ body {
   background-size: auto auto;
   padding-bottom: 60px;
 
-  
   #sticky_footer {
     background-image: image-url('reg/container-repeater.gif');
     background-origin: padding-box;
@@ -831,7 +830,29 @@ body {
       }
     }
   }
-
+  &.abr {
+    line-height: 1.4em;
+    p {
+      font-size: 14px;
+      margin: 0.5em 0;
+    }
+    font-size: 16px;
+    ul {
+      color: #666;
+      li {
+        margin: 0.25em 0;
+      }
+    }
+    .confirm {
+      color: #666;
+      margin: 2em 0;
+      cursor: pointer;
+    }
+    .reject {
+      color: #666;
+      margin: 2em 0;
+    }
+  }
   
   
 }

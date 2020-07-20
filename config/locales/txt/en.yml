@@ -17,7 +17,7 @@ en:
       finish_instructions: <p>Finish Instructions</p>
       match:
         confirm: It looks like you are registered to vote. Please confirm that this is you.
-        confirm_yes: <p>Yes, this is me. I want to continue requesting an absentee ballot.</p>
+        confirm_yes: <p><a>Yes, this is me. I want to continue requesting an absentee ballot.</a></p>
         confirm_no:  <p>No, this is not me.</p><ul><li>I want to <a href="%{registration_url}">start a new registration</a>.</li><li>I want to change my information and <a href="%{back_url}">try again</a>.</li></ul>
 
         address: "Address:"
