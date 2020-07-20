@@ -87,10 +87,10 @@ class AbrsController < ApplicationController
     @current_step = 4
     find_abr(:preparing)
     @attempt = (params[:cno] || 1).to_i
-    @refresh_location = @attempt >= 10 ? finish_abr_path(@abr) : download_abr_path(@abr, :cno=>@attempt+1)
+    @refresh_location = @attempt >= 10 ? finish_abr_path(@abr) : preparing_abr_path(@abr, :cno=>@attempt+1)
   end
   
-  def downlaod
+  def download
     find_abr(:download)    
     if !@abr.pdf_ready?
       redirect_to finish_abr_path(@abr, not_ready: true)
@@ -156,7 +156,7 @@ class AbrsController < ApplicationController
         redirect_to step_3_abr_path(@abr)        
       end
     elsif @current_step == 3
-      redirect_to download_abr_path(@abr)
+      redirect_to preparing_abr_path(@abr)
     end
   end
   

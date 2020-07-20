@@ -13,7 +13,7 @@ en:
       preparing_instructions: Once the file is ready, you can download it.
       download_header: Download Page Header
       download_instructions: <p>Download Instructions</p>
-      finish_header: Thank you for request your absentee ballot with the state of %{state_name}
+      finish_header: Thank you for creating your absentee ballot for the state of %{state_name}
       finish_instructions: <p>Finish Instructions</p>
       match:
         confirm: It looks like you are registered to vote. Please confirm that this is you.
@@ -40,6 +40,7 @@ en:
       back: ! '&lt; Previous Step'
       download: Print your registration form now
       download_assistance: Request assistance printing your form
+      download_abr: Print your Absentee Request now
       ineligible_try_again: Return
       keep_going: Keep Going
       remind_me_later: Remind Me Later

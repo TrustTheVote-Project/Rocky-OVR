@@ -4,7 +4,9 @@
   </h2>
   <%= t('txt.abr.download_instructions').html_safe %>
   <%= t("states.custom.#{@abr.home_state_abbrev}.download_instructions", default: "").html_safe %>
-  <p>TBD PDF LINK</p>
+  <p class="centered" onclick="window.open('<%=download_abr_path(@abr)%>','_blank'); window.location='<%= finish_abr_path(@abr) %>';"><%= rollover_image_link(:print, I18n.t('txt.button.download_abr'), download_abr_path(@abr),
+                            :target => "_blank") %></p>
+  
 <%- else %>
   <% content_for :head do -%>
     <meta http-equiv="refresh" content="3; url=<%= @refresh_location %>" />

@@ -32,6 +32,7 @@ Rocky::Application.routes.draw do
       get "step_3"
       get "not_registered"
       get "registration"
+      get "preparing"
       get "download"
       get "finish"
       get "state_online"
