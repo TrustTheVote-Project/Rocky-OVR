@@ -1,4 +1,4 @@
-- if @registrant && (@canvassing_shift || @registrant.canvassing_shift)
+- if @registrant && @canvassing_shift
   - if (@registrant.is_a?(Registrant) ? @registrant.complete? : @registrant.registrant.complete?)
     #canvasser-notice.canvasser.canvasser--complete-registrant
       = "This registration was completed with canvasser #{(@canvassing_shift || @registrant.canvassing_shift).canvasser_name}."

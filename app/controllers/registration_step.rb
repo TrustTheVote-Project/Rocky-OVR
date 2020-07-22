@@ -193,9 +193,9 @@ class RegistrationStep < ApplicationController
     @shift_id = params[:shift_id]
     @canvassing_shift ||= nil
     if !@shift_id.blank?
-      @canvassing_shift = CanvassingShift.find_by_shift_external_id(@shift_id)
-      if @canvassing_shift
-        @partner_id = @canvassing_shift.partner_id || @partner_id
+      canvassing_shift = CanvassingShift.find_by_shift_external_id(@shift_id)
+      if canvassing_shift
+        @partner_id = canvassing_shift.partner_id || @partner_id
         @partner= Partner.find_by_id(@partner_id) || @partner
       end
     end

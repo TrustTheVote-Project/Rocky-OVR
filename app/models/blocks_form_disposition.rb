@@ -56,14 +56,14 @@ class BlocksFormDisposition < ActiveRecord::Base
   def request_status
     
     status = base_status
-    
+    pa = GeoState["PA"]
     if registrant
       if registrant.is_grommet?
         return grommet_request_status
       else
         status[:has_validation_errors] = false #By definition all submittable registrant records are valid
         sr = registrant.existing_state_registrant
-        if sr
+        if sr && registrant.home_state_id == pa.id
           if sr.pa_submission_complete
             status[:pa_submission_status] = "Submitted"
           elsif sr.penndot_retries && sr.penndot_retries > 0
