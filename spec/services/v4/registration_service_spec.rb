@@ -505,7 +505,7 @@ describe V4::RegistrationService do
       end  
       it "creates a new CanvassingShift with the given data" do
         mock_shift = double(CanvassingShift)
-        expect(CanvassingShift).to receive(:find_or_create_by).with(shift_external_id: data["shift_id"]).and_return(mock_shift)
+        expect(CanvassingShift).to receive(:find_or_create_by).with(shift_external_id: data["shift_id"], shift_source: "GROMMET").and_return(mock_shift)
         expect(mock_shift).to receive(:set_attributes_from_data!).with(data)
         V4::RegistrationService.track_clock_in_event(data)
       end
@@ -554,7 +554,7 @@ describe V4::RegistrationService do
     end  
     it "creates a new tracking event via open data" do
       mock_shift = double(CanvassingShift)
-      expect(CanvassingShift).to receive(:find_or_create_by).with(shift_external_id: data["shift_id"]).and_return(mock_shift)
+      expect(CanvassingShift).to receive(:find_or_create_by).with(shift_external_id: data["shift_id"], shift_source: "GROMMET").and_return(mock_shift)
       expect(mock_shift).to receive(:set_attributes_from_data!).with(data)
       V4::RegistrationService.track_clock_out_event(data)
     end

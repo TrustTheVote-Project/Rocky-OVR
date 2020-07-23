@@ -35,6 +35,7 @@ RSpec.describe CanvassingShift, type: :model do
     before(:each) do
       allow(RockyConf.blocks_configuration).to receive(:default_location_id).and_return("default-id")
       allow(BlocksService).to receive(:new).and_return(b)
+      allow(p).to receive(:id).and_return(123456)
       allow(b).to receive(:get_locations).with(p).and_return({
         "locations"=> [
           {"name"=>"Location 1",
@@ -237,7 +238,7 @@ RSpec.describe CanvassingShift, type: :model do
     let(:service) { double("Service") }
     before(:each) do
       allow(BlocksService).to receive(:new).and_return(service)
-      allow(service).to receive(:upload_canvassing_shift)
+      allow(service).to receive(:upload_canvassing_shift).and_return({forms: [], shift: {"shift"=>{"id"=>"id"}}})
       c.submitted_to_blocks = false
     end
     it "checks already submitted and ready state" do
@@ -268,7 +269,7 @@ RSpec.describe CanvassingShift, type: :model do
     end
   end
   
-  describe "registrations_or_requests" do
+  describe "registrants_or_requests" do
     it "returns a consolidated lists of registrations or un-realized grommet requests" do
       shift_id = "shift-id"
       c = CanvassingShift.create(shift_external_id: shift_id, shift_source: CanvassingShift::SOURCE_GROMMET)
@@ -287,7 +288,7 @@ RSpec.describe CanvassingShift, type: :model do
       end
       expect(c.registrants.count).to eq(4)
       expect(c.grommet_requests.count).to eq(5)
-      expect(c.registrations_or_requests).to eq([
+      expect(c.registrants_or_requests).to eq([
         c.registrants,
         c.grommet_requests.last(1)
       ].flatten)
