@@ -24,6 +24,8 @@ module AbrPdfGeneration
     if @pdf_writer.nil?
       @pdf_writer = PdfAbrWriter.new
       @pdf_writer.assign_attributes(self.to_pdf_hash)
+      abbrev = home_state_abbrev.downcase
+      @pdf_writer.pdf_template_path = Rails.root.join("data/abr_pdfs/#{abbrev}/#{abbrev}.pdf")
     end
     @pdf_writer
   end
@@ -42,12 +44,11 @@ module AbrPdfGeneration
   end
   
   def to_pdf_hash
-    {
+    to_pdf_values.merge(    {
       :id =>  id,
       :uid  =>  uid,
       :locale => locale,
-      
       :created_at => created_at.to_param
-    }
+    })
   end
 end

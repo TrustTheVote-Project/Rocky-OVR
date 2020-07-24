@@ -14,7 +14,6 @@ module AbrStateMethods
       end
     end
     def add_pdf_field(name, config_opts)
-      puts name, config_opts
       opts = config_opts.dup
       method_name = opts[:method]
       if method_name.blank?
