@@ -1,10 +1,20 @@
 <fieldset>
   <legend><span><%= I18n.t('txt.registration.home_address') %></span><%= tooltip_tag :home_address %></legend>
   <ul class="stacked">
-    <li class="width_a registrant-form__home-address__line">
-      <h3><%= form.label :address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :address, required: true %>
-      <span class="error"><%= form.object.errors[:address].join("\n") %></span>
+    <li class="width_a registrant-form__home-address-number__line">
+      <h3><%= form.label :street_number %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :street_number, required: true %>
+      <span class="error"><%= form.object.errors[:street_number].join("\n") %></span>
+    </li>
+    <li class="width_a registrant-form__home-address-name__line">
+      <h3><%= form.label :street_name %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :street_name, required: true %>
+      <span class="error"><%= form.object.errors[:street_name].join("\n") %></span>
+    </li>
+    <li class="width_a registrant-form__home-unit__line">
+      <h3><%= form.label :unit %></span></h3>
+      <%= field_div form, :unit, required: false %>
+      <span class="error"><%= form.object.errors[:unit].join("\n") %></span>
     </li>
   </ul>
   <ul class="stacked">

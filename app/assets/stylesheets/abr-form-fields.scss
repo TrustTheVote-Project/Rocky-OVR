@@ -1,0 +1,48 @@
+.ak-abr-form-fields {
+  li {
+    &.line {
+      margin: .25em 0;      
+    }
+    &.former_name {
+      width: 50%;
+      margin-right: 2%;
+    }
+    &.voter_no {
+      width: 48%;
+    }
+    &.perm_mailing_1 {
+      margin-top: 2em;
+    }    
+    &.ssn_or_last_4 {
+      margin-top: 2em;
+      width: 50%;
+      margin-right: 2%;
+    }
+    &.adl {
+      margin-top: 2em;
+      width: 48%;
+    }
+    &.ballot_selection {
+      margin-top: 1em;
+      label {
+        display: block;
+      }
+    }
+    &.attest_remote {
+      h3 {
+        height: auto;
+      }
+    }
+    &.ballot_mailing_address_2, &.ballot_mailing_address_3 {
+      h3 { display: none }
+    }
+  }
+  margin-bottom: 2em;
+  .radio input {
+    display: inline-block;
+    width: auto;
+    height: 1em;
+    margin-right: 5px;
+    margin-left: 20px;
+  }
+}

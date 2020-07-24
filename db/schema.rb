@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200724152137) do
+ActiveRecord::Schema.define(version: 20200724190719) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -29,8 +29,6 @@ ActiveRecord::Schema.define(version: 20200724152137) do
     t.integer  "abr_id"
     t.string   "attribute_name"
     t.string   "string_value"
-    t.boolean  "boolean_value"
-    t.datetime "datetime_value"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -48,26 +46,17 @@ ActiveRecord::Schema.define(version: 20200724152137) do
     t.string   "city"
     t.integer  "home_state_id"
     t.string   "zip"
-    t.string   "gender"
     t.string   "email"
     t.string   "phone"
     t.date     "date_of_birth"
-    t.boolean  "javascript_disabled",                default: false
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.string   "mailing_address"
-    t.string   "mailing_city"
-    t.integer  "mailing_state_id"
-    t.string   "mailing_zip_code"
-    t.string   "state_id_number"
-    t.string   "party"
+    t.boolean  "javascript_disabled",  default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "phone_type"
-    t.boolean  "add_to_permanent_early_voting_list"
     t.boolean  "opt_in_email"
     t.boolean  "opt_in_sms"
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_opt_in_sms"
-    t.boolean  "has_mailing_address"
     t.string   "votercheck"
     t.string   "current_step"
     t.string   "max_step"

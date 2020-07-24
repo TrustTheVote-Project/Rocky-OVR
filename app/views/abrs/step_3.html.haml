@@ -27,11 +27,7 @@
       = t('txt.abr.match.confirm_no', registration_url: registration_abr_path(@abr), back_url: step_2_abr_path(@abr)).html_safe
   
   .step_3_form_fields{style: @abr.should_check_registration? && @abr.last_check.is_match? ? "display: none" : ''}
-    = render partial: "state_id_number", locals: {form: form}
-
-    = render partial: "party", locals: {form: form}
-  
-    = render partial: "mailing_address", locals: {form: form}
+    = render partial: "state_fields", locals: {form: form}
   
     %ul.flat
       = render :partial=> "registrants/phone", :locals=>{:form=>form}

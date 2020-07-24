@@ -1,0 +1,21 @@
+%fieldset{class: "#{@abr.home_state_abbrev.downcase}-abr-form-fields"}
+  %ul.flat
+    - @abr.form_fields.each do |field_name, opts|
+      %li.line{class: "#{opts[:method]}"}
+        - field_label = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}", default: opts[:label] || field_name).html_safe
+        - if opts[:type] == :checkbox
+          %ul.checkbox
+            %li.spacer &nbsp;
+            %li{class: "#{opts[:method]}__line-item"}
+              %h3
+                = form.check_box opts[:method]
+                = form.label opts[:method], field_label 
+        - elsif opts[:type] == :string
+          %h3= form.label opts[:method], field_label
+          = field_div form, opts[:method]
+        - elsif opts[:type] == :radio
+          %ul.stacked.radio
+            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}_options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
+            = field_li(form, opts[:method], {skip_tooltip: true, required: false, radio_options: radio_options})
+
+        

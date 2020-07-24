@@ -488,6 +488,15 @@ body {
           }
         }
         
+        &.registrant-form__home-address-number__line {
+          width: 23%;
+          margin-right: 2%;
+        }
+        &.registrant-form__home-address-name__line {
+          width: 50%;
+          margin-right: 2%;
+        }
+        
         &.registrant-form__home-address__line, 
         &.registrant-form__mailing-address__line, 
         &.registrant-form__prev-address__line {
@@ -852,6 +861,7 @@ body {
       color: #666;
       margin: 2em 0;
     }
+    @import 'abr-form-fields'
   }
   
   
