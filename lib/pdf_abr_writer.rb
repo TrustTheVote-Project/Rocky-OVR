@@ -3,22 +3,26 @@ class PdfAbrWriter
   include ActiveModel::MassAssignmentSecurity
   include ActiveModel::Validations
 
+  include Lolrus
+
   attr_accessor :pdf_values
   attr_accessor :pdf_template_path
   
   attr_accessor :id, :uid, :locale, :created_at        
   
   def assign_attributes(values, options = {})
-    pdf_values = values
+    self.pdf_values = values
     sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
       send("#{k}=", v) if self.respond_to?("#{k}=")      
     end
   end
   def generate_pdf(force_write = false, for_printer = false)
-    puts pdf_template_path.to_s
-    pdf = FillablePDF.new pdf_template_path
+    pdf = FillablePDF.new(pdf_template_path.to_s)
+    fields = pdf.fields.keys
     pdf_values.each do |k, v|
-      pdf.set_field(k, v)
+      if fields.include?(k.to_sym)
+        pdf.set_field(k.to_sym, v.to_s)
+      end
     end
 
     if force_write || !pdf_exists?
@@ -29,11 +33,11 @@ class PdfAbrWriter
       if for_printer
         #uploaded = self.upload_pdf_to_printer(path, url_path)
       else
-        uploaded = self.upload_pdf_to_s3(pdf_file_path, pdf_path)
+        uploaded = self.class.upload_pdf_to_s3(pdf_file_path, pdf_path)
       end
       # If it got there, delete the tmp file
       if uploaded
-        File.delete(path)
+        File.delete(pdf_file_path)
       else
         raise "File #{path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
         # Handle failed upload to S3 - it's probably raising an error
@@ -106,6 +110,7 @@ class PdfAbrWriter
       :public => true
     ) 
   rescue Exception=>e
+    raise e
     return false   
   end
   
