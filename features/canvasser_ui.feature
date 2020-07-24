@@ -79,13 +79,13 @@ Feature: Canvasser UI
       And I select "Default Location" from "Location"
       And I click "Start Shift"
       Then I should be on the shift status page
-      And I should see "0 registration(s) marked as complete"
-      And I should see "0 registration(s) redirected to Secretary of State's website"
-      And I should see "0 registration(s) printed out to be mailed"
-      And I should see "0 registration(s) submitted to Secretary of State's API"
-      And I should see "0 registration(s) marked as abandoned"
-      And I should see "0 registration(s) in progress"
-      And I should see a link for "Start New Registration"
+      And I should see "0 registrations marked as complete"
+      And I should see "0 registrations redirected to Secretary of State's website"
+      And I should see "0 registrations printed out to be mailed"
+      And I should see "0 registrations submitted to Secretary of State's API"
+      And I should see "0 registrations marked as abandoned"
+      And I should see "0 registrations in progress"
+      And I should see a link for "Start Registration"
       And I should see a URL for starting a registartion for that shift
       And I should see a button for "End Shift"
 
@@ -93,8 +93,8 @@ Feature: Canvasser UI
     Scenario: Register via Shift
       Given that I started a new shift for partner="123"
       When I go to the shift status page
-      Then I should see "0 registration(s) marked as complete"
-      And I follow "Start New Registration"
+      Then I should see "0 registrations marked as complete"
+      And I follow "Start Registration"
       And show the page
       Then I should be on a new registration page for partner="123"
       And I should see the canvassing notice bar
@@ -129,10 +129,10 @@ Feature: Canvasser UI
     Scenario: Canvassing status
       Given that I started a new shift for partner="123"
       And I complete "3" registrations
-      And I start "2" abandoned
+      And I start "1" abandoned
       When I go to the shift status page
-      Then I should see "3 registration(s) marked as complete"
-      And I should see "2 registration(s) in progress"
+      Then I should see "3 registrations marked as complete"
+      And I should see "1 registration in progress"
 
     @passing
     Scenario: End Shift
@@ -154,7 +154,7 @@ Feature: Canvasser UI
         | 123        | web-123           |
       When I go to the new registration page for that shift
       Then I should be on a new registration page for partner="123"
-      And I should see the canvassing notice bar
+      And I should not see the canvassing notice bar
     
     @passing
     Scenario: Complete shift registration via paper
@@ -166,5 +166,5 @@ Feature: Canvasser UI
         | 123        | web-123           |
       When I complete a PA paper registration for that shift
       And I go to the download page
-      Then I should see the canvassing notice bar
+      Then I should not see the canvassing notice bar
       And I should not see the canvassing notice bar with a link to the shift status page
