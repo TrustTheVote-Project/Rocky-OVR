@@ -2,9 +2,15 @@ class Abr < ActiveRecord::Base
   include RegistrantMethods
   include RegistrantAbrMethods
   include AbrPdfGeneration
+  include AbrPdfFields
+  
+  include AbrStateMethods
+  after_initialize :add_state_attributes
   
   has_many :abrs_catalist_lookups
   has_many :catalist_lookups, through: :abrs_catalist_lookups
+  
+  has_many :abr_state_values, autosave: true
   
   belongs_to :home_state,    :class_name => "GeoState"
   belongs_to :mailing_state, :class_name => "GeoState"
@@ -12,7 +18,8 @@ class Abr < ActiveRecord::Base
   
   validates_presence_of :first_name, if: :advancing_to_step_3?
   validates_presence_of :last_name, if: :advancing_to_step_3?
-  validates_presence_of :address, if: :advancing_to_step_3?
+  validates_presence_of :street_number, if: :advancing_to_step_3?
+  validates_presence_of :street_name, if: :advancing_to_step_3?
   validates_presence_of :city, if: :advancing_to_step_3?
   validates_presence_of :date_of_birth, if: :advancing_to_step_3?
   validates_presence_of :zip
