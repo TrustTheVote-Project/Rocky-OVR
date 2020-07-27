@@ -186,14 +186,14 @@ module AbrStateMethods::AK
   end
   def ballot_selection=(value)
     if value.to_s.downcase == "dem"
-      self.ad_ballot == "On"
-      self.rep_ballot == "Off"
-    elsif value.to_s.downcase == "reo"
-      self.ad_ballot == "Off"
-      self.rep_ballot == "On"
+      self.ad_ballot = "On"
+      self.rep_ballot = "Off"
+    elsif value.to_s.downcase == "rep"
+      self.ad_ballot = "Off"
+      self.rep_ballot = "On"
     else
-      self.ad_ballot == "Off"
-      self.rep_ballot == "Off"      
+      self.ad_ballot = "Off"
+      self.rep_ballot = "Off"      
     end
   end
   

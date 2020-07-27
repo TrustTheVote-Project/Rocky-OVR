@@ -155,6 +155,7 @@ class AbrsController < ApplicationController
         redirect_to step_3_abr_path(@abr)        
       end
     elsif @current_step == 3
+      @abr.complete_registration
       redirect_to preparing_abr_path(@abr)
     end
   end

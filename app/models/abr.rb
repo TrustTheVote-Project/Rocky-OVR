@@ -1,7 +1,7 @@
 class Abr < ActiveRecord::Base
   include RegistrantMethods
   include RegistrantAbrMethods
-  include AbrPdfGeneration
+  include AbrPdfMethods
   include AbrPdfFields
   
   include AbrStateMethods
@@ -36,6 +36,12 @@ class Abr < ActiveRecord::Base
     advancing_to_step?(3)
   end
   
+  def redact_sensitive_data
+    # TODO: This will be state-specific!!
+    #self.state_id_number = nil
+  end
+  
+  
   before_create :generate_uid
   
   def set_max_step(step)
@@ -62,6 +68,8 @@ class Abr < ActiveRecord::Base
     'en'
   end
   
+  
+  
   def use_state_flow?
     #TBD
     false
@@ -79,6 +87,13 @@ class Abr < ActiveRecord::Base
     (current_step || "0").to_i >= 4
   end
   
+  def complete_registration
+    self.current_step = 4
+    saved = self.save!
+    queue_pdf
+    return saved
+  end
+  
   def download_pdf
     self.pdf_downloaded = true
     self.pdf_downloaded_at = DateTime.now
@@ -86,7 +101,9 @@ class Abr < ActiveRecord::Base
     return pdf_url
   end
   
-  
+  def deliver_confirmation_email
+    # TODO implement emails for ABR
+  end
   
   
   

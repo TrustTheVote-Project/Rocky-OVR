@@ -20,7 +20,7 @@ class PdfAbrWriter
     pdf = FillablePDF.new(pdf_template_path.to_s)
     fields = pdf.fields.keys
     pdf_values.each do |k, v|
-      if fields.include?(k.to_sym)
+      if fields.include?(k.to_sym) && !v.nil?
         pdf.set_field(k.to_sym, v.to_s)
       end
     end
@@ -110,7 +110,7 @@ class PdfAbrWriter
       :public => true
     ) 
   rescue Exception=>e
-    raise e
+    #raise e
     return false   
   end
   

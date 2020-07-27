@@ -1,4 +1,13 @@
-module AbrPdfGeneration
+module AbrPdfMethods
+
+  def queue_pdf
+    klass = PdfAbrGeneration
+    # if self.email_address.blank?
+    #   klass = PriorityPdfGeneration
+    # end
+    klass.create!(:registrant_id=>self.id)
+  end
+  
 
   def pdf_file_path(pdfpre=nil)
     pdf_writer.pdf_file_path(pdfpre)
@@ -42,6 +51,14 @@ module AbrPdfGeneration
       return false
     end
   end
+  
+  def finalize_pdf
+    self.current_step = '4' # lets make sure this is set
+    self.pdf_ready = true
+    redact_sensitive_data
+    save
+  end
+  
   
   def to_pdf_hash
     to_pdf_values.merge(    {

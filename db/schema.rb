@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200724190719) do
+ActiveRecord::Schema.define(version: 20200727143305) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -351,6 +351,15 @@ ActiveRecord::Schema.define(version: 20200724190719) do
   add_index "partners", ["persistence_token"], name: "index_partners_on_persistence_token"
   add_index "partners", ["username"], name: "index_partners_on_username"
   add_index "partners", ["whitelabeled"], name: "index_partners_on_whitelabeled"
+
+  create_table "pdf_abr_generations", force: :cascade do |t|
+    t.integer  "abr_id"
+    t.boolean  "locked",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pdf_abr_generations", ["locked"], name: "index_pdf_abr_generations_on_locked"
 
   create_table "pdf_deliveries", force: :cascade do |t|
     t.integer  "registrant_id"
