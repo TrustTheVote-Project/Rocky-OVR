@@ -560,7 +560,7 @@ class Registrant < ActiveRecord::Base
             Rails.logger.error(e)
             # raise e
           end
-          reg.save
+          reg.save(validate: false) # Don't want to run into errors that prevent status from being updated and create multiple emails
         elsif reg.existing_state_registrant.nil? || reg.existing_state_registrant.send_chase_email?
           # Send chase email
           begin
