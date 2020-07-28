@@ -66,6 +66,7 @@ group :development, :test do
   gem "rspec-rails", "~> 3.9"
   gem 'rspec-collection_matchers'
   gem 'rspec-activemodel-mocks'
+  gem 'capybara'
   
   gem "rr", "= 0.10.11"
   
@@ -75,6 +76,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "shoulda"
   gem 'simplecov', :require => false
+  gem 'webdrivers'
   
   #gem "treetop", "= 1.4.10"
   # gem "selenium-client", "= 1.2.16"
