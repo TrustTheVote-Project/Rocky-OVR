@@ -74,10 +74,11 @@ partner_csv_expiration_minutes: 30
 absentee_states:
   AK:
     online_req_url: https://absenteeballotapplication.alaska.gov/
+    pdf_template: ak.pdf
   DE:
     online_req_url: https://ivote.de.gov/voterlogin.aspx    
   FL:
-    online_req_url: https://dos.elections.myflorida.com/supervisors/
+    online_req_url: https://dos.elections.myflorida.com/supervisors/    
   OH:
   TX:
   WY:

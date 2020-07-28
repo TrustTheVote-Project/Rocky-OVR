@@ -27,14 +27,27 @@ module AbrPdfMethods
     pdf_writer.pdf_file_dir(pdfpre)
   end
   
+  def pdf_template_name
+    @pdf_template_name ||= RockyConf.absentee_states[home_state_abbrev]&.pdf_template
+  end
   
+  def has_pdf_template?
+    !pdf_template_name.blank?
+  end
+  
+  def pdf_template_path
+    return nil unless has_pdf_template?
+    abbrev = home_state_abbrev.downcase
+    Rails.root.join("data/abr_pdfs/#{abbrev}/#{pdf_template_name}")
+  end
 
   def pdf_writer
+    return nil unless has_pdf_template?
     if @pdf_writer.nil?
       @pdf_writer = PdfAbrWriter.new
       @pdf_writer.assign_attributes(self.to_pdf_hash)
-      abbrev = home_state_abbrev.downcase
-      @pdf_writer.pdf_template_path = Rails.root.join("data/abr_pdfs/#{abbrev}/#{abbrev}.pdf")
+      
+      @pdf_writer.pdf_template_path = pdf_template_path
     end
     @pdf_writer
   end

@@ -1,21 +1,22 @@
-:javascript
-  $(document).ready(function() {
-    var section = $("#abr_state_online_abr_section");
-    section.hide();
-    $("#confirm_state_online_abr").click(function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      section.show();
-    })
+- unless @abr.oabr_for_all?
+  :javascript
+    $(document).ready(function() {
+      var section = $("#abr_state_online_abr_section");
+      section.hide();
+      $("#confirm_state_online_abr").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        section.show();
+      })
     
-  })
+    })
   
 = form_for(@abr) do |form|
   %h3= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.header")
-  %p.instructions= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.requirements")
-  %br
-  %p
-    %a{href: "#", id: "confirm_state_online_abr"}= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.confirm")
+  - unless @abr.oabr_for_all?
+    %p.instructions= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.requirements")
+    %p.instructions
+      %a{href: "#", id: "confirm_state_online_abr"}= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.confirm")
     
   #abr_state_online_abr_section
     %p.instructions= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.instructions")
@@ -35,8 +36,9 @@
           window.location.href = "#{finish_abr_path(@abr, :share_only=>true)}";
         }, 1000);
       }
-  %p
-    = link_to I18n.t('txt.abr.skip_state_online_abr'), step_3_abr_path(@abr)
+  - unless @abr.oabr_for_all?
+    %p
+      = link_to I18n.t('txt.abr.skip_state_online_abr'), step_3_abr_path(@abr)
   
   
     

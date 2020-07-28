@@ -64,6 +64,10 @@ class Abr < ActiveRecord::Base
     home_state && home_state.oabr_url
   end
   
+  def oabr_for_all?
+    !has_pdf_template?
+  end
+  
   def locale
     'en'
   end
