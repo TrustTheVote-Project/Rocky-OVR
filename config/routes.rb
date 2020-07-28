@@ -7,7 +7,7 @@ Rocky::Application.routes.draw do
   match "/registrants/new/:state_abbrev", to: "registrants#new", via: :get
   match "/registrants/map", to: "registrants#new", via: :get
   match "/registrants/map/:state_abbrev", to: "registrants#new", via: :get
-  match "/abrs", to: "abrs#new", via: :get
+  match "/absentee", to: "abrs#new", via: :get
   match "/share", to: "registrants#share", via: :get
   
   match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
@@ -26,7 +26,7 @@ Rocky::Application.routes.draw do
     end
   end
   
-  resources "abrs", :only => [:new, :create, :show, :update] do
+  resources "absentee", :only => [:new, :create, :show, :update], :controller=>"abrs", as: :abrs do
     member do
       get "step_2"
       get "step_3"

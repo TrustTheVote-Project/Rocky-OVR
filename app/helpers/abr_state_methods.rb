@@ -60,6 +60,10 @@ module AbrStateMethods
     form_fields.collect {|fname, h| h[:method] }
   end
   
+  def form_field_items
+    []
+  end
+  
   def form_fields
     fields = []
     form_field_items.each do |item|
@@ -102,9 +106,9 @@ module AbrStateMethods
         self.singleton_class.send(:include, Module.const_get(type))
         @home_state_attributes_initialized = true
       rescue Exception=>e
-        puts e.message
-        pp e.backtrace
-        raise e
+        # puts e.message
+        # pp e.backtrace
+        # raise e
       end
     end
   end
