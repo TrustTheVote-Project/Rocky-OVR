@@ -25,10 +25,6 @@
 require "#{Rails.root}/app/services/v4"
 class Api::V4::RegistrationsController < Api::V4::BaseController
 
-  def hello
-    jsonp({hello: "hello"}, status: 200)
-  end
-
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
   def create
@@ -56,45 +52,6 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
   rescue ActiveRecord::UnknownAttributeError => e
     name = e.attribute
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
-  end
-
-  def clock_in
-    if params[:shift_id].blank? 
-      jsonp({
-        message: "Missing Parameter: shift_id"
-      }, status: 400)
-    else
-      data = params.deep_dup
-      data.delete(:debug_info)
-      data.delete(:format)
-      data.delete(:controller)
-      data.delete(:action)
-      data.delete(:registration)
-      V4::RegistrationService.track_clock_in_event(data)
-      jsonp({}, status: 200)
-    end
-  rescue V4::RegistrationService::ValidationError => e
-    jsonp({ :message => e.message }, status: 200)
-  end
-
-  def clock_out
-    if params[:shift_id].blank? 
-      jsonp({
-        message: "Missing Parameter: shift_id"
-      }, status: 400)
-    else
-      data = params.deep_dup
-      data.delete(:debug_info)
-      data.delete(:format)
-      data.delete(:controller)
-      data.delete(:action)
-      data.delete(:registration)
-    
-      V4::RegistrationService.track_clock_out_event(data)
-      jsonp({}, status: 200)
-    end
-  rescue V4::RegistrationService::ValidationError => e
-    jsonp({ :message => e.message }, status: 200)
   end
 
   def create_pa

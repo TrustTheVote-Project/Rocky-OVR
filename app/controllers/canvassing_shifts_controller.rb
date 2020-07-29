@@ -57,7 +57,7 @@ class CanvassingShiftsController < ApplicationController
     if @canvassing_shift
       @canvassing_shift.clock_out_datetime = DateTime.now
       @canvassing_shift.set_counts
-      @canvassing_shift.save!
+      @canvassing_shift.complete!
       flash[:message] = "#{@canvassing_shift.canvasser_name} clocked out at #{l @canvassing_shift.clock_out_datetime&.in_time_zone("America/New_York"), format: :short}"
     end
     session[:canvassing_shift_id] = nil

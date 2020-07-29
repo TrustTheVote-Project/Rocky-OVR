@@ -49,19 +49,31 @@ class Api::V4::PartnersController < Api::V4::BaseController
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
   end
   
+  def validate_version
+    min_version = RockyConf.ovr_states.PA.grommet_min_version || "3.0.0"
+    if params[:version].blank?
+      jsonp({
+        errors: ["Missing Parameter: version"]
+        }, status: 422)
+    elsif Gem::Version.new(params[:version]) < Gem::Version.new(min_version)
+      jsonp({
+        is_valid: false,
+        errors: ["App version must be at least #{min_version}"]
+      })
+    else
+      jsonp({
+        is_valid: true,
+        errors: []
+      })
+    end
+  end
   
   def partner_id_validation
     min_version = RockyConf.ovr_states.PA.grommet_min_version || "3.0.0"
     if params[:partner_id].blank? 
       jsonp({
-        is_valid: false,
-        message: "Missing Parameter: partner_id"
-      }, status: 400)
-    elsif params[:grommet_version].blank? 
-      jsonp({
-        is_valid: false,
-        message: "Missing Parameter: grommet_version"
-      }, status: 400)
+        errors: ["Missing Parameter: partner_id"]
+      }, status: 422)
     elsif Gem::Version.new(params[:grommet_version]) < Gem::Version.new(min_version)
       jsonp({
         is_valid: false,
@@ -101,7 +113,12 @@ class Api::V4::PartnersController < Api::V4::BaseController
         end
         jsonp({
           is_valid: false,
-          errors: ["Not valid grommet partner"]
+          partner_name: nil,
+          valid_locations: [],
+          registration_deadline_date: nil
+          registration_notification_text: {}
+          volunteer_text: {}
+          errors: ["Partner is not configured"]
         })      
       end
     end
