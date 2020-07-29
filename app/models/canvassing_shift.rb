@@ -50,6 +50,10 @@ class CanvassingShift < ActiveRecord::Base
     self.shift_source == SOURCE_GROMMET
   end
   
+  def blocks_shift_type
+    is_grommet? ? "voter_registration" : "digital_voter_registration"
+  end
+  
   def locale
     :en
   end
@@ -125,7 +129,7 @@ class CanvassingShift < ActiveRecord::Base
   def submit_to_blocks
     if !submitted_to_blocks? && is_ready_to_submit?
       service = BlocksService.new
-      created_shift = service.upload_canvassing_shift(self)
+      created_shift = service.upload_canvassing_shift(self, shift_type: blocks_shift_type)
       forms = created_shift[:forms]
       shift = created_shift[:shift]
       self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
