@@ -64,7 +64,7 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def shift_location=(value)
-    self.write_attribute(:shift_location, value)
+    self[:shift_location] = value
     location_options = CanvassingShift.location_options(self.partner)
     location_options.each do |name, id|
       self.blocks_shift_location_name = name if id.to_s.strip == value.to_s.strip
