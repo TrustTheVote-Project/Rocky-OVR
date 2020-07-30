@@ -2,6 +2,7 @@ class Report < ActiveRecord::Base
   include TimeStampHelper
   
   GROMMET_SHIFT_REPORT="grommet_shift_report".freeze
+  CANVASSING_SHIFT_REPORT="canvassing_shift_report".freeze
   GROMMET_REGISTRANTS_REPORT="grommet_registrants_report".freeze
   REGISTRANTS_REPORT="registrants_report".freeze
   REGISTRANTS_REPORT_EXTENDED="registrants_report_extended".freeze
@@ -221,6 +222,44 @@ class Report < ActiveRecord::Base
   def csv_header
     self.send("#{report_type}_csv_header")
   end
+  
+
+
+
+  def canvassing_shift_report_csv_header
+    CanvassingShift::CSV_HEADER
+  end
+  
+  def canvassing_shift_report_conditions    
+    conditions = [[]]
+    if start_date
+      conditions[0] << " canvassing_shifts.created_at >= ? "
+      conditions << start_date
+    end
+    if end_date
+      conditions[0] << " canvassing_shifts.created_at < ? "
+      conditions << end_date + 1.day
+    end
+    conditions[0] = conditions[0].join(" AND ")
+    return conditions
+  end
+  
+  def canvassing_shift_report_selector
+    @canvassing_shift_report_selector ||= partner.canvassing_shifts.where(canvassing_shift_report_conditions)
+  end
+    
+  def generate_canvassing_shift_report(start=0, csv_method=:to_csv_array)
+    distribute_reads(failover: false) do
+      return CSV.generate do |csv|
+        selector.offset(start).limit(THRESHOLD).each do |cs|
+          csv << cs.send(csv_method)
+        end
+      end
+    end
+  end
+  
+  
+  
   
   def registrants_report_csv_header
     Registrant::CSV_HEADER

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200729171329) do
+ActiveRecord::Schema.define(version: 20200730145155) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -163,15 +163,16 @@ ActiveRecord::Schema.define(version: 20200729171329) do
     t.integer  "abandoned_registrations"
     t.integer  "completed_registrations"
     t.string   "canvasser_phone"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.boolean  "submitted_to_blocks",     default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.boolean  "submitted_to_blocks",        default: false
     t.string   "canvasser_first_name"
     t.string   "canvasser_last_name"
     t.string   "canvasser_email"
     t.string   "shift_source"
     t.string   "blocks_shift_id"
     t.boolean  "complete"
+    t.string   "blocks_shift_location_name"
   end
 
   add_index "canvassing_shifts", ["canvasser_first_name", "canvasser_last_name"], name: "shift_canvasser_name_index"
