@@ -1671,16 +1671,16 @@ class Registrant < ActiveRecord::Base
   end
 
   def to_csv_extended_array
-     [
-      self.uid,
-      self.to_csv_array,
+    arr = [self.uid]
+    arr = arr + self.to_csv_array
+    arr = arr + [
       self.is_grommet? ? "Tablet" : (building_via_api_call? ? "Rocky API" : "Web"), #"Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
       finish_with_state? ? "Redirected to SOS" : (submitted_via_state_api? ? "Submitted Via State API" : "Paper"), #"Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
       self.canvassing_shift_registrant&.shift_external_id, #"Shift ID"
       self.canvassing_shift&.blocks_shift_id, #BLocks Shift ID
       yes_no( will_be_18_by_election?),
       grommet_preferred_language,
-    ].flatten
+    ].flatten(1)
   end
   
 
