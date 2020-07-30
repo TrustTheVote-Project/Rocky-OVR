@@ -23,24 +23,42 @@
       <fieldset>
         <legend>Generate a New Report with Your Registration Data</legend>
         <p>Leave date fields blank if you would like to download all your registration data.</p>
-        <div class='date_input'>
-          <%= label_tag :start_date, 'Start Date' %>
-          <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
-        </div>
-        <div class='date_input'>
-          <%= label_tag :end_date, 'End Date' %>
-          <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
-        </div>
-        <%- if current_partner.enabled_for_grommet? %>
-          <div class='csv_type_input'>
-          <br/>
-          <br/>
-            <%= label_tag :generate_grommet, 'Generate PA App Report' %>
-            <%= check_box_tag :generate_grommet %>
-          <br/>
-          <br/>
+        <div class='date_inputs'>
+          <div class='date_input'>
+            <%= label_tag :start_date, 'Start Date' %>
+            <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
           </div>
-        <%- end %>
+          <div class='date_input'>
+            <%= label_tag :end_date, 'End Date' %>
+            <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+        </div>
+        <div class='csv_type_input'>
+          <%= check_box_tag :generate_extended %>
+          <%= label_tag :generate_extended, 'Use Extended CSV Format' %>
+          <br/>
+          <span>This format includes extra columns which may continue to grow over time</span>
+        </div>
+        <div class='submit_button'>
+          <%= rollover_button "downloadcsv", "Generate New Report", id: "downloadcsv"%>
+        </div>
+      </fieldset>
+    <%- end %>
+    <%= form_tag canvassing_shift_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
+      <fieldset>
+        <legend>Generate a New Canvassing Shift Report</legend>
+        <p>Includes all web-based shifts and any using the latest version of the tablet app.</p>
+        <p>Leave date fields blank if you would like to download all your registration data.</p>
+        <div class='date_inputs'>
+          <div class='date_input'>
+            <%= label_tag :start_date, 'Start Date' %>
+            <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+          <div class='date_input'>
+            <%= label_tag :end_date, 'End Date' %>
+            <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+        </div>
         <div class='submit_button'>
           <%= rollover_button "downloadcsv", "Generate New Report", id: "downloadcsv"%>
         </div>
@@ -48,6 +66,24 @@
     <%- end %>
     
     <%- if current_partner.enabled_for_grommet? %>    
+      <%= form_tag grommet_registrant_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
+        <fieldset>
+          <legend>Generate a New PA Registration Report (Tablet registrants only through date TBD)</legend>
+          <p>Leave date fields blank if you would like to download all your registration data.</p>
+          <div class='date_input'>
+            <%= label_tag :start_date, 'Start Date' %>
+            <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+          <div class='date_input'>
+            <%= label_tag :end_date, 'End Date' %>
+            <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+          
+          <div class='submit_button' style="clear: both">
+            <%= rollover_button "downloadcsv", "Generate New PA Registrant Report", id: "downloadshiftcsv"%>
+          </div>
+        </fieldset>
+      <%- end %>
       <%= form_tag grommet_shift_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
         <fieldset>
           <legend>Generate a New PA Shift Report</legend>

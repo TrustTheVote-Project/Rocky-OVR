@@ -70,6 +70,8 @@ class Report < ActiveRecord::Base
       return "Registrants Report"
     when REGISTRANTS_REPORT_EXTENDED
       return "Registrants Report Extended"
+    when CANVASSING_SHIFT_REPORT
+      return "Canvassing Shift Report"
     end
   end
   
