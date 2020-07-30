@@ -455,6 +455,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     loc ? loc["Name"] : nil
   end
   
+  def state_api_error   
+    va_submission_error
+  end
+  
   def submit_to_online_reg_url
     server = RockyConf.ovr_states.VA.api_settings.api_url
     url = File.join(server, "Voter/Submit?format=json")

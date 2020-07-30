@@ -369,6 +369,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     self.partner ? self.partner.pa_api_key : nil
   end
   
+  def state_api_error   
+    pa_submission_error
+  end
+  
   def submit_to_online_reg_url
     RequestLogSession.make_call_with_logging(registrant: self, client_id: 'PARegistrationRequest::Rocky', censor: PACensor) do
       begin
