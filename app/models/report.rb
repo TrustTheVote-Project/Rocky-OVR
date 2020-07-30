@@ -253,7 +253,7 @@ class Report < ActiveRecord::Base
   def generate_canvassing_shift_report(start=0, csv_method=:to_csv_array)
     distribute_reads(failover: false) do
       return CSV.generate do |csv|
-        selector.offset(start).limit(THRESHOLD).each do |cs|
+        selector.includes(:registrants).offset(start).limit(THRESHOLD).each do |cs|
           csv << cs.send(csv_method)
         end
       end

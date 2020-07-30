@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200730145155) do
+ActiveRecord::Schema.define(version: 20200730182010) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -651,11 +651,13 @@ ActiveRecord::Schema.define(version: 20200730145155) do
     t.boolean  "mi_submission_complete"
     t.integer  "submission_attempts",                   default: 0
     t.string   "mi_transaction_id"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.string   "mi_api_voter_status_id"
     t.string   "registration_address_post_directional"
     t.text     "registration_address_matches"
+    t.boolean  "has_ssn",                               default: false
+    t.boolean  "has_state_license",                     default: false
   end
 
   add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"

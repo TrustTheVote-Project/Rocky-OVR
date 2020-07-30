@@ -17,9 +17,12 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   end
   
   def cleanup!
-    # TODO make sure we don't keep SSN
+    orig_has_ssn = self.has_ssn
+    orig_has_state_license = self.has_state_license
     empty_values = SENSITIVE_ATTRIBUTES.zip([]).to_h
     assign_attributes(empty_values)
+    self.has_ssn = orig_has_ssn
+    self.has_state_license = orig_has_state_license
     save(validate: false)
   end
   
@@ -27,6 +30,11 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
   def dln=(val)
     # remove any non-letter/digit prior to validation
     val = val.to_s.upcase.gsub(/[^A-Z\d]/,'')
+    self[:has_state_license] = !val.blank?
+    super(val)
+  end
+  def ssn4=(val)
+    self[:has_ssn] = !val.blank?
     super(val)
   end
   
@@ -62,6 +70,10 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
       "confirm_us_citizen"  => "us_citizen",
       "confirm_will_be_18"  => "will_be_18_by_election",
       "date_of_birth" => "date_of_birth",
+      
+      "has_ssn" => "has_ssn",
+      "has_state_license" => "has_state_license",
+      
       # "name_title"  => "name_title",
       # "first_name"  => "first_name",
       # "middle_name" => "middle_name",
