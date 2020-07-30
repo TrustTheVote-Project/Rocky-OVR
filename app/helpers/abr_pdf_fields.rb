@@ -15,7 +15,9 @@ module AbrPdfFields
     self.date_of_birth&.strftime("%Y-%m-%d")
   end
   
-  
+  def address
+    "#{street_number} #{street_name}"
+  end
   
   
 end
