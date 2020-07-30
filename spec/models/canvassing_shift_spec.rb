@@ -196,16 +196,20 @@ RSpec.describe CanvassingShift, type: :model do
   end
   
   describe "is_ready_to_submit?" do
-    it "returns true if both clock-in and -out are present" do
+    it "returns true if both clock-in and -out are present and the shift is marked complete" do
       c = CanvassingShift.new
       expect(c.is_ready_to_submit?).to eq(false)
       c.clock_in_datetime = DateTime.now
       expect(c.is_ready_to_submit?).to eq(false)
       c.clock_out_datetime = DateTime.now
+      expect(c.is_ready_to_submit?).to eq(false)
+      c.complete = true
       expect(c.is_ready_to_submit?).to eq(true)
       c.clock_in_datetime = nil
       expect(c.is_ready_to_submit?).to eq(false)
-      
+      c.clock_in_datetime = DateTime.now
+      c.clock_out_datetime = nil
+      expect(c.is_ready_to_submit?).to eq(false)      
     end
   end
   

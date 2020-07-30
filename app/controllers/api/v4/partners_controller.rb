@@ -69,16 +69,10 @@ class Api::V4::PartnersController < Api::V4::BaseController
   end
   
   def partner_id_validation
-    min_version = RockyConf.ovr_states.PA.grommet_min_version || "3.0.0"
     if params[:partner_id].blank? 
       jsonp({
         errors: ["Missing Parameter: partner_id"]
       }, status: 422)
-    elsif Gem::Version.new(params[:grommet_version]) < Gem::Version.new(min_version)
-      jsonp({
-        is_valid: false,
-        errors: ["App version must be at least #{min_version}"]
-      })
     else
       partner = Partner.find_by_id(params[:partner_id])
       if partner && partner.enabled_for_grommet?
@@ -115,9 +109,9 @@ class Api::V4::PartnersController < Api::V4::BaseController
           is_valid: false,
           partner_name: nil,
           valid_locations: [],
-          registration_deadline_date: nil
-          registration_notification_text: {}
-          volunteer_text: {}
+          registration_deadline_date: nil,
+          registration_notification_text: {},
+          volunteer_text: {},
           errors: ["Partner is not configured"]
         })      
       end

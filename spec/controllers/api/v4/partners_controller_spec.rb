@@ -63,11 +63,46 @@ describe Api::V4::PartnersController do
 
   end
 
+  describe "validate_version" do
+    let(:query) {{
+      version: RockyConf.ovr_states.PA.grommet_min_version 
+    }}
+    subject { get :validate_version, query.merge(format: 'json') }
+    it "returns a 200" do
+      expect(subject.status).to eq(200)
+    end
+    it "returns is_valid: true" do
+      expect(JSON.parse(subject.body)["is_valid"]).to eq(true)
+    end
+    context "when version is old" do
+      let(:query) {{
+        version: "1.200.500"
+      }}
+      it "returns a 200" do
+        expect(subject.status).to eq(200)
+      end
+      it "returns is_valid: false" do
+        expect(JSON.parse(subject.body)["is_valid"]).to eq(false)
+      end      
+    end
+    context "when version is missing" do
+      let(:query) {{
+        wrong_param: "3.0.0"
+      }}
+      it "returns a 422" do
+        expect(subject.status).to eq(422)
+      end
+      it "returns an error message with missing param" do
+        expect(JSON.parse(subject.body)["errors"]).to include("Missing Parameter: version")
+      end
+    end
+    
+  end
+
   describe '#partner_id_validation' do
     context 'when partner_id is valid' do
       let(:query) {{
-        :partner_id=>'1',
-        :grommet_version => "3.0.0"
+        :partner_id=>'1'
       }}
       let(:mock_partner) { double(Partner, :organization=>"Partner Org Name")}
       before(:each) do
@@ -97,32 +132,33 @@ describe Api::V4::PartnersController do
           expect(JSON.parse(subject.body)["volunteer_text"]["es"]).to eq(I18n.t('txt.registration.volunteer', organization: mock_partner.organization, locale: 'es'))          
         end
       end
-      context 'when parter is not allowed' do
+      context 'when partner is not allowed' do
         let(:query) {{
-          :partner_id=>'1',
-          :grommet_version => "3.0.0"
+          :partner_id=>'1'
         }}
         before(:each) do
           allow(mock_partner).to receive(:enabled_for_grommet?).and_return(false)
         end
         subject { get :partner_id_validation, query.merge(format: 'json') }
         it "returns a 200" do
-          puts subject
           expect(subject.status).to eq(200)
         end
         it "returns a JSON body with is_valid=false" do
           expect(JSON.parse(subject.body)["is_valid"]).to eq(false)
         end
-        it "returns a JSON body without partner_name key" do
-          expect(JSON.parse(subject.body)).not_to have_key("partner_name")
-        end
-        
+        it "returns a JSON body with error messages and with other parameters empty" do
+          expect(JSON.parse(subject.body)["partner_name"]).to be_nil
+          expect(JSON.parse(subject.body)["valid_locations"]).to eq([])
+          expect(JSON.parse(subject.body)["registration_deadline_date"]).to be_nil
+          expect(JSON.parse(subject.body)["registration_notification_text"]).to eq({})
+          expect(JSON.parse(subject.body)["volunteer_text"]).to eq({})
+          expect(JSON.parse(subject.body)["errors"]).to eq(["Partner is not configured"])          
+        end        
       end
     end
     context 'when partner_id is invalid' do
       let(:query) {{
         :partner_id=>'1',
-        :grommet_version => "3.0.0"
       }}
       before(:each) do
         allow(Partner).to receive(:find_by_id).with('1').and_return(nil)
@@ -134,54 +170,27 @@ describe Api::V4::PartnersController do
       it "returns a JSON body with is_valid=false" do
         expect(JSON.parse(subject.body)["is_valid"]).to eq(false)
       end
-      it "returns a JSON body without partner_name key" do
-        expect(JSON.parse(subject.body)).not_to have_key("partner_name")
-      end
-      
+      it "returns a JSON body with error messages and with other parameters empty" do
+        expect(JSON.parse(subject.body)["partner_name"]).to be_nil
+        expect(JSON.parse(subject.body)["valid_locations"]).to eq([])
+        expect(JSON.parse(subject.body)["registration_deadline_date"]).to be_nil
+        expect(JSON.parse(subject.body)["registration_notification_text"]).to eq({})
+        expect(JSON.parse(subject.body)["volunteer_text"]).to eq({})
+        expect(JSON.parse(subject.body)["errors"]).to eq(["Partner is not configured"])          
+      end         
     end
     context 'when partner_id is missing' do
       let(:query) {{
-        :partner_id_wrong_param=>'1',
-        :grommet_version => "3.0.0"
+        :partner_id_wrong_param=>'1'
       }}
       subject { get :partner_id_validation, query.merge(format: 'json') }
-      it "returns a 400" do
-        expect(subject.status).to eq(400)
+      it "returns a 422" do
+        expect(subject.status).to eq(422)
       end
-      it "returns a JSON body with message=Missing Parameter: partner_id" do
-        expect(JSON.parse(subject.body)["is_valid"]).to eq(false)
-        expect(JSON.parse(subject.body)["message"]).to eq("Missing Parameter: partner_id")
+      it "returns a JSON body with errors=Missing Parameter: partner_id" do
+        expect(JSON.parse(subject.body)["errors"]).to include("Missing Parameter: partner_id")
       end
-    end
-    context 'when grommet_version is missing' do
-      let(:query) {{
-        :partner_id=>'1',
-      }}
-      subject { get :partner_id_validation, query.merge(format: 'json') }
-      it "returns a 400" do
-        expect(subject.status).to eq(400)
-      end
-      it "returns a JSON body with message=Missing Parameter: partner_id" do
-        expect(JSON.parse(subject.body)["is_valid"]).to eq(false)
-        expect(JSON.parse(subject.body)["message"]).to eq("Missing Parameter: grommet_version")
-        
-      end
-    end
-    context 'when grommet_version is too low' do
-      let(:query) {{
-        :partner_id=>'1',
-        :grommet_version=> "2.999.999"
-      }}
-      subject { get :partner_id_validation, query.merge(format: 'json') }
-      it "returns a 200" do
-        expect(subject.status).to eq(200)
-      end
-      it "returns a JSON body with message=Missing Parameter: partner_id" do
-        expect(JSON.parse(subject.body)["is_valid"]).to eq(false)
-        expect(JSON.parse(subject.body)["errors"]).to include("App version must be at least #{RockyConf.ovr_states.PA.grommet_min_version || "3.0.0"}")
-        
-      end
-    end
+    end    
   end
 
   private

@@ -60,7 +60,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
       jsonp({})
     else
       jsonp({
-        errors: ["Shift with ID #{params[:shift_id]} not found"]
+        errors: ["Shift with ID #{params[:id]} not found"]
       }, status: 404)
     end    
   end
@@ -72,7 +72,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
       jsonp({})
     else
       jsonp({
-        errors: ["Shift with ID #{params[:shift_id]} not found"]
+        errors: ["Shift with ID #{params[:id]} not found"]
       }, status: 404)
     end 
   end
