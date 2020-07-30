@@ -1439,8 +1439,9 @@ class Registrant < ActiveRecord::Base
   end
   
   def home_state_enabled_for_pdf_assitance?
-    return false
+    return true
     list = %w(AL
+              AZ
               SD)
     return list.include?(home_state_abbrev)
   end
