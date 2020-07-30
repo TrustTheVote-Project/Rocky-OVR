@@ -66,48 +66,6 @@ describe Api::V4::RegistrationsController do
     end
   end
   
-  describe 'clock_in' do
-    let(:json_data)  {{some: "data", shift_id: "shift-id"}}
-    subject {post :clock_in, json_data.merge(format: 'json')}
-    it "returns status 200 json" do
-      expect(subject.code).to eq("200")
-    end
-    it "should call the track_clock_in_event service method" do
-      expect(V4::RegistrationService).to receive(:track_clock_in_event).with(json_data)
-      subject
-    end
-    context "missing shift ID" do
-      subject {post :clock_in, json_data.merge(shift_id: '', format: 'json')}
-      it "returns status 400 json" do
-        expect(subject.code).to eq('400')
-      end
-      it "returns an error message" do
-        expect(JSON.parse(subject.body)["message"]).to eq('Missing Parameter: shift_id')
-      end
-    end
-  end
-  
-  describe 'clock_out' do
-    let(:json_data)  {{some: "data", shift_id: "shift-id"}}
-    subject {post :clock_out, json_data.merge(format: 'json')}
-    it "returns status 200 json" do
-      expect(subject.code).to eq("200")
-    end
-    it "should call the track_clock_out_event service method" do
-      expect(V4::RegistrationService).to receive(:track_clock_out_event).with(json_data)
-      subject
-    end
-    context "missing shift ID" do
-      subject {post :clock_out, json_data.merge(shift_id: '', format: 'json')}
-      it "returns status 400 json" do
-        expect(subject.code).to eq('400')
-      end
-      it "returns an error message" do
-        expect(JSON.parse(subject.body)["message"]).to eq('Missing Parameter: shift_id')
-      end
-    end
-  end
-
   describe 'create_pa' do
     let(:query) {
       {

@@ -1774,10 +1774,15 @@ class Registrant < ActiveRecord::Base
   end
   
   def vr_application_submission_errors
-    ([state_ovr_data["errors"]].flatten.compact).collect do |e| 
-      e_msg = e.is_a?(Array) ? e.join("\n") : e.to_s
-      e_msg =~ /^Backtrace\n/ ? nil : e_msg 
-    end.compact.join(", ")
+    if is_grommet?
+      ([state_ovr_data["errors"]].flatten.compact).collect do |e| 
+        e_msg = e.is_a?(Array) ? e.join("\n") : e.to_s
+        e_msg =~ /^Backtrace\n/ ? nil : e_msg 
+      end.compact.join(", ")
+    elsif existing_state_registrant
+      #TODO genericize this
+      existing_state_registrant.state_api_error
+    end
   rescue
     ""
   end

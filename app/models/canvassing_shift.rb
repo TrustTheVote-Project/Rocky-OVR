@@ -50,6 +50,10 @@ class CanvassingShift < ActiveRecord::Base
     self.shift_source == SOURCE_GROMMET
   end
   
+  def blocks_shift_type
+    is_grommet? ? "voter_registration" : "digital_voter_registration"
+  end
+  
   def locale
     :en
   end
@@ -111,7 +115,12 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def is_ready_to_submit?
-    !!(self.clock_in_datetime && self.clock_out_datetime)
+    !!(self.clock_in_datetime && self.clock_out_datetime && self.complete?)
+  end
+  
+  def complete!
+    self.complete = true
+    self.save!
   end
 
   
@@ -125,7 +134,7 @@ class CanvassingShift < ActiveRecord::Base
   def submit_to_blocks
     if !submitted_to_blocks? && is_ready_to_submit?
       service = BlocksService.new
-      created_shift = service.upload_canvassing_shift(self)
+      created_shift = service.upload_canvassing_shift(self, shift_type: blocks_shift_type)
       forms = created_shift[:forms]
       shift = created_shift[:shift]
       self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
@@ -138,7 +147,7 @@ class CanvassingShift < ActiveRecord::Base
           grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
           BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
         else
-          puts "No form reesult for #{reg_req} #{i}"
+          puts "No form result for #{reg_req} #{i}"
         end
       end
     end
@@ -200,7 +209,8 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def generate_shift_external_id
-    self.shift_external_id = "web-" + Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{canvasser_name} -- #{partner_id}" )
+    prefix = is_web? ? "web-" : "grommet-"
+    self.shift_external_id = prefix + Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{canvasser_name} -- #{partner_id}" )
   end
 
 

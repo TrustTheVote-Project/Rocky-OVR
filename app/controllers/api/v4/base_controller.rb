@@ -27,6 +27,26 @@ class Api::V4::BaseController < ApplicationController
   skip_before_filter :authenticate_everything
   
   protected
+  def handle_required_params(required_params)
+    required_param_messages = []
+    required_params.each do |k|
+      required_param_messages << "Missing Parameter: #{k}" if params[k].blank?
+    end
+    if required_param_messages.any?
+      return jsonp({
+        errors: required_param_messages
+      }, status: 422)
+    else
+      return nil
+    end
+  end
+  
+  def build_attrs_from_param_names(names)
+    data = {}
+    [names].flatten.each {|param| data[param] = params[param]}
+    return data
+  end
+
 
   # Renders the data as JSON and wraps into the <callback>(...); if
   # there is a 'callback' parameter with the name of the function.
