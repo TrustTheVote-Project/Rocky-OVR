@@ -219,6 +219,8 @@ class Registrant < ActiveRecord::Base
     "Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
     "Shift ID", #canvassing_shift_registrant.external_id
     "Blocks Shift ID", #canvassing_shift.blocks_shift_id
+    "Over 18 Affirmation",
+    "Preferred Language"
   ].flatten
   
   GROMMET_CSV_HEADER = [
@@ -1370,14 +1372,15 @@ class Registrant < ActiveRecord::Base
   end
   
   def home_state_enabled_for_pdf_assitance?
-    return false
-    # list = %w(AL
-    #           SD)
-    # return list.include?(home_state_abbrev)
+    return true
+    list = %w(AL
+              AZ
+              SD)
+    return list.include?(home_state_abbrev)
   end
   
   def can_request_pdf_assistance?
-    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 37284 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
+    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 2 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
   end
   
   def to_pdf_hash
@@ -1601,16 +1604,17 @@ class Registrant < ActiveRecord::Base
     end
   end
 
-
   def to_csv_extended_array
-     [
-      self.uid,
-      self.to_csv_array,
+    arr = [self.uid]
+    arr = arr + self.to_csv_array
+    arr = arr + [
       self.is_grommet? ? "Tablet" : (building_via_api_call? ? "Rocky API" : "Web"), #"Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
       finish_with_state? ? "Redirected to SOS" : (submitted_via_state_api? ? "Submitted Via State API" : "Paper"), #"Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
       self.canvassing_shift_registrant&.shift_external_id, #"Shift ID"
       self.canvassing_shift&.blocks_shift_id, #BLocks Shift ID
-    ].flatten
+      yes_no( will_be_18_by_election?),
+      grommet_preferred_language,
+    ].flatten(1)
   end
   
 

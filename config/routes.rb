@@ -73,6 +73,8 @@ Rocky::Application.routes.draw do
     member do
       get "statistics"
       post "registrations"
+      post "canvassing_shift_report"
+      post "grommet_registrant_report"
       post "grommet_shift_report"
       get "reports"
       get "download_csv"

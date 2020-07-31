@@ -80,6 +80,7 @@ class Partner < ActiveRecord::Base
   belongs_to :state, :class_name => "GeoState"
   belongs_to :government_partner_state, :class_name=> "GeoState"
   has_many :registrants
+  has_many :canvassing_shifts
 
   def self.partner_assets_bucket
     if Rails.env.production?
@@ -578,31 +579,28 @@ class Partner < ActiveRecord::Base
     r.queue!    
     return
 
-    #preloads
-    
-    # distribute_reads(failover: false) do
-    #   pa_registrants = {}
-    #   StateRegistrants::PARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_pa_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
-    #   va_registrants = {}
-    #   StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
-    #
-    #   return CSV.generate do |csv|
-    #     csv << Registrant::CSV_HEADER
-    #     registrants.where(conditions).includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each(:batch_size=>500) do |reg|
-    #       if reg.use_state_flow?
-    #         sr  = nil
-    #         case reg.home_state_abbrev
-    #         when "PA"
-    #           sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
-    #         when "VA"
-    #           sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
-    #         end
-    #         reg.instance_variable_set(:@existing_state_registrant, sr)
-    #       end
-    #       csv << reg.to_csv_array
-    #     end
-    #   end
-    # end
+  end
+  
+  def generate_registrants_extended_csv(start_date=nil, end_date=nil)
+    r = Report.new({
+      report_type: Report::REGISTRANTS_REPORT_EXTENDED,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!    
+    return
+  end
+  
+  def generate_canvassing_shift_csv(start_date=nil, end_date=nil)
+    r = Report.new({
+      report_type: Report::CANVASSING_SHIFT_REPORT,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!    
+    return
   end
   
   
@@ -615,10 +613,7 @@ class Partner < ActiveRecord::Base
     })
     r.queue!
     
-    return
-    
-    # get the same registrant list
-
+    return    
   end
   
   def generate_grommet_registrants_csv(start_date=nil, end_date=nil)
