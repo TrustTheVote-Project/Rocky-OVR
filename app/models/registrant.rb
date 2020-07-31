@@ -1448,7 +1448,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def can_request_pdf_assistance?
-    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 2 : self.partner_id == 1 : self.partner_id == 7) && home_state_enabled_for_pdf_assitance?
+    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 2 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
   end
   
   def to_pdf_hash
