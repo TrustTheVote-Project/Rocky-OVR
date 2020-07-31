@@ -44,8 +44,10 @@
     ul {
       li.registrant-form__required-checkbox {
         width: 90%;
+        margin-right: 10%;
         @media(max-width: 600px) {
           width: 100%;
+          margin-right:0;
         }
       }
       

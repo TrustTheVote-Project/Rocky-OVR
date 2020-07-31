@@ -8,6 +8,11 @@ en:
       step_2_instructions: <p>Step 2 Instructions</p>
       step_3_header: Step 3 Header
       step_3_instructions: <p>Step 3 Instructions</p>
+      state_online_defaults:
+        header: You can request an Absentee Ballot online directly with the state of %{state}
+        requirements: If you are registered to vote and have a valid %{state} state ID, you may request your absentee ballot online directly with the state.
+        confirm: I meet these requirements and would like to finish my request directly with the state.
+        instructions: TBD default?
       skip_state_online_abr:  "I would like to continue with creating a paper form."
       preparing_header: We're generating your file
       preparing_instructions: Once the file is ready, you can download it.

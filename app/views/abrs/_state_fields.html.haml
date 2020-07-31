@@ -1,21 +1,90 @@
+:javascript
+  // TODO this is hte same as below function with changed data param and swapped show/hide
+  function toggleHidden() {
+    var setVisible = $("[data-hidden-conditions]");
+    console.log(setVisible.get(0))
+    $(setVisible).each(function() {
+      var conditions = $(this).data("hidden-conditions");
+      var conditionalFields = conditions.split(" ");
+      var showField = true;
+      for(let i=0,ii=conditionalFields.length;i<ii;i++) {
+        var fieldName = conditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+"")
+        console.log(showField, field, field.val())
+        showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
+      }
+      if (showField) {
+        $(this).hide();
+      } else {
+        $(this).show();
+      }
+      
+    })
+  }
+
+  function toggleVisible() {
+    var setVisible = $("[data-visible-conditions]");
+    console.log(setVisible.get(0))
+    $(setVisible).each(function() {
+      var conditions = $(this).data("visible-conditions");
+      var conditionalFields = conditions.split(" ");
+      var showField = true;
+      for(let i=0,ii=conditionalFields.length;i<ii;i++) {
+        var fieldName = conditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+"")
+        console.log(showField, field, field.val())
+        showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
+      }
+      if (showField) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+      
+    })
+  }
+  $(document).ready(function() {
+    toggleHidden();
+    toggleVisible();
+    $("form").change(() => {
+      toggleHidden();
+      toggleVisible()
+    })
+  })
+  
+  
 %fieldset{class: "#{@abr.home_state_abbrev.downcase}-abr-form-fields"}
   %ul.flat
     - @abr.form_fields.each do |field_name, opts|
-      %li.line{class: "#{opts[:method]}"}
-        - field_label = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}", default: opts[:label] || field_name).html_safe
-        - if opts[:type] == :checkbox
+      - required = opts[:required]
+      - field_label = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}", default: (opts[:label] || field_name)).html_safe
+      - instructions = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__hint", default: "").html_safe
+      - class_name = "line #{opts[:method]} #{required ? 'required' : ''}"
+      - required_message = required ?  @abr.custom_required_message(field_name).html_safe : nil
+      - data = {}
+      - visible_conditions = opts[:visible].to_s.strip
+      - hidden_conditions =  opts[:hidden].to_s.strip
+      - data["visible-conditions"] = visible_conditions unless visible_conditions.blank?
+      - data["hidden-conditions"] = hidden_conditions unless hidden_conditions.blank?
+      - if opts[:type] == :checkbox
+        - class_name += " registrant-form__required-checkbox " if required
+        %li{class: class_name, data: data}
+          - unless instructions.blank?
+            %p.instructions= instructions
           %ul.checkbox
             %li.spacer &nbsp;
             %li{class: "#{opts[:method]}__line-item"}
               %h3
-                = form.check_box opts[:method]
-                = form.label opts[:method], field_label 
-        - elsif opts[:type] == :string
-          %h3= form.label opts[:method], field_label
-          = field_div form, opts[:method]
-        - elsif opts[:type] == :radio
+                = form.check_box opts[:method], required ? {data: {"client-validation-require-accept".to_sym => required_message}} : {}
+                = form.label opts[:method], "#{field_label}#{required ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''}".html_safe
+                %span.error= form.object.errors[opts[:method]].join("\n").html_safe
+          
+      - elsif opts[:type] == :string
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: {value: field_label}, instructions: instructions})
+      - elsif opts[:type] == :radio
+        %li.line{class: "#{opts[:method]}",  data: data}
           %ul.stacked.radio
-            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}_options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
-            = field_li(form, opts[:method], {skip_tooltip: true, required: false, radio_options: radio_options})
+            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
+            = field_li(form, opts[:method], {label_options: {value: field_label}, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
 
         

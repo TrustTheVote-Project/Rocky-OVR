@@ -7,31 +7,39 @@ en:
           header: You can request an Absentee Ballot online directly with the state of Alaska
           requirements: If you have a valid Alaska driver's license etc, you may request your absentee ballot online directly with the state of Alaska.
           confirm: I meet these requirements and would like to finish my request directly with the state.
-          instructions: On the Alaska abr page, you will be asked for X and then need to do X, Y, Z
+          instructions: <p>State-specific set of instructions</p><ul><li>may</li><li>include</li><li>html</li>
         abr_form_fields:
           us_citizen: I am a U.S. Citizen
+          us_citizen__required_message: You must be a U.S. Citizen
           attest_is_18: I am 18 years of age or within 90 days of my 18th birthday
+          attest_is_18__required_message: You must be with 90 days of your 18th birthday or older.
           Former Name: Former Name (if changed)
           Voter No: Voter Number (if known)
+          has_mailing_address: My mailing address is different than my residential address
           Perm Mailing 1: Permanent address where you receive mail
           Perm Mailing 2: Line 2
           Perm Mailing 3: Line 3
           SSN or Last 4: SSN or Last 4
           ADL: Alaska driver's license or State ID No.
+          ADL__required_message: Either Driver's license or SSN is required
+          ADL__format_message: Enter digits only
           attest_no_ssn_or_dln: I do not have an SSN or AK driver's license or State ID
-          gender: Gener
-          gender_options:
+          gender__options:
             male: Male
             female: Female
+          gender__hint: Select One
           Party: Political party affiliation
           ballot_selection: Primary ballot option
           ballot_selection_options:
             dem: Alaska Democratic Party and Alaskan Independence Pary candidates.
             rep: Alaska Republican Party candidates
           attest_remote: Yes, I will be in remote Alaska or overseas where mail service is limited. If yes, a 45-day advance ballot will be mailed to you.
+          has_ballot_mailing_address: I want my ballot sent to a separate address
           Ballot Mailing Address 1: Ballot mailing address
+          Ballot Mailing Address 1__hint: Provide an address where you will receive mail, if different from your residence address.
           Ballot Mailing Address 2: "&nbsp;"
           Ballot Mailing Address 3: "&nbsp;"
+      
           
       nc:
         state_online_registration:

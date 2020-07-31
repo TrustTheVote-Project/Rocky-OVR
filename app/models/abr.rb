@@ -23,6 +23,7 @@ class Abr < ActiveRecord::Base
   validates_presence_of :city, if: :advancing_to_step_3?
   validates_presence_of :date_of_birth, if: :advancing_to_step_3?
   validates_presence_of :zip
+  validate :validate_form_fields, if: :advancing_to_step_4?
 
   def advancing_to_step?(num)
     (current_step || "0").to_i >= num
@@ -34,6 +35,10 @@ class Abr < ActiveRecord::Base
 
   def advancing_to_step_3?
     advancing_to_step?(3)
+  end
+
+  def advancing_to_step_4?
+    advancing_to_step?(4)
   end
   
   def redact_sensitive_data

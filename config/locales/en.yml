@@ -7,8 +7,15 @@ en:
   'yes': 'Yes'
   'no': 'No'
   required: "(Required)"
+  errors:
+    messages:
+      accepted: "must be accepted."
+      too_long: "too long (maximum is %{count} characters)."
+      too_short: "too short (minimum is %{count} characters)."
+      wrong_length: "wrong length (should be %{count} characters)."
   affirm: Affirm
   decline: Decline
+  
   language_name: English
   language_name_translation_instructions: Please provide the name of the translated
     language in that language. For example, if you are translating Japanese, provide

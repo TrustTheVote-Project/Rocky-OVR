@@ -55,6 +55,7 @@ $mobile-min-width: 300px - $tooltip-offset;
               &.registrant-form__change-of-name__line,
               &.registrant-form__required-checkbox {
                 width: 100%;
+                margin-right: 0;
                 margin-top: 30px;
                 h3 {
                   line-height: 1.7em;

@@ -94,29 +94,42 @@ module AbrStateMethods::AK
         method: "email"
       }
     })    
+    klass.define_state_value_attribute("has_ballot_mailing_address")
+    klass.define_state_value_attribute("has_mailing_address")
   end
   
   def form_field_items
     [
-      {"us_citizen": {type: :checkbox}},
-      {"attest_is_18": {type: :checkbox}},
-      "Former Name",
-      "Voter No",
-      "Perm Mailing 1",
-      "Perm Mailing 2",
-      "Perm Mailing 3",
-      "SSN or Last 4",
-      "ADL",
-      {"attest_no_ssn_or_dln": { type: :checkbox}},
+      {"us_citizen": {type: :checkbox, required: true}},
+      {"attest_is_18": {type: :checkbox, required: true}},
+      {"has_mailing_address": {type: :checkbox}},
+      {"Perm Mailing 1": {visible: "has_mailing_address", min: 3, max: 50}},
+      {"Perm Mailing 2": {visible: "has_mailing_address"}},
+      {"Perm Mailing 3": {visible: "has_mailing_address"}},
+      {"ADL": {length: 7, regexp: /\A\d+\z/, hidden: "attest_no_ssn_or_dln"}},
+      {"SSN or Last 4": {hidden: "attest_no_ssn_or_dln"}},
+      {"attest_no_ssn_or_dln": { type: :checkbox}}, # Must either provide ssn, alaska state ID or check "attest_no..."
       {"gender": {type: :radio, options: [:male, :female]}},
       "Party",
       {"ballot_selection": {type: :radio, options: [:dem, :rep]}},
       {"attest_remote": {type: :checkbox}},
-      "Ballot Mailing Address 1",
-      "Ballot Mailing Address 2",
-      "Ballot Mailing Address 3",      
+      {"has_ballot_mailing_address": {type: :checkbox}},
+      {"Ballot Mailing Address 1": {visible: "has_ballot_mailing_address"}},
+      {"Ballot Mailing Address 2": {visible: "has_ballot_mailing_address"}},
+      {"Ballot Mailing Address 3": {visible: "has_ballot_mailing_address"}},
+      "Former Name",
+      "Voter No",
     ]
   end
+  
+  def custom_form_field_validations
+    if !self.attest_no_ssn_or_dln && self.ssn_or_last_4.blank? && self.adl.blank?
+      errors.add(:ssn_or_last_4, custom_required_message("SSN or Last 4"))
+      errors.add(:adl, custom_required_message("ADL"))
+    end
+  end
+  
+  attr_reader :has_ballot_mailing_address
   
   # TODO move this to geneal abr_state_methods
   

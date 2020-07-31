@@ -75,13 +75,111 @@ absentee_states:
   AK:
     online_req_url: https://absenteeballotapplication.alaska.gov/
     pdf_template: ak.pdf
+  AL:
+    pdf_template:
+  AR:
+    pdf_template:
+  AZ:
+    online_req_url: https://my.arizona.vote/Early/ApplicationLogin.aspx
+  CA: {}
+  CO: {}
+  CT:
+    pdf_template:
+  DC: 
+    online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
+    pdf_template: Absentee-Request-Form-and-Information-030120-LM03-04-20_2.pdf
   DE:
     online_req_url: https://ivote.de.gov/voterlogin.aspx    
+    pdf_template: absentee_ballot_application.pdf
   FL:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
+  GA:
+    pdf_template:
+  HI: {}
+  IA:
+    pdf_template:
+  ID:
+    online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
+    pdf_template: 2020_Absentee_Request.pdf
+  IL:
+    pdf_template:
+  IN:
+    pdf_template:
+  KS:
+    pdf_template:
+  KY:
+    disabled: true
+  LA:
+    online_req_url: 
+    pdf_template:
+  MA:
+    pdf_template:
+  MD:
+    online_req_url: 
+    pdf_template:
+  ME:
+    online_req_url: 
+    pdf_template:
+  MI:
+    online_req_url: 
+    pdf_template:
+  MN:
+    online_req_url: 
+    pdf_template:
+  MO:
+    pdf_template:
+  MS:
+    disabled: true
+  MT:
+    pdf_template:
+  NC:
+    pdf_template:      
+  ND:
+    online_req_url: 
+    pdf_template:
+  NE:
+    pdf_template:
+  NH:
+    pdf_template:
+  NJ:
+    pdf_template:
+  NM:
+    online_req_url: 
+    pdf_template:
+  NV:
+    pdf_template:
+  NY:
+    pdf_template:
   OH:
+    pdf_template:
+  OK:
+    online_req_url: 
+    pdf_template:
+  OR: {}      
+  PA:
+    online_req_url: 
+    pdf_template:
+  RI:
+    pdf_template:
+  SC:
+    online_req_url: 
+    pdf_template:
+  SD:
+    pdf_template:
+  TN:
+    pdf_template:
   TX:
+    pdf_template: 5-15f.pdf
+  UT: {}  
+  VA:
+  VT:
+    online_req_url: 
+    pdf_template:
+  WA: {}
+  WI: "?"
+  WV: "?"
   WY:
+    pdf_template: AbsenteeRequestForm-Standard.pdf
   
 ovr_states:
   AZ:
