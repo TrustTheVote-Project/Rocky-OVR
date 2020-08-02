@@ -8,6 +8,7 @@ en:
           requirements: If you have a valid Alaska driver's license etc, you may request your absentee ballot online directly with the state of Alaska.
           confirm: I meet these requirements and would like to finish my request directly with the state.
           instructions: <p>State-specific set of instructions</p><ul><li>may</li><li>include</li><li>html</li>
+          finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
         abr_form_fields:
           us_citizen: I am a U.S. Citizen
           us_citizen__required_message: You must be a U.S. Citizen
@@ -143,6 +144,10 @@ en:
         abr:
           header: Absentee Requests In Oregon
           instructions: <p>There is no absentee ballot request in Oregon. All registered voters will receive a vote-by-mail ballot.</p>
+      tx:
+        state_online_abr:
+          finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
+      
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.

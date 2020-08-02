@@ -77,7 +77,14 @@ class Abr < ActiveRecord::Base
     'en'
   end
   
+  def email_address
+    email
+  end
   
+  def tracking_source
+  end
+  def tracking_id
+  end
   
   def use_state_flow?
     #TBD

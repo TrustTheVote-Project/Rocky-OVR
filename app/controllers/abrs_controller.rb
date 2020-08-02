@@ -102,6 +102,8 @@ class AbrsController < ApplicationController
   def finish
     @current_step = 5 #final
     find_abr(:finish)
+    @abr_finish_iframe_url = @abr.finish_iframe_url
+    
   end
   
   

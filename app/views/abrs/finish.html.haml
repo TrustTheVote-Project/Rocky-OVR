@@ -2,6 +2,11 @@
 
 = t('txt.abr.finish_instructions').html_safe
 
-= t("states.custom.#{@abr.home_state_abbrev}.finish_instructions", default: "").html_safe
+= t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.finish_instructions", default: "").html_safe
 
 %p TBD Share links/urls? iFrame?
+
+
+
+#finish_page_iframe
+  %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
