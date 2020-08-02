@@ -1,3 +1,7 @@
+- if @registrant.mail_with_esig?
+  = render 'shared/signature_capture/scripts'
+
+
 - if !@registrant.use_short_form?
   %h1= t('txt.registration.step_2_header')
     
@@ -112,6 +116,9 @@
     - else
       .state-id-number
         = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+      - if @registrant.mail_with_esig?
+        = render partial: 'shared/signature_capture/form', locals: {form: form}
+        
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
       .clear-fix
       %ul.flat.dob-and-phone

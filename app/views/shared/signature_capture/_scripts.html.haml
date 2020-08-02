@@ -1,0 +1,164 @@
+- content_for :head do
+  %script{src: "https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"}
+  
+  %script{src: "https://cdn.jsdelivr.net/npm/cropit@0.5.1/dist/jquery.cropit.min.js"}
+  :javascript
+    jQuery.event.addProp('dataTransfer')
+  
+    function resizeCanvas(canvas, signaturePad) {
+      // When zoomed out to less than 100%, for some very strange reason,
+      // some browsers report devicePixelRatio as less than 1
+      // and only part of the canvas is cleared then.
+      var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+
+      // This part causes the canvas to be cleared
+      
+      
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+
+      // This library does not listen for canvas changes, so after the canvas is automatically
+      // cleared by the browser, SignaturePad#isEmpty might still return false, even though the
+      // canvas looks empty, because the internal data of this library wasn't cleared. To make sure
+      // that the state of this library is consistent with visual state of the canvas, you
+      // have to clear it manually.
+      signaturePad.clear();
+    }
+    
+  
+    function registerTouch() {
+      $("#signature_capture").show();   
+      $("#signature_upload").hide();
+      var canvas = $("canvas#signature_field").get(0);
+      var size = screen.width / 150;
+      var signaturePad = new SignaturePad(canvas, {
+          minWidth: size,
+          maxWidth: size,
+          minDistance: size,
+          dotSize: size,
+          backgroundColor: "rgba(255,255,255,1)"
+      });
+      signaturePad.clear();
+      
+      //window.onresize = resizeCanvas.bind(this, canvas, signaturePad);
+      
+      $(".capture-signature").click(function() {
+        $("#signature_field_popup").show();
+        resizeCanvas(canvas, signaturePad);
+      })
+      
+      $(".signature_done").click(function() {
+        //export
+        var imageData = signaturePad.toDataURL("image/jpeg");
+
+        var img = new Image;
+        img.src = imageData;
+        img.onload = function() {
+          var c = document.createElement('canvas');
+          var ctx = c.getContext('2d')
+          c.width = 180
+          c.height = 60          
+          ctx.drawImage(this, 0, 0, c.width, c.height);
+          sizedImageData = c.toDataURL("image/jpeg");
+          $("#state_registrants_pa_registrant_voter_signature_image").val(sizedImageData);        
+          $("#signature_preview img.preview").attr('src', sizedImageData)
+          $("#signature_preview").show();
+          $("#signature_field_popup").hide();
+        }
+      })
+      
+      $("#signature_capture2").show();   
+      
+      $(".signature_clear").click(function() {
+        signaturePad.clear();
+        $("#state_registrants_pa_registrant_voter_signature_image").val('');        
+        $("#signature_preview img.preview").attr('src', null)
+        $("#signature_preview").hide();
+      })
+      
+    };
+    
+    $(document).ready(function() {
+      function showControls() {
+        $("#signature-cropper .controls").show();
+        $(".select-image-btn").hide();        
+        $(".cropit-preview").show();
+      }
+      function hideControls() {
+        $("#signature-cropper .controls").hide();
+        $(".select-image-btn").show();
+        $(".cropit-preview").hide();                
+      }
+      function removeSignatureFile() {
+        $('#signature-cropper .cropit-preview-image').removeAttr('src');
+        $('#signature-cropper .cropit-preview-background').removeAttr('src');     
+        $("#state_registrants_pa_registrant_voter_signature_image").val('');
+        $(".cropit-image-input").val('');        
+        hideControls();
+        
+      }
+      $("#signature-cropper .remove-image-btn").click(removeSignatureFile);
+      
+      function adjustSignature() {
+        try {
+          var imageData = $('#signature-cropper').cropit('export', {
+            type: 'image/jpeg',
+            quality: 1.0,
+            fillBg: '#fff'
+          });
+          $("#state_registrants_pa_registrant_voter_signature_image").val(imageData);          
+          
+        } catch(err) { console.error(err) }
+      }
+      function selectSignatureType() {
+        if ($("#state_registrants_pa_registrant_signature_method_upload:checked").length > 0) {
+          var imageData = $('#state_registrants_pa_registrant_voter_signature_image').val()
+          $('#signature-cropper').show().cropit({
+            imageState: { src:  imageData },
+            freeMove: true,
+            minZoom: 'fit',
+            exportZoom: 0.5,
+            onFileChange: showControls,
+            onZoomChange: adjustSignature,
+            onOffsetChange: adjustSignature,
+            allowDragNDrop: false
+          });    
+          if (imageData != "") {
+            setTimeout(showControls, 1000);
+          }
+            
+        } else {
+          $('#signature-cropper').hide()
+        }
+        if ($("#state_registrants_pa_registrant_signature_method_device:checked").length > 0) {
+          $("#continue_on_device").show();
+        } else {
+          $("#continue_on_device").hide();
+        }
+      } 
+      
+      function copyLink() {
+        var text = $("#link-to-copy").text().trim();
+        //Create hidden input
+        var el = document.createElement("textarea");
+        el.value = text;
+        //el.style.display='none';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy')
+        document.body.removeChild(el);
+        $("#link-copied").show().fadeOut(3000);
+        
+      }
+      
+      $(".copy-link").click(function() {
+        copyLink();
+      })
+      
+      $("[name='state_registrants_pa_registrant[signature_method]']").click(selectSignatureType)
+      selectSignatureType();
+      $('.select-image-btn').click(function() {
+        $('.cropit-image-input').click();
+      });
+    });

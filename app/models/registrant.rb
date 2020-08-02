@@ -1450,6 +1450,32 @@ class Registrant < ActiveRecord::Base
     self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 2 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
   end
   
+  def mail_with_esig?
+    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states.include?(self.home_state_abbrev)    
+  end
+  
+  
+  has_one :voter_signature, primary_key: :uid, autosave: true
+  [
+    :voter_signature_image,
+    :signature_method,
+    :sms_number_for_continue_on_device,
+    :email_address_for_continue_on_device
+  ].each do |vs_attribute|
+    define_method "#{vs_attribute}" do
+      (voter_signature || create_voter_signature).send(vs_attribute)
+    end
+    define_method "#{vs_attribute}=" do |val|
+      (voter_signature || create_voter_signature).send("#{vs_attribute}=", val)
+    end
+  end
+  
+  def signature_capture_url
+    registrant_step_2_url(self.to_param,  :protocol => "https", :host=>RockyConf.default_url_host)
+  end
+  
+  
+  
   def to_pdf_hash
     {
       :id =>  id,

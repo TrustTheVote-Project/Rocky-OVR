@@ -66,6 +66,12 @@ pdf_expiration_days: 14
 pdf_no_email_expiration_minutes: 10
 partner_csv_expiration_minutes: 30
 
+mail_with_esig:
+  states:
+    - MN
+  partners:
+    - 1 
+    
   
 ovr_states:
   AZ:
