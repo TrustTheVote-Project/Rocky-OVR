@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200803152343) do
+ActiveRecord::Schema.define(version: 20200803181628) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20200803152343) do
     t.string   "votercheck"
     t.string   "current_step"
     t.string   "max_step"
-    t.boolean  "abandoned"
+    t.boolean  "abandoned",                default: false, null: false
     t.boolean  "pdf_ready"
     t.boolean  "pdf_downloaded"
     t.datetime "pdf_downloaded_at"

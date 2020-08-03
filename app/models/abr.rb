@@ -144,6 +144,19 @@ class Abr < ActiveRecord::Base
     end
   end
   
+  def deliver_chaser_email
+    if send_emails?
+      AbrNotifier.chaser(self).deliver_now
+    end
+  end
+  
+  def deliver_thank_you_for_state_online_registration_email
+    if send_emails?
+      AbrNotifier.thank_you_external(self).deliver_now
+    end
+  end
+
+  
   def deliver_reminder_email
     if reminders_left > 0 && send_emails?
       AbrNotifier.reminder(self).deliver_now
@@ -245,10 +258,10 @@ class Abr < ActiveRecord::Base
   def self.abandon_stale_records
     id_list = []
     distribute_reads do 
-      id_list = self.where("(abandoned != ?) AND (current_step >= ?) AND (updated_at < ?)", true, COMPLETION_STEP, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id) 
+      id_list = Abr.where("(abandoned != ?) AND (current_step < ? OR current_step IS NULL) AND (updated_at < ?)", true, Abr::COMPLETION_STEP, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id) 
 
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |abr|
-        if reg.finish_with_state?
+        if abr.finish_with_state?
           abr.current_step = COMPLETION_STEP
           begin
             abr.deliver_thank_you_for_state_online_registration_email
