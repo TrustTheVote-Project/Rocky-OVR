@@ -1,6 +1,6 @@
 module AbrStateMethods
   def self.included(klass)
-    klass.extend(ClassMethods)
+    
   end
 
   module ClassMethods
@@ -48,7 +48,9 @@ module AbrStateMethods
   end
   
   def pdf_fields
-    self.class.pdf_fields
+    self.singleton_class.pdf_fields
+  rescue
+    {}
   end
   
   def to_pdf_values

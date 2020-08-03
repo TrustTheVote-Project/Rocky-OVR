@@ -5,6 +5,14 @@ class Abr < ActiveRecord::Base
   include AbrPdfFields
   
   include AbrStateMethods
+  include Rails.application.routes.url_helpers
+  
+  REMINDER_EMAILS_TO_SEND = 2
+  def self.reminder_emails_to_send
+    REMINDER_EMAILS_TO_SEND
+  end
+  
+  
   after_initialize :add_state_attributes
   
   has_many :abrs_catalist_lookups
@@ -117,8 +125,37 @@ class Abr < ActiveRecord::Base
     return pdf_url
   end
   
+  def stop_reminders_url
+    finish_abr_url(self, :protocol => "https", :reminders => "stop", :host=>RockyConf.default_url_host)
+  end
+  
+  def send_emails?
+    !email.blank? && !is_blacklisted(email)
+  end
+  
   def deliver_confirmation_email
-    # TODO implement emails for ABR
+    if send_emails?
+      AbrNotifier.confirmation(self).deliver_now
+      enqueue_reminder_emails
+    end
+  end
+  
+  def deliver_reminder_email
+    if reminders_left > 0 && send_emails?
+      AbrNotifier.reminder(self).deliver_now
+      self.reminders_left = reminders_left - 1
+      self.save(validate: false)
+    end
+  rescue StandardError => error
+  end
+  
+  
+  def state_registrar_address
+    home_state && home_state.registrar_address(self.zip)
+  end
+  
+  def home_state_email_instructions
+    I18n.t("states.custom.#{home_state_abbrev.downcase}.abr.email_instructions", default: '')
   end
   
   

@@ -41,7 +41,9 @@ en:
           Ballot Mailing Address 2: "&nbsp;"
           Ballot Mailing Address 3: "&nbsp;"
       
-          
+      de:
+        abr:
+          email_instructions: You may also sign, scan and email your form.   
       nc:
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.

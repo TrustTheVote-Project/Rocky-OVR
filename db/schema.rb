@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200730182010) do
+ActiveRecord::Schema.define(version: 20200803152343) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 20200730182010) do
     t.string   "email"
     t.string   "phone"
     t.date     "date_of_birth"
-    t.boolean  "javascript_disabled",  default: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.boolean  "javascript_disabled",      default: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "phone_type"
     t.boolean  "opt_in_email"
     t.boolean  "opt_in_sms"
@@ -68,6 +68,9 @@ ActiveRecord::Schema.define(version: 20200730182010) do
     t.string   "street_name"
     t.string   "street_line2"
     t.string   "unit"
+    t.boolean  "finish_with_state",        default: false
+    t.boolean  "final_reminder_delivered", default: false
+    t.integer  "reminders_left"
   end
 
   add_index "abrs", ["email"], name: "index_abrs_on_email"
@@ -821,6 +824,18 @@ ActiveRecord::Schema.define(version: 20200730182010) do
   add_index "tracking_events", ["open_tracking_id"], name: "index_tracking_events_on_open_tracking_id"
   add_index "tracking_events", ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
   add_index "tracking_events", ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
+
+  create_table "voter_signatures", force: :cascade do |t|
+    t.string   "registrant_id"
+    t.text     "voter_signature_image"
+    t.string   "signature_method"
+    t.string   "sms_number_for_continue_on_device"
+    t.string   "email_address_for_continue_on_device"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "voter_signatures", ["registrant_id"], name: "index_voter_signatures_on_registrant_id"
 
   create_table "zip_code_county_addresses", force: :cascade do |t|
     t.integer  "geo_state_id"

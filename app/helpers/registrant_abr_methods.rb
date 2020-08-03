@@ -20,6 +20,10 @@ module RegistrantAbrMethods
     partner.rtv_sms_opt_in || partner.partner_sms_opt_in? || partner.primary?
   end
   
+  def is_blacklisted(email_address)
+    EmailAddress.is_blacklisted?(email_address)
+  end
+
 
 
 
@@ -81,5 +85,28 @@ module RegistrantAbrMethods
     !home_state.nil? && home_state.online_reg_enabled?(locale, self)
   end
   
+  def rtv_and_partner_name
+    if partner && !partner.primary?
+      I18n.t('txt.rtv_and_partner', :partner_name=>partner.organization)
+    else
+      "Rock the Vote"
+    end
+  end
+  
+  def email_address_to_send_from
+    if partner && !partner.primary? && partner.whitelabeled? && !partner.from_email.blank? && partner.from_email_verified?
+      partner.from_email
+    else
+      RockyConf.from_address
+    end
+  end
+  
+  def enqueue_reminder_emails
+    if send_emails?
+      self.reminders_left = self.class.reminder_emails_to_send
+    else
+      self.reminders_left = 0
+    end
+  end
   
 end

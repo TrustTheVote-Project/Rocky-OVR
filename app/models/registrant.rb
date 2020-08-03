@@ -57,6 +57,9 @@ class Registrant < ActiveRecord::Base
   TITLES = RockyConf.enabled_locales.collect{|l| TITLE_KEYS.collect{|key| I18n.t("txt.registration.titles.#{key}", :locale => l) } }.flatten
   SUFFIXES = RockyConf.enabled_locales.collect{|l| SUFFIX_KEYS.collect{|key| I18n.t("txt.registration.suffixes.#{key}", :locale => l) } }.flatten
   REMINDER_EMAILS_TO_SEND = 2
+  def self.reminder_emails_to_send
+    REMINDER_EMAILS_TO_SEND
+  end
   REMINDER_EMAIL_PRIORITY = 0
   WRAP_UP_PRIORITY = REMINDER_EMAIL_PRIORITY + 1
 
@@ -1473,10 +1476,6 @@ class Registrant < ActiveRecord::Base
     !email_address.blank? && !is_blacklisted(email_address) && collect_email_address? && (!building_via_api_call? || send_confirmation_reminder_emails?)
   end
   
-  def is_blacklisted(email_address)
-    EmailAddress.is_blacklisted?(email_address)
-  end
-
   def deliver_confirmation_email
     if send_emails?
       Notifier.confirmation(self).deliver_now
@@ -1493,14 +1492,6 @@ class Registrant < ActiveRecord::Base
   def deliver_thank_you_for_state_online_registration_email
     if send_emails?
       Notifier.thank_you_external(self).deliver_now
-    end
-  end
-
-  def enqueue_reminder_emails
-    if send_emails?
-      self.reminders_left = REMINDER_EMAILS_TO_SEND
-    else
-      self.reminders_left = 0
     end
   end
 
@@ -1557,22 +1548,6 @@ class Registrant < ActiveRecord::Base
 
   def eligible?
     !ineligible?
-  end
-
-  def rtv_and_partner_name
-    if partner && !partner.primary?
-      I18n.t('txt.rtv_and_partner', :partner_name=>partner.organization)
-    else
-      "Rock the Vote"
-    end
-  end
-
-  def email_address_to_send_from
-    if partner && !partner.primary? && partner.whitelabeled? && !partner.from_email.blank? && partner.from_email_verified?
-      partner.from_email
-    else
-      RockyConf.from_address
-    end
   end
 
   def survey_question_1

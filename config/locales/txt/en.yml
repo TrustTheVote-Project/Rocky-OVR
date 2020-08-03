@@ -20,6 +20,21 @@ en:
       download_instructions: <p>Download Instructions</p>
       finish_header: Thank you for creating your absentee ballot for the state of %{state_name}
       finish_instructions: <p>Finish Instructions</p>
+      finish_pdf_delay_header: Check Your Email
+      finish_pdf_delay: It's taking a while to create your absentee request form to download,
+        but don't worry. We'll send you an email when it's ready. In the mean time,
+        you can let your friends know how they can request an absetee ballot too.
+      finish_under_18_header: You're on the list!
+      tell_a_friend_title: Tell a Friend by Email
+      finish_reminder_header: Thanks for Requesting your Absentee Ballot!
+      finish_reminder: Thank you, %{first_name}, for sending in your absentee ballot request! 
+        You should receive confirmation of your request from your
+        state's election officials. Sometimes processing can take several weeks.
+      finish_reminder_2: If you want to check on the status of your absentee ballot request,
+        you can find contact information for your Secretary of State at our
+        <a href="https://www.rockthevote.org/voting-information/" target="_blank">Election
+        Center</a>.
+      
       match:
         confirm: It looks like you are registered to vote. Please confirm that this is you.
         confirm_yes: <p><a>Yes, this is me. I want to continue requesting an absentee ballot.</a></p>

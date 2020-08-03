@@ -1,6 +1,7 @@
 module AbrStateMethods::AK
   
   def self.included(klass)
+    klass.extend(AbrStateMethods::ClassMethods)
     klass.add_pdf_fields({
       "All in Calendar Year" => {
         options: ["Off", "On"],

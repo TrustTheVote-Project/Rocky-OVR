@@ -48,6 +48,7 @@ class AbrsController < ApplicationController
   
   def state_online_redirect
     find_abr
+    @abr.update_attributes(:finish_with_state=>true)
     render :html => "<html><body><script>parent.location.href='#{@abr.home_state_oabr_url}';</script></body></html>".html_safe    
   end
   
@@ -58,7 +59,7 @@ class AbrsController < ApplicationController
       redirect_to state_online_redirect_abr_path(@abr)
     else
       @abr.current_step = @current_step + 1
-      @abr.set_max_step(@current_step)
+      @abr.set_max_step(@current_step)      
       if @abr.update_attributes(abr_params)
         perform_next_step
       else
@@ -103,7 +104,16 @@ class AbrsController < ApplicationController
     @current_step = 5 #final
     find_abr(:finish)
     @abr_finish_iframe_url = @abr.finish_iframe_url
-    
+    @pdf_ready = false
+    if params[:reminders]
+      @abr.update_attributes(:reminders_left => 0, final_reminder_delivered: true)
+      @stop_reminders = true
+    end
+    if params[:share_only] 
+      @share_only = true
+    elsif !params[:not_ready] && !params[:reminders]
+      @pdf_ready = @abr.pdf_ready?
+    end
   end
   
   
@@ -135,6 +145,11 @@ class AbrsController < ApplicationController
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
     raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil?
     @abr.update_attributes(current_step: @current_step) if @current_step
+    
+    if @abr.finish_with_state? && special_case != :tell_friend && special_case != :finish
+      @abr.update_attributes(:finish_with_state=>false)
+    end
+    
   end
   
   def perform_current_step
