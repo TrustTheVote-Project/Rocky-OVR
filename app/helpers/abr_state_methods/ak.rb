@@ -40,7 +40,7 @@ module AbrStateMethods::AK
       "City" => {
         method: "city"
       },     
-      "SSN or Last 4" => {},     
+      "SSN or Last 4" => {sensitive: true},     
       "Birthdate" => {
         method: "date_of_birth_mm_dd_yyyy"
       }, 
@@ -62,7 +62,7 @@ module AbrStateMethods::AK
       "Perm Mailing 1"=>{},
       "Perm Mailing 2"=>{},
       "Perm Mailing 3"=>{},
-      "ADL"=>{},
+      "ADL"=>{sensitive: true},
       "No SSN or ADL"=> {
         options: ["Off", "On"]
       },

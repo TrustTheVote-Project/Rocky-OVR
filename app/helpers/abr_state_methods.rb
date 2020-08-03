@@ -8,6 +8,10 @@ module AbrStateMethods
       @@pdf_fields ||= {}
       return @@pdf_fields
     end
+    def sensitive_fields
+      @@sensitive_fields ||= []
+      return @@sensitive_fields
+    end
     def add_pdf_fields(hash)
       hash.each do |name, opts|
         self.add_pdf_field(name, opts)
@@ -26,10 +30,13 @@ module AbrStateMethods
       self.pdf_fields[name] = opts
       unless self.method_defined?(opts[:method])
         method_name = opts[:method]
-        self.define_state_value_attribute(method_name)
+        self.define_state_value_attribute(method_name, sensitive: opts[:sensitive])
       end
     end
-    def define_state_value_attribute(method_name)
+    def define_state_value_attribute(method_name, sensitive: false)
+      if sensitive
+        self.sensitive_fields.push(method_name)
+      end
       define_method "#{method_name}" do
         value = instance_variable_get("@#{method_name}")
         if value.nil?
@@ -51,6 +58,13 @@ module AbrStateMethods
     self.singleton_class.pdf_fields
   rescue
     {}
+  end
+  
+  def redact_sensitive_data
+    self.singleton_class.sensitive_fields.each do |method|
+      puts "set #{method}"
+      self.send("#{method}=", nil)
+    end
   end
   
   def to_pdf_values

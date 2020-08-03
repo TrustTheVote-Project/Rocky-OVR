@@ -29,17 +29,25 @@ class ReminderMailer
   def deliver_reminders!
     deliver_final_reminders
     deliver_reminders(reg_ids(1, second_reminder_time))
+    deliver_abr_reminders(abr_ids(1, second_reminder_time))
     deliver_reminders(reg_ids(2, first_reminder_time))
+    deliver_abr_reminders(abr_ids(2, first_reminder_time))
   end
 
   def deliver_final_reminders
     Registrant.where(["reminders_left=0 AND pdf_downloaded = ? AND updated_at < ? AND final_reminder_delivered = ? AND pdf_ready=?", false, final_reminder_time, false, true]).find_each(batch_size: 500) do |reg|
       reg.deliver_final_reminder_email
     end
+    Abr.where(["reminders_left=0 AND pdf_downloaded = ? AND updated_at < ? AND final_reminder_delivered = ? AND pdf_ready=?", false, final_reminder_time, false, true]).find_each(batch_size: 500) do |reg|
+      reg.deliver_final_reminder_email
+    end
   end
 
   def reg_ids(count, time)
     Registrant.where("reminders_left = ? AND updated_at < ?", count, time).pluck(:id)
+  end
+  def abr_ids(count, time)
+    Abr.where("reminders_left = ? AND updated_at < ?", count, time).pluck(:id)
   end
 
   def final_reminder_time
@@ -57,6 +65,11 @@ class ReminderMailer
   def deliver_reminders(registrant_ids)
     Registrant.where(["id in (?)", registrant_ids]).find_each(:batch_size=>500) do |reg|
       reg.deliver_reminder_email
+    end
+  end
+  def deliver_abr_reminders(abr_ids)
+    Abr.where(["id in (?)", abr_ids]).find_each(:batch_size=>500) do |abr|
+      abr.deliver_reminder_email
     end
   end
 end

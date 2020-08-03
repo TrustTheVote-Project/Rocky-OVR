@@ -49,11 +49,6 @@ class Abr < ActiveRecord::Base
     advancing_to_step?(4)
   end
   
-  def redact_sensitive_data
-    # TODO: This will be state-specific!!
-    #self.state_id_number = nil
-  end
-  
   
   before_create :generate_uid
   
@@ -107,8 +102,17 @@ class Abr < ActiveRecord::Base
     true
   end
   
+  def abandon!
+    self.abandoned = true
+    self.redact_sensitive_data
+    self.save(:validate=>false)
+  rescue    
+  end
+  
+  
+  COMPLETION_STEP = 4
   def complete?
-    (current_step || "0").to_i >= 4
+    (current_step || "0").to_i >= COMPLETION_STEP
   end
   
   def complete_registration
@@ -235,6 +239,38 @@ class Abr < ActiveRecord::Base
 
   def self.find_by_param!(param)
     find_by_param(param) || begin raise ActiveRecord::RecordNotFound end
+  end
+  
+  
+  def self.abandon_stale_records
+    id_list = []
+    distribute_reads do 
+      id_list = self.where("(abandoned != ?) AND (current_step >= ?) AND (updated_at < ?)", true, COMPLETION_STEP, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id) 
+
+      self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |abr|
+        if reg.finish_with_state?
+          abr.current_step = COMPLETION_STEP
+          begin
+            abr.deliver_thank_you_for_state_online_registration_email
+          rescue Exception => e
+            Rails.logger.error(e)
+            # raise e
+          end
+          abr.save(validate: false) # Don't want to run into errors that prevent status from being updated and create multiple emails
+        else
+          # Send chase email
+          begin
+            abr.deliver_chaser_email
+          rescue Exception => e
+            Rails.logger.error(e)
+          end
+        end
+        unless abr.complete?
+          abr.abandon! 
+          Rails.logger.info "ABR #{abr.id} abandoned at #{Time.now}"
+        end
+      end
+    end
   end
   
 end

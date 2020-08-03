@@ -12,7 +12,8 @@ namespace :utility do
   desc "Mark all stale registrations as abandoned and redact sensitive data"
   task :timeout_stale_registrations => :environment do
     Registrant.remove_fake_records
-    Registrant.abandon_stale_records    
+    Registrant.abandon_stale_records
+    Abr.abandon_stale_records  
   end
   
   desc "Remove pdf directories that are past the expiration date"
