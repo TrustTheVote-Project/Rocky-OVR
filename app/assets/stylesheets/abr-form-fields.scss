@@ -1,8 +1,20 @@
-.ak-abr-form-fields {
+.state-abr-form-fields {
   li {
     &.line {
       margin: .25em 0;      
     }
+  }
+  margin-bottom: 2em;
+  .radio input {
+    display: inline-block;
+    width: auto;
+    height: 1em;
+    margin-right: 5px;
+    margin-left: 20px;
+  }
+}
+.ak-abr-form-fields {
+  li {
     &.former_name {
       width: 50%;
       margin-right: 2%;
@@ -37,12 +49,12 @@
       h3 { display: none }
     }
   }
-  margin-bottom: 2em;
-  .radio input {
-    display: inline-block;
-    width: auto;
-    height: 1em;
-    margin-right: 5px;
-    margin-left: 20px;
+
+}
+
+.de-abr-form-fields {
+  .absentee_reason .radio label {
+    display: block;
+    margin-bottom: 1em;
   }
 }

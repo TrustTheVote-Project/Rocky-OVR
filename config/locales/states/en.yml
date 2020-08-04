@@ -31,7 +31,7 @@ en:
           gender__hint: Select One
           Party: Political party affiliation
           ballot_selection: Primary ballot option
-          ballot_selection_options:
+          ballot_selection__options:
             dem: Alaska Democratic Party and Alaskan Independence Pary candidates.
             rep: Alaska Republican Party candidates
           attest_remote: Yes, I will be in remote Alaska or overseas where mail service is limited. If yes, a 45-day advance ballot will be mailed to you.
@@ -44,6 +44,23 @@ en:
       de:
         abr:
           email_instructions: You may also sign, scan and email your form.   
+        abr_form_fields:
+          fill_2: Political Party
+          Security Number: Social Security Number
+          fill_10: Address where you want your ballot sent if different than home address
+          fill_11: Expected Election Day Location
+          Day phone: Expected Election Day Phone Number          
+          absentee_reason: Select the reason you are voting by absentee ballot
+          absentee_reason__hint: If you select reason 6 below you will receive a full Primary Election ballot, but your General Eletion ballot will only have Federal Offices. Citizens temporarily residing outside of the U.S. should use the Federal Post Card Applicatioon instead of choosing reason 6.
+          absentee_reason__options:
+            "1": (1) I am in public service of the U.S. or the State of Delaware, or I am a spouse or dependent residing with or accompanying him or her. Reason 1 also applies to members of the Uniformed Services.
+            "2": "(2) Due to the nature of my business or occupatioon. Reason 2 also applies to<ul><li>persons providing care to a parent, spouse or child who is living at home and requires constant care,</li><li>students, and</li><li>otherwise eligible persons who are incarcerated.</li></ul>"
+            "3": (3) I am sick, or temporarily or permanently physically disabled.
+            "4": (4) I am absent from the district while on vaca􏰀tion
+            "5": (5) Due to the tenets or teachings of my religion
+            "6": (6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her. 
+          absentee_delivery: Special Qualification regarding electronic delivery of absentee ballots.
+          Fax or: "Fax Number"
       nc:
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.

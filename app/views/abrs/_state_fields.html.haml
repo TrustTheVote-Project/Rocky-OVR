@@ -27,13 +27,14 @@
     console.log(setVisible.get(0))
     $(setVisible).each(function() {
       var conditions = $(this).data("visible-conditions");
+      var conditionValue = $(this).data("visible-conditions-value")
       var conditionalFields = conditions.split(" ");
       var showField = true;
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+"")
-        console.log(showField, field, field.val())
-        showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
+        console.log(showField, "#abr_"+fieldName+"", field, field.val())
+        showField = showField && field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val()))
       }
       if (showField) {
         $(this).show();
@@ -53,7 +54,7 @@
   })
   
   
-%fieldset{class: "#{@abr.home_state_abbrev.downcase}-abr-form-fields"}
+%fieldset{class: "#{@abr.home_state_abbrev.downcase}-abr-form-fields state-abr-form-fields"}
   %ul.flat
     - @abr.form_fields.each do |field_name, opts|
       - required = opts[:required]
@@ -62,10 +63,14 @@
       - class_name = "line #{opts[:method]} #{required ? 'required' : ''}"
       - required_message = required ?  @abr.custom_required_message(field_name).html_safe : nil
       - data = {}
-      - visible_conditions = opts[:visible].to_s.strip
-      - hidden_conditions =  opts[:hidden].to_s.strip
+      - visible_conditions = opts[:visible].is_a?(Array) ? opts[:visible][0] : opts[:visible].to_s.strip
+      - visible_conditions_value = opts[:visible].is_a?(Array) ? opts[:visible][1] : nil
+      - hidden_conditions =  opts[:hidden].is_a?(Array) ? opts[:hidden][0] : opts[:hidden].to_s.strip
+      - hidden_conditions_value = opts[:hidden].is_a?(Array) ? opts[:hidden][1] : nil
       - data["visible-conditions"] = visible_conditions unless visible_conditions.blank?
+      - data["visible-conditions-value"] = visible_conditions_value unless visible_conditions_value.blank?
       - data["hidden-conditions"] = hidden_conditions unless hidden_conditions.blank?
+      - data["hidden-conditions-value"] = hidden_conditions_value unless hidden_conditions_value.blank?
       - if opts[:type] == :checkbox
         - class_name += " registrant-form__required-checkbox " if required
         %li{class: class_name, data: data}

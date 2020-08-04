@@ -1,6 +1,16 @@
 module AbrStateMethods
   def self.included(klass)
-    
+    klass.extend AllClassMethods
+  end
+
+  module AllClassMethods
+    def make_method_name(method_name, original_name=nil)
+      method_name = original_name || method_name.to_s.downcase.gsub(/[^a-z\d_]/,'_')
+      if method_name =~ /\A\d/
+        method_name = "n_#{method_name}"
+      end
+      return method_name
+    end
   end
 
   module ClassMethods
@@ -14,26 +24,24 @@ module AbrStateMethods
     end
     def add_pdf_fields(hash)
       hash.each do |name, opts|
-        self.add_pdf_field(name, opts)
+        self.add_pdf_field(name.to_s, opts)
       end
     end
+    
     def add_pdf_field(name, config_opts)
       opts = config_opts.dup
       method_name = opts[:method]
       if method_name.blank?
         opts[:virtual_attribute] = true
-        opts[:method] ||= name.to_s.downcase.gsub(/\s/,'_')
-        if opts[:method] =~ /\A\d/
-          opts[:method] = "n_#{opts[:method]}"
-        end
+        opts[:method] = Abr.make_method_name(name, opts[:method])
       end
       self.pdf_fields[name] = opts
       unless self.method_defined?(opts[:method])
         method_name = opts[:method]
-        self.define_state_value_attribute(method_name, sensitive: opts[:sensitive])
+        self.define_state_value_attribute(method_name, sensitive: opts[:sensitive], checkbox_values: opts[:options])
       end
     end
-    def define_state_value_attribute(method_name, sensitive: false)
+    def define_state_value_attribute(method_name, sensitive: false, checkbox_values: nil)
       if sensitive
         self.sensitive_fields.push(method_name)
       end
@@ -46,6 +54,14 @@ module AbrStateMethods
         return value
       end
       define_method "#{method_name}=" do |value|
+        # If this is a checkbox, assume 2 options are [false,true]
+        if checkbox_values && checkbox_values.length == 2
+          if [false, 0, "0", "false", "f", nil].include?(value)
+            value = checkbox_values[0]
+          else
+            value = checkbox_values[1]
+          end
+        end
         v = self.abr_state_values.find_or_create_by(attribute_name: method_name)
         v.string_value = value
         v.save
@@ -70,7 +86,7 @@ module AbrStateMethods
   def to_pdf_values
     v = {}
     pdf_fields.each do |name, opts|
-      v[name] = opts[:value] || self.send(opts[:method])
+      v[opts[:pdf_name] || name] = opts[:value] || self.send(opts[:method]) || opts[:default_value]
     end
     v    
   end
@@ -186,7 +202,7 @@ module AbrStateMethods
       rescue Exception=>e
         # puts e.message
         # pp e.backtrace
-        # raise e
+        raise e
       end
     end
   end

@@ -1,4 +1,22 @@
 module AbrPdfFields
+  
+  # "first_name"
+  # "middle_name"
+  # "last_name"
+  # "name_suffix"
+  # "street_number"
+  # "street_name"
+  # "street_line2"
+  # "unit"
+  # "city"
+  # "home_state_name"
+  # "home_state_abbrev"
+  # "zip"
+  # "email"
+  # "phone"
+  
+  
+  
   def full_name
     "#{first_name} #{middle_name} #{last_name}".gsub(/\s+/, ' ')
   end

@@ -158,7 +158,7 @@ module ApplicationHelper
       field_html = select_div(form, field, options[:select_options], options[:field_options])
     elsif options[:radio_options]
       radio_label = options[:label_options]&.send('[]',:value) || form.object.class.human_attribute_name(field)
-      label = content_tag(:h3, (radio_label + required).html_safe).html_safe
+      label = content_tag(:h3, (radio_label.html_safe + required.html_safe).html_safe).html_safe
       field_html = radio_div(form, field, options[:radio_options], options[:field_options])
     else
       field_html = field_div(form, field, options[:field_options])
