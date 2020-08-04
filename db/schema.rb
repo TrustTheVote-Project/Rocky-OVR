@@ -14,80 +14,80 @@
 ActiveRecord::Schema.define(version: 20200803181628) do
 
   create_table "ab_tests", force: :cascade do |t|
-    t.integer  "registrant_id"
-    t.string   "name"
-    t.string   "assignment"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "registrant_id", limit: 4
+    t.string   "name",          limit: 255
+    t.string   "assignment",    limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
-  add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
-  add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
+  add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment", using: :btree
+  add_index "ab_tests", ["name"], name: "index_ab_tests_on_name", using: :btree
+  add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id", using: :btree
 
   create_table "abr_state_values", force: :cascade do |t|
-    t.integer  "abr_id"
-    t.string   "attribute_name"
-    t.string   "string_value"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "abr_id",         limit: 4
+    t.string   "attribute_name", limit: 255
+    t.string   "string_value",   limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "abr_state_values", ["abr_id"], name: "index_abr_state_values_on_abr_id"
-  add_index "abr_state_values", ["attribute_name"], name: "index_abr_state_values_on_attribute_name"
+  add_index "abr_state_values", ["abr_id"], name: "index_abr_state_values_on_abr_id", using: :btree
+  add_index "abr_state_values", ["attribute_name"], name: "index_abr_state_values_on_attribute_name", using: :btree
 
   create_table "abrs", force: :cascade do |t|
-    t.string   "uid"
-    t.integer  "partner_id"
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "name_suffix"
-    t.string   "city"
-    t.integer  "home_state_id"
-    t.string   "zip"
-    t.string   "email"
-    t.string   "phone"
+    t.string   "uid",                      limit: 255
+    t.integer  "partner_id",               limit: 4
+    t.string   "first_name",               limit: 255
+    t.string   "middle_name",              limit: 255
+    t.string   "last_name",                limit: 255
+    t.string   "name_suffix",              limit: 255
+    t.string   "city",                     limit: 255
+    t.integer  "home_state_id",            limit: 4
+    t.string   "zip",                      limit: 255
+    t.string   "email",                    limit: 255
+    t.string   "phone",                    limit: 255
     t.date     "date_of_birth"
-    t.boolean  "javascript_disabled",      default: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.string   "phone_type"
+    t.boolean  "javascript_disabled",                  default: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.string   "phone_type",               limit: 255
     t.boolean  "opt_in_email"
     t.boolean  "opt_in_sms"
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_opt_in_sms"
-    t.string   "votercheck"
-    t.string   "current_step"
-    t.string   "max_step"
-    t.boolean  "abandoned",                default: false, null: false
+    t.string   "votercheck",               limit: 255
+    t.string   "current_step",             limit: 255
+    t.string   "max_step",                 limit: 255
+    t.boolean  "abandoned",                            default: false, null: false
     t.boolean  "pdf_ready"
     t.boolean  "pdf_downloaded"
     t.datetime "pdf_downloaded_at"
-    t.string   "street_number"
-    t.string   "street_name"
-    t.string   "street_line2"
-    t.string   "unit"
-    t.boolean  "finish_with_state",        default: false
-    t.boolean  "final_reminder_delivered", default: false
-    t.integer  "reminders_left"
+    t.string   "street_number",            limit: 255
+    t.string   "street_name",              limit: 255
+    t.string   "street_line2",             limit: 255
+    t.string   "unit",                     limit: 255
+    t.boolean  "finish_with_state",                    default: false
+    t.boolean  "final_reminder_delivered",             default: false
+    t.integer  "reminders_left",           limit: 4
   end
 
-  add_index "abrs", ["email"], name: "index_abrs_on_email"
-  add_index "abrs", ["home_state_id"], name: "index_abrs_on_home_state_id"
-  add_index "abrs", ["partner_id"], name: "index_abrs_on_partner_id"
-  add_index "abrs", ["uid"], name: "index_abrs_on_uid"
+  add_index "abrs", ["email"], name: "index_abrs_on_email", using: :btree
+  add_index "abrs", ["home_state_id"], name: "index_abrs_on_home_state_id", using: :btree
+  add_index "abrs", ["partner_id"], name: "index_abrs_on_partner_id", using: :btree
+  add_index "abrs", ["uid"], name: "index_abrs_on_uid", using: :btree
 
   create_table "abrs_catalist_lookups", force: :cascade do |t|
-    t.integer  "abr_id"
-    t.integer  "catalist_lookup_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "abr_id",             limit: 4
+    t.integer  "catalist_lookup_id", limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
-  add_index "abrs_catalist_lookups", ["abr_id", "catalist_lookup_id"], name: "abrs_catalist_join_index"
-  add_index "abrs_catalist_lookups", ["abr_id"], name: "index_abrs_catalist_lookups_on_abr_id"
-  add_index "abrs_catalist_lookups", ["catalist_lookup_id"], name: "index_abrs_catalist_lookups_on_catalist_lookup_id"
+  add_index "abrs_catalist_lookups", ["abr_id", "catalist_lookup_id"], name: "abrs_catalist_join_index", using: :btree
+  add_index "abrs_catalist_lookups", ["abr_id"], name: "index_abrs_catalist_lookups_on_abr_id", using: :btree
+  add_index "abrs_catalist_lookups", ["catalist_lookup_id"], name: "index_abrs_catalist_lookups_on_catalist_lookup_id", using: :btree
 
   create_table "admins", force: :cascade do |t|
     t.string   "username",           limit: 255
@@ -95,11 +95,11 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.string   "crypted_password",   limit: 255
     t.string   "password_salt",      limit: 255
     t.string   "persistence_token",  limit: 255
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.integer  "failed_login_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "failed_login_count", limit: 4
     t.string   "perishable_token",   limit: 255
-    t.integer  "login_count",                    default: 0,    null: false
+    t.integer  "login_count",        limit: 4,   default: 0,    null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
@@ -108,109 +108,109 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.boolean  "active",                         default: true, null: false
   end
 
-  add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
-  add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
+  add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true, using: :btree
+  add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true, using: :btree
 
   create_table "blocks_form_dispositions", force: :cascade do |t|
-    t.integer  "grommet_request_id"
-    t.string   "registrant_id"
-    t.string   "blocks_form_id"
-    t.boolean  "final_state_submitted", default: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.integer  "grommet_request_id",    limit: 4
+    t.string   "registrant_id",         limit: 255
+    t.string   "blocks_form_id",        limit: 255
+    t.boolean  "final_state_submitted",             default: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
-  add_index "blocks_form_dispositions", ["blocks_form_id"], name: "index_blocks_form_dispositions_on_blocks_form_id"
-  add_index "blocks_form_dispositions", ["grommet_request_id"], name: "index_blocks_form_dispositions_on_grommet_request_id"
-  add_index "blocks_form_dispositions", ["registrant_id"], name: "index_blocks_form_dispositions_on_registrant_id"
+  add_index "blocks_form_dispositions", ["blocks_form_id"], name: "index_blocks_form_dispositions_on_blocks_form_id", using: :btree
+  add_index "blocks_form_dispositions", ["grommet_request_id"], name: "index_blocks_form_dispositions_on_grommet_request_id", using: :btree
+  add_index "blocks_form_dispositions", ["registrant_id"], name: "index_blocks_form_dispositions_on_registrant_id", using: :btree
 
   create_table "blocks_service_bulk_submissions", force: :cascade do |t|
     t.datetime "shift_start"
     t.datetime "shift_end"
-    t.text     "partners_submitted"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.text     "partners_submitted", limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "canvassing_shift_grommet_requests", force: :cascade do |t|
-    t.string   "grommet_request_id"
-    t.string   "shift_external_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "grommet_request_id", limit: 255
+    t.string   "shift_external_id",  limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
-  add_index "canvassing_shift_grommet_requests", ["grommet_request_id"], name: "index_canvassing_shift_grommet_requests_on_grommet_request_id"
-  add_index "canvassing_shift_grommet_requests", ["shift_external_id"], name: "index_canvassing_shift_grommet_requests_on_shift_external_id"
+  add_index "canvassing_shift_grommet_requests", ["grommet_request_id"], name: "index_canvassing_shift_grommet_requests_on_grommet_request_id", using: :btree
+  add_index "canvassing_shift_grommet_requests", ["shift_external_id"], name: "index_canvassing_shift_grommet_requests_on_shift_external_id", using: :btree
 
   create_table "canvassing_shift_registrants", force: :cascade do |t|
-    t.string   "registrant_id"
-    t.string   "shift_external_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "registrant_id",     limit: 255
+    t.string   "shift_external_id", limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
-  add_index "canvassing_shift_registrants", ["registrant_id"], name: "index_canvassing_shift_registrants_on_registrant_id"
-  add_index "canvassing_shift_registrants", ["shift_external_id"], name: "index_canvassing_shift_registrants_on_shift_external_id"
+  add_index "canvassing_shift_registrants", ["registrant_id"], name: "index_canvassing_shift_registrants_on_registrant_id", using: :btree
+  add_index "canvassing_shift_registrants", ["shift_external_id"], name: "index_canvassing_shift_registrants_on_shift_external_id", using: :btree
 
   create_table "canvassing_shifts", force: :cascade do |t|
-    t.integer  "partner_id"
-    t.string   "shift_location"
-    t.text     "geo_location"
-    t.string   "shift_external_id"
-    t.string   "source_tracking_id"
-    t.string   "partner_tracking_id"
-    t.string   "open_tracking_id"
-    t.string   "device_id"
+    t.integer  "partner_id",                 limit: 4
+    t.string   "shift_location",             limit: 255
+    t.text     "geo_location",               limit: 65535
+    t.string   "shift_external_id",          limit: 255
+    t.string   "source_tracking_id",         limit: 255
+    t.string   "partner_tracking_id",        limit: 255
+    t.string   "open_tracking_id",           limit: 255
+    t.string   "device_id",                  limit: 255
     t.datetime "clock_in_datetime"
     t.datetime "clock_out_datetime"
-    t.integer  "abandoned_registrations"
-    t.integer  "completed_registrations"
-    t.string   "canvasser_phone"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.boolean  "submitted_to_blocks",        default: false
-    t.string   "canvasser_first_name"
-    t.string   "canvasser_last_name"
-    t.string   "canvasser_email"
-    t.string   "shift_source"
-    t.string   "blocks_shift_id"
+    t.integer  "abandoned_registrations",    limit: 4
+    t.integer  "completed_registrations",    limit: 4
+    t.string   "canvasser_phone",            limit: 255
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.boolean  "submitted_to_blocks",                      default: false
+    t.string   "canvasser_first_name",       limit: 255
+    t.string   "canvasser_last_name",        limit: 255
+    t.string   "canvasser_email",            limit: 255
+    t.string   "shift_source",               limit: 255
+    t.string   "blocks_shift_id",            limit: 255
     t.boolean  "complete"
-    t.string   "blocks_shift_location_name"
+    t.string   "blocks_shift_location_name", limit: 255
   end
 
-  add_index "canvassing_shifts", ["canvasser_first_name", "canvasser_last_name"], name: "shift_canvasser_name_index"
-  add_index "canvassing_shifts", ["partner_id"], name: "canvasser_index"
-  add_index "canvassing_shifts", ["partner_id"], name: "index_canvassing_shifts_on_partner_id"
-  add_index "canvassing_shifts", ["partner_tracking_id"], name: "index_canvassing_shifts_on_partner_tracking_id"
-  add_index "canvassing_shifts", ["shift_external_id"], name: "index_canvassing_shifts_on_shift_external_id"
-  add_index "canvassing_shifts", ["shift_location"], name: "index_canvassing_shifts_on_shift_location"
-  add_index "canvassing_shifts", ["source_tracking_id"], name: "index_canvassing_shifts_on_source_tracking_id"
+  add_index "canvassing_shifts", ["canvasser_first_name", "canvasser_last_name"], name: "shift_canvasser_name_index", using: :btree
+  add_index "canvassing_shifts", ["partner_id"], name: "canvasser_index", using: :btree
+  add_index "canvassing_shifts", ["partner_id"], name: "index_canvassing_shifts_on_partner_id", using: :btree
+  add_index "canvassing_shifts", ["partner_tracking_id"], name: "index_canvassing_shifts_on_partner_tracking_id", using: :btree
+  add_index "canvassing_shifts", ["shift_external_id"], name: "index_canvassing_shifts_on_shift_external_id", using: :btree
+  add_index "canvassing_shifts", ["shift_location"], name: "index_canvassing_shifts_on_shift_location", using: :btree
+  add_index "canvassing_shifts", ["source_tracking_id"], name: "index_canvassing_shifts_on_source_tracking_id", using: :btree
 
   create_table "catalist_lookups", force: :cascade do |t|
-    t.string   "first"
-    t.string   "middle"
-    t.string   "last"
-    t.string   "suffix"
-    t.string   "gender"
+    t.string   "first",      limit: 255
+    t.string   "middle",     limit: 255
+    t.string   "last",       limit: 255
+    t.string   "suffix",     limit: 255
+    t.string   "gender",     limit: 255
     t.date     "birthdate"
-    t.string   "address"
-    t.string   "city"
-    t.integer  "state_id"
-    t.string   "zip"
-    t.string   "county"
-    t.string   "phone"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "match"
+    t.string   "address",    limit: 255
+    t.string   "city",       limit: 255
+    t.integer  "state_id",   limit: 4
+    t.string   "zip",        limit: 255
+    t.string   "county",     limit: 255
+    t.string   "phone",      limit: 255
+    t.string   "email",      limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "match",      limit: 65535
   end
 
-  add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email"
-  add_index "catalist_lookups", ["state_id"], name: "index_catalist_lookups_on_state_id"
+  add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email", using: :btree
+  add_index "catalist_lookups", ["state_id"], name: "index_catalist_lookups_on_state_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",                    default: 0
-    t.integer  "attempts",                    default: 0
+    t.integer  "priority",   limit: 4,        default: 0
+    t.integer  "attempts",   limit: 4,        default: 0
     t.text     "handler",    limit: 16777215
     t.text     "last_error", limit: 16777215
     t.datetime "run_at"
@@ -220,41 +220,41 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "queue",      limit: 255
-    t.string   "cron"
+    t.string   "cron",       limit: 255
   end
 
   create_table "email_addresses", force: :cascade do |t|
-    t.string   "email_address"
+    t.string   "email_address", limit: 255
     t.boolean  "blacklisted"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  add_index "email_addresses", ["blacklisted", "email_address"], name: "index_email_addresses_on_blacklisted_and_email_address"
-  add_index "email_addresses", ["blacklisted"], name: "index_email_addresses_on_blacklisted"
-  add_index "email_addresses", ["email_address"], name: "index_email_addresses_on_email_address"
+  add_index "email_addresses", ["blacklisted", "email_address"], name: "index_email_addresses_on_blacklisted_and_email_address", using: :btree
+  add_index "email_addresses", ["blacklisted"], name: "index_email_addresses_on_blacklisted", using: :btree
+  add_index "email_addresses", ["email_address"], name: "index_email_addresses_on_email_address", using: :btree
 
   create_table "email_domains", force: :cascade do |t|
-    t.string   "domain"
+    t.string   "domain",      limit: 255
     t.boolean  "blacklisted"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "email_domains", ["blacklisted", "domain"], name: "index_email_domains_on_blacklisted_and_domain"
-  add_index "email_domains", ["blacklisted"], name: "index_email_domains_on_blacklisted"
-  add_index "email_domains", ["domain"], name: "index_email_domains_on_domain"
+  add_index "email_domains", ["blacklisted", "domain"], name: "index_email_domains_on_blacklisted_and_domain", using: :btree
+  add_index "email_domains", ["blacklisted"], name: "index_email_domains_on_blacklisted", using: :btree
+  add_index "email_domains", ["domain"], name: "index_email_domains_on_domain", using: :btree
 
   create_table "email_templates", force: :cascade do |t|
-    t.integer  "partner_id",             null: false
-    t.string   "name",       limit: 255, null: false
-    t.text     "body"
+    t.integer  "partner_id", limit: 4,     null: false
+    t.string   "name",       limit: 255,   null: false
+    t.text     "body",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject",    limit: 255
   end
 
-  add_index "email_templates", ["partner_id", "name"], name: "index_email_templates_on_partner_id_and_name", unique: true
+  add_index "email_templates", ["partner_id", "name"], name: "index_email_templates_on_partner_id_and_name", unique: true, using: :btree
 
   create_table "geo_states", force: :cascade do |t|
     t.string   "name",                            limit: 21
@@ -262,40 +262,40 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.boolean  "requires_race"
     t.boolean  "requires_party"
     t.boolean  "participating"
-    t.integer  "id_length_min"
-    t.integer  "id_length_max"
+    t.integer  "id_length_min",                   limit: 4
+    t.integer  "id_length_max",                   limit: 4
     t.string   "registrar_address",               limit: 255
     t.string   "registrar_phone",                 limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "registrar_url",                   limit: 255
     t.string   "online_registration_url",         limit: 255
-    t.string   "online_registration_system_name"
+    t.string   "online_registration_system_name", limit: 255
   end
 
   create_table "grommet_requests", force: :cascade do |t|
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.text     "request_params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "request_params",  limit: 65535
     t.string   "request_hash",    limit: 255
-    t.text     "request_headers"
+    t.text     "request_headers", limit: 65535
   end
 
-  add_index "grommet_requests", ["request_hash"], name: "index_grommet_requests_on_request_hash"
+  add_index "grommet_requests", ["request_hash"], name: "index_grommet_requests_on_request_hash", using: :btree
 
   create_table "partners", force: :cascade do |t|
-    t.string   "username",                           limit: 255,                 null: false
-    t.string   "email",                              limit: 255,                 null: false
-    t.string   "crypted_password",                   limit: 255,                 null: false
-    t.string   "password_salt",                      limit: 255,                 null: false
-    t.string   "persistence_token",                  limit: 255,                 null: false
-    t.string   "perishable_token",                   limit: 255, default: "",    null: false
+    t.string   "username",                           limit: 255,                   null: false
+    t.string   "email",                              limit: 255,                   null: false
+    t.string   "crypted_password",                   limit: 255,                   null: false
+    t.string   "password_salt",                      limit: 255,                   null: false
+    t.string   "persistence_token",                  limit: 255,                   null: false
+    t.string   "perishable_token",                   limit: 255,   default: "",    null: false
     t.string   "name",                               limit: 255
     t.string   "organization",                       limit: 255
     t.string   "url",                                limit: 255
     t.string   "address",                            limit: 255
     t.string   "city",                               limit: 255
-    t.integer  "state_id"
+    t.integer  "state_id",                           limit: 4
     t.string   "zip_code",                           limit: 10
     t.string   "phone",                              limit: 255
     t.string   "survey_question_1_en",               limit: 255
@@ -304,41 +304,41 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.string   "survey_question_2_es",               limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "ask_for_volunteers",                             default: false
+    t.boolean  "ask_for_volunteers",                               default: false
     t.string   "widget_image",                       limit: 255
     t.string   "logo_file_name",                     limit: 255
     t.string   "logo_content_type",                  limit: 255
-    t.integer  "logo_file_size"
-    t.boolean  "whitelabeled",                                   default: false
-    t.boolean  "partner_ask_for_volunteers",                     default: false
-    t.boolean  "rtv_email_opt_in",                               default: true
-    t.boolean  "partner_email_opt_in",                           default: false
-    t.boolean  "rtv_sms_opt_in",                                 default: true
-    t.boolean  "partner_sms_opt_in",                             default: false
-    t.string   "api_key",                            limit: 40,  default: ""
+    t.integer  "logo_file_size",                     limit: 4
+    t.boolean  "whitelabeled",                                     default: false
+    t.boolean  "partner_ask_for_volunteers",                       default: false
+    t.boolean  "rtv_email_opt_in",                                 default: true
+    t.boolean  "partner_email_opt_in",                             default: false
+    t.boolean  "rtv_sms_opt_in",                                   default: true
+    t.boolean  "partner_sms_opt_in",                               default: false
+    t.string   "api_key",                            limit: 40,    default: ""
     t.string   "privacy_url",                        limit: 255
     t.string   "from_email",                         limit: 255
     t.string   "finish_iframe_url",                  limit: 255
-    t.boolean  "csv_ready",                                      default: false
+    t.boolean  "is_government_partner",                            default: false
+    t.integer  "government_partner_state_id",        limit: 4
+    t.text     "government_partner_zip_codes",       limit: 65535
+    t.boolean  "csv_ready",                                        default: false
     t.string   "csv_file_name",                      limit: 255
-    t.boolean  "is_government_partner",                          default: false
-    t.integer  "government_partner_state_id"
-    t.text     "government_partner_zip_codes"
-    t.text     "survey_question_1"
-    t.text     "survey_question_2"
-    t.text     "external_tracking_snippet"
+    t.text     "survey_question_1",                  limit: 65535
+    t.text     "survey_question_2",                  limit: 65535
+    t.text     "external_tracking_snippet",          limit: 65535
     t.string   "registration_instructions_url",      limit: 255
-    t.text     "pixel_tracking_codes"
+    t.text     "pixel_tracking_codes",               limit: 65535
     t.datetime "from_email_verified_at"
     t.datetime "from_email_verification_checked_at"
-    t.boolean  "enabled_for_grommet",                            default: false, null: false
-    t.text     "branding_update_request"
-    t.boolean  "active",                                         default: true,  null: false
-    t.text     "external_conversion_snippet"
-    t.text     "replace_system_css"
+    t.text     "branding_update_request",            limit: 65535
+    t.boolean  "enabled_for_grommet",                              default: false, null: false
+    t.boolean  "active",                                           default: true,  null: false
+    t.text     "external_conversion_snippet",        limit: 65535
+    t.text     "replace_system_css",                 limit: 65535
     t.string   "pa_api_key",                         limit: 255
-    t.integer  "failed_login_count"
-    t.integer  "login_count",                                    default: 0,     null: false
+    t.integer  "failed_login_count",                 limit: 4
+    t.integer  "login_count",                        limit: 4,     default: 0,     null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
@@ -346,76 +346,76 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.string   "last_login_ip",                      limit: 255
     t.boolean  "grommet_csv_ready"
     t.string   "grommet_csv_file_name",              limit: 255
-    t.string   "short_code"
-    t.string   "terms_url"
+    t.string   "short_code",                         limit: 255
+    t.string   "terms_url",                          limit: 255
     t.boolean  "enabled_for_catalist_api"
   end
 
-  add_index "partners", ["email"], name: "index_partners_on_email"
-  add_index "partners", ["perishable_token"], name: "index_partners_on_perishable_token"
-  add_index "partners", ["persistence_token"], name: "index_partners_on_persistence_token"
-  add_index "partners", ["username"], name: "index_partners_on_username"
-  add_index "partners", ["whitelabeled"], name: "index_partners_on_whitelabeled"
+  add_index "partners", ["email"], name: "index_partners_on_email", using: :btree
+  add_index "partners", ["perishable_token"], name: "index_partners_on_perishable_token", using: :btree
+  add_index "partners", ["persistence_token"], name: "index_partners_on_persistence_token", using: :btree
+  add_index "partners", ["username"], name: "index_partners_on_username", using: :btree
+  add_index "partners", ["whitelabeled"], name: "index_partners_on_whitelabeled", using: :btree
 
   create_table "pdf_abr_generations", force: :cascade do |t|
-    t.integer  "abr_id"
-    t.boolean  "locked",     default: false
+    t.integer  "abr_id",     limit: 4
+    t.boolean  "locked",               default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "pdf_abr_generations", ["locked"], name: "index_pdf_abr_generations_on_locked"
+  add_index "pdf_abr_generations", ["locked"], name: "index_pdf_abr_generations_on_locked", using: :btree
 
   create_table "pdf_deliveries", force: :cascade do |t|
-    t.integer  "registrant_id"
-    t.integer  "delivery_attempts"
+    t.integer  "registrant_id",       limit: 4
+    t.integer  "delivery_attempts",   limit: 4
     t.boolean  "deliverd_to_printer"
     t.boolean  "pdf_ready"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
-  add_index "pdf_deliveries", ["registrant_id"], name: "index_pdf_deliveries_on_registrant_id"
+  add_index "pdf_deliveries", ["registrant_id"], name: "index_pdf_deliveries_on_registrant_id", using: :btree
 
   create_table "pdf_generations", force: :cascade do |t|
-    t.integer  "registrant_id"
-    t.boolean  "locked",        default: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "registrant_id", limit: 4
+    t.boolean  "locked",                  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "pdf_generations", ["locked"], name: "index_pdf_generations_on_locked"
+  add_index "pdf_generations", ["locked"], name: "index_pdf_generations_on_locked", using: :btree
 
   create_table "priority_pdf_generations", force: :cascade do |t|
-    t.integer  "registrant_id"
-    t.boolean  "locked",        default: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "registrant_id", limit: 4
+    t.boolean  "locked",                  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "priority_pdf_generations", ["locked"], name: "index_priority_pdf_generations_on_locked"
+  add_index "priority_pdf_generations", ["locked"], name: "index_priority_pdf_generations_on_locked", using: :btree
 
   create_table "registrant_statuses", force: :cascade do |t|
-    t.integer  "registrant_id"
+    t.integer  "registrant_id",          limit: 4
     t.string   "state_transaction_id",   limit: 255
     t.string   "state_status",           limit: 255
     t.string   "state_status_details",   limit: 255
-    t.integer  "geo_state_id"
+    t.integer  "geo_state_id",           limit: 4
     t.datetime "state_application_date"
-    t.text     "state_data"
-    t.integer  "admin_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.text     "state_data",             limit: 65535
+    t.integer  "admin_id",               limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "registrant_statuses", ["state_transaction_id", "geo_state_id"], name: "registrant_statues_state_id_index"
+  add_index "registrant_statuses", ["state_transaction_id", "geo_state_id"], name: "registrant_statues_state_id_index", using: :btree
 
   create_table "registrants", force: :cascade do |t|
     t.string   "status",                             limit: 255
     t.string   "locale",                             limit: 64
-    t.integer  "partner_id"
+    t.integer  "partner_id",                         limit: 4
     t.string   "uid",                                limit: 255
-    t.integer  "reminders_left",                                 default: 0
+    t.integer  "reminders_left",                     limit: 4,     default: 0
     t.date     "date_of_birth"
     t.string   "email_address",                      limit: 255
     t.boolean  "first_registration"
@@ -429,12 +429,12 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.string   "home_address",                       limit: 255
     t.string   "home_unit",                          limit: 255
     t.string   "home_city",                          limit: 255
-    t.integer  "home_state_id"
+    t.integer  "home_state_id",                      limit: 4
     t.boolean  "has_mailing_address"
     t.string   "mailing_address",                    limit: 255
     t.string   "mailing_unit",                       limit: 255
     t.string   "mailing_city",                       limit: 255
-    t.integer  "mailing_state_id"
+    t.integer  "mailing_state_id",                   limit: 4
     t.string   "mailing_zip_code",                   limit: 10
     t.string   "party",                              limit: 255
     t.string   "race",                               limit: 255
@@ -451,10 +451,10 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.string   "prev_address",                       limit: 255
     t.string   "prev_unit",                          limit: 255
     t.string   "prev_city",                          limit: 255
-    t.integer  "prev_state_id"
+    t.integer  "prev_state_id",                      limit: 4
     t.string   "prev_zip_code",                      limit: 10
-    t.boolean  "opt_in_email",                                   default: false
-    t.boolean  "opt_in_sms",                                     default: false
+    t.boolean  "opt_in_email",                                     default: false
+    t.boolean  "opt_in_sms",                                       default: false
     t.string   "survey_answer_1",                    limit: 255
     t.string   "survey_answer_2",                    limit: 255
     t.boolean  "ineligible_non_participating_state"
@@ -462,39 +462,39 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.boolean  "ineligible_non_citizen"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "abandoned",                                      default: false, null: false
-    t.boolean  "volunteer",                                      default: false
+    t.boolean  "abandoned",                                        default: false, null: false
+    t.boolean  "volunteer",                                        default: false
     t.string   "tracking_source",                    limit: 255
     t.boolean  "under_18_ok"
     t.boolean  "remind_when_18"
-    t.integer  "age"
+    t.integer  "age",                                limit: 4
     t.string   "official_party_name",                limit: 255
     t.boolean  "pdf_ready"
     t.string   "barcode",                            limit: 12
-    t.boolean  "partner_opt_in_email",                           default: false
-    t.boolean  "partner_opt_in_sms",                             default: false
-    t.boolean  "partner_volunteer",                              default: false
+    t.boolean  "partner_opt_in_email",                             default: false
+    t.boolean  "partner_opt_in_sms",                               default: false
+    t.boolean  "partner_volunteer",                                default: false
     t.boolean  "has_state_license"
-    t.boolean  "using_state_online_registration",                default: false
-    t.boolean  "javascript_disabled",                            default: false
+    t.boolean  "using_state_online_registration",                  default: false
+    t.boolean  "javascript_disabled",                              default: false
     t.string   "tracking_id",                        limit: 255
-    t.boolean  "finish_with_state",                              default: false
+    t.boolean  "finish_with_state",                                default: false
     t.string   "original_survey_question_1",         limit: 255
     t.string   "original_survey_question_2",         limit: 255
-    t.boolean  "send_confirmation_reminder_emails",              default: false
-    t.boolean  "building_via_api_call",                          default: false
-    t.boolean  "short_form",                                     default: false
+    t.boolean  "send_confirmation_reminder_emails",                default: false
+    t.boolean  "building_via_api_call",                            default: false
+    t.boolean  "short_form",                                       default: false
     t.string   "collect_email_address",              limit: 255
     t.boolean  "will_be_18_by_election"
-    t.text     "state_ovr_data"
-    t.integer  "remote_partner_id"
+    t.text     "state_ovr_data",                     limit: 65535
+    t.integer  "remote_partner_id",                  limit: 4
     t.string   "remote_uid",                         limit: 255
     t.string   "remote_pdf_path",                    limit: 255
     t.string   "custom_stop_reminders_url",          limit: 255
-    t.boolean  "pdf_downloaded",                                 default: false
+    t.boolean  "pdf_downloaded",                                   default: false
     t.datetime "pdf_downloaded_at"
-    t.boolean  "final_reminder_delivered",                       default: false
-    t.boolean  "is_fake",                                        default: false
+    t.boolean  "final_reminder_delivered",                         default: false
+    t.boolean  "is_fake",                                          default: false
     t.boolean  "has_ssn"
     t.string   "home_county",                        limit: 255
     t.string   "prev_county",                        limit: 255
@@ -502,119 +502,119 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.string   "open_tracking_id",                   limit: 255
   end
 
-  add_index "registrants", ["abandoned", "status"], name: "registrant_stale"
-  add_index "registrants", ["abandoned"], name: "index_registrants_on_abandoned"
-  add_index "registrants", ["age"], name: "index_registrants_on_age"
-  add_index "registrants", ["created_at"], name: "index_registrants_on_created_at"
-  add_index "registrants", ["finish_with_state", "partner_id", "status", "created_at"], name: "index_registrants_for_stats"
-  add_index "registrants", ["finish_with_state", "partner_id", "status", "home_state_id"], name: "index_registrants_by_state"
-  add_index "registrants", ["finish_with_state", "partner_id", "status"], name: "index_registrants_for_started_count"
-  add_index "registrants", ["home_state_id"], name: "index_registrants_on_home_state_id"
-  add_index "registrants", ["name_title"], name: "index_registrants_on_name_title"
-  add_index "registrants", ["official_party_name"], name: "index_registrants_on_official_party_name"
-  add_index "registrants", ["partner_id", "status"], name: "index_registrants_by_partner_and_status"
-  add_index "registrants", ["partner_id"], name: "index_registrants_on_partner_id"
-  add_index "registrants", ["race"], name: "index_registrants_on_race"
-  add_index "registrants", ["reminders_left", "updated_at"], name: "index_registrants_on_reminders_left_and_updated_at"
-  add_index "registrants", ["remote_partner_id"], name: "index_registrants_on_remote_partner_id"
-  add_index "registrants", ["remote_uid"], name: "index_registrants_on_remote_uid"
-  add_index "registrants", ["status", "partner_id", "age"], name: "index_registrants_by_age"
-  add_index "registrants", ["status", "partner_id", "name_title"], name: "index_registrants_by_gender"
-  add_index "registrants", ["status", "partner_id", "official_party_name"], name: "index_registrants_by_party"
-  add_index "registrants", ["status", "partner_id", "race"], name: "index_registrants_by_race"
-  add_index "registrants", ["status"], name: "index_registrants_on_status"
-  add_index "registrants", ["uid"], name: "index_registrants_on_uid"
+  add_index "registrants", ["abandoned", "status"], name: "registrant_stale", using: :btree
+  add_index "registrants", ["abandoned"], name: "index_registrants_on_abandoned", using: :btree
+  add_index "registrants", ["age"], name: "index_registrants_on_age", using: :btree
+  add_index "registrants", ["created_at"], name: "index_registrants_on_created_at", using: :btree
+  add_index "registrants", ["finish_with_state", "partner_id", "status", "created_at"], name: "index_registrants_for_stats", using: :btree
+  add_index "registrants", ["finish_with_state", "partner_id", "status", "home_state_id"], name: "index_registrants_by_state", using: :btree
+  add_index "registrants", ["finish_with_state", "partner_id", "status"], name: "index_registrants_for_started_count", using: :btree
+  add_index "registrants", ["home_state_id"], name: "index_registrants_on_home_state_id", using: :btree
+  add_index "registrants", ["name_title"], name: "index_registrants_on_name_title", using: :btree
+  add_index "registrants", ["official_party_name"], name: "index_registrants_on_official_party_name", using: :btree
+  add_index "registrants", ["partner_id", "status"], name: "index_registrants_by_partner_and_status", using: :btree
+  add_index "registrants", ["partner_id"], name: "index_registrants_on_partner_id", using: :btree
+  add_index "registrants", ["race"], name: "index_registrants_on_race", using: :btree
+  add_index "registrants", ["reminders_left", "updated_at"], name: "index_registrants_on_reminders_left_and_updated_at", using: :btree
+  add_index "registrants", ["remote_partner_id"], name: "index_registrants_on_remote_partner_id", using: :btree
+  add_index "registrants", ["remote_uid"], name: "index_registrants_on_remote_uid", using: :btree
+  add_index "registrants", ["status", "partner_id", "age"], name: "index_registrants_by_age", using: :btree
+  add_index "registrants", ["status", "partner_id", "name_title"], name: "index_registrants_by_gender", using: :btree
+  add_index "registrants", ["status", "partner_id", "official_party_name"], name: "index_registrants_by_party", using: :btree
+  add_index "registrants", ["status", "partner_id", "race"], name: "index_registrants_by_race", using: :btree
+  add_index "registrants", ["status"], name: "index_registrants_on_status", using: :btree
+  add_index "registrants", ["uid"], name: "index_registrants_on_uid", using: :btree
 
   create_table "report_data", force: :cascade do |t|
-    t.integer  "report_id"
-    t.string   "key"
-    t.string   "s_value"
-    t.integer  "i_value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "h_value"
+    t.integer  "report_id",  limit: 4
+    t.string   "key",        limit: 255
+    t.string   "s_value",    limit: 255
+    t.integer  "i_value",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "h_value",    limit: 65535
   end
 
-  add_index "report_data", ["key"], name: "index_report_data_on_key"
-  add_index "report_data", ["report_id", "key"], name: "index_report_data_on_report_id_and_key"
-  add_index "report_data", ["report_id"], name: "index_report_data_on_report_id"
+  add_index "report_data", ["key"], name: "index_report_data_on_key", using: :btree
+  add_index "report_data", ["report_id", "key"], name: "index_report_data_on_report_id_and_key", using: :btree
+  add_index "report_data", ["report_id"], name: "index_report_data_on_report_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string   "report_type"
-    t.integer  "record_count"
-    t.integer  "current_index"
-    t.integer  "partner_id"
-    t.string   "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.text     "filters"
-    t.text     "error"
+    t.string   "report_type",   limit: 255
+    t.integer  "record_count",  limit: 4
+    t.integer  "current_index", limit: 4
+    t.integer  "partner_id",    limit: 4
+    t.string   "status",        limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "filters",       limit: 65535
+    t.text     "error",         limit: 65535
   end
 
   create_table "request_logs", force: :cascade do |t|
-    t.string   "client_id"
-    t.string   "registrant_id"
-    t.text     "request_uri"
-    t.text     "request_body"
-    t.text     "request_headers"
-    t.integer  "response_code"
-    t.text     "response_body"
-    t.text     "error_messages"
-    t.integer  "network_duration_ms"
-    t.integer  "total_duration_ms"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "abr_id"
+    t.string   "client_id",           limit: 255
+    t.string   "registrant_id",       limit: 255
+    t.text     "request_uri",         limit: 65535
+    t.text     "request_body",        limit: 65535
+    t.text     "request_headers",     limit: 65535
+    t.integer  "response_code",       limit: 4
+    t.text     "response_body",       limit: 65535
+    t.text     "error_messages",      limit: 65535
+    t.integer  "network_duration_ms", limit: 4
+    t.integer  "total_duration_ms",   limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "abr_id",              limit: 255
   end
 
-  add_index "request_logs", ["client_id"], name: "index_request_logs_on_client_id"
-  add_index "request_logs", ["registrant_id"], name: "index_request_logs_on_registrant_id"
-  add_index "request_logs", ["response_code"], name: "index_request_logs_on_response_code"
+  add_index "request_logs", ["client_id"], name: "index_request_logs_on_client_id", using: :btree
+  add_index "request_logs", ["registrant_id"], name: "index_request_logs_on_registrant_id", using: :btree
+  add_index "request_logs", ["response_code"], name: "index_request_logs_on_response_code", using: :btree
 
   create_table "ses_notifications", force: :cascade do |t|
-    t.text     "request_params"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.text     "request_params", limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string   "var",         limit: 255, null: false
-    t.text     "value"
-    t.integer  "target_id"
+    t.string   "var",         limit: 255,   null: false
+    t.text     "value",       limit: 65535
+    t.integer  "target_id",   limit: 4
     t.string   "target_type", limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true
+  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true, using: :btree
 
   create_table "state_localizations", force: :cascade do |t|
-    t.integer  "state_id"
+    t.integer  "state_id",                  limit: 4
     t.string   "locale",                    limit: 64
-    t.string   "parties",                   limit: 20480
+    t.text     "parties",                   limit: 65535
     t.string   "no_party",                  limit: 255
-    t.string   "not_participating_tooltip", limit: 20480
-    t.string   "race_tooltip",              limit: 20480
-    t.string   "id_number_tooltip",         limit: 20480
+    t.text     "not_participating_tooltip", limit: 65535
+    t.text     "race_tooltip",              limit: 65535
+    t.text     "id_number_tooltip",         limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "party_tooltip",             limit: 20480
-    t.string   "sub_18",                    limit: 20480
-    t.string   "registration_deadline",     limit: 20480
-    t.string   "pdf_instructions",          limit: 20480
-    t.string   "email_instructions",        limit: 20480
-    t.string   "pdf_other_instructions",    limit: 20480
+    t.text     "party_tooltip",             limit: 65535
+    t.text     "sub_18",                    limit: 65535
+    t.text     "registration_deadline",     limit: 65535
+    t.text     "pdf_instructions",          limit: 65535
+    t.text     "email_instructions",        limit: 65535
+    t.text     "pdf_other_instructions",    limit: 65535
   end
 
-  add_index "state_localizations", ["state_id"], name: "index_state_localizations_on_state_id"
+  add_index "state_localizations", ["state_id"], name: "index_state_localizations_on_state_id", using: :btree
 
   create_table "state_registrants_mi_registrants", force: :cascade do |t|
-    t.string   "registrant_id"
-    t.string   "locale"
-    t.string   "status"
-    t.string   "email"
+    t.string   "registrant_id",                         limit: 255
+    t.string   "locale",                                limit: 255
+    t.string   "status",                                limit: 255
+    t.string   "email",                                 limit: 255
     t.datetime "submitted_at"
     t.boolean  "updated_dln_recently"
     t.boolean  "requested_duplicate_dln_today"
@@ -623,47 +623,47 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.boolean  "is_30_day_resident"
     t.boolean  "registration_cancellation_authorized"
     t.boolean  "digital_signature_authorized"
-    t.string   "full_name"
-    t.string   "dln"
+    t.string   "full_name",                             limit: 255
+    t.string   "dln",                                   limit: 255
     t.date     "date_of_birth"
-    t.string   "eye_color_code"
-    t.string   "ssn4"
-    t.string   "registration_address_number"
-    t.string   "registration_address_street_name"
-    t.string   "registration_address_street_type"
-    t.string   "registration_unit_number"
-    t.string   "registration_city"
-    t.string   "registration_zip_code"
-    t.string   "registration_county"
+    t.string   "eye_color_code",                        limit: 255
+    t.string   "ssn4",                                  limit: 255
+    t.string   "registration_address_number",           limit: 255
+    t.string   "registration_address_street_name",      limit: 255
+    t.string   "registration_address_street_type",      limit: 255
+    t.string   "registration_unit_number",              limit: 255
+    t.string   "registration_city",                     limit: 255
+    t.string   "registration_zip_code",                 limit: 255
+    t.string   "registration_county",                   limit: 255
     t.boolean  "has_mailing_address"
-    t.string   "mailing_address_type"
-    t.string   "mailing_address_1"
-    t.string   "mailing_address_2"
-    t.string   "mailing_address_3"
-    t.string   "mailing_address_unit_number"
-    t.string   "mailing_city"
-    t.string   "mailing_state"
-    t.string   "mailing_country"
-    t.string   "mailing_zip_code"
+    t.string   "mailing_address_type",                  limit: 255
+    t.string   "mailing_address_1",                     limit: 255
+    t.string   "mailing_address_2",                     limit: 255
+    t.string   "mailing_address_3",                     limit: 255
+    t.string   "mailing_address_unit_number",           limit: 255
+    t.string   "mailing_city",                          limit: 255
+    t.string   "mailing_state",                         limit: 255
+    t.string   "mailing_country",                       limit: 255
+    t.string   "mailing_zip_code",                      limit: 255
     t.boolean  "opt_in_email"
     t.boolean  "opt_in_sms"
     t.boolean  "partner_opt_in_sms"
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
-    t.string   "phone"
+    t.string   "phone",                                 limit: 255
     t.boolean  "mi_submission_complete"
-    t.integer  "submission_attempts",                   default: 0
-    t.string   "mi_transaction_id"
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
-    t.string   "mi_api_voter_status_id"
-    t.string   "registration_address_post_directional"
-    t.text     "registration_address_matches"
-    t.boolean  "has_ssn",                               default: false
-    t.boolean  "has_state_license",                     default: false
+    t.integer  "submission_attempts",                   limit: 4,     default: 0
+    t.string   "mi_transaction_id",                     limit: 255
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+    t.string   "mi_api_voter_status_id",                limit: 255
+    t.string   "registration_address_post_directional", limit: 255
+    t.text     "registration_address_matches",          limit: 65535
+    t.boolean  "has_ssn",                                             default: false
+    t.boolean  "has_state_license",                                   default: false
   end
 
-  add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"
+  add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id", using: :btree
 
   create_table "state_registrants_pa_registrants", force: :cascade do |t|
     t.string   "email",                                limit: 255
@@ -706,36 +706,36 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.string   "penndot_number",                       limit: 255
     t.string   "ssn4",                                 limit: 255
     t.boolean  "confirm_no_dl_or_ssn"
-    t.text     "voter_signature_image"
+    t.text     "voter_signature_image",                limit: 65535
     t.boolean  "has_assistant"
     t.string   "assistant_name",                       limit: 255
     t.string   "assistant_address",                    limit: 255
     t.string   "assistant_phone",                      limit: 255
     t.boolean  "confirm_assistant_declaration"
     t.boolean  "confirm_declaration"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "registrant_id",                        limit: 255
     t.string   "locale",                               limit: 255
     t.string   "status",                               limit: 255
     t.boolean  "confirm_no_penndot_number"
     t.boolean  "pa_submission_complete"
     t.string   "pa_transaction_id",                    limit: 255
-    t.text     "pa_submission_error"
+    t.text     "pa_submission_error",                  limit: 65535
     t.string   "previous_middle_name",                 limit: 255
     t.string   "phone_type",                           limit: 255
     t.string   "signature_method",                     limit: 255
     t.string   "sms_number_for_continue_on_device",    limit: 255
     t.string   "email_address_for_continue_on_device", limit: 255
-    t.integer  "original_partner_id"
+    t.integer  "original_partner_id",                  limit: 4
     t.boolean  "partner_opt_in_sms"
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
-    t.integer  "penndot_retries",                                  default: 0
+    t.integer  "penndot_retries",                      limit: 4,     default: 0
   end
 
-  add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id"
-  add_index "state_registrants_pa_registrants", ["registrant_id"], name: "pa_registrants_registrant_id"
+  add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id", using: :btree
+  add_index "state_registrants_pa_registrants", ["registrant_id"], name: "pa_registrants_registrant_id", using: :btree
 
   create_table "state_registrants_va_registrants", force: :cascade do |t|
     t.boolean  "confirm_voter_record_update"
@@ -794,12 +794,12 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.boolean  "va_check_is_registered_voter"
     t.boolean  "va_check_has_dmv_signature"
     t.boolean  "va_check_error"
-    t.text     "va_check_response"
+    t.text     "va_check_response",               limit: 65535
     t.boolean  "va_submission_complete"
     t.string   "va_transaction_id",               limit: 255
-    t.text     "va_submission_error"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.text     "va_submission_error",             limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "has_mailing_address"
     t.boolean  "confirm_register_to_vote"
     t.string   "phone_type",                      limit: 255
@@ -808,48 +808,36 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.boolean  "partner_volunteer"
   end
 
-  add_index "state_registrants_va_registrants", ["registrant_id"], name: "va_registrants_registrant_id"
+  add_index "state_registrants_va_registrants", ["registrant_id"], name: "va_registrants_registrant_id", using: :btree
 
   create_table "tracking_events", force: :cascade do |t|
     t.string   "tracking_event_name", limit: 255
     t.string   "source_tracking_id",  limit: 255
     t.string   "partner_tracking_id", limit: 255
     t.string   "open_tracking_id",    limit: 255
-    t.text     "geo_location"
-    t.text     "tracking_data"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.text     "geo_location",        limit: 65535
+    t.text     "tracking_data",       limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "tracking_events", ["open_tracking_id"], name: "index_tracking_events_on_open_tracking_id"
-  add_index "tracking_events", ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
-  add_index "tracking_events", ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
-
-  create_table "voter_signatures", force: :cascade do |t|
-    t.string   "registrant_id"
-    t.text     "voter_signature_image"
-    t.string   "signature_method"
-    t.string   "sms_number_for_continue_on_device"
-    t.string   "email_address_for_continue_on_device"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-  end
-
-  add_index "voter_signatures", ["registrant_id"], name: "index_voter_signatures_on_registrant_id"
+  add_index "tracking_events", ["open_tracking_id"], name: "index_tracking_events_on_open_tracking_id", using: :btree
+  add_index "tracking_events", ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id", using: :btree
+  add_index "tracking_events", ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id", using: :btree
 
   create_table "zip_code_county_addresses", force: :cascade do |t|
-    t.integer  "geo_state_id"
+    t.integer  "geo_state_id",        limit: 4
     t.string   "zip",                 limit: 255
     t.string   "address",             limit: 255
-    t.text     "county",              limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.text     "cities"
-    t.text     "unacceptable_cities"
+    t.text     "county",              limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "cities",              limit: 65535
+    t.text     "unacceptable_cities", limit: 65535
     t.datetime "last_checked"
   end
 
-  add_index "zip_code_county_addresses", ["geo_state_id"], name: "index_zip_code_county_addresses_on_geo_state_id"
-  add_index "zip_code_county_addresses", ["zip"], name: "index_zip_code_county_addresses_on_zip"
+  add_index "zip_code_county_addresses", ["geo_state_id"], name: "index_zip_code_county_addresses_on_geo_state_id", using: :btree
+  add_index "zip_code_county_addresses", ["zip"], name: "index_zip_code_county_addresses_on_zip", using: :btree
 
 end

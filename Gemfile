@@ -24,7 +24,7 @@ gem 'rack-robustness'
 gem "authlogic", "= 4.3.0"
 gem 'daemons', '~> 1.1.9'
 gem "paperclip", "~> 5.3.0"
-gem 'mysql2', '~> 0.3.18'
+gem 'mysql2', '~> 0.4.10'
 
 gem 'distribute_reads'
 
