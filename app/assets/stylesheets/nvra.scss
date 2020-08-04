@@ -447,9 +447,16 @@ table.form {
 				width: 1183px*(1/3);
 				border-left:0;
 				.signature_box {
+          position: relative;
 					img {
 						width:380px;
 					}
+          img.voter-signature-image {
+            position: absolute;
+            top: 2px;
+            left: 30px;
+            width: 200px;
+          }
 				}
 				.please_sign {
 					text-align: right;

@@ -292,7 +292,7 @@ class Registrant < ActiveRecord::Base
   
   
   
-  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_remiinder_delivered
+  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
 
   aasm column: :status do
     state :initial, initial: true
@@ -947,7 +947,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def in_ovr_flow?
-    home_state_allows_ovr?
+    home_state_allows_ovr? && !mail_with_esig?
   end
   
   def home_state_allows_ovr?
@@ -1527,7 +1527,8 @@ class Registrant < ActiveRecord::Base
       :pdf_date_of_birth => pdf_date_of_birth,
       :pdf_barcode => pdf_barcode,
       pdf_assistant_info: pdf_assistant_info,
-      :created_at => created_at.to_param
+      :created_at => created_at.to_param,
+      voter_signature_image: self.voter_signature_image
     }
   end
   

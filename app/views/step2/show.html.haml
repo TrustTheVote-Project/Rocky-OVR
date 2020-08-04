@@ -31,7 +31,7 @@
 
   = render partial: 'name', locals: {form: form}
 
-  - if @registrant.use_short_form?    
+  - if @registrant.use_short_form?
     %ul.checkbox.checkbox-step-1
       %li.spacer= "&nbsp;"
       %li.registrant-form__us-citizen__line
@@ -57,7 +57,7 @@
     
     = render partial: 'previous_address', locals: { form: form }
     
-    - if @registrant.home_state_allows_ovr_ignoring_license?
+    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       - content_for :head do
         :javascript
           $(document).ready(function() {
@@ -132,7 +132,7 @@
       - unless @registrant.skip_state_flow?
         = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
 
-    - if  @registrant.home_state_allows_ovr_ignoring_license?
+    - if  @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       .use_state_registration
         = rollover_button(:prepare, I18n.t('txt.button.submit'))
     .skip_state_registration

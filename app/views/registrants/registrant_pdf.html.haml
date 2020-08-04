@@ -214,7 +214,10 @@
           %li.affirmation_2= form_prompt('pdf.nvra.page2.block9.affirmation_2' ).to_s.html_safe
           %li.affirmation_3= form_prompt('pdf.nvra.page2.block9.affirmation_3' ).to_s.html_safe
       %td.box2
-        .signature_box= wicked_pdf_image_tag("pdf/signature_box.png")
+        .signature_box
+          = wicked_pdf_image_tag("pdf/signature_box.png")
+          - unless @registrant.voter_signature_image.blank?
+            %img.voter-signature-image{src: @registrant.voter_signature_image}
         .please_sign= form_prompt('pdf.nvra.page2.block9.please_sign' ).to_s.html_safe
         .signature_date
           .date= form_prompt('pdf.nvra.page2.block9.date' ).to_s.html_safe
