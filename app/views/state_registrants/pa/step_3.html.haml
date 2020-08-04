@@ -1,6 +1,5 @@
 = render 'shared/signature_capture/scripts'
 - content_for :head do
-
   :javascript
     $(document).ready(function() {
       function togglePenndotNumber() {
@@ -65,7 +64,6 @@
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
 
   = render partial: 'shared/signature_capture/form', locals: {form: form}
-
 
   %br
   %br

@@ -48,6 +48,10 @@
         resizeCanvas(canvas, signaturePad);
       })
       
+      $(".signature_capture_insructions .cancel").click(function() {
+        $("#signature_field_popup").hide();                  
+      })
+      
       $(".signature_done").click(function() {
         //export
         var imageData = signaturePad.toDataURL("image/jpeg");

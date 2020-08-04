@@ -21,7 +21,8 @@
       = I18n.t("states.custom.#{home_state_key}.signature_capture.buttons.reset", default: t('txt.signature_capture.buttons.reset'))
     .signature_capture_insructions
       %span= I18n.t("states.custom.#{home_state_key}.signature_capture.rotation_instructions", default: t('txt.signature_capture.rotation_instructions'))
-  
+      %span.cancel= I18n.t('txt.button.cancel')
+      
   #signature_preview{ style: "display: #{@registrant.voter_signature_image.blank? ? 'none;' : 'block;'}"}
     %br
     %img.preview{src: @registrant.voter_signature_image}
