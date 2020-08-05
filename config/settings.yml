@@ -80,15 +80,17 @@ absentee_states:
     pdf_url: https://www.sos.alabama.gov/sites/default/files/voter-pdfs/absentee/RegularAbsenteeAppFillable.pdf
   AR:
     pdf_template:
+    pdf_url: https://www.sos.arkansas.gov/uploads/elections/Absentee_Ballot_Application.pdf
   AZ:
     online_req_url: https://my.arizona.vote/Early/ApplicationLogin.aspx
   CA: {}
   CO: {}
   CT:
     pdf_template:
+    pdf_url: https://portal.ct.gov/-/media/SOTS/ElectionServices/COVID-19/ED-3-English-Rev-2020.pdf
   DC: 
     online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
-    pdf_template: Absentee-Request-Form-and-Information-030120-LM03-04-20_2.pdf
+    # pdf_template: Absentee-Request-Form-and-Information-030120-LM03-04-20_2.pdf
   DE:
     online_req_url: https://ivote.de.gov/voterlogin.aspx    
     pdf_template: absentee_ballot_application.pdf
@@ -96,91 +98,123 @@ absentee_states:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
   GA:
     pdf_template:
+    pdf_url: https://sos.ga.gov/admin/files/Fillable%20Absentee%20Ballot%20Form%202020.pdf
   HI: {}
   IA:
     pdf_template:
+    pdf_url: https://sos.iowa.gov/elections/pdf/absenteeballotapp.pdf
   ID:
     online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
-    pdf_template: 2020_Absentee_Request.pdf
+    pdf_template: #2020_Absentee_Request.pdf
+    pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
   IL:
     pdf_template:
+    pdf_url: https://elections.il.gov/ElectionOperations/VotingByMailAgreement.aspx
   IN:
     pdf_template:
+    pdf_url: https://forms.in.gov/Download.aspx?id=8691
   KS:
     pdf_template:
+    pdf_url: https://www.kssos.org/forms/elections/AV1.pdf
   KY:
     disabled: true
   LA:
-    online_req_url: 
+    online_req_url: https://voterportal.sos.la.gov/Home/VoterLogin
     pdf_template:
+    pdf_url: https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/GeneralApplicationForAbsenteeByMailBallot.pdf
   MA:
     pdf_template:
+    pdf_url: https://www.sec.state.ma.us/ele/elepdf/absentee/English-Absentee-Ballot-Application.pdf
   MD:
-    online_req_url: 
+    online_req_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/VoterType
     pdf_template:
+    pdf_url: https://elections.maryland.gov/voting/documents/Special_Election_Absentee_Application.pdf 
   ME:
-    online_req_url: 
-    pdf_template:
+    online_req_url: https://www1.maine.gov/cgi-bin/online/AbsenteeBallot/online-form.pl
   MI:
-    online_req_url: 
-    pdf_template:
+    online_req_url: https://mvic.sos.state.mi.us/avapplication
+    pdf_template: 
+    pdf_url: https://www.michigan.gov/documents/AbsentVoterBallot_105377_7.pdf
   MN:
-    online_req_url: 
-    pdf_template:
+    online_req_url: https://mnvotes.sos.state.mn.us/ABRegistration/ABRegistrationStep1.aspx
   MO:
     pdf_template:
+    pdf_url: https://s1.sos.mo.gov/CMSImages/ElectionGoVoteMissouri/absenteerequest.pdf
   MS:
     disabled: true
   MT:
     pdf_template:
+    pdf_url: https://sosmt.gov/Portals/142/Elections/Forms/Application-for-Absentee-Ballot.pdf
   NC:
     pdf_template:      
+    pdf_url: https://s3.amazonaws.com/dl.ncsbe.gov/Forms/NCAbsenteeBallotRequestForm.pdf
   ND:
-    online_req_url: 
+    online_req_url: https://vip.sos.nd.gov/absentee/
     pdf_template:
+    pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
   NE:
     pdf_template:
+    pdf_url: https://sos.nebraska.gov/sites/sos.nebraska.gov/files/doc/elections/earlyvote_app_fill.pdf
   NH:
-    pdf_template:
+    pdf_template: 
+    pdf_url: http://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589999327
   NJ:
     pdf_template:
+    pdf_url: https://www.state.nj.us/state/elections/vote-by-mail.shtml
   NM:
-    online_req_url: 
+    online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
     pdf_template:
+    pdf_url: https://realfileee3072ab0d43456cb15a51f7d82c77a2.s3.amazonaws.com/97e1ee9d-281c-412a-9a85-0ea2e65f70ff?AWSAccessKeyId=AKIAJBKPT2UF7EZ6B7YA&Expires=1594221251&Signature=MXa6eiIsNedMu%2BRVpWNkDOQdLOU%3D&response-content-disposition=inline%3B%20filename%3DNMAV%2009-2019.pdf&response-content-type=application%2Fpdf
   NV:
     pdf_template:
+    pdf_url: https://www.nvsos.gov/sos/home/showdocument?id=8262
+    counties:
+      clark:
+        online_req_url: https://www.nvsos.gov/sos/home/showdocument?id=8262
   NY:
     pdf_template:
+    pdf_url: https://www.elections.ny.gov/NYSBOE/download/voting/AbsenteeBallot-English.pdf
   OH:
     pdf_template:
+    pdf_url: https://www.ohiosos.gov/globalassets/elections/forms/11-a_english.pdf
   OK:
-    online_req_url: 
-    pdf_template:
+    online_req_url: https://services.okelections.us/AbsenteeApplication/
   OR: {}      
   PA:
-    online_req_url: 
+    online_req_url: https://www.pavoterservices.pa.gov/OnlineAbsenteeApplication/#/OnlineAbsenteeBegin
     pdf_template:
+    pdf_url: https://www.votespa.com/Register-to-Vote/Documents/PADOS_MailInApplication.pdf
   RI:
     pdf_template:
+    pdf_url: https://vote.sos.ri.gov/Content/Pdfs/General%20Mail%20Ballot%20Application%2011-3-2020.pdf
   SC:
-    online_req_url: 
-    pdf_template:
+    online_req_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeRequest
   SD:
     pdf_template:
+    pdf_url: https://sdsos.gov/elections-voting/assets/AbsenteeBallotApplicationFillable.pdf
   TN:
     pdf_template:
+    pdf_url: https://sos-tn-gov-files.tnsosfiles.com/2020%20Absentee%20Request%20-%20August.pdf
   TX:
-    pdf_template: 5-15f.pdf
+    pdf_template: #5-15f.pdf
+    pdf_url: https://webservices.sos.state.tx.us/forms/5-15f.pdf
   UT: {}  
   VA:
+    online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
   VT:
-    online_req_url: 
-    pdf_template:
+    online_req_url: https://mvp.sec.state.vt.us/
   WA: {}
-  WI: "?"
-  WV: "?"
+  WI:
+    online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
+    pdf_template:
+    pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-07/EL-121%20Application%20for%20Absentee%20Ballot%20%282018-10%29-Fillable.pdf
+  WV:
+    online_req_url:
+    pdf_template: 
+    pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
   WY:
     pdf_template: AbsenteeRequestForm-Standard.pdf
+    pdf_url: https://sos.wyo.gov/Forms/Elections/General/AbsenteeRequestForm-Standard.pdf
   
 ovr_states:
   AZ:

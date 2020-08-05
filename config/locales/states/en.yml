@@ -42,8 +42,28 @@ en:
           Ballot Mailing Address 3: "&nbsp;"
       
       al:
-        abrs:
+        abr:
           step_3_pending_instructions: <p>Sample override for %{state} linking to %{pdf_url}</p>
+      ca:
+        abr:
+          header: Absentee Requests In California
+          instructions: <p>There is no absentee ballot request for the Nov 3, 2020 election. All registered voters will receive a vote-by-mail ballot.</p>
+        online_instructions: |-
+          You can complete your voter registration online with
+          the state right now - using the application provided by the Secretary of
+          State.
+        step_2:
+          checkbox_text: I am a resident of California, living in the United States
+          instruction_text: |-
+            You are eligible to finish your registration using the
+            state's online voter registration system.
+        ca_disclosures: I have reviewed and accepted the notices above.
+      
+      co:
+        abr:
+          header: Absentee Requests In Colorado
+          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
+
       de:
         abr:
           email_instructions: You may also sign, scan and email your form.   
@@ -64,18 +84,14 @@ en:
             "6": (6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her. 
           absentee_delivery: Special Qualification regarding electronic delivery of absentee ballots.
           Fax or: "Fax Number"
-      nc:
-        state_online_registration:
-          header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.
-          instructions: 
-            "Here's how to finish your registration:
-            <br/>1. Have your NC ID number ready.
-            <br/>2. Click the button below to continue.
-            <br/>3. On the DMV website, click \"Continue to myNCDMV Services.\"
-            <br/>4. Click \"Continue as a guest\" and submit your voter registration online."
-
+      hi:
+        abr:
+          header: Absentee Requests In Hawaii
+          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
+      
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
+
       mi:
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?
@@ -162,54 +178,32 @@ en:
         registration_complete_less_than_18: <p>You will be eligible to vote as soon as you turn 18 years old.</p> 
         registration_complete_dialog_text: ""
         valid_street_types: "Valid Street types include: %{types}"
+      nc:
+        state_online_registration:
+          header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.
+          instructions: 
+            "Here's how to finish your registration:
+            <br/>1. Have your NC ID number ready.
+            <br/>2. Click the button below to continue.
+            <br/>3. On the DMV website, click \"Continue to myNCDMV Services.\"
+            <br/>4. Click \"Continue as a guest\" and submit your voter registration online."
+      nv:
+        online_instructions: |-
+          <p>You can complete your voter registration online with
+          the state below. The Nevada Online Voter Application (NOVA) is provided
+          by Nevada Secretary of State for registering Nevada citizens to vote, or
+          to change their existing registration information.  NOVA is also available
+          <a href="https://nvsos.gov/sosvoterservices/Registration/step1.aspx?r=gov">here</a>.</p>
+          <br/> <p>If your driver's license is invalid or the state can't find or
+          confirm your DMV record - don't worry - you can also <a href="%{next_url}">finish
+          your registration with %{rtv_and_partner_name}</a>.  You will just have
+          to print, sign, and mail in the form.</p>
+      
       or:
         abr:
           header: Absentee Requests In Oregon
           instructions: <p>There is no absentee ballot request in Oregon. All registered voters will receive a vote-by-mail ballot.</p>
-      tx:
-        state_online_abr:
-          finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
       
-      va:
-        state_flow_error: There was a problem submitting your registration to Virginia.
-          Please try again later or continue here to create a paper form.
-        ineligible_registrant: 'We were unable to process your registration. Please
-          visit the Virginia Department of Elections: <a href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>'
-        step_2_header: Your Basic Info
-        step_2_subheader: We need to let the state know who you are and to check your
-          eligibility
-        special_status_notice: 'If you are registering as a military or overseas voter,
-          a protected status voter, or applying for permanent absentee status due
-          to a disability, please visit the Virginia Department of Elections: <a href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>'
-        voter_classification: Voter Classification
-        protected_voter: I am providing a Virginia P.O. Box to protect my residence
-          address from public disclosure because
-        step_3_header: You're Almost Done!
-        step_4_header: Review &amp; Confirm
-        by_paper_header: Review &amp; Confirm
-        voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE
-          IN AN ELECTION OR MAKING A MATERIALLY FALSE STATEMENT ON THIS FORM CONSTITUTES
-          THE CRIME OF ELECTION FRAUD, WHICH IS PUNISHABLE UNDER VIRGINIA LAW AS A
-          FELONY. VIOLATORS MAY BE SENTENCED TO UP TO 10 YEARS IN PRISON, OR UP TO
-          12 MONTHS IN JAIL AND/OR FINED UP TO $2,500.</strong></p>"
-        privacy_notice: "<p>Privacy Act Notice: Article II, Section 2 of the Constitution
-          of Virginia (1971) requires that a person registering to vote provide his
-          or her social security number, if any. Therefore, if you do not provide
-          your social security number, your application for voter registration will
-          be denied. Section 7 of the Federal Privacy Act (Public Law Number 93-579)
-          allows the Commonwealth to enforce this requirement, but also requires that
-          you be advised that state and local voting officials will use the social
-          security number as a unique identifier to ensure that no person is registered
-          in more than one place.</p><p>This registration card will only be open to
-          inspection by the public if the social security number is removed. Your
-          social security number will appear on reports produced only for official
-          use by voter registration and election officials, and for jury selection
-          purposes by courts, and all lawful governmental purposes.</p>"
-        submitting: Sending Your Application
-        confirming: Confirming Submission
-        registration_complete: Registration Complete
-        registration_complete_dialog_text: "<p>Your application has been sent to the
-          Dept. of Elections to register to vote.</p>"
       pa:
         registration_deadline_text: 10/19/2020 is the last day to register before the
           11/03/2020 election. If you are not a U.S. citizen and a resident of Pennsylvania
@@ -326,29 +320,61 @@ en:
             remove: Remove Signature
             provide_signature: Provide Signature
             select_file: Select an image to upload
-            copy_link: Copy Link
-      ca:
-        online_instructions: |-
-          You can complete your voter registration online with
-          the state right now - using the application provided by the Secretary of
-          State.
-        step_2:
-          checkbox_text: I am a resident of California, living in the United States
-          instruction_text: |-
-            You are eligible to finish your registration using the
-            state's online voter registration system.
-        ca_disclosures: I have reviewed and accepted the notices above.
-      nv:
-        online_instructions: |-
-          <p>You can complete your voter registration online with
-          the state below. The Nevada Online Voter Application (NOVA) is provided
-          by Nevada Secretary of State for registering Nevada citizens to vote, or
-          to change their existing registration information.  NOVA is also available
-          <a href="https://nvsos.gov/sosvoterservices/Registration/step1.aspx?r=gov">here</a>.</p>
-          <br/> <p>If your driver's license is invalid or the state can't find or
-          confirm your DMV record - don't worry - you can also <a href="%{next_url}">finish
-          your registration with %{rtv_and_partner_name}</a>.  You will just have
-          to print, sign, and mail in the form.</p>
+            copy_link: Copy Link      
+      tx:
+        state_online_abr:
+          finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
+      ut:
+        abr:
+          header: Absentee Requests In Utah
+          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>              
+      va:
+        state_flow_error: There was a problem submitting your registration to Virginia.
+          Please try again later or continue here to create a paper form.
+        ineligible_registrant: 'We were unable to process your registration. Please
+          visit the Virginia Department of Elections: <a href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>'
+        step_2_header: Your Basic Info
+        step_2_subheader: We need to let the state know who you are and to check your
+          eligibility
+        special_status_notice: 'If you are registering as a military or overseas voter,
+          a protected status voter, or applying for permanent absentee status due
+          to a disability, please visit the Virginia Department of Elections: <a href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>'
+        voter_classification: Voter Classification
+        protected_voter: I am providing a Virginia P.O. Box to protect my residence
+          address from public disclosure because
+        step_3_header: You're Almost Done!
+        step_4_header: Review &amp; Confirm
+        by_paper_header: Review &amp; Confirm
+        voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE
+          IN AN ELECTION OR MAKING A MATERIALLY FALSE STATEMENT ON THIS FORM CONSTITUTES
+          THE CRIME OF ELECTION FRAUD, WHICH IS PUNISHABLE UNDER VIRGINIA LAW AS A
+          FELONY. VIOLATORS MAY BE SENTENCED TO UP TO 10 YEARS IN PRISON, OR UP TO
+          12 MONTHS IN JAIL AND/OR FINED UP TO $2,500.</strong></p>"
+        privacy_notice: "<p>Privacy Act Notice: Article II, Section 2 of the Constitution
+          of Virginia (1971) requires that a person registering to vote provide his
+          or her social security number, if any. Therefore, if you do not provide
+          your social security number, your application for voter registration will
+          be denied. Section 7 of the Federal Privacy Act (Public Law Number 93-579)
+          allows the Commonwealth to enforce this requirement, but also requires that
+          you be advised that state and local voting officials will use the social
+          security number as a unique identifier to ensure that no person is registered
+          in more than one place.</p><p>This registration card will only be open to
+          inspection by the public if the social security number is removed. Your
+          social security number will appear on reports produced only for official
+          use by voter registration and election officials, and for jury selection
+          purposes by courts, and all lawful governmental purposes.</p>"
+        submitting: Sending Your Application
+        confirming: Confirming Submission
+        registration_complete: Registration Complete
+        registration_complete_dialog_text: "<p>Your application has been sent to the
+          Dept. of Elections to register to vote.</p>"
+      wa:
+        abr:
+          header: Absentee Requests In Washington
+          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
+     
+      
+      
     parties:
       democratic: Democratic
       independent: Independent
