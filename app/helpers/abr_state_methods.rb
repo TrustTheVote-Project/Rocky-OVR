@@ -202,7 +202,7 @@ module AbrStateMethods
       rescue Exception=>e
         # puts e.message
         # pp e.backtrace
-        raise e
+        # raise e
       end
     end
   end
