@@ -16,7 +16,7 @@ describe BlocksService do
         name_suffix: r.english_name_suffix,
         gender: r.gender,
         phone_number: r.phone,
-        signature: r.is_grommet? ? r.api_submitted_with_signature : !r.existing_state_registrant&.voter_signature_image.blank?,
+        signature: r.is_grommet? ? r.api_submitted_with_signature : !r.existing_state_registrant&.voter_signature_image&.blank?,
         us_citizen: !!r.us_citizen,
         county: r.is_grommet? ? r.home_county : r.existing_state_registrant&.registration_county,
         voting_city: r.home_city,
@@ -25,6 +25,15 @@ describe BlocksService do
         voting_street_address_two: r.home_unit,
         voting_zipcode: r.home_zip_code,
         ethnicity: r.english_race,
+        metadata: {
+          rtv_uid: r.uid,
+          sms_opt_in: r.partner_opt_in_sms?,
+          robo_call_opt_in: r.partner_opt_in_sms?,
+          email_opt_in: r.partner_opt_in_email?,
+          preferred_language: r.is_grommet? ? r.grommet_preferred_language : r.locale,
+          volunteer_with_partner: r.partner_volunteer?,
+          phone_type: r.phone_type
+        }
       })
     end
   end
@@ -103,6 +112,7 @@ describe BlocksService do
         allow(s).to receive(:create_shift).and_return({
           "shift"=> {"id" => "shift_id"}
         })
+        allow(forms).to receive(:any?).and_return(true)
         expect(s).to receive(:build_blocks_forms_from_canvassing_shift).with(shift).and_return(forms)
         expect(s).to receive(:upload_registrations).with("shift_id", forms)
         s.upload_canvassing_shift(shift)
@@ -171,7 +181,7 @@ describe BlocksService do
         req_type.stub(:is_a?).with(Registrant).and_return(false)
         req_type.stub(:is_a?).with(GrommetRequest).and_return(true)
         shift = double(CanvassingShift)
-        expect(shift).to receive(:registrations_or_requests).and_return([
+        expect(shift).to receive(:registrants_or_requests).and_return([
           reg_type,
           req_type
         ])

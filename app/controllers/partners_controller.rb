@@ -145,12 +145,28 @@ SCRIPT
   def registrations
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
-    if current_partner.enabled_for_grommet? && params[:generate_grommet]=="1"
-      current_partner.generate_grommet_registrants_csv(start_date, end_date)
+    if  params[:generate_extended]=="1"
+      current_partner.generate_registrants_extended_csv(start_date, end_date)
     else
       current_partner.generate_registrants_csv(start_date, end_date)
     end
     redirect_to reports_partner_url #download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})    
+  end
+  
+  def canvassing_shift_report
+    start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
+    end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
+    
+    current_partner.generate_canvassing_shift_csv(start_date, end_date)
+    redirect_to reports_partner_url
+  end
+  
+  def grommet_registrant_report
+    start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
+    end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
+        
+    current_partner.generate_grommet_registrants_csv(start_date, end_date)
+    redirect_to reports_partner_url
   end
   
   def grommet_shift_report

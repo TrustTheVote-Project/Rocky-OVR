@@ -17,6 +17,29 @@ class CanvassingShift < ActiveRecord::Base
     SOURCE_GROMMET
   ].freeze
 
+  CSV_HEADER = [
+    "Shift ID",
+    "Shift Source",
+    "Blocks Shift ID",
+    "Blocks Shift Location ID",
+    "Blocks Shift Location Name",
+    "Canvasser Name",
+    "Canvasser Phone",
+    "Canvasser Email",
+    "Shift Collection Start Time",
+    "Shift Collection End Time",
+    "Total Shift Time (Hours)",
+    "Abandoned Registrations",
+    "Completed Registrations",
+    "Registrations with SSN",
+    "Registrations with State ID",
+    "Source Tracking ID",
+    "Partner Tracking ID",
+    "Open Tracking ID",
+    "Device ID",
+    "Submitted to Blocks?"
+  ]
+
   validates_presence_of [:canvasser_first_name, :canvasser_last_name, :partner_id, :canvasser_phone, :canvasser_email, :shift_location], if: :is_web?
   validates_format_of :canvasser_phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, if: :is_web?, allow_blank: true
   validates_format_of :canvasser_email, :with => Authlogic::Regex::EMAIL, if: :is_web?, allow_blank: true
@@ -43,11 +66,54 @@ class CanvassingShift < ActiveRecord::Base
     return []
   end
 
+  def shift_location=(value)
+    self[:shift_location] = value
+    location_options = CanvassingShift.location_options(self.partner)
+    location_options.each do |name, id|
+      self.blocks_shift_location_name = name if id.to_s.strip == value.to_s.strip
+    end
+    value
+  end
+
+  def to_csv_array
+    [
+      shift_external_id,
+      shift_source,
+      blocks_shift_id,
+      shift_location,
+      blocks_shift_location_name,
+      canvasser_name,
+      canvasser_phone,
+      canvasser_email,
+      clock_in_datetime && clock_in_datetime.in_time_zone("America/New_York").to_s,
+      clock_out_datetime && clock_out_datetime.in_time_zone("America/New_York").to_s,
+      clock_in_datetime && clock_out_datetime ? (clock_out_datetime - clock_in_datetime).to_f / 3600.0 : nil,
+      abandoned_registrations,
+      completed_registrations,
+      # Regs who finish with paper never have an SSN
+      registrants.select {|r| r.has_ssn?  && r.complete? && !r.pdf_ready? }.length,
+      registrants.select {|r| r.has_state_license? && r.complete? }.length,
+      source_tracking_id,
+      partner_tracking_id,
+      open_tracking_id,
+      device_id,
+      yes_no(submitted_to_blocks)
+    ]
+  end
+  
+  def yes_no(attribute)
+    attribute ? "Yes" : "No"
+  end
+
   def is_web?
     self.shift_source == SOURCE_WEB
   end
   def is_grommet?
     self.shift_source == SOURCE_GROMMET
+  end
+  
+  def blocks_shift_type
+    is_grommet? ? "voter_registration" : "digital_voter_registration"
   end
   
   def locale
@@ -111,7 +177,12 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def is_ready_to_submit?
-    !!(self.clock_in_datetime && self.clock_out_datetime)
+    !!(self.clock_in_datetime && self.clock_out_datetime && self.complete?)
+  end
+  
+  def complete!
+    self.complete = true
+    self.save!
   end
 
   
@@ -125,7 +196,7 @@ class CanvassingShift < ActiveRecord::Base
   def submit_to_blocks
     if !submitted_to_blocks? && is_ready_to_submit?
       service = BlocksService.new
-      created_shift = service.upload_canvassing_shift(self)
+      created_shift = service.upload_canvassing_shift(self, shift_type: blocks_shift_type)
       forms = created_shift[:forms]
       shift = created_shift[:shift]
       self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
@@ -138,7 +209,7 @@ class CanvassingShift < ActiveRecord::Base
           grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
           BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
         else
-          puts "No form reesult for #{reg_req} #{i}"
+          puts "No form result for #{reg_req} #{i}"
         end
       end
     end
@@ -200,7 +271,8 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def generate_shift_external_id
-    self.shift_external_id = "web-" + Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{canvasser_name} -- #{partner_id}" )
+    prefix = is_web? ? "web-" : "grommet-"
+    self.shift_external_id = prefix + Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{canvasser_name} -- #{partner_id}" )
   end
 
 

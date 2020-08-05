@@ -35,6 +35,7 @@ RSpec.describe CanvassingShift, type: :model do
     before(:each) do
       allow(RockyConf.blocks_configuration).to receive(:default_location_id).and_return("default-id")
       allow(BlocksService).to receive(:new).and_return(b)
+      allow(p).to receive(:id).and_return(123456)
       allow(b).to receive(:get_locations).with(p).and_return({
         "locations"=> [
           {"name"=>"Location 1",
@@ -195,16 +196,20 @@ RSpec.describe CanvassingShift, type: :model do
   end
   
   describe "is_ready_to_submit?" do
-    it "returns true if both clock-in and -out are present" do
+    it "returns true if both clock-in and -out are present and the shift is marked complete" do
       c = CanvassingShift.new
       expect(c.is_ready_to_submit?).to eq(false)
       c.clock_in_datetime = DateTime.now
       expect(c.is_ready_to_submit?).to eq(false)
       c.clock_out_datetime = DateTime.now
+      expect(c.is_ready_to_submit?).to eq(false)
+      c.complete = true
       expect(c.is_ready_to_submit?).to eq(true)
       c.clock_in_datetime = nil
       expect(c.is_ready_to_submit?).to eq(false)
-      
+      c.clock_in_datetime = DateTime.now
+      c.clock_out_datetime = nil
+      expect(c.is_ready_to_submit?).to eq(false)      
     end
   end
   
@@ -237,7 +242,7 @@ RSpec.describe CanvassingShift, type: :model do
     let(:service) { double("Service") }
     before(:each) do
       allow(BlocksService).to receive(:new).and_return(service)
-      allow(service).to receive(:upload_canvassing_shift)
+      allow(service).to receive(:upload_canvassing_shift).and_return({forms: [], shift: {"shift"=>{"id"=>"id"}}})
       c.submitted_to_blocks = false
     end
     it "checks already submitted and ready state" do
@@ -256,19 +261,20 @@ RSpec.describe CanvassingShift, type: :model do
     it "submits shift to blocks service" do
       allow(c).to receive(:is_ready_to_submit?).and_return(true)
       c.submitted_to_blocks = false
-      expect(service).to receive(:upload_canvassing_shift).with(c)
+      expect(service).to receive(:upload_canvassing_shift).with(c, shift_type: "digital_voter_registration")
       c.submit_to_blocks
     end
     it "updates to submitted: true" do
       allow(c).to receive(:is_ready_to_submit?).and_return(true)
       c.submitted_to_blocks = false
-      expect(service).to receive(:upload_canvassing_shift).with(c)
+      c.shift_source = CanvassingShift::SOURCE_GROMMET
+      expect(service).to receive(:upload_canvassing_shift).with(c, shift_type: "voter_registration")
       c.submit_to_blocks
       expect(c.submitted_to_blocks?).to be(true)
     end
   end
   
-  describe "registrations_or_requests" do
+  describe "registrants_or_requests" do
     it "returns a consolidated lists of registrations or un-realized grommet requests" do
       shift_id = "shift-id"
       c = CanvassingShift.create(shift_external_id: shift_id, shift_source: CanvassingShift::SOURCE_GROMMET)
@@ -287,7 +293,7 @@ RSpec.describe CanvassingShift, type: :model do
       end
       expect(c.registrants.count).to eq(4)
       expect(c.grommet_requests.count).to eq(5)
-      expect(c.registrations_or_requests).to eq([
+      expect(c.registrants_or_requests).to eq([
         c.registrants,
         c.grommet_requests.last(1)
       ].flatten)

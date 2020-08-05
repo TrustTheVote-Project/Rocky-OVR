@@ -455,6 +455,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     loc ? loc["Name"] : nil
   end
   
+  def state_api_error   
+    va_submission_error
+  end
+  
   def submit_to_online_reg_url
     server = RockyConf.ovr_states.VA.api_settings.api_url
     url = File.join(server, "Voter/Submit?format=json")
@@ -591,6 +595,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     
     r.home_address = [self.registration_address_1, self.registration_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
     r.mailing_address = [self.mailing_address_1, self.mailing_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
+    
+    r.has_ssn = !self.confirm_no_ssn?
+    r.has_state_license = !self.confirm_no_dln?
+    
     
     if !self.mailing_state.blank? #always an abbrev
       r.mailing_state = GeoState[self.mailing_state]

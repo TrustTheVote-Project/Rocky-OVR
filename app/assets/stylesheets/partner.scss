@@ -230,12 +230,18 @@ form.form_downloadcsv, div.form_downloadcsv {
   fieldset {
     padding: 10px 20px;
   }
+  .date_inputs {
+    overflow: hidden;
+  }
   .date_input {
     float: left;
-    width: 33.3%;
+    width: 50%;
     label {
       display: block;
     }
+  }
+  .csv_type_input {
+    margin: 1em 0;
   }
   .submit_button {
     padding-top: 15px;

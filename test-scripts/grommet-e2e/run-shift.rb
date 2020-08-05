@@ -1,26 +1,31 @@
-NUM_REGISTRATIONS = 5
+NUM_REGISTRATIONS = 2
 NUM_API_REGISTRATIONS = 0
 
 path = File.expand_path(__FILE__).split("/")
 path.pop
 path = path.join("/")
 
-CLOCK_IN = File.join(path, 'start-shift.rb')
-CLOCK_OUT = File.join(path, 'end-shift.rb')
+CREATE_SHIFT = File.join(path, 'create-shift.rb')
+UPDATE_SHIFT = File.join(path, 'update-shift.rb')
+END_SHIFT = File.join(path, 'end-shift.rb')
 GROMMET_REGISTER = File.join(path, 'make-grommet-request.rb')
 API_REGISTER = File.join(path, 'make-api-request.rb')
 
 def run(cmd, args)
-  puts `ruby #{cmd} #{args.join(" ")}`
+  output = `ruby #{cmd} #{args.join(" ")}`
+  puts output
+  return output.to_s.strip
 end
 
 session_id = "'My Session::#{Time.now.to_i}'"
 partner_tracking_id = "'customid'"
 partner_id = 1
 
-base_args = [session_id, partner_tracking_id, partner_id]
+base_args = [partner_tracking_id, partner_id]
 
-run(CLOCK_IN, base_args)
+shift_id = run(CREATE_SHIFT, base_args)
+puts "Got shift id '#{shift_id}'"
+base_args.unshift(shift_id)
 
 error_cases = [
   [:first_name, "VR_WAPI_Invalidsignaturecontrast"], # Grommet removes and resubmits - but our tests always fail bc name isn't changed
@@ -56,5 +61,6 @@ NUM_API_REGISTRATIONS.times do |i|
 end
 
 
-run(CLOCK_OUT, [base_args, 0, NUM_REGISTRATIONS].flatten)
+run(UPDATE_SHIFT, [shift_id, 2, NUM_REGISTRATIONS].flatten)
+run(END_SHIFT, [shift_id])
 

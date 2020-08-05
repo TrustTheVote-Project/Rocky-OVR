@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200714133549) do
+ActiveRecord::Schema.define(version: 20200730182010) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20200714133549) do
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
 
+  create_table "abr_state_values", force: :cascade do |t|
+    t.integer  "abr_id"
+    t.string   "attribute_name"
+    t.string   "string_value"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "abr_state_values", ["abr_id"], name: "index_abr_state_values_on_abr_id"
+  add_index "abr_state_values", ["attribute_name"], name: "index_abr_state_values_on_attribute_name"
+
   create_table "abrs", force: :cascade do |t|
     t.string   "uid"
     t.integer  "partner_id"
@@ -32,33 +43,31 @@ ActiveRecord::Schema.define(version: 20200714133549) do
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "name_suffix"
-    t.string   "address"
     t.string   "city"
     t.integer  "home_state_id"
     t.string   "zip"
-    t.string   "gender"
     t.string   "email"
     t.string   "phone"
     t.date     "date_of_birth"
-    t.boolean  "javascript_disabled",                default: false
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.string   "mailing_address"
-    t.string   "mailing_city"
-    t.integer  "mailing_state_id"
-    t.string   "mailing_zip_code"
-    t.string   "state_id_number"
-    t.string   "party"
+    t.boolean  "javascript_disabled",  default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "phone_type"
-    t.boolean  "add_to_permanent_early_voting_list"
     t.boolean  "opt_in_email"
     t.boolean  "opt_in_sms"
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_opt_in_sms"
-    t.boolean  "has_mailing_address"
     t.string   "votercheck"
     t.string   "current_step"
     t.string   "max_step"
+    t.boolean  "abandoned"
+    t.boolean  "pdf_ready"
+    t.boolean  "pdf_downloaded"
+    t.datetime "pdf_downloaded_at"
+    t.string   "street_number"
+    t.string   "street_name"
+    t.string   "street_line2"
+    t.string   "unit"
   end
 
   add_index "abrs", ["email"], name: "index_abrs_on_email"
@@ -154,14 +163,16 @@ ActiveRecord::Schema.define(version: 20200714133549) do
     t.integer  "abandoned_registrations"
     t.integer  "completed_registrations"
     t.string   "canvasser_phone"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.boolean  "submitted_to_blocks",     default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.boolean  "submitted_to_blocks",        default: false
     t.string   "canvasser_first_name"
     t.string   "canvasser_last_name"
     t.string   "canvasser_email"
     t.string   "shift_source"
     t.string   "blocks_shift_id"
+    t.boolean  "complete"
+    t.string   "blocks_shift_location_name"
   end
 
   add_index "canvassing_shifts", ["canvasser_first_name", "canvasser_last_name"], name: "shift_canvasser_name_index"
@@ -342,6 +353,15 @@ ActiveRecord::Schema.define(version: 20200714133549) do
   add_index "partners", ["persistence_token"], name: "index_partners_on_persistence_token"
   add_index "partners", ["username"], name: "index_partners_on_username"
   add_index "partners", ["whitelabeled"], name: "index_partners_on_whitelabeled"
+
+  create_table "pdf_abr_generations", force: :cascade do |t|
+    t.integer  "abr_id"
+    t.boolean  "locked",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pdf_abr_generations", ["locked"], name: "index_pdf_abr_generations_on_locked"
 
   create_table "pdf_deliveries", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -631,11 +651,13 @@ ActiveRecord::Schema.define(version: 20200714133549) do
     t.boolean  "mi_submission_complete"
     t.integer  "submission_attempts",                   default: 0
     t.string   "mi_transaction_id"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.string   "mi_api_voter_status_id"
     t.string   "registration_address_post_directional"
     t.text     "registration_address_matches"
+    t.boolean  "has_ssn",                               default: false
+    t.boolean  "has_state_license",                     default: false
   end
 
   add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"

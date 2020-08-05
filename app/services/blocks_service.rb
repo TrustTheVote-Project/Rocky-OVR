@@ -72,7 +72,7 @@ class BlocksService
     shift = create_shift(shift_params)
     shift_id = shift["shift"]["id"]
     form_responses = []
-    if forms.any?
+    if forms && forms.any?
       form_responses = upload_registrations(shift_id, forms)
     end
     return {

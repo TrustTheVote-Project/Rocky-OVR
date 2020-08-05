@@ -369,6 +369,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     self.partner ? self.partner.pa_api_key : nil
   end
   
+  def state_api_error   
+    pa_submission_error
+  end
+  
   def submit_to_online_reg_url
     RequestLogSession.make_call_with_logging(registrant: self, client_id: 'PARegistrationRequest::Rocky', censor: PACensor) do
       begin
@@ -552,6 +556,8 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     r.home_address = [self.registration_address_1.blank? ? nil : self.registration_address_1, self.registration_address_2.blank? ? nil : self.registration_address_2].compact.join(", ")
     r.home_unit = [self.registration_unit_type.blank? ? nil : self.registration_unit_type, self.registration_unit_number.blank? ? nil : self.registration_unit_number].compact.join(" ")
+    r.has_ssn = !self.confirm_no_dl_or_ssn?
+    r.has_state_license = !self.confirm_no_penndot_number?
     begin 
       r.mailing_state = GeoState[self.mailing_state]
     end

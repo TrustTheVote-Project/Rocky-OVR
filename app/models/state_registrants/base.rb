@@ -170,6 +170,9 @@ class StateRegistrants::Base < ActiveRecord::Base
     raise NotImplementedError
   end
   
+  def state_api_error   
+  end
+  
   def state_transaction_id
     raise NotImplementedError
   end
