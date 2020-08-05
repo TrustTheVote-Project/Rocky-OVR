@@ -31,6 +31,10 @@ module AbrPdfMethods
     @pdf_template_name ||= RockyConf.absentee_states[home_state_abbrev]&.pdf_template
   end
   
+  def state_pdf_url
+    @state_pdf_url ||= RockyConf.absentee_states[home_state_abbrev]&.pdf_url
+  end
+  
   def has_pdf_template?
     !pdf_template_name.blank?
   end

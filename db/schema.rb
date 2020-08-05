@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200803181628) do
+ActiveRecord::Schema.define(version: 20200805132330) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -71,8 +71,13 @@ ActiveRecord::Schema.define(version: 20200803181628) do
     t.boolean  "finish_with_state",        default: false
     t.boolean  "final_reminder_delivered", default: false
     t.integer  "reminders_left"
+    t.boolean  "dead_end",                 default: false
   end
 
+  add_index "abrs", ["abandoned", "dead_end", "current_step"], name: "index_abrs_for_abandonment"
+  add_index "abrs", ["abandoned"], name: "index_abrs_on_abandoned"
+  add_index "abrs", ["current_step"], name: "index_abrs_on_current_step"
+  add_index "abrs", ["dead_end"], name: "index_abrs_on_dead_end"
   add_index "abrs", ["email"], name: "index_abrs_on_email"
   add_index "abrs", ["home_state_id"], name: "index_abrs_on_home_state_id"
   add_index "abrs", ["partner_id"], name: "index_abrs_on_partner_id"

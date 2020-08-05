@@ -8,6 +8,8 @@ en:
       step_2_instructions: <p>Step 2 Instructions</p>
       step_3_header: Step 3 Header
       step_3_instructions: <p>Step 3 Instructions</p>
+      step_3_pending_header: We're Sorry
+      step_3_pending_instructions: <p>We don't yet support online forms for the state of %{state}. You'll need to print and fill out a paper request form. You can <a href="%{pdf_url}" target="_blank" rel="noopener"> download your state's form here</a>.</p>
       state_online_defaults:
         header: You can request an Absentee Ballot online directly with the state of %{state}
         requirements: If you are registered to vote and have a valid %{state} state ID, you may request your absentee ballot online directly with the state.

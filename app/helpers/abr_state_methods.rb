@@ -200,6 +200,7 @@ module AbrStateMethods
         self.singleton_class.send(:include, Module.const_get(type))
         @home_state_attributes_initialized = true
       rescue Exception=>e
+        self.singleton_class.send(:extend, ClassMethods) # Add default methods
         # puts e.message
         # pp e.backtrace
         # raise e

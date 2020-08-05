@@ -41,6 +41,9 @@ en:
           Ballot Mailing Address 2: "&nbsp;"
           Ballot Mailing Address 3: "&nbsp;"
       
+      al:
+        abrs:
+          step_3_pending_instructions: <p>Sample override for %{state} linking to %{pdf_url}</p>
       de:
         abr:
           email_instructions: You may also sign, scan and email your form.   

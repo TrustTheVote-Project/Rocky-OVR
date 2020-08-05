@@ -20,6 +20,11 @@ module RegistrantAbrMethods
     partner.rtv_sms_opt_in || partner.partner_sms_opt_in? || partner.primary?
   end
   
+  def has_phone?
+    !phone.blank?
+  end
+  
+  
   def is_blacklisted(email_address)
     EmailAddress.is_blacklisted?(email_address)
   end

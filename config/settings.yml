@@ -77,6 +77,7 @@ absentee_states:
     pdf_template: ak.pdf
   AL:
     pdf_template:
+    pdf_url: https://www.sos.alabama.gov/sites/default/files/voter-pdfs/absentee/RegularAbsenteeAppFillable.pdf
   AR:
     pdf_template:
   AZ:

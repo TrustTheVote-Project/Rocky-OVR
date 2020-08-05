@@ -33,6 +33,12 @@ class Abr < ActiveRecord::Base
   validates_presence_of :zip
   validate :validate_form_fields, if: :advancing_to_step_4?
 
+  validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
+  validates_presence_of :email
+  validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+  validates_presence_of :phone_type, if: :has_phone?
+
+
   def advancing_to_step?(num)
     (current_step || "0").to_i >= num
   end
@@ -109,6 +115,11 @@ class Abr < ActiveRecord::Base
   rescue    
   end
   
+  def dead_end!
+    self.dead_end = true
+    self.redact_sensitive_data #there shouldn't be any
+    self.save(validate: false)
+  end
   
   COMPLETION_STEP = 4
   def complete?
@@ -258,7 +269,7 @@ class Abr < ActiveRecord::Base
   def self.abandon_stale_records
     id_list = []
     distribute_reads do 
-      id_list = Abr.where("(abandoned != ?) AND (current_step < ? OR current_step IS NULL) AND (updated_at < ?)", true, Abr::COMPLETION_STEP, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id) 
+      id_list = Abr.where("(abandoned != ?) AND (dead_end != ?) AND (current_step < ? OR current_step IS NULL) AND (updated_at < ?)", true, true, Abr::COMPLETION_STEP, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id) 
 
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |abr|
         if abr.finish_with_state?

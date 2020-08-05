@@ -78,6 +78,9 @@ class AbrsController < ApplicationController
     @current_step = 3
     find_abr
     if @abr.can_continue?
+      unless @abr.has_pdf_template?
+        @abr.dead_end!
+      end
       render step_3_view(@abr)      
     else
       redirect_to not_registered_abr_path(@abr)
@@ -179,7 +182,13 @@ class AbrsController < ApplicationController
   
   def step_2_view(abr)
     potential_view = "step_2_#{abr.home_state_abbrev.to_s.downcase}"
-    File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml")) ? potential_view : "step_2"
+    if File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml"))
+      # In all cases we consider this registrant done!
+      @abr.dead_end!
+      return potential_view
+    else
+      return 'step_2'
+    end
   end
   
   def step_3_view(abr)

@@ -1836,9 +1836,6 @@ class Registrant < ActiveRecord::Base
     end
   end
 
-  def has_phone?
-    !phone.blank?
-  end
 
   private ###
 
