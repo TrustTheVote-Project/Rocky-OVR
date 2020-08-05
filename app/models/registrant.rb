@@ -1378,6 +1378,7 @@ class Registrant < ActiveRecord::Base
     return true
     list = %w(AL
               AZ
+              MN
               SD)
     return list.include?(home_state_abbrev)
   end

@@ -53,6 +53,7 @@ en:
     try_again: Go back and try again.
     rtv_and_partner: Rock the Vote and %{partner_name}
     button:
+      cancel: Cancel
       text_me: Send SMS
       email_me: Send Email
       submit: Next Step

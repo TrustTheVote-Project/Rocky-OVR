@@ -46,6 +46,11 @@
         resizeCanvas(canvas, signaturePad);
       })
       
+      
+      $(".signature_capture_insructions .cancel").click(function() {
+        $("#signature_field_popup").hide();                  
+      })
+      
       $(".signature_done").click(function() {
         //export
         var imageData = signaturePad.toDataURL("image/jpeg");
@@ -65,8 +70,6 @@
           $("#signature_field_popup").hide();
         }
       })
-      
-      $("#signature_capture2").show();   
       
       $(".signature_clear").click(function() {
         signaturePad.clear();
@@ -250,6 +253,7 @@
           = I18n.t('states.custom.pa.signature_capture.buttons.reset')
         .signature_capture_insructions
           %span= I18n.t('states.custom.pa.signature_capture.rotation_instructions')
+          %span.cancel= I18n.t('txt.button.cancel')
     
       #signature_preview{ style: "display: #{@registrant.voter_signature_image.blank? ? 'none;' : 'block;'}"}
         %br
@@ -262,10 +266,6 @@
               = I18n.t('states.custom.pa.signature_capture.buttons.remove')
         %br 
         %br
-    
-    / #signature_capture2
-    /   #signature_field2
-    
     
     %fieldset#signature_upload
       %p.instructions 
