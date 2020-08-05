@@ -39,6 +39,10 @@ module AbrPdfMethods
     !pdf_template_name.blank?
   end
   
+  def has_state_pdf_url?
+    !state_pdf_url.blank?
+  end
+  
   def pdf_template_path
     return nil unless has_pdf_template?
     abbrev = home_state_abbrev.downcase

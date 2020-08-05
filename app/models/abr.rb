@@ -79,7 +79,7 @@ class Abr < ActiveRecord::Base
   end
   
   def oabr_for_all?
-    !has_pdf_template?
+    !has_pdf_template? && !has_state_pdf_url?
   end
   
   def locale
