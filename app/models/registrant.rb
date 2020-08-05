@@ -1471,6 +1471,16 @@ class Registrant < ActiveRecord::Base
     end
   end
   
+  def signed_at_month
+    voter_signature&.updated_at&.month
+  end
+  def signed_at_day
+    voter_signature&.updated_at&.day
+  end
+  def signed_at_year
+    voter_signature&.updated_at&.year
+  end
+  
   def signature_capture_url
     registrant_step_2_url(self.to_param,  :protocol => "https", :host=>RockyConf.default_url_host)
   end
@@ -1528,7 +1538,10 @@ class Registrant < ActiveRecord::Base
       :pdf_barcode => pdf_barcode,
       pdf_assistant_info: pdf_assistant_info,
       :created_at => created_at.to_param,
-      voter_signature_image: self.voter_signature_image
+      voter_signature_image: self.voter_signature_image,
+      signed_at_month: signed_at_month,
+      signed_at_year: signed_at_year,
+      signed_at_day: signed_at_day
     }
   end
   

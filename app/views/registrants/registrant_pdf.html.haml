@@ -223,8 +223,14 @@
           .date= form_prompt('pdf.nvra.page2.block9.date' ).to_s.html_safe
           .date_box= wicked_pdf_image_tag("pdf/date_box.png")
           .month= form_prompt('pdf.nvra.page2.block9.month' ).to_s.html_safe
+          - unless @registrant.voter_signature_image.blank?
+            .month-value= @registrant.signed_at_month
           .day= form_prompt('pdf.nvra.page2.block9.day' ).to_s.html_safe
+          - unless @registrant.voter_signature_image.blank?
+            .day-value= @registrant.signed_at_day
           .year= form_prompt('pdf.nvra.page2.block9.year' ).to_s.html_safe
+          - unless @registrant.voter_signature_image.blank?
+            .year-value= @registrant.signed_at_year
   %h4.top_half_footer
     = form_prompt('pdf.nvra.page2.top_half_footer' ).to_s.html_safe
   .bottom_half

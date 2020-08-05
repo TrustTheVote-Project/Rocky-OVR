@@ -60,7 +60,10 @@ class PdfWriter
       :pdf_barcode,
       :created_at,
       :pdf_assistant_info,
-      :voter_signature_image
+      :voter_signature_image,
+      :signed_at_month,
+      :signed_at_day,
+      :signed_at_year
       
   validates_presence_of :id, :uid, :home_state_id, :pdf_barcode, :locale, :registration_instructions_url, :state_registrar_address, :registration_deadline, :pdf_date_of_birth, :created_at
   validate :pdf_date_of_birth_format
