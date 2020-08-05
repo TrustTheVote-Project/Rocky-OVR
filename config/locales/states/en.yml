@@ -92,6 +92,11 @@ en:
       ks:
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
 
+      ky:
+        abr:
+          header: Absentee Requests In Kentucky
+          instructions: <p>Kentucky requires all absentee requests to be completed directly through the state.</p>
+      
       mi:
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?
@@ -178,6 +183,12 @@ en:
         registration_complete_less_than_18: <p>You will be eligible to vote as soon as you turn 18 years old.</p> 
         registration_complete_dialog_text: ""
         valid_street_types: "Valid Street types include: %{types}"
+      
+      ms:
+        abr:
+          header: Absentee Requests In Mississippi
+          instructions: <p>Mississippi requires all absentee requests to be completed directly through the state.</p>
+      
       nc:
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.

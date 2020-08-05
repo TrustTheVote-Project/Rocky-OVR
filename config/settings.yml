@@ -116,8 +116,7 @@ absentee_states:
   KS:
     pdf_template:
     pdf_url: https://www.kssos.org/forms/elections/AV1.pdf
-  KY:
-    disabled: true
+  KY: {}
   LA:
     online_req_url: https://voterportal.sos.la.gov/Home/VoterLogin
     pdf_template:
@@ -140,8 +139,7 @@ absentee_states:
   MO:
     pdf_template:
     pdf_url: https://s1.sos.mo.gov/CMSImages/ElectionGoVoteMissouri/absenteerequest.pdf
-  MS:
-    disabled: true
+  MS: {}
   MT:
     pdf_template:
     pdf_url: https://sosmt.gov/Portals/142/Elections/Forms/Application-for-Absentee-Ballot.pdf
