@@ -1439,7 +1439,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def home_state_enabled_for_pdf_assitance?
-    return true
+    return false
     list = %w(AL
               AZ
               MN
