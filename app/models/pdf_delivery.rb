@@ -9,7 +9,7 @@ class PdfDelivery < ActiveRecord::Base
   
   def generate_pdf(force = false)
     if registrant.pdf_writer.valid?
-      if registrant.pdf_writer.generate_pdf(force, true)
+      if registrant.pdf_writer.generate_pdf(force, true, registrant.pdf_is_esigned?)
         return true
       else
         return false
@@ -25,18 +25,19 @@ class PdfDelivery < ActiveRecord::Base
   end
   
   
-  def self.store_in_s3(path, url_path)
+  def self.store_in_s3(path, url_path, redacted=true)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
       :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
       :region                   => 'us-west-2'
     })
+    prefix_key = redacted ? "redacted" : "signed"
     bucket_name = "rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}"
     directory = connection.directories.get(bucket_name)
     date_stamp = Date.today.strftime("%Y-%m-%d")
     file = directory.files.create(
-      :key    => "redacted/#{date_stamp}/#{url_path.gsub(/^\//,'')}",
+      :key    => "#{prefix_key}/#{date_stamp}/#{url_path.gsub(/^\//,'')}",
       :body   => File.open(path).read,
       :content_type => "application/pdf",
       :encryption => 'AES256', #Make sure its encrypted on their own hard drives

@@ -1463,6 +1463,10 @@ class Registrant < ActiveRecord::Base
     self.signature_method == VoterSignature::PRINT_METHOD   
   end
   
+  def pdf_is_esigned?
+    mail_with_esig? && !skip_mail_with_esig?
+  end
+  
   has_one :voter_signature, primary_key: :uid, autosave: true
   [
     :voter_signature_image,
@@ -1551,7 +1555,7 @@ class Registrant < ActiveRecord::Base
       pdf_assistant_info: pdf_assistant_info,
       :created_at => created_at.to_param,
     }
-    if mail_with_esig? && ! skip_mail_with_esig? && voter_signature_image 
+    if pdf_is_esigned? && voter_signature_image 
       h = h.merge({
         voter_signature_image: self.voter_signature_image,
         signed_at_month: signed_at_month,

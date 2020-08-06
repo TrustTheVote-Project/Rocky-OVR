@@ -6,7 +6,7 @@
         = t("states.custom.#{home_state_key}.signature_capture.buttons.provide_signature", default: t('txt.signature_capture.buttons.provide_signature'))
   %br
   %p.instructions
-    = t("states.custom.#{home_state_key}.signature_capture.touch_sign_instructions", default: t('txt.signature_capture.buttons.provide_signature'))
+    = t("states.custom.#{home_state_key}.signature_capture.touch_sign_instructions", default: t('txt.signature_capture.touch_sign_instructions'))
   - if form.object.errors[:voter_signature_image]
     .error
       = form.object.errors[:voter_signature_image].join("\n")
