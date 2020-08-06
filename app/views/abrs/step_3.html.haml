@@ -2,6 +2,8 @@
   %h2= t('txt.abr.step_3_pending_header')
   - default_text = t('txt.abr.step_3_pending_instructions', {state: @abr.home_state_name, pdf_url: @abr.state_pdf_url})
   = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr.step_3_pending_instructions", {state: @abr.home_state_name, pdf_url: @abr.state_pdf_url, default: default_text}).html_safe
+  = render :partial => 'abrs/finish_adwords'
+  
 - else 
   :javascript
     $(document).ready(function() {
