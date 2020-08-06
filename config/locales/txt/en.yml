@@ -47,7 +47,8 @@ en:
       preparing_header: Preparing Registration Form...
       download_header: Print Your Form
       pdf_assistance_header: You should receive your voter registration form within a few days.
-      
+      finish_mail_with_esig_header: Thanks for beginning the voter registration process! 
+      finish_mail_with_esig: We'll be mailing your voter registration application to your county election office.
       finish_header: Spread the word!
       finish_pdf_delay_header: Check Your Email
       finish_pdf_delay: It's taking a while to create your registration form to download,

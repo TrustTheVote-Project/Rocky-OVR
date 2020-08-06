@@ -126,6 +126,13 @@ en:
           on a touchscreen device:<br><br> %{registration_url}<br><br> This link will
           expire in 30 minutes.<br><br> If you have any questions or run into any
           issues, please contact us at <a href="mailto:info@rockthevote.org">info@rockthevote.org</a><br>
+    continue_on_device:
+      subject: Sign your voter registration form
+      body:
+        main: Here is the link you requested to sign your voter registration form
+          on a touchscreen device:<br><br> %{registration_url}<br><br> This link will
+          expire in 30 minutes.<br><br> If you have any questions or run into any
+          issues, please contact us at <a href="mailto:info@rockthevote.org">info@rockthevote.org</a><br>
     reminder:
       subject: ! 'Reminder: Mail your voter registration form'
       body:

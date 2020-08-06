@@ -112,7 +112,7 @@ ovr_states:
       - en
   MN:
     redirect_to_online_reg_url: true
-    require_id: false
+    require_id: true
     languages:
       - en
   NV:

@@ -1,4 +1,4 @@
-- if @for_printer
+- if @for_printer && !@esign
   %div.page#page_mailing_address
     .address
       = "#{(@registrant.first_name).to_s.html_safe} #{(@registrant.last_name).to_s.html_safe}"
@@ -11,55 +11,56 @@
         = ("#{@registrant.home_address} #{@registrant.home_unit}").to_s.html_safe
         %br
         =  [@registrant.home_city.to_s, "#{@registrant.home_state_id.to_s} #{@registrant.home_zip_code}"].join(', ').html_safe
-    
-  %div.page#state_instructinos
+
+  %div.page#state_instructions
     %h1= I18n.t('pdf.nvra.state_instructions_header', state: @registrant.home_state_name)
     = @registrant.state_id_tooltip
-    
-%div.page#page_1
-  #logo= image_tag(@logo_image_path)
-  %h1.title= I18n.t('pdf.nvra.page1.title').to_s.html_safe
-  %h2.subtitle= I18n.t('pdf.nvra.page1.subtitle' ).to_s.html_safe
-  %p.top_paragraph=@for_printer ? I18n.t('pdf.nvra.page1.top_paragraph_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.top_paragraph' ).to_s.html_safe
-  %table#instructions_table
-    %tr
-      %td.instructions_block{:rowspan=>3}
-        %h4= I18n.t('pdf.nvra.page1.instructions_block.title' ).to_s.html_safe
-        %p= I18n.t('pdf.nvra.page1.instructions_block.subtitle' ).to_s.html_safe
-        %ol
-          %li=  @for_printer ? I18n.t('pdf.nvra.page1.instructions_block.step1_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.instructions_block.step1' ).to_s.html_safe
-          %li
-            = I18n.t('pdf.nvra.page1.instructions_block.step2' ).to_s.html_safe
-            .mailer
-              .instructions= I18n.t('pdf.nvra.page1.instructions_block.step2mailer' ).to_s.html_safe
-              .image= wicked_pdf_image_tag("pdf/mailer.png")
-          %li= @for_printer ? I18n.t('pdf.nvra.page1.instructions_block.step3_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.instructions_block.step3' ).to_s.html_safe
-          %li= I18n.t('pdf.nvra.page1.instructions_block.step4' ).to_s.html_safe
-          %li= I18n.t('pdf.nvra.page1.instructions_block.step5' ).to_s.html_safe
-      %td.submit_block
-        - if !@registrant.home_state_pdf_instructions.blank? && false
-          .state_instructions
-            %p= @registrant.home_state_pdf_instructions.to_s.html_safe
+
+- unless @esign
+  %div.page#page_1
+    #logo= image_tag(@logo_image_path)
+    %h1.title= I18n.t('pdf.nvra.page1.title').to_s.html_safe
+    %h2.subtitle= I18n.t('pdf.nvra.page1.subtitle' ).to_s.html_safe
+    %p.top_paragraph=@for_printer ? I18n.t('pdf.nvra.page1.top_paragraph_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.top_paragraph' ).to_s.html_safe
+    %table#instructions_table
+      %tr
+        %td.instructions_block{:rowspan=>3}
+          %h4= I18n.t('pdf.nvra.page1.instructions_block.title' ).to_s.html_safe
+          %p= I18n.t('pdf.nvra.page1.instructions_block.subtitle' ).to_s.html_safe
+          %ol
+            %li=  @for_printer ? I18n.t('pdf.nvra.page1.instructions_block.step1_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.instructions_block.step1' ).to_s.html_safe
+            %li
+              = I18n.t('pdf.nvra.page1.instructions_block.step2' ).to_s.html_safe
+              .mailer
+                .instructions= I18n.t('pdf.nvra.page1.instructions_block.step2mailer' ).to_s.html_safe
+                .image= wicked_pdf_image_tag("pdf/mailer.png")
+            %li= @for_printer ? I18n.t('pdf.nvra.page1.instructions_block.step3_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.instructions_block.step3' ).to_s.html_safe
+            %li= I18n.t('pdf.nvra.page1.instructions_block.step4' ).to_s.html_safe
+            %li= I18n.t('pdf.nvra.page1.instructions_block.step5' ).to_s.html_safe
+        %td.submit_block
+          - if !@registrant.home_state_pdf_instructions.blank? && false
+            .state_instructions
+              %p= @registrant.home_state_pdf_instructions.to_s.html_safe
           
-        %h4.title= I18n.t('pdf.nvra.page1.submit_block.title' ).to_s.html_safe
-        %p#registrar_address= @registrant.state_registrar_address.to_s.html_safe
-    %tr
-      %td.deadline_block
-        %h4.title= I18n.t('pdf.nvra.page1.deadline_block.title' ).to_s.html_safe
-        %p= @registrant.registration_deadline.to_s.html_safe
-    %tr
-      %td.other_block
-        %h4.title= I18n.t('pdf.nvra.page1.other_block', :instructions_url=>@registrant_instructions_link).to_s.html_safe
-        - if !@registrant.home_state_pdf_other_instructions.blank?
-          .state_instructions
-            %p= @registrant.home_state_pdf_other_instructions.to_s.html_safe
-        - if @for_printer
-          %p= I18n.t('pdf.nvra.page1.ep_hotline').to_s.html_safe
-  %h3.bottom_title= I18n.t('pdf.nvra.page1.bottom_block.title' ).to_s.html_safe
-  %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph1' ).to_s.html_safe
-  %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph2' ).to_s.html_safe
-  %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph3' ).to_s.html_safe
-  %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph4' ).to_s.html_safe
+          %h4.title= I18n.t('pdf.nvra.page1.submit_block.title' ).to_s.html_safe
+          %p#registrar_address= @registrant.state_registrar_address.to_s.html_safe
+      %tr
+        %td.deadline_block
+          %h4.title= I18n.t('pdf.nvra.page1.deadline_block.title' ).to_s.html_safe
+          %p= @registrant.registration_deadline.to_s.html_safe
+      %tr
+        %td.other_block
+          %h4.title= I18n.t('pdf.nvra.page1.other_block', :instructions_url=>@registrant_instructions_link).to_s.html_safe
+          - if !@registrant.home_state_pdf_other_instructions.blank?
+            .state_instructions
+              %p= @registrant.home_state_pdf_other_instructions.to_s.html_safe
+          - if @for_printer
+            %p= I18n.t('pdf.nvra.page1.ep_hotline').to_s.html_safe
+    %h3.bottom_title= I18n.t('pdf.nvra.page1.bottom_block.title' ).to_s.html_safe
+    %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph1' ).to_s.html_safe
+    %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph2' ).to_s.html_safe
+    %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph3' ).to_s.html_safe
+    %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph4' ).to_s.html_safe
   
 .page#page_2
   %h1.title= form_prompt('pdf.nvra.page2.title' ).to_s.html_safe
@@ -202,7 +203,7 @@
         %td.block6.box1#id_number
           .label= form_prompt('pdf.nvra.page2.block6.box1_label' ).to_s.html_safe
           .sublabel= form_prompt('pdf.nvra.page2.block6.box1_sublabel' ).to_s.html_safe
-          .value= @for_printer ? '' : @registrant.state_id_number
+          .value= @for_printer && !@esign ? '' : @registrant.state_id_number
 
   %table.form
     %tr#block9

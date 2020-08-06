@@ -947,7 +947,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def in_ovr_flow?
-    home_state_allows_ovr? && !mail_with_esig?
+    home_state_allows_ovr? && (!mail_with_esig?)
   end
   
   def home_state_allows_ovr?
@@ -1362,11 +1362,15 @@ class Registrant < ActiveRecord::Base
   end
   
   def queue_pdf
-    klass = PdfGeneration
-    if self.email_address.blank?
-      klass = PriorityPdfGeneration
+    if mail_with_esig? && !skip_mail_with_esig?
+      queue_pdf_delivery
+    else
+      klass = PdfGeneration
+      if self.email_address.blank?
+        klass = PriorityPdfGeneration
+      end
+      klass.create!(:registrant_id=>self.id)
     end
-    klass.create!(:registrant_id=>self.id)
   end
   
   def queue_pdf_delivery
@@ -1452,9 +1456,12 @@ class Registrant < ActiveRecord::Base
   end
   
   def mail_with_esig?
-    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states.include?(self.home_state_abbrev)    
+    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states.include?(self.home_state_abbrev)
   end
   
+  def skip_mail_with_esig?
+    self.signature_method == VoterSignature::PRINT_METHOD   
+  end
   
   has_one :voter_signature, primary_key: :uid, autosave: true
   [
@@ -1470,6 +1477,11 @@ class Registrant < ActiveRecord::Base
       (voter_signature || create_voter_signature).send("#{vs_attribute}=", val)
     end
   end
+  
+  def sms_number
+    self.sms_number_for_continue_on_device.to_s.gsub(/[^\d]/, '')
+  end
+  
   
   def signed_at_month
     voter_signature&.updated_at&.month
@@ -1488,7 +1500,7 @@ class Registrant < ActiveRecord::Base
   
   
   def to_pdf_hash
-    {
+    h = {
       :id =>  id,
       :uid  =>  uid,
       :locale => locale,
@@ -1538,11 +1550,16 @@ class Registrant < ActiveRecord::Base
       :pdf_barcode => pdf_barcode,
       pdf_assistant_info: pdf_assistant_info,
       :created_at => created_at.to_param,
-      voter_signature_image: self.voter_signature_image,
-      signed_at_month: signed_at_month,
-      signed_at_year: signed_at_year,
-      signed_at_day: signed_at_day
     }
+    if mail_with_esig? && ! skip_mail_with_esig? && voter_signature_image 
+      h = h.merge({
+        voter_signature_image: self.voter_signature_image,
+        signed_at_month: signed_at_month,
+        signed_at_year: signed_at_year,
+        signed_at_day: signed_at_day        
+      })
+    end
+    return h
   end
   
   def to_finish_with_state_array

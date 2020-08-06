@@ -90,6 +90,10 @@
         %p.instructions
           = form.label :email_address_for_continue_on_device #, "Email me the link:"            
           = form.text_field :email_address_for_continue_on_device, value: form.object.email_address_for_continue_on_device
+          - if form.object.errors[:email_address_for_continue_on_device]
+            .error
+              = form.object.errors[:email_address_for_continue_on_device].join("\n")
+          
           = rollover_button(:next_step, I18n.t('txt.button.email_me', :id=>:email_continue_on_device).html_safe, name: :email_continue_on_device)  
         %br
         %p.instructions
@@ -108,4 +112,6 @@
       %label{for: "state_registrants_pa_registrant_signature_method_print"} 
         = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_paper", default: t('txt.signature_capture.continue_on_paper'))
   
+%br
+%br
   

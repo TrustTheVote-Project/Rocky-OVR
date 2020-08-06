@@ -1,5 +1,6 @@
 - if @registrant.mail_with_esig?
   = render 'shared/signature_capture/scripts'
+  = flash_messages.html_safe
 
 
 - if !@registrant.use_short_form?
@@ -97,14 +98,14 @@
           %li.registrant-form__has-state-license__line.has_license
             %h3
               = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
-              = form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev)
+              = form.label :has_state_license_1, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
             .use_state_registration.checkbox-explanation
-              %p= I18n.t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name)
+              %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
         %ul.radio
           %li.registrant-form__has-no-state-license__line
             %h3
               = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
-              = form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev)
+              = form.label :has_state_license_0, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_no_state_license", default: t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev))
 
       .skip_state_registration
         = render partial: 'step4/skip_state', locals: { form: form }

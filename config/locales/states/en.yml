@@ -100,6 +100,13 @@ en:
         registration_complete_less_than_18: <p>You will be eligible to vote as soon as you turn 18 years old.</p> 
         registration_complete_dialog_text: ""
         valid_street_types: "Valid Street types include: %{types}"
+      mn:
+        registration:
+          has_state_license: I have a current MN driver’s license or ID card number, or the last 4 numbers of my SSN.
+          has_no_state_license: I do not have a current MN driver’s license or ID card number, and do not have the last 4 numbers of my SSN.
+        signature_capture:
+          desktop_provide_signature: If you do not have a Minnesota ID you must provide
+            a signature or choose to print and mail your form.
       va:
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.

@@ -151,6 +151,28 @@ body {
   margin: 0px auto;
 }
 
+.flash {
+  width: 100%;
+  margin: 10px auto;
+  font-size: 14px;
+  line-height: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-color: blue;
+    background-color: #ddf;
+  }
+}
+
+
 #main {
   width: $main-width - $main-padding;
   padding: 20px $main-padding/2 60px;

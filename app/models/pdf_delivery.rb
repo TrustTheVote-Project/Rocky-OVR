@@ -55,6 +55,10 @@ class PdfDelivery < ActiveRecord::Base
         pdf_hash = d.registrant.to_pdf_hash
         pdf_hash.delete(:state_id_number)
         pdf_hash.delete(:state_id_tooltip)
+        pdf_hash.delete(:voter_signature_image)
+        pdf_hash.delete(:signed_at_month)
+        pdf_hash.delete(:signed_at_year)
+        pdf_hash.delete(:signed_at_day)
         registrar_address = pdf_hash.delete(:state_registrar_address)
         if first
           csv << pdf_hash.keys + [

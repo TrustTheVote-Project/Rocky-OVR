@@ -19,6 +19,7 @@ class PdfRenderer < AbstractController::Base
   def initialize(registrant, for_printer = false)
     super()
     @for_printer = for_printer
+    @esign = !registrant.voter_signature_image.blank?
     @locale =registrant.locale
     @registrant=registrant
     @logo_image_path = self.logo_image_path

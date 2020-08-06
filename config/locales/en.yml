@@ -247,6 +247,10 @@ en:
         tell_recipients: Recipients
         tell_subject: Subject
         tell_message: Personal Message
+        sms_number_for_continue_on_device: 'Text me the link:'
+        email_address_for_continue_on_device: 'Email me the link:'
+        voter_signature_image: Voter Signature Image
+        
     errors:
       models:
         admin:
@@ -340,6 +344,8 @@ en:
               accepted: You must confirm that you agree to the terms above.
             sms_number_for_continue_on_device:
               format: 'Please provide a valid number'
+            email_address_for_continue_on_device:
+              format: Please provide a valid email              
             phone:
               invalid: 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT
@@ -391,6 +397,10 @@ en:
               inclusion: Please indicate whether you have a valid state license.
             us_citizen:
               accepted: You must be a US citizen!
+            sms_number_for_continue_on_device:
+              format: 'Please provide a valid number'
+            email_address_for_continue_on_device:
+              format: Please provide a valid email
       messages:
         inclusion: "%{attribute} is not included in the list."
         exclusion: "%{attribute} is reserved."

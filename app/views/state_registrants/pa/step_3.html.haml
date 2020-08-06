@@ -65,8 +65,6 @@
 
   = render partial: 'shared/signature_capture/form', locals: {form: form}
 
-  %br
-  %br
   %fieldset#ssn4_set
     %ul.flat.ssn4
       = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"}, field_options: {size: 6, maxlength: 4} })
