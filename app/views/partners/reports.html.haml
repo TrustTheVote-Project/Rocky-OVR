@@ -30,7 +30,7 @@
           - elsif r.status == Report::Status.complete.to_s
             = "#{r.status.humanize}"
           - else
-            = "#{r.status.humanize}: #{r.record_count ? ([(r.current_index.to_f * 100.0 / r.record_count).to_i, 100].min).to_s + '%': '' }"
+            = "#{r.status.humanize}: #{(r.record_count && r.current_index && r.record_count > 0) ? ([(r.current_index.to_f * 100.0 / r.record_count).to_i, 100].min).to_s + '%': '' }"
         %td
           - if r.status == Report::Status.complete.to_s
             = link_to "Download", download_csv_partner_url(report_id: r.id)

@@ -62,19 +62,19 @@ module AbrStateMethods::WY
       {"has_mailing_address": {type: :checkbox}},
       {"MAIL MY BALLOT TO": {visible: "has_mailing_address"}},
       {"CITY_2": {visible: "has_mailing_address"}},
-      #TODO- fill in state options
-      {"STATE_2": {visible: "has_mailing_address", type: :select, }},
+      {"STATE_2": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
       {"ACTIVE MILITARY Y  N": {required: true, type: :radio, options: ["Y", "N"]}},
       {"Individual's name who may pick up my ballot": {}},
     ]
   end
   
-  #attr_reader :has_mailing_address
-  
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.has_mailing_address.to_s == "1"
+      [:mail_my_ballot_to, :city_2, :state_2, :zip_2].each do |f|
+        errors.add(f, custom_required_message(f)) if self.send(f).blank?
+      end
+    end
   end
   
   

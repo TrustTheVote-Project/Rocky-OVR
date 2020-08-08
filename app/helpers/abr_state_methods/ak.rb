@@ -130,11 +130,6 @@ module AbrStateMethods::AK
     end
   end
   
-  attr_reader :has_ballot_mailing_address
-  
-  # TODO move this to geneal abr_state_methods
-  
-  
   # Methods below map from UI attributes to PDF fields
   def attest_remote
     self.remote_ak_and_overseas == "On"

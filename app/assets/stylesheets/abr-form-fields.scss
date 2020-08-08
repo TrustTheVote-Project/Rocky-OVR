@@ -13,48 +13,12 @@
     margin-left: 20px;
   }
 }
-.ak-abr-form-fields {
-  li {
-    &.former_name {
-      width: 50%;
-      margin-right: 2%;
-    }
-    &.voter_no {
-      width: 48%;
-    }
-    &.perm_mailing_1 {
-      margin-top: 2em;
-    }    
-    &.ssn_or_last_4 {
-      margin-top: 2em;
-      width: 30%;
-    }
-    &.adl {
-      margin-top: 2em;
-      width: 68%;
-      margin-right: 2%;
-    }
-    &.ballot_selection {
-      margin-top: 1em;
-      label {
-        display: block;
-      }
-    }
-    &.attest_remote {
-      h3 {
-        height: auto;
-      }
-    }
-    &.ballot_mailing_address_2, &.ballot_mailing_address_3 {
-      h3 { display: none }
-    }
-  }
 
-}
+@import 'abr_states/ak';
 
-.de-abr-form-fields {
-  .absentee_reason .radio label {
-    display: block;
-    margin-bottom: 1em;
-  }
-}
+@import 'abr_states/de';
+
+@import 'abr_states/wy';
+
+
+

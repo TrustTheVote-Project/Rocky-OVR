@@ -32,8 +32,17 @@ module AbrPdfFields
   end
   
   def address
+    "#{street_number} #{street_name}" + (unit.blank? ? '' : ", #{unit}")
+  end
+  
+  def address_line_1
     "#{street_number} #{street_name}"
   end
+  
+  def address_line_2
+    unit.blank? ? nil : "#{unit}"
+  end
+  
   
   
 end

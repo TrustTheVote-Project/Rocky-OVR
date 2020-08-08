@@ -383,7 +383,18 @@ en:
         abr:
           header: Absentee Requests In Washington
           instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
-     
+      wy:
+        abr_form_fields:
+          has_mailing_address: Mail my ballot to a different address
+          MAIL MY BALLOT TO": Mailing Address
+          "CITY 2": City
+          "STATE 2": State
+          ZIP 2: ZIP
+          "ACTIVE MILITARY Y  N": Are you active military?
+          "ACTIVE MILITARY Y  N__options":
+            "Y": "Yes"
+            "N": "No"
+          "Individual's name who may pick up my ballot": "I authorize the following individual to bick up my ballot"
       
       
     parties:
