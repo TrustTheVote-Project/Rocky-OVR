@@ -1,8 +1,6 @@
 module AbrStateMethods::WY
   
-  def self.included(klass)
-    klass.extend(AbrStateMethods::ClassMethods)
-    klass.add_pdf_fields({
+  PDF_FIELDS = {
       "LAST NAME": {
         method: "last_name"
       },
@@ -50,9 +48,9 @@ module AbrStateMethods::WY
       "Individual's name who may pick up my ballot": {},
       #Date
       #voter_signature
-    })
-    klass.define_state_value_attribute("has_mailing_address")
-  end
+  }
+
+  EXTRA_FILEDS = ["has_mailing_address"]
   
   def form_field_items
     [
