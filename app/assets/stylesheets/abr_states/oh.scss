@@ -1,0 +1,19 @@
+.oh-abr-form-fields {
+  .identification .radio label {
+    display: block;
+    margin-bottom: 1em;
+  }
+  li {
+    &.cityvillage_2 {
+      width: 46%;
+      margin-right: 2%;
+    }
+    &.state {
+      width: 25%;
+      margin-right: 2%;
+    }
+    &.zip_2 {
+      width: 25%;
+    }
+  }
+}

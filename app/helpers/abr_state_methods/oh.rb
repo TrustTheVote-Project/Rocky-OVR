@@ -168,7 +168,7 @@ module AbrStateMethods::OH
       {"has_mailing_address": {type: :checkbox}},
       {"Street Address or PO  box": {visible: "has_mailing_address"}},
       {"CityVillage_2": {visible: "has_mailing_address"}},
-      {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
+      {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
       {"identification": {
         type: :radio, 
