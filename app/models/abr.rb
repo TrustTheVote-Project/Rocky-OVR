@@ -32,6 +32,7 @@ class Abr < ActiveRecord::Base
   validates_presence_of :date_of_birth, if: :advancing_to_step_3?
   validates_presence_of :zip
   validate :validate_form_fields, if: :advancing_to_step_4?
+  validate :validate_date_of_birth, if: :advancing_to_step_3?
 
   validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
   validates_presence_of :email

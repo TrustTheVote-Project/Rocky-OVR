@@ -113,5 +113,41 @@ module RegistrantAbrMethods
       self.reminders_left = 0
     end
   end
+  def validate_date_of_birth_age
+    if date_of_birth < Date.parse("1900-01-01")
+      errors.add(:date_of_birth, :too_old)
+    end    
+  end
+  
+  def validate_date_of_birth
+    if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
+      validate_date_of_birth_age
+      return
+    end
+    if date_of_birth_before_type_cast.blank?
+      if date_of_birth_parts.compact.length == 3
+        errors.add(:date_of_birth, :invalid)
+      else
+        errors.add(:date_of_birth, :blank)
+      end
+    else
+      @raw_date_of_birth = date_of_birth_before_type_cast
+      date = nil
+      if matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
+        m,d,y = matches.captures
+        date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
+      elsif matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{4})\D+(\d{1,2})\D+(\d{1,2})\z/)
+        y,m,d = matches.captures
+        date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
+      end
+      if date
+        @raw_date_of_birth = nil
+        self[:date_of_birth] = date
+        validate_date_of_birth_age
+      else
+        errors.add(:date_of_birth, :format)
+      end
+    end
+  end
   
 end

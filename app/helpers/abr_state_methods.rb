@@ -13,14 +13,14 @@ module AbrStateMethods
     end
   end
 
-  module ClassMethods
+  #module ClassMethods
     def pdf_fields
-      @@pdf_fields ||= {}
-      return @@pdf_fields
+      @pdf_fields ||= {}
+      return @pdf_fields
     end
     def sensitive_fields
-      @@sensitive_fields ||= []
-      return @@sensitive_fields
+      @sensitive_fields ||= []
+      return @sensitive_fields
     end
     def add_pdf_fields(hash)
       hash.each do |name, opts|
@@ -36,7 +36,7 @@ module AbrStateMethods
         opts[:method] = Abr.make_method_name(name, opts[:method])
       end
       self.pdf_fields[name] = opts
-      unless self.method_defined?(opts[:method])
+      unless self.respond_to?(opts[:method])
         method_name = opts[:method]
         self.define_state_value_attribute(method_name, sensitive: opts[:sensitive], checkbox_values: opts[:options])
       end
@@ -45,7 +45,7 @@ module AbrStateMethods
       if sensitive
         self.sensitive_fields.push(method_name)
       end
-      define_method "#{method_name}" do
+      define_singleton_method "#{method_name}" do
         value = instance_variable_get("@#{method_name}")
         if value.nil?
           value = self.abr_state_values.find_or_initialize_by(attribute_name: method_name).string_value
@@ -53,7 +53,7 @@ module AbrStateMethods
         end
         return value
       end
-      define_method "#{method_name}=" do |value|
+      define_singleton_method "#{method_name}=" do |value|
         # If this is a checkbox, assume 2 options are [false,true]
         if checkbox_values && checkbox_values.length == 2
           if [false, 0, "0", "false", "f", nil].include?(value)
@@ -68,16 +68,16 @@ module AbrStateMethods
         instance_variable_set("@#{method_name}", value)
       end
     end
-  end
+  #end
   
-  def pdf_fields
-    self.singleton_class.pdf_fields
-  rescue
-    {}
-  end
+  # def pdf_fields
+  #   self.singleton_class.pdf_fields
+  # rescue
+  #   {}
+  # end
   
   def redact_sensitive_data
-    self.singleton_class.sensitive_fields.each do |method|
+    self.sensitive_fields.each do |method|
       puts "set #{method}"
       self.send("#{method}=", nil)
     end
@@ -197,10 +197,15 @@ module AbrStateMethods
     if home_state && !@home_state_attributes_initialized
       type = "AbrStateMethods::#{home_state_abbrev}"
       begin
-        self.singleton_class.send(:include, Module.const_get(type))
+        klass = Module.const_get(type)
+        self.singleton_class.send(:include, klass)
+        self.add_pdf_fields(klass::PDF_FIELDS)
+        klass::EXTRA_FIELDS.each do |f|
+          self.define_state_value_attribute(f)
+        end
         @home_state_attributes_initialized = true
       rescue Exception=>e
-        self.singleton_class.send(:extend, ClassMethods) # Add default methods
+        # self.singleton_class.send(:extend, AllClassMethods) # Add default methods
         # puts e.message
         # pp e.backtrace
         raise e

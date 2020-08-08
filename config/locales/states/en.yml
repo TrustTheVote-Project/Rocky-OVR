@@ -210,6 +210,21 @@ en:
           your registration with %{rtv_and_partner_name}</a>.  You will just have
           to print, sign, and mail in the form.</p>
       
+      oh:
+        abr_form_fields:
+          "County": "County in which you are registered to vote"
+          "has_mailing_address": I wish to have my ballot mailed to a different address than where I am registered to vote
+          "Street Address or PO  box": "Mailing Address"
+          CityVillage_2: City
+          State: State
+          ZIP_2: Zip
+          identification: You must choose one of the following methods for identification
+          identification__options:
+            dln: "Your Ohio driver license number"
+            ssn4: "Last four digits of your social security number"
+            photoid: "Copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address."          
+          OR: Ohio Driver license number (2 letters followed by 6 numbers)
+          OR_2: Last four digits of your Social Security Number
       or:
         abr:
           header: Absentee Requests In Oregon

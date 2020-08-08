@@ -6,9 +6,10 @@ en:
         
   'yes': 'Yes'
   'no': 'No'
-  required: "(Required)"
+  required: "Required"
   errors:
     messages:
+      format: "Invalid"
       accepted: "must be accepted."
       too_long: "too long (maximum is %{count} characters)."
       too_short: "too short (minimum is %{count} characters)."
@@ -403,9 +404,14 @@ en:
               too_many_retries: After two unsuccessful PennDOT submissions you must
                 provide an electronic signature.
         abr:
-          blank: Requried
+          blank: Required
+          format: "Invalid"
           invalid: "%{attribute} is invalid."
-          
+          attributes:
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+            
         registrant:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
@@ -436,6 +442,7 @@ en:
       messages:
         inclusion: "%{attribute} is not included in the list."
         exclusion: "%{attribute} is reserved."
+        format: "Invalid"
         invalid: "%{attribute} is invalid."
         invalid_for_pdf: "%{attribute} must be provided in English."
         confirmation: "%{attribute} doesn't match confirmation."

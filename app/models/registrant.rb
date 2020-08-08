@@ -36,7 +36,7 @@ class Registrant < ActiveRecord::Base
   include Lolrus
   include Rails.application.routes.url_helpers
   include RegistrantMethods
-  include RegistrantAbrMethods
+  #include RegistrantAbrMethods # included in RegistrantMethods
   include TimeStampHelper
   
   scope :abandoned, -> {where(abandoned: true)}

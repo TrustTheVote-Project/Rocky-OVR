@@ -1,104 +1,101 @@
 module AbrStateMethods::AK
   
-  def self.included(klass)
-    klass.extend(AbrStateMethods::ClassMethods)
-    klass.add_pdf_fields({
-      "All in Calendar Year" => {
-        options: ["Off", "On"],
-        value: "Off"
-      },
-      "Primary August" => {
-        options: ["Off", "On"],
-        value: "Off"
-      },
-      "General November" => {
-        options: ["Off", "On"],
-        value: "On"
-      },
-      "REAA October" => {
-        options: ["Off", "On"],
-        value: "Off"
-      },
-      "Last" => {
-        method: "last_name"
-      },
-      "First" => {
-        method: "first_name"
-      },
-      "Middle" => {
-        method: "middle_name"
-      },
-      "Suffix" => {
-        method: "name_suffix"
-      },      
-      "Street Name" => {
-        method: "street_name"
-      },  
-      "Apt" => {
-        method: "unit"
-      },     
-      "City" => {
-        method: "city"
-      },     
-      "SSN or Last 4" => {sensitive: true},     
-      "Birthdate" => {
-        method: "date_of_birth_mm_dd_yyyy"
-      }, 
-      "Us Citizen Yes" => {
-        options: ["Off", "Yes"]
-      },
-      "Us Citizen No" => {
-        options: ["Off", "No"]
-      },
-      "18 Years Yes" => {
-        options: ["Off", "Yes_2"]
-      },
-      "18 Years No" => {
-        options: ["Off", "No_2"]
-      },
-      "House Number" => {
-        method: "street_number"
-      },
-      "Perm Mailing 1"=>{},
-      "Perm Mailing 2"=>{},
-      "Perm Mailing 3"=>{},
-      "ADL"=>{sensitive: true},
-      "No SSN or ADL"=> {
-        options: ["Off", "On"]
-      },
-      "Male"=> {
-        options: ["Male", "Off"]
-      },
-      "Female"=> {
-        options: ["Female", "Off"]
-      },
-      "AD Ballot" => {
-        options: ["Off", "On"]
-      },
-      "Rep Ballot" => {
-        options: ["Off", "On"]
-      },
-      "Remote AK and Overseas" => {
-        options: ["Off", "On"]
-      },
-      "Ballot Mailing Address 1"=>{},
-      "Ballot Mailing Address 2"=>{},
-      "Ballot Mailing Address 3"=>{},
-      "Former Name"=>{},
-      "Voter No"=>{},
-      "Party"=>{},
-      "Day Phone"=>{},
-      "Evening Phone"=>{
-        method: "phone"
-      },
-      "Email"=>{
-        method: "email"
-      }
-    })    
-    klass.define_state_value_attribute("has_ballot_mailing_address")
-    klass.define_state_value_attribute("has_mailing_address")
-  end
+  PDF_FIELDS = {
+    "All in Calendar Year" => {
+      options: ["Off", "On"],
+      value: "Off"
+    },
+    "Primary August" => {
+      options: ["Off", "On"],
+      value: "Off"
+    },
+    "General November" => {
+      options: ["Off", "On"],
+      value: "On"
+    },
+    "REAA October" => {
+      options: ["Off", "On"],
+      value: "Off"
+    },
+    "Last" => {
+      method: "last_name"
+    },
+    "First" => {
+      method: "first_name"
+    },
+    "Middle" => {
+      method: "middle_name"
+    },
+    "Suffix" => {
+      method: "name_suffix"
+    },      
+    "Street Name" => {
+      method: "street_name"
+    },  
+    "Apt" => {
+      method: "unit"
+    },     
+    "City" => {
+      method: "city"
+    },     
+    "SSN or Last 4" => {sensitive: true},     
+    "Birthdate" => {
+      method: "date_of_birth_mm_dd_yyyy"
+    }, 
+    "Us Citizen Yes" => {
+      options: ["Off", "Yes"]
+    },
+    "Us Citizen No" => {
+      options: ["Off", "No"]
+    },
+    "18 Years Yes" => {
+      options: ["Off", "Yes_2"]
+    },
+    "18 Years No" => {
+      options: ["Off", "No_2"]
+    },
+    "House Number" => {
+      method: "street_number"
+    },
+    "Perm Mailing 1"=>{},
+    "Perm Mailing 2"=>{},
+    "Perm Mailing 3"=>{},
+    "ADL"=>{sensitive: true},
+    "No SSN or ADL"=> {
+      options: ["Off", "On"]
+    },
+    "Male"=> {
+      options: ["Male", "Off"]
+    },
+    "Female"=> {
+      options: ["Female", "Off"]
+    },
+    "AD Ballot" => {
+      options: ["Off", "On"]
+    },
+    "Rep Ballot" => {
+      options: ["Off", "On"]
+    },
+    "Remote AK and Overseas" => {
+      options: ["Off", "On"]
+    },
+    "Ballot Mailing Address 1"=>{},
+    "Ballot Mailing Address 2"=>{},
+    "Ballot Mailing Address 3"=>{},
+    "Former Name"=>{},
+    "Voter No"=>{},
+    "Party"=>{},
+    "Day Phone"=>{},
+    "Evening Phone"=>{
+      method: "phone"
+    },
+    "Email"=>{
+      method: "email"
+    }
+  }
   
+  EXTRA_FIELDS = ["has_ballot_mailing_address", "has_mailing_address"]
+
   def form_field_items
     [
       {"us_citizen": {type: :checkbox, required: true}},
