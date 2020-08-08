@@ -47,190 +47,41 @@ module AbrStateMethods::TX
       "Day of date of return to residence address": {},
       "Year of date of return to residence address": {},
       "Reason for voting by mail:": {
-        options: ["65 years of age or older. (Complete box #6a", ]
+        options: ["65 years of age or older. (Complete box #6a", "Confinement to jail. (Complete box #6b)", "Disability. (Complete box #6a", "Expected absence from the county. (Complete box #6b and box #8"]
       },
-      FieldNameAlt: Reason for voting by mail:
-      FieldFlags: 0
-      FieldJustification: Left
-      FieldStateOption: 65 years of age or older. (Complete box #6a
-      FieldStateOption: Confinement to jail. (Complete box #6b)
-      FieldStateOption: Disability. (Complete box #6a
-      FieldStateOption: Expected absence from the county. (Complete box #6b and box #8
-      FieldStateOption: Off
-      ---
-      FieldType: Button
-      FieldName: If requesting this ballot be mailed to a different address (other than residense), indicate where the ballot will be mailed
-      FieldNameAlt: If requesting this ballot be mailed to a different address (other than residense), indicate where the ballot will be mailed.
-      FieldFlags: 0
-      FieldJustification: Left
-      FieldStateOption: Address of the jail
-      FieldStateOption: Address outside the county
-      FieldStateOption: Hospital
-      FieldStateOption: Mailing address as listed on my voter registration certificate
-      FieldStateOption: Nursing home, assisted living facility, or long term care facility
-      FieldStateOption: Off
-      FieldStateOption: Relative; relationship
-      FieldStateOption: Retirement center
-      ---
-      FieldType: Text
-      FieldName: Date of signature
-      FieldNameAlt: Date of signature
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: City of witness
-      FieldNameAlt: City of witness
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: Zip code of witness
-      FieldNameAlt: Zip code of witness
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: State of witness
-      FieldNameAlt: State of witness
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: Street address of witness
-      FieldNameAlt: Street address of witness
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: Apartment number (if applicable) of witness
-      FieldNameAlt: Apartment number (if applicable) of witness
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Button
-      FieldName: Select only if your 65 or older or live with a disability:
-      FieldNameAlt: Select only if your 65 or older or live with a disability:
-      FieldFlags: 0
-      FieldJustification: Left
-      FieldStateOption: Any resulting runoff
-      FieldStateOption: May election
-      FieldStateOption: November election
-      FieldStateOption: Off
-      FieldStateOption: Other
-      ---
-      FieldType: Button
-      FieldName: Select only if absent from the county or confined to jail:
-      FieldNameAlt: Select only if absent from the county or confined to jail:
-      FieldFlags: 0
-      FieldJustification: Left
-      FieldStateOption: Any resulting runoff
-      FieldStateOption: May election
-      FieldStateOption: November election
-      FieldStateOption: Off
-      FieldStateOption: Other
-      ---
-      FieldType: Button
-      FieldName: You must declare one political party to vote in a primary:
-      FieldNameAlt: You must declare one political party to vote in a primary:
-      FieldFlags: 0
-      FieldJustification: Left
-      FieldStateOption: Democratic Primary
-      FieldStateOption: Off
-      ---
-      FieldType: Button
-      FieldName: 2 - You must declare one political party to vote in a primary:
-      FieldNameAlt: You must declare one political party to vote in a primary:
-      FieldFlags: 0
-      FieldJustification: Left
-      FieldStateOption: Democratic Primary
-      FieldStateOption: Off
-      FieldStateOption: Republican Primary
-      ---
-      FieldType: Text
-      FieldName: From: name
-      FieldNameAlt: From: name
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: From: address
-      FieldNameAlt: From: address
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: From: city and state
-      FieldNameAlt: From: city and state
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: To: Early Voting Clerk's address
-      FieldNameAlt: To: Early Voting Clerk's address
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: To: Early Voting Clerk's state
-      FieldNameAlt: To: Early Voting Clerk's state
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: 1 Last Name Please print information
-      FieldNameAlt: Last Name (Please print information)
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: Relative; relationship
-      FieldNameAlt: Relative; relationship
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: early voting clerks fax
-      FieldNameAlt: early voting clerk&#8217;s fax
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: City
-      FieldNameAlt: City
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: Early voting clerk's address
-      FieldNameAlt: Early voting clerk's address
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: Other
-      FieldNameAlt: Other
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Text
-      FieldName: 2 - Other
-      FieldNameAlt: Other
-      FieldFlags: 0
-      FieldJustification: Left
-      ---
-      FieldType: Button
-      FieldName: Print
-      FieldNameAlt: Print Form
-      FieldFlags: 65536
-      FieldJustification: Left
-      ---
-      FieldType: Button
-      FieldName: Reset
-      FieldNameAlt: Clear Form
-      FieldFlags: 65536
-      FieldJustification: Left
-      
+      "If requesting this ballot be mailed to a different address (other than residense), indicate where the ballot will be mailed": {
+        options: ["Off", "Address of the jail", "Address outside the county", "Hospital", "Mailing address as listed on my voter registration certificate", "Nursing home, assisted living facility, or long term care facility", "Relative; relationship", "Retirement center"]
+      },
+      #Date of signature
+      "City of witness": {},
+      "Zip code of witness": {},
+      "State of witness": {},
+      "Street address of witness": {},
+      "Apartment number (if applicable) of witness": {},
+      "Select only if your 65 or older or live with a disability:": {
+        options: ["Any resulting runoff", "May election", "November election", "Off", "Other"]
+      },
+      "Select only if absent from the county or confined to jail:": {
+        options: ["Any resulting runoff", "May election", "November election", "Off", "Other"]
+      },
+      "name": {
+        method: "full_name" #return address
+      },
+      "address": {
+        method: "address" #return address
+      },
+      "city and state": {}, #return address: city, state zip
+      "To: Early Voting Clerk's address": {}, #is there a way to automatically fill in the address of the nearest voting clerk based on the location they entered?
+      "To: Early Voting Clerk's state": {}, #city, state zip
+      "1 Last Name Please print information": {
+        method: "last_name"
+      },
+      "Relative; relationship": {},
+      "early voting clerks fax": {}, #only needed if applicant wants to fax their PDF application
+      "City": {
+        method: "city"
+      },
+      "Early voting clerk's address": {}, #only needed if applicant wants to email their PDF application
     })
     klass.define_state_value_attribute("has_mailing_address")
   end
@@ -242,14 +93,29 @@ module AbrStateMethods::TX
       {"CITY_2": {visible: "has_mailing_address"}},
       {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"ZIP Code_2": {visible: "has_mailing_address", min: 5, max: 10}},
-      {"If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below": {type: :checkbox}}, 
+      {"Reason for voting by mail:": {type: :radio}},
+      {"Select only if your 65 or older or live with a disability:": {value: "November election"}},
+      #conditional value if applicant selects "65 years of age or older. (Complete box #6a" radio option under "Reason for voting by mail:"
+      {"Select only if absent from the county or confined to jail:": {value: "November election"}},
+      #conditional value if applicant selects "65 years of age or older. (Complete box #6a" radio option under "Reason for voting by mail:"
+      {"If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below": {
+        type: :checkbox}}, 
       {"If you assisted the applicant in completing this application in the applicants presence or emailedmailed or faxed the application on behalf of the applicant please check this box as an Assistant and sign below": {
         visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below", 
         type: :checkbox}},
       {"Refer to Instructions on back for clarification": {
         visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}},
         #witness' relationship to applicant
-      
+      {"Street address of witness": {
+        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}}, 
+      {"Apartment number (if applicable) of witness": {
+        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}}, 
+      {"City of witness": {
+        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}},
+      {"State of witness": {
+        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}}, 
+      {"Zip code of witness": {
+        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}},
     ]
   end
   
