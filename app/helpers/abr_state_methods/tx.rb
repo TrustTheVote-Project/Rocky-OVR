@@ -46,7 +46,9 @@ module AbrStateMethods::TX
       "Month of date of return to residence address": {},
       "Day of date of return to residence address": {},
       "Year of date of return to residence address": {},
-      "Reason for voting by mail:": {},
+      "Reason for voting by mail:": {
+        options: ["65 years of age or older. (Complete box #6a", ]
+      },
       FieldNameAlt: Reason for voting by mail:
       FieldFlags: 0
       FieldJustification: Left
@@ -238,8 +240,7 @@ module AbrStateMethods::TX
       {"has_mailing_address": {type: :checkbox}},
       {"3 Mail my ballot to If mailing address differs from residence address please complete Box  7": {visible: "has_mailing_address"}},
       {"CITY_2": {visible: "has_mailing_address"}},
-      #TODO- fill in state options
-      {"State": {visible: "has_mailing_address", type: :select, }},
+      {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"ZIP Code_2": {visible: "has_mailing_address", min: 5, max: 10}},
       {"If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below": {type: :checkbox}}, 
       {"If you assisted the applicant in completing this application in the applicants presence or emailedmailed or faxed the application on behalf of the applicant please check this box as an Assistant and sign below": {
