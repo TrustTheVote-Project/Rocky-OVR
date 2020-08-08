@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20200805132330) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
+  add_index "ab_tests", ["name", nil], name: "index_ab_tests_on_name_and_assigment"
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
 
@@ -829,18 +829,6 @@ ActiveRecord::Schema.define(version: 20200805132330) do
   add_index "tracking_events", ["open_tracking_id"], name: "index_tracking_events_on_open_tracking_id"
   add_index "tracking_events", ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
   add_index "tracking_events", ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
-
-  create_table "voter_signatures", force: :cascade do |t|
-    t.string   "registrant_id"
-    t.text     "voter_signature_image"
-    t.string   "signature_method"
-    t.string   "sms_number_for_continue_on_device"
-    t.string   "email_address_for_continue_on_device"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-  end
-
-  add_index "voter_signatures", ["registrant_id"], name: "index_voter_signatures_on_registrant_id"
 
   create_table "zip_code_county_addresses", force: :cascade do |t|
     t.integer  "geo_state_id"

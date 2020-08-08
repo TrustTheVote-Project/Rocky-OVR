@@ -97,8 +97,7 @@ absentee_states:
   FL:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
   GA:
-    pdf_template:
-    pdf_url: https://sos.ga.gov/admin/files/Fillable%20Absentee%20Ballot%20Form%202020.pdf
+    pdf_template: ga.pdf
   HI: {}
   IA:
     pdf_template:
@@ -119,8 +118,7 @@ absentee_states:
   KY: {}
   LA:
     online_req_url: https://voterportal.sos.la.gov/Home/VoterLogin
-    pdf_template:
-    pdf_url: https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/GeneralApplicationForAbsenteeByMailBallot.pdf
+    pdf_template: la.pdf
   MA:
     pdf_template:
     pdf_url: https://www.sec.state.ma.us/ele/elepdf/absentee/English-Absentee-Ballot-Application.pdf
@@ -173,8 +171,7 @@ absentee_states:
     pdf_template:
     pdf_url: https://www.elections.ny.gov/NYSBOE/download/voting/AbsenteeBallot-English.pdf
   OH:
-    pdf_template:
-    pdf_url: https://www.ohiosos.gov/globalassets/elections/forms/11-a_english.pdf
+    pdf_template: oh.pdf
   OK:
     online_req_url: https://services.okelections.us/AbsenteeApplication/
   OR: {}      
@@ -194,8 +191,7 @@ absentee_states:
     pdf_template:
     pdf_url: https://sos-tn-gov-files.tnsosfiles.com/2020%20Absentee%20Request%20-%20August.pdf
   TX:
-    pdf_template: #5-15f.pdf
-    pdf_url: https://webservices.sos.state.tx.us/forms/5-15f.pdf
+    pdf_template: tx.pdf
   UT: {}  
   VA:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
@@ -211,8 +207,7 @@ absentee_states:
     pdf_template: 
     pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
   WY:
-    pdf_template: AbsenteeRequestForm-Standard.pdf
-    pdf_url: https://sos.wyo.gov/Forms/Elections/General/AbsenteeRequestForm-Standard.pdf
+    pdf_template: wy.pdf
   
 ovr_states:
   AZ:
