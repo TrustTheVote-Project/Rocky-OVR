@@ -203,7 +203,7 @@ module AbrStateMethods
         self.singleton_class.send(:extend, ClassMethods) # Add default methods
         # puts e.message
         # pp e.backtrace
-        # raise e
+        raise e
       end
     end
   end

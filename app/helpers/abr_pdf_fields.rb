@@ -15,8 +15,6 @@ module AbrPdfFields
   # "email"
   # "phone"
   
-  
-  
   def full_name
     "#{first_name} #{middle_name} #{last_name}".gsub(/\s+/, ' ')
   end
