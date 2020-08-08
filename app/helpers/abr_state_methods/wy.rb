@@ -11,8 +11,7 @@ module AbrStateMethods::WY
       },
       "MIDDLE": {
         method: "middle_name"
-      },
-      
+      },      
       "COUNTY RESIDENTIAL ADDRESS": {
         method: "address"
       },
@@ -21,7 +20,6 @@ module AbrStateMethods::WY
       },
       "STATE": {
         method: "home_state_abbrev"
-        #prefill with WY state abbrev?
       },
       "ZIP": {
         method: "zip"
@@ -33,7 +31,6 @@ module AbrStateMethods::WY
         method: "phone"
       },
       "ACTIVE MILITARY Y  N": {
-        #whaaat
       },
       "EMAIL optional": {
         method: "email"
