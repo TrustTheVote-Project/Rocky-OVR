@@ -117,9 +117,6 @@ module AbrStateMethods::DE
   
   attr_reader :has_ballot_mailing_address
   
-  # TODO move this to geneal abr_state_methods
-  
-  
   # Methods below map from UI attributes to PDF fields
   def absentee_reasons
     {

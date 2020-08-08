@@ -401,10 +401,10 @@ en:
       wy:
         abr_form_fields:
           has_mailing_address: Mail my ballot to a different address
-          MAIL MY BALLOT TO": Mailing Address
-          "CITY 2": City
-          "STATE 2": State
-          ZIP 2: ZIP
+          MAIL MY BALLOT TO: Mailing Address
+          CITY_2: City
+          STATE_2: State
+          ZIP_2: ZIP
           "ACTIVE MILITARY Y  N": Are you active military?
           "ACTIVE MILITARY Y  N__options":
             "Y": "Yes"

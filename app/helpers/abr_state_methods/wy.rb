@@ -50,7 +50,7 @@ module AbrStateMethods::WY
       #voter_signature
   }
 
-  EXTRA_FILEDS = ["has_mailing_address"]
+  EXTRA_FIELDS = ["has_mailing_address"]
   
   def form_field_items
     [
