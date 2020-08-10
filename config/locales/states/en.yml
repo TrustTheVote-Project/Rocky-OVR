@@ -438,6 +438,15 @@ en:
             copy_link: Copy Link      
       tx:
         abr_form_fields:
+          "Reason for voting by mail:__options": 
+            "65 years of age or older":
+              " (Complete box #6a": "65 years of age or older"
+            "Confinement to jail":
+              " (Complete box #6b)": "Confinement to jail"
+            "Disability":
+              " (Complete box #6a": "Disability"
+            "Expected absence from the county":
+              " (Complete box #6b and box #8": "Expected absense from the county"
           has_mailing_address: My mailing address differs from my residence address
           "3 Mail my ballot to If mailing address differs from residence address please complete Box  7": Mailing address
           "ZIP Code_2": Zip

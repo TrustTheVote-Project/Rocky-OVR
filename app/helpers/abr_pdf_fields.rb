@@ -30,6 +30,17 @@ module AbrPdfFields
   def phone_and_email
     [phone, email].compact.join(", ")
   end
+
+  def date_of_birth_mm
+    self.date_of_birth&.strftime("%m")
+  end
+  def date_of_birth_dd
+    self.date_of_birth&.strftime("%d")
+  end
+  def date_of_birth_yyyy
+    self.date_of_birth&.strftime("%Y")
+  end
+
   
   def date_of_birth_mm_dd_yyyy
     self.date_of_birth&.strftime("%m/%d/%Y")
