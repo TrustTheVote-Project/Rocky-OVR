@@ -1,8 +1,6 @@
 module AbrStateMethods::TX
   
-  def self.included(klass)
-    klass.extend(AbrStateMethods::ClassMethods)
-    klass.add_pdf_fields({
+  PDF_FIELDS = {
       "Suffix Jr Sr III etc": {
         method: "name_suffix"
       },
@@ -19,7 +17,7 @@ module AbrStateMethods::TX
       "ZIP Code": {
         method: "zip"
       },
-      "3 Mail my ballot to If mailing address differs from residence address please complete Box  7": {}
+      "3 Mail my ballot to If mailing address differs from residence address please complete Box  7": {},
       "State": {},
       "ZIP Code_2": {},
       "4 Date of Birth mmddyyyy Optional Contact Information Optional Please list phone number andor email address  Used in case our office has questions": {
@@ -28,11 +26,11 @@ module AbrStateMethods::TX
       },
       "Date of Birth mmddyyyy Optional": {}, #month only - max: 2
       "Annual Application": {
-        options: ["Off", "On"],
+        options: ["Off", "Yes"],
         value: "Off"
       },
       "Republican Primary": {
-        options: ["Off", "On"],
+        options: ["Off", "Republican Primary"],
         value: "Off"
       },
       "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below": {},
@@ -60,9 +58,11 @@ module AbrStateMethods::TX
       "Apartment number (if applicable) of witness": {},
       "Select only if your 65 or older or live with a disability:": {
         options: ["Any resulting runoff", "May election", "November election", "Off", "Other"]
+        #TODO- conditional static value of "November election" if applicant selects "65 years of age or older. (Complete box #6a" radio option under "Reason for voting by mail:"
       },
       "Select only if absent from the county or confined to jail:": {
         options: ["Any resulting runoff", "May election", "November election", "Off", "Other"]
+        #TODO- conditional static value of "November election" if applicant selects "Confinement to jail. (Complete box #6b)" radio option under "Reason for voting by mail:"
       },
       "name": {
         method: "full_name" #return address
@@ -76,46 +76,44 @@ module AbrStateMethods::TX
       "1 Last Name Please print information": {
         method: "last_name"
       },
-      "Relative; relationship": {},
+      "Relative; relationship": {}, #this is the text field for the radio option
       "early voting clerks fax": {}, #only needed if applicant wants to fax their PDF application
       "City": {
         method: "city"
       },
       "Early voting clerk's address": {}, #only needed if applicant wants to email their PDF application
-    })
-    klass.define_state_value_attribute("has_mailing_address")
-  end
+    }
+  EXTRA_FIELDS = ["has_mailing_address"]
   
   def form_field_items
     [
+      {"Reason for voting by mail:": {required: true, type: :radio, options: []}}, #TODO- grab options from above
       {"has_mailing_address": {type: :checkbox}},
       {"3 Mail my ballot to If mailing address differs from residence address please complete Box  7": {visible: "has_mailing_address"}},
-      {"CITY_2": {visible: "has_mailing_address"}},
+      {"City": {visible: "has_mailing_address"}},
       {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"ZIP Code_2": {visible: "has_mailing_address", min: 5, max: 10}},
-      {"Reason for voting by mail:": {type: :radio}},
-      {"Select only if your 65 or older or live with a disability:": {value: "November election"}},
-      #conditional value if applicant selects "65 years of age or older. (Complete box #6a" radio option under "Reason for voting by mail:"
-      {"Select only if absent from the county or confined to jail:": {value: "November election"}},
-      #conditional value if applicant selects "65 years of age or older. (Complete box #6a" radio option under "Reason for voting by mail:"
+      {"If requesting this ballot be mailed to a different address (other than residense), indicate where the ballot will be mailed": {
+        visible: "has_mailing_address", type: :radio, options: []}}, #TODO- grab options from above
+      {"Relative; relationship": {visible: "if_requesting_this_ballot_be_mailed_to_a_different_address__other_than_residense___indicate_where_the_ballot_will_be_mailed_relative__relationship"}},
       {"If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below": {
         type: :checkbox}}, 
       {"If you assisted the applicant in completing this application in the applicants presence or emailedmailed or faxed the application on behalf of the applicant please check this box as an Assistant and sign below": {
-        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below", 
+        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"), 
         type: :checkbox}},
       {"Refer to Instructions on back for clarification": {
-        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}},
+        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}},
         #witness' relationship to applicant
       {"Street address of witness": {
-        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}}, 
+        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}}, 
       {"Apartment number (if applicable) of witness": {
-        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}}, 
+        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}}, 
       {"City of witness": {
-        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}},
+        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}},
       {"State of witness": {
-        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}}, 
+        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}}, 
       {"Zip code of witness": {
-        visible: "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"}},
+        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}},
     ]
   end
   
