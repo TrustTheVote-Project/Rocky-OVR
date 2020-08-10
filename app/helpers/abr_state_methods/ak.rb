@@ -42,10 +42,10 @@ module AbrStateMethods::AK
     "Birthdate" => {
       method: "date_of_birth_mm_dd_yyyy"
     }, 
-    "Us Citizen Yes" => {
+    "US Citizen Yes" => {
       options: ["Off", "Yes"]
     },
-    "Us Citizen No" => {
+    "US Citizen No" => {
       options: ["Off", "No"]
     },
     "18 Years Yes" => {
@@ -107,9 +107,9 @@ module AbrStateMethods::AK
       {"ADL": {length: 7, regexp: /\A\d+\z/, hidden: "attest_no_ssn_or_dln"}},
       {"SSN or Last 4": {hidden: "attest_no_ssn_or_dln"}},
       {"attest_no_ssn_or_dln": { type: :checkbox}}, # Must either provide ssn, alaska state ID or check "attest_no..."
-      {"gender": {type: :radio, options: [:male, :female]}},
+      {"gender": {type: :radio, options: ["male", "female"]}},
       "Party",
-      {"ballot_selection": {type: :radio, options: [:dem, :rep]}},
+      {"ballot_selection": {type: :radio, options: ["dem", "rep"]}},
       {"attest_remote": {type: :checkbox}},
       {"has_ballot_mailing_address": {type: :checkbox}},
       {"Ballot Mailing Address 1": {visible: "has_ballot_mailing_address"}},
@@ -154,7 +154,7 @@ module AbrStateMethods::AK
   end
   
   def attest_is_18
-    self.n_18_years_yes == "Yes"
+    self.n_18_years_yes == "Yes_2"
   end
   
   def attest_is_18=(value)

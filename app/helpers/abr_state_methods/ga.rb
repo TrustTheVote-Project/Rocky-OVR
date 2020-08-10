@@ -33,8 +33,7 @@ module AbrStateMethods::GA
     "Text19": {
       method: "email"
     },
-    "Text21": {}, #today's date
-    "Text23": {}, #today's date assistant
+
     "Text25": {}, #requestor's relationship to voter
     "Text26": {
       method: "email" #only required if "Elegibility_U" is checked
@@ -42,7 +41,6 @@ module AbrStateMethods::GA
     "Text5": {
       method: "first_name"
     },
-    #voter_signature
     "Election_Date": {
       value: "11/03/2020"
     },
@@ -50,24 +48,27 @@ module AbrStateMethods::GA
       options: ["Off", "Yes"]
     },
     "type_of_ballot": {
-      options: ["Democratic", "Non_Partisan", "Off", "Republican"]
+      options: ["Democratic", "Republican", "Non_Partisan"]
     },
     "reason_other": {
       options: ["Off", "disabled", "out_of_country"]
     },
     "Elegibility": {
-      options: ["D", "E", "Off", "U"]
+      options: ["D", "E", "U"]
     },
     "UOCAVA_Status": {
-      options: ["MOS", "MST", "OSP", "OST", "Off"]
+      options: ["MOS", "MST", "OSP", "OST"]
     }
+    #"Text21": {}, #today's date
+    #"Text23": {}, #today's date assistant
+    #voter_signature
+    
   }
  
   EXTRA_FIELDS = ["has_mailing_address", "assisted_voter", "requestor"] 
   
   def form_field_items
     [
-      {"type_of_ballot": {type: :radio, options: []}}, #TODO- grab options from above
       {"Text12": {type: :select, required: true, include_blank: true, options: [
         "Appling",
         "Atkinson",
@@ -229,6 +230,7 @@ module AbrStateMethods::GA
         "Wilkinson",
         "Worth",
       ]}},
+      {"type_of_ballot": {type: :radio }}, #TODO- is this really required?
       {"has_mailing_address": {type: :checkbox}},
       {"Text13": {visible: "has_mailing_address"}},
       {"Text14": {visible: "has_mailing_address"}},
@@ -236,12 +238,11 @@ module AbrStateMethods::GA
       {"Text16": {visible: "has_mailing_address"}},
       {"address_has_changed": {type: :checkbox, visible: "has_mailing_address"}},
       {"assisted_voter": {type: :checkbox}},
-      {"Text23": {visible: "assisted_voter"}},
       {"requestor": {type: :checkbox}},
       {"Text25": {visible: "requestor"}},
       {"reason_other": {visible: "requestor", type: :radio, options: ["disabled", "out_of_country"]}},
-      #{"Elegibility": {type: :radio, options: []}}, #TODO- grab options from above
-      #{"UOCAVA_Status": {visible: "Elegibility_U", type: :radio, options: []}}, #TODO- grab options from above
+      {"Elegibility": {type: :radio}},
+      {"UOCAVA_Status": {visible: "elegibility_u", type: :radio, }},
     ]
   end
   #e.g.
@@ -259,8 +260,12 @@ module AbrStateMethods::GA
   
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.has_mailing_address.to_s == "1"
+      ["Text13", "Text14", "Text15", "Text16"].each do |f|
+        custom_validates_presence_of(f)
+        #errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
+      end
+    end
   end
   
  

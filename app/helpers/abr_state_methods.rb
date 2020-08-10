@@ -38,7 +38,7 @@ module AbrStateMethods
       self.pdf_fields[name] = opts
       unless self.respond_to?(opts[:method])
         method_name = opts[:method]
-        self.define_state_value_attribute(method_name, sensitive: opts[:sensitive], checkbox_values: opts[:options])
+        self.define_state_value_attribute(method_name, sensitive: opts[:sensitive], checkbox_values: opts[:is_checkbox] ? opts[:options] : nil)
       end
     end
     def define_state_value_attribute(method_name, sensitive: false, checkbox_values: nil)
@@ -113,6 +113,9 @@ module AbrStateMethods
       pdf_field = pdf_fields[field_name]
       method = pdf_field ? pdf_field[:method] : nil
       method ||= field_name
+      if pdf_field && [:select, :radio].include?(field_opts[:type]) && field_opts[:options].blank?
+        field_opts[:options] = pdf_field[:options]
+      end
       fields.push([field_name, field_opts.merge({
           type: field_opts[:type] || :string,
           method: method
@@ -144,6 +147,10 @@ module AbrStateMethods
 
   def custom_format_message(field_name)
     custom_validation_message(field_name, "format", I18n.t("errors.messages.format"))
+  end
+
+  def custom_validates_presence_of(f)
+    errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
   end
 
   

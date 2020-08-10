@@ -4,14 +4,14 @@ module AbrStateMethods::LA
     "Name": {
       method: "full_name"
     },
-    "Mothers Maiden Name": {},
-    "Residential Address": {}, #TODO- full address including city, state, zip
+    "Mothers Maiden Name": { sensitive: true },
+    "Residential Address": {
+      method: "full_address_1_line"
+    }, #TODO- full address including city, state, zip
     "Options": {
       options: ["0", "1", "10", "11", "2", "3", "4", "5", "6", "7", "8", "9"]
     },
     "NumberStreetCityStateZip Code": {}, #mailing address
-    #voter_signature
-    #signature_date
     "submitted_by": {},
     "relationship_to_applicant": {},
     "Parish": {},
@@ -19,20 +19,22 @@ module AbrStateMethods::LA
     "Day_Phone": {
       method: "phone"
     },
-    "SSN_Last_4": {},
+    "SSN_Last_4": { sensitive: true },
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"
     },
-    "License_ID": {},
+    "License_ID": { sensitive: true },
     "General_Election_Date": {
       value: "11/03/2020"
     },
     "absent_from": {},
     "absent_to": {},
     "receive_for_elections": {
-      options: ["all_elections", "only_this_election"],
-      value: "only_this_election" #TODO- only a static value if "options_0"
+      options: ["all_elections", "only_this_election"]
+      #value: "only_this_election" - only a static value if "options_0"
     },
+    #voter_signature
+    #signature_date
     
   }
   
@@ -110,7 +112,7 @@ module AbrStateMethods::LA
       {"Mothers Maiden Name": {required: true}},
       {"SSN_Last_4": {min:4, max: 4}},
       {"License_ID": {}},
-      {"Options": {type: :radio, options: []}}, #TODO - grab options from above
+      {"Options": {type: :radio}}, 
       {"absent_from": {visible: "options_1"}},
       {"absent_to": {visible: "options_1"}},
       {"hand_delivered_or_faxed": {type: :checkbox}},
@@ -137,6 +139,13 @@ module AbrStateMethods::LA
   def custom_form_field_validations
     # make sure delivery is selected if reason ==3
     # make sure fax is provided if faxtype is selected for delivery
+  end
+  
+  # "only_this_election" - only a static value if "options_0"
+  def receive_for_elections
+    if self.options == "0"
+      return "only_this_election"
+    end
   end
   
  

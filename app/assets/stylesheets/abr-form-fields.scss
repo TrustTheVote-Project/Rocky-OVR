@@ -12,11 +12,23 @@
     margin-right: 5px;
     margin-left: 20px;
   }
+  .radio label {
+    display: block;
+    margin-bottom: 1em;
+  }
+  .radio h3 {
+    height: auto;
+    line-height: 1.4em;
+  }
 }
 
 @import 'abr_states/ak';
 
+@import 'abr_states/ar';
+
 @import 'abr_states/de';
+
+@import 'abr_states/ga';
 
 @import 'abr_states/oh';
 
