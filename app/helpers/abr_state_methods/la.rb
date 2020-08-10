@@ -1,7 +1,6 @@
 module AbrStateMethods::LA
   
   PDF_FIELDS = {
-    ---
     "Name": {
       method: "full_name"
     },
@@ -31,7 +30,7 @@ module AbrStateMethods::LA
     "absent_from": {},
     "absent_to": {},
     "receive_for_elections": {
-      options: ["all_elections", "only_this_election"]
+      options: ["all_elections", "only_this_election"],
       value: "only_this_election" #TODO- only a static value if "options_0"
     },
     

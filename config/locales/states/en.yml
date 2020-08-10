@@ -433,6 +433,31 @@ en:
           header: Absentee Requests In Utah
           instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>              
       va:
+        abr_form_fields:
+          "Birth_Year": "Year I was born:"
+          "SSN_Last_4": Last 4 digits of my social security number
+          "Mailing_Address_1": Mailing address
+          "Mailing_Address_2": "Apt/Suite #:"
+          "Mailing_Address_3": City
+          "Mailing_Zip_Code": Zip
+          "Mailing_State": State
+          "Mailing_Country": Country
+          "UOCAVA": "I am a Military and/or Overseas Voter"
+          "Category_Code": Select all that apply to you
+          Category_Code__options:
+            A: "I am an active duty merchant marine or in the armed forces."
+            B: "I am a spouse or dependent living with an active duty merchant marine or armed forces member."
+            C: "I am temporarily residing outside of the U.S. for a non-employment related reason."
+            D: "I am temporarily residing outside of the U.S. for employment or a spouse or dependent living with a person temporarily residing outside of the U.S. for employment."
+          "Last_Date_of_Residency": "Last Date of Residency (MM/DD/YYYY)"
+          "moved_permanently": "I have given up my address permanently or have no intent to return."
+          "Deliver_to": Please deliver my ballot to
+          "Residence": my residence address
+          "ballot_mailing_address": my mailing address
+          "email_address": my email address
+          "fax_number": my fax number
+          "has_mailing_address": My mailing address differs from my residential address.
+          "need_assistance": "I need assistance completing my ballot due to a disability, blindness, or inability to read or write."
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.
         ineligible_registrant: 'We were unable to process your registration. Please

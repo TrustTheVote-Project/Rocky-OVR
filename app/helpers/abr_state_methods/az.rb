@@ -1,4 +1,4 @@
-module AbrStateMethods::STATE_ABBREV
+module AbrStateMethods::AZ
   
   PDF_FIELDS = {
     
