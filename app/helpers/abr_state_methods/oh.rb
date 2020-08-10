@@ -180,16 +180,19 @@ module AbrStateMethods::OH
   def custom_form_field_validations
     if self.has_mailing_address.to_s == "1"
       ["Street Address or PO  box", "CityVillage_2", "State", "ZIP_2"].each do |f|
-        errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
+        custom_validates_presence_of(f)
+        #errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
       end
     end
     if self.identification == "dln"
-      f = "OR"
-      errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
+      custom_validates_presence_of("OR")
+      # f = "OR"
+      # errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
     end
     if self.identification == "ssn4"
-      f = "OR_2"
-      errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
+      custom_validates_presence_of("OR_2")
+      # f = "OR_2"
+      # errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
     end
   end
   

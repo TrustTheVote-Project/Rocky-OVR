@@ -25,6 +25,7 @@ en:
           ADL__required_message: Either Driver's license or SSN is required
           ADL__format_message: Enter digits only
           attest_no_ssn_or_dln: I do not have an SSN or AK driver's license or State ID
+          gender: Sex
           gender__options:
             male: Male
             female: Female
@@ -47,23 +48,29 @@ en:
       ar:
         abr_form_fields:
           "Reason": "I request an absentee ballot because:"
+          "Reason__options":
+            "absent": I will be unavoidably absent from my polling site on Election Day.
+            "illness": I will be unable to attend the polls on Election Day because of illness or physical diability.
+            "long_term_care": I reside in long-term care or residential facility licensed by the state.
+          
           "Reside": "I reside:"
+          "Reside__options":
+            "UOCAVA_1": "I am a member of the merchant marine or uniformed services of the United States on active duty or service (UOCAVA)."
+            "UOCAVA_2": "I am a United States citizen residing outside the territorial limits of the US and the Distric of Columbia (UOCAVA)."
+            "UOCAVA_3": I am a spouse or dependent of a member of the merchant marine or uniformed services of the US who will be absent from the place where I am qualified to vote because of the member's active duty or service (UOCAVA).'
+            "outside_county": Outside the county in which I am registered to vote.
+            "within_county": Within the county in which I am registered to vote.
+          
           "Where_Receive": "I will receive my ballot by:"
-          "County_Clerk_Office": Coming to the office of the county clerk
-          "Designated_Bearer": Designated Bearer, Administrator, or Authorized Agent
-          "Electronic_Means": "Electronic means (Only available for UOCAVA voters)"
-          "Mail": "Mail. I request that you mail my ballot to the following address:"
+          "Where_Receive__options":
+            "County_Clerk_Office": Coming to the office of the county clerk
+            "Designated_Bearer": Designated Bearer, Administrator, or Authorized Agent
+            "Electronic_Means": "Electronic means (Only available for UOCAVA voters)"
+            "Mail": "Mail. I request that you mail my ballot to the following address:"
           "Mailing_Address_1": "Full name"
           "Mailing_Address_2": "Mailing address"
           "Mailing_Address_3": "City, State, Zip"
-          "absent": I will be unavoidably absent from my polling site on Election Day.
-          "illness": I will be unable to attend the polls on Election Day because of illness or physical diability.
-          "long_term_care": I reside in long-term care or residential facility licensed by the state.
-          "UOCAVA_1": "I am a member of the merchant marine or uniformed services of the United States on active duty or service (UOCAVA)."
-          "UOCAVA_2": "I am a United States citizen residing outside the territorial limits of the US and the Distric of Columbia (UOCAVA)."
-          "UOCAVA_3": I am a spouse or dependent of a member of the merchant marine or uniformed services of the US who will be absent from the place where I am qualified to vote because of the member's active duty or service (UOCAVA).'
-          "outside_county": outside the county in which I am registered to vote.
-          "within_county": within the county in which I am registered to vote.
+          
       ca:
         abr:
           header: Absentee Requests In California
@@ -122,13 +129,16 @@ en:
           "Text23": "Today's date: (MM/DD/YYYY)"
           "requestor": I am requesting a ballot on behalf of the voter.
           "Text25": Relationship to voter
-          "E": E- Elderly- I am 65 years of age or older
-          "D": D- Disabled- I have a physical disability
-          "U": U- UOCAVA Voter- I am a uniformed service member, spouse or dependent of a uniformed service member, or other US citizen residing overseas. My current status is
-          "MOS": MOS- Military Overseas
-          "MST": MST- Military Stateside
-          "OST": OST- Overseas Temporary Resident
-          "OSP": OSP- Overseas Permanent Resident- federal offices only
+          "Elegibility__options":
+            "E": E- Elderly- I am 65 years of age or older
+            "D": D- Disabled- I have a physical disability
+            "U": U- UOCAVA Voter- I am a uniformed service member, spouse or dependent of a uniformed service member, or other US citizen residing overseas. My current status is
+          "UOCAVA_Status": ""
+          "UOCAVA_Status__options":
+            "MOS": MOS- Military Overseas
+            "MST": MST- Military Stateside
+            "OST": OST- Overseas Temporary Resident
+            "OSP": OSP- Overseas Permanent Resident- federal offices only
       hi:
         abr:
           header: Absentee Requests In Hawaii
@@ -144,18 +154,19 @@ en:
       
       la:
         abr_form_fields:
-          "0": Senior Citizen - I am 65 years of age or older.
-          "1": Temporarily absent - I am or expect to be temporarily outside the territorial limits of my state/parish of registration during the early voting period and on election day. You must indicate the dates you will be temporarily absent below if the ballot is being mailed within your parish.
-          "2": Offshore - I expect to be out of my precinct of registration and upon the waters of the state during early voting and on election day because of my employment or occupation.
-          "3": "Nursing home - I am a resident of a nursing home (includes veterans' home and extended hospital stay for a physical disability)."
-          "4": "Higher Education - I am a student (you must enclose a copy of student ID or fee bill if voting for 1st time), instructor, or professor located and living outside my parish of registration, or a spouse/dependent."
-          "5": "CLERGY - I am a minister, priest, rabbi, or other member of the clergy assigned outside my parish of registration, or a spouse/dependent."
-          "6": "MOVED OUT OF PARISH less than 30 days before election - I moved my residence to another parish more than 100 miles from the parish seat of my former residence after the voter registration books closed."
-          "7": "INVOLUNTARY CONFINEMENT - I am involuntarily confined in an institution for mental treatment outside my parish of registration and I am not interdicted and not judicially declared incompetent."
-          "8": "HOSPITALIZED - I expect to be hospitalized on election day and I did not have knowledge until after the time for early voting had expired; or I was hospitalized during the time for early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day (you must enclose proof of hospitalization)."
-          "9": "INCARCERATED - I am incarcerated in an institution inside/outside my parish of registration and I am not under an order of imprisonment for conviction of a felony. (You must enclose a certification by sheriff.)"
-          "10": "ACP - I am a program participant in the Department of State Address Confidentiality Program."
-          "11": "JUROR - I will be sequestered on the day of the election and during early voting. (You must enclose a certified copy of court order.)"
+          "Options__options":
+            "0": Senior Citizen - I am 65 years of age or older.
+            "1": Temporarily absent - I am or expect to be temporarily outside the territorial limits of my state/parish of registration during the early voting period and on election day. You must indicate the dates you will be temporarily absent below if the ballot is being mailed within your parish.
+            "2": Offshore - I expect to be out of my precinct of registration and upon the waters of the state during early voting and on election day because of my employment or occupation.
+            "3": "Nursing home - I am a resident of a nursing home (includes veterans' home and extended hospital stay for a physical disability)."
+            "4": "Higher Education - I am a student (you must enclose a copy of student ID or fee bill if voting for 1st time), instructor, or professor located and living outside my parish of registration, or a spouse/dependent."
+            "5": "CLERGY - I am a minister, priest, rabbi, or other member of the clergy assigned outside my parish of registration, or a spouse/dependent."
+            "6": "MOVED OUT OF PARISH less than 30 days before election - I moved my residence to another parish more than 100 miles from the parish seat of my former residence after the voter registration books closed."
+            "7": "INVOLUNTARY CONFINEMENT - I am involuntarily confined in an institution for mental treatment outside my parish of registration and I am not interdicted and not judicially declared incompetent."
+            "8": "HOSPITALIZED - I expect to be hospitalized on election day and I did not have knowledge until after the time for early voting had expired; or I was hospitalized during the time for early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day (you must enclose proof of hospitalization)."
+            "9": "INCARCERATED - I am incarcerated in an institution inside/outside my parish of registration and I am not under an order of imprisonment for conviction of a felony. (You must enclose a certification by sheriff.)"
+            "10": "ACP - I am a program participant in the Department of State Address Confidentiality Program."
+            "11": "JUROR - I will be sequestered on the day of the election and during early voting. (You must enclose a certified copy of court order.)"
           "hand_delivered_or_faxed": An immediate family member or I am hand delivering or faxing my application.
           "NumberStreetCityStateZip Code": Mailing address
           "has_mailing_address": My mailing address differs from my residential address.
@@ -254,6 +265,14 @@ en:
           "Street Address or PO Box": "Mailing address"
           "City State Zip Code_2": "City, State, Zip"
           "reason_for_request": "Reason for requesting an absentee ballot:"
+          "reason_for_request__options":
+            "absent": "Absence on Election Day from the jurisdiction of the election authority in which I am registered"
+            "incapacity": "Incapacity or confinement due to illness or physical disability including caring for a person who is incapacitatedor"
+            "religious": "Religious belief or practice"
+            "election_official": "Employment as an election authority or by an election authority at a location other than my polling place"
+            "incarceration": "Incarceration although I have retained all the necessary qualifications for voting"
+            "confidential": "Certified participation in the address confidentiality program established under sections 589660 to 589681"
+            
       ms:
         abr:
           header: Absentee Requests In Mississippi

@@ -7,7 +7,7 @@ module AbrStateMethods::TX
       "First Name": {
         method: "first_name"
       },
-      "Middle Initial": {}, #TODO- fill this in from the middle name
+      "Middle Initial": {method: middle_initial },
       "2 Residence Address See back of this application for instructions": {
         method: "address"
       },
@@ -21,8 +21,7 @@ module AbrStateMethods::TX
       "State": {},
       "ZIP Code_2": {},
       "4 Date of Birth mmddyyyy Optional Contact Information Optional Please list phone number andor email address  Used in case our office has questions": {
-        method: "email" 
-        #add phone number field if possible
+        method: "phone_and_email" 
       },
       "Date of Birth mmddyyyy Optional": {}, #month only - max: 2
       "Annual Application": {
