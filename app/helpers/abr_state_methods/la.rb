@@ -1,7 +1,6 @@
 module AbrStateMethods::LA
   
   PDF_FIELDS = {
-    ---
     "Name": {
       method: "full_name"
     },
