@@ -76,8 +76,7 @@ absentee_states:
     online_req_url: https://absenteeballotapplication.alaska.gov/
     pdf_template: ak.pdf
   AL:
-    pdf_template:
-    pdf_url: https://www.sos.alabama.gov/sites/default/files/voter-pdfs/absentee/RegularAbsenteeAppFillable.pdf
+    pdf_template: al.pdf
   AR:
     pdf_template: ar.pdf
   AZ:
@@ -101,8 +100,7 @@ absentee_states:
     pdf_template: ga.pdf
   HI: {}
   IA:
-    pdf_template:
-    pdf_url: https://sos.iowa.gov/elections/pdf/absenteeballotapp.pdf
+    pdf_template: ia.pdf
   ID:
     online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
     pdf_template: #2020_Absentee_Request.pdf
@@ -111,11 +109,9 @@ absentee_states:
     pdf_template:
     pdf_url: https://elections.il.gov/ElectionOperations/VotingByMailAgreement.aspx
   IN:
-    pdf_template:
-    pdf_url: https://forms.in.gov/Download.aspx?id=8691
+    pdf_template: in.pdf
   KS:
-    pdf_template:
-    pdf_url: https://www.kssos.org/forms/elections/AV1.pdf
+    pdf_template: ks.pdf
   KY: {}
   LA:
     online_req_url: https://voterportal.sos.la.gov/Home/VoterLogin
@@ -205,8 +201,7 @@ absentee_states:
     pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-07/EL-121%20Application%20for%20Absentee%20Ballot%20%282018-10%29-Fillable.pdf
   WV:
     online_req_url:
-    pdf_template: 
-    pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
+    pdf_template: wv.pdf
   WY:
     pdf_template: wy.pdf
   

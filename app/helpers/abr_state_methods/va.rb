@@ -75,16 +75,20 @@ module AbrStateMethods::VA
     #Voter_Sign_Date
    
   }
-  EXTRA_FIELDS = ["has_mailing_address", "UOCAVA", "moved_permanently"]
+  EXTRA_FIELDS = ["has_mailing_address", "UOCAVA", "moved_permanently", "A", "B", "C", "D"]
   
   def form_field_items
     [
       {"Birth_Year": {min: 4, max: 4}},
       {"SSN_Last_4": {min: 4, max: 4}},
       {"UOCAVA": {type: :checkbox}},
-      {"Category_Code": {visible: "UOCAVA", type: :radio, options: ["A", "B", "C", "D"]}}, #TODO - make this work - see above
-      {"moved_permanently": {visible: "category_code_c", type: :checkbox}},
-      {"Last_Date_of_Residency": {visible: "moved_permanently"}},
+      #TODO- the text field "Category_Code" should be filled in with the letter(s) of whatever is checked below: A, B, C, and/or D
+      {"A": {type: :checkbox, visible: "UOCAVA"}},
+      {"B": {type: :checkbox, visible: "UOCAVA"}}, #TODO- this text is too long and gets cut off. Can that be fixed?
+      {"C": {type: :checkbox, visible: "UOCAVA"}},
+      {"moved_permanently": {visible: "C", type: :checkbox}}, #TODO- can you change the placement of this? It really should be indented so the user knows it's a subset of the C option.
+      {"Last_Date_of_Residency": {visible: "moved_permanently"}}, #TODO- this should also be indented the same amount as above
+      {"D": {type: :checkbox, visible: "UOCAVA"}}, #TODO- this text is too long and gets cut off. Can that be fixed?
       {"Deliver_to": {visible: "UOCAVA", type: :radio}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_1": {visible: "has_mailing_address"}},

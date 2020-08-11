@@ -42,6 +42,31 @@ en:
           Ballot Mailing Address 3: "&nbsp;"
       
       al:
+        abr_form_fields:
+          "Return this application to": "County Clerk's Full Address:"
+          "Please note that only one application may be placed in the same envelope": County
+          "chkReason1": "I expect to be out of the county or the state on election day."
+          "chkReason2": "I have a physical illness or infirmity which prevents my attendance at the polls. (ID Required)"
+          "chkReason3": "I am unable to access my assigned polling place due to a neurological, musculoskeletal, respiratory (including speech organs), cardiovascular, or other life-altering disorder that affects my ability to perform manual tasks, stand for any length of time, walk unassisted, see, hear or speak and: a) I am an elderly voter aged 65 or older; or b) I am a voter with a disability. (ID Not Required)"
+          "chkReason4": "I expect to work a shift which has at least ten (10) hours that coincide with the polling hours at my regular polling place."
+          "chkReason5": "I am enrolled as a student at an educational institution located outside the county of my personal residence, attendance at which prevents my attendance at the polls."
+          "chkReason6": "I am a member of, or a spouse or dependent of a member of, the US Armed Forces or am otherwise similarly qualified to vote absentee pursuant to the Uniformed and Overseas Citizens Absentee Voting Act, 52 U.S.C. § 20302. (ID Not Required)"
+          "chkReason7": "I have been appointed as an election officer at a polling place which is not my regular polling place."
+          "chkReason8": "I am a caregiver for a family member to the second degree of kinship by affinty or consanguinity and the family member is confined to his or her home."
+          "chkReason9": "I am currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude."
+          "txtEarlierExpDate": "This application for an absentee ballot will be valid for all county, state, and federal elections held during this calendar year unless you specify an earlier expiration date here:"
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Precinct": "Precinct where you vote (name and/or location of your polling place):"
+          identification: "Please select one of the following:"
+          identification__options:
+            dln_yes: "I have a driver's license."
+            dln_no: "I do not have a driver's license."
+          "SSN_last_4": Last 4 digits of your SSN
+          "Drivers_License_State": "Driver's License State Abbreviation"
+          "Street_Address_1": Mailing address
+          "City_1": City
+          "State_1": State
+          "ZIP_1": Zip
         abr:
           step_3_pending_instructions: <p>Sample override for %{state} linking to %{pdf_url}</p>
       ar:
@@ -139,6 +164,20 @@ en:
           instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
       
       ks:
+        abr_form_fields:
+          identification: "Please select one of the following:"
+          identification__options:
+            dln_yes: "I have a driver's license."
+            dln_no: "I do not have a driver's license."
+          "has_mailing_address": My mailing address differs from my residential address.
+          "identification_number": "Current Kansas driver's license number or nondriver's identification card number:􏰋􏰤"
+          "county_1": Residential county
+          "state_2": Mailing state
+          "county_2": Mailing county
+          "Mailing_City": City
+          "Mailing_State": State
+          "Mailing_Zip_Code": Zip
+           
         redirect_to_online_registration: We're directing you to the VoteKS online voter registration system.
 
       ky:
@@ -448,11 +487,10 @@ en:
           "Mailing_Country": Country
           "UOCAVA": "I am a Military and/or Overseas Voter"
           "Category_Code": Select all that apply to you
-          Category_Code__options:
-            A: "I am an active duty merchant marine or in the armed forces."
-            B: "I am a spouse or dependent living with an active duty merchant marine or armed forces member."
-            C: "I am temporarily residing outside of the U.S. for a non-employment related reason."
-            D: "I am temporarily residing outside of the U.S. for employment or a spouse or dependent living with a person temporarily residing outside of the U.S. for employment."
+          A: "I am an active duty merchant marine or in the armed forces."
+          B: "I am a spouse or dependent living with an active duty merchant marine or armed forces member."
+          C: "I am temporarily residing outside of the U.S. for a non-employment related reason."
+          D: "I am temporarily residing outside of the U.S. for employment or a spouse or dependent living with a person temporarily residing outside of the U.S. for employment."
           "Last_Date_of_Residency": "Last Date of Residency (MM/DD/YYYY)"
           "moved_permanently": "I have given up my address permanently or have no intent to return."
           "Deliver_to": Please deliver my ballot to
