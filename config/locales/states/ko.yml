@@ -24,6 +24,8 @@ ko:
       republican: 공화당
       working_families: Working Families
       other: 다른 정당
+      independence: Independence
+      sam: SAM
     no_party_label:
       none: 없음
       decline_to_state: 무소속
