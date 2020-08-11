@@ -77,7 +77,7 @@ module AbrPdfMethods
     self.current_step = '4' # lets make sure this is set
     self.pdf_ready = true
     redact_sensitive_data
-    save
+    save(validate: false)
   end
   
   

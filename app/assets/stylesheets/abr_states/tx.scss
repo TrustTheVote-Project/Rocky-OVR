@@ -1,0 +1,22 @@
+.tx-abr-form-fields {
+  li {
+    &.city, &.city_of_witness {
+      width: 46%;
+      margin-right: 2%;
+    }
+    &.state, &.state_of_witness {
+      width: 25%;
+      margin-right: 2%;
+    }
+    &.zip_code_2, &.zip_code_of_witness {
+      width: 25%;
+    }
+    &.street_address_of_witness {
+      width: 75%;
+      margin-right: 2%;
+    }
+    &.apartment_number__if_applicable__of_witness {
+      width: 23%;
+    }
+  }
+}

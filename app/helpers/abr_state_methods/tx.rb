@@ -35,8 +35,8 @@ module AbrStateMethods::TX
       "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below": {},
       "If you assisted the applicant in completing this application in the applicants presence or emailedmailed or faxed the application on behalf of the applicant please check this box as an Assistant and sign below": {},
       "Refer to Instructions on back for clarification": {},
-      "Day of date of birth": { method: "date_of_birth_dd" }, #day only - max: 2
-      "Year of date of birth": {  method: "date_of_birth_yyyy" }, #year only - max: 4
+      "Optional: Day of date of birth": { method: "date_of_birth_dd" }, #day only - max: 2
+      "Optional: Year of date of birth": {  method: "date_of_birth_yyyy" }, #year only - max: 4
       "Month of date you can begin to receive mail at this address": {},
       "Day of date you can begin to receive mail at this address": {},
       "Year of date you can begin to receive mail at this address": {},
@@ -56,10 +56,12 @@ module AbrStateMethods::TX
       "Street address of witness": {},
       "Apartment number (if applicable) of witness": {},
       "Select only if your 65 or older or live with a disability:": {
+        method: "novemeber_election_if_over_65",
         options: ["Any resulting runoff", "May election", "November election", "Off", "Other"]
         # conditional static value of "November election" if applicant selects "65 years of age or older. (Complete box #6a" radio option under "Reason for voting by mail:"
       },
       "Select only if absent from the county or confined to jail:": {
+        method: "november_election_if_confined_to_jail",
         options: ["Any resulting runoff", "May election", "November election", "Off", "Other"]
         # conditional static value of "November election" if applicant selects "Confinement to jail. (Complete box #6b)" radio option under "Reason for voting by mail:"
       },
@@ -84,7 +86,7 @@ module AbrStateMethods::TX
     }
   EXTRA_FIELDS = ["has_mailing_address"]
   
-  def select_only_if_your_65_or_older_or_live_with_a_disability_
+  def november_election_if_over_65
     if self.send(self.class.make_method_name("Reason for voting by mail:")) == "65 years of age or older. (Complete box #6a"
       "November election" 
     else
@@ -92,7 +94,7 @@ module AbrStateMethods::TX
     end
   end
   
-  def select_only_if_absent_from_the_county_or_confined_to_jail_
+  def november_election_if_confined_to_jail
     if self.send(self.class.make_method_name("Reason for voting by mail:")) == "Confinement to jail. (Complete box #6b)"
       "November election" 
     else
@@ -128,15 +130,33 @@ module AbrStateMethods::TX
       {"City of witness": {
         visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}},
       {"State of witness": {
-        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}}, 
+        visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below"),
+        type: :select, options: GeoState.collection_for_select, include_blank: true}}, 
       {"Zip code of witness": {
         visible: self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")}},
     ]
   end
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.has_mailing_address.to_s == "1"
+      ["3 Mail my ballot to If mailing address differs from residence address please complete Box  7", "City", "State", "ZIP Code_2"].each do |f|
+        custom_validates_presence_of(f)
+        #errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
+      end
+    end
+    if self.send(self.class.make_method_name("If requesting this ballot be mailed to a different address (other than residense), indicate where the ballot will be mailed")) == "relative__relationship"
+      custom_validates_presence_of("Relative; relationship")
+    end
+    if self.send(self.class.make_method_name("If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below")) == "1"
+      ["Refer to Instructions on back for clarification",
+      "Street address of witness",
+      "Apartment number (if applicable) of witness",
+      "City of witness",
+      "State of witness",
+      "Zip code of witness"].each do |f|
+        custom_validates_presence_of(f)
+      end
+    end
   end
 
   

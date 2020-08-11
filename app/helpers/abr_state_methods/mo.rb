@@ -32,21 +32,14 @@ module AbrStateMethods::MO
   
   def form_field_items
     [
-      {"undefined": {required: true}},
-      {"reason_for_request": {type: :radio, options: [
+      {"undefined": {required: true, regexp: /\A\d{4}\z/ }},
+      {"reason_for_request": {type: :radio, required: true, options: [
         "absent", "incapacity", "religious", "election_official", "incarceration", "confidential"
       ]}}, #TODO- map to reasons above
       {"Street Address or PO Box": {required: true}},
       {"City State Zip Code_2": {required: true}},
     ]
   end
-  
-  "absent"
-  "incapacity"
-  "religious"
-  "election_official"
-  "incarceration"
-  "confidential"
   
   REASONS = {
     "absent": "Absence on Election Day from the jurisdiction of the election authority in which I am registered",
@@ -57,19 +50,11 @@ module AbrStateMethods::MO
     "confidential": "Certified participation in the address confidentiality program established under sections 589660 to 589681"
   }
   def reason_for_request=(val)
-    fs = ["Absence on Election Day from the jurisdiction of the election authority in which I am registered",
-    "Incapacity or confinement due to illness or physical disability including caring for a person who is incapacitatedor",
-    "Religious belief or practice",
-    "Employment as an election authority or by an election authority at a location other than my polling place",
-    "Incarceration although I have retained all the necessary qualifications for voting",
-    "Certified participation in the address confidentiality program established under sections 589660 to 589681"]
-    vals = ["absent", "incapacity", "religious", "election_official", "incarceration", "confidential"]
     REASONS.values.each do |f|
       self.send("#{self.class.make_method_name(f)}=", "")
     end
-    REASONS.keys.each do |v|
-      if val == v
-        f = fs[v]
+    REASONS.each do |v,f|
+      if val.to_s == v.to_s
         self.send("#{self.class.make_method_name(f)}=", "X")
       end
     end    
@@ -77,8 +62,9 @@ module AbrStateMethods::MO
   
   def reason_for_request
     REASONS.each do |v,f|
-      return v if self.send(self.class.make_method_name(f)) == "X"
-    end      
+      return v.to_s if self.send(self.class.make_method_name(f)).to_s == "X"
+    end     
+    return nil 
   end
 
   
