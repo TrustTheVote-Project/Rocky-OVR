@@ -52,12 +52,12 @@ module AbrStateMethods::VA
       method: "phone"
     },
     "Email_Fax": {
-      method: "email" #TODO- add fax field? It's an either/or text field
+      method: "email"
     },
     "Last_Date_of_Residency": {},
     "Category_Code": {}, #TODO - this is a text field, but really should be a series of checkboxes...
     "Deliver_to": {
-      options: ["Off", "Residence", "ballot_mailing_address", "email_address", "fax_number"]
+      options: ["Residence", "ballot_mailing_address", "email_address"]
     },
     "need_assistance": {
       options: ["Off", "On"]
@@ -85,7 +85,7 @@ module AbrStateMethods::VA
       {"Category_Code": {visible: "UOCAVA", type: :radio, options: ["A", "B", "C", "D"]}}, #TODO - make this work - see above
       {"moved_permanently": {visible: "category_code_c", type: :checkbox}},
       {"Last_Date_of_Residency": {visible: "moved_permanently"}},
-      {"Deliver_to": {visible: "UOCAVA", type: :radio, options: []}}, #TODO- grab options from above
+      {"Deliver_to": {visible: "UOCAVA", type: :radio}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_1": {visible: "has_mailing_address"}},
       {"Mailing_Address_2": {visible: "has_mailing_address"}},
