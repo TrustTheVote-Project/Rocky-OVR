@@ -151,13 +151,15 @@ en:
           "Text23": "Today's date: (MM/DD/YYYY)"
           "requestor": I am requesting a ballot on behalf of the voter.
           "Text25": Relationship to voter
-          "E": E- Elderly- I am 65 years of age or older
-          "D": D- Disabled- I have a physical disability
-          "U": U- UOCAVA Voter- I am a uniformed service member, spouse or dependent of a uniformed service member, or other US citizen residing overseas. My current status is
-          "MOS": MOS- Military Overseas
-          "MST": MST- Military Stateside
-          "OST": OST- Overseas Temporary Resident
-          "OSP": OSP- Overseas Permanent Resident- federal offices only
+          "Elegibility__options":
+            "E": E- Elderly- I am 65 years of age or older
+            "D": D- Disabled- I have a physical disability
+            "U": U- UOCAVA Voter- I am a uniformed service member, spouse or dependent of a uniformed service member, or other US citizen residing overseas. My current status is
+          "UOCAVA_Status__options":
+            "MOS": MOS- Military Overseas
+            "MST": MST- Military Stateside
+            "OST": OST- Overseas Temporary Resident
+            "OSP": OSP- Overseas Permanent Resident- federal offices only
       hi:
         abr:
           header: Absentee Requests In Hawaii
@@ -187,18 +189,19 @@ en:
       
       la:
         abr_form_fields:
-          "0": Senior Citizen - I am 65 years of age or older.
-          "1": Temporarily absent - I am or expect to be temporarily outside the territorial limits of my state/parish of registration during the early voting period and on election day. You must indicate the dates you will be temporarily absent below if the ballot is being mailed within your parish.
-          "2": Offshore - I expect to be out of my precinct of registration and upon the waters of the state during early voting and on election day because of my employment or occupation.
-          "3": "Nursing home - I am a resident of a nursing home (includes veterans' home and extended hospital stay for a physical disability)."
-          "4": "Higher Education - I am a student (you must enclose a copy of student ID or fee bill if voting for 1st time), instructor, or professor located and living outside my parish of registration, or a spouse/dependent."
-          "5": "CLERGY - I am a minister, priest, rabbi, or other member of the clergy assigned outside my parish of registration, or a spouse/dependent."
-          "6": "MOVED OUT OF PARISH less than 30 days before election - I moved my residence to another parish more than 100 miles from the parish seat of my former residence after the voter registration books closed."
-          "7": "INVOLUNTARY CONFINEMENT - I am involuntarily confined in an institution for mental treatment outside my parish of registration and I am not interdicted and not judicially declared incompetent."
-          "8": "HOSPITALIZED - I expect to be hospitalized on election day and I did not have knowledge until after the time for early voting had expired; or I was hospitalized during the time for early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day (you must enclose proof of hospitalization)."
-          "9": "INCARCERATED - I am incarcerated in an institution inside/outside my parish of registration and I am not under an order of imprisonment for conviction of a felony. (You must enclose a certification by sheriff.)"
-          "10": "ACP - I am a program participant in the Department of State Address Confidentiality Program."
-          "11": "JUROR - I will be sequestered on the day of the election and during early voting. (You must enclose a certified copy of court order.)"
+          "Options__options":
+            "0": Senior Citizen - I am 65 years of age or older.
+            "1": Temporarily absent - I am or expect to be temporarily outside the territorial limits of my state/parish of registration during the early voting period and on election day. You must indicate the dates you will be temporarily absent below if the ballot is being mailed within your parish.
+            "2": Offshore - I expect to be out of my precinct of registration and upon the waters of the state during early voting and on election day because of my employment or occupation.
+            "3": "Nursing home - I am a resident of a nursing home (includes veterans' home and extended hospital stay for a physical disability)."
+            "4": "Higher Education - I am a student (you must enclose a copy of student ID or fee bill if voting for 1st time), instructor, or professor located and living outside my parish of registration, or a spouse/dependent."
+            "5": "CLERGY - I am a minister, priest, rabbi, or other member of the clergy assigned outside my parish of registration, or a spouse/dependent."
+            "6": "MOVED OUT OF PARISH less than 30 days before election - I moved my residence to another parish more than 100 miles from the parish seat of my former residence after the voter registration books closed."
+            "7": "INVOLUNTARY CONFINEMENT - I am involuntarily confined in an institution for mental treatment outside my parish of registration and I am not interdicted and not judicially declared incompetent."
+            "8": "HOSPITALIZED - I expect to be hospitalized on election day and I did not have knowledge until after the time for early voting had expired; or I was hospitalized during the time for early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day (you must enclose proof of hospitalization)."
+            "9": "INCARCERATED - I am incarcerated in an institution inside/outside my parish of registration and I am not under an order of imprisonment for conviction of a felony. (You must enclose a certification by sheriff.)"
+            "10": "ACP - I am a program participant in the Department of State Address Confidentiality Program."
+            "11": "JUROR - I will be sequestered on the day of the election and during early voting. (You must enclose a certified copy of court order.)"
           "hand_delivered_or_faxed": An immediate family member or I am hand delivering or faxing my application.
           "NumberStreetCityStateZip Code": Mailing address
           "has_mailing_address": My mailing address differs from my residential address.
@@ -297,6 +300,14 @@ en:
           "Street Address or PO Box": "Mailing address"
           "City State Zip Code_2": "City, State, Zip"
           "reason_for_request": "Reason for requesting an absentee ballot:"
+          "reason_for_request__options": 
+            "absent": "Absence on Election Day from the jurisdiction of the election authority in which I am registered"
+            "incapacity": "Incapacity or confinement due to illness or physical disability including caring for a person who is incapacitatedor"
+            "religious": "Religious belief or practice"
+            "election_official": "Employment as an election authority or by an election authority at a location other than my polling place"
+            "incarceration": "Incarceration although I have retained all the necessary qualifications for voting"
+            "confidential": "Certified participation in the address confidentiality program established under sections 589660 to 589681"
+            
       ms:
         abr:
           header: Absentee Requests In Mississippi
@@ -466,9 +477,23 @@ en:
           "3 Mail my ballot to If mailing address differs from residence address please complete Box  7": Mailing address
           "ZIP Code_2": Zip
           "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below": Check here if applicant is unable to sign and you are acting as a witness
-          "Refer to Instructions on back for clarification": Relationship to Applicant
+          "Refer to Instructions on back for clarification": Witness Relationship to Applicant
           "If you assisted the applicant in completing this application in the applicants presence or emailedmailed or faxed the application on behalf of the applicant please check this box as an Assistant and sign below": Check here if you also assisted applicant in completing this application
           "If requesting this ballot be mailed to a different address (other than residense), indicate where the ballot will be mailed": "Please indicate where the ballot will be mailed from the following options"
+          "Reason for voting by mail:__options":
+            "65 years of age or older":
+              " (Complete box #6a": 65 years of age or older
+            "Confinement to jail":
+              " (Complete box #6b)": Confinement to jail. You will receive a ballot for the upcoming election only.
+            "Disability":
+              " (Complete box #6a":  Disability
+            "Expected absence from the county":
+              " (Complete box #6b and box #8": Expected absence from the county. You will receive a ballot for the upcoming election only.
+          "Relative; relationship": Your relationship to person to whom the ballot will be mailed
+          "Apartment number (if applicable) of witness": "Apt #"
+          "City of witness": "City"
+          "State of witness": "State"
+          "Zip code of witness": "ZIP"
         state_online_abr:
           finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
       ut:

@@ -7,7 +7,7 @@ module AbrStateMethods::LA
     "Mothers Maiden Name": { sensitive: true },
     "Residential Address": {
       method: "full_address_1_line"
-    }, #TODO- full address including city, state, zip
+    },
     "Options": {
       options: ["0", "1", "10", "11", "2", "3", "4", "5", "6", "7", "8", "9"]
     },
@@ -137,8 +137,17 @@ module AbrStateMethods::LA
   
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.options == "1"
+      custom_validates_presence_of("absent_from")
+      custom_validates_presence_of("absent_to")
+    end
+    if self.hand_delivered_or_faxed.to_s == "1"
+      custom_validates_presence_of("submitted_by")
+      custom_validates_presence_of("relationship_to_applicant")      
+    end
+    if self.has_mailing_address.to_s == "1"
+      custom_validates_presence_of("NumberStreetCityStateZip Code")
+    end
   end
   
   # "only_this_election" - only a static value if "options_0"

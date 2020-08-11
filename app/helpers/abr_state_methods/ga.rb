@@ -36,7 +36,7 @@ module AbrStateMethods::GA
 
     "Text25": {}, #requestor's relationship to voter
     "Text26": {
-      method: "email" #only required if "Elegibility_U" is checked
+      method: "email_if_uocava" #only required if "Elegibility_U" is checked
     },
     "Text5": {
       method: "first_name"
@@ -266,7 +266,17 @@ module AbrStateMethods::GA
         #errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
       end
     end
+    if self.requestor.to_s == "1"
+      custom_validates_presence_of("Text25")
+      custom_validates_presence_of("reason_other")
+    end
+    if self.elegibility == "U"
+      custom_validates_presence_of("UOCAVA_Status")
+    end
   end
   
+  def email_if_uocava
+    self.elegibility == "U" ? email : nil
+  end
  
 end
