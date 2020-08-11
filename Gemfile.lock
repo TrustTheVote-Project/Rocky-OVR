@@ -5,15 +5,6 @@ GIT
   specs:
     wkhtmltopdf-binary (0.12.5)
 
-GIT
-  remote: https://github.com/cwulfman/FormFiller
-  revision: 4739d5f18326f23fe84d73f5bbce52c836781cb6
-  branch: master
-  specs:
-    formfiller (0.1.0)
-      nokogiri (~> 1.8)
-      rjb (~> 1.6)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -1210,7 +1201,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rjb (1.6.2)
     rr (0.10.11)
     rspec-activemodel-mocks (1.1.0)
       activemodel (>= 3.0)
@@ -1343,7 +1333,6 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   fog-aws
-  formfiller!
   haml
   jquery-rails (~> 4.4.0)
   json
