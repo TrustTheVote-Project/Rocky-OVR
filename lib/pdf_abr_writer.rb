@@ -17,18 +17,21 @@ class PdfAbrWriter
     end
   end
   def generate_pdf(force_write = false, for_printer = false)
-    pdf = FillablePDF.new(pdf_template_path.to_s)
-    fields = pdf.fields.keys
-    pdf_values.each do |k, v|
-      if fields.include?(k.to_sym) && !v.nil?
-        pdf.set_field(k.to_sym, v.to_s)
-      end
-    end
-
     if force_write || !pdf_exists?
       FileUtils.mkdir_p(pdf_file_dir)
-      pdf.save_as(pdf_file_path, flatten: true)
-      pdf.close
+
+      # 1. generate xfdf
+      xfdf_contents = "<?xml version=\"1.0\"?><xfdf xmlns=\"http://ns.adobe.com/xfdf/\"><fields>"
+      pdf_values.each do |k, v|
+        xfdf_contents += "\n<field name=\"#{k}\"><value>#{v}</value></field>"
+      end
+      xfdf_contents += "</fields></xfdf>"
+      
+      File.open(pdf_xfdf_path, "w+") do |f|
+        f.write xfdf_contents
+      end
+      `pdftk #{pdf_template_path.to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path} flatten`
+      
       uploaded = nil
       if for_printer
         #uploaded = self.upload_pdf_to_printer(path, url_path)
@@ -37,6 +40,7 @@ class PdfAbrWriter
       end
       # If it got there, delete the tmp file
       if uploaded
+        File.delete(pdf_xfdf_path)
         File.delete(pdf_file_path)
       else
         raise "File #{path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
@@ -58,6 +62,11 @@ class PdfAbrWriter
   def pdf_path(pdfpre = nil, file=false)
     "/#{file ? pdf_file_dir(pdfpre) : pdf_dir(pdfpre)}/#{to_param}.pdf"
   end
+
+  def xfdf_path(pdfpre = nil, file=false)
+    "/#{file ? pdf_file_dir(pdfpre) : pdf_dir(pdfpre)}/#{to_param}.xfdf"
+  end
+
 
   def pdf_file_dir(pdfpre = nil)
     pdf_dir(pdfpre, false)
@@ -81,6 +90,10 @@ class PdfAbrWriter
     File.join(Rails.root, pdf_path(pdfpre, true))
   end
 
+  def pdf_xfdf_path(pdfpre = nil)
+    dir = File.join(Rails.root, pdf_file_dir(pdfpre))
+    File.join(Rails.root, xfdf_path(pdfpre, true))
+  end
 
   def bucket_code
     super(DateTime.parse(self.created_at))

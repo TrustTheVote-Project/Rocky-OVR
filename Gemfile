@@ -46,8 +46,8 @@ gem 'jwt'
 group :pdf do
   gem 'wkhtmltopdf-binary', :git=>"https://github.com/amekelburg/wkhtmltopdf-binary", branch: "add-newer-osx"
   gem 'wicked_pdf', '0.9.6'
-  gem "fillable-pdf"
-  #gem 'formfiller', git: "https://github.com/cwulfman/FormFiller", branch: "master"
+  #gem "fillable-pdf"
+  gem 'formfiller', git: "https://github.com/cwulfman/FormFiller", branch: "master"
    
 end
 
