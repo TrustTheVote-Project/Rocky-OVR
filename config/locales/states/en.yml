@@ -45,6 +45,7 @@ en:
         abr_form_fields:
           "Return this application to": "County Clerk's Full Address:"
           "Please note that only one application may be placed in the same envelope": County
+          "reason_instructions": "I am applying for an absentee ballot because: (check all that apply)"
           "chkReason1": "I expect to be out of the county or the state on election day."
           "chkReason2": "I have a physical illness or infirmity which prevents my attendance at the polls. (ID Required)"
           "chkReason3": "I am unable to access my assigned polling place due to a neurological, musculoskeletal, respiratory (including speech organs), cardiovascular, or other life-altering disorder that affects my ability to perform manual tasks, stand for any length of time, walk unassisted, see, hear or speak and: a) I am an elderly voter aged 65 or older; or b) I am a voter with a disability. (ID Not Required)"
@@ -54,7 +55,8 @@ en:
           "chkReason7": "I have been appointed as an election officer at a polling place which is not my regular polling place."
           "chkReason8": "I am a caregiver for a family member to the second degree of kinship by affinty or consanguinity and the family member is confined to his or her home."
           "chkReason9": "I am currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude."
-          "txtEarlierExpDate": "This application for an absentee ballot will be valid for all county, state, and federal elections held during this calendar year unless you specify an earlier expiration date here:"
+          "txtEarlierExpDate": "Expiration Date"
+          "txtEarlierExpDate__hint": "This application for an absentee ballot will be valid for all county, state, and federal elections held during this calendar year unless you specify an earlier expiration date here:"
           "has_mailing_address": My mailing address differs from my residential address.
           "Precinct": "Precinct where you vote (name and/or location of your polling place):"
           identification: "Please select one of the following:"
@@ -62,7 +64,7 @@ en:
             dln_yes: "I have a driver's license."
             dln_no: "I do not have a driver's license."
           "SSN_last_4": Last 4 digits of your SSN
-          "Drivers_License_State": "Driver's License State Abbreviation"
+          "Drivers_License_State": "Driver's License State"
           "Street_Address_1": Mailing address
           "City_1": City
           "State_1": State

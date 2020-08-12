@@ -86,7 +86,16 @@ module AbrStateMethods
   def to_pdf_values
     v = {}
     pdf_fields.each do |name, opts|
-      v[opts[:pdf_name] || name] = opts[:value] || self.send(opts[:method]) || opts[:default_value]
+      value = opts[:value] || self.send(opts[:method]) || opts[:default_value]
+      if opts[:options] && opts[:options].length == 2 && !opts[:options].include?(value) 
+        if value == "1"
+          value = opts[:options][1]
+        else
+          value = opts[:options][0]
+        end
+      end
+      v[opts[:pdf_name] || name] = value
+      
     end
     v    
   end
@@ -171,6 +180,7 @@ module AbrStateMethods
   
   def validate_form_fields
     form_fields.each do |field_name, field_opts|
+      next if field_opts[:type] == :instructions
       value = field_opts[:type] == :date ? date_field_value(field_opts) : self.send(field_opts[:method])
       if field_opts[:required]
         if value.blank?

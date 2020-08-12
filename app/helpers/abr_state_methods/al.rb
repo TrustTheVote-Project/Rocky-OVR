@@ -67,33 +67,35 @@ module AbrStateMethods::AL
       value: "Off"
     },
     "chkReason1": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
     "chkReason2": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
     "chkReason3": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
     "chkReason4": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
     "chkReason5": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
     "chkReason6": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
     "chkReason7": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
     "chkReason8": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
     "chkReason9": {
-      options: ["On", "Off"]
+      options: ["Off", "On"]
     },
-    "txtEarlierExpDate": {},
+    "txtEarlierExpDate": {
+      method: "earlier_exp_date"
+    },
     "Last_Name": {
       method: "last_name"
     },
@@ -121,13 +123,13 @@ module AbrStateMethods::AL
     "ZIP_1": {},
     "Precinct": {},
     "Drivers_License_State": {},
-    "Drivers_License_Number": {},
-    "SSN_last_4": {},
+    "Drivers_License_Number": { sensitive: true },
+    "SSN_last_4": { sensitive: true },
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"
     },
   }
-  EXTRA_FIELDS = ["has_mailing_address", "identification"]
+  EXTRA_FIELDS = ["has_mailing_address", "identification", "earlier_exp_date_dd", "earlier_exp_date_mm", "earlier_exp_date_yyyy"]
  
   def form_field_items
     [
@@ -203,19 +205,19 @@ module AbrStateMethods::AL
       ]}},
       {"Precinct": {}},
       {"WorkPhone": {}},
-      #TODO- we need a title here for instructions for the following set of checkboxes: "I am applyig for an absentee ballot because:"
+      {"reason_instructions": {type: :instructions}},
       {"chkReason1": {type: :checkbox}},
       {"chkReason2": {type: :checkbox}},
       {"chkReason3": {type: :checkbox}},
       {"chkReason4": {type: :checkbox}},
       {"chkReason5": {type: :checkbox}},
       {"chkReason6": {type: :checkbox}},
-      {"txtEarlierExpDate": {visible: "chkreason6"}}, #TODO- broken?
+      {"txtEarlierExpDate": {visible: "chkreason6", type: :date, m: "earlier_exp_date_mm", d: "earlier_exp_date_dd", y: "earlier_exp_date_yyyy"}},
       {"chkReason7": {type: :checkbox}},
       {"chkReason8": {type: :checkbox}},
       {"chkReason9": {type: :checkbox}},
       {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
-      {"Drivers_License_State": {visible: "identification_dln_yes", min: 2, max: 2}},
+      {"Drivers_License_State": {visible: "identification_dln_yes", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"Drivers_License_Number": {visible: "identification_dln_yes"}},
       {"SSN_last_4": {min: 4, max: 4, visible: "identification_dln_no"}},
       {"has_mailing_address": {type: :checkbox}},
@@ -225,23 +227,34 @@ module AbrStateMethods::AL
       {"ZIP_1": {visible: "has_mailing_address", min: 5, max: 10}}, 
     ]
   end
-  #e.g.
-  # [
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
-  
+
+  def earlier_exp_date
+    dates = [earlier_exp_date_mm, earlier_exp_date_dd, earlier_exp_date_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    if dates.length == 3
+      dates.join("/")
+    else
+      nil
+    end
+  end
+ 
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.identification.to_s == "dln_yes"
+      custom_validates_presence_of("Drivers_License_Number")
+      custom_validates_presence_of("Drivers_License_State")
+    end
+    if self.identification.to_s == "dln_no"
+      custom_validates_presence_of("SSN_last_4")
+    end
+    if self.has_mailing_address.to_s == "1"
+      ["State_1",
+      "Street_Address_1",
+      "City_1",
+      "ZIP_1"].each do |f|
+        custom_validates_presence_of(f)
+      end
+      
+    end
   end
   
  

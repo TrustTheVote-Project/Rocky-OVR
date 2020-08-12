@@ -71,6 +71,9 @@
       - data["visible-conditions-value"] = visible_conditions_value unless visible_conditions_value.blank?
       - data["hidden-conditions"] = hidden_conditions unless hidden_conditions.blank?
       - data["hidden-conditions-value"] = hidden_conditions_value unless hidden_conditions_value.blank?
+      - if opts[:type] == :instructions
+        %li.instructions{class: class_name, data: data}
+          %p.instructions= t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{opts[:method]}")
       - if opts[:type] == :checkbox
         - class_name += " registrant-form__required-checkbox " if required
         %li{class: class_name, data: data}
@@ -101,6 +104,8 @@
             %span.required 
               *
               %span.required--text{style: 'display:none;'}= I18n.t('required')
+          - unless instructions.blank?
+            %p.instructions= instructions
           %div{class: form.object.errors[opts[:method]].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, opts[:method])}}
             = form.text_field opts[:m], value: form.object.send(opts[:m]), placeholder: 'MM', type: 'tel', size: 2
             = form.text_field opts[:d], value: form.object.send(opts[:d]), placeholder: 'DD', type: 'tel', size: 2
