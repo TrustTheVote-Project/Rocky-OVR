@@ -1,5 +1,75 @@
 module AbrStateMethods::IA
   
+  def dob_m1
+    self.date_of_birth_mm_dd_yyyy[0]
+  end
+  def dob_m2
+    self.date_of_birth_mm_dd_yyyy[1]
+  end
+  # /
+  def dob_d1
+    self.date_of_birth_mm_dd_yyyy[3]
+  end
+  def dob_d2
+    self.date_of_birth_mm_dd_yyyy[4]
+  end
+  # /
+
+  def dob_y1
+    self.date_of_birth_mm_dd_yyyy[6]
+  end
+  def dob_y2
+    self.date_of_birth_mm_dd_yyyy[7]
+  end
+  def dob_y3
+    self.date_of_birth_mm_dd_yyyy[8]
+  end
+  def dob_y4
+    self.date_of_birth_mm_dd_yyyy[9]
+  end
+  
+  def dln_1
+    self.license && self.license[0]
+  end
+  def dln_2
+    self.license && self.license[1]
+  end
+  def dln_3
+    self.license && self.license[2]
+  end
+  def dln_4
+    self.license && self.license[3]
+  end
+  def dln_5
+    self.license && self.license[4]
+  end
+  def dln_6
+    self.license && self.license[5]
+  end
+  def dln_7
+    self.license && self.license[6]
+  end
+  def dln_8
+    self.license && self.license[7]
+  end
+  def dln_9
+    self.license && self.license[8]
+  end
+
+  def voter_pin_1
+    self.voter_pin && self.voter_pin[0]
+  end
+  def voter_pin_2
+    self.voter_pin && self.voter_pin[1]
+  end
+  def voter_pin_3
+    self.voter_pin && self.voter_pin[2]
+  end
+  def voter_pin_4
+    self.voter_pin && self.voter_pin[3]
+  end
+  
+  
   PDF_FIELDS = {
     "Last Name": {
       method: "last_name"
@@ -13,27 +83,27 @@ module AbrStateMethods::IA
     "Middle Name": {
       method: "middle_name"
     },
-    "Date of Birth - Month Digit 1": {}, #TODO this is effing stupid. Make it work.
-    "Date of Birth - Month Digit 2": {},
-    "Date of Birth - Day Digit 1": {},
-    "Date of Birth - Day Digit 2": {},
-    "Date of Birth - Year Digit 1": {},
-    "Date of Birth - Year Digit 2": {},
-    "Date of Birth - Year Digit 3": {},
-    "Date of Birth - Year Digit 4": {},
-    "Driver's LIcenese 1": {}, #TODO also this. WTF. I'm gonna make a thing below where they put in their license number - can you make each digit from that correspond to each of these fields? I'm hoping this is something you can make happen.
-    "Driver's LIcenese 2": {},
-    "Driver's LIcenese 3": {},
-    "Driver's LIcenese 4": {},
-    "Driver's LIcenese 5": {},
-    "Driver's LIcenese 6": {},
-    "Driver's LIcenese 7": {},
-    "Driver's LIcenese 8": {},
-    "Driver's LIcenese 9": {},
-    "Four-Digit Voter PIN 1": {},
-    "Four-Digit Voter PIN 2": {},
-    "Four-Digit Voter PIN 3": {},
-    "Four-Digit Voter PIN 4": {},
+    "Date of Birth - Month Digit 1": { method: "dob_m1" },
+    "Date of Birth - Month Digit 2": { method: "dob_m2" },
+    "Date of Birth - Day Digit 1": { method: "dob_d1" },
+    "Date of Birth - Day Digit 2": { method: "dob_d2" },
+    "Date of Birth - Year Digit 1": { method: "dob_y1" },
+    "Date of Birth - Year Digit 2": { method: "dob_y2" },
+    "Date of Birth - Year Digit 3": { method: "dob_y3" },
+    "Date of Birth - Year Digit 4": { method: "dob_y4" },
+    "Driver's LIcenese 1": { method: "dln_1" }, 
+    "Driver's LIcenese 2": { method: "dln_2" },
+    "Driver's LIcenese 3": { method: "dln_3" },
+    "Driver's LIcenese 4": { method: "dln_4" },
+    "Driver's LIcenese 5": { method: "dln_5" },
+    "Driver's LIcenese 6": { method: "dln_6" },
+    "Driver's LIcenese 7": { method: "dln_7" },
+    "Driver's LIcenese 8": { method: "dln_8" },
+    "Driver's LIcenese 9": { method: "dln_9" },
+    "Four-Digit Voter PIN 1": { method: "voter_pin_1" },
+    "Four-Digit Voter PIN 2": { method: "voter_pin_2" },
+    "Four-Digit Voter PIN 3": { method: "voter_pin_3" },
+    "Four-Digit Voter PIN 4": { method: "voter_pin_4" },
     "Home Street Address (include apt, lot, etc. if applicable)": {
       method: "address"
     },
@@ -44,7 +114,9 @@ module AbrStateMethods::IA
       method: "zip"
     },
     "County": {},
-    "Mail Address/P.O. Box": {},
+    "Mail Address": {
+      pdf_field: "Mail Address/P.O. Box"
+    },
     "Mailing Address City": {},
     "Mailing Address State": {},
     "Mailing Address Zip Code": {},
@@ -96,8 +168,8 @@ module AbrStateMethods::IA
   def form_field_items
     [
       {"identification": {type: :radio, options: ["dln", "vic"]}},
-      {"license": {visible: "identification_dln", min: 9, max: 9}},
-      {"voter_pin": {visible: "identification_vic", min: 4, max: 4}},
+      {"license": {visible: "identification_dln", min: 9, max: 9, regexp: /\A\d{9}\z/}},
+      {"voter_pin": {visible: "identification_vic", min: 4, max: 4, regexp: /\A\d{4}\z/}},
       {"County": {type: :select, required: true, include_blank: true, options: [
         "Adair",
         "Adams",
@@ -201,30 +273,32 @@ module AbrStateMethods::IA
       ]}},
       {"Do not add this contact info to my voter recored check box": {type: :checkbox}},
       {"has_mailing_address": {type: :checkbox}},
-      {"Mail Address/P.O. Box": {visible: "has_mailing_address"}}, #TODO- the text isn't working and there was a weird duplicate thing on the txt file.... remind me to ask you about that. 
+      {"Mail Address": {visible: "has_mailing_address"}}, #TODO- the text isn't working and there was a weird duplicate thing on the txt file.... remind me to ask you about that. 
       {"Mailing Address City": {visible: "has_mailing_address"}},
       {"Mailing Address State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"Mailing Address Zip Code": {visible: "has_mailing_address"}},
       {"Country (Other than US)": {visible: "has_mailing_address"}},
     ]
   end
-  #e.g.
-  # [
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
-  
+
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.has_mailing_address == "1"
+      [
+        "Mailing Address State",
+        "Mailing Address City",
+        "Mail Address",
+        "Mailing Address Zip Code",        
+      ].each do |f|
+        custom_validates_presence_of(f)
+      end
+    end    
+    if self.identification == "dln"
+      custom_validates_presence_of("license")
+    end  
+    if self.identification == "vic"
+      custom_validates_presence_of("voter_pin")
+    end  
   end
   
  

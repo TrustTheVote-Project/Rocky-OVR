@@ -174,7 +174,7 @@ en:
           "license": "Iowa Driver's License or Non-Operator ID Number"
           "voter_pin": Four-Digit Voter PIN
           "identification": Please choose one of the following forms of identification
-          "Mail Address/P.O. Box": Mailing Address
+          "Mail Address": Mailing Address
           "has_mailing_address": My mailing address differs from my residential address.
           "Do not add this contact info to my voter recored check box": Please do not add my phone number or email address to my voter record.
       in:
