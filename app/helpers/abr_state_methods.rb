@@ -92,7 +92,13 @@ module AbrStateMethods
   end
   
   def permitted_attrs
-    form_fields.collect {|fname, h| h[:method] }
+    form_fields.collect do |fname, h| 
+      ms = [h[:method]]
+      if h[:type] == :date
+        ms << [h[:d], h[:m], h[:y]]
+      end
+      ms
+    end.flatten
   end
   
   def form_field_items
@@ -154,9 +160,18 @@ module AbrStateMethods
   end
 
   
+  def date_field_value(field_opts)
+    y = self.send(field_opts[:y])
+    m = self.send(field_opts[:m])
+    d = self.send(field_opts[:d])
+    return Date.parse("#{y}-#{m}-#{d}")
+  rescue
+    nil
+  end
+  
   def validate_form_fields
     form_fields.each do |field_name, field_opts|
-      value = self.send(field_opts[:method])
+      value = field_opts[:type] == :date ? date_field_value(field_opts) : self.send(field_opts[:method])
       if field_opts[:required]
         if value.blank?
           errors.add(field_opts[:method], custom_required_message(field_name))

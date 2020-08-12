@@ -62,7 +62,7 @@ module AbrPdfMethods
 
   def generate_pdf(force = false)
     if pdf_writer.valid?
-      if pdf_writer.generate_pdf(force)
+      if pdf_writer.generate_pdf(true || force)
         deliver_confirmation_email
         return true
       else

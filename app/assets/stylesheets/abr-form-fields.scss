@@ -8,6 +8,16 @@
         height: auto;
       }
     }
+    &.date {
+      input {
+        width: 55px;
+        padding: 5px 5px;
+        text-align: center;
+        &:last-child {
+          width: 75px;
+        }
+      }
+    }
   }
   margin-bottom: 2em;
   .radio input {
@@ -25,6 +35,7 @@
     height: auto;
     line-height: 1.4em;
   }
+  
 }
 
 @import 'abr_states/ak';

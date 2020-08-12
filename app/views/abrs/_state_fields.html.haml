@@ -93,4 +93,17 @@
             = field_li(form, opts[:method], {label_options: {value: field_label}, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
       - elsif opts[:type] == :select
         = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: {value: field_label}, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })
-        
+      - elsif opts[:type] == :date
+        %li.date{class: class_name, data: data}
+          %h3
+            = form.label opts[:method], value: field_label
+          - if required
+            %span.required 
+              *
+              %span.required--text{style: 'display:none;'}= I18n.t('required')
+          %div{class: form.object.errors[opts[:method]].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, opts[:method])}}
+            = form.text_field opts[:m], value: form.object.send(opts[:m]), placeholder: 'MM', type: 'tel', size: 2
+            = form.text_field opts[:d], value: form.object.send(opts[:d]), placeholder: 'DD', type: 'tel', size: 2
+            = form.text_field opts[:y], value: form.object.send(opts[:y]), placeholder: 'YYYY', type: 'tel', size: 4
+            
+          %span.error= form.object.errors[opts[:method]].join("\n")        

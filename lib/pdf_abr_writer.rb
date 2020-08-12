@@ -27,6 +27,8 @@ class PdfAbrWriter
       end
       xfdf_contents += "</fields></xfdf>"
       
+      puts xfdf_contents
+      
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end

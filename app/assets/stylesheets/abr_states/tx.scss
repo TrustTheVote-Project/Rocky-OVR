@@ -1,6 +1,6 @@
 .tx-abr-form-fields {
   li {
-    &.city, &.city_of_witness {
+    &.mailing_city, &.city_of_witness {
       width: 46%;
       margin-right: 2%;
     }
@@ -15,7 +15,7 @@
       width: 75%;
       margin-right: 2%;
     }
-    &.apartment_number__if_applicable__of_witness {
+    &.apt_number_of_witness {
       width: 23%;
     }
   }

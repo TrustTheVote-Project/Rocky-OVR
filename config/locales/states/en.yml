@@ -515,23 +515,29 @@ en:
       tx:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
-          "3 Mail my ballot to If mailing address differs from residence address please complete Box  7": Mailing address
+          "Mail_Address": Mailing address
           "ZIP Code_2": Zip
-          "If applicant is unable to mark Box 10 and you are acting as a Witness to that fact please check this box and sign below": Check here if applicant is unable to sign and you are acting as a witness
-          "Refer to Instructions on back for clarification": Witness Relationship to Applicant
-          "If you assisted the applicant in completing this application in the applicants presence or emailedmailed or faxed the application on behalf of the applicant please check this box as an Assistant and sign below": Check here if you also assisted applicant in completing this application
-          "If requesting this ballot be mailed to a different address (other than residense), indicate where the ballot will be mailed": "Please indicate where the ballot will be mailed from the following options"
-          "Reason for voting by mail:__options":
-            "65 years of age or older":
-              " (Complete box #6a": 65 years of age or older
-            "Confinement to jail":
-              " (Complete box #6b)": Confinement to jail. You will receive a ballot for the upcoming election only.
-            "Disability":
-              " (Complete box #6a":  Disability
-            "Expected absence from the county":
-              " (Complete box #6b and box #8": Expected absence from the county. You will receive a ballot for the upcoming election only.
-          "Relative; relationship": Your relationship to person to whom the ballot will be mailed
-          "Apartment number (if applicable) of witness": "Apt #"
+          "Mailing City": "City"
+          "witness": Check here if applicant is unable to sign and you are acting as a witness
+          "Witness_relation": Witness Relationship to Applicant
+          "Assisted": Check here if you also assisted applicant in completing this application
+          "where_to_mail": "Please indicate where the ballot will be mailed from the following options"
+          "where_to_mail__options":
+            "hospital": "Hospital"
+            "jail": Address of the jail
+            "mailing_address": "Mailing Address as listed on my voter registration certificate"
+            "nursing_home": Nursing home, assisted living facility, or long term care facility
+            "outside_county": Address outside the county
+            "relative": Relative
+            "retirement_center": Retirement Center
+          "Reason": "Reason for voting by mail"
+          "Reason__options":
+            "age": 65 years of age or older
+            "confinment": Confinement to jail. You will receive a ballot for the upcoming election only.
+            "disability":  Disability
+            "absence": Expected absence from the county. You will receive a ballot for the upcoming election only.
+          "relative_relationship": Your relationship to person to whom the ballot will be mailed
+          "Apt number of witness": "Apt #"
           "City of witness": "City"
           "State of witness": "State"
           "Zip code of witness": "ZIP"
