@@ -56,7 +56,7 @@ module AbrStateMethods::TX
       "Street address of witness": {},
       "Apartment number (if applicable) of witness": {},
       "Select only if your 65 or older or live with a disability:": {
-        method: "novemeber_election_if_over_65",
+        method: "november_election_if_over_65",
         options: ["Any resulting runoff", "May election", "November election", "Off", "Other"]
         # conditional static value of "November election" if applicant selects "65 years of age or older. (Complete box #6a" radio option under "Reason for voting by mail:"
       },

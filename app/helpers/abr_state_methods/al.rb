@@ -210,7 +210,7 @@ module AbrStateMethods::AL
       {"chkReason4": {type: :checkbox}},
       {"chkReason5": {type: :checkbox}},
       {"chkReason6": {type: :checkbox}},
-      {"txtEarlierExpDate": {visible: "chkReason6"}}, #TODO- broken?
+      {"txtEarlierExpDate": {visible: "chkreason6"}}, #TODO- broken?
       {"chkReason7": {type: :checkbox}},
       {"chkReason8": {type: :checkbox}},
       {"chkReason9": {type: :checkbox}},
@@ -221,7 +221,7 @@ module AbrStateMethods::AL
       {"has_mailing_address": {type: :checkbox}},
       {"Street_Address_1": {visible: "has_mailing_address"}},
       {"City_1": {visible: "has_mailing_address"}},
-      {"State_1": {visible: "has_mailing_address", min: 2, max: 2}},
+      {"State_1": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"ZIP_1": {visible: "has_mailing_address", min: 5, max: 10}}, 
     ]
   end

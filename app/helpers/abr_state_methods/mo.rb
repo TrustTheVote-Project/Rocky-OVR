@@ -28,14 +28,15 @@ module AbrStateMethods::MO
     #Date
     #voter_signature
   }
-  EXTRA_FIELDS = []
+  EXTRA_FIELDS = ["has_mailing_address"]
   
   def form_field_items
     [
       {"undefined": {required: true, regexp: /\A\d{4}\z/ }},
       {"reason_for_request": {type: :radio, required: true, options: [
         "absent", "incapacity", "religious", "election_official", "incarceration", "confidential"
-      ]}}, #TODO- map to reasons above
+      ]}},
+      {"has_mailing_address": {type: :checkbox}}, #TODO- when not checked, autofill the mailing with residential
       {"Street Address or PO Box": {required: true}},
       {"City State Zip Code_2": {required: true}},
     ]

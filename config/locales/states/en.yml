@@ -164,7 +164,47 @@ en:
         abr:
           header: Absentee Requests In Hawaii
           instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
-      
+      ia:
+        abr_form_fields:
+          identification__options:
+            dln: "Iowa Driver's License or Non-Operator ID"
+            vic: "Voter Identification Card"
+          "license": "Iowa Driver's License or Non-Operator ID Number"
+          "voter_pin": Four-Digit Voter PIN
+          "identification": Please choose one of the following forms of identification
+          "Mail Address/P.O. Box": Mailing Address
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Do not add this contact info to my voter recored check box": Please do not add my phone number or email address to my voter record.
+      in:
+        abr_form_fields:
+          "Mailing Address number and street": Mailing address
+          "CityTown State ZIP Code_2": "City/Town, State, Zip"
+          "Registration Address number and street_2": "Assistant residential address"
+          "CityTown State ZIP Code_3": Assistant residential city, state, zip
+          "Mailing Address number and street_2": Assistant Mailing address
+          "CityTown State ZIP Code_4": Assistant Mailing city, state, zip
+          "ssn4": I have a social security number.
+          "SSN_last_4": Last 4 digits of my SSN
+          "No_SSN": I do not have a social security number.
+          "assistant": I am assisting the voter to complete this absentee ballot application.
+          "Name Please print_2": Assistant name
+          "assist_phone_day": Assistant daytime phone number
+          "assist_phone_evening": Assistant evening phone number
+          "assist_birthdate": Assistant date of birth
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Reason__options":
+            age: "I am a voter at least sixty-five (65) years of age."
+            "caregiver": "I will be caring for an individual confined to a private residence due to illness or injury during the entire twelve (12) hours that the polls are open."
+            "disability": "I am a voter with disabilities. NOTE: If you are unable to mark the ballot or sign the ballot security envelope, you must contact the county election board to process your application."
+            "election_duties": "I will have official election duties outside of my voting precinct."
+            "expected_absence": "I have a specific, reasonable expectation of being absent from the county on election day during the entire twelve (12) hours that the polls are open." 
+            "fail_safe_voter": "I am a voter eligible to vote under the “fail-safe” procedures in IC 3-10-11 or 3-10-12."
+            "illness": "I will be confined to my residence, a health care facility, or a hospital due to illness or injury during the entire twelve (12) hours that the polls are open."
+            "lack_transportation": "I am prevented from voting due to the unavailability of transportation to the polls."
+            "military": "I am a member of the military or a public safety officer."
+            "religious": "I am unable to vote at the polls in person due to observance of a religious discipline or religious holiday during the entire twelve (12) hours the polls are open."
+            "sex_offender": "I am a “serious sex offender” (as defined in IC 35-42-4-14(a))."
+            "work": "I am scheduled to work at my regular place of employment during the entire twelve (12) hours that the polls are open."
       ks:
         abr_form_fields:
           identification: "Please select one of the following:"
@@ -297,6 +337,7 @@ en:
       mo:
         abr_form_fields:
           "undefined": "Last 4 digit of my social security number"
+          "has_mailing_address": My mailing address differs from my residential address.
           "Street Address or PO Box": "Mailing address"
           "City State Zip Code_2": "City, State, Zip"
           "reason_for_request": "Reason for requesting an absentee ballot:"

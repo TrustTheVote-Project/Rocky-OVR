@@ -164,7 +164,7 @@ module AbrStateMethods::KS
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
       {"Mailing_City": {visible: "has_mailing_address"}},
-      {"Mailing_State": {visible: "has_mailing_address"}},
+      {"Mailing_State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"Mailing_Zip_Code": {visible: "has_mailing_address"}},
     ]
   end

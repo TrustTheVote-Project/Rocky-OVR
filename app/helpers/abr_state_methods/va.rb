@@ -94,7 +94,7 @@ module AbrStateMethods::VA
       {"Mailing_Address_1": {visible: "has_mailing_address"}},
       {"Mailing_Address_2": {visible: "has_mailing_address"}},
       {"Mailing_Address_3": {visible: "has_mailing_address"}},
-      {"Mailing_State": {visible: "has_mailing_address"}},
+      {"Mailing_State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"Mailing_Zip_Code": {visible: "has_mailing_address", min: 5, max: 10}},
       {"Mailing_Country": {visible: "has_mailing_address"}},
       {"need_assistance": {type: :checkbox}},
@@ -102,7 +102,7 @@ module AbrStateMethods::VA
       {"Assistant_Address": {visible: "need_assistance"}},
       {"Assistant_Apt": {visible: "need_assistance"}},
       {"Assistant_City": {visible: "need_assistance"}},
-      {"Assistant_State": {visible: "need_assistance"}},
+      {"Assistant_State": {visible: "need_assistance", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"Asistant_Zip": {visible: "need_assistance"}},
       {"Assistant_Phone": {visible: "need_assistance"}},
     ]
