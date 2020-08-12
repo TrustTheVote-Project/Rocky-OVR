@@ -203,7 +203,7 @@ module AbrStateMethods::AL
         "Wilcox",
         "Winston",
       ]}},
-      {"Precinct": {}},
+      {"Precinct": { required: true }},
       {"WorkPhone": {}},
       {"reason_instructions": {type: :instructions}},
       {"chkReason1": {type: :checkbox}},

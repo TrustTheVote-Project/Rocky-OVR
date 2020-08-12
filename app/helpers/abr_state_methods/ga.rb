@@ -65,7 +65,7 @@ module AbrStateMethods::GA
     
   }
  
-  EXTRA_FIELDS = ["has_mailing_address", "assisted_voter", "requestor"] 
+  EXTRA_FIELDS = ["has_mailing_address", "assisted_voter", "requestor", "request_electronic_transmission"] 
   
   def form_field_items
     [
@@ -230,19 +230,19 @@ module AbrStateMethods::GA
         "Wilkinson",
         "Worth",
       ]}},
-      {"type_of_ballot": {type: :radio }}, #TODO- is this really required?
+      {"type_of_ballot": {type: :radio, required: true }}, 
       {"has_mailing_address": {type: :checkbox}},
       {"Text13": {visible: "has_mailing_address"}},
       {"Text14": {visible: "has_mailing_address"}},
       {"Text15": {visible: "has_mailing_address", min: 5, max: 10}},
       {"Text16": {visible: "has_mailing_address"}},
-      {"address_has_changed": {type: :checkbox, visible: "has_mailing_address"}},
-      {"assisted_voter": {type: :checkbox}},
+      #{"address_has_changed": {type: :checkbox, visible: "has_mailing_address"}},
       {"requestor": {type: :checkbox}},
       {"Text25": {visible: "requestor"}},
       {"reason_other": {visible: "requestor", type: :radio, options: ["disabled", "out_of_country"]}},
       {"Elegibility": {type: :radio}},
       {"UOCAVA_Status": {visible: "elegibility_u", type: :radio, }},
+      {"request_electronic_transmission": {visible: "elegibility_u", type: :checkbox, }},
     ]
   end
   #e.g.
@@ -276,7 +276,7 @@ module AbrStateMethods::GA
   end
   
   def email_if_uocava
-    self.elegibility == "U" ? email : nil
+    self.elegibility == "U" && self.request_electronic_transmission == "1" ? email : nil
   end
  
 end

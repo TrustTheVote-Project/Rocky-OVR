@@ -98,7 +98,9 @@ module AbrStateMethods::DE
   
   def form_field_items
     [
-      {"fill_2": {}}, # Political Party
+      {"fill_2": {type: :select, options: [
+        "American Delta", "Democratic", "Green", "Independent", "Libertarian", "Republican"
+      ], include_blank: true, required: true }}, # Political Party
       {"Security Number": {required: true}},
       {"fill_10": {}},
       {"fill_11": {required: true}},  # Expected Election Day Location

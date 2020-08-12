@@ -88,14 +88,14 @@
                 %span.error= form.object.errors[opts[:method]].join("\n").html_safe
           
       - elsif opts[:type] == :string
-        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: {value: field_label}, instructions: instructions})
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions})
       - elsif opts[:type] == :radio
         %li.line{class: "#{opts[:method]}",  data: data}
           %ul.stacked.radio
-            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v.is_a?(String) ? Abr.make_method_name(v) : v]} #[[t('no'), false], [I18n.t('yes'), true]]
-            = field_li(form, opts[:method], {label_options: {value: field_label}, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
+            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
+            = field_li(form, opts[:method], {label_options:  field_label, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
       - elsif opts[:type] == :select
-        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: {value: field_label}, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })
       - elsif opts[:type] == :date
         %li.date{class: class_name, data: data}
           %h3

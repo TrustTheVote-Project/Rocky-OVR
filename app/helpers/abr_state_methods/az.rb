@@ -10,12 +10,10 @@ module AbrStateMethods::AZ
       value: "Off"
     },
     "General Election Only": {
-      options: ["Off", "On"],
-      value: "On"
+      options: ["Off", "On"]
     },
     "Every Election I authorize the County Recorder to include my name on the PEVL and automatically send": {
-      options: ["Off", "On"],
-      value: "Off"
+      options: ["Off", "On"]
     },
     "Democratic": {
       options: ["Off", "On"],
@@ -69,6 +67,7 @@ module AbrStateMethods::AZ
   
   def form_field_items
     [
+      {"election_selection": {type: :radio, options: ["general", "all"], required: true}},
       {"County_of_Residence": {type: :select, required: true, include_blank: true, options: [
         "Apache",
         "Cochise",
@@ -86,10 +85,31 @@ module AbrStateMethods::AZ
         "Yavapai",
         "Yuma",
       ]}},
+      # TODO  Make POB/dln/ssn4 separate with checkboxes to toggle fields on/off.
       {"Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {required: true}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
     ]
+  end
+  
+  def election_selection
+    if self.send(self.class.make_method_name("General Election Only")) == "On"
+      return "general"
+    elsif self.send(self.class.make_method_name("Every Election I authorize the County Recorder to include my name on the PEVL and automatically send")) == "On"
+      return "all"
+    else
+      return nil
+    end
+  end
+  
+  def election_selection=(val)
+    self.send("#{self.class.make_method_name("General Election Only")}=", "Off")
+    self.send("#{self.class.make_method_name("Every Election I authorize the County Recorder to include my name on the PEVL and automatically send")}=", "Off")
+    if val == "general"
+      self.send("#{self.class.make_method_name("General Election Only")}=", "On")      
+    elsif val == "all"
+      self.send("#{self.class.make_method_name("Every Election I authorize the County Recorder to include my name on the PEVL and automatically send")}=", "On")
+    end
   end
   
   def custom_form_field_validations

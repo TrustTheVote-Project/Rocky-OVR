@@ -54,7 +54,7 @@ en:
           "chkReason6": "I am a member of, or a spouse or dependent of a member of, the US Armed Forces or am otherwise similarly qualified to vote absentee pursuant to the Uniformed and Overseas Citizens Absentee Voting Act, 52 U.S.C. § 20302. (ID Not Required)"
           "chkReason7": "I have been appointed as an election officer at a polling place which is not my regular polling place."
           "chkReason8": "I am a caregiver for a family member to the second degree of kinship by affinty or consanguinity and the family member is confined to his or her home."
-          "chkReason9": "I am currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude."
+          "chkReason9": "I am currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude. <a target=\"_blank\" rel=\"noopener\" href=\"https://www.sos.alabama.gov/sites/default/files/voter-pdfs/Updated%20Version%20of%20Moral%20Turpitude%20Crimes.pdf\">See complete list</a>."
           "txtEarlierExpDate": "Expiration Date"
           "txtEarlierExpDate__hint": "This application for an absentee ballot will be valid for all county, state, and federal elections held during this calendar year unless you specify an earlier expiration date here:"
           "has_mailing_address": My mailing address differs from my residential address.
@@ -63,7 +63,7 @@ en:
           identification__options:
             dln_yes: "I have a driver's license."
             dln_no: "I do not have a driver's license."
-          "SSN_last_4": Last 4 digits of your SSN
+          "SSN_last_4": "Last 4 digits of your SSN"
           "Drivers_License_State": "Driver's License State"
           "Street_Address_1": Mailing address
           "City_1": City
@@ -93,6 +93,11 @@ en:
           "within_county": within the county in which I am registered to vote.
       az:
         abr_form_fields:
+          County_of_Residence: County of Residence
+          election_selection: "I am requesting a ballot for:"
+          election_selection__options:
+            general: <strong>General Election Only</strong>
+            all: <strong>Every Election</strong>. I authorize the County Recorder to include my name on the PEVL and automatically send me a ballot-by-mail for each election I am eligible for.
           "has_mailing_address": My mailing address differs from my residential address.
           "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": "Place of birth, driver's license #, or last 4 digits of social security number:"
       ca:
@@ -137,7 +142,7 @@ en:
           Fax or: "Fax Number"
       ga:
         abr_form_fields:
-          "has_mailing_address": I have a temporary address that differs from my resident address.
+          "has_mailing_address": I have a temporary address that differs from my resident address or permanent mailing address on file.
           "Text12": Residence County
           "Text13": Mailing address
           "Text14": City
@@ -148,8 +153,8 @@ en:
           "reason_other": I swear that the facts contained in this application are true, that I am a family member of the voter of the age of 18, and that the voter is
           "assisted_voter": Voter is disabled or illiterate and I assisted in completing this application. 
           "reason_other__options": 
-            "out_of_country": "temporarily residing out of the county"
-            "disabled": "physically disabled"
+            "out_of_country": "Temporarily residing out of the county"
+            "disabled": "Physically disabled"
           "Text23": "Today's date: (MM/DD/YYYY)"
           "requestor": I am requesting a ballot on behalf of the voter.
           "Text25": Relationship to voter
@@ -162,6 +167,7 @@ en:
             "MST": MST- Military Stateside
             "OST": OST- Overseas Temporary Resident
             "OSP": OSP- Overseas Permanent Resident- federal offices only
+          request_electronic_transmission: I request my ballot to be emailed to me.
       hi:
         abr:
           header: Absentee Requests In Hawaii
@@ -173,6 +179,7 @@ en:
             vic: "Voter Identification Card"
           "license": "Iowa Driver's License or Non-Operator ID Number"
           "voter_pin": Four-Digit Voter PIN
+          "voter_pin__hint": Voters who do not appear in the Iowa Dept. of Transportation's Driver's License or Non-Operator ID files are mailed an Iowa Voter Identification Card at the time of registration. Any voter may request a Voter Identification Card.
           "identification": Please choose one of the following forms of identification
           "Mail Address": Mailing Address
           "has_mailing_address": My mailing address differs from my residential address.
@@ -517,6 +524,7 @@ en:
       tx:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
+          has_mailing_address__hint: If you selected "Expected absence from the county" above, you must provide an address outside of your residence county.
           "Mail_Address": Mailing address
           "ZIP Code_2": Zip
           "Mailing City": "City"
@@ -535,7 +543,7 @@ en:
           "Reason": "Reason for voting by mail"
           "Reason__options":
             "age": 65 years of age or older
-            "confinment": Confinement to jail. You will receive a ballot for the upcoming election only.
+            "confinement": Confinement to jail. You will receive a ballot for the upcoming election only.
             "disability":  Disability
             "absence": Expected absence from the county. You will receive a ballot for the upcoming election only.
           "relative_relationship": Your relationship to person to whom the ballot will be mailed

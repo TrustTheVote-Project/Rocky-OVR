@@ -91,7 +91,7 @@ module AbrStateMethods::TX
   end
   
   def november_election_if_confined_to_jail
-    if self.send(self.class.make_method_name("Reason")) == "confinement"
+    if self.send(self.class.make_method_name("Reason")) == "confinement" || self.send(self.class.make_method_name("Reason")) == "absence"
       "November_election" 
     else
       "Off"
@@ -142,6 +142,13 @@ module AbrStateMethods::TX
         #errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
       end
     end
+    if self.reason == "absence" && self.has_mailing_address != "1"
+      errors.add(:has_mailing_address, "You must provide a mailing address outside of your residece county")
+    end
+    if self.reason == "confinement" && self.has_mailing_address != "1"
+      errors.add(:has_mailing_address, "You must provide a mailing address")
+    end
+    
     if self.send(self.class.make_method_name("where_to_mail")) == "relative"
       custom_validates_presence_of("relative_relationship")
     end

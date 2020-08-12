@@ -36,15 +36,19 @@ module AbrStateMethods::IN
       options: ["Democrat", "Off", "Republican", "public_question_only"],
       value: "Off"
     },
-    "assist_birthdate": {},
+    "assist_birthdate": { method: "assist_birthdate_mm_dd_yyyy"},
   }
-  EXTRA_FIELDS = ["has_mailing_address", "assistant", "ssn4"]
+  EXTRA_FIELDS = ["has_mailing_address", "assistant", "ssn4", "assist_birthdate_mm", "assist_birthdate_dd", "assist_birthdate_yyyy"]
+ 
+  def assist_birthdate_mm_dd_yyyy
+    dates = [assist_birthdate_mm, assist_birthdate_dd, assist_birthdate_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    dates && dates.length == 3 ? dates.join("/") : nil
+  end
  
   def form_field_items
     [
       {"Reason": {required: true, type: :radio}},
-      {"ssn4": {type: :checkbox}},
-      {"SSN_last_4": {visible: "ssn4"}},
+      {"SSN_last_4": {hidden: "no_ssn"}},
       {"No_SSN": {type: :checkbox}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing Address number and street": {visible: "has_mailing_address"}},
@@ -57,26 +61,34 @@ module AbrStateMethods::IN
       {"CityTown State ZIP Code_4": {visible: "assistant"}},
       {"assist_phone_day": {visible: "assistant"}},
       {"assist_phone_evening": {visible: "assistant"}},
-      {"assist_birthdate": {visible: "assistant"}}
+      {"assist_birthdate": {visible: "assistant", type: :date, m: "assist_birthdate_mm", d: "assist_birthdate_dd", y: "assist_birthdate_yyyy"}}
     ]
   end
-  #e.g.
-  # [
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
+
   
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.no_ssn != "1"
+      custom_validates_presence_of("SSN_last_4")
+    end
+    if self.has_mailing_address == "1"
+      [
+        "Mailing Address number and street",
+        "CityTown State ZIP Code_2"
+      ].each do |f|
+        custom_validates_presence_of(f)
+      end
+    end
+    if self.assistant == "1"
+      [
+        "Name Please print_2",
+        "Registration Address number and street_2",
+        "CityTown State ZIP Code_3",
+        "assist_birthdate_mm_dd_yyyy"
+      ].each do |f|
+        custom_validates_presence_of(f)
+      end
+    end
   end
   
  

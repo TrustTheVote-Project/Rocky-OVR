@@ -191,7 +191,8 @@ absentee_states:
   UT: {}  
   VA:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
-    pdf_template: va.pdf
+    pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
+    # pdf_template: va.pdf
   VT:
     online_req_url: https://mvp.sec.state.vt.us/
     # pdf_template: vt.pdf
@@ -202,8 +203,8 @@ absentee_states:
     # pdf_template: wi.pdf
     pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-07/EL-121%20Application%20for%20Absentee%20Ballot%20%282018-10%29-Fillable.pdf
   WV:
-    online_req_url:
-    pdf_template: wv.pdf
+    online_req_url: 
+    # pdf_template: wv.pdf
   WY:
     pdf_template: wy.pdf
   
