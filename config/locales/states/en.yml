@@ -4,8 +4,8 @@ en:
     custom:
       ak:
         state_online_abr:
-          header: You can request an Absentee Ballot online directly with the state of Alaska
-          requirements: If you have a valid Alaska driver's license etc, you may request your absentee ballot online directly with the state of Alaska.
+          header: Good news, you can request an Absentee Ballot online directly with the state of Alaska
+          requirements: To request your absentee ballot online, you must have a valid Alaska driver's license or state ID card.
           confirm: I meet these requirements and would like to finish my request directly with the state.
           instructions: <p>State-specific set of instructions</p><ul><li>may</li><li>include</li><li>html</li>
           finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
