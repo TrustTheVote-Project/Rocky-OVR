@@ -105,6 +105,8 @@ zh:
       working_families: 工薪家庭
       unenrolled: 無參加
       other: 其他
+      independence: Independence
+      sam: SAM
     no_party_label:
       none: 以上都不是
       none_no_affiliation: "."
