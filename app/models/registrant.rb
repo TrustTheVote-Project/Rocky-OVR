@@ -1145,7 +1145,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def use_short_form?
-    short_form?# && !in_ovr_flow?
+    short_form? || mail_with_esig? # && !in_ovr_flow?
   end
     
 
