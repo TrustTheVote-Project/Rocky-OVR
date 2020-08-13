@@ -31,6 +31,8 @@ tl:
       republican: Republikano
       working_families: Nagtatrabahong pamilya
       other: Iba pa
+      independence: Independence
+      sam: SAM
     no_party_label:
       none: Wala
       decline_to_state: Tumangging magsabi

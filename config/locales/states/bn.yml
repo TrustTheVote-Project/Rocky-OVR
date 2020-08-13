@@ -30,6 +30,8 @@ bn:
       working_families: ওয়ার্কিং ফ্যামিলিস
       unenrolled: তালিকাভূক্ত নয়
       other: অন্যান্য
+      independence: Independence
+      sam: SAM
     no_party_label:
       none: কোনটিই নয়
       decline_to_state: উল্লেখ করতে অনাগ্রহী

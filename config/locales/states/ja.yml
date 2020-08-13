@@ -22,6 +22,8 @@ ja:
       working_families: ワーキングファミリー党
       unenrolled: 未加入
       other: その他の党
+      independence: Independence
+      sam: SAM
     no_party_label:
       none: 無し
       decline_to_state: 回答を辞退します。

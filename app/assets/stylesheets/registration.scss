@@ -771,7 +771,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     font-weight: inherit;
-    color: #B2272C;
+    color: #B32426;
 }
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
     font-weight: inherit;
@@ -909,7 +909,7 @@ a:focus {
 ================================================== */
 
 .button, button, input[type="submit"], input[type="reset"],	input[type="button"] {
-	background: #B2272C;	
+	background: #B32426;	
 	margin-top: 20px;
 	margin-bottom: 20px;
 	border:none;
@@ -938,12 +938,12 @@ a:focus {
 	margin-left: 90px;
 }
 .button:hover, button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
-	color: #B2272C;
+	color: #B32426;
 	background:#292929;
-	border-bottom: 1px solid #B2272C;
+	border-bottom: 1px solid #B32426;
 }
 .button:active,	button:active, input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:active {
-	  color: #B2272C;
+	  color: #B32426;
 }
 .button.full-width,	button.full-width, input[type="submit"].full-width,	input[type="reset"].full-width,	input[type="button"].full-width {
 	width: 100%;
@@ -1554,7 +1554,7 @@ fieldset.no_border {
     width: 75%;
 }
 .error {
-    color: #b2272c;
+    color: #B32426;
     font-weight: bolder;
 }
 #progress-bar li.progress-title {
