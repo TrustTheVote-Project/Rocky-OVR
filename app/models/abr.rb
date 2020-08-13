@@ -91,10 +91,6 @@ class Abr < ActiveRecord::Base
     email
   end
   
-  def tracking_source
-  end
-  def tracking_id
-  end
   
   def use_state_flow?
     #TBD
