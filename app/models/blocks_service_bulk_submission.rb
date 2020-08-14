@@ -53,7 +53,13 @@ class BlocksServiceBulkSubmission < ActiveRecord::Base
           self.partners_submitted[pid] = "Submitting #{registrants.count} Registrants"
           self.save
           service = BlocksService.new
+          #begin
           service.upload_complete_shift_for_partner(partner, registrants, shift_start, shift_end)
+          # rescue Exception => e
+          #   puts "#{partner.id}"
+          #   puts "#{e.message}"
+          #   puts "#{e.backtrace}"
+          # end
         else
           self.partners_submitted[pid] = "No Registrants Submitted"
           self.save
