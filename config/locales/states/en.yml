@@ -648,6 +648,8 @@ en:
       working_families: Working Families
       unenrolled: Unenrolled
       other: Other
+      independence: Independence
+      sam: SAM
     no_party_label:
       none: None
       none_no_affiliation: None (No Affiliation)

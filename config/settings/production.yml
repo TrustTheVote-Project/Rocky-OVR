@@ -81,12 +81,71 @@ blocks_configuration:
       canvasser_id: 19000000021
       location_id: 19000000002
       staging_location_id: 19000000003
+    16027:
+      turf_id: 19000000049
+      canvasser_id: 19000000028
+      location_id: 19000000002
+      staging_location_id: 19000000003      
+    35863:
+      turf_id:      19000000047
+      canvasser_id: 19000000030
+      location_id: 19000000002
+      staging_location_id: 19000000003      
+    36853:
+      turf_id:      19000000044
+      canvasser_id: 19000000033
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37281:
+      turf_id:      19000000027
+      canvasser_id: 19000000012
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37496:
+      turf_id:      19000000043
+      canvasser_id: 19000000034  
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    37570:
+      turf_id:      19000000046
+      canvasser_id: 19000000031  
+      location_id: 19000000002
+      staging_location_id: 19000000003      
+    37625:
+      turf_id:      19000000042
+      canvasser_id: 19000000035  
+      location_id: 19000000002
+      staging_location_id: 19000000003      
+    38164:
+      turf_id:      19000000045
+      canvasser_id: 19000000032
+      location_id: 19000000002
+      staging_location_id: 19000000003        
+    38332:
+      turf_id:      19000000037
+      canvasser_id: 19000000036  
+      location_id: 19000000002
+      staging_location_id: 19000000003              
+    38581:
+      turf_id:      19000000050
+      canvasser_id: 19000000027  
+      location_id: 19000000002
+      staging_location_id: 19000000003              
+    38631:
+      turf_id:      19000000048
+      canvasser_id: 19000000029  
+      location_id: 19000000002
+      staging_location_id: 19000000003              
+    38677:
+      turf_id:      19000000026
+      canvasser_id: 19000000011  
+      location_id: 19000000002
+      staging_location_id: 19000000003     
 
 states_with_online_registration:
   - AZ
   - CA
   - DE
-  - DC
   - FL
   - LA
   - MN

@@ -274,7 +274,7 @@ ovr_states:
       - en
       - es
   DC:
-    redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: false
     languages:
       - en
   DE:
