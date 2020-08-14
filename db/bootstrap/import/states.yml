@@ -469,10 +469,12 @@ record_32:
   party_tooltip: required_for_primary
   parties:
   - democratic
+  - independence
   - independent
   - green
   - libertarian
   - republican
+  - sam
   - working_families
   - other
   id_number_tooltip: drivers_license_or_other_with_state_name_4

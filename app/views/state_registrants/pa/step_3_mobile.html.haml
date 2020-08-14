@@ -26,6 +26,12 @@
     
   
     function registerTouch() {
+      //No iframe!
+      if (top.location!= self.location) {
+         top.location = self.location.href;
+      }
+      
+      
       $("#signature_capture").show();   
       $("#signature_upload").hide();
       var canvas = $("canvas#signature_field").get(0);

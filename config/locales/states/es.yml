@@ -170,6 +170,8 @@ es:
       working_families: Familias Trabajadoras
       unenrolled: Unenrolled
       other: Otros
+      independence: Independence
+      sam: SAM
     no_party_label:
       none: Ninguno
       none_no_affiliation: Ninguno (Sin afiliación)

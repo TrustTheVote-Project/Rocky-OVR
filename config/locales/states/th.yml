@@ -25,6 +25,8 @@ th:
       republican: พรรครีพับลิกัน
       working_families: พรรคเวิร์คกิ้งแฟมิลี่
       other: พรรคอื่นๆ
+      independence: Independence
+      sam: SAM
     no_party_label:
       none: ไม่มี
       decline_to_state: ไม่ต้องการระบุ
