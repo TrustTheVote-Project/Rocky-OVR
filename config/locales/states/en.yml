@@ -347,8 +347,8 @@ en:
         abr_form_fields:
           "undefined": "Last 4 digit of my social security number"
           "has_mailing_address": My mailing address differs from my residential address.
-          "Street Address or PO Box": "Mailing address"
-          "City State Zip Code_2": "City, State, Zip"
+          "mailing_address_1": "Mailing address"
+          "mailing_address_2": "City, State, Zip"
           "reason_for_request": "Reason for requesting an absentee ballot:"
           "reason_for_request__options": 
             "absent": "Absence on Election Day from the jurisdiction of the election authority in which I am registered"
