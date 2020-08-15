@@ -1,6 +1,4 @@
 <%= hidden_field_tag "partner", @partner_id %>
-<%= hidden_field_tag "source", @source %>
-<%= hidden_field_tag "tracking", @tracking %>
 
 <% content_for :head do %>
 <script>
@@ -11,6 +9,11 @@ $(document).ready(function() {
 <% end %>
 <%= form.hidden_field :javascript_disabled %>
 <%= form.hidden_field :votercheck %>
+<%= form.hidden_field :first_name %>
+<%= form.hidden_field :last_name %>
+<%= form.hidden_field :tracking_source %>
+<%= form.hidden_field :tracking_id %>
+<%= form.hidden_field :home_state %>
 
 <ul class="flat registrant-form__email">
   <li class="width_f registrant-form__email__line">

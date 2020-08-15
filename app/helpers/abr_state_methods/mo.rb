@@ -20,15 +20,19 @@ module AbrStateMethods::MO
     "City State Zip Code": {
       method: "address_city_state_zip"
     },
-    "Street Address or PO Box": {},
-    "City State Zip Code_2": {},
+    "Street Address or PO Box": {
+      method: "mailing_address_1_if_different"
+    },
+    "City State Zip Code_2": {
+      method: "mailing_address_2_if_different"      
+    },
     "Include Area Code": {
       method: "phone"
     },
     #Date
     #voter_signature
   }
-  EXTRA_FIELDS = ["has_mailing_address"]
+  EXTRA_FIELDS = ["has_mailing_address", "mailing_address_1", "mailing_address_2"]
   
   def form_field_items
     [
@@ -36,10 +40,17 @@ module AbrStateMethods::MO
       {"reason_for_request": {type: :radio, required: true, options: [
         "absent", "incapacity", "religious", "election_official", "incarceration", "confidential"
       ]}},
-      {"has_mailing_address": {type: :checkbox}}, #TODO- when not checked, autofill the mailing with residential
-      {"Street Address or PO Box": {required: true}},
-      {"City State Zip Code_2": {required: true}},
+      {"has_mailing_address": {type: :checkbox}}, 
+      {"mailing_address_1": {visible: "has_mailing_address"}},
+      {"mailing_address_2": {visible: "has_mailing_address"}},
     ]
+  end
+  
+  def mailing_address_1_if_different
+    self.has_mailing_address == "1" ? mailing_address_1 : address
+  end
+  def mailing_address_2_if_different
+    self.has_mailing_address == "1" ? mailing_address_2 : address_city_state_zip
   end
   
   REASONS = {
@@ -70,8 +81,10 @@ module AbrStateMethods::MO
 
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.has_mailing_address == "1"
+      custom_validates_presence_of("mailing_address_1")
+      custom_validates_presence_of("mailing_address_2")
+    end
   end
   
  

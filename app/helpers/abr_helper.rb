@@ -23,4 +23,5 @@ module AbrHelper
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     @home_state ||= @zip ? GeoState.for_zip_code(@zip.strip) : nil
   end
+    
 end
