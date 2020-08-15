@@ -14,11 +14,18 @@ module AbrStateMethods::STATE_ABBREV
   
   def form_field_items
     [
+      {"County": {type: :select, required: true, include_blank: true, options: [
+
+      ]}},
       {"has_mailing_address": {type: :checkbox}},
     ]
   end
   #e.g.
   # [
+  #   {"reason_instructions": {type: :instructions}}, *"reason_instructions" does NOT get put into EXTRA_FIELDS
+  #   {"County": {type: :select, required: true, include_blank: true, options: [
+  #     "Adams",
+  #   ]}},
   #   {"Security Number": {required: true}},
   #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
   #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},

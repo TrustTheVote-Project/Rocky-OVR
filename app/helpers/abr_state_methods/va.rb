@@ -31,7 +31,7 @@ module AbrStateMethods::VA
       value: "None"
     },
     "Address_1": {
-      method: "address"
+      method: "address_line_1"
     },
     "Mailing_Address_1": {},
     "Address_2": {

@@ -135,8 +135,7 @@ absentee_states:
     pdf_template: mo.pdf
   MS: {}
   MT:
-    pdf_template:
-    pdf_url: https://sosmt.gov/Portals/142/Elections/Forms/Application-for-Absentee-Ballot.pdf
+    pdf_template: mt.pdf
   NC:
     pdf_template:      
     pdf_url: https://s3.amazonaws.com/dl.ncsbe.gov/Forms/NCAbsenteeBallotRequestForm.pdf
@@ -145,8 +144,7 @@ absentee_states:
     pdf_template:
     pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
   NE:
-    pdf_template:
-    pdf_url: https://sos.nebraska.gov/sites/sos.nebraska.gov/files/doc/elections/earlyvote_app_fill.pdf
+    pdf_template: ne.pdf
   NH:
     pdf_template: 
     pdf_url: http://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589999327
@@ -158,8 +156,7 @@ absentee_states:
     pdf_template:
     pdf_url: https://realfileee3072ab0d43456cb15a51f7d82c77a2.s3.amazonaws.com/97e1ee9d-281c-412a-9a85-0ea2e65f70ff?AWSAccessKeyId=AKIAJBKPT2UF7EZ6B7YA&Expires=1594221251&Signature=MXa6eiIsNedMu%2BRVpWNkDOQdLOU%3D&response-content-disposition=inline%3B%20filename%3DNMAV%2009-2019.pdf&response-content-type=application%2Fpdf
   NV:
-    pdf_template:
-    pdf_url: https://www.nvsos.gov/sos/home/showdocument?id=8262
+    pdf_template: nv.pdf
     counties:
       clark:
         online_req_url: https://www.nvsos.gov/sos/home/showdocument?id=8262
@@ -181,11 +178,9 @@ absentee_states:
   SC:
     online_req_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeRequest
   SD:
-    pdf_template:
-    pdf_url: https://sdsos.gov/elections-voting/assets/AbsenteeBallotApplicationFillable.pdf
+    pdf_template: sd.pdf
   TN:
-    pdf_template:
-    pdf_url: https://sos-tn-gov-files.tnsosfiles.com/2020%20Absentee%20Request%20-%20August.pdf
+    pdf_template: tn.pdf
   TX:
     pdf_template: tx.pdf
   UT: {}  

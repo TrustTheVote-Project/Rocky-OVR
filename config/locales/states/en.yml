@@ -363,6 +363,20 @@ en:
           header: Absentee Requests In Mississippi
           instructions: <p>Mississippi requires all absentee requests to be completed directly through the state.</p>
       
+      mt:
+        abr_form_fields:
+          "address_instructions": "Please choose one or both of the following options, if applicable:"
+          "has_mailing_address": I have a permanent mailing address that differs from my residential address.
+          "Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only": I have a mailing address that differs from my residential address for only part of the year.
+          "Mailing Address required if differs from residence address": Mailing address
+          "Zip Code_2": Zip
+          "City and State_2": "City and State"
+          "Zip Code_3": "Zip"
+          "Period mmddyyyymmddyyyy": "Period (MM/DD/YYYY-MM/DD/YYYY)"
+          "Seasonal Mailing Address Optional": Part-time Mailing Address
+          "designee": I would like to designate someone else to pick up my absentee ballot.
+          "Receipt of absentee ballot by designee I received the absentee ballot for the applicant on": "Name of designee who will pick up my absentee ballot:"
+      
       nc:
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.
@@ -372,7 +386,33 @@ en:
             <br/>2. Click the button below to continue.
             <br/>3. On the DMV website, click \"Continue to myNCDMV Services.\"
             <br/>4. Click \"Continue as a guest\" and submit your voter registration online."
+      ne:
+        abr_form_fields:
+          "County Name2": Registered County
+          "Address Line 2": Mailing address
+          "City, State, Zip1": City, State, Zip
+          "agent": I am an agent assisting the voter with this application.
+          "Relationship": My relationship to the voter
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Ballot Method": "How would you like to vote?"
+          "Ballot Method__options":
+            "mail_ballot": "I request that ballots be mailed to me (or to the person I am acting as agent for)."
+            "take_ballot": "I request to take the ballots with me, (or to the person I am acting as agent for, up to two people)."
+            "vote_here": "I request to vote in the Election Office today as the Early Voting Polling Place."
       nv:
+        abr_form_fields:
+          "RegistrationNo": "Nevada Driver's License or Nevada ID Card Number, if applicable"
+          "MailingAddress": "Mailing Address"
+          "MailApt": "Apt/Unit"
+          "MailingCity": "City"
+          "MailingState": "State"
+          "MailingZip": "Zip"
+          "military_instructions": "If applicable, check one of the following: (Note: 'Military Domestic' and 'Military Overseas' apply to those who are active duty and absent from their Nevada voting residence.)"
+          "MilitaryDomestic": "Military Domestic"
+          "MilitaryOverseas": "Military Overseas"
+          "CivilianOverseas": "Civilian Overseas"
+          "ProvidedBy": "If this form was provided to you by a third-party group, list their information here."
+          "has_mailing_address": My mailing address differs from my residential address.
         online_instructions: |-
           <p>You can complete your voter registration online with
           the state below. The Nevada Online Voter Application (NOVA) is provided
@@ -521,6 +561,55 @@ en:
             provide_signature: Provide Signature
             select_file: Select an image to upload
             copy_link: Copy Link      
+      sd:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residence address
+          "SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your address changes after this is submitted you must submit a new form": Mailing address
+          "City State_2": City, State
+          "Zip Code_2": Zip
+          "Last Name_2": "Messenger's last name"
+          "First Name_2": "First name"
+          "Daytime telephone": "Messenger's phone number"
+          "Apt or Lot_2": "Apt/lot #"
+          "Zip Code_3": "Zip"
+          "authorized_address": "Messenger's address"
+          "authorized_city_state": "City, State"
+          "messenger": Due to my own sickness or disability, I would like to authorize a messenger to pick up my absentee ballot for me.
+          "uocava": I am a military and/or overseas citizen.
+          "uocava_email": I would like my absentee ballot mailed to me.
+          "UOCAVA_1": "I am a member of the Uniformed Services or Merchant Marine on active duty."
+          "UOCAVA_2": "I am an eligible spouse or dependent of a member of the Uniformed Services or Merchant Marine on active duty."
+          "UOCAVA_3": "I am a U.S. citizen residing outside the United States."
+      tn:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residence address
+          "Mailing Address (if different)": Mailing address
+          "voter_cannot_sign": Voter is unable to sign their own name and needs an assistant and a witness.
+          "Address of Person Assisting": "Mailing Address of Person Assisting"
+          "Address of Witness": "Mailing Address of Witness"
+          "Reason": "Reason for requesting an absentee ballot:"
+          "Reason__options":
+            "Choice1": I am 60 years of age or older.
+            "Choice2": I will be outside my county during all hours of early voting and before the polls close on Election Day.
+            "Choice3": "I am hospitalized, ill or physically disabled and unable to appear at my polling place to vote."
+            "Choice4": "I am a caretaker of a hospitalized, ill or physically disabled person."
+            "Choice5": "I am a full-time student or spouse of a full-time student outside my county."
+            "Choice6": "I reside in a licensed facility, outside my county, providing relatively permanent domiciliary care, i.e. Nursing Home."
+            "Choice7": "I am a candidate for office in the election for which I am applying to vote absentee by-mail."
+            "Choice8": "I am observing a religious holiday that prevents me from voting during early voting or on Election Day."
+            "Choice9": "I will be serving as an election official or a member or employee of the election commission on Election Day."
+            "Choice10": I will be serving on jury duty in state or federal court.
+            "Choice11": "I am a voter with a disability and my polling place is inaccessible."
+            "Choice12": "I have a CDL or TWIC or I am a spouse of a person with a CDL or TWIC and will be out of the county during early voting and Election Day."
+            "Choice13": "I am a member of the military, spouse, or dependent."
+            "Choice14": "I am an activated National Guard member on state orders."
+            "Choice15": "I am an overseas citizen and otherwise qualified to vote in TN."
+          "CDL or TWIC Number": "Enclosed is a copy of the CDL or TWIC (required) and the number is:"
+          "Transmission": "You must include a mailing address outside the county, even if the ballot is emailed. Send military/overseas ballot by:"
+          "transmission_13": "You must include a mailing address outside the county, even if the ballot is emailed. Send military/overseas ballot by:"
+          "transmission_14": "You must include a mailing address outside the county, even if the ballot is emailed. Send military/overseas ballot by:"
+          "transmission_15": "You must include a mailing address outside the county, even if the ballot is emailed. Send military/overseas ballot by:"
+            
       tx:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
