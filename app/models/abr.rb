@@ -182,8 +182,6 @@ class Abr < ActiveRecord::Base
     I18n.t("states.custom.#{home_state_abbrev.downcase}.abr.email_instructions", default: '')
   end
   
-  
-  
   def zip=(zip)
     self[:zip] = zip
     if zip && !zip.blank?

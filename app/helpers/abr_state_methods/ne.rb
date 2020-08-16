@@ -1,5 +1,23 @@
 module AbrStateMethods::NE
   
+  def registrar_address_lines
+    unless @registrar_address_lines
+      @registrar_address_lines = state_registrar_address.split(/<br\/?>/)
+    end
+  end
+  
+  def registrar_address_line_1
+    registrar_address_lines[0]
+  end
+  
+  def registrar_address_line_2
+    registrar_address_lines[1]
+  end
+  
+  def registrar_address_city
+    registrar_address_lines[2]&.split(",")&.first
+  end
+  
   PDF_FIELDS = {
     #"Date1": {}
     "County1": {},
@@ -21,10 +39,10 @@ module AbrStateMethods::NE
       value: "20"
     },
     "Address Line 1": {
-      method: "full_name"
+      method: "mailing_address_name_line"
     },
-    "Address Line 2": {},
-    "City, State, Zip1": {},
+    "Address Line 2": { method: "mailing_or_residence_address" },
+    "City, State, Zip1": { method: "mailing_or_residence_city_state_zip" },
     "Phone1": {
       method: "phone"
     },
@@ -50,11 +68,30 @@ module AbrStateMethods::NE
     },
     "Ballot Method": { options: ["mail_ballot", "take_ballot", "vote_here"] },
   }
-  EXTRA_FIELDS = ["has_mailing_address", "agent"]
+  EXTRA_FIELDS = ["has_mailing_address", "agent", "mailing_address", "mailing_city_state_zip"]
   
-  #def mailing_address_is_registered_address
-  #   TODO when "has_mailing_address" is NOT checked, this should be filled in with the registered address.
-  #end
+  def mailing_address_name_line
+    return nil unless ballot_method == "mail_ballot"
+    return full_name
+  end
+  
+  def mailing_or_residence_address
+    return nil unless ballot_method == "mail_ballot"
+    if self.has_mailing_address == "1"
+      return self.mailing_address
+    else
+      return address
+    end
+  end
+  
+  def mailing_or_residence_city_state_zip
+    return nil unless ballot_method == "mail_ballot"
+    if self.has_mailing_address == "1"
+      return self.mailing_city_state_zip
+    else
+      return address_city_state_zip
+    end
+  end
   
   
   def form_field_items
@@ -155,30 +192,23 @@ module AbrStateMethods::NE
         "York",
       ]}},
       {"Ballot Method": {type: :radio}},
-      {"has_mailing_address": {type: :checkbox}}, #TODO- when not checked, autofill the mailing with residential
-      {"Address Line 2": {visible: "has_mailing_address"}},
-      {"City, State, Zip1": {visible: "has_mailing_address"}},
+      {"has_mailing_address": {type: :checkbox}},
+      {"mailing_address": {visible: "has_mailing_address"}},
+      {"mailing_city_state_zip": {visible: "has_mailing_address"}},
       {"agent": {type: :checkbox}},
       {"Relationship": {visible: "agent"}},
     ]
-  end
-  #e.g.
-  # [
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
-  
+  end  
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if has_mailing_address == "1"
+      custom_validates_presence_of("mailing_address")
+      custom_validates_presence_of("mailing_city_state_zip")
+    end
+    if agent == "1"
+      custom_validates_presence_of("Relationship")
+    end
+      
   end
   
  

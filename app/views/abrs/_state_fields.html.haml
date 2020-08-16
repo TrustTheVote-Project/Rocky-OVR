@@ -15,8 +15,10 @@
       }
       if (showField) {
         $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)
       } else {
         $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)
       }
       
     })
@@ -38,8 +40,10 @@
       }
       if (showField) {
         $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)        
       } else {
         $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)        
       }
       
     })

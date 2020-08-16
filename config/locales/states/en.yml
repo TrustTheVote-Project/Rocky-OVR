@@ -396,6 +396,8 @@ en:
           "agent": I am an agent assisting the voter with this application.
           "Relationship": My relationship to the voter
           "has_mailing_address": My mailing address differs from my residential address.
+          "mailing_address": Mailing Address
+          "mailing_city_state_zip": City, State, Zip
           "Ballot Method": "How would you like to vote?"
           "Ballot Method__options":
             "mail_ballot": "I request that ballots be mailed to me (or to the person I am acting as agent for)."
