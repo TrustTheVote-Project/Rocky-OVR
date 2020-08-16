@@ -28,11 +28,29 @@ module AbrPdfMethods
   end
   
   def pdf_template_name
-    @pdf_template_name ||= RockyConf.absentee_states[home_state_abbrev]&.pdf_template
+    unless @pdf_template_name 
+      RockyConf.absentee_states[home_state_abbrev].tap do |state_config|
+        if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
+          @pdf_template_name = state_config.counties[self.county_from_zip.downcase].pdf_template
+        else
+          @pdf_template_name = state_config&.pdf_template
+        end
+      end
+    end
+    @pdf_template_name
   end
   
   def state_pdf_url
-    @state_pdf_url ||= RockyConf.absentee_states[home_state_abbrev]&.pdf_url
+    unless @state_pdf_url 
+      RockyConf.absentee_states[home_state_abbrev].tap do |state_config|
+        if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
+          @state_pdf_url = state_config.counties[self.county_from_zip.downcase].pdf_url
+        else
+          @state_pdf_url = state_config&.pdf_url
+        end
+      end
+    end
+    @state_pdf_url
   end
   
   def has_pdf_template?

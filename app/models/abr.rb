@@ -75,7 +75,7 @@ class Abr < ActiveRecord::Base
   end
   
   def home_state_oabr_url
-    home_state && home_state.oabr_url
+    home_state && home_state.oabr_url(self)
   end
   
   def oabr_for_all?
@@ -176,6 +176,11 @@ class Abr < ActiveRecord::Base
   
   def state_registrar_address
     home_state && home_state.registrar_address(self.zip)
+  end
+  
+  def county_from_zip
+    z = ZipCodeCountyAddress.find_by_zip(self.zip)
+    return z.county[0] if z
   end
   
   def home_state_email_instructions

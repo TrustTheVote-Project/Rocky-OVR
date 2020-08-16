@@ -158,8 +158,8 @@ absentee_states:
   NV:
     pdf_template: nv.pdf
     counties:
-      clark:
-        online_req_url: https://www.nvsos.gov/sos/home/showdocument?id=8262
+      "clark county":
+        online_req_url: https://www.clarkcountynv.gov/election/Pages/VoterServices.aspx
   NY:
     pdf_template:
     pdf_url: https://www.elections.ny.gov/NYSBOE/download/voting/AbsenteeBallot-English.pdf

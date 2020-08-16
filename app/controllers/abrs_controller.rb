@@ -47,7 +47,7 @@ class AbrsController < ApplicationController
   end
   
   def state_online_redirect
-    find_abr
+    find_abr(:state_online_redirect)
     @abr.update_attributes(:finish_with_state=>true)
     render :html => "<html><body><script>parent.location.href='#{@abr.home_state_oabr_url}';</script></body></html>".html_safe    
   end

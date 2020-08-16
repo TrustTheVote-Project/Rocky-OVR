@@ -79,10 +79,17 @@ class StateCustomization
   end
   
   def online_abr_enabled?(abr)
-    oabr_url.present?
+    oabr_url(abr).present?
   end
   
-  def oabr_url
+  def oabr_url(abr = nil)
+    if abr && abr_settings&.counties
+      begin
+        url = abr_settings&.counties[abr.county_from_zip.downcase].online_req_url
+        return url unless url.blank?
+      rescue
+      end
+    end
     abr_settings&.online_req_url
   end
   
