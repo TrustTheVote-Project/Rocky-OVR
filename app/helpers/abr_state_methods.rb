@@ -183,7 +183,20 @@ module AbrStateMethods
       next if field_opts[:type] == :instructions
       value = field_opts[:type] == :date ? date_field_value(field_opts) : self.send(field_opts[:method])
       if field_opts[:required]
-        if value.blank?
+        is_required = field_opts[:requred] == true
+        if field_opts[:required] == :if_visible && field_opts[:visible]
+          method = field_opts[:visible]
+          if self.send(method) == "1"
+            is_required = true
+          end
+        end
+        if field_opts[:required] == :if_visible && field_opts[:hidden]
+          method = field_opts[:hidden]
+          if self.send(method) != "1"
+            is_required = true
+          end
+        end
+        if is_required && value.blank?
           errors.add(field_opts[:method], custom_required_message(field_name))
         end
       end
