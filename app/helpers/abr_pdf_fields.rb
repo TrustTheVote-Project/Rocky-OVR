@@ -62,6 +62,10 @@ module AbrPdfFields
     unit.blank? ? nil : "#{unit}"
   end
   
+  def address_city_state
+    "#{city}, #{home_state_abbrev}"
+  end
+  
   def address_city_state_zip
     "#{city}, #{home_state_abbrev} #{zip}"
   end

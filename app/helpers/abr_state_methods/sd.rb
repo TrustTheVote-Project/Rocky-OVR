@@ -3,7 +3,7 @@ module AbrStateMethods::SD
   PDF_FIELDS = {
     "County": {},
     "Last Name": {
-      method: "last name"
+      method: "last_name"
     },
     "First Name": {
       method: "first_name"
@@ -20,7 +20,9 @@ module AbrStateMethods::SD
     "Apt or Lot": {
       method: "unit"
     },
-    "City State": {}, #TODO- make this work
+    "City State": {
+      method: "address_city_state"
+    }, 
     "Zip Code": {
       method: "zip"
     },
@@ -41,7 +43,7 @@ module AbrStateMethods::SD
     },
     "Box 2": { 
       options: ["Off", "Yes"],
-      value: "On"
+      value: "Yes"
     },
     "Box 3": { 
       options: ["Off", "Yes"],
@@ -59,7 +61,9 @@ module AbrStateMethods::SD
       options: ["Off", "Yes"],
       value: "Off"
     },
-    "Email address": {},
+    "Email address": {
+      method: "email_if_military_opt_in"
+    },
     "verification": { 
       options: ["Off", "notarized", "photo"],
       value: "Off"
@@ -176,36 +180,32 @@ module AbrStateMethods::SD
         "Ziebach",
       ]}},
       {"has_mailing_address": {type: :checkbox}},
-      {"SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your address changes after this is submitted you must submit a new form": {visible: "has_mailing_address"}},
-      {"City State_2": {visible: "has_mailing_address"}},
-      {"Zip Code_2": {visible: "has_mailing_address"}},
+      {"SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your address changes after this is submitted you must submit a new form": {visible: "has_mailing_address", required: :if_visible}},
+      {"City State_2": {visible: "has_mailing_address", required: :if_visible}},
+      {"Zip Code_2": {visible: "has_mailing_address", required: :if_visible}},
       {"messenger": {type: :checkbox}},
-      {"Last Name_2": {visible: "messenger"}},
-      {"First Name_2": {visible: "messenger"}},
-      {"authorized_address": {visible: "messenger"}},
+      {"Last Name_2": {visible: "messenger", required: :if_visible}},
+      {"First Name_2": {visible: "messenger", required: :if_visible}},
+      {"authorized_address": {visible: "messenger", required: :if_visible}},
       {"Apt or Lot_2": {visible: "messenger"}},
-      {"authorized_city_state": {visible: "messenger"}},
-      {"Zip Code_3": {visible: "messenger"}},
-      {"Daytime telephone": {visible: "messenger"}},
+      {"authorized_city_state": {visible: "messenger", required: :if_visible}},
+      {"Zip Code_3": {visible: "messenger", required: :if_visible}},
+      {"Daytime telephone": {visible: "messenger", required: :if_visible}},
       {"uocava": {type: :checkbox}},
-      {"UOCAVA_1": {visible: "uocava", type: :radio}},
-      {"UOCAVA_2": {visible: "uocava", type: :radio}},
-      {"UOCAVA_3": {visible: "uocava", type: :radio}},
-      {"uocava_email": {visible: "uocava", type: :radio, options: ["Yes", "No"]}}, #TODO - if "Yes", autofill above "Email address"
+      {"UOCAVA_1": {visible: "uocava", type: :radio, required: true}},
+      {"UOCAVA_2": {visible: "uocava", type: :radio, required: true}},
+      {"UOCAVA_3": {visible: "uocava", type: :radio, required: true}},
+      {"uocava_email": {visible: "uocava", type: :radio, options: ["Yes", "No"], required: true}}
     ]
   end
-  #e.g.
-  # [
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
+  
+  def email_if_military_opt_in
+    if uocava == "1" && uocava_email == "Yes"
+      email
+    else
+      nil
+    end
+  end
   
   
   def custom_form_field_validations
