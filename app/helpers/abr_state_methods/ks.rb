@@ -157,7 +157,7 @@ module AbrStateMethods::KS
         "Woodson",
         "Wyandotte",
       ]}},
-      {"state_2": {}},
+      {"state_2": {type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"county_2": {}},
       {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
       {"identification_number": {visible: "identification_dln_yes"}},

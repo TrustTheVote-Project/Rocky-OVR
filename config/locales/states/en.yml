@@ -223,8 +223,9 @@ en:
           "has_mailing_address": My mailing address differs from my residential address.
           "identification_number": "Current Kansas driver's license number or nondriver's identification card number:􏰋􏰤"
           "county_1": Residential county
-          "state_2": Mailing state
-          "county_2": Mailing county
+          "state_2": State where you will be when signing this form
+          "county_2": County where you will be when signing this form
+          "Mailing_Address": Mailing Address
           "Mailing_City": City
           "Mailing_State": State
           "Mailing_Zip_Code": Zip
@@ -372,7 +373,8 @@ en:
           "Zip Code_2": Zip
           "City and State_2": "City and State"
           "Zip Code_3": "Zip"
-          "Period mmddyyyymmddyyyy": "Period (MM/DD/YYYY-MM/DD/YYYY)"
+          "period_from": "From (MM/DD/YYYY)"
+          "period_to": "To (MM/DD/YYYY)"
           "Seasonal Mailing Address Optional": Part-time Mailing Address
           "designee": I would like to designate someone else to pick up my absentee ballot.
           "Receipt of absentee ballot by designee I received the absentee ballot for the applicant on": "Name of designee who will pick up my absentee ballot:"

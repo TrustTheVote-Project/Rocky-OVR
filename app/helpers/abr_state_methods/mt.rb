@@ -8,7 +8,7 @@ module AbrStateMethods::MT
       method: "first_name"
     },
     "Middle Name Optional": {
-      method: "middle name"
+      method: "middle_name"
     },
     "Birthdate MMDDYYYY": {
       method: "date_of_birth_mm_dd_yyyy"
@@ -37,7 +37,9 @@ module AbrStateMethods::MT
     "Seasonal Mailing Address Optional": {},
     "City and State_2": {},
     "Zip Code_3": {},
-    "Period mmddyyyymmddyyyy": {},
+    "Period mmddyyyymmddyyyy": {
+      method: "period_from_to"
+    },
     "Yes I request an absentee ballot to be mailed to me for ALL elections in which I am eligible to vote as long as I reside at the address": { 
       options: ["Off", "On"],
       value: "Off" 
@@ -75,13 +77,7 @@ module AbrStateMethods::MT
       value: "Off"
     },
   }
-  EXTRA_FIELDS = ["has_mailing_address", "designee"]
-  # e.g.
-  # EXTRA_FIELDS = ["has_mailing_address", "identification"]
-  
-  # def whatever_it_is_you_came_up_with
-  #   # TODO when blah is selected it should be "abc" and otherwise left blank
-  # end
+  EXTRA_FIELDS = ["has_mailing_address", "designee",  "period_from_mm", "period_from_dd", "period_from_yyyy", "period_to_mm", "period_to_dd", "period_to_yyyy"]
   
   
   def form_field_items
@@ -151,32 +147,55 @@ module AbrStateMethods::MT
       {"City and State": {visible: "has_mailing_address"}},
       {"Zip Code_2": {visible: "has_mailing_address"}},
       {"Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only": {type: :checkbox}},
-      #TODO- lines 155-158 aren't actually disappearing when the above is unchecked....?
-      {"Seasonal Mailing Address Optional": {visibe: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only")}},
-      {"City and State_2": {visibe: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only")}},
-      {"Zip Code_3": {visibe: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only")}},
-      {"Period mmddyyyymmddyyyy": {visibe: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only")}},
+      {"Seasonal Mailing Address Optional": {visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only")}},
+      {"City and State_2": {visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only")}},
+      {"Zip Code_3": {visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only")}},
+      {"period_from": {
+        visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only"), 
+        type: :date, m: "period_from_mm", d: "period_from_dd", y: "period_from_yyyy"}},
+      {"period_to": {
+          visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only"), 
+          type: :date, m: "period_to_mm", d: "period_to_dd", y: "period_to_yyyy"}},
       {"designee": {type: :checkbox}},
       {"Receipt of absentee ballot by designee I received the absentee ballot for the applicant on": {visible: "designee"}},
     ]
   end
-  #e.g.
-  # [
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
+  
+  def period_from
+    fdates = [period_from_mm, period_from_dd, period_from_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    fdate  = fdates && fdates.length == 3 ? fdates.join("/") : nil
+  end
+  def period_to
+    tdates = [period_to_mm, period_to_dd, period_to_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    tdate  = tdates && tdates.length == 3 ? tdates.join("/") : nil
+  end
+  
+  def period_from_to
+    [period_from, period_to].compact.join("-")
+  end
   
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+    if self.has_mailing_address == "1"
+      ["Mailing Address required if differs from residence address",
+      "City and State",
+      "Zip Code_2"].each do |f|
+        custom_validates_presence_of(f)
+      end
+    end
+    if self.send(self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only")) == "1"
+      [
+        "Seasonal Mailing Address Optional",
+        "City and State_2",
+        "Zip Code_3",
+        "period_from", "period_to"
+      ].each do |f|
+        custom_validates_presence_of(f)
+      end
+    end
+    if self.designee == "1"
+      custom_validates_presence_of(self.class.make_method_name("Receipt of absentee ballot by designee I received the absentee ballot for the applicant on"))
+    end
   end
   
  

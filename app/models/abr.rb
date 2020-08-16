@@ -21,7 +21,6 @@ class Abr < ActiveRecord::Base
   has_many :abr_state_values, autosave: true
   
   belongs_to :home_state,    :class_name => "GeoState"
-  belongs_to :mailing_state, :class_name => "GeoState"
   belongs_to :partner
   
   validates_presence_of :first_name, if: :advancing_to_step_3?
