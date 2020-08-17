@@ -25,6 +25,7 @@ en:
           ADL__required_message: Either Driver's license or SSN is required
           ADL__format_message: Enter digits only
           attest_no_ssn_or_dln: I do not have an SSN or AK driver's license or State ID
+          gender: Gender
           gender__options:
             male: Male
             female: Female
