@@ -185,6 +185,7 @@ ovr_states:
       - en
   KY:
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
   MA:
