@@ -104,7 +104,7 @@ module AbrStateMethods::AK
       {"Perm Mailing 1": {visible: "has_mailing_address", min: 3, max: 50}},
       {"Perm Mailing 2": {visible: "has_mailing_address"}},
       {"Perm Mailing 3": {visible: "has_mailing_address"}},
-      {"ADL": {length: 7, regexp: /\A\d+\z/, hidden: "attest_no_ssn_or_dln"}},
+      {"ADL": {length: 7, regexp: /\A\d{7}\z/, hidden: "attest_no_ssn_or_dln"}},
       {"SSN or Last 4": {hidden: "attest_no_ssn_or_dln"}},
       {"attest_no_ssn_or_dln": { type: :checkbox}}, # Must either provide ssn, alaska state ID or check "attest_no..."
       {"gender": {type: :radio, options: ["male", "female"]}},
