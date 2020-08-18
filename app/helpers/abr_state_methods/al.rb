@@ -2,7 +2,7 @@ module AbrStateMethods::AL
   
   PDF_FIELDS = {
     "Return this application to": {},
-    "Please note that only one application may be placed in the same envelope": {},
+    "County": {},
     "Email Address": {
       method: "email"
     },
@@ -134,7 +134,7 @@ module AbrStateMethods::AL
   def form_field_items
     [
       {"Return this application to": {}},
-      {"Please note that only one application may be placed in the same envelope": {type: :select, required: true, include_blank: true, options: [
+      {"County": {type: :select, required: true, include_blank: true, options: [
         "Autauga",
         "Baldwin",
         "Barbour",

@@ -1,8 +1,63 @@
 .state-abr-form-fields {
   li {
+    
     &.line {
       margin: .25em 0;      
     }
+    
+    &.half, &.quarter, &.three-quarter {
+      margin-right: 2%;
+      &.last {
+        margin-right: 0;
+      }
+    }
+    &.half {
+      width: 48%;
+      &.last {
+        width: 50%;
+      }
+    }
+    &.quarter {
+      width: 23%;
+      &.last {
+        width: 25%;
+      }
+    }
+    &.three-quarter {
+      width: 73%;
+      &.last {
+        width: 75%;
+      }
+    }
+    &.indent {
+      margin-left: 10%;
+      width: 90%;
+      &.half, &.quarter, &.three-quarter {
+        &.not-first, &.last {
+          margin-left: 0;
+        }
+      }
+      &.half {
+        width: 43%;
+        &.last {
+          width: 45%;
+        }
+      }
+      &.quarter {
+        width: 20.5%;
+        &.last {
+          width: 22.5%;
+        }
+      }
+      &.three-quarter {
+        width: 65.5%;
+        &.last {
+          width: 67.6%;
+        }
+      }      
+    }
+      
+    
     ul.checkbox {
       h3 {
         height: auto;
@@ -53,8 +108,6 @@
 @import 'abr_states/nv';
 
 @import 'abr_states/oh';
-
-@import 'abr_states/tx';
 
 @import 'abr_states/wy';
 
