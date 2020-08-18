@@ -31,7 +31,7 @@ module AbrStateMethods::OH
     "CityVillage_2": {},
     "State": {},
     "ZIP_2": {},
-    "OR": {}, #drivers license number
+    "OR": {sensitive: true}, #drivers license number
     "Your Ohio driver license number 2 letters followed by 6 numbers": {
       options: ["Off", "On"]
     },
@@ -41,7 +41,7 @@ module AbrStateMethods::OH
     "Copy of a current and valid photo identification military identification or a current within the": {
       options: ["Off", "On"]
     },
-    "OR_2": {}, #last 4 of SS
+    "OR_2": {sensitive: true}, #last 4 of SS
     "Date of Election do not write todays date here": {
       value: "11/03/2020"
     },
@@ -172,7 +172,7 @@ module AbrStateMethods::OH
         type: :radio, 
         required: true,
         options:["dln", "ssn4", "photoid"]}},
-      {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
+      {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[[:alpha:]]{2}\d{6}\z/}},
       {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/ }},      
     ]
   end

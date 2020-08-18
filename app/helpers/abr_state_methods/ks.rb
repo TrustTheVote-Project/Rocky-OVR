@@ -4,7 +4,7 @@ module AbrStateMethods::KS
     "state_2": {},
     "county_1": {},
     "county_2": {},
-    "identification_number": {},
+    "identification_number": {sensitive: true},
     "First_Name": {
       method: "first_name"
     },
@@ -160,7 +160,7 @@ module AbrStateMethods::KS
       {"state_2": {type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"county_2": {}},
       {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
-      {"identification_number": {visible: "identification_dln_yes"}},
+      {"identification_number": {visible: "identification_dln_yes",min: 9, max: 9, regexp:/\A[kK]\d{8}\z/}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
       {"Mailing_City": {visible: "has_mailing_address"}},

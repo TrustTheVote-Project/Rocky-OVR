@@ -22,7 +22,7 @@ module AbrStateMethods::NV
     "DateOfBirth": {
       method: "date_of_birth_mm_dd_yyyy"
     },
-    "RegistrationNo": {},
+    "RegistrationNo": {sensitive: true},
     "MailingAddress": {},
     "MailingCity": {},
     "MailingZip": {},

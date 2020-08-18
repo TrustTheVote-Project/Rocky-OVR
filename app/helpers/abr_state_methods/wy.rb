@@ -36,17 +36,7 @@ module AbrStateMethods::WY
       "MAIL MY BALLOT TO": {},
       "CITY_2": {},
       "STATE_2": {},
-      "ZIP_2": {},
-      "2020 PRIMARY": {
-        options: ["Off", "On"],
-        value: "Off"
-      },
-      "2020 GENERAL": {
-        options: ["Off", "On"],
-        value: "On"
-      },
-      "Individual's name who may pick up my ballot": {},
-      #Date
+      "ZIP_2": {},TBD	TBD
       #voter_signature
   }
 

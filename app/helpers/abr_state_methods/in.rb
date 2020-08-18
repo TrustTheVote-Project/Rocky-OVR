@@ -17,7 +17,7 @@ module AbrStateMethods::IN
     "Name": {
       method: "full_name"
     },
-    "SSN_last_4": {},
+    "SSN_last_4": {sensitive: true},
     "No_SSN": { options: ["Off", "On"] },
     "telephone": {
       method: "phone"

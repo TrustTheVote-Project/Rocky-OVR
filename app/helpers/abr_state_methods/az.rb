@@ -56,7 +56,7 @@ module AbrStateMethods::AZ
     "Email_Address": {
       method: "email"
     },
-    "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {},
+    "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {sensitive: true},
     #Date
     #voter_signature
 
@@ -86,7 +86,7 @@ module AbrStateMethods::AZ
         "Yuma",
       ]}},
       # TODO  Make POB/dln/ssn4 separate with checkboxes to toggle fields on/off.
-      {"Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {required: true}},
+      {"Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {required: true, regexp:/\A{[[:alpha:]]\d{8}|\d{9}\z/}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
     ]

@@ -19,7 +19,7 @@ module AbrStateMethods::TN
     "Phone": {
       method: "phone"
     },
-    "Full Social Security Number": {},
+    "Full Social Security Number":{sensitive: true},
     "Email": {
       method: "email"
     },
@@ -32,7 +32,7 @@ module AbrStateMethods::TN
       value: "General Only"
     },
     "Reason": { options: ["Choice1", "Choice10", "Choice11", "Choice12", "Choice13", "Choice14", "Choice15", "Choice2", "Choice3", "Choice4", "Choice5", "Choice6", "Choice7", "Choice8", "Choice9"] },
-    "CDL or TWIC Number": {},
+    "CDL or TWIC Number": {sensitive: true},
     "Transmission": { options: ["By Email", "By Mail"] },
     # DATE:
     #"Date": {}

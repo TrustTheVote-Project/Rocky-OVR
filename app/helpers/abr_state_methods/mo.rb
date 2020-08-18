@@ -7,7 +7,7 @@ module AbrStateMethods::MO
     "Election": {
       value: "11/03/2020"
     },
-    "undefined": {}, #last 4 ssn
+    "undefined": {sensitive: true}, #last 4 ssn
     "Absence on Election Day from the jurisdiction of the election authority in which I am registered": {},
     "Incapacity or confinement due to illness or physical disability including caring for a person who is incapacitatedor": {},
     "Religious belief or practice": {},

@@ -20,7 +20,7 @@ module AbrStateMethods::DE
     "date": {
       method: "date_of_birth_mm_dd_yyyy"
     },
-    "Security Number": {},
+    "Security Number": { sensitive: true },
     "Email Address": {
       pdf_name: "address",
       method: "email"

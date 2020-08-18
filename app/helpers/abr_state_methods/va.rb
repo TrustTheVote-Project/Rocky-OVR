@@ -17,7 +17,7 @@ module AbrStateMethods::VA
       method: "city"
     },
     "Birth_Year": {},
-    "SSN_Last_4": {},
+    "SSN_Last_4": {sensitive: true},
     "Election": {
       options: ["Democratic_Primary", "General", "Republican_Primary", "Off"],
       value: "General"
