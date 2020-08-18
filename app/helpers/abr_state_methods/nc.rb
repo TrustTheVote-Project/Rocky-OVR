@@ -210,13 +210,13 @@ module AbrStateMethods::NC
         "Yancey",
       ]}},
       {"lived_here_long": {type: :radio}},
-      {"date_moved": {type: :date, m: "date_moved_mm", d: "date_moved_dd", y: "date_moved_yyyy", visible: "lived_here_long_no", }}, #TODO- map to 4 items above: lines 37-39
+      {"date_moved": {type: :date, m: "date_moved_mm", d: "date_moved_dd", y: "date_moved_yyyy", visible: "lived_here_long_no", }},
       {"identification": {
         type: :radio,
         required: true,
         options: ["dln", "ssn"]}},
       {"NC Driver Licence or NCID Number": {visible: "identification_dln"}},
-      {"ssn1234": {visible: "identification_ssn"}}, #TODO- map to 4 items above: lines 29-32
+      {"ssn1234": {visible: "identification_ssn"}}, 
       {"has_mailing_address": {type: :checkbox}},
       {"Voter's regular mailing address": {visible: "has_mailing_address", required: :if_visible}},
       {"ballot_address": {type: :checkbox}},
@@ -232,7 +232,7 @@ module AbrStateMethods::NC
       {"military_or_overseas": { type: :radio, options: ["military", "overseas"], visible: "uocava"}},
       {"US citizen outside the United States": {visible: "uocava", type: :checkbox}},
       {"Overseas Address": {visible: "uocava"}},
-      {"uocava_ballot": {visible: "uocava", required: :if_visible, type: :radio, options: ["mail", "email"]}}, #TODO: autofill email if selected, or mailing address from above form field
+      {"uocava_ballot": {visible: "uocava", required: :if_visible, type: :radio, options: ["mail", "email"]}}, 
       {"Overseas Mailing Address": {visible: "uocava_ballot_mail"}},
       {"relative_request": {type: :checkbox}},
       {"Near Relative or Legal Guardian's Name": {visible: "relative_request"}},
@@ -247,7 +247,7 @@ module AbrStateMethods::NC
       {"Voter Assistant's City": {visible: "assistant"}},
       {"Voter Assistant's State": {visible: "assistant", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"Voter Assistant's Zip Code": {visible: "assistant", min: 5, max: 10}},
-      {"patient": {type: :radio, options: ["Yes", "No"]}}, #TODO - map to options above, lines 73-74
+      {"patient": {type: :radio, options: ["Yes", "No"]}}, 
       {"Name and Address of Facility": {visible: "patient_yes", required: :if_visible}}
     ]
   end

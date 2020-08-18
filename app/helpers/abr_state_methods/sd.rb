@@ -101,12 +101,6 @@ module AbrStateMethods::SD
     "As the authorized messenger I acknowledge receipt of the ballot for": {},
   }
   EXTRA_FIELDS = ["has_mailing_address", "messenger", "uocava", "uocava_email"]
-  # e.g.
-  # EXTRA_FIELDS = ["has_mailing_address", "identification"]
-  
-  # def whatever_it_is_you_came_up_with
-  #   # TODO when blah is selected it should be "abc" and otherwise left blank
-  # end
   
   
   def form_field_items

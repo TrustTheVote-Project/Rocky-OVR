@@ -30,7 +30,7 @@ class PdfAbrWriter
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end
-      `pdftk #{pdf_template_path.to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}`
+      `pdftk #{pdf_template_path.to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path} flatten`
       
       uploaded = nil
       if for_printer
