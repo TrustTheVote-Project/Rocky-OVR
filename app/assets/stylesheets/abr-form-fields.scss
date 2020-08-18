@@ -29,6 +29,33 @@
         width: 75%;
       }
     }
+    &.indent {
+      margin-left: 10%;
+      width: 90%;
+      &.half, &.quarter, &.three-quarter {
+        &.not-first, &.last {
+          margin-left: 0;
+        }
+      }
+      &.half {
+        width: 43%;
+        &.last {
+          width: 45%;
+        }
+      }
+      &.quarter {
+        width: 20.5%;
+        &.last {
+          width: 22.5%;
+        }
+      }
+      &.three-quarter {
+        width: 65.5%;
+        &.last {
+          width: 67.6%;
+        }
+      }      
+    }
       
     
     ul.checkbox {

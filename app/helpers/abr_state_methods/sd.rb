@@ -76,19 +76,19 @@ module AbrStateMethods::SD
       options: ["Off", "No", "Yes"],
       value: "Off"
     },
-    "UOCAVA_1": { options: ["Yes", "No"] },
-    "UOCAVA_2": { options: ["Yes", "No"] },
-    "UOCAVA_3": { options: ["Yes", "No"] },
+    "Box 14": { options: ["Off", "Yes"] }, # uocava_1 yes
+    "Box 15": { options: ["Off", "Yes"] }, # uocava_1 no
+    "Box 16": { options: ["Off", "Yes"] }, # uocava_2 yes
+    "Box 17": { options: ["Off", "Yes"] }, # uocava_2 no
+    "Box 18": { options: ["Off", "Yes"] }, # uocava_3 yes
+    "Box 19": { options: ["Off", "Yes"] }, # uocava_3 no
+    
     "Party": { 
       options: ["Off", "Democratic", "Libertarian", "Non-Political"],
       value: "Off"
     },
     #"messenger_signature": {},
     #"voter_signature_2": {},
-    "mesenger_for_other": { 
-      options: ["Off", "No", "Yes"],
-      value: "Off"
-    },
     #"received_date": {},
     #"received_time": {},
     #"voter_signature": {},
@@ -97,8 +97,8 @@ module AbrStateMethods::SD
     #"voter_signed_date": {},
     #"notary_signature": {},
     #"notary_comission_expiry": {},
-    "authorized_address": {},
-    "authorized_city_state": {},
+    "to serve as my authorized messenger to pick up my absentee ballot I": {},
+    "As the authorized messenger I acknowledge receipt of the ballot for": {},
   }
   EXTRA_FIELDS = ["has_mailing_address", "messenger", "uocava", "uocava_email"]
   # e.g.
@@ -181,23 +181,89 @@ module AbrStateMethods::SD
       ]}},
       {"has_mailing_address": {type: :checkbox}},
       {"SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your address changes after this is submitted you must submit a new form": {visible: "has_mailing_address", required: :if_visible}},
-      {"City State_2": {visible: "has_mailing_address", required: :if_visible}},
-      {"Zip Code_2": {visible: "has_mailing_address", required: :if_visible}},
+      {"City State_2": {classes: "three-quarter", visible: "has_mailing_address", required: :if_visible}},
+      {"Zip Code_2": {classes: "quarter last", visible: "has_mailing_address", required: :if_visible}},
       {"messenger": {type: :checkbox}},
-      {"Last Name_2": {visible: "messenger", required: :if_visible}},
-      {"First Name_2": {visible: "messenger", required: :if_visible}},
-      {"authorized_address": {visible: "messenger", required: :if_visible}},
-      {"Apt or Lot_2": {visible: "messenger"}},
-      {"authorized_city_state": {visible: "messenger", required: :if_visible}},
-      {"Zip Code_3": {visible: "messenger", required: :if_visible}},
-      {"Daytime telephone": {visible: "messenger", required: :if_visible}},
+      {"First Name_2": {classes: "indent half", visible: "messenger", required: :if_visible}},
+      {"Last Name_2": {classes: "indent half not-first last ", visible: "messenger", required: :if_visible}},
+      {"to serve as my authorized messenger to pick up my absentee ballot I": {classes: "indent three-quarter", visible: "messenger", required: :if_visible}},
+      {"Apt or Lot_2": {classes: "indent last quarter", visible: "messenger"}},
+      {"As the authorized messenger I acknowledge receipt of the ballot for": {classes: "indent three-quarter", visible: "messenger", required: :if_visible}},
+      {"Zip Code_3": {classes: "indent last quarter",visible: "messenger", required: :if_visible}},
+      {"Daytime telephone": {classes: "indent", visible: "messenger", required: :if_visible}},
       {"uocava": {type: :checkbox}},
-      {"UOCAVA_1": {visible: "uocava", type: :radio, required: true}},
-      {"UOCAVA_2": {visible: "uocava", type: :radio, required: true}},
-      {"UOCAVA_3": {visible: "uocava", type: :radio, required: true}},
-      {"uocava_email": {visible: "uocava", type: :radio, options: ["Yes", "No"], required: true}}
+      {"uocava_1": {classes: "indent", visible: "uocava", type: :radio, options: ["Yes", "No"], required: :if_visible}},
+      {"uocava_2": {classes: "indent", visible: "uocava", type: :radio, options: ["Yes", "No"], required: :if_visible}},
+      {"uocava_3": {classes: "indent", visible: "uocava", type: :radio, options: ["Yes", "No"], required: :if_visible}},
+      {"uocava_email": {classes: "indent", visible: "uocava", type: :radio, options: ["Yes", "No"], required: :if_visible}}
     ]
   end
+  
+  # "Box 14": { options: ["Off", "Yes"] }, # uocava_1 yes
+  # "Box 15": { options: ["Off", "Yes"] }, # uocava_1 no
+  def uocava_1
+    if self.box_14 == "Yes"
+      return "Yes"
+    elsif self.box_15 == "Yes"
+      return "No"
+    end
+    return nil
+  end
+  def uocava_1=(value)
+    if value == "Yes"
+      self.box_14 = "Yes"
+      self.box_15 = "Off"
+    elsif value == "No"
+      self.box_14 = "Off"
+      self.box_15 = "Yes"
+    end
+  end
+  
+  # "Box 16": { options: ["Off", "Yes"] }, # uocava_2 yes
+  # "Box 17": { options: ["Off", "Yes"] }, # uocava_2 no
+  def uocava_2
+    if self.box_16 == "Yes"
+      return "Yes"
+    elsif self.box_17 == "Yes"
+      return "No"
+    end
+    return nil
+    
+  end
+  def uocava_2=(value)
+    if value == "Yes"
+      self.box_16 = "Yes"
+      self.box_17 = "Off"
+    elsif value == "No"
+      self.box_16 = "Off"
+      self.box_17 = "Yes"
+    end
+  end
+  
+  
+  # "Box 18": { options: ["Off", "Yes"] }, # uocava_3 yes
+  # "Box 19": { options: ["Off", "Yes"] }, # uocava_3 no
+  def uocava_3
+    if self.box_18 == "Yes"
+      return "Yes"
+    elsif self.box_19 == "Yes"
+      return "No"
+    end
+    return nil
+    
+  end
+  def uocava_3=(value)
+    if value == "Yes"
+      self.box_18 = "Yes"
+      self.box_19 = "Off"
+    elsif value == "No"
+      self.box_18 = "Off"
+      self.box_19 = "Yes"
+    end
+    
+  end
+  
+  
   
   def email_if_military_opt_in
     if uocava == "1" && uocava_email == "Yes"
