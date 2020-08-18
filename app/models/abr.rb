@@ -180,7 +180,11 @@ class Abr < ActiveRecord::Base
   
   def county_from_zip
     z = ZipCodeCountyAddress.find_by_zip(self.zip)
-    return z.county[0] if z
+    if z
+      return z.county[0].to_s
+    else
+      return ''
+    end
   end
   
   def home_state_email_instructions

@@ -64,7 +64,7 @@
       - required = opts[:required]
       - field_label = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}", default: (opts[:label] || field_name)).html_safe
       - instructions = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__hint", default: "").html_safe
-      - class_name = "line #{opts[:method]} #{required ? 'required' : ''}"
+      - class_name = "line #{opts[:classes]} #{opts[:method]} #{required ? 'required' : ''}"
       - required_message = required ?  @abr.custom_required_message(field_name).html_safe : nil
       - data = {}
       - visible_conditions = opts[:visible].is_a?(Array) ? opts[:visible][0] : opts[:visible].to_s.strip

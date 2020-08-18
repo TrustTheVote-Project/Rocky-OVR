@@ -1,8 +1,36 @@
 .state-abr-form-fields {
   li {
+    
     &.line {
       margin: .25em 0;      
     }
+    
+    &.half, &.quarter, &.three-quarter {
+      margin-right: 2%;
+      &.last {
+        margin-right: 0;
+      }
+    }
+    &.half {
+      width: 48%;
+      &.last {
+        width: 50%;
+      }
+    }
+    &.quarter {
+      width: 23%;
+      &.last {
+        width: 25%;
+      }
+    }
+    &.three-quarter {
+      width: 73%;
+      &.last {
+        width: 75%;
+      }
+    }
+      
+    
     ul.checkbox {
       h3 {
         height: auto;
@@ -53,8 +81,6 @@
 @import 'abr_states/nv';
 
 @import 'abr_states/oh';
-
-@import 'abr_states/tx';
 
 @import 'abr_states/wy';
 

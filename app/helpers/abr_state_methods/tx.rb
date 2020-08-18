@@ -103,13 +103,13 @@ module AbrStateMethods::TX
   def form_field_items
     [
       {"Reason": {required: true, type: :radio}}, 
-      {"absent_from": {visible: "reason_absence", type: :date, d: "absence_from_dd", m: "absence_from_mm", y: "absence_from_yyyy" }},
-      {"absent_to": {visible: "reason_absence", type: :date, d: "absence_to_dd", m: "absence_to_mm", y: "absencs_to_yyyy" }},
+      {"absent_from": {classes: 'half', visible: "reason_absence", type: :date, d: "absence_from_dd", m: "absence_from_mm", y: "absence_from_yyyy" }},
+      {"absent_to": {classes: 'half last', visible: "reason_absence", type: :date, d: "absence_to_dd", m: "absence_to_mm", y: "absencs_to_yyyy" }},
       {"has_mailing_address": {type: :checkbox}},
       {"Mail_Address": {visible: "has_mailing_address"}},
-      {"Mailing City": {visible: "has_mailing_address"}},
-      {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"ZIP Code_2": {visible: "has_mailing_address", min: 5, max: 10}},
+      {"Mailing City": {visible: "has_mailing_address", classes: "half"}},
+      {"State": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"ZIP Code_2": {visible: "has_mailing_address", classes: "quarter last", min: 5, max: 10}},
       {"where_to_mail": {
         visible: "has_mailing_address", type: :radio}}, 
       {"relative_relationship": {visible: "where_to_mail_relative"}},
@@ -122,15 +122,20 @@ module AbrStateMethods::TX
         visible: "witness"}},
         #witness' relationship to applicant
       {"Street address of witness": {
+        classes: "three-quarter",
         visible: "witness"}}, 
       {"Apt number of witness": {
+        classes: "quarter last",
         visible: "witness"}}, 
       {"City of witness": {
+        classes: "half",
         visible: "witness"}},
       {"State of witness": {
+        classes: "quarter",
         visible: "witness",
         type: :select, options: GeoState.collection_for_select, include_blank: true}}, 
       {"Zip code of witness": {
+        classes: "quarter last",
         visible: "witness"}},
     ]
   end
