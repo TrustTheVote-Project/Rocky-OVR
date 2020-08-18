@@ -7,6 +7,7 @@ class PdfAbrWriter
 
   attr_accessor :pdf_values
   attr_accessor :pdf_template_path
+  attr_accessor :delivery_address
   
   attr_accessor :id, :uid, :locale, :created_at        
   
@@ -19,6 +20,21 @@ class PdfAbrWriter
   def generate_pdf(force_write = false, for_printer = false)
     if force_write || !pdf_exists?
       FileUtils.mkdir_p(pdf_file_dir)
+      html_string = delivery_address
+      #0. generate address pdf
+      pdf = WickedPdf.new.pdf_from_string(
+        html_string,
+        :disable_internal_links         => false,
+        :disable_external_links         => false,
+        :encoding => 'utf8',
+        :locale=>locale,
+        :page_size => locale.to_s == "en" ? "Letter" : "A4"
+      )
+
+      File.open(pdf_delivery_address_path, "w") do |f|
+        f << pdf.force_encoding('UTF-8')
+      end
+      
 
       # 1. generate xfdf
       xfdf_contents = "<?xml version=\"1.0\"?><xfdf xmlns=\"http://ns.adobe.com/xfdf/\"><fields>"
@@ -30,7 +46,8 @@ class PdfAbrWriter
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end
-      `pdftk #{pdf_template_path.to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path} flatten`
+      `pdftk #{pdf_template_path.to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`
+      `pdftk #{pdf_delivery_address_path} #{pdf_file_path}-tmp output #{pdf_file_path}`
       
       uploaded = nil
       if for_printer
@@ -40,8 +57,9 @@ class PdfAbrWriter
       end
       # If it got there, delete the tmp file
       if uploaded
-        File.delete(pdf_xfdf_path)
-        File.delete(pdf_file_path)
+        #File.delete(pdf_xfdf_path)
+        #File.delete(pdf_file_path)
+        #File.delete("#{pdf_file_path}-tmp")
       else
         raise "File #{path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
         # Handle failed upload to S3 - it's probably raising an error
@@ -65,6 +83,10 @@ class PdfAbrWriter
 
   def xfdf_path(pdfpre = nil, file=false)
     "/#{file ? pdf_file_dir(pdfpre) : pdf_dir(pdfpre)}/#{to_param}.xfdf"
+  end
+  
+  def delivery_address_path(pdfpre = nil, file=false)
+    "/#{file ? pdf_file_dir(pdfpre) : pdf_dir(pdfpre)}/#{to_param}-address.pdf"
   end
 
 
@@ -93,6 +115,11 @@ class PdfAbrWriter
   def pdf_xfdf_path(pdfpre = nil)
     dir = File.join(Rails.root, pdf_file_dir(pdfpre))
     File.join(Rails.root, xfdf_path(pdfpre, true))
+  end
+  
+  def pdf_delivery_address_path(pdfpre = nil)
+    dir = File.join(Rails.root, pdf_file_dir(pdfpre))
+    File.join(Rails.root, delivery_address_path(pdfpre, true))
   end
 
   def bucket_code

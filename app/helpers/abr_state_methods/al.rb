@@ -1,7 +1,7 @@
 module AbrStateMethods::AL
   
   PDF_FIELDS = {
-    "Return this application to": {},
+    "Return this application to": { method: "delivery_full_address" },
     "County": {},
     "Email Address": {
       method: "email"
@@ -133,7 +133,6 @@ module AbrStateMethods::AL
  
   def form_field_items
     [
-      {"Return this application to": {}},
       {"County": {type: :select, required: true, include_blank: true, options: [
         "Autauga",
         "Baldwin",

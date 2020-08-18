@@ -181,7 +181,7 @@ module AbrStateMethods
   def validate_form_fields
     form_fields.each do |field_name, field_opts|
       next if field_opts[:type] == :instructions
-      value = field_opts[:type] == :date ? date_field_value(field_opts) : self.send(field_opts[:method])
+      value = field_opts[:type] == :date ? date_field_value(field_opts) : self.send(field_opts[:method])&.strip
       if field_opts[:required]
         is_required = field_opts[:requred] == true
         if field_opts[:required] == :if_visible && field_opts[:visible]

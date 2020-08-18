@@ -74,6 +74,7 @@ module AbrPdfMethods
       @pdf_writer.assign_attributes(self.to_pdf_hash)
       
       @pdf_writer.pdf_template_path = pdf_template_path
+      @pdf_writer.delivery_address = state_registrar_address
     end
     @pdf_writer
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200813021009) do
+ActiveRecord::Schema.define(version: 20200818182446) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20200813021009) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "ab_tests", ["name", nil], name: "index_ab_tests_on_name_and_assigment"
+  add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
 
@@ -832,6 +832,18 @@ ActiveRecord::Schema.define(version: 20200813021009) do
   add_index "tracking_events", ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
   add_index "tracking_events", ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
 
+  create_table "voter_signatures", force: :cascade do |t|
+    t.string   "registrant_id"
+    t.text     "voter_signature_image"
+    t.string   "signature_method"
+    t.string   "sms_number_for_continue_on_device"
+    t.string   "email_address_for_continue_on_device"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "voter_signatures", ["registrant_id"], name: "index_voter_signatures_on_registrant_id"
+
   create_table "zip_code_county_addresses", force: :cascade do |t|
     t.integer  "geo_state_id"
     t.string   "zip",                 limit: 255
@@ -842,6 +854,18 @@ ActiveRecord::Schema.define(version: 20200813021009) do
     t.text     "cities"
     t.text     "unacceptable_cities"
     t.datetime "last_checked"
+    t.string   "vr_address_to"
+    t.string   "vr_street1"
+    t.string   "vr_street2"
+    t.string   "vr_city"
+    t.string   "vr_state"
+    t.string   "vr_zip"
+    t.string   "req_address_to"
+    t.string   "req_street1"
+    t.string   "req_street2"
+    t.string   "req_city"
+    t.string   "req_state"
+    t.string   "req_zip"
   end
 
   add_index "zip_code_county_addresses", ["geo_state_id"], name: "index_zip_code_county_addresses_on_geo_state_id"
