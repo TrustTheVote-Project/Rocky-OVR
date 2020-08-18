@@ -66,6 +66,7 @@ en:
             dln_no: "I do not have a driver's license."
           "SSN_last_4": "Last 4 digits of your SSN"
           "Drivers_License_State": "Driver's License State"
+          "Drivers_License_Number": "Driver's License Number"
           "Street_Address_1": Mailing address
           "City_1": City
           "State_1": State
