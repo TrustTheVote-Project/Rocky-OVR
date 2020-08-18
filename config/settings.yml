@@ -137,8 +137,7 @@ absentee_states:
   MT:
     pdf_template: mt.pdf
   NC:
-    pdf_template:      
-    pdf_url: https://s3.amazonaws.com/dl.ncsbe.gov/Forms/NCAbsenteeBallotRequestForm.pdf
+    pdf_template: nc.pdf     
   ND:
     online_req_url: https://vip.sos.nd.gov/absentee/
     pdf_template:
