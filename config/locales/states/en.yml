@@ -381,6 +381,28 @@ en:
           "Receipt of absentee ballot by designee I received the absentee ballot for the applicant on": "Name of designee who will pick up my absentee ballot:"
       
       nc:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          identification: Choose one of the following methods for identification
+          identification__options:
+            dln: "Your NC driver's license number"
+            ssn: "Last four digits of your social security number"
+          "ssn1234": "Last 4 of your SSN"
+          "previous_name": I have changed my name in my lifetime.
+          "Voter's Previous Last Name": Previous Last Name
+          "Voter's Previous First Name": Previous First Name
+          "Voter's Previous Middle Name": Previous Middle Name
+          "ballot_address": I would like my absentee ballot mailed to an address other than my residential or my regular mailing address.
+          "lived_here_long": "Have you lived at your residential address for 30 days or more?"
+          "date_moved": "If 'No', please enter the date moved (MM/DD/YYYY):"
+          "relative_request": "I am requesting an absentee ballot on behalf of a near relative or for someone for whom I am the legal guardian."
+          "assistant": "Voter is unable to complete form due to blindness, disability, or inability to read or write, and requires assistance."
+          "patient": "If voter is a patient in a hospital, clinic, nursing home or rest home, does voter need assistance with voting and returning the ballot?"
+          "Name and Address of Facility": If Yes, what is the name and address of the hospital or facility?
+          "uocava": "I am an absentee military or overseas voter."
+          "uocava_ballot": "I would like my absentee ballot sent by:"
+          uocava_ballot__options:
+            mail: "Mail (mailing address provided above)"
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you are eligible to complete your registration online with the NC DMV.
           instructions: 
