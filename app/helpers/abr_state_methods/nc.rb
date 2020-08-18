@@ -26,17 +26,17 @@ module AbrStateMethods::NC
     "Voter's Previous First Name": {},
     "Voter's Previous Middle Name": {},
     "NC Driver Licence or NCID Number": {},
-    "SSN1": {},
-    "SSN2": {},
-    "SSN3": {},
-    "SSN4": {},
+    "SSN1": { method: "ssn_1" },
+    "SSN2": { method: "ssn_2" },
+    "SSN3": { method: "ssn_3" },
+    "SSN4": { method: "ssn_4" },
     "Voter's Current NC Residential Street Address": {
       method: "address"
     },
     "Voter's regular mailing address": {},
-    "Moved Month": {},
-    "Moved Date": {},
-    "Moved Year": {},
+    "Moved Month": { method: "date_moved_mm" },
+    "Moved Date": { method: "date_moved_dd" },
+    "Moved Year": { method: "date_moved_yyyy" },
     "Voter's Residential City": {
       method: "city"
     },
@@ -53,11 +53,17 @@ module AbrStateMethods::NC
     "Voter's phone number": {
       method: "phone"
     },
-    "Mailing Address for Ballot": {},
+    "Mailing Address for Ballot": { method: "residential_or_ballot_mailing_address" },
     "Check if you would like to request absentee ballots for all elections": { options: ["Off", "On"], value: "Off" },
-    "Mailing City": {},
-    "Mailing State": {},
-    "Mailing Zip Code": {},
+    "Mailing City": {
+      method: "residential_or_ballot_city"
+    },
+    "Mailing State": {
+      method: "residential_or_ballot_state"
+    },
+    "Mailing Zip Code": {
+      method: "residential_or_ballot_zip"
+    },
     "Near Relative or Legal Guardian's Name": {},
     "Near Relative or Legal Guardian's Relationship to Voter": {},
     "Near Relative or Legal Guardian's Address": {},
@@ -75,8 +81,8 @@ module AbrStateMethods::NC
     "Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence": { options: ["Off", "On"] },
     "US citizen outside the United States": { options: ["Off", "On"] },
     "Overseas Address": {},
-    "Overseas Mailing Address": {},
-    "Overseas E-Mail address": {},
+    "Overseas Mailing Address": { },
+    "Overseas E-Mail address": {  method: "uocava_email_address_if_selected" },
     "Overseas Fax Number": {},
     "lived_here_long": { options: ["No", "Yes"] },
     #"voter_signature": {},
@@ -84,14 +90,20 @@ module AbrStateMethods::NC
     #"date_signed_voter": {},
     #"date_signed_other": {},
   }
-  EXTRA_FIELDS = ["ssn1234", "has_mailing_address", "identification", "previous_name", "ballot_address", "relative_request", "assistant", "patient", "uocava", "uocava_ballot", "date_moved"]
-  # e.g.
-  # EXTRA_FIELDS = ["has_mailing_address", "identification"]
-  
-  # def whatever_it_is_you_came_up_with
-  #   # TODO when blah is selected it should be "abc" and otherwise left blank
-  # end
-  
+  EXTRA_FIELDS = ["ssn1234", "has_mailing_address", "identification", "previous_name", "ballot_address", "ballot_mailing_address", "ballot_city", "ballot_state", "ballot_zip", "relative_request", "assistant", "uocava", "uocava_ballot", "date_moved_mm", "date_moved_dd", "date_moved_yyyy"]
+
+  def ssn_1
+    !ssn1234.blank? && ssn1234[0]
+  end
+  def ssn_2
+    !ssn1234.blank? && ssn1234[1]
+  end
+  def ssn_3
+    !ssn1234.blank? && ssn1234[2]
+  end
+  def ssn_4
+    !ssn1234.blank? && ssn1234[3]
+  end
   
   def form_field_items
     [
@@ -198,29 +210,30 @@ module AbrStateMethods::NC
         "Yancey",
       ]}},
       {"lived_here_long": {type: :radio}},
-      {"date_moved": {visible: "lived_here_long_no", min: 10, max: 10, required: :if_visible}}, #TODO- map to 4 items above: lines 37-39
+      {"date_moved": {type: :date, m: "date_moved_mm", d: "date_moved_dd", y: "date_moved_yyyy", visible: "lived_here_long_no", }}, #TODO- map to 4 items above: lines 37-39
       {"identification": {
         type: :radio,
         required: true,
         options: ["dln", "ssn"]}},
-      {"NC Driver Licence or NCID Number": {visible: "identification_dln", required: :if_visible}},
-      {"ssn1234": {visible: "identification_ssn", required: :if_visible}}, #TODO- map to 4 items above: lines 29-32
+      {"NC Driver Licence or NCID Number": {visible: "identification_dln"}},
+      {"ssn1234": {visible: "identification_ssn"}}, #TODO- map to 4 items above: lines 29-32
       {"has_mailing_address": {type: :checkbox}},
-      {"Voter's regular mailing address": {visible: "has_mailing_address"}},
+      {"Voter's regular mailing address": {visible: "has_mailing_address", required: :if_visible}},
       {"ballot_address": {type: :checkbox}},
-      {"Mailing Address for Ballot": {visible: "ballot_address"}},
-      {"Mailing City": {visible: "ballot_address"}},
-      {"Mailing State": {visible: "ballot_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Mailing Zip Code": {visible: "ballot_address", min: 5, max: 10}},
+      {"ballot_mailing_address": {visible: "ballot_address", required: :if_visible}},
+      {"ballot_city": {visible: "ballot_address", required: :if_visible}},
+      {"ballot_state": {visible: "ballot_address", required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"ballot_zip": {visible: "ballot_address", required: :if_visible, min: 5, max: 10}},
       {"previous_name": {type: :checkbox}},
-      {"Voter's Previous Last Name": {visible: "previous_name"}},
-      {"Voter's Previous First Name": {visible: "previous_name"}},
+      {"Voter's Previous First Name": {visible: "previous_name", required: :if_visible}},
       {"Voter's Previous Middle Name": {visible: "previous_name"}},
+      {"Voter's Previous Last Name": {visible: "previous_name", required: :if_visible}},
       {"uocava": {type: :checkbox}},
-      {"Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence": {visible: "uocava", type: :checkbox}},
+      {"military_or_overseas": { type: :radio, options: ["military", "overseas"], visible: "uocava"}},
       {"US citizen outside the United States": {visible: "uocava", type: :checkbox}},
       {"Overseas Address": {visible: "uocava"}},
-      {"uocava_ballot": {visible: "uocava", type: :radio, options: ["mail", "email"]}}, #TODO: autofill email if selected, or mailing address from above form field
+      {"uocava_ballot": {visible: "uocava", required: :if_visible, type: :radio, options: ["mail", "email"]}}, #TODO: autofill email if selected, or mailing address from above form field
+      {"Overseas Mailing Address": {visible: "uocava_ballot_mail"}},
       {"relative_request": {type: :checkbox}},
       {"Near Relative or Legal Guardian's Name": {visible: "relative_request"}},
       {"Near Relative or Legal Guardian's Relationship to Voter": {visible: "relative_request"}},
@@ -238,22 +251,77 @@ module AbrStateMethods::NC
       {"Name and Address of Facility": {visible: "patient_yes", required: :if_visible}}
     ]
   end
-  #e.g.
-  # [
-  #   {"reason_instructions": {type: :instructions}}, *"reason_instructions" does NOT get put into EXTRA_FIELDS
-  #   {"County": {type: :select, required: true, include_blank: true, options: [
-  #     "Adams",
-  #   ]}},
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
+  
+  def military_or_overseas
+    if self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")) == "On"
+      return "military"
+    elsif self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")) == "Off"
+      return "overseas"
+    end
+    return nil
+  end
+  
+  def military_or_overseas=(val)
+    self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "Off")
+    self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "Off")
+    if val == "military"
+      self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "On")
+    elsif val == "overseas"
+      self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "On")
+    end
+  end
+  
+  def patient
+    if self.patient_yes == "On"
+      return "Yes"
+    elsif self.patient_no == "On"
+      return "No"
+    end
+    return nil
+  end
+  
+  def patient=(value)
+    self.patient_yes = "Off"
+    self.patient_no = "Off"
+    if value == "Yes"
+      self.patient_yes = "On"
+    elsif value == "No"
+      self.patient_no = "On"
+    end
+  end
+  
+  def uocava_email_address_if_selected
+    email if uocava_ballot == "email"
+  end
+  
+  def residential_or_ballot_mailing_address
+    if self.ballot_address == "1"
+      self.ballot_mailing_address
+    else
+      self.address
+    end
+  end
+  def residential_or_ballot_city
+    if self.ballot_address == "1"
+      self.ballot_city
+    else
+      self.city
+    end
+  end
+  def residential_or_ballot_state
+    if self.ballot_address == "1"
+      self.ballot_state
+    else
+      self.home_state_abbrev
+    end
+  end
+  def residential_or_ballot_zip
+    if self.ballot_address == "1"
+      self.ballot_zip
+    else
+      self.zip
+    end
+  end
   
   
   def custom_form_field_validations
