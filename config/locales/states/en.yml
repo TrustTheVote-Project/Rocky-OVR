@@ -78,21 +78,26 @@ en:
           "Reason": "I request an absentee ballot because:"
           "Reside": "I reside:"
           "Where_Receive": "I will receive my ballot by:"
-          "County_Clerk_Office": Coming to the office of the county clerk
-          "Designated_Bearer": Designated Bearer, Administrator, or Authorized Agent
-          "Electronic_Means": "Electronic means (Only available for UOCAVA voters)"
-          "Mail": "Mail. I request that you mail my ballot to the following address:"
-          "Mailing_Address_1": "Full name"
-          "Mailing_Address_2": "Mailing address"
-          "Mailing_Address_3": "City, State, Zip"
-          "absent": I will be unavoidably absent from my polling site on Election Day.
-          "illness": I will be unable to attend the polls on Election Day because of illness or physical diability.
+          "Where_Receive__options":
+            "County_Clerk_Office": Coming to the office of the county clerk
+            "Designated_Bearer": Designated Bearer, Administrator, or Authorized Agent
+            "Electronic_Means": "Electronic means (Only available for UOCAVA voters)"
+            "Mail": "Mail. I request that you mail my ballot to the following address:"            
+          "Designated_Bearer_Name": "Designated Bearer Name"
+          "delivery_email_address": "Email address for receiving my ballot"
+          "mailing_addr_1": "Full name"
+          "mailing_addr_2": "Mailing address"
+          "mailing_addr_3": "City, State, Zip"
+          "Reason__options":
+            "absent": I will be unavoidably absent from my polling site on Election Day.
+            "illness": I will be unable to attend the polls on Election Day because of illness or physical diability.
           "long_term_care": I reside in long-term care or residential facility licensed by the state.
-          "UOCAVA_1": "I am a member of the merchant marine or uniformed services of the United States on active duty or service (UOCAVA)."
-          "UOCAVA_2": "I am a United States citizen residing outside the territorial limits of the US and the Distric of Columbia (UOCAVA)."
-          "UOCAVA_3": I am a spouse or dependent of a member of the merchant marine or uniformed services of the US who will be absent from the place where I am qualified to vote because of the member's active duty or service (UOCAVA).'
-          "outside_county": outside the county in which I am registered to vote.
-          "within_county": within the county in which I am registered to vote.
+          "Reside__options":
+            "UOCAVA_1": "I am a member of the merchant marine or uniformed services of the United States on active duty or service (UOCAVA)."
+            "UOCAVA_2": "I am a United States citizen residing outside the territorial limits of the US and the Distric of Columbia (UOCAVA)."
+            "UOCAVA_3": I am a spouse or dependent of a member of the merchant marine or uniformed services of the US who will be absent from the place where I am qualified to vote because of the member's active duty or service (UOCAVA).'
+            "outside_county": outside the county in which I am registered to vote.
+            "within_county": within the county in which I am registered to vote.
       az:
         abr_form_fields:
           County_of_Residence: County of Residence

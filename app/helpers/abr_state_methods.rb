@@ -186,7 +186,8 @@ module AbrStateMethods
         is_required = field_opts[:requred] == true
         if field_opts[:required] == :if_visible && field_opts[:visible]
           method = field_opts[:visible]
-          if self.send(method) == "1"
+          h_method = field_opts[:hidden]
+          if (method.blank? || self.send(method) == "1") && (h_method.blank? || self.send(h_method) != "1")
             is_required = true
           end
         end

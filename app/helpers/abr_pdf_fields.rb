@@ -114,6 +114,11 @@ module AbrPdfFields
     v = state_registrar_office&.req_zip
     v.blank? ? state_registrar_office&.vr_zip : v
   end
+  
+  def delivery_city_state_zip
+    "#{delivery_city}, #{delivery_state} #{delivery_zip}"
+  end
+  
     
     
   
