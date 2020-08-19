@@ -145,11 +145,9 @@ absentee_states:
   NE:
     pdf_template: ne.pdf
   NH:
-    pdf_template: 
-    pdf_url: http://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589999327
+    pdf_template: nh.pdf
   NJ:
-    pdf_template:
-    pdf_url: https://www.state.nj.us/state/elections/vote-by-mail.shtml
+    pdf_template: nj.pdf
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
     pdf_template:
@@ -160,8 +158,7 @@ absentee_states:
       "clark county":
         online_req_url: https://www.clarkcountynv.gov/government/departments/elections/voter_services.php
   NY:
-    pdf_template:
-    pdf_url: https://www.elections.ny.gov/NYSBOE/download/voting/AbsenteeBallot-English.pdf
+    pdf_template: ny.pdf
   OH:
     pdf_template: oh.pdf
   OK:

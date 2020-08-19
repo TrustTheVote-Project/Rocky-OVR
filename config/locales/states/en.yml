@@ -432,6 +432,45 @@ en:
             "mail_ballot": "I request that ballots be mailed to me (or to the person I am acting as agent for)."
             "take_ballot": "I request to take the ballots with me, (or to the person I am acting as agent for, up to two people)."
             "vote_here": "I request to vote in the Election Office today as the Early Voting Polling Place."
+      nh:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "assistant": "I assisted voter in completing this form because he/she has a disability."
+          "Street or PO Box": Street number
+          "AptUnit_2": "Apt/Unit"
+          "CityTown_2": "City/Town"
+          "reason_instructions": "I will be entitled to vote by absentee ballot because (check one):"
+          "Check Box14": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
+          "Check Box16": "I cannot appear in public on election day because of observance of a religious commitment."
+          "Check Box17": "I am unable to vote in person due to a disability."
+          "Check Box18": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
+          "storm_warning": "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND (check one)"
+          "Check Box19": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
+          "Check Box20": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
+      nj:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Mailing_Address_2": Mailing address
+          "Mailing_Address_3": City, State, Zip
+          "assistant": "I assisted voter in completing this form because he/she has a disability."
+          "messenger": "I am designating someone else to be my Authorized Messenger to deliver my Mail-in ballot."
+          "Apt_3": "Apt/Unit"
+          "Municipality CityTown_3": "City/Town"
+          "State_3": State
+          "Date_of_Birth_Messenger": "Date of Birth (MM/DD/YYYY)"
+          "Name_Assistor": Name of Assistor
+          "Address_Assistor": Address
+          "Apt_2": "Apt/Unit"
+          "Municipality CityTown_2": "City/Town"
+          "State_2": State
+          "Zip_2": Zip
+          "Authorizied_Messenger_Name": "Authorizied Messenger Name"
+          "UOCAVA": "I request Vote-By-Mail Ballots for all elections in which I am eligible to vote and I am (CHECK ONLY ONE)"
+          UOCAVA__options:
+            "UOCAVA_1": "A Member of the Uniformed Services or Merchant Marine on active duty, or an eligible spouse or dependent."
+            "UOCAVA_2": "A U.S. Citizen residing outside the U.S. and I intend to return."
+            "UOCAVA_3": "A U.S. Citizen residing outside the U.S. and I do not intend to return."
+            "UOCAVA_4": "A U.S. Citizen residing outside the U.S. and I have never lived in the U.S."
       nv:
         abr_form_fields:
           "RegistrationNo": "Nevada Driver's License or Nevada ID Card Number, if applicable"
@@ -457,6 +496,31 @@ en:
           your registration with %{rtv_and_partner_name}</a>.  You will just have
           to print, sign, and mail in the form.</p>
       
+      ny:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "deliver_general_ballot": "Delivery of General Election Ballot (check one):"
+          "deliver_general_ballot__options":
+            "general_in_person": Please deliver to me in person at the board of elections.
+            "general_mail": Please mail my ballot to my residential or mailing address if applicable.
+            "general_to_proxy": I authorize the following person to pick up my ballot at the board of elections.
+          "apartment (General (or Special) Election Ballot Mailing Address)": Apt
+          "street number (General (or Special) Election Ballot Mailing Address)": Street number
+          "street name (General (or Special) Election Ballot Mailing Address)": Street name
+          "city (General (or Special) Election Ballot Mailing Address)": City
+          "state (General (or Special) Election Ballot Mailing Address)": State
+          "zip code (General (or Special) Election Ballot Mailing Address)": Zip
+          "witness": Due to an illness, disability, or inability to read, voter is unable to sign and requires a witness.
+          "(address of witness to mark)": Address of witness
+          "I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": Name of proxy
+          "reason": "I am requesting, in good faith, an absentee ballot due to (check one reason):"
+          "reason__options":
+            "absence_from_country": absence from county or New York City on election day
+            "detention": "detention in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony"
+            "permanent_illness": permanent illness or physical disability
+            "primary_care": duties related to primary care of one or more individuals who are ill or physically disabled
+            "temporary_illness": temporary illness or physical disability
+            "va_resident": resident or patient of a Veterans Health Administration Hospital
       oh:
         abr_form_fields:
           "County": "County in which you are registered to vote"
