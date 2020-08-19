@@ -121,7 +121,7 @@ en:
       ca:
         abr:
           header: Absentee Requests In California
-          instructions: <p>There is no absentee ballot request for the Nov 3, 2020 election. All registered voters will receive a vote-by-mail ballot.</p>
+          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a href="https://california.ballottrax.net/voter/">https://california.ballottrax.net/voter/</a></p>'
         online_instructions: |-
           You can complete your voter registration online with
           the state right now - using the application provided by the Secretary of
