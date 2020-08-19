@@ -20,7 +20,7 @@ en:
       preparing_instructions: Once the file is ready, you can download it.
       download_header: Download Page Header
       download_instructions: <p>Download Instructions</p>
-      finish_header: Thank you for creating your absentee ballot for the state of %{state_name}
+      finish_header: Thank you for requesting your absentee ballot for the state of %{state_name}
       finish_instructions: <p>Finish Instructions</p>
       finish_pdf_delay_header: Check Your Email
       finish_pdf_delay: It's taking a while to create your absentee request form to download,

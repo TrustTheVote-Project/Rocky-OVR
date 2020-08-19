@@ -3,7 +3,7 @@
     <%= t('txt.abr.download_header', state_name: @abr.home_state_name) %>
   </h2>
   <%= t('txt.abr.download_instructions').html_safe %>
-  <%= t("states.custom.#{@abr.home_state_abbrev}.download_instructions", default: "").html_safe %>
+  <%= t("states.custom.#{@abr.home_state_abbrev}.abr.download_instructions", default: "").html_safe %>
   <p class="centered" onclick="window.open('<%=download_abr_path(@abr)%>','_blank'); window.location='<%= finish_abr_path(@abr) %>';"><%= rollover_image_link(:print, I18n.t('txt.button.download_abr'), download_abr_path(@abr),
                             :target => "_blank") %></p>
   
