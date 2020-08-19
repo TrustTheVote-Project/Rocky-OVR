@@ -1,4 +1,12 @@
 class Abr < ActiveRecord::Base
+  
+  class AbandonedRecord < StandardError
+    attr_reader :abr
+    def initialize(abr)
+      @abr = abr
+    end    
+  end
+  
   include RegistrantMethods
   include RegistrantAbrMethods
   include AbrPdfMethods
