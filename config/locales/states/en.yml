@@ -242,8 +242,7 @@ en:
       ky:
         abr:
           header: Absentee Requests In Kentucky
-          instructions: <p>Kentucky requires all absentee requests to be completed directly through the state.</p>
-      
+          instructions: "<p>Unforatunately, Kentucky requires all absentee requests to be completed directly through the state.</p><p>You can go here to request a ballot if you are eligible: <a target=\"_blank\" rel=\"noopener\" href=\"https://ky.secureballotusa.com/portal/#/request-ballot/fpca\">https://ky.secureballotusa.com/portal/#/request-ballot/fpca</a></p><p>In Kentucky, you are only allowed to request an absentee ballot if you are eligible to vote AND meet one of these criteria:</p><ul><li>I am a member of the Uniformed Services or Merchant Marine on active duty.</li><li>I am an eligible spouse or dependent.</li><li>I am an activated National Guard member on State orders.</li><li>I am a U.S. citizen residing outside the United States, and I intend to return.</li><li>I am a U.S. citizen residing outside the United States, and my return is not certain.</li><li>I am a U.S. citizen and have never resided in the United States.</li></ul>"
       la:
         abr:
           finish_pdf_delay_instructions: <p>You must request your ballot by 4:30pm CST on the 4th day before election day.  Your ballot (unless you are Military, Overseas, or Hospitalized) must be received by your parish registrar of voters by 4:30pm CST on the day before election day.</p><p>Not sure where your registrar of voters is? <a target="_blank" rel="noopener" href="https://voterportal.sos.la.gov/registrar">Check the Registrar of voters</a></p>
