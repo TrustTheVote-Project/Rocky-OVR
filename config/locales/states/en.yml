@@ -107,6 +107,17 @@ en:
             all: <strong>Every Election</strong>. I authorize the County Recorder to include my name on the PEVL and automatically send me a ballot-by-mail for each election I am eligible for.
           "has_mailing_address": My mailing address differs from my residential address.
           "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": "Place of birth, driver's license #, or last 4 digits of social security number:"
+          identification_selection: "Identification type:"
+          identification_selection__options:
+            drivers_license_state: "Arizona driver's license #"
+            place_of_birth: Place of birth
+            last_4_ssn: "Last 4 digits of SSN #"
+          drivers_license_state: "Arizona driver's license #"
+          place_of_birth: Place of birth
+          last_4_ssn: "Last 4 digits of SSN #"
+
+
+
       ca:
         abr:
           header: Absentee Requests In California
