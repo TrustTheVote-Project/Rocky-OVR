@@ -172,7 +172,7 @@ module AbrStateMethods::OH
         type: :radio, 
         required: true,
         options:["dln", "ssn4", "photoid"]}},
-      {"OR": {visible: "identification_dln", required: "show_star", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
+      {"OR": {visible: "identification_dln", required: "show_star", min: 8, max: 8, regexp: /\A[[:alpha:]]{2}\d{6}\z/}},
       {"OR_2": {visible: "identification_ssn4", required: "show_star",  min: 4, max: 4, regexp: /\A\d{4}\z/ }},      
     ]
   end
