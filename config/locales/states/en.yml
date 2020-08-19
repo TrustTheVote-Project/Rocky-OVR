@@ -125,7 +125,7 @@ en:
       co:
         abr:
           header: Absentee Requests In Colorado
-          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
+          instructions: '<p>In 2020, all voters will automatically be mailed a ballot to the address where they are registered. You can check on your ballot status and learn more at: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>'
 
       de:
         abr:
