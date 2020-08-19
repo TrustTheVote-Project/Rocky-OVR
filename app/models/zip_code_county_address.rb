@@ -11,27 +11,20 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   
   DAYS_TO_CACHE = 3
   
-  def address
-    if self.last_checked.nil? || self.last_checked < (DateTime.now - DAYS_TO_CACHE.days)
-      check_address
-    end
-    read_attribute(:address)
-  end
-  
-  
   def check_address
     self.last_checked = DateTime.now
     self.save
     begin
       region_id = lookup_region
       if region_id
-        address = lookup_office_address(region_id)
-        if !address.blank?
-          self.address = address
+        addresses = lookup_office_address(region_id)
+        if !addresses.blank?
+          self.attributes = addresses
           self.save
         end
       end
-    rescue
+    rescue Exception=>e
+      #raise e
       Rails.logger.info "Unable to lookup LEO address for #{self.zip}"
     end
   end
@@ -66,6 +59,49 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     return nil
   end
   
+  def address
+    ensure_up_to_date
+    return full_vr_address
+  end
+  
+  def req_address
+    ensure_up_to_date
+    return full_req_address
+  end
+  
+  def full_vr_address
+    addr = [self.vr_address_to,
+     self.vr_street1,
+     self.vr_street2,
+     [self.vr_city, self.vr_state, self.vr_zip].compact.join(', ')
+    ].collect {|line| line.blank? ? nil : line}.compact.join("\n").strip
+    if addr.blank?
+      return read_attribute(:address)
+    else
+      return addr
+    end
+  end
+  
+  
+  def full_req_address
+    addr = [self.req_address_to,
+     self.req_street1,
+     self.req_street2,
+     [self.req_city, self.req_state, self.req_zip].compact.join(', ')
+    ].collect {|line| line.blank? ? nil : line}.compact.join("\n").strip
+    if addr.blank?
+      return read_attribute(:address)
+    else
+      return addr
+    end
+  end
+  
+  
+  def ensure_up_to_date
+    if self.last_checked.nil? || self.last_checked < (DateTime.now - DAYS_TO_CACHE.days)
+      check_address
+    end
+  end
   
   def lookup_office_address(region_id)
     return nil if region_id.blank?
@@ -74,13 +110,27 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       raise "Too many offices for region #{region_id}" if offices.count > 5
       office = offices.first
       mailing_office = select_address_from_office(office)
+      req_mailing_office = select_req_address_from_office(office)
+      addresses = nil
       if mailing_office
-        return [mailing_office["address_to"],
-         mailing_office["street1"],
-         mailing_office["street2"],
-         [mailing_office["city"], mailing_office["state"], mailing_office["zip"]].compact.join(', ')
-        ].collect {|line| line.blank? ? nil : line}.compact.join("\n")
+        addresses ||= {}
+        addresses[:vr_address_to] = mailing_office["address_to"]
+        addresses[:vr_street1] = mailing_office["street1"]
+        addresses[:vr_street2] = mailing_office["street2"]
+        addresses[:vr_city] = mailing_office["city"]
+        addresses[:vr_state] = mailing_office["state"]
+        addresses[:vr_zip] = mailing_office["zip"]
       end
+      if req_mailing_office
+        addresses ||= {}
+        addresses[:req_address_to] = req_mailing_office["address_to"]
+        addresses[:req_street1] = req_mailing_office["street1"]
+        addresses[:req_street2] = req_mailing_office["street2"]
+        addresses[:req_city] = req_mailing_office["city"]
+        addresses[:req_state] = req_mailing_office["state"]
+        addresses[:req_zip] = req_mailing_office["zip"]
+      end
+      return addresses
     end
     return nil
   end
@@ -96,6 +146,20 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       dom_vr_address ||= office["addresses"].find {|addr| (addr["functions"] || []).include?("DOM_VR")}
       if dom_vr_address
         return dom_vr_address
+      end
+    end
+    return nil
+  end
+  
+  def select_req_address_from_office(office)
+    if office["addresses"] && office["addresses"].is_a?(Array)
+      # additional_address = office["addresses"].find {|addr| addr["type"] && addr["type"]["name"]=="Voter Registration Mailing Address"}
+      # Look for is_regular_mail first
+      dom_req_address = office["addresses"].find {|addr| addr["is_regular_mail"] && (addr["functions"] || []).include?("DOM_REQ")}
+      # Otherwise take the first that includes DOM_REQ
+      dom_req_address ||= office["addresses"].find {|addr| (addr["functions"] || []).include?("DOM_REQ")}
+      if dom_req_address
+        return dom_req_address
       end
     end
     return nil

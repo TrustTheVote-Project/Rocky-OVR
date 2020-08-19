@@ -27,8 +27,8 @@ module AbrStateMethods::LA
     "General_Election_Date": {
       value: "11/03/2020"
     },
-    "absent_from": {},
-    "absent_to": {},
+    "absent_from": { method: "absent_from_date" },
+    "absent_to": { method: "absent_to_date" },
     "receive_for_elections": {
       options: ["all_elections", "only_this_election"]
       #value: "only_this_election" - only a static value if "options_0"
@@ -38,7 +38,7 @@ module AbrStateMethods::LA
     
   }
   
-  EXTRA_FIELDS = ["hand_delivered_or_faxed", "has_mailing_address"] 
+  EXTRA_FIELDS = ["hand_delivered_or_faxed", "has_mailing_address", "absent_from", "absent_to", "absent_from_mm", "absent_from_dd", "absent_from_yyyy", "absent_to_mm", "absent_to_dd", "absent_to_yyyy",] 
   
   
   def form_field_items
@@ -112,14 +112,14 @@ module AbrStateMethods::LA
       {"Mothers Maiden Name": {required: true}},
       {"SSN_Last_4": {min:4, max: 4}},
       {"License_ID": {}},
-      {"Options": {type: :radio}}, 
-      {"absent_from": {visible: "options_1"}},
-      {"absent_to": {visible: "options_1"}},
+      {"Options": {type: :radio, required: true}}, 
+      {"absent_from_date": {visible: "options_1", required: "show_star", type: :date, m: "absent_from_mm", d: "absent_from_dd", y: "absent_from_yyyy"}},
+      {"absent_to_date": {visible: "options_1", required: "show_star", type: :date, m: "absent_to_mm", d: "absent_to_dd", y: "absent_to_yyyy"}},
       {"hand_delivered_or_faxed": {type: :checkbox}},
-      {"submitted_by": {visible: "hand_delivered_or_faxed"}},
-      {"relationship_to_applicant": {visible: "hand_delivered_or_faxed"}},
+      {"submitted_by": {classes: "indent", visible: "hand_delivered_or_faxed", required: :if_visible}},
+      {"relationship_to_applicant": {classes: "indent", visible: "hand_delivered_or_faxed", required: :if_visible}},
       {"has_mailing_address": {type: :checkbox}},
-      {"NumberStreetCityStateZip Code": {visible: "has_mailing_address"}}
+      {"NumberStreetCityStateZip Code": {visible: "has_mailing_address", required: :if_visible}}
     ]
   end
   #e.g.
@@ -135,11 +135,28 @@ module AbrStateMethods::LA
   #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
   # ]
   
+  def absent_from_date
+    dates = [absent_from_mm, absent_from_dd, absent_from_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    if dates.length == 3
+      dates.join("/")
+    else
+      nil
+    end
+  end
+  
+  def absent_to_date
+    dates = [absent_to_mm, absent_to_dd, absent_to_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    if dates.length == 3
+      dates.join("/")
+    else
+      nil
+    end
+  end
   
   def custom_form_field_validations
     if self.options == "1"
-      custom_validates_presence_of("absent_from")
-      custom_validates_presence_of("absent_to")
+      custom_validates_presence_of("absent_from_date")
+      custom_validates_presence_of("absent_to_date")
     end
     if self.hand_delivered_or_faxed.to_s == "1"
       custom_validates_presence_of("submitted_by")

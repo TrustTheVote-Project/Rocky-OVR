@@ -1,4 +1,12 @@
 class Abr < ActiveRecord::Base
+  
+  class AbandonedRecord < StandardError
+    attr_reader :abr
+    def initialize(abr)
+      @abr = abr
+    end    
+  end
+  
   include RegistrantMethods
   include RegistrantAbrMethods
   include AbrPdfMethods
@@ -173,9 +181,11 @@ class Abr < ActiveRecord::Base
   rescue StandardError => error
   end
   
-  
+  def state_registrar_office
+    @state_registrar_office ||= home_state && home_state.abr_office(self.zip)
+  end
   def state_registrar_address
-    home_state && home_state.registrar_address(self.zip)
+    @state_registrar_address ||= home_state && home_state.abr_address(self.zip)
   end
   
   def county_from_zip

@@ -381,6 +381,20 @@ class GeoState < ActiveRecord::Base
     GeoState.states_with_online_registration.include?(self.abbreviation) && self.enabled_for_language?(locale, reg)
   end
   
+  def abr_office(zip_code=nil)
+    zcc = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first    
+    zcc&.ensure_up_to_date
+    return zcc
+  end
+  
+  def abr_address(zip_code=nil)
+    county_address_zip = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first
+    if county_address_zip && !county_address_zip.req_address.blank?
+      county_address_zip.req_address.gsub(/\n/,"<br/>")
+    else
+      registrar_address(zip_code)
+    end    
+  end
   def registrar_address(zip_code=nil)
     county_address_zip = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first
     if county_address_zip && county_address_zip.address

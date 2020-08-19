@@ -4,9 +4,9 @@ module AbrStateMethods
   end
 
   module AllClassMethods
-    def make_method_name(method_name, original_name=nil)
+    def make_method_name(method_name, original_name=nil, prefix_numbers: true)
       method_name = original_name || method_name.to_s.downcase.gsub(/[^a-z\d_]/,'_')
-      if method_name =~ /\A\d/
+      if prefix_numbers && method_name =~ /\A\d/
         method_name = "n_#{method_name}"
       end
       return method_name
@@ -182,11 +182,13 @@ module AbrStateMethods
     form_fields.each do |field_name, field_opts|
       next if field_opts[:type] == :instructions
       value = field_opts[:type] == :date ? date_field_value(field_opts) : self.send(field_opts[:method])
+      value = value.is_a?(String) ? value.strip : value
       if field_opts[:required]
-        is_required = field_opts[:requred] == true
+        is_required = field_opts[:required] == true
         if field_opts[:required] == :if_visible && field_opts[:visible]
           method = field_opts[:visible]
-          if self.send(method) == "1"
+          h_method = field_opts[:hidden]
+          if (method.blank? || self.send(method) == "1") && (h_method.blank? || self.send(h_method) != "1")
             is_required = true
           end
         end

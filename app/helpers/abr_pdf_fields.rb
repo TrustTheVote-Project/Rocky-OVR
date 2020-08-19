@@ -80,6 +80,48 @@ module AbrPdfFields
     [address_line_1, address_line_2, address_city_state_zip].compact.join("\n")    
   end
   
+  def delivery_full_address
+    addr = state_registrar_office&.req_address
+    return addr.blank? ? state_registrar_office&.address : addr
+  end
+  
+  def delivery_addressee
+    v = state_registrar_office&.req_address_to
+    v.blank? ? state_registrar_office&.vr_address_to : v
+  end
+  
+  def delivery_street1
+    v = state_registrar_office&.req_street1
+    v.blank? ? state_registrar_office&.vr_street1 : v
+  end
+
+  def delivery_street2
+    v = state_registrar_office&.req_street2
+    v.blank? ? state_registrar_office&.vr_street2 : v
+  end
+
+  def delivery_city
+    v = state_registrar_office&.req_city
+    v.blank? ? state_registrar_office&.vr_city : v
+  end
+
+  def delivery_state
+    v = state_registrar_office&.req_state
+    v.blank? ? state_registrar_office&.vr_state : v
+  end
+
+  def delivery_zip
+    v = state_registrar_office&.req_zip
+    v.blank? ? state_registrar_office&.vr_zip : v
+  end
+  
+  def delivery_city_state_zip
+    "#{delivery_city}, #{delivery_state} #{delivery_zip}"
+  end
+  
+    
+    
+  
   
   
 end

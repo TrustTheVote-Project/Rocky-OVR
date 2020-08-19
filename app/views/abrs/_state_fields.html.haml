@@ -104,10 +104,10 @@
         %li.date{class: class_name, data: data}
           %h3
             = form.label opts[:method], value: field_label
-          - if required
-            %span.required 
-              *
-              %span.required--text{style: 'display:none;'}= I18n.t('required')
+            - if required
+              %span.required 
+                *
+                %span.required--text{style: 'display:none;'}= I18n.t('required')
           - unless instructions.blank?
             %p.instructions= instructions
           %div{class: form.object.errors[opts[:method]].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, opts[:method])}}

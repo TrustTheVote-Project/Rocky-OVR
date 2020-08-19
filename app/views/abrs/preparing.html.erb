@@ -2,8 +2,8 @@
   <h2>
     <%= t('txt.abr.download_header', state_name: @abr.home_state_name) %>
   </h2>
-  <%= t('txt.abr.download_instructions').html_safe %>
-  <%= t("states.custom.#{@abr.home_state_abbrev}.download_instructions", default: "").html_safe %>
+  <%= t('txt.abr.download_instructions', registrar_address: @abr.state_registrar_address).html_safe %>
+  <%= t("states.custom.#{@abr.home_state_abbrev}.abr.download_instructions", default: "", registrar_address: @abr.state_registrar_address).html_safe %>
   <p class="centered" onclick="window.open('<%=download_abr_path(@abr)%>','_blank'); window.location='<%= finish_abr_path(@abr) %>';"><%= rollover_image_link(:print, I18n.t('txt.button.download_abr'), download_abr_path(@abr),
                             :target => "_blank") %></p>
   
@@ -22,7 +22,7 @@
     <h1><%= I18n.t('txt.abr.download_header') %></h1>
     <div class="download" style="position:relative">
       <div>
-        <h2 class="spaced_out"><%= I18n.t('txt.abr.download_instructions') %></h2>
+        <h2 class="spaced_out"><%= I18n.t('txt.abr.download_instructions', registrar_address: @abr.state_registrar_address) %></h2>
         <h2 class="preparing"><%= I18n.t('txt.abr.preparing_header') %></h2>
       </div>
       <p class="preparing"><%= image_tag "reg/spinner.gif" %></p>

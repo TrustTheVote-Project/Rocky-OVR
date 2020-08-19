@@ -2,12 +2,12 @@
 en:
   txt:
     abr:
-      step_1_header: Step 1 Header
-      step_1_instructions: <p>Step 1 Instructions</p>
+      step_1_header: Request your absentee now so that you can vote from the ease and safety of your home.  Make your voice heard!
+      step_1_instructions: <p>Lets check what your state's process is.</p>
       step_2_header: Step 2 Header
-      step_2_instructions: <p>Step 2 Instructions</p>
-      step_3_header: Step 3 Header
-      step_3_instructions: <p>Step 3 Instructions</p>
+      step_2_instructions: <p>Let's get some more information to determine how you can request your ballot.</p>
+      step_3_header: Prepare your %{state} PDF Absentee Request Form
+      step_3_instructions: <p>Please fill out the fields below so we can prepare your PDF absentee request form.</p>
       step_3_pending_header: We're Sorry
       step_3_pending_instructions: <p>We don't yet support online forms for the state of %{state}. You'll need to print and fill out a paper request form. You can <a href="%{pdf_url}" target="_blank" rel="noopener"> download your state's form here</a>.</p>
       state_online_defaults:
@@ -19,9 +19,9 @@ en:
       preparing_header: We're generating your file
       preparing_instructions: Once the file is ready, you can download it.
       download_header: Download Page Header
-      download_instructions: <p>Download Instructions</p>
-      finish_header: Thank you for creating your absentee ballot for the state of %{state_name}
-      finish_instructions: <p>Finish Instructions</p>
+      download_instructions: <p>Make sure to download, print, sign and send your request to:</p><p>%{registrar_address}</p>
+      finish_header: Thank you for requesting your absentee ballot for the state of %{state_name}
+      finish_instructions: <p>Make sure to download, print, sign and send your request to:</p><p>%{registrar_address}</p>
       finish_pdf_delay_header: Check Your Email
       finish_pdf_delay: It's taking a while to create your absentee request form to download,
         but don't worry. We'll send you an email when it's ready. In the mean time,

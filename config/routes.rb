@@ -26,6 +26,8 @@ Rocky::Application.routes.draw do
     end
   end
   
+  match "/absentee/timeout", :to => "abr_timeouts#index", :as=>'abr_timeout', via: :get
+  
   resources "absentee", :only => [:new, :create, :show, :update], :controller=>"abrs", as: :abrs do
     member do
       get "step_2"
