@@ -7,6 +7,10 @@ class AbrsController < ApplicationController
   layout "abr"
   before_filter :find_partner
   
+  rescue_from Abr::AbandonedRecord do |exception|
+    abr = exception.abr
+    redirect_to abr_timeout_url(partner_locale_options(abr.partner_id, abr.locale, abr.tracking_source))
+  end
   
   def new
     @current_step = 1
