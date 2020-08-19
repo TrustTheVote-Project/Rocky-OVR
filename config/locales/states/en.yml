@@ -71,8 +71,6 @@ en:
           "City_1": City
           "State_1": State
           "ZIP_1": Zip
-        abr:
-          step_3_pending_instructions: <p>Sample override for %{state} linking to %{pdf_url}</p>
       ar:
         abr_form_fields:
           "Reason": "I request an absentee ballot because:"
@@ -191,6 +189,8 @@ en:
           header: Absentee Requests In Hawaii
           instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://elections.hawaii.gov/voters/applications/\">https://elections.hawaii.gov/voters/applications/</a></p>"
       ia:
+        abr:
+          finish_instructions: <p>Make sure to complete and send this form in as soon as possible. In Iowa, this application must be RECEIVED by your County Auditor no later than 5:00pm 10 days before a General Election or 11 days before any other election.</p>
         abr_form_fields:
           identification__options:
             dln: "Iowa Driver's License or Non-Operator ID"
@@ -200,6 +200,9 @@ en:
           "voter_pin__hint": Voters who do not appear in the Iowa Dept. of Transportation's Driver's License or Non-Operator ID files are mailed an Iowa Voter Identification Card at the time of registration. Any voter may request a Voter Identification Card.
           "identification": Please choose one of the following forms of identification
           "Mail Address": Mailing Address
+          "Mailing Address City": "City"
+          "Mailing Address State": "State"
+          "Mailing Address Zip Code": "ZIP"
           "has_mailing_address": My mailing address differs from my residential address.
           "Do not add this contact info to my voter recored check box": Please do not add my phone number or email address to my voter record.
       in:
