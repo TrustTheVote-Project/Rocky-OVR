@@ -4,9 +4,9 @@ module AbrStateMethods
   end
 
   module AllClassMethods
-    def make_method_name(method_name, original_name=nil)
+    def make_method_name(method_name, original_name=nil, prefix_numbers: true)
       method_name = original_name || method_name.to_s.downcase.gsub(/[^a-z\d_]/,'_')
-      if method_name =~ /\A\d/
+      if prefix_numbers && method_name =~ /\A\d/
         method_name = "n_#{method_name}"
       end
       return method_name
@@ -183,7 +183,7 @@ module AbrStateMethods
       next if field_opts[:type] == :instructions
       value = field_opts[:type] == :date ? date_field_value(field_opts) : self.send(field_opts[:method])&.strip
       if field_opts[:required]
-        is_required = field_opts[:requred] == true
+        is_required = field_opts[:required] == true
         if field_opts[:required] == :if_visible && field_opts[:visible]
           method = field_opts[:visible]
           h_method = field_opts[:hidden]
@@ -254,7 +254,7 @@ module AbrStateMethods
         # self.singleton_class.send(:extend, AllClassMethods) # Add default methods
         # puts e.message
         # pp e.backtrace
-        # raise e
+        raise e
       end
     end
   end

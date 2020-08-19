@@ -246,6 +246,7 @@ en:
       
       la:
         abr_form_fields:
+          "Options": Check the reason for which you are eligible to vote by mail
           "Options__options":
             "0": Senior Citizen - I am 65 years of age or older.
             "1": Temporarily absent - I am or expect to be temporarily outside the territorial limits of my state/parish of registration during the early voting period and on election day. You must indicate the dates you will be temporarily absent below if the ballot is being mailed within your parish.
@@ -260,10 +261,17 @@ en:
             "10": "ACP - I am a program participant in the Department of State Address Confidentiality Program."
             "11": "JUROR - I will be sequestered on the day of the election and during early voting. (You must enclose a certified copy of court order.)"
           "hand_delivered_or_faxed": An immediate family member or I am hand delivering or faxing my application.
+          "submitted_by": "Submitted by:"
+          "relationship_to_applicant": "Relationship to Applicant:"
           "NumberStreetCityStateZip Code": Mailing address
           "has_mailing_address": My mailing address differs from my residential address.
           "absent_from": "Absent from (MM/DD/YYYY)"
           "absent_to": "Thru (MM/DD/YYYY)"
+          SSN_Last_4: Last 4 digits of your social security number
+          SSN_Last_4__hint: OPTIONAL information to be used for official use only.
+          License_ID: LA Driver's license or ID
+          License_ID__hint: OPTIONAL information to be used for official use only.
+          
           
       mi:
         wi_zip:
