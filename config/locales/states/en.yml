@@ -121,7 +121,7 @@ en:
       ca:
         abr:
           header: Absentee Requests In California
-          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a href="https://california.ballottrax.net/voter/">https://california.ballottrax.net/voter/</a></p>'
+          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href="https://california.ballottrax.net/voter/">https://california.ballottrax.net/voter/</a></p>'
         online_instructions: |-
           You can complete your voter registration online with
           the state right now - using the application provided by the Secretary of
@@ -189,7 +189,7 @@ en:
       hi:
         abr:
           header: Absentee Requests In Hawaii
-          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://elections.hawaii.gov/voters/applications/\">https://elections.hawaii.gov/voters/applications/</a></p>"
       ia:
         abr_form_fields:
           identification__options:
@@ -560,7 +560,7 @@ en:
       or:
         abr:
           header: Absentee Requests In Oregon
-          instructions: <p>There is no absentee ballot request in Oregon. All registered voters will receive a vote-by-mail ballot.</p>
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, want to check on the status of your ballot or need to update your address please go to Oregon's My Vote website: <a rel=\"noopener\" target=\"blank\" href=\"https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html\">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>"
       
       pa:
         registration_deadline_text: 10/19/2020 is the last day to register before the
@@ -763,7 +763,7 @@ en:
       ut:
         abr:
           header: Absentee Requests In Utah
-          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>              
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/\">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p>"              
       va:
         abr_form_fields:
           "Birth_Year": "Year I was born:"
