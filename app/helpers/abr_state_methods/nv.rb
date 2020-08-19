@@ -39,7 +39,7 @@ module AbrStateMethods::NV
     "CivilianOverseas": { options: ["Off", "CivilianOverseas"] },
     #"RequestDate": {}
     "ProvidedBy": {
-      value: "Rock the Vote" #TODO yes? no?
+      value: "Rock the Vote"
     },
     "Phone": {
       method: "phone"

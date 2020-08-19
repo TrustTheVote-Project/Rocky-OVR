@@ -14,7 +14,7 @@
 - elsif !@share_only
   %h2= t('txt.abr.finish_header', state_name: @abr.home_state_name)
 
-  = t('txt.abr.finish_instructions').html_safe
+  = t('txt.abr.finish_instructions', registrar_address: @abr.state_registrar_address).html_safe
 
   = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr.finish_instructions", default: "").html_safe
 
