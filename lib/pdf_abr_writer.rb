@@ -20,7 +20,8 @@ class PdfAbrWriter
   def generate_pdf(force_write = false, for_printer = false)
     if force_write || !pdf_exists?
       FileUtils.mkdir_p(pdf_file_dir)
-      html_string = delivery_address
+      # Temp solution for making sure every PDF includes address
+      html_string = "Sign and return this form to:<br/><br/><p style='font-size: 24px; line-height: 1.6em;'>#{delivery_address}</p>"
       #0. generate address pdf
       pdf = WickedPdf.new.pdf_from_string(
         html_string,
