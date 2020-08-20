@@ -151,6 +151,8 @@ en:
           absentee_delivery: Special Qualification regarding electronic delivery of absentee ballots.
           Fax or: "Fax Number"
       ga:
+        abr:
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Georgia, this application must be RECEIVED by Friday, October 30th, 2020.  At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.mvp.sos.ga.gov/MVP/mvp.do\">https://www.mvp.sos.ga.gov/MVP/mvp.do</a></p>"
         abr_form_fields:
           "has_mailing_address": I have a temporary address that differs from my resident address or permanent mailing address on file.
           "Text12": Residence County
@@ -160,6 +162,10 @@ en:
           "Text16": County
           "address_has_changed": My permanent address has changed within my county and I want to update my address.
           "type_of_ballot": Type of ballot
+          "type_of_ballot__options":
+            "Democratic": "Democratic"
+            "Republican": "Republican"
+            "Non_Partisan": "Not Partisan (will not have ANY party candidates listed)"
           "reason_other": I swear that the facts contained in this application are true, that I am a family member of the voter of the age of 18, and that the voter is
           "assisted_voter": Voter is disabled or illiterate and I assisted in completing this application. 
           "reason_other__options": 
@@ -168,6 +174,7 @@ en:
           "Text23": "Today's date: (MM/DD/YYYY)"
           "requestor": I am requesting a ballot on behalf of the voter.
           "Text25": Relationship to voter
+          "Elegibility": "Eligibility to receive vote by mail ballots for the rest of the election cycle without another application?"
           "Elegibility__options":
             "E": E- Elderly- I am 65 years of age or older
             "D": D- Disabled- I have a physical disability
