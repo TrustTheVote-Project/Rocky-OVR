@@ -17,19 +17,15 @@ module AbrStateMethods::AZ
     },
     "Democratic": {
       options: ["Off", "On"],
-      value: "Off"
     },
     "Republican": {
       options: ["Off", "On"],
-      value: "Off"
     },
     "Green Pima County Voters Only": {
       options: ["Off", "On"],
-      value: "Off"
     },
     "MunicipalOnly Nonpartisan": {
       options: ["Off", "On"],
-      value: "Off"
     },
     "Check this box if you request the County Recorder change your residence and mailing address on your registration": {
       options: ["Off", "On"],
@@ -68,6 +64,7 @@ module AbrStateMethods::AZ
   def form_field_items
     [
       {"election_selection": {type: :radio, options: ["general", "all"], required: true}},
+      {"primary_ballot_selection": {visible: "election_selection_all", required: "custom", type: :radio, options: PARTY_SELECTIONS}},
       {"County_of_Residence": {type: :select, required: true, include_blank: true, options: [
         "Apache",
         "Cochise",
@@ -131,9 +128,28 @@ module AbrStateMethods::AZ
   end
 
 
+  PARTY_SELECTIONS = [
+     "democratic", "republican", "green_pima_county_voters_only", "municipalonly_nonpartisan"
+  ]
 
 
-
+  def primary_ballot_selection
+    PARTY_SELECTIONS.each do |p|
+      if self.send(p) == "On"
+        return p
+      end
+    end
+  end
+  
+  def primary_ballot_selection=(value)
+    self.democratic = "Off"
+    self.republican = "Off"
+    self.green_pima_county_voters_only = "Off"
+    self.municipalonly_nonpartisan = "Off"
+    if self.respond_to?("#{value}=")
+      self.send("#{value}=", "On")
+    end
+  end
 
 
     
@@ -145,6 +161,16 @@ module AbrStateMethods::AZ
 
     if self.identification_selection
       custom_validates_presence_of(self.identification_selection)
+    end
+    
+    if self.election_selection == "all"
+      custom_validates_presence_of("primary_ballot_selection")
+    end
+    
+    if self.primary_ballot_selection == "green_pima_county_voters_only"
+      if self.county_of_residence != "Pima"
+        errors.add(:primary_ballot_selection, "Green party is for Pima county voters only")
+      end
     end
 
   end    

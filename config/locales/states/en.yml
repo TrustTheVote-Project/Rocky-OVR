@@ -91,6 +91,10 @@ en:
             "outside_county": outside the county in which I am registered to vote.
             "within_county": within the county in which I am registered to vote.
       az:
+        state_online_abr:
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
+        abr:
+          finish_instructions: "<p>Your application for a by-mail ballot must be received by 5:00pm on the 11th day before the election.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
         abr_form_fields:
           County_of_Residence: County of Residence
           election_selection: "I am requesting a ballot for:"
@@ -99,6 +103,11 @@ en:
             all: <strong>Every Election</strong>. I authorize the County Recorder to include my name on the PEVL and automatically send me a ballot-by-mail for each election I am eligible for.
           "has_mailing_address": My mailing address differs from my residential address.
           "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": "Place of birth, driver's license #, or last 4 digits of social security number:"
+          primary_ballot_selection: Primary Election Ballot Selection
+          primary_ballot_selection__hint: Select a party or nonpartisan ballot for the Primary Election. This will not change your voter registration to this political party affiliation. 
+          primary_ballot_selection__options:
+            green_pima_county_voters_only: Green (Pima County Voters Only)
+            municipalonly_nonpartisan: "Municipal-Only: Nonpartisan"
           identification_selection: "Identification type:"
           identification_selection__options:
             drivers_license_state: "Arizona driver's license #"
