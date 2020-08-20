@@ -852,6 +852,18 @@ body {
         margin: 0.25em 0;
       }
     }
+    .requirements, .state-instructions {
+      margin: 2em 0;
+      *, p {
+        font-size: 16px;
+        color: #333;
+      }
+      ul {
+        font-size: 14px;
+        list-style: disc outside;
+        margin-left: 30px;
+      }
+    }
     .confirm {
       color: #666;
       margin: 2em 0;
@@ -859,7 +871,8 @@ body {
     }
     .reject {
       color: #666;
-      margin: 2em 0;
+      margin: 3em 0;
+      font-size: 18px;
     }
     @import 'abr-form-fields'
   }

@@ -16,7 +16,7 @@
 
   = t('txt.abr.finish_instructions', registrar_address: @abr.state_registrar_address).html_safe
 
-  = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr.finish_instructions", default: "").html_safe
+= t("states.custom.#{@abr.home_state_abbrev.downcase}.abr.finish_instructions", default: "").html_safe
 
 #finish_page_iframe
   %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }

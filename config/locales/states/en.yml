@@ -3,12 +3,6 @@ en:
   states:
     custom:
       ak:
-        state_online_abr:
-          header: Good news, you can request an Absentee Ballot online directly with the state of Alaska
-          requirements: To request your absentee ballot online, you must have a valid Alaska driver's license or state ID card.
-          confirm: I meet these requirements and would like to finish my request directly with the state.
-          instructions: <p>State-specific set of instructions</p><ul><li>may</li><li>include</li><li>html</li>
-          finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
         abr_form_fields:
           us_citizen: I am a U.S. Citizen
           us_citizen__required_message: You must be a U.S. Citizen
@@ -682,6 +676,34 @@ en:
             provide_signature: Provide Signature
             select_file: Select an image to upload
             copy_link: Copy Link      
+      sc:
+        abr:
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo\">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>"
+        state_online_abr:
+          instructions: |-
+            <p>In your state, you are only allowed to vote absentee if you meet one of the following criteria:</p>
+            <ul>
+              <li>Members of the Armed Forces </li>
+              <li>Members of the Merchant Marine </li>
+              <li>Spouses and dependents residing with members of the Armed Forces or Merchant Marine </li>
+              <li>Persons serving with the American Red Cross or with the United Service Organizations (USO) who are attached to and serving with the Armed Forces outside their county of residence and their spouses and dependents residing with them</li>
+              <li>Citizens residing overseas </li>
+              <li>Persons who are physically disabled (includes illnesses and injuries)</li>
+              <li>Students attending school outside their county of residence and their spouses and dependents residing with them</li>
+              <li>Persons who for reasons of employment will not be able to vote on election day</li>
+              <li>Government employees serving outside their county of residence on Election Day and their spouses and dependents residing with them</li>
+              <li>Persons who plan to be on vacation outside their county of residence on Election Day</li>
+              <li>Persons serving as a juror in state or federal court on Election Day</li>
+              <li>Persons admitted to the hospital as emergency patients on Election Day or within a four-day period before the election</li>
+              <li>Persons with a death or funeral in the family within three days before the election</li>
+              <li>Persons confined to a jail or pre-trial facility pending disposition of arrest or trial</li>
+              <li>Persons attending sick or physically disabled persons</li>
+              <li>Certified poll watchers, poll managers, and county election officials working on Election Day</li>
+              <li>Persons sixty-five years of age or older</li>
+              <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
+            </ul>
+
+            
       sd:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address

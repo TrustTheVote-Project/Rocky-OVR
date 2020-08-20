@@ -12,10 +12,10 @@ en:
       step_3_pending_instructions: <p>We don't yet support online forms for the state of %{state}. You'll need to print and fill out a paper request form. You can <a href="%{pdf_url}" target="_blank" rel="noopener"> download your state's form here</a>.</p>
       state_online_defaults:
         header: You can request an Absentee Ballot online directly with the state of %{state}
-        requirements: If you are registered to vote and have a valid %{state} state ID, you may request your absentee ballot online directly with the state.
-        confirm: I meet these requirements and would like to finish my request directly with the state.
-        instructions: TBD default?
-      skip_state_online_abr:  "I would like to continue with creating a paper form."
+        header_choice: How do you want to request your ballot?
+        requirements: <p>If you are registered to vote and have a valid %{state} state ID, you may request your absentee ballot online directly with the state.</p>
+        confirm: Check if you meet your state's requirements, then click the button below to request your absentee ballot through the state's site.
+      skip_state_online_abr:  "I do not meet these requirements and I would like to continue with creating a paper form."
       preparing_header: We're generating your file
       preparing_instructions: Once the file is ready, you can download it.
       download_header: Preparing your request form
