@@ -151,7 +151,7 @@ absentee_states:
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
     pdf_template:
-    pdf_url: https://realfileee3072ab0d43456cb15a51f7d82c77a2.s3.amazonaws.com/97e1ee9d-281c-412a-9a85-0ea2e65f70ff?AWSAccessKeyId=AKIAJBKPT2UF7EZ6B7YA&Expires=1594221251&Signature=MXa6eiIsNedMu%2BRVpWNkDOQdLOU%3D&response-content-disposition=inline%3B%20filename%3DNMAV%2009-2019.pdf&response-content-type=application%2Fpdf
+    pdf_url: /abrs/nm.pdf
   NV:
     pdf_template: nv.pdf
     counties:
