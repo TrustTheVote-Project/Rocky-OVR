@@ -395,6 +395,21 @@ en:
         registration_complete_less_than_18: <p>You will be eligible to vote as soon as you turn 18 years old.</p> 
         registration_complete_dialog_text: ""
         valid_street_types: "Valid Street types include: %{types}"
+      mn:
+        state_online_abr:
+          instructions: |-
+            <p>To request an absentee ballot in MN, you must certify that:</p>
+            <ul>
+              <li>I am completing this application on my own behalf; </li>
+              <li>will be at least 18 years old on election day; </li>
+              <li>am a citizen of the United States;</li>
+              <li>will have resided in Minnesota for 20 days immediately preceding election day;</li>
+              <li>maintain residenceat the address given on this application form;</li>
+              <li>am not under court-ordered guardianship in which the court order revokes my right to vote;</li>
+              <li>have not been found by a court to be legally incompetent to vote;</li>
+              <li>have the right to vote because, if I have been convicted of a felony, my felony sentence has expired (been completed) or Ihave been discharged from my sentence.</li>
+            </ul>
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx\">https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx</a></p>"
       mo:
         abr_form_fields:
           "undefined": "Last 4 digit of my social security number"
