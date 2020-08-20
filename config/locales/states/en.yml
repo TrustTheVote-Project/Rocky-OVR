@@ -282,7 +282,18 @@ en:
           License_ID: LA Driver's license or ID
           License_ID__hint: OPTIONAL information to be used for official use only.
           
-          
+      md:
+        state_online_abr:
+          requirements: |-
+            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state.</p>
+            <p>To request a ballot, your personal information has to match the information about you that is on file with the Maryland MVA.</p>
+            <p>These are the things that have to match:</p>
+            <ul>
+              <li>Your name</li>
+              <li>Your date of birth</li>
+              <li>Your driver’s license number, ID number, or Learner's Permit number</li>
+              <li>Your signature at the MVA will become your official voter registration signature</li>
+            </ul>
       mi:
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?
