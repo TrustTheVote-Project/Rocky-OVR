@@ -9,7 +9,8 @@ en:
       step_3_header: Prepare your %{state} PDF Absentee Request Form
       step_3_instructions: <p>Please fill out the fields below so we can prepare your PDF absentee request form.</p>
       step_3_pending_header: We're Sorry
-      step_3_pending_instructions: <p>We don't yet support online forms for the state of %{state}. You'll need to print and fill out a paper request form. You can <a href="%{pdf_url}" target="_blank" rel="noopener"> download your state's form here</a>.</p>
+      step_3_pending_instructions: <p>We don't yet support online forms for the state of %{state}. You'll need to print and fill out a paper request form.</p>
+      step_3_pending_link: Download your state's form here
       state_online_defaults:
         header: You can request an Absentee Ballot online directly with the state of %{state}
         header_choice: How do you want to request your ballot?
