@@ -109,10 +109,10 @@ en:
           "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": "Place of birth, driver's license #, or last 4 digits of social security number:"
           identification_selection: "Identification type:"
           identification_selection__options:
-            drivers_license_state: "Arizona driver's license #"
+            drivers_license_id: "Arizona driver's license or ID"
             place_of_birth: Place of birth
             last_4_ssn: "Last 4 digits of SSN #"
-          drivers_license_state: "Arizona driver's license #"
+          drivers_license_id: "Arizona driver's license or ID"
           place_of_birth: Place of birth
           last_4_ssn: "Last 4 digits of SSN #"
 

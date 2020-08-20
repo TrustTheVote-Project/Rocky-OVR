@@ -61,7 +61,7 @@ module AbrStateMethods::AZ
     #voter_signature
 
   }
-  EXTRA_FIELDS = ["has_mailing_address", "identification_selection",  "drivers_license_state", "place_of_birth", "last_4_ssn"]
+  EXTRA_FIELDS = ["has_mailing_address", "identification_selection",  "drivers_license_id", "place_of_birth", "last_4_ssn"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
@@ -85,13 +85,10 @@ module AbrStateMethods::AZ
         "Yavapai",
         "Yuma",
       ]}},
-      # TODO  Make POB/dln/ssn4 separate with checkboxes to toggle fields on/off.
-      {"identification_selection": {required:true, type: :radio, options: ["place_of_birth", "drivers_license_state","last_4_ssn"]}},
-      {"drivers_license_state": {required: :is_visible, regexp:/\A{[[:alpha:]]\d{8}|\d{9}\z/, min:8, max:9, visible: "identification_selection_drivers_license_state"}},
+      {"identification_selection": {required:true, type: :radio, options: ["place_of_birth", "drivers_license_id","last_4_ssn"]}},
+      {"drivers_license_id": {required: :is_visible, regexp:/\A{[[:alpha:]]\d{8}|\d{9}\z/, min:8, max:9, visible: "identification_selection_drivers_license_state"}},
       {"last_4_ssn": {required: :is_visible,  min:4, max:4, visible:"identification_selection_last_4_ssn"}},
       {"place_of_birth": {required: :is_visible, min:1, visible: "identification_selection_place_of_birth"}},
-
-      #{"Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {required: true, regexp:/\A{[[:alpha:]]\d{8}|\d{9}\z/}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
     ]
@@ -119,8 +116,8 @@ module AbrStateMethods::AZ
 
   def identification_data
     case self.identification_selection
-    when "drivers_license_state"
-     return (self.drivers_license_state())
+    when "drivers_license_id"
+     return (self.drivers_license_id())
     when "last_4_ssn"
       return (self.last_4_ssn())
     when "place_of_birth"
@@ -130,24 +127,16 @@ module AbrStateMethods::AZ
     end
   end
 
-
-
-
-
-
-
-    
   
   def custom_form_field_validations
     if self.has_mailing_address.to_s == "1"
       custom_validates_presence_of("Mailing_Address")
     end
 
-    if self.identification_selection
+    if !self. identification_selection.blank?
       custom_validates_presence_of(self.identification_selection)
     end
 
   end    
-  
- 
+   
 end
