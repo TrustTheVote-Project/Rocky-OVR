@@ -66,6 +66,8 @@ en:
           "State_1": State
           "ZIP_1": Zip
       ar:
+        abr:
+          finish_instructions: Your application for a by-mail ballot must be received by Tuesday, October 27th, 2020.
         abr_form_fields:
           "Reason": "I request an absentee ballot because:"
           "Reside": "I reside:"
