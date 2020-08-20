@@ -869,6 +869,8 @@ en:
           header: Absentee Requests In Washington
           instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
       wy:
+        abr:
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Wyoming, this application must be RECEIVED by Monday, November 2nd, 2020.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf\">https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf</a></p>"
         abr_form_fields:
           has_mailing_address: Mail my ballot to a different address
           MAIL MY BALLOT TO: Mailing Address
