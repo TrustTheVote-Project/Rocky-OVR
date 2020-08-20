@@ -284,10 +284,9 @@ en:
           "has_mailing_address": My mailing address differs from my residential address.
           "absent_from": "Absent from (MM/DD/YYYY)"
           "absent_to": "Thru (MM/DD/YYYY)"
+          id_instructions: SSN and Driver's license are optional but encouraged
           SSN_Last_4: Last 4 digits of your social security number
-          SSN_Last_4__hint: OPTIONAL information to be used for official use only.
           License_ID: LA Driver's license or ID
-          License_ID__hint: OPTIONAL information to be used for official use only.
           
       md:
         state_online_abr:
