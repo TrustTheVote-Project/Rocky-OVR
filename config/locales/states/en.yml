@@ -150,6 +150,9 @@ en:
             "6": (6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her. 
           absentee_delivery: Special Qualification regarding electronic delivery of absentee ballots.
           Fax or: "Fax Number"
+      fl:
+        state_online_abr:
+          confirm: To request an absentee ballot in Florida, you need to contact your Supervisor of Elections.  Click here to find your Supervisor of Elections and more information on how to request your absentee ballot.
       ga:
         abr:
           finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Georgia, this application must be RECEIVED by Friday, October 30th, 2020.  At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.mvp.sos.ga.gov/MVP/mvp.do\">https://www.mvp.sos.ga.gov/MVP/mvp.do</a></p>"
