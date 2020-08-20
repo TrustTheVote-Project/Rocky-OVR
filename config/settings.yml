@@ -162,7 +162,7 @@ absentee_states:
   OH:
     pdf_template: oh.pdf
   OK:
-    online_req_url: https://services.okelections.us/AbsenteeApplication/
+    online_req_url: https://www.ok.gov/elections/OVP.html
   OR: {}      
   PA:
     online_req_url: https://www.pavoterservices.pa.gov/OnlineAbsenteeApplication/#/OnlineAbsenteeBegin
