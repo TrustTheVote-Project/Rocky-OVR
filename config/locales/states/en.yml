@@ -3,6 +3,12 @@ en:
   states:
     custom:
       ak:
+        abr:
+          finish_instructions: <p>Your application for a by-mail ballot must be received 10 days before Election Day.</p>
+          
+        state_online_abr:
+          requirements: <p>To use the Online Absentee Ballot System, you must have a valid Alaska driver's license or state ID card and the information you enter when applying must match the information on your Division of Motor Vehicles (DMV) record.</p>
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at Alaska's My Voter Information webpage: <a rel=\"noopener\" target=\"blank\" href=\"https://myvoterinformation.alaska.gov/\">https://myvoterinformation.alaska.gov/</a></p>"
         abr_form_fields:
           us_citizen: I am a U.S. Citizen
           us_citizen__required_message: You must be a U.S. Citizen
@@ -25,6 +31,7 @@ en:
             female: Female
           gender__hint: Select One
           Party: Political party affiliation
+          Party__hint: "Recognized Political Parties are parties who have gained recognized political party status under Alaska statutes:<br/>Alaska Democratic Party, Alaska Republican Party and Alaskan Independence Party.<br/><br/>Political Groups are parties who have applied for party status but have not met the qualifications required in Alaska statutes:<br/>Alaska Libertarian Party, Alliance Party of Alaska, Green Party of Alaska, Moderate Party of Alaska, OWL Party, Patriot’s Party of Alaska, Progressive Party of Alaska, UCES’ Clowns Party, Veterans Party of Alaska<br/><br/>Other Political Affiliations:<br/>Nonpartisan (not affiliated with a political party or group) or Undeclared (do not wish to declare a political party or group)"
           ballot_selection: Primary ballot option
           ballot_selection__options:
             dem: Alaska Democratic Party and Alaskan Independence Pary candidates.
