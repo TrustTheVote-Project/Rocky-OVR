@@ -1394,7 +1394,8 @@ class Registrant < ActiveRecord::Base
   end
   
   def pdf_url(pdfpre = nil, file=false)
-   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com#{pdf_path(pdfpre, file)}"
+    prefix = pdf_delivery ? "/#{pdf_delivery.pdf_prefix}" : ''
+   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com#{prefix}#{pdf_path(pdfpre, file)}"
   end
   def pdf_path(pdfpre = nil, file=false)
     pdf_writer.pdf_path(pdfpre, file)
@@ -1608,8 +1609,12 @@ class Registrant < ActiveRecord::Base
 
   def deliver_confirmation_email
     if send_emails?
-      Notifier.confirmation(self).deliver_now
-      enqueue_reminder_emails
+      if pdf_delivery && pdf_is_esigned?
+        Notifier.confirmation_with_signature(self).deliver_now        
+      else
+        Notifier.confirmation(self).deliver_now
+        enqueue_reminder_emails
+      end
     end
   end
   
