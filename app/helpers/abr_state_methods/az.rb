@@ -57,7 +57,7 @@ module AbrStateMethods::AZ
     #voter_signature
 
   }
-  EXTRA_FIELDS = ["has_mailing_address", "identification_selection",  "drivers_license_state", "place_of_birth", "last_4_ssn"]
+  EXTRA_FIELDS = ["has_mailing_address", {name: "identification_selection", sensitive: true},  "drivers_license_state", "place_of_birth", "last_4_ssn"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
