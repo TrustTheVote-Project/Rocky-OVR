@@ -42,6 +42,10 @@ module AbrStateMethods
       end
     end
     def define_state_value_attribute(method_name, sensitive: false, checkbox_values: nil)
+      if method_name.is_a?(Hash)
+        sensitive = method_name[:sensitive] || sensitive
+        method_name = method_name[:name]
+      end
       if sensitive
         self.sensitive_fields.push(method_name)
       end
