@@ -110,6 +110,7 @@ module AbrStateMethods::LA
         "Winn",
       ]}},
       {"Mothers Maiden Name": {required: true}},
+      {"id_instructions": {type: :instructions}},
       {"SSN_Last_4": {min:4, max: 4}},
       {"License_ID": {}},
       {"Options": {type: :radio, required: true}}, 

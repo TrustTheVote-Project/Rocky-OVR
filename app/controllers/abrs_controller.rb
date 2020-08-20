@@ -110,7 +110,6 @@ class AbrsController < ApplicationController
   def finish
     @current_step = 5 #final
     find_abr(:finish)
-    @abr_finish_iframe_url = @abr.finish_iframe_url
     @pdf_ready = false
     if params[:reminders]
       @abr.update_attributes(:reminders_left => 0, final_reminder_delivered: true)
@@ -152,6 +151,7 @@ class AbrsController < ApplicationController
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
     raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil?
     @abr.update_attributes(current_step: @current_step) if @current_step
+    @abr_finish_iframe_url = @abr.finish_iframe_url
     
     if @abr.finish_with_state? && special_case != :tell_friend && special_case != :finish
       @abr.update_attributes(:finish_with_state=>false)

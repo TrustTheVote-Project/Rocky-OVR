@@ -42,7 +42,7 @@ module AbrStateMethods::GA
       method: "first_name"
     },
     "Election_Date": {
-      value: "11/03/2020"
+      value: "11/3/2020"
     },
     "address_has_changed": {
       options: ["Off", "Yes"]

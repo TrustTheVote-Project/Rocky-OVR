@@ -167,9 +167,9 @@ module AbrStateMethods::IA
    
   def form_field_items
     [
-      {"identification": {type: :radio, options: ["dln", "vic"]}},
-      {"license": {visible: "identification_dln", min: 9, max: 9, regexp: /\A(\d{9}|\d{3}[[:alpha:]]{2}\d{4}\z/}},
-      {"voter_pin": {visible: "identification_vic", min: 4, max: 4, regexp: /\A\d{4}\z/}},
+      {"identification": {type: :radio, required: true, options: ["dln", "vic"]}},
+      {"license": {required: "custom", visible: "identification_dln", min: 9, max: 9, regexp: /\A(\d{9}|\d{3}[[:alpha:]]{2}\d{4})\z/}},
+      {"voter_pin": {required: "custom", visible: "identification_vic", min: 4, max: 4, regexp: /\A\d{4}\z/}},
       {"County": {type: :select, required: true, include_blank: true, options: [
         "Adair",
         "Adams",

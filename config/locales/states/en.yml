@@ -3,12 +3,12 @@ en:
   states:
     custom:
       ak:
+        abr:
+          finish_instructions: <p>Your application for a by-mail ballot must be received 10 days before Election Day.</p>
+          
         state_online_abr:
-          header: Good news, you can request an Absentee Ballot online directly with the state of Alaska
-          requirements: To request your absentee ballot online, you must have a valid Alaska driver's license or state ID card.
-          confirm: I meet these requirements and would like to finish my request directly with the state.
-          instructions: <p>State-specific set of instructions</p><ul><li>may</li><li>include</li><li>html</li>
-          finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
+          requirements: <p>To use the Online Absentee Ballot System, you must have a valid Alaska driver's license or state ID card and the information you enter when applying must match the information on your Division of Motor Vehicles (DMV) record.</p>
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at Alaska's My Voter Information webpage: <a rel=\"noopener\" target=\"blank\" href=\"https://myvoterinformation.alaska.gov/\">https://myvoterinformation.alaska.gov/</a></p>"
         abr_form_fields:
           us_citizen: I am a U.S. Citizen
           us_citizen__required_message: You must be a U.S. Citizen
@@ -31,6 +31,7 @@ en:
             female: Female
           gender__hint: Select One
           Party: Political party affiliation
+          Party__hint: "Recognized Political Parties are parties who have gained recognized political party status under Alaska statutes:<br/>Alaska Democratic Party, Alaska Republican Party and Alaskan Independence Party.<br/><br/>Political Groups are parties who have applied for party status but have not met the qualifications required in Alaska statutes:<br/>Alaska Libertarian Party, Alliance Party of Alaska, Green Party of Alaska, Moderate Party of Alaska, OWL Party, Patriot’s Party of Alaska, Progressive Party of Alaska, UCES’ Clowns Party, Veterans Party of Alaska<br/><br/>Other Political Affiliations:<br/>Nonpartisan (not affiliated with a political party or group) or Undeclared (do not wish to declare a political party or group)"
           ballot_selection: Primary ballot option
           ballot_selection__options:
             dem: Alaska Democratic Party and Alaskan Independence Pary candidates.
@@ -71,9 +72,9 @@ en:
           "City_1": City
           "State_1": State
           "ZIP_1": Zip
-        abr:
-          step_3_pending_instructions: <p>Sample override for %{state} linking to %{pdf_url}</p>
       ar:
+        abr:
+          finish_instructions: Your application for a by-mail ballot must be received by Tuesday, October 27th, 2020.
         abr_form_fields:
           "Reason": "I request an absentee ballot because:"
           "Reside": "I reside:"
@@ -99,6 +100,10 @@ en:
             "outside_county": outside the county in which I am registered to vote.
             "within_county": within the county in which I am registered to vote.
       az:
+        state_online_abr:
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
+        abr:
+          finish_instructions: "<p>Your application for a by-mail ballot must be received by 5:00pm on the 11th day before the election.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
         abr_form_fields:
           County_of_Residence: County of Residence
           election_selection: "I am requesting a ballot for:"
@@ -107,6 +112,11 @@ en:
             all: <strong>Every Election</strong>. I authorize the County Recorder to include my name on the PEVL and automatically send me a ballot-by-mail for each election I am eligible for.
           "has_mailing_address": My mailing address differs from my residential address.
           "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": "Place of birth, driver's license #, or last 4 digits of social security number:"
+          primary_ballot_selection: Primary Election Ballot Selection
+          primary_ballot_selection__hint: Select a party or nonpartisan ballot for the Primary Election. This will not change your voter registration to this political party affiliation. 
+          primary_ballot_selection__options:
+            green_pima_county_voters_only: Green (Pima County Voters Only)
+            municipalonly_nonpartisan: "Municipal-Only: Nonpartisan"
           identification_selection: "Identification type:"
           identification_selection__options:
             drivers_license_id: "Arizona driver's license or ID"
@@ -121,7 +131,7 @@ en:
       ca:
         abr:
           header: Absentee Requests In California
-          instructions: <p>There is no absentee ballot request for the Nov 3, 2020 election. All registered voters will receive a vote-by-mail ballot.</p>
+          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href="https://california.ballottrax.net/voter/">https://california.ballottrax.net/voter/</a></p>'
         online_instructions: |-
           You can complete your voter registration online with
           the state right now - using the application provided by the Secretary of
@@ -158,7 +168,12 @@ en:
             "6": (6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her. 
           absentee_delivery: Special Qualification regarding electronic delivery of absentee ballots.
           Fax or: "Fax Number"
+      fl:
+        state_online_abr:
+          confirm: To request an absentee ballot in Florida, you need to contact your Supervisor of Elections.  Click here to find your Supervisor of Elections and more information on how to request your absentee ballot.
       ga:
+        abr:
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Georgia, this application must be RECEIVED by Friday, October 30th, 2020.  At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.mvp.sos.ga.gov/MVP/mvp.do\">https://www.mvp.sos.ga.gov/MVP/mvp.do</a></p>"
         abr_form_fields:
           "has_mailing_address": I have a temporary address that differs from my resident address or permanent mailing address on file.
           "Text12": Residence County
@@ -168,6 +183,10 @@ en:
           "Text16": County
           "address_has_changed": My permanent address has changed within my county and I want to update my address.
           "type_of_ballot": Type of ballot
+          "type_of_ballot__options":
+            "Democratic": "Democratic"
+            "Republican": "Republican"
+            "Non_Partisan": "Not Partisan (will not have ANY party candidates listed)"
           "reason_other": I swear that the facts contained in this application are true, that I am a family member of the voter of the age of 18, and that the voter is
           "assisted_voter": Voter is disabled or illiterate and I assisted in completing this application. 
           "reason_other__options": 
@@ -176,6 +195,7 @@ en:
           "Text23": "Today's date: (MM/DD/YYYY)"
           "requestor": I am requesting a ballot on behalf of the voter.
           "Text25": Relationship to voter
+          "Elegibility": "Eligibility to receive vote by mail ballots for the rest of the election cycle without another application?"
           "Elegibility__options":
             "E": E- Elderly- I am 65 years of age or older
             "D": D- Disabled- I have a physical disability
@@ -189,8 +209,10 @@ en:
       hi:
         abr:
           header: Absentee Requests In Hawaii
-          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://elections.hawaii.gov/voters/applications/\">https://elections.hawaii.gov/voters/applications/</a></p>"
       ia:
+        abr:
+          finish_instructions: <p>Make sure to complete and send this form in as soon as possible. In Iowa, this application must be RECEIVED by your County Auditor no later than 5:00pm 10 days before a General Election or 11 days before any other election.</p>
         abr_form_fields:
           identification__options:
             dln: "Iowa Driver's License or Non-Operator ID"
@@ -200,6 +222,9 @@ en:
           "voter_pin__hint": Voters who do not appear in the Iowa Dept. of Transportation's Driver's License or Non-Operator ID files are mailed an Iowa Voter Identification Card at the time of registration. Any voter may request a Voter Identification Card.
           "identification": Please choose one of the following forms of identification
           "Mail Address": Mailing Address
+          "Mailing Address City": "City"
+          "Mailing Address State": "State"
+          "Mailing Address Zip Code": "ZIP"
           "has_mailing_address": My mailing address differs from my residential address.
           "Do not add this contact info to my voter recored check box": Please do not add my phone number or email address to my voter record.
       in:
@@ -253,7 +278,7 @@ en:
       ky:
         abr:
           header: Absentee Requests In Kentucky
-          instructions: "<p>Unforatunately, Kentucky requires all absentee requests to be completed directly through the state.</p><p>You can go here to request a ballot if you are eligible: <a target=\"_blank\" rel=\"noopener\" href=\"https://ky.secureballotusa.com/portal/#/request-ballot/fpca\">https://ky.secureballotusa.com/portal/#/request-ballot/fpca</a></p><p>In Kentucky, you are only allowed to request an absentee ballot if you are eligible to vote AND meet one of these criteria:</p><ul><li>I am a member of the Uniformed Services or Merchant Marine on active duty.</li><li>I am an eligible spouse or dependent.</li><li>I am an activated National Guard member on State orders.</li><li>I am a U.S. citizen residing outside the United States, and I intend to return.</li><li>I am a U.S. citizen residing outside the United States, and my return is not certain.</li><li>I am a U.S. citizen and have never resided in the United States.</li></ul>"
+          instructions: "<p>Unforatunately, Kentucky requires all absentee requests to be completed directly through the state.</p><p>In Kentucky, you are only allowed to request an absentee ballot if you are eligible to vote AND meet one of these criteria:</p><ul><li>I am a member of the Uniformed Services or Merchant Marine on active duty.</li><li>I am an eligible spouse or dependent.</li><li>I am an activated National Guard member on State orders.</li><li>I am a U.S. citizen residing outside the United States, and I intend to return.</li><li>I am a U.S. citizen residing outside the United States, and my return is not certain.</li><li>I am a U.S. citizen and have never resided in the United States.</li></ul><p>You can go here to request a ballot if you are eligible: <a target=\"_blank\" rel=\"noopener\" href=\"https://ky.secureballotusa.com/portal/#/request-ballot/fpca\">https://ky.secureballotusa.com/portal/#/request-ballot/fpca</a></p>"
       la:
         abr:
           finish_pdf_delay_instructions: <p>You must request your ballot by 4:30pm CST on the 4th day before election day.  Your ballot (unless you are Military, Overseas, or Hospitalized) must be received by your parish registrar of voters by 4:30pm CST on the day before election day.</p><p>Not sure where your registrar of voters is? <a target="_blank" rel="noopener" href="https://voterportal.sos.la.gov/registrar">Check the Registrar of voters</a></p>
@@ -280,13 +305,31 @@ en:
           "has_mailing_address": My mailing address differs from my residential address.
           "absent_from": "Absent from (MM/DD/YYYY)"
           "absent_to": "Thru (MM/DD/YYYY)"
+          id_instructions: SSN and Driver's license are optional but encouraged
           SSN_Last_4: Last 4 digits of your social security number
-          SSN_Last_4__hint: OPTIONAL information to be used for official use only.
           License_ID: LA Driver's license or ID
-          License_ID__hint: OPTIONAL information to be used for official use only.
           
-          
+      md:
+        state_online_abr:
+          requirements: |-
+            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state.</p>
+            <p>To request a ballot, your personal information has to match the information about you that is on file with the Maryland MVA.</p>
+            <p>These are the things that have to match:</p>
+            <ul>
+              <li>Your name</li>
+              <li>Your date of birth</li>
+              <li>Your driver’s license number, ID number, or Learner's Permit number</li>
+              <li>Your signature at the MVA will become your official voter registration signature</li>
+            </ul>
+      me:
+        state_online_abr:
+          confirm: To qualify to request a ballot in ME, you only need to be registered to vote.
+        
       mi:
+        abr:
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Michigan, this application must be RECEIVED by Friday, October 30th, 2020.</p><p>You can check on the status of your absent voter ballot request by contacting your city or township clerk's office.  You can find your clerk's office contact info here: <a rel=\"noopener\" target=\"blank\" href=\"https://mvic.sos.state.mi.us/\">https://mvic.sos.state.mi.us/</a>"
+        state_online_abr:
+          finish_instructions: "<p>You can check on the status of your absent voter ballot request by contacting your city or township clerk's office. You can find your clerk's office contact info here: <a rel=\"noopener\" target=\"blank\" href=\"https://mvic.sos.state.mi.us/\">https://mvic.sos.state.mi.us/</a>"
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?
           register_in_wi: I want to register to vote in the state of Wisconsin
@@ -372,6 +415,21 @@ en:
         registration_complete_less_than_18: <p>You will be eligible to vote as soon as you turn 18 years old.</p> 
         registration_complete_dialog_text: ""
         valid_street_types: "Valid Street types include: %{types}"
+      mn:
+        state_online_abr:
+          instructions: |-
+            <p>To request an absentee ballot in MN, you must certify that:</p>
+            <ul>
+              <li>I am completing this application on my own behalf; </li>
+              <li>will be at least 18 years old on election day; </li>
+              <li>am a citizen of the United States;</li>
+              <li>will have resided in Minnesota for 20 days immediately preceding election day;</li>
+              <li>maintain residenceat the address given on this application form;</li>
+              <li>am not under court-ordered guardianship in which the court order revokes my right to vote;</li>
+              <li>have not been found by a court to be legally incompetent to vote;</li>
+              <li>have the right to vote because, if I have been convicted of a felony, my felony sentence has expired (been completed) or Ihave been discharged from my sentence.</li>
+            </ul>
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx\">https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx</a></p>"
       mo:
         abr_form_fields:
           "undefined": "Last 4 digit of my social security number"
@@ -390,7 +448,16 @@ en:
       ms:
         abr:
           header: Absentee Requests In Mississippi
-          instructions: <p>Mississippi requires all absentee requests to be completed directly through the state.</p>
+          instructions: |-
+            <p>Mississippi requires all absentee requests to be completed directly through the state.</p>
+            <p>You can request your MS absentee ballot through the Federal Post Card Application.</p><p>You must meet at least one of the following requireuments:&nbsp;I am eligible to vote AND,</p>
+            <ul>
+              <li>I am on active duty in the Uniformed Services or Merchant Marine -OR- I am an eligible spouse or dependent. </li>
+              <li>I am an activated National Guard member on State orders. </li>
+              <li>I am a U.S. citizen living outside the country, and I intend to return. </li>
+              <li>I am a U.S. citizen living outside the country, and my return is uncertain.</li>
+              <li>I am a U.S. citizen living outside the country, and I have never lived in the United States.</li>
+            </ul>
       
       mt:
         abr_form_fields:
@@ -438,6 +505,22 @@ en:
             <br/>2. Click the button below to continue.
             <br/>3. On the DMV website, click \"Continue to myNCDMV Services.\"
             <br/>4. Click \"Continue as a guest\" and submit your voter registration online."
+      
+      nd:
+        
+        state_online_abr:
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://vip.sos.nd.gov/AbsenteeTracker.aspx\">https://vip.sos.nd.gov/AbsenteeTracker.aspx</a></p>"
+          requirements: |-
+            <p>To use North Dakota's online absentee request, you must have one of these forms of ID:</p>
+            <ul>
+              <li>Driver's License</li>
+              <li>Non-Driver's ID</li>
+              <li>Tribal ID</li>
+              <li>Passport (only for voters outside the United States)</li>
+              <li>Military ID (active duty stationed away from North Dakota residence and qualified elector with a military ID)</li>
+              <li>Long-Term Care Certificate</li>
+            </ul>
+            <p>You may also use the online system to request an absentee ballot if you are unable to objeain an ID due to disability.<p>
       ne:
         abr_form_fields:
           "County Name2": Registered County
@@ -492,6 +575,14 @@ en:
             "UOCAVA_2": "A U.S. Citizen residing outside the U.S. and I intend to return."
             "UOCAVA_3": "A U.S. Citizen residing outside the U.S. and I do not intend to return."
             "UOCAVA_4": "A U.S. Citizen residing outside the U.S. and I have never lived in the U.S."
+      nm:
+        abr:
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In New Mexico, this application must be turned in to your County Clerk's office within 48 hours of completetion and be RECEIVED by Friday, October 30th, 2020.  At any time you can check the status of your application and the status of your ballot at:<a rel=\"noopener\" target=\"blank\" href=\"
+\">
+</a></p>"
+        state_online_abr:
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1\">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>"
+          
       nv:
         abr_form_fields:
           "RegistrationNo": "Nevada Driver's License or Nevada ID Card Number, if applicable"
@@ -557,10 +648,15 @@ en:
             photoid: "Copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address."          
           OR: Ohio Driver license number (2 letters followed by 6 numbers)
           OR_2: Last four digits of your Social Security Number
+      ok:
+        state_online_abr:
+          confirm: To qualify to request a ballot in OK, you only need to be registered to vote.
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.ok.gov/elections/OVP.html\">https://www.ok.gov/elections/OVP.html</a></p>"
+      
       or:
         abr:
           header: Absentee Requests In Oregon
-          instructions: <p>There is no absentee ballot request in Oregon. All registered voters will receive a vote-by-mail ballot.</p>
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, want to check on the status of your ballot or need to update your address please go to Oregon's My Vote website: <a rel=\"noopener\" target=\"blank\" href=\"https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html\">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>"
       
       pa:
         registration_deadline_text: 10/19/2020 is the last day to register before the
@@ -679,6 +775,33 @@ en:
             provide_signature: Provide Signature
             select_file: Select an image to upload
             copy_link: Copy Link      
+      sc:
+        state_online_abr:
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo\">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>"
+          instructions: |-
+            <p>In your state, you are only allowed to vote absentee if you meet one of the following criteria:</p>
+            <ul>
+              <li>Members of the Armed Forces </li>
+              <li>Members of the Merchant Marine </li>
+              <li>Spouses and dependents residing with members of the Armed Forces or Merchant Marine </li>
+              <li>Persons serving with the American Red Cross or with the United Service Organizations (USO) who are attached to and serving with the Armed Forces outside their county of residence and their spouses and dependents residing with them</li>
+              <li>Citizens residing overseas </li>
+              <li>Persons who are physically disabled (includes illnesses and injuries)</li>
+              <li>Students attending school outside their county of residence and their spouses and dependents residing with them</li>
+              <li>Persons who for reasons of employment will not be able to vote on election day</li>
+              <li>Government employees serving outside their county of residence on Election Day and their spouses and dependents residing with them</li>
+              <li>Persons who plan to be on vacation outside their county of residence on Election Day</li>
+              <li>Persons serving as a juror in state or federal court on Election Day</li>
+              <li>Persons admitted to the hospital as emergency patients on Election Day or within a four-day period before the election</li>
+              <li>Persons with a death or funeral in the family within three days before the election</li>
+              <li>Persons confined to a jail or pre-trial facility pending disposition of arrest or trial</li>
+              <li>Persons attending sick or physically disabled persons</li>
+              <li>Certified poll watchers, poll managers, and county election officials working on Election Day</li>
+              <li>Persons sixty-five years of age or older</li>
+              <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
+            </ul>
+
+            
       sd:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
@@ -758,12 +881,10 @@ en:
           "City of witness": "City"
           "State of witness": "State"
           "Zip code of witness": "ZIP"
-        state_online_abr:
-          finish_instructions: <p>State-specific set of instructions for the finish page</p><ul><li>may</li><li>include</li><li>html</li>
       ut:
         abr:
           header: Absentee Requests In Utah
-          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>              
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/\">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p>"              
       va:
         abr_form_fields:
           "Birth_Year": "Year I was born:"
@@ -833,6 +954,8 @@ en:
           header: Absentee Requests In Washington
           instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
       wy:
+        abr:
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Wyoming, this application must be RECEIVED by Monday, November 2nd, 2020.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf\">https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf</a></p>"
         abr_form_fields:
           has_mailing_address: Mail my ballot to a different address
           MAIL MY BALLOT TO: Mailing Address

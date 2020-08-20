@@ -1,25 +1,18 @@
-- unless @abr.oabr_for_all?
-  :javascript
-    $(document).ready(function() {
-      var section = $("#abr_state_online_abr_section");
-      section.hide();
-      $("#confirm_state_online_abr").click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        section.show();
-      })
-    
-    })
-  
+
 = form_for(@abr) do |form|
-  %h3= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.header", default: I18n.t('txt.abr.state_online_defaults.header', state: @abr.home_state_name))
+  - if @abr.oabr_for_all?
+    %h2= I18n.t('txt.abr.state_online_defaults.header', state: @abr.home_state_name)
+  - else
+    %h2= I18n.t('txt.abr.state_online_defaults.header_choice', state: @abr.home_state_name)
+  %p.instructions= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm'))
   - unless @abr.oabr_for_all?
-    %p.instructions= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.requirements", default: I18n.t('txt.abr.state_online_defaults.requirements', state: @abr.home_state_name))
-    %p.instructions
-      %a{href: "#", id: "confirm_state_online_abr"}= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm'))
+    .requirements= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.requirements", default: I18n.t('txt.abr.state_online_defaults.requirements', state: @abr.home_state_name)).html_safe
+      
     
   #abr_state_online_abr_section
-    = I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.instructions", default: I18n.t('txt.abr.state_online_defaults.instructions', state: @abr.home_state_name)).html_safe
+    = I18n.t('txt.abr.state_online_defaults.instructions', state: @abr.home_state_name, default: "").html_safe
+    .state-instructions
+      = I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.instructions", default: "").html_safe
     = rollover_button(:state_online_registration, I18n.t('txt.button.state_online_abr', :state=>@abr.home_state_name).html_safe, {:id=>'abr_state_online_abr',:name=>'abr_state_online_abr',:value=>'abr_state_online_abr'}) 
     :javascript
       $(document).ready(function() {
@@ -37,7 +30,7 @@
         }, 1000);
       }
   - unless @abr.oabr_for_all?
-    %p
+    %p.reject
       = link_to I18n.t('txt.abr.skip_state_online_abr'), step_3_abr_path(@abr)
   
   

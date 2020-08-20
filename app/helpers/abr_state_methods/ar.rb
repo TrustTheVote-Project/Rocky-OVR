@@ -82,10 +82,10 @@ module AbrStateMethods::AR
   
   
   def delivery_email_address
-    email_address || email
+    e_mail_address || email
   end
   def delivery_email_address=(val)
-    self.email_address = val
+    self.e_mail_address = val
   end
   
   def custom_form_field_validations

@@ -392,7 +392,8 @@ class GeoState < ActiveRecord::Base
     if county_address_zip && !county_address_zip.req_address.blank?
       county_address_zip.req_address.gsub(/\n/,"<br/>")
     else
-      registrar_address(zip_code)
+      state_abr_addr = read_attribute(:registrar_abr_address)
+      return state_abr_addr.blank? ? registrar_address(zip_code) : state_abr_addr
     end    
   end
   def registrar_address(zip_code=nil)
