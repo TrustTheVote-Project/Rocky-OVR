@@ -2,6 +2,10 @@
 
 = t('txt.abr.step_2_instructions').html_safe
 
+.requirements
+  = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr.requirements", default: "").html_safe
+
+
 = form_for(@abr) do |form|
   = render partial: 'step', locals: { form: form }
   
