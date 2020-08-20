@@ -301,6 +301,10 @@ en:
               <li>Your driver’s license number, ID number, or Learner's Permit number</li>
               <li>Your signature at the MVA will become your official voter registration signature</li>
             </ul>
+      me:
+        state_online_abr:
+          confirm: To qualify to request a ballot in ME, you only need to be registered to vote.
+        
       mi:
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?

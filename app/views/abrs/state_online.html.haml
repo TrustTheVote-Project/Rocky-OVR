@@ -4,7 +4,7 @@
     %h2= I18n.t('txt.abr.state_online_defaults.header', state: @abr.home_state_name)
   - else
     %h2= I18n.t('txt.abr.state_online_defaults.header_choice', state: @abr.home_state_name)
-  %p.instructions= I18n.t('txt.abr.state_online_defaults.confirm')
+  %p.instructions= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm'))
   - unless @abr.oabr_for_all?
     .requirements= I18n.t("states.custom.#{@abr.home_state_abbrev.downcase}.state_online_abr.requirements", default: I18n.t('txt.abr.state_online_defaults.requirements', state: @abr.home_state_name)).html_safe
       
