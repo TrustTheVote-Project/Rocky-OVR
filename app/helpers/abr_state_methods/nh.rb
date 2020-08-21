@@ -36,9 +36,15 @@ module AbrStateMethods::NH
     "AptUnit_2": {},
     "CityTown_2": {},
     "State Zip Code": {},
-    "Applicants Phone Number": {}, #TODO- first 3 digits of phone number (area code)
-    "undefined": {}, #TODO- next 3 digits of phone number
-    "undefined_2": {}, #TODO- last 4 digits of phone number
+    "Applicants Phone Number": {
+      method:"phone_area"
+    }, #TODO- first 3 digits of phone number (area code) #TODONE
+    "undefined": {
+      method:"phone_prefix"
+    }, #TODO- next 3 digits of phone number #TODONE
+    "undefined_2": {
+      method:"phone_last4"
+    }, #TODO- last 4 digits of phone number #TODONE
     "Check Box12": { 
       options: ["Off", "Yes"],
       value: "Yes"
@@ -96,10 +102,30 @@ module AbrStateMethods::NH
       {"Asisstant Name": {visible: "assistant"}},
     ]
   end
- 
+
+  def phone_area
+    if self.phone.to_s!=''   
+      phonedigits = self.phone.to_s.gsub(/\D/,'')
+      return (phonedigits[0..2])
+    end
+  end
+
+  def phone_prefix
+    if self.phone.to_s!=''
+      phonedigits = self.phone.to_s.gsub(/\D/,'')
+      return (phonedigits[3..5])
+    end
+  end
+  
+  def phone_last4
+    if self.phone.to_s!=''
+      phonedigits =self.phone.to_s.gsub(/\D/,'')
+      return (phonedigits[6..9])
+    end
+  end 
+
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+
   end
   
  
