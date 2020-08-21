@@ -629,18 +629,6 @@ class Registrant < ActiveRecord::Base
     self.state_id_number.upcase! if self.state_id_number.present? && self.state_id_number_changed?
   end
 
-  def reformat_phone
-    if phone.present? && phone_changed?
-      digits = phone_digits
-      if digits.length == 10
-        self.phone = [digits[0..2], digits[3..5], digits[6..9]].join('-')
-      end
-    end
-  end
-  
-  def phone_digits
-    phone.to_s.gsub(/\D/,'')
-  end
   
   def set_opt_in_email
     if !require_email_address? && email_address.blank?

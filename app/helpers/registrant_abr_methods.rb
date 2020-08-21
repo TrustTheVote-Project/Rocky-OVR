@@ -24,6 +24,20 @@ module RegistrantAbrMethods
     !phone.blank?
   end
   
+  def reformat_phone
+    if phone.present? && phone_changed?
+      digits = phone_digits
+      if digits.length == 10
+        self.phone = [digits[0..2], digits[3..5], digits[6..9]].join('-')
+      end
+    end
+  end
+  
+  def phone_digits
+    phone.to_s.gsub(/\D/,'')
+  end
+  
+  
   
   def is_blacklisted(email_address)
     EmailAddress.is_blacklisted?(email_address)

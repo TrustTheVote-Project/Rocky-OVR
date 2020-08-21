@@ -61,6 +61,11 @@
     ul.checkbox {
       h3 {
         height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        span.error {
+          flex-basis: 100%;
+        }
       }
     }
     &.date {

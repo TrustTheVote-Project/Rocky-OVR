@@ -38,13 +38,13 @@ module AbrStateMethods::NH
     "State Zip Code": {},
     "Applicants Phone Number": {
       method:"phone_area"
-    }, #TODO- first 3 digits of phone number (area code) #TODONE
+    }, 
     "undefined": {
       method:"phone_prefix"
-    }, #TODO- next 3 digits of phone number #TODONE
+    }, 
     "undefined_2": {
       method:"phone_last4"
-    }, #TODO- last 4 digits of phone number #TODONE
+    }, 
     "Check Box12": { 
       options: ["Off", "Yes"],
       value: "Yes"
@@ -93,34 +93,31 @@ module AbrStateMethods::NH
       {"Check Box19": {type: :checkbox, classes: "indent"}},
       {"Check Box20": {type: :checkbox, classes: "indent"}},
       {"has_mailing_address": {type: :checkbox}},
-      {"Street or PO Box": {visible: "has_mailing_address", classes: "quarter"}},
-      {"Mailing Street name": {visible: "has_mailing_address", classes: "half"}},
+      {"Street or PO Box": {visible: "has_mailing_address", classes: "quarter", required: :if_visible}},
+      {"Mailing Street name": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
       {"AptUnit_2": {visible: "has_mailing_address", classes: "quarter last"}},
-      {"CityTown_2": {visible: "has_mailing_address", classes: "half"}},
-      {"State Zip Code": {visible: "has_mailing_address", classes: "half last"}},
+      {"CityTown_2": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
+      {"State Zip Code": {visible: "has_mailing_address", classes: "half last", required: :if_visible}},
       {"assistant": {type: :checkbox}},
-      {"Asisstant Name": {visible: "assistant"}},
+      {"Asisstant Name": {visible: "assistant", required: :if_visible}},
     ]
   end
 
   def phone_area
     if self.phone.to_s!=''   
-      phonedigits = self.phone.to_s.gsub(/\D/,'')
-      return (phonedigits[0..2])
+      return (phone_digits[0..2])
     end
   end
 
   def phone_prefix
     if self.phone.to_s!=''
-      phonedigits = self.phone.to_s.gsub(/\D/,'')
-      return (phonedigits[3..5])
+      return (phone_digits[3..5])
     end
   end
   
   def phone_last4
     if self.phone.to_s!=''
-      phonedigits =self.phone.to_s.gsub(/\D/,'')
-      return (phonedigits[6..9])
+      return (phone_digits[6..9])
     end
   end 
 

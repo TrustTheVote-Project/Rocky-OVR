@@ -31,6 +31,8 @@ class Abr < ActiveRecord::Base
   belongs_to :home_state,    :class_name => "GeoState"
   belongs_to :partner
   
+  before_validation :reformat_phone
+  
   validates_presence_of :first_name, if: :advancing_to_step_3?
   validates_presence_of :last_name, if: :advancing_to_step_3?
   validates_presence_of :street_number, if: :advancing_to_step_3?

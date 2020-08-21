@@ -52,7 +52,7 @@ module AbrStateMethods::NJ
     "Same_Address": { 
       options: ["Off", "Yes"], 
       method:"same_address_conditional" 
-    }, #TODO- autofill "Yes" if "has_mailing_address" is NOT checked #TODONE
+    }, 
     "Mailing_Address_1": {
       method: "full_name_conditional" #Only if different mailing address
     },
@@ -74,12 +74,6 @@ module AbrStateMethods::NJ
     #"messenger_date": {}
   }
   EXTRA_FIELDS = ["has_mailing_address", "assistant", "messenger"]
-  # e.g.
-  # EXTRA_FIELDS = ["has_mailing_address", "identification"]
-  
-  # def whatever_it_is_you_came_up_with
-  #   # TODO when blah is selected it should be "abc" and otherwise left blank
-  # end
   
   
   def form_field_items
@@ -89,53 +83,36 @@ module AbrStateMethods::NJ
       {"Mailing_Address_3":{visible: "has_mailing_address"}},
       {"UOCAVA": {type: :radio}},
       {"assistant": {type: :checkbox}},
-      {"Name_Assistor": {visible: "assistant"}},
-      {"Address_Assistor": {visible: "assistant", classes: "three-quarter"}},
+      {"Name_Assistor": {visible: "assistant", required: :if_visible}},
+      {"Address_Assistor": {visible: "assistant", classes: "three-quarter", required: :if_visible}},
       {"Apt_2": {visible: "assistant", classes: "quarter last"}},
-      {"Municipality CityTown_2": {visible: "assistant", classes: "half"}},
-      {"State_2": {visible: "assistant", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Zip_2": {visible: "assistant", classes: "quarter last"}},
+      {"Municipality CityTown_2": {visible: "assistant", classes: "half", required: :if_visible}},
+      {"State_2": {visible: "assistant", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Zip_2": {visible: "assistant", required: :if_visible, classes: "quarter last"}},
       {"messenger": {type: :checkbox}},
-      {"Authorizied_Messenger_Name": {visible: "messenger"}},
-      {"Address of Messenger": {visible: "messenger", classes: "three-quarter"}},
+      {"Authorizied_Messenger_Name": {visible: "messenger", required: :if_visible}},
+      {"Address of Messenger": {visible: "messenger", required: :if_visible, classes: "three-quarter"}},
       {"Apt_3": {visible: "messenger", classes: "quarter last"}},
-      {"Municipality CityTown_3": {visible: "messenger", classes: "half"}},
-      {"State_3": {visible: "messenger", classes: "half last", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Date_of_Birth_Messenger": {visible: "messenger"}},
+      {"Municipality CityTown_3": {visible: "messenger", required: :if_visible, classes: "half"}},
+      {"State_3": {visible: "messenger", required: :if_visible, classes: "half last", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      # TODO: change to type: :date 
+      {"Date_of_Birth_Messenger": {visible: "messenger", required: :if_visible}},
     ]
   end
-  #e.g.
-  # [
-  #   {"reason_instructions": {type: :instructions}}, *"reason_instructions" does NOT get put into EXTRA_FIELDS
-  #   {"County": {type: :select, required: true, include_blank: true, options: [
-  #     "Adams",
-  #   ]}},
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
-  
-    # Methods below map from UI attributes to PDF fields
 
-    def same_address_conditional
-      return self.has_mailing_address.to_s == "1" ? "Off" : "Yes"
-    end
+  # Methods below map from UI attributes to PDF fields
 
-    def full_name_conditional
-      if(self.has_mailing_address.to_s == "1")
-        return self.full_name
-      end
+  def same_address_conditional
+    return self.has_mailing_address.to_s == "1" ? "Off" : "Yes"
+  end
+
+  def full_name_conditional
+    if(self.has_mailing_address.to_s == "1")
+      return self.full_name
     end
+  end
 
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
   end
   
  

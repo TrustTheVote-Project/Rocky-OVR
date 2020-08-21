@@ -33,10 +33,10 @@ module AbrStateMethods::NY
       method: "zip"
     },
     #Date (Applicant Signed)
-    "(address of witness to mark)": {},
-    "Name of Voter:": {
-      method: "full_name"
-    },
+    # "(address of witness to mark)": {},
+    # "Name of Voter:": {
+    #   method: "full_name"
+    # },
     #(signature of witness to mark)
     #Date (Applicant Marked)
     #Mark: (Applicant mark in lieu of signature)
@@ -75,12 +75,6 @@ module AbrStateMethods::NY
     #"voter_signature"
   }
   EXTRA_FIELDS = ["has_mailing_address", "witness", "mail_street_number", "mail_street_name", "mail_unit", "mail_city", "mail_state", "mail_zip"]
-  # e.g.
-  # EXTRA_FIELDS = ["has_mailing_address", "identification"]
-  
-  # def whatever_it_is_you_came_up_with
-  #   # TODO when blah is selected it should be "abc" and otherwise left blank
-  # end
   
   
   def form_field_items
@@ -153,8 +147,7 @@ module AbrStateMethods::NY
       {"deliver_general_ballot": {type: :radio, required: true}},
       {"I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": {visible: "deliver_general_ballot_general_to_proxy", required: "star"}}, # :is_visible throws err
       {"has_mailing_address": {type: :checkbox}},
-      #TODO- if "has_mailing_address" is left blank, autofill lines 43-48 with residential address
-      #TODONE
+      # TODO mailing address only applies when "deliver_general_ballot" == "general_mail". checkbox should be hidden when "general_mail" not selected and "mail_*" fields should not be populated.
       {"mail_street_number": {visible: "has_mailing_address",required: "star", classes: "quarter"}},
       {"mail_street_name": {visible: "has_mailing_address",required:"star", classes: "half"}},
       {"mail_unit": {visible: "has_mailing_address", classes: "quarter last"}},

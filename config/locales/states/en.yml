@@ -663,6 +663,7 @@ en:
       
       ny:
         abr_form_fields:
+          "county where you live": "County where you live"
           "has_mailing_address": My mailing address differs from my residential address.
           "deliver_general_ballot": "Delivery of General Election Ballot (check one):"
           "deliver_general_ballot__options":
