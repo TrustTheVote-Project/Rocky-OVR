@@ -47,7 +47,38 @@ class Abr < ActiveRecord::Base
   validates_presence_of :email
   validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
   validates_presence_of :phone_type, if: :has_phone?
+  
+  def self.validate_fields(list, regex, message)
+    list.each do |field|
+      validates field, format: { with: regex , 
+        message: message }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
+    end
+    
+  end
+  
+  ADDRESS_FIELDS = ["street_number", 
+    "street_name"]
 
+  CITY_FIELDS = ["city"]
+
+  NAME_FIELDS = ["first_name", 
+   "middle_name", 
+   "last_name"]
+
+  PDF_FIELDS = [
+    "home_zip_code",
+    "first_name", 
+    "middle_name", 
+    "last_name", 
+    "street_number", 
+    "street_name",
+    "unit",    
+    "city", 
+  ]
+  
+  validate_fields(PDF_FIELDS, Registrant::OVR_REGEX, :invalid_for_pdf)
+  validate_fields(NAME_FIELDS, Registrant::OVR_REGEX, :invalid)
+  validate_fields(ADDRESS_FIELDS, Registrant::CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period")
 
   def advancing_to_step?(num)
     (current_step || "0").to_i >= num

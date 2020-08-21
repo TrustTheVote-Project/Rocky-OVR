@@ -61,9 +61,9 @@ module AbrStateMethods::TN
       {"Address of Witness": {visible: "voter_cannot_sign", required: :if_visible}},
       {"Reason": {type: :radio, required: true}},
       {"CDL or TWIC Number": {visible: "reason_choice12"}},
-      {"transmission_13": {type: :radio, options: ["By Email", "By Mail"], visible: "reason_choice13", required: true}},
-      {"transmission_14": {type: :radio, options: ["By Email", "By Mail"], visible: "reason_choice14", required: true}},
-      {"transmission_15": {type: :radio, options: ["By Email", "By Mail"], visible: "reason_choice15", required: true}},
+      {"transmission_13": {type: :radio, options: ["By Email", "By Mail"], visible: "reason_choice13", required: "custom"}},
+      {"transmission_14": {type: :radio, options: ["By Email", "By Mail"], visible: "reason_choice14", required: "custom"}},
+      {"transmission_15": {type: :radio, options: ["By Email", "By Mail"], visible: "reason_choice15", required: "custom"}},
     ]
   end
   
