@@ -109,6 +109,7 @@ absentee_states:
     pdf_template:
     pdf_url: https://elections.il.gov/ElectionOperations/VotingByMailAgreement.aspx
   IN:
+    online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
     pdf_template: in.pdf
   KS:
     pdf_template: ks.pdf

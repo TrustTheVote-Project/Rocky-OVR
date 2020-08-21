@@ -228,6 +228,23 @@ en:
           "has_mailing_address": My mailing address differs from my residential address.
           "Do not add this contact info to my voter recored check box": Please do not add my phone number or email address to my voter record.
       in:
+        abr:
+          requirements: |-
+            <p>To qualify to request a ballot in IN, you must have one of the following reasons:  </p>
+            <ul>
+            <li>You have a specific, reasonable expectation that you will be absent from the county on Election Day during the entire 12 hours that the polls are open (6 am until 6 pm).</li>
+            <li>You have a disability.</li>
+            <li>You are at least 65 years of age.</li>
+            <li>You will have official election duties outside of your voting precinct.</li>
+            <li>You are scheduled to work at your regular place of employment during the entire 12 hours that the polls are open.</li>
+            <li>You will be confined due to illness or injury or you will be caring for an individual confined due to illness or injury during the entire 12 hours that the polls are open.</li>
+            <li>You are prevented from voting because of a religious discipline or religious holiday during the entire 12 hours that the polls are open.</li>
+            <li>You are a participant in the state's address confidentiality program.</li>
+            <li>You are a member of the military or a public safety officer.</li>
+            <li>You are a ""serious sex offender"" as defined in Indiana Code 35-42-4-14(a).</li>
+            <li>You are prevented from voting due to the unavailability of transportation to the polls.</li>
+            </ul>
+            
         abr_form_fields:
           "Mailing Address number and street": Mailing address
           "CityTown State ZIP Code_2": "City/Town, State, Zip"
@@ -431,19 +448,55 @@ en:
             </ul>
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx\">https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx</a></p>"
       mo:
+        abr:
+          finish_instructions: |-
+            <p>Make sure to complete and send this form in as soon as possible. You can find your local election authority's address at this link:
+              <a rel=\"noopener\" target=\"blank\" href=\"https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority\">https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority</a> 
+            </p>
+            <p>Please read through the instructions on the form on how to submit your application.</p>
+            <p>Your absentee ballot application must be RECEIVED by 5pm on Wednesday, October 21st, 2020.  NOTE: if you registered to vote by mail and this is your first time voting, you must provide a copy of either:</p>
+            <ul>
+              <li>(1) an ID issued by the Federal Government, state of Missouri, or a local election authority; </li>
+              <li>(2) ID issued by a Missouri Institiution (public or private) of higher education; or </li>
+              <li>(3) a current utility bill, bank statement, paycheck, government check or other govenrment document that contains your name and address.  </li>
+            </ul>
+            <p>Your completed ballot must be RECEIVED by Tuesday, November 3, 2020 (Election Day) at 7:00 p.m. if carrier envelope is not postmarked, OR Wednesday, November 4, 2020 (next business day after Election Day) at 5:00 p.m. if carrier envelope is postmarked by 7:00 p.m. at the location of the  election on Election Day (unless overseas or military voter deadlines apply).  Unless you applied to vote absentee because you have contracted or are in an at-risk category, your absentee ballot must be notarized.</p>
+          requirements: |-
+            <p>To qualify to request a ballot in MO, you must have one of the following reasons:</p>
+            <ul>
+            <li>Absence on Election Day from the jurisdiction of the election authority in which I am registered   </li>
+            <li>Incapacity or confinement due to illness or physical disability, including caring for a person who is incapacitated or confied due to illness or disability   </li>
+            <li>Religious belief or practice   - Employment as an election authority or by an election authority at a location other than my polling place   </li>
+            <li>Incarceration, although I have retained all the necessary qualifitications for voting  </li>
+            <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681, RSMo., because of safety concerns.  </li>
+            <li>I have contracted or am in an at-risk category for contracting or transmitting sever acute respiratory syndrome coronavirus 2 (COVD-19), pursuant to Section 115.277.6, RSMo. (No Notary Required).   </li>
+            </ul>
+            <p>At-risk voter are individuals who:</p>
+            <ul>
+            <li>Are 65 years of age or older  </li>
+            <li>Have serious heart conditions  </li>
+            <li>Are immunocompromised  </li>
+            <li>Have liver disease  </li>
+            <li>Live in a long-term care facility licensed under Chapter 198, RSMo.   </li>
+            <li>Have chronic lung disease or moderate to severe asthma  </li>
+            <li>Have chronic kidney disease and are undergoing dialysis  </li>
+            <li>Have diabetes</li>
+            </ul>
+            
         abr_form_fields:
           "undefined": "Last 4 digit of my social security number"
           "has_mailing_address": My mailing address differs from my residential address.
           "mailing_address_1": "Mailing address"
+          "mailing_address_1__hint": (Street address or PO Box)
           "mailing_address_2": "City, State, Zip"
           "reason_for_request": "Reason for requesting an absentee ballot:"
           "reason_for_request__options": 
             "absent": "Absence on Election Day from the jurisdiction of the election authority in which I am registered"
-            "incapacity": "Incapacity or confinement due to illness or physical disability including caring for a person who is incapacitatedor"
+            "incapacity": "Incapacity or confinement due to illness or physical disability, including caring for a person who is capacitated or confined due to illness or disability"
             "religious": "Religious belief or practice"
             "election_official": "Employment as an election authority or by an election authority at a location other than my polling place"
             "incarceration": "Incarceration although I have retained all the necessary qualifications for voting"
-            "confidential": "Certified participation in the address confidentiality program established under sections 589660 to 589681"
+            "confidential": "Certified participation in the address confidentiality program established under sections 589.660 to 589.681, RSMo., because of safety concerns"
             
       ms:
         abr:
@@ -665,6 +718,12 @@ en:
           instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, want to check on the status of your ballot or need to update your address please go to Oregon's My Vote website: <a rel=\"noopener\" target=\"blank\" href=\"https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html\">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>"
       
       pa:
+        abr: 
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.</p><p>In Pennsylvania, this application must be RECEIVED by Tuesday, October 27th, 2020.</p><p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it.  Your completed ballot must be RECEIVED by your county election office by 8pm November 3rd.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.pavoterservices.pa.gov/pages/ballottracking.aspx\">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>"
+        state_online_abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your completed ballot must be RECEIVED by your county election office by 8pm November 3rd.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.pavoterservices.pa.gov/pages/ballottracking.aspx\">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>"
+          requirements: If you are a voter with a valid PA Driver's License or PennDOT ID number, you can apply online with the state.  If you do not have one of these ID numbers, you will need to continue with creating a paper form.
+          
         registration_deadline_text: 10/19/2020 is the last day to register before the
           11/03/2020 election. If you are not a U.S. citizen and a resident of Pennsylvania
           at least 30 days before the next election, you CANNOT register to vote.
@@ -782,9 +841,8 @@ en:
             select_file: Select an image to upload
             copy_link: Copy Link      
       sc:
-        state_online_abr:
-          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo\">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>"
-          instructions: |-
+        abr:
+          requirements: |-
             <p>In your state, you are only allowed to vote absentee if you meet one of the following criteria:</p>
             <ul>
               <li>Members of the Armed Forces </li>
@@ -807,6 +865,8 @@ en:
               <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
             </ul>
 
+        state_online_abr:
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo\">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>"
             
       sd:
         abr_form_fields:
