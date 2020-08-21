@@ -40,12 +40,24 @@ module AbrStateMethods::NY
     #(signature of witness to mark)
     #Date (Applicant Marked)
     #Mark: (Applicant mark in lieu of signature)
-    "street number (General (or Special) Election Ballot Mailing Address)": {},
-    "street name (General (or Special) Election Ballot Mailing Address)": {},
-    "apartment (General (or Special) Election Ballot Mailing Address)": {},
-    "city (General (or Special) Election Ballot Mailing Address)": {},
-    "state (General (or Special) Election Ballot Mailing Address)": {},
-    "zip code (General (or Special) Election Ballot Mailing Address)": {},
+    "street number (General (or Special) Election Ballot Mailing Address)":{ 
+      method:"override_street_number"
+    },
+    "street name (General (or Special) Election Ballot Mailing Address)":{ 
+      method:"override_street_name"
+    },
+    "apartment (General (or Special) Election Ballot Mailing Address)":{ 
+      method:"override_unit"
+    },
+    "city (General (or Special) Election Ballot Mailing Address)":{ 
+      method:"override_city"
+    },
+    "state (General (or Special) Election Ballot Mailing Address)":{ 
+      method:"override_home_state_abbrev"
+    },
+    "zip code (General (or Special) Election Ballot Mailing Address)":{ 
+      method:"override_zip"
+    },
     "I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": {},
     "apartment (Residence)": {
       method: "unit"
@@ -62,7 +74,7 @@ module AbrStateMethods::NY
     },
     #"voter_signature"
   }
-  EXTRA_FIELDS = ["has_mailing_address", "witness"]
+  EXTRA_FIELDS = ["has_mailing_address", "witness", "mail_street_number", "mail_street_name", "mail_unit", "mail_city", "mail_state", "mail_zip"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
@@ -139,15 +151,16 @@ module AbrStateMethods::NY
       ]}},
       {"reason": {type: :radio, required: true}},
       {"deliver_general_ballot": {type: :radio, required: true}},
-      {"I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": {visible: "deliver_general_ballot_general_to_proxy", required: :if_visible}},
+      {"I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": {visible: "deliver_general_ballot_general_to_proxy", required: "star"}}, # :is_visible throws err
       {"has_mailing_address": {type: :checkbox}},
       #TODO- if "has_mailing_address" is left blank, autofill lines 43-48 with residential address
-      {"street number (General (or Special) Election Ballot Mailing Address)": {visible: "has_mailing_address", classes: "quarter"}},
-      {"street name (General (or Special) Election Ballot Mailing Address)": {visible: "has_mailing_address", classes: "half"}},
-      {"apartment (General (or Special) Election Ballot Mailing Address)": {visible: "has_mailing_address", classes: "quarter last"}},
-      {"city (General (or Special) Election Ballot Mailing Address)": {visible: "has_mailing_address", classes: "half"}},
-      {"state (General (or Special) Election Ballot Mailing Address)": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"zip code (General (or Special) Election Ballot Mailing Address)": {visible: "has_mailing_address", classes: "quarter last"}},
+      #TODONE
+      {"mail_street_number": {visible: "has_mailing_address",required: "star", classes: "quarter"}},
+      {"mail_street_name": {visible: "has_mailing_address",required:"star", classes: "half"}},
+      {"mail_unit": {visible: "has_mailing_address", classes: "quarter last"}},
+      {"mail_city": {visible: "has_mailing_address", required: "star", classes: "half"}},
+      {"mail_state": {visible: "has_mailing_address", required: "star", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"mail_zip": {visible: "has_mailing_address",required:"star", classes: "quarter last"}},
       {"witness": {type: :checkbox}},
       {"(address of witness to mark)": {visible: "witness"}},
     ]
@@ -169,11 +182,73 @@ module AbrStateMethods::NY
   #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
   # ]
   
+
+  def override_field_value(override, fieldname1, fieldname2) 
+    if (override) 
+      #return self.send("#{self.class.make_method_name(fieldname2)}") 
+      return self.send(fieldname2) 
+    else 
+      #return self.send("#{self.class.make_method_name(fieldname1)}")
+      return self.send(fieldname1)
+    end
+  end
+
+  def override_mailing_address_field (fieldname1, fieldname2)
+      return override_field_value((self.has_mailing_address.to_s == "1"), fieldname1, fieldname2)
+  end
+
+  def override_street_number
+    return override_mailing_address_field("street_number", "mail_street_number")
+  end 
   
-  def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
+  def override_street_name
+    return override_mailing_address_field("street_name", "mail_street_name")
+  end
+
+  def override_unit
+    return override_mailing_address_field("unit", "mail_unit")
+  end
+
+  def override_city
+    return override_mailing_address_field("city", "mail_city")
+  end
+
+  def override_home_state_abbrev
+    return override_mailing_address_field("home_state_abbrev", "mail_state")
+  end 
+
+  def override_zip
+    return override_mailing_address_field("zip", "mail_zip")
   end
   
+  REQUIRED_MAILING_ADDRESS_FIELDS = [
+    "mail_street_number",
+    "mail_street_name",
+    #"apartment (General (or Special) Election Ballot Mailing Address)",
+    "mail_city",
+    "mail_state",
+    "mail_zip"
+  ]
+
+  def require_mailing_fields
+    REQUIRED_MAILING_ADDRESS_FIELDS.each do |field|
+      custom_validates_presence_of(field)
+    end
+  end
+
+  def custom_form_field_validations  
+    #if mailing address different, require it
+    if self.has_mailing_address.to_s == "1"
+      require_mailing_fields
+    end
+
+    #if deliver by proxy, require proxy
+    if self.deliver_general_ballot == "general_to_proxy"
+      custom_validates_presence_of("I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections")
+    end
+    
+  end
+
+
  
 end
