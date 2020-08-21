@@ -83,9 +83,9 @@ module AbrStateMethods::AZ
         "Yuma",
       ]}},
       {"identification_selection": {required:true, type: :radio, options: ["place_of_birth", "drivers_license_id","last_4_ssn"]}},
-      {"drivers_license_id": {required: :is_visible, regexp:/\A{[[:alpha:]]\d{8}|\d{9}\z/, min:8, max:9, visible: "identification_selection_drivers_license_id"}},
-      {"last_4_ssn": {required: :is_visible,  min:4, max:4, visible:"identification_selection_last_4_ssn"}},
-      {"place_of_birth": {required: :is_visible, min:1, visible: "identification_selection_place_of_birth"}},
+      {"drivers_license_id": {required: "star", regexp:/\A{[[:alpha:]]\d{8}|\d{9}\z/, min:8, max:9, visible: "identification_selection_drivers_license_id"}},
+      {"last_4_ssn": {required: "star",  min:4, max:4, visible:"identification_selection_last_4_ssn"}},
+      {"place_of_birth": {required: "star", min:1, visible: "identification_selection_place_of_birth"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
     ]
