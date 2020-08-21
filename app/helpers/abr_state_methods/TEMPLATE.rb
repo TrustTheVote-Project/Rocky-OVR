@@ -39,7 +39,9 @@ module AbrStateMethods::STATE_ABBREV
   
   
   def custom_form_field_validations
+    # e.g:
     # make sure delivery is selected if reason ==3
+    # e.g:
     # make sure fax is provided if faxtype is selected for delivery
   end
   
