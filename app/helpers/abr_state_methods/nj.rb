@@ -49,9 +49,12 @@ module AbrStateMethods::NJ
     "Phone": {
       method: "phone"
     },
-    "Same_Address": { options: ["Off", "Yes"] }, #TODO- autofill "Yes" if "has_mailing_address" is NOT checked
+    "Same_Address": { 
+      options: ["Off", "Yes"], 
+      method:"same_address_conditional" 
+    }, #TODO- autofill "Yes" if "has_mailing_address" is NOT checked #TODONE
     "Mailing_Address_1": {
-      method: "full_name"
+      method: "full_name_conditional" #Only if different mailing address
     },
     "Mailing_Address_2": {},
     "Mailing_Address_3": {},
@@ -118,7 +121,18 @@ module AbrStateMethods::NJ
   #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
   # ]
   
-  
+    # Methods below map from UI attributes to PDF fields
+
+    def same_address_conditional
+      return self.has_mailing_address.to_s == "1" ? "Off" : "Yes"
+    end
+
+    def full_name_conditional
+      if(self.has_mailing_address.to_s == "1")
+        return self.full_name
+      end
+    end
+
   def custom_form_field_validations
     # make sure delivery is selected if reason ==3
     # make sure fax is provided if faxtype is selected for delivery

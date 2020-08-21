@@ -119,10 +119,10 @@ en:
             municipalonly_nonpartisan: "Municipal-Only: Nonpartisan"
           identification_selection: "Identification type:"
           identification_selection__options:
-            drivers_license_state: "Arizona driver's license #"
+            drivers_license_id: "Arizona driver's license or ID"
             place_of_birth: Place of birth
             last_4_ssn: "Last 4 digits of SSN #"
-          drivers_license_state: "Arizona driver's license #"
+          drivers_license_id: "Arizona driver's license or ID"
           place_of_birth: Place of birth
           last_4_ssn: "Last 4 digits of SSN #"
 
@@ -675,6 +675,12 @@ en:
           "city (General (or Special) Election Ballot Mailing Address)": City
           "state (General (or Special) Election Ballot Mailing Address)": State
           "zip code (General (or Special) Election Ballot Mailing Address)": Zip
+          "mail_unit": Apt
+          "mail_street_number": Street number
+          "mail_street_name": Street name
+          "mail_city": City
+          "mail_state": State
+          "mail_zip": Zip
           "witness": Due to an illness, disability, or inability to read, voter is unable to sign and requires a witness.
           "(address of witness to mark)": Address of witness
           "I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": Name of proxy
