@@ -147,7 +147,7 @@ module AbrStateMethods::MT
       {"City and State": {visible: "has_mailing_address", required: :if_visible}},
       {"Zip Code_2": {visible: "has_mailing_address", required: :if_visible}},
       {"Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only": {type: :checkbox}},
-      {"Seasonal Mailing Address Optional": {visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only", required: :if_visible)}},
+      {"Seasonal Mailing Address Optional": {visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only"), required: :if_visible}},
       {"City and State_2": {visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only"), required: :if_visible}},
       {"Zip Code_3": {visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only"), required: :if_visible}},
       {"period_from": {
