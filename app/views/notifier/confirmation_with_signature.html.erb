@@ -15,10 +15,12 @@
 
 <%= I18n.t('email.confirmation_with_signature.body.main', 
   :pdf_url=>@pdf_url, 
+  :registrant_rtv_and_partner_name => @registrant_rtv_and_partner_name,
   :home_state_email_instructions => @home_state_email_instructions,
   :registrar_address=>@registrar_address,
   :cancel_reminders_url=>@cancel_reminders_url,
   :registrar_phone=>@registrar_phone,
+  :registrant_home_state_name=>@registrant_home_state_name,
   :registrar_url=>@registrar_url, :locale => @locale).html_safe %>
 
 <hr size="3" align="left" width="100%" color="black"><br><br>
