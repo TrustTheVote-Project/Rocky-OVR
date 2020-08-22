@@ -244,9 +244,9 @@ module AbrStateMethods::NC
       {"assistant": {type: :checkbox}},
       {"Voter Assistants Name": {visible: "assistant"}},
       {"Voter Assistant's Address": {visible: "assistant"}},
-      {"Voter Assistant's City": {visible: "assistant"}},
-      {"Voter Assistant's State": {visible: "assistant", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Voter Assistant's Zip Code": {visible: "assistant", min: 5, max: 10}},
+      {"Voter Assistant's City": {visible: "assistant", classes: "half"}},
+      {"Voter Assistant's State": {visible: "assistant", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Voter Assistant's Zip Code": {visible: "assistant", classes: "quarter last", min: 5, max: 10}},
       {"patient": {type: :radio, options: ["Yes", "No"]}}, 
       {"Name and Address of Facility": {visible: "patient_yes", required: :if_visible}}
     ]
