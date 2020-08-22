@@ -1,15 +1,66 @@
 module AbrStateMethods::MA
   
   PDF_FIELDS = {
-    
+    "Name": {
+      method: "full_name"
+    },
+    "Legal Voting Residence": {
+      method: "address"
+    },
+    "1": {
+      method: "address_city_state_zip"
+    },
+    "Date of Birth": {
+      method: "date_of_birth_mm_dd_yyyy"
+    },
+    "Telephone Number": {
+      method: "phone"
+    },
+    "Email Address": {
+      method: "email"
+    },
+    "Mail Ballot to 1": {},
+    "Mail Ballot to 2": {},
+    "All elections this year": { 
+      options: ["Off", "On"],
+      value: "Off"
+    },
+    "All general elections No primaries": { 
+      options: ["Off", "On"], 
+      value: "On"
+    },
+    "A specific election": { 
+      options: ["Off", "On"], 
+      value: "Off"
+    },
+    "This application is being made by a family member of the voter": { options: ["Off", "On"] },
+    "Voter is a member of military on active duty or dependent family member of": { options: ["Off", "On"] },
+    "Voter is a Massachusetts citizen residing overseas": { options: ["Off", "On"] },
+    "Voter has been admitted to a healthcare facility after noon on the fifth day": { options: ["Off", "On"] },
+    "Voter required assistance in completing application due to physical disability": { options: ["Off", "On"] },
+    "Relationship to voter": {},
+    "the ballot": {},
+    "Assisting persons name": {},
+    "Assisting persons address": {},
+    #"Date": {}
+    #"voter_signature": {}
   }
-  EXTRA_FIELDS = []
-  # e.g.
-  # EXTRA_FIELDS = ["has_mailing_address", "identification"]
-  
+  EXTRA_FIELDS = ["has_mailing_address"]
+
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
+      {"Mail Ballot to 1": {visible: "has_mailing_address"}},
+      {"Mail Ballot to 2": {visible: "has_mailing_address"}},
+      {"This application is being made by a family member of the voter": {type: :checkbox}},
+      {"Relationship to voter": {visible: self.class.make_method_name("This application is being made by a family member of the voter"), required: :if_visible}},
+      {"Voter is a member of military on active duty or dependent family member of": {type: :checkbox}},
+      {"Voter is a Massachusetts citizen residing overseas": {type: :checkbox}},
+      {"Voter has been admitted to a healthcare facility after noon on the fifth day": {type: :checkbox}},
+      {"the ballot": {visible: self.class.make_method_name("Voter has been admitted to a healthcare facility after noon on the fifth day"), required: :if_visible}},
+      {"Voter required assistance in completing application due to physical disability": {type: :checkbox}},
+      {"Assisting persons name": {visible: self.class.make_method_name("Voter required assistance in completing application due to physical disability"), required: :if_visible}},
+      {"Assisting persons address": {visible: self.class.make_method_name("Voter required assistance in completing application due to physical disability"), required: :if_visible}},
     ]
   end
   #e.g.
