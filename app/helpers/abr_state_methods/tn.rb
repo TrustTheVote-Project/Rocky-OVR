@@ -83,6 +83,14 @@ module AbrStateMethods::TN
     if self.reason == "Choice12"
       custom_validates_presence_of("CDL or TWIC Number")
     end
+    if self.reason == "Choice13"
+      custom_validates_presence_of("transmission_13")
+    elsif self.reason == "Choice14"
+      custom_validates_presence_of("transmission_14")
+    elsif self.reason == "Choice15"
+      custom_validates_presence_of("transmission_15")
+    end
+    
   end
   
  

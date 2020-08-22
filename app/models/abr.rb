@@ -66,7 +66,7 @@ class Abr < ActiveRecord::Base
    "last_name"]
 
   PDF_FIELDS = [
-    "home_zip_code",
+    "zip",
     "first_name", 
     "middle_name", 
     "last_name", 
