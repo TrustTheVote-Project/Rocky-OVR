@@ -127,11 +127,14 @@ en:
           last_4_ssn: "Last 4 digits of SSN #"
 
 
-
       ca:
         abr:
           header: Absentee Requests In California
-          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href="https://california.ballottrax.net/voter/">https://california.ballottrax.net/voter/</a></p>'
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://www.sos.ca.gov/elections/voter-registration/\">https://www.sos.ca.gov/elections/voter-registration/</a></p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://california.ballottrax.net/voter/\">https://california.ballottrax.net/voter/</a></p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots that are mailed must be postmarked on or before Election Day and received by your county elections office no later than 17 days after Election Day.</p>"
+          
+          
+          Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.  If you have any questions, or need to update your address please go to:
+          
         online_instructions: |-
           You can complete your voter registration online with
           the state right now - using the application provided by the Secretary of
@@ -146,8 +149,8 @@ en:
       co:
         abr:
           header: Absentee Requests In Colorado
-          instructions: '<p>In 2020, all voters will automatically be mailed a ballot to the address where they are registered. You can check on your ballot status and learn more at: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>'
-
+          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.  If you have any questions, or need to update your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To check the status of your mail ballot visit <a rel="noopener" target="_blank" href="www.GoVoteColorado.gov">www.GoVoteColorado.gov</a>. Then log in to your voter record, which will show whether your mail ballot has been mailed. If you have further questions about your mail ballot''s status, contact your local county clerk and recorder''s office.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in. Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots must be received by 7:00pm on Election Day.</p><p>NOTE: If you recently registered for the first time, you may need to provide a copy of your ID along with your mail ballot when you return it to vote.</p>'
+          
       de:
         abr:
           email_instructions: You may also sign, scan and email your form.   
