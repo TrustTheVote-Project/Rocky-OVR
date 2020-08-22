@@ -106,7 +106,7 @@ class BlocksService
   end
   
   def get_locations(partner)
-    turf_id = RockyConf.blocks_configuration.partners&.[](partner.id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    turf_id = RockyConf.blocks_configuration.partners&.[](partner.id)&.turf_id
     unless turf_id.blank?
       RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
         return BlocksClient.get_locations(turf_id, token: self.token)
