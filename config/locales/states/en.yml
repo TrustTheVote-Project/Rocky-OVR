@@ -127,6 +127,15 @@ en:
           header: Absentee Requests In Colorado
           instructions: '<p>In 2020, all voters will automatically be mailed a ballot to the address where they are registered. You can check on your ballot status and learn more at: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>'
 
+      ct:
+        abr_form_fields:
+          "reason_instructions": "Pursuant to Executive Order No. 7QQ, I expect to be unable to appear at the polling place during the hours of voting and hereby apply for an absentee ballot: (check only one)"
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Mailing Address 2": Mailing address
+          "Mailing Address 3": City, State, Zip
+          "assistant": I assisted the voter in completing this application.
+          "Printed Name": Name of assistant
+          "Tel No": Phone number
       de:
         abr:
           email_instructions: You may also sign, scan and email your form.   
@@ -191,6 +200,23 @@ en:
           "Mail Address": Mailing Address
           "has_mailing_address": My mailing address differs from my residential address.
           "Do not add this contact info to my voter recored check box": Please do not add my phone number or email address to my voter record.
+      il:
+        abr_form_fields:
+          "VOTERS OPTIONAL ADDRESS LINE 2": Name of institution, company, or facility (if applicable)
+          "VOTERS OPTIONAL ADDRESS LINE 3": Mailing address
+          "VOTERS OPTIONAL ADDRESS LINE 4": City, State, Zip
+          "has_mailing_address": My mailing address differs from my residential address.
+      il_chicago:
+        abr_form_fields:
+          "0": registration address
+          "1": mailing address
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Mailed Ballot Sent": I want my ballot mailed to my
+          "Address": Mailing address
+          "Apartment Number2": Apt/Unit
+          "ZiP Code": Zip
+          "Precinct": "Precinct (if known)"
+          "Ward": "Ward (if known)"
       in:
         abr_form_fields:
           "Mailing Address number and street": Mailing address
@@ -274,7 +300,14 @@ en:
           License_ID: LA Driver's license or ID
           License_ID__hint: OPTIONAL information to be used for official use only.
           
-          
+      ma:
+        abr_form_fields:
+          "Mail Ballot to 1": Mailing address
+          "Mail Ballot to 2": City, State, Zip
+          "has_mailing_address": My mailing address differs from my residential address.   
+          "the ballot": Name of messenger 
+          "Voter is a member of military on active duty or dependent family member of": "Voter is a member of military on active duty or dependent family member of active duty personnel."
+          "Voter has been admitted to a healthcare facility after noon on the fifth day": "Voter has been admitted to a healthcare facility after noon on the fifth day before the election and has designated the following person to hand-deliver the ballot:"
       mi:
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin and Michigan. In which state would you like to register to vote?
@@ -668,6 +701,20 @@ en:
             provide_signature: Provide Signature
             select_file: Select an image to upload
             copy_link: Copy Link      
+      ri:
+        abr_form_fields:
+          "Text Field 11": "Name of Institution (if applicable)"
+          "Text Field 12": Mailing address
+          "Text Field 14": City/Town
+          "Text Field 15": State
+          "Text Field 16": Zip
+          has_mailing_address: My mailing address differs from my residence address
+          "eligibility": "I certify that I am eligible for a mail ballot on the following basis:"
+          eligibility__options:
+            "absent": "I may not be able to vote at my polling place in my city/town on the day of the election. I want my mail ballot to be sent to my residential or mailing address."
+            "confined": "I am confined in a hospital, convalescent home, nursing home, rest home, or similar institution within the State of Rhode Island."
+            "incapacitated": "I am incapacitated to such an extent that it would be an undue hardship to vote at the polls because of illness, mental or physical disability, blindness or a serious impairment of mobility."
+            "military": "I am employed or in service intimately connected with military operations or because I am a spouse or dependent of such person, or I am a United States citizen who will be outside the United States."
       sd:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address

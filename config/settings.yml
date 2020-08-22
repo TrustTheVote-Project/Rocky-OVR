@@ -85,8 +85,7 @@ absentee_states:
   CA: {}
   CO: {}
   CT:
-    pdf_template:
-    pdf_url: https://portal.ct.gov/-/media/SOTS/ElectionServices/COVID-19/ED-3-English-Rev-2020.pdf
+    pdf_template: ct.pdf
   DC: 
     online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
     # pdf_template: dc.pdf
@@ -106,8 +105,12 @@ absentee_states:
     pdf_template: #2020_Absentee_Request.pdf
     pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
   IL:
-    pdf_template:
-    pdf_url: https://elections.il.gov/ElectionOperations/VotingByMailAgreement.aspx
+    pdf_template: common.pdf
+    counties:
+      "chicago":
+        pdf_template: chicago.pdf
+      "bloomington":
+        pdf_template: bloomington.pdf
   IN:
     pdf_template: in.pdf
   KS:
@@ -117,8 +120,7 @@ absentee_states:
     online_req_url: https://voterportal.sos.la.gov/Home/VoterLogin
     pdf_template: la.pdf
   MA:
-    pdf_url: https://www.sec.state.ma.us/ele/elepdf/absentee/English-Absentee-Ballot-Application.pdf
-    # pdf_template: ma.pdf
+    pdf_template: ma.pdf
   MD:
     online_req_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/VoterType
     # pdf_template: md.pdf
@@ -169,8 +171,7 @@ absentee_states:
     pdf_template:
     pdf_url: https://www.votespa.com/Register-to-Vote/Documents/PADOS_MailInApplication.pdf
   RI:
-    pdf_template:
-    pdf_url: https://vote.sos.ri.gov/Content/Pdfs/General%20Mail%20Ballot%20Application%2011-3-2020.pdf
+    pdf_template: ri.pdf
   SC:
     online_req_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeRequest
   SD:
