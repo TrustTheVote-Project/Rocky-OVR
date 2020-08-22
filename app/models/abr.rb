@@ -47,6 +47,7 @@ class Abr < ActiveRecord::Base
   validates_presence_of :email
   validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
   validates_presence_of :phone_type, if: :has_phone?
+  validate :validates_zip
   
   def self.validate_fields(list, regex, message)
     list.each do |field|
@@ -55,6 +56,20 @@ class Abr < ActiveRecord::Base
     end
     
   end
+  
+  def validates_zip
+    validates_zip_code(self, :zip)
+  end
+  
+  def validates_zip_code(reg, attr_name)
+    reg.validates_presence_of(attr_name)
+    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
+
+    if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
+      reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
+    end
+  end
+  
   
   ADDRESS_FIELDS = ["street_number", 
     "street_name"]

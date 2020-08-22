@@ -562,6 +562,9 @@ en:
           "Receipt of absentee ballot by designee I received the absentee ballot for the applicant on": "Name of designee who will pick up my absentee ballot:"
       
       nc:
+        abr:
+          finish_instructions: <p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Check with your local elections officials for submission deadlines and additional information on voting by mail.</p>
+            
         abr_form_fields:
           "has_mailing_address": My mailing address differs from my residential address.
           identification: Choose one of the following methods for identification
@@ -574,6 +577,10 @@ en:
           "Voter's Previous First Name": Previous First Name
           "Voter's Previous Middle Name": Previous Middle Name
           "ballot_address": I would like my absentee ballot mailed to an address other than my residential or my regular mailing address.
+          "ballot_mailing_address": "Ballot Mailing Address"
+          ballot_city: City
+          ballot_state: State
+          ballot_zip: ZIP
           "lived_here_long": "Have you lived at your residential address for 30 days or more?"
           "date_moved": "If 'No', please enter the date moved (MM/DD/YYYY):"
           "relative_request": "I am requesting an absentee ballot on behalf of a near relative or for someone for whom I am the legal guardian."
@@ -581,6 +588,10 @@ en:
           "patient": "If voter is a patient in a hospital, clinic, nursing home or rest home, does voter need assistance with voting and returning the ballot?"
           "Name and Address of Facility": If Yes, what is the name and address of the hospital or facility?
           "uocava": "I am an absentee military or overseas voter."
+          "military_or_overseas": "Select the best option below that describes your absentee status:"
+          "military_or_overseas__options":
+            "military": Member of the Uniformed Services or Merchant Marine on active duty or eligible spouse/dependent and currently absent from county of residence
+            "overseas": U.S. citizen outside the United States
           "uocava_ballot": "I would like my absentee ballot sent by:"
           uocava_ballot__options:
             mail: "Mail (mailing address provided above)"
@@ -904,13 +915,16 @@ en:
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo\">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>"
             
       sd:
+        abr:
+          requirements: "<p>In South Dakota to submit a request to vote absentee, you must be a registered South Dakota voter, be able to provide a copy of your photo identification OR have your application notarized.Military and Overseas citizens (inlucindg their spouses and dependents) are not required to submit a photocopy of the voter's ID.</p><p>Acceptable forms of photo identification: South Dakota driver's license or non-driver ID card, a passport or other picture ID issued by the United States government, a tribal photo ID, or a current student photo ID issued by a South Dakota high school or postsecondary education institution.</p>"
+          finish_instructions: <p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible. Please remember to attach a copy of photo identification, or have your application notarized  (military and overseas citizens, as well as their spouses and dependents should read the instructions on the form to determine if they are required to do this).</p><p>Check with your local elections officials for submission deadlines and additional information on voting by mail.</p>
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
           "SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your address changes after this is submitted you must submit a new form": Mailing address
           "City State_2": City, State
           "Zip Code_2": Zip
-          "Last Name_2": "Last name"
-          "First Name_2": "First name"
+          "Last Name_2": "Messenger Last name"
+          "First Name_2": "Messenger First name"
           "Daytime telephone": "Messenger's phone number"
           "Apt or Lot_2": "Apt/lot #"
           "Zip Code_3": "Zip"
