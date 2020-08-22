@@ -45,6 +45,23 @@ en:
           Ballot Mailing Address 3: "&nbsp;"
       
       al:
+        abr:
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible. Your absentee ballot application must be received in the office of the Absentee Election Manager for your county no later than the fifth (5th) day prior to  Election Day.</p><p> Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  An absentee ballot must be received by the Absentee Election Manager no later than noon on Election Day. If hand-delivered, the ballot must be in the office of the Absentee Election Manager by the close of business (but no later than 5 p.m.) on the day prior to Election Day (November 2, 2020).</p><p>You can check the status of your ballot at <a rel=\"noopener\" target=\"blank\" href=\" https://myinfo.alabamavotes.gov/VoterView/AbsenteeBallotSearch.do\">https://myinfo.alabamavotes.gov/VoterView/AbsenteeBallotSearch.do</a></p>"
+          requirements: "<p>To qualify to request a ballot in AL, you need to be a registered Alabama voter, be able to provide a copy of your valid photo identification and have at least one of the following reasons to apply for an absentee ballot:<p>
+          <ul>
+            <li>I expect to be out of the county or the state on election day.  </li>
+            <li>I have a physical illness or infirmity which prevents my attendance at the polls. </li>
+            <li>I am unable to access my assigned polling place due to a neurological, musculoskeletal, respiratory (including speech organs), cardiovascular, or other life-altering disorder that affects my ability to perform manual tasks, stand for any length of time, walk unsassisted, see, hear or speak AND: I am an elderly voter aged 65 or older or I am a voter with a disability.</li>
+           <li>I expect to work a shift which has at least ten (10) hours that coincide with the polling hours at my regular polling place.</li>
+           <li>I am enrolled as a student at an educational instittution located outside of my personal residence, attendance at which prevents my attendance at the polls.</li>
+           <li>I am a member of, or a spouse or dependent of a member of, the Armed Forces of the United States or am otherwise similarly qualified to vote absentee pursuant to the Uniformed and Overseas Citizens Absentee Voting Act, 52 U.S.C. § 20302.</li>
+           <li>I have been appointed as an election officer at a polling place which is not my regular polling place.  </li>
+           <li>I am a caregiver for a family member to the second degree of kinship by affinity or consanguinity and the family member is confied to his or her home.</li>
+           <li>I am currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude (the form will have more information on this).</li>
+         </ul>
+         <p>NOTE: Any qualified voter who determines it is impossible or unreasonable to vote at their voting place for the General Election on November 3, 2020 due to the declared states of emergency, shall be eligible to check the box on the absentee ballot application which reads as follows:</p>
+         <p>\"I have a physical illness or infirmity which prevents my attendance at the polls. [ID REQUIRED]\"</p>"
+            
         abr_form_fields:
           "Return this application to": "County Clerk's Full Address:"
           "Please note that only one application may be placed in the same envelope": County
@@ -62,6 +79,7 @@ en:
           "txtEarlierExpDate__hint": "This application for an absentee ballot will be valid for all county, state, and federal elections held during this calendar year unless you specify an earlier expiration date here:"
           "has_mailing_address": My mailing address differs from my residential address.
           "Precinct": "Precinct where you vote (name and/or location of your polling place):"
+          "Precinct__hint": <a target="_blank" rel="noopener" href="https://myinfo.alabamavotes.gov/VoterView/PollingPlaceSearch.do">https://myinfo.alabamavotes.gov/VoterView/PollingPlaceSearch.do</a>
           identification: "Please select one of the following:"
           identification__options:
             dln_yes: "I have a driver's license."
@@ -73,6 +91,7 @@ en:
           "City_1": City
           "State_1": State
           "ZIP_1": Zip
+          "WorkPhone": "Work Phone"
       ar:
         abr:
           finish_instructions: Your application for a by-mail ballot must be received by Tuesday, October 27th, 2020.
@@ -103,15 +122,16 @@ en:
             "within_county": within the county in which I am registered to vote.
       az:
         state_online_abr:
-          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
+          finish_instructions: "<p>Once you have your ballot, be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Your absentee ballot must be received by 7:00pm on Election Day</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
         abr:
-          finish_instructions: "<p>Your application for a by-mail ballot must be received by 5:00pm on the 11th day before the election.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
+          requirements: "<p>To qualify to request a ballot in AZ, you only need to be registered to vote.</p>"
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible. Your absentee ballot application must be received by 5pm on October 23, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p><p>Your absentee ballot must be received by 7:00pm on Election Day</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
         abr_form_fields:
           County_of_Residence: County of Residence
           election_selection: "I am requesting a ballot for:"
           election_selection__options:
             general: <strong>General Election Only</strong>
-            all: <strong>Every Election</strong>. I authorize the County Recorder to include my name on the PEVL and automatically send me a ballot-by-mail for each election I am eligible for.
+            all: <span><strong>Every Election</strong>. I authorize the County Recorder to include my name on the PEVL and automatically send me a ballot-by-mail for each election I am eligible for.</span>
           "has_mailing_address": My mailing address differs from my residential address.
           "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": "Place of birth, driver's license #, or last 4 digits of social security number:"
           primary_ballot_selection: Primary Election Ballot Selection
