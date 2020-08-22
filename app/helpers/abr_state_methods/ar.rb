@@ -45,6 +45,7 @@ module AbrStateMethods::AR
  
   def form_field_items
     [
+      {"reason_covid": {type: :instructions}},
       {"Reason": {required: true, type: :radio}}, 
       {"Reside": {required: true, type: :radio}}, 
       {"Where_Receive": {required: true, type: :radio}}, 

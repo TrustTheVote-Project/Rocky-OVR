@@ -77,6 +77,7 @@ en:
           finish_instructions: Your application for a by-mail ballot must be received by Tuesday, October 27th, 2020.
         abr_form_fields:
           "Reason": "I request an absentee ballot because:"
+          "reason_covid": The Arkansas Board of Election Commissioners passed a resolution that allows voters who are concerned about their health or that of others as a result of the COVID-19 pandemic to request an absentee ballot because they will be "unavoidably absent from the polling site on Election Day."
           "Reside": "I reside:"
           "Where_Receive": "I will receive my ballot by:"
           "Where_Receive__options":
