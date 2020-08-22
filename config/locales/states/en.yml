@@ -309,6 +309,10 @@ en:
             "sex_offender": "I am a “serious sex offender” (as defined in IC 35-42-4-14(a))."
             "work": "I am scheduled to work at my regular place of employment during the entire twelve (12) hours that the polls are open."
       ks:
+        abr:
+          requirements: "<p>To qualify to request a ballot in KS, you only need to be registered to vote and be able to provide your Kansas driver's license number or non driver's identification card number.</p><p>Examples of acceptable nondriver's identification cards: Driver's license issued by Kansas or another state, Nondriver's ID card issued by Kansas or another state, U.S. Passport, Concealed carry of handgun license issued by Kansas or another state, Employee badge or ID document issued by a government office, U.S. Military ID, Student ID card by an accredited Kansas postsecondary educational institution, Public assistance ID card issued by a government office, ID card issued by an Indian tribe</p>"
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Check with your local elections officials for submission deadlines and additional information on voting by mail.</p>"
+            
         abr_form_fields:
           identification: "Please select one of the following:"
           identification__options:
@@ -622,7 +626,7 @@ en:
       ne:
         abr:
           requirements: <p>To qualify to request a ballot in NE, you only need to be registered to vote.</p>
-          finish_instructions> "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Check with your local elections officials for submission deadlines and additional information on voting by mail.</p>"
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Check with your local elections officials for submission deadlines and additional information on voting by mail.</p>"
         abr_form_fields:
           "County Name2": Registered County
           "Address Line 2": Mailing address

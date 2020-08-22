@@ -191,24 +191,16 @@ module AbrStateMethods::NE
         "Wheeler",
         "York",
       ]}},
-      {"Ballot Method": {type: :radio}},
+      {"Ballot Method": {type: :radio, required: true}},
       {"has_mailing_address": {type: :checkbox}},
-      {"mailing_address": {visible: "has_mailing_address"}},
-      {"mailing_city_state_zip": {visible: "has_mailing_address"}},
+      {"mailing_address": {visible: "has_mailing_address", required: :if_visible}},
+      {"mailing_city_state_zip": {visible: "has_mailing_address", required: :if_visible}},
       {"agent": {type: :checkbox}},
-      {"Relationship": {visible: "agent"}},
+      {"Relationship": {visible: "agent", required: :if_visible}},
     ]
   end  
   
   def custom_form_field_validations
-    if has_mailing_address == "1"
-      custom_validates_presence_of("mailing_address")
-      custom_validates_presence_of("mailing_city_state_zip")
-    end
-    if agent == "1"
-      custom_validates_presence_of("Relationship")
-    end
-      
   end
   
  
