@@ -4,11 +4,12 @@ en:
     custom:
       ak:
         abr:
-          finish_instructions: <p>Your application for a by-mail ballot must be received 10 days before Election Day.</p>
-          
+          finish_instructions: "<p>Your application for a by-mail ballot must be received ten (10) days before Election Day (October 24, 2020).</p><p>Once you receive your ballot, make sure to read the instructions carefully, fill out the ballot and send it back in.  Your absentee ballot must be post marked by election day.</p><p>At any time you can check the status of your application and the status of your ballot at Alaska's My Voter Information webpage: <a rel=\"noopener\" target=\"blank\" href=\"https://myvoterinformation.alaska.gov/\">https://myvoterinformation.alaska.gov/</a></p>"
+          requirements: "<p>To qualify to request a ballot in AK, you must meet the following requirments: Be a US Citizen, be 18 years of age or request the ballot within 90 days of your birthday, and be able to submit a copy of your current driver’s license, state ID, passport, birth certifiate, hunting and fishing license or current and valid photo ID with your application.</p>"
         state_online_abr:
           requirements: <p>To use the Online Absentee Ballot System, you must have a valid Alaska driver's license or state ID card and the information you enter when applying must match the information on your Division of Motor Vehicles (DMV) record.</p>
-          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at Alaska's My Voter Information webpage: <a rel=\"noopener\" target=\"blank\" href=\"https://myvoterinformation.alaska.gov/\">https://myvoterinformation.alaska.gov/</a></p>"
+          finish_instructions: "<p>Once you receive your ballot, make sure to read the instructions carefully, fill out the ballot and send it back in. Your absentee ballot must be post marked by election day.</p><p>At any time you can check the status of your application and the status of your ballot at Alaska's My Voter Information webpage: <a rel=\"noopener\" target=\"blank\" href=\"https://myvoterinformation.alaska.gov/\">https://myvoterinformation.alaska.gov/</a></p>"
+          
         abr_form_fields:
           us_citizen: I am a U.S. Citizen
           us_citizen__required_message: You must be a U.S. Citizen
