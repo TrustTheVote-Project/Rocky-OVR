@@ -171,6 +171,7 @@ en:
       fl:
         state_online_abr:
           confirm: To request an absentee ballot in Florida, you need to contact your Supervisor of Elections.  Click here to find your Supervisor of Elections and more information on how to request your absentee ballot.
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Your request must be received by 5:00pm on October 24, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p><p>Your absentee ballot must be received by 7:00pm on Election Day.</p><p>You can check on the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://registration.elections.myflorida.com/CheckVoterStatus\">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>"
       ga:
         abr:
           finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Georgia, this application must be RECEIVED by Friday, October 30th, 2020.  At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.mvp.sos.ga.gov/MVP/mvp.do\">https://www.mvp.sos.ga.gov/MVP/mvp.do</a></p>"
@@ -209,10 +210,11 @@ en:
       hi:
         abr:
           header: Absentee Requests In Hawaii
-          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://elections.hawaii.gov/voters/applications/\">https://elections.hawaii.gov/voters/applications/</a></p>"
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://elections.hawaii.gov/voters/applications/\">https://elections.hawaii.gov/voters/applications/</a></p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots that are mailed must be recieved by 7:00pm on Election Day.</p>"
       ia:
         abr:
-          finish_instructions: <p>Make sure to complete and send this form in as soon as possible. In Iowa, this application must be RECEIVED by your County Auditor no later than 5:00pm 10 days before a General Election or 11 days before any other election.</p>
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Your request must be received by 5:00 pm on October 24, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p><p>Your absentee ballot must either be post marked by November 2nd and RECEIVED no later than 12:00pm on November 9, 2020 OR if received by November 3, 2020 at 9:00pm.  You can check on the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search\">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a></p>"
+          
         abr_form_fields:
           identification__options:
             dln: "Iowa Driver's License or Non-Operator ID"
@@ -227,6 +229,13 @@ en:
           "Mailing Address Zip Code": "ZIP"
           "has_mailing_address": My mailing address differs from my residential address.
           "Do not add this contact info to my voter recored check box": Please do not add my phone number or email address to my voter record.
+      id:
+        state_online_abr:
+          finish_instructions:  "<p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Your absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You can check the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx\">https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx</a></p>"
+        abr:
+          requirements: <p>To qualify to request a ballot in ID, you only need to be registered to vote.</p>
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible  Your request must be received by 5:00 pm on October 23, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p><p>Your absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You can check the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx\">https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx</a></p>"
+      
       in:
         abr:
           requirements: |-
