@@ -1,18 +1,52 @@
-module AbrStateMethods::IL::
+module AbrStateMethods::IL::Dekalb
   
   PDF_FIELDS = {
-    
+    "Applicants Name": {
+      method: "full_name"
+    },
+    "Date of Birth": {
+      method: "date_of_birth_mm_dd_yyyy"
+    },
+    "Street Address": {
+      method: "address"
+    },
+    "Daytime Cell Phone": {
+      method: "phone"
+    },
+    "City State Zip": {
+      method: "address_city_state_zip"
+    },
+    "Email": {
+      method: "email"
+    },
+    #"Date": {}
+    "Signature": {
+      method: "full_name"
+    },
+    "Text1": {
+      method: "mailing_name"
+    },
+    "Text2": {},
+    "Text3": {},
+    "Text4": {},
+    "Election": {
+      value: "November 3, 2020 General Election"
+    },
+    #"voter_signature": {}
   }
   EXTRA_FIELDS = ["has_mailing_address"]
   
-  # def whatever_it_is_you_came_up_with
-  #   # TODO when blah is selected it should be "abc" and otherwise left blank
-  # end
+  def "mailing_name"
+    #TODO- autofill with "full_name" if "has_mailing_address" is checked, otherwise leave blank
+  end
   
   
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
+      {"Text2": {visible: "has_mailing_address"}},
+      {"Text3": {visible: "has_mailing_address"}},
+      {"Text4": {visible: "has_mailing_address"}},      
     ]
   end
   #e.g.

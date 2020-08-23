@@ -1,18 +1,44 @@
-module AbrStateMethods::IL::
+module AbrStateMethods::IL::Lake
   
   PDF_FIELDS = {
-    
+    "TownshipPrecinct": {},
+    "Name": {
+      method: "full_name"
+    },
+    "Address": {
+      method: "address"
+    },
+    "CityZip": {}, #TODO - make it work
+    "DoB": {
+      method: "date_of_birth_mm_dd_yyyy"
+    },
+    "Email": {
+      method: "email"
+    },
+    "Daytime Telephone": {
+      method: "phone"
+    },
+    "EspMat": { options: ["Off", "Yes"] },
+    "1": {
+      method: "mailing_name"
+    },
+    "2": {},
+    "3": {},
   }
   EXTRA_FIELDS = ["has_mailing_address"]
   
-  # def whatever_it_is_you_came_up_with
-  #   # TODO when blah is selected it should be "abc" and otherwise left blank
-  # end
+  def "mailing_name"
+    #TODO- autofill with "full_name" if "has_mailing_address" is checked, otherwise leave blank
+  end
   
   
   def form_field_items
     [
+      {"TownshipPrecinct": {}},
       {"has_mailing_address": {type: :checkbox}},
+      {"2": {visible: "has_mailing_address"}},
+      {"3": {visible: "has_mailing_address"}},
+      {"EspMat": {type: :checkbox}},
     ]
   end
   #e.g.

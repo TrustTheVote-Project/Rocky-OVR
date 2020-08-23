@@ -111,6 +111,28 @@ absentee_states:
         pdf_template: chicago.pdf
       "bloomington":
         pdf_template: bloomington.pdf
+      "dekalb":
+        pdf_template: dekalb.pdf
+      "kane":
+        pdf_template: kane.pdf
+      "lake":
+        pdf_template: lake.pdf
+      "macon":
+        pdf_template: macon.pdf
+      "madison":
+        pdf_template: madison.pdf
+      "mcdonough":
+        pdf_template: mcdonough.pdf
+      "mchenry":
+        pdf_template:
+      "montgomery":
+        pdf_template:
+      "ogle":
+        pdf_template:
+      "sangamon":
+        pdf_template:
+      "will_county":
+        pdf_template:
   IN:
     online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
     pdf_template: in.pdf

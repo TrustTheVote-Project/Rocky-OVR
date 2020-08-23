@@ -274,6 +274,14 @@ en:
           "VOTERS OPTIONAL ADDRESS LINE 3": Mailing address
           "VOTERS OPTIONAL ADDRESS LINE 4": City, State, Zip
           "has_mailing_address": My mailing address differs from my residential address.
+      il_bloomington:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "mail_address": Mailing address
+          "mail_city": City
+          "mail_apt_number": Apt/Unit
+          "mail_state": State
+          "mail_zip": Zip
       il_chicago:
         abr_form_fields:
           "0": registration address
@@ -285,6 +293,65 @@ en:
           "ZiP Code": Zip
           "Precinct": "Precinct (if known)"
           "Ward": "Ward (if known)"
+      il_dekalb:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Text2": Institution or Business, if applicable
+          "Text3": Mailing address
+          "Text4": City, State, Zip
+      il_kane:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "residence_date": "I state that I am a resident of this precinct, that I have lived at this residential address since:"
+          "Street_2": Mailing address
+          "CityStateZip": "City, State, Zip"
+      il_lake:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "EspMat": "Deseo recibir mis materiales electorales en español."
+          "2": Mailing address
+          "3": City, State, Zip
+      il_macon:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "ADDRESS_2": Mailing address
+          "CITY_2": City
+          "STATE_2": State
+          "ZIP CODE_2": Zip
+      il_madison:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "address_mail": Mailing address
+          "city_mail": City
+          "state_mail": State
+          "zip_mail": Zip
+      il_mcdonough:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          "mail_address1": Mailing address line 1
+          "mail_address2": Mailing address line 2
+          "mail_address3": Mailing address line 3
+          "mail_address4": Mailing address line 4
+      il_mchenry:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          
+      il_montgomery:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          
+      il_ogle:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          
+      il_sangamon:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          
+      il_will_county:
+        abr_form_fields:
+          "has_mailing_address": My mailing address differs from my residential address.
+          
       in:
         abr:
           requirements: |-
