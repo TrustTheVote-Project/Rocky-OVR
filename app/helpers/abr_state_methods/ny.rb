@@ -146,7 +146,7 @@ module AbrStateMethods::NY
       {"reason": {type: :radio, required: true}},
       {"deliver_general_ballot": {type: :radio, required: true}},
       {"I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": {visible: "deliver_general_ballot_general_to_proxy", required: "star"}}, # :is_visible throws err
-      {"has_mailing_address": {type: :checkbox}},
+      {"has_mailing_address": {type: :checkbox, visible: "deliver_general_ballot_general_mail"}},
       # TODO mailing address only applies when "deliver_general_ballot" == "general_mail". checkbox should be hidden when "general_mail" not selected and "mail_*" fields should not be populated.
       {"mail_street_number": {visible: "has_mailing_address",required: "star", classes: "quarter"}},
       {"mail_street_name": {visible: "has_mailing_address",required:"star", classes: "half"}},
@@ -154,8 +154,9 @@ module AbrStateMethods::NY
       {"mail_city": {visible: "has_mailing_address", required: "star", classes: "half"}},
       {"mail_state": {visible: "has_mailing_address", required: "star", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"mail_zip": {visible: "has_mailing_address",required:"star", classes: "quarter last"}},
-      {"witness": {type: :checkbox}},
-      {"(address of witness to mark)": {visible: "witness"}},
+      # This was removed in previous merge; ask Alex
+      #{"witness": {type: :checkbox}},
+      #{"(address of witness to mark)": {visible: "witness"}},
     ]
   end
   #e.g.
@@ -190,28 +191,34 @@ module AbrStateMethods::NY
       return override_field_value((self.has_mailing_address.to_s == "1"), fieldname1, fieldname2)
   end
 
+  def conditional_set_and_override_mailing_address_field (fieldname1, fieldname2) 
+    if self.deliver_general_ballot()=="general_mail"
+      return override_mailing_address_field(fieldname1, fieldname2)
+    end
+  end
+
   def override_street_number
-    return override_mailing_address_field("street_number", "mail_street_number")
+    return conditional_set_and_override_mailing_address_field("street_number", "mail_street_number")
   end 
   
   def override_street_name
-    return override_mailing_address_field("street_name", "mail_street_name")
+    return conditional_set_and_override_mailing_address_field("street_name", "mail_street_name")
   end
 
   def override_unit
-    return override_mailing_address_field("unit", "mail_unit")
+    return conditional_set_and_override_mailing_address_field("unit", "mail_unit")
   end
 
   def override_city
-    return override_mailing_address_field("city", "mail_city")
+    return conditional_set_and_override_mailing_address_field("city", "mail_city")
   end
 
   def override_home_state_abbrev
-    return override_mailing_address_field("home_state_abbrev", "mail_state")
+    return conditional_set_and_override_mailing_address_field("home_state_abbrev", "mail_state")
   end 
 
   def override_zip
-    return override_mailing_address_field("zip", "mail_zip")
+    return conditional_set_and_override_mailing_address_field("zip", "mail_zip")
   end
   
   REQUIRED_MAILING_ADDRESS_FIELDS = [
