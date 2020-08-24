@@ -21,7 +21,7 @@ en:
       preparing_instructions: Once the file is ready, you can download it.
       download_header: Preparing your request form
       download_instructions: <p>Make sure to download, print, sign and send your request to:</p><p>%{registrar_address}</p>
-      finish_header: Thank you for requesting your absentee ballot for the state of %{state_name}
+      finish_header: Almost done
       finish_instructions: <p>Make sure to download, print, sign and send your request to:</p><p>%{registrar_address}</p>
       finish_pdf_delay_header: Check Your Email
       finish_pdf_delay: It's taking a while to create your absentee request form to download,
