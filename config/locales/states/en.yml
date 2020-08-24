@@ -171,7 +171,7 @@ en:
       co:
         abr:
           header: Absentee Requests In Colorado
-          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.  If you have any questions, or need to update your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To check the status of your mail ballot visit <a rel="noopener" target="_blank" href="www.GoVoteColorado.gov">www.GoVoteColorado.gov</a>. Then log in to your voter record, which will show whether your mail ballot has been mailed. If you have further questions about your mail ballot''s status, contact your local county clerk and recorder''s office.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in. Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots must be received by 7:00pm on Election Day.</p><p>NOTE: If you recently registered for the first time, you may need to provide a copy of your ID along with your mail ballot when you return it to vote.</p>'
+          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.  If you have any questions, or need to update your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To check the status of your mail ballot visit <a rel="noopener" target="_blank" href="www.GoVoteColorado.gov">www.GoVoteColorado.gov</a>. Then log in to your voter record, which will show whether your mail ballot has been mailed. If you have further questions about your mail ballot''s status, contact your local county clerk and recorder''s office.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots must be received by 7:00pm on Election Day.</p><p>NOTE: If you recently registered for the first time, you may need to provide a copy of your ID along with your mail ballot when you return it to vote.</p>'
       ct:
         abr_form_fields:
           "reason_instructions": "Pursuant to Executive Order No. 7QQ, I expect to be unable to appear at the polling place during the hours of voting and hereby apply for an absentee ballot: (check only one)"
@@ -182,21 +182,26 @@ en:
           "Printed Name": Name of assistant
           "Tel No": Phone number
       de:
+        state_online_abr:
+          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
         abr:
+          finish_instructions: "<p>Your application for a by-mail ballot must be received by Friday, October 20th, 2020.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
+          requirements: "<p>To qualify to request a ballot in DE, you must meet at least one of the following requirments:</p><p>(1) I am in public service of the  U.S. or the State of Delaware, or I am a spouse or dependent residing with or accompanying him or her. Reason 1 also applies to members of the  Uniformed Services.</p><p>(2) Due to the nature of my business or occupatioon. Reason 2 also applies topersons providing care to a parent, spouse or child who is living at home and requires constant care,students, andotherwise eligible persons who are incarcerated.</p><p>(3) I am sick, or temporarily or permanently physically disabled.</p><p>(4) I am absent from the district while on vaca􏰀tion</p><p>(5) Due to the tenets or teachings of my religion</p><p>(6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her.</p>"
           email_instructions: You may also sign, scan and email your form.   
         abr_form_fields:
           fill_2: Political Party
           Security Number: Social Security Number
           fill_10: Address where you want your ballot sent if different than home address
           fill_11: Expected Election Day Location
+          fill_11__hint: Provide City, State or City, Country
           Day phone: Expected Election Day Phone Number          
           absentee_reason: Select the reason you are voting by absentee ballot
           absentee_reason__hint: If you select reason 6 below you will receive a full Primary Election ballot, but your General Eletion ballot will only have Federal Offices. Citizens temporarily residing outside of the U.S. should use the Federal Post Card Applicatioon instead of choosing reason 6.
           absentee_reason__options:
             "1": (1) I am in public service of the U.S. or the State of Delaware, or I am a spouse or dependent residing with or accompanying him or her. Reason 1 also applies to members of the Uniformed Services.
-            "2": "(2) Due to the nature of my business or occupatioon. Reason 2 also applies to<ul><li>persons providing care to a parent, spouse or child who is living at home and requires constant care,</li><li>students, and</li><li>otherwise eligible persons who are incarcerated.</li></ul>"
+            "2": "(2) Due to the nature of my business or occupation. Reason 2 also applies to persons providing care to a parent, spouse or child who is living at home and requires constant care,students, and otherwise eligible persons who are incarcerated."
             "3": (3) I am sick, or temporarily or permanently physically disabled.
-            "4": (4) I am absent from the district while on vaca􏰀tion
+            "4": (4) I am absent from the district while on vacation
             "5": (5) Due to the tenets or teachings of my religion
             "6": (6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her. 
           absentee_delivery: Special Qualification regarding electronic delivery of absentee ballots.
