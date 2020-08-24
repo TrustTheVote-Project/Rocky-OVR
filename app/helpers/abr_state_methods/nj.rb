@@ -67,13 +67,15 @@ module AbrStateMethods::NJ
     "Address_Assistor": {},
     "Name_Assistor": {},
     "Authorizied_Messenger_Name": {},
-    "Date_of_Birth_Messenger": {},
+    "Date_of_Birth_Messenger": {
+      method: "messenger_birthdate"
+    },
     #"voter_signature_2": {},
     #"messenger_signature": {}
     #"Signed_Date": {}
     #"messenger_date": {}
   }
-  EXTRA_FIELDS = ["has_mailing_address", "assistant", "messenger"]
+  EXTRA_FIELDS = ["has_mailing_address", "assistant", "messenger","messenger_birth_date", "messenger_birth_dd","messenger_birth_mm","messenger_birth_yyyy"]
   
   
   def form_field_items
@@ -96,7 +98,7 @@ module AbrStateMethods::NJ
       {"Municipality CityTown_3": {visible: "messenger", required: :if_visible, classes: "half"}},
       {"State_3": {visible: "messenger", required: :if_visible, classes: "half last", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       # TODO: change to type: :date 
-      {"Date_of_Birth_Messenger": {visible: "messenger", required: :if_visible}},
+      {"messenger_birth_date": {visible: "messenger", type: :date,  m: "messenger_birth_mm", d: "messenger_birth_dd", y: "messenger_birth_yyyy", required: :if_visible}},
     ]
   end
 
@@ -112,7 +114,35 @@ module AbrStateMethods::NJ
     end
   end
 
+  def test_date(datestring)
+    begin
+      @mydate = Date.strptime(datestring, "%m/%d/%Y")
+      return true
+    rescue ArgumentError
+      return false
+    end
+  end
+
+
+  def messenger_birthdate
+    if self.messenger.to_s == "1"
+      dateparts = [messenger_birth_mm, messenger_birth_dd, messenger_birth_yyyy].collect {|d| d.blank? ? nil : d}.compact
+      datestring=dateparts.join("/")
+      if dateparts && dateparts.length == 3 && self.test_date(datestring)
+        return datestring
+      elsif dateparts  && dateparts.length >=1
+        return ('Invalid')
+      else 
+        return(nil)
+      end 
+    end 
+  end
+
+
   def custom_form_field_validations
+    if ((self.messenger.to_s == "1") && (self.messenger_birthdate.to_s=='Invalid')) #nil case is handled by 'Required'
+        errors.add("messenger_birth_date", 'Birth date failed validation' ) #custom_required_message("ADL"))       
+    end    
   end
   
  
