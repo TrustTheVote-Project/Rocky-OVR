@@ -14,6 +14,7 @@ en:
       too_long: "too long (maximum is %{count} characters)."
       too_short: "too short (minimum is %{count} characters)."
       wrong_length: "wrong length (should be %{count} characters)."
+      too_young: "You must be 18 on or before November 3, 2020 to vote in this election."
   affirm: Affirm
   decline: Decline
   
