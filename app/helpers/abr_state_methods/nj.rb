@@ -97,8 +97,9 @@ module AbrStateMethods::NJ
       {"Apt_3": {visible: "messenger", classes: "quarter last"}},
       {"Municipality CityTown_3": {visible: "messenger", required: :if_visible, classes: "half"}},
       {"State_3": {visible: "messenger", required: :if_visible, classes: "half last", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      # TODO: change to type: :date 
+      # TODO: change to type: :date #ToDone
       {"messenger_birth_date": {visible: "messenger", type: :date,  m: "messenger_birth_mm", d: "messenger_birth_dd", y: "messenger_birth_yyyy", required: :if_visible}},
+      # TODO: Messenger zip code is currently erroneously filled by Zip_2 above (Assistant zip code). We need a zip_3
     ]
   end
 
@@ -141,7 +142,7 @@ module AbrStateMethods::NJ
 
   def custom_form_field_validations
     if ((self.messenger.to_s == "1") && (self.messenger_birthdate.to_s=='Invalid')) #nil case is handled by 'Required'
-        errors.add("messenger_birth_date", 'Birth date failed validation' ) #custom_required_message("ADL"))       
+         errors.add("messenger_birth_date",custom_required_message("messenger_birth_date"))       
     end    
   end
   
