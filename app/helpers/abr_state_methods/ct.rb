@@ -7,7 +7,9 @@ module AbrStateMethods::CT
     "Date of Birth": {
       method: "date_of_birth_mm_dd_yyyy"
     },
-    "Home Address": {}, #TODO- number, street, & city
+    "Home Address": {
+      method: "partial_address"
+    }, #TODO- number, street, & city  #ToDone
     "Zip Code": {
       method: "zip"
     },
@@ -18,7 +20,7 @@ module AbrStateMethods::CT
       method: "email"
     },
     "Mailing Address 1": {
-      method: "full_name"
+      method: "full_name_conditional"
     },
     "Mailing Address 2": {},
     "Mailing Address 3": {},
@@ -48,20 +50,23 @@ module AbrStateMethods::CT
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
-      {"Mailing Address 2": {visible: "has_mailing_address"}},
-      {"Mailing Address 3": {visible: "has_mailing_address"}},
+      {"Mailing Address 2": {visible: "has_mailing_address", required: :if_visible}},
+      {"Mailing Address 3": {visible: "has_mailing_address", required: :if_visible}},
       {"assistant": {type: :checkbox}},
       {"Printed Name": {visible: "assistant", required: :if_visible, classes: "half"}},
       {"Tel No": {visible: "assistant", required: :if_visible, classes: "half last"}},
       {"Residence Address": {visible: "assistant", required: :if_visible}},
-      {"reason_instructions": {type: :instructions}},
+#      {"reason_instructions": {type: :instructions}},
+      {"absentee_reason": { type: :radio, options: [1,2,3,4,5,6,7], required: true}},
+=begin
       {"COVID19  All voters are able to check this box pursuant to Executive Order 7QQ": {type: :checkbox}},
       {"My active service in the Armed Forces of the United States": {type: :checkbox}},
       {"My absence from the town during all of the hours of voting": {type: :checkbox}},
       {"My illness": {type: :checkbox}},
       {"My religious tenets forbid secular activity on the day of the election primary or referendum": {type: :checkbox}},
       {"My duties as a primary election or referendum official at a polling place other than my own during all of the hours of voting": {type: :checkbox}},
-      {"My physical disability": {type: :checkbox}},      
+      {"My physical disability": {type: :checkbox}},
+=end      
     ]
   end
   #e.g.
@@ -81,11 +86,65 @@ module AbrStateMethods::CT
   #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
   # ]
   
+  def include_non_nil(item)
+      return (item ? item : '' )
+  end
+
+  def partial_address
+    address='';
+    address+= include_non_nil(self.street_number)
+    address+= include_non_nil(self.street_name)
+    address+= include_non_nil(self.unit)
+    address+=","
+    address+=self.city
+
+    return (address)
+  end
+
+  def full_name_conditional
+    if(self.has_mailing_address.to_s == "1")
+      return self.full_name
+    end
+  end
+
   
+  # Methods below map from UI attributes to PDF fields
+  def absentee_reasons
+
+  {
+    "1": self.class.make_method_name("COVID19  All voters are able to check this box pursuant to Executive Order 7QQ"),
+    "2": self.class.make_method_name("My active service in the Armed Forces of the United States"),
+    "3": self.class.make_method_name("My absence from the town during all of the hours of voting"),
+    "4": self.class.make_method_name("My illness"),
+    "5": self.class.make_method_name("My religious tenets forbid secular activity on the day of the election primary or referendum"),
+    "6": self.class.make_method_name("My duties as a primary election or referendum official at a polling place other than my own during all of the hours of voting"),
+    "7": self.class.make_method_name("My physical disability"),
+  }
+
+  end 
+
+  def absentee_reason
+    absentee_reasons.each do |k,m|
+      return k if self.send(m) == "On"
+    end
+    return nil #otherwise implicit non-nil return of the absentee_reasons hash
+  end
+
+  def absentee_reason=(value)
+    absentee_reasons.each do |k,m|
+      if k.to_s == value.to_s
+        self.send("#{m}=", "On")
+      else
+        self.send("#{m}=", "Off")
+      end
+    end    
+  end
+
   def custom_form_field_validations
     # make sure delivery is selected if reason ==3
     # make sure fax is provided if faxtype is selected for delivery
+
   end
-  
+
  
 end
