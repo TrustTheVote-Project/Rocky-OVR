@@ -25,7 +25,7 @@
 class StateOnlineRegistrationsController < RegistrationStep
 
   def show
-    find_registrant
+    find_registrant(:finish)
     set_ab_test
     set_up_view_variables
     
@@ -50,8 +50,8 @@ protected
         
   end
   
-  def find_registrant
-    super
+  def find_registrant(special_case = nil, p = params)
+    super(special_case, p)
     @registrant.update_attributes(:finish_with_state=>true)
   end
   
