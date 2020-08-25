@@ -697,13 +697,27 @@ en:
           "AptUnit_2": "Apt/Unit"
           "CityTown_2": "City/Town"
           "reason_instructions": "I will be entitled to vote by absentee ballot because (check one):"
-          "Check Box14": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
-          "Check Box16": "I cannot appear in public on election day because of observance of a religious commitment."
-          "Check Box17": "I am unable to vote in person due to a disability."
-          "Check Box18": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
-          "storm_warning": "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND (check one)"
-          "Check Box19": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
-          "Check Box20": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
+          absentee_reason: "I will be entitled to vote by absentee ballot because (check one):"
+          absentee_reason__options:
+            "reason1": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
+            "reason3": "I cannot appear in public on election day because of observance of a religious commitment."
+            "reason4": "I am unable to vote in person due to a disability."
+            "reason5": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
+            storm_warning: "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND.."
+          absentee_reason__required_message: Please select one of the above reasons
+
+          #"Check Box14": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
+          #"Check Box16": "I cannot appear in public on election day because of observance of a religious commitment."
+          #"Check Box17": "I am unable to vote in person due to a disability."
+          #"Check Box18": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
+          #storm_warning: "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND.."
+          storm_warning_reason: "Check one:"
+          storm_warning_reason__options:
+            "reason1": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
+            "reason2": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
+          #"Check Box19": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
+          #"Check Box20": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
+          storm_warning_reason__required_message: Please select one of the above reasons
       nj:
         abr_form_fields:
           "has_mailing_address": My mailing address differs from my residential address.
