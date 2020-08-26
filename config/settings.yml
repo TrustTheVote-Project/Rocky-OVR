@@ -186,10 +186,7 @@ absentee_states:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
     pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
     # pdf_template: va.pdf
-  VT:
-    online_req_url: https://mvp.sec.state.vt.us/
-    # pdf_template: vt.pdf
-    pdf_url: https://sos.vermont.gov/media/3opimqn2/vtabsenteerequestgeneric.pdf
+  VT: {} #All vote-by-mail this year
   WA: {}
   WI:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee

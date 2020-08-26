@@ -1181,6 +1181,11 @@ the instructions to fill it out and return it. Your completed ballot must be REC
         registration_complete: Registration Complete
         registration_complete_dialog_text: "<p>Your application has been sent to the
           Dept. of Elections to register to vote.</p>"
+      
+      vt:
+        abr:
+          header: Absentee Requests In Vermont
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year, as long as you are registered more than 18 days before the election. Your absentee ballot will be sent to the address listed on your voter registration.</p><p>Once your ballot has arrived, be sure to read the directions on how to complete and send it back in. Your completed ballot must be post marked for return by Election Day. The deadline to drop off your ballot in person is 8:00pm on Election Day.</p><p>If you have any questions, want to check on the status of your ballot or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://mvp.vermont.gov/ \">https://mvp.vermont.gov/ </a></p>"
       wa:
         abr:
           header: Absentee Requests In Washington
