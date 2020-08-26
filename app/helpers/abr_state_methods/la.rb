@@ -38,7 +38,7 @@ module AbrStateMethods::LA
     
   }
   
-  EXTRA_FIELDS = ["hand_delivered_or_faxed", "has_mailing_address", "absent_from", "absent_to", "absent_from_mm", "absent_from_dd", "absent_from_yyyy", "absent_to_mm", "absent_to_dd", "absent_to_yyyy",] 
+  EXTRA_FIELDS = ["hand_delivered_or_faxed", "has_mailing_address", "absent_from", "absent_to", "absent_from_mm", "absent_from_dd", "absent_from_yyyy", "absent_to_mm", "absent_to_dd", "absent_to_yyyy","dln_soft_validation",] 
   
   
   def form_field_items
@@ -112,7 +112,7 @@ module AbrStateMethods::LA
       {"Mothers Maiden Name": {required: true}},
       {"id_instructions": {type: :instructions}},
       {"SSN_Last_4": {min:4, max: 4}},
-      {"License_ID": {}},
+      {"License_ID": {ui_regexp:"^0[0-9]{7}$"}},
       {"Options": {type: :radio, required: true}}, 
       {"absent_from_date": {visible: "options_1", required: "show_star", type: :date, m: "absent_from_mm", d: "absent_from_dd", y: "absent_from_yyyy"}},
       {"absent_to_date": {visible: "options_1", required: "show_star", type: :date, m: "absent_to_mm", d: "absent_to_dd", y: "absent_to_yyyy"}},
@@ -120,7 +120,8 @@ module AbrStateMethods::LA
       {"submitted_by": {classes: "indent", visible: "hand_delivered_or_faxed", required: :if_visible}},
       {"relationship_to_applicant": {classes: "indent", visible: "hand_delivered_or_faxed", required: :if_visible}},
       {"has_mailing_address": {type: :checkbox}},
-      {"NumberStreetCityStateZip Code": {visible: "has_mailing_address", required: :if_visible}}
+      {"NumberStreetCityStateZip Code": {visible: "has_mailing_address", required: :if_visible}},
+      {"dln_soft_validation": {type: :hidden}},
     ]
   end
   #e.g.

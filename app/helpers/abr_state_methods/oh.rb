@@ -67,7 +67,7 @@ module AbrStateMethods::OH
     },
   }
   
-  EXTRA_FIELDS = ["has_mailing_address", "identification"]
+  EXTRA_FIELDS = ["has_mailing_address", "identification","dln_soft_validation"]
 
   
   def form_field_items
@@ -172,8 +172,9 @@ module AbrStateMethods::OH
         type: :radio, 
         required: true,
         options:["dln", "ssn4", "photoid"]}},
-      {"OR": {visible: "identification_dln", required: "show_star", min: 8, max: 8, regexp: /\A[[:alpha:]]{2}\d{6}\z/}},
+      {"OR": {visible: "identification_dln", required: "show_star", min: 8, max: 8, ui_regexp: "^[a-zA-Z]{2}[0-9]{6}$"}},
       {"OR_2": {visible: "identification_ssn4", required: "show_star",  min: 4, max: 4, regexp: /\A\d{4}\z/ }},      
+      {"dln_soft_validation": {type: :hidden}},
     ]
   end
   

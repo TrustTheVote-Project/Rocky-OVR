@@ -44,7 +44,7 @@ module AbrStateMethods::KS
       method: "phone"
     },
   }
-  EXTRA_FIELDS = ["identification", "has_mailing_address"]
+  EXTRA_FIELDS = ["identification", "has_mailing_address","dln_soft_validation"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
@@ -160,17 +160,18 @@ module AbrStateMethods::KS
       {"state_2": {type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"county_2": {}},
       {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
-      {"identification_number": {visible: "identification_dln_yes",min: 9, max: 9, regexp:/\A[kK]\d{8}\z/}},
+      {"identification_number": {visible: "identification_dln_yes", required: "show_star", min: 9, max: 9, ui_regexp:"^[kK][0-9]{8}$"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
       {"Mailing_City": {visible: "has_mailing_address"}},
       {"Mailing_State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"Mailing_Zip_Code": {visible: "has_mailing_address"}},
+      {"dln_soft_validation": {type: :hidden}}
     ]
   end
   
   def custom_form_field_validations
-    if self.identification == "dln_yes"
+    if self.identification.to_s == "dln_yes"
       custom_validates_presence_of("identification_number")
     end
     if self.has_mailing_address == "1"

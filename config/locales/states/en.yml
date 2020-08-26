@@ -24,7 +24,8 @@ en:
           SSN or Last 4: SSN or Last 4
           ADL: Alaska driver's license or State ID No.
           ADL__required_message: Either Driver's license or SSN is required
-          ADL__format_message: Enter digits only
+          #ADL__format_message: Enter digits only
+          ADL__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
           attest_no_ssn_or_dln: I do not have an SSN or AK driver's license or State ID
           gender: Gender
           gender__options:
@@ -145,6 +146,7 @@ en:
             place_of_birth: Place of birth
             last_4_ssn: "Last 4 digits of SSN #"
           drivers_license_id: "Arizona driver's license or ID"
+          drivers_license_id__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
           place_of_birth: Place of birth
           last_4_ssn: "Last 4 digits of SSN #"
 
@@ -360,6 +362,7 @@ en:
             dln_no: "I do not have a driver's license."
           "has_mailing_address": My mailing address differs from my residential address.
           "identification_number": "Current Kansas driver's license number or nondriver's identification card number:􏰋􏰤"
+          identification_number__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
           "county_1": Residential county
           "state_2": State where you will be when signing this form
           "county_2": County where you will be when signing this form
@@ -403,6 +406,8 @@ en:
           id_instructions: SSN and Driver's license are optional but encouraged
           SSN_Last_4: Last 4 digits of your social security number
           License_ID: LA Driver's license or ID
+          License_ID__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
+
       md:
         state_online_abr:
           requirements: |-
@@ -824,6 +829,7 @@ en:
             ssn4: "Last four digits of your social security number"
             photoid: "Copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address."          
           OR: Ohio Driver license number (2 letters followed by 6 numbers)
+          OR__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
           OR_2: Last four digits of your Social Security Number
       ok:
         state_online_abr:
