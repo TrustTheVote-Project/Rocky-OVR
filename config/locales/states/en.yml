@@ -191,7 +191,10 @@ en:
             "6": "My duties as a primary election or referendum official at a polling place other than my own during all of the hours of voting"
             "7": "My physical disability"
           absentee_reason__required_message: Please select one of the above reasons
-
+      dc:
+        abr:
+          header: Absentee Requests In DC
+          instructions: "<p>DC is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot\">https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot</a> </p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p>"
       de:
         state_online_abr:
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
@@ -1121,6 +1124,10 @@ the instructions to fill it out and return it. Your completed ballot must be REC
           header: Absentee Requests In Utah
           instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/\">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p>"              
       va:
+        state_online_abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your completed ballot must be postmarked by Election Day (November 3rd). Your completed ballot must be RECEIVED by 12:00 pm November 6th (if post marked by Election Day). If dropping off your completed ballot in person, it must be received by 7:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://vote.elections.virginia.gov/VoterInformation\">https://vote.elections.virginia.gov/VoterInformation</a> </p>"
+        abr:
+          finish_instructions: "<p>Make sure to print off and complete your application. Read the instructions carefully on how to submit your application.</p><p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your completed ballot must be postmarked by Election Day (November 3rd). Your completed ballot must be RECEIVED by 12:00 pm November 6th (if post marked by Election Day). If dropping off your completed ballot in person, it must be received by 7:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://vote.elections.virginia.gov/VoterInformation\">https://vote.elections.virginia.gov/VoterInformation</a> </p>"
         abr_form_fields:
           "Birth_Year": "Year I was born:"
           "SSN_Last_4": Last 4 digits of my social security number
