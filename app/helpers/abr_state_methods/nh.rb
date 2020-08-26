@@ -44,7 +44,8 @@ module AbrStateMethods::NH
     }, 
     "undefined_2": {
       method:"phone_last4"
-    }, 
+    },
+=begin 
     "Check Box12": { 
       options: ["Off", "Yes"],
       value: "Yes"
@@ -71,6 +72,7 @@ module AbrStateMethods::NH
       options: ["Off", "Yes"],
       value: "Yes"
     },
+=end
     "Applicants Email Address": {
       method: "email"
     },
@@ -79,26 +81,23 @@ module AbrStateMethods::NH
     #"assistant_signature": {}
     "Asisstant Name": {},
 
-    #"Group1": {},
-    #"Group2": {},
-    #"Group2a": {},
+    "Group1": {},
+    "Group2": {
+      method: "group2"
+    },
+    "Group2a": {
+      method: "group2a"
+    },
   }
-  EXTRA_FIELDS = ["has_mailing_address", "assistant", "storm_warning"]
+  EXTRA_FIELDS = ["has_mailing_address", "assistant", "absentee_reason","storm_warning", "storm_warning_reason"]
  
   
   def form_field_items
     [
-      #{"reason_instructions": {type: :instructions}},
-      {"absentee_reason":{type: :radio, options:['reason1','reason3','reason4','reason5', 'storm_warning'], required: true}},
+      {"Group1": {type: :radio, options:['absent','registered'], required: true}},
 
-      #{"Check Box14": {type: :checkbox, classes: "indent"}},
-      #{"Check Box16": {type: :checkbox, classes: "indent"}},
-      #{"Check Box17": {type: :checkbox, classes: "indent"}},
-      #{"Check Box18": {type: :checkbox, classes: "indent"}},
-      #{"storm_warning": {type: :checkbox}},
+      {"absentee_reason":{type: :radio, options:['reason1','reason3','reason4','reason5', 'storm_warning'], required: true}},
       {"storm_warning_reason":{type: :radio, options:['reason1','reason2'], visible: "absentee_reason_storm_warning", required: "star", classes: "indent"}},
-      #{"Check Box19": {type: :checkbox, classes: "indent"}},
-      #{"Check Box20": {type: :checkbox, classes: "indent"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Street or PO Box": {visible: "has_mailing_address", classes: "quarter", required: :if_visible}},
       {"Mailing Street name": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
@@ -131,62 +130,18 @@ module AbrStateMethods::NH
   # Radio select
 
   # Methods below map from UI attributes to PDF fields
-  def absentee_reasons
-    {
-      "reason1": self.class.make_method_name("Check Box14"),
-      "reason3": self.class.make_method_name("Check Box16"),
-      "reason4": self.class.make_method_name("Check Box17"),
-      "reason5": self.class.make_method_name("Check Box18"),
-      "storm_warning":"storm_warning"
 
-    }
-  
-  end 
-  
-  def absentee_reason
-    absentee_reasons.each do |k,m|
-      return k if self.send(m) == "Yes"
+
+  def group2 
+    if self.absentee_reason!='storm_warning'
+      return (self.absentee_reason.to_s)
     end
-    return nil #otherwise implicit non-nil return of the absentee_reasons hash
   end
-  
-  def absentee_reason=(value)
-    absentee_reasons.each do |k,m|
-      if k.to_s == value.to_s
-        self.send("#{m}=", "Yes")
-        #if (k.to_s!='storm_warning')
-        #    self.group2=k.to_s
-        #end
-      else
-        self.send("#{m}=", "Off")
-      end
-    end    
-  end
-
-  def storm_warning_reasons
-    {
-      "reason1": self.class.make_method_name("Check Box19"),
-      "reason2": self.class.make_method_name("Check Box20"),
-
-    }
-  end
-
-  def storm_warning_reason
-    storm_warning_reasons.each do |k,m|
-      return k if self.send(m) == "Yes"
+ 
+  def group2a 
+    if self.absentee_reason=='storm_warning'
+      return (self.storm_warning_reason.to_s)
     end
-    return nil #otherwise implicit non-nil return of the absentee_reasons hash
-  end
-  
-  def storm_warning_reason=(value)
-    storm_warning_reasons.each do |k,m|
-      if k.to_s == value.to_s
-        self.send("#{m}=", "Yes")
-        #self.group2a=k.to_s
-      else
-        self.send("#{m}=", "Off")
-      end
-    end    
   end
 
 
@@ -194,9 +149,6 @@ module AbrStateMethods::NH
     if absentee_reason.to_s=="storm_warning"
       custom_validates_presence_of("storm_warning_reason")
     end
-
-       
-
 
   end
   
