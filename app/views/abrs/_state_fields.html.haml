@@ -105,8 +105,8 @@
     - @abr.form_fields.each do |field_name, opts|
       - required = opts[:required]
       - ui_regexp = opts[:ui_regexp]
-      - field_label = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}", default: (opts[:label] || field_name)).html_safe
-      - instructions = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__hint", default: "").html_safe
+      - field_label = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}", default: (opts[:label] || field_name)).html_safe
+      - instructions = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__hint", default: "").html_safe
       - class_name = "line #{opts[:classes]} #{opts[:method]} #{required ? 'required' : ''}"
       - required_message = required ?  @abr.custom_required_message(field_name).html_safe : nil
       - ui_regexp_fail_message = ui_regexp ?  @abr.custom_format_message(field_name).html_safe : nil
@@ -123,7 +123,7 @@
       - data["ui_regexp_fail_message"] = ui_regexp_fail_message unless ui_regexp.blank?
       - if opts[:type] == :instructions
         %li.instructions{class: class_name, data: data}
-          %p.instructions= t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{opts[:method]}")
+          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")
       - if opts[:type] == :checkbox
         - class_name += " registrant-form__required-checkbox " if required
         %li{class: class_name, data: data}
@@ -144,7 +144,7 @@
       - elsif opts[:type] == :radio
         %li{class: "#{class_name} #{opts[:method]}",  data: data}
           %ul.stacked.radio
-            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
+            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
             = field_li(form, opts[:method], {label_options:  field_label, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
       - elsif opts[:type] == :select
         = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })

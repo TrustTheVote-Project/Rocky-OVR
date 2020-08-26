@@ -193,7 +193,10 @@ en:
             "6": "My duties as a primary election or referendum official at a polling place other than my own during all of the hours of voting"
             "7": "My physical disability"
           absentee_reason__required_message: Please select one of the above reasons
-
+      dc:
+        abr:
+          header: Absentee Requests In DC
+          instructions: "<p>DC is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot\">https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot</a> </p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p>"
       de:
         state_online_abr:
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
@@ -292,7 +295,45 @@ en:
           "VOTERS OPTIONAL ADDRESS LINE 3": Mailing address
           "VOTERS OPTIONAL ADDRESS LINE 4": City, State, Zip
           "has_mailing_address": My mailing address differs from my residential address.
-      il_chicago:
+      il:
+        chicago:
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with the city of Chicago
+            confirm: ""
+            requirements: ""
+            button: "Finish your absentee request with Chicago"
+        bloomington:
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with the city of Bloomington
+            confirm: ""
+            button: "Finish your absentee request with Bloomington"
+        "kane county": 
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Kane County
+            confirm: ""
+            button: "Finish your absentee request with Kane County"
+        "lake county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Lake County
+            confirm: ""
+            button: "Finish your absentee request with Lake County"
+        "madison county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Madison County
+            confirm: ""
+            button: "Finish your absentee request with Madison County"
+        "mchenry county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with McHenry County
+            confirm: ""
+            button: "Finish your absentee request with McHenry County"
+        "sangamon county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Sangamon County
+            confirm: ""
+            button: "Finish your absentee request with Sangamon County"
+            
+            
         abr_form_fields:
           "0": registration address
           "1": mailing address
@@ -695,13 +736,26 @@ en:
             "take_ballot": "I request to take the ballots with me, (or to the person I am acting as agent for, up to two people). (This form must be brought to the local elections office.)"
             "vote_here": "I request to vote in the Election Office today as the Early Voting Polling Place. (This form must be brought to the local elections office.)"
       nh:
+        abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow 
+the instructions to fill it out and return it. Your completed ballot must be RECEIVED by your county election office by 5pm November 3rd. At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"http://sos.nh.gov/VoteInforLook.aspx \">http://sos.nh.gov/VoteInforLook.aspx</a></p>"
+          requirements: |-
+            <p>In light of emergency orders and public health guidance, all voters with concerns about COVID-19 may request an absentee ballot due to physical disability. Outside of COVID, you are eligible to vote absentee for one of the following reasons:</p>
+            <ul>
+              <li>you will not be at your domiciled location on the Election Day</li>
+              <li>you cannot vote due to observance of a religious commitment</li>
+              <li>you are disabled</li>
+              <li>you cannot vote due to an employment obligation.</li>
+            </ul>
         abr_form_fields:
           "has_mailing_address": My mailing address differs from my residential address.
           "assistant": "I assisted voter in completing this form because he/she has a disability."
+          "Asisstant Name": "Assistant Name"
           "Street or PO Box": Street number
           "AptUnit_2": "Apt/Unit"
           "CityTown_2": "City/Town"
           "reason_instructions": "I will be entitled to vote by absentee ballot because (check one):"
+          "absentee_reason__hint": "NOTE: In light of emergency orders and public health guidance, all voters with concerns about COVID-19 may request an absentee ballot due to physical disability." 
           absentee_reason: "I will be entitled to vote by absentee ballot because (check one):"
           absentee_reason__options:
             "reason1": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
@@ -724,6 +778,8 @@ en:
           #"Check Box20": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
           storm_warning_reason__required_message: Please select one of the above reasons
       nj:
+        abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your application must be received seven days prior to Election Day (October 27,2020).</p><p>Your completed ballot must be RECEIVED (if returning by mail) by your county election office no later than 48 hours after the time of the closing of the polls. If returning your ballot in person, it must be received before polls close on Election day (typically 8:00 PM).</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://voter.svrs.nj.gov/auth/sign-in\">https://voter.svrs.nj.gov/auth/sign-in</a></p>"
         abr_form_fields:
           "has_mailing_address": My mailing address differs from my residential address.
           "Mailing_Address_2": Mailing address
@@ -740,9 +796,11 @@ en:
           "Municipality CityTown_2": "City/Town"
           "State_2": State
           "Zip_2": Zip
-          "Authorizied_Messenger_Name": "Authorizied Messenger Name"
+          "Authorizied_Messenger_Name": "Authorized Messenger's Name"
+          "UOCAVA_only": "Military/Overseas Voter Only:"
           "UOCAVA": "I request Vote-By-Mail Ballots for all elections in which I am eligible to vote and I am (CHECK ONLY ONE)"
           UOCAVA__options:
+            "Off": "Not Applicable"
             "UOCAVA_1": "A Member of the Uniformed Services or Merchant Marine on active duty, or an eligible spouse or dependent."
             "UOCAVA_2": "A U.S. Citizen residing outside the U.S. and I intend to return."
             "UOCAVA_3": "A U.S. Citizen residing outside the U.S. and I do not intend to return."
@@ -752,13 +810,32 @@ en:
 
       nm:
         abr:
-          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In New Mexico, this application must be turned in to your County Clerk's office within 48 hours of completetion and be RECEIVED by Friday, October 30th, 2020.  At any time you can check the status of your application and the status of your ballot at:<a rel=\"noopener\" target=\"blank\" href=\"
-\">
-</a></p>"
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible. In New Mexico, this application must be turned in to your County Clerk's office within 48 hours of completetion. Your absentee ballot must be RECEIVED by 5:00PM on Tuesday, October 20th, 2020.</p><p>Your completed ballot must be received by your County Clerk's office by 7:00pm on Election Day. At any time you can check the status of your application and the status of your ballot at:<a rel=\"noopener\" target=\"blank\" href=\"https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker\">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker</a></p>"
         state_online_abr:
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1\">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>"
           
       nv:
+        "clark county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Clark County
+            requirements: If you are registered to vote and have a valid Social Security Number or Nevada state ID, you may request your absentee ballot online directly with the state.
+            button: Finish your absentee request with Clark County
+          abr_form_fields:
+            "RegistrationNo": "Nevada Driver's License or Nevada ID Card Number, if applicable"
+            "MailingAddress": "Mailing Address"
+            "MailApt": "Apt/Unit"
+            "MailingCity": "City"
+            "MailingState": "State"
+            "MailingZip": "Zip"
+            "military_instructions": "If applicable, check one of the following: (Note: 'Military Domestic' and 'Military Overseas' apply to those who are active duty and absent from their Nevada voting residence.)"
+            "MilitaryDomestic": "Military Domestic"
+            "MilitaryOverseas": "Military Overseas"
+            "CivilianOverseas": "Civilian Overseas"
+            "ProvidedBy": "If this form was provided to you by a third-party group, list their information here."
+            "has_mailing_address": My mailing address differs from my residential address.
+
+
+            
         abr_form_fields:
           "RegistrationNo": "Nevada Driver's License or Nevada ID Card Number, if applicable"
           "MailingAddress": "Mailing Address"
@@ -784,6 +861,17 @@ en:
           to print, sign, and mail in the form.</p>
       
       ny:
+        abr:
+          finish_instructions: <p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your absentee ballot request must be post marked by October 27th, 2020. You can apply in-person for an absentee ballot until November 2nd, 2020.</p><p>Your completed ballot must be post marked by November 3rd and RECIEVED by November 10th. The last day to drop offyour completed ballot is November 3rd.</p>
+          requirements: |-
+            <p>Registered voters are eligible to request and absentee ballot for one of the following reasons:</p>
+             <ul><li>You will be absent from the relevant county or New York City on Election Day;</li>
+             <li>You have a temporary illness or physical disability;</li>
+             <li>You have a permanent illness or disability;</li>
+             <li>You have duties related to primary care of one or more individuals who are ill or physically disabled;</li>
+             <li>You are a resident or patient of a Veterans Administration hospital; or</li>
+             <li>You are detained in jail/prison, awaiting trial, awaiting action by grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li></ul>
+
         abr_form_fields:
           "county where you live": "County where you live"
           "has_mailing_address": My mailing address differs from my residential address.
@@ -816,6 +904,9 @@ en:
             "temporary_illness": temporary illness or physical disability
             "va_resident": resident or patient of a Veterans Health Administration Hospital
       oh:
+        abr:
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible. Your application must be RECEIVED by October 31st, 2020.</p><p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your completed ballot must be post marked by November 2nd. Your completed ballot must be RECEIVED by November 13th, if also post marked by November 2nd.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/\">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a></p>"
+            
         abr_form_fields:
           "County": "County in which you are registered to vote"
           "has_mailing_address": I wish to have my ballot mailed to a different address than where I am registered to vote
@@ -994,17 +1085,19 @@ en:
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo\">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>"
             
       ri:
+        abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. You must request your absentee ballot by 4:00pm on October 13, 2020.</p><p>Your completed ballot must be RECEIVED by the State Board of Elections (2000 Plainfield Pike, Cranston, RI 02921) by 8:00pm on Election Day.</p><p>NOTE: The following requirement has been suspended for the 2020 November 3rd General Election: The mail ballot comes with a Voter’s Mail Ballot Certificate, which must be signed and notarized or signed with two (2) witness signatures. The voter's signature will be compared to the signature on the mail ballot application as well.</p>"
         abr_form_fields:
           "Text Field 11": "Name of Institution (if applicable)"
           "Text Field 12": Mailing address
           "Text Field 14": City/Town
           "Text Field 15": State
           "Text Field 16": Zip
-          has_mailing_address: My mailing address differs from my residence address
+          has_mailing_address: My ballot shuuld be delivered to a different address from my registration address
           "eligibility": "I certify that I am eligible for a mail ballot on the following basis:"
           eligibility__options:
             "absent": "I may not be able to vote at my polling place in my city/town on the day of the election. I want my mail ballot to be sent to my residential or mailing address."
-            "confined": "I am confined in a hospital, convalescent home, nursing home, rest home, or similar institution within the State of Rhode Island."
+            "confined": "I am confined to a hospital, convalescent home, nursing home, rest home, or similar institution with the State of Rhode Island. I understand that my ballot will be brought to me by a bipartisan pair of election officials from the State Board of Elections before Election Day."
             "incapacitated": "I am incapacitated to such an extent that it would be an undue hardship to vote at the polls because of illness, mental or physical disability, blindness or a serious impairment of mobility."
             "military": "I am employed or in service intimately connected with military operations or because I am a spouse or dependent of such person, or I am a United States citizen who will be outside the United States."
       sd:
@@ -1094,6 +1187,10 @@ en:
           header: Absentee Requests In Utah
           instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/\">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p>"              
       va:
+        state_online_abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your completed ballot must be postmarked by Election Day (November 3rd). Your completed ballot must be RECEIVED by 12:00 pm November 6th (if post marked by Election Day). If dropping off your completed ballot in person, it must be received by 7:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://vote.elections.virginia.gov/VoterInformation\">https://vote.elections.virginia.gov/VoterInformation</a> </p>"
+        abr:
+          finish_instructions: "<p>Make sure to print off and complete your application. Read the instructions carefully on how to submit your application.</p><p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your completed ballot must be postmarked by Election Day (November 3rd). Your completed ballot must be RECEIVED by 12:00 pm November 6th (if post marked by Election Day). If dropping off your completed ballot in person, it must be received by 7:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://vote.elections.virginia.gov/VoterInformation\">https://vote.elections.virginia.gov/VoterInformation</a> </p>"
         abr_form_fields:
           "Birth_Year": "Year I was born:"
           "SSN_Last_4": Last 4 digits of my social security number
@@ -1157,10 +1254,43 @@ en:
         registration_complete: Registration Complete
         registration_complete_dialog_text: "<p>Your application has been sent to the
           Dept. of Elections to register to vote.</p>"
+      
+      vt:
+        abr:
+          header: Absentee Requests In Vermont
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year, as long as you are registered more than 18 days before the election. Your absentee ballot will be sent to the address listed on your voter registration.</p><p>Once your ballot has arrived, be sure to read the directions on how to complete and send it back in. Your completed ballot must be post marked for return by Election Day. The deadline to drop off your ballot in person is 8:00pm on Election Day.</p><p>If you have any questions, want to check on the status of your ballot or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://mvp.vermont.gov/ \">https://mvp.vermont.gov/ </a></p>"
       wa:
         abr:
           header: Absentee Requests In Washington
-          instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration. If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://voter.votewa.gov/\">https://voter.votewa.gov/</a></p><p>Once you recieve your ballot, be sure to read through the instructions on how to complete and return your ballot. Your completed ballot must be postmarked for return by Tuesday, November 3, 2020 (Election Day). If returning your ballot in-person, it must be dropped off by 8:00pm on Election Day.</p>"
+      
+      wi:
+        state_online_abr:
+          requirements: Depending on if you have voted absentee before, you may be required to provide a copy of your Wisconsin state ID with your application online.
+          finish_instructions: "<p>Once you receive your ballot, be sure to read the instructions on how to complete and send back in your ballot. Your completed ballot must be RECEIVED by 8:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://myvote.wi.gov/en-us/MyVoterInfo\">https://myvote.wi.gov/en-us/MyVoterInfo</a></p>"
+        abr:
+          finish_instructions: "<p>Make sure to download and complete your application. Read the instructions carefully to send back your form. Your application must be RECEIVED by 5:00pm on October 29th, 2020.</p><p>Once you receive your ballot, be sure to read the instructions on how to complete and send back in your ballot. Your completed ballot must be RECEIVED by 8:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://myvote.wi.gov/en-us/MyVoterInfo\">https://myvote.wi.gov/en-us/MyVoterInfo</a> </p>"
+      wv:
+        state_online_abr:
+          requirements: "To register online, you must provide your DMV ID # or Last Four of SSN (whichever is on file, or if you have both on file you may choose one to enter)."
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Absentee ballots postmarked by Election Day will be accepted if RECEIVED by the start of Canvass (November 9, 2020). Absentee ballots without a postmark will be accepted if RECEIVED by November 4, 2020. If returning your ballot in person, you must deliver it to the county clerk's office by the day before Election Day.</p><p>You can check that status of your ballot at any time here: <a rel=\"noopener\" target=\"blank\" href=\"https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking\">https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking</a> </p>"
+        abr:
+          requirements: |-
+            <p>Voters not able to vote in person during Early Voting or Election Day due to one of the following circumstances may vote a regular absentee ballot by mail:</p>
+             <ul>
+             <li>Illness, injury or other medical reason</li>
+             <li>Disability or advanced age</li>
+             <li>Incarceration or home detention (does not include individuals convicted of any felony, treason, or election bribery)</li>
+             <li>Work hours and distance from county seat</li>
+             <li>Inaccessible early voting site and polling place </li>
+             <li>Personal or business travel*</li>
+             <li>Attendance at college or other place of education or training*</li>
+             <li>Temporary residence outside of the county*</li>
+             <li>Service as an elected or appointed state or federal official*   </li>
+             </ul>
+             <p>“*” indicates that the voter must receive ballot at an address outside of the county.</p><p>NOTE: voters can apply for an absentee ballot using the “illness, injury or other medical reason which keeps me confined” as the excuse for completing the application</p>
+          finish_instructinos: "<p>Download the form, read the instructions carefully, complete the form and send it in right away. Your application must be received by October 28th, 2020.</p><p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Absentee ballots postmarked by Election Day will be accepted if RECEIVED by the start of Canvass (November 9, 2020). Absentee ballots without a postmark will be accepted if RECEIVED by November 4, 2020. If returning your ballot in person, you must deliver it to the county clerk's office by the day before Election Day.</p><p>You can check that status of your ballot at any time here: <a rel=\"noopener\" target=\"blank\" href=\"https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking\">https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking</a> </p>"
+          
       wy:
         abr:
           finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Wyoming, this application must be RECEIVED by Monday, November 2nd, 2020.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf\">https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf</a></p>"
