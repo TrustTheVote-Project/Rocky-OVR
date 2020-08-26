@@ -125,7 +125,7 @@ en:
           finish_instructions: "<p>Once you have your ballot, be sure to read the instructions carefully, fill out the ballot and send it back in.  Your absentee ballot must be received by 7:00pm on Election Day</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
         abr:
           requirements: "<p>To qualify to request a ballot in AZ, you only need to be registered to vote.</p>"          
-          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible. Your absentee ballot application must be received by 5pm on October 23, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot and send it back in.  Your absentee ballot must be received by 7:00pm on Election Day</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible. Your absentee ballot application must be received by 5pm on October 23, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot and send it back in.  Your absentee ballot must be received by 7:00pm on Election Day</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://my.arizona.vote/PortalList.aspx\">https://my.arizona.vote/PortalList.aspx</a></p>"
         abr_form_fields:
           County_of_Residence: County of Residence
           election_selection: "I am requesting a ballot for:"
@@ -171,7 +171,7 @@ en:
       co:
         abr:
           header: Absentee Requests In Colorado
-          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.  If you have any questions, or need to update your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To check the status of your mail ballot visit <a rel="noopener" target="_blank" href="www.GoVoteColorado.gov">www.GoVoteColorado.gov</a>. Then log in to your voter record, which will show whether your mail ballot has been mailed. If you have further questions about your mail ballot''s status, contact your local county clerk and recorder''s office.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots must be received by 7:00pm on Election Day.</p><p>NOTE: If you recently registered for the first time, you may need to provide a copy of your ID along with your mail ballot when you return it to vote.</p>'
+          instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.  If you have any questions, or need to update your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To check the status of your mail ballot visit <a rel="noopener" target="_blank" href="www.GoVoteColorado.gov">www.GoVoteColorado.gov</a>. Then log in to your voter record, which will show whether your mail ballot has been mailed. If you have further questions about your mail ballot''s status, contact your local county clerk and recorder''s office.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots must be received by 7:00pm on Election Day.</p><p>NOTE: If you recently registered for the first time, you may need to provide a copy of your ID along with your mail ballot when you return it to vote.</p>'
       ct:
         abr_form_fields:
           "reason_instructions": "Pursuant to Executive Order No. 7QQ, I expect to be unable to appear at the polling place during the hours of voting and hereby apply for an absentee ballot: (check only one)"
@@ -181,6 +181,17 @@ en:
           "assistant": I assisted the voter in completing this application.
           "Printed Name": Name of assistant
           "Tel No": Phone number
+          absentee_reason: "Pursuant to Executive Order No. 7QQ, I expect to be unable to appear at the polling place during the hours of voting and hereby apply for an absentee ballot: (check only one)"
+          absentee_reason__options:
+            "1": "COVID19  All voters are able to check this box pursuant to Executive Order 7QQ"
+            "2": "My active service in the Armed Forces of the United States"
+            "3": "My absence from the town during all of the hours of voting"
+            "4": "My illness"
+            "5": "My religious tenets forbid secular activity on the day of the election primary or referendum"
+            "6": "My duties as a primary election or referendum official at a polling place other than my own during all of the hours of voting"
+            "7": "My physical disability"
+          absentee_reason__required_message: Please select one of the above reasons
+
       de:
         state_online_abr:
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
@@ -272,7 +283,7 @@ en:
           finish_instructions:  "<p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Your absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You can check the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx\">https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx</a></p>"
         abr:
           requirements: <p>To qualify to request a ballot in ID, you only need to be registered to vote.</p>
-          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible  Your request must be received by 5:00 pm on October 23, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p><p>Your absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You can check the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx\">https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx</a></p>"
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible  Your request must be received by 5:00 pm on October 23, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p><p>Your absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You can check the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx\">https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx</a></p>"
       il:
         abr_form_fields:
           "VOTERS OPTIONAL ADDRESS LINE 2": Name of institution, company, or facility (if applicable)
@@ -686,13 +697,27 @@ en:
           "AptUnit_2": "Apt/Unit"
           "CityTown_2": "City/Town"
           "reason_instructions": "I will be entitled to vote by absentee ballot because (check one):"
-          "Check Box14": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
-          "Check Box16": "I cannot appear in public on election day because of observance of a religious commitment."
-          "Check Box17": "I am unable to vote in person due to a disability."
-          "Check Box18": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
-          "storm_warning": "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND (check one)"
-          "Check Box19": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
-          "Check Box20": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
+          absentee_reason: "I will be entitled to vote by absentee ballot because (check one):"
+          absentee_reason__options:
+            "reason1": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
+            "reason3": "I cannot appear in public on election day because of observance of a religious commitment."
+            "reason4": "I am unable to vote in person due to a disability."
+            "reason5": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
+            storm_warning: "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND.."
+          absentee_reason__required_message: Please select one of the above reasons
+
+          #"Check Box14": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
+          #"Check Box16": "I cannot appear in public on election day because of observance of a religious commitment."
+          #"Check Box17": "I am unable to vote in person due to a disability."
+          #"Check Box18": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
+          #storm_warning: "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND.."
+          storm_warning_reason: "Check one:"
+          storm_warning_reason__options:
+            "reason1": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
+            "reason2": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
+          #"Check Box19": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
+          #"Check Box20": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
+          storm_warning_reason__required_message: Please select one of the above reasons
       nj:
         abr_form_fields:
           "has_mailing_address": My mailing address differs from my residential address.
@@ -717,6 +742,9 @@ en:
             "UOCAVA_2": "A U.S. Citizen residing outside the U.S. and I intend to return."
             "UOCAVA_3": "A U.S. Citizen residing outside the U.S. and I do not intend to return."
             "UOCAVA_4": "A U.S. Citizen residing outside the U.S. and I have never lived in the U.S."
+          messenger_birth_date: "Date of Birth (MM/DD/YYYY)"
+          messenger_birth_date__required_message: Birthdate not valid
+
       nm:
         abr:
           finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In New Mexico, this application must be turned in to your County Clerk's office within 48 hours of completetion and be RECEIVED by Friday, October 30th, 2020.  At any time you can check the status of your application and the status of your ballot at:<a rel=\"noopener\" target=\"blank\" href=\"

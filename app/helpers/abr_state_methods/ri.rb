@@ -27,7 +27,9 @@ module AbrStateMethods::RI
     "Text Field 10": {
       method: "email"
     },
-    "Text Field 18": {}, #TODO - if "eligibility_military" is selected, autofill with email
+    "Text Field 18": {
+      method: "email_conditional"
+    }, #TODO - if "eligibility_military" is selected, autofill with email, #ToDone
     "eligibility": { options: ["absent", "confined", "incapacitated", "military"] },
   }
   EXTRA_FIELDS = ["has_mailing_address"]
@@ -43,10 +45,10 @@ module AbrStateMethods::RI
     [
       {"has_mailing_address": {type: :checkbox}},
       {"Text Field 11": {visible: "has_mailing_address"}},
-      {"Text Field 12": {visible: "has_mailing_address"}},
-      {"Text Field 14": {visible: "has_mailing_address", classes: "half"}},
-      {"Text Field 15": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Text Field 16": {visible: "has_mailing_address", classes: "quarter last"}},
+      {"Text Field 12": {visible: "has_mailing_address", required: :if_visible }},
+      {"Text Field 14": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
+      {"Text Field 15": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}}, #TODO -- this should just be abbreviations
+      {"Text Field 16": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
       {"eligibility": {type: :radio, required: true}}
     ]
   end
@@ -67,6 +69,12 @@ module AbrStateMethods::RI
   #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
   # ]
   
+  def email_conditional
+    if(self.eligibility == "military")
+      return self.email
+    end
+  end
+
   
   def custom_form_field_validations
     # make sure delivery is selected if reason ==3
