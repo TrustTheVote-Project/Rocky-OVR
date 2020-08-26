@@ -1,9 +1,9 @@
-%h2= t('txt.abr.step_2_header')
+%h2=t("states.custom.#{@abr.i18n_key}.abr.step_2_header", default: t('txt.abr.step_2_header').html_safe).html_safe
 
-= t('txt.abr.step_2_instructions').html_safe
+= t("states.custom.#{@abr.i18n_key}.abr.step_2_instructions", default: t('txt.abr.step_2_instructions').html_safe).html_safe
 
 .requirements
-  = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr.requirements", default: "").html_safe
+  = t("states.custom.#{@abr.i18n_key}.abr.requirements", default: "").html_safe
 
 
 = form_for(@abr) do |form|

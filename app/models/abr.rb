@@ -143,6 +143,10 @@ class Abr < ActiveRecord::Base
     home_state && home_state.oabr_url(self)
   end
   
+  def oabr_url_is_local_jurisdiction?
+    home_state && home_state.oabr_url_is_local_jurisdiction?(self)
+  end
+  
   def oabr_for_all?
     !has_pdf_template? && !has_state_pdf_url?
   end
@@ -254,8 +258,17 @@ class Abr < ActiveRecord::Base
     end
   end
   
+  def cities_from_zip
+    z = ZipCodeCountyAddress.find_by_zip(self.zip)
+    if z
+      return z.cities
+    else
+      return []
+    end
+  end
+  
   def home_state_email_instructions
-    I18n.t("states.custom.#{home_state_abbrev.downcase}.abr.email_instructions", default: '')
+    I18n.t("states.custom.#{i18n_key}.abr.email_instructions", default: '')
   end
   
   def zip=(zip)

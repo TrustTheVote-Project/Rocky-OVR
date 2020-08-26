@@ -293,17 +293,22 @@ en:
           "VOTERS OPTIONAL ADDRESS LINE 3": Mailing address
           "VOTERS OPTIONAL ADDRESS LINE 4": City, State, Zip
           "has_mailing_address": My mailing address differs from my residential address.
-      il_chicago:
-        abr_form_fields:
-          "0": registration address
-          "1": mailing address
-          "has_mailing_address": My mailing address differs from my residential address.
-          "Mailed Ballot Sent": I want my ballot mailed to my
-          "Address": Mailing address
-          "Apartment Number2": Apt/Unit
-          "ZiP Code": Zip
-          "Precinct": "Precinct (if known)"
-          "Ward": "Ward (if known)"
+      il:
+        chicago:
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with the city of Chicago
+            confirm: ""
+            button: "Finish your absentee request with Chicago"
+          abr_form_fields:
+            "0": registration address
+            "1": mailing address
+            "has_mailing_address": My mailing address differs from my residential address.
+            "Mailed Ballot Sent": I want my ballot mailed to my
+            "Address": Mailing address
+            "Apartment Number2": Apt/Unit
+            "ZiP Code": Zip
+            "Precinct": "Precinct (if known)"
+            "Ward": "Ward (if known)"
       in:
         abr:
           requirements: |-
@@ -772,6 +777,27 @@ the instructions to fill it out and return it. Your completed ballot must be REC
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1\">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>"
           
       nv:
+        "clark county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Clark County
+            requirements: If you are registered to vote and have a valid Social Security Number or Nevada state ID, you may request your absentee ballot online directly with the state.
+            button: Finish your absentee request with Clark County
+          abr_form_fields:
+            "RegistrationNo": "Nevada Driver's License or Nevada ID Card Number, if applicable"
+            "MailingAddress": "Mailing Address"
+            "MailApt": "Apt/Unit"
+            "MailingCity": "City"
+            "MailingState": "State"
+            "MailingZip": "Zip"
+            "military_instructions": "If applicable, check one of the following: (Note: 'Military Domestic' and 'Military Overseas' apply to those who are active duty and absent from their Nevada voting residence.)"
+            "MilitaryDomestic": "Military Domestic"
+            "MilitaryOverseas": "Military Overseas"
+            "CivilianOverseas": "Civilian Overseas"
+            "ProvidedBy": "If this form was provided to you by a third-party group, list their information here."
+            "has_mailing_address": My mailing address differs from my residential address.
+
+
+            
         abr_form_fields:
           "RegistrationNo": "Nevada Driver's License or Nevada ID Card Number, if applicable"
           "MailingAddress": "Mailing Address"

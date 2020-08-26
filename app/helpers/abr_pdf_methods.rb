@@ -27,13 +27,49 @@ module AbrPdfMethods
     pdf_writer.pdf_file_dir(pdfpre)
   end
   
+  def i18n_key
+    unless @i18n_key
+      RockyConf.absentee_states[home_state_abbrev].tap do |state_config|
+        if state_config && state_config.cities 
+          self.cities_from_zip.each do |c|
+            begin
+              @i18n_key = c.to_s.downcase.strip if state_config.cities[c.to_s.downcase.strip]
+            rescue
+            end
+          end
+          @i18n_key = self.city.to_s.downcase.strip if state_config.cities[self.city.to_s.downcase.strip]
+        end
+        if @i18n_key.blank?
+          if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
+            @i18n_key = self.county_from_zip.downcase
+          end
+        end
+      end
+      state_key = home_state_abbrev.downcase
+      @i18n_key = @i18n_key.blank? ? state_key : "#{state_key}.#{@i18n_key}"
+    end
+    return @i18n_key
+  end
+  
   def pdf_template_name
     unless @pdf_template_name 
       RockyConf.absentee_states[home_state_abbrev].tap do |state_config|
-        if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
-          @pdf_template_name = state_config.counties[self.county_from_zip.downcase].pdf_template
-        else
-          @pdf_template_name = state_config&.pdf_template
+        if state_config && state_config.cities 
+          self.cities_from_zip.each do |c|
+            begin
+              @pdf_template_name ||= state_config.cities[c.to_s.downcase.strip]&.pdf_template
+            rescue
+            end
+          end
+          @pdf_template_name ||= state_config.cities[self.city.to_s.downcase.strip]&.pdf_template
+        end
+        if @pdf_template_name.blank?
+          if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
+            @pdf_template_name = state_config.counties[self.county_from_zip.downcase].pdf_template
+            @pdf_template_name ||= state_config&.pdf_template
+          elsif !oabr_url_is_local_jurisdiction?
+            @pdf_template_name = state_config&.pdf_template
+          end
         end
       end
     end
@@ -43,10 +79,21 @@ module AbrPdfMethods
   def state_pdf_url
     unless @state_pdf_url 
       RockyConf.absentee_states[home_state_abbrev].tap do |state_config|
-        if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
-          @state_pdf_url = state_config.counties[self.county_from_zip.downcase].pdf_url
-        else
-          @state_pdf_url = state_config&.pdf_url
+        if state_config && state_config.cities 
+          self.cities_from_zip.each do |c|
+            begin
+              @state_pdf_url ||= state_config.cities[c.to_s.downcase.strip]&.pdf_url
+            rescue
+            end
+          end
+          @state_pdf_url ||= state_config.cities[self.city.to_s.downcase.strip]&.pdf_url
+        end
+        if @state_pdf_url.blank?
+          if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
+            @state_pdf_url = state_config.counties[self.county_from_zip.downcase].pdf_url
+          elsif !oabr_url_is_local_jurisdiction?
+            @state_pdf_url = state_config&.pdf_url 
+          end
         end
       end
     end

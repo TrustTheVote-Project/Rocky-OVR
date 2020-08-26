@@ -107,10 +107,21 @@ absentee_states:
   IL:
     pdf_template: common.pdf
     counties:
+      "kane county": 
+        online_req_url: https://www.kanecountyclerk.org/Elections/Pages/Request-Ballot-By-Mail.aspx
+      "lake county":
+        online_req_url: https://www.lakecountyil.gov/351/Voter-Power-for-Registered-Voters
+      "madison county":
+        online_req_url: https://apps.co.madison.il.us/CountyClerk/Elections/VoteByMail/
+      "mchenry county":
+        online_req_url: https://www.mchenrycountyil.gov/county-government/departments-a-i/county-clerk/elections/vote-by-mail
+      "sangamon county":
+        online_req_url: https://www.sangamoncountyclerk.com/Elections/Vote/AbsenteeApplicationForm.aspx
+    cities:
       "chicago":
-        pdf_template: chicago.pdf
+        online_req_url: https://www.chicagoelections.gov/en/vote-by-mail-application.html
       "bloomington":
-        pdf_template: bloomington.pdf
+        online_req_url: https://cityblm.seamlessdocs.com/f/VBMapplication1120
   IN:
     online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
     pdf_template: in.pdf
