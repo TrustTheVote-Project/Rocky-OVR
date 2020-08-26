@@ -1205,6 +1205,27 @@ the instructions to fill it out and return it. Your completed ballot must be REC
           finish_instructions: "<p>Once you receive your ballot, be sure to read the instructions on how to complete and send back in your ballot. Your completed ballot must be RECEIVED by 8:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://myvote.wi.gov/en-us/MyVoterInfo\">https://myvote.wi.gov/en-us/MyVoterInfo</a></p>"
         abr:
           finish_instructions: "<p>Make sure to download and complete your application. Read the instructions carefully to send back your form. Your application must be RECEIVED by 5:00pm on October 29th, 2020.</p><p>Once you receive your ballot, be sure to read the instructions on how to complete and send back in your ballot. Your completed ballot must be RECEIVED by 8:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://myvote.wi.gov/en-us/MyVoterInfo\">https://myvote.wi.gov/en-us/MyVoterInfo</a> </p>"
+      wv:
+        state_online_abr:
+          requirements: "To register online, you must provide your DMV ID # or Last Four of SSN (whichever is on file, or if you have both on file you may choose one to enter)."
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Absentee ballots postmarked by Election Day will be accepted if RECEIVED by the start of Canvass (November 9, 2020). Absentee ballots without a postmark will be accepted if RECEIVED by November 4, 2020. If returning your ballot in person, you must deliver it to the county clerk's office by the day before Election Day.</p><p>You can check that status of your ballot at any time here: <a rel=\"noopener\" target=\"blank\" href=\"https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking\">https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking</a> </p>"
+        abr:
+          requirements: |-
+            <p>Voters not able to vote in person during Early Voting or Election Day due to one of the following circumstances may vote a regular absentee ballot by mail:</p>
+             <ul>
+             <li>Illness, injury or other medical reason</li>
+             <li>Disability or advanced age</li>
+             <li>Incarceration or home detention (does not include individuals convicted of any felony, treason, or election bribery)</li>
+             <li>Work hours and distance from county seat</li>
+             <li>Inaccessible early voting site and polling place </li>
+             <li>Personal or business travel*</li>
+             <li>Attendance at college or other place of education or training*</li>
+             <li>Temporary residence outside of the county*</li>
+             <li>Service as an elected or appointed state or federal official*   </li>
+             </ul>
+             <p>“*” indicates that the voter must receive ballot at an address outside of the county.</p><p>NOTE: voters can apply for an absentee ballot using the “illness, injury or other medical reason which keeps me confined” as the excuse for completing the application</p>
+          finish_instructinos: "<p>Download the form, read the instructions carefully, complete the form and send it in right away. Your application must be received by October 28th, 2020.</p><p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Absentee ballots postmarked by Election Day will be accepted if RECEIVED by the start of Canvass (November 9, 2020). Absentee ballots without a postmark will be accepted if RECEIVED by November 4, 2020. If returning your ballot in person, you must deliver it to the county clerk's office by the day before Election Day.</p><p>You can check that status of your ballot at any time here: <a rel=\"noopener\" target=\"blank\" href=\"https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking\">https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking</a> </p>"
+          
       wy:
         abr:
           finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Wyoming, this application must be RECEIVED by Monday, November 2nd, 2020.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf\">https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf</a></p>"
