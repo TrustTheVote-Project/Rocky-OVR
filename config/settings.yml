@@ -171,6 +171,8 @@ absentee_states:
     counties:
       "clark county":
         online_req_url: https://www.clarkcountynv.gov/government/departments/elections/voter_services.php
+        pdf_template: nv.pdf
+        
   NY:
     pdf_template: ny.pdf
   OH:

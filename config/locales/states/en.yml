@@ -298,17 +298,50 @@ en:
           state_online_abr:
             header: You can request an Absentee Ballot online directly with the city of Chicago
             confirm: ""
+            requirements: ""
             button: "Finish your absentee request with Chicago"
-          abr_form_fields:
-            "0": registration address
-            "1": mailing address
-            "has_mailing_address": My mailing address differs from my residential address.
-            "Mailed Ballot Sent": I want my ballot mailed to my
-            "Address": Mailing address
-            "Apartment Number2": Apt/Unit
-            "ZiP Code": Zip
-            "Precinct": "Precinct (if known)"
-            "Ward": "Ward (if known)"
+        bloomington:
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with the city of Bloomington
+            confirm: ""
+            button: "Finish your absentee request with Bloomington"
+        "kane county": 
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Kane County
+            confirm: ""
+            button: "Finish your absentee request with Kane County"
+        "lake county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Lake County
+            confirm: ""
+            button: "Finish your absentee request with Lake County"
+        "madison county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Madison County
+            confirm: ""
+            button: "Finish your absentee request with Madison County"
+        "mchenry county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with McHenry County
+            confirm: ""
+            button: "Finish your absentee request with McHenry County"
+        "sangamon county":
+          state_online_abr:
+            header: You can request an Absentee Ballot online directly with Sangamon County
+            confirm: ""
+            button: "Finish your absentee request with Sangamon County"
+            
+            
+        abr_form_fields:
+          "0": registration address
+          "1": mailing address
+          "has_mailing_address": My mailing address differs from my residential address.
+          "Mailed Ballot Sent": I want my ballot mailed to my
+          "Address": Mailing address
+          "Apartment Number2": Apt/Unit
+          "ZiP Code": Zip
+          "Precinct": "Precinct (if known)"
+          "Ward": "Ward (if known)"
       in:
         abr:
           requirements: |-

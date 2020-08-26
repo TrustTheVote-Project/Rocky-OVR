@@ -66,9 +66,9 @@ module AbrPdfMethods
         if @pdf_template_name.blank?
           if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
             @pdf_template_name = state_config.counties[self.county_from_zip.downcase].pdf_template
+          end
+          if !oabr_url_is_local_jurisdiction?
             @pdf_template_name ||= state_config&.pdf_template
-          elsif !oabr_url_is_local_jurisdiction?
-            @pdf_template_name = state_config&.pdf_template
           end
         end
       end
@@ -91,8 +91,9 @@ module AbrPdfMethods
         if @state_pdf_url.blank?
           if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
             @state_pdf_url = state_config.counties[self.county_from_zip.downcase].pdf_url
-          elsif !oabr_url_is_local_jurisdiction?
-            @state_pdf_url = state_config&.pdf_url 
+          end
+          if !oabr_url_is_local_jurisdiction?
+            @state_pdf_url ||= state_config&.pdf_url 
           end
         end
       end
