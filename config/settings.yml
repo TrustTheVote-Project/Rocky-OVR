@@ -191,7 +191,7 @@ absentee_states:
   WI:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
     # pdf_template: wi.pdf
-    pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-07/EL-121%20Application%20for%20Absentee%20Ballot%20%282018-10%29-Fillable.pdf
+    pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
   WV:
     online_req_url: 
     # pdf_template: wv.pdf

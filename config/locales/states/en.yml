@@ -1193,6 +1193,13 @@ the instructions to fill it out and return it. Your completed ballot must be REC
         abr:
           header: Absentee Requests In Washington
           instructions: <p>There is no absentee ballot request in this state. All registered voters will receive a vote-by-mail ballot.</p>
+      
+      wi:
+        state_online_abr:
+          requirements: Depending on if you have voted absentee before, you may be required to provide a copy of your Wisconsin state ID with your application online.
+          finish_instructions: "<p>Once you receive your ballot, be sure to read the instructions on how to complete and send back in your ballot. Your completed ballot must be RECEIVED by 8:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://myvote.wi.gov/en-us/MyVoterInfo\">https://myvote.wi.gov/en-us/MyVoterInfo</a></p>"
+        abr:
+          finish_instructions: "<p>Make sure to download and complete your application. Read the instructions carefully to send back your form. Your application must be RECEIVED by 5:00pm on October 29th, 2020.</p><p>Once you receive your ballot, be sure to read the instructions on how to complete and send back in your ballot. Your completed ballot must be RECEIVED by 8:00pm on Election Day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://myvote.wi.gov/en-us/MyVoterInfo\">https://myvote.wi.gov/en-us/MyVoterInfo</a> </p>"
       wy:
         abr:
           finish_instructions: "<p>Make sure to complete and send this form in as soon as possible.  In Wyoming, this application must be RECEIVED by Monday, November 2nd, 2020.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf\">https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf</a></p>"
