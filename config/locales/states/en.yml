@@ -839,6 +839,9 @@ the instructions to fill it out and return it. Your completed ballot must be REC
             "temporary_illness": temporary illness or physical disability
             "va_resident": resident or patient of a Veterans Health Administration Hospital
       oh:
+        abr:
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible. Your application must be RECEIVED by October 31st, 2020.</p><p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your completed ballot must be post marked by November 2nd. Your completed ballot must be RECEIVED by November 13th, if also post marked by November 2nd.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/\">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a></p>"
+            
         abr_form_fields:
           "County": "County in which you are registered to vote"
           "has_mailing_address": I wish to have my ballot mailed to a different address than where I am registered to vote
