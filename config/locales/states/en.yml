@@ -690,13 +690,26 @@ en:
             "take_ballot": "I request to take the ballots with me, (or to the person I am acting as agent for, up to two people). (This form must be brought to the local elections office.)"
             "vote_here": "I request to vote in the Election Office today as the Early Voting Polling Place. (This form must be brought to the local elections office.)"
       nh:
+        abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow 
+the instructions to fill it out and return it. Your completed ballot must be RECEIVED by your county election office by 5pm November 3rd. At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"http://sos.nh.gov/VoteInforLook.aspx \">http://sos.nh.gov/VoteInforLook.aspx</a></p>"
+          requirements: |-
+            <p>In light of emergency orders and public health guidance, all voters with concerns about COVID-19 may request an absentee ballot due to physical disability. Outside of COVID, you are eligible to vote absentee for one of the following reasons:</p>
+            <ul>
+              <li>you will not be at your domiciled location on the Election Day</li>
+              <li>you cannot vote due to observance of a religious commitment</li>
+              <li>you are disabled</li>
+              <li>you cannot vote due to an employment obligation.</li>
+            </ul>
         abr_form_fields:
           "has_mailing_address": My mailing address differs from my residential address.
           "assistant": "I assisted voter in completing this form because he/she has a disability."
+          "Asisstant Name": "Assistant Name"
           "Street or PO Box": Street number
           "AptUnit_2": "Apt/Unit"
           "CityTown_2": "City/Town"
           "reason_instructions": "I will be entitled to vote by absentee ballot because (check one):"
+          "absentee_reason__hint": "NOTE: In light of emergency orders and public health guidance, all voters with concerns about COVID-19 may request an absentee ballot due to physical disability." 
           absentee_reason: "I will be entitled to vote by absentee ballot because (check one):"
           absentee_reason__options:
             "reason1": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
@@ -719,6 +732,8 @@ en:
           #"Check Box20": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
           storm_warning_reason__required_message: Please select one of the above reasons
       nj:
+        abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your application must be received seven days prior to Election Day (October 27,2020).</p><p>Your completed ballot must be RECEIVED (if returning by mail) by your county election office no later than 48 hours after the time of the closing of the polls. If returning your ballot in person, it must be received before polls close on Election day (typically 8:00 PM).</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://voter.svrs.nj.gov/auth/sign-in\">https://voter.svrs.nj.gov/auth/sign-in</a></p>"
         abr_form_fields:
           "has_mailing_address": My mailing address differs from my residential address.
           "Mailing_Address_2": Mailing address
@@ -735,9 +750,11 @@ en:
           "Municipality CityTown_2": "City/Town"
           "State_2": State
           "Zip_2": Zip
-          "Authorizied_Messenger_Name": "Authorizied Messenger Name"
+          "Authorizied_Messenger_Name": "Authorized Messenger's Name"
+          "UOCAVA_only": "Military/Overseas Voter Only:"
           "UOCAVA": "I request Vote-By-Mail Ballots for all elections in which I am eligible to vote and I am (CHECK ONLY ONE)"
           UOCAVA__options:
+            "Off": "Not Applicable"
             "UOCAVA_1": "A Member of the Uniformed Services or Merchant Marine on active duty, or an eligible spouse or dependent."
             "UOCAVA_2": "A U.S. Citizen residing outside the U.S. and I intend to return."
             "UOCAVA_3": "A U.S. Citizen residing outside the U.S. and I do not intend to return."
@@ -779,6 +796,17 @@ en:
           to print, sign, and mail in the form.</p>
       
       ny:
+        abr:
+          finish_instructions: <p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your absentee ballot request must be post marked by October 27th, 2020. You can apply in-person for an absentee ballot until November 2nd, 2020.</p><p>Your completed ballot must be post marked by November 3rd and RECIEVED by November 10th. The last day to drop offyour completed ballot is November 3rd.</p>
+          requirements: |-
+            <p>Registered voters are eligible to request and absentee ballot for one of the following reasons:</p>
+             <ul><li>You will be absent from the relevant county or New York City on Election Day;</li>
+             <li>You have a temporary illness or physical disability;</li>
+             <li>You have a permanent illness or disability;</li>
+             <li>You have duties related to primary care of one or more individuals who are ill or physically disabled;</li>
+             <li>You are a resident or patient of a Veterans Administration hospital; or</li>
+             <li>You are detained in jail/prison, awaiting trial, awaiting action by grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li></ul>
+
         abr_form_fields:
           "county where you live": "County where you live"
           "has_mailing_address": My mailing address differs from my residential address.
@@ -988,17 +1016,19 @@ en:
           finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo\">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>"
             
       ri:
+        abr:
+          finish_instructions: "<p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. You must request your absentee ballot by 4:00pm on October 13, 2020.</p><p>Your completed ballot must be RECEIVED by the State Board of Elections (2000 Plainfield Pike, Cranston, RI 02921) by 8:00pm on Election Day.</p><p>NOTE: The following requirement has been suspended for the 2020 November 3rd General Election: The mail ballot comes with a Voter’s Mail Ballot Certificate, which must be signed and notarized or signed with two (2) witness signatures. The voter's signature will be compared to the signature on the mail ballot application as well.</p>"
         abr_form_fields:
           "Text Field 11": "Name of Institution (if applicable)"
           "Text Field 12": Mailing address
           "Text Field 14": City/Town
           "Text Field 15": State
           "Text Field 16": Zip
-          has_mailing_address: My mailing address differs from my residence address
+          has_mailing_address: My ballot shuuld be delivered to a different address from my registration address
           "eligibility": "I certify that I am eligible for a mail ballot on the following basis:"
           eligibility__options:
             "absent": "I may not be able to vote at my polling place in my city/town on the day of the election. I want my mail ballot to be sent to my residential or mailing address."
-            "confined": "I am confined in a hospital, convalescent home, nursing home, rest home, or similar institution within the State of Rhode Island."
+            "confined": "I am confined to a hospital, convalescent home, nursing home, rest home, or similar institution with the State of Rhode Island. I understand that my ballot will be brought to me by a bipartisan pair of election officials from the State Board of Elections before Election Day."
             "incapacitated": "I am incapacitated to such an extent that it would be an undue hardship to vote at the polls because of illness, mental or physical disability, blindness or a serious impairment of mobility."
             "military": "I am employed or in service intimately connected with military operations or because I am a spouse or dependent of such person, or I am a United States citizen who will be outside the United States."
       sd:

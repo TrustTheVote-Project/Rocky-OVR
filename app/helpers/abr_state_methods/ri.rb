@@ -43,31 +43,17 @@ module AbrStateMethods::RI
   
   def form_field_items
     [
+      {"eligibility": {type: :radio, required: true}},
+      # TODO when "confined" is selected, make sure field 11,12,13,14,15,16 get populated by either the residence address or a user-entered mailing address
       {"has_mailing_address": {type: :checkbox}},
       {"Text Field 11": {visible: "has_mailing_address"}},
       {"Text Field 12": {visible: "has_mailing_address", required: :if_visible }},
       {"Text Field 14": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
       {"Text Field 15": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}}, #TODO -- this should just be abbreviations
       {"Text Field 16": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
-      {"eligibility": {type: :radio, required: true}}
+      
     ]
   end
-  #e.g.
-  # [
-  #   {"reason_instructions": {type: :instructions}}, *"reason_instructions" does NOT get put into EXTRA_FIELDS
-  #   {"County": {type: :select, required: true, include_blank: true, options: [
-  #     "Adams",
-  #   ]}},
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
   
   def email_conditional
     if(self.eligibility == "military")

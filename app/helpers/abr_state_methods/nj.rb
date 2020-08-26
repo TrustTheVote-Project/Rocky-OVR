@@ -41,7 +41,7 @@ module AbrStateMethods::NJ
       options: ["All", "Fire", "General", "Municipal", "Off", "Primary", "School", "Special"],
       value: "General"
     },
-    "UOCAVA": { options: ["UOCAVA_1", "UOCAVA_2", "UOCAVA_3", "UOCAVA_4"] },
+    "UOCAVA": { options: ["Off", "UOCAVA_1", "UOCAVA_2", "UOCAVA_3", "UOCAVA_4"], default: "Off" },
     #"voter_signature": {}
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"
@@ -83,6 +83,7 @@ module AbrStateMethods::NJ
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_2":{visible: "has_mailing_address"}},
       {"Mailing_Address_3":{visible: "has_mailing_address"}},
+      {"UOCAVA_only": {type: :instructions}},
       {"UOCAVA": {type: :radio}},
       {"assistant": {type: :checkbox}},
       {"Name_Assistor": {visible: "assistant", required: :if_visible}},
