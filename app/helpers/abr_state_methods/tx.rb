@@ -160,7 +160,6 @@ module AbrStateMethods::TX
     if self.send("witness") == "1"
       ["Witness_relation",
       "Street address of witness",
-      "Apt number of witness",
       "City of witness",
       "State of witness",
       "Zip code of witness"].each do |f|
