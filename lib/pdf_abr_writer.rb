@@ -58,9 +58,12 @@ class PdfAbrWriter
       end
       # If it got there, delete the tmp file
       if uploaded
-        #File.delete(pdf_xfdf_path)
-        #File.delete(pdf_file_path)
-        #File.delete("#{pdf_file_path}-tmp")
+        unless Rails.env.development?
+          File.delete(pdf_xfdf_path)
+          File.delete(pdf_file_path)
+          File.delete("#{pdf_file_path}-tmp")
+          File.delete(pdf_delivery_address_path)
+        end
       else
         raise "File #{path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
         # Handle failed upload to S3 - it's probably raising an error

@@ -82,7 +82,7 @@ module AbrPdfFields
   
   def delivery_full_address
     addr = state_registrar_office&.req_address
-    return addr.blank? ? state_registrar_office&.address : addr
+    return (addr.blank? ? state_registrar_office&.address : addr).gsub("\n", "&#x10;")
   end
   
   def delivery_addressee

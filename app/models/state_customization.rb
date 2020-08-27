@@ -97,7 +97,7 @@ class StateCustomization
       end
       begin
         abr.cities_from_zip.each do |city|
-          url = abr_settings.cities[city.downcase.strip].online_req_url
+          url = abr_settings.cities[city.downcase.strip]&.online_req_url
           return url unless url.blank?
         end
         url = abr_settings.cities[abr.city.downcase.strip].online_req_url
