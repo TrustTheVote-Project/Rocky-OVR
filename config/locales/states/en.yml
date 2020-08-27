@@ -294,17 +294,27 @@ en:
           finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible  Your request must be received by 5:00 pm on October 23, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot and send it back in.</p><p>Your absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You can check the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx\">https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx</a></p>"
       il:
         abr_form_fields:
+          "ElectionPrecinct": "Precinct"
           "VOTERS OPTIONAL ADDRESS LINE 2": Name of institution, company, or facility (if applicable)
           "VOTERS OPTIONAL ADDRESS LINE 3": Mailing address
           "VOTERS OPTIONAL ADDRESS LINE 4": City, State, Zip
           "has_mailing_address": My mailing address differs from my residential address.
-      il:
         chicago:
           state_online_abr:
             header: You can request an Absentee Ballot online directly with the city of Chicago
             confirm: ""
             requirements: ""
             button: "Finish your absentee request with Chicago"
+          abr_form_fields:
+            "0": registration address
+            "1": mailing address
+            "has_mailing_address": My mailing address differs from my residential address.
+            "Mailed Ballot Sent": I want my ballot mailed to my
+            "Address": Mailing address
+            "Apartment Number2": Apt/Unit
+            "ZiP Code": Zip
+            "Precinct": "Precinct (if known)"
+            "Ward": "Ward (if known)"
         bloomington:
           state_online_abr:
             header: You can request an Absentee Ballot online directly with the city of Bloomington
@@ -337,16 +347,7 @@ en:
             button: "Finish your absentee request with Sangamon County"
             
             
-        abr_form_fields:
-          "0": registration address
-          "1": mailing address
-          "has_mailing_address": My mailing address differs from my residential address.
-          "Mailed Ballot Sent": I want my ballot mailed to my
-          "Address": Mailing address
-          "Apartment Number2": Apt/Unit
-          "ZiP Code": Zip
-          "Precinct": "Precinct (if known)"
-          "Ward": "Ward (if known)"
+        
       in:
         state_online_abr:
           finish_page: "<p>Once you have your ballot, be sure to read the instructions carfeully, fill out the ballot and send it back in. Your absentee ballot must be received by 12:00pm on November 3, 2020. You can check the status of your ballot here:  <a rel=\"noopener\" target=\"blank\" href=\"http://www.indianavoters.com/\">http://www.indianavoters.com/</a></p>"
