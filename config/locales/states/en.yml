@@ -24,7 +24,8 @@ en:
           SSN or Last 4: SSN or Last 4
           ADL: Alaska driver's license or State ID No.
           ADL__required_message: Either Driver's license or SSN is required
-          ADL__format_message: Enter digits only
+          #ADL__format_message: Enter digits only
+          ADL__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
           attest_no_ssn_or_dln: I do not have an SSN or AK driver's license or State ID
           gender: Gender
           gender__options:
@@ -146,6 +147,7 @@ en:
             place_of_birth: Place of birth
             last_4_ssn: "Last 4 digits of SSN #"
           drivers_license_id: "Arizona driver's license or ID"
+          drivers_license_id__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
           place_of_birth: Place of birth
           last_4_ssn: "Last 4 digits of SSN #"
 
@@ -411,6 +413,7 @@ en:
             dln_no: "I do not have a Kansas Driver's license or Kansas nondriver's identification card."
           "has_mailing_address": My mailing address differs from my residential address.
           "identification_number": "Current Kansas driver's license number or nondriver's identification card number:􏰋􏰤"
+          identification_number__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
           "county_1": Residential county
           "state_2": State where you will be when signing this form
           "county_2": County where you will be when signing this form
@@ -483,6 +486,8 @@ en:
           id_instructions: SSN and Driver's license are optional but encouraged
           SSN_Last_4: Last 4 digits of your social security number
           License_ID: LA Driver's license or ID
+          License_ID__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
+
       md:
         abr:
           finish_instructions: "<p>Make sure to print off and complete your application as soon as possible. Read the instructions carefully to return your application. Your application must be sent by no later than October 27th, 2020 (if requesting your ballot be mailed or faxed to you). Deadlines for other delivery methods are outlined on the application.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot and send it back in. Your ballot must be postmarked by Election Day and received by your local board of elections by 10 a.m. on November 13, 2020. If dropping your ballot off in person, you must deliver it to your local board of elections, a polling place, or a ballot drop-off box by 8pm on Election Day.</p><p>You can check your ballot status at: <a rel=\"noopener\" target=\"blank\" href=\"https://voterservices.elections.maryland.gov/VoterSearch\">https://voterservices.elections.maryland.gov/VoterSearch</a> </p>"
@@ -793,6 +798,10 @@ the instructions to fill it out and return it. Your completed ballot must be REC
           "Street or PO Box": Street number
           "AptUnit_2": "Apt/Unit"
           "CityTown_2": "City/Town"
+          Group1: "I herby declare that (check one):"
+          Group1__options:
+            registered: I am a duly qualified voter who is currently registered to vote in this town/ward.
+            absent: I am absent from the town/city where I am domiciled and will be until after the next election, or I am unable to register in person due to a disability, and request that the forms necessary for absentee voter registration be sent to me with the absentee ballot.
           "reason_instructions": "I will be entitled to vote by absentee ballot because (check one):"
           "absentee_reason__hint": "NOTE: In light of emergency orders and public health guidance, all voters with concerns about COVID-19 may request an absentee ballot due to physical disability." 
           absentee_reason: "I will be entitled to vote by absentee ballot because (check one):"
@@ -803,18 +812,10 @@ the instructions to fill it out and return it. Your completed ballot must be REC
             "reason5": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
             storm_warning: "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND.."
           absentee_reason__required_message: Please select one of the above reasons
-
-          #"Check Box14": "I plan to be absent on the day of the election from the city, town, or unincorporated place where I live."
-          #"Check Box16": "I cannot appear in public on election day because of observance of a religious commitment."
-          #"Check Box17": "I am unable to vote in person due to a disability."
-          #"Check Box18": "I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation."
-          #storm_warning: "It is the Monday immediately prior to the election, the National Weather Service has issued a winter storm warning, blizzard warning, or ice storm warning for election day, AND.."
           storm_warning_reason: "Check one:"
           storm_warning_reason__options:
             "reason1": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
             "reason2": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
-          #"Check Box19": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
-          #"Check Box20": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
           storm_warning_reason__required_message: Please select one of the above reasons
       nj:
         abr:
@@ -959,6 +960,7 @@ the instructions to fill it out and return it. Your completed ballot must be REC
             ssn4: "Last four digits of your social security number"
             photoid: "Copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address."          
           OR: Ohio Driver license number (2 letters followed by 6 numbers)
+          OR__format_message: That doesn't look like a driver's license number, if you are sure the number is correct, then you can ignore this
           OR_2: Last four digits of your Social Security Number
       ok:
         state_online_abr:
@@ -1127,11 +1129,12 @@ the instructions to fill it out and return it. Your completed ballot must be REC
           finish_instructions: "<p>Once you receive your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. You must request your absentee ballot by 4:00pm on October 13, 2020.</p><p>Your completed ballot must be RECEIVED by the State Board of Elections (2000 Plainfield Pike, Cranston, RI 02921) by 8:00pm on Election Day.</p><p>NOTE: The following requirement has been suspended for the 2020 November 3rd General Election: The mail ballot comes with a Voter’s Mail Ballot Certificate, which must be signed and notarized or signed with two (2) witness signatures. The voter's signature will be compared to the signature on the mail ballot application as well.</p>"
         abr_form_fields:
           "Text Field 11": "Name of Institution (if applicable)"
-          "Text Field 12": Mailing address
-          "Text Field 14": City/Town
-          "Text Field 15": State
-          "Text Field 16": Zip
+          "mail_address": Mailing address
+          "mail_city": City/Town
+          "mail_state": State
+          "mail_zip": Zip
           has_mailing_address: My ballot shuuld be delivered to a different address from my registration address
+          #has_mailing_address__required_message: "An alternate mailing address is required if you are confined to a hospital, convalescent home, nursing home, rest home, or similar institution with the State of Rhode Island"
           "eligibility": "I certify that I am eligible for a mail ballot on the following basis:"
           eligibility__options:
             "absent": "I may not be able to vote at my polling place in my city/town on the day of the election. I want my mail ballot to be sent to my residential or mailing address."
