@@ -1255,6 +1255,13 @@ the instructions to fill it out and return it. Your completed ballot must be REC
             "email_address": my email address
           "has_mailing_address": My mailing address differs from my residential address.
           "need_assistance": "I need assistance completing my ballot due to a disability, blindness, or inability to read or write."
+          "Assistant_Name": "Assistant's name"
+          "Assistant_Address": "Address"
+          "Assistant_Apt": "Unit/Apt"
+          "Assistant_City": "City"
+          "Assistant_State": "State"
+          "Asistant_Zip": "Zip"
+          "Assistant_Phone": "Assistant's phone number (###-###-####)"
         state_flow_error: There was a problem submitting your registration to Virginia.
           Please try again later or continue here to create a paper form.
         ineligible_registrant: 'We were unable to process your registration. Please
