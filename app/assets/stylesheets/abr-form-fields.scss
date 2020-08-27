@@ -29,6 +29,15 @@
         width: 75%;
       }
     }
+    &.indent-2 {
+      margin-left: 20%;
+      width: 80%;
+      &.half, &.quarter, &.three-quarter {
+        &.not-first, &.last {
+          margin-left: 0;
+        }
+      }
+    }
     &.indent {
       margin-left: 10%;
       width: 90%;
