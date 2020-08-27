@@ -1128,11 +1128,12 @@ the instructions to fill it out and return it. Your completed ballot must be REC
           finish_instructions: "<p>Once you receive your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. You must request your absentee ballot by 4:00pm on October 13, 2020.</p><p>Your completed ballot must be RECEIVED by the State Board of Elections (2000 Plainfield Pike, Cranston, RI 02921) by 8:00pm on Election Day.</p><p>NOTE: The following requirement has been suspended for the 2020 November 3rd General Election: The mail ballot comes with a Voter’s Mail Ballot Certificate, which must be signed and notarized or signed with two (2) witness signatures. The voter's signature will be compared to the signature on the mail ballot application as well.</p>"
         abr_form_fields:
           "Text Field 11": "Name of Institution (if applicable)"
-          "Text Field 12": Mailing address
-          "Text Field 14": City/Town
-          "Text Field 15": State
-          "Text Field 16": Zip
+          "mail_address": Mailing address
+          "mail_city": City/Town
+          "mail_state": State
+          "mail_zip": Zip
           has_mailing_address: My ballot shuuld be delivered to a different address from my registration address
+          #has_mailing_address__required_message: "An alternate mailing address is required if you are confined to a hospital, convalescent home, nursing home, rest home, or similar institution with the State of Rhode Island"
           "eligibility": "I certify that I am eligible for a mail ballot on the following basis:"
           eligibility__options:
             "absent": "I may not be able to vote at my polling place in my city/town on the day of the election. I want my mail ballot to be sent to my residential or mailing address."
