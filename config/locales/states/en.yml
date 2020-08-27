@@ -68,6 +68,7 @@ en:
           "reason_instructions": "I am applying for an absentee ballot because: (check all that apply)"
           "chkReason1": "I expect to be out of the county or the state on election day."
           "chkReason2": "I have a physical illness or infirmity which prevents my attendance at the polls. (ID Required)"
+          chkReason2__hint: "COVID-19 NOTE: Any qualified voter who determines it is impossible or unreasonable to vote at their voting place for the General Election on November 3, 2020 due to the declared states of emergency, shall be eligible to check this box:"
           "chkReason3": "I am unable to access my assigned polling place due to a neurological, musculoskeletal, respiratory (including speech organs), cardiovascular, or other life-altering disorder that affects my ability to perform manual tasks, stand for any length of time, walk unassisted, see, hear or speak and: a) I am an elderly voter aged 65 or older; or b) I am a voter with a disability. (ID Not Required)"
           "chkReason4": "I expect to work a shift which has at least ten (10) hours that coincide with the polling hours at my regular polling place."
           "chkReason5": "I am enrolled as a student at an educational institution located outside the county of my personal residence, attendance at which prevents my attendance at the polls."
@@ -173,15 +174,17 @@ en:
           header: Absentee Requests In Colorado
           instructions: '<p>Your state is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.  If you have any questions, or need to update your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To check the status of your mail ballot visit <a rel="noopener" target="_blank" href="www.GoVoteColorado.gov">www.GoVoteColorado.gov</a>. Then log in to your voter record, which will show whether your mail ballot has been mailed. If you have further questions about your mail ballot''s status, contact your local county clerk and recorder''s office.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots must be received by 7:00pm on Election Day.</p><p>NOTE: If you recently registered for the first time, you may need to provide a copy of your ID along with your mail ballot when you return it to vote.</p>'
       ct:
+        abr:
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in. Your absentee ballot (if mailed in) must be received by close of poll on Election Day. If dropping off your ballot in person, the ballot must be received by the day before Election Day (unless being dropped off by a designee of an ill or phyiscally disabled voter or an immediate family member of the voter).</p>"
         abr_form_fields:
-          "reason_instructions": "Pursuant to Executive Order No. 7QQ, I expect to be unable to appear at the polling place during the hours of voting and hereby apply for an absentee ballot: (check only one)"
           "has_mailing_address": My mailing address differs from my residential address.
           "Mailing Address 2": Mailing address
           "Mailing Address 3": City, State, Zip
           "assistant": I assisted the voter in completing this application.
           "Printed Name": Name of assistant
           "Tel No": Phone number
-          absentee_reason: "Pursuant to Executive Order No. 7QQ, I expect to be unable to appear at the polling place during the hours of voting and hereby apply for an absentee ballot: (check only one)"
+          absentee_reason: "I expect to be unable to appear at the polling place during the hours of voting and hereby apply for an absentee ballot: (check only one)"
+          "absentee_reason__hint": "Please note, if you have a permanent disability, please contact your town clerk for a permanent absentee ballot instead"
           absentee_reason__options:
             "1": "COVID19  All voters are able to check this box pursuant to Executive Order 7QQ"
             "2": "My active service in the Armed Forces of the United States"
@@ -197,10 +200,10 @@ en:
           instructions: "<p>DC is automatically sending an absentee ballot to all voters this year. Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot\">https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot</a> </p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p>"
       de:
         state_online_abr:
-          finish_instructions: "<p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible. Your completed ballot must be RECEIVED by 8:00pm on Election day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
         abr:
-          finish_instructions: "<p>Your application for a by-mail ballot must be received by Friday, October 20th, 2020.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
-          requirements: "<p>To qualify to request a ballot in DE, you must meet at least one of the following requirments:</p><p>(1) I am in public service of the  U.S. or the State of Delaware, or I am a spouse or dependent residing with or accompanying him or her. Reason 1 also applies to members of the  Uniformed Services.</p><p>(2) Due to the nature of my business or occupatioon. Reason 2 also applies topersons providing care to a parent, spouse or child who is living at home and requires constant care,students, andotherwise eligible persons who are incarcerated.</p><p>(3) I am sick, or temporarily or permanently physically disabled.</p><p>(4) I am absent from the district while on vaca􏰀tion</p><p>(5) Due to the tenets or teachings of my religion</p><p>(6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her.</p>"
+          finish_instructions: "<p>Make sure to complete and send this form in as soon as possible. Your application must be RECEIVED by Friday, October 30th, 2020. Your completed ballot must be RECEIVED by 8:00pm on Election day.</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://ivote.de.gov/VoterView\">https://ivote.de.gov/VoterView</a></p>"
+          requirements: "<p>To request an absentee ballot in DE, you must meet at least one of the following requirments:</p><p>(1) I am in public service of the  U.S. or the State of Delaware, or I am a spouse or dependent residing with or accompanying him or her. Reason 1 also applies to members of the  Uniformed Services.</p><p>(2) Due to the nature of my business or occupatioon. Reason 2 also applies to persons providing care to a parent, spouse or child who is living at home and requires constant care,students, andotherwise eligible persons who are incarcerated.</p><p>(3) I am sick, or temporarily or permanently physically disabled.</p><p>(4) I am absent from the district while on vaca􏰀tion</p><p>(5) Due to the tenets or teachings of my religion</p><p>(6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her.</p><p>NOTE: During the current State of Emergency, voters are permitted to vote by absentee ballot for the reason: \"I am sick, or physically disabled\" if they are impacted by COVID-19, per the provisions of an order by the Governor. This includes those who are practicing self-quarantining or social distancing.</p>"
           email_instructions: You may also sign, scan and email your form.   
         abr_form_fields:
           fill_2: Political Party
@@ -210,19 +213,21 @@ en:
           fill_11__hint: Provide City, State or City, Country
           Day phone: Expected Election Day Phone Number          
           absentee_reason: Select the reason you are voting by absentee ballot
-          absentee_reason__hint: If you select reason 6 below you will receive a full Primary Election ballot, but your General Eletion ballot will only have Federal Offices. Citizens temporarily residing outside of the U.S. should use the Federal Post Card Applicatioon instead of choosing reason 6.
+          absentee_reason__hint: "<p>If you select reason 6 below you will receive a full Primary Election ballot, but your General Eletion ballot will only have Federal Offices. Citizens temporarily residing outside of the U.S. should use the Federal Post Card Applicatioon instead of choosing reason 6.</p><p>NOTE: During the current State of Emergency, voters are permitted to vote by absentee ballot for the reason: \"(3) I am sick, or temporarily or permanently physically disabled.\" if they are impacted by COVID-19, per the provisions of an order by the Governor. This includes those who are practicing self-quarantining or social distancing.</p>"
           absentee_reason__options:
             "1": (1) I am in public service of the U.S. or the State of Delaware, or I am a spouse or dependent residing with or accompanying him or her. Reason 1 also applies to members of the Uniformed Services.
             "2": "(2) Due to the nature of my business or occupation. Reason 2 also applies to persons providing care to a parent, spouse or child who is living at home and requires constant care,students, and otherwise eligible persons who are incarcerated."
             "3": (3) I am sick, or temporarily or permanently physically disabled.
             "4": (4) I am absent from the district while on vacation
             "5": (5) Due to the tenets or teachings of my religion
-            "6": (6) I am temporarily residing outside of the U. S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her. 
+            "6": (6) I am temporarily residing outside of the U.S. and the District of Columbia, or I am a spouse or dependent residing with or accompanying him or her. 
           absentee_delivery: Special Qualification regarding electronic delivery of absentee ballots.
           Fax or: "Fax Number"
+          "Make me a permanent absentee voter__hint": "<p>NOTE: You can only be a permanent absentee voter if you are voting by absentee ballot due to reason 1, 3, or 6.  Or, your business or occupation is providing care to your parents, spouse or child who is living at home and requires constant care."
       fl:
         state_online_abr:
-          confirm: To request an absentee ballot in Florida, you need to contact your Supervisor of Elections.  Click here to find your Supervisor of Elections and more information on how to request your absentee ballot.
+          header: To request an absentee ballot in Florida, you need to contact your Supervisor of Elections.  Click below to find your Supervisor of Elections to request your absentee ballot.
+          confirm: ""
           finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Your request must be received by 5:00pm on October 24, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p><p>Your absentee ballot must be received by 7:00pm on Election Day.</p><p>You can check on the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://registration.elections.myflorida.com/CheckVoterStatus\">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>"
       ga:
         abr:
@@ -262,10 +267,10 @@ en:
       hi:
         abr:
           header: Absentee Requests In Hawaii
-          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://elections.hawaii.gov/voters/applications/\">https://elections.hawaii.gov/voters/applications/</a></p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots that are mailed must be recieved by 7:00pm on Election Day.</p>"
+          instructions: "<p>Your state is automatically sending an absentee ballot to all voters this year.  Your absentee ballot will be sent to the address listed on your voter registration.</p><p>If you have any questions, or need to update your address please go to: <a rel=\"noopener\" target=\"blank\" href=\"https://elections.hawaii.gov/voters/applications/\">https://elections.hawaii.gov/voters/applications/</a></p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.  Vote-by-mail ballots that are mailed must be received by 7:00pm on Election Day.</p>"
       ia:
         abr:
-          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible.</p><p>Your request must be received by 5:00 pm on October 24, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in.</p><p>Your absentee ballot must either be post marked by November 2nd and RECEIVED no later than 12:00pm on November 9, 2020 OR if received by November 3, 2020 at 9:00pm.  You can check on the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search\">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a></p>"
+          finish_instructions: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible  Your request must be received by 5:00 pm on October 24, 2020.</p><p>Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot it and send it back in. Your absentee ballot must either be post marked by November 2nd and RECEIVED no later than 12:00pm on November 9, 2020 OR if not post marked by the 2nd, it must be received by November 3, 2020 at 9:00pm.</p><p>You can check on the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search\">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a></p>"
           
         abr_form_fields:
           identification__options:
@@ -343,7 +348,10 @@ en:
           "Precinct": "Precinct (if known)"
           "Ward": "Ward (if known)"
       in:
+        state_online_abr:
+          finish_page: "<p>Once you have your ballot, be sure to read the instructions carfeully, fill out the ballot and send it back in. Your absentee ballot must be received by 12:00pm on November 3, 2020. You can check the status of your ballot here:  <a rel=\"noopener\" target=\"blank\" href=\"http://www.indianavoters.com/\">http://www.indianavoters.com/</a></p>"
         abr:
+          finish_page: "<p>Make sure to read the instructions on the form carefully, then complete and send this form in as soon as possible. Your request must be received by 11:59 pm on October 22, 2020. Once you have your ballot, again be sure to read the instructions carfeully, fill out the ballot and send it back in. Your absentee ballot must be received by 12:00pm on November 3, 2020.</p><p>You can check the status of your ballot here: <a rel=\"noopener\" target=\"blank\" href=\"http://www.indianavoters.com/\">http://www.indianavoters.com/</a> </p>"
           requirements: |-
             <p>To qualify to request a ballot in IN, you must have one of the following reasons:  </p>
             <ul>
@@ -414,7 +422,18 @@ en:
       ky:
         abr:
           header: Absentee Requests In Kentucky
-          instructions: "<p>Unforatunately, Kentucky requires all absentee requests to be completed directly through the state.</p><p>In Kentucky, you are only allowed to request an absentee ballot if you are eligible to vote AND meet one of these criteria:</p><ul><li>I am a member of the Uniformed Services or Merchant Marine on active duty.</li><li>I am an eligible spouse or dependent.</li><li>I am an activated National Guard member on State orders.</li><li>I am a U.S. citizen residing outside the United States, and I intend to return.</li><li>I am a U.S. citizen residing outside the United States, and my return is not certain.</li><li>I am a U.S. citizen and have never resided in the United States.</li></ul><p>You can go here to request a ballot if you are eligible: <a target=\"_blank\" rel=\"noopener\" href=\"https://ky.secureballotusa.com/portal/#/request-ballot/fpca\">https://ky.secureballotusa.com/portal/#/request-ballot/fpca</a></p>"
+          instructions: |-
+            <p>Unforatunately, Kentucky requires all absentee requests to be completed directly through the state.</p><p>In Kentucky, you are only allowed to request an absentee ballot if you are eligible to vote AND meet one of these criteria:</p>
+            <ul>
+            <li>Student who temporarily resides outside the county of their residence; </li>
+            <li>Incarcerated in jail and charged with a crime, but not been convicted; </li>
+            <li>Changing or has changed their place of residence to a different state while the registration books are closed in the new state of residence before an election of electors for President and Vice President of the United States, in which case the voter shall be permitted to cast an absentee ballot or electors of the President and Vice President of the United States only; </li>
+            <li>Temporarily residing outside the state but still eligible to vote in this state; </li>
+            <li>Prevented from voting in person at the polls on Election Day and from casting an in-person absentee ballot in the county clerk’s office on all days in-person absentee voting is conducted because their employment location requires them to be absent from the county of their residence all hours and all days in-person absentee voting is conducted; </li>
+            <li>A participant in the Secretary of State’s crime victim address confidentiality program; or</li>
+            <li>Not able to appear at the polls on Election Day on the account of age, disability, or illness, and who has not been declared mentally disabled by a court of competent jurisdiction.</li>
+            </ul>
+            <p>You can go here to request a ballot if you are eligible: <a target="_blank" rel="noopener" href="https://ky.secureballotusa.com/portal/#/request-ballot/fpca">https://ky.secureballotusa.com/portal/#/request-ballot/fpca</a></p>
       la:
         state_online_abr:
           finish_instructions: "<p>Once you have your ballot, be sure to read the instructions carfeully, fill out the ballot and send it back in. Your ballot (unless you are Military, Overseas, or Hospitalized) must be received by your parish registrar of voters by 4:30pm CST on the day before election day.</p><p>Not sure where your registrar of voters is? <a rel=\"noopener\" target=\"blank\" href=\"http://voterportal.sos.la.gov/\">http://voterportal.sos.la.gov/</a> </p>"
@@ -880,7 +899,7 @@ the instructions to fill it out and return it. Your completed ballot must be REC
       
       ny:
         abr:
-          finish_instructions: <p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your absentee ballot request must be post marked by October 27th, 2020. You can apply in-person for an absentee ballot until November 2nd, 2020.</p><p>Your completed ballot must be post marked by November 3rd and RECIEVED by November 10th. The last day to drop offyour completed ballot is November 3rd.</p>
+          finish_instructions: <p>Once you recieve your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your absentee ballot request must be post marked by October 27th, 2020. You can apply in-person for an absentee ballot until November 2nd, 2020.</p><p>Your completed ballot must be post marked by November 3rd and RECEIVED by November 10th. The last day to drop offyour completed ballot is November 3rd.</p>
           requirements: |-
             <p>Registered voters are eligible to request and absentee ballot for one of the following reasons:</p>
              <ul><li>You will be absent from the relevant county or New York City on Election Day;</li>
