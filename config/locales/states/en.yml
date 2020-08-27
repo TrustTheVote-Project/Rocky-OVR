@@ -404,9 +404,10 @@ en:
             
         abr_form_fields:
           identification: "Please select one of the following:"
+          identification__hint: "<p style='font-size: 13px; margin-left: 20px'>Examples of acceptable nondriver's identification cards: Driver's license issued by Kansas or another state, Nondriver's ID card issued by Kansas or another state, U.S. Passport, Concealed carry of handgun license issued by Kansas or another state, Employee badge or ID document issued by a government office, U.S. Military ID, Student ID card by an accredited Kansas postsecondary educational institution, Public assistance ID card issued by a government office, ID card issued by an Indian tribe</p>"
           identification__options:
-            dln_yes: "I have a driver's license."
-            dln_no: "I do not have a driver's license."
+            dln_yes: "I have a Kansas Driver's License or Kansas nondriver's identification card"
+            dln_no: "I do not have a Kansas Driver's license or Kansas nondriver's identification card."
           "has_mailing_address": My mailing address differs from my residential address.
           "identification_number": "Current Kansas driver's license number or nondriver's identification card number:􏰋􏰤"
           "county_1": Residential county
