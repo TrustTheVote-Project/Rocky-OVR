@@ -53,20 +53,25 @@ function validateField(errorMessage) {
   var errorField = parent.siblings(".error")
   var currentError = errorField.html();
   var messageIdx = currentError.indexOf(errorMessage)
-  if (!val || val == '') {
+  if ((!val || val == '') && errorMessage != '') {
     // Add if not present
     if (messageIdx == -1) {
       errorField.html([currentError, errorMessage].join(" "))
     }       
     parent.addClass('has_error') 
   } else {
-    if (messageIdx >= 0) {
+    if (errorMessage == '') {//Remove all
+      errorField.html('')
+      console.log(field, errorMessage, errorField, messageIdx)
+    } else if (messageIdx >= 0) {
       currentError = currentError.split('')
       currentError.splice(messageIdx, errorMessage.length)
       errorField.html(currentError.join(''))
     } 
     //console.log(errorField.text())
     if (errorField.html().replace(/\s/g, '') == '') {
+      console.log(field, errorMessage)
+      
       parent.removeClass('has_error') 
     }
            
@@ -106,6 +111,11 @@ function validateBooleanField(errorMessage) {
 }
 
 function initValidations() {
+  $("[data-client-conditional-required]").each(function() { 
+    //$(this).keydown(clearErrors.bind(this));
+    $(this).change(validateField.bind(this, ''));
+  })
+  
   $("[data-client-validation-required]").each(function() {
     var errorMessage = $(this).data("client-validation-required")
     if (this.tagName == "DIV") {
