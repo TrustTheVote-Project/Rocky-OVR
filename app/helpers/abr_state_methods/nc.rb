@@ -230,7 +230,6 @@ module AbrStateMethods::NC
       {"Voter's Previous Last Name": {visible: "previous_name", required: :if_visible}},
       {"uocava": {type: :checkbox}},
       {"military_or_overseas": { type: :radio, options: ["military", "overseas"], visible: "uocava"}},
-      {"US citizen outside the United States": {visible: "uocava", type: :checkbox}},
       {"Overseas Address": {visible: "uocava"}},
       {"uocava_ballot": {visible: "uocava", required: :if_visible, type: :radio, options: ["mail", "email"]}}, 
       {"Overseas Mailing Address": {visible: "uocava_ballot_mail"}},
@@ -263,11 +262,11 @@ module AbrStateMethods::NC
   
   def military_or_overseas=(val)
     self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "Off")
-    self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "Off")
+    self.send(self.class.make_method_name("US citizen outside the United States")+"=", "Off")
     if val == "military"
       self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "On")
     elsif val == "overseas"
-      self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "On")
+      self.send(self.class.make_method_name("US citizen outside the United States")+"=", "On")
     end
   end
   
