@@ -30,12 +30,16 @@ module AbrStateMethods::NH
       method: "zip"
     },
     "Street or PO Box": {},
-    "Mailing Street name": {
-      pdf_field: "Street name"
+    #"Mailing Street name": {
+     # pdf_field: "Street name",
+    "Street name": {
+      method:"mail_street_name"
     },
     "AptUnit_2": {},
     "CityTown_2": {},
-    "State Zip Code": {},
+    "State Zip Code": {
+      method: "state_zip"
+    },
     "Applicants Phone Number": {
       method:"phone_area"
     }, 
@@ -89,7 +93,7 @@ module AbrStateMethods::NH
       method: "group2a"
     },
   }
-  EXTRA_FIELDS = ["has_mailing_address", "assistant", "absentee_reason","storm_warning", "storm_warning_reason"]
+  EXTRA_FIELDS = ["has_mailing_address", "assistant", "absentee_reason","storm_warning", "storm_warning_reason","mail_street_name", "mail_state", "mail_zip"]
  
   
   def form_field_items
@@ -100,13 +104,23 @@ module AbrStateMethods::NH
       {"storm_warning_reason":{type: :radio, options:['reason1','reason2'], visible: "absentee_reason_storm_warning", required: "star", classes: "indent"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Street or PO Box": {visible: "has_mailing_address", classes: "quarter", required: :if_visible}},
-      {"Mailing Street name": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
+      {"mail_street_name": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
       {"AptUnit_2": {visible: "has_mailing_address", classes: "quarter last"}},
       {"CityTown_2": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
-      {"State Zip Code": {visible: "has_mailing_address", classes: "half last", required: :if_visible}},
+      #{"State Zip Code": {visible: "has_mailing_address", classes: "half last", required: :if_visible}},
+      {"mail_state": {visible: "has_mailing_address", classes: "quarter ", length: 2,required: :if_visible}},
+      {"mail_zip": {visible: "has_mailing_address", classes: "quarter last", length:5, regexp: /\A[0-9]{5}\z/, required: :if_visible}},
+
+      
       {"assistant": {type: :checkbox}},
       {"Asisstant Name": {visible: "assistant", required: :if_visible}},
     ]
+  end
+
+  def state_zip 
+    if self.has_mailing_address.to_s=='1' 
+      return self.mail_state.to_s() +' '+self.mail_zip.to_s() 
+    end
   end
 
   def phone_area
