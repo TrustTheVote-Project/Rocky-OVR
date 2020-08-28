@@ -799,7 +799,7 @@ the instructions to fill it out and return it. Your completed ballot must be REC
           "AptUnit_2": "Apt/Unit"
           "CityTown_2": "City/Town"
           mail_street_name: "Street name"
-          mail_state: State Abbr
+          mail_state: State
           mail_zip: Zip
           Group1: "I herby declare that (check one):"
           Group1__options:
