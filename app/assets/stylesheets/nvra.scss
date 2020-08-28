@@ -50,24 +50,23 @@ span.smaller_prompt {
 	line-height:.6em;
 }
 
+//Envelope is 9.5 x 4.125
 //
-//We want to use a #10 envelope and we can get them with the window to the right. 
-//The placement of the window would be 1/2" up from bottom and 7/8" from the right
-//
-//The window is 1 1/8" x 4.5". The placement is 7/8" from the right and 1/2" from the bottom.
+//The window is 1.375 x 4.5. The placement is .875 from the left and .625 from the bottom (axa 2.125" from top).
 
 #page_mailing_address {
-  height: 1100;
+  height: $page_height / 3;
   width: 850;
+  border: 1px solid white;
   .address {
     display: block;
-    margin-top: 1010px; //1100 - 50 - 112.5;
-    margin-left: 350px;
-    width: 465px;
-    height: 125px;
-    border: 0px solid #000;
-    font-size: $fs;
-    line-height: 1.5 * $fs
+    margin-top: 213px;
+    margin-left: 95px;
+    width: 450px;
+    height: 137px;
+    border: 1px solid #FFF;
+    font-size: $fs * 1.3;
+    line-height: 1.5 * $fs * 1.3;
   }
 }
 
