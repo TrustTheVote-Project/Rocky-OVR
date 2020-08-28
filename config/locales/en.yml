@@ -215,6 +215,7 @@ en:
         last_name: Last Name
         name_suffix: Suffix
         address: Address
+        street_name: Street name and type
         unit: 'Unit/Lot #'
         city: City
         home_state_name: State
