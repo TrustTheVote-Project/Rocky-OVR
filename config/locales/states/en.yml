@@ -820,6 +820,8 @@ the instructions to fill it out and return it. Your completed ballot must be REC
             "reason1": "I am elderly or infirm or I have a physical disability, and would otherwise vote in person but I have concerns for my safety traveling in the storm."
             "reason2": "I anticipate that school, child care, or adult care will be canceled, and would otherwise vote in person but will need to care for children or infirm adults."
           storm_warning_reason__required_message: Please select one of the above reasons
+          Group3: "I am requesting an official absentee ballot for the following election (check only one):"
+          Party: "Required for Primary Elections: I am a member of, or I am now declaring my affiliation with a party and I am requesting a ballot for that party’s primary (check only one):"
       nj:
         abr:
           finish_instructions: "<p>Once you receive your ballot, make sure to read it carefully and follow the instructions to fill it out and return it. Your application must be received seven days prior to Election Day (October 27,2020).</p><p>Your completed ballot must be RECEIVED (if returning by mail) by your county election office no later than 48 hours after the time of the closing of the polls. If returning your ballot in person, it must be received before polls close on Election day (typically 8:00 PM).</p><p>At any time you can check the status of your application and the status of your ballot at: <a rel=\"noopener\" target=\"blank\" href=\"https://voter.svrs.nj.gov/auth/sign-in\">https://voter.svrs.nj.gov/auth/sign-in</a></p>"
