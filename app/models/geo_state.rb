@@ -38,7 +38,7 @@ class GeoState < ActiveRecord::Base
     end
   end
   
-  def self.collection_for_select
+  def self.collection_for_select_abbrev
     init_all_states
     @@all_states_by_abbrev.map { |abbrev, state| [state.name, abbrev] }.sort
   end
