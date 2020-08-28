@@ -197,8 +197,8 @@ absentee_states:
   UT: {}  
   VA:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
-    #pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
-    pdf_template: va.pdf
+    pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
+    #pdf_template: va.pdf
   VT: {} #All vote-by-mail this year
   WA: {}
   WI:
@@ -324,6 +324,7 @@ ovr_states:
       - en
   KY:
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
   MA:
