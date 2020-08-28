@@ -41,7 +41,7 @@ module AbrStateMethods::NJ
       options: ["All", "Fire", "General", "Municipal", "Off", "Primary", "School", "Special"],
       value: "General"
     },
-    "UOCAVA": { options: ["Off", "UOCAVA_1", "UOCAVA_2", "UOCAVA_3", "UOCAVA_4"], default: "Off" },
+    "UOCAVA": { options: ["Off", "Choice1", "Choice2", "Choice3", "Choice4"], default: "Off" },
     #"voter_signature": {}
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"
