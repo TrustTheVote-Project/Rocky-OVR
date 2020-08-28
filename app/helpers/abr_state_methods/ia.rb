@@ -115,7 +115,7 @@ module AbrStateMethods::IA
     },
     "County": {},
     "Mail Address": {
-      pdf_field: "Mail Address/P.O. Box"
+      pdf_name: "Mail Address/P.O. Box"
     },
     "Mailing Address City": {},
     "Mailing Address State": {},
