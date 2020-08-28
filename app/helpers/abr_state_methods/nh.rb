@@ -92,7 +92,10 @@ module AbrStateMethods::NH
     "Group2a": {
       method: "group2a"
     },
-    "Group3": {},
+    "Group3": {
+      options: ["Off", "State General", "State Primary"],
+      value: "State General"
+    },
     
     "Party": {}
   }
@@ -105,8 +108,8 @@ module AbrStateMethods::NH
 
       {"absentee_reason":{type: :radio, options:['reason1','reason3','reason4','reason5', 'storm_warning'], required: true}},
       {"storm_warning_reason":{type: :radio, options:['reason1','reason2'], visible: "absentee_reason_storm_warning", required: "star", classes: "indent"}},
-      {"Group3": {type: :radio,  options: ["State Primary" ,"State General" ],required:true}},
-      {"Party": {type: :radio,  options:["Democratic",  "Republican"], required: "star", visible: "group3_state_primary",}},
+      # {"Group3": {type: :radio,  options: ["State Primary" ,"State General" ],required:true}},
+      # {"Party": {type: :radio,  options:["Democratic",  "Republican"], required: "star", visible: "group3_state_primary",}},
       {"has_mailing_address": {type: :checkbox}},
       {"Street or PO Box": {visible: "has_mailing_address", classes: "quarter", required: :if_visible}},
       {"mail_street_name": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
@@ -168,9 +171,9 @@ module AbrStateMethods::NH
     if absentee_reason.to_s=="storm_warning"
       custom_validates_presence_of("storm_warning_reason")
     end
-    if group3.to_s=="State Primary"
-      custom_validates_presence_of("Party")
-    end
+    # if group3.to_s=="State Primary"
+    #   custom_validates_presence_of("Party")
+    # end
   end
   
  
