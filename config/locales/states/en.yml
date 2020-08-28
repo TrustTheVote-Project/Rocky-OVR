@@ -1310,12 +1310,12 @@ en:
             to vote and I am (CHECK ONLY ONE)
           UOCAVA__options:
             'Off': Not Applicable
-            UOCAVA_1: A Member of the Uniformed Services or Merchant Marine on active
+            Choice1: A Member of the Uniformed Services or Merchant Marine on active
               duty, or an eligible spouse or dependent.
-            UOCAVA_2: A U.S. Citizen residing outside the U.S. and I intend to return.
-            UOCAVA_3: A U.S. Citizen residing outside the U.S. and I do not intend
+            Choice2: A U.S. Citizen residing outside the U.S. and I intend to return.
+            Choice3: A U.S. Citizen residing outside the U.S. and I do not intend
               to return.
-            UOCAVA_4: A U.S. Citizen residing outside the U.S. and I have never lived
+            Choice4: A U.S. Citizen residing outside the U.S. and I have never lived
               in the U.S.
           messenger_birth_date: Date of Birth (MM/DD/YYYY)
           messenger_birth_date__required_message: Birthdate not valid
