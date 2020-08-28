@@ -1,6 +1,7 @@
 - form_name_prefix = ActiveModel::Naming.param_key(@registrant) #"state_registrants_pa_registrant"
 - image_field_id = "#{form_name_prefix}_voter_signature_image"
 - signature_method_id_prefix = "#{form_name_prefix}_signature_method"
+- allow_desktop_signature ||= false # when desktop sig is allowed, show options as well as provide signature
 - content_for :head do
   %script{src: "https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"}
   
@@ -29,16 +30,23 @@
       signaturePad.clear();
     }
     
-  
-    function registerTouch() {
-      if (top.location!= self.location) {
+    var allowDesktopSignature = #{!!allow_desktop_signature};
+    
+    function registerTouch(isDesktop) {
+      console.log(isDesktop);
+      allowDesktopSignature = isDesktop || false;
+      if (!isDesktop && top.location!= self.location) {
          top.location = self.location.href;
       }
       
       $("#signature_capture").show();   
-      $("#signature_upload").hide();
+      if (!isDesktop) {
+        $("#signature_upload").hide();        
+        console.log('hi')
+        $("#signature_capture").addClass("is-device")        
+      }
       var canvas = $("canvas#signature_field").get(0);
-      var size = screen.width / 150;
+      var size = screen.width / (isDesktop ? 500 : 175);
       var signaturePad = new SignaturePad(canvas, {
           minWidth: size,
           maxWidth: size,
@@ -48,7 +56,9 @@
       });
       signaturePad.clear();
       
-      //window.onresize = resizeCanvas.bind(this, canvas, signaturePad);
+      if (isDesktop) {
+        window.onresize = resizeCanvas.bind(this, canvas, signaturePad);
+      }
       
       $(".capture-signature").click(function() {
         $("#signature_field_popup").show();
@@ -78,8 +88,6 @@
           $("#signature_field_popup").hide();
         }
       })
-      
-      $("#signature_capture2").show();   
       
       $(".signature_clear").click(function() {
         signaturePad.clear();
@@ -172,4 +180,8 @@
       $('.select-image-btn').click(function() {
         $('.cropit-image-input').click();
       });
+      
+      if (allowDesktopSignature) {
+        registerTouch(true);        
+      }
     });

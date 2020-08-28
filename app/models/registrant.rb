@@ -1457,12 +1457,22 @@ class Registrant < ActiveRecord::Base
   end
   
   def mail_with_esig?
-    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states.include?(self.home_state_abbrev)
+    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states[self.home_state_abbrev]
+  end
+  
+  def allow_desktop_signature?
+    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].allow_desktop_signature
+  end
+  
+  def state_voter_check_url
+    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].state_voter_check_url
   end
   
   def skip_mail_with_esig?
     self.signature_method == VoterSignature::PRINT_METHOD   
   end
+  
+  
   
   def pdf_is_esigned?
     mail_with_esig? && !skip_mail_with_esig?

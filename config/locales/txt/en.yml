@@ -21,6 +21,7 @@ en:
       remind_me_later: Remind Me Later
       help: Help
       prepare: Prepare Form
+      prepare_with_esig: Complete Registration Form
       review: Review Application
       sendmail: Send Email
       share_facebook: Post It!
@@ -54,6 +55,7 @@ en:
           1. We will send your voter registration application to your county election office.<br/>
           2. We will also email you a link to a copy of your application.<br/>
           3. You should reach out to your friends and family to make sure they register to vote to make their voices heard too!<br/>
+          4. <a href="%{state_voter_check_url}" target="_blank" rel="noopener">Check to confirm your registration</a> by October 13, the deadline to register in advance for the November 3 election.<br/>
         </p>
       finish_header: Spread the word!
       finish_pdf_delay_header: Check Your Email
@@ -285,6 +287,7 @@ en:
         your registration:'
       link_copied: Link Copied!
       continue_on_paper: Print and mail a PDF
+      continue_on_desktop: Use this device to provide a digital signature
       buttons:
         done: Done
         reset: Reset

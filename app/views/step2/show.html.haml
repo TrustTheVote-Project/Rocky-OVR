@@ -1,5 +1,5 @@
 - if @registrant.mail_with_esig?
-  = render 'shared/signature_capture/scripts'
+  = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
   = flash_messages.html_safe
 
 
@@ -118,7 +118,7 @@
       .state-id-number
         = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
       - if @registrant.mail_with_esig?
-        = render partial: 'shared/signature_capture/form', locals: {form: form}
+        = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
         
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
       .clear-fix
@@ -137,7 +137,7 @@
       .use_state_registration
         = rollover_button(:prepare, I18n.t('txt.button.submit'))
     .skip_state_registration
-      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+      = rollover_button(:prepare, I18n.t(@registrant.mail_with_esig? ? 'txt.button.prepare_with_esig' : 'txt.button.prepare'))
   - else
     = render(:partial => 'previous', :locals => {:form => form}) unless @registrant.first_registration?
     %ul.flat

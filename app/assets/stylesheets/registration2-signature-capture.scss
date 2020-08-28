@@ -27,6 +27,21 @@
       .signature_capture_insructions {
         display: none;
       }
+      .signature_done, .signature_clear {
+        margin: 1em;
+      }
+      .signature_done {
+        float: right;
+      }
+      .signature_clear {
+        font-size: 16px;
+        cursor: pointer;
+        float: left;
+      }
+    }
+    
+    
+    #signature_capture.is-device #signature_field_popup {
       @media screen and (orientation: portrait) {
         transform: rotate(90deg);
         width: 100vh;
@@ -73,17 +88,7 @@
           }
         }
       }
-      .signature_done, .signature_clear {
-        margin: 1em;
-      }
-      .signature_done {
-        float: right;
-      }
-      .signature_clear {
-        font-size: 16px;
-        cursor: pointer;
-        float: left;
-      }
+      
     }
     
     #signature_field {

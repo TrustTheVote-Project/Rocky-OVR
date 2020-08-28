@@ -19,7 +19,7 @@
   <%- end %>
   <h1><%= I18n.t('txt.registration.finish_mail_with_esig_header').html_safe %> </h1>
   <div class="fulltext">
-    <p><%= I18n.t('txt.registration.finish_mail_with_esig').html_safe %></p>
+    <p><%= I18n.t('txt.registration.finish_mail_with_esig', state_voter_check_url: @registrant.state_voter_check_url).html_safe %></p>
   </div>
 <% else %>
   <%- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank? %>

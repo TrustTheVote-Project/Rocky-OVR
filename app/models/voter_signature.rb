@@ -3,6 +3,7 @@ class VoterSignature < ActiveRecord::Base
   DEVICE_METHOD="device".freeze
   UPLOAD_METHOD="upload".freeze
   PRINT_METHOD="print".freeze
+  DESKTOP_METHOD="desktop".freeze
   
   
   def self.resize_signature_url(sig_url)

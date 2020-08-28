@@ -6,6 +6,7 @@ en:
         
   'yes': 'Yes'
   'no': 'No'
+  or: "OR"
   required: "(Required)"
   affirm: Affirm
   decline: Decline

@@ -68,7 +68,9 @@ partner_csv_expiration_minutes: 30
 
 mail_with_esig:
   states:
-    - MN
+    MN:
+      allow_desktop_signature: true
+      state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
   partners:
     - 1 
     
