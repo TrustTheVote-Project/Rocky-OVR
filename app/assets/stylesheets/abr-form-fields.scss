@@ -103,7 +103,18 @@
     height: auto;
     line-height: 1.4em;
   }
-  
+  @media(max-width: $main-width) {
+    li {
+      ul.checkbox {
+        h3 {
+          display: block;
+          label {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
 }
 
 @import 'abr_states/ak';
