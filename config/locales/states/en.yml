@@ -222,7 +222,7 @@ en:
             within_county: within the county in which I am registered to vote.
       az:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           finish_instructions: '<p>Once you have your ballot, be sure to read the
@@ -435,7 +435,7 @@ en:
             Supervisor of Elections.  Click below to find your Supervisor of Elections
             to request your absentee ballot.
           confirm: ''
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid}
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           finish_instructions: '<p>Make sure to read the instructions on the form
@@ -537,7 +537,7 @@ en:
             add my phone number or email address to my voter record.
       id:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           finish_instructions: '<p>Once you have your ballot, again be sure to read
@@ -873,7 +873,7 @@ en:
         state_online_abr:
           confirm: To qualify to request a ballot in ME, you only need to be registered
             to vote.
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid 
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           finish_instructions: "<p>Once you have your ballot, be sure to read the
@@ -1021,7 +1021,7 @@ en:
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid 
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           instructions: |-
@@ -1189,7 +1189,7 @@ en:
             "Continue as a guest" and submit your voter registration online.'
       nd:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid 
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           finish_instructions: '<p>At any time you can check the status of your application
@@ -1497,7 +1497,7 @@ en:
         state_online_abr:
           confirm: To qualify to request a ballot in OK, you only need to be registered
             to vote.
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid 
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           finish_instructions: '<p>At any time you can check the status of your application
@@ -1683,7 +1683,7 @@ en:
               <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
             </ul>
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           finish_instructions: '<p>At any time you can check the status of your application
@@ -1967,7 +1967,7 @@ en:
           Dept. of Elections to register to vote.</p>"
       vt:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid %{state}
+          requirements: <p>If you are registered to vote and have a valid 
             state ID, you may request your absentee ballot online directly with the
             state.</p>
           
