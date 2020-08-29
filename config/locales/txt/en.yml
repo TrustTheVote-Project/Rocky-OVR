@@ -6,8 +6,8 @@ en:
       step_1_instructions: "<p>Request your absentee ballot now so that you can vote from the
         ease and safety of your home.</p><br/><br/>"
       step_2_header: Where are you registered to vote?
-      step_2_instructions: "<p>We'll use this info to determine how you can request
-        your absentee ballot.</p>"
+      step_2_instructions: "<p>We'll use this information to determine how you can
+        request your absentee ballot.</p>"
       step_3_header: Prepare your %{state} PDF Absentee Request Form
       step_3_instructions: "<p>Please fill out the fields below so we can prepare
         your PDF absentee request form.</p>"
