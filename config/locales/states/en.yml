@@ -1829,6 +1829,7 @@ en:
             href="https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p>'
       va:
         state_online_abr:
+          requirements: You can use Virginia's online system if you're a first time voter and have a VA ID or if you've voted in previous elections.
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your completed ballot must be postmarked by Election Day (November 3rd).
@@ -1839,6 +1840,7 @@ en:
             <a rel="noopener" target="blank" href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>
             </p>'
         abr:
+          requirements: In order to request an absentee ballot in VA, you must first be registered to vote.
           finish_instructions: '<p>Make sure to print off and complete your application.
             Read the instructions carefully on how to submit your application.</p><p>Once
             you receive your ballot, make sure to read it carefully and follow the
