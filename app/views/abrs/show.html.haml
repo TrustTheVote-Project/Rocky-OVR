@@ -1,6 +1,7 @@
 %h2= t('txt.abr.step_1_header')
 
-= t('txt.abr.step_1_instructions').html_safe
+.intro-message
+  = t('txt.abr.step_1_instructions').html_safe
 
 = form_for(@abr) do |form|
   = render partial: 'step', locals: { form: form }

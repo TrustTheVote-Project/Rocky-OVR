@@ -4,7 +4,8 @@
     %h2= t("states.custom.#{@abr.i18n_key}.state_online_abr.header", default: I18n.t('txt.abr.state_online_defaults.header', state: @abr.home_state_name))
   - else
     %h2= t("states.custom.#{@abr.i18n_key}.state_online_abr.header_choice", default: I18n.t('txt.abr.state_online_defaults.header_choice', state: @abr.home_state_name))
-  %p.instructions= I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm'))
+  .intro-message
+    %p= I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm'))
   - unless @abr.oabr_for_all?
     .requirements= I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.requirements", default: I18n.t('txt.abr.state_online_defaults.requirements', state: @abr.home_state_name)).html_safe
       
