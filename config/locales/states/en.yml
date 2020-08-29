@@ -223,8 +223,8 @@ en:
       az:
         state_online_abr:
           requirements: <p>If you are registered to vote and have a valid %{state}
-          state ID, you may request your absentee ballot online directly with the
-          state.</p>
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           finish_instructions: '<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 7:00pm on Election Day</p><p>At any
