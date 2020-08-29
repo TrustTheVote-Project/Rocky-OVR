@@ -222,6 +222,9 @@ en:
             within_county: within the county in which I am registered to vote.
       az:
         state_online_abr:
+          requirements: <p>If you are registered to vote and have a valid %{state}
+          state ID, you may request your absentee ballot online directly with the
+          state.</p>
           finish_instructions: '<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 7:00pm on Election Day</p><p>At any
@@ -433,6 +436,9 @@ en:
             Supervisor of Elections.  Click below to find your Supervisor of Elections
             to request your absentee ballot.
           confirm: ''
+          requirements: <p>If you are registered to vote and have a valid %{state}
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           finish_instructions: '<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible.</p><p>Your
             request must be received by 5:00pm on October 24, 2020.</p><p>Once you
@@ -528,6 +534,9 @@ en:
             add my phone number or email address to my voter record.
       id:
         state_online_abr:
+          requirements: <p>If you are registered to vote and have a valid %{state}
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           finish_instructions: '<p>Once you have your ballot, again be sure to read
             the instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You
@@ -861,6 +870,9 @@ en:
         state_online_abr:
           confirm: To qualify to request a ballot in ME, you only need to be registered
             to vote.
+          requirements: <p>If you are registered to vote and have a valid %{state}
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           finish_instructions: "<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in. Your
             ballot must be received by 8:00pm on Election Day.</>"
@@ -1006,6 +1018,9 @@ en:
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
         state_online_abr:
+          requirements: <p>If you are registered to vote and have a valid %{state}
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           instructions: |-
             <p>To request an absentee ballot in MN, you must certify that:</p>
             <ul>
@@ -1171,6 +1186,9 @@ en:
             "Continue as a guest" and submit your voter registration online.'
       nd:
         state_online_abr:
+          requirements: <p>If you are registered to vote and have a valid %{state}
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://vip.sos.nd.gov/AbsenteeTracker.aspx">https://vip.sos.nd.gov/AbsenteeTracker.aspx</a></p>'
           requirements: |-
@@ -1475,6 +1493,9 @@ en:
         state_online_abr:
           confirm: To qualify to request a ballot in OK, you only need to be registered
             to vote.
+          requirements: <p>If you are registered to vote and have a valid %{state}
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://www.ok.gov/elections/OVP.html">https://www.ok.gov/elections/OVP.html</a></p>'
       or:
@@ -1646,6 +1667,9 @@ en:
               <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
             </ul>
         state_online_abr:
+          requirements: <p>If you are registered to vote and have a valid %{state}
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>'
       ri:
@@ -1929,6 +1953,10 @@ en:
         registration_complete_dialog_text: "<p>Your application has been sent to the
           Dept. of Elections to register to vote.</p>"
       vt:
+        state_online_abr:
+          requirements: <p>If you are registered to vote and have a valid %{state}
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
         abr:
           header: Absentee Requests In Vermont
           instructions: '<p>Your state is automatically sending an absentee ballot
