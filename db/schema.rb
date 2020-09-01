@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200730182010) do
+ActiveRecord::Schema.define(version: 20200820125421) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 20200730182010) do
     t.string   "email"
     t.string   "phone"
     t.date     "date_of_birth"
-    t.boolean  "javascript_disabled",  default: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.boolean  "javascript_disabled",      default: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "phone_type"
     t.boolean  "opt_in_email"
     t.boolean  "opt_in_sms"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20200730182010) do
     t.string   "votercheck"
     t.string   "current_step"
     t.string   "max_step"
-    t.boolean  "abandoned"
+    t.boolean  "abandoned",                default: false, null: false
     t.boolean  "pdf_ready"
     t.boolean  "pdf_downloaded"
     t.datetime "pdf_downloaded_at"
@@ -68,8 +68,18 @@ ActiveRecord::Schema.define(version: 20200730182010) do
     t.string   "street_name"
     t.string   "street_line2"
     t.string   "unit"
+    t.boolean  "finish_with_state",        default: false
+    t.boolean  "final_reminder_delivered", default: false
+    t.integer  "reminders_left"
+    t.boolean  "dead_end",                 default: false
+    t.string   "tracking_source"
+    t.string   "tracking_id"
   end
 
+  add_index "abrs", ["abandoned", "dead_end", "current_step"], name: "index_abrs_for_abandonment"
+  add_index "abrs", ["abandoned"], name: "index_abrs_on_abandoned"
+  add_index "abrs", ["current_step"], name: "index_abrs_on_current_step"
+  add_index "abrs", ["dead_end"], name: "index_abrs_on_dead_end"
   add_index "abrs", ["email"], name: "index_abrs_on_email"
   add_index "abrs", ["home_state_id"], name: "index_abrs_on_home_state_id"
   add_index "abrs", ["partner_id"], name: "index_abrs_on_partner_id"
@@ -268,6 +278,7 @@ ActiveRecord::Schema.define(version: 20200730182010) do
     t.string   "registrar_url",                   limit: 255
     t.string   "online_registration_url",         limit: 255
     t.string   "online_registration_system_name"
+    t.string   "registrar_abr_address"
   end
 
   create_table "grommet_requests", force: :cascade do |t|
@@ -822,6 +833,18 @@ ActiveRecord::Schema.define(version: 20200730182010) do
   add_index "tracking_events", ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
   add_index "tracking_events", ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
 
+  create_table "voter_signatures", force: :cascade do |t|
+    t.string   "registrant_id"
+    t.text     "voter_signature_image"
+    t.string   "signature_method"
+    t.string   "sms_number_for_continue_on_device"
+    t.string   "email_address_for_continue_on_device"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "voter_signatures", ["registrant_id"], name: "index_voter_signatures_on_registrant_id"
+
   create_table "zip_code_county_addresses", force: :cascade do |t|
     t.integer  "geo_state_id"
     t.string   "zip",                 limit: 255
@@ -832,6 +855,18 @@ ActiveRecord::Schema.define(version: 20200730182010) do
     t.text     "cities"
     t.text     "unacceptable_cities"
     t.datetime "last_checked"
+    t.string   "vr_address_to"
+    t.string   "vr_street1"
+    t.string   "vr_street2"
+    t.string   "vr_city"
+    t.string   "vr_state"
+    t.string   "vr_zip"
+    t.string   "req_address_to"
+    t.string   "req_street1"
+    t.string   "req_street2"
+    t.string   "req_city"
+    t.string   "req_state"
+    t.string   "req_zip"
   end
 
   add_index "zip_code_county_addresses", ["geo_state_id"], name: "index_zip_code_county_addresses_on_geo_state_id"

@@ -3,10 +3,17 @@ en:
   time:
     formats:
       short: "%B %d, %l:%M %p"
-        
   'yes': 'Yes'
   'no': 'No'
-  required: "(Required)"
+  required: Required
+  errors:
+    messages:
+      format: Invalid
+      accepted: must be accepted.
+      too_long: too long (maximum is %{count} characters).
+      too_short: too short (minimum is %{count} characters).
+      wrong_length: wrong length (should be %{count} characters).
+      too_young: You must be 18 on or before November 3, 2020 to vote in this election.
   affirm: Affirm
   decline: Decline
   language_name: English
@@ -49,26 +56,33 @@ en:
         canvasser_last_name: Last Name
         canvasser_phone: Phone
         canvasser_email: Email
-        shift_location: Location 
+        shift_location: Location
       partner:
         from_email: Edit "from" email address to send autoresponders from your organization,
           rather than Rock the Vote.
         url: URL
         registration_instructions_url: PDF instructions URL
       state_registrants/mi_registrant:
-        updated_dln_recently: Have you updated your driver’s license or state ID address with the Secretary of State within the last 10 days?
-        requested_duplicate_dln_today: Have you applied for a duplicate driver’s license or state ID today?
+        updated_dln_recently: Have you updated your driver’s license or state ID address
+          with the Secretary of State within the last 10 days?
+        requested_duplicate_dln_today: Have you applied for a duplicate driver’s license
+          or state ID today?
         confirm_us_citizen: I am a United States citizen.
-        confirm_will_be_18: I am at least 17.5 years old and will vote only after I am 18.
-        is_30_day_resident: I am a Michigan resident and will vote only after I have lived in my city or township for at least 30 days.
-        registration_cancellation_authorized: I authorize the cancellation of any previous registration.
-        digital_signature_authorized: I authorize the Secretary of State to use my stored digital signature for voter registration.
-        full_name: Full Name (as printed on your Michigan driver's license or state ID)
+        confirm_will_be_18: I am at least 17.5 years old and will vote only after
+          I am 18.
+        is_30_day_resident: I am a Michigan resident and will vote only after I have
+          lived in my city or township for at least 30 days.
+        registration_cancellation_authorized: I authorize the cancellation of any
+          previous registration.
+        digital_signature_authorized: I authorize the Secretary of State to use my
+          stored digital signature for voter registration.
+        full_name: Full Name (as printed on your Michigan driver's license or state
+          ID)
         dln: Michigan Driver's License or state ID number (no dashes or spaces)
         date_of_birth: Birthdate
         eye_color_code: Eye color (as printed on your license or state ID)
         ssn4: Social Security Number (Last 4 digits)
-        registration_address_number: Street Number  
+        registration_address_number: Street Number
         registration_address_street_name: Street Name
         registration_address_street_type: Street Type
         registration_address_post_directional: Direction
@@ -78,16 +92,16 @@ en:
         home_state: State
         home_state_abbrev: State
         phone: Phone Number (for election use only)
-        mailing_same_as_residential_address: Mailing address is same as residential address
-        mailing_address_1: "Street Number"
-        mailing_address_2: "Street Name"
-        mailing_address_3: "Street Type"
-        mailing_address_unit_number: "Apt/Unit"
-        mailing_city: "City"
-        mailing_state: "State"
-        mailing_zip_code: "ZIP Code"
+        mailing_same_as_residential_address: Mailing address is same as residential
+          address
+        mailing_address_1: Street Number
+        mailing_address_2: Street Name
+        mailing_address_3: Street Type
+        mailing_address_unit_number: Apt/Unit
+        mailing_city: City
+        mailing_state: State
+        mailing_zip_code: ZIP Code
         mailing_country: Country
-        
       state_registrants/va_registrant:
         confirm_voter_record_update: I consent to update my voter record with the
           state or to register to vote if I am not yet registered with Virginia
@@ -196,6 +210,38 @@ en:
         sms_number_for_continue_on_device: 'Text me the link:'
         email_address_for_continue_on_device: 'Email me the link:'
         voter_signature_image: Voter Signature Image
+      abr:
+        date_of_birth: Date of Birth
+        email: Email Address
+        zip: ZIP Code
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        address: Address
+        street_name: Street Name and Type
+        unit: 'Unit/Lot #'
+        city: City
+        home_state_name: State
+        home_state_abbrev: State
+        state_name: State
+        state_abbrev: State
+        has_mailing_address: I get my mail at a different address from the one above.
+        mailing_address: Address
+        mailing_unit: 'Unit/Lot #'
+        mailing_city: City
+        mailing_state_abbrev: State
+        mailing_zip_code: Zip
+        party: Party
+        race: Race
+        state_id_number: ID Number
+        phone: Phone
+        phone_type: Type
+        opt_in_email: Receive emails
+        opt_in_sms: Receive text messages
+        attest_true: I have reviewed the above information, and it is true and accurate
+          to the best of my knowledge.
       registrant:
         date_of_birth: Date of Birth
         email_address: Email Address
@@ -269,30 +315,34 @@ en:
             full_name:
               invalid: Full Name is invalid.
               too_long:
-                one: "Full Name is too long (maximum is 1 character)"
-                other: "Full Name is too long (maximum is %{count} characters)"
+                one: Full Name is too long (maximum is 1 character)
+                other: Full Name is too long (maximum is %{count} characters)
             dln:
               invalid: Must be one letter followed by 12 numbers.
             confirm_us_citizen:
               accepted: You must be a United States citizen to register to vote.
             confirm_will_be_18:
-              accepted: Michigan law requires voters to be 17.5 before they can register. Please revisit this site when you are eligible!
+              accepted: Michigan law requires voters to be 17.5 before they can register.
+                Please revisit this site when you are eligible!
             is_30_day_resident:
-              accepted:
-                To register to vote in Michigan you must be a Michigan resident (at the time you register) and a resident of your city or township for at least 30 days (when you vote).
-                <br><br>
-                If you’re a college student, you may choose to register to vote either at your campus address or your previous address – whichever one you consider to be your residential address.
+              accepted: To register to vote in Michigan you must be a Michigan resident
+                (at the time you register) and a resident of your city or township
+                for at least 30 days (when you vote). <br><br> If you’re a college
+                student, you may choose to register to vote either at your campus
+                address or your previous address – whichever one you consider to be
+                your residential address.
             registration_cancellation_authorized:
-              accepted: You must authorize the cancellation of your previous registration in order to register online.
+              accepted: You must authorize the cancellation of your previous registration
+                in order to register online.
             digital_signature_authorized:
-              accepted: You must authorize the use of your stored digital signature in order to register online.
+              accepted: You must authorize the use of your stored digital signature
+                in order to register online.
             registration_address_street_type:
-              invalid: "Street type is invalid."
+              invalid: Street type is invalid.
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
               too_young: You must be at least 17.5 years old to register to vote
-            
         state_registrants/va_registrant:
           blank: Required
           invalid_zip: Invalid ZIP
@@ -339,7 +389,7 @@ en:
             confirm_assitant_declaration:
               accepted: You must confirm that you agree to the terms above.
             sms_number_for_continue_on_device:
-              format: 'Please provide a valid number'
+              format: Please provide a valid number
             phone:
               invalid: 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT
@@ -364,6 +414,14 @@ en:
                 or sign a paper form to complete your application.
               too_many_retries: After two unsuccessful PennDOT submissions you must
                 provide an electronic signature.
+        abr:
+          blank: Required
+          format: Invalid
+          invalid: "%{attribute} is invalid."
+          attributes:
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
         registrant:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
@@ -394,6 +452,7 @@ en:
       messages:
         inclusion: "%{attribute} is not included in the list."
         exclusion: "%{attribute} is reserved."
+        format: Invalid
         invalid: "%{attribute} is invalid."
         invalid_for_pdf: "%{attribute} must be provided in English."
         confirmation: "%{attribute} doesn't match confirmation."

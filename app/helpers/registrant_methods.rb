@@ -1,4 +1,6 @@
 module RegistrantMethods
+  include RegistrantAbrMethods
+  
   def aasm_current_state
     aasm.current_state
   end
@@ -143,44 +145,23 @@ module RegistrantMethods
     end
   end
   
-  def validate_date_of_birth_age
-    if date_of_birth < Date.parse("1900-01-01")
-      errors.add(:date_of_birth, :too_old)
-    end    
+  
+  
+  def titles
+    Registrant::TITLE_KEYS.collect {|key| I18n.t("txt.registration.titles.#{key}", :locale=>locale)}
+  end
+
+  def suffixes
+    Registrant::SUFFIX_KEYS.collect {|key| I18n.t("txt.registration.suffixes.#{key}", :locale=>locale)}
+  end
+
+  def races
+    Registrant::RACE_KEYS.collect {|key| I18n.t("txt.registration.races.#{key}", :locale=>locale)}
   end
   
-  def validate_date_of_birth
-    if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
-      validate_date_of_birth_age
-      return
-    end
-    if date_of_birth_before_type_cast.blank?
-      if date_of_birth_parts.compact.length == 3
-        errors.add(:date_of_birth, :invalid)
-      else
-        errors.add(:date_of_birth, :blank)
-      end
-    else
-      @raw_date_of_birth = date_of_birth_before_type_cast
-      date = nil
-      if matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
-        m,d,y = matches.captures
-        date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
-      elsif matches = date_of_birth_before_type_cast.to_s.match(/\A(\d{4})\D+(\d{1,2})\D+(\d{1,2})\z/)
-        y,m,d = matches.captures
-        date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
-      end
-      if date
-        @raw_date_of_birth = nil
-        self[:date_of_birth] = date
-        validate_date_of_birth_age
-      else
-        errors.add(:date_of_birth, :format)
-      end
-    end
+  def phone_types
+    Registrant::PHONE_TYPE_KEYS.collect {|key| I18n.t("txt.registration.phone_types.#{key}", :locale=>locale)}
   end
-  
-  
   
   def key_for_attribute(attr_name, i18n_list)
     return nil if !self.respond_to?(attr_name)
@@ -195,6 +176,7 @@ module RegistrantMethods
   def english_races
     Registrant.english_races
   end
+
 
 
   

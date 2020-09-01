@@ -7,6 +7,7 @@ Rocky::Application.routes.draw do
   match "/registrants/new/:state_abbrev", to: "registrants#new", via: :get
   match "/registrants/map", to: "registrants#new", via: :get
   match "/registrants/map/:state_abbrev", to: "registrants#new", via: :get
+  match "/absentee", to: "abrs#new", via: :get
   match "/share", to: "registrants#share", via: :get
   
   match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
@@ -22,6 +23,22 @@ Rocky::Application.routes.draw do
     member do
       get 'end_shift'
       get 'set_partner'
+    end
+  end
+  
+  match "/absentee/timeout", :to => "abr_timeouts#index", :as=>'abr_timeout', via: :get
+  
+  resources "absentee", :only => [:new, :create, :show, :update], :controller=>"abrs", as: :abrs do
+    member do
+      get "step_2"
+      get "step_3"
+      get "not_registered"
+      get "registration"
+      get "preparing"
+      get "download"
+      get "finish"
+      get "state_online"
+      get "state_online_redirect"
     end
   end
   

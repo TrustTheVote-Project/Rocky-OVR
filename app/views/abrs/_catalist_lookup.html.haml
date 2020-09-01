@@ -1,0 +1,12 @@
+.catalist_match
+  .name
+    = catalist_lookup.match_name
+  .address
+    = t('txt.abr.match.address') 
+    %br
+    = catalist_lookup.match_address1
+    - unless catalist_lookup.match_address2.blank?
+      %br
+      = catalist_lookup.match_address2
+    %br
+    = "#{catalist_lookup.match_city}, #{catalist_lookup.match_state} #{catalist_lookup.match_zip}"

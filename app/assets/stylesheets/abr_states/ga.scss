@@ -1,0 +1,23 @@
+.ga-abr-form-fields {
+  li {
+    &.uocava_status {
+      padding-left: 40px;
+      margin-top: -1em;
+      h3 {
+        display: none;
+      }
+    }
+    &.request_electronic_transmission {
+      padding-left: 40px;
+    }
+    &.text14 {
+      width: 46%;
+      margin-right: 27%;
+    }
+    &.text15 {
+      width: 27%;
+    }
+    &.text16 {
+    }
+  }
+}

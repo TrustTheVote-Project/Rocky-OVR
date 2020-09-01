@@ -42,6 +42,7 @@ record_1:
   id_number_tooltip: drivers_license_with_state_name
   sos_address: State of Alaska<br>Division of Elections<br>PO Box 110017<br>Juneau,
     AK 99811-0017
+  sos_abr_address: Division of Elections Absentee and Petition Office<br>2525 Gambell Street, Suite 105<br>Anchorage, AK 99503-2838
   sos_phone: "(907) 465-3021"
   sos_url: http://www.elections.alaska.gov
   sub_18: 90_days_before

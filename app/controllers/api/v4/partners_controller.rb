@@ -84,12 +84,17 @@ class Api::V4::PartnersController < Api::V4::BaseController
           volunteer_messages[l] = I18n.t('txt.registration.volunteer', organization: partner.organization, locale: l)
         end
         
-        
+        locations = CanvassingShift.location_options(partner)
+        if locations.blank?
+          locations = [["Default Location", 0]]
+        end
+        locations = locations.collect {|name, id| {id: id, name: name}}
+
         # TODO: should the jsonp method use JSON.generate for unencoded utf-8 responses?
         json_str = JSON.generate({
           is_valid: true,
           partner_name: partner.organization,
-          valid_locations: [{ id: 1, name: "TBD Location 1", id: 2, name: "TBD Location 2"}],
+          valid_locations: locations,
           registration_deadline_date: RockyConf.ovr_states.PA.registration_deadline.strftime("%Y-%m-%d"),
           registration_notification_text: deadline_messages,
           volunteer_text: volunteer_messages,

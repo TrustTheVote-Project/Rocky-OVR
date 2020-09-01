@@ -1,0 +1,18 @@
+.mt-abr-form-fields {
+  li {
+    &.city_and_state, &.city_and_state_2 {
+      width: 73%;
+      margin-right: 2%;
+    }
+    &.zip_code_2, &.zip_code_3 {
+      width: 25%;
+    }
+    &.period_from {
+      width: 48%;
+      margin-right: 2%;
+    }
+    &.period_to {
+      width: 50%;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<%- if @abr.pdf_ready? %>
+  <h2>
+    <%= t('txt.abr.download_header', state_name: @abr.home_state_name) %>
+  </h2>
+  <div class="intro-message">
+    <%= t('txt.abr.download_instructions', registrar_address: @abr.state_registrar_address).html_safe %>
+  </div>
+  <br/>
+  <div class="intro-message">
+    <%= t("states.custom.#{@abr.i18n_key}.abr.download_instructions", default: "", registrar_address: @abr.state_registrar_address).html_safe %>
+  </div>
+  <p class="centered" onclick="window.open('<%=download_abr_path(@abr)%>','_blank'); window.location='<%= finish_abr_path(@abr) %>';"><%= rollover_image_link(:print, I18n.t('txt.button.download_abr'), download_abr_path(@abr),
+                            :target => "_blank") %></p>
+  
+<%- else %>
+  <% content_for :head do -%>
+    <meta http-equiv="refresh" content="3; url=<%= @refresh_location %>" />
+  <%- end %>
+  <%- if  @use_mobile_ui %>
+    <div id="dynamic-progress-bar">
+      <div class="filler" style="width: 80%"></div>
+      <div class="content">80%</div>
+    </div>
+  <%- end %>
+
+  <div id="preparing_content">
+    <h1><%= I18n.t('txt.abr.download_header') %></h1>
+    <div class="download" style="position:relative">
+      <div>
+        <h2 class="spaced_out"><%= I18n.t('txt.abr.download_instructions', registrar_address: @abr.state_registrar_address) %></h2>
+        <h2 class="preparing"><%= I18n.t('txt.abr.preparing_header') %></h2>
+      </div>
+      <p class="preparing"><%= image_tag "reg/spinner.gif" %></p>
+      <p><%= I18n.t('txt.abr.preparing_instructions') %></p>
+    </div>
+  </div>
+<%- end %>
+

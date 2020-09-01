@@ -97,9 +97,13 @@ module PdfQueueBase
     return [registrant_id, message, generation_class]
   end
   
+  def klass
+    Registrant
+  end
+  
   def generate(registrant_id, message)
     puts "Generate for #{self.name}"
-    r = Registrant.find(registrant_id)
+    r = klass.find(registrant_id)
     if r && r.pdf_ready?        
       Rails.logger.warn "Tried to generate PDF for #{r.id} that was already complete"
       delete_from_queue(message)

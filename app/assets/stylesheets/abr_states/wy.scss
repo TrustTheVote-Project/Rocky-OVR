@@ -1,0 +1,15 @@
+.wy-abr-form-fields {
+  li {
+    &.city_2 {
+      width: 46%;
+      margin-right: 2%;
+    }
+    &.state_2 {
+      width: 25%;
+      margin-right: 2%;
+    }
+    &.zip_2 {
+      width: 25%;
+    }
+  }
+}
