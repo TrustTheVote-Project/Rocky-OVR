@@ -241,6 +241,21 @@ class Abr < ActiveRecord::Base
     end
   rescue StandardError => error
   end
+
+  def deliver_final_reminder_email
+    if send_emails? && !final_reminder_delivered && !pdf_downloaded && pdf_ready?
+      begin
+        AbrNotifier.final_reminder(self).deliver_now
+      rescue
+        # If we can't deliver, just stop
+      end
+      self.final_reminder_delivered = true
+      self.save(validate: false)
+    elsif !pdf_downloaded && pdf_ready?
+      self.final_reminder_delivered = true
+      self.save(validate: false)
+    end
+  end
   
   def state_registrar_office
     @state_registrar_office ||= home_state && home_state.abr_office(self.zip)
