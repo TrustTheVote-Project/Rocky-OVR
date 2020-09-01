@@ -11,7 +11,7 @@
 -->
 </style>
 
-<%= I18n.t('email.thank_you_external.body.main',
+<%= I18n.t('email.abr.thank_you_external.body.main',
   :registrant_first_name=>@registrant_first_name,
   :registrant_last_name=>@registrant_last_name,
   :rtv_and_partner_name=>@registrant_rtv_and_partner_name,
@@ -25,7 +25,7 @@
 
 <hr size="3" align="left" width="100%" color="black"><br><br>
 
-<%= I18n.t('email.thank_you_external.body.send_to_friends', 
+<%= I18n.t('email.abr.thank_you_external.body.send_to_friends', 
   :rtv_link=>@rtv_link,
   :registrant_first_name=>@registrant_first_name,
   :registrant_last_name=>@registrant_last_name, :locale => @locale
@@ -33,4 +33,4 @@
 
 <hr size="3" align="left" width="100%" color="black"><br><br>
 
-<%= I18n.t('email.thank_you_external.body.footer', :locale => @locale).html_safe %> 
+<%= I18n.t('email.abr.thank_you_external.body.footer', :locale => @locale).html_safe %> 
