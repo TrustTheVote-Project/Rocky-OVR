@@ -2,9 +2,9 @@
 en:
   txt:
     abr:
-      step_1_header: ""
-      step_1_instructions: "<p>Request your absentee ballot now so that you can vote from the
-        ease and safety of your home.</p><br/><br/>"
+      step_1_header: ''
+      step_1_instructions: "<p>Request your absentee ballot now to vote from the ease
+        and safety of your home.</p><br/><br/>"
       step_2_header: Where are you registered to vote?
       step_2_instructions: "<p>We'll use this information to determine how you can
         request your absentee ballot.</p>"
