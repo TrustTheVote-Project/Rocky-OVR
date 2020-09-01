@@ -222,9 +222,9 @@ en:
             within_county: within the county in which I am registered to vote.
       az:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
+          requirements: "<p>If you are registered to vote and can provide a valid
+            state ID number, voter ID number, or SSN, you may request your absentee
+            ballot online directly with the state.</p>"
           finish_instructions: '<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 7:00pm on Election Day</p><p>At any
@@ -435,9 +435,8 @@ en:
             Supervisor of Elections.  Click below to find your Supervisor of Elections
             to request your absentee ballot.
           confirm: ''
-          requirements: <p>If you are registered to vote and have a valid}
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
+          requirements: "<p>If you are registered to vote, you may request your absentee
+            ballot online directly with the state.</p>"
           finish_instructions: '<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible.</p><p>Your
             request must be received by 5:00pm on October 24, 2020.</p><p>Once you
@@ -537,9 +536,9 @@ en:
             add my phone number or email address to my voter record.
       id:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
+          requirements: "<p>If you are registered to vote and can provide a valid
+            state ID or SSN, you may request your absentee ballot online directly
+            with the state.</p>"
           finish_instructions: '<p>Once you have your ballot, again be sure to read
             the instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You
@@ -861,8 +860,7 @@ en:
             </p>'
           requirements: |-
             <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state.</p>
-            <p>To request a ballot, your personal information has to match the information about you that is on file with the Maryland MVA.</p>
-            <p>These are the things that have to match:</p>
+            <p>To request a ballot, the following personal information has to match the information about you that is on file with the Maryland MVA:</p>
             <ul>
               <li>Your name</li>
               <li>Your date of birth</li>
@@ -873,9 +871,8 @@ en:
         state_online_abr:
           confirm: To qualify to request a ballot in ME, you only need to be registered
             to vote.
-          requirements: <p>If you are registered to vote and have a valid 
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
+          requirements: "<p>If you are registered to vote and have a valid state ID,
+            you may request your absentee ballot online directly with the state.</p>"
           finish_instructions: "<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in. Your
             ballot must be received by 8:00pm on Election Day.</>"
@@ -1021,9 +1018,9 @@ en:
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid 
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
+          requirements: "<p>If you are registered to vote and can provide a valid
+            state ID number or the last 4 digits of your SSN, you may request your
+            absentee ballot online directly with the state.</p>"
           instructions: |-
             <p>To request an absentee ballot in MN, you must certify that:</p>
             <ul>
@@ -1189,11 +1186,6 @@ en:
             "Continue as a guest" and submit your voter registration online.'
       nd:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid 
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
-          finish_instructions: '<p>At any time you can check the status of your application
-            and the status of your ballot at: <a rel="noopener" target="blank" href="https://vip.sos.nd.gov/AbsenteeTracker.aspx">https://vip.sos.nd.gov/AbsenteeTracker.aspx</a></p>'
           requirements: |-
             <p>To use North Dakota's online absentee request, you must have one of these forms of ID:</p>
             <ul>
@@ -1205,6 +1197,8 @@ en:
               <li>Long-Term Care Certificate</li>
             </ul>
             <p>You may also use the online system to request an absentee ballot if you are unable to obtain an ID due to disability.<p>
+          finish_instructions: '<p>At any time you can check the status of your application
+            and the status of your ballot at: <a rel="noopener" target="blank" href="https://vip.sos.nd.gov/AbsenteeTracker.aspx">https://vip.sos.nd.gov/AbsenteeTracker.aspx</a></p>'
       ne:
         abr:
           requirements: "<p>To qualify to request a ballot in NE, you only need to
@@ -1294,9 +1288,11 @@ en:
               and would otherwise vote in person but will need to care for children
               or infirm adults.
           storm_warning_reason__required_message: Please select one of the above reasons
-          Group3: "I am requesting an official absentee ballot for the following election (check only one):"
-          Party: "Required for Primary Elections: I am a member of, or I am now declaring my affiliation with a party and I am requesting a ballot for that party’s primary (check only one):"
-          
+          Group3: 'I am requesting an official absentee ballot for the following election
+            (check only one):'
+          Party: 'Required for Primary Elections: I am a member of, or I am now declaring
+            my affiliation with a party and I am requesting a ballot for that party’s
+            primary (check only one):'
       nj:
         abr:
           finish_instructions: '<p>Once you receive your ballot, make sure to read
@@ -1497,9 +1493,8 @@ en:
         state_online_abr:
           confirm: To qualify to request a ballot in OK, you only need to be registered
             to vote.
-          requirements: <p>If you are registered to vote and have a valid 
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
+          requirements: "<p>If you are registered to vote and have a valid state ID,
+            you may request your absentee ballot online directly with the state.</p>"
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://www.ok.gov/elections/OVP.html">https://www.ok.gov/elections/OVP.html</a></p>'
       or:
@@ -1683,9 +1678,9 @@ en:
               <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
             </ul>
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
+          requirements: "<p>If you are registered to vote and can provide the last
+            4 digits of your SSN, you may request your absentee ballot online directly
+            with the state.</p>"
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>'
       ri:
@@ -1867,7 +1862,10 @@ en:
             <p> Once you have your ballot, again be sure to read the instructions carefully, fill out the ballot and send it back in.  Vote-by-mail ballots must be received by 11:59am on Election Day, or postmarked one (1) day before Election Day if returned by mail. If you are dropping your absentee ballot off in person, it can be dropped off in a ballot drop box. The ballot must be deposited in the drop box before polls close on Election Day. Any voter who is in line at a ballot drop box with a sealed return envelope containing their ballot at or before 8 p.m. must be allowed to deposit the ballot in the ballot box. </p>
       va:
         state_online_abr:
-          requirements: You can use Virginia's online system if you're a first time voter and have a VA ID or if you've voted in previous elections.
+          requirements: If you're a first-time voter and have a VA ID, you can use
+            Virginia's online system. If you've voted in previous elections, then
+            you only need to provide the last 4 digits of your SSN to use Virginia's
+            online system.
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your completed ballot must be postmarked by Election Day (November 3rd).
@@ -1967,10 +1965,9 @@ en:
           Dept. of Elections to register to vote.</p>"
       vt:
         state_online_abr:
-          requirements: <p>If you are registered to vote and have a valid 
-            state ID, you may request your absentee ballot online directly with the
-            state.</p>
-          
+          requirements: "<p>If you are registered to vote and can provide a valid
+            state ID or your SSN, you may request your absentee ballot online directly
+            with the state.</p>"
         abr:
           header: Absentee Requests In Vermont
           instructions: '<p>Your state is automatically sending an absentee ballot
@@ -2020,9 +2017,8 @@ en:
             </p>'
       wv:
         state_online_abr:
-          requirements: 'To register online, you must provide your DMV ID # or Last
-            Four of SSN (whichever is on file, or if you have both on file you may
-            choose one to enter).'
+          requirements: 'To request an absentee online, you must provide your DMV
+            ID # or Last Four of SSN.'
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Absentee ballots postmarked by Election Day will be accepted if RECEIVED
