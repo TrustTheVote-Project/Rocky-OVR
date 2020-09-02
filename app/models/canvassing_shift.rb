@@ -59,7 +59,7 @@ class CanvassingShift < ActiveRecord::Base
       default_location_id = begin
         RockyConf.blocks_configuration.partners[partner.id].location_id || RockyConf.blocks_configuration.default_location_id
       rescue
-        RockyConf.blocks_configuration.default_location_id
+        nil
       end
       return [["Default Location", default_location_id]] if default_location_id
     end

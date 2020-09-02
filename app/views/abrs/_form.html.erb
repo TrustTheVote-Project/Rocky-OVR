@@ -1,0 +1,41 @@
+<%= hidden_field_tag "partner", @partner_id %>
+
+<% content_for :head do %>
+<script>
+$(document).ready(function() {
+  $('#registrant_javascript_disabled').remove();
+});
+</script>
+<% end %>
+<%= form.hidden_field :javascript_disabled %>
+<%= form.hidden_field :votercheck %>
+<%= form.hidden_field :first_name %>
+<%= form.hidden_field :last_name %>
+<%= form.hidden_field :tracking_source %>
+<%= form.hidden_field :tracking_id %>
+<%= form.hidden_field :home_state %>
+
+<ul class="flat registrant-form__email">
+  <li class="width_f registrant-form__email__line">
+    <h3 class='registrant-form__email__line__label'><%= form.label :email %><%- unless !@abr.require_email_address?%><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end%></h3>
+    
+    <%= field_div form, :email, {class: 'registrant-form__email__line__input', required: @abr.require_email_address? } %>
+    <div class="tooltip registrant-form__email__line__tooltip"><%= tooltip_tag :email %></div>
+    <span class="error registrant-form__email__line__error"><%= form.object.errors[:email].join("\n") %></span>
+  </li>
+</ul>
+
+<ul class="flat registrant-form__home-zip">
+  <li class="width_f registrant-form__home-zip__line">
+    <h3 class='registrant-form__home-zip__line__label'><%= form.label :zip %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+    <%= field_div form, :zip, class: 'registrant-form__home-zip__line__input', required: true %>
+    <div class="tooltip registrant-form__home-zip__line__tooltip"><%= tooltip_tag :zip %></div>
+    <span class="error registrant-form__home-zip__line__error"><%= form.object.errors[:zip].join("\n") %></span>
+  </li>
+  <li class="registrant-form__home-zip__button">
+    <%= rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) %>
+  </li>    
+</ul>
+
+
+

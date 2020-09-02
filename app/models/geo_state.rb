@@ -26,7 +26,7 @@ class GeoState < ActiveRecord::Base
 
   has_many :localizations, :class_name => 'StateLocalization', :foreign_key => 'state_id'
   
-  delegate :online_reg_url, :redirect_to_online_reg_url, :has_ovr_pre_check?, :ovr_pre_check, :decorate_registrant, :enabled_for_language?, :require_age_confirmation?, :require_id?, :automatic_under_18_ok?, :use_state_flow?, :to=>:state_customization
+  delegate :online_reg_url, :redirect_to_online_reg_url, :has_ovr_pre_check?, :ovr_pre_check, :decorate_registrant, :enabled_for_language?, :require_age_confirmation?, :require_id?, :automatic_under_18_ok?, :use_state_flow?, :online_abr_enabled?, :oabr_url, :oabr_url_is_local_jurisdiction?, :to=>:state_customization
 
   def self.[](id_or_abbrev)
     init_all_states
@@ -42,6 +42,11 @@ class GeoState < ActiveRecord::Base
     init_all_states
     @@all_states_by_abbrev.map { |abbrev, state| [state.name, abbrev] }.sort
   end
+
+  # def self.collection_for_select
+  #   init_all_states
+  #   @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
+  # end
 
   def self.init_all_states
     @@all_states_by_id ||= all.inject([]) { |arr,state| arr[state.id] = state; arr }
@@ -376,6 +381,21 @@ class GeoState < ActiveRecord::Base
     GeoState.states_with_online_registration.include?(self.abbreviation) && self.enabled_for_language?(locale, reg)
   end
   
+  def abr_office(zip_code=nil)
+    zcc = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first    
+    zcc&.ensure_up_to_date
+    return zcc
+  end
+  
+  def abr_address(zip_code=nil)
+    county_address_zip = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first
+    if county_address_zip && !county_address_zip.req_address.blank?
+      county_address_zip.req_address.gsub(/\n/,"<br/>")
+    else
+      state_abr_addr = read_attribute(:registrar_abr_address)
+      return state_abr_addr.blank? ? registrar_address(zip_code) : state_abr_addr
+    end    
+  end
   def registrar_address(zip_code=nil)
     county_address_zip = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first
     if county_address_zip && county_address_zip.address

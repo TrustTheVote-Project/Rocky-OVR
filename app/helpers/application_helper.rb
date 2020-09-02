@@ -55,7 +55,7 @@ module ApplicationHelper
     return stylesheets.compact
   end
 
-  def partner_css(partner = @partner, registrant=@registrant, include_mobile = @use_mobile_ui)
+  def partner_css(partner = @partner, registrant=@registrant || @abr, include_mobile = @use_mobile_ui)
     if params.has_key?(:preview_custom_assets) || registrant.try(:is_fake)
       return preview_partner_css(partner, registrant, include_mobile)
     end
@@ -86,7 +86,7 @@ module ApplicationHelper
     stylesheets
   end
   
-  def registrant_css(registrant = @registrant, locale = @locale)
+  def registrant_css(registrant = @registrant || @abr, locale = @locale)
     stylesheets = []
     locale ||= registrant ? registrant.locale : nil
     if !locale.nil?
@@ -141,26 +141,29 @@ module ApplicationHelper
 
   
   def field_li(form, field, options={})
-    required = options[:required] ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''
+    required = options[:required]==true ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''
     field_name = options[:field_name] || field
+    instructions = options[:instructions]
+    instructions_html = instructions.blank? ? nil : "<p class='instructions'>#{instructions}</p>"
     label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe).html_safe)
     tooltip = content_tag(:div, tooltip_tag(field_name, options[:tooltip_content]).html_safe, class: 'tooltip') unless options[:skip_tooltip]
     error = "<span class='error'>#{form.object.errors[field_name].join("\n").html_safe}</span>".html_safe
     field_html = nil
     if options[:required]
       options[:field_options] ||= {}
-      options[:field_options][:required] = true
+      options[:field_options][:required] = options[:required]
       options[:field_options][:required_message] = options[:required_message]
     end
     if options[:select_options]
       field_html = select_div(form, field, options[:select_options], options[:field_options])
     elsif options[:radio_options]
-      label = content_tag(:h3, (form.object.class.human_attribute_name(field) + required).html_safe).html_safe
+      radio_label = options[:label_options] || form.object.class.human_attribute_name(field)
+      label = content_tag(:h3, (radio_label.html_safe + required.html_safe).html_safe).html_safe
       field_html = radio_div(form, field, options[:radio_options], options[:field_options])
     else
       field_html = field_div(form, field, options[:field_options])
     end
-    content_tag(:li, "#{label}#{field_html.html_safe}#{tooltip}#{error}".html_safe, options[:li_options])
+    content_tag(:li, "#{label}#{instructions_html}#{field_html.html_safe}#{tooltip}#{error}".html_safe, options[:li_options])
   end
 
   def field_div(form, field, options={})
@@ -169,10 +172,14 @@ module ApplicationHelper
     selector = "#{kind}_field"
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
     class_name = [options.delete(:class), has_error].compact.join(' ')
-    if options.delete(:required)
+    if req_type = options.delete(:required)
       options[:data] ||= {}
-      options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
-    end
+      if req_type == :conditional
+        options[:data]["client-conditional-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      else
+        options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      end
+    end    
     if options.delete(:require_accept)
       options[:data] ||= {}
       options[:data]["client-validation-require-accept".to_sym] = require_accept_message_for(form.object, field)
@@ -183,9 +190,13 @@ module ApplicationHelper
   def select_div(form, field, contents, options={})
     options ||= {}
     html_options = {}
-    if options.delete(:required)
+    if req_type = options.delete(:required)
       html_options[:data] ||= {}
-      html_options[:data]["client-validation-required".to_sym] = required_message_for(form.object, field)
+      if req_type == :conditional
+        html_options[:data]["client-conditional-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      else
+        html_options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      end
     end
     if options.delete(:require_accept)
       options[:data] ||= {}
@@ -199,15 +210,19 @@ module ApplicationHelper
   def radio_div(form, field, radio_options, options={})
     options ||= {}
     html_options = {}
-    if options.delete(:required)
+    if req_type = options.delete(:required)
       html_options[:data] ||= {}
-      html_options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      if req_type == :conditional
+        html_options[:data]["client-conditional-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      else
+        html_options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      end
     end
     
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
     radio_buttons = radio_options.collect do |text, value|
       radio = form.radio_button(field, value).html_safe
-      form.label("#{field}_#{value}", "#{radio} #{text}".html_safe).html_safe
+      form.label("#{field}_#{Abr.make_method_name(value, prefix_numbers: false)}", "#{radio} #{text}".html_safe).html_safe
     end.join("\n").html_safe
     content_tag(:div, radio_buttons, html_options.merge(:class => "#{has_error} radio-buttons"))
   end

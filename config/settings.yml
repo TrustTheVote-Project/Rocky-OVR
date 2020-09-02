@@ -26,8 +26,13 @@ blocks_configuration:
 
 
 # this URL (if present) is shown as a WIKI nav menu item in the Partner portal
-partner_wiki_url: "http://wiki.rockthevote.com"
+partner_wiki_url: "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/"
 
+catalist:
+  audience: catalist_api_mr_prod
+  url: https://api.catalist.us
+  auth_url: https://auth.catalist.us
+  
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
   branding_from: "Rock the Vote <info@rockthevote.com>"
@@ -66,6 +71,146 @@ pdf_expiration_days: 14
 pdf_no_email_expiration_minutes: 10
 partner_csv_expiration_minutes: 30
 
+absentee_states:
+  AK:
+    online_req_url: https://absenteeballotapplication.alaska.gov/
+    pdf_template: ak.pdf
+  AL:
+    pdf_template: al.pdf
+  AR:
+    pdf_template: ar.pdf
+  AZ:
+    online_req_url: https://my.arizona.vote/Early/ApplicationLogin.aspx
+    pdf_template: az.pdf
+  CA: {}
+  CO: {}
+  CT:
+    pdf_template: ct.pdf
+  DC: 
+    online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
+    # pdf_template: dc.pdf
+    pdf_url: https://dcboe.org/Data-Resources-Forms/Forms-and-Resources/AbsenteeBallotRequestForm.aspx
+  DE:
+    online_req_url: https://ivote.de.gov/voterlogin.aspx    
+    pdf_template: absentee_ballot_application.pdf
+  FL:
+    online_req_url: https://dos.elections.myflorida.com/supervisors/    
+  GA:
+    pdf_template: ga.pdf
+  HI: {}
+  IA:
+    pdf_template: ia.pdf
+  ID:
+    online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
+    pdf_template: #2020_Absentee_Request.pdf
+    pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
+  IL:
+    pdf_template: common.pdf
+    counties:
+      "kane county": 
+        online_req_url: https://www.kanecountyclerk.org/Elections/Pages/Request-Ballot-By-Mail.aspx
+      "lake county":
+        online_req_url: https://www.lakecountyil.gov/351/Voter-Power-for-Registered-Voters
+      "madison county":
+        online_req_url: https://apps.co.madison.il.us/CountyClerk/Elections/VoteByMail/
+      "mchenry county":
+        online_req_url: https://www.mchenrycountyil.gov/county-government/departments-a-i/county-clerk/elections/vote-by-mail
+      "sangamon county":
+        online_req_url: https://www.sangamoncountyclerk.com/Elections/Vote/AbsenteeApplicationForm.aspx
+    cities:
+      "chicago":
+        online_req_url: https://www.chicagoelections.gov/en/vote-by-mail-application.html
+      "bloomington":
+        online_req_url: https://cityblm.seamlessdocs.com/f/VBMapplication1120
+  IN:
+    online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
+    pdf_template: in.pdf
+  KS:
+    pdf_template: ks.pdf
+  KY: {}
+  LA:
+    online_req_url: https://voterportal.sos.la.gov/Home/VoterLogin
+    pdf_template: la.pdf
+  MA:
+    pdf_template: ma.pdf
+  MD:
+    online_req_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/VoterType
+    # pdf_template: md.pdf
+    pdf_url: https://elections.maryland.gov/voting/documents/Absentee_Ballot_Application_English.pdf
+  ME:
+    online_req_url: https://www1.maine.gov/cgi-bin/online/AbsenteeBallot/online-form.pl
+  MI:
+    online_req_url: https://mvic.sos.state.mi.us/avapplication
+    pdf_template: 
+    pdf_url: https://www.michigan.gov/documents/AbsentVoterBallot_105377_7.pdf
+  MN:
+    online_req_url: https://mnvotes.sos.state.mn.us/ABRegistration/ABRegistrationStep1.aspx
+  MO:
+    pdf_template: mo.pdf
+  MS: {}
+  MT:
+    pdf_template: mt.pdf
+  NC:
+    pdf_template: nc.pdf     
+  ND:
+    online_req_url: https://vip.sos.nd.gov/absentee/
+    pdf_template:
+    pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
+  NE:
+    pdf_template: ne.pdf
+  NH:
+    pdf_template: nh.pdf
+  NJ:
+    pdf_template: nj.pdf
+  NM:
+    online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
+    pdf_template:
+    pdf_url: /abrs/nm.pdf
+  NV:
+    pdf_template: nv.pdf
+    counties:
+      "clark county":
+        online_req_url: https://www.clarkcountynv.gov/government/departments/elections/voter_services.php
+        pdf_template: nv.pdf
+        
+  NY:
+    pdf_template: ny.pdf
+  OH:
+    pdf_template: oh.pdf
+  OK:
+    online_req_url: https://www.ok.gov/elections/OVP.html
+  OR: {}      
+  PA:
+    online_req_url: https://www.pavoterservices.pa.gov/OnlineAbsenteeApplication/#/OnlineAbsenteeBegin
+    pdf_template:
+    pdf_url: https://www.votespa.com/Register-to-Vote/Documents/PADOS_MailInApplication.pdf
+  RI:
+    pdf_template: ri.pdf
+  SC:
+    online_req_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeRequest
+  SD:
+    pdf_template: sd.pdf
+  TN:
+    pdf_template: tn.pdf
+  TX:
+    pdf_template: tx.pdf
+  UT: {}  
+  VA:
+    online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
+    pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
+    #pdf_template: va.pdf
+  VT: {} #All vote-by-mail this year
+  WA: {}
+  WI:
+    online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
+    # pdf_template: wi.pdf
+    pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
+  WV:
+    online_req_url: https://sites.omniballot.us/54/absentee/app/home
+    pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
+    # pdf_template: wv.pdf
+  WY:
+    pdf_template: wy.pdf
   
 ovr_states:
   AZ:
@@ -133,7 +278,7 @@ ovr_states:
       - en
       - es
   DC:
-    redirect_to_online_reg_url: true
+    redirect_to_online_reg_url: false
     languages:
       - en
   DE:
@@ -179,6 +324,7 @@ ovr_states:
       - en
   KY:
     redirect_to_online_reg_url: true
+    require_id: false
     languages:
       - en
   MA:
@@ -235,7 +381,7 @@ ovr_states:
       - es
   PA:
     require_age_confirmation: true
-    grommet_min_version: "3.0.0"
+    grommet_min_version: "3.5.0"
     registration_deadline: 2020-11-03 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
     api_settings:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"

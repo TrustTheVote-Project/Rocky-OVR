@@ -47,6 +47,10 @@ class PartnerDetails
   def enabled_for_grommet_status
     @p.enabled_for_grommet? ? 'Yes' : 'No'
   end
+  
+  def enabled_for_catalist_api_status
+    @p.enabled_for_catalist_api? ? 'Yes' : 'No'
+  end
 
 
   def assets_status

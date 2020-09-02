@@ -1,0 +1,25 @@
+.nv-abr-form-fields {
+  li {
+    &.militarydomestic, &.militaryoverseas, &.civilianoverseas {
+      margin-left: 50px;
+    }
+    &.mailingaddress {
+      width: 73%;
+      margin-right: 2%;
+    }
+    &.mailapt {
+      width: 25%;
+    }
+    &.mailingcity {
+      width: 46%;
+      margin-right: 2%;
+    }
+    &.mailingstate {
+      width: 25%;
+      margin-right: 2%;
+    }
+    &.mailingzip {
+      width: 25%;
+    }
+  }
+}

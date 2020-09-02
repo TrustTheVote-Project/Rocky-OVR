@@ -120,7 +120,7 @@ RSpec.configure do |config|
     
   end
   
-  
+  Capybara.javascript_driver = ENV['DEBUG'] ? :selenium_chrome : :selenium_chrome_headless
 end
 
 def mock_admin_logged_in

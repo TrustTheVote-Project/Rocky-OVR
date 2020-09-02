@@ -1,0 +1,5 @@
+%h2= t('txt.abr.not_registered_header', state_name: @abr.home_state_name)
+
+= t('txt.abr.not_registered_instructions', state_name: @abr.home_state_name).html_safe
+
+= t('txt.abr.not_registered_link', url: registration_abr_path(@abr)).html_safe

@@ -1,0 +1,15 @@
+.ia-abr-form-fields {
+  li {
+    &.mailing_address_city {
+      width: 46%;
+      margin-right: 2%;
+    }
+    &.mailing_address_state {
+      width: 25%;
+      margin-right: 2%;
+    }
+    &.mailing_address_zip_code {
+      width: 25%;
+    }
+  }
+}

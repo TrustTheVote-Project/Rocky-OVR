@@ -1,0 +1,17 @@
+<%- content_for :head do %>
+  <meta http-equiv="refresh" content="2;URL='<%= @pdf_url %>'" />    
+<%- end %>
+
+
+<%- if @abr.partner && !@abr.partner.external_conversion_snippet.blank? %>
+  <%= @abr.partner.external_conversion_snippet.to_s.html_safe %>
+<%- end %>  
+
+
+<div id="preparing_content">
+  <h1><%= I18n.t('txt.abr.preparing_header') %></h1>
+  <div class="download" style="position:relative">
+    <p class="preparing"><%= image_tag "reg/spinner.gif" %></p>
+    <p><%= I18n.t('txt.abr.preparing_instructions') %></p>
+  </div>
+</div>

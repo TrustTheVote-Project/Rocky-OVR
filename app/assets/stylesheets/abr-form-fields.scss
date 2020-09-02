@@ -1,0 +1,138 @@
+.state-abr-form-fields {
+  li {
+    
+    &.line {
+      margin: .25em 0;      
+    }
+    
+    &.half, &.quarter, &.three-quarter {
+      margin-right: 2%;
+      &.last {
+        margin-right: 0;
+      }
+    }
+    &.half {
+      width: 48%;
+      &.last {
+        width: 50%;
+      }
+    }
+    &.quarter {
+      width: 23%;
+      &.last {
+        width: 25%;
+      }
+    }
+    &.three-quarter {
+      width: 73%;
+      &.last {
+        width: 75%;
+      }
+    }
+    &.indent-2 {
+      margin-left: 20%;
+      width: 80%;
+      &.half, &.quarter, &.three-quarter {
+        &.not-first, &.last {
+          margin-left: 0;
+        }
+      }
+    }
+    &.indent {
+      margin-left: 10%;
+      width: 90%;
+      &.half, &.quarter, &.three-quarter {
+        &.not-first, &.last {
+          margin-left: 0;
+        }
+      }
+      &.half {
+        width: 43%;
+        &.last {
+          width: 45%;
+        }
+      }
+      &.quarter {
+        width: 20.5%;
+        &.last {
+          width: 22.5%;
+        }
+      }
+      &.three-quarter {
+        width: 65.5%;
+        &.last {
+          width: 67.6%;
+        }
+      }      
+    }
+      
+    
+    ul.checkbox {
+      h3 {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        span.error {
+          flex-basis: 100%;
+        }
+      }
+    }
+    &.date {
+      input {
+        width: 55px;
+        padding: 5px 5px;
+        text-align: center;
+        &:last-child {
+          width: 75px;
+        }
+      }
+    }
+  }
+  margin-bottom: 2em;
+  .radio input {
+    display: inline-block;
+    width: auto;
+    height: 1em;
+    margin-right: 5px;
+    margin-left: 20px;
+  }
+  .radio label {
+    margin-bottom: 1em;
+  }
+  .radio h3 {
+    height: auto;
+    line-height: 1.4em;
+  }
+  @media(max-width: $main-width) {
+    li {
+      ul.checkbox {
+        h3 {
+          display: block;
+          label {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@import 'abr_states/ak';
+@import 'abr_states/al';
+
+@import 'abr_states/de';
+
+@import 'abr_states/ga';
+
+@import 'abr_states/ia';
+
+@import 'abr_states/mt';
+
+@import 'abr_states/nv';
+
+@import 'abr_states/oh';
+
+@import 'abr_states/wy';
+
+
+

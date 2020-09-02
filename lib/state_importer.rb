@@ -139,6 +139,7 @@ class StateImporter
     unaliased = %w(name participating requires_race requires_party id_length_min id_length_max online_registration_url online_registration_system_name)
     unaliased.collect{|m| [m, m]} +
     [['registrar_address','sos_address'],
+     ['registrar_abr_address', 'sos_abr_address'],
      ['registrar_phone','sos_phone'],
      ['registrar_url','sos_url']]
   end

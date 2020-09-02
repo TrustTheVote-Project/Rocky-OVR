@@ -1,0 +1,166 @@
+:javascript
+  // TODO this is hte same as below function with changed data param and swapped show/hide
+  function toggleHidden() {
+    var setVisible = $("[data-hidden-conditions]");
+    console.log(setVisible.get(0))
+    $(setVisible).each(function() {
+      var conditions = $(this).data("hidden-conditions");
+      var conditionalFields = conditions.split(" ");
+      var showField = true;
+      for(let i=0,ii=conditionalFields.length;i<ii;i++) {
+        var fieldName = conditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+"")
+        console.log(showField, field, field.val())
+        showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
+      }
+      if (showField) {
+        $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)
+      } else {
+        $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)
+      }
+      
+    })
+  }
+
+  function toggleVisible() {
+    var setVisible = $("[data-visible-conditions]");
+    console.log(setVisible.get(0))
+    $(setVisible).each(function() {
+      var conditions = $(this).data("visible-conditions");
+      var conditionValue = $(this).data("visible-conditions-value")
+      var conditionalFields = conditions.split(" ");
+      var showField = true;
+      for(let i=0,ii=conditionalFields.length;i<ii;i++) {
+        var fieldName = conditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+"")
+        console.log(showField, "#abr_"+fieldName+"", field, field.val())
+        showField = showField && field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val()))
+      }
+      if (showField) {
+        $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)        
+      } else {
+        $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)        
+      }
+      
+    })
+  }
+
+  function track_soft_validation(fieldElement, validation) {
+    $(document).find('input[name="abr[dln_soft_validation]"]').val(validation);
+  }
+
+  function soft_validation_feedback(fieldElement, message, str) {
+    var feedback='<span class="dln_soft_validation">'+message+'</span>';
+    $(fieldElement).find('span.error span.dln_soft_validation').remove()
+    if (message){
+      $(fieldElement).find('span.error').append(feedback);
+    }
+    else if (str) {
+        $(fieldElement).find('span.error').html(feedback);
+        $(fieldElement).find('div.has_error').removeClass('has_error');
+    }
+    else {
+        $(fieldElement).find('span.error').append(feedback); 
+    }
+  }
+
+  function test_ui_regex() {
+    var setToTest = $("[data-ui-regexp]:visible");
+    $(setToTest).each(function() {
+      var re_string = $(this).data('ui-regexp');
+      var RE = new RegExp(re_string);           
+      var str = $(this).find("input").val();
+      
+      var failure_message = $(this).data('ui-regexp-fail-message');  
+
+      if (str && !RE.test(str)) {
+        track_soft_validation(this,"fail");
+        soft_validation_feedback(this, failure_message, str);
+      
+      }
+      else {
+        track_soft_validation(this,"pass");
+        soft_validation_feedback(this, '', str);
+      }    
+    });
+  }
+  $(document).ready(function() {
+    toggleHidden();
+    toggleVisible();
+    test_ui_regex();
+    $("form").change(() => {
+      toggleHidden();
+      toggleVisible();
+      test_ui_regex();
+    })
+  })
+  
+  
+%fieldset{class: "#{@abr.home_state_abbrev.downcase}-abr-form-fields state-abr-form-fields"}
+  %ul.flat
+    - @abr.form_fields.each do |field_name, opts|
+      - required = opts[:required]
+      - ui_regexp = opts[:ui_regexp]
+      - field_label = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}", default: (opts[:label] || field_name)).html_safe
+      - instructions = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__hint", default: "").html_safe
+      - class_name = "line #{opts[:classes]} #{opts[:method]} #{required ? 'required' : ''}"
+      - required_message = required ?  @abr.custom_required_message(field_name).html_safe : nil
+      - ui_regexp_fail_message = ui_regexp ?  @abr.custom_format_message(field_name).html_safe : nil
+      - data = {}
+      - visible_conditions = opts[:visible].is_a?(Array) ? opts[:visible][0] : opts[:visible].to_s.strip
+      - visible_conditions_value = opts[:visible].is_a?(Array) ? opts[:visible][1] : nil
+      - hidden_conditions =  opts[:hidden].is_a?(Array) ? opts[:hidden][0] : opts[:hidden].to_s.strip
+      - hidden_conditions_value = opts[:hidden].is_a?(Array) ? opts[:hidden][1] : nil
+      - data["visible-conditions"] = visible_conditions unless visible_conditions.blank?
+      - data["visible-conditions-value"] = visible_conditions_value unless visible_conditions_value.blank?
+      - data["hidden-conditions"] = hidden_conditions unless hidden_conditions.blank?
+      - data["hidden-conditions-value"] = hidden_conditions_value unless hidden_conditions_value.blank?
+      - data["ui-regexp"] = ui_regexp unless ui_regexp.blank?
+      - data["ui_regexp_fail_message"] = ui_regexp_fail_message unless ui_regexp.blank?
+      - if opts[:type] == :instructions
+        %li.instructions{class: class_name, data: data}
+          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")
+      - if opts[:type] == :checkbox
+        - class_name += " registrant-form__required-checkbox " if required
+        %li{class: class_name, data: data}
+          - unless instructions.blank?
+            %p.instructions= instructions
+          %ul.checkbox
+            %li.spacer &nbsp;
+            %li{class: "#{opts[:method]}__line-item"}
+              %h3
+                = form.check_box opts[:method], required ? {data: {"client-validation-require-accept".to_sym => required_message}} : {}
+                = form.label opts[:method], "#{field_label}#{required ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''}".html_safe
+                %span.error= form.object.errors[opts[:method]].join("\n").html_safe
+          
+      - elsif opts[:type] == :string
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions})
+      - elsif opts[:type] == :hidden
+        = field_div(form, opts[:method], {kind: 'hidden'}) 
+      - elsif opts[:type] == :radio
+        %li{class: "#{class_name} #{opts[:method]}",  data: data}
+          %ul.stacked.radio
+            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
+            = field_li(form, opts[:method], {label_options:  field_label, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
+      - elsif opts[:type] == :select
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })
+      - elsif opts[:type] == :date
+        %li.date{class: class_name, data: data}
+          %h3
+            = form.label opts[:method], value: field_label
+            - if required
+              %span.required 
+                *
+                %span.required--text{style: 'display:none;'}= I18n.t('required')
+          - unless instructions.blank?
+            %p.instructions= instructions
+          %div{class: form.object.errors[opts[:method]].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, opts[:method])}}
+            = form.text_field opts[:m], value: form.object.send(opts[:m]), placeholder: 'MM', type: 'tel', size: 2
+            = form.text_field opts[:d], value: form.object.send(opts[:d]), placeholder: 'DD', type: 'tel', size: 2
+            = form.text_field opts[:y], value: form.object.send(opts[:y]), placeholder: 'YYYY', type: 'tel', size: 4
+            
+          %span.error= form.object.errors[opts[:method]].join("\n")        

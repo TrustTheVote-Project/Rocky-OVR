@@ -1,5 +1,14 @@
 class RequestLog < ActiveRecord::Base
+  
+  before_save :truncate_cols
 
+  def truncate_cols
+    req_size = RequestLog.columns_hash['request_body'].limit || 65535
+    self.request_body = self.request_body.to_s.truncate(req_size)
+    resp_size = RequestLog.columns_hash['response_body'].limit || 65535
+    self.response_body = self.response_body.to_s.truncate(resp_size)
+  end
+    
   def log_uri(uri)
     update_attributes(request_uri: uri)
   end

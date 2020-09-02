@@ -1,0 +1,12 @@
+%h2= t('txt.abr.step_1_header')
+
+.intro-message
+  = t('txt.abr.step_1_instructions').html_safe
+
+= form_for(@abr) do |form|
+  = render partial: 'step', locals: { form: form }
+  = render partial: 'form', :object => form
+    
+  %p.overseas-instructions
+    %br
+    = I18n.t('txt.registration.instructions.overseas').html_safe

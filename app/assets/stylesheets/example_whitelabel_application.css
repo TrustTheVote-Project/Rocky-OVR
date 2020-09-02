@@ -76,8 +76,8 @@ h6 { font-size: 12px; }
 legend { font-size: 14px; }
 
 a { text-decoration: none; }
-a:link    { color: #B2272C; }
-a:visited { color: #B2272C; }
+a:link    { color: #B32426; }
+a:visited { color: #B32426; }
 a:hover   { color: #000000; }
 a:active  { color: #666666; }
 
@@ -249,7 +249,7 @@ input, textarea {
 }
 
 .error {
-  color: #B2272C;
+  color: #B32426;
 }
 
 
@@ -344,8 +344,8 @@ form div.button {
 
 #footer a:link    { color: #444; }
 #footer a:visited { color: #444; }
-#footer a:hover   { color: #B2272C; }
-#footer a:active  { color: #B2272C; }
+#footer a:hover   { color: #B32426; }
+#footer a:active  { color: #B32426; }
 
 .copyright {
   font-family: "Times New Roman", Times, serif;

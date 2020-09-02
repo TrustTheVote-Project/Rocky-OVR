@@ -32,7 +32,6 @@ body {
   background-size: auto auto;
   padding-bottom: 60px;
 
-  
   #sticky_footer {
     background-image: image-url('reg/container-repeater.gif');
     background-origin: padding-box;
@@ -311,10 +310,10 @@ body {
     .rollover_button button, .rollover_button span.button-style {
       background-color: #fff;
       background-image: none;
-      border: 2px solid #b2272c;
+      border: 2px solid #B32426;
       border-radius: 0;
       box-shadow: none;
-      color: #b2272c !important;
+      color: #B32426 !important;
       font-family: 'Fira Sans', helvetica, arial, sans-serif;
       font-size: 18px;
       font-weight: 700;
@@ -328,7 +327,7 @@ body {
       margin: 0;
       min-width: auto;
       &:hover {
-        background: #b2272c;
+        background: #B32426;
         color: #fff !important;
         cursor: pointer;
         transition: background 0.9s ease-out, color 0.05s ease-in;
@@ -356,6 +355,11 @@ body {
           color: #666;
           font-weight: bold;
           font-size: $label-font-size - 3px;
+        }
+      }
+      &.radio {
+        li label {
+          display: flex;
         }
       }
       li.spacer {
@@ -464,8 +468,8 @@ body {
           margin: 15px auto;
           padding: 10px 15px;
           border: 1px solid $light-grey;
-          float: none;
           width: 75%;
+          margin-right: 25%;
           h3 {
             height: auto;
             margin-bottom: 0;
@@ -487,6 +491,15 @@ body {
               margin-top: 5px;
             }
           }
+        }
+        
+        &.registrant-form__home-address-number__line {
+          width: 23%;
+          margin-right: 2%;
+        }
+        &.registrant-form__home-address-name__line {
+          width: 50%;
+          margin-right: 2%;
         }
         
         &.registrant-form__home-address__line, 
@@ -526,7 +539,6 @@ body {
           margin-right: 0%;
         }
         &.registrant-form__date-of-birth__line {
-          width: 25%;
           input {
             width: 55px;
             padding: 5px 5px;
@@ -674,10 +686,10 @@ body {
   .download .rollover_button a {
     background-color: #fff;
     background-image: none;
-    border: 2px solid #b2272c;
+    border: 2px solid #B32426;
     border-radius: 0;
     box-shadow: none;
-    color: #b2272c !important;
+    color: #B32426 !important;
     font-family: 'Fira Sans', helvetica, arial, sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -691,7 +703,7 @@ body {
     margin: 0;
     min-width: auto;
     &:hover {
-      background: #b2272c;
+      background: #B32426;
       color: #fff !important;
       cursor: pointer;
       transition: background 0.9s ease-out, color 0.05s ease-in;
@@ -735,8 +747,8 @@ body {
     left: 0;
     right: 0;
     text-align: center;
-    border: 2px solid #b2272c;
-    color: #b2272c !important;
+    border: 2px solid #B32426;
+    color: #B32426 !important;
     font-family: 'Fira Sans', helvetica, arial, sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -832,7 +844,54 @@ body {
       }
     }
   }
-
+  &.abr {
+    line-height: 1.4em;
+    h2 {
+      text-align: center;
+    }
+    p {
+      font-size: 14px;
+      margin: 0.5em 0;
+    }
+    font-size: 16px;
+    ul {
+      color: #666;
+      li {
+        margin: 0.25em 0;
+      }
+    }
+    .requirements, .state-instructions {
+      margin: 2em 0;
+      *, p {
+        font-size: 14px;
+        color: #666;
+      }
+      ul {
+        font-size: 14px;
+        list-style: disc outside;
+        margin-left: 30px;
+      }
+    }
+    .confirm {
+      color: #333;
+      margin: 2em 0;
+      cursor: pointer;
+      p  {
+        font-size: 18px;
+        a {
+          color: #B32426;
+        }
+      }
+    }
+    .reject {
+      margin: 3em 0;
+      p {
+        color: #333;
+        font-size: 18px;        
+      }
+    }
+    @import 'abr-form-fields'
+  }
   
   
 }

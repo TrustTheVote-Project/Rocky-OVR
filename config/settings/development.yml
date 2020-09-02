@@ -11,6 +11,8 @@ hours_between_first_and_second_reminder: 0.0333
 hours_between_second_and_final_reminder: 0.0333
 pdf_expiration_days: .25
 
+
+
 blocks_configuration:
   default_turf_id: 416
   default_location_id: 266
@@ -82,6 +84,7 @@ states_with_online_registration:
   - IA
   - ID
   - KS
+  - KY
   - MD
   - MA
   - MI

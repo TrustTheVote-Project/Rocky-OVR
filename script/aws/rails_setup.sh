@@ -75,7 +75,9 @@ if [ $SERVER_ROLE == 'util' ]; then
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_cloudwatch_runner start
 
     
-    # restart the PDF workers
+    # Make sure JAVA envs are loaded
+    . /home/ec2-user/.bash_profile
+    # restart the PDF workers    
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no_wait
     sleep 10    
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --force
@@ -132,7 +134,8 @@ if [ $SERVER_ROLE == 'pdf' ]; then
         RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
     done
     
-    
+    # Make sure JAVA envs are loaded
+    . /home/ec2-user/.bash_profile
     # restart the PDF workers
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no_wait
     sleep 10
