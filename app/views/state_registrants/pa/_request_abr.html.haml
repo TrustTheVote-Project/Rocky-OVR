@@ -37,6 +37,7 @@
 = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :request_abr, class_name: "registrant-form__request_abr__line", required: false}
   
 %fieldset#request_abr_set
+  .instructions= I18n.t('states.custom.pa.request_abr_note').html_safe
   %ul.stacked.radio
     - disabled_list = @registrant.has_mailing_address? ? [] : ["M"]
     = field_li(form, :abr_address_type, {skip_tooltip: true, required: true, radio_options: @registrant.ballot_address_options, field_options: { disabled: disabled_list}})

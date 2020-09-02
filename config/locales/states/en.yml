@@ -1558,6 +1558,16 @@ en:
           R: Residentail address as entered previously
           M: Mailing address as entered previously
           A: Different Mailing Address as follows
+        request_abr_note: |-
+          <p>Please note: If you request an automatic mail-in ballot, you cannot 
+          vote as a regular voter in your polling place on election day. Instead, 
+          your choices to vote must be by delivering the ballot by mail or in 
+          person to your county elections office by 8:00 PM on election day, or 
+          if you cannot do so you may only vote by provisional ballot in your 
+          polling place.</p>
+          <p>Your name, address, county, date of birth, and PA driver’s license or 
+          PennDOT ID card number provided above will be used for your Mail-In 
+          Ballot Application.</p>
         
         declaration: "<p><strong>I declare that</strong></p><ul><li>I am a United
           States citizen and will have been a citizen for at least 1 month on the
