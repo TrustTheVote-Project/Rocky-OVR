@@ -3,9 +3,13 @@
     function toggleRequestAbr() {
       if ($("#state_registrants_pa_registrant_confirm_no_penndot_number:checked").length > 0) {
         $("#request_abr_set").hide();
-        $(".registrant-form__request_abr__line").show();
+        $(".registrant-form__request_abr__line").hide();
+        $(".registrant-form__request_abr__line input").attr("disabled", true);
+        
       } else {
         $("#request_abr_set").show();
+        $(".registrant-form__request_abr__line").show();
+        $(".registrant-form__request_abr__line input").attr("disabled", false);
         if ($("#state_registrants_pa_registrant_request_abr:checked").length > 0) {
           $("#request_abr_set").show();
         } else {

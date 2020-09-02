@@ -377,7 +377,7 @@ body {
           text-align: left;
           width: auto;
           color: #757575;
-          height: $label-height;
+          min-height: $label-height;
           font-size: $label-font-size;
           line-height: 1em;
         }
