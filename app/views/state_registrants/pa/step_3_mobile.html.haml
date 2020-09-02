@@ -366,6 +366,7 @@
         = t('states.custom.pa.assistant_declaration').html_safe
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_assistant_declaration, class_name: "registrant-form__assistant-confirmation__line", required: true}
 
+    = render partial: 'state_registrants/pa/request_abr', locals: {form: form}
 
   .dynamic-navigation
     -# .back only shown when first step, .prepare only shown when last step

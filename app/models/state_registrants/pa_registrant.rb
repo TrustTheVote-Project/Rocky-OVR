@@ -230,12 +230,16 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     return !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"    
   end
   
+  BALLOT_ADDRESS_OPTIONS = ['R', 'M', 'A']
+
   def ballot_address_options
-    [
-      [I18n.t('states.custom.pa.ballot_address_options.R'), 'R'],
-      [I18n.t('states.custom.pa.ballot_address_options.M'), 'M'],
-      [I18n.t('states.custom.pa.ballot_address_options.A'), 'A']
-    ]
+    BALLOT_ADDRESS_OPTIONS.collect do |o|
+      [I18n.t("states.custom.pa.ballot_address_options.#{o}"), o]
+    end
+  end
+
+  def has_ballot_mailing_address?
+    self.request_abr? && self.abr_address_type == "A"
   end
   
   

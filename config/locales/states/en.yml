@@ -1598,6 +1598,7 @@ en:
           the legal equivalent of your signature.</li><li>You agree to sign this application
           by electronic means and that all laws of the Commonwealth of Pennsylvania
           will apply.</li></ul>"
+        declaration_mail_in: "<p>Terms for requesting mail-in ballots</p>"
         unit_type:
           APT: APARTMENT
           BSM: BASEMENT

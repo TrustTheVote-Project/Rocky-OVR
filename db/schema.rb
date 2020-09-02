@@ -744,11 +744,11 @@ ActiveRecord::Schema.define(version: 20200902130528) do
     t.string   "abr_address_type"
     t.string   "abr_ballot_address"
     t.string   "abr_ballot_city"
-    t.integer  "abr_ballot_state"
+    t.string   "abr_ballot_state"
     t.string   "abr_ballot_zip"
     t.string   "abr_ballot_address_start_year"
     t.string   "abr_ward"
-    t.string   "abr_declaration"
+    t.boolean  "abr_declaration"
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id"

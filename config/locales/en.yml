@@ -158,6 +158,7 @@ en:
       state_registrants/pa_registrant:
         email: Email
         registration_zip_code: ZIP Code
+        abr_declaration: I confirm that I have read and agree to the terms above for requestion a mail-in ballot.
         confirm_declaration: I confirm that I have read and agree to the terms above.
         confirm_assistant_declaration: I confirm that I have read and agree to the
           terms above.
@@ -392,6 +393,8 @@ en:
               accepted: You must be a US citizen!
             confirm_will_be_18:
               accepted: You must be 18 by the next election to register to vote.
+            abr_declaration:
+              accepted: You must confirm that you agree to the terms above.
             confirm_declaration:
               accepted: You must confirm that you agree to the terms above.
             confirm_assitant_declaration:

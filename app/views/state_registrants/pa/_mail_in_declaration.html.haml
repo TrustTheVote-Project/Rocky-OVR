@@ -1,0 +1,3 @@
+- if @registrant.request_abr?
+  .declaration-text= t('states.custom.pa.declaration_mail_in').html_safe
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :abr_declaration, class_name: "registrant-form__has-assistant__line", required: true}

@@ -47,6 +47,27 @@ class PARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :mailing_state
         validates_zip_code reg,   :mailing_zip_code
       end
+
+      if reg.request_abr?
+        reg.validates_presence_of :abr_address_type
+        reg.validates_inclusion_of  :abr_address_type, :in => StateRegistrants::PARegistrant::BALLOT_ADDRESS_OPTIONS, :allow_blank => true
+        reg.validates_presence_of :abr_ballot_address_start_year
+        reg.validates_length_of :abr_ballot_address, maximum: 40
+        reg.validates_length_of :abr_ballot_city, maximum: 35
+        reg.validates_length_of :abr_ballot_state, maximum: 2
+        reg.validates_length_of :abr_ballot_zip, maximum: 10
+        reg.validates_length_of :abr_ward, maximum: 50
+        validates_abr_start_year(reg) 
+        
+      end
+
+      if reg.has_ballot_mailing_address?
+        reg.validates_presence_of :abr_ballot_address
+        reg.validates_presence_of :abr_ballot_city
+        reg.validates_presence_of :abr_ballot_state
+        reg.validates_presence_of :abr_ballot_zip
+        validates_zip_code reg,   :abr_ballot_zip
+      end
   
       if reg.change_of_address?
         reg.validates_presence_of :previous_address
@@ -87,11 +108,26 @@ class PARegistrantValidator < ActiveModel::Validator
     
     if reg.at_least_step_3?
       reg.validates_acceptance_of :confirm_declaration, :accept=>true
+      if reg.request_abr?
+        reg.validates_acceptance_of :abr_declaration, :accept=>true
+      end
     end
     
 
   end
   
+  def validates_abr_start_year(reg)
+    reg.validates_format_of(:abr_ballot_address_start_year, {:with => /\A\d{4}\z/, :allow_blank => true});
+    begin
+      year = reg.abr_ballot_address_start_year.to_i
+      if year < 1900 or year > Date.today.year
+        reg.errors.add(:abr_ballot_address_start_year, :invalid)
+      end
+    rescue => exception
+      raise exception
+    end
+  end
+
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
     reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});

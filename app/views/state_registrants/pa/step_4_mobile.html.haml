@@ -144,6 +144,7 @@
   .declaration-text= t('states.custom.pa.declaration').html_safe
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_declaration, class_name: "registrant-form__has-assistant__line", required: true}
   
+  = render partial: 'state_registrants/pa/mail_in_declaration', locals: {form: form}
   
   = rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
   .back    
