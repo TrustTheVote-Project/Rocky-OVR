@@ -1555,7 +1555,7 @@ en:
         penndot_number_missing: If you don't have a PennDOT number, you will need
           to print a PDF and mail it in to register.
         ballot_address_options:
-          R: Residentail address as entered previously
+          R: Residential address as entered previously
           M: Mailing address as entered previously
           A: Different Mailing Address as follows
         request_abr_note: |-
