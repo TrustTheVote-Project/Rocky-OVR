@@ -230,6 +230,13 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     return !empty_prev_reg && prev_state.is_a?(String) && prev_state != "PA"    
   end
   
+  def ballot_address_options
+    [
+      [I18n.t('states.custom.pa.ballot_address_options.R'), 'R'],
+      [I18n.t('states.custom.pa.ballot_address_options.M'), 'M'],
+      [I18n.t('states.custom.pa.ballot_address_options.A'), 'A']
+    ]
+  end
   
   
   def to_pa_data

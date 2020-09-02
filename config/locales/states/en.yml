@@ -1554,6 +1554,11 @@ en:
           on the top right of a PA driver's license.
         penndot_number_missing: If you don't have a PennDOT number, you will need
           to print a PDF and mail it in to register.
+        ballot_address_options:
+          R: Residentail address as entered previously
+          M: Mailing address as entered previously
+          A: Different Mailing Address as follows
+        
         declaration: "<p><strong>I declare that</strong></p><ul><li>I am a United
           States citizen and will have been a citizen for at least 1 month on the
           day of the next election.</li><li>I will be at least 18 years old on the

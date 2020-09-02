@@ -142,6 +142,7 @@ en:
       select_none: "(none)"
       home_address: Home Address
       mailing_address: Mailing Address
+      ballot_mailing_address: Ballot Mailing Address
       previous_name: Previous Name
       previous_address: Previous Address
       opt_in_sms: Send me text messages from %{organization}.

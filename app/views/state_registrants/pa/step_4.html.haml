@@ -38,18 +38,7 @@
       .review__section__label 
         = t('txt.registration.home_address')
       .review__section__content
-        = @registrant.registration_address_1
-        - if !@registrant.registration_address_2.blank?
-          %br
-          = @registrant.registration_address_2
-        - if !@registrant.registration_unit_type.blank?
-          %br
-          = @registrant.registration_unit_type
-          = @registrant.registration_unit_number
-        %br
-        = "#{@registrant.registration_city}, PA #{@registrant.registration_zip_code}"
-        %br
-        = "#{@registrant.registration_county} County"
+        = render partial: "state_registrants/pa/registration_address"
         = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
         
     - if @registrant.has_mailing_address?
@@ -57,9 +46,7 @@
         .review__section__label 
           = t('txt.registration.mailing_address') 
         .review__section__content
-          = @registrant.mailing_address
-          %br
-          = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip_code}"
+          = render partial: "state_registrants/pa/mailing_address"
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
           
     - if @registrant.previous_address?

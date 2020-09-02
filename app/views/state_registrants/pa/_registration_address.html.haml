@@ -1,0 +1,12 @@
+= @registrant.registration_address_1
+- if !@registrant.registration_address_2.blank?
+  %br
+  = @registrant.registration_address_2
+- if !@registrant.registration_unit_type.blank?
+  %br
+  = @registrant.registration_unit_type
+  = @registrant.registration_unit_number
+%br
+= "#{@registrant.registration_city}, PA #{@registrant.registration_zip_code}"
+%br
+= "#{@registrant.registration_county} County"

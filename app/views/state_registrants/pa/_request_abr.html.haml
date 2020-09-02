@@ -1,0 +1,64 @@
+- content_for :head do
+  :javascript
+    function toggleRequestAbr() {
+      if ($("#state_registrants_pa_registrant_confirm_no_penndot_number:checked").length > 0) {
+        $("#request_abr_set").hide();
+        $(".registrant-form__request_abr__line").show();
+      } else {
+        $("#request_abr_set").show();
+        if ($("#state_registrants_pa_registrant_request_abr:checked").length > 0) {
+          $("#request_abr_set").show();
+        } else {
+          $("#request_abr_set").hide();
+        }
+      }              
+    }
+    function toggleBallotAddress() {
+      $("#request_abr_set .registration-address, #request_abr_set .ballot-mailing-address, #request_abr_set .mailing-address").hide();
+      var addressType = $("[name='state_registrants_pa_registrant[abr_address_type]']:checked").val();
+
+      if(addressType == "R") {
+        $("#request_abr_set .registration-address").show();
+      } else if (addressType == "M") {
+        $("#request_abr_set .mailing-address").show();
+      } else if (addressType == "A") {
+        $("#request_abr_set .ballot-mailing-address").show();
+      }
+    }
+    $(document).ready(function() {
+      $("#state_registrants_pa_registrant_confirm_no_penndot_number").click(toggleRequestAbr)
+      $("#state_registrants_pa_registrant_request_abr").click(toggleRequestAbr)
+      $("[name='state_registrants_pa_registrant[abr_address_type]']").click(toggleBallotAddress)
+      toggleRequestAbr();
+
+      toggleBallotAddress();    
+    })
+
+= render partial: 'registrants/generic/checkbox', locals: {form: form, field: :request_abr, class_name: "registrant-form__request_abr__line", required: false}
+  
+%fieldset#request_abr_set
+  %ul.stacked.radio
+    - disabled_list = @registrant.has_mailing_address? ? [] : ["M"]
+    = field_li(form, :abr_address_type, {skip_tooltip: true, required: true, radio_options: @registrant.ballot_address_options, field_options: { disabled: disabled_list}})
+
+  .registration-address.address-display
+    = render partial: "state_registrants/pa/registration_address"
+    %br
+    %br
+  .mailing-address.address-display
+    = render partial: "state_registrants/pa/mailing_address"
+    %br
+    %br
+  .ballot-mailing-address
+    %legend
+      %span= I18n.t('txt.registration.ballot_mailing_address')       
+    %ul.stacked
+      = field_li(form, :abr_ballot_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
+    %ul.stacked
+      = field_li(form, :abr_ballot_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
+      = field_li(form, :abr_ballot_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
+      = field_li(form, :abr_ballot_zip, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
+  
+  %ul.stacked
+    = field_li(form, :abr_ballot_address_start_year, {skip_tooltip: true, required: true, field_options: {size: 4, maxlength: 4}, li_options: {class: "registrant-form__abr_ballot_address_start_year__line"} })
+    = field_li(form, :abr_ward, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__abr_ward__line"} })
