@@ -33,7 +33,9 @@ class DownloadsController < RegistrationStep
     set_up_view_variables
     @attempt = (params[:cno] || 1).to_i
     @refresh_location = @attempt >= 10 ? registrant_finish_path(@registrant) : registrant_download_path(@registrant, :cno=>@attempt+1)
-    if @registrant.pdf_ready?
+    if @registrant.mail_with_esig? && !@registrant.skip_mail_with_esig?
+      redirect_to registrant_finish_url(@registrant)      
+    elsif @registrant.pdf_ready?
       render "show"
     elsif @registrant.javascript_disabled?
       if @registrant.updated_at < 30.seconds.ago && !@registrant.email_address.blank?
@@ -50,13 +52,13 @@ class DownloadsController < RegistrationStep
 
   def pdf
     find_registrant(:download)
-    if !@registrant.pdf_ready?
-      redirect_to registrant_finish_path(@registrant, not_ready: true)
-    else
+    if @registrant.pdf_ready? || @registrant.pdf_delivery&.pdf_ready?
       set_ab_test
       set_up_view_variables
       @pdf_url = @registrant.download_pdf
-      #redirect_to pdf_path
+      #redirect_to pdf_path      
+    else
+      redirect_to registrant_finish_path(@registrant, not_ready: true)
     end
   end
   

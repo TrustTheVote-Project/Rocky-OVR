@@ -1017,6 +1017,12 @@ en:
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
+        registration:
+          has_state_license: I have a current MN driver’s license or ID card number, or the last 4 numbers of my SSN.
+          has_no_state_license: I do not have a current MN driver’s license or ID card number, and do not have the last 4 numbers of my SSN.
+        signature_capture:
+          desktop_provide_signature: You must provide a signature to complete your registration form. You may upload a signature image, switch to a touch-enabled device or print, sign and mail your PDF.
+          desktop_provide_e_signature: You must provide a signature to complete your registration form. You may upload a signature image, switch to a touch-enabled device or use your current device.
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
             state ID number or the last 4 digits of your SSN, you may request your
@@ -1650,7 +1656,7 @@ en:
             done: Done
             reset: Reset
             remove: Remove Signature
-            provide_signature: Provide Signature
+            provide_signature: Create Digital Signature
             select_file: Select an image to upload
             copy_link: Copy Link
       sc:

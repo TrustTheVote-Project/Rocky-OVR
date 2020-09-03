@@ -9,7 +9,8 @@ class PdfDelivery < ActiveRecord::Base
   
   def generate_pdf(force = false)
     if registrant.pdf_writer.valid?
-      if registrant.pdf_writer.generate_pdf(force, true)
+      if registrant.pdf_writer.generate_pdf(force, true, registrant.pdf_is_esigned?, created_at)
+        registrant.deliver_confirmation_email
         return true
       else
         return false
@@ -24,8 +25,18 @@ class PdfDelivery < ActiveRecord::Base
     save(validate: false)
   end
   
+  def pdf_prefix
+    self.class.pdf_prefix(!registrant.pdf_is_esigned?, created_at)
+  end
   
-  def self.store_in_s3(path, url_path)
+  def self.pdf_prefix(redacted, date)
+    prefix = redacted ? "redacted" : "signed"
+    date_stamp = date.strftime("%Y-%m-%d")
+    "#{prefix}/#{date_stamp}"
+  end
+  
+  
+  def self.store_in_s3(path, url_path, date, redacted=true)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
@@ -34,9 +45,8 @@ class PdfDelivery < ActiveRecord::Base
     })
     bucket_name = "rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}"
     directory = connection.directories.get(bucket_name)
-    date_stamp = Date.today.strftime("%Y-%m-%d")
     file = directory.files.create(
-      :key    => "redacted/#{date_stamp}/#{url_path.gsub(/^\//,'')}",
+      :key    => "#{pdf_prefix(date, redacted)}/#{url_path.gsub(/^\//,'')}",
       :body   => File.open(path).read,
       :content_type => "application/pdf",
       :encryption => 'AES256', #Make sure its encrypted on their own hard drives
@@ -55,6 +65,10 @@ class PdfDelivery < ActiveRecord::Base
         pdf_hash = d.registrant.to_pdf_hash
         pdf_hash.delete(:state_id_number)
         pdf_hash.delete(:state_id_tooltip)
+        pdf_hash.delete(:voter_signature_image)
+        pdf_hash.delete(:signed_at_month)
+        pdf_hash.delete(:signed_at_year)
+        pdf_hash.delete(:signed_at_day)
         registrar_address = pdf_hash.delete(:state_registrar_address)
         if first
           csv << pdf_hash.keys + [

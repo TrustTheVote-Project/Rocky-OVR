@@ -33,9 +33,6 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   COUNTIES =%w(ADAMS ALLEGHENY ARMSTRONG BEAVER BEDFORD BERKS BLAIR BRADFORD BUCKS BUTLER CAMBRIA CAMERON CARBON CENTRE CHESTER CLARION CLEARFIELD CLINTON COLUMBIA CRAWFORD CUMBERLAND DAUPHIN DELAWARE ELK ERIE FAYETTE FOREST FRANKLIN FULTON GREENE HUNTINGDON INDIANA JEFFERSON JUNIATA LACKAWANNA LANCASTER LAWRENCE LEBANON LEHIGH LUZERNE LYCOMING MCKEAN MERCER MIFFLIN MONROE MONTGOMERY MONTOUR NORTHAMPTON NORTHUMBERLAND PERRY PHILADELPHIA PIKE POTTER SCHUYLKILL SNYDER SOMERSET SULLIVAN SUSQUEHANNA TIOGA UNION VENANGO WARREN WASHINGTON WAYNE WESTMORELAND WYOMING YORK)
   
-  DEVICE_METHOD="device".freeze
-  UPLOAD_METHOD="upload".freeze
-  PRINT_METHOD="print".freeze
   
   INVALID_PENNDOT= "VR_WAPI_InvalidOVRDL".freeze
   
@@ -46,7 +43,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   serialize :pa_submission_error, Array
   
   def check_valid_for_state_flow!
-    if self.signature_method == PRINT_METHOD
+    if self.signature_method == VoterSignature::PRINT_METHOD
       self.skip_state_flow!
       self.registrant.state_id_number = self.ssn4
       if self.registrant.state_id_number.blank?
@@ -111,7 +108,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     # Actually send the message
     if params.has_key?(:email_continue_on_device)
       PANotifier.continue_on_device(self, signature_capture_url).deliver_now
-      controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.email_sent', email: self.email)
+      controller.flash[:success] = I18n.t('states.custom.pa.signature_capture.email_sent', email: self.email_address_for_continue_on_device)
     elsif params.has_key?(:sms_continue_on_device)
       if sms_number =~ /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/
         begin

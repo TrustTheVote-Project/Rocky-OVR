@@ -1,3 +1,8 @@
+- if @registrant.mail_with_esig?
+  = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
+  = flash_messages.html_safe
+
+
 - if !@registrant.use_short_form?
   %h1= t('txt.registration.step_2_header')
     
@@ -27,7 +32,7 @@
 
   = render partial: 'name', locals: {form: form}
 
-  - if @registrant.use_short_form?    
+  - if @registrant.use_short_form?
     %ul.checkbox.checkbox-step-1
       %li.spacer= "&nbsp;"
       %li.registrant-form__us-citizen__line
@@ -53,7 +58,7 @@
     
     = render partial: 'previous_address', locals: { form: form }
     
-    - if @registrant.home_state_allows_ovr_ignoring_license?
+    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       - content_for :head do
         :javascript
           $(document).ready(function() {
@@ -93,14 +98,14 @@
           %li.registrant-form__has-state-license__line.has_license
             %h3
               = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
-              = form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev)
+              = form.label :has_state_license_1, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
             .use_state_registration.checkbox-explanation
-              %p= I18n.t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name)
+              %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
         %ul.radio
           %li.registrant-form__has-no-state-license__line
             %h3
               = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
-              = form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev)
+              = form.label :has_state_license_0, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_no_state_license", default: t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev))
 
       .skip_state_registration
         = render partial: 'step4/skip_state', locals: { form: form }
@@ -112,6 +117,9 @@
     - else
       .state-id-number
         = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+      - if @registrant.mail_with_esig?
+        = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
+        
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
       .clear-fix
       %ul.flat.dob-and-phone
@@ -125,11 +133,11 @@
       - unless @registrant.skip_state_flow?
         = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
 
-    - if  @registrant.home_state_allows_ovr_ignoring_license?
+    - if  @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       .use_state_registration
         = rollover_button(:prepare, I18n.t('txt.button.submit'))
     .skip_state_registration
-      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+      = rollover_button(:prepare, I18n.t(@registrant.mail_with_esig? ? 'txt.button.prepare_with_esig' : 'txt.button.prepare'))
   - else
     = render(:partial => 'previous', :locals => {:form => form}) unless @registrant.first_registration?
     %ul.flat

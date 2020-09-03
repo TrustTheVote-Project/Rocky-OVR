@@ -87,6 +87,7 @@ en:
       remind_me_later: Remind Me Later
       help: Help
       prepare: Prepare Form
+      prepare_with_esig: Complete Registration Form
       review: Review Application
       sendmail: Send Email
       share_facebook: Post It!
@@ -119,6 +120,15 @@ en:
       download_header: Print Your Form
       pdf_assistance_header: You should receive your voter registration form within
         a few days.
+      finish_mail_with_esig_header: Thanks for beginning the voter registration process! 
+      finish_mail_with_esig: |-
+        <p class="instructions">Next steps:</p>
+        <p class="instructions">
+          1. We will send your voter registration application to your county election office.<br/>
+          2. We will also email you a link to a copy of your application.<br/>
+          3. You should reach out to your friends and family to make sure they register to vote to make their voices heard too!<br/>
+          4. <a href="%{state_voter_check_url}" target="_blank" rel="noopener">Check to confirm your registration</a> by October 13, the deadline to register in advance for the November 3 election.<br/>
+        </p>
       finish_header: Spread the word!
       finish_pdf_delay_header: Check Your Email
       finish_pdf_delay: It's taking a while to create your registration form to download,
@@ -341,6 +351,36 @@ en:
           title: Identification
         step_9:
           title: Personal Information
+    signature_capture:
+      rotation_instructions: You must rotate your screen to correctly capture
+        your signature. Make sure your screen rotation is enabled.
+      upload_signature_image: Upload a signature image
+      touch_sign_instructions: Provide a signature that may be used to verify
+        and match your ballot.
+      desktop_provide_signature: If you do not have a %{state} ID you must provide
+        a signature or choose to print and mail your form.
+      upload_file_instructions: Must be an image file (JPEG, PNG, or GIF)
+      upload_file_zoom: Zoom in or out to ensure the signature fits within the
+        box.
+      continue_on_device: Continue your registration on a touch-enabled device
+      email_sent: An email has been sent to %{email} with a link to sign your
+        registration on a touch-enabled device. This link will expire in 30 minutes.
+      sms_sent: A text message has been sent to %{phone} with a link to sign your
+        registration on a touch-enabled device. This link will expire in 30 minutes.
+      sms_body: "Here's the link you requested to sign your voter registration
+        form: %{signature_capture_url} \nThis link will expire in 30 minutes."
+      continue_via_copy: 'Or open this link on a touch-enabled device to finish
+        your registration:'
+      link_copied: Link Copied!
+      continue_on_paper: Print and mail a PDF
+      continue_on_desktop: Use this device to provide a digital signature
+      buttons:
+        done: Done
+        reset: Reset
+        remove: Remove Signature
+        provide_signature: Provide Signature
+        select_file: Select an image to upload
+        copy_link: Copy Link
     status_text:
       message: I just registered to vote and you can too!
       under_18_message: Make sure you register to vote. It's easy!
