@@ -153,6 +153,9 @@ class AbrsController < ApplicationController
     @abr.update_attributes(current_step: @current_step) if @current_step
     @abr_finish_iframe_url = @abr.finish_iframe_url
     
+    @partner = @abr&.partner
+    @partner_id = @partner&.id
+    
     if @abr.finish_with_state? && special_case != :tell_friend && special_case != :finish
       @abr.update_attributes(:finish_with_state=>false)
     end
