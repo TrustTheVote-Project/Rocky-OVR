@@ -123,6 +123,8 @@ module AbrPdfMethods
       
       @pdf_writer.pdf_template_path = pdf_template_path
       @pdf_writer.delivery_address = state_registrar_address
+      @pdf_writer.voter_signature = voter_signature
+      @pdf_writer.signature_field_name = signature_field_name
     end
     @pdf_writer
   end

@@ -5,10 +5,10 @@ class VoterSignature < ActiveRecord::Base
   PRINT_METHOD="print".freeze
   DESKTOP_METHOD="desktop".freeze
   
-  
+  DATA_URL_REGEXP = /\Adata:(.+);base64,(.+)\z/
+
   def self.resize_signature_url(sig_url)
-    regexp = /\Adata:(.+);base64,(.+)\z/
-    if sig_url =~ regexp
+    if sig_url =~ DATA_URL_REGEXP
       type = $1
       data = $2
       return "data:#{type};base64,#{process_signature(data)[0]}"
@@ -16,7 +16,25 @@ class VoterSignature < ActiveRecord::Base
       return sig_url
     end
   end
+
+  def voter_signature_data
+    if voter_signature_image =~ DATA_URL_REGEXP
+      return $2
+    else
+      return voter_signature_image
+    end
+  end
   
+  def save_file(path, trim: true)
+    image_blob = Base64.decode64(voter_signature_data)
+    File.open(path, "wb") do |f|
+      f.write image_blob
+    end
+    if trim
+      cmd = "convert #{path} -trim #{path}"
+      `#{cmd}`
+    end
+  end
   
   SIG_WIDTH = 180
   SIG_HEIGHT = 60

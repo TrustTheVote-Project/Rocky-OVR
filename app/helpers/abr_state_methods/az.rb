@@ -57,6 +57,11 @@ module AbrStateMethods::AZ
     #voter_signature
 
   }
+
+  def signature_field_name
+    "voter_signature"
+  end
+
   EXTRA_FIELDS = ["has_mailing_address", "identification_selection",  {name:"drivers_license_id", sensitive:true}, "place_of_birth", {name:"last_4_ssn", sensitive:true}, "dln_soft_validation"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
@@ -89,6 +94,7 @@ module AbrStateMethods::AZ
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
       {"dln_soft_validation": {type: :hidden}},
+      {"voter_signature": {type: :signature}}
     ]
   end
   

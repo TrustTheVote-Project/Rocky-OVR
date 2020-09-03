@@ -205,12 +205,16 @@ absentee_states:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
     # pdf_template: wi.pdf
     pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
+    email_delivery: elections@wi.gov
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
     # pdf_template: wv.pdf
   WY:
     pdf_template: wy.pdf
+    email_delivery:
+      "campbell county": cds02@ccgov.net
+      
 
 # Only configured for staging2 right now.
 # mail_with_esig:

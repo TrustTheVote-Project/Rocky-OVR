@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200902130528) do
+ActiveRecord::Schema.define(version: 20200903143849) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -850,6 +850,7 @@ ActiveRecord::Schema.define(version: 20200902130528) do
     t.string   "email_address_for_continue_on_device"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.integer  "abr_id"
   end
 
   add_index "voter_signatures", ["registrant_id"], name: "index_voter_signatures_on_registrant_id"

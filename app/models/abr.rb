@@ -11,6 +11,18 @@ class Abr < ActiveRecord::Base
   include RegistrantAbrMethods
   include AbrPdfMethods
   include AbrPdfFields
+  include AbrSignatureMethods
+
+  has_one :voter_signature, autosave: true
+  AbrSignatureMethods::METHODS.each do |vs_attribute|
+    define_method "#{vs_attribute}" do
+      (voter_signature || create_voter_signature).send(vs_attribute)
+    end
+    define_method "#{vs_attribute}=" do |val|
+      (voter_signature || create_voter_signature).send("#{vs_attribute}=", val)
+    end
+  end
+
   
   include AbrStateMethods
   include Rails.application.routes.url_helpers
@@ -49,6 +61,7 @@ class Abr < ActiveRecord::Base
   validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
   validates_presence_of :phone_type, if: :has_phone?
   validate :validates_zip
+  validate :validates_signature
   
   def self.validate_fields(list, regex, message)
     list.each do |field|

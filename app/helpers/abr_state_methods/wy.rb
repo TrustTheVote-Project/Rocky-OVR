@@ -47,9 +47,13 @@ module AbrStateMethods::WY
       },	
       "Individual's name who may pick up my ballot": {},	
       #Date	
-      #voter_signature	      #voter_signature
+      #voter_signature	      #voter_signature      
   
   }
+
+  def signature_field_name
+    "voter_signature"
+  end
 
   EXTRA_FIELDS = ["has_mailing_address"]
   
@@ -62,6 +66,7 @@ module AbrStateMethods::WY
       {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
       {"ACTIVE MILITARY Y  N": {required: true, type: :radio, options: ["Y", "N"]}},
       {"Individual's name who may pick up my ballot": {}},
+      {"voter_signature": {type: :signature}}
     ]
   end
   

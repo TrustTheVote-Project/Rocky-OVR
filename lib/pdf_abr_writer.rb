@@ -8,6 +8,8 @@ class PdfAbrWriter
   attr_accessor :pdf_values
   attr_accessor :pdf_template_path
   attr_accessor :delivery_address
+  attr_accessor :voter_signature
+  attr_accessor :signature_field_name
   
   attr_accessor :id, :uid, :locale, :created_at        
   
@@ -20,6 +22,21 @@ class PdfAbrWriter
   def generate_pdf(force_write = false, for_printer = false)
     if force_write || !pdf_exists?
       FileUtils.mkdir_p(pdf_file_dir)
+
+      if voter_signature && !voter_signature.voter_signature_image.blank?
+        voter_signature.save_file(pdf_signature_image_path)
+        form = FormFiller::Form.new(template: pdf_template_path.to_s)
+        signer = FormFiller::Signer.new({
+          form: form,
+          signature: pdf_signature_image_path,
+          sig_field: self.signature_field_name
+        })
+        signer.sign
+        form.save_as(pdf_file_path, flatten: false)
+      end
+
+      
+
       # Temp solution for making sure every PDF includes address
       html_string = "Sign and return this form to:<br/><br/><p style='font-size: 24px; line-height: 1.6em;'>#{delivery_address}</p>"
       #0. generate address pdf
@@ -47,7 +64,7 @@ class PdfAbrWriter
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end
-      `pdftk #{pdf_template_path.to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`
+      `pdftk #{(voter_signature ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`
       `pdftk #{pdf_delivery_address_path} #{pdf_file_path}-tmp output #{pdf_file_path}`
       
       uploaded = nil
@@ -81,6 +98,10 @@ class PdfAbrWriter
     self.uid
   end
 
+  def signature_image_path(pdfpre = ni, file=false)
+    "/#{file ? pdf_file_dir(pdfpre) : pdf_dir(pdfpre)}/#{to_param}-sig.jpg"
+  end
+
   def pdf_path(pdfpre = nil, file=false)
     "/#{file ? pdf_file_dir(pdfpre) : pdf_dir(pdfpre)}/#{to_param}.pdf"
   end
@@ -109,6 +130,11 @@ class PdfAbrWriter
         "#{url_format ? '' : "public/"}pdfs/#{bucket_code}"
       # end
     end
+  end
+
+  def pdf_signature_image_path(pdfpre=nil)
+    dir = File.join(Rails.root, pdf_file_dir(pdfpre))
+    File.join(Rails.root, signature_image_path(pdfpre, true))
   end
 
   def pdf_file_path(pdfpre = nil)
