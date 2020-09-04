@@ -271,6 +271,20 @@ en:
 
         Happy voting!
     abr:
+      deliver_to_elections_office:
+        subject: Absentee / Vote-By-Mail Request
+        body: |-
+          Dear %{election_office_name},<br/><br/>
+
+          Attached is the absentee ballot request from %{abr_first_name} %{abr_last_name}.
+          This request was completed using Rock The Vote’s absentee request assistance 
+          tool, using the %{state_name} absentee ballot request form.<br/><br/>
+          
+        footer: |-
+          If you have any questions or concerns, please reach out to 
+          <a href="mailto:info@rockthevote.org">mailto:info@rockthevote.org</a>.<br/><br/>
+
+
       confirmation:
         subject: 'Reminder: Mail your absentee request form'
         body:

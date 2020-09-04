@@ -82,6 +82,7 @@ absentee_states:
   AZ:
     online_req_url: https://my.arizona.vote/Early/ApplicationLogin.aspx
     pdf_template: az.pdf
+    email_delivery: ovrtool@rockthevote.org 
   CA: {}
   CO: {}
   CT:

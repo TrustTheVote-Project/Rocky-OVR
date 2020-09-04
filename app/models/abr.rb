@@ -232,6 +232,13 @@ class Abr < ActiveRecord::Base
       enqueue_reminder_emails
     end
   end
+
+  def deliver_to_elections_office
+    AbrDeliveryNotifier.deliver_to_elections_office(self).deliver_now
+    if send_emails?
+      #AbrNotifier.confirmation(self).deliver_now
+    end
+  end
   
   def deliver_chaser_email
     if send_emails?

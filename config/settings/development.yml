@@ -1,7 +1,7 @@
 pdf_host_name: localhost:3001
 api_host_name: http://localhost:3001
 use_https: false
-from_address: "Rock The Vote <rocky-dev@gmail.com>"
+from_address:  "Rock The Vote <register@rockthevote.com>"
 default_url_host: "localhost:3000"
 ui_url_host: "localhost:3000"
 

@@ -18,12 +18,22 @@ module AbrSignatureMethods
     AbrSignatureMethods::METHODS
   end
 
-  def capture_signature?
+  def deliver_to_elections_office_via_email?
     return RockyConf.absentee_states[home_state_abbrev] && !RockyConf.absentee_states[home_state_abbrev][:email_delivery].blank?
   end
 
+  def elections_office_name
+    "Elections Officer"
+  end
+
+  def elections_office_email
+    "alex.mekelburg@osetfoundation.org"
+    #"ovrtool@rockthevote.org"
+    #RockyConf.absentee_states[home_state_abbrev] && !RockyConf.absentee_states[home_state_abbrev][:email_delivery] ?? 
+  end
+
   def validates_signature
-    if capture_signature? && advancing_to_step_4?
+    if deliver_to_elections_office_via_email? && advancing_to_step_4?
       self.validates_presence_of(:voter_signature_image)
       self.validates_presence_of(:signature_method)
     end
