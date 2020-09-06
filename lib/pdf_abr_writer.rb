@@ -10,6 +10,11 @@ class PdfAbrWriter
   attr_accessor :delivery_address
   attr_accessor :voter_signature
   attr_accessor :signature_field_name
+  attr_accessor :deliver_to_elections_office_via_email
+
+  def deliver_to_elections_office_via_email?
+    deliver_to_elections_office_via_email
+  end
   
   attr_accessor :id, :uid, :locale, :created_at        
   
@@ -36,23 +41,23 @@ class PdfAbrWriter
       end
 
       
+      unless deliver_to_elections_office_via_email?
+        # Temp solution for making sure every PDF includes address
+        html_string = "Sign and return this form to:<br/><br/><p style='font-size: 24px; line-height: 1.6em;'>#{delivery_address}</p>"
+        #0. generate address pdf
+        pdf = WickedPdf.new.pdf_from_string(
+          html_string,
+          :disable_internal_links         => false,
+          :disable_external_links         => false,
+          :encoding => 'utf8',
+          :locale=>locale,
+          :page_size => locale.to_s == "en" ? "Letter" : "A4"
+        )
 
-      # Temp solution for making sure every PDF includes address
-      html_string = "Sign and return this form to:<br/><br/><p style='font-size: 24px; line-height: 1.6em;'>#{delivery_address}</p>"
-      #0. generate address pdf
-      pdf = WickedPdf.new.pdf_from_string(
-        html_string,
-        :disable_internal_links         => false,
-        :disable_external_links         => false,
-        :encoding => 'utf8',
-        :locale=>locale,
-        :page_size => locale.to_s == "en" ? "Letter" : "A4"
-      )
-
-      File.open(pdf_delivery_address_path, "w") do |f|
-        f << pdf.force_encoding('UTF-8')
+        File.open(pdf_delivery_address_path, "w") do |f|
+          f << pdf.force_encoding('UTF-8')
+        end
       end
-      
 
       # 1. generate xfdf
       xfdf_contents = "<?xml version=\"1.0\"?><xfdf xmlns=\"http://ns.adobe.com/xfdf/\"><fields>"
@@ -64,9 +69,13 @@ class PdfAbrWriter
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end
-      `pdftk #{(voter_signature ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`
-      `pdftk #{pdf_delivery_address_path} #{pdf_file_path}-tmp output #{pdf_file_path}`
-      
+      if deliver_to_elections_office_via_email?
+        `pdftk #{(voter_signature ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`
+        `cp #{pdf_file_path}-tmp #{pdf_file_path}`
+      else
+        `pdftk #{(voter_signature ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`
+        `pdftk #{pdf_delivery_address_path} #{pdf_file_path}-tmp output #{pdf_file_path}`
+      end
       uploaded = nil
       if for_printer
         #uploaded = self.upload_pdf_to_printer(path, url_path)
@@ -76,10 +85,11 @@ class PdfAbrWriter
       # If it got there, delete the tmp file
       if uploaded
         unless Rails.env.development?
-          File.delete(pdf_xfdf_path)
-          File.delete(pdf_file_path)
-          File.delete("#{pdf_file_path}-tmp")
-          File.delete(pdf_delivery_address_path)
+          File.delete(pdf_signature_image_path) if File.exists?(pdf_signature_image_path)
+          File.delete(pdf_xfdf_path) if File.exists?(pdf_xfdf_path)
+          File.delete(pdf_file_path) if File.exists?(pdf_file_path)
+          File.delete("#{pdf_file_path}-tmp") if File.exists?("#{pdf_file_path}-tmp")
+          File.delete(pdf_delivery_address_path) if File.exists?((pdf_delivery_address_path))
         end
       else
         raise "File #{path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"

@@ -17,22 +17,9 @@ class AbrDeliveryNotifier < ActionMailer::Base
     # TODO add separate pixel tracking codes for abr versios of emails?
     pixel_tracking_code =  nil #pixel_tracking(abr, kind)
     
-    # m = Mail.new(
-    #     :subject=>subject,
-    #     :from=>abr.email_address_to_send_from,
-    #     :to=>abr.elections_office_email,
-    #     cc: abr.email,
-    #     :date=> Time.now.to_s(:db)
-    #   ) 
-    # html_part = Mail::Part.new do
-    #   content_type("text/html; charset=UTF-8")
-    #   body(body.to_s + pixel_tracking_code.to_s.html_safe)
-    # end
-    # m.html_part = html_part
-
     m = mail(
         :subject=>subject,
-        :from=>abr.email_address_to_send_from,
+        :from=>abr.email_address_to_send_form_delivery_from,
         :to=>abr.elections_office_email,
         cc: abr.email,
         :date=> Time.now.to_s(:db)

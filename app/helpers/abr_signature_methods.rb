@@ -32,6 +32,10 @@ module AbrSignatureMethods
     #RockyConf.absentee_states[home_state_abbrev] && !RockyConf.absentee_states[home_state_abbrev][:email_delivery] ?? 
   end
 
+  def email_address_to_send_form_delivery_from
+    RockyConf.from_address
+  end
+
   def validates_signature
     if deliver_to_elections_office_via_email? && advancing_to_step_4?
       self.validates_presence_of(:voter_signature_image)
