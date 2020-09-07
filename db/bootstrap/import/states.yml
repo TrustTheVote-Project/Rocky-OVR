@@ -451,6 +451,7 @@ record_30:
   sos_url: http://www.nj.gov/state/elections/
   registration_deadline: received_21_days
   id_length_min: '4'
+  online_registration_url: https://voter.svrs.nj.gov/register
 record_31:
   abbreviation: NM
   name: New Mexico
