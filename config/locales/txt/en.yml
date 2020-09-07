@@ -359,6 +359,8 @@ en:
         and match your ballot.
       desktop_provide_signature: If you do not have a %{state} ID you must provide
         a signature or choose to print and mail your form.
+      desktop_provide_e_signature: If you do not have a %{state} ID you must provide
+        a signature or choose to print and mail your form.
       upload_file_instructions: Must be an image file (JPEG, PNG, or GIF)
       upload_file_zoom: Zoom in or out to ensure the signature fits within the
         box.

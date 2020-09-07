@@ -93,8 +93,7 @@ module AbrStateMethods::AZ
       {"place_of_birth": {required: "star", min:1, visible: "identification_selection_place_of_birth"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
-      {"dln_soft_validation": {type: :hidden}},
-      {"voter_signature": {type: :signature}}
+      {"dln_soft_validation": {type: :hidden}}
     ]
   end
   

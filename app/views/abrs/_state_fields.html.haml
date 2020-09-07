@@ -164,8 +164,4 @@
             = form.text_field opts[:y], value: form.object.send(opts[:y]), placeholder: 'YYYY', type: 'tel', size: 4
             
           %span.error= form.object.errors[opts[:method]].join("\n")        
-      - elsif opts[:type] == :signature
-        - @registrant = @abr
-        = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
-        %li.signature{class: class_name, data: data}
-          = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
+      

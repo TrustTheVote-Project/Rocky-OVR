@@ -231,6 +231,9 @@ en:
             time you can check the status of your application and the status of your
             ballot at: <a rel="noopener" target="blank" href="https://my.arizona.vote/PortalList.aspx">https://my.arizona.vote/PortalList.aspx</a></p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Arizona, we can email a digitally signed copy of your request for. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
           requirements: "<p>To qualify to request a ballot in AZ, you only need to
             be registered to vote.</p>"
           finish_instructions: '<p>Make sure to read the instructions on the form

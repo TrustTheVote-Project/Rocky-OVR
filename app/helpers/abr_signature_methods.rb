@@ -18,8 +18,13 @@ module AbrSignatureMethods
     AbrSignatureMethods::METHODS
   end
 
-  def deliver_to_elections_office_via_email?
+  def collect_signature?
+    # For now only collect signatuer if we also deliver via mail
     return RockyConf.absentee_states[home_state_abbrev] && !RockyConf.absentee_states[home_state_abbrev][:email_delivery].blank?
+  end
+
+  def deliver_to_elections_office_via_email?
+    collect_signature? && signature_method != VoterSignature::PRINT_METHOD
   end
 
   def elections_office_name

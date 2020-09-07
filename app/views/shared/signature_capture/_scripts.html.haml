@@ -39,8 +39,8 @@
          top.location = self.location.href;
       }
       
-      $("#signature_capture").show();   
       if (!isDesktop) {
+        $("#signature_capture").show();   
         $("#signature_upload").hide();        
         console.log('hi')
         $("#signature_capture").addClass("is-device")        
@@ -145,15 +145,20 @@
           });    
           if (imageData != "") {
             setTimeout(showControls, 1000);
-          }
-            
+          }          
         } else {
           $('#signature-cropper').hide()
+
         }
         if ($("##{signature_method_id_prefix}_device:checked").length > 0) {
           $("#continue_on_device").show();
         } else {
           $("#continue_on_device").hide();
+        }
+        if ($("##{signature_method_id_prefix}_desktop:checked").length > 0) {
+          $("#signature_capture").show();
+        } else {
+          $("#signature_capture").hide();
         }
       } 
       

@@ -45,9 +45,16 @@
   
       %ul.flat
         = render :partial=> "registrants/phone", :locals=>{:form=>form}
+
+        
       = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
       = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
-  
+      
+      - if @abr.collect_signature?
+        - @registrant = @abr
+        = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
+        = render partial: 'shared/signature_capture/form', locals: {form: form, home_state_key: "#{@abr.home_state_abbrev.downcase}.abr", allow_desktop_signature: @registrant.allow_desktop_signature?, allow_print_and_sign: true}
+      
       = rollover_button(:prepare, I18n.t('txt.button.prepare'))
 
     .back

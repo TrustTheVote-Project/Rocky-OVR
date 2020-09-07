@@ -1,5 +1,6 @@
 - allow_desktop_signature ||= false
-- home_state_key = @registrant.home_state_abbrev.downcase
+- allow_print_and_sign ||= false # only relevant if allow_desktop_signature is true
+- home_state_key ||= @registrant.home_state_abbrev.downcase
 - form_name_prefix = ActiveModel::Naming.param_key(@registrant) 
   
 %fieldset#signature_upload
@@ -79,7 +80,11 @@
         = form.radio_button :signature_method, VoterSignature::DESKTOP_METHOD
         %label{for: "#{form_name_prefix}_signature_method_desktop"} 
           = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_desktop", default: t('txt.signature_capture.continue_on_desktop'))
-      
+      - if allow_print_and_sign
+        %li
+          = form.radio_button :signature_method, VoterSignature::PRINT_METHOD
+          %label{for: "#{form_name_prefix}_signature_method_print"} 
+            = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_paper", default: t('txt.signature_capture.continue_on_paper'))
     - else
       %li
         = form.radio_button :signature_method, VoterSignature::PRINT_METHOD
