@@ -26,7 +26,7 @@ class GeoState < ActiveRecord::Base
 
   has_many :localizations, :class_name => 'StateLocalization', :foreign_key => 'state_id'
   
-  delegate :online_reg_url, :redirect_to_online_reg_url, :has_ovr_pre_check?, :ovr_pre_check, :decorate_registrant, :enabled_for_language?, :require_age_confirmation?, :require_id?, :automatic_under_18_ok?, :use_state_flow?, :online_abr_enabled?, :oabr_url, :to=>:state_customization
+  delegate :online_reg_url, :redirect_to_online_reg_url, :has_ovr_pre_check?, :ovr_pre_check, :decorate_registrant, :enabled_for_language?, :require_age_confirmation?, :require_id?, :automatic_under_18_ok?, :use_state_flow?, :online_abr_enabled?, :oabr_url, :oabr_url_is_local_jurisdiction?, :to=>:state_customization
 
   def self.[](id_or_abbrev)
     init_all_states
@@ -43,10 +43,10 @@ class GeoState < ActiveRecord::Base
     @@all_states_by_abbrev.map { |abbrev, state| [state.name, abbrev] }.sort
   end
 
-  def self.collection_for_select
-    init_all_states
-    @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
-  end
+  # def self.collection_for_select
+  #   init_all_states
+  #   @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
+  # end
 
   def self.init_all_states
     @@all_states_by_id ||= all.inject([]) { |arr,state| arr[state.id] = state; arr }

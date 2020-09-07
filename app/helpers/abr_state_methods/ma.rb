@@ -50,8 +50,8 @@ module AbrStateMethods::MA
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
-      {"Mail Ballot to 1": {visible: "has_mailing_address"}},
-      {"Mail Ballot to 2": {visible: "has_mailing_address"}},
+      {"Mail Ballot to 1": {visible: "has_mailing_address", required: :if_visible}},
+      {"Mail Ballot to 2": {visible: "has_mailing_address", required: :if_visible}},
       {"This application is being made by a family member of the voter": {type: :checkbox}},
       {"Relationship to voter": {visible: self.class.make_method_name("This application is being made by a family member of the voter"), required: :if_visible}},
       {"Voter is a member of military on active duty or dependent family member of": {type: :checkbox}},

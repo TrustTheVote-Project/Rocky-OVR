@@ -145,7 +145,7 @@ module AbrStateMethods
   end
   
   def custom_validation_message(field_name, validation_type, default)
-    I18n.t("states.custom.#{home_state_abbrev.downcase}.abr_form_fields.#{field_name}__#{validation_type}_message", default: default)
+    I18n.t("states.custom.#{i18n_key}.abr_form_fields.#{field_name}__#{validation_type}_message", default: default)
   end
   
   def custom_required_message(field_name)

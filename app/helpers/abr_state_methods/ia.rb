@@ -115,7 +115,7 @@ module AbrStateMethods::IA
     },
     "County": {},
     "Mail Address": {
-      pdf_field: "Mail Address/P.O. Box"
+      pdf_name: "Mail Address/P.O. Box"
     },
     "Mailing Address City": {},
     "Mailing Address State": {},
@@ -163,12 +163,12 @@ module AbrStateMethods::IA
       value: "Off"
     }
   }
-  EXTRA_FIELDS = ["identification", "license", "voter_pin", "has_mailing_address"]
+  EXTRA_FIELDS = ["identification", {name:"license", sensitive:true}, "voter_pin", "has_mailing_address"]
    
   def form_field_items
     [
       {"identification": {type: :radio, required: true, options: ["dln", "vic"]}},
-      {"license": {required: "custom", visible: "identification_dln", min: 9, max: 9, regexp: /\A(\d{9}|\d{3}[[:alpha:]]{2}\d{4})\z/}},
+      {"license": {required: "custom", visible: "identification_dln", min: 9, max: 9, regexp: /\A(\d{9}|\d{3}[[:alpha:]]{2}\d{4})\z/}}, #Leaving hard constraints; form requires it
       {"voter_pin": {required: "custom", visible: "identification_vic", min: 4, max: 4, regexp: /\A\d{4}\z/}},
       {"County": {type: :select, required: true, include_blank: true, options: [
         "Adair",

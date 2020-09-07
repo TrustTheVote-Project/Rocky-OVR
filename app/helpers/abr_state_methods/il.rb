@@ -20,17 +20,17 @@ module AbrStateMethods::IL
     "Email": {
       method: "email"
     },
-    "ElectionPrecinct": {}, #TODO - autofill with precinct according to given residential address
+    "ElectionPrecinct": {},
     "VOTERS OPTIONAL ADDRESS LINE 1": {
-      method: "full_name"
+      method: "full_name_if_has_mailing_address"
     },
     "VOTERS OPTIONAL ADDRESS LINE 2": {},
     "VOTERS OPTIONAL ADDRESS LINE 3": {},
     "VOTERS OPTIONAL ADDRESS LINE 4": {},
-    "delivery_address": {}, #TODO - autofill with the nearest county clerk's address according to given residential address
+    "delivery_address": { method: "delivery_full_address" },
   }
   EXTRA_FIELDS = ["has_mailing_address"]
-   
+  
   def form_field_items
     [
       {"County": {type: :select, required: true, include_blank: true, options: [
@@ -137,11 +137,16 @@ module AbrStateMethods::IL
         "Winnebago",
         "Woodford",
       ]}},
+      {"ElectionPrecinct": {required: true}},
       {"has_mailing_address": {type: :checkbox}},
       {"VOTERS OPTIONAL ADDRESS LINE 2": {visible: "has_mailing_address"}},
-      {"VOTERS OPTIONAL ADDRESS LINE 3": {visible: "has_mailing_address"}},
-      {"VOTERS OPTIONAL ADDRESS LINE 4": {visible: "has_mailing_address"}},
+      {"VOTERS OPTIONAL ADDRESS LINE 3": {visible: "has_mailing_address", required: :if_visible}},
+      {"VOTERS OPTIONAL ADDRESS LINE 4": {visible: "has_mailing_address", required: :if_visible}},
     ]
+  end
+   
+  def full_name_if_has_mailing_address 
+    has_mailing_address == "1" ? full_name : ""
   end
    
   def custom_form_field_validations

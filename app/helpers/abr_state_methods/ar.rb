@@ -90,7 +90,7 @@ module AbrStateMethods::AR
   end
   
   def custom_form_field_validations
-    if self.where_receive == "designated_bearer"
+    if self.where_receive == "Designated_Bearer"
       custom_validates_presence_of("Designated_Bearer_Name")
     end
     if self.where_receive == "Mail"

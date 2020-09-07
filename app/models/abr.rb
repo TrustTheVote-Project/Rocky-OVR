@@ -39,6 +39,7 @@ class Abr < ActiveRecord::Base
   validates_presence_of :street_name, if: :advancing_to_step_3?
   validates_presence_of :city, if: :advancing_to_step_3?
   validates_presence_of :date_of_birth, if: :advancing_to_step_3?
+  validate :will_be_18, if: :advancing_to_step_3?
   validates_presence_of :zip
   validate :validate_form_fields, if: :advancing_to_step_4?
   validate :validate_date_of_birth, if: :advancing_to_step_3?
@@ -55,6 +56,14 @@ class Abr < ActiveRecord::Base
         message: message }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
     end
     
+  end
+  
+  MAX_DATE_OF_BIRTH = Date.parse("2002-11-03")
+  
+  def will_be_18
+    if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 
+      errors.add(:date_of_birth, :too_young)
+    end
   end
   
   def validates_zip
@@ -132,6 +141,10 @@ class Abr < ActiveRecord::Base
   
   def home_state_oabr_url
     home_state && home_state.oabr_url(self)
+  end
+  
+  def oabr_url_is_local_jurisdiction?
+    home_state && home_state.oabr_url_is_local_jurisdiction?(self)
   end
   
   def oabr_for_all?
@@ -228,6 +241,21 @@ class Abr < ActiveRecord::Base
     end
   rescue StandardError => error
   end
+
+  def deliver_final_reminder_email
+    if send_emails? && !final_reminder_delivered && !pdf_downloaded && pdf_ready?
+      begin
+        AbrNotifier.final_reminder(self).deliver_now
+      rescue
+        # If we can't deliver, just stop
+      end
+      self.final_reminder_delivered = true
+      self.save(validate: false)
+    elsif !pdf_downloaded && pdf_ready?
+      self.final_reminder_delivered = true
+      self.save(validate: false)
+    end
+  end
   
   def state_registrar_office
     @state_registrar_office ||= home_state && home_state.abr_office(self.zip)
@@ -245,8 +273,17 @@ class Abr < ActiveRecord::Base
     end
   end
   
+  def cities_from_zip
+    z = ZipCodeCountyAddress.find_by_zip(self.zip)
+    if z
+      return z.cities
+    else
+      return []
+    end
+  end
+  
   def home_state_email_instructions
-    I18n.t("states.custom.#{home_state_abbrev.downcase}.abr.email_instructions", default: '')
+    I18n.t("states.custom.#{i18n_key}.abr.email_instructions", default: '')
   end
   
   def zip=(zip)

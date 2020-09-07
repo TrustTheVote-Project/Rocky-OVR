@@ -48,12 +48,54 @@
       
     })
   }
+
+  function track_soft_validation(fieldElement, validation) {
+    $(document).find('input[name="abr[dln_soft_validation]"]').val(validation);
+  }
+
+  function soft_validation_feedback(fieldElement, message, str) {
+    var feedback='<span class="dln_soft_validation">'+message+'</span>';
+    $(fieldElement).find('span.error span.dln_soft_validation').remove()
+    if (message){
+      $(fieldElement).find('span.error').append(feedback);
+    }
+    else if (str) {
+        $(fieldElement).find('span.error').html(feedback);
+        $(fieldElement).find('div.has_error').removeClass('has_error');
+    }
+    else {
+        $(fieldElement).find('span.error').append(feedback); 
+    }
+  }
+
+  function test_ui_regex() {
+    var setToTest = $("[data-ui-regexp]:visible");
+    $(setToTest).each(function() {
+      var re_string = $(this).data('ui-regexp');
+      var RE = new RegExp(re_string);           
+      var str = $(this).find("input").val();
+      
+      var failure_message = $(this).data('ui-regexp-fail-message');  
+
+      if (str && !RE.test(str)) {
+        track_soft_validation(this,"fail");
+        soft_validation_feedback(this, failure_message, str);
+      
+      }
+      else {
+        track_soft_validation(this,"pass");
+        soft_validation_feedback(this, '', str);
+      }    
+    });
+  }
   $(document).ready(function() {
     toggleHidden();
     toggleVisible();
+    test_ui_regex();
     $("form").change(() => {
       toggleHidden();
-      toggleVisible()
+      toggleVisible();
+      test_ui_regex();
     })
   })
   
@@ -62,10 +104,12 @@
   %ul.flat
     - @abr.form_fields.each do |field_name, opts|
       - required = opts[:required]
-      - field_label = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}", default: (opts[:label] || field_name)).html_safe
-      - instructions = t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__hint", default: "").html_safe
+      - ui_regexp = opts[:ui_regexp]
+      - field_label = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}", default: (opts[:label] || field_name)).html_safe
+      - instructions = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__hint", default: "").html_safe
       - class_name = "line #{opts[:classes]} #{opts[:method]} #{required ? 'required' : ''}"
       - required_message = required ?  @abr.custom_required_message(field_name).html_safe : nil
+      - ui_regexp_fail_message = ui_regexp ?  @abr.custom_format_message(field_name).html_safe : nil
       - data = {}
       - visible_conditions = opts[:visible].is_a?(Array) ? opts[:visible][0] : opts[:visible].to_s.strip
       - visible_conditions_value = opts[:visible].is_a?(Array) ? opts[:visible][1] : nil
@@ -75,9 +119,11 @@
       - data["visible-conditions-value"] = visible_conditions_value unless visible_conditions_value.blank?
       - data["hidden-conditions"] = hidden_conditions unless hidden_conditions.blank?
       - data["hidden-conditions-value"] = hidden_conditions_value unless hidden_conditions_value.blank?
+      - data["ui-regexp"] = ui_regexp unless ui_regexp.blank?
+      - data["ui_regexp_fail_message"] = ui_regexp_fail_message unless ui_regexp.blank?
       - if opts[:type] == :instructions
         %li.instructions{class: class_name, data: data}
-          %p.instructions= t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{opts[:method]}")
+          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")
       - if opts[:type] == :checkbox
         - class_name += " registrant-form__required-checkbox " if required
         %li{class: class_name, data: data}
@@ -93,10 +139,12 @@
           
       - elsif opts[:type] == :string
         = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions})
+      - elsif opts[:type] == :hidden
+        = field_div(form, opts[:method], {kind: 'hidden'}) 
       - elsif opts[:type] == :radio
         %li{class: "#{class_name} #{opts[:method]}",  data: data}
           %ul.stacked.radio
-            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.home_state_abbrev.downcase}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
+            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
             = field_li(form, opts[:method], {label_options:  field_label, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
       - elsif opts[:type] == :select
         = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })

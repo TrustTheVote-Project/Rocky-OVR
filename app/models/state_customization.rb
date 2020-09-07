@@ -82,10 +82,25 @@ class StateCustomization
     oabr_url(abr).present?
   end
   
+  def oabr_url_is_local_jurisdiction?(abr = nil)
+    puts oabr_url(abr)
+    puts abr_settings&.online_req_url
+    oabr_url(abr) != abr_settings&.online_req_url
+  end
+  
   def oabr_url(abr = nil)
     if abr && abr_settings&.counties
       begin
         url = abr_settings&.counties[abr.county_from_zip.downcase].online_req_url
+        return url unless url.blank?
+      rescue
+      end
+      begin
+        abr.cities_from_zip.each do |city|
+          url = abr_settings.cities[city.downcase.strip]&.online_req_url
+          return url unless url.blank?
+        end
+        url = abr_settings.cities[abr.city.downcase.strip].online_req_url
         return url unless url.blank?
       rescue
       end
