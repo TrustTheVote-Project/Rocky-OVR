@@ -65,7 +65,7 @@ class Abr < ActiveRecord::Base
   validate :validates_signature
   
   def requires_county?
-    home_state&.counties&.any?
+    advancing_to_step_3? && home_state&.counties&.any?
   end
 
   def self.validate_fields(list, regex, message)
