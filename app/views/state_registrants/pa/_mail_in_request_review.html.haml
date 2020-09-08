@@ -1,0 +1,26 @@
+- if @registrant.request_abr?
+  .review__section
+    .review__section__label
+      = t('activerecord.attributes.state_registrants/pa_registrant.abr_address_type')
+    .review__section__content
+      - if @registrant.abr_address_type == 'R'
+        = render partial: "state_registrants/pa/registration_address"
+      - elsif @registrant.abr_address_type == 'M'
+        = render partial: "state_registrants/pa/mailing_address"
+      - elsif @registrant.abr_address_type == 'A'
+        = @registrant.abr_ballot_address
+        %br
+        = "#{@registrant.abr_ballot_city}, #{@registrant.abr_ballot_state} #{@registrant.abr_ballot_zip}"
+      = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
+  .review__section
+    .review__section__label
+      = t('activerecord.attributes.state_registrants/pa_registrant.abr_ballot_address_start_year')
+    .review__section__content
+      = @registrant.abr_ballot_address_start_year         
+      = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
+  .review__section
+    .review__section__label
+      = t('activerecord.attributes.state_registrants/pa_registrant.abr_ward')
+    .review__section__content
+      = @registrant.abr_ward         
+      = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))    

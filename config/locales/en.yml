@@ -212,7 +212,7 @@ en:
         email_address_for_continue_on_device: 'Email me the link:'
         voter_signature_image: Voter Signature Image
         request_abr: I would like to receive mail-in ballots for the rest of the year, and also to automatically receive an annual application for mail ballots each year.
-        abr_address_type: "Mail ballot to me at the following address:"
+        abr_address_type: "Mail my ballot to me at the following address:"
         abr_ballot_address: Address
         abr_ballot_city: City
         abr_ballot_state: State

@@ -139,6 +139,7 @@
           = PhoneFormatter.process @registrant.phone
           = @registrant.phone_type
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+    = render 'state_registrants/pa/mail_in_request_review'
           
   
   .declaration-text= t('states.custom.pa.declaration').html_safe
