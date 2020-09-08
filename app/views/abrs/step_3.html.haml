@@ -68,22 +68,25 @@
         = render partial: 'shared/signature_capture/form', locals: {form: form, home_state_key: "#{@abr.home_state_abbrev.downcase}.abr", allow_desktop_signature: @abr.allow_desktop_signature?, allow_print_and_sign: true}
       
         #deliver_by_email
-          %h3
+          %h2
             %strong= t('txt.abr.step_3_deliver_via_email_header')
-          %p
-            = @abr.full_name
+          %p{style: "font-size: 16px; margin-top: 1em; line-height: 1.5em"}
+            = t('txt.abr.review.name')
+            %strong{style: "font-weight: bold"}= @abr.full_name
             %br
-            = @abr.email
-          %p
-            = @abr.full_address_3_lines.gsub(/\n/, "<br/>").html_safe
+            = t('txt.abr.review.email')
+            %strong{style: "font-weight: bold"}= @abr.email
+          %p{style: "font-size: 16px; margin-top: 1em; line-height: 1.5em"}
+            = t('txt.abr.review.address')
             %br
-            = @abr.registration_county_name
-          %p
-            = t('activerecord.attributes.abr.date_of_birth')
+            %strong{style: "font-weight: bold"}= @abr.full_address_3_lines.gsub(/\n/, "<br/>").html_safe
             %br
-            = I18n.l @abr.date_of_birth, format: :long
+            %strong{style: "font-weight: bold"}= @abr.registration_county_name
+          %p{style: "font-size: 16px; margin-top: 1em; line-height: 1.5em"}
+            = t('txt.abr.review.date_of_birth')
+            %strong{style: "font-weight: bold"}= I18n.l @abr.date_of_birth, format: :long
             
-          .declaration-text
+          .declaration-text{style: "font-weight: bold; text-align: center"}
             = t('txt.abr.step_3_deliver_via_email_instructions').html_safe
           = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_email_delivery, class_name: "registrant-form__confirm_email_delivery__line", required: true, require_accepted: true}
           = rollover_button(:prepare, I18n.t('txt.button.deliver'))

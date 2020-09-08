@@ -18,6 +18,11 @@ en:
       step_3_deliver_via_email_header: "Review your previously entered information:"
       step_3_deliver_via_email_instructions: <p>Please review all of the above information for accuracy.</p>
         <p>When you click the button below, an email will be sent directly to your local election office with your absentee ballot request.</p>
+      review:
+        name: "Name:"
+        email: "Email:"
+        address: "Registered Address:"
+        date_of_birth: "Date of Birth:"
       state_online_defaults:
         header: You can request an Absentee Ballot online directly with the state
           of %{state}
