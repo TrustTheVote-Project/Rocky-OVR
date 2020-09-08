@@ -46,12 +46,14 @@ module AbrStateMethods::WY
         value: "On"	
       },	
       "Individual's name who may pick up my ballot": {},	
-      #Date	
+      "Date": {
+        method: "date_for_signature"
+      }
       #voter_signature	      #voter_signature      
   
   }
 
-  def signature_field_name
+  def signature_pdf_field_name
     "voter_signature"
   end
 

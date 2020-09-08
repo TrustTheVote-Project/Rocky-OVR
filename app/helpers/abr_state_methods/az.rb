@@ -55,12 +55,14 @@ module AbrStateMethods::AZ
       method: "email"
     },
     "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {sensitive: true, method: "identification_data"},
-    #Date
+    "Date": {
+      method: "date_for_signature"
+    }
     #voter_signature
 
   }
 
-  def signature_field_name
+  def signature_pdf_field_name
     "voter_signature"
   end
 
