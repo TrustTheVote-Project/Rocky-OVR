@@ -3,7 +3,7 @@ module AbrSignatureMethods
     :voter_signature_image,
     :signature_method,
     :sms_number_for_continue_on_device,
-    :email_address_for_continue_on_device
+    :email_address_for_continue_on_device,    
   ]
   def allow_desktop_signature?
     false
@@ -13,9 +13,12 @@ module AbrSignatureMethods
     step_3_abr_url(self.to_param,  :protocol => "https", :host=>RockyConf.default_url_host)
   end
 
-  def signature_attrs
+  def allowed_signature_attrs
     # Always allow these methods
-    AbrSignatureMethods::METHODS
+    [
+      AbrSignatureMethods::METHODS,
+      :confirm_email_delivery
+    ].flatten
   end
 
   def collect_signature?
@@ -50,6 +53,7 @@ module AbrSignatureMethods
     if deliver_to_elections_office_via_email? && advancing_to_step_4?
       self.validates_presence_of(:voter_signature_image)
       self.validates_presence_of(:signature_method)
+      self.validates_acceptance_of(:confirm_email_delivery)
     end
   end
 
