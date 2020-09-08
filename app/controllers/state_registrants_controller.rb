@@ -2,7 +2,7 @@ class StateRegistrantsController < RegistrationStep
   
   # layout "registration"
   # before_filter :find_partner
-  before_filter :load_state_registrant
+  before_filter :load_state_registrant, except: [:pending, :complete]
     
   def edit
     set_up_locale
@@ -42,6 +42,7 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def pending
+    load_state_registrant(:pending)
     if !@old_registrant
       # Skip other processing and render pending w/out variables set
       @use_mobile_ui = determine_mobile_ui(@registrant)
@@ -70,6 +71,7 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def complete
+    load_state_registrant(:complete)
     set_up_locale
     @use_mobile_ui = determine_mobile_ui(@registrant)
     @registrant_finish_iframe_url = @registrant.finish_iframe_url
@@ -101,7 +103,7 @@ class StateRegistrantsController < RegistrationStep
   end
 
   private
-  def load_state_registrant
+  def load_state_registrant(special_case = nil)
     begin
       @old_registrant = Registrant.find_by_param!(params[:registrant_id])
     rescue Registrant::AbandonedRecord => exception
@@ -110,6 +112,9 @@ class StateRegistrantsController < RegistrationStep
       return
     rescue 
       return
+    end
+    if @old_registrant.complete? && special_case.blank?
+      raise ActiveRecord::RecordNotFound
     end
     @registrant = @old_registrant.state_registrant
     if !@registrant
