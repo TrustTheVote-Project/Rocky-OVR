@@ -33,6 +33,10 @@ en:
       download_header: Preparing your request form
       download_instructions: "<p>Make sure to download, print, sign and send your
         request to:</p><p>%{registrar_address}</p>"
+      finish_via_email_header: Thank you!  Your form has been submitted. 
+      finish_via_email_instructions: "<p>We have emailed your request to %{elections_office_name}.  We emailed a copy of your request 
+        form to you too!</p><p>Be sure to check in a couple days to make sure that your request was received. You can check this at: 
+        <a href=\"%{abr_check_url}\">%{abr_check_url}</a>."
       finish_header: Almost done
       finish_instructions: "<p>Make sure to download, print, sign and send your request
         to:</p><p>%{registrar_address}</p>"
@@ -86,6 +90,7 @@ en:
       keep_going: Keep Going
       remind_me_later: Remind Me Later
       help: Help
+      deliver: Email form to your local elections office
       prepare: Prepare Form
       prepare_with_esig: Complete Registration Form
       review: Review Application

@@ -61,6 +61,7 @@ record_2:
   sos_url: https://azsos.gov/elections
   sub_18: turn_by_next_general_election_november
   online_registration_url: https://servicearizona.com/VoterRegistration?id=RTV
+  status_check_url: https://my.arizona.vote/PortalList.aspx
   registration_deadline: received_29_days
   pdf_instructions: arizona
   email_instructions: arizona

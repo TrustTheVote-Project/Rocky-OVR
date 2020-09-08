@@ -8,7 +8,10 @@
   %script{src: "https://cdn.jsdelivr.net/npm/cropit@0.5.1/dist/jquery.cropit.min.js"}
   :javascript
     jQuery.event.addProp('dataTransfer')
-  
+    function selectSignatureTypeCallback() {
+      //no-op by default
+    }
+
     function resizeCanvas(canvas, signaturePad) {
       // When zoomed out to less than 100%, for some very strange reason,
       // some browsers report devicePixelRatio as less than 1
@@ -130,6 +133,7 @@
           
         } catch(err) { console.error(err) }
       }
+      
       function selectSignatureType() {
         if ($("##{signature_method_id_prefix}_upload:checked").length > 0) {
           var imageData = $('##{image_field_id}').val()
@@ -155,11 +159,13 @@
         } else {
           $("#continue_on_device").hide();
         }
+        
         if ($("##{signature_method_id_prefix}_desktop:checked").length > 0) {
           $("#signature_capture").show();
         } else {
           $("#signature_capture").hide();
         }
+        selectSignatureTypeCallback();
       } 
       
       function copyLink() {

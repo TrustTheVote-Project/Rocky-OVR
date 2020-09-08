@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200903143849) do
+ActiveRecord::Schema.define(version: 20200908025712) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20200903143849) do
     t.boolean  "dead_end",                 default: false
     t.string   "tracking_source"
     t.string   "tracking_id"
+    t.string   "registration_county"
   end
 
   add_index "abrs", ["abandoned", "dead_end", "current_step"], name: "index_abrs_for_abandonment"
@@ -279,6 +280,7 @@ ActiveRecord::Schema.define(version: 20200903143849) do
     t.string   "online_registration_url",         limit: 255
     t.string   "online_registration_system_name"
     t.string   "registrar_abr_address"
+    t.string   "status_check_url"
   end
 
   create_table "grommet_requests", force: :cascade do |t|

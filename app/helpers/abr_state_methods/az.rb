@@ -44,7 +44,7 @@ module AbrStateMethods::AZ
     "Residence_Address": {
       method: "full_address_1_line"
     },
-    "County_of_Residence": {},
+    "County_of_Residence": { method: "registration_county" },
     "Mailing_Address": {},
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"
@@ -70,23 +70,6 @@ module AbrStateMethods::AZ
     [
       {"election_selection": {type: :radio, options: ["general", "all"], required: true}},
       {"primary_ballot_selection": {visible: "election_selection_all", required: "custom", type: :radio, options: PARTY_SELECTIONS}},
-      {"County_of_Residence": {type: :select, required: true, include_blank: true, options: [
-        "Apache",
-        "Cochise",
-        "Coconino",
-        "Gila",
-        "Graham",
-        "Greenlee",
-        "La Paz",
-        "Maricopa",
-        "Mohave",
-        "Navajo",
-        "Pima",
-        "Pinal",
-        "Santa Cruz",
-        "Yavapai",
-        "Yuma",
-      ]}},
       {"identification_selection": {required:true, type: :radio, options: ["place_of_birth", "drivers_license_id","last_4_ssn"]}},
       {"drivers_license_id": {required: "star", ui_regexp:"^[a-zA-Z][0-9]{8}$|^[0-9]{9}$", min:8, max:9, visible: "identification_selection_drivers_license_id"}},
       {"last_4_ssn": {required: "star",  min:4, max:4, visible:"identification_selection_last_4_ssn"}},
@@ -171,7 +154,7 @@ module AbrStateMethods::AZ
     end
     
     if self.primary_ballot_selection == "green_pima_county_voters_only"
-      if self.county_of_residence != "Pima"
+      if self.registration_county != "pima county"
         errors.add(:primary_ballot_selection, "Green party is for Pima county voters only")
       end
     end

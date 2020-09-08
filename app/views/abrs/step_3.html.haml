@@ -52,10 +52,26 @@
       
       - if @abr.collect_signature?
         - @registrant = @abr
-        = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
-        = render partial: 'shared/signature_capture/form', locals: {form: form, home_state_key: "#{@abr.home_state_abbrev.downcase}.abr", allow_desktop_signature: @registrant.allow_desktop_signature?, allow_print_and_sign: true}
+        = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @abr.allow_desktop_signature? }
+        :javascript
+          function selectSignatureTypeCallback() {
+            if ($("#abr_signature_method_paper:checked").length > 0) {
+              $("#prepare_form").show();
+              $("#deliver_by_email").hide();
+            } else {
+              $("#prepare_form").hide();
+              $("#deliver_by_email").show();
+            }
+
+          }
+        = render partial: 'shared/signature_capture/form', locals: {form: form, home_state_key: "#{@abr.home_state_abbrev.downcase}.abr", allow_desktop_signature: @abr.allow_desktop_signature?, allow_print_and_sign: true}
       
-      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+        #deliver_by_email
+          
+          = rollover_button(:prepare, I18n.t('txt.button.deliver'))
+
+      #prepare_form
+        = rollover_button(:prepare, I18n.t('txt.button.prepare'))
 
     .back
       = link_to t('txt.button.back').html_safe, step_2_abr_path(@abr)

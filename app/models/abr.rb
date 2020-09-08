@@ -60,9 +60,14 @@ class Abr < ActiveRecord::Base
   validates_presence_of :email
   validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
   validates_presence_of :phone_type, if: :has_phone?
+  validates_presence_of :registration_county, if: :requires_county?
   validate :validates_zip
   validate :validates_signature
   
+  def requires_county?
+    home_state&.counties&.any?
+  end
+
   def self.validate_fields(list, regex, message)
     list.each do |field|
       validates field, format: { with: regex , 

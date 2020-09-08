@@ -6,7 +6,7 @@ module AbrSignatureMethods
     :email_address_for_continue_on_device
   ]
   def allow_desktop_signature?
-    true
+    false
   end  
 
   def signature_capture_url
@@ -27,12 +27,17 @@ module AbrSignatureMethods
     collect_signature? && signature_method != VoterSignature::PRINT_METHOD
   end
 
+  def status_check_url
+    home_state.counties[registration_county][:abr_status_check_url] || home_state.status_check_url
+  end
+
   def elections_office_name
-    "Elections Officer"
+    home_state.counties[registration_county][:abr_contact_name] || "#{home_state.counties[registration_county][:name]} Elections Office"
   end
 
   def elections_office_email
     "alex.mekelburg@osetfoundation.org"
+    # home_state.counties[registration_county][:abr_email_address]
     #"ovrtool@rockthevote.org"
     #RockyConf.absentee_states[home_state_abbrev] && !RockyConf.absentee_states[home_state_abbrev][:email_delivery] ?? 
   end
