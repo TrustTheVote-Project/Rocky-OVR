@@ -72,8 +72,13 @@ class Abr < ActiveRecord::Base
     list.each do |field|
       validates field, format: { with: regex , 
         message: message }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
-    end
-    
+    end    
+  end
+
+  def registration_county_name
+    home_state.counties[registration_county][:name]
+  rescue
+    nil
   end
   
   MAX_DATE_OF_BIRTH = Date.parse("2002-11-03")

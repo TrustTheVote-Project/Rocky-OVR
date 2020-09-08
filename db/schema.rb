@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200908025712) do
+ActiveRecord::Schema.define(version: 20200908184008) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20200908025712) do
     t.string   "tracking_source"
     t.string   "tracking_id"
     t.string   "registration_county"
+    t.boolean  "confirm_email_delivery"
   end
 
   add_index "abrs", ["abandoned", "dead_end", "current_step"], name: "index_abrs_for_abandonment"
