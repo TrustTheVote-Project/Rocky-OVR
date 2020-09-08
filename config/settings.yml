@@ -374,6 +374,12 @@ ovr_states:
     languages:
       - en
       - es
+  NJ:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
+      - ko
   NM:
     redirect_to_online_reg_url: true
     languages:
