@@ -39,10 +39,7 @@ module AbrSignatureMethods
   end
 
   def elections_office_email
-    "alex.mekelburg@osetfoundation.org"
-    # home_state.counties[registration_county][:abr_email_address]
-    #"ovrtool@rockthevote.org"
-    #RockyConf.absentee_states[home_state_abbrev] && !RockyConf.absentee_states[home_state_abbrev][:email_delivery] ?? 
+    Rails.env.production? ? home_state.counties[registration_county][:abr_email_address] : "errors@rockthevote.com"
   end
 
   def email_address_to_send_form_delivery_from
