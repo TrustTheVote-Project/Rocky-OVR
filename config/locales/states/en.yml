@@ -253,6 +253,7 @@ en:
               to include my name on the PEVL and automatically send me a ballot-by-mail
               for each election I am eligible for.</span>"
           has_mailing_address: My mailing address differs from my residential address.
+          Mailing_Address: Mailing Address
           Place_of_Birth_or_Drivers_licence_or_last_4_ssn: 'Place of birth, driver''s
             license #, or last 4 digits of social security number:'
           primary_ballot_selection: Primary Election Ballot Selection
