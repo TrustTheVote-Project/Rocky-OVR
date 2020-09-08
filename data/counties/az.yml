@@ -2,59 +2,74 @@
   abr_email_address: test@test.com
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Cochise County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Coconino County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Gila County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Graham County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Greenlee County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: La Paz County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Maricopa County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Mohave County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Navajo County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Pima County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Pinal County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Santa Cruz County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Yavapai County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:
 - name: Yuma County
   abr_email_address:
   abr_contact_name:
   abr_status_check_url:
+  abr_status_check_phone:

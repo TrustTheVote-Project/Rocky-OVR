@@ -10,10 +10,12 @@ module AbrStateMethods::AZ
       value: "Off"
     },
     "General Election Only": {
-      options: ["Off", "On"]
+      options: ["Off", "On"],
+      value: "On" # TODO remove this once we can figure out AZ email handling
     },
     "Every Election I authorize the County Recorder to include my name on the PEVL and automatically send": {
-      options: ["Off", "On"]
+      options: ["Off", "On"],
+      value: "Off" # TODO remove this once we can figure out AZ email handling
     },
     "Democratic": {
       options: ["Off", "On"],
@@ -68,8 +70,8 @@ module AbrStateMethods::AZ
   
   def form_field_items
     [
-      {"election_selection": {type: :radio, options: ["general", "all"], required: true}},
-      {"primary_ballot_selection": {visible: "election_selection_all", required: "custom", type: :radio, options: PARTY_SELECTIONS}},
+      #{"election_selection": {type: :radio, options: ["general", "all"], required: true}},
+      #{"primary_ballot_selection": {visible: "election_selection_all", required: "custom", type: :radio, options: PARTY_SELECTIONS}},
       {"identification_selection": {required:true, type: :radio, options: ["place_of_birth", "drivers_license_id","last_4_ssn"]}},
       {"drivers_license_id": {required: "star", ui_regexp:"^[a-zA-Z][0-9]{8}$|^[0-9]{9}$", min:8, max:9, visible: "identification_selection_drivers_license_id"}},
       {"last_4_ssn": {required: "star",  min:4, max:4, visible:"identification_selection_last_4_ssn"}},

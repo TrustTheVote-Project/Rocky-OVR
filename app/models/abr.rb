@@ -246,7 +246,7 @@ class Abr < ActiveRecord::Base
   def deliver_to_elections_office
     AbrDeliveryNotifier.deliver_to_elections_office(self).deliver_now
     if send_emails?
-      #AbrNotifier.confirmation(self).deliver_now
+      AbrNotifier.deliver_to_elections_office_confirmation(self).deliver_now
     end
   end
   
