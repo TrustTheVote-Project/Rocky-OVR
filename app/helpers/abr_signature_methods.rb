@@ -34,6 +34,10 @@ module AbrSignatureMethods
     home_state.counties[registration_county][:abr_status_check_url] || home_state.status_check_url
   end
 
+  def status_check_phone
+    home_state.counties[registration_county][:abr_status_check_phone] || home_state.registrar_phone
+  end
+
   def elections_office_name
     home_state.counties[registration_county][:abr_contact_name] || "#{home_state.counties[registration_county][:name]} Elections Office"
   end
@@ -50,7 +54,7 @@ module AbrSignatureMethods
     if deliver_to_elections_office_via_email? && advancing_to_step_4?
       self.validates_presence_of(:voter_signature_image)
       self.validates_presence_of(:signature_method)
-      self.validates_acceptance_of(:confirm_email_delivery)
+      self.validates_acceptance_of(:confirm_email_delivery, :accept=>true)
     end
   end
 

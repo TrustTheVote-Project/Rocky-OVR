@@ -28,6 +28,10 @@ class AbrNotifier < Notifier
     setup_registrant_email(registrant, 'confirmation')
   end
 
+  def deliver_to_elections_office_confirmation(registrant)
+    setup_registrant_email(registrant, 'deliver_to_elections_office_confirmation')
+  end
+
   def thank_you_external(registrant)
     setup_registrant_email(registrant, 'thank_you_external')
   end
@@ -107,6 +111,9 @@ class AbrNotifier < Notifier
     @registrar_address    = abr.state_registrar_address.to_s.html_safe
     @registrar_url        = abr.home_state.registrar_url.to_s.html_safe
     @abr                  = abr
+    @elections_office_name = abr.elections_office_name
+    @status_check_url     = abr.status_check_url
+    @status_check_phone     = abr.status_check_phone
     @abr_first_name = abr.first_name.to_s.html_safe
     @abr_last_name = abr.last_name.to_s.html_safe
     @abr_rtv_and_partner_name = abr.rtv_and_partner_name.to_s.html_safe
