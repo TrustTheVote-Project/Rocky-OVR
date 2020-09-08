@@ -1598,7 +1598,22 @@ en:
           the legal equivalent of your signature.</li><li>You agree to sign this application
           by electronic means and that all laws of the Commonwealth of Pennsylvania
           will apply.</li></ul>"
-        declaration_mail_in: "<p>Terms for requesting mail-in ballots</p>"
+        declaration_mail_in: "<p>I declare that I am eligible to vote by mail-in ballot at 
+          the forthcoming primary or election; that I am requesting the ballot of the party
+          with which I am enrolled according to my voter registration record and that all
+          of the information which I have listed on this mail-in ballot application is true 
+          and correct.</p>
+          <p><strong>WARNING</strong> - If your mail-in ballot is received by the deadline, 
+          you will not be allowed to vote at your polling place.</p><p>By checking the box
+          below, you are signing the application electronically. In doing so:<ul>
+          <li>You agree you have read and accept the terms of the delcaration above.</li>
+          <li>You understand that your electronic signature on this application will constitute
+          a legal agreement.</li><li>You agree to submit this mail-in ballot application
+          electronically and that all laws of the Commonwealth of Pennsylvania will apply
+          to this transaction.</li></ul><p>By providing your PA Driver's License or PennDOT ID
+          number, you understand that the signature from that PennDOT record will count as
+          your signature on your mail-in ballot application.</p>"
+
         unit_type:
           APT: APARTMENT
           BSM: BASEMENT

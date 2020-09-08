@@ -158,7 +158,7 @@ en:
       state_registrants/pa_registrant:
         email: Email
         registration_zip_code: ZIP Code
-        abr_declaration: I confirm that I have read and agree to the terms above for requestion a mail-in ballot.
+        abr_declaration: I confirm that I have read and agree to the terms above.
         confirm_declaration: I confirm that I have read and agree to the terms above.
         confirm_assistant_declaration: I confirm that I have read and agree to the
           terms above.
