@@ -26,6 +26,10 @@ module AbrSignatureMethods
     return RockyConf.absentee_states[home_state_abbrev] && !RockyConf.absentee_states[home_state_abbrev][:email_delivery].blank?
   end
 
+  def date_for_signature
+    deliver_to_elections_office_via_email? ? Date.today.strftime("%m/%d/%Y") : ""
+  end
+
   def deliver_to_elections_office_via_email?
     collect_signature? && signature_method != VoterSignature::PRINT_METHOD
   end

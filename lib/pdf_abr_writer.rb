@@ -9,7 +9,7 @@ class PdfAbrWriter
   attr_accessor :pdf_template_path
   attr_accessor :delivery_address
   attr_accessor :voter_signature
-  attr_accessor :signature_field_name
+  attr_accessor :signature_pdf_field_name
   attr_accessor :deliver_to_elections_office_via_email
 
   def deliver_to_elections_office_via_email?
@@ -34,7 +34,7 @@ class PdfAbrWriter
         signer = FormFiller::Signer.new({
           form: form,
           signature: pdf_signature_image_path,
-          sig_field: self.signature_field_name
+          sig_field: self.signature_pdf_field_name
         })
         signer.sign
         form.save_as(pdf_file_path, flatten: false)
