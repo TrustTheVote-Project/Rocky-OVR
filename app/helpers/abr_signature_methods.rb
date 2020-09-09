@@ -5,6 +5,11 @@ module AbrSignatureMethods
     :sms_number_for_continue_on_device,
     :email_address_for_continue_on_device,    
   ]
+
+  def sms_number
+    self.sms_number_for_continue_on_device.to_s.gsub(/[^\d]/, '')
+  end
+  
   def allow_desktop_signature?
     false
   end  
