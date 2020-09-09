@@ -1473,7 +1473,6 @@ en:
           has_mailing_address: I wish to have my ballot mailed to a different address
             than where I am registered to vote
           Street Address or PO  box: Mailing Address
-          #CityVillage_2: City
           City_2: City
           State: State
           ZIP_2: Zip
@@ -1486,10 +1485,6 @@ en:
               government check, paycheck or other government document (other than
               a notice of voter registration mailed by a board of elections) that
               contains your name and current address.
-          #OR: Ohio Driver license number (2 letters followed by 6 numbers)
-          #OR__format_message: That doesn't look like a driver's license number, please
-          #  verify before continuing.
-          #OR_2: Last four digits of your Social Security Number
           Ohio_driver_license: Ohio Driver license number (2 letters followed by 6 numbers)
           Ohio_driver_license__format_message: That doesn't look like a driver's license number, please
             verify before continuing.
