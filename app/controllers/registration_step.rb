@@ -25,6 +25,7 @@
 class RegistrationStep < ApplicationController
   CURRENT_STEP = -1
   include ApplicationHelper
+  include TwilioHelper
 
   layout "registration"
   before_filter :find_partner

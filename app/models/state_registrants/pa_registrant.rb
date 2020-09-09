@@ -37,6 +37,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   INVALID_PENNDOT= "VR_WAPI_InvalidOVRDL".freeze
   
   include RegistrantMethods
+  include TwilioHelper
   
   validates_with PARegistrantValidator
   
@@ -131,23 +132,6 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   def sms_number
     self.sms_number_for_continue_on_device.to_s.gsub(/[^\d]/, '')
   end
-  
-  def twilio_client
-    @twilio_client ||= Twilio::REST::Client.new twilio_sid, twilio_token      
-  end
-  
-  def twilio_sid
-    @twilio_sid ||= ENV['TWILIO_SID']
-  end
-  
-  def twilio_token
-    @twilio_token ||= ENV["TWILIO_TOKEN"]
-  end
-  
-  def twilio_phone_number 
-    @twilio_phone_number ||= ENV['TWILIO_NUMBER']
-  end
-  
   
   def async_submit_to_online_reg_url
     self.pa_submission_complete = false

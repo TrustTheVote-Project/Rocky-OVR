@@ -271,6 +271,13 @@ en:
 
         Happy voting!
     abr:
+      continue_on_device:
+        subject: Sign your absentee request form
+        body:
+          main: Here is the link you requested to sign your absentee request form
+            on a touchscreen device:<br><br> %{signature_url}<br><br> This link will
+            expire in 30 minutes.<br><br> If you have any questions or run into any
+            issues, please contact us at <a href="mailto:info@rockthevote.org">info@rockthevote.org</a><br>
       deliver_to_elections_office:
         subject: Absentee / Vote-By-Mail Request
         body: |-

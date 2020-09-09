@@ -386,6 +386,14 @@ en:
         form: %{signature_capture_url} \nThis link will expire in 30 minutes."
       continue_via_copy: 'Or open this link on a touch-enabled device to finish
         your registration:'
+      abr:
+        email_sent: An email has been sent to %{email} with a link to sign your
+          absentee request form on a touch-enabled device. This link will expire in 30 minutes.
+        sms_sent: A text message has been sent to %{phone} with a link to sign your
+          absentee request form on a touch-enabled device. This link will expire in 30 minutes.
+        sms_body: "Here's the link you requested to sign your absentee request
+          form: %{signature_capture_url} \nThis link will expire in 30 minutes."
+        
       link_copied: Link Copied!
       continue_on_paper: Print and mail a PDF
       continue_on_desktop: Use this device to provide a digital signature

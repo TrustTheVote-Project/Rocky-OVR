@@ -24,6 +24,12 @@
 #***** END LICENSE BLOCK *****
 class AbrNotifier < Notifier
   
+  def continue_on_device(abr, signature_capture_url)
+    @signature_url = signature_capture_url
+    setup_registrant_email(abr, 'continue_on_device', abr.email_address_for_continue_on_device)    
+  end
+  
+
   def confirmation(registrant)
     setup_registrant_email(registrant, 'confirmation')
   end
@@ -71,7 +77,7 @@ class AbrNotifier < Notifier
 
   protected
 
-  def setup_registrant_email(abr, kind)
+  def setup_registrant_email(abr, kind, to_address = nil)
     partner = abr.partner
     use_custom_template = false #partner.whitelabeled? || kind.starts_with?("preview_")
     subject = partner && (use_custom_template) && EmailTemplate.get_subject(partner, "abr.#{kind}.#{abr.locale}")
@@ -88,7 +94,7 @@ class AbrNotifier < Notifier
     m = mail(
         :subject=>subject,
         :from=>abr.email_address_to_send_from,
-        :to=>abr.email,
+        :to=> to_address ||abr.email,
         :date=> Time.now.to_s(:db)
       ) do |format|
         format.html { 
