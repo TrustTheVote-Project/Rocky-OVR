@@ -888,9 +888,11 @@ en:
             target="blank" href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
             </p>'
         abr_form_fields:
-          Mail Ballot to 1: Mailing address
-          Mail Ballot to 2: City, State, Zip
           has_mailing_address: My mailing address differs from my residential address.
+          mailing_address_input:  Mailing address
+          assistance_required: Voter required assistance in completing application due to physical disability.
+          assisting_person:  Assisting person's name
+          Assisting persons address:  Assisting person's address
           the ballot: Name of messenger
           Voter is a member of military on active duty or dependent family member of: Voter
             is a member of military on active duty or dependent family member of active
