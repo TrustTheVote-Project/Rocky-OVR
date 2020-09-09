@@ -52,6 +52,7 @@ class PARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :abr_address_type
         reg.validates_inclusion_of  :abr_address_type, :in => StateRegistrants::PARegistrant::BALLOT_ADDRESS_OPTIONS, :allow_blank => true
         reg.validates_presence_of :abr_ballot_address_start_year
+        reg.validates_length_of :abr_ballot_address_start_year, is: 4
         reg.validates_length_of :abr_ballot_address, maximum: 40
         reg.validates_length_of :abr_ballot_city, maximum: 35
         reg.validates_length_of :abr_ballot_state, maximum: 2
