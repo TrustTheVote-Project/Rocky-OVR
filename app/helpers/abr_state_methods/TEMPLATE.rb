@@ -3,9 +3,7 @@ module AbrStateMethods::STATE_ABBREV
   PDF_FIELDS = {
     
   }
-  EXTRA_FIELDS = []
-  # e.g.
-  # EXTRA_FIELDS = ["has_mailing_address", "identification"]
+  EXTRA_FIELDS = ["has_mailing_address"]
   
   # def whatever_it_is_you_came_up_with
   #   # TODO when blah is selected it should be "abc" and otherwise left blank

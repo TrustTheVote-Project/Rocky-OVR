@@ -352,6 +352,12 @@ en:
             '7': My physical disability
           absentee_reason__required_message: Please select one of the above reasons
       dc:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residential address.
+          "Ballot Mailing Address if different from above": Mailing address
+          "Identification_Number": "DC DMV-issued ID Number or Last Four Digits of Social Security Number:"
+          "Address": "Address of assistant"
+          "assistant": Voter is unable to sign due to illness, injury, or disability and requires assistance.
         abr:
           header: Absentee Requests In DC
           instructions: '<p>DC is automatically sending an absentee ballot to all
@@ -535,6 +541,13 @@ en:
           Do not add this contact info to my voter recored check box: Please do not
             add my phone number or email address to my voter record.
       id:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residential address.
+          "mailingAddress": Mailing address
+          "mailingZipCode": Zip
+          "mailingCity": City
+          "mailingState": State
+          "mailingCountry": "Country (if outside of USA)"
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
             state ID or SSN, you may request your absentee ballot online directly
@@ -655,9 +668,17 @@ en:
         montgomery county:
           abr_form_fields:
             "has_mailing_address": My mailing address differs from my residential address.
+            "Street Address include apt lot etc AND PO Box  if applicable": Mailing address
+            "City_2": City
+            "State_2": State
+            "ZIP_2": Zip
+            "outside_usa": I live outside the USA.
+            "Country other than USA": Country
+            "FormerName if applicable": "Former Name (if applicable)"
         ogle county:
           abr_form_fields:
             "has_mailing_address": My mailing address differs from my residential address.
+            "Address to mail ballot if different than above": Mailing address
         sangamon county:
           state_online_abr:
             header: You can request an Absentee Ballot online directly with Sangamon
@@ -669,6 +690,12 @@ en:
         will county:
           abr_form_fields:
             "has_mailing_address": My mailing address differs from my residential address.
+            "change_of_address": My permanent address has changed.
+            "Number and Street": Mailing address
+            "Number and Street_2": New permanent address
+            "City_2": City
+            "State_2": State
+            "Zip Code_2": Zip
       in:
         state_online_abr:
           finish_page: '<p>Once you have your ballot, be sure to read the instructions
@@ -890,7 +917,50 @@ en:
           License_ID: LA Driver's license or ID
           License_ID__format_message: That doesn't look like a driver's license number,
             please verify before continuing.
+      ma:
+        abr:
+          finish_instructions: '<p>Make sure to read the instructions on the form
+            carefully, then complete and send this form in as soon as possible Your
+            request must be received by 5:00 pm on October 28, 2020.</p><p>Once you
+            have your ballot, again be sure to read the instructions carefully, fill
+            out the ballot and send it back in. Your absentee ballot must mailed on
+            or by November 3rd and must be RECEIVED not later than 5:00pm on November
+            6th.</p><p>You can check on the status of your ballot here: <a rel="noopener"
+            target="blank" href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
+            </p>'
+        abr_form_fields:
+          Mail Ballot to 1: Mailing address
+          Mail Ballot to 2: City, State, Zip
+          has_mailing_address: My mailing address differs from my residential address.
+          the ballot: Name of messenger
+          Voter is a member of military on active duty or dependent family member of: Voter
+            is a member of military on active duty or dependent family member of active
+            duty personnel.
+          Voter has been admitted to a healthcare facility after noon on the fifth day: 'Voter
+            has been admitted to a healthcare facility after noon on the fifth day
+            before the election and has designated the following person to hand-deliver
+            the ballot:'
       md:
+        abr_form_fields:
+          "presidential_general_mailto": "I want my ballot mailed to:"
+          presidential_general_mailto__options:
+            address_below: A different mailing address.
+            same_as_above: My residential address.
+          "When_Moved_Here": "I moved to my residential address on (MM/DD/YYYY or MM/YYYY):" 
+          "delivery_method": "I would like to receive my ballot by:"
+          delivery_method__options:
+            mail: U.S. Mail
+            internet: Internet Delivery
+          "Address_2": Mailing address
+          "Apt_number_2": "Apt/Unit"
+          "City_town_2": "City/Town"
+          "State_2": State
+          "ZIP_code_2": Zip
+          "no_dln": "I do not have a MD Driver's License or ID card."
+          "SSN_last-4": "Last 4 digits of my SSN:"
+          "Issue_Date": "Issue Date"
+          "assistant_print": Name of Assistant
+          "assistant": I had help completing this application.
         abr:
           finish_instructions: '<p>Make sure to print off and complete your application
             as soon as possible. Read the instructions carefully to return your application.
@@ -932,30 +1002,22 @@ en:
           finish_instructions: "<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in. Your
             ballot must be received by 8:00pm on Election Day.</>"
-      ma:
-        abr:
-          finish_instructions: '<p>Make sure to read the instructions on the form
-            carefully, then complete and send this form in as soon as possible Your
-            request must be received by 5:00 pm on October 28, 2020.</p><p>Once you
-            have your ballot, again be sure to read the instructions carefully, fill
-            out the ballot and send it back in. Your absentee ballot must mailed on
-            or by November 3rd and must be RECEIVED not later than 5:00pm on November
-            6th.</p><p>You can check on the status of your ballot here: <a rel="noopener"
-            target="blank" href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
-            </p>'
-        abr_form_fields:
-          Mail Ballot to 1: Mailing address
-          Mail Ballot to 2: City, State, Zip
-          has_mailing_address: My mailing address differs from my residential address.
-          the ballot: Name of messenger
-          Voter is a member of military on active duty or dependent family member of: Voter
-            is a member of military on active duty or dependent family member of active
-            duty personnel.
-          Voter has been admitted to a healthcare facility after noon on the fifth day: 'Voter
-            has been admitted to a healthcare facility after noon on the fifth day
-            before the election and has designated the following person to hand-deliver
-            the ballot:'
       mi:
+        abr_form_fields:
+          "November 3 Address": Mailing address
+          "November 4 City": City
+          "November 3 State": State
+          "November 3 Zip": Zip
+          "Nov 3 Address Begin Date_es_:date": "Begin date (MM/DD/YYYY):"
+          "Nov 3 Address End Date_es_:date": "Return date (MM/DD/YYYY):"
+          "Township Jurisdiction": I live in a township.
+          "City Jurisdiction": I live in a city.
+          "city_instructions": "Please select one of the following:"
+          "Name of Person assisting the voter": Name
+          "Date of Birth of person assisting_es_:date": "Date of birth (MM/DD/YYYY)"
+          "Adress of person assisting": Address
+          "assistant": I am an authorized registered elector assisting in returning this application for the voter.
+          has_mailing_address: My mailing address differs from my residential address.
         abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Michigan, this application must be RECEIVED by Friday,
@@ -1241,6 +1303,33 @@ en:
             On the DMV website, click "Continue to myNCDMV Services." <br/>4. Click
             "Continue as a guest" and submit your voter registration online.'
       nd:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residential address.
+          "City_2": City
+          "State_2": State
+          "ZIP Code_2": Zip
+          "Ballot_Delivery_Address": Mailing address
+          "uocava": "I am an active member in the military and/or an overseas voter."
+          Military_Overseas_Voter__options:
+            Military_in_US: "Uniformed service or family member living away from the voter's residence, yet within the United States"
+            Military_outside_US: "Uniformed service or family member living away from the voter's residence, yet outside the United States"
+            citizen_outside_us: "Citizen living outside of the United States"
+          "Fax_Number": "Fax Number"
+          "Printed Name of Attester": "Printed Name of Attestor"
+          "Preferred_Delivery": "Please indicate your preferred ballot delivery method:"
+          "unable_to_sign": Applicant is unable to sign this application.
+          "Attestor_ID": "Attestor's ID Number"
+          "Daytime Telephone Number_2": "Daytime Telephone Number"
+          "ID_Number": "ID Number (not required if long term care certificate is selected above)"
+          "ID_Type": "North Dakota ID Type Used: (select one)"
+          ID_Type__options:
+            "drivers_license": "Driver's license"
+            "long_term_care_certificate": "Long Term Care Certificate (include with application)"
+            "no_id": "Applicant does not have an ID due to a disability (must have another qualified elector of the state attest that the applicant is a qualified elector of that precinct)" 
+            "non_drivers_id": "Non-driver's ID"
+            "passport_or_military_id": "Passport or Military ID (only for voters outside the United States)"
+            "tribal_id": Tribal ID
+          "Military_Overseas_Voter": Select one of the following
         state_online_abr:
           requirements: |-
             <p>To use North Dakota's online absentee request, you must have one of these forms of ID:</p>
@@ -1574,6 +1663,19 @@ en:
             ballot and send it back in.  Vote-by-mail ballots must be received by
             8:00pm on Election Day.</p>'
       pa:
+        abr_form_fields:
+          "Lived_at_Address_Since": "I have lived at this address since:"
+          "Same_as_above__options":
+            "Off": My mailing address DIFFERS from my residential address.
+            "On": My mailing address is the SAME as my residential address.
+          "Address_1": Mailing address
+          "City_Town_1": "City/Town"
+          "Zip code_2": Zip
+          "no_PennDOT": "I do not have a PA driver's license or PennDOT ID card."
+          "no_id": "I do not have a Social Security number."
+          "SSN_last_4": "Last 4 digits of your SSN:"
+          "Municipality": "Municipality (City, Town, or Village)"
+          "Same_as_above": "Select one:"
         abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.</p><p>In Pennsylvania, this application must be RECEIVED
@@ -2053,6 +2155,23 @@ en:
             November 3, 2020 (Election Day). If returning your ballot in-person, it
             must be dropped off by 8:00 pm on Election Day.</p>'
       wi:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residential address.
+          "Mailing Address Street Number  Name": Mailing address
+          "Apt Number_2": "Apt/Unit"
+          "City_2": City
+          "State  ZIP_2": "State & Zip"
+          "Care Facility Name if applicable": "Care Facility Name (if applicable)"
+          "C  O if applicable": "C/O (if applicable)"
+          "receive_by": "I would like to receive my ballot by:"
+          receive_by__options:
+            Clerk_Office: "Vote in clerk's office"
+          "UOCAVA": "Select one if applicable:"
+          UOCAVA__options:
+            Military: "I am a Military elector: a person, or the spouse or dependent of a person who is a member of a uniformed service or the merchant marines, a civilian employee of the United States, a civilian officially attached to a uniformed service and serving outside the United States, or a Peace Corp volunteer."
+            Permanent_Overseas: "I am a Permanent Overseas elector: a person who is a United States citizen, 18 years old or older, who resided in Wisconsin immediately prior to leaving the United States, who is now living outside the United States and has no present intent to return, who is not registered in any other location, or who is an adult child of a United States citizen who resided in this state prior to establishing residency abroad."
+            Temporary_Overseas: "I am a Temporary Overseas elector: a person who is a United States citizen, 18 years of age or older, a resident of Wisconsin and is overseas for a temporary purpose and intends to return to their Wisconsin residence."
+          Certify: "I cannot appear at the polling place on election day because I am hospitalized, and appoint the following person to serve as my agent."
         state_online_abr:
           requirements: Depending on if you have voted absentee before, you may be
             required to provide a copy of your Wisconsin state ID with your application
@@ -2072,6 +2191,27 @@ en:
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://myvote.wi.gov/en-us/MyVoterInfo">https://myvote.wi.gov/en-us/MyVoterInfo</a>
             </p>'
       wv:
+        abr_form_fields:
+          resident_county: County
+          has_mailing_address: My mailing address differs from my residential address.
+          "mail_address": Mailing address
+          "mail_city": City
+          "mail_state": State
+          "mail_zip": Zip
+          "reason": "I am applying for a paper ballot by mail because I am not able to vote in person during Early Voting or on Election Day due to:"
+          reason__options:
+            address_confidentiality: "I am a participant in the Address Confidentiality Program (ACP) with the Office of the Secretary of State. If selected, send your application to the Secretary of State’s Office."
+            business_or_travel: "Personal business or travel. If selected, your ballot must be mailed outside of your county of residence."
+            college: "Attendance at college, university, or other place of education or training. If selected, your ballot must be mailed outside of your county of residence."
+            disability: "The county absentee voting office and my polling place are inaccessible to me due to my physical disability."
+            disability_want_electronic: "I require an electronic ballot due to a physical disability that prevents me from voting in person and from voting a paper ballot without assistance."
+            elected_away: "Temporarily living outside of the county due to serving as an elected or appointed federal or state officer. If selected, your ballot must be mailed outside of your county of residence."
+            employment: "Employment which because of hours worked and distance from the county seat makes voting in person impossible."
+            illness: "Illness, injury or other medical reason which keeps me confined."
+            immobility: "Immobility due to advanced age or a physical disability."
+            incarceration: "Incarceration or detention in jail or home. I am not under conviction of any felony, of treason or of bribery in an election (including any period of probation or parole)."
+            working_away: "Temporarily living outside of the county due to a temporary assignment by my employer for a specific period of four years or less. If selected, your ballot must be mailed outside of your county of residence."
+          "incarceration_statement": Please complete the Statement on page 2 by hand after PDF is printed.
         state_online_abr:
           requirements: 'To request an absentee online, you must provide your DMV
             ID # or Last Four of SSN.'
