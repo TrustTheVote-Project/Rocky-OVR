@@ -46,7 +46,7 @@ module AbrStateMethods::AZ
     "Residence_Address": {
       method: "full_address_1_line"
     },
-    "County_of_Residence": { method: "registration_county" },
+    "County_of_Residence": { method: "registration_county_name" },
     "Mailing_Address": {},
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"

@@ -78,7 +78,7 @@ class Abr < ActiveRecord::Base
   def registration_county_name
     home_state.counties[registration_county][:name]
   rescue
-    nil
+    registration_county
   end
   
   MAX_DATE_OF_BIRTH = Date.parse("2002-11-03")

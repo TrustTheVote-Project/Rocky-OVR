@@ -43,13 +43,6 @@
     .step_3_form_fields{style: @abr.should_check_registration? && @abr.last_check.is_match? ? "display: none" : ''}
       = render partial: "state_fields", locals: {form: form}
   
-      %ul.flat
-        = render :partial=> "registrants/phone", :locals=>{:form=>form}
-
-        
-      = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
-      = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
-      
       - if @abr.collect_signature?
         - @registrant = @abr
         = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @abr.allow_desktop_signature? }
@@ -67,7 +60,18 @@
           }
         = render partial: 'shared/signature_capture/form', locals: {form: form, home_state_key: "#{@abr.home_state_abbrev.downcase}.abr", allow_desktop_signature: @abr.allow_desktop_signature?, allow_print_and_sign: true}
       
+      
+      %ul.flat
+        = render :partial=> "registrants/phone", :locals=>{:form=>form}
+
+        
+      = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
+      = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
+      
+      - if @abr.collect_signature?
         #deliver_by_email
+          %br
+          %br
           %h2
             %strong= t('txt.abr.step_3_deliver_via_email_header')
           %p{style: "font-size: 16px; margin-top: 1em; line-height: 1.5em"}
