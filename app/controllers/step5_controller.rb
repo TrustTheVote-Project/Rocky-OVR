@@ -36,7 +36,7 @@ class Step5Controller < RegistrationStep
   end
 
   def redirect_when_eligible
-    if !params[:pdf_assistance].nil?
+    if @pdf_assistance == "1"
       @registrant.wrap_up(:pdf_assistance)
     else
       @registrant.wrap_up

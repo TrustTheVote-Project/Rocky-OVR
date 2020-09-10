@@ -120,7 +120,11 @@
   </li>
 </ul>
 <%- if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig? %>
-  <%= rollover_button(:pdf_assistance, I18n.t('txt.button.download_assistance'), name: :pdf_assistance) %>
+<div class="checkbox" style="font-size: 150%; text-align: center;">
+  <%= check_box_tag :pdf_assistance, "1", @pdf_assistance == "1" %>
+  <%= label_tag :pdf_assistance, I18n.t('txt.button.download_assistance') %>
+</div>
+
 <%- end %>
 
 <%= rollover_button(:prepare, I18n.t('txt.button.prepare')) %>

@@ -45,6 +45,7 @@ class RegistrationStep < ApplicationController
   end
 
   def update
+    @pdf_assistance = params[:pdf_assistance]
     redirected = find_registrant
     return if redirected == :redirected
     @registrant.attributes = params[:registrant]
