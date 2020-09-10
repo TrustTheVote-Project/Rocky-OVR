@@ -393,7 +393,6 @@ en:
           absentee request form on a touch-enabled device. This link will expire in 30 minutes.
         sms_body: "Here's the link you requested to sign your absentee request
           form: %{signature_capture_url} \nThis link will expire in 30 minutes."
-        
       link_copied: Link Copied!
       continue_on_paper: Print and mail a PDF
       continue_on_desktop: Use this device to provide a digital signature

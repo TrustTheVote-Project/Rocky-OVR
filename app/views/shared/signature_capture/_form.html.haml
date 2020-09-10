@@ -73,7 +73,7 @@
               %span.button-style 
                 = I18n.t("states.custom.#{home_state_key}.signature_capture.buttons.copy_link", default: t('txt.signature_capture.buttons.copy_link'))
           #link-copied{style: "display: none; text-align: center; font-size: 20px; margin: 20px auto; color: green"}
-            = I18n.t("states.custom.#{home_state_key}.signature_capture.link_copied")
+            = I18n.t("states.custom.#{home_state_key}.signature_capture.link_copied", default: t('txt.signature_capture.link_copied'))
             
     - if allow_desktop_signature
       %li
@@ -97,7 +97,7 @@
       %span.button-style
         = t("states.custom.#{home_state_key}.signature_capture.buttons.provide_signature", default: t('txt.signature_capture.buttons.provide_signature'))
   %br
-  %p.instructions
+  %p.instructions{class: ('has_error' if form.object.errors[:voter_signature_image].present?) }
     = t("states.custom.#{home_state_key}.signature_capture.touch_sign_instructions", default: t('txt.signature_capture.touch_sign_instructions'))
   - if form.object.errors[:voter_signature_image]
     .error

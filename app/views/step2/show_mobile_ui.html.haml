@@ -15,23 +15,17 @@
         if (currentStep == 7) {
           return !$("#registrant_change_of_address").is(":checked")
         }
-        if (currentStep == 8) {
-          var inOvrFlow = "#{@registrant.home_state_allows_ovr_ignoring_license?}" == "true";
-          var reqId = "#{@registrant.require_id?}" == "true";
-          return inOvrFlow && !reqId
-        }
         return false;
       }
       
-      initDynamicNav( 2, 2, 9, {
+      initDynamicNav( 2, 2, 8, {
         2: 10, //Eligibility
         3: 20, // Name
         4: 30, // Name part 2
         5: 40, // Home Address
         6: 50, // Mailing Address
         7: 55, // Previous Address
-        8: 60, // Identification
-        9: 65, // Personal Information
+        8: 65, // Identification
         //Download page goes up to 80%
       }, shouldSkipStep);
       $('#javascript_disabled').remove();
@@ -173,7 +167,6 @@
       - if @registrant.mail_with_esig?
         = render partial: 'shared/signature_capture/form', locals: {form: form}
   
-  .dynamic-step#step-9
     %fieldset
       %legend= t('txt.registration.mobile_ui.step_9.title')
     .skip_state_registration

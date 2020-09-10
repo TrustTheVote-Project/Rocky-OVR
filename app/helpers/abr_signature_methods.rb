@@ -62,7 +62,6 @@ module AbrSignatureMethods
   def validates_signature
     if deliver_to_elections_office_via_email? && advancing_to_step_4?
       self.validates_presence_of(:voter_signature_image)
-      self.validates_presence_of(:signature_method)
       self.validates_acceptance_of(:confirm_email_delivery, :accept=>true)
     end
   end

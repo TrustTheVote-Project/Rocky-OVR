@@ -1,8 +1,3 @@
-- if @esign
-  %div.page#page_mailing_address
-    .address
-      = @registrant.state_registrar_address.to_s.html_safe
-
 - if @for_printer && !@esign
   %div.page#page_mailing_address
     .address

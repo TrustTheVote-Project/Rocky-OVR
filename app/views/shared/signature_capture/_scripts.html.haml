@@ -33,16 +33,52 @@
       signaturePad.clear();
     }
     
+    function selectSignatureType() {
+        if ($("##{signature_method_id_prefix}_upload:checked").length > 0) {
+          var imageData = $('##{image_field_id}').val()
+          $('#signature-cropper').show().cropit({
+            imageState: { src:  imageData },
+            freeMove: true,
+            minZoom: 'fit',
+            exportZoom: 0.5,
+            onFileChange: showControls,
+            onZoomChange: adjustSignature,
+            onOffsetChange: adjustSignature,
+            allowDragNDrop: false
+          });    
+          if (imageData != "") {
+            setTimeout(showControls, 1000);
+          }          
+        } else {
+          $('#signature-cropper').hide()
+
+        }
+        if ($("##{signature_method_id_prefix}_device:checked").length > 0) {
+          $("#continue_on_device").show();
+        } else {
+          $("#continue_on_device").hide();
+        }
+        
+        if ($("##{signature_method_id_prefix}_desktop:checked").length > 0) {
+          $("#signature_capture").show();
+        } else {
+          $("#signature_capture").hide();
+        }
+        selectSignatureTypeCallback();
+      } 
+
     var allowDesktopSignature = #{!!allow_desktop_signature};
     
     function registerTouch(isDesktop) {
-      console.log(isDesktop);
       allowDesktopSignature = isDesktop || false;
       if (!isDesktop && top.location!= self.location) {
          top.location = self.location.href;
       }
       
-      if (!isDesktop) {
+      if (isDesktop) {
+        selectSignatureType();   
+      } else {
+        selectSignatureTypeCallback();
         $("#signature_capture").show();   
         $("#signature_upload").hide();        
         $("#signature_capture").addClass("is-device")        
@@ -99,94 +135,64 @@
       })
       
     };
+  
+    function showControls() {
+      $("#signature-cropper .controls").show();
+      $(".select-image-btn").hide();        
+      $(".cropit-preview").show();
+    }
+    function hideControls() {
+      $("#signature-cropper .controls").hide();
+      $(".select-image-btn").show();
+      $(".cropit-preview").hide();                
+    }
+    function removeSignatureFile() {
+      $('#signature-cropper .cropit-preview-image').removeAttr('src');
+      $('#signature-cropper .cropit-preview-background').removeAttr('src');     
+      $("##{image_field_id}").val('');
+      $(".cropit-image-input").val('');        
+      hideControls();
+      
+    }
+    $("#signature-cropper .remove-image-btn").click(removeSignatureFile);
+    
+    function adjustSignature() {
+      try {
+        var imageData = $('#signature-cropper').cropit('export', {
+          type: 'image/jpeg',
+          quality: 1.0,
+          fillBg: '#fff'
+        });
+        $("##{image_field_id}").val(imageData);          
+        
+      } catch(err) { console.error(err) }
+    }
+    
+    
+    
+    function copyLink() {
+      var text = $("#link-to-copy").text().trim();
+      //Create hidden input
+      var el = document.createElement("textarea");
+      el.value = text;
+      //el.style.display='none';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy')
+      document.body.removeChild(el);
+      $("#link-copied").show().fadeOut(3000);
+      
+    }
+    
     
     $(document).ready(function() {
-      function showControls() {
-        $("#signature-cropper .controls").show();
-        $(".select-image-btn").hide();        
-        $(".cropit-preview").show();
-      }
-      function hideControls() {
-        $("#signature-cropper .controls").hide();
-        $(".select-image-btn").show();
-        $(".cropit-preview").hide();                
-      }
-      function removeSignatureFile() {
-        $('#signature-cropper .cropit-preview-image').removeAttr('src');
-        $('#signature-cropper .cropit-preview-background').removeAttr('src');     
-        $("##{image_field_id}").val('');
-        $(".cropit-image-input").val('');        
-        hideControls();
-        
-      }
-      $("#signature-cropper .remove-image-btn").click(removeSignatureFile);
-      
-      function adjustSignature() {
-        try {
-          var imageData = $('#signature-cropper').cropit('export', {
-            type: 'image/jpeg',
-            quality: 1.0,
-            fillBg: '#fff'
-          });
-          $("##{image_field_id}").val(imageData);          
-          
-        } catch(err) { console.error(err) }
-      }
-      
-      function selectSignatureType() {
-        if ($("##{signature_method_id_prefix}_upload:checked").length > 0) {
-          var imageData = $('##{image_field_id}').val()
-          $('#signature-cropper').show().cropit({
-            imageState: { src:  imageData },
-            freeMove: true,
-            minZoom: 'fit',
-            exportZoom: 0.5,
-            onFileChange: showControls,
-            onZoomChange: adjustSignature,
-            onOffsetChange: adjustSignature,
-            allowDragNDrop: false
-          });    
-          if (imageData != "") {
-            setTimeout(showControls, 1000);
-          }          
-        } else {
-          $('#signature-cropper').hide()
-
-        }
-        if ($("##{signature_method_id_prefix}_device:checked").length > 0) {
-          $("#continue_on_device").show();
-        } else {
-          $("#continue_on_device").hide();
-        }
-        
-        if ($("##{signature_method_id_prefix}_desktop:checked").length > 0) {
-          $("#signature_capture").show();
-        } else {
-          $("#signature_capture").hide();
-        }
-        selectSignatureTypeCallback();
-      } 
-      
-      function copyLink() {
-        var text = $("#link-to-copy").text().trim();
-        //Create hidden input
-        var el = document.createElement("textarea");
-        el.value = text;
-        //el.style.display='none';
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy')
-        document.body.removeChild(el);
-        $("#link-copied").show().fadeOut(3000);
-        
-      }
       
       $(".copy-link").click(function() {
         copyLink();
       })
       
       $("[name='#{form_name_prefix}[signature_method]']").click(selectSignatureType)
-      selectSignatureType();
+      
       $('.select-image-btn').click(function() {
         $('.cropit-image-input').click();
       });

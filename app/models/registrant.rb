@@ -1368,16 +1368,11 @@ class Registrant < ActiveRecord::Base
   end
   
   def home_state_enabled_for_pdf_assitance?
-    return false
-    list = %w(AL
-              AZ
-              MN
-              SD)
-    return list.include?(home_state_abbrev)
+    return RockyConf.pdf_assistance.states.include?(home_state_abbrev) && RockyConf.pdf_assistance.partners.include?(partner_id)    
   end
   
   def can_request_pdf_assistance?
-    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 2 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
+    self.locale.to_s == 'en' && home_state_enabled_for_pdf_assitance?
   end
   
   def mail_with_esig?
