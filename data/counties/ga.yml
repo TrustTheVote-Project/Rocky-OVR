@@ -1,636 +1,636 @@
 - name: Appling County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: shonda@applingco.com
+  abr_contact_name: Appling County Chief Registrar
+  abr_status_check_phone: (912) 367-8113
 - name: Atkinson County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: atcoelections@hotmail.com
+  abr_contact_name: Atkinson County Elections
+  abr_status_check_phone: (912) 422-3003
 - name: Bacon County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: arussell@baconcounty.org
+  abr_contact_name: Bacon County Election Superintendent
+  abr_status_check_phone: (912) 632-5551
 - name: Baker County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: bd.elect@bakercountyga.com
+  abr_contact_name: Baker County Board of Elections
+  abr_status_check_phone: (229) 734-3019
 - name: Baldwin County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: vrbaldc@baldwincountyga.com
+  abr_contact_name: Baldwin County Voter Registrar
+  abr_status_check_phone: (478) 445-4526
 - name: Banks County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: registrars@co.banks.ga.us
+  abr_contact_name: Banks County Registrars
+  abr_status_check_phone: (706) 677-6260
 - name: Barrow County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: mfranklin@barrowga.org
+  abr_contact_name: Barrow County Board of Elections and Registration
+  abr_status_check_phone: (770) 307-3110
 - name: Bartow County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: absentee@bartowga.org
+  abr_contact_name: Bartow County Elections and Voter Registration
+  abr_status_check_phone: (770) 387-5098
 - name: Ben Hill County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: electionsbenhill@aol.com
+  abr_contact_name: Ben Hill Board of Elections and Voter Registration
+  abr_status_check_phone: (229) 922-0241
 - name: Berrien County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: belections@windstream.net
+  abr_contact_name: Berrien County Board of Elections and Registration
+  abr_status_check_phone: (229) 686-6162
 - name: Bibb County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: vseals@maconbibb.us
+  abr_contact_name: Bibb County Board of Elections
+  abr_status_check_phone: (478) 621-6622
 - name: Bleckley County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: bleckleyvr@bleckley.org
+  abr_contact_name: Bleckley County Chief Registrar
+  abr_status_check_phone: (478) 934-3200
 - name: Brantley County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: bcelections@btconline.net
+  abr_contact_name: Brantley County Board of Elections and Registrations
+  abr_status_check_phone: (912) 462-6159
 - name: Brooks County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: brookscoelections@gmail.com
+  abr_contact_name: Brooks County Election Supervisor
+  abr_status_check_phone: 229) 263-9939
 - name: Bryan County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: cindyreynolds@bryan-county.org
+  abr_contact_name: Bryan County Voter Registration
+  abr_status_check_phone: (912) 653-3859
 - name: Bulloch County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: voterregistrar@bullochcounty.net
+  abr_contact_name: Bulloch County Board of Elections
+  abr_status_check_phone: (912) 764-6502
 - name: Burke County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: burkereg@burkecounty-ga.gov
+  abr_contact_name: Burke County Board of Elections and Registration
+  abr_status_check_phone: (706) 554-7457
 - name: Butts County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: tlunsford@buttscounty.org
+  abr_contact_name: Butts County Board of Elections and Registration
+  abr_status_check_phone: (770) 775-8202
 - name: Calhoun County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: cc.registrar@windstream.net
+  abr_contact_name: Calhoun County Election Superintendent
+  abr_status_check_phone: (229) 849-2972
 - name: Camden County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: ddfelix@co.camden.ga.us
+  abr_contact_name: Camden County Election Superintendent
+  abr_status_check_phone: (912) 576-3245
 - name: Candler County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: kharris@candlerco-ga.gov
+  abr_contact_name: Candler County Board of Elections and Registration
+  abr_status_check_phone: (912) 685-6687
 - name: Carroll County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@carrollcountyga.com
+  abr_contact_name: Carroll County Election and Registration Supervisor
+  abr_status_check_phone: (770) 830-5823
 - name: Catoosa County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: catoosaelections@catoosa.com
+  abr_contact_name: Catoosa County Board of Elections and Registration
+  abr_status_check_phone: (706) 935-3990
 - name: Charlton County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: bhodges@charltoncountyga.gov
+  abr_contact_name: Charlton County Board of Elections and Registration
+  abr_status_check_phone: (912) 496-2607
 - name: Chatham County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
-- name: Chattahoochee County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
-- name: Chattooga County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: bhodges@charltoncountyga.gov
+  abr_contact_name: Chatham County Voter Registration
+  abr_status_check_phone:  (912) 496-2607
+- name: Chattahoochee
+  abr_email_address: taxassessor@ugoccc.com
+  abr_contact_name: Chattahoochee County Chief Deputy Registrar  
+  abr_status_check_phone: (706) 989-3249
+- name: Chattooga
+  abr_email_address: chattoogaregistrar@gmail.com
+  abr_contact_name: Chattooga County Registrar
+  abr_status_check_phone: (706) 857-0739
 - name: Cherokee County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: voterhelp@cherokeega.com
+  abr_contact_name: Cherokee County Elections & Registration 
+  abr_status_check_phone: (770) 479-0407
 - name: Clarke County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: charlotte.sosebee@accgov.com
+  abr_contact_name: Clark County Chief Registrar
+  abr_status_check_phone: (706) 613-3150
 - name: Clay County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: charlotteshivers@windstream.net
+  abr_contact_name: Clay County Election Superintendent
+  abr_status_check_phone: (229) 768-2443
 - name: Clayton County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@claytoncountyga.gov
+  abr_contact_name: Clayton County Board of Elections and Registration
+  abr_status_check_phone:  (770) 477-3372
 - name: Clinch County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: clinchelections@clinchcountyga.gov
+  abr_contact_name: Clinch County Board of Elections and Registration
+  abr_status_check_phone: (912) 487-3656
 - name: Cobb County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: info@cobbelections.org
+  abr_contact_name: Cobb County Board of Elections and Registration
+  abr_status_check_phone:  (770) 528-2581
 - name: Coffee County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: misty.hampton@coffeecounty-ga.gov
+  abr_contact_name: Coffee County Elections and Registration
+  abr_status_check_phone:  (912) 384-7018
 - name: Colquitt County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: paulamc@ccboc.com
+  abr_contact_name: Colquitt County Board of Registrars
+  abr_status_check_phone: (229) 616-7056
 - name: Columbia County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: vote@columbiacountyga.gov
+  abr_contact_name: Columbia County Board of Elections
+  abr_status_check_phone: (706) 868-3355
 - name: Cook County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: cookelections@windstream.net
+  abr_contact_name: Cook County Board of Elections and Registration
+  abr_status_check_phone: (229) 896-7925
 - name: Coweta County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: agay@coweta.ga.us
+  abr_contact_name: Coweta County Election Superintendent
+  abr_status_check_phone: (770) 254-2615
 - name: Crawford County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: b.peacock@crawfordcountyga.org
+  abr_contact_name: Crawford County Board of Elections
+  abr_status_check_phone: (478) 836-1877
 - name: Crisp County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@crispcounty.com
+  abr_contact_name: Crisp County Election Supervisor
+  abr_status_check_phone: (229) 276-2611
 - name: Dade County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: tvaughan@dadecounty-ga.gov
+  abr_contact_name: Dade County Board of Elections and Registration
+  abr_status_check_phone: (706) 657-8170
 - name: Dawson County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
-- name: De Kalb County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: gferguson@dawsoncounty.org
+  abr_contact_name: Dawson County Election Supervisor
+  abr_status_check_phone: 706) 344-3640
 - name: Decatur County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@decaturcountyga.gov
+  abr_contact_name: Decatur County Board of Elections
+  abr_status_check_phone: (229) 243-2087
+- name: Dekalb County
+  abr_email_address: voterreg@dekalbcountyga.gov
+  abr_contact_name: DeKalb County Board of Registration and Elections
+  abr_status_check_phone: (404) 298-4020
 - name: Dodge County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: dc.registrar.ga@hotmail.com
+  abr_contact_name: Dodge County Elections Office
+  abr_status_check_phone: (478) 374-8123
 - name: Dooly County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: dooly.county.elections@gmail.com
+  abr_contact_name: Dooly County Election & Registration
+  abr_status_check_phone:  (229) 268-9023
 - name: Dougherty County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: docovoterregelections@dougherty.ga.us
+  abr_contact_name: Dougherty County Election Supervisor 
+  abr_status_check_phone:  (229) 431-3247
 - name: Douglas County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: voterreg@co.douglas.ga.us
+  abr_contact_name: Douglas County Voter Registration
+  abr_status_check_phone:  (770) 920-7217
 - name: Early County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@earlycounty.org
+  abr_contact_name: Early County Board of Registrars
+  abr_status_check_phone:  (229) 723-4522
 - name: Echols County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: echolsco.registrar@gmail.com
+  abr_contact_name: Echols County Election Superintendent
+  abr_status_check_phone:  (229) 559-0230
 - name: Effingham County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: boe@effinghamcounty.org
+  abr_contact_name: Effingham County Board of Elections and Registration
+  abr_status_check_phone: (912) 754-8030
 - name: Elbert County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: votems@elberton.net
+  abr_contact_name: Elbert County Board of Registrars
+  abr_status_check_phone:  (706) 283-2012
 - name: Emanuel County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: E@emanuelco-ga.gov
+  abr_contact_name: Emanuel County Elections and Registration
+  abr_status_check_phone: (478) 237-3471
 - name: Evans County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@evanscounty.org
+  abr_contact_name: Evans County Board of Registrars
+  abr_status_check_phone: (912) 739-0708
 - name: Fannin County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@fannincountyga.org
+  abr_contact_name: Fannin County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 632-7740
 - name: Fayette County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: electionsgroup@fayettecountyga.gov
+  abr_contact_name: Fayette County Board of Elections and Voter Registration
+  abr_status_check_phone: (770) 305-5308
 - name: Floyd County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: bradyr@floydcountyga.org
+  abr_contact_name: Floyd County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 291-5168
 - name: Forsyth County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: voter@forsythco.com
+  abr_contact_name: Forsyth County Board of Elections and Voter Registration
+  abr_status_check_phone:  (770) 781-2118
 - name: Franklin County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: glk@franklincountyga.gov
+  abr_contact_name: Franklin County Elections and Registration Office
+  abr_status_check_phone: (706) 384-4390
 - name: Fulton County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections.voterregistration@fultoncountyga.gov
+  abr_contact_name: Fulton County Board of Registration and Elections
+  abr_status_check_phone: (404) 612-3816
 - name: Gilmer County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: registrar@gilmercounty-ga.gov
+  abr_contact_name: Gilmer County Board of Voter Registration
+  abr_status_check_phone: (706) 635-4617
 - name: Glascock County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: uge3125@uga.edu
+  abr_contact_name: Glascock Board of Registrars
+  abr_status_check_phone:  (706) 598-2811
 - name: Glynn County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: glynnelections@glynncounty-ga.gov
+  abr_contact_name: Glynn County Board of Elections and Voter Registration
+  abr_status_check_phone: (912) 554-7060
 - name: Gordon County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: shicks@gordoncounty.org
+  abr_contact_name: Gordon County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 629-7781
 - name: Grady County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: malinda.butler@gradycountyga.gov
+  abr_contact_name: Grady County Board of Registrars
+  abr_status_check_phone: (229) 377-1897
 - name: Greene County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: bkilgore@greenecountyga.gov
+  abr_contact_name: Greene County Board of Elections and Registration
+  abr_status_check_phone: (706) 453-1108
 - name: Gwinnett County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: voterregistration@gwinnettcounty.com
+  abr_contact_name: Gwinnett County Voter Registration and Elections
+  abr_status_check_phone: (678) 226-7210
 - name: Habersham County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: lellison@habershamga.com
+  abr_contact_name: Habersham County Elections & Registration
+  abr_status_check_phone: (706) 839-0170
 - name: Hall County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@hallcounty.org
+  abr_contact_name: Hall County Board of Elections and Voter Registration
+  abr_status_check_phone: (770) 531-6945
 - name: Hancock County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: boer@hancockcountyga.gov
+  abr_contact_name: Hancock County Board of Registrars
+  abr_status_check_phone:  (706) 444-5259
 - name: Haralson County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: hcelections@bellsouth.net
+  abr_contact_name: Haralson County Board of Elections and Voter Registration
+  abr_status_check_phone:  (770) 646-2010
 - name: Harris County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: sjarrett@harriscountyga.gov
+  abr_contact_name: Harris County Board of Elections and Voter Registration
+  abr_status_check_phone:  (706) 628-5210
 - name: Hart County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: registrar@hartcountyga.org
+  abr_contact_name: Hart County Board of Registrars
+  abr_status_check_phone: (706) 376-8911
 - name: Heard County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: tadams@heardcountyga.com
+  abr_contact_name: Heard County Board of Registrars
+  abr_status_check_phone: (706) 675-3907
 - name: Henry County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: henryabsentee@co.henry.ga.us
+  abr_contact_name: Henry County Elections and Registration
+  abr_status_check_phone: (770) 288-6448
 - name: Houston County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@houstoncountyga.org
+  abr_contact_name: Houston County Board of Elections and Voter Registration
+  abr_status_check_phone: (478) 987-1973
 - name: Irwin County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: electionsirwincounty@aol.com
+  abr_contact_name: Irwin County Board of Elections & Registration
+  abr_status_check_phone: (229) 468-0081
 - name: Jackson County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: jelogan@jacksoncountygov.com
+  abr_contact_name: Jackson County Voter Registration
+  abr_status_check_phone: (706) 367-6377
 - name: Jasper County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
-- name: Jeff Davis County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: cnorris@jaspercountyga.org
+  abr_contact_name: Jasper County Board of Registrars
+  abr_status_check_phone:  (706) 468-4908
+- name: Jeff Davis
+  abr_email_address: jeffdaviselections@gmail.com
+  abr_contact_name: Jeff Davis County Board of Elections & Registrars
+  abr_status_check_phone: (912) 375-6635
 - name: Jefferson County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: sgray@jeffersoncountyga.gov
+  abr_contact_name: Jefferson County Board of Registrars
+  abr_status_check_phone: (478) 625-8357
 - name: Jenkins County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: jenkinscountyreg@bellsouth.net
+  abr_contact_name: Jenkins County Board of Registrars
+  abr_status_check_phone: (478) 982-3985
 - name: Johnson County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: dkillingsworth@johnsonco.org
+  abr_contact_name: Johnson County Board of Elections and Voter Registration
+  abr_status_check_phone: 478) 864-4019
 - name: Jones County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: sydney.higley@jonescountyga.org
+  abr_contact_name: Jones County Board of Elections and Voter Registration
+  abr_status_check_phone: (478) 986-3222
 - name: Lamar County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: lamarcountyregistrars@yahoo.com
+  abr_contact_name: Lamar County Board of Elections and Registration
+  abr_status_check_phone:  (770) 358-5235
 - name: Lanier County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@laniercountyboc.com
+  abr_contact_name: Lanier County Board of Registrars
+  abr_status_check_phone: (229) 363-9260
 - name: Laurens County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: registrars@dlcga.com
+  abr_contact_name: Laurens County Board of Registrars
+  abr_status_check_phone: (478) 272-2841
 - name: Lee County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@lee.ga.us
+  abr_contact_name: Lee County Board of Elections and Voter Registration
+  abr_status_check_phone: (229) 759-6002
 - name: Liberty County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@libertycountyga.com
+  abr_contact_name: Liberty County Board of Elections and Voter Registration
+  abr_status_check_phone: (912) 876-3310
 - name: Lincoln County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: tharris@lincolncountyga.com
+  abr_contact_name: Lincoln County Board of Elections
+  abr_status_check_phone: (706) 359-6126
 - name: Long County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: longcountyelections@gmail.com
+  abr_contact_name: Long County Elections and Registrar
+  abr_status_check_phone:  (912) 545-2234
 - name: Lowndes County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@lowndescounty.com
+  abr_contact_name: Lowndes County Board of Elections
+  abr_status_check_phone: (229) 671-2850
 - name: Lumpkin County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@lumpkincounty.gov
+  abr_contact_name: Lumpkin County Election and Voter Registration Office
+  abr_status_check_phone: (706) 864-6279
 - name: Macon County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: macoboer@windstream.net
+  abr_contact_name: Macon County Board of Elections and Voter Registration
+  abr_status_check_phone: (478) 472-8520
 - name: Madison County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: tdean@madisonco.us
+  abr_contact_name: Madison County Board of Elections & Registration
+  abr_status_check_phone: (706) 795-6335
 - name: Marion County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: marioncountyelect@gmail.com
+  abr_contact_name: Marion County Board of Elections and Registration
+  abr_status_check_phone: (229) 314-0643
 - name: McDuffie County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
-- name: McIntosh County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: phyllis.wheeler3@thomson-mcduffie.net
+  abr_contact_name: McDuffie County Board of Elections and Registration
+  abr_status_check_phone: (706) 595-2105
+- name: Mcintosh County
+  abr_email_address: egale@darientel.net
+  abr_contact_name: McIntosh County Board of Elections and Registrations
+  abr_status_check_phone: (912) 437-6605 
 - name: Meriwether County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: p.threadgill@meriwethercountyga.gov
+  abr_contact_name: Meriwether County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 672-9433
 - name: Miller County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: millercoregistrar@gmail.com
+  abr_contact_name: Miller County Board of Registrars
+  abr_status_check_phone: (229) 758-4118
 - name: Mitchell County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: tross@mitchellcountyga.net
+  abr_contact_name: Mitchell County Board of Registrars
+  abr_status_check_phone: (229) 336-2018
 - name: Monroe County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: kwarren@monroecoga.org
+  abr_contact_name: Monroe County Board of Elections and Registration
+  abr_status_check_phone: (478) 994-7622
 - name: Montgomery County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: vrmontgomery@yahoo.com
+  abr_contact_name: Montgomery County Board of Registrars
+  abr_status_check_phone:  (912) 583-4296
 - name: Morgan County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: absentee@morgancountyga.gov
+  abr_contact_name: Morgan County Board of Elections and Registration
+  abr_status_check_phone: (706) 343-6311
 - name: Murray County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
-- name: Muscogee County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: vote@murraycountyga.gov
+  abr_contact_name: Murray County Board of Elections and Registration
+  abr_status_check_phone: (706) 517-1400
+- name: Muscogee
+  abr_email_address: muscogeeelectionsandregistration@columbusga.gov
+  abr_contact_name: Muscogee County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 653-4392
 - name: Newton County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@co.newton.ga.us
+  abr_contact_name: Newton County Board of Elections and Voter Registration
+  abr_status_check_phone: (770) 784-2055
 - name: Oconee County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: jstone@oconee.ga.us
+  abr_contact_name: Oconee County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 769-3958
 - name: Oglethorpe County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: smccannon@oglethorpecountyga.gov
+  abr_contact_name: Oglethorpe County Board of Elections and Registration
+  abr_status_check_phone:  (706) 743-8954
 - name: Paulding County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@paulding.gov
+  abr_contact_name: Paulding County Board of Elections and Registration
+  abr_status_check_phone: (770) 443-7503
 - name: Peach County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: adrienne-ray@peachcounty.net
+  abr_contact_name: Peach County Board of Elections and Registration
+  abr_status_check_phone:  (478) 825-3514
 - name: Pickens County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: cconnell1@pickenscountyga.gov
+  abr_contact_name: Pickens County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 253-8781
 - name: Pierce County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: lea.parker@piercecountyga.gov
+  abr_contact_name: Pierce County Board of Elections and Registration
+  abr_status_check_phone: (912) 449-2028
 - name: Pike County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: lvickers@pikecoga.com
+  abr_contact_name: Pike County Board of Elections and Registrars
+  abr_status_check_phone:  (770) 567-2003
 - name: Polk County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: bcoggins@polkga.org
+  abr_contact_name: Polk County Board of Elections and Registration
+  abr_status_check_phone: (770) 749-2103
 - name: Pulaski County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: frankie@georgiawebservices.com
+  abr_contact_name: Pulaski County Board of Registrars
+  abr_status_check_phone: (478) 783-0828
 - name: Putnam County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: berlaseter@gmail.com
+  abr_contact_name: Putnam County Board of Elections and Registration
+  abr_status_check_phone: (706) 485-8683
 - name: Quitman County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: quitco8@gqc-ga.org
+  abr_contact_name: Quitman County Board of Registrars
+  abr_status_check_phone:  (229) 234-3123
 - name: Rabun County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: twhitmire@rabuncounty.ga.gov
+  abr_contact_name: Rabun County Board of Elections and Registration
+  abr_status_check_phone: (706) 782-1878
 - name: Randolph County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: rcc.boe@gmail.com
+  abr_contact_name: Randolph County Board of Registrars
+  abr_status_check_phone: (855) 782-6310
 - name: Richmond County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: richmondelections@augustaga.gov
+  abr_contact_name: Richmond County Board of Elections
+  abr_status_check_phone: (706) 821-2340
 - name: Rockdale County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: absentee@rockdalecountyga.gov
+  abr_contact_name: Rockdale County Board of Elections and Voter Registration
+  abr_status_check_phone:  (770) 278-7333
 - name: Schley County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: registrars_schley@yahoo.com
+  abr_contact_name: Schley County Board of Registrars
+  abr_status_check_phone:  (229) 937-2689
 - name: Screven County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: dorothyhglisson@yahoo.com
+  abr_contact_name: Screven County Board of Registrars
+  abr_status_check_phone: (912) 564-2153
 - name: Seminole County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: seminoleprobate@gmail.com
+  abr_contact_name: Seminole County Board of Registrars
+  abr_status_check_phone: (229) 524-5256
 - name: Spalding County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: mridley@spaldingcounty.com
+  abr_contact_name: Spalding County Board of Elections and Voter Registration
+  abr_status_check_phone: (678) 588-3530
 - name: Stephens County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: egober@stephenscountyga.com
+  abr_contact_name: Stephens County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 886-8954
 - name: Stewart County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: ahudson@stewartcountyga.gov
+  abr_contact_name: Stewart County Board of Elections and Voter Registration
+  abr_status_check_phone: (229) 838-6220
 - name: Sumter County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: rhoward@sumtercountyga.us
+  abr_contact_name: Sumter County Board of Elections and Voter Registration
+  abr_status_check_phone:  (229) 928-4500
 - name: Talbot County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections-registration@talbotcountyga.org
+  abr_contact_name: Talbot County Board of Elections & Registration
+  abr_status_check_phone:  (706) 665-8270
 - name: Taliaferro County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: registrars131@yahoo.com
+  abr_contact_name: Taliaferro County Board of Registrars
+  abr_status_check_phone: (706) 456-3563
 - name: Tattnall County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: tattnall_elections_24@yahoo.com
+  abr_contact_name: Tattnall County Board of Elections and Voter Registration
+  abr_status_check_phone: (912) 557-6417
 - name: Taylor County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: votetaylorga@gmail.com
+  abr_contact_name: Taylor County Board of Registrars
+  abr_status_check_phone:  (478) 862-3997
 - name: Telfair County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: telfair.registrar@hotmail.com
+  abr_contact_name: Telfair County Board of Registrars
+  abr_status_check_phone: (229) 868-2023
 - name: Terrell County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
-- name: Thomas County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: carolyn03@windstream.net
+  abr_contact_name: Terrell County Board of Elections and Voter Registration
+  abr_status_check_phone: (229) 995-5066
+- name:  Thomas County
+  abr_email_address: frank.scoggins@thomascountyga.gov
+  abr_contact_name: Thomas County Board of Elections
+  abr_status_check_phone: 
 - name: Tift County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: shekia.holley@tiftcounty.org
+  abr_contact_name: Tift County Board of Elections and Voter Registration
+  abr_status_check_phone: (229) 386-7915
 - name: Toombs County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: cachenbach.toombs.elections@gmail.com
+  abr_contact_name: Toombs County Board of Election and Registration
+  abr_status_check_phone:  (912) 526-8226
 - name: Towns County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: tcelections@townscountyga.com
+  abr_contact_name: Towns County Board of Registrars
+  abr_status_check_phone: (706) 896-4353
 - name: Treutlen County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: keri.hedgecock@treutlengov.us
+  abr_contact_name: Treutlen County Board of Registrars
+  abr_status_check_phone: (912) 529-3098
 - name: Troup County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@troupcountyga.gov
+  abr_contact_name: Troup County Board of Elections and Registration
+  abr_status_check_phone: (706) 883-1745
 - name: Turner County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@troupcountyga.gov
+  abr_contact_name: Turner County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 883-1745
 - name: Twiggs County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: lbond@twiggscounty.us
+  abr_contact_name: Twiggs County Board of Elections and Voter Registration
+  abr_status_check_phone: (478) 945-3639
 - name: Union County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: ucregistrar@uniongov.com
+  abr_contact_name: Union County Board of Registrars
+  abr_status_check_phone: (706) 439-6016
 - name: Upson County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: kking@upsoncountyga.org
+  abr_contact_name: Upson County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 647-6259
 - name: Walker County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@walkerga.us
+  abr_contact_name: Walker County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 638-4349
 - name: Walton County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@co.walton.ga.us
+  abr_contact_name: Walton County Board of Elections and Registration
+  abr_status_check_phone: (770) 267-1337
 - name: Ware County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: cnelson@warecounty.com
+  abr_contact_name: Ware County Board of Elections and Registration
+  abr_status_check_phone: (912) 287-4363
 - name: Warren County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: voting@warrencountyga.gov
+  abr_contact_name: Warren County Board of Registrars
+  abr_status_check_phone: (706) 465-1993
 - name: Washington County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: clhagans@washingtoncountyga.gov
+  abr_contact_name: Washington County Board of Registrars
+  abr_status_check_phone: (478) 640-9961
 - name: Wayne County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: snash@waynecountyga.us
+  abr_contact_name: Wayne County Board of Registrars
+  abr_status_check_phone:  (912) 427-5950
 - name: Webster County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: snash@waynecountyga.us
+  abr_contact_name: Webster County Board of Elections and Voter Registration
+  abr_status_check_phone: (912) 427-5950
 - name: Wheeler County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: wcregistrars@windstream.net
+  abr_contact_name: Wheeler County Board of Registrars
+  abr_status_check_phone:  (912) 568-0095
 - name: White County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: lmanning@whitecounty.net
+  abr_contact_name: White County Board of Registrars
+  abr_status_check_phone: (706) 865-7812
 - name: Whitfield County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: mhammontree@whitfieldcountyga.com
+  abr_contact_name: Whitfield County Board of Elections and Voter Registration
+  abr_status_check_phone: (706) 278-7183
 - name: Wilcox County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: wilcox2115@windstream.net
+  abr_contact_name: Wilcox County Board of Registrars
+  abr_status_check_phone: (229) 467-2111
 - name: Wilkes County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: wilkescovoter@wilkescountyga.org
+  abr_contact_name: Wilkes County Board of Registrars
+  abr_status_check_phone:  (706) 678-1850
 - name: Wilkinson County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: elections@wilkinsoncounty.net
+  abr_contact_name: Wilkinson County Board of Elections and Registration
+  abr_status_check_phone:  (478) 946-2188
 - name: Worth County
-  abr_email_address: 
-  abr_contact_name: 
-  abr_status_check_phone:
+  abr_email_address: supervisor@worthelections.com
+  abr_contact_name: Worth County Board of Elections and Voter Registration
+  abr_status_check_phone: (229) 776-8208

@@ -175,6 +175,7 @@ record_10:
   registration_deadline: georgia
   id_length_min: '4'
   online_registration_url: https://registertovote.sos.ga.gov/GAOLVR/#no-back-button
+  status_check_url: https://www.mvp.sos.ga.gov/MVP/mvp.do
 record_11:
   abbreviation: HI
   name: Hawaii
