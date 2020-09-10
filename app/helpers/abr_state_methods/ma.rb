@@ -42,7 +42,7 @@ module AbrStateMethods::MA
     "the ballot": {},
     "Assisting persons name": {},
     "Assisting persons address": {},
-    #"Date": {}
+    "Date": { method: "date_for_signature" }
     #"voter_signature": {}
   }
   EXTRA_FIELDS = ["has_mailing_address"]

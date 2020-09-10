@@ -1,40 +1,66 @@
 <% if @stop_reminders -%>
-  <h1><%= I18n.t('txt.registration.finish_reminder_header').html_safe %></h1>
-  <div class="fulltext">
-    <p><%= I18n.t('txt.registration.finish_reminder', :first_name => @registrant.first_name, :last_name=>@registrant.last_name).html_safe %></p>
-    <p><%= I18n.t('txt.registration.finish_reminder_2').html_safe %></p>
-  </div>
+<h1><%= I18n.t('txt.registration.finish_reminder_header').html_safe %></h1>
+<div class="fulltext">
+  <p><%= I18n.t('txt.registration.finish_reminder', :first_name => @registrant.first_name, :last_name=>@registrant.last_name).html_safe %></p>
+  <p><%= I18n.t('txt.registration.finish_reminder_2').html_safe %></p>
+</div>
 <% elsif (@registrant.status.to_sym ==:under_18) %>
-  <%= render(:partial => "finishes/under_18") %>
-<% else %>
-  <%- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank? %>
-    <%= @registrant.partner.external_conversion_snippet.to_s.html_safe %>
-  <%- end %>  
-  
-  
+<%= render(:partial => "finishes/under_18") %>
+<% elsif @registrant.mail_with_esig? && !@registrant.skip_mail_with_esig? %>
+<%- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank? %>
+<%= @registrant.partner.external_conversion_snippet.to_s.html_safe %>
+<%- end %>
+<%- if  @use_mobile_ui %>
+<%- completion = "100%"%>
+<div id="dynamic-progress-bar">
+  <div class="filler" style="width: <%= completion %>"></div>
+  <div class="content"><%= completion %></div>
+</div>
+<%- end %>
+<h1><%= I18n.t('txt.registration.finish_mail_with_esig_header').html_safe %> </h1>
+<div class="fulltext">
+  <p><%= I18n.t('txt.registration.finish_mail_with_esig', state_voter_check_url: @registrant.state_voter_check_url).html_safe %></p>
+</div>
+<% elsif @registrant.pdf_delivery %>
   <%- if  @use_mobile_ui %>
-    <%- completion = "80%"%>
-    <%- if @pdf_ready %>
-      <%- completion = "85%" %>
-    <%- end %>
-    <%- if @registrant && @registrant.pdf_downloaded %>
-      <%- completion = "90%" %>
-    <%- end %>
-    
+    <%- completion = "90%"%>
     <div id="dynamic-progress-bar">
       <div class="filler" style="width: <%= completion %>"></div>
       <div class="content"><%= completion %></div>
     </div>
-  <%- end %>
-  
-  
-  <% if !@share_only && !@pdf_ready %>
-    <h1><%= I18n.t('txt.registration.finish_pdf_delay_header').html_safe %> </h1>
-    <div class="fulltext">
-      <p><%= I18n.t('txt.registration.finish_pdf_delay').html_safe %></p>
-    </div>
-    <%= render 'downloads/pdf_assitance_button' %>
-  <% end %>
+    <%- end %>
+  <h1><%= I18n.t('txt.registration.pdf_assistance_header').html_safe %></h1>
+  <div class="download">
+    <p><%= I18n.t('txt.registration.instructions.pdf_assistance') %></p>
+  </div>
+<% else %>
+<%- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank? %>
+<%= @registrant.partner.external_conversion_snippet.to_s.html_safe %>
+<%- end %>
+
+
+<%- if  @use_mobile_ui %>
+<%- completion = "80%"%>
+<%- if @pdf_ready %>
+<%- completion = "85%" %>
+<%- end %>
+<%- if @registrant && @registrant.pdf_downloaded %>
+<%- completion = "90%" %>
+<%- end %>
+
+<div id="dynamic-progress-bar">
+  <div class="filler" style="width: <%= completion %>"></div>
+  <div class="content"><%= completion %></div>
+</div>
+<%- end %>
+
+
+<% if !@share_only && !@pdf_ready %>
+<h1><%= I18n.t('txt.registration.finish_pdf_delay_header').html_safe %> </h1>
+<div class="fulltext">
+  <p><%= I18n.t('txt.registration.finish_pdf_delay').html_safe %></p>
+</div>
+<% end %>
 <% end -%>
 
 <%= render "finishes/finish_iframe" %>

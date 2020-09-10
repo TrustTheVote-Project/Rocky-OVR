@@ -82,6 +82,7 @@ absentee_states:
   AZ:
     online_req_url: https://my.arizona.vote/Early/ApplicationLogin.aspx
     pdf_template: az.pdf
+    email_delivery: true
   CA: {}
   CO: {}
   CT:
@@ -96,6 +97,7 @@ absentee_states:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
   GA:
     pdf_template: ga.pdf
+    email_delivery: true
   HI: {}
   IA:
     pdf_template: ia.pdf
@@ -155,9 +157,11 @@ absentee_states:
     pdf_template: la.pdf
   MA:
     pdf_template: ma.pdf
+    # email_delivery: true
   MD:
     online_req_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/VoterType
     pdf_template: md.pdf
+    email_delivery: true
   ME:
     online_req_url: https://www1.maine.gov/cgi-bin/online/AbsenteeBallot/online-form.pl
   MI:
@@ -194,6 +198,7 @@ absentee_states:
         
   NY:
     pdf_template: ny.pdf
+    email_delivery: true
   OH:
     pdf_template: oh.pdf
   OK:
@@ -217,17 +222,36 @@ absentee_states:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
     pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
     #pdf_template: va.pdf
+    email_delivery: true
   VT: {} #All vote-by-mail this year
   WA: {}
   WI:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
     pdf_template: wi.pdf
+    email_delivery: true
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     pdf_template: wv.pdf
   WY:
     pdf_template: wy.pdf
-  
+    email_delivery: true
+      
+
+# Only configured for staging2 right now.
+mail_with_esig:
+  states:
+    MN:
+      allow_desktop_signature: true
+      state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
+  partners:
+    - 1 
+    
+pdf_assistance:
+  states:
+    - MA
+  partners:
+    - 1
+    
 ovr_states:
   AZ:
     redirect_to_online_reg_url: true
@@ -267,7 +291,7 @@ ovr_states:
       - en
   MN:
     redirect_to_online_reg_url: true
-    require_id: false
+    require_id: true
     languages:
       - en
   NV:

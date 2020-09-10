@@ -33,6 +33,7 @@ function initDynamicNav(currentStep, firstStep, lastStep, progressMap, shouldSki
     
     $("#step-" + window._dynNav.currentStep + " .error").each(function() {
       if ($(this).text().trim() != '') {
+        console.log($(this).parent());
         isValid = false;
       }
     });
@@ -94,6 +95,7 @@ function initDynamicNav(currentStep, firstStep, lastStep, progressMap, shouldSki
   
   jumpToFirstError = function() {
     var errors = $(".has_error")
+    console.log(errors)
     if (errors.length > 0) {
       console.log("found error")
       var firstError = errors[0]
