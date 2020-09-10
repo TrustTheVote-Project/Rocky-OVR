@@ -1,75 +1,75 @@
 - name: Apache County
-  abr_email_address: test@test.com
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: voterreg@co.apache.az.us
+  abr_contact_name: Apache County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-337-7515
 - name: Cochise County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: voterreg@cochise.az.gov
+  abr_contact_name: Cochise County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 520-432-8358
 - name: Coconino County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: ccelections@coconino.az.gov
+  abr_contact_name: Coconino County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-679-7860
 - name: Gila County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: cwilliams@gilacountyaz.gov
+  abr_contact_name: Gila County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-402-8740
 - name: Graham County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: recordersoffice@graham.az.gov
+  abr_contact_name: Graham County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-428-3560
 - name: Greenlee County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: smilheiro@greenlee.az.gov
+  abr_contact_name: Greenlee County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-865-2632
 - name: La Paz County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: maguilar@lapazcountyaz.org
+  abr_contact_name: La Paz County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-669-6136
 - name: Maricopa County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: evreq@risc.maricopa.gov
+  abr_contact_name: Maricopa County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 602-506-1511
 - name: Mohave County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: voterregistration@mohavecounty.us
+  abr_contact_name: Mohave County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-753-0701
 - name: Navajo County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: VoterRegistration@navajocountyaz.gov
+  abr_contact_name: Navajo County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-524-4194
 - name: Pima County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: PimaRequests@recorder.pima.gov
+  abr_contact_name: Pima County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 520-724-4330
 - name: Pinal County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: earlyvoter@pinal.gov
+  abr_contact_name: Pinal County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 520-866-6830
 - name: Santa Cruz County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: voter@santacruzcountyaz.gov
+  abr_contact_name: Santa Cruz County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 520-375-7990
 - name: Yavapai County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: web.voter.registration@yavapai.us
+  abr_contact_name: Yavapai County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-771-3244
 - name: Yuma County
-  abr_email_address:
-  abr_contact_name:
-  abr_status_check_url:
-  abr_status_check_phone:
+  abr_email_address: voterservices@yumacountyaz.gov
+  abr_contact_name: Yuma County Recorder
+  abr_status_check_url: https://my.arizona.vote/AbsenteeTracker.aspx
+  abr_status_check_phone: 928-373-6034
