@@ -7,7 +7,11 @@
   %h2= t('txt.abr.finish_via_email_header', state_name: @abr.home_state_name)
 
   .intro-message
-    = t('txt.abr.finish_via_email_instructions', elections_office_name: @abr.elections_office_name, abr_check_url: @abr.status_check_url).html_safe
+    = t('txt.abr.finish_via_email_instructions', elections_office_name: @abr.elections_office_name).html_safe
+    - if !@abr.status_check_url.blank?
+      = t('txt.abr.finish_via_email_voter_check', abr_check_url: @abr.status_check_url).html_safe
+    - elsif !@abr.status_check_phone.blank? 
+      = t('txt.abr.finish_via_email_voter_check_phone', status_check_phone: @abr.status_check_phone).html_safe
 
 - elsif !@share_only && !@pdf_ready
   %h2= t('txt.abr.finish_pdf_delay_header', state_name: @abr.home_state_name)
