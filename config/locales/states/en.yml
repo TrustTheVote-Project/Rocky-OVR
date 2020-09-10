@@ -1065,26 +1065,28 @@ en:
             <li>Incarceration, although I have retained all the necessary qualifitications for voting </li>
             <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681, RSMo., because of safety concerns. </li></ul>
         abr_form_fields:
-          undefined: Last 4 digit of my social security number
+          #undefined: Last 4 digit of my social security number
           has_mailing_address: My mailing address differs from my residential address.
           mailing_address_1: Mailing address
           mailing_address_1__hint: "(Street address or PO Box)"
           mailing_address_2: City, State, Zip
-          reason_for_request: 'Reason for requesting an absentee ballot:'
-          reason_for_request__options:
-            absent: Absence on Election Day from the jurisdiction of the election
+          Reason: 'Reason for requesting an absentee ballot:'
+          Reason__options:
+            absence: Absence on Election Day from the jurisdiction of the election
               authority in which I am registered
             incapacity: Incapacity or confinement due to illness or physical disability,
               including caring for a person who is capacitated or confined due to
-              illness or disability
+              illness or disability (No Notary Required)
             religious: Religious belief or practice
-            election_official: Employment as an election authority or by an election
+            employment: Employment as an election authority or by an election
               authority at a location other than my polling place
             incarceration: Incarceration although I have retained all the necessary
               qualifications for voting
-            confidential: Certified participation in the address confidentiality program
+            confidentiality: Certified participation in the address confidentiality program
               established under sections 589.660 to 589.681, RSMo., because of safety
               concerns
+            COVID: I have contracted or am in an at-risk category for contracting or transmitting severe acute respiratory syndrome
+              coronavirus 2, pursuant to Section 115.277.6, RSMo. (No Notary Required)
       ms:
         abr:
           header: Absentee Requests In Mississippi
