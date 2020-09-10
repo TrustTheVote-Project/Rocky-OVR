@@ -33,40 +33,7 @@
       signaturePad.clear();
     }
     
-    function selectSignatureType() {
-        if ($("##{signature_method_id_prefix}_upload:checked").length > 0) {
-          var imageData = $('##{image_field_id}').val()
-          $('#signature-cropper').show().cropit({
-            imageState: { src:  imageData },
-            freeMove: true,
-            minZoom: 'fit',
-            exportZoom: 0.5,
-            onFileChange: showControls,
-            onZoomChange: adjustSignature,
-            onOffsetChange: adjustSignature,
-            allowDragNDrop: false
-          });    
-          if (imageData != "") {
-            setTimeout(showControls, 1000);
-          }          
-        } else {
-          $('#signature-cropper').hide()
-
-        }
-        if ($("##{signature_method_id_prefix}_device:checked").length > 0) {
-          $("#continue_on_device").show();
-        } else {
-          $("#continue_on_device").hide();
-        }
-        
-        if ($("##{signature_method_id_prefix}_desktop:checked").length > 0) {
-          $("#signature_capture").show();
-        } else {
-          $("#signature_capture").hide();
-        }
-        selectSignatureTypeCallback();
-      } 
-
+    
     var allowDesktopSignature = #{!!allow_desktop_signature};
     
     function registerTouch(isDesktop) {
@@ -147,6 +114,7 @@
       $(".cropit-preview").hide();                
     }
     function removeSignatureFile() {
+      console.log('hi')
       $('#signature-cropper .cropit-preview-image').removeAttr('src');
       $('#signature-cropper .cropit-preview-background').removeAttr('src');     
       $("##{image_field_id}").val('');
@@ -154,7 +122,7 @@
       hideControls();
       
     }
-    $("#signature-cropper .remove-image-btn").click(removeSignatureFile);
+    
     
     function adjustSignature() {
       try {
@@ -184,6 +152,40 @@
       
     }
     
+    function selectSignatureType() {
+      if ($("##{signature_method_id_prefix}_upload:checked").length > 0) {
+        var imageData = $('##{image_field_id}').val()
+        $('#signature-cropper').show().cropit({
+          imageState: { src:  imageData },
+          freeMove: true,
+          minZoom: 'fit',
+          exportZoom: 0.5,
+          onFileChange: window.showControls,
+          onZoomChange:  window.adjustSignature,
+          onOffsetChange:  window.adjustSignature,
+          allowDragNDrop: false
+        });    
+        if (imageData != "") {
+          setTimeout(showControls, 1000);
+        }          
+      } else {
+        $('#signature-cropper').hide()
+
+      }
+      if ($("##{signature_method_id_prefix}_device:checked").length > 0) {
+        $("#continue_on_device").show();
+      } else {
+        $("#continue_on_device").hide();
+      }
+      
+      if ($("##{signature_method_id_prefix}_desktop:checked").length > 0) {
+        $("#signature_capture").show();
+      } else {
+        $("#signature_capture").hide();
+      }
+      selectSignatureTypeCallback();
+    } 
+
     
     $(document).ready(function() {
       
@@ -196,7 +198,9 @@
       $('.select-image-btn').click(function() {
         $('.cropit-image-input').click();
       });
-      
+
+      $("#signature-cropper .remove-image-btn").click(removeSignatureFile);
+
       if (allowDesktopSignature) {
         registerTouch(true);        
       }
