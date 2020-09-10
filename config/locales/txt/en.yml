@@ -92,7 +92,7 @@ en:
       edit: Edit
       back: "&lt; Previous Step"
       download: Print your registration form now
-      download_assistance: Request assistance printing your form
+      download_assistance: Please mail me my form, I can't print it right now
       download_abr: Print your Absentee Request now
       ineligible_try_again: Return
       keep_going: Keep Going
@@ -100,6 +100,7 @@ en:
       help: Help
       deliver: Send Email Now
       prepare: Prepare Form
+      # for Download
       prepare_with_esig: Complete Registration Form
       review: Review Application
       sendmail: Send Email

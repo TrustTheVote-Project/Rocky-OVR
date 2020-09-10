@@ -180,6 +180,12 @@
   
       = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
 
+    .skip_state_registration
+      - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+        .checkbox{style: "font-size: 150%; text-align: center;"}
+          = check_box_tag :pdf_assistance
+          = label_tag :pdf_assistance, I18n.t('txt.button.download_assistance')
+      
 
   .dynamic-navigation
     -# .back only shown when first step, .prepare only shown when last step
@@ -203,9 +209,7 @@
         .use_state_registration
           = rollover_button(:prepare, I18n.t('txt.button.submit'))
       .skip_state_registration
-        - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
-          = rollover_button(:pdf_assistance, I18n.t('txt.button.download_assistance'), name: :pdf_assistance) 
-      
+        
         = rollover_button(:prepare, I18n.t('txt.button.prepare'))
       
       

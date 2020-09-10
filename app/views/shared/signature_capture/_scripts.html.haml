@@ -114,7 +114,6 @@
       $(".cropit-preview").hide();                
     }
     function removeSignatureFile() {
-      console.log('hi')
       $('#signature-cropper .cropit-preview-image').removeAttr('src');
       $('#signature-cropper .cropit-preview-background').removeAttr('src');     
       $("##{image_field_id}").val('');
@@ -203,5 +202,7 @@
 
       if (allowDesktopSignature) {
         registerTouch(true);        
+      } else {
+        selectSignatureTypeCallback();
       }
     });

@@ -41,14 +41,20 @@ module AbrSignatureMethods
 
   def status_check_url
     home_state.counties[registration_county][:abr_status_check_url] || home_state.status_check_url
+  rescue
+    home_state.status_check_url
   end
 
   def status_check_phone
     home_state.counties[registration_county][:abr_status_check_phone] || home_state.registrar_phone
+  rescue
+    home_state.registrar_phone
   end
 
   def elections_office_name
     home_state.counties[registration_county][:abr_contact_name] || "#{home_state.counties[registration_county][:name]} Elections Office"
+  rescue
+    "Local Elections Office"
   end
 
   def elections_office_email
@@ -67,7 +73,7 @@ module AbrSignatureMethods
   end
 
   def signature_pdf_field_name
-    nil
+    "voter_signature"
   end
 
 

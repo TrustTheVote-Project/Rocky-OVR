@@ -451,6 +451,11 @@ en:
             of your ballot here: <a rel="noopener" target="blank" href="https://registration.elections.myflorida.com/CheckVoterStatus">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>'
       ga:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Georgia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Georgia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Georgia, this application must be RECEIVED by Friday,
             October 30th, 2020.  At any time you can check the status of your application
@@ -841,6 +846,11 @@ en:
             please verify before continuing.
       md:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Maryland, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Maryland, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to print off and complete your application
             as soon as possible. Read the instructions carefully to return your application.
             Your application must be sent by no later than October 27th, 2020 (if
@@ -883,6 +893,11 @@ en:
             ballot must be received by 8:00pm on Election Day.</>"
       ma:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Massachusetts, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Massachusetts, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible Your
             request must be received by 5:00 pm on October 28, 2020.</p><p>Once you
@@ -1028,6 +1043,12 @@ en:
         signature_capture:
           desktop_provide_signature: You must provide a signature to complete your registration form. You may upload a signature image, switch to a touch-enabled device or print, sign and mail your PDF.
           desktop_provide_e_signature: You must provide a signature to complete your registration form. You may upload a signature image, switch to a touch-enabled device or use your current device.
+        abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Minnesota, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Minnesota, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
             state ID number or the last 4 digits of your SSN, you may request your
@@ -1239,6 +1260,11 @@ en:
               office.)
       nh:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of New Hampshire, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of New Hampshire, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your completed ballot must be RECEIVED by your county election office
@@ -1413,6 +1439,11 @@ en:
           to print, sign, and mail in the form.</p>
       ny:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of New York, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of New York, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: "<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your absentee ballot request must be post marked by October 27th, 2020.
@@ -1887,6 +1918,11 @@ en:
             <a rel="noopener" target="blank" href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>
             </p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Virginia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Virginia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to print off and complete your application.
             Read the instructions carefully on how to submit your application.</p><p>Once
             you receive your ballot, make sure to read it carefully and follow the
@@ -2018,6 +2054,11 @@ en:
             can check the status of your application and the status of your ballot
             at: <a rel="noopener" target="blank" href="https://myvote.wi.gov/en-us/MyVoterInfo">https://myvote.wi.gov/en-us/MyVoterInfo</a></p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Wisconsin, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Wisconsin, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to download and complete your application.
             Read the instructions carefully to send back your form. Your application
             must be RECEIVED by 5:00pm on October 29th, 2020.</p><p>Once you receive
@@ -2067,6 +2108,11 @@ en:
             </p>'
       wy:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Wyoming, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Wyoming, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Wyoming, this application must be RECEIVED by Monday,
             November 2nd, 2020.</p><p>At any time you can check the status of your

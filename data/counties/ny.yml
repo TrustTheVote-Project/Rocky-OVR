@@ -1,0 +1,249 @@
+
+- name: Albany County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Allegany County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Bronx County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Broome County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Cattaraugus County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Cayuga County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Chautauqua County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Chemung County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Chenango County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Clinton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Columbia County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Cortland County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Delaware County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Dutchess County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Erie County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Essex County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Franklin County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Fulton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Genesee County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Greene County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Hamilton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Herkimer County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Jefferson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Kings County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Lewis County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Livingston County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Madison County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Monroe County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Montgomery County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Nassau County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: New York City County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Niagara County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Oneida County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Onondaga County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Ontario County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Orange County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Orleans County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Oswego County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Otsego County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Putnam County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Queens County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Rensselaer County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Richmond County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Rockland County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: St. Lawrence County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Saratoga County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Schenectady County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Schoharie County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Schuyler County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Seneca County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Steuben County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Suffolk County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Sullivan County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Tioga County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Tompkins County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Ulster County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Warren County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Washington County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Wayne County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Westchester County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Wyoming County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  
+- name: Yates County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:  

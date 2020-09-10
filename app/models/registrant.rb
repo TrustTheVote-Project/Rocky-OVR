@@ -1377,7 +1377,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def can_request_pdf_assistance?
-    self.locale.to_s == 'en' && home_state_enabled_for_pdf_assitance?
+    home_state_enabled_for_pdf_assitance?
   end
   
   def mail_with_esig?

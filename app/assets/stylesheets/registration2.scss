@@ -941,7 +941,7 @@ body {
   display: inline;
   button {
     border: 0;
-    padding: 0;
+    padding: 0 !important;
     &:hover {
       color: unset !important;
       background: unset !important; 

@@ -1,0 +1,636 @@
+- name: Appling County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Atkinson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Bacon County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Baker County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Baldwin County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Banks County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Barrow County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Bartow County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Ben Hill County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Berrien County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Bibb County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Bleckley County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Brantley County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Brooks County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Bryan County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Bulloch County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Burke County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Butts County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Calhoun County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Camden County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Candler County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Carroll County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Catoosa County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Charlton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Chatham County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Chattahoochee County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Chattooga County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Cherokee County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Clarke County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Clay County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Clayton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Clinch County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Cobb County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Coffee County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Colquitt County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Columbia County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Cook County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Coweta County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Crawford County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Crisp County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Dade County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Dawson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: De Kalb County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Decatur County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Dodge County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Dooly County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Dougherty County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Douglas County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Early County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Echols County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Effingham County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Elbert County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Emanuel County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Evans County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Fannin County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Fayette County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Floyd County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Forsyth County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Franklin County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Fulton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Gilmer County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Glascock County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Glynn County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Gordon County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Grady County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Greene County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Gwinnett County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Habersham County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Hall County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Hancock County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Haralson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Harris County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Hart County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Heard County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Henry County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Houston County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Irwin County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Jackson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Jasper County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Jeff Davis County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Jefferson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Jenkins County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Johnson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Jones County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Lamar County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Lanier County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Laurens County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Lee County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Liberty County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Lincoln County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Long County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Lowndes County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Lumpkin County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Macon County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Madison County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Marion County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: McDuffie County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: McIntosh County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Meriwether County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Miller County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Mitchell County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Monroe County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Montgomery County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Morgan County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Murray County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Muscogee County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Newton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Oconee County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Oglethorpe County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Paulding County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Peach County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Pickens County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Pierce County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Pike County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Polk County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Pulaski County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Putnam County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Quitman County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Rabun County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Randolph County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Richmond County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Rockdale County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Schley County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Screven County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Seminole County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Spalding County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Stephens County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Stewart County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Sumter County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Talbot County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Taliaferro County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Tattnall County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Taylor County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Telfair County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Terrell County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Thomas County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Tift County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Toombs County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Towns County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Treutlen County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Troup County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Turner County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Twiggs County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Union County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Upson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Walker County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Walton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Ware County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Warren County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Washington County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Wayne County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Webster County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Wheeler County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: White County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Whitfield County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Wilcox County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Wilkes County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Wilkinson County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:
+- name: Worth County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone:

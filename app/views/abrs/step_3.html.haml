@@ -48,7 +48,6 @@
         = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @abr.allow_desktop_signature? }
         :javascript
           function selectSignatureTypeCallback() {
-            console.log("HI")
             if ($("#abr_signature_method_print:checked").length > 0) {
               $("#prepare_form").show();
               $("#deliver_by_email").hide();
