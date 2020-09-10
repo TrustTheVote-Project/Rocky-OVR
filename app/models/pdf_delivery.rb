@@ -1,6 +1,137 @@
 require 'net/ftp'
 class PdfDelivery < ActiveRecord::Base
   
+  def self.compile_for_date(date = Date.yesterday)
+    date_string = date.strftime("%Y-%m-%d")
+    deliveries = PdfDelivery.where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature])
+    folder = Rails.root.join("tmp", "deliveries", date_string)
+    assistance_rows = [CSV_HEADER]
+    relative_assistance_folder = "assistance"
+    assistance_folder = File.join(folder, relative_assistance_folder)
+    direct_mail_rows = [CSV_HEADER]
+    relative_direct_folder = "direct"
+    direct_folder = File.join(folder, relative_direct_folder)
+    FileUtils.mkdir_p(assistance_folder)
+    FileUtils.mkdir_p(direct_folder)
+    deliveries.find_in_batches(batch_size: 500) do |batch|
+      batch.each do |d|
+        fname = "#{date_string}_#{d.registrant.first_name}_#{d.registrant.last_name}_#{d.registrant.uid}.pdf"
+        fpath = nil
+        row = self.csv_row(d)
+        if d.registrant.pdf_is_esigned?
+          # direct mail
+          direct_mail_rows << row
+          fpath = File.join(direct_folder, fname)
+        else
+          # assistance mail
+          assistance_rows << row
+          fpath = File.join(assistance_folder, fname)
+        end
+        File.open(fpath, "wb+") do |f|
+          f.write open(d.registrant.pdf_url).read
+        end
+      end
+    end
+    # Zip up files
+    `cd #{folder} && zip -r assistance.zip #{relative_assistance_folder}`
+    `rm -rf #{assistance_folder}`
+    `cd #{folder} && zip -r direct_mail.zip #{relative_direct_folder}`
+    `rm -rf #{direct_folder}`
+    CSV.open(File.join(folder, "assistance.csv"), "w+") do |csv|
+      assistance_rows.each do |row|
+        csv << row
+      end
+    end
+    CSV.open(File.join(folder, "direct_mail.csv"), "w+") do |csv|
+      direct_mail_rows.each do |row|
+        csv << row
+      end
+    end
+    # Upload 2 zips and 2 CSVs to s3.
+    upload_file(date_string, folder, "assistance.zip")
+    upload_file(date_string, folder, "assistance.csv")
+    upload_file(date_string, folder, "direct_mail.zip")
+    upload_file(date_string, folder, "direct_mail.csv")
+  end
+
+  def self.s3_connection
+    @@connection ||= Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :region                   => 'us-west-2'
+    })    
+  end
+  
+  def self.directory
+    @@directory ||= s3_connection.directories.get('rocky-report-objects')    
+  end
+  
+  def self.s3_key(date_string, fn)
+    "#{Rails.env}/deliveries/#{date_string}/#{fn}"
+  end
+  
+  def self.upload_file(date_string, folder, file)
+    local_path = File.join(folder, file)
+    directory.files.create(
+      :key    => s3_key(date_string, file),
+      :body   => File.read(local_path),
+      :content_type => file.ends_with?(".csv") ? "text/csv" : "application/zip",
+      :encryption => 'AES256', #Make sure its encrypted on their own hard drives
+      :public => false
+    )
+  end
+
+
+
+  CSV_HEADER = [
+    "Request Date/Time",
+    "First Name",
+    "Last Name",
+    "Email",
+    "UID",
+    "Partner ID",
+    "Registration Address 1",
+    "Registration Address 2",
+    "Registration City",
+    "Registration State",
+    "Registration ZIP",
+    "Registrant Mailing Address 1",
+    "Registrant Mailing Address 2",
+    "Registrant Mailing City",
+    "Registrant Mailing State",
+    "Registrant Mailing ZIP",
+    "Elections Office Address 1",
+    "Elections Office Address 2",
+    "Elections Office Address 3",
+    "Elections Office Address 4",
+    "Elections Office Address 5",
+    "Elections Office Address 6",
+    "Elections Office Address 7"    
+  ]
+
+  def self.csv_row(delivery) 
+    r = delivery.registrant
+    [ 
+      delivery.created_at,
+      r.first_name,
+      r.last_name,
+      r.email_address,
+      r.uid,
+      r.partner_id,
+      r.home_address,
+      r.home_unit,
+      r.home_city,
+      r.home_state_abbrev,
+      r.home_zip_code,
+      r.has_mailing_address? ? r.mailing_address : r.home_address,
+      r.has_mailing_address? ? r.mailing_unit : r.home_unit,
+      r.has_mailing_address? ? r.mailing_city : r.home_city,
+      r.has_mailing_address? ? r.mailing_state_abbrev : r.home_state_abbrev,
+      r.has_mailing_address? ? r.mailing_zip_code : r.home_zip_code,      
+    ] + r.state_registrar_address.split(/<br\/?>/)
+  end
+
   belongs_to :registrant
   
   def generate_pdf!
@@ -58,60 +189,5 @@ class PdfDelivery < ActiveRecord::Base
     return false   
   end
   
-  def self.to_csv_string
-    return CSV.generate do |csv|
-      first = true
-      self.all.includes({:registrant=>[:home_state, :mailing_state, :partner, :registrant_status]}).find_each do |d|
-        pdf_hash = d.registrant.to_pdf_hash
-        pdf_hash.delete(:state_id_number)
-        pdf_hash.delete(:state_id_tooltip)
-        pdf_hash.delete(:voter_signature_image)
-        pdf_hash.delete(:signed_at_month)
-        pdf_hash.delete(:signed_at_year)
-        pdf_hash.delete(:signed_at_day)
-        registrar_address = pdf_hash.delete(:state_registrar_address)
-        if first
-          csv << pdf_hash.keys + [
-            :state_registrar_address_1,
-            :state_registrar_address_2,
-            :state_registrar_address_3,
-            :state_registrar_address_4,
-            :state_registrar_address_5,
-            :state_registrar_address_6,
-            :state_registrar_address_7,
-          ]
-          first = false
-        end
-        csv << pdf_hash.values + registrar_address.split(/<br\/?>/)
-        
-      end
-    end
-  end
-  
-  
-  # URL is ftp.garnerprint.com
-  # User name:whenwevote
-  # Password: redfq86#
-  def self.transfer(local_path)
-    #file_name = 
-    
-    port = 21
-    ftp = Net::FTP.new  # don't pass hostname or it will try open on default port
-    ftp.connect('ftp.garnerprint.com', port)  # here you can pass a non-standard port number
-    ftp.passive = true
-    ftp.login('whenwevote', 'redfq86#')
-    files = ftp.list('*')
-    puts files
-    ftp.close
-    
-    # Net::FTP.open('ftp.garnerprint.com') do |ftp|
-    #   ftp.login('whenwevote', 'redfq86#')
-    #   files = ftp.list('*')
-    #   puts files
-    #   #ftp.getbinaryfile('nif.rb-0.91.gz', 'nif.gz', 1024)
-    # end
-    
-    
-  end
   
 end

@@ -35,6 +35,8 @@ class DownloadsController < RegistrationStep
     @refresh_location = @attempt >= 10 ? registrant_finish_path(@registrant) : registrant_download_path(@registrant, :cno=>@attempt+1)
     if @registrant.mail_with_esig? && !@registrant.skip_mail_with_esig?
       redirect_to registrant_finish_url(@registrant)      
+    elsif @registrant.pdf_delivery
+      redirect_to registrant_finish_url(@registrant)      
     elsif @registrant.pdf_ready?
       render "show"
     elsif @registrant.javascript_disabled?
@@ -64,7 +66,7 @@ class DownloadsController < RegistrationStep
   
   def pdf_assistance
     find_registrant(:download)
-    @registrant.queue_pdf_delivery
+    #@registrant.queue_pdf_delivery
     # Render because we just assume it'll go through
   end
   

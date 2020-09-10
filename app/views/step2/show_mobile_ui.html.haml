@@ -203,6 +203,9 @@
         .use_state_registration
           = rollover_button(:prepare, I18n.t('txt.button.submit'))
       .skip_state_registration
+        - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+          = rollover_button(:pdf_assistance, I18n.t('txt.button.download_assistance'), name: :pdf_assistance) 
+      
         = rollover_button(:prepare, I18n.t('txt.button.prepare'))
       
       

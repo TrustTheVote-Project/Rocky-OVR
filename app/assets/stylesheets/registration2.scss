@@ -937,6 +937,18 @@ body {
  
 }
 
+#main form .rollover_button .button_pdf_assistance {
+  display: inline;
+  button {
+    border: 0;
+    padding: 0;
+    &:hover {
+      color: unset !important;
+      background: unset !important; 
+    }
+  }
+}
+
 @import 'registration2-mobile';
 @import 'registration2-new-mobile-ui';
 @import 'registration2-signature-capture';

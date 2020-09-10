@@ -59,6 +59,9 @@ $(document).ready(function() {
   <h2><%= t('txt.registration.step_3_header') %></h2>
   <%= render partial: 'skip_state', locals: { form: form, include_step_2: true } %>
   <%- if @registrant.use_short_form? %>
+    <%- if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig? %>
+      <%= rollover_button(:pdf_assistance, I18n.t('txt.button.download_assistance'), name: :pdf_assistance) %>
+    <%- end %>
     <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.prepare').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>        
   <%- else %>
     <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>  

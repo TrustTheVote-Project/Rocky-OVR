@@ -1120,14 +1120,19 @@ class Registrant < ActiveRecord::Base
 
   
 
-  def wrap_up
+  def wrap_up(pdf_assistance = nil)
+    @requesting_pdf_assistance = pdf_assistance
     complete!
   end
 
   def complete_registration
     self.status = 'complete'
     saved = self.save!
-    queue_pdf
+    if @requesting_pdf_assistance
+      queue_pdf_delivery
+    else
+      queue_pdf
+    end
     return saved
   end
   
@@ -1536,6 +1541,8 @@ class Registrant < ActiveRecord::Base
     if send_emails?
       if pdf_delivery && pdf_is_esigned?
         Notifier.confirmation_with_signature(self).deliver_now        
+      elsif pdf_delivery
+        Notifier.confirmation_with_assistance(self).deliver_now        
       else
         Notifier.confirmation(self).deliver_now
         enqueue_reminder_emails

@@ -1,4 +1,4 @@
-- if @for_printer && !@esign
+- if @for_printer && !@esign && false
   %div.page#page_mailing_address
     .address
       = "#{(@registrant.first_name).to_s.html_safe} #{(@registrant.last_name).to_s.html_safe}"
@@ -55,7 +55,7 @@
           - if !@registrant.home_state_pdf_other_instructions.blank?
             .state_instructions
               %p= @registrant.home_state_pdf_other_instructions.to_s.html_safe
-          - if @for_printer
+          - if @for_printer 
             %p= I18n.t('pdf.nvra.page1.ep_hotline').to_s.html_safe
     %h3.bottom_title= I18n.t('pdf.nvra.page1.bottom_block.title' ).to_s.html_safe
     %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph1' ).to_s.html_safe
@@ -204,7 +204,7 @@
         %td.block6.box1#id_number
           .label= form_prompt('pdf.nvra.page2.block6.box1_label' ).to_s.html_safe
           .sublabel= form_prompt('pdf.nvra.page2.block6.box1_sublabel' ).to_s.html_safe
-          .value= @for_printer && !@esign ? '' : @registrant.state_id_number
+          .value= @for_printer && false && !@esign ? '' : @registrant.state_id_number
 
   %table.form
     %tr#block9
