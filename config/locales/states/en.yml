@@ -453,29 +453,30 @@ en:
         abr_form_fields:
           has_mailing_address: I have a temporary address that differs from my resident
             address or permanent mailing address on file.
-          Text12: Residence County
-          Text13: Mailing address
-          Text14: City
-          Text15: Zip
-          Text16: County
+          Permanent County: Residence County
+          Temporary Street Address: Mailing address
+          Temporary City: City
+          Temporary State: State
+          Temporary Zip: Zip
+          Temporary County: County
           address_has_changed: My permanent address has changed within my county and
             I want to update my address.
-          type_of_ballot: Type of ballot
-          type_of_ballot__options:
+          Group1: Type of ballot
+          Group1__options:
             Democratic: Democratic
             Republican: Republican
             Non_Partisan: Not Partisan (will not have ANY party candidates listed)
-          reason_other: I swear that the facts contained in this application are true,
+          Group2: I swear that the facts contained in this application are true,
             that I am a family member of the voter of the age of 18, and that the
             voter is
           assisted_voter: Voter is disabled or illiterate and I assisted in completing
             this application.
-          reason_other__options:
-            out_of_country: Temporarily residing out of the county
-            disabled: Physically disabled
+          Group2__options:
+            temporarily residing out of the country: Temporarily residing out of the county
+            physically disabled: Physically disabled
           Text23: 'Today''s date: (MM/DD/YYYY)'
           requestor: I am requesting a ballot on behalf of the voter.
-          Text25: Relationship to voter
+          #Text25: Relationship to voter
           Elegibility: Eligibility to receive vote by mail ballots for the rest of
             the election cycle without another application?
           Elegibility__options:
@@ -484,7 +485,8 @@ en:
             U: U- UOCAVA Voter- I am a uniformed service member, spouse or dependent
               of a uniformed service member, or other US citizen residing overseas.
               My current status is
-          UOCAVA_Status__options:
+          Group3: UOCAVA Status
+          Group3__options:
             MOS: MOS- Military Overseas
             MST: MST- Military Stateside
             OST: OST- Overseas Temporary Resident
