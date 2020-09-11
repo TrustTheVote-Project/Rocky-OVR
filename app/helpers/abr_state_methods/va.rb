@@ -14,7 +14,7 @@ module AbrStateMethods::VA
       method: "name_suffix"
     },
     "in the citycounty of": {
-      method: "city"
+      #method: "registration_county_name"
     },
     "Birth_Year": {},
     "SSN_Last_4": {sensitive: true},
@@ -157,7 +157,6 @@ module AbrStateMethods::VA
     return (values.compact.join(", "))
   end
  
-
   def custom_form_field_validations
     
   end
