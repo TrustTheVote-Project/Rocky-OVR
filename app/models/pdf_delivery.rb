@@ -3,7 +3,7 @@ class PdfDelivery < ActiveRecord::Base
   
   def self.compile_for_date(date = Date.yesterday)
     date_string = date.strftime("%Y-%m-%d")
-    deliveries = PdfDelivery.where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature])
+    deliveries = PdfDelivery.where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature, :partner])
     folder = Rails.root.join("tmp", "deliveries", date_string)
     assistance_rows = [CSV_HEADER]
     relative_assistance_folder = "assistance"
@@ -91,16 +91,17 @@ class PdfDelivery < ActiveRecord::Base
     "Email",
     "UID",
     "Partner ID",
+    "Partner Org Name",
     "Registration Address 1",
     "Registration Address 2",
     "Registration City",
     "Registration State",
     "Registration ZIP",
-    "Registrant Mailing Address 1",
-    "Registrant Mailing Address 2",
-    "Registrant Mailing City",
-    "Registrant Mailing State",
-    "Registrant Mailing ZIP",
+    "Envelope Address 1",
+    "Envelope Address 2",
+    "Envelope City",
+    "Envelope State",
+    "Envelope ZIP",
     "Elections Office Address 1",
     "Elections Office Address 2",
     "Elections Office Address 3",
@@ -119,6 +120,7 @@ class PdfDelivery < ActiveRecord::Base
       r.email_address,
       r.uid,
       r.partner_id,
+      r.partner&.organization,
       r.home_address,
       r.home_unit,
       r.home_city,
