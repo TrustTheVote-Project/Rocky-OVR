@@ -33,16 +33,16 @@ class PdfDelivery < ActiveRecord::Base
       end
     end
     # Zip up files
-    `cd #{folder} && zip -r assistance.zip #{relative_assistance_folder}`
+    `cd #{folder} && zip -r #{date_string}_assistance.zip #{relative_assistance_folder}`
     `rm -rf #{assistance_folder}`
-    `cd #{folder} && zip -r direct_mail.zip #{relative_direct_folder}`
+    `cd #{folder} && zip -r #{date_string}_direct_mail.zip #{relative_direct_folder}`
     `rm -rf #{direct_folder}`
-    CSV.open(File.join(folder, "assistance.csv"), "w+") do |csv|
+    CSV.open(File.join(folder, "#{date_string}_assistance.csv"), "w+") do |csv|
       assistance_rows.each do |row|
         csv << row
       end
     end
-    CSV.open(File.join(folder, "direct_mail.csv"), "w+") do |csv|
+    CSV.open(File.join(folder, "#{date_string}_direct_mail.csv"), "w+") do |csv|
       direct_mail_rows.each do |row|
         csv << row
       end
