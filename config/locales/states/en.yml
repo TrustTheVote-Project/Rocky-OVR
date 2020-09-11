@@ -1518,6 +1518,19 @@ en:
             ballot and send it back in.  Vote-by-mail ballots must be received by
             8:00pm on Election Day.</p>'
       pa:
+        abr_form_fields:
+          "Lived_at_Address_Since": "I have lived at this address since:"
+          "Same_as_above__options":
+            "Off": My mailing address DIFFERS from my residential address.
+            "On": My mailing address is the SAME as my residential address.
+          "Address_1": Mailing address
+          "City_Town_1": "City/Town"
+          "Zip code_2": Zip
+          "no_PennDOT": "I do not have a PA driver's license or PennDOT ID card."
+          "no_id": "I do not have a Social Security number."
+          "SSN_last_4": "Last 4 digits of your SSN:"
+          "Municipality": "Municipality (City, Town, or Village)"
+          "Same_as_above": "Select one:"
         abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.</p><p>In Pennsylvania, this application must be RECEIVED

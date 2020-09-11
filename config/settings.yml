@@ -182,8 +182,8 @@ absentee_states:
   OR: {}      
   PA:
     online_req_url: https://www.pavoterservices.pa.gov/OnlineAbsenteeApplication/#/OnlineAbsenteeBegin
-    pdf_template:
-    pdf_url: https://www.votespa.com/Register-to-Vote/Documents/PADOS_MailInApplication.pdf
+    pdf_template: pa.pdf
+    #pdf_url: https://www.votespa.com/Register-to-Vote/Documents/PADOS_MailInApplication.pdf
   RI:
     pdf_template: ri.pdf
   SC:
