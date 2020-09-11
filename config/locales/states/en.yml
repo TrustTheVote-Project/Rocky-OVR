@@ -907,9 +907,10 @@ en:
           "November 3 Zip": Zip
           "Nov 3 Address Begin Date_es_:date": "Begin date (MM/DD/YYYY):"
           "Nov 3 Address End Date_es_:date": "Return date (MM/DD/YYYY):"
-          "Township Jurisdiction": I live in a township.
-          "City Jurisdiction": I live in a city.
-          "city_instructions": "Please select one of the following:"
+          jurisdiction_type: "Please select one of the following:"
+          jurisdiction_type__options:
+            town: I live in a township.
+            city: I live in a city.        
           "Name of Person assisting the voter": Name
           "Date of Birth of person assisting_es_:date": "Date of birth (MM/DD/YYYY)"
           "Adress of person assisting": Address

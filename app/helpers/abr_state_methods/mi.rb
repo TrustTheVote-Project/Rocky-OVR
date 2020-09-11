@@ -19,8 +19,12 @@ module AbrStateMethods::MI
       "Last Name": {
       method: "last_name"
       },
-      "Township Jurisdiction": {}, #TODO - if checked below, value: "X"
-      "City Jurisdiction": {}, #TODO - if checked below, value: "X"
+      "Township Jurisdiction": {
+        method: "jurisdiction_town"
+      }, #TODO - if checked below, value: "X"
+      "City Jurisdiction": {
+        method: "jurisdiction_city"
+      }, #TODO - if checked below, value: "X"
       "Street Address applicant": {
       method: "address"
       },
@@ -32,6 +36,7 @@ module AbrStateMethods::MI
       },
       "County where applying": {},
       "Jurisdiction Name": {}, #TODO - is there a way to automatically fill this in according to address?
+                               #Have not done TBD
       "Add my name to permanent absentee list": { 
       options: ["Off", "On"],
       value: "Off"
@@ -65,8 +70,16 @@ module AbrStateMethods::MI
       #"assistant_signature": {},
       #"assistant_signed_date": {},
   }
-  EXTRA_FIELDS = ["has_mailing_address", "assistant"]
+  EXTRA_FIELDS = ["has_mailing_address", "assistant", 'jurisdiction_type']
 
+  def jurisdiction_town
+    return ("X") if self.jurisdiction_type.to_s=='town'
+
+  end
+
+  def jurisdiction_city
+    return ("X") if self.jurisdiction_type.to_s=='city'
+  end
 
   def form_field_items
       [
@@ -155,19 +168,21 @@ module AbrStateMethods::MI
           "Wayne",
           "Wexford",
       ]}},
-      {"city_instructions": {type: :instructions}},
-      {"Township Jurisdiction": {type: :checkbox, classes: "indent"}},
-      {"City Jurisdiction": {type: :checkbox, classes: "indent"}},
+      #{"city_instructions": {type: :instructions}},
+      {"jurisdiction_type": {type: :radio, options: ['town','city'], required: true}},
+      #{"Township Jurisdiction": {type: :checkbox, classes: "indent"}},
+      #{"City Jurisdiction": {type: :checkbox, classes: "indent"}},
+      {"Jurisdiction Name": { required: true}},
       {"has_mailing_address": {type: :checkbox}},
-      {"November 3 Address": {visible: "has_mailing_address"}},
-      {"November 4 City": {visible: "has_mailing_address", classes: "half"}},
-      {"November 3 State": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"November 3 Zip": {visible: "has_mailing_address", classes: "quarter last"}},
-      {"Nov 3 Address Begin Date_es_:date": {visible: "has_mailing_address", classes: "half"}},
-      {"Nov 3 Address End Date_es_:date": {visible: "has_mailing_address", classes: "half last"}},
+      {"November 3 Address": {visible: "has_mailing_address", required: :if_visible}},
+      {"November 4 City": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
+      {"November 3 State": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"November 3 Zip": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
+      {"Nov 3 Address Begin Date_es_:date": {visible: "has_mailing_address", required: :if_visible, classes: "half", regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
+      {"Nov 3 Address End Date_es_:date": {visible: "has_mailing_address", required: :if_visible, classes: "half last", regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
       {"assistant": {type: :checkbox}},
       {"Name of Person assisting the voter": {visible: "assistant", required: :if_visible, classes: "half"}},
-      {"Date of Birth of person assisting_es_:date": {visible: "assistant", required: :if_visible, classes: "half last"}},
+      {"Date of Birth of person assisting_es_:date": {visible: "assistant", required: :if_visible, classes: "half last", regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
       {"Adress of person assisting": {visible: "assistant", required: :if_visible}},
       ]
   end
