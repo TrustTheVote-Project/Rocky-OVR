@@ -1519,20 +1519,16 @@ en:
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot. Your mail ballot will be sent to the address listed on
             your voter registration.  If you have any questions, or need to check
-            your address on file please go to Oregon''s My Vote website: <a rel="noopener"
-            target="blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>.  You
-            can use Oregon''s My Vote website to check on your ballot status, view
-            your voter registration information (including the address on file), update
-            your voter registration information, find contact information for both
-            your county election officials and elected officials, and also find a
-            ballot drop site near you! </p>  <p> NOTE: if you will be away from your
-            registration address during an election and need your ballot sent somewhere
-            else, you must submit and Absentee Ballot Request Form:  <a rel="noopener"
-            target="blank" href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">
-            Oregon Absentee Ballot Request Form</a>     </p> <p>Once you have your
-            ballot, again be sure to read the instructions carefully, fill out the
-            ballot and send it back in.  Vote-by-mail ballots must be received by
-            8:00pm on Election Day.</p>'
+            your address on file please go to <a rel="noopener" target="blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">Oregon''s
+            My Vote website</a>.</p><br><br><p>You can use Oregon''s My Vote website
+            to check on your ballot status, view and update your voter registration
+            information, find a ballot drop site near you, and more.</p><br><br><p>NOTE:
+            if you will be away from your registration address during an election,
+            and you need your ballot mailed elsewhere, you must submit an Absentee
+            Ballot Request Form: <a rel="noopener" target="blank" href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">Oregon
+            Absentee Ballot Request Form</a></p><br><br><p>Once you have your ballot,
+            read the instructions carefully, fill out the ballot and send it back
+            in. Vote-by-mail ballots must be received by 8:00pm on Election Day.</p>'
       pa:
         abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
