@@ -11,7 +11,9 @@ hours_between_first_and_second_reminder: 0.0333
 hours_between_second_and_final_reminder: 0.0333
 pdf_expiration_days: .25
 
-
+pdf_assistance:
+  partners:
+    - 1
 
 blocks_configuration:
   default_turf_id: 416

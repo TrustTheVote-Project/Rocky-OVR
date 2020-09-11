@@ -244,8 +244,9 @@ en:
           & mail or deliver your registration form to your local elections office.
         download_assitance_header: ''
         download_assitance: ''
-        pdf_assistance: You will need to add sign your form and mail it
-          in to finish the process!
+        pdf_assistance: You will need to sign your form and mail it to your local 
+          election official to finish the registration process! We've also emailed 
+          you a copy for your records.
         finish: 'Don''t forget to tell your friends and family how easy it was to
           register. Here are a few tools you can use to spread the word about voter
           registration:'
