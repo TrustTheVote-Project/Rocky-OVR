@@ -835,6 +835,26 @@ en:
           License_ID__format_message: That doesn't look like a driver's license number,
             please verify before continuing.
       md:
+        abr_form_fields:
+          "presidential_general_mailto": "I want my ballot mailed to:"
+          presidential_general_mailto__options:
+            address_below: A different mailing address.
+            same_as_above: My residential address.
+          "When_Moved_Here": "I moved to my residential address on (MM/DD/YYYY or MM/YYYY):" 
+          "delivery_method": "I would like to receive my ballot by:"
+          delivery_method__options:
+            mail: U.S. Mail
+            internet: Internet Delivery
+          "Address_2": Mailing address
+          "Apt_number_2": "Apt/Unit"
+          "City_town_2": "City/Town"
+          "State_2": State
+          "ZIP_code_2": Zip
+          "no_dln": "I do not have a MD Driver's License or ID card."
+          "SSN_last-4": "Last 4 digits of my SSN:"
+          "Issue_Date": "Issue Date"
+          "assistant_print": Name of Assistant
+          "assistant": I had help completing this application
         abr:
           finish_instructions: '<p>Make sure to print off and complete your application
             as soon as possible. Read the instructions carefully to return your application.
