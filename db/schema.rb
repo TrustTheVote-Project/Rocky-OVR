@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200820125421) do
+ActiveRecord::Schema.define(version: 20200908184008) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20200820125421) do
     t.boolean  "dead_end",                 default: false
     t.string   "tracking_source"
     t.string   "tracking_id"
+    t.string   "registration_county"
+    t.boolean  "confirm_email_delivery"
   end
 
   add_index "abrs", ["abandoned", "dead_end", "current_step"], name: "index_abrs_for_abandonment"
@@ -279,6 +281,7 @@ ActiveRecord::Schema.define(version: 20200820125421) do
     t.string   "online_registration_url",         limit: 255
     t.string   "online_registration_system_name"
     t.string   "registrar_abr_address"
+    t.string   "status_check_url"
   end
 
   create_table "grommet_requests", force: :cascade do |t|
@@ -740,6 +743,15 @@ ActiveRecord::Schema.define(version: 20200820125421) do
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
     t.integer  "penndot_retries",                                  default: 0
+    t.boolean  "request_abr"
+    t.string   "abr_address_type"
+    t.string   "abr_ballot_address"
+    t.string   "abr_ballot_city"
+    t.string   "abr_ballot_state"
+    t.string   "abr_ballot_zip"
+    t.string   "abr_ballot_address_start_year"
+    t.string   "abr_ward"
+    t.boolean  "abr_declaration"
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id"
@@ -841,6 +853,7 @@ ActiveRecord::Schema.define(version: 20200820125421) do
     t.string   "email_address_for_continue_on_device"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.integer  "abr_id"
   end
 
   add_index "voter_signatures", ["registrant_id"], name: "index_voter_signatures_on_registrant_id"

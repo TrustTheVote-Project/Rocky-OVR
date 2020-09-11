@@ -27,12 +27,20 @@
       <h3><%= form.label :home_state_abbrev %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
       <%= field_div form, :home_state_abbrev, :disabled => true %>
       <span class="error"><%= form.object.errors[:home_state_name].join("\n") %></span>
-    </li>    
+    </li>
     <li class="width_c registrant-form__home-zip-code__line">
       <h3><%= form.label :zip %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
       <%= field_div form, :zip, {:size => 8, required: true} %>
       <span class="error"><%= form.object.errors[:zip].join("\n") %></span>
     </li>
   </ul>
+  <%- if @abr.home_state&.counties&.any? %>
+  <ul class="stacked">
+    <li class="width_a registrant-form__registration-county__line">
+      <h3><%= form.label :registration_county %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= select_div form, :registration_county, @abr.home_state.county_collection_for_select, {include_blank: true, required: true} %>
+      <span class="error"><%= form.object.errors[:registration_county].join("\n") %></span>
+    </li>
+  </ul>
+  <%- end %>
 </fieldset>
-
