@@ -83,8 +83,8 @@ class StateCustomization
   end
   
   def oabr_url_is_local_jurisdiction?(abr = nil)
-    puts oabr_url(abr)
-    puts abr_settings&.online_req_url
+    # puts oabr_url(abr)
+    # puts abr_settings&.online_req_url
     oabr_url(abr) != abr_settings&.online_req_url
   end
   

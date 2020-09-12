@@ -67,9 +67,9 @@ class StateImporter
       if !path_or_url.starts_with?('http')
         path_or_url = "#{base_uri}#{path_or_url}"
       end
-      puts "Getting #{path_or_url}"
+      # puts "Getting #{path_or_url}"
       response =  JSON.parse(ZipCodeCountyAddress.get_ssl(path_or_url))
-      puts response["meta"]
+      # puts response["meta"]
       return [response["objects"], response["meta"]]
     rescue Exception => e
       puts path

@@ -12,7 +12,7 @@ class GrommetRequest < ActiveRecord::Base
       d = params["rocky_request"]["voter_records_request"]["generated_date"]
       key = "#{d}-#{r}"
       self.request_hash = Digest::MD5.hexdigest(key) 
-      puts key, request_hash
+      # puts key, request_hash
       save(validate: false)    
     end
   end

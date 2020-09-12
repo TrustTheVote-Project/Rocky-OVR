@@ -46,7 +46,7 @@ end
 
 
 Then /^"([^"]*)" select box should contain "([^"]*)"$/ do |dropdown, text|
-  puts Partner.all.collect {|p| [p.id, p.name]}
+  # puts Partner.all.collect {|p| [p.id, p.name]}
   #save_and_open_page
   expect(page).to have_select(dropdown, with_options: [text])
 end
