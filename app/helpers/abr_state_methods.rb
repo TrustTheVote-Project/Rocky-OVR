@@ -82,7 +82,7 @@ module AbrStateMethods
   
   def redact_sensitive_data
     self.sensitive_fields.each do |method|
-      puts "set #{method}"
+      #puts "set #{method}"
       self.send("#{method}=", nil)
     end
   end
