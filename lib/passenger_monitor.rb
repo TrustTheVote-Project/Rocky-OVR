@@ -16,13 +16,13 @@ class PassengerMonitor
 
   # Check all the Passenger processes
   def check
-    puts 'Checking for bloated Passenger workers' 
+    # puts 'Checking for bloated Passenger workers' 
 
     `passenger-memory-stats`.each_line do |line|
 next unless (line =~ /Passenger AppPreloader: /)
 
       pid, memory_usage =  extract_stats(line)
-      puts "Pid #{pid} using mem #{memory_usage}"
+      # puts "Pid #{pid} using mem #{memory_usage}"
       # If a given passenger process is bloated try to
       # kill it gracefully and if it fails, force killing it
       if bloated?(pid, memory_usage)
@@ -40,7 +40,7 @@ next unless (line =~ /Passenger AppPreloader: /)
       end
     end
 
-    puts 'Finished checking for bloated Passenger workers'
+    # puts 'Finished checking for bloated Passenger workers'
   end
 
   private
