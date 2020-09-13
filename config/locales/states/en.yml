@@ -1519,7 +1519,7 @@ en:
             8:00pm on Election Day.</p>'
       pa:
         abr_form_fields:
-          "Lived_at_Address_Since": "I have lived at this address since:"
+          "Lived_at_Address_Since": "I have lived at this address since (mm/dd/yyyy):"
           "Same_as_above__options":
             "Off": My mailing address DIFFERS from my residential address.
             "On": My mailing address is the SAME as my residential address.
@@ -1528,6 +1528,7 @@ en:
           "Zip code_2": Zip
           "no_PennDOT": "I do not have a PA driver's license or PennDOT ID card."
           "no_id": "I do not have a Social Security number."
+          assert_no_id: "I do not have a Social Security number."
           "SSN_last_4": "Last 4 digits of your SSN:"
           "Municipality": "Municipality (City, Town, or Village)"
           "Same_as_above": "Select one:"
