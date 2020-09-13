@@ -231,6 +231,10 @@ en:
             time you can check the status of your application and the status of your
             ballot at: <a rel="noopener" target="blank" href="https://my.arizona.vote/PortalList.aspx">https://my.arizona.vote/PortalList.aspx</a></p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Arizona, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Arizona, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
           requirements: "<p>To qualify to request a ballot in AZ, you only need to
             be registered to vote.</p>"
           finish_instructions: '<p>Make sure to read the instructions on the form
@@ -250,6 +254,7 @@ en:
               to include my name on the PEVL and automatically send me a ballot-by-mail
               for each election I am eligible for.</span>"
           has_mailing_address: My mailing address differs from my residential address.
+          Mailing_Address: Mailing Address
           Place_of_Birth_or_Drivers_licence_or_last_4_ssn: 'Place of birth, driver''s
             license #, or last 4 digits of social security number:'
           primary_ballot_selection: Primary Election Ballot Selection
@@ -446,6 +451,11 @@ en:
             of your ballot here: <a rel="noopener" target="blank" href="https://registration.elections.myflorida.com/CheckVoterStatus">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>'
       ga:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Georgia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Georgia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Georgia, this application must be RECEIVED by Friday,
             October 30th, 2020.  At any time you can check the status of your application
@@ -836,6 +846,11 @@ en:
             please verify before continuing.
       md:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Maryland, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Maryland, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to print off and complete your application
             as soon as possible. Read the instructions carefully to return your application.
             Your application must be sent by no later than October 27th, 2020 (if
@@ -878,6 +893,11 @@ en:
             ballot must be received by 8:00pm on Election Day.</>"
       ma:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Massachusetts, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Massachusetts, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible Your
             request must be received by 5:00 pm on October 28, 2020.</p><p>Once you
@@ -1017,6 +1037,18 @@ en:
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
+        registration:
+          has_state_license: I have a current MN driver’s license or ID card number, or the last 4 numbers of my SSN.
+          has_no_state_license: I do not have a current MN driver’s license or ID card number, and do not have the last 4 numbers of my SSN.
+        signature_capture:
+          desktop_provide_signature: You must provide a signature to complete your registration form. You may upload a signature image, switch to a touch-enabled device or print, sign and mail your PDF.
+          desktop_provide_e_signature: You must provide a signature to complete your registration form. You may upload a signature image, switch to a touch-enabled device or use your current device.
+        abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Minnesota, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Minnesota, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
             state ID number or the last 4 digits of your SSN, you may request your
@@ -1228,6 +1260,11 @@ en:
               office.)
       nh:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of New Hampshire, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of New Hampshire, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your completed ballot must be RECEIVED by your county election office
@@ -1402,6 +1439,11 @@ en:
           to print, sign, and mail in the form.</p>
       ny:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of New York, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of New York, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: "<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your absentee ballot request must be post marked by October 27th, 2020.
@@ -1503,20 +1545,16 @@ en:
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot. Your mail ballot will be sent to the address listed on
             your voter registration.  If you have any questions, or need to check
-            your address on file please go to Oregon''s My Vote website: <a rel="noopener"
-            target="blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>.  You
-            can use Oregon''s My Vote website to check on your ballot status, view
-            your voter registration information (including the address on file), update
-            your voter registration information, find contact information for both
-            your county election officials and elected officials, and also find a
-            ballot drop site near you! </p>  <p> NOTE: if you will be away from your
-            registration address during an election and need your ballot sent somewhere
-            else, you must submit and Absentee Ballot Request Form:  <a rel="noopener"
-            target="blank" href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">
-            Oregon Absentee Ballot Request Form</a>     </p> <p>Once you have your
-            ballot, again be sure to read the instructions carefully, fill out the
-            ballot and send it back in.  Vote-by-mail ballots must be received by
-            8:00pm on Election Day.</p>'
+            your address on file please go to <a rel="noopener" target="blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">Oregon''s
+            My Vote website</a>.</p><br><p>You can use Oregon''s My Vote website
+            to check on your ballot status, view and update your voter registration
+            information, find a ballot drop site near you, and more.</p><br><p>NOTE:
+            if you will be away from your registration address during an election,
+            and you need your ballot mailed elsewhere, you must submit an Absentee
+            Ballot Request Form: <a rel="noopener" target="blank" href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">Oregon
+            Absentee Ballot Request Form</a></p><br><p>Once you have your ballot,
+            read the instructions carefully, fill out the ballot and send it back
+            in. Vote-by-mail ballots must be received by 8:00pm on Election Day.</p>'
       pa:
         abr_form_fields:
           "Lived_at_Address_Since": "I have lived at this address since (mm/dd/yyyy):"
@@ -1664,7 +1702,7 @@ en:
             done: Done
             reset: Reset
             remove: Remove Signature
-            provide_signature: Provide Signature
+            provide_signature: Create Digital Signature
             select_file: Select an image to upload
             copy_link: Copy Link
       sc:
@@ -1890,6 +1928,11 @@ en:
             <a rel="noopener" target="blank" href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>
             </p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Virginia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Virginia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to print off and complete your application.
             Read the instructions carefully on how to submit your application.</p><p>Once
             you receive your ballot, make sure to read it carefully and follow the
@@ -2021,6 +2064,11 @@ en:
             can check the status of your application and the status of your ballot
             at: <a rel="noopener" target="blank" href="https://myvote.wi.gov/en-us/MyVoterInfo">https://myvote.wi.gov/en-us/MyVoterInfo</a></p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Wisconsin, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Wisconsin, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to download and complete your application.
             Read the instructions carefully to send back your form. Your application
             must be RECEIVED by 5:00pm on October 29th, 2020.</p><p>Once you receive
@@ -2070,6 +2118,11 @@ en:
             </p>'
       wy:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Wyoming, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Wyoming, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Wyoming, this application must be RECEIVED by Monday,
             November 2nd, 2020.</p><p>At any time you can check the status of your
@@ -2086,7 +2139,7 @@ en:
             Y: 'Yes'
             N: 'No'
           Individual's name who may pick up my ballot: I authorize the following individual
-            to bick up my ballot
+            to pick up my ballot
     parties:
       democratic: Democratic
       independent: Independent

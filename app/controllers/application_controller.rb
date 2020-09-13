@@ -39,17 +39,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def pdf_assistance_report
-    if params[:api_key] != ENV['PDF_PRINT_API_KEY']
-      raise ActionController::RoutingError.new('Not Found')
-    else
-      respond_to do |format|
-        format.csv { send_data PdfDelivery.to_csv_string, :filename => "pdf_assistance_report.csv" }
-      end         
-    end
-  end
-  
-
   protected
 
   # override in subclass controller if plain HTTP is allowed

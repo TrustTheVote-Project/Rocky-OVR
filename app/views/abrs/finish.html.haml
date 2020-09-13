@@ -3,7 +3,16 @@
   .fulltext
     %p= t('txt.abr.finish_reminder', :first_name => @abr.first_name, :last_name=>@abr.last_name).html_safe 
     %p= t('txt.abr.finish_reminder_2').html_safe
-    
+- elsif !@share_only && @abr.deliver_to_elections_office_via_email?
+  %h2= t('txt.abr.finish_via_email_header', state_name: @abr.home_state_name)
+
+  .intro-message
+    = t('txt.abr.finish_via_email_instructions', elections_office_name: @abr.elections_office_name).html_safe
+    - if !@abr.status_check_url.blank?
+      = t('txt.abr.finish_via_email_voter_check', abr_check_url: @abr.status_check_url).html_safe
+    - elsif !@abr.status_check_phone.blank? 
+      = t('txt.abr.finish_via_email_voter_check_phone', status_check_phone: @abr.status_check_phone).html_safe
+
 - elsif !@share_only && !@pdf_ready
   %h2= t('txt.abr.finish_pdf_delay_header', state_name: @abr.home_state_name)
 
@@ -18,7 +27,7 @@
     = t('txt.abr.finish_instructions', registrar_address: @abr.state_registrar_address).html_safe
   
     = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions", default: "").html_safe
-- else
+- else #share only
   .intro-message
     = t("states.custom.#{@abr.i18n_key}.state_online_abr.finish_instructions", default: "").html_safe
     %br

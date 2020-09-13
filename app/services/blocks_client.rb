@@ -73,7 +73,7 @@ class BlocksClient
     send(:post, path, body: body, headers: headers)
   end
   
-  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_delivery", token:)
+  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_qc", token:)
     path = "shifts/#{shift_id}/digital_batch"
     headers = {'Content-Type' => 'application/json'}
     

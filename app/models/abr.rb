@@ -11,6 +11,18 @@ class Abr < ActiveRecord::Base
   include RegistrantAbrMethods
   include AbrPdfMethods
   include AbrPdfFields
+  include AbrSignatureMethods
+
+  has_one :voter_signature, autosave: true
+  AbrSignatureMethods::METHODS.each do |vs_attribute|
+    define_method "#{vs_attribute}" do
+      (voter_signature || create_voter_signature).send(vs_attribute)
+    end
+    define_method "#{vs_attribute}=" do |val|
+      (voter_signature || create_voter_signature).send("#{vs_attribute}=", val)
+    end
+  end
+
   
   include AbrStateMethods
   include Rails.application.routes.url_helpers
@@ -48,14 +60,25 @@ class Abr < ActiveRecord::Base
   validates_presence_of :email
   validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
   validates_presence_of :phone_type, if: :has_phone?
+  validates_presence_of :registration_county, if: :requires_county?
   validate :validates_zip
+  validate :validates_signature
   
+  def requires_county?
+    advancing_to_step_3? && home_state&.counties&.any?
+  end
+
   def self.validate_fields(list, regex, message)
     list.each do |field|
       validates field, format: { with: regex , 
         message: message }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
-    end
-    
+    end    
+  end
+
+  def registration_county_name
+    home_state.counties[registration_county][:name]
+  rescue
+    registration_county
   end
   
   MAX_DATE_OF_BIRTH = Date.parse("2002-11-03")
@@ -217,6 +240,13 @@ class Abr < ActiveRecord::Base
     if send_emails?
       AbrNotifier.confirmation(self).deliver_now
       enqueue_reminder_emails
+    end
+  end
+
+  def deliver_to_elections_office
+    AbrDeliveryNotifier.deliver_to_elections_office(self).deliver_now
+    if send_emails?
+      AbrNotifier.deliver_to_elections_office_confirmation(self).deliver_now
     end
   end
   
