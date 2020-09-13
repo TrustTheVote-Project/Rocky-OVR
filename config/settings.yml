@@ -89,8 +89,8 @@ absentee_states:
     pdf_template: ct.pdf
   DC: 
     online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
-    # pdf_template: dc.pdf
-    pdf_url: https://dcboe.org/Data-Resources-Forms/Forms-and-Resources/AbsenteeBallotRequestForm.aspx
+    pdf_template: dc.pdf
+    #pdf_url: https://dcboe.org/Data-Resources-Forms/Forms-and-Resources/AbsenteeBallotRequestForm.aspx
   DE:
     online_req_url: https://ivote.de.gov/voterlogin.aspx    
     pdf_template: absentee_ballot_application.pdf

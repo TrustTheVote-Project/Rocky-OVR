@@ -357,6 +357,12 @@ en:
             '7': My physical disability
           absentee_reason__required_message: Please select one of the above reasons
       dc:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residential address.
+          "Ballot Mailing Address if different from above": Mailing address
+          "Identification_Number": "DC DMV-issued ID Number or Last Four Digits of Social Security Number:"
+          "Address": "Address of assistant"
+          "assistant": Voter is unable to sign due to illness, injury, or disability and requires assistance.
         abr:
           header: Absentee Requests In DC
           instructions: '<p>DC is automatically sending an absentee ballot to all
