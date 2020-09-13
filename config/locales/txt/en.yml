@@ -43,8 +43,11 @@ en:
         request to:</p><p>%{registrar_address}</p>"
       finish_via_email_header: Thank you!  Your form has been submitted. 
       finish_via_email_instructions: "<p>We have emailed your request to %{elections_office_name}.  We emailed a copy of your request 
-        form to you too!</p><p>Be sure to check in a couple days to make sure that your request was received. You can check this at: 
-        <a href=\"%{abr_check_url}\">%{abr_check_url}</a>."
+        form to you too!</p>"
+      finish_via_email_voter_check: "<p>Be sure to check in a couple days to make sure that your request was received. 
+        You can check this at: <a href=\"%{abr_check_url}\">%{abr_check_url}</a>."
+      finish_via_email_voter_check_phone: "<p>Be sure to check in a couple days to make sure that your request was received by calling
+        your local elections office at %{status_check_phone}."
       finish_header: Almost done
       finish_instructions: "<p>Make sure to download, print, sign and send your request
         to:</p><p>%{registrar_address}</p>"
@@ -132,8 +135,7 @@ en:
       survey_title: Questions For You
       preparing_header: Preparing Registration Form...
       download_header: Print Your Form
-      pdf_assistance_header: You should receive your voter registration form within
-        a few days.
+      pdf_assistance_header: You should receive your voter registration form in about a week.
       finish_mail_with_esig_header: Thanks for beginning the voter registration process! 
       finish_mail_with_esig: |-
         <p class="instructions">Next steps:</p>
@@ -242,8 +244,9 @@ en:
           & mail or deliver your registration form to your local elections office.
         download_assitance_header: ''
         download_assitance: ''
-        pdf_assistance: You will need to add sign your form and mail it
-          in to finish the process!
+        pdf_assistance: You will need to sign your form and mail it to your local 
+          election official to finish the registration process! We've also emailed 
+          you a copy for your records.
         finish: 'Don''t forget to tell your friends and family how easy it was to
           register. Here are a few tools you can use to spread the word about voter
           registration:'

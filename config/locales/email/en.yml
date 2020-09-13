@@ -55,15 +55,14 @@ en:
           Don't forget!<br>
           You must sign &amp; mail your form.
         main: |-
-          Thanks for completing your voter registration application. %{registrant_rtv_and_partner_name} will mail 
-          your voter registration application to you to complete and return to your county election office. 
-          You may also download <a href="%{pdf_url}">your application</a> and print it yourself.<br><br>
+          Thanks for completing your voter registration application. You should receive it in the mail in about a week. 
+          You can also <a href="%{pdf_url}">download your application here</a>.<br><br>
 
           <strong>Your registration is not yet complete. You are not registered until you have turned in your form to your state election officials.</strong><br><br>
 
           %{home_state_email_instructions}
 
-          If you have not already done so, <strong>please make sure to SIGN and MAIL your form to the address provided on the form and shown below.</strong><br><br>
+          When you receive your voter registration form in the mail, <strong>please make sure to SIGN, STAMP and MAIL your form to the address provided on the form and shown below.</strong><br><br>
 
           %{registrar_address}<br><br>
           If you have already mailed in your form, you can <a href="%{cancel_reminders_url}">click here</a> to stop receiving reminders about sending it in.  You should receive confirmation of your registration from your state's election officials.  Sometimes processing can take several weeks.  If you want to check on the status of your voter registration application, call your Secretary of State at %{registrar_phone}, or check online at %{registrar_url}.<br><br>

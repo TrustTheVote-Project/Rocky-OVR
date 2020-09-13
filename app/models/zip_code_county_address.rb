@@ -107,8 +107,6 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     return nil if region_id.blank?
     offices = self.class.get(self.class.office_uri(region_id))
     if offices.any?
-      pp offices
-      raise offices.to_s
       raise "Too many offices for region #{region_id}" if offices.count > 5
       office = offices.first
       mailing_office = select_address_from_office(office)
