@@ -12,6 +12,49 @@ class ReportGenerator
   end
   # p.id, p.username, p.email, p.name, p.organization, p.url, p.address, p.city, l.abbreviation, p.zip_code, p.phone, p.survey_question_1_en, p.survey_question_1_es, p.survey_question_2_en, p.survey_question_2_es, p.created_at, p.updated_at from partners p join geo_states l on (p.state_id = l.id)
 
+  def self.voteready_fields
+    %w(id 
+      locale 
+      partner_id 
+      uid 
+      date_of_birth_year
+      date_of_birth_month
+      date_of_birth_day
+      name_title 
+      first_name 
+      middle_name 
+      last_name 
+      prev_name_title
+      prev_first_name
+      prev_middle_name
+      prev_last_name
+      prev_name_suffix
+      name_suffix 
+      home_address 
+      home_unit 
+      home_city 
+      home_zip_code 
+      home_state_abbrev 
+      prev_address
+      prev_unit
+      prev_city
+      prev_state_abbrev
+      prev_zip_code
+      mailing_address 
+      mailing_unit 
+      mailing_city
+      mailing_state_abbrev
+      mailing_zip_code
+      party
+      race
+      email_address
+      phone
+      phone_type
+      created_at
+      updated_at      
+    )
+  end
+
   def self.partner_fields
     %w(id username email name organization url address city state_abbrev zip_code phone survey_question_1_en survey_question_1_es survey_question_2_en survey_question_2_es created_at updated_at)
   end
@@ -59,6 +102,23 @@ class ReportGenerator
     end
   end
   
+  def self.generate_voteready_registrants
+    distribute_reads(failover: false) do
+      t2 = Time.now.beginning_of_hour
+      t1 = t2 - 24.hours
+      registrants = Registrant.where(status: "complete").where("created_at >= ? AND created_at < ?", t1, t2).includes(:home_state, :prev_state, :mailing_state)
+      csv_str = CSV.generate do |csv|
+        csv << self.voteready_fields + %w(alloy_person_id permanent_absentee registration_status registration_date submitted_registration_date registration_changed_date)
+        registrants.find_each do |r|
+          reg_attributes = self.voteready_fields.collect {|fname| r.send(fname) }
+          csv << reg_attributes
+        end
+      end
+      file_name = "voteready_registrants_#{t1.strftime("%Y_%m_%d_%H:%M")}-#{t2.strftime("%Y_%m_%d_%H:%M")}.csv"
+      self.save_csv_to_s3(csv_str, file_name, voteready: true)
+    end
+  end
+
   def self.generate_registrants(t, time_span)
     distribute_reads(failover: false) do
       registrants = Registrant.where("created_at > ?", t-time_span.hours).includes(:home_state)
@@ -109,14 +169,14 @@ class ReportGenerator
     # "#{base}_#{time_period}hr_#{d1_str}-#{d2_str}.csv"
   end
   
-  def self.save_csv_to_s3(contents, file_name)
+  def self.save_csv_to_s3(contents, file_name, voteready: false)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
       :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
       :region                   => 'us-west-2'
     })
-    bucket_name = "rtv-reports"
+    bucket_name = voteready ? "rtv-to-voteready" : "rtv-reports"
     directory = connection.directories.get(bucket_name)
     file = directory.files.create(
       :key    => "#{Rails.env}/#{file_name}",
