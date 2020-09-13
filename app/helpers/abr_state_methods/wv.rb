@@ -39,9 +39,11 @@ module AbrStateMethods::WV
       "phone": {
         method: "phone"
       },
-      "reason": { options: ["address_confidentiality", "business_or_travel", "college", "disability", "elected_away", "employment", "illness", "immobility", "working_away", "disability_want_electronic", "incarceration"] },
+      "reason": { 
+          method: "reason_a_or_b"
+        },
       "email": {
-        method: "reason_disab_electronic" #TODO - see below
+        method: "reason_disab_electronic" #TODO - see below #TODONE
       },
       "which_election": { 
         options: ["Off", "city_town", "federal_state_county"],
@@ -56,11 +58,12 @@ module AbrStateMethods::WV
         value: "Off" 
       },
     }
-    EXTRA_FIELDS = ["has_mailing_address"]
+    EXTRA_FIELDS = ["has_mailing_address", "reason_meta", "reason_a"]
     
-    # def reason_disab_electronic
+    def reason_disab_electronic
     #   # TODO when "reason_disability_want_electronic" is selected, it should autofill with "email" and otherwise left blank
-    # end
+        return self.email if self.reason_meta.to_s=='B'
+    end
     
     
     def form_field_items
@@ -122,14 +125,19 @@ module AbrStateMethods::WV
           "Wood",
           "Wyoming",
         ]}},
-        {"reason": {type: :radio, required: true}}, #TODO - change format to match form
+        {'reason_meta': {type: :radio, required: true, options: ["A", "B"]}},
+        {"reason_a": {type: :radio, visible: "reason_meta_a", required: 'star', options: ["address_confidentiality", "business_or_travel", "college", "disability", "elected_away", "employment", "illness", "immobility", "working_away", "incarceration"]}}, #TODO - change format to match form #To Done
         {"incarceration_statement": {visible: "reason_incarceration", type: :instructions, classes: "indent"}},
         {"has_mailing_address": {type: :checkbox}},
-        {"mail_address": {visible: "has_mailing_address"}},
-        {"mail_city": {visible: "has_mailing_address", classes: "half"}},
-        {"mail_state": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-        {"mail_zip": {visible: "has_mailing_address", classes: "quarter last"}},
+        {"mail_address": {visible: "has_mailing_address", required: :if_visible}},
+        {"mail_city": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
+        {"mail_state": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"mail_zip": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
       ]
+    end
+
+    def reason_a_or_b
+        return (reason_meta.to_s=='A' ? reason_a.to_s : 'disability_want_electronic')
     end
     
     def custom_form_field_validations
@@ -137,6 +145,9 @@ module AbrStateMethods::WV
       # make sure delivery is selected if reason ==3
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
+      if self.reason_meta.to_s=='A'
+        custom_validates_presence_of ('reason_a')
+      end
     end
     
    
