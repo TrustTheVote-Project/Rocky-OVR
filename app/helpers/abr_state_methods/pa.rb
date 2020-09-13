@@ -9,7 +9,7 @@ module AbrStateMethods::PA
       },
       "State": {},
       "Zip code_2": {},
-      "PA drivers license or PennDOT ID card number": {},
+      "PA drivers license or PennDOT ID card number": {sensitive:true},
       "Last_Name": {
         method: "last_name"
       },
@@ -40,7 +40,7 @@ module AbrStateMethods::PA
       "Address_1": {},
       "City_Town": {},
       "City_Town_1": {},
-      "SSN_last_4": {},
+      "SSN_last_4": {sensitive:true},
       "no_id": {
           method: "check_assert_no_id"
       },
