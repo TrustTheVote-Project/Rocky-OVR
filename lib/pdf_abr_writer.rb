@@ -69,11 +69,11 @@ class PdfAbrWriter
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end
+      `pdftk #{(!voter_signature&.voter_signature_image.blank? ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`        
       if deliver_to_elections_office_via_email?
-        `pdftk #{(!voter_signature&.voter_signature_image.blank? ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`
+        # no cover page needed
         `cp #{pdf_file_path}-tmp #{pdf_file_path}`
       else
-        `pdftk #{(!voter_signature&.voter_signature_image ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`
         `pdftk #{pdf_delivery_address_path} #{pdf_file_path}-tmp output #{pdf_file_path}`
       end
       uploaded = nil

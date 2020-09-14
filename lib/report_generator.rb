@@ -104,7 +104,7 @@ class ReportGenerator
   
   def self.generate_voteready_registrants
     distribute_reads(failover: false) do
-      t2 = Time.now.beginning_of_hour
+      t2 = Time.now.beginning_of_hour - 1.day
       t1 = t2 - 24.hours
       registrants = Registrant.where(status: "complete").where("created_at >= ? AND created_at < ?", t1, t2).includes(:home_state, :prev_state, :mailing_state)
       csv_str = CSV.generate do |csv|
