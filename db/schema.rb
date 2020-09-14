@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20200914112538) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
+  add_index "ab_tests", ["name", nil], name: "index_ab_tests_on_name_and_assigment"
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
 
@@ -755,15 +755,6 @@ ActiveRecord::Schema.define(version: 20200914112538) do
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
     t.integer  "penndot_retries",                                  default: 0
-    t.boolean  "request_abr"
-    t.string   "abr_address_type"
-    t.string   "abr_ballot_address"
-    t.string   "abr_ballot_city"
-    t.string   "abr_ballot_state"
-    t.string   "abr_ballot_zip"
-    t.string   "abr_ballot_address_start_year"
-    t.string   "abr_ward"
-    t.boolean  "abr_declaration"
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id"

@@ -1533,6 +1533,12 @@ en:
           messenger_birth_date: Date of Birth (MM/DD/YYYY)
           messenger_birth_date__required_message: Birthdate not valid
       nm:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residence address.
+          mail_address1: Mailing address line 1
+          mail_address2: Mailing address line 2
+          mail_address3: Mailing address line 3
+          county: County
         abr:
           finish_instructions: <p>Make sure to complete and send this form in as soon
             as possible. In New Mexico, this application must be turned in to your
@@ -2028,7 +2034,7 @@ en:
             even if the ballot is emailed. Send military/overseas ballot by:'
       tx:
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residence address
+          has_mailing_address: My mailing address differs from my residence address.
           has_mailing_address__hint: If you selected "Expected absence from the county"
             above, you must provide an address outside of your residence county.
           Mail_Address: Mailing address
@@ -2226,7 +2232,6 @@ en:
           "receive_by": "I would like to receive my ballot by:"
           receive_by__options:
             Clerk_Office: "Vote in clerk's office"
-          "UOCAVA": "Select one if applicable:"
             Mail: Mail
             Email: Email (Military and overseas only) 
             Fax: Fax (Military and overseas only)

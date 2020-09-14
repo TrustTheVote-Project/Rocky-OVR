@@ -187,8 +187,7 @@ absentee_states:
     pdf_template: nj.pdf
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
-    pdf_template:
-    pdf_url: /abrs/nm.pdf
+    pdf_template: nm.pdf
   NV:
     pdf_template: nv.pdf
     counties:
