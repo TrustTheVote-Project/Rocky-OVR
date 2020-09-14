@@ -104,7 +104,7 @@ module AbrStateMethods::WI
 
         {"receive_by": {type: :radio, required: true}},
         {"Fax Number": {visible: "receive_by_fax"}},
-        {"has_mailing_address": {visible: "receive_by_mail", type: :checkbox}},
+        {"has_mailing_address": {type: :checkbox}},
         {"Mailing Address Street Number  Name": {visible: "has_mailing_address",required: :if_visible, classes: "three-quarter"}},
         {"Apt Number_2": {visible: "has_mailing_address", classes: "quarter last"}},
         {"City_2": {visible: "has_mailing_address",required: :if_visible, classes: "half"}},
