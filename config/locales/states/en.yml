@@ -2178,8 +2178,8 @@ en:
           ACTIVE MILITARY Y  N__options:
             Y: 'Yes'
             N: 'No'
-          Individual's name who may pick up my ballot: I authorize the following individual
-            to pick up my ballot
+          Individual's name who may pick up my ballot: "To authorize another individual to pick 
+            up your ballot for you, add their name here:"            
     parties:
       democratic: Democratic
       independent: Independent
