@@ -1,0 +1,115 @@
+- name: Albany County 
+  abr_email_address: elections@co.albany.wy.us
+  abr_contact_name: Albany County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.721.2546
+- name: Big Horn County 
+  abr_email_address: Lori.Smallwood@bighorncountywy.gov
+  abr_contact_name: Big Horn County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.568.2357
+- name: Campbell County 
+  abr_email_address: cds02@ccgov.net
+  abr_contact_name: Campbell County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.686.1892
+- name: Carbon County 
+  abr_email_address: elections@carbonwy.com
+  abr_contact_name: Carbon County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.328.2650
+- name: Converse County 
+  abr_email_address: janeen.morvee@conversecountywy.gov
+  abr_contact_name: Converse County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.358.2244
+- name: Crook County 
+  abr_email_address: LindaF@crookcounty.wy.gov
+  abr_contact_name: Crook County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.283.1323
+- name: Fremont County 
+  abr_email_address: elections@co.albany.wy.us
+  abr_contact_name: Fremont County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.332.1089
+- name: Goshen County 
+  abr_email_address: countyclerk@goshencounty.org
+  abr_contact_name: Goshen County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.532.4051
+- name: Hot Springs County 
+  abr_email_address: elections@hscounty.com
+  abr_contact_name: Hot Springs County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.864.3515
+- name: Johnson County 
+  abr_email_address:  clerk@johnsoncowy.us
+  abr_contact_name: Johnson County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.684.7272
+- name: Laramie County Clerk
+  abr_email_address: election@laramiecountyclerk.com
+  abr_contact_name: Laramie County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.633.4242 
+- name: Lincoln County 
+  abr_email_address: jpainter@lcwy.org
+  abr_contact_name: Lincoln County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.877.2027
+- name: Natrona County 
+  abr_email_address: elections@natronacounty-wy.gov
+  abr_contact_name: Natrona County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.235.9217
+- name: Niobrara County 
+  abr_email_address: bfreeman@niobraracounty.org
+  abr_contact_name: Niobrara County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.334.2211
+- name: Park County
+  abr_email_address: voterinfo@parkcounty.us
+  abr_contact_name: Park County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.527.8620
+- name: Platte County 
+  abr_email_address: pcelection@plattecountywyoming.com
+  abr_contact_name: Platte County Clerk
+  abr_status_check_url: 
+  abr_status_check_phone: 307.322.2315
+- name: Sheridan County 
+  abr_email_address: elections@sheridancounty.com
+  abr_contact_name: Sheridan County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.674.2515
+- name: Sublette County 
+  abr_email_address: Carrie.Long@sublettewyo.com
+  abr_contact_name: Sublette County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.367.4372
+- name: Sweetwater County 
+  abr_email_address: elections@sweet.wy.us
+  abr_contact_name: Sweetwater County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.872.3733
+- name: Teton County 
+  abr_email_address: elections@tetoncountywy.gov
+  abr_contact_name: Teton County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.733.4430
+- name: Uinta County
+  abr_email_address: kigoble@uintacounty.com
+  abr_contact_name: Uinta County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.783.0306
+- name: Washakie County
+  abr_email_address: clerk@washakiecounty.net
+  abr_contact_name: Washakie County
+  abr_status_check_url:
+  abr_status_check_phone: 307.347.3131
+- name: Weston County 
+  abr_email_address: clerk@westongov.com
+  abr_contact_name: Weston County Clerk
+  abr_status_check_url:
+  abr_status_check_phone: 307.746.4744

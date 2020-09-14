@@ -16,7 +16,7 @@ module AbrPdfFields
   # "phone"
   
   def full_name
-    "#{first_name} #{middle_name} #{last_name}".gsub(/\s+/, ' ')
+    "#{first_name} #{middle_name} #{last_name} #{name_suffix}".gsub(/\s+/, ' ')
   end
   
   def middle_initial
