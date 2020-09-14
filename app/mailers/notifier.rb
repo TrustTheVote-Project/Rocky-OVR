@@ -65,9 +65,22 @@ class Notifier < ActionMailer::Base
          :to => admin.email,
          :date => Time.now.to_s(:db))
   end
-
+  
+  def continue_on_device(registrant, signature_capture_url)
+    @registration_url = signature_capture_url
+    setup_registrant_email(registrant, 'continue_on_device', registrant.email_address_for_continue_on_device)    
+  end
+  
   def confirmation(registrant)
     setup_registrant_email(registrant, 'confirmation')
+  end
+
+  def confirmation_with_signature(registrant)
+    setup_registrant_email(registrant, 'confirmation_with_signature')
+  end
+
+  def confirmation_with_assistance(registrant)
+    setup_registrant_email(registrant, 'confirmation_with_assistance')
   end
 
   def thank_you_external(registrant)
@@ -119,7 +132,7 @@ class Notifier < ActionMailer::Base
 
   protected
 
-  def setup_registrant_email(registrant, kind)
+  def setup_registrant_email(registrant, kind, to_address = nil)
     if registrant.is_fake? && !kind.starts_with?("preview_")
       kind = "preview_#{kind}"
     end
@@ -138,7 +151,7 @@ class Notifier < ActionMailer::Base
     m = mail(
         :subject=>subject,
         :from=>registrant.email_address_to_send_from,
-        :to=>registrant.email_address,
+        :to=>to_address || registrant.email_address,
         :date=> Time.now.to_s(:db)
       ) do |format|
         format.html { 

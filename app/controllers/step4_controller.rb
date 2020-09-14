@@ -84,7 +84,11 @@ class Step4Controller < RegistrationStep
   
   def redirect_when_eligible
     if @registrant.use_short_form? && !@registrant.using_state_online_registration?
-      @registrant.wrap_up
+      if @pdf_assistance == "1"      
+        @registrant.wrap_up(:pdf_assistance)
+      else
+        @registrant.wrap_up
+      end
     end
     super
   end
