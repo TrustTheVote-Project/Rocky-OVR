@@ -1,5 +1,5 @@
 module AbrStateMethods::MD
-  
+
   PDF_FIELDS = {
     "Maryland Drivers License or ID Card Number": {},
     "Birthdate": {

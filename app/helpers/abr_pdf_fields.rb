@@ -46,6 +46,10 @@ module AbrPdfFields
     self.date_of_birth&.strftime("%m/%d/%Y")
   end
 
+  def date_of_birth_mm_dd_yy
+    self.date_of_birth&.strftime("%m/%d/%y")
+  end
+
   def date_of_birth_yyyy_mm_dd
     self.date_of_birth&.strftime("%Y-%m-%d")
   end
