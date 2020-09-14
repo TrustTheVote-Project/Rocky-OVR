@@ -11,6 +11,10 @@
   -->
 </style>
 
+<%- if Rails.env.staging2? || Rails.env.development? %>
+DEBUG: Real recipient would be: "<%= @abr.home_state.counties && @abr.home_state.counties[@abr.registration_county] && @abr.home_state.counties[@abr.registration_county][:abr_email_address] %>"
+<%- end %>
+
 <%= I18n.t('email.abr.deliver_to_elections_office.body', 
   :pdf_url=>@pdf_url, 
   :election_office_name => @election_office_name,

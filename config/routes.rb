@@ -236,6 +236,14 @@ Rocky::Application.routes.draw do
     resources :domains, except: [:new, :edit, :show, :index]
     resources :request_logs, only: [:index, :show]
     resources :blocks_submissions, only: [:index]
+    resources :pdf_delivery_reports, only: [:index] do
+      collection do 
+        get :create_report
+      end
+      member do
+        get :download
+      end
+    end
     
     resources :partners do
       member do

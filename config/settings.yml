@@ -175,13 +175,13 @@ absentee_states:
     counties:
       "clark county":
         online_req_url: https://www.clarkcountynv.gov/government/departments/elections/voter_services.php
-        pdf_template: nv.pdf
-        
+        pdf_template: nv.pdf        
   NY:
     pdf_template: ny.pdf
-    email_delivery: true
+    email_delivery: true    
   OH:
     pdf_template: oh.pdf
+    online_req_url: https://www.ohiosos.gov/elections/voters/absentee-request/
   OK:
     online_req_url: https://www.ok.gov/elections/OVP.html
   OR: {}      
@@ -202,15 +202,14 @@ absentee_states:
   UT: {}  
   VA:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
-    pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
-    #pdf_template: va.pdf
+    #pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
+    pdf_template: va.pdf
     email_delivery: true
   VT: {} #All vote-by-mail this year
   WA: {}
   WI:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
-    # pdf_template: wi.pdf
-    pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
+    pdf_template: wi.pdf
     email_delivery: true
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
@@ -223,7 +222,7 @@ absentee_states:
 
 # Only configured for staging2 right now.
 mail_with_esig:
-  states: {}
+  states:
     MN:
       allow_desktop_signature: true
       state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
