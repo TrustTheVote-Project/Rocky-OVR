@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Online Voter Registration</title>
@@ -19,12 +20,12 @@
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://www.rockthevote.org/wp-content/uploads/assets/v4/images/rock-the-vote-yo.jpg" />
   <meta name="twitter:creator" content="@rockthevote" />
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
   <%= javascript_include_tag "iframeResizer.contentWindow.min.js" %>
-  
+
   <script>
     WebFont.load({
       google: {
@@ -32,7 +33,7 @@
       }
     });
   </script>
-  
+
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
@@ -43,69 +44,76 @@
   <![endif]-->
   <%= javascript_include_tag 'application' %>
   <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() { hideErrors(); setTimeout('revealErrors();', 400); });
+    $(document).ready(function() {
+      hideErrors();
+      setTimeout('revealErrors();', 400);
+    });
   </script>
   <%= yield :head %>
 </head>
+
 <body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
-    <%= @partner.external_tracking_snippet.to_s.html_safe %>
+  <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
   <%-# render 'shared/canvasser_notice' %>
   <div id="container">
-  <% if @partner && @partner.custom_logo? -%>
+    <% if @partner && @partner.custom_logo? -%>
     <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
-  <% else -%>
-    <div id="header">      
-  <% end -%>
-      <div class='header-text'>
-        <%- if @abr && @abr.home_state_abbrev %>
+      <% else -%>
+      <div id="header">
+        <% end -%>
+        <div class='header-text'>
+          <%- if @abr && @abr.home_state_abbrev %>
           <%= t 'txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev %>
-        <%- else%>
+          <%- else%>
           <%= t 'txt.request_absentee_ballot' %>
-        <%- end %>
+          <%- end %>
+        </div>
+        <div id="progress-bar">
+          <ol>
+            <li class="progress-title"><%= t('txt.registration.progress_indicator').html_safe %></li>
+            <%= progress_indicator(@num_steps).html_safe %>
+          </ol>
+        </div>
       </div>
-      <div id="progress-bar">
-        <ol>
-          <li class="progress-title"><%= t('txt.registration.progress_indicator').html_safe %></li>
-          <%= progress_indicator(@num_steps).html_safe %>
-        </ol>
+
+      <div id="main" class="abr">
+        <div id="main_inner" class="step_<%= controller.current_step %>">
+          <%= flash_messages.html_safe %>
+
+          <%= yield %>
+        </div>
       </div>
+
+    </div>
+    <div id="sticky_footer">
+      <%= render :partial => 'layouts/footer' %>
     </div>
 
-    <div id="main" class="abr">
-      <div id="main_inner" class="step_<%= controller.current_step %>">
-        <%= yield %>
-      </div>
-    </div>
 
-  </div>
-  <div id="sticky_footer">
-    <%= render :partial => 'layouts/footer' %>
-  </div>
-
-
-<%= render :partial => 'layouts/urchin' %>
-<%= javascript_include_tag "iframeResizer.contentWindow.min" %> 
-<script>
-  var ls = window.localStorage
-  window.IS_TOUCH_ENABLED = false;
-  if (ls && ls.getItem('IS_TOUCH_ENABLED')) {
-    window.IS_TOUCH_ENABLED = true;
-    window.registerTouch();
-  } else {
-    window.addEventListener('touchstart', function onFirstTouch() {
-      // or set some global variable
-      window.IS_TOUCH_ENABLED = true;
-      if (ls) {
-        ls.setItem('IS_TOUCH_ENABLED', true);
+    <%= render :partial => 'layouts/urchin' %>
+    <%= javascript_include_tag "iframeResizer.contentWindow.min" %>
+    <script>
+      var ls = window.localStorage
+      window.IS_TOUCH_ENABLED = false;
+      if (ls && ls.getItem('IS_TOUCH_ENABLED')) {
+        window.IS_TOUCH_ENABLED = true;
+        window.registerTouch();
+      } else {
+        window.addEventListener('touchstart', function onFirstTouch() {
+          // or set some global variable
+          window.IS_TOUCH_ENABLED = true;
+          if (ls) {
+            ls.setItem('IS_TOUCH_ENABLED', true);
+          }
+          window.registerTouch();
+          // we only need to know once that a human touched the screen, so we can stop listening now
+          window.removeEventListener('touchstart', onFirstTouch, false);
+        }, false);
       }
-      window.registerTouch();
-      // we only need to know once that a human touched the screen, so we can stop listening now
-      window.removeEventListener('touchstart', onFirstTouch, false);
-    }, false);
-  } 
-</script>
+    </script>
 
 </body>
+
 </html>

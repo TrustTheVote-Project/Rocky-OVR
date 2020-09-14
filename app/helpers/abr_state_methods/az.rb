@@ -10,10 +10,12 @@ module AbrStateMethods::AZ
       value: "Off"
     },
     "General Election Only": {
-      options: ["Off", "On"]
+      options: ["Off", "On"],
+      value: "On" # TODO remove this once we can figure out AZ email handling
     },
     "Every Election I authorize the County Recorder to include my name on the PEVL and automatically send": {
-      options: ["Off", "On"]
+      options: ["Off", "On"],
+      value: "Off" # TODO remove this once we can figure out AZ email handling
     },
     "Democratic": {
       options: ["Off", "On"],
@@ -44,7 +46,7 @@ module AbrStateMethods::AZ
     "Residence_Address": {
       method: "full_address_1_line"
     },
-    "County_of_Residence": {},
+    "County_of_Residence": { method: "registration_county_name" },
     "Mailing_Address": {},
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"
@@ -53,42 +55,32 @@ module AbrStateMethods::AZ
       method: "email"
     },
     "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {sensitive: true, method: "identification_data"},
-    #Date
+    "Date": {
+      method: "date_for_signature"
+    }
     #voter_signature
 
   }
+
+  def signature_pdf_field_name
+    "voter_signature"
+  end
+
   EXTRA_FIELDS = ["has_mailing_address", "identification_selection",  {name:"drivers_license_id", sensitive:true}, "place_of_birth", {name:"last_4_ssn", sensitive:true}, "dln_soft_validation"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
   def form_field_items
     [
-      {"election_selection": {type: :radio, options: ["general", "all"], required: true}},
-      {"primary_ballot_selection": {visible: "election_selection_all", required: "custom", type: :radio, options: PARTY_SELECTIONS}},
-      {"County_of_Residence": {type: :select, required: true, include_blank: true, options: [
-        "Apache",
-        "Cochise",
-        "Coconino",
-        "Gila",
-        "Graham",
-        "Greenlee",
-        "La Paz",
-        "Maricopa",
-        "Mohave",
-        "Navajo",
-        "Pima",
-        "Pinal",
-        "Santa Cruz",
-        "Yavapai",
-        "Yuma",
-      ]}},
+      #{"election_selection": {type: :radio, options: ["general", "all"], required: true}},
+      #{"primary_ballot_selection": {visible: "election_selection_all", required: "custom", type: :radio, options: PARTY_SELECTIONS}},
       {"identification_selection": {required:true, type: :radio, options: ["place_of_birth", "drivers_license_id","last_4_ssn"]}},
       {"drivers_license_id": {required: "star", ui_regexp:"^[a-zA-Z][0-9]{8}$|^[0-9]{9}$", min:8, max:9, visible: "identification_selection_drivers_license_id"}},
       {"last_4_ssn": {required: "star",  min:4, max:4, visible:"identification_selection_last_4_ssn"}},
       {"place_of_birth": {required: "star", min:1, visible: "identification_selection_place_of_birth"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
-      {"dln_soft_validation": {type: :hidden}},
+      {"dln_soft_validation": {type: :hidden}}
     ]
   end
   
@@ -166,7 +158,7 @@ module AbrStateMethods::AZ
     end
     
     if self.primary_ballot_selection == "green_pima_county_voters_only"
-      if self.county_of_residence != "Pima"
+      if self.registration_county != "pima county"
         errors.add(:primary_ballot_selection, "Green party is for Pima county voters only")
       end
     end

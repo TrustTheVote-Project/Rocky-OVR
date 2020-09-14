@@ -59,7 +59,11 @@ class PdfWriter
       :pdf_date_of_birth,
       :pdf_barcode,
       :created_at,
-      :pdf_assistant_info
+      :pdf_assistant_info,
+      :voter_signature_image,
+      :signed_at_month,
+      :signed_at_day,
+      :signed_at_year
       
   validates_presence_of :id, :uid, :home_state_id, :pdf_barcode, :locale, :registration_instructions_url, :state_registrar_address, :registration_deadline, :pdf_date_of_birth, :created_at
   validate :pdf_date_of_birth_format
@@ -71,8 +75,7 @@ class PdfWriter
   def will_be_18_by_election?
     self.will_be_18_by_election == true
   end
-
-
+  
   def yes_no(attribute)
     attribute ? "Yes" : "No"
   end
@@ -140,12 +143,12 @@ class PdfWriter
     end
   end
 
-  def generate_pdf(force_write = false, for_printer = false)
+  def generate_pdf(force_write = false, for_printer = false, esigned = false, date = nil)
     html_string = registrant_to_html_string(for_printer)
     return false if !html_string
 
     if force_write || !pdf_exists?
-      PdfWriter.write_pdf_from_html_string(html_string, pdf_file_path, self.locale, pdf_file_dir, pdf_path, for_printer)
+      PdfWriter.write_pdf_from_html_string(html_string, pdf_file_path, self.locale, pdf_file_dir, pdf_path, for_printer, esigned, date)
     end
     # lets assume if there's no error raise, the file got generated (to limit FS operations)
     return true
@@ -209,7 +212,7 @@ class PdfWriter
 
 
 
-  def self.write_pdf_from_html_string(html_string, path, locale, pdf_file_dir, url_path, for_printer=false)
+  def self.write_pdf_from_html_string(html_string, path, locale, pdf_file_dir, url_path, for_printer=false, esigned=false, date=nil)
     pdf = WickedPdf.new.pdf_from_string(
       html_string,
       :disable_internal_links         => false,
@@ -225,7 +228,8 @@ class PdfWriter
     # And then upload it to s3
     uploaded = nil
     if for_printer
-      uploaded = self.upload_pdf_to_printer(path, url_path)
+      redacted = !esigned
+      uploaded = self.upload_pdf_to_printer(path, url_path, redacted, date)
     else
       uploaded = self.upload_pdf_to_s3(path, url_path)
     end
@@ -238,9 +242,8 @@ class PdfWriter
     end
   end   
   
-  def self.upload_pdf_to_printer(path, url_path)
-    puts path
-    return PdfDelivery.store_in_s3(path, url_path)
+  def self.upload_pdf_to_printer(path, url_path, redacted, date)
+    return PdfDelivery.store_in_s3(path, url_path, redacted, date)
     #return PdfDelivery.transfer(path)
   end
   

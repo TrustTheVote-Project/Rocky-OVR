@@ -7,13 +7,13 @@ module AbrStateMethods::MO
     "Election": {
       value: "11/03/2020"
     },
-    "undefined": {sensitive: true}, #last 4 ssn
-    "Absence on Election Day from the jurisdiction of the election authority in which I am registered": {},
-    "Incapacity or confinement due to illness or physical disability including caring for a person who is incapacitatedor": {},
-    "Religious belief or practice": {},
-    "Employment as an election authority or by an election authority at a location other than my polling place": {},
-    "Incarceration although I have retained all the necessary qualifications for voting": {},
-    "Certified participation in the address confidentiality program established under sections 589660 to 589681": {},
+    "DOB": {
+      method: "date_of_birth_mm_dd_yy"
+    },
+    #"SSN": {sensitive: true}, #last 4 ssn
+    "Reason": { options: ["absence", "confidentiality", "employment", "incapacity", "incarceration", "religious", "COVID" ] },
+
+
     "Street Address": {
       method: "address"
     },
@@ -29,6 +29,10 @@ module AbrStateMethods::MO
     "Include Area Code": {
       method: "phone"
     },
+    "Email": {
+      method:"email"
+    }
+
     #Date
     #voter_signature
   }
@@ -36,13 +40,11 @@ module AbrStateMethods::MO
   
   def form_field_items
     [
-      {"undefined": {required: true, regexp: /\A\d{4}\z/ }},
-      {"reason_for_request": {type: :radio, required: true, options: [
-        "absent", "incapacity", "religious", "election_official", "incarceration", "confidential"
-      ]}},
+
+      {"Reason": {type: :radio, required: true}},
       {"has_mailing_address": {type: :checkbox}}, 
-      {"mailing_address_1": {visible: "has_mailing_address"}},
-      {"mailing_address_2": {visible: "has_mailing_address"}},
+      {"mailing_address_1": {visible: "has_mailing_address", required: :if_visible}},
+      {"mailing_address_2": {visible: "has_mailing_address", required: :if_visible}},
     ]
   end
   
@@ -52,39 +54,10 @@ module AbrStateMethods::MO
   def mailing_address_2_if_different
     self.has_mailing_address == "1" ? mailing_address_2 : address_city_state_zip
   end
-  
-  REASONS = {
-    "absent": "Absence on Election Day from the jurisdiction of the election authority in which I am registered",
-    "incapacity": "Incapacity or confinement due to illness or physical disability including caring for a person who is incapacitatedor",
-    "religious": "Religious belief or practice",
-    "election_official": "Employment as an election authority or by an election authority at a location other than my polling place",
-    "incarceration": "Incarceration although I have retained all the necessary qualifications for voting",
-    "confidential": "Certified participation in the address confidentiality program established under sections 589660 to 589681"
-  }
-  def reason_for_request=(val)
-    REASONS.values.each do |f|
-      self.send("#{self.class.make_method_name(f)}=", "")
-    end
-    REASONS.each do |v,f|
-      if val.to_s == v.to_s
-        self.send("#{self.class.make_method_name(f)}=", "X")
-      end
-    end    
-  end
-  
-  def reason_for_request
-    REASONS.each do |v,f|
-      return v.to_s if self.send(self.class.make_method_name(f)).to_s == "X"
-    end     
-    return nil 
-  end
 
   
   def custom_form_field_validations
-    if self.has_mailing_address == "1"
-      custom_validates_presence_of("mailing_address_1")
-      custom_validates_presence_of("mailing_address_2")
-    end
+
   end
   
  
