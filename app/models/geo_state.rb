@@ -58,6 +58,33 @@ class GeoState < ActiveRecord::Base
     @@all_states_by_abbrev = nil
   end
 
+  def counties_file_path
+    Rails.root.join("data/counties/#{abbreviation.downcase}.yml").to_s
+  end
+
+  def counties
+    if !@counties
+      if File.exists?(counties_file_path)
+        file = []
+        File.open(counties_file_path) do |f|
+          file = YAML.load(f)
+        end
+        @counties = {}
+        file.each do |c|
+          c = c.with_indifferent_access
+          @counties[c[:name].downcase.underscore] = c
+        end
+      else
+        @counties = []
+      end
+    end
+    return @counties
+  end
+
+  def county_collection_for_select
+    counties.map { |abbrev, meta| [meta[:name], abbrev] }.sort
+  end
+
   # ZIP codes
   
   def self.read_zip_file(file_name)
