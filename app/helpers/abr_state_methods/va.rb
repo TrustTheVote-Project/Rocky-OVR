@@ -14,7 +14,7 @@ module AbrStateMethods::VA
       method: "name_suffix"
     },
     "in the citycounty of": {
-      #method: "registration_county_name"
+      method: "registration_county_name" # Available via ABR
     },
     "Birth_Year": {},
     "SSN_Last_4": {sensitive: true},
