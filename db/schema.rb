@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200908184008) do
+ActiveRecord::Schema.define(version: 20200914112538) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -387,6 +387,18 @@ ActiveRecord::Schema.define(version: 20200908184008) do
   end
 
   add_index "pdf_deliveries", ["registrant_id"], name: "index_pdf_deliveries_on_registrant_id"
+
+  create_table "pdf_delivery_reports", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "assistance_registrants"
+    t.integer  "direct_mail_registrants"
+    t.string   "status"
+    t.text     "last_error"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "pdf_delivery_reports", ["date"], name: "index_pdf_delivery_reports_on_date"
 
   create_table "pdf_generations", force: :cascade do |t|
     t.integer  "registrant_id"
