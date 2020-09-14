@@ -16,7 +16,7 @@ module AbrPdfFields
   # "phone"
   
   def full_name
-    "#{first_name} #{middle_name} #{last_name}".gsub(/\s+/, ' ')
+    "#{first_name} #{middle_name} #{last_name} #{name_suffix}".gsub(/\s+/, ' ')
   end
   
   def middle_initial
@@ -44,6 +44,10 @@ module AbrPdfFields
   
   def date_of_birth_mm_dd_yyyy
     self.date_of_birth&.strftime("%m/%d/%Y")
+  end
+
+  def date_of_birth_mm_dd_yy
+    self.date_of_birth&.strftime("%m/%d/%y")
   end
 
   def date_of_birth_yyyy_mm_dd
