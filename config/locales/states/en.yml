@@ -1260,6 +1260,34 @@ en:
             On the DMV website, click "Continue to myNCDMV Services." <br/>4. Click
             "Continue as a guest" and submit your voter registration online.'
       nd:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residential address.
+          "City_2": City
+          "State_2": State
+          "ZIP Code_2": Zip
+          "Ballot_Delivery_Address": Mailing address
+          "uocava": "I am an active member in the military and/or an overseas voter."
+          Military_Overseas_Voter__options:
+            Military_in_US: "Uniformed service or family member living away from the voter's residence, yet within the United States"
+            Military_outside_US: "Uniformed service or family member living away from the voter's residence, yet outside the United States"
+            citizen_outside_us: "Citizen living outside of the United States"
+          "Fax_Number": "Fax Number"
+          "Printed Name of Attester": "Printed Name of Attestor"
+          "Preferred_Delivery": "Please indicate your preferred ballot delivery method:"
+          "unable_to_sign": Applicant is unable to sign this application.
+          "Attestor_ID": "Attestor's ID Number"
+          "Daytime Telephone Number_2": "Daytime Telephone Number"
+          "ID_Number": "ID Number (not required if long term care certificate is selected above)"
+          "ID_Type": "North Dakota ID Type Used: (select one)"
+          ID_Type__options:
+            "drivers_license": "Driver's license"
+            "long_term_care_certificate": "Long Term Care Certificate (include with application)"
+            "no_id": "Applicant does not have an ID due to a disability (must have another qualified elector of the state attest that the applicant is a qualified elector of that precinct)" 
+            "non_drivers_id": "Non-driver's ID"
+            "passport_or_military_id": "Passport or Military ID (only for voters outside the United States)"
+            "tribal_id": Tribal ID
+          "Military_Overseas_Voter": Select one of the following
+          ID_Number_dln__format_message: "Invalid ND driver's license format"
         state_online_abr:
           requirements: |-
             <p>To use North Dakota's online absentee request, you must have one of these forms of ID:</p>

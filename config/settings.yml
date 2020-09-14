@@ -158,8 +158,8 @@ absentee_states:
     pdf_template: nc.pdf     
   ND:
     online_req_url: https://vip.sos.nd.gov/absentee/
-    pdf_template:
-    pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
+    pdf_template: nd.pdf
+    #pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
   NE:
     pdf_template: ne.pdf
   NH:
