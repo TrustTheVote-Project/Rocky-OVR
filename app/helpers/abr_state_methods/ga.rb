@@ -97,7 +97,7 @@ module AbrStateMethods::GA
   def form_field_items
     [
 
-      {"Group1": {type: :radio, required: true }}, 
+      # {"Group1": {type: :radio, required: false }}, 
       {"has_mailing_address": {type: :checkbox}},
 
 
@@ -108,14 +108,14 @@ module AbrStateMethods::GA
       {"Temporary County": {visible: "has_mailing_address", required:'star'}},
 
     
-      {"assisted_voter": {type: :checkbox}},
-      {"Name of assistant": {visible: "assisted_voter", required: "star"}},
+      # {"assisted_voter": {type: :checkbox}},
+      # {"Name of assistant": {visible: "assisted_voter", required: "star"}},
 
-      {"requestor": {type: :checkbox}},
+      # {"requestor": {type: :checkbox}},
 
-      {"Relationship to voter": {visible: "requestor", required: 'star'}},
+      # {"Relationship to voter": {visible: "requestor", required: 'star'}},
       
-      {"Group2": {visible: "requestor", type: :radio, required: 'star'}},
+      # {"Group2": {visible: "requestor", type: :radio, required: 'star'}},
      
      
       {"Elegibility": {
