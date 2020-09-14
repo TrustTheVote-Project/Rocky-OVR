@@ -36,10 +36,9 @@ module AbrStateMethods::ND
       "ID_Number": { sensitive: true},
      "Ballot_Delivery_Address": {},
      "Voters_Mark": { 
+       value: "Off"
          #options: ["Off", "Yes"],
-         method: "unable_to_sign_yes"
-         }, #TODO - if "unable_to_sign" (created below) is selected, then value: "Yes", otherwise value: "Off"
-            #TODONE   
+       },
     "markers_printed_name": {
         method: "voter_name"
       },
