@@ -487,8 +487,9 @@ en:
           Text23: 'Today''s date: (MM/DD/YYYY)'
           requestor: I am requesting a ballot on behalf of the voter.
           #Text25: Relationship to voter
-          Elegibility: Eligibility to receive vote by mail ballots for the rest of
-            the election cycle without another application?
+          Elegibility: If you meet one of the described conditions in this section and would 
+            like to receive a mail ballot for the rest of the elections cycle without another 
+            application, indicate by checking the applicable eligibility requirement."
           Elegibility__options:
             E: E- Elderly- I am 65 years of age or older
             D: D- Disabled- I have a physical disability
