@@ -61,6 +61,7 @@ record_2:
   sos_url: https://azsos.gov/elections
   sub_18: turn_by_next_general_election_november
   online_registration_url: https://servicearizona.com/VoterRegistration?id=RTV
+  status_check_url: https://my.arizona.vote/PortalList.aspx
   registration_deadline: received_29_days
   pdf_instructions: arizona
   email_instructions: arizona
@@ -174,6 +175,7 @@ record_10:
   registration_deadline: georgia
   id_length_min: '4'
   online_registration_url: https://registertovote.sos.ga.gov/GAOLVR/#no-back-button
+  status_check_url: https://www.mvp.sos.ga.gov/MVP/mvp.do
 record_11:
   abbreviation: HI
   name: Hawaii
@@ -451,6 +453,7 @@ record_30:
   sos_url: http://www.nj.gov/state/elections/
   registration_deadline: received_21_days
   id_length_min: '4'
+  online_registration_url: https://voter.svrs.nj.gov/register
 record_31:
   abbreviation: NM
   name: New Mexico
