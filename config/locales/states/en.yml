@@ -1584,17 +1584,27 @@ en:
             in. Vote-by-mail ballots must be received by 8:00pm on Election Day.</p>'
       pa:
         abr_form_fields:
-          "Lived_at_Address_Since": "I have lived at this address since (mm/dd/yyyy):"
+          bad_date__format_message: "Invalid date"
+
+          "address_date": "I have lived at this address since (mm/dd/yyyy):"
           "Same_as_above__options":
             "Off": My mailing address DIFFERS from my residential address.
             "On": My mailing address is the SAME as my residential address.
           "Address_1": Mailing address
           "City_Town_1": "City/Town"
           "Zip code_2": Zip
+          identification: PennDOT Identification
+          identification__options:
+            dln: I have a PA driver’s license or a PennDOT ID card
+            no-dln: I do not have a PA driver’s license or a PennDOT ID card
+          identification2: SSN Identification
+          identification2__options:
+            ssn: I have a SSN#
+            no-ssn: I do not have a SSN#
           "PA drivers license or PennDOT ID card number__format_message": "Invalid PA license #. Please enter 8 digits"
-          "no_PennDOT": "I do not have a PA driver's license or PennDOT ID card."
-          "no_id": "I do not have a Social Security number."
-          assert_no_id: "I do not have a Social Security number."
+          #"no_PennDOT": "I do not have a PA driver's license or PennDOT ID card."
+          #"no_id": "I do not have a Social Security number."
+          assert_no_id: "I do not have a PA driver’s license or a PennDOT ID card or a Social Security number."
           ssn_last_4_input: "Last 4 digits of your SSN:"
           ssn_last_4_input__format_message: 'Invalid format. Please enter 4 digits'
           "Municipality": "Municipality (City, Town, or Village)"
