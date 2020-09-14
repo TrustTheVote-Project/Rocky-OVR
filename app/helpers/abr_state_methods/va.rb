@@ -16,7 +16,7 @@ module AbrStateMethods::VA
     "in the citycounty of": {
       method: "registration_county_name" # Available via ABR
     },
-    "Birth_Year": {},
+    "Birth_Year": { method: "date_of_birth_yyyy" },
     "SSN_Last_4": {sensitive: true},
     "Election": {
       options: ["Democratic_Primary", "General", "Republican_Primary", "Off"],
@@ -76,14 +76,15 @@ module AbrStateMethods::VA
     #assistant_signature
     #voter_signature
     #Asistant_Sign_Date
-    #Voter_Sign_Date
+    "Voter_Sign_Date": {
+      method: "date_for_signature"
+    }
    
   }
   EXTRA_FIELDS = ["has_mailing_address", "UOCAVA", "moved_permanently", "A", "B", "C", "D", "last_residency_date", "residency_mm","residency_dd", "residency_yyyy"]
   
   def form_field_items
     [
-      {"Birth_Year": {min: 4, max: 4,}},
       {"SSN_Last_4": {min: 4, max: 4, required: true, }},
       {"UOCAVA": {type: :checkbox}},
       #TODO- the text field "Category_Code" should be filled in with the letter(s) of whatever is checked below: A, B, C, and/or D

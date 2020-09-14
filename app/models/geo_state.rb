@@ -75,7 +75,7 @@ class GeoState < ActiveRecord::Base
           @counties[c[:name].downcase.underscore] = c
         end
       else
-        @counties = []
+        @counties = {}
       end
     end
     return @counties
