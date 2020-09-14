@@ -40,13 +40,13 @@ module AbrStateMethods::PA
       "Address_1": {},
       "City_Town": {},
       "City_Town_1": {},
-      "SSN_last_4": {sensitive:true},
+      "SSN_last_4": {sensitive:true, method: 'ssn_if_not_no_id'},
       "no_id": {
           method: "check_assert_no_id"
       },
       "Same_as_above": { options: ["Off", "On"] },
     }
-    EXTRA_FIELDS = ["no_PennDOT", "assert_no_id"]
+    EXTRA_FIELDS = ["no_PennDOT", "assert_no_id", 'ssn_last_4_input']
     
     
     def form_field_items
@@ -122,10 +122,13 @@ module AbrStateMethods::PA
         ]}},
         {"Municipality": {}},
         {"Lived_at_Address_Since": {required: true, regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
-        {"PA drivers license or PennDOT ID card number": {regexp: /\A\d{8}\z/, length:8}},
+ 
+        {"PA drivers license or PennDOT ID card number": {regexp: /\A\d{8}\z/, length:8, hidden: "no_PennDOT"}},
         {"no_PennDOT": {type: :checkbox}},
-        {"SSN_last_4": {visible: "no_PennDOT", classes:"half", length:4,regexp: /\A[0-9]{4}\z/}},
+
+        {"ssn_last_4_input": {visible: "no_PennDOT", classes:"half", hidden: "assert_no_id"}}, #, length:4,regexp: /\A[0-9]{4}\z/,
         {"assert_no_id": {type: :checkbox, visible: "no_PennDOT"}},
+        
         {"Same_as_above": {type: :radio, required: true}},
         {"Address_1": {visible: "same_as_above_off", required: 'star'}},
         {"City_Town_1": {visible: "same_as_above_off", classes: "half", required:'star'}},
@@ -154,6 +157,10 @@ module AbrStateMethods::PA
         return ("X") if self.assert_no_id.to_s=='1'
     end
 
+    def ssn_if_not_no_id
+      # Fill SSN if no driver's license, but no id is not selected
+      return self.ssn_last_4_input if (self.assert_no_id.to_s!='1' && self.no_PennDOT.to_s=='1')
+    end
 
     REQUIRED_MAILING_ADDRESS_FIELDS = [
         "Address_1",
@@ -177,7 +184,12 @@ module AbrStateMethods::PA
       if (self.no_PennDOT.to_s!='1')
         custom_validates_presence_of('PA drivers license or PennDOT ID card number')  
       elsif (self.assert_no_id.to_s!='1')
-        custom_validates_presence_of('SSN_last_4')
+        custom_validates_presence_of('ssn_last_4_input')
+
+        if !(self.ssn_last_4_input.to_s =~ /\A\d{4}\z/)
+            errors.add('ssn_last_4_input', custom_format_message('ssn_last_4_input'))
+        end
+
       end
 
       if self.same_as_above.to_s=='Off'

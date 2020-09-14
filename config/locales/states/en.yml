@@ -1591,10 +1591,12 @@ en:
           "Address_1": Mailing address
           "City_Town_1": "City/Town"
           "Zip code_2": Zip
+          "PA drivers license or PennDOT ID card number__format_message": "Invalid PA license #. Please enter 8 digits"
           "no_PennDOT": "I do not have a PA driver's license or PennDOT ID card."
           "no_id": "I do not have a Social Security number."
           assert_no_id: "I do not have a Social Security number."
-          "SSN_last_4": "Last 4 digits of your SSN:"
+          ssn_last_4_input: "Last 4 digits of your SSN:"
+          ssn_last_4_input__format_message: 'Invalid format. Please enter 4 digits'
           "Municipality": "Municipality (City, Town, or Village)"
           "Same_as_above": "Select one:"
         abr:
