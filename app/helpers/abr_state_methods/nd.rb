@@ -127,6 +127,9 @@ module AbrStateMethods::ND
         custom_validates_presence_of("Fax_Number")
       end
 
+      if self.id_type.to_s == "drivers_license" && !(self.id_number.to_s =~ /\A([[:alpha:]]{3}\d{6}|\d{9})\z/)
+        errors.add('id_number', custom_format_message('ID_Number_dln'))
+      end
 
 
     end

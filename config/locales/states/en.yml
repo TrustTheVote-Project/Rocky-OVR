@@ -1251,6 +1251,7 @@ en:
             "passport_or_military_id": "Passport or Military ID (only for voters outside the United States)"
             "tribal_id": Tribal ID
           "Military_Overseas_Voter": Select one of the following
+          ID_Number_dln__format_message: "Invalid ND driver's license format"
         state_online_abr:
           requirements: |-
             <p>To use North Dakota's online absentee request, you must have one of these forms of ID:</p>
