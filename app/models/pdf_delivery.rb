@@ -9,7 +9,8 @@ class PdfDelivery < ActiveRecord::Base
   
   def generate_pdf(force = false)
     if registrant.pdf_writer.valid?
-      if registrant.pdf_writer.generate_pdf(force, true)
+      if registrant.pdf_writer.generate_pdf(force, true, registrant.pdf_is_esigned?, created_at)
+        registrant.deliver_confirmation_email
         return true
       else
         return false
@@ -24,8 +25,18 @@ class PdfDelivery < ActiveRecord::Base
     save(validate: false)
   end
   
+  def pdf_prefix
+    self.class.pdf_prefix(!registrant.pdf_is_esigned?, created_at)
+  end
   
-  def self.store_in_s3(path, url_path)
+  def self.pdf_prefix(redacted, date)
+    prefix = redacted ? "redacted" : "signed"
+    date_stamp = date.strftime("%Y-%m-%d")
+    "#{prefix}/#{date_stamp}"
+  end
+  
+  
+  def self.store_in_s3(path, url_path, date, redacted=true)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
@@ -34,9 +45,8 @@ class PdfDelivery < ActiveRecord::Base
     })
     bucket_name = "rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}"
     directory = connection.directories.get(bucket_name)
-    date_stamp = Date.today.strftime("%Y-%m-%d")
     file = directory.files.create(
-      :key    => "redacted/#{date_stamp}/#{url_path.gsub(/^\//,'')}",
+      :key    => "#{pdf_prefix(date, redacted)}/#{url_path.gsub(/^\//,'')}",
       :body   => File.open(path).read,
       :content_type => "application/pdf",
       :encryption => 'AES256', #Make sure its encrypted on their own hard drives
@@ -48,56 +58,5 @@ class PdfDelivery < ActiveRecord::Base
     return false   
   end
   
-  def self.to_csv_string
-    return CSV.generate do |csv|
-      first = true
-      self.all.includes({:registrant=>[:home_state, :mailing_state, :partner, :registrant_status]}).find_each do |d|
-        pdf_hash = d.registrant.to_pdf_hash
-        pdf_hash.delete(:state_id_number)
-        pdf_hash.delete(:state_id_tooltip)
-        registrar_address = pdf_hash.delete(:state_registrar_address)
-        if first
-          csv << pdf_hash.keys + [
-            :state_registrar_address_1,
-            :state_registrar_address_2,
-            :state_registrar_address_3,
-            :state_registrar_address_4,
-            :state_registrar_address_5,
-            :state_registrar_address_6,
-            :state_registrar_address_7,
-          ]
-          first = false
-        end
-        csv << pdf_hash.values + registrar_address.split(/<br\/?>/)
-        
-      end
-    end
-  end
-  
-  
-  # URL is ftp.garnerprint.com
-  # User name:whenwevote
-  # Password: redfq86#
-  def self.transfer(local_path)
-    #file_name = 
-    
-    port = 21
-    ftp = Net::FTP.new  # don't pass hostname or it will try open on default port
-    ftp.connect('ftp.garnerprint.com', port)  # here you can pass a non-standard port number
-    ftp.passive = true
-    ftp.login('whenwevote', 'redfq86#')
-    files = ftp.list('*')
-    puts files
-    ftp.close
-    
-    # Net::FTP.open('ftp.garnerprint.com') do |ftp|
-    #   ftp.login('whenwevote', 'redfq86#')
-    #   files = ftp.list('*')
-    #   puts files
-    #   #ftp.getbinaryfile('nif.rb-0.91.gz', 'nif.gz', 1024)
-    # end
-    
-    
-  end
   
 end

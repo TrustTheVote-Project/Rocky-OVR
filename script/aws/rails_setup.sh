@@ -10,6 +10,8 @@ source /etc/profile.d/rvm.sh
 #rvm install 2.4.1
 rvm use ruby-2.4.1@rocky8 --create
 gem install bundler -v 1.16.3
+# Make sure JAVA envs are loaded
+. /home/ec2-user/.bash_profile    
 bundle install --without development test
 
 # Make sure we have the config files downloaded
@@ -75,8 +77,6 @@ if [ $SERVER_ROLE == 'util' ]; then
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_cloudwatch_runner start
 
     
-    # Make sure JAVA envs are loaded
-    . /home/ec2-user/.bash_profile
     # restart the PDF workers    
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no_wait
     sleep 10    
@@ -134,8 +134,6 @@ if [ $SERVER_ROLE == 'pdf' ]; then
         RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_runner start
     done
     
-    # Make sure JAVA envs are loaded
-    . /home/ec2-user/.bash_profile
     # restart the PDF workers
     RAILS_ENV=$RAILS_ENV TZ=:/etc/localtime bundle exec ruby script/rocky_pdf_runner stop --no_wait
     sleep 10

@@ -62,7 +62,7 @@ function validateField(errorMessage) {
   } else {
     if (errorMessage == '') {//Remove all
       errorField.html('')
-      console.log(field, errorMessage, errorField, messageIdx)
+      //console.log(field, errorMessage, errorField, messageIdx)
     } else if (messageIdx >= 0) {
       currentError = currentError.split('')
       currentError.splice(messageIdx, errorMessage.length)
@@ -70,7 +70,7 @@ function validateField(errorMessage) {
     } 
     //console.log(errorField.text())
     if (errorField.html().replace(/\s/g, '') == '') {
-      console.log(field, errorMessage)
+      //console.log(field, errorMessage)
       
       parent.removeClass('has_error') 
     }

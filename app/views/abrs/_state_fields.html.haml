@@ -2,7 +2,7 @@
   // TODO this is hte same as below function with changed data param and swapped show/hide
   function toggleHidden() {
     var setVisible = $("[data-hidden-conditions]");
-    console.log(setVisible.get(0))
+    //console.log(setVisible.get(0))
     $(setVisible).each(function() {
       var conditions = $(this).data("hidden-conditions");
       var conditionalFields = conditions.split(" ");
@@ -10,7 +10,7 @@
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+"")
-        console.log(showField, field, field.val())
+        //console.log(showField, field, field.val())
         showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
       }
       if (showField) {
@@ -26,7 +26,7 @@
 
   function toggleVisible() {
     var setVisible = $("[data-visible-conditions]");
-    console.log(setVisible.get(0))
+    //console.log(setVisible.get(0))
     $(setVisible).each(function() {
       var conditions = $(this).data("visible-conditions");
       var conditionValue = $(this).data("visible-conditions-value")
@@ -35,7 +35,7 @@
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+"")
-        console.log(showField, "#abr_"+fieldName+"", field, field.val())
+        //console.log(showField, "#abr_"+fieldName+"", field, field.val())
         showField = showField && field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val()))
       }
       if (showField) {
@@ -164,3 +164,4 @@
             = form.text_field opts[:y], value: form.object.send(opts[:y]), placeholder: 'YYYY', type: 'tel', size: 4
             
           %span.error= form.object.errors[opts[:method]].join("\n")        
+      

@@ -231,6 +231,10 @@ en:
             time you can check the status of your application and the status of your
             ballot at: <a rel="noopener" target="blank" href="https://my.arizona.vote/PortalList.aspx">https://my.arizona.vote/PortalList.aspx</a></p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Arizona, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Arizona, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
           requirements: "<p>To qualify to request a ballot in AZ, you only need to
             be registered to vote.</p>"
           finish_instructions: '<p>Make sure to read the instructions on the form
@@ -250,6 +254,7 @@ en:
               to include my name on the PEVL and automatically send me a ballot-by-mail
               for each election I am eligible for.</span>"
           has_mailing_address: My mailing address differs from my residential address.
+          Mailing_Address: Mailing Address
           Place_of_Birth_or_Drivers_licence_or_last_4_ssn: 'Place of birth, driver''s
             license #, or last 4 digits of social security number:'
           primary_ballot_selection: Primary Election Ballot Selection
@@ -446,6 +451,11 @@ en:
             of your ballot here: <a rel="noopener" target="blank" href="https://registration.elections.myflorida.com/CheckVoterStatus">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>'
       ga:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Georgia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Georgia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Georgia, this application must be RECEIVED by Friday,
             October 30th, 2020.  At any time you can check the status of your application
@@ -453,38 +463,41 @@ en:
         abr_form_fields:
           has_mailing_address: I have a temporary address that differs from my resident
             address or permanent mailing address on file.
-          Text12: Residence County
-          Text13: Mailing address
-          Text14: City
-          Text15: Zip
-          Text16: County
+          Permanent County: Residence County
+          Temporary Street Address: Mailing address
+          Temporary City: City
+          Temporary State: State
+          Temporary Zip: Zip
+          Temporary County: County
           address_has_changed: My permanent address has changed within my county and
             I want to update my address.
-          type_of_ballot: Type of ballot
-          type_of_ballot__options:
+          Group1: Type of ballot
+          Group1__options:
             Democratic: Democratic
             Republican: Republican
             Non_Partisan: Not Partisan (will not have ANY party candidates listed)
-          reason_other: I swear that the facts contained in this application are true,
+          Group2: I swear that the facts contained in this application are true,
             that I am a family member of the voter of the age of 18, and that the
             voter is
           assisted_voter: Voter is disabled or illiterate and I assisted in completing
             this application.
-          reason_other__options:
-            out_of_country: Temporarily residing out of the county
-            disabled: Physically disabled
+          Group2__options:
+            temporarily residing out of the country: Temporarily residing out of the county
+            physically disabled: Physically disabled
           Text23: 'Today''s date: (MM/DD/YYYY)'
           requestor: I am requesting a ballot on behalf of the voter.
-          Text25: Relationship to voter
-          Elegibility: Eligibility to receive vote by mail ballots for the rest of
-            the election cycle without another application?
+          #Text25: Relationship to voter
+          Elegibility: If you meet one of the described conditions in this section and would 
+            like to receive a mail ballot for the rest of the elections cycle without another 
+            application, indicate by checking the applicable eligibility requirement."
           Elegibility__options:
             E: E- Elderly- I am 65 years of age or older
             D: D- Disabled- I have a physical disability
             U: U- UOCAVA Voter- I am a uniformed service member, spouse or dependent
               of a uniformed service member, or other US citizen residing overseas.
               My current status is
-          UOCAVA_Status__options:
+          Group3: UOCAVA Status
+          Group3__options:
             MOS: MOS- Military Overseas
             MST: MST- Military Stateside
             OST: OST- Overseas Temporary Resident
@@ -835,7 +848,32 @@ en:
           License_ID__format_message: That doesn't look like a driver's license number,
             please verify before continuing.
       md:
+        abr_form_fields:
+          "presidential_general_mailto": "I want my ballot mailed to:"
+          presidential_general_mailto__options:
+            address_below: A different mailing address.
+            same_as_above: My residential address.
+          "When_Moved_Here": "I moved to my residential address on (MM/DD/YYYY or MM/YYYY):" 
+          "delivery_method": "I would like to receive my ballot by:"
+          delivery_method__options:
+            mail: U.S. Mail
+            internet: Internet Delivery
+          "Address_2": Mailing address
+          "Apt_number_2": "Apt/Unit"
+          "City_town_2": "City/Town"
+          "State_2": State
+          "ZIP_code_2": Zip
+          "no_dln": "I do not have a MD Driver's License or ID card."
+          "SSN_last-4": "Last 4 digits of my SSN:"
+          "Issue_Date": "Issue Date"
+          "assistant_print": Name of Assistant
+          "assistant": I had help completing this application
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Maryland, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Maryland, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to print off and complete your application
             as soon as possible. Read the instructions carefully to return your application.
             Your application must be sent by no later than October 27th, 2020 (if
@@ -878,6 +916,11 @@ en:
             ballot must be received by 8:00pm on Election Day.</>"
       ma:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Massachusetts, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Massachusetts, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
           finish_instructions: '<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible Your
             request must be received by 5:00 pm on October 28, 2020.</p><p>Once you
@@ -888,9 +931,11 @@ en:
             target="blank" href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
             </p>'
         abr_form_fields:
-          Mail Ballot to 1: Mailing address
-          Mail Ballot to 2: City, State, Zip
           has_mailing_address: My mailing address differs from my residential address.
+          mailing_address_input:  Mailing address
+          assistance_required: Voter required assistance in completing application due to physical disability.
+          assisting_person:  Assisting person's name
+          Assisting persons address:  Assisting person's address
           the ballot: Name of messenger
           Voter is a member of military on active duty or dependent family member of: Voter
             is a member of military on active duty or dependent family member of active
@@ -1033,6 +1078,18 @@ en:
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
+        registration:
+          has_state_license: I have a current MN driver’s license or ID card number, or the last 4 numbers of my SSN.
+          has_no_state_license: I do not have a current MN driver’s license or ID card number, and do not have the last 4 numbers of my SSN.
+        signature_capture:
+          desktop_provide_signature: You must provide a signature to complete your registration form. You may upload a signature image, switch to a touch-enabled device or print, sign and mail your PDF.
+          desktop_provide_e_signature: You must provide a signature to complete your registration form. You may upload a signature image, switch to a touch-enabled device or use your current device.
+        abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Minnesota, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Minnesota, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+          
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
             state ID number or the last 4 digits of your SSN, you may request your
@@ -1081,26 +1138,28 @@ en:
             <li>Incarceration, although I have retained all the necessary qualifitications for voting </li>
             <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681, RSMo., because of safety concerns. </li></ul>
         abr_form_fields:
-          undefined: Last 4 digit of my social security number
+          #undefined: Last 4 digit of my social security number
           has_mailing_address: My mailing address differs from my residential address.
           mailing_address_1: Mailing address
           mailing_address_1__hint: "(Street address or PO Box)"
           mailing_address_2: City, State, Zip
-          reason_for_request: 'Reason for requesting an absentee ballot:'
-          reason_for_request__options:
-            absent: Absence on Election Day from the jurisdiction of the election
+          Reason: 'Reason for requesting an absentee ballot:'
+          Reason__options:
+            absence: Absence on Election Day from the jurisdiction of the election
               authority in which I am registered
             incapacity: Incapacity or confinement due to illness or physical disability,
               including caring for a person who is capacitated or confined due to
-              illness or disability
+              illness or disability (No Notary Required)
             religious: Religious belief or practice
-            election_official: Employment as an election authority or by an election
+            employment: Employment as an election authority or by an election
               authority at a location other than my polling place
             incarceration: Incarceration although I have retained all the necessary
               qualifications for voting
-            confidential: Certified participation in the address confidentiality program
+            confidentiality: Certified participation in the address confidentiality program
               established under sections 589.660 to 589.681, RSMo., because of safety
               concerns
+            COVID: I have contracted or am in an at-risk category for contracting or transmitting severe acute respiratory syndrome
+              coronavirus 2, pursuant to Section 115.277.6, RSMo. (No Notary Required)
       ms:
         abr:
           header: Absentee Requests In Mississippi
@@ -1244,6 +1303,11 @@ en:
               office.)
       nh:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of New Hampshire, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of New Hampshire, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your completed ballot must be RECEIVED by your county election office
@@ -1418,6 +1482,11 @@ en:
           to print, sign, and mail in the form.</p>
       ny:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of New York, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of New York, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: "<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your absentee ballot request must be post marked by October 27th, 2020.
@@ -1489,7 +1558,7 @@ en:
           has_mailing_address: I wish to have my ballot mailed to a different address
             than where I am registered to vote
           Street Address or PO  box: Mailing Address
-          CityVillage_2: City
+          City_2: City
           State: State
           ZIP_2: Zip
           identification: Choose one of the following methods for identification
@@ -1501,10 +1570,10 @@ en:
               government check, paycheck or other government document (other than
               a notice of voter registration mailed by a board of elections) that
               contains your name and current address.
-          OR: Ohio Driver license number (2 letters followed by 6 numbers)
-          OR__format_message: That doesn't look like a driver's license number, please
+          Ohio_driver_license: Ohio Driver license number (2 letters followed by 6 numbers)
+          Ohio_driver_license__format_message: That doesn't look like a driver's license number, please
             verify before continuing.
-          OR_2: Last four digits of your Social Security Number
+          SSN4: Last four digits of your Social Security Number
       ok:
         state_online_abr:
           confirm: To qualify to request a ballot in OK, you only need to be registered
@@ -1519,20 +1588,16 @@ en:
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot. Your mail ballot will be sent to the address listed on
             your voter registration.  If you have any questions, or need to check
-            your address on file please go to Oregon''s My Vote website: <a rel="noopener"
-            target="blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a></p>.  You
-            can use Oregon''s My Vote website to check on your ballot status, view
-            your voter registration information (including the address on file), update
-            your voter registration information, find contact information for both
-            your county election officials and elected officials, and also find a
-            ballot drop site near you! </p>  <p> NOTE: if you will be away from your
-            registration address during an election and need your ballot sent somewhere
-            else, you must submit and Absentee Ballot Request Form:  <a rel="noopener"
-            target="blank" href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">
-            Oregon Absentee Ballot Request Form</a>     </p> <p>Once you have your
-            ballot, again be sure to read the instructions carefully, fill out the
-            ballot and send it back in.  Vote-by-mail ballots must be received by
-            8:00pm on Election Day.</p>'
+            your address on file please go to <a rel="noopener" target="blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">Oregon''s
+            My Vote website</a>.</p><br><p>You can use Oregon''s My Vote website
+            to check on your ballot status, view and update your voter registration
+            information, find a ballot drop site near you, and more.</p><br><p>NOTE:
+            if you will be away from your registration address during an election,
+            and you need your ballot mailed elsewhere, you must submit an Absentee
+            Ballot Request Form: <a rel="noopener" target="blank" href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">Oregon
+            Absentee Ballot Request Form</a></p><br><p>Once you have your ballot,
+            read the instructions carefully, fill out the ballot and send it back
+            in. Vote-by-mail ballots must be received by 8:00pm on Election Day.</p>'
       pa:
         abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
@@ -1666,7 +1731,7 @@ en:
             done: Done
             reset: Reset
             remove: Remove Signature
-            provide_signature: Provide Signature
+            provide_signature: Create Digital Signature
             select_file: Select an image to upload
             copy_link: Copy Link
       sc:
@@ -1892,6 +1957,11 @@ en:
             <a rel="noopener" target="blank" href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>
             </p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Virginia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Virginia, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to print off and complete your application.
             Read the instructions carefully on how to submit your application.</p><p>Once
             you receive your ballot, make sure to read it carefully and follow the
@@ -2013,6 +2083,33 @@ en:
             November 3, 2020 (Election Day). If returning your ballot in-person, it
             must be dropped off by 8:00 pm on Election Day.</p>'
       wi:
+        abr_form_fields:
+          Municipality: "Which of the following best describes the place where you live (select one)"
+          Municipality__hint: Municipality
+          has_mailing_address: My mailing address differs from my residential address.
+          "Mailing Address Street Number  Name": Mailing address
+          "Apt Number_2": "Apt/Unit"
+          "City_2": City
+          "State  ZIP_2": "State & Zip"
+          state_mail: State
+          zip_mail: Zip
+          "Care Facility Name if applicable": "Care Facility Name (if applicable)"
+          "C  O if applicable": "C/O (if applicable)"
+          "receive_by": "I would like to receive my ballot by:"
+          receive_by__options:
+            Clerk_Office: "Vote in clerk's office"
+            Mail: Mail
+            Email: Email (Military and overseas only) 
+            Fax: Fax (Military and overseas only)
+          receive_by__format_message: "This option is available to military and overseas only"
+          military_overseas: "I am currently in the military and/or overseas"
+          "UOCAVA": "Select one:"
+          UOCAVA__options:
+            Military: "I am a Military elector: a person, or the spouse or dependent of a person who is a member of a uniformed service or the merchant marines, a civilian employee of the United States, a civilian officially attached to a uniformed service and serving outside the United States, or a Peace Corp volunteer."
+            Permanent_Overseas: "I am a Permanent Overseas elector: a person who is a United States citizen, 18 years old or older, who resided in Wisconsin immediately prior to leaving the United States, who is now living outside the United States and has no present intent to return, who is not registered in any other location, or who is an adult child of a United States citizen who resided in this state prior to establishing residency abroad."
+            Temporary_Overseas: "I am a Temporary Overseas elector: a person who is a United States citizen, 18 years of age or older, a resident of Wisconsin and is overseas for a temporary purpose and intends to return to their Wisconsin residence."
+          request_agent: "I cannot appear at the polling place on election day because I am hospitalized, and appoint the following person to serve as my agent."
+
         state_online_abr:
           requirements: Depending on if you have voted absentee before, you may be
             required to provide a copy of your Wisconsin state ID with your application
@@ -2023,6 +2120,11 @@ en:
             can check the status of your application and the status of your ballot
             at: <a rel="noopener" target="blank" href="https://myvote.wi.gov/en-us/MyVoterInfo">https://myvote.wi.gov/en-us/MyVoterInfo</a></p>'
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Wisconsin, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Wisconsin, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to download and complete your application.
             Read the instructions carefully to send back your form. Your application
             must be RECEIVED by 5:00pm on October 29th, 2020.</p><p>Once you receive
@@ -2072,6 +2174,11 @@ en:
             </p>'
       wy:
         abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Wyoming, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: In the state of Wyoming, we can email a digitally signed copy of your absentee request. Please select how you'd like to provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application myself.
+        
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Wyoming, this application must be RECEIVED by Monday,
             November 2nd, 2020.</p><p>At any time you can check the status of your
@@ -2087,8 +2194,8 @@ en:
           ACTIVE MILITARY Y  N__options:
             Y: 'Yes'
             N: 'No'
-          Individual's name who may pick up my ballot: I authorize the following individual
-            to bick up my ballot
+          Individual's name who may pick up my ballot: "To authorize another individual to pick 
+            up your ballot for you, add their name here:"            
     parties:
       democratic: Democratic
       independent: Independent
