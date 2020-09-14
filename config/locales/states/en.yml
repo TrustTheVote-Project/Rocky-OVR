@@ -2146,7 +2146,7 @@ en:
             employment: "Employment which because of hours worked and distance from the county seat makes voting in person impossible."
             illness: "Illness, injury or other medical reason which keeps me confined."
             immobility: "Immobility due to advanced age or a physical disability."
-            incarceration: "Incarceration or detention in jail or home. I am not under conviction of any felony, of treason or of bribery in an election (including any period of probation or parole)."
+            incarceration: "Incarceration or detention in jail or home. I am not under conviction of any felony, of treason or of bribery in an election (including any period of probation or parole). If selected you must complete the statemnt on page 2 after printing this form."
             working_away: "Temporarily living outside of the county due to a temporary assignment by my employer for a specific period of four years or less. If selected, your ballot must be mailed outside of your county of residence."
           disability_want_electronic__hint: "B. I am applying for an electronic absentee ballot due to:"
           "incarceration_statement": Please complete the Statement on page 2 by hand after PDF is printed.
