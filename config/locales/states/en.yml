@@ -1402,6 +1402,12 @@ en:
           messenger_birth_date: Date of Birth (MM/DD/YYYY)
           messenger_birth_date__required_message: Birthdate not valid
       nm:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residence address.
+          mail_address1: Mailing address line 1
+          mail_address2: Mailing address line 2
+          mail_address3: Mailing address line 3
+          county: County
         abr:
           finish_instructions: <p>Make sure to complete and send this form in as soon
             as possible. In New Mexico, this application must be turned in to your
