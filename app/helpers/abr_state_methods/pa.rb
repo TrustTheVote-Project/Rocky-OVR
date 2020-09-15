@@ -33,7 +33,9 @@ module AbrStateMethods::PA
       },
       "County": {},
       "Municipality": {},
-      "Lived_at_Address_Since": {},
+      "Lived_at_Address_Since": {
+        method: 'address_date_mm_dd_yyyy'
+      },
       "Address": {
         method: "address_line_1"
       },
@@ -44,9 +46,9 @@ module AbrStateMethods::PA
       "no_id": {
           method: "check_assert_no_id"
       },
-      "Same_as_above": { options: ["Off", "On"] },
+      "Same_as_above": { options: ["On", "Off"] },
     }
-    EXTRA_FIELDS = ["no_PennDOT", "assert_no_id", 'ssn_last_4_input']
+    EXTRA_FIELDS = ["no_PennDOT", "assert_no_id", 'ssn_last_4_input', 'identification', 'identification2','address_date','address_date_mm', 'address_date_dd','address_date_yyyy']
     
     
     def form_field_items
@@ -121,13 +123,14 @@ module AbrStateMethods::PA
           "York",
         ]}},
         {"Municipality": {}},
-        {"Lived_at_Address_Since": {required: true, regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
- 
-        {"PA drivers license or PennDOT ID card number": {regexp: /\A\d{8}\z/, length:8, hidden: "no_PennDOT"}},
-        {"no_PennDOT": {type: :checkbox}},
+        {"address_date": {required: true,type: :date, m: "address_date_mm", d: "address_date_dd", y: "address_date_yyyy", }}, #regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
+        {"identification": {required: true, type: :radio, options: ['dln', 'no_dln']}},
+        {"PA drivers license or PennDOT ID card number": {regexp: /\A\d{8}\z/, length:8, visible: "identification_dln"}},
+        {"identification2": {visible: "identification_no_dln", required: 'star', type: :radio, options: ['ssn', 'no_ssn']}},
+        #{"no_PennDOT": {type: :checkbox}},
 
-        {"ssn_last_4_input": {visible: "no_PennDOT", classes:"half", hidden: "assert_no_id"}}, #, length:4,regexp: /\A[0-9]{4}\z/,
-        {"assert_no_id": {type: :checkbox, visible: "no_PennDOT"}},
+        {"ssn_last_4_input": {visible: "identification2_ssn", classes:"half", length:4,regexp: /\A[0-9]{4}\z/}},
+        {"assert_no_id": {type: :checkbox, visible: "identification2_no_ssn", required: 'star'}},
         
         {"Same_as_above": {type: :radio, required: true}},
         {"Address_1": {visible: "same_as_above_off", required: 'star'}},
@@ -159,7 +162,7 @@ module AbrStateMethods::PA
 
     def ssn_if_not_no_id
       # Fill SSN if no driver's license, but no id is not selected
-      return self.ssn_last_4_input if (self.assert_no_id.to_s!='1' && self.no_PennDOT.to_s=='1')
+      return self.ssn_last_4_input if self.identification2.to_s=='ssn' #(self.assert_no_id.to_s!='1' && self.no_PennDOT.to_s=='1')
     end
 
     REQUIRED_MAILING_ADDRESS_FIELDS = [
@@ -175,28 +178,55 @@ module AbrStateMethods::PA
         end
       end
 
+      def address_date_mm_dd_yyyy
+        dates = [address_date_mm, address_date_dd, address_date_yyyy].collect {|d| d.blank? ? nil : d}.compact
+        dates && dates.length == 3 ? dates.join("/") : nil
+      end
+      
+      def test_date(datestring)
+        begin
+          @mydate = Date.strptime(datestring, "%m/%d/%Y")
+          return true
+        rescue ArgumentError
+          return false
+        end
+      end
+
     
     def custom_form_field_validations
       # e.g:
       # make sure delivery is selected if reason ==3
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
-      if (self.no_PennDOT.to_s!='1')
+      if (self.identification.to_s=='dln')
         custom_validates_presence_of('PA drivers license or PennDOT ID card number')  
-      elsif (self.assert_no_id.to_s!='1')
+      elsif (self.identification2.to_s=='ssn')
         custom_validates_presence_of('ssn_last_4_input')
-
-        if !(self.ssn_last_4_input.to_s =~ /\A\d{4}\z/)
-            errors.add('ssn_last_4_input', custom_format_message('ssn_last_4_input'))
+      else
+        custom_validates_presence_of('assert_no_id') #this doesn't work
+        if (self.assert_no_id.to_s!='1')
+          errors.add("assert_no_id", custom_required_message("assert_no_id") )
         end
-
       end
+
+        #if !(self.ssn_last_4_input.to_s =~ /\A\d{4}\z/)
+        #    errors.add('ssn_last_4_input', custom_format_message('ssn_last_4_input'))
+        #end
+
+      #end
 
       if self.same_as_above.to_s=='Off'
         require_mailing_fields
-      else
-          
+             
       end
+
+      if !self.test_date(self.address_date_mm_dd_yyyy.to_s)
+        errors.add("address_date", custom_format_message("bad_date") )
+        errors.add('address_date', self.address_date_mm_dd_yyyy.to_s)
+      end
+
+
+
     end
     
    
