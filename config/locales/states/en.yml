@@ -1266,7 +1266,7 @@ en:
           "City_2": City
           "State_2": State
           "ZIP Code_2": Zip
-          "Ballot_Delivery_Address": Mailing address
+          "Ballot_Delivery_Address": Ballot delivery address
           "uocava": "I am an active member in the military and/or an overseas voter."
           Military_Overseas_Voter__options:
             Military_in_US: "Uniformed service or family member living away from the voter's residence, yet within the United States"

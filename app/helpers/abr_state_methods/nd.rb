@@ -76,7 +76,7 @@ module AbrStateMethods::ND
         {"Printed Name of Attester": {visible: "id_type_no_id", required: 'star'}},
         {"Attestor_ID": {visible: "id_type_no_id", required: 'star', classes: "half"}},
         {"Daytime Telephone Number_2": {visible: "id_type_no_id", required: 'star', classes: "half last"}},
-        {"ID_Number": {sensitive:true}},
+        {"ID_Number": {sensitive:true, hidden_any: 'id_type_long_term_care_certificate id_type_no_id'}},
         {"has_mailing_address": {type: :checkbox}},
         {"Ballot_Delivery_Address": {visible: "has_mailing_address", required: :if_visible}},
         {"City_2": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
