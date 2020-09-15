@@ -1,5 +1,5 @@
 module AbrStateMethods::ID
-  
+
     PDF_FIELDS = {
       "lastName": {
         method: "last_name"
@@ -277,6 +277,6 @@ module AbrStateMethods::ID
       # make sure fax is provided if faxtype is selected for delivery
     end
     
-   
-  end
+
+end
   
