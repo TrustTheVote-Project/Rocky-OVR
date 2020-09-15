@@ -104,8 +104,8 @@ absentee_states:
     pdf_template: ia.pdf
   ID:
     online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
-    pdf_template: #2020_Absentee_Request.pdf
-    pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
+    pdf_template: id.pdf #2020_Absentee_Request.pdf
+    #pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
   IL:
     pdf_template: common.pdf
     counties:
