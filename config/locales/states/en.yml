@@ -548,6 +548,13 @@ en:
           Do not add this contact info to my voter recored check box: Please do not
             add my phone number or email address to my voter record.
       id:
+        abr_form_fields:
+          has_mailing_address: My mailing address differs from my residential address.
+          "mailingAddress": Mailing address
+          "mailingZipCode": Zip
+          "mailingCity": City
+          "mailingState": State
+          "mailingCountry": "Country (if outside of USA)"
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
             state ID or SSN, you may request your absentee ballot online directly
