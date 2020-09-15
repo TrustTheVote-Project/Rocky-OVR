@@ -92,7 +92,7 @@ module AbrStateMethods::WI
     end
     
     def agent_request_yes
-        self.request_agent ? "Yes" : "Off"
+        self.request_agent == "1" ? "Yes" : "Off"
     end
     
     def form_field_items
@@ -150,9 +150,9 @@ module AbrStateMethods::WI
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
 
-      if (self.receive_by.to_s=='Email' or self.receive_by.to_s=='Fax') && self.military_overseas.to_s!='1'
-            errors.add("receive_by",custom_format_message("receive_by"))
-      end
+      # if (self.receive_by.to_s=='Email' or self.receive_by.to_s=='Fax') && self.military_overseas.to_s!='1'
+      #       errors.add("receive_by",custom_format_message("receive_by"))
+      # end
    
     end
     
