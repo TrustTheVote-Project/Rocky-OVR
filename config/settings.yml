@@ -109,21 +109,38 @@ absentee_states:
   IL:
     pdf_template: common.pdf
     counties:
+      "dekalb county":
+        pdf_template: dekalb.pdf   #**To Do
       "kane county": 
         online_req_url: https://www.kanecountyclerk.org/Elections/Pages/Request-Ballot-By-Mail.aspx
+        #pdf_template: kane.pdf #Not done
       "lake county":
         online_req_url: https://www.lakecountyil.gov/351/Voter-Power-for-Registered-Voters
+        #pdf_template: lake.pdf #Not done
+      "macon county":
+        pdf_template: macon.pdf   #**To Do
       "madison county":
         online_req_url: https://apps.co.madison.il.us/CountyClerk/Elections/VoteByMail/
+        #pdf_template: madison.pdf #Not done
+      "mcdonough county":
+        pdf_template: mcdonough.pdf  #**To Do
       "mchenry county":
         online_req_url: https://www.mchenrycountyil.gov/county-government/departments-a-i/county-clerk/elections/vote-by-mail
+      "montgomery county":
+        pdf_template: montgomery.pdf #**To Do
+      "ogle county":
+        pdf_template: ogle.pdf #**To Do
       "sangamon county":
         online_req_url: https://www.sangamoncountyclerk.com/Elections/Vote/AbsenteeApplicationForm.aspx
+      "will county":
+        pdf_template: will_county.pdf #**To Do
     cities:
       "chicago":
         online_req_url: https://www.chicagoelections.gov/en/vote-by-mail-application.html
+        #pdf_template: chicago.pdf  #Not done     
       "bloomington":
         online_req_url: https://cityblm.seamlessdocs.com/f/VBMapplication1120
+       #pdf_template: bloomington.pdf  #Not done
   IN:
     online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
     pdf_template: in.pdf
