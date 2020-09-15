@@ -15,6 +15,14 @@ en:
       step_3_pending_instructions: "<p>We don't yet support online forms for the state
         of %{state}. You'll need to print and fill out a paper request form.</p>"
       step_3_pending_link: Download your state's form here
+      step_3_deliver_via_email_header: "Review your previously entered information:"
+      step_3_deliver_via_email_instructions: <p>Please review all of the above information for accuracy.</p>
+        <p>When you click the button below, an email will be sent directly to your local election office with your absentee ballot request.</p>
+      review:
+        name: "Name:"
+        email: "Email:"
+        address: "Registered Address:"
+        date_of_birth: "Date of Birth:"
       state_online_defaults:
         header: You can request an Absentee Ballot online directly with the state
           of %{state}
@@ -33,6 +41,13 @@ en:
       download_header: Preparing your request form
       download_instructions: "<p>Make sure to download, print, sign and send your
         request to:</p><p>%{registrar_address}</p>"
+      finish_via_email_header: Thank you!  Your form has been submitted. 
+      finish_via_email_instructions: "<p>We have emailed your request to %{elections_office_name}.  We emailed a copy of your request 
+        form to you too!</p>"
+      finish_via_email_voter_check: "<p>Be sure to check in a couple days to make sure that your request was received. 
+        You can check this at: <a href=\"%{abr_check_url}\">%{abr_check_url}</a>."
+      finish_via_email_voter_check_phone: "<p>Be sure to check in a couple days to make sure that your request was received by calling
+        your local elections office at %{status_check_phone}."
       finish_header: Almost done
       finish_instructions: "<p>Make sure to download, print, sign and send your request
         to:</p><p>%{registrar_address}</p>"
@@ -80,13 +95,16 @@ en:
       edit: Edit
       back: "&lt; Previous Step"
       download: Print your registration form now
-      download_assistance: Request assistance printing your form
+      download_assistance: Please mail me my form, I can't print it right now
       download_abr: Print your Absentee Request now
       ineligible_try_again: Return
       keep_going: Keep Going
       remind_me_later: Remind Me Later
       help: Help
+      deliver: Send Email Now
       prepare: Prepare Form
+      # for Download
+      prepare_with_esig: Complete Registration Form
       review: Review Application
       sendmail: Send Email
       share_facebook: Post It!
@@ -117,8 +135,16 @@ en:
       survey_title: Questions For You
       preparing_header: Preparing Registration Form...
       download_header: Print Your Form
-      pdf_assistance_header: You should receive your voter registration form within
-        a few days.
+      pdf_assistance_header: You should receive your voter registration form in about a week.
+      finish_mail_with_esig_header: Thanks for beginning the voter registration process! 
+      finish_mail_with_esig: |-
+        <p class="instructions">Next steps:</p>
+        <p class="instructions">
+          1. We will send your voter registration application to your county election office.<br/>
+          2. We will also email you a link to a copy of your application.<br/>
+          3. You should reach out to your friends and family to make sure they register to vote to make their voices heard too!<br/>
+          4. <a href="%{state_voter_check_url}" target="_blank" rel="noopener">Check to confirm your registration</a> by October 13, the deadline to register in advance for the November 3 election.<br/>
+        </p>
       finish_header: Spread the word!
       finish_pdf_delay_header: Check Your Email
       finish_pdf_delay: It's taking a while to create your registration form to download,
@@ -219,8 +245,9 @@ en:
           & mail or deliver your registration form to your local elections office.
         download_assitance_header: ''
         download_assitance: ''
-        pdf_assistance: You will need to add your ID information, sign, and mail it
-          in to finish the process!
+        pdf_assistance: You will need to sign your form and mail it to your local 
+          election official to finish the registration process! We've also emailed 
+          you a copy for your records.
         finish: 'Don''t forget to tell your friends and family how easy it was to
           register. Here are a few tools you can use to spread the word about voter
           registration:'
@@ -342,6 +369,45 @@ en:
           title: Identification
         step_9:
           title: Personal Information
+    signature_capture:
+      rotation_instructions: You must rotate your screen to correctly capture
+        your signature. Make sure your screen rotation is enabled.
+      upload_signature_image: Upload a signature image
+      touch_sign_instructions: Provide a signature that may be used to verify
+        and match your ballot.
+      desktop_provide_signature: If you do not have a %{state} ID you must provide
+        a signature or choose to print and mail your form.
+      desktop_provide_e_signature: If you do not have a %{state} ID you must provide
+        a signature or choose to print and mail your form.
+      upload_file_instructions: Must be an image file (JPEG, PNG, or GIF)
+      upload_file_zoom: Zoom in or out to ensure the signature fits within the
+        box.
+      continue_on_device: Continue your registration on a touch-enabled device
+      email_sent: An email has been sent to %{email} with a link to sign your
+        registration on a touch-enabled device. This link will expire in 30 minutes.
+      sms_sent: A text message has been sent to %{phone} with a link to sign your
+        registration on a touch-enabled device. This link will expire in 30 minutes.
+      sms_body: "Here's the link you requested to sign your voter registration
+        form: %{signature_capture_url} \nThis link will expire in 30 minutes."
+      continue_via_copy: 'Or open this link on a touch-enabled device to finish
+        your registration:'
+      abr:
+        email_sent: An email has been sent to %{email} with a link to sign your
+          absentee request form on a touch-enabled device. This link will expire in 30 minutes.
+        sms_sent: A text message has been sent to %{phone} with a link to sign your
+          absentee request form on a touch-enabled device. This link will expire in 30 minutes.
+        sms_body: "Here's the link you requested to sign your absentee request
+          form: %{signature_capture_url} \nThis link will expire in 30 minutes."
+      link_copied: Link Copied!
+      continue_on_paper: Print and mail a PDF
+      continue_on_desktop: Use this device to provide a digital signature
+      buttons:
+        done: Done
+        reset: Reset
+        remove: Remove Signature
+        provide_signature: Provide Signature
+        select_file: Select an image to upload
+        copy_link: Copy Link
     status_text:
       message: I just registered to vote and you can too!
       under_18_message: Make sure you register to vote. It's easy!

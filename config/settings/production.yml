@@ -140,7 +140,22 @@ blocks_configuration:
       turf_id:      19000000026
       canvasser_id: 19000000011  
       location_id: 19000000002
-      staging_location_id: 19000000003     
+      staging_location_id: 19000000003
+    38800:
+      turf_id:  19000000003
+      canvasser_id: 19000000002
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    38822:
+      turf_id:  19000000005
+      canvasser_id: 19000000004
+      location_id: 19000000002
+      staging_location_id: 19000000003
+    38704:
+      turf_id:  19000000051
+      canvasser_id: 19000000082
+      location_id: 19000000002
+      staging_location_id: 19000000003
 
 states_with_online_registration:
   - AZ
