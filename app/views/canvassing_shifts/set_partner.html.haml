@@ -11,8 +11,8 @@
     = text_field_tag :partner, @partner&.id
     - if @sub_orgs && @sub_orgs.any?
       %br
-      %h3 Select an Organization
       %br
+      %h3 Select an Organization
       = select_tag :sub_org, options_for_select(@sub_orgs.keys), include_blank: true
     = rollover_button(:next, "Next") #I18n.t('txt.button.submit').html_safe
     
