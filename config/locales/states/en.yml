@@ -461,8 +461,9 @@ en:
             October 30th, 2020.  At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a></p>'
         abr_form_fields:
-          has_mailing_address: I have a temporary address that differs from my resident
-            address or permanent mailing address on file.
+          has_mailing_address: "I have a temporary address that differs from my resident
+            address or permanent mailing address on file. NOTE: this must be in a DIFFERENT 
+            county than where you are registered."
           Permanent County: Residence County
           Temporary Street Address: Mailing address
           Temporary City: City
