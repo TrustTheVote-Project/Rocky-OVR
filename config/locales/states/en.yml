@@ -2161,8 +2161,8 @@ en:
           receive_by__options:
             Clerk_Office: "Vote in clerk's office"
             Mail: Mail
-            Email: Email
-            Fax: Fax
+            Email: Email (Military and overseas only) 
+            Fax: Fax (Military and overseas only)
           receive_by__format_message: "This option is available to military and overseas only"
           military_overseas: "I am currently in the military and/or overseas"
           "UOCAVA": "Select one:"
