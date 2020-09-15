@@ -11,7 +11,7 @@
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+"")
         //console.log(showField, field, field.val())
-        showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
+        showField = showField && field && (field.prop("type")=="checkbox"|| field.prop("type")=="radio" ? field.is(":checked") : field.val())
       }
       if (showField) {
         $(this).hide();
