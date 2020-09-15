@@ -124,6 +124,12 @@ class BlocksService
     end
   end
 
+  def canvassers(turf_id)
+    RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
+      return BlocksClient.canvassers(turf_id, {token: self.token})
+    end    
+  end
+
   def create_canvasser(canvasser_data)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
       return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token}))
