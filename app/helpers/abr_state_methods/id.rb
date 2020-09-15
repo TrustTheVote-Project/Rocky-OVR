@@ -51,10 +51,10 @@ module AbrStateMethods::ID
     def form_field_items
       [
         {"has_mailing_address": {type: :checkbox}},
-        {"mailingAddress": {visible: "has_mailing_address"}},
-        {"mailingCity": {visible: "has_mailing_address", classes: "half"}},
-        {"mailingState": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-        {"mailingZipCode": {visible: "has_mailing_address", classes: "quarter last"}},
+        {"mailingAddress": {visible: "has_mailing_address", required: :if_visible}},
+        {"mailingCity": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
+        {"mailingState": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"mailingZipCode": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
         {"mailingCountry": {visible: "has_mailing_address", type: :select, include_blank: true, options: [
           "Afghanistan",
           "Albania",
