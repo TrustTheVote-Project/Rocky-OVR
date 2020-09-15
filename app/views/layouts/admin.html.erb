@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Admin Console</title>
@@ -12,27 +13,31 @@
   <%= javascript_include_tag 'application' %>
   <%= yield :head %>
 </head>
+
 <body>
-  <div id="bg"><div></div></div>
+  <div id="bg">
+    <div></div>
+  </div>
   <div id="container">
     <% if current_admin %>
-      <div id="header">
-        <span><%= link_to "Log out", admin_logout_path %></span>
-        <p>
-          <%= link_to "Dashboard", admin_partners_path, class: @nav_class[:dashboard] %>|
-          <%= link_to "Grommet Queue", admin_grommet_queue_path, class: @nav_class[:grommet_queue] %>|
-          <%= link_to "Whitelabel requests (#{branding_open_requests_count})", requests_admin_whitelabel_path, class: @nav_class[:whitelabel] %>|
-          <%= link_to "PDF Download Stats", downloads_admin_stats_path, class: @nav_class[:statistics] %>|
-          <%= link_to "Blocked Emails", admin_emails_path, class: @nav_class[:emails] %>|
-          <%= link_to "A/B Tests", admin_ab_tests_path, class: @nav_class[:ab_tests] %>|
-          <%= link_to "Request Logs", admin_request_logs_path, class: @nav_class[:request_logs] %>
-          <%= link_to "Blocks Bulk Submissions", admin_blocks_submissions_path, class: @nav_class[:blocks_submissions] %>
-        </p>
-      </div>
+    <div id="header">
+      <span><%= link_to "Log out", admin_logout_path %></span>
+      <p>
+        <%= link_to "Dashboard", admin_partners_path, class: @nav_class[:dashboard] %>|
+        <%= link_to "Grommet Queue", admin_grommet_queue_path, class: @nav_class[:grommet_queue] %>|
+        <%= link_to "Whitelabel requests (#{branding_open_requests_count})", requests_admin_whitelabel_path, class: @nav_class[:whitelabel] %>|
+        <%= link_to "PDF Download Stats", downloads_admin_stats_path, class: @nav_class[:statistics] %>|
+        <%= link_to "Blocked Emails", admin_emails_path, class: @nav_class[:emails] %>|
+        <%= link_to "A/B Tests", admin_ab_tests_path, class: @nav_class[:ab_tests] %>|
+        <%= link_to "Request Logs", admin_request_logs_path, class: @nav_class[:request_logs] %>
+        <%= link_to "Blocks Bulk Submissions", admin_blocks_submissions_path, class: @nav_class[:blocks_submissions] %>
+        <%= link_to "PDF Deliveries", admin_pdf_delivery_reports_path, class: @nav_class[:pdf_delivery_reports] %>
+      </p>
+    </div>
     <% else %>
-        <div id="header">
-          <span><%= link_to "Log in", admin_login_path %></span>
-        </div>
+    <div id="header">
+      <span><%= link_to "Log in", admin_login_path %></span>
+    </div>
     <% end %>
 
     <div id="main">
@@ -49,4 +54,5 @@
   <%= javascript_include_tag 'admin' %>
   <%= javascript_include_tag 'partner' %>
 </body>
+
 </html>
