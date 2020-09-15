@@ -45,13 +45,19 @@ module AbrStateMethods::MI
       "November 4 City": {},
       "November 3 State": {},
       "November 3 Zip": {},
-      "Nov 3 Address End Date_es_:date": {},
-      "Nov 3 Address Begin Date_es_:date": {},
+      "Nov 3 Address End Date_es_:date": {
+        method: "address_enddate_mm_dd_yyyy"
+      },
+      "Nov 3 Address Begin Date_es_:date": {
+        method: "address_begindate_mm_dd_yyyy"
+      },
       "Name of person appling for ballot": {
       method: "full_name"
       },
       "Name of Person assisting the voter": {},
-      "Date of Birth of person assisting_es_:date": {},
+      "Date of Birth of person assisting_es_:date": {
+        method: "assist_birthdate_mm_dd_yyyy"
+      },
       "Adress of person assisting": {},
       "Both_2020_Elections": { 
       options: ["Off", "Yes"],
@@ -70,7 +76,7 @@ module AbrStateMethods::MI
       #"assistant_signature": {},
       #"assistant_signed_date": {},
   }
-  EXTRA_FIELDS = ["has_mailing_address", "assistant", 'jurisdiction_type']
+  EXTRA_FIELDS = ["has_mailing_address", "assistant", 'jurisdiction_type', 'assist_birthdate', 'assist_birthdate_mm','assist_birthdate_dd','assist_birthdate_yyyy','address_begindate','address_begindate_mm','address_begindate_dd','address_begindate_yyyy','address_enddate', 'address_enddate_mm','address_enddate_dd','address_enddate_yyyy']
 
   def jurisdiction_town
     return ("X") if self.jurisdiction_type.to_s=='town'
@@ -79,6 +85,30 @@ module AbrStateMethods::MI
 
   def jurisdiction_city
     return ("X") if self.jurisdiction_type.to_s=='city'
+  end
+
+  def assist_birthdate_mm_dd_yyyy
+    dates = [assist_birthdate_mm, assist_birthdate_dd, assist_birthdate_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    dates && dates.length == 3 ? dates.join("/") : nil
+  end
+
+  def address_begindate_mm_dd_yyyy
+    dates = [address_begindate_mm, address_begindate_dd, address_begindate_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    dates && dates.length == 3 ? dates.join("/") : nil
+  end
+
+  def address_enddate_mm_dd_yyyy
+    dates = [address_enddate_mm, address_enddate_dd, address_enddate_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    dates && dates.length == 3 ? dates.join("/") : nil
+  end
+
+  def test_date(datestring)
+    begin
+      @mydate = Date.strptime(datestring, "%m/%d/%Y")
+      return true
+    rescue ArgumentError
+      return false
+    end
   end
 
   def form_field_items
@@ -178,20 +208,37 @@ module AbrStateMethods::MI
       {"November 4 City": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
       {"November 3 State": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"November 3 Zip": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
-      {"Nov 3 Address Begin Date_es_:date": {visible: "has_mailing_address", required: :if_visible, classes: "half", regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
-      {"Nov 3 Address End Date_es_:date": {visible: "has_mailing_address", required: :if_visible, classes: "half last", regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
+      {"address_begindate": { type: :date, m: "address_begindate_mm", d: "address_begindate_dd", y: "address_begindate_yyyy", visible: "has_mailing_address", required: :if_visible, classes: "half"}},
+      {"address_enddate": { type: :date, m: "address_enddate_mm", d: "address_enddate_dd", y: "address_enddate_yyyy",visible: "has_mailing_address", required: :if_visible, classes: "half last"}},
       {"assistant": {type: :checkbox}},
       {"Name of Person assisting the voter": {visible: "assistant", required: :if_visible, classes: "half"}},
-      {"Date of Birth of person assisting_es_:date": {visible: "assistant", required: :if_visible, classes: "half last", regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
+      #{"Date of Birth of person assisting_es_:date": {type: :date, visible: "assistant", required: :if_visible, classes: "half last", regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
+      {"assist_birthdate": {visible: "assistant", required: :if_visible, type: :date, m: "assist_birthdate_mm", d: "assist_birthdate_dd", y: "assist_birthdate_yyyy"}},
       {"Adress of person assisting": {visible: "assistant", required: :if_visible}},
       ]
   end
+
 
   def custom_form_field_validations
       # e.g:
       # make sure delivery is selected if reason ==3
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
+
+      if self.assistant.to_s=="1" && !self.test_date(self.assist_birthdate_mm_dd_yyyy.to_s)
+       errors.add("assist_birthdate", custom_format_message("bad_date") )
+      end
+
+      if !self.test_date(self.address_begindate_mm_dd_yyyy.to_s)
+        errors.add("address_begindate", custom_format_message("bad_date") )
+        errors.add('address_begindate', self.address_begindate_mm_dd_yyyy.to_s)
+      end
+
+      if !self.test_date(self.address_enddate_mm_dd_yyyy.to_s)
+        errors.add("address_enddate", custom_format_message("bad_date") )
+        errors.add('address_enddate', self.address_enddate_mm_dd_yyyy.to_s)
+      end
+
   end
 
 

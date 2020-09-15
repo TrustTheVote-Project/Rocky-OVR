@@ -954,18 +954,19 @@ en:
             the ballot:'
       mi:
         abr_form_fields:
+          bad_date__format_message: "Invalid date"
           "November 3 Address": Mailing address
           "November 4 City": City
           "November 3 State": State
           "November 3 Zip": Zip
-          "Nov 3 Address Begin Date_es_:date": "Begin date (MM/DD/YYYY):"
-          "Nov 3 Address End Date_es_:date": "Return date (MM/DD/YYYY):"
+          "address_begindate": "Begin date (MM/DD/YYYY):"
+          "address_enddate": "Return date (MM/DD/YYYY):"
           jurisdiction_type: "Please select one of the following:"
           jurisdiction_type__options:
             town: I live in a township.
             city: I live in a city.        
           "Name of Person assisting the voter": Name
-          "Date of Birth of person assisting_es_:date": "Date of birth (MM/DD/YYYY)"
+          "assist_birthdate": "Date of birth (MM/DD/YYYY)"
           "Adress of person assisting": Address
           "assistant": I am an authorized registered elector assisting in returning this application for the voter.
           has_mailing_address: My mailing address differs from my residential address.
