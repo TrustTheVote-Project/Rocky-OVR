@@ -292,14 +292,7 @@ en:
             you have your ballot, again be sure to read the instructions carefully,
             fill out the ballot and send it back in.  Vote-by-mail ballots that are
             mailed must be postmarked on or before Election Day and received by your
-            county elections office no later than 17 days after Election Day.</p>'
-          Your state is automatically sending an absentee ballot to all voters this year:
-            "  Your absentee ballot will be sent to the address listed on your voter registration":
-              "  If you have any questions, or need to update your address please go to": states.custom.ca.abr.Your
-                state is automatically sending an absentee ballot to all voters this
-                year. Your absentee ballot will be sent to the address listed on your
-                voter registration. If you have any questions, or need to update your
-                address please go to
+            county elections office no later than 17 days after Election Day.</p>'          
         online_instructions: |-
           You can complete your voter registration online with
           the state right now - using the application provided by the Secretary of
@@ -1451,6 +1444,11 @@ en:
             primary (check only one):'
       nj:
         abr:
+          header: Absentee Requests In New Jersy
+          instructions: '<p>Your state is automatically sending an absentee ballot to all 
+            registered voters this year. Your absentee ballot will be sent to the address 
+            listed on your voter registration. If you have any questions, or need to 
+            update your address please go to: <a href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'  
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your application must be received seven days prior to Election Day (October
@@ -1512,6 +1510,14 @@ en:
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>'
       nv:
+        abr:
+          header: Absentee Requests In Nevada
+          instructions: '<p>Your state is automatically sending an absentee ballot to all 
+            registered voters this year. Your absentee ballot will be sent to the address 
+            listed on your voter registration. If you have any questions, please reach out 
+            to your local election official or call the Nevada Secretary of State''s 
+            Elections Division: (775) 684-5705.</p>'  
+
         clark county:
           state_online_abr:
             header: You can request an Absentee Ballot online directly with Clark

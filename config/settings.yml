@@ -164,17 +164,11 @@ absentee_states:
     pdf_template: ne.pdf
   NH:
     pdf_template: nh.pdf
-  NJ:
-    pdf_template: nj.pdf
+  NJ: {}  
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
     pdf_template: nm.pdf
-  NV:
-    pdf_template: nv.pdf
-    counties:
-      "clark county":
-        online_req_url: https://www.clarkcountynv.gov/government/departments/elections/voter_services.php
-        pdf_template: nv.pdf        
+  NV: {}
   NY:
     pdf_template: ny.pdf
     email_delivery: true    
