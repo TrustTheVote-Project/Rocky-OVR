@@ -1778,7 +1778,7 @@ en:
           mail_city: City/Town
           mail_state: State
           mail_zip: Zip
-          has_mailing_address: My ballot shuuld be delivered to a different address
+          has_mailing_address: My ballot should be delivered to a different address
             from my registration address
           eligibility: 'I certify that I am eligible for a mail ballot on the following
             basis:'
