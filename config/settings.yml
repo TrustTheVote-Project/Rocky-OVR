@@ -203,7 +203,7 @@ absentee_states:
   WI:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
     pdf_template: wi.pdf
-    email_delivery: true
+    # email_delivery: true
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
