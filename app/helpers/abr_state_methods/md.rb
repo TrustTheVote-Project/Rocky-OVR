@@ -6,11 +6,11 @@ module AbrStateMethods::MD
       "First_Name": {},
       "Middle_Name": {},
       "suffix": { 
-        options: ["Off", "Yes", "Yes2", "Yes3", "Yes4", "Yes5"],
+        #options: ["Off", "Yes", "Yes2", "Yes3", "Yes4", "Yes5"],
         method: "md_suffix_mapper"
       },
 
-      "Birth_Month" {
+      "Birth_Month": {
         method: "date_of_birth_mm"
       },
       "Birth_Day": {
@@ -34,7 +34,7 @@ module AbrStateMethods::MD
       "Phone_2": {
         method: "phone_last4"
       },
-      
+    
       "Move_Month": {
         method: "movedate_mm"
       },
@@ -46,11 +46,30 @@ module AbrStateMethods::MD
       },
 
       #"Maryland Drivers License or ID Card Number": {sensitive:true},
-      "Lic_1": {sensitive:true},
-      "Lic_2": {sensitive:true},
-      "Lic_3": {sensitive:true},
-      "Lic_4": {sensitive:true},
-      "Lic_5": {sensitive:true},
+      "Lic_1": {
+        method: "dln_lic_1",
+        sensitive:true
+      },
+      "Lic_2": {
+        method: "dln_lic_2",
+        sensitive:true
+      },
+
+      "Lic_3":  {
+        method: "dln_lic_3",
+        sensitive:true
+      },
+
+      "Lic_4":  {
+        method: "dln_lic_4",
+        sensitive:true
+      },
+
+      "Lic_5":  {
+        method: "dln_lic_5",
+        sensitive:true
+      },
+
 
       "Birthdate": {
         method: "date_of_birth_mm_dd_yyyy"
@@ -60,7 +79,7 @@ module AbrStateMethods::MD
       },
       "Del_Email": {
         method: "delivery_conditional_email"
-      }
+      },
 
       "Gen_Address": {},
       "Gen_Apt": {},
@@ -77,9 +96,9 @@ module AbrStateMethods::MD
 
       "SSN_Last_4": {sensitive:true},
 
-      "Fax_Area_Code": {}
-      "Fax_Phone": {}
-      "Fax_Phone_2": {}
+      "Fax_Area_Code": {},
+      "Fax_Phone": {},
+      "Fax_Phone_2": {},
       #"Todays_Date": {},
       #"assistant_sign": {},
       #"assistant_print": {},
@@ -130,8 +149,9 @@ module AbrStateMethods::MD
         value: "Off"
       },
       "presidential_general_mailto": { options: ["same_as_above", "address_below"] },
+
     }
-    EXTRA_FIELDS = ["no_dln", "assistant", "dln", 'issue_date', "internet_delivery_identification"]
+    EXTRA_FIELDS = ["no_dln", "assistant", 'dln','issue_date','issue_date_mm','issue_date_dd','issue_date_yyyy','issue_date', "internet_delivery_identification",'movedate','movedate_mm','movedate_dd','movedate_yyyy','fax_number']
     
     # def whatever_it_is_you_came_up_with
     #   # TODO when blah is selected it should be "abc" and otherwise left blank
@@ -142,15 +162,16 @@ module AbrStateMethods::MD
       [
 
 
-        {"When_Moved_Here": {min: 7, max: 10, regexp: /\A(\d{2}\/\d{4}|\d{2}\/\d{2}\/\d{4})\z/, required:true}},
-        {"delivery_method": {type: :radio, required: true}},
-        {"internet_delivery_identification": {type:radio, options: ['dln','ssn'], visible: "delivery_method_internet"}}
-        {"dln": {visible: "delivery_method_internet_dln"}},
-        {"issue_date": {visible: "delivery_method_internet_dln", regexp: /\A(\d{2}\/\d{2}\/\d{4})\z/,}},
-        #{"no_dln": {type: :checkbox, visible: "delivery_method_internet"}},
-        {"SSN_Last_4": {visible: "delivery_method_internet_ssn", required: :if_visible}},
-        {"fax": {visible: "delivery_method_fax"}},
-        {"presidential_general_mailto": {type: :radio, required: 'star', visible: "delivery_method_mail"}},
+        {"movedate": {type: :date,m: "movedate_mm", d: "movedate_dd", y: "movedate_yyyy",  required:'star'}},
+       
+        {"Delivery": {type: :radio, required: true}},
+        {"internet_delivery_identification": {type: :radio, options: ['dln','ssn'], visible: "delivery_internet"}},
+        {"dln": {visible: "internet_delivery_identification_dln", required: 'star', regexp: /\A[[:alpha:]]\d{12}\z/}},
+        {"issue_date": {type: :date, m: "issue_date_mm", d: "issue_date_dd", y: "issue_date_yyyy", visible: "internet_delivery_identification_dln", required: 'star'}},
+        #{"no_dln": {type: :checkbox, visible: "delivery_internet"}},
+        {"SSN_Last_4": {visible: "internet_delivery_identification_ssn", required: 'star'}},
+        {"fax_number": {visible: "delivery_fax", required: 'star'}},
+        {"presidential_general_mailto": {type: :radio, required: 'star', visible: "delivery_mail"}},
         {"Gen_Address": {visible: "presidential_general_mailto_address_below", classes: "three-quarter"}},
         {"Gen_Apt": {visible: "presidential_general_mailto_address_below", classes: "quarter last"}},
         {"Gen_City": {visible: "presidential_general_mailto_address_below", classes: "half"}},
@@ -158,6 +179,7 @@ module AbrStateMethods::MD
         {"Gen_ZipCode": {visible: "presidential_general_mailto_address_below", classes: "quarter last"}},
         {"assistant": {type: :checkbox}},
         {"Assistance_Print_Name": {visible: "assistant", required: :if_visible}},
+
       ]
     end
     #e.g.
@@ -176,7 +198,20 @@ module AbrStateMethods::MD
     #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
     #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
     # ]
+
+    def issue_date_mm_dd_yyyy
+      dates = [issue_date_mm, issue_date_dd, issue_date_yyyy].collect {|d| d.blank? ? nil : d}.compact
+      dates && dates.length == 3 ? dates.join("/") : nil
+    end
+
+    def movedate_dd_optional
+      movedate_dd.to_s !=''?:movedate_dd.to_s : '01'
+    end
     
+    def movedate_mm_dd_yyyy
+      dates = [movedate_mm, movedate_dd_optional, movedate_yyyy].collect {|d| d.blank? ? nil : d}.compact
+      dates && dates.length == 3 ? dates.join("/") : nil
+    end
 
     def md_suffix_mapper
       case self.suffix
@@ -216,22 +251,13 @@ module AbrStateMethods::MD
         return (phone_digits[6..9])
       end
     end 
-
-    def movedate_mm
-      if self.movedate.to_s!=''
-        return (movedate.to_s[1..2])
-      end
-    end
-
-    def movedate_dd
-      if self.movedate.to_s.length>5
-        return (movedate.to_s[4..5])
-      end
-    end
-
-    def movedate_yy
-      if self.movedate.to_s!=''
-        return (movedate.to_s.chars.last(n=4).join
+    
+    def test_date(datestring)
+      begin
+        @mydate = Date.strptime(datestring, "%m/%d/%Y")
+        return true
+      rescue ArgumentError
+        return false
       end
     end
     
@@ -242,11 +268,35 @@ module AbrStateMethods::MD
       # make sure fax is provided if faxtype is selected for delivery
 
       #dln
+      #issue_date_mm_dd_yyyy
+
+      if (self.internet_delivery_identification.to_s=='dln') 
+        custom_validates_presence_of('dln') 
+        if !self.test_date(self.issue_date_mm_dd_yyyy.to_s)
+          errors.add("issue_date", custom_format_message("bad_date") )
+          errors.add('issue_date', self.issue_date_mm_dd_yyyy.to_s)
+        end
+      end
 
       #SSN_Last_4
+      if (self.internet_delivery_identification.to_s=='ssn') 
+        custom_validates_presence_of('dln') 
+      end
+      
+
+      if (self.delivery.to_s=='fax') 
+        custom_validates_presence_of('fax_number') 
+      end
+      
+
+      #movedate_mm_dd_yyyy
+      if !self.test_date(self.movedate_mm_dd_yyyy.to_s)
+        errors.add("movedate", custom_format_message("bad_date") )
+        errors.add('movedate', self.movedate_mm_dd_yyyy.to_s)
+      end
 
     end
-    
+   
    
   end
   
