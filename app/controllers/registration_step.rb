@@ -45,7 +45,7 @@ class RegistrationStep < ApplicationController
   end
 
   def update
-    @pdf_assistance = params[:pdf_assistance]
+    @pdf_assistance = params[:pdf_assistance] || "1"
     redirected = find_registrant
     return if redirected == :redirected
     @registrant.attributes = params[:registrant]
@@ -78,6 +78,8 @@ class RegistrationStep < ApplicationController
 
   def set_up_view_variables
     @use_mobile_ui = determine_mobile_ui(@registrant)
+    @pdf_assistance ||= "1"
+    
   end
 
   def set_up_share_variables

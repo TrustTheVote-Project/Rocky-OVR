@@ -79,7 +79,7 @@ class PdfDeliveryReport < ActiveRecord::Base
 
   def run!
     self.update_attributes(status: :started)
-    deliveries = PdfDelivery.where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature, :partner])
+    deliveries = PdfDelivery.where(pdf_ready: true).where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature, :partner])
     self.update_attributes(status: "Processing #{deliveries.count} deliveries")
     assistance_rows = [CSV_HEADER]
     direct_mail_rows = [CSV_HEADER]

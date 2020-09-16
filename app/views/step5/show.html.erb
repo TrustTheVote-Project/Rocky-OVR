@@ -120,9 +120,16 @@
   </li>
 </ul>
 <%- if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig? %>
-<div class="checkbox" style="font-size: 150%; text-align: center;">
-  <%= check_box_tag :pdf_assistance, "1", @pdf_assistance == "1" %>
-  <%= label_tag :pdf_assistance, I18n.t('txt.button.download_assistance') %>
+<div style="font-size: 150%; text-align: center;">
+  <ul class="checkbox">
+    <li>
+      <h3>
+        <%= hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden %>
+        <%= check_box_tag :pdf_assistance, "1", @pdf_assistance == "1" %>
+        <%= label_tag :pdf_assistance, I18n.t('txt.button.download_assistance') %>
+      </h3>
+    </li>
+  </ul>
 </div>
 
 <%- end %>
