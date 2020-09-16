@@ -961,8 +961,8 @@ en:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
           mailing_address_input: Mailing address
-          assistance_required: Voter required assistance in completing application
-            due to physical disability.
+          assistance_required: Check this box if you received assistance in completing this 
+            application due to a physical disability.
           assisting_person: Assisting person's name
           Assisting persons address: Assisting person's address
           the ballot: Name of messenger
