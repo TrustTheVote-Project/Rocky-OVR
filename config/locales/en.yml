@@ -402,7 +402,7 @@ en:
             confirm_will_be_18:
               accepted: You must be 18 by the next election to register to vote.
             abr_declaration:
-              accepted: You must confirm that you agree to the terms above.
+              accepted: Please confirm that you have read and agree to the terms.
             confirm_declaration:
               accepted: You must confirm that you agree to the terms above.
             confirm_assitant_declaration:
@@ -422,9 +422,19 @@ en:
             penndot_number:
               format: Should be 8 digits
               blank: Required. If you do not have a PA driver's license or PennDOT
-                ID card number, please select "I do not know my PennDOT number."
+                ID card number, please select "I do not know my PennDOT number." 
+                Then, enter the last 4 digits of your Social Security number below 
+                if you have one.
               pa_invalid: Your PennDOT number is not valid. Please double-check and
                 try again.
+            abr_address_type:
+              blank: You must select an address where your ballot is to be mailed to.
+            abr_ballot_address_start_year:
+              blank: Please provide the year you moved to this address.
+            abr_ballot_address:
+              blank: You must enter your Mail Ballot to Address
+            abr_ballot_city:
+              blank: You must enter your Mail Ballot to City
             ssn4:
               format: Should be 4 digits
               blank: Required. If you do not know the last four digits of your social

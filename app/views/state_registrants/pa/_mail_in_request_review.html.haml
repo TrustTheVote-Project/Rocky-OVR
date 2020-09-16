@@ -24,3 +24,9 @@
     .review__section__content
       = @registrant.abr_ward         
       = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))    
+  .review__section
+    .review__section__label
+      = t('activerecord.attributes.state_registrants/pa_registrant.penndot_number')
+    .review__section__content
+      = @registrant.penndot_number
+      = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))

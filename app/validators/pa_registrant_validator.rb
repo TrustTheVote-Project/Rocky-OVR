@@ -52,7 +52,7 @@ class PARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :abr_address_type
         reg.validates_inclusion_of  :abr_address_type, :in => StateRegistrants::PARegistrant::BALLOT_ADDRESS_OPTIONS, :allow_blank => true
         reg.validates_presence_of :abr_ballot_address_start_year
-        reg.validates_length_of :abr_ballot_address_start_year, is: 4
+        reg.validates_length_of :abr_ballot_address_start_year, is: 4, allow_blank: true
         reg.validates_length_of :abr_ballot_address, maximum: 40
         reg.validates_length_of :abr_ballot_city, maximum: 35
         reg.validates_length_of :abr_ballot_state, maximum: 2
@@ -66,7 +66,6 @@ class PARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :abr_ballot_address
         reg.validates_presence_of :abr_ballot_city
         reg.validates_presence_of :abr_ballot_state
-        reg.validates_presence_of :abr_ballot_zip
         validates_zip_code reg,   :abr_ballot_zip
       end
   
@@ -118,15 +117,17 @@ class PARegistrantValidator < ActiveModel::Validator
   end
   
   def validates_abr_start_year(reg)
-    reg.validates_format_of(:abr_ballot_address_start_year, {:with => /\A\d{4}\z/, :allow_blank => true});
-    begin
-      year = reg.abr_ballot_address_start_year.to_i
-      if year < 1900 or year > Date.today.year
-        reg.errors.add(:abr_ballot_address_start_year, :invalid)
+    unless reg.abr_ballot_address_start_year.blank?
+      reg.validates_format_of(:abr_ballot_address_start_year, {:with => /\A\d{4}\z/, :allow_blank => true})
+      begin
+        year = reg.abr_ballot_address_start_year.to_i
+        if year < 1900 or year > Date.today.year
+          reg.errors.add(:abr_ballot_address_start_year, :invalid)
+        end
+      rescue => exception
+        raise exception
       end
-    rescue => exception
-      raise exception
-    end
+      end
   end
 
   def validates_zip_code(reg, attr_name)
