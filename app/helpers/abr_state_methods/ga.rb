@@ -65,7 +65,8 @@ module AbrStateMethods::GA
     },
     #"reason_other": {
     "Group2": {
-      options:  [ "physically disabled", "temporarily residing out of the country"]
+      #options:  [ "physically disabled", "temporarily residing out of the country"],
+      value: "Off" # Not sure why it needs to be "On"
     },
     "D  Disabled  I have a physical disability": { 
       options: ["Off", "On"],
@@ -118,10 +119,10 @@ module AbrStateMethods::GA
       # {"Group2": {visible: "requestor", type: :radio, required: 'star'}},
      
      
-      {"Elegibility": {
-        type: :radio,
-        options: ["D", "E", "U"]
-      }},
+      # {"Elegibility": {
+      #   type: :radio,
+      #   options: ["D", "E", "U"]
+      # }},
       #{"UOCAVA_Status": {visible: "Elegibility_u", type: :radio, }},
       {"Group3": {visible: "Elegibility_u", type: :radio, }},
       {"request_electronic_transmission": {visible: "Elegibility_u", type: :checkbox, }},
@@ -175,7 +176,7 @@ module AbrStateMethods::GA
   end
 
 
-  def check_Elegibility (x)
+  def check_Elegibility(x)
     return (self.Elegibility==x ? "On" : "Off")
   end
 
