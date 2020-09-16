@@ -92,7 +92,7 @@ module AbrStateMethods::WI
     end
     
     def agent_request_yes
-        self.request_agent ? "Yes" : "Off"
+        self.request_agent == "1" ? "Yes" : "Off"
     end
     
     def form_field_items

@@ -46,7 +46,7 @@ module AbrStateMethods::PA
       "no_id": {
           method: "check_assert_no_id"
       },
-      "Same_as_above": { options: ["Off", "On"] },
+      "Same_as_above": { options: ["On", "Off"] },
     }
     EXTRA_FIELDS = ["no_PennDOT", "assert_no_id", 'ssn_last_4_input', 'identification', 'identification2','address_date','address_date_mm', 'address_date_dd','address_date_yyyy']
     
@@ -124,13 +124,13 @@ module AbrStateMethods::PA
         ]}},
         {"Municipality": {}},
         {"address_date": {required: true,type: :date, m: "address_date_mm", d: "address_date_dd", y: "address_date_yyyy", }}, #regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
-        {"identification": {required: true, type: :radio, options: ['dln', 'no-dln']}},
+        {"identification": {required: true, type: :radio, options: ['dln', 'no_dln']}},
         {"PA drivers license or PennDOT ID card number": {regexp: /\A\d{8}\z/, length:8, visible: "identification_dln"}},
-        {"identification2": {visible: "identification_no-dln", required: 'star', type: :radio, options: ['ssn', 'no-ssn']}},
+        {"identification2": {visible: "identification_no_dln", required: 'star', type: :radio, options: ['ssn', 'no_ssn']}},
         #{"no_PennDOT": {type: :checkbox}},
 
         {"ssn_last_4_input": {visible: "identification2_ssn", classes:"half", length:4,regexp: /\A[0-9]{4}\z/}},
-        {"assert_no_id": {type: :checkbox, visible: "identification2_no-ssn", required: 'star'}},
+        {"assert_no_id": {type: :checkbox, visible: "identification2_no_ssn", required: 'star'}},
         
         {"Same_as_above": {type: :radio, required: true}},
         {"Address_1": {visible: "same_as_above_off", required: 'star'}},
