@@ -40,7 +40,7 @@ module AbrStateMethods::PA
         method: "address_line_1"
       },
       "Address_1": {},
-      "City_Town": {},
+      "City_Town": { method: "city"},
       "City_Town_1": {},
       "SSN_last_4": {sensitive:true, method: 'ssn_if_not_no_id'},
       "no_id": {
