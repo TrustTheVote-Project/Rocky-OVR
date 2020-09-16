@@ -2285,6 +2285,7 @@ en:
         abr_form_fields:
           resident_county: County
           has_mailing_address: My mailing address differs from my residential address.
+          has_mailing_address__required_message: A mailing address outside of your county of residence is required.
           mail_address: Mailing address
           mail_city: City
           mail_state: State
@@ -2297,33 +2298,33 @@ en:
               me from voting in person and from voting a paper ballot without assistance.
           reason_a: 'Please select one:'
           reason_a__options:
-            address_confidentiality: I am a participant in the Address Confidentiality
-              Program (ACP) with the Office of the Secretary of State. If selected,
-              send your application to the Secretary of State’s Office.
-            business_or_travel: Personal business or travel. If selected, your ballot
-              must be mailed outside of your county of residence.
-            college: Attendance at college, university, or other place of education
-              or training. If selected, your ballot must be mailed outside of your
-              county of residence.
-            disability: The county absentee voting office and my polling place are
-              inaccessible to me due to my physical disability.
-            elected_away: Temporarily living outside of the county due to serving
-              as an elected or appointed federal or state officer. If selected, your
-              ballot must be mailed outside of your county of residence.
-            employment: Employment which because of hours worked and distance from
-              the county seat makes voting in person impossible.
-            illness: "Illness, injury or other medical reason which keeps me confined.
+            address_confidentiality: <p>I am a participant in the Address Confidentiality
+              Program (ACP) with the Office of the Secretary of State. <u>If selected,
+              send your application to the Secretary of State’s Office.</u></p>
+            business_or_travel: <p>Personal business or travel. <u>If selected, your ballot
+              must be mailed outside of your county of residence.</u></p>
+            college: <p>Attendance at college, university, or other place of education
+              or training. <u>If selected, your ballot must be mailed outside of your
+              county of residence.</u></p>
+            disability: <p>The county absentee voting office and my polling place are
+              inaccessible to me due to my physical disability.</p>
+            elected_away: <p>Temporarily living outside of the county due to serving
+              as an elected or appointed federal or state officer. <u>If selected, your
+              ballot must be mailed outside of your county of residence.</u></p>
+            employment: <p>Employment which because of hours worked and distance from
+              the county seat makes voting in person impossible.</p>
+            illness: "<p>Illness, injury or other medical reason which keeps me confined.
               <br/>NOTE: due to COVID-19, West Virginia's Secretary of State has 
               announced that all West Virginia voters can use this option as the 
-              excuse for requesting a ballot."
-            immobility: Immobility due to advanced age or a physical disability.
-            incarceration: Incarceration or detention in jail or home. I am not under
+              excuse for requesting a ballot.</p>"
+            immobility: <p>Immobility due to advanced age or a physical disability.</p>
+            incarceration: <p>Incarceration or detention in jail or home. I am not under
               conviction of any felony, of treason or of bribery in an election (including
-              any period of probation or parole). If selected you must complete the
-              statemnt on page 2 after printing this form.
-            working_away: Temporarily living outside of the county due to a temporary
+              any period of probation or parole). <u>If selected you must complete the
+              statement on page 2 after printing this form.</u></p>
+            working_away: <p>Temporarily living outside of the county due to a temporary
               assignment by my employer for a specific period of four years or less.
-              If selected, your ballot must be mailed outside of your county of residence.
+              <u>If selected, your ballot must be mailed outside of your county of residence.</u></p>
           disability_want_electronic__hint: 'B. I am applying for an electronic absentee
             ballot due to:'
           incarceration_statement: Please complete the Statement on page 2 by hand
