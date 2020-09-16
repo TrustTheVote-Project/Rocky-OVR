@@ -135,7 +135,7 @@ en:
       survey_title: Questions For You
       preparing_header: Preparing Registration Form...
       download_header: Print Your Form
-      pdf_assistance_header: You should receive your voter registration form in about a week.
+      pdf_assistance_header: You should receive your voter registration form in the mail in about a week.
       finish_mail_with_esig_header: Thanks for beginning the voter registration process! 
       finish_mail_with_esig: |-
         <p class="instructions">Next steps:</p>
@@ -245,9 +245,9 @@ en:
           & mail or deliver your registration form to your local elections office.
         download_assitance_header: ''
         download_assitance: ''
-        pdf_assistance: You will need to sign your form and mail it to your local 
+        pdf_assistance: <p>Don't want to wait for the mail? <a href="%{pdf_url}">Print your registration form now.</a></p><p>You will need to sign your form and mail it to your local 
           election official to finish the registration process! We've also emailed 
-          you a copy for your records.
+          you a copy for your records.</p>
         finish: 'Don''t forget to tell your friends and family how easy it was to
           register. Here are a few tools you can use to spread the word about voter
           registration:'
