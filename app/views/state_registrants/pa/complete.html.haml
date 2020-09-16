@@ -7,4 +7,43 @@
 .declaration-text
   = I18n.t('states.custom.pa.registration_complete_dialog_text').html_safe
 
+- if @registrant.request_abr
+  %br
+  %br
+  %h2 Annual Mail-In Ballot Application
+  .declaration-text
+    %p 
+      Your application has been submitted. Your application has been sent to the 
+      = @registrant.registration_county
+      Election Office for review and processing. 
+    %p 
+      Your application number is: ABC123 
+    %p
+      Your application was submitted on 
+      = @registrant.created_at.strftime("%m/%d/%Y")
+      at 
+      = "#{@registrant.created_at.in_time_zone("America/New_York").strftime("%l:%M%p")} US Eastern Time."
+    %p
+      Your application is not complete until your county election office processes and accepts it. If your mail-in ballot application is accepted, 
+      your balloting materials will be mailed as soon as the ballot is available. 
+    %h3 What’s next?
+    %p The county will review and process your application.
+    %p If you provided an email, you’ll receive an update as soon as they process it.
+    %p The county will mail your ballot as soon as it is available.
+    %p 
+      Your ballot must be completed and must be received in the county office by 8:00 PM on Election Day. A late application will not be accepted, 
+      even if it was postmarked before the deadline. If you have any questions about your application, please contact 
+      = @registrant.registration_county
+      County. Visit 
+      %a{href:"https://www.votes.pa.com/county"} www.votes.pa.com/county
+      for more information.
+    %p 
+      Deadline Alert: If you plan to vote by mail-in ballot in the 2020 General Election, your completed application must be received in the 
+      county office by 5:00 PM on 10/27/2020. Your voted ballot must be received in your county election office by 8:00 PM on 11/03/2020. 
+      A late application will not be accepted, even if it was postmarked before the deadline.
+    %p 
+      Email Confirmation: You will receive separate emails for your online voter registration application and your online annual ballot 
+      application submissions if you provided an email address in your application.
+
+
 = render "finishes/finish_iframe"

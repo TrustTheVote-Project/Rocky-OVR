@@ -44,7 +44,7 @@ class FinishesController < RegistrationStep
       @registrant.update_attributes(:reminders_left => 0, final_reminder_delivered: true)
       @stop_reminders = true
     end
-    if params[:share_only] 
+    if params[:share_only]
       @share_only = true
     elsif !params[:not_ready] && !params[:reminders]
       @pdf_ready = @registrant.pdf_ready?

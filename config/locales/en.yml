@@ -435,6 +435,10 @@ en:
               blank: You must enter your Mail Ballot to Address
             abr_ballot_city:
               blank: You must enter your Mail Ballot to City
+            abr_ballot_state:
+              blank: You must enter your Mail Ballot to State
+            abr_ballot_zip:
+              blank: You must enter your Mail Ballot to Zip Code
             ssn4:
               format: Should be 4 digits
               blank: Required. If you do not know the last four digits of your social

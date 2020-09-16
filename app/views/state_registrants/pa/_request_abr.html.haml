@@ -58,11 +58,11 @@
     %legend
       %span= I18n.t('txt.registration.ballot_mailing_address')       
     %ul.stacked
-      = field_li(form, :abr_ballot_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
+      = field_li(form, :abr_ballot_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__ballot-address__line"}})
     %ul.stacked
-      = field_li(form, :abr_ballot_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
-      = field_li(form, :abr_ballot_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
-      = field_li(form, :abr_ballot_zip, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
+      = field_li(form, :abr_ballot_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__ballot-city__line"} })
+      = field_li(form, :abr_ballot_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__ballot-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
+      = field_li(form, :abr_ballot_zip, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ballot-zip-code__line"} })
   
   %ul.stacked
     = field_li(form, :abr_ballot_address_start_year, {skip_tooltip: true, required: true, field_options: {size: 4, maxlength: 4}, li_options: {class: "registrant-form__abr_ballot_address_start_year__line"} })

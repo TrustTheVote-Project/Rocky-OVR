@@ -1,7 +1,10 @@
 - if @registrant.request_abr?
+  %br
+  %br
+  %h2= t("states.custom.pa.abr_review.header")
   .review__section
     .review__section__label
-      = t('activerecord.attributes.state_registrants/pa_registrant.abr_address_type')
+      = t('states.custom.pa.abr_review.address')
     .review__section__content
       - if @registrant.abr_address_type == 'R'
         = render partial: "state_registrants/pa/registration_address"
@@ -14,19 +17,19 @@
       = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
   .review__section
     .review__section__label
-      = t('activerecord.attributes.state_registrants/pa_registrant.abr_ballot_address_start_year')
+      = t('states.custom.pa.abr_review.address_since')
     .review__section__content
       = @registrant.abr_ballot_address_start_year         
       = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
   .review__section
     .review__section__label
-      = t('activerecord.attributes.state_registrants/pa_registrant.abr_ward')
+      = t('states.custom.pa.abr_review.ward')
     .review__section__content
       = @registrant.abr_ward         
       = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))    
   .review__section
     .review__section__label
-      = t('activerecord.attributes.state_registrants/pa_registrant.penndot_number')
+      = t('states.custom.pa.abr_review.penndot_number')
     .review__section__content
       = @registrant.penndot_number
       = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))

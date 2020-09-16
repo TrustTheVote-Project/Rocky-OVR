@@ -1586,6 +1586,12 @@ en:
           eligibility
         step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
+        abr_review:
+          header: Review Your Annual Mail-In Ballot Application Information
+          address: Mail Ballot to Address
+          address_since: I have lived at this address since
+          ward: Ward
+          penndot_number: "PA Driver's License # or PennDOT ID #"
         by_paper_header: Review &amp; Confirm
         penndot_number_instructions: If you have a PA driver's license or PennDOT
           ID card number, you must use it. Your PennDOT is the 8 digit number found
