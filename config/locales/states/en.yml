@@ -2312,7 +2312,10 @@ en:
               ballot must be mailed outside of your county of residence.
             employment: Employment which because of hours worked and distance from
               the county seat makes voting in person impossible.
-            illness: Illness, injury or other medical reason which keeps me confined.
+            illness: "Illness, injury or other medical reason which keeps me confined.
+              <br/>NOTE: due to COVID-19, West Virginia's Secretary of State has 
+              announced that all West Virginia voters can use this option as the 
+              excuse for requesting a ballot."
             immobility: Immobility due to advanced age or a physical disability.
             incarceration: Incarceration or detention in jail or home. I am not under
               conviction of any felony, of treason or of bribery in an election (including
