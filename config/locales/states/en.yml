@@ -1711,10 +1711,7 @@ en:
             no_ssn: I do not have a SSN
           PA drivers license or PennDOT ID card number__format_message: 'Invalid PA
             license #. Please enter 8 digits'
-          assert_no_id: I do not have a PA driver’s license or a PennDOT ID card or
-            a Social Security number. (You will be required to enclose a photocopy
-            of an acceptable ID with your application.  Your pdf form will have more
-            instructions.)
+          assert_no_id: "I do not have a PA driver’s license or a PennDOT ID card or a Social Security number.<br><br>(You will be required to enclose a photocopy of an acceptable ID with your application.  Your pdf form will have more instructions.)"
           ssn_last_4_input: 'Last 4 digits of your SSN:'
           ssn_last_4_input__format_message: Invalid format. Please enter 4 digits
           Municipality: Municipality (City, Town, or Village)

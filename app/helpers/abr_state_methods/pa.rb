@@ -22,7 +22,7 @@ module AbrStateMethods::PA
       "Middle_Name_or_Initial": {
         method: "middle_initial"
       },
-      "Phone_Number": {
+      "Phone": {
         method: "phone"
       },
       "Email_Address": {
