@@ -174,7 +174,6 @@ absentee_states:
     email_delivery: true    
   OH:
     pdf_template: oh.pdf
-    # online_req_url: https://www.ohiosos.gov/elections/voters/absentee-request/
   OK:
     online_req_url: https://www.ok.gov/elections/OVP.html
   OR: {}      
