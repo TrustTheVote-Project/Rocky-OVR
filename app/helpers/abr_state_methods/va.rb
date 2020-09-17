@@ -78,7 +78,19 @@ module AbrStateMethods::VA
     #Asistant_Sign_Date
     "Voter_Sign_Date": {
       method: "date_for_signature"
-    }
+    },
+
+    "election_mm": {
+      value:'11'
+    },
+    "election_dd": {
+      value:'03'
+    },
+    "election_yyyy": {
+      value:'2020'
+    },
+   
+
    
   }
   EXTRA_FIELDS = ["has_mailing_address", "UOCAVA", "moved_permanently", "A", "B", "C", "D", "last_residency_date", "residency_mm","residency_dd", "residency_yyyy"]

@@ -135,6 +135,11 @@ describe BlocksService do
         expect(BlocksClient).to receive(:get_locations).with(turf_id, token: s.token)        
         s.get_locations(partner)
       end
+      it "uses turf_id when present" do
+        expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
+        expect(BlocksClient).to receive(:get_locations).with("456", token: s.token)        
+        s.get_locations(partner, turf_id: "456")
+      end
     end
     describe "add_metadata_to_form" do
       it "makes call to BlocksClient with logging and added token" do
@@ -229,7 +234,7 @@ describe BlocksService do
           shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
           shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
           shift_type: "shift type", 
-          soft_count_cards_total_collected: shift.abandoned_registrations + shift.completed_registrations,
+          soft_count_cards_total_collected: shift.completed_registrations, # + shift.completed_registrations,
           soft_count_cards_complete_collected: shift.completed_registrations,
           soft_count_cards_incomplete_collected: shift.abandoned_registrations
         })

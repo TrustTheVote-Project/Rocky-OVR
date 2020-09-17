@@ -92,7 +92,7 @@ class PdfAbrWriter
           File.delete(pdf_delivery_address_path) if File.exists?((pdf_delivery_address_path))
         end
       else
-        raise "File #{path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
+        raise "File #{pdf_file_path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
         # Handle failed upload to S3 - it's probably raising an error
       end      
     end

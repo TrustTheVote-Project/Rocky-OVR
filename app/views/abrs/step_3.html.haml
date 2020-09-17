@@ -91,7 +91,9 @@
             
           .declaration-text{style: "font-weight: bold; text-align: center"}
             = t('txt.abr.step_3_deliver_via_email_instructions').html_safe
-          = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_email_delivery, class_name: "registrant-form__confirm_email_delivery__line", required: true, require_accepted: true}
+          - confirm_label = t("states.custom.#{@abr.i18n_key}.abr.confirm_email_delivery", default: "")
+          - confirm_label = nil if confirm_label.blank?
+          = render partial: 'registrants/generic/checkbox', locals: {field_label: confirm_label, form: form, field: :confirm_email_delivery, class_name: "registrant-form__confirm_email_delivery__line", required: true, require_accepted: true}
           = rollover_button(:prepare, I18n.t('txt.button.deliver'))
 
       #prepare_form

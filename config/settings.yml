@@ -104,8 +104,8 @@ absentee_states:
     pdf_template: ia.pdf
   ID:
     online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
-    pdf_template: #2020_Absentee_Request.pdf
-    pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
+    pdf_template: id.pdf #2020_Absentee_Request.pdf
+    #pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
   IL:
     pdf_template: common.pdf
     counties:
@@ -181,17 +181,11 @@ absentee_states:
     pdf_template: ne.pdf
   NH:
     pdf_template: nh.pdf
-  NJ:
-    pdf_template: nj.pdf
+  NJ: {}  
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
     pdf_template: nm.pdf
-  NV:
-    pdf_template: nv.pdf
-    counties:
-      "clark county":
-        online_req_url: https://www.clarkcountynv.gov/government/departments/elections/voter_services.php
-        pdf_template: nv.pdf        
+  NV: {}
   NY:
     pdf_template: ny.pdf
     email_delivery: true    
@@ -226,7 +220,7 @@ absentee_states:
   WI:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
     pdf_template: wi.pdf
-    email_delivery: true
+    # email_delivery: true
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
