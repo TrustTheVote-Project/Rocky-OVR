@@ -245,7 +245,7 @@ en:
           & mail or deliver your registration form to your local elections office.
         download_assitance_header: ''
         download_assitance: ''
-        pdf_assistance: <p>Don't want to wait for the mail? <a href="%{pdf_url}">Print your registration form now.</a></p><p>You will need to sign your form and mail it to your local 
+        pdf_assistance: <p>Don't want to wait for the mail? <a href="%{pdf_url}">Print your registration form now.</a> (may take 5-10 seconds before it's ready)</p><p>You will need to sign your form and mail it to your local 
           election official to finish the registration process! We've also emailed 
           you a copy for your records.</p>
         finish: 'Don''t forget to tell your friends and family how easy it was to
