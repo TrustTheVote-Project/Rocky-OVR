@@ -979,8 +979,8 @@ en:
           November 4 City: City
           November 3 State: State
           November 3 Zip: Zip
-          "address_begindate": "Begin date (MM/DD/YYYY):"
-          "address_enddate": "Return date (MM/DD/YYYY):"
+          "address_begindate": "Date leaving for this address:"
+          "address_enddate": "Date returning from this address:"
           jurisdiction_type: 'Please select one of the following:'
           jurisdiction_type__options:
             town: I live in a township.
