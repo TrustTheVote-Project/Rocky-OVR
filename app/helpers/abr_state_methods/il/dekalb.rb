@@ -34,10 +34,11 @@ module AbrStateMethods::IL::Dekalb
     },
     #"voter_signature": {}
   }
-  EXTRA_FIELDS = ["has_mailing_address"]
+  EXTRA_FIELDS = ["has_mailing_address", "mail_address","mail_unit","mail_city","mail_state","mail_zip"]
   
   def mailing_name
     #TODO- autofill with "full_name" if "has_mailing_address" is checked, otherwise leave blank
+    return full_name if self.has_mailing_address.to_s=='1'
   end
   
   
@@ -45,8 +46,8 @@ module AbrStateMethods::IL::Dekalb
     [
       {"has_mailing_address": {type: :checkbox}},
       {"Text2": {visible: "has_mailing_address"}},
-      {"Text3": {visible: "has_mailing_address"}},
-      {"Text4": {visible: "has_mailing_address"}},      
+      {"Text3": {visible: "has_mailing_address", required: :if_visible}},
+      {"Text4": {visible: "has_mailing_address", required: :if_visible}},      
     ]
   end
   #e.g.

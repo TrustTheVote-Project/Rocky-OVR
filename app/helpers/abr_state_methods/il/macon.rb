@@ -39,18 +39,19 @@ module AbrStateMethods::IL::Macon
   }
   EXTRA_FIELDS = ["has_mailing_address"]
   
-   def "mailing_name"
+   def mailing_name
      #TODO- autofill with "full_name" if "has_mailing_address" is checked, otherwise leave blank
-   end
+    return full_name if self.has_mailing_address.to_s=='1'
+  end
   
   
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
-      {"ADDRESS_2": {visible: "has_mailing_address"}},
-      {"CITY_2": {visible: "has_mailing_address", classes: "half"}},
-      {"STATE_2": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"ZIP CODE_2": {visible: "has_mailing_address", classes: "quarter last"}},
+      {"ADDRESS_2": {visible: "has_mailing_address", required: :if_visible}},
+      {"CITY_2": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
+      {"STATE_2": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"ZIP CODE_2": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
     ]
   end
   

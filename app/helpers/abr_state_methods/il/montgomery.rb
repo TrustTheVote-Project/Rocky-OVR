@@ -53,11 +53,11 @@ module AbrStateMethods::IL::Montgomery
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
-      {"Street Address include apt lot etc AND PO Box  if applicable": {visible: "has_mailing_address"}},
-      {"City_2": {visible: "has_mailing_address", classes: "half"}},
-      {"State_2": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"ZIP_2": {visible: "has_mailing_address", classes: "quarter last"}},
-      {"outside_usa": {type: :checkbox}},
+      {"Street Address include apt lot etc AND PO Box  if applicable": {visible: "has_mailing_address", required: :if_visible}},
+      {"City_2": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
+      {"State_2": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"ZIP_2": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
+      {"outside_usa": {type: :checkbox, visible: "has_mailing_address"}},
       {"Country other than USA": {visible: "outside_usa", required: :if_visible, type: :select, include_blank: true, options: [
         "Afghanistan",
         "Albania",
@@ -300,7 +300,7 @@ module AbrStateMethods::IL::Montgomery
 #
 #    # make sure delivery is selected if reason ==3
 #    # make sure fax is provided if faxtype is selected for delivery
-  end
+
   
  
 end

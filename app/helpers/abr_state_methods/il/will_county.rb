@@ -1,4 +1,4 @@
-module AbrStateMethods::IL::Will_county
+module AbrStateMethods::IL::Will_County
   
   PDF_FIELDS = {
     "Applicants Name": {
@@ -37,15 +37,15 @@ module AbrStateMethods::IL::Will_county
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
-      {"Number and Street": {visible: "has_mailing_address"}},
-      {"City": {visible: "has_mailing_address", classes: "half"}},
-      {"State": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Zip Code": {visible: "has_mailing_address", classes: "quarter last"}},
+      {"Number and Street": {visible: "has_mailing_address", required: :if_visible}},
+      {"City": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
+      {"State": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Zip Code": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
       {"change_of_address": {type: :checkbox}},
-      {"Number and Street_2": {visible: "change_of_address"}},
-      {"City_2": {visible: "change_of_address", classes: "half"}},
-      {"State_2": {visible: "change_of_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Zip Code_2": {visible: "change_of_address", classes: "quarter last"}},
+      {"Number and Street_2": {visible: "change_of_address", required: :if_visible}},
+      {"City_2": {visible: "change_of_address", required: :if_visible, classes: "half"}},
+      {"State_2": {visible: "change_of_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Zip Code_2": {visible: "change_of_address", required: :if_visible, classes: "quarter last"}},
     ]
   end
   #e.g.

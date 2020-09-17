@@ -5,7 +5,9 @@ module AbrStateMethods::IL::Ogle
     "20": {
       value: "20"
     },
-    "Name and Address where Registered": {}, #TODO - need full name AND full address
+    "Name and Address where Registered": {
+      method: "full_name_and_address"
+    }, #TODO - need full name AND full address, #ToDone
     "Phone #": {
       method: "phone"
     },
@@ -18,13 +20,18 @@ module AbrStateMethods::IL::Ogle
       method: "full_name"
     },
   }
+
+  def full_name_and_address
+    "#{full_name}\n#{full_address_3_lines}"
+  end
+
   EXTRA_FIELDS = ["has_mailing_address"]
   
   
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
-      {"Address to mail ballot if different than above": {visible: "has_mailing_address"}},
+      {"Address to mail ballot if different than above": {visible: "has_mailing_address", required: :if_visible}},
     ]
   end
   
