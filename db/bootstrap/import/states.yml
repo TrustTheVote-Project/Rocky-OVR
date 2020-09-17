@@ -485,6 +485,7 @@ record_32:
     NY 12207-2729
   sos_phone: "(518) 474-6220"
   sos_url: http://www.elections.ny.gov
+  status_check_url: https://absenteeballot.elections.ny.gov/
   registration_deadline: new_york
   id_length_min: '4'
   online_registration_url: http://dmv.ny.gov/org/more-info/electronic-voter-registration-application
