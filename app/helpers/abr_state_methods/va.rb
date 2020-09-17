@@ -78,7 +78,19 @@ module AbrStateMethods::VA
     #Asistant_Sign_Date
     "Voter_Sign_Date": {
       method: "date_for_signature"
-    }
+    },
+
+    "election_mm": {
+      value:'11'
+    },
+    "election_dd": {
+      value:'03'
+    },
+    "election_yyyy": {
+      value:'2020'
+    },
+   
+
    
   }
   EXTRA_FIELDS = ["has_mailing_address", "UOCAVA", "moved_permanently", "A", "B", "C", "D", "last_residency_date", "residency_mm","residency_dd", "residency_yyyy"]
@@ -96,7 +108,7 @@ module AbrStateMethods::VA
 
       #{"last_residency_date": {visible: "moved_permanently", classes: "indent-2", xtype: :date,  m: "residency_mm", d: "residency_dd", y: "residency_yyyy"}}, #date view/hide toggle is not working
       {"D": {type: :checkbox, visible: "UOCAVA",  classes: "indent"}}, #TODO- this text is too long and gets cut off. Can that be fixed?
-      {"Deliver_to": {visible: "UOCAVA", type: :radio, required: true}},
+      {"Deliver_to": {visible: "UOCAVA", type: :radio, required: :if_visible}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_1": {visible: "has_mailing_address",required: :if_visible, classes: "three-quarter"}},
       {"Mailing_Address_2": {visible: "has_mailing_address", classes: "quarter last"}},

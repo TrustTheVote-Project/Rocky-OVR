@@ -42,7 +42,8 @@ record_1:
   id_number_tooltip: drivers_license_with_state_name
   sos_address: State of Alaska<br>Division of Elections<br>PO Box 110017<br>Juneau,
     AK 99811-0017
-  sos_abr_address: Division of Elections Absentee and Petition Office<br>2525 Gambell Street, Suite 105<br>Anchorage, AK 99503-2838
+  sos_abr_address: Division of Elections Absentee and Petition Office<br>2525 Gambell
+    Street, Suite 105<br>Anchorage, AK 99503-2838
   sos_phone: "(907) 465-3021"
   sos_url: http://www.elections.alaska.gov
   sub_18: 90_days_before
@@ -155,7 +156,7 @@ record_9:
   sos_address: State of Florida, Department of State<br>Division of Elections<br>The
     R.A. Gray Building<br>500 South Bronough Street, Room 316<br>Tallahassee, FL  32399-0250
   sos_phone: "(850) 245-6200"
-  sos_url: http://election.dos.state.fl.us/
+  sos_url: https://dos.myflorida.com/elections/
   sub_18: when_is_16
   id_length_min: '4'
   online_registration_url: https://registertovoteflorida.gov/eligibilityreactive
@@ -473,13 +474,13 @@ record_32:
   party_tooltip: required_for_primary
   parties:
   - democratic
-  - independence
   - green
   - libertarian
   - republican
-  - sam
   - working_families
   - other
+  - independence
+  - sam
   id_number_tooltip: drivers_license_or_other_with_state_name_4
   sos_address: NYS Board of Elections<br>40 North Pearl Street, 5th Floor<br>Albany,
     NY 12207-2729
@@ -674,7 +675,7 @@ record_45:
   sos_url: https://www.sec.state.vt.us/elections.aspx
   registration_deadline: vermont
   id_length_min: '4'
-  online_registration_url: https://olvr.sec.state.vt.us/Registration/
+  online_registration_url: https://olvr.vermont.gov/Registration/
 record_46:
   abbreviation: VA
   name: Virginia

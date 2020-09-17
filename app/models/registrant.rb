@@ -353,7 +353,7 @@ class Registrant < ActiveRecord::Base
   belongs_to :prev_state,    :class_name => "GeoState"
 
   has_one :registrant_status
-  has_one :pdf_delivery
+  has_one :pdf_delivery, -> { order("pdf_ready DESC") } # If multiple, prefer the one that's ready
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 

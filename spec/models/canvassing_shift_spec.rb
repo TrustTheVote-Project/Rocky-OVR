@@ -36,7 +36,7 @@ RSpec.describe CanvassingShift, type: :model do
       allow(RockyConf.blocks_configuration).to receive(:default_location_id).and_return("default-id")
       allow(BlocksService).to receive(:new).and_return(b)
       allow(p).to receive(:id).and_return(123456)
-      allow(b).to receive(:get_locations).with(p).and_return({
+      allow(b).to receive(:get_locations).with(p, {turf_id: nil}).and_return({
         "locations"=> [
           {"name"=>"Location 1",
           "id"=>"L1"},
@@ -46,23 +46,23 @@ RSpec.describe CanvassingShift, type: :model do
       })
     end
     it "gets locations for the given partner" do
-      expect(CanvassingShift.location_options(p)).to eq([
+      expect(CanvassingShift.location_options(p, {turf_id: nil})).to eq([
         ["Location 1", "L1"],
         ["Location 2", "L2"]
       ])
     end
     it "returns default location when partner is missing" do
-      allow(b).to receive(:get_locations).with(nil).and_raise "error"
-      expect(CanvassingShift.location_options(nil)).to eq([
+      allow(b).to receive(:get_locations).with(nil, {turf_id: nil}).and_raise "error"
+      expect(CanvassingShift.location_options(nil, {turf_id: nil})).to eq([
         ["Default Location", "default-id"]
       ])
     end
-    it "returns default location when blockes returns non" do
-      allow(b).to receive(:get_locations).with(p).and_return(nil)
+    it "returns default location when blocks returns none" do
+      allow(b).to receive(:get_locations).with(p,  {turf_id: nil}).and_return(nil)
       expect(CanvassingShift.location_options(p)).to eq([
         ["Default Location", "default-id"]
       ])
-      allow(b).to receive(:get_locations).with(p).and_return([])
+      allow(b).to receive(:get_locations).with(p,  {turf_id: nil}).and_return([])
       expect(CanvassingShift.location_options(p)).to eq([
         ["Default Location", "default-id"]
       ])

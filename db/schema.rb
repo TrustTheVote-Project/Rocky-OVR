@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200914112538) do
+ActiveRecord::Schema.define(version: 20200915133334) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -185,6 +185,7 @@ ActiveRecord::Schema.define(version: 20200914112538) do
     t.string   "blocks_shift_id"
     t.boolean  "complete"
     t.string   "blocks_shift_location_name"
+    t.string   "blocks_turf_id"
   end
 
   add_index "canvassing_shifts", ["canvasser_first_name", "canvasser_last_name"], name: "shift_canvasser_name_index"
