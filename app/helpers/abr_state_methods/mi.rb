@@ -229,12 +229,12 @@ module AbrStateMethods::MI
        errors.add("assist_birthdate", custom_format_message("bad_date") )
       end
 
-      if !self.test_date(self.address_begindate_mm_dd_yyyy.to_s)
+      if self.has_mailing_address.to_s == "1" && !self.test_date(self.address_begindate_mm_dd_yyyy.to_s)
         errors.add("address_begindate", custom_format_message("bad_date") )
         errors.add('address_begindate', self.address_begindate_mm_dd_yyyy.to_s)
       end
 
-      if !self.test_date(self.address_enddate_mm_dd_yyyy.to_s)
+      if self.has_mailing_address.to_s == "1" && !self.test_date(self.address_enddate_mm_dd_yyyy.to_s)
         errors.add("address_enddate", custom_format_message("bad_date") )
         errors.add('address_enddate', self.address_enddate_mm_dd_yyyy.to_s)
       end
