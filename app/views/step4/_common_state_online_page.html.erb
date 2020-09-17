@@ -59,12 +59,13 @@
   <h2><%= t('txt.registration.step_3_header') %></h2>
   <%= render partial: 'skip_state', locals: { form: form, include_step_2: true } %>
   <%- if @registrant.use_short_form? %>
-    <%- if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig? %>
-      <div class="checkbox" style="font-size: 150%; text-align: center;">
-        <%= check_box_tag :pdf_assistance, "1", @pdf_assistance == "1" %>
-        <%= label_tag :pdf_assistance, I18n.t('txt.button.download_assistance') %>
-      </div>
-    <%- end %>
+  <%- if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig? %>
+  <div class="checkbox" style="font-size: 150%; text-align: center;">
+    <%= hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden %>
+    <%= check_box_tag :pdf_assistance, "1", @pdf_assistance == "1" %>
+    <%= label_tag :pdf_assistance, I18n.t('txt.button.download_assistance') %>
+  </div>
+  <%- end %>
   <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.prepare').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>
   <%- else %>
   <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>
