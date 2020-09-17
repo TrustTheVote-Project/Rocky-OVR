@@ -111,7 +111,7 @@ module AbrStateMethods::VA
       {"Deliver_to": {visible: "UOCAVA", type: :radio, required: :if_visible}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_1": {visible: "has_mailing_address",required: :if_visible, classes: "three-quarter"}},
-      {"Mailing_Address_2": {visible: "has_mailing_address", classes: "quarter last"}},
+      {"Mailing_Address_2": {visible: "has_mailing_address", classes: "quarter last", max:7}},
       {"Mailing_Address_3": {visible: "has_mailing_address", required: :if_visible}},
       {"Mailing_State": {visible: "has_mailing_address",required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true, classes:"half"}},
       {"Mailing_Zip_Code": {visible: "has_mailing_address",required: :if_visible, min: 5, max: 10, classes:" half last"}},
