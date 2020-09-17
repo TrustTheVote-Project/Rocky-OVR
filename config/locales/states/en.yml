@@ -985,9 +985,9 @@ en:
           jurisdiction_type__options:
             town: I live in a township.
             city: I live in a city.
-          Name of Person assisting the voter: Name
-          assist_birthdate: Date of birth (MM/DD/YYYY)
-          Adress of person assisting: Address
+          Name of Person assisting the voter: Assistant Name
+          assist_birthdate: Assistant Date of birth (MM/DD/YYYY)
+          Adress of person assisting: Assistant Address
           assistant: I am an authorized registered elector assisting in returning
             this application for the voter.
           has_mailing_address: My mailing address differs from my residential address.
