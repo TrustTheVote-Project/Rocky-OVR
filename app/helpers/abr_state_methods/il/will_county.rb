@@ -1,4 +1,4 @@
-module AbrStateMethods::IL::Will_County
+module AbrStateMethods::IL::Will_county
   
   PDF_FIELDS = {
     "Applicants Name": {

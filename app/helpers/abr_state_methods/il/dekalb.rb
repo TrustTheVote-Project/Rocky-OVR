@@ -36,7 +36,7 @@ module AbrStateMethods::IL::Dekalb
   }
   EXTRA_FIELDS = ["has_mailing_address"]
   
-  def "mailing_name"
+  def mailing_name
     #TODO- autofill with "full_name" if "has_mailing_address" is checked, otherwise leave blank
   end
   
