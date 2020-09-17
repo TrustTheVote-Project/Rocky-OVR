@@ -241,13 +241,48 @@ module AbrStateMethods
     super(value)
     add_state_attributes
   end
+
+  def template_specialization 
+    specialization=nil
+    RockyConf.absentee_states[home_state_abbrev].tap do |state_config|
+      if state_config && state_config.cities 
+        self.cities_from_zip.each do |c|
+          begin
+            template ||= state_config.cities[c.to_s.downcase.strip]&.pdf_template 
+            specialization ||= !template.blank? ? template[0...-4].capitalize : nil
+          rescue
+          end
+        end
+        template ||= state_config.cities[self.city.to_s.downcase.strip]&.pdf_template 
+        specialization ||= !template.blank? ?  template[0...-4].capitalize : nil
+      end
+      if specialization.blank?
+        if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
+          template = state_config.counties[self.county_from_zip.downcase].pdf_template 
+          specialization = !template.blank? ?  template.strip[0...-4].capitalize : nil
+        end
+      end
+    end
+    return specialization
+  end
+
+  def abr_customization_type
+    type = "AbrStateMethods::#{home_state_abbrev}"
+    specialization = template_specialization
+    if (!specialization.blank?) then
+      type="#{type}::#{specialization}"
+    end
+    return (type)
+  end
   
   attr_reader :home_state_attributes_initialized
   def add_state_attributes
+    
     @home_state_attributes_initialized ||= nil
     if home_state && !@home_state_attributes_initialized
-      type = "AbrStateMethods::#{home_state_abbrev}"
-      begin
+      #type = "AbrStateMethods::#{home_state_abbrev}"
+      type = abr_customization_type
+       begin
         klass = Module.const_get(type)
         self.singleton_class.send(:include, klass)
         self.add_pdf_fields(klass::PDF_FIELDS)
