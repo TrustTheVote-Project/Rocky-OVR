@@ -242,33 +242,32 @@ module AbrStateMethods
     add_state_attributes
   end
 
-  def template_specialization 
-    specialization=nil
-    RockyConf.absentee_states[home_state_abbrev].tap do |state_config|
-      if state_config && state_config.cities 
-        self.cities_from_zip.each do |c|
-          begin
-            template ||= state_config.cities[c.to_s.downcase.strip]&.pdf_template 
-            specialization ||= !template.blank? ? template[0...-4].capitalize : nil
-          rescue
+  def customization_class
+    unless @customization_class_name
+      RockyConf.absentee_states[home_state_abbrev].tap do |state_config|
+        if state_config && state_config.cities 
+          self.cities_from_zip.each do |c|
+            begin
+              @customization_class_name ||= state_config.cities[c.to_s.downcase.strip]&.customization_class_name          
+            rescue
           end
         end
-        template ||= state_config.cities[self.city.to_s.downcase.strip]&.pdf_template 
-        specialization ||= !template.blank? ?  template[0...-4].capitalize : nil
+        @customization_class_name ||= state_config.cities[self.city.to_s.downcase.strip]&.customization_class_name 
+        
       end
-      if specialization.blank?
-        if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
-          template = state_config.counties[self.county_from_zip.downcase].pdf_template 
-          specialization = !template.blank? ?  template.strip[0...-4].capitalize : nil
+        if @customization_class_name.blank?
+          if state_config && state_config.counties && state_config.counties[self.county_from_zip.downcase]
+            @customization_class_name = state_config.counties[self.county_from_zip.downcase].customization_class_name 
+          end
         end
       end
     end
-    return specialization
+    @customization_class_name
   end
 
   def abr_customization_type
     type = "AbrStateMethods::#{home_state_abbrev}"
-    specialization = template_specialization
+    specialization = customization_class
     if (!specialization.blank?) then
       type="#{type}::#{specialization}"
     end
