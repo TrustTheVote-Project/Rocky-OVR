@@ -231,6 +231,12 @@ en:
             time you can check the status of your application and the status of your
             ballot at: <a rel="noopener" target="blank" href="https://my.arizona.vote/PortalList.aspx">https://my.arizona.vote/PortalList.aspx</a></p>'
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to the following statement on my request form "I swear or affirm that 
+            I am a registered voter in my country of residence and that the above 
+            information is true and correct"
           signature_capture:
             desktop_provide_e_signature: In the state of Arizona, we can email a digitally
               signed copy of your absentee request. Please select how you'd like to
@@ -1641,6 +1647,15 @@ en:
           to print, sign, and mail in the form.</p>
       ny:
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to the following statement on my request form "I certify that I am a 
+            qualified and a registered (and for primary, enrolled) voter; and that the 
+            information in this application is true and correct and that this application will 
+            be accepted for all purposes as the equivalent of an affidavit and, if it contains 
+            a material false statement, shall subject me to the same penalties as if I had 
+            been duly sworn."
           signature_capture:
             desktop_provide_e_signature: In the state of New York, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -2439,6 +2454,12 @@ en:
             </p>'
       wy:
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to the following statement on my request form "I hereby state that I am 
+            a registered voter and entitled to vote in the election indicated above". The 
+            election indicated is the Nov 3rd, 2020 General Election.
           signature_capture:
             desktop_provide_e_signature: In the state of Wyoming, we can email a digitally
               signed copy of your absentee request. Please select how you'd like to
@@ -2464,7 +2485,8 @@ en:
           ACTIVE MILITARY Y  N__options:
             Y: 'Yes'
             N: 'No'
-          Individual's name who may pick up my ballot: 'To authorize another individual
+          Individual's name who may pick up my ballot: Authorized Ballot Pick-up
+          Individual's name who may pick up my ballot__hint: 'To authorize another individual
             to pick up your ballot for you, add their name here:'
     parties:
       democratic: Democratic

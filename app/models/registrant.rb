@@ -1306,6 +1306,7 @@ class Registrant < ActiveRecord::Base
     d = self.pdf_delivery
     if !d
       d = self.create_pdf_delivery
+      d.save!
       klass= PdfDeliveryGeneration
       klass.create!(:registrant_id=>self.id)    
     end

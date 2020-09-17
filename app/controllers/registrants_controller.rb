@@ -101,7 +101,7 @@ class RegistrantsController < RegistrationStep
   # POST /registrants
   def create
     set_up_locale
-    @registrant = Registrant.new(params[:registrant].reverse_merge(
+    @registrant = Registrant.new((params[:registrant] || {}).reverse_merge(
                                     :locale => @locale,
                                     :partner_id => @partner_id,
                                     :tracking_source => @source,
