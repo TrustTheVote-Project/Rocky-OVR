@@ -84,7 +84,7 @@ module AbrStateMethods::VA
   def form_field_items
     [
       {"Birth_Year": {min: 4, max: 4,}},
-      {"SSN_Last_4": {min: 4, max: 4, required: true, }},
+      {"SSN_Last_4": {min: 4, max: 4, required: true, regexp: /\A\d{4}\z/}},
       {"UOCAVA": {type: :checkbox}},
       #TODO- the text field "Category_Code" should be filled in with the letter(s) of whatever is checked below: A, B, C, and/or D
       {"A": {type: :checkbox, visible: "UOCAVA", classes: "indent"}},
