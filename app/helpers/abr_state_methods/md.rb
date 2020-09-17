@@ -6,7 +6,7 @@ module AbrStateMethods::MD
       "First_Name": {},
       "Middle_Name": {},
       "suffix": { 
-        #options: ["Off", "Yes", "Yes2", "Yes3", "Yes4", "Yes5"],
+       #options: ["Off", "Yes", "Yes2", "Yes3", "Yes4", "Yes5"],
         method: "md_suffix_mapper"
       },
 
@@ -89,16 +89,28 @@ module AbrStateMethods::MD
       "Email_address": {
         method: "email"
       },
-      "Issue_Date": {},
-      "Issue_Month":{},
-      "Issue_Day": {},
-      "Issue_Year": {},
+      #"Issue_Date": {},
+      "Issue_Month":{
+        method: 'issue_date_mm'
+      },
+      "Issue_Day": {
+        method: 'issue_date_dd'
+      },
+      "Issue_Year": {
+        method: 'issue_date_yyyy'
+      },
 
       "SSN_Last_4": {sensitive:true},
 
-      "Fax_Area_Code": {},
-      "Fax_Phone": {},
-      "Fax_Phone_2": {},
+      "Fax_Area_Code": {
+        method: 'fax_1'
+      },
+      "Fax_Phone": {
+        method: 'fax_2'
+      },
+      "Fax_Phone_2": {
+        method: 'fax_3'
+      },
       #"Todays_Date": {},
       #"assistant_sign": {},
       #"assistant_print": {},
@@ -115,7 +127,7 @@ module AbrStateMethods::MD
       "State": {
         method: "home_state_abbrev"
       },
-      "Zipcode": {
+      "ZipCode": {
         method: "zip"
       },
     #"When_Moved_Here": {},
@@ -140,15 +152,8 @@ module AbrStateMethods::MD
         method: "full_name"
       },
       "Delivery": { options: ["mail", "internet", "fax"] },
-      "primary_mailto": { 
-        options: ["Off", "address_below", "same_as_above"],
-        value: "Off"
-      },
-      "presidential_primary_mailto": { 
-        options: ["Off", "address_below", "same_as_above"],
-        value: "Off"
-      },
-      "presidential_general_mailto": { options: ["same_as_above", "address_below"] },
+
+      "mailto": { options: ["Off","same_as_above", "address_below"] },
 
     }
     EXTRA_FIELDS = ["no_dln", "assistant", 'dln','issue_date','issue_date_mm','issue_date_dd','issue_date_yyyy','issue_date', "internet_delivery_identification",'movedate','movedate_mm','movedate_dd','movedate_yyyy','fax_number']
@@ -169,14 +174,14 @@ module AbrStateMethods::MD
         {"dln": {visible: "internet_delivery_identification_dln", required: 'star', regexp: /\A[[:alpha:]]\d{12}\z/}},
         {"issue_date": {type: :date, m: "issue_date_mm", d: "issue_date_dd", y: "issue_date_yyyy", visible: "internet_delivery_identification_dln", required: 'star'}},
         #{"no_dln": {type: :checkbox, visible: "delivery_internet"}},
-        {"SSN_Last_4": {visible: "internet_delivery_identification_ssn", required: 'star'}},
-        {"fax_number": {visible: "delivery_fax", required: 'star'}},
-        {"presidential_general_mailto": {type: :radio, required: 'star', visible: "delivery_mail"}},
-        {"Gen_Address": {visible: "presidential_general_mailto_address_below", classes: "three-quarter"}},
-        {"Gen_Apt": {visible: "presidential_general_mailto_address_below", classes: "quarter last"}},
-        {"Gen_City": {visible: "presidential_general_mailto_address_below", classes: "half"}},
-        {"Gen_State": {visible: "presidential_general_mailto_address_below", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-        {"Gen_ZipCode": {visible: "presidential_general_mailto_address_below", classes: "quarter last"}},
+        {"SSN_Last_4": {visible: "internet_delivery_identification_ssn", required: 'star', regexp: /\A\d{4}\z/}},
+        {"fax_number": {visible: "delivery_fax", required: 'star', regexp: /\A\d{3}-\d{3}-\d{4}\z/ }},
+        {"mailto": {type: :radio, options: ["same_as_above", "address_below"], required: 'star', visible: "delivery_mail"}},
+        {"Gen_Address": {visible: "mailto_address_below",required: 'star', classes: "three-quarter"}},
+        {"Gen_Apt": {visible: "mailto_address_below", classes: "quarter last"}},
+        {"Gen_City": {visible: "mailto_address_below",required: 'star', classes: "half"}},
+        {"Gen_State": {visible: "mailto_address_below",required: 'star', classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"Gen_ZipCode": {visible: "mailto_address_below",required: 'star', classes: "quarter last"}},
         {"assistant": {type: :checkbox}},
         {"Assistance_Print_Name": {visible: "assistant", required: :if_visible}},
 
@@ -205,7 +210,7 @@ module AbrStateMethods::MD
     end
 
     def movedate_dd_optional
-      movedate_dd.to_s !=''?:movedate_dd.to_s : '01'
+      self.movedate_dd.to_s !='' ? movedate_dd.to_s : '01'
     end
     
     def movedate_mm_dd_yyyy
@@ -214,7 +219,7 @@ module AbrStateMethods::MD
     end
 
     def md_suffix_mapper
-      case self.suffix
+      case self.name_suffix
         when "Jr."
           "Yes"
         when "Sr."
@@ -230,8 +235,37 @@ module AbrStateMethods::MD
       end
     end
 
+    def dln_lic_1
+      return dln.to_s[0..1] if dln.to_s!=''
+    end
+
+    def dln_lic_2
+      return dln.to_s[1..3] if dln.to_s!=''
+    end
+    def dln_lic_3
+      return dln.to_s[4..6] if dln.to_s!=''
+    end
+    def dln_lic_4
+      return dln.to_s[7..9] if dln.to_s!=''
+    end
+    def dln_lic_5
+      return dln.to_s[10..12] if dln.to_s!=''
+    end
+
+    def fax_1
+      return fax_number.to_s[0..2] if fax_number.to_s!=''
+    end
+
+    def fax_2
+      return fax_number.to_s[4..6] if fax_number.to_s!=''
+    end
+
+    def fax_3
+      return fax_number.to_s[8..11] if fax_number.to_s!=''
+    end
+
     def delivery_conditional_email
-      return self.email if self.delivery.to_s=="email"
+      return self.email if self.delivery.to_s=="internet"
     end
 
     def phone_area
@@ -260,6 +294,19 @@ module AbrStateMethods::MD
         return false
       end
     end
+
+    REQUIRED_MAIL_FIELDS = [
+      "Gen_Address",
+      "Gen_City",
+      "Gen_State",
+      "Gen_ZipCode",
+      ]
+
+    def require_mailing_fields
+      REQUIRED_MAIL_FIELDS.each do |f|
+        custom_validates_presence_of(f)
+      end
+    end
     
     def custom_form_field_validations
       # e.g:
@@ -280,14 +327,17 @@ module AbrStateMethods::MD
 
       #SSN_Last_4
       if (self.internet_delivery_identification.to_s=='ssn') 
-        custom_validates_presence_of('dln') 
+        custom_validates_presence_of('SSN_Last_4') 
       end
       
 
       if (self.delivery.to_s=='fax') 
         custom_validates_presence_of('fax_number') 
       end
-      
+
+      if (self.mailto.to_s=='address_below') 
+        self.require_mailing_fields 
+      end      
 
       #movedate_mm_dd_yyyy
       if !self.test_date(self.movedate_mm_dd_yyyy.to_s)

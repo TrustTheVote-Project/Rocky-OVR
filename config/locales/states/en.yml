@@ -862,8 +862,8 @@ en:
             please verify before continuing.
       md:
         abr_form_fields:
-          presidential_general_mailto: 'I want my ballot mailed to:'
-          presidential_general_mailto__options:
+          mailto: 'I want my ballot mailed to:'
+          mailto__options:
             address_below: A different mailing address.
             same_as_above: My residential address.
           "movedate": "I moved to my residential address on (MM/DD/YYYY or MM/YYYY):" 
@@ -885,6 +885,7 @@ en:
           dln: MD driver's license
           dln__format_message: Invalid MD driver's license format. Please enter 1 letter, followed by 12 numbers
           "Issue_Date": "Issue Date"
+          fax_number: Fax Number (xxx-xxx-xxxx)
           "Assistance_Print_Name": Name of Assistant
           "assistant": I had help completing this application
         abr:
