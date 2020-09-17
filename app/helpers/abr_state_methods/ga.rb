@@ -65,7 +65,8 @@ module AbrStateMethods::GA
     },
     #"reason_other": {
     "Group2": {
-      options:  [ "physically disabled", "temporarily residing out of the country"]
+      #options:  [ "physically disabled", "temporarily residing out of the country"],
+      value: "Off" # Not sure why it needs to be "On"
     },
     "D  Disabled  I have a physical disability": { 
       options: ["Off", "On"],
@@ -97,7 +98,7 @@ module AbrStateMethods::GA
   def form_field_items
     [
 
-      {"Group1": {type: :radio, required: true }}, 
+      # {"Group1": {type: :radio, required: false }}, 
       {"has_mailing_address": {type: :checkbox}},
 
 
@@ -108,20 +109,20 @@ module AbrStateMethods::GA
       {"Temporary County": {visible: "has_mailing_address", required:'star'}},
 
     
-      {"assisted_voter": {type: :checkbox}},
-      {"Name of assistant": {visible: "assisted_voter", required: "star"}},
+      # {"assisted_voter": {type: :checkbox}},
+      # {"Name of assistant": {visible: "assisted_voter", required: "star"}},
 
-      {"requestor": {type: :checkbox}},
+      # {"requestor": {type: :checkbox}},
 
-      {"Relationship to voter": {visible: "requestor", required: 'star'}},
+      # {"Relationship to voter": {visible: "requestor", required: 'star'}},
       
-      {"Group2": {visible: "requestor", type: :radio, required: 'star'}},
+      # {"Group2": {visible: "requestor", type: :radio, required: 'star'}},
      
      
-      {"Elegibility": {
-        type: :radio,
-        options: ["D", "E", "U"]
-      }},
+      # {"Elegibility": {
+      #   type: :radio,
+      #   options: ["D", "E", "U"]
+      # }},
       #{"UOCAVA_Status": {visible: "Elegibility_u", type: :radio, }},
       {"Group3": {visible: "Elegibility_u", type: :radio, }},
       {"request_electronic_transmission": {visible: "Elegibility_u", type: :checkbox, }},
@@ -175,7 +176,7 @@ module AbrStateMethods::GA
   end
 
 
-  def check_Elegibility (x)
+  def check_Elegibility(x)
     return (self.Elegibility==x ? "On" : "Off")
   end
 
