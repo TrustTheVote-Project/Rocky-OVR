@@ -2131,6 +2131,7 @@ en:
             ballot_mailing_address: My mailing address
             email_address: My email address
           has_mailing_address: My mailing address differs from my residential address.
+          has_mailing_address__required_message: A mailing address is required for the chosen delivery option.
           need_assistance: I need assistance completing my ballot due to a disability,
             blindness, or inability to read or write.
           Assistant_Name: Assistant's name

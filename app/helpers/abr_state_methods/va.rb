@@ -97,7 +97,7 @@ module AbrStateMethods::VA
   
   def form_field_items
     [
-      {"SSN_Last_4": {min: 4, max: 4, required: true, regexp: /\A\d{4}\z/}},
+      {"SSN_Last_4": {min: 4, max: 4, required: true,classes: 'three-quarter', regexp: /\A\d{4}\z/}},
       {"UOCAVA": {type: :checkbox}},
       #TODO- the text field "Category_Code" should be filled in with the letter(s) of whatever is checked below: A, B, C, and/or D
       {"A": {type: :checkbox, visible: "UOCAVA", classes: "indent"}},
@@ -171,7 +171,10 @@ module AbrStateMethods::VA
   end
  
   def custom_form_field_validations
-    
+    if self.deliver_to.to_s=='ballot_mailing_address' && self.has_mailing_address.to_s!='1'
+      errors.add('has_mailing_address', custom_required_message('has_mailing_address'))
+    end
+
   end
 
   
