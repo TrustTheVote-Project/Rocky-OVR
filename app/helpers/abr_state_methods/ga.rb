@@ -56,8 +56,8 @@ module AbrStateMethods::GA
       method: "email_if_uocava" #only required if "Elegibility_U" is checked
     },
 
-    "Election_Date": {
-      value: "11/3/2020"
+    "Date of P/E/R": {
+      value: "11/03/2020"
     },
     #"type_of_ballot": {
     "Group1": {
