@@ -24,7 +24,7 @@ class PdfDeliveryGeneration
     if r && r.pdf_delivery && r.pdf_delivery.pdf_ready?
       Rails.logger.warn "Tried to generate PDF for #{r.id} that was already complete"
       delete_from_queue(message)      
-    elsif r && r.mail_redacted_pdf #(true)
+    elsif r && r.pdf_delivery && r.mail_redacted_pdf # See if pdf_delivery has been created so we don't create twice.
       finalized = r.pdf_delivery.finalize_pdf
     
       if !finalized

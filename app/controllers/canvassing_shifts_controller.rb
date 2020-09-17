@@ -13,6 +13,7 @@ class CanvassingShiftsController < ApplicationController
   end
 
   def set_partner
+    find_partner    
   end
 
   def new
@@ -20,10 +21,12 @@ class CanvassingShiftsController < ApplicationController
     if !@partner
       flash[:message] = "Partner #{params[:partner]} not available for canvassing shifts"
       redirect_to action: :set_partner
+    elsif @sub_orgs && @sub_orgs.any? && @sub_org.blank?
+      redirect_to action: :set_partner, partner: @partner.id
+    else
+      @confirmed_partner = false    
+      @new_canvassing_shift = CanvassingShift.new(blocks_turf_id: @blocks_turf_id)
     end
-    @confirmed_partner = false
-    
-    @new_canvassing_shift = CanvassingShift.new
   end
 
   def create
@@ -74,12 +77,16 @@ class CanvassingShiftsController < ApplicationController
   private
 
   def cs_params
-    params.require(:canvassing_shift).permit(:canvasser_first_name, :canvasser_last_name, :canvasser_phone, :canvasser_email, :shift_location)
+    params.require(:canvassing_shift).permit(:canvasser_first_name, :canvasser_last_name, :canvasser_phone, :canvasser_email, :shift_location, :blocks_turf_id)
   end
 
   def find_partner
     @partners = Partner.where(id: RockyConf.blocks_configuration.partners.keys.collect(&:to_s))
     @partner = @partners.where(id: params[:partner]).first
+    @sub_orgs = @partner ? RockyConf.blocks_configuration.partners[@partner.id.to_i][:sub_orgs] : nil
+    @sub_org = params[:sub_org] 
+    @organization = @sub_org || @partner&.organization
+    @blocks_turf_id = @sub_org ? @sub_orgs[@sub_org] : nil
     set_params
   end
 

@@ -500,7 +500,7 @@ body {
             margin-bottom: 0;
             margin-top: 5px;
             input, label {
-              font-size: 16px;              
+              font-size: $label-font-size;              
               vertical-align: top;
               line-height: 1em;
             }
