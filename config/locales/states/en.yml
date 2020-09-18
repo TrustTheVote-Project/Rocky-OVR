@@ -456,6 +456,11 @@ en:
             of your ballot here: <a rel="noopener" target="blank" href="https://registration.elections.myflorida.com/CheckVoterStatus">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>'
       ga:
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate."
+          
           signature_capture:
             desktop_provide_e_signature: In the state of Georgia, we can email a digitally
               signed copy of your absentee request. Please select how you'd like to
@@ -895,6 +900,10 @@ en:
           "Assistance_Print_Name": Name of Assistant
           "assistant": I had help completing this application
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate."
           signature_capture:
             desktop_provide_e_signature: In the state of Maryland, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -946,6 +955,12 @@ en:
             ballot must be received by 8:00pm on Election Day.</>"
       ma:
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate and 
+            that this form is <i>signed under penalty of perjury</i>."
+          
           signature_capture:
             desktop_provide_e_signature: In the state of Massachusetts, we can email
               a digitally signed copy of your absentee request. Please select how
