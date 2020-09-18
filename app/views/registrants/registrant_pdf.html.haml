@@ -16,6 +16,13 @@
       %h1= I18n.t('pdf.nvra.state_instructions_header', state: @registrant.home_state_name)
       = @registrant.state_id_tooltip
       
+- if @esign
+  %div.page#page_1.esign_cover_letter
+    .logos
+      .logo= wicked_pdf_image_tag("pdf/esign/#{@registrant.home_state_name.downcase}.png")
+      .logo= wicked_pdf_image_tag('pdf/esign/rtv.png')
+      -# image_tag(@rtv_esign_logo_path)
+    .letter= t('pdf.nvra.esign_letter').to_s.html_safe
 
 - unless @esign
   %div.page#page_1

@@ -81,6 +81,37 @@ span.smaller_prompt {
   }
 }
 
+.esign_cover_letter {
+	padding: 60px;
+	.logos {
+		padding: 0 0 0 80px;
+		height: 70px;
+		text-align: center;
+		.logo {
+			padding: 0 30px;
+			height: 100%;
+			float: left;
+			width: auto;
+			text-align: center;
+			img {
+				height: 100%;
+			}
+			margin-bottom: 80px;
+		}
+	}
+	.letter {
+		p {
+			font-size: 1.3 *$fs;
+		}
+		clear: both;
+		.signature {
+			float: left;
+			width: 50%;
+		}
+	}
+}
+
+
 #page_1 {
 	#logo {
 		float: right;
