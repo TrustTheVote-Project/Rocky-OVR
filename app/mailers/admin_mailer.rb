@@ -123,6 +123,13 @@ class AdminMailer < ActionMailer::Base
       body: "The following modifications were made:\n\n #{mod_list.join("\n")}"
     )
   end
+
+  def general_error(body_text)
+    mail(
+      subject: "[ROCKY NOTIFICATION#{environment_subject}]",
+      body: body_text
+    )
+  end
   
   private
   
