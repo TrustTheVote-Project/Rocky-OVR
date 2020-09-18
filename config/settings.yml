@@ -98,7 +98,7 @@ absentee_states:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
   GA:
     pdf_template: ga.pdf
-    # email_delivery: true
+    email_delivery: true
   HI: {}
   IA:
     pdf_template: ia.pdf
@@ -135,7 +135,7 @@ absentee_states:
     pdf_template: la.pdf
   MA:
     pdf_template: ma.pdf
-    # email_delivery: true
+    email_delivery: true
   MD:
     online_req_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/VoterType
     pdf_template: md.pdf
