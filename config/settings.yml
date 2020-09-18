@@ -97,6 +97,7 @@ absentee_states:
   FL:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
   GA:
+    online_req_url: https://ballotrequest.sos.ga.gov/
     pdf_template: ga.pdf
     email_delivery: true
   HI: {}
