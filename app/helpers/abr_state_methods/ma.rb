@@ -4,12 +4,14 @@ module AbrStateMethods::MA
     "Name": {
       method: "full_name"
     },
-    "Legal Voting Residence": {
+     "voter_address1":{
       method: "address"
     },
-    "1": {
+
+     "voter_address2": {
       method: "address_city_state_zip"
     },
+
     "Date of Birth": {
       method: "date_of_birth_mm_dd_yyyy"
     },
@@ -19,48 +21,27 @@ module AbrStateMethods::MA
     "Email Address": {
       method: "email"
     },
-    "Mail Ballot to 1": {},
-    "Mail Ballot to 2": {},
-    "All elections this year": { 
-      options: ["Off", "On"],
-      value: "Off"
+    "mailing_address": {
+      method: "override_mailing_address",
     },
-    "All general elections No primaries": { 
-      options: ["Off", "On"], 
-      value: "On"
-    },
-    "A specific election": { 
-      options: ["Off", "On"], 
-      value: "Off"
-    },
-    "This application is being made by a family member of the voter": { options: ["Off", "On"] },
-    "Voter is a member of military on active duty or dependent family member of": { options: ["Off", "On"] },
-    "Voter is a Massachusetts citizen residing overseas": { options: ["Off", "On"] },
-    "Voter has been admitted to a healthcare facility after noon on the fifth day": { options: ["Off", "On"] },
-    "Voter required assistance in completing application due to physical disability": { options: ["Off", "On"] },
-    "Relationship to voter": {},
-    "the ballot": {},
-    "Assisting persons name": {},
+
+    "assistance_required": { options: ["Off", "On"] },
+
+    #"Assisting persons name": {},
+    "assisting_person": {},
     "Assisting persons address": {},
     "Date": { method: "date_for_signature" }
     #"voter_signature": {}
   }
-  EXTRA_FIELDS = ["has_mailing_address"]
+  EXTRA_FIELDS = ["has_mailing_address", "mailing_address_input"]
 
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
-      {"Mail Ballot to 1": {visible: "has_mailing_address", required: :if_visible}},
-      {"Mail Ballot to 2": {visible: "has_mailing_address", required: :if_visible}},
-      {"This application is being made by a family member of the voter": {type: :checkbox}},
-      {"Relationship to voter": {visible: self.class.make_method_name("This application is being made by a family member of the voter"), required: :if_visible}},
-      {"Voter is a member of military on active duty or dependent family member of": {type: :checkbox}},
-      {"Voter is a Massachusetts citizen residing overseas": {type: :checkbox}},
-      {"Voter has been admitted to a healthcare facility after noon on the fifth day": {type: :checkbox}},
-      {"the ballot": {visible: self.class.make_method_name("Voter has been admitted to a healthcare facility after noon on the fifth day"), required: :if_visible}},
-      {"Voter required assistance in completing application due to physical disability": {type: :checkbox}},
-      {"Assisting persons name": {visible: self.class.make_method_name("Voter required assistance in completing application due to physical disability"), required: :if_visible}},
-      {"Assisting persons address": {visible: self.class.make_method_name("Voter required assistance in completing application due to physical disability"), required: :if_visible}},
+      {"mailing_address_input": {visible: "has_mailing_address", required: :if_visible}},
+      {"assistance_required": {type: :checkbox}},
+      {"assisting_person": {visible: "assistance_required", required: :if_visible}},
+      {"Assisting persons address": {visible: "assistance_required", required: :if_visible}},
     ]
   end
   #e.g.
@@ -76,6 +57,23 @@ module AbrStateMethods::MA
   #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
   # ]
   
+
+  def override_field_value(override, fieldname1, fieldname2) 
+    if (override) 
+        return self.send(fieldname2) 
+    else 
+      return self.send(fieldname1)
+    end
+  end
+
+  def override_mailing_address_field (fieldname1, fieldname2)
+      return override_field_value((self.has_mailing_address.to_s == "1"), fieldname1, fieldname2)
+  end
+
+  def override_mailing_address
+    return override_mailing_address_field("full_address_1_line", "mailing_address_input")
+  end
+
   
   def custom_form_field_validations
     # make sure delivery is selected if reason ==3

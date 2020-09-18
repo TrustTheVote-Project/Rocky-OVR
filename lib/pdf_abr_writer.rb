@@ -69,7 +69,7 @@ class PdfAbrWriter
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end
-      `pdftk #{(!voter_signature&.voter_signature_image.blank? ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`        
+      `pdftk #{(voter_signature && !voter_signature.voter_signature_image.blank? ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`        
       if deliver_to_elections_office_via_email?
         # no cover page needed
         `cp #{pdf_file_path}-tmp #{pdf_file_path}`
@@ -92,7 +92,7 @@ class PdfAbrWriter
           File.delete(pdf_delivery_address_path) if File.exists?((pdf_delivery_address_path))
         end
       else
-        raise "File #{path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
+        raise "File #{pdf_file_path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
         # Handle failed upload to S3 - it's probably raising an error
       end      
     end

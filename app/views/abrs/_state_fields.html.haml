@@ -49,6 +49,30 @@
     })
   }
 
+  function toggleHiddenAny() {
+    var setHidden = $("[data-hidden-any-conditions]");
+    //console.log(setVisible.get(0))
+    $(setHidden).each(function() {
+      var conditions = $(this).data("hidden-any-conditions");
+      var conditionalFields = conditions.split(" ");
+      var hideField = false;
+      for(let i=0,ii=conditionalFields.length;i<ii;i++) {
+        var fieldName = conditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+"")
+        //console.log(showField, field, field.val())
+        hideField = hideField ||( field && (field.prop("type")=="checkbox"|| field.prop("type")=="radio" ? field.is(":checked") : field.val()))
+      }
+      if (hideField) {
+        $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)
+      } else {
+        $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)
+      }
+      
+    })
+  }
+
   function track_soft_validation(fieldElement, validation) {
     $(document).find('input[name="abr[dln_soft_validation]"]').val(validation);
   }
@@ -90,10 +114,12 @@
   }
   $(document).ready(function() {
     toggleHidden();
+    toggleHiddenAny();
     toggleVisible();
     test_ui_regex();
     $("form").change(() => {
       toggleHidden();
+      toggleHiddenAny();
       toggleVisible();
       test_ui_regex();
     })
@@ -121,6 +147,10 @@
       - data["hidden-conditions-value"] = hidden_conditions_value unless hidden_conditions_value.blank?
       - data["ui-regexp"] = ui_regexp unless ui_regexp.blank?
       - data["ui_regexp_fail_message"] = ui_regexp_fail_message unless ui_regexp.blank?
+      - hidden_any_conditions =  opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][0] : opts[:hidden_any].to_s.strip
+      - hidden_any_conditions_value = opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][1] : nil
+      - data["hidden-any-conditions"] = hidden_any_conditions unless hidden_any_conditions.blank?
+      - data["hidden-any-conditions-value"] = hidden_any_conditions_value unless hidden_any_conditions_value.blank?
       - if opts[:type] == :instructions
         %li.instructions{class: class_name, data: data}
           %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")

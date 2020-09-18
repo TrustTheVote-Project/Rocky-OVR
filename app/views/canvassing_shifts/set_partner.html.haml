@@ -8,8 +8,12 @@
   %h2 Enter Partner ID
   %br
   = form_tag new_canvassing_shifts_path, {method: :get} do
-    = text_field_tag :partner
-
+    = text_field_tag :partner, @partner&.id
+    - if @sub_orgs && @sub_orgs.any?
+      %br
+      %br
+      %h3 Select an Organization
+      = select_tag :sub_org, options_for_select(@sub_orgs.keys), include_blank: true
     = rollover_button(:next, "Next") #I18n.t('txt.button.submit').html_safe
     
   %p
