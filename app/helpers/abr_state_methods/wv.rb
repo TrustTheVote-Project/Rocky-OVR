@@ -65,6 +65,20 @@ module AbrStateMethods::WV
         return self.email if self.reason_meta.to_s=='B'
     end
     
+    def state_registrar_address
+      if self.reason_a == "address_confidentiality"
+        @state_registrar_address ||= home_state && home_state.state_registrar_address
+      else
+        @state_registrar_address ||= home_state && home_state.abr_address(self.zip)
+      end
+    end
+  
+    def delivery_full_address
+      addr = self.reason_a == "address_confidentiality" ? home_state&.state_registrar_address : state_registrar_office&.req_address
+      return addr.blank? ? state_registrar_office&.address : addr
+    end
+    
+  
     
     def form_field_items
       [
