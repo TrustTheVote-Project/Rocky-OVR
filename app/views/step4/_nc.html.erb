@@ -31,7 +31,9 @@ $(document).ready(function() {
   <%- if @registrant.has_home_state_online_redirect? || @registrant.has_home_state_online_registration_view? %>
     <script>
       $(document).ready(function() {
-        $("#registrant_state_online_registration").attr('formtarget','_BLANK')      
+        if (!window.isFacebookApp()) {
+          $("#registrant_state_online_registration").attr('formtarget','_BLANK')      
+        }
       });
     
       $("#registrant_state_online_registration").click(function() {
@@ -39,10 +41,12 @@ $(document).ready(function() {
         return true;
       })
       function showSharing() {
-        setTimeout(function(){
-          //console.log("redirect!")
-          window.location.href = "<%= registrant_finish_path(@registrant, :share_only=>true) %>";
-        }, 1000);
+        if (!window.isFacebookApp()) {
+          setTimeout(function(){
+            //console.log("redirect!")
+            window.location.href = "<%= registrant_finish_path(@registrant, :share_only=>true) %>";
+          }, 1000);
+        }
       }
     </script>
   <%- end %>

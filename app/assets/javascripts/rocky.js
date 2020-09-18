@@ -1,5 +1,12 @@
 function registerTouch() {};
 
+function isFacebookApp() {
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+  ua = ua.toLowerCase();
+  return ((ua.indexOf("fban") > -1) || (ua.indexOf("fbav") > -1) || (ua.indexOf("instagram") > -1));
+}
+
+
 function hideErrors() {
   $('.error').each(function(){ $(this).css('opacity', 0); });
 };
