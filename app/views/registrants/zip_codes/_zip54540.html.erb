@@ -2,9 +2,11 @@
   $(document).ready(function() {
     $("form").hide();
     $("#finish-with-state").click(function() {
-      setTimeout(function() {
-        window.location.href = "<%= registrant_finish_path(@registrant, :share_only=>true, :finish_with_state=>true, :home_state=>"MI") %>";
-      }, 1000)
+      if (!window.isFacebookApp()) {
+        setTimeout(function() {
+          window.location.href = "<%= registrant_finish_path(@registrant, :share_only=>true, :finish_with_state=>true, :home_state=>"MI") %>";
+        }, 1000)
+      }
     })
   })
   

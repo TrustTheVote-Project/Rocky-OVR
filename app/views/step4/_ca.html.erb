@@ -62,10 +62,14 @@ ul.affirm  .disclosures li {
     <script>
       function testCaDisclosures() {
         if ($("#registrant_ca_disclosures").get(0).checked) {
-          $("#registrant_state_online_registration").attr('formtarget','_BLANK')
+          if (!window.isFacebookApp()) {
+            $("#registrant_state_online_registration").attr('formtarget','_BLANK')
+          }
           return true
         } else {
-          $("#registrant_state_online_registration").attr('formtarget','')
+          if (!window.isFacebookApp()) {
+            $("#registrant_state_online_registration").attr('formtarget','')
+          }
           return false
         }
       }
@@ -87,10 +91,11 @@ ul.affirm  .disclosures li {
         return true;
       })
       function showSharing() {
-        setTimeout(function(){
-          console.log("redirect!")
-          window.location.href = "<%= registrant_finish_path(@registrant, :share_only=>true) %>";
-        }, 1000);
+        if (!window.isFacebookApp()) {
+          setTimeout(function(){
+            window.location.href = "<%= registrant_finish_path(@registrant, :share_only=>true) %>";
+          }, 1000);
+        }
       }
     </script>
     
