@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200915133334) do
+ActiveRecord::Schema.define(version: 20200918163335) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20200915133334) do
   add_index "ab_tests", ["name", "assignment"], name: "index_ab_tests_on_name_and_assignment"
   add_index "ab_tests", ["name"], name: "index_ab_tests_on_name"
   add_index "ab_tests", ["registrant_id"], name: "index_ab_tests_on_registrant_id"
+
+  create_table "abr_email_deliveries", force: :cascade do |t|
+    t.integer  "abr_id"
+    t.string   "to_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "abr_email_deliveries", ["abr_id"], name: "index_abr_email_deliveries_on_abr_id"
+  add_index "abr_email_deliveries", ["to_email"], name: "index_abr_email_deliveries_on_to_email"
 
   create_table "abr_state_values", force: :cascade do |t|
     t.integer  "abr_id"

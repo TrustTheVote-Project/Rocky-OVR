@@ -2,7 +2,15 @@ class AbrDeliveryNotifier < ActionMailer::Base
 
   def deliver_to_elections_office(abr)
     attachments["absentee-request.pdf"] = open(abr.pdf_url).read    
-    setup_delivery_email(abr, "deliver_to_elections_office")
+    mail = setup_delivery_email(abr, "deliver_to_elections_office")
+    begin
+      AbrEmailDelivery.create({
+        abr_id: abr.id,
+        to_email: mail.to.first
+      })
+    rescue => exception      
+    end
+    return mail
   end
 
   def setup_delivery_email(abr, kind)
