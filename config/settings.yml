@@ -216,10 +216,10 @@ absentee_states:
 
 # Only configured for staging2 right now.
 mail_with_esig:
-  states: {}
-    # MN:
-    #   allow_desktop_signature: true
-    #   state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
+  states:
+    MN:
+      allow_desktop_signature: true
+      state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
   partners:
     - 1 
     

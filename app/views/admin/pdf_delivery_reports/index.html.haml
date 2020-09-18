@@ -42,7 +42,11 @@
               = link_to("Create Report", create_report_admin_pdf_delivery_reports_path(date: r.date))
             - unless r.created_at
               = link_to("Create Report", create_report_admin_pdf_delivery_reports_path(date: r.date))  
-        %td= r.status
+        %td
+          = r.status
+          - if r.status == "complete"
+            %br
+            = link_to("Recreate Report", create_report_admin_pdf_delivery_reports_path(date: r.date))
         %td= r.created_at
         %td= r.updated_at
       
