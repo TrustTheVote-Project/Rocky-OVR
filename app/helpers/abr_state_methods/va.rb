@@ -116,14 +116,14 @@ module AbrStateMethods::VA
       {"Mailing_State": {visible: "has_mailing_address",required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true, classes:"half"}},
       {"Mailing_Zip_Code": {visible: "has_mailing_address",required: :if_visible, min: 5, max: 10, classes:" half last"}},
       {"Mailing_Country": {visible: "has_mailing_address"}},
-      {"need_assistance": {type: :checkbox}},
-      {"Assistant_Name": {visible: "need_assistance", required: :if_visible}},
-      {"Assistant_Address": {visible: "need_assistance", required: :if_visible, classes: "three-quarter"}},
-      {"Assistant_Apt": {visible: "need_assistance", classes: "last quarter"}},
-      {"Assistant_City": {visible: "need_assistance", required: :if_visible}},
-      {"Assistant_State": {visible: "need_assistance", required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true, classes: "half"}},
-      {"Asistant_Zip": {visible: "need_assistance", required: :if_visible, classes: "half last"}},
-      {"Assistant_Phone": {visible: "need_assistance", classes: "three-quarter"}}, #optional therefore no RegEx format enforcement?
+      # {"need_assistance": {type: :checkbox}},
+      # {"Assistant_Name": {visible: "need_assistance", required: :if_visible}},
+      # {"Assistant_Address": {visible: "need_assistance", required: :if_visible, classes: "three-quarter"}},
+      # {"Assistant_Apt": {visible: "need_assistance", classes: "last quarter"}},
+      # {"Assistant_City": {visible: "need_assistance", required: :if_visible}},
+      # {"Assistant_State": {visible: "need_assistance", required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true, classes: "half"}},
+      # {"Asistant_Zip": {visible: "need_assistance", required: :if_visible, classes: "half last"}},
+      # {"Assistant_Phone": {visible: "need_assistance", classes: "three-quarter"}}, #optional therefore no RegEx format enforcement?
     ]
   end
   #e.g.
