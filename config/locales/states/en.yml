@@ -868,25 +868,32 @@ en:
             please verify before continuing.
       md:
         abr_form_fields:
-          presidential_general_mailto: 'I want my ballot mailed to:'
-          presidential_general_mailto__options:
+          mailto: 'I want my ballot mailed to:'
+          mailto__options:
             address_below: A different mailing address.
             same_as_above: My residential address.
-          When_Moved_Here: 'I moved to my residential address on (MM/DD/YYYY or MM/YYYY):'
-          delivery_method: 'I would like to receive my ballot by:'
-          delivery_method__options:
+          "movedate": "I moved to my residential address on (MM/DD/YYYY or MM/YYYY):" 
+          "Delivery": "I would like to receive my ballot by:"
+          Delivery__options:
             mail: U.S. Mail
             internet: Internet Delivery
-          Address_2: Mailing address
-          Apt_number_2: Apt/Unit
-          City_town_2: City/Town
-          State_2: State
-          ZIP_code_2: Zip
-          no_dln: I do not have a MD Driver's License or ID card.
-          SSN_last-4: 'Last 4 digits of my SSN:'
-          Issue_Date: Issue Date
-          assistant_print: Name of Assistant
-          assistant: I had help completing this application
+          internet_delivery_identification: "Identification for internet delivery"
+          internet_delivery_identification__options:
+            dln: MD driver's license
+            ssn: I do not have a MD driver's license or ID card
+          "Gen_Address": Mailing address
+          "Gen_Apt": "Apt/Unit"
+          "Gen_City": "City/Town"
+          "Gen_State": State
+          "Gen_ZipCode": Zip
+          #"no_dln": "I do not have a MD Driver's License or ID card."
+          "SSN_Last_4": "Last 4 digits of my SSN:"
+          dln: MD driver's license
+          dln__format_message: Invalid MD driver's license format. Please enter 1 letter, followed by 12 numbers
+          "Issue_Date": "Issue Date"
+          fax_number: Fax Number (xxx-xxx-xxxx)
+          "Assistance_Print_Name": Name of Assistant
+          "assistant": I had help completing this application
         abr:
           signature_capture:
             desktop_provide_e_signature: In the state of Maryland, we can email a

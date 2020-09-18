@@ -138,9 +138,9 @@ absentee_states:
     # email_delivery: true
   MD:
     online_req_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/VoterType
-    # pdf_template: md.pdf
-    pdf_url: https://elections.maryland.gov/voting/documents/Absentee_Ballot_Application_English.pdf
-    # email_delivery: true
+    pdf_template: md.pdf
+    #pdf_url: https://elections.maryland.gov/voting/documents/Absentee_Ballot_Application_English.pdf
+    email_delivery: true
   ME:
     online_req_url: https://www1.maine.gov/cgi-bin/online/AbsenteeBallot/online-form.pl
   MI:
