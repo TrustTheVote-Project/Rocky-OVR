@@ -45,8 +45,9 @@ class RegistrationStep < ApplicationController
   end
 
   def update
-    @pdf_assistance = params[:pdf_assistance] || "1"
+    @pdf_assistance = params[:pdf_assistance]
     redirected = find_registrant
+    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
     return if redirected == :redirected
     @registrant.attributes = params[:registrant]
     @registrant.check_locale_change
@@ -78,7 +79,7 @@ class RegistrationStep < ApplicationController
 
   def set_up_view_variables
     @use_mobile_ui = determine_mobile_ui(@registrant)
-    @pdf_assistance ||= "1"
+    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
     
   end
 
