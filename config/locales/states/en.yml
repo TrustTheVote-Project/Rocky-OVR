@@ -459,7 +459,7 @@ en:
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
             By clicking the button below, I authorize Rock the Vote to apply my signature, 
-            agreeing to email my request form, certifying that all information is accurate."
+            agreeing to email my request form, certifying that all information is accurate.
           
           signature_capture:
             desktop_provide_e_signature: In the state of Georgia, we can email a digitally
@@ -903,7 +903,7 @@ en:
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
             By clicking the button below, I authorize Rock the Vote to apply my signature, 
-            agreeing to email my request form, certifying that all information is accurate."
+            agreeing to email my request form, certifying that all information is accurate.
           signature_capture:
             desktop_provide_e_signature: In the state of Maryland, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -959,7 +959,7 @@ en:
             request to my local elections office.<br/><br/>
             By clicking the button below, I authorize Rock the Vote to apply my signature, 
             agreeing to email my request form, certifying that all information is accurate and 
-            that this form is <i>signed under penalty of perjury</i>."
+            that this form is <i>signed under penalty of perjury</i>.
           
           signature_capture:
             desktop_provide_e_signature: In the state of Massachusetts, we can email
