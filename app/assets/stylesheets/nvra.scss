@@ -94,11 +94,13 @@ span.smaller_prompt {
 	.letter {
 		padding: 0 60px;
 		p {
-			font-size: 1.3 *$fs;
+			font-size: 1 *$fs;
 			margin-bottom: 1em;		
 		}
 		img {
 			height: 60px;
+			margin-top: 3px;
+			margin-left: -32px;
 		}
 	}
 	.footer {

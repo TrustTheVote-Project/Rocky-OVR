@@ -20,7 +20,7 @@
   %div.page#page_1.esign_cover_letter
     .logo= wicked_pdf_image_tag("pdf/esign/#{@registrant.home_state_name.downcase}.png")
     .letter
-      = t('pdf.nvra.esign_letter', signature_image: wicked_pdf_image_tag("pdf/esign/#{@registrant.home_state_name.downcase}.png")).to_s.html_safe
+      = t('pdf.nvra.esign_letter', signature_image: wicked_pdf_image_tag("pdf/esign/#{@registrant.home_state_name.downcase}-letter-signature.png")).to_s.html_safe
     .footer= t('pdf.nvra.esign_letter_footer').html_safe
 
 - unless @esign
