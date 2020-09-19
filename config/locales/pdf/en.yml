@@ -27,7 +27,7 @@ en:
         <a href="mailto:melissa@rockthevote.org">melissa@rockthevote.org</a>.
         <p>Sincerely,<br/>
         %{signature_image}<br/>
-        Erickson Saye<br/>Voter Registration Director Minnesota Voice<br/>
+        Erickson Saye<br/>Voter Registration Director<br/>Minnesota Voice
       esign_letter_footer: <p>1600 UNIVERSITY AVE W STE 309<br/>SAINT PAUL, MN 55104-3800</p>
       state_instructions_header: "%{state} Voter Registration ID Requirements"
       page1:
