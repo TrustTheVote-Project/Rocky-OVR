@@ -83,9 +83,12 @@ class PdfDeliveryReport < ActiveRecord::Base
     "#{date_string}_direct_mail.csv"
   end
 
+  def deliveries
+    @deliveries ||= PdfDelivery.where(pdf_ready: true).where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature, :partner])
+  end
+
   def run!
     self.update_attributes(status: :started)
-    deliveries = PdfDelivery.where(pdf_ready: true).where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature, :partner])
     self.update_attributes(status: "Processing #{deliveries.count} deliveries")
     assistance_rows = [CSV_HEADER]
     direct_mail_rows = [CSV_HEADER]
@@ -97,17 +100,19 @@ class PdfDeliveryReport < ActiveRecord::Base
         fname = pdf_name(d)
         fpath = nil
         row = csv_row(d)
-        if d.registrant.pdf_is_esigned?
-          # direct mail
-          direct_mail_rows << row
-          fpath = File.join(direct_folder, fname)
-        else
-          # assistance mail
-          assistance_rows << row
-          fpath = File.join(assistance_folder, fname)
-        end
-        File.open(fpath, "wb+") do |f|
-          f.write open(d.registrant.pdf_url).read
+        if d.registrant
+          if d.registrant.pdf_is_esigned?
+            # direct mail
+            direct_mail_rows << row
+            fpath = File.join(direct_folder, fname)
+          else
+            # assistance mail
+            assistance_rows << row
+            fpath = File.join(assistance_folder, fname)
+          end
+          File.open(fpath, "wb+") do |f|
+            f.write open(d.registrant.pdf_url).read
+          end
         end
       end
     end
@@ -148,6 +153,13 @@ class PdfDeliveryReport < ActiveRecord::Base
 
   def csv_row(delivery) 
     r = delivery.registrant
+    unless r
+      return [
+        delivery.created_at,
+        delivery.registrant_id,
+        "REGISTRANT NOT FOUND"
+      ]
+    end
     [ 
       delivery.created_at,
       r.first_name,
