@@ -29,7 +29,7 @@ class SesController < ApplicationController
           e = EmailAddress.find_or_create_by(email_address: recipient['emailAddress'].to_s.strip)
           begin
             if AbrEmailDelivery.where(to_email: e.email_address).count > 0
-              AdminMailer.general_error("Received bounce notificatin for Email #{e.email_address} used for ABR delivery").deliver_now
+              AdminMailer.general_error("Received bounce notification for Email '#{e.email_address}' which is used for ABR delivery").deliver_now
             end
           rescue => exception      
           end
