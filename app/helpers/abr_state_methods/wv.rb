@@ -65,6 +65,20 @@ module AbrStateMethods::WV
         return self.email if self.reason_meta.to_s=='B'
     end
     
+    def state_registrar_address
+      if self.reason_a == "address_confidentiality"
+        @state_registrar_address ||= home_state && home_state.state_registrar_address
+      else
+        @state_registrar_address ||= home_state && home_state.abr_address(self.zip)
+      end
+    end
+  
+    def delivery_full_address
+      addr = self.reason_a == "address_confidentiality" ? home_state&.state_registrar_address : state_registrar_office&.req_address
+      return addr.blank? ? state_registrar_office&.address : addr
+    end
+    
+  
     
     def form_field_items
       [
@@ -140,6 +154,8 @@ module AbrStateMethods::WV
         return (reason_meta.to_s=='A' ? reason_a.to_s : 'disability_want_electronic')
     end
     
+    MAILING_ADDRESS_REQUIRED_REASONS = ["business_or_travel" , "college","elected_away" , "working_away"]
+
     def custom_form_field_validations
       # e.g:
       # make sure delivery is selected if reason ==3
@@ -148,6 +164,12 @@ module AbrStateMethods::WV
       if self.reason_meta.to_s=='A'
         custom_validates_presence_of ('reason_a')
       end
+
+      
+      if  MAILING_ADDRESS_REQUIRED_REASONS.include?(self.reason_a.to_s) && self.has_mailing_address.to_s!='1'
+        errors.add('has_mailing_address',custom_required_message("has_mailing_address"))
+      end
+
     end
     
    

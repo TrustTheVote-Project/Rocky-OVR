@@ -26,7 +26,9 @@ blocks_configuration:
       location_id: 266
       staging_location_id: 267
     991:
-      turf_id: 417
+      sub_orgs:
+        Test Org 2: 417
+        Test Org 3: 424
       canvasser_id: 129
       location_id: 266
       staging_location_id: 267

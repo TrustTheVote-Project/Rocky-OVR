@@ -34,6 +34,15 @@ module AbrSignatureMethods
   def date_for_signature
     deliver_to_elections_office_via_email? ? Date.today.strftime("%m/%d/%Y") : ""
   end
+  def month_for_signature
+    deliver_to_elections_office_via_email? ? Date.today.month : ""
+  end
+  def day_for_signature
+    deliver_to_elections_office_via_email? ? Date.today.day : ""
+  end
+  def year_for_signature
+    deliver_to_elections_office_via_email? ? Date.today.year : ""
+  end
 
   def deliver_to_elections_office_via_email?
     collect_signature? && signature_method != VoterSignature::PRINT_METHOD

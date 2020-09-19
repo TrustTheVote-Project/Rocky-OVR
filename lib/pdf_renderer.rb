@@ -23,6 +23,8 @@ class PdfRenderer < AbstractController::Base
     @locale =registrant.locale
     @registrant=registrant
     @logo_image_path = self.logo_image_path
+    @state_esign_logo_path = self.state_esign_logo_path
+    @rtv_esign_logo_path = self.rtv_esign_logo_path
     set_registrant_instructions_link
   end
   
@@ -32,6 +34,14 @@ class PdfRenderer < AbstractController::Base
     else
       "file:///#{Rails.root.join('app/assets/images', RockyConf.pdf.nvra.page1.default_logo).to_s}" 
     end
+  end
+
+  def state_esign_logo_path
+    "file:///#{Rails.root.join("app/assets/images/pdf/esign/{@registrant.home_state_abbrev.downcase}.png").to_s}"     
+  end
+
+  def rtv_esign_logo_path
+    "file:///#{Rails.root.join('app/assets/images/pdf/esign/rtv.png').to_s}" 
   end
   
   def set_registrant_instructions_link

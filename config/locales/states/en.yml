@@ -456,6 +456,11 @@ en:
             of your ballot here: <a rel="noopener" target="blank" href="https://registration.elections.myflorida.com/CheckVoterStatus">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>'
       ga:
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate.
+          
           signature_capture:
             desktop_provide_e_signature: In the state of Georgia, we can email a digitally
               signed copy of your absentee request. Please select how you'd like to
@@ -868,26 +873,37 @@ en:
             please verify before continuing.
       md:
         abr_form_fields:
-          presidential_general_mailto: 'I want my ballot mailed to:'
-          presidential_general_mailto__options:
+          mailto: 'I want my ballot mailed to:'
+          mailto__options:
             address_below: A different mailing address.
             same_as_above: My residential address.
-          When_Moved_Here: 'I moved to my residential address on (MM/DD/YYYY or MM/YYYY):'
-          delivery_method: 'I would like to receive my ballot by:'
-          delivery_method__options:
+          "movedate": "I moved to my residential address on (MM/DD/YYYY or MM/YYYY):" 
+          "Delivery": "I would like to receive my ballot by:"
+          Delivery__options:
             mail: U.S. Mail
             internet: Internet Delivery
-          Address_2: Mailing address
-          Apt_number_2: Apt/Unit
-          City_town_2: City/Town
-          State_2: State
-          ZIP_code_2: Zip
-          no_dln: I do not have a MD Driver's License or ID card.
-          SSN_last-4: 'Last 4 digits of my SSN:'
-          Issue_Date: Issue Date
-          assistant_print: Name of Assistant
-          assistant: I had help completing this application
+          internet_delivery_identification: "Identification for internet delivery"
+          internet_delivery_identification__options:
+            dln: MD driver's license
+            ssn: I do not have a MD driver's license or ID card
+          "Gen_Address": Mailing address
+          "Gen_Apt": "Apt/Unit"
+          "Gen_City": "City/Town"
+          "Gen_State": State
+          "Gen_ZipCode": Zip
+          #"no_dln": "I do not have a MD Driver's License or ID card."
+          "SSN_Last_4": "Last 4 digits of my SSN:"
+          dln: MD driver's license
+          dln__format_message: Invalid MD driver's license format. Please enter 1 letter, followed by 12 numbers
+          "Issue_Date": "Issue Date"
+          fax_number: Fax Number (xxx-xxx-xxxx)
+          "Assistance_Print_Name": Name of Assistant
+          "assistant": I had help completing this application
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate.
           signature_capture:
             desktop_provide_e_signature: In the state of Maryland, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -939,6 +955,12 @@ en:
             ballot must be received by 8:00pm on Election Day.</>"
       ma:
         abr:
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate and 
+            that this form is <i>signed under penalty of perjury</i>.
+          
           signature_capture:
             desktop_provide_e_signature: In the state of Massachusetts, we can email
               a digitally signed copy of your absentee request. Please select how
@@ -2097,7 +2119,7 @@ en:
             provided in this form is true, (2) I am not requesting a ballot or voting in any other 
             jurisdictions in the US, (3) I am registered to vote in the city/county where I am applying to 
             vote, and (4) if I checked the box (in Section 3) to vote by mail for the calendar year, 
-            I will likely remain eligible to vote throughout the calendar year."
+            I will likely remain eligible to vote throughout the calendar year.
           signature_capture:
             desktop_provide_e_signature: In the state of Virginia, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -2146,6 +2168,7 @@ en:
             ballot_mailing_address: My mailing address
             email_address: My email address
           has_mailing_address: My mailing address differs from my residential address.
+          has_mailing_address__required_message: A mailing address is required for the chosen delivery option.
           need_assistance: I need assistance completing my ballot due to a disability,
             blindness, or inability to read or write.
           Assistant_Name: Assistant's name
@@ -2300,6 +2323,7 @@ en:
         abr_form_fields:
           resident_county: County
           has_mailing_address: My mailing address differs from my residential address.
+          has_mailing_address__required_message: A mailing address outside of your county of residence is required.
           mail_address: Mailing address
           mail_city: City
           mail_state: State
@@ -2312,33 +2336,33 @@ en:
               me from voting in person and from voting a paper ballot without assistance.
           reason_a: 'Please select one:'
           reason_a__options:
-            address_confidentiality: I am a participant in the Address Confidentiality
-              Program (ACP) with the Office of the Secretary of State. If selected,
-              send your application to the Secretary of State’s Office.
-            business_or_travel: Personal business or travel. If selected, your ballot
-              must be mailed outside of your county of residence.
-            college: Attendance at college, university, or other place of education
-              or training. If selected, your ballot must be mailed outside of your
-              county of residence.
-            disability: The county absentee voting office and my polling place are
-              inaccessible to me due to my physical disability.
-            elected_away: Temporarily living outside of the county due to serving
-              as an elected or appointed federal or state officer. If selected, your
-              ballot must be mailed outside of your county of residence.
-            employment: Employment which because of hours worked and distance from
-              the county seat makes voting in person impossible.
-            illness: "Illness, injury or other medical reason which keeps me confined.
+            address_confidentiality: <p>I am a participant in the Address Confidentiality
+              Program (ACP) with the Office of the Secretary of State. <u>If selected,
+              send your application to the Secretary of State’s Office.</u></p>
+            business_or_travel: <p>Personal business or travel. <u>If selected, your ballot
+              must be mailed outside of your county of residence.</u></p>
+            college: <p>Attendance at college, university, or other place of education
+              or training. <u>If selected, your ballot must be mailed outside of your
+              county of residence.</u></p>
+            disability: <p>The county absentee voting office and my polling place are
+              inaccessible to me due to my physical disability.</p>
+            elected_away: <p>Temporarily living outside of the county due to serving
+              as an elected or appointed federal or state officer. <u>If selected, your
+              ballot must be mailed outside of your county of residence.</u></p>
+            employment: <p>Employment which because of hours worked and distance from
+              the county seat makes voting in person impossible.</p>
+            illness: "<p>Illness, injury or other medical reason which keeps me confined.
               <br/>NOTE: due to COVID-19, West Virginia's Secretary of State has 
               announced that all West Virginia voters can use this option as the 
-              excuse for requesting a ballot."
-            immobility: Immobility due to advanced age or a physical disability.
-            incarceration: Incarceration or detention in jail or home. I am not under
+              excuse for requesting a ballot.</p>"
+            immobility: <p>Immobility due to advanced age or a physical disability.</p>
+            incarceration: <p>Incarceration or detention in jail or home. I am not under
               conviction of any felony, of treason or of bribery in an election (including
-              any period of probation or parole). If selected you must complete the
-              statemnt on page 2 after printing this form.
-            working_away: Temporarily living outside of the county due to a temporary
+              any period of probation or parole). <u>If selected you must complete the
+              statement on page 2 after printing this form.</u></p>
+            working_away: <p>Temporarily living outside of the county due to a temporary
               assignment by my employer for a specific period of four years or less.
-              If selected, your ballot must be mailed outside of your county of residence.
+              <u>If selected, your ballot must be mailed outside of your county of residence.</u></p>
           disability_want_electronic__hint: 'B. I am applying for an electronic absentee
             ballot due to:'
           incarceration_statement: Please complete the Statement on page 2 by hand

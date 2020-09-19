@@ -97,7 +97,7 @@ module AbrStateMethods::VA
   
   def form_field_items
     [
-      {"SSN_Last_4": {min: 4, max: 4, required: true, }},
+      {"SSN_Last_4": {min: 4, max: 4, required: true,classes: 'three-quarter', regexp: /\A\d{4}\z/}},
       {"UOCAVA": {type: :checkbox}},
       #TODO- the text field "Category_Code" should be filled in with the letter(s) of whatever is checked below: A, B, C, and/or D
       {"A": {type: :checkbox, visible: "UOCAVA", classes: "indent"}},
@@ -111,19 +111,19 @@ module AbrStateMethods::VA
       {"Deliver_to": {visible: "UOCAVA", type: :radio, required: :if_visible}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_1": {visible: "has_mailing_address",required: :if_visible, classes: "three-quarter"}},
-      {"Mailing_Address_2": {visible: "has_mailing_address", classes: "quarter last"}},
+      {"Mailing_Address_2": {visible: "has_mailing_address", classes: "quarter last", max:7}},
       {"Mailing_Address_3": {visible: "has_mailing_address", required: :if_visible}},
       {"Mailing_State": {visible: "has_mailing_address",required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true, classes:"half"}},
       {"Mailing_Zip_Code": {visible: "has_mailing_address",required: :if_visible, min: 5, max: 10, classes:" half last"}},
       {"Mailing_Country": {visible: "has_mailing_address"}},
-      {"need_assistance": {type: :checkbox}},
-      {"Assistant_Name": {visible: "need_assistance", required: :if_visible}},
-      {"Assistant_Address": {visible: "need_assistance", required: :if_visible, classes: "three-quarter"}},
-      {"Assistant_Apt": {visible: "need_assistance", classes: "last quarter"}},
-      {"Assistant_City": {visible: "need_assistance", required: :if_visible}},
-      {"Assistant_State": {visible: "need_assistance", required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true, classes: "half"}},
-      {"Asistant_Zip": {visible: "need_assistance", required: :if_visible, classes: "half last"}},
-      {"Assistant_Phone": {visible: "need_assistance", classes: "three-quarter"}}, #optional therefore no RegEx format enforcement?
+      # {"need_assistance": {type: :checkbox}},
+      # {"Assistant_Name": {visible: "need_assistance", required: :if_visible}},
+      # {"Assistant_Address": {visible: "need_assistance", required: :if_visible, classes: "three-quarter"}},
+      # {"Assistant_Apt": {visible: "need_assistance", classes: "last quarter"}},
+      # {"Assistant_City": {visible: "need_assistance", required: :if_visible}},
+      # {"Assistant_State": {visible: "need_assistance", required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true, classes: "half"}},
+      # {"Asistant_Zip": {visible: "need_assistance", required: :if_visible, classes: "half last"}},
+      # {"Assistant_Phone": {visible: "need_assistance", classes: "three-quarter"}}, #optional therefore no RegEx format enforcement?
     ]
   end
   #e.g.
@@ -171,7 +171,10 @@ module AbrStateMethods::VA
   end
  
   def custom_form_field_validations
-    
+    if self.deliver_to.to_s=='ballot_mailing_address' && self.has_mailing_address.to_s!='1'
+      errors.add('has_mailing_address', custom_required_message('has_mailing_address'))
+    end
+
   end
 
   
