@@ -221,7 +221,7 @@ mail_with_esig:
       allow_desktop_signature: true
       state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
   partners:
-    - 1 
+    - 38408 
     
 pdf_assistance:
   states:
