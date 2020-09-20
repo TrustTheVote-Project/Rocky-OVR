@@ -66,7 +66,7 @@ class PdfDeliveryReport < ActiveRecord::Base
   end
     
   def pdf_name(d)
-    "#{date_string}_#{d.registrant.first_name}_#{d.registrant.last_name}_#{d.registrant.uid}.pdf"
+    "#{date_string}_#{d.registrant.first_name}_#{d.registrant.last_name}_#{d.registrant.uid}".parameterize + ".pdf"
   end
 
   def assistance_zip_file_name
