@@ -1374,7 +1374,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def home_state_enabled_for_pdf_assitance?
-    return RockyConf.pdf_assistance.states.include?(home_state_abbrev) && RockyConf.pdf_assistance.partners.include?(partner_id)    
+    return home_state.pdf_assistance_enabled && partner.states_enabled_for_pdf_assistance && partner.states_enabled_for_pdf_assistance.is_a?(Array) && partner.states_enabled_for_pdf_assistance.include?(home_state.abbreviation)    
   end
   
   def can_request_pdf_assistance?
