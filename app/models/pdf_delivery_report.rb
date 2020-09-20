@@ -94,9 +94,11 @@ class PdfDeliveryReport < ActiveRecord::Base
     direct_mail_rows = [CSV_HEADER]
     FileUtils.mkdir_p(assistance_folder)
     FileUtils.mkdir_p(direct_folder)
+    d_id = nil
     deliveries.find_in_batches(batch_size: 500).with_index do |batch, batch_num|
       self.update_attributes(status: "Processing Batch Num #{batch_num + 1}")
       batch.each do |d|
+        d_id = d.id
         fname = pdf_name(d)
         fpath = nil
         row = csv_row(d)
@@ -148,7 +150,7 @@ class PdfDeliveryReport < ActiveRecord::Base
     `rm -rf #{folder}`
     self.update_attributes(status: :complete)
   rescue Exception => e
-    self.update_attributes(last_error: "#{e.message}\n#{e.backtrace}")
+    self.update_attributes(last_error: "Error for delivery '#{d_id}'\n#{e.message}\n#{e.backtrace}")
   end
 
   def csv_row(delivery) 
