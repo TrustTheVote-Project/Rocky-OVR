@@ -99,10 +99,10 @@ class PdfDeliveryReport < ActiveRecord::Base
       self.update_attributes(status: "Processing Batch Num #{batch_num + 1}")
       batch.each do |d|
         d_id = d.id
-        fname = pdf_name(d)
-        fpath = nil
         row = csv_row(d)
         if d.registrant
+          fname = pdf_name(d)
+          fpath = nil  
           if d.registrant.pdf_is_esigned?
             # direct mail
             direct_mail_rows << row
