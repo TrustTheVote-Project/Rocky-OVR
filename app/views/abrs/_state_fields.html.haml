@@ -112,6 +112,17 @@
       }    
     });
   }
+
+  // Enable all radio button deselect
+  jQuery(document).ready(function($){
+    $("input:radio:checked").data("chk",true);
+    $("input:radio").click(function(){
+        $("input[name='"+$(this).attr("name")+"']:radio").not(this).removeData("chk");
+        $(this).data("chk",!$(this).data("chk"));
+        $(this).prop("checked",$(this).data("chk"));
+     });
+  })
+  
   $(document).ready(function() {
     toggleHidden();
     toggleHiddenAny();
@@ -124,6 +135,8 @@
       test_ui_regex();
     })
   })
+
+
   
   
 %fieldset{class: "#{@abr.home_state_abbrev.downcase}-abr-form-fields state-abr-form-fields"}
