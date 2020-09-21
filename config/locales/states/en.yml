@@ -401,23 +401,21 @@ en:
             self-quarantining or social distancing.</p>"
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
-          fill_2: Political Party
-          Security Number: Social Security Number
-          fill_10: Address where you want your ballot sent if different than home
+          Last4 Digits of SSN: Last 4 Digits of Social Security Number (OPTIONAL)
+          has_mailing_address: I would like my ballot sent to a different address than my home
             address
-          fill_11: Expected Election Day Location
-          fill_11__hint: Provide City, State or City, Country
-          Day phone: Expected Election Day Phone Number
-          absentee_reason: Select the reason you are voting by absentee ballot
-          absentee_reason__hint: '<p>If you select reason 6 below you will receive
-            a full Primary Election ballot, but your General Eletion ballot will only
-            have Federal Offices. Citizens temporarily residing outside of the U.S.
-            should use the Federal Post Card Applicatioon instead of choosing reason
-            6.</p><p>NOTE: During the current State of Emergency, voters are permitted
-            to vote by absentee ballot for the reason: "(3) I am sick, or temporarily
-            or permanently physically disabled." if they are impacted by COVID-19,
-            per the provisions of an order by the Governor. This includes those who
-            are practicing self-quarantining or social distancing.</p>'
+          check_sick_or_disabled: "Check here if you are a voter who is sick or physically disabled"
+          check_sick_or_disabled__hint:
+            "Delaware law permits you to receive and return an
+            absentee ballot electronically. If you choose to
+            receive your ballot by email, you will be able to mark
+            and submit it electronically."
+          GroupSickDisabled: "Indicate below how you would like your absentee ballot sent
+            to you by the Department of Elections:"
+          GroupSickDisabled__options:
+            ChoiceEmail: Email
+            ChoiceMail: Mail
+            ChoiceFax: Fax
           absentee_reason__options:
             '1': "(1) I am in public service of the U.S. or the State of Delaware,
               or I am a spouse or dependent residing with or accompanying him or her.
