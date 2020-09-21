@@ -1400,7 +1400,7 @@ class Registrant < ActiveRecord::Base
   
   
   def pdf_is_esigned?
-    mail_with_esig? && !skip_mail_with_esig? && !voter_signature_image.blank?
+    !skip_mail_with_esig? && !voter_signature_image.blank?
   end
   
   has_one :voter_signature, primary_key: :uid, autosave: true
