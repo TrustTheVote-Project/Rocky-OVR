@@ -1130,6 +1130,24 @@ en:
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
+        abr_form_fields:
+          bad_date__format_message: "Invalid date"
+          Absentee ballot address_1: Ballot delivery address
+          Absentee ballot address - City: City
+          Absentee ballot address - State: State
+          Absentee ballot address - Zip Code: Zip
+          has_mailing_address: I would like my ballot sent to an address other than my residential address.
+          dln_check: I have a Minnesota-issued driver's license or ID Card
+          Minnesota Driver's License or ID Card Number__format_message: Not a valid MN Drivers License or ID
+          ss_check: I have a Social Security Number
+          no_id_check:  I do not have a Minnesota-issued driver's license or identification card, or a Social Security Number
+          no_id_check__format_message: You cannot select no id if you have a Minnesota-issued driver's license or identification card, or a Social Security Number
+          no_id_check__required_message: 'You must either provide an ID above or assert you have no identification'
+        abr:
+          finish_instructions: '<p>You should return this to your local election office. If not
+            provided above, contact information for your local election
+            official can be found under “Find County Election Office”
+            at <a rel="noopener" target="blank" href="https://www.mnvotes.org">https://www.mnvotes.org</a></p>'
         registration:
           has_state_license: I have a current MN driver’s license or ID card number,
             or the last 4 numbers of my SSN.
