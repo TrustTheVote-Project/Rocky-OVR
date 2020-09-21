@@ -1273,6 +1273,7 @@ en:
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
         abr_form_fields:
+          bad_date__format_message: "Invalid date"
           has_mailing_address: My mailing address differs from my residential address.
           identification: Choose one of the following methods for identification
           identification__options:

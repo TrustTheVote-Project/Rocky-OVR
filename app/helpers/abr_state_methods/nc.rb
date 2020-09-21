@@ -23,6 +23,10 @@ module AbrStateMethods::NC
     #"Voter's Previous Middle Name": {},
     "Former_Name": {},
 
+    "DOB": {
+      'method': "date_of_birth_mm_dd_yyyy",
+    },
+
     #"NC Driver Licence or NCID Number": {},
     "ID_Number": {sensitive:true},
     "SSN4":  {sensitive:true},
@@ -33,7 +37,9 @@ module AbrStateMethods::NC
     #"Moved Date": { method: "date_moved_dd" },
     #"Moved Year": { method: "date_moved_yyyy" },
 
-    "MovedDate": {},
+    "MovedDate": {
+      method: 'date_moved_mm_dd_yyyy',
+    },
     
     #"Voter's Current NC Residential Street Address": {
     "NCStreet": {
@@ -168,7 +174,7 @@ module AbrStateMethods::NC
     #"date_signed_other": {},
 
   }
-  EXTRA_FIELDS = ["ssn1234", "has_mailing_address", "identification", "previous_name", "ballot_address", "ballot_mailing_address", "ballot_city", "ballot_state", "ballot_zip", "relative_request", "assistant", "date_moved_mm", "date_moved_dd", "date_moved_yyyy","uocava_option","AssistantAddressInput", "assistantcity", "assistantstate", "assistantzip", "patient", "reg_mail_street","reg_mail_city","reg_mail_state","reg_mail_zip"]
+  EXTRA_FIELDS = [ "has_mailing_address", "identification", "previous_name", "ballot_address", "ballot_mailing_address", "ballot_city", "ballot_state", "ballot_zip", "relative_request", "assistant", "date_moved_mm", "date_moved_dd", "date_moved_yyyy","uocava_option","AssistantAddressInput", "assistantcity", "assistantstate", "assistantzip", "patient", "reg_mail_street","reg_mail_city","reg_mail_state","reg_mail_zip"]
 
 
   def form_field_items
@@ -183,8 +189,8 @@ module AbrStateMethods::NC
         type: :radio,
         required: true,
         options: ["dln", "ssn"]}},
-      {"ID_Number": {visible: "identification_dln", required: "star"}},
-      {"SSN4": {visible: "identification_ssn", required: "star"}},
+      {"ID_Number": {visible: "identification_dln", required: "star", regexp: /\A\d{1,12}\z/}},
+      {"SSN4": {visible: "identification_ssn", required: "star", classes: "half", length:4, regexp: /\A\d{4}\z/}},
 
       #{"Voter's Residential County":
       {"NCCounty":
@@ -296,7 +302,7 @@ module AbrStateMethods::NC
       {"has_mailing_address": {type: :checkbox}},
       {"reg_mail_street":{visible: "has_mailing_address", required: :if_visible}},
       {"reg_mail_city":{visible: "has_mailing_address", required: :if_visible, classes:"half"}},
-      {"reg_mail_state":{visible: "has_mailing_address", required: :if_visible, classes:"quarter"}},
+      {"reg_mail_state":{visible: "has_mailing_address",type: :select, options: GeoState.collection_for_select, include_blank: true, required: :if_visible, classes:"quarter"}},
       {"reg_mail_zip":{visible: "has_mailing_address", required: :if_visible, classes:"quarter last"}},
 
       #{"Voter's regular mailing address": {visible: "has_mailing_address", required: :if_visible}},
@@ -306,7 +312,7 @@ module AbrStateMethods::NC
       {"ballot_address": {type: :checkbox}},
       {"MailStreet":{visible: "ballot_address", required: :if_visible}},
       {"MailCity":{visible: "ballot_address", required: :if_visible, classes:"half"}},
-      {"MailState":{visible: "ballot_address", required: :if_visible, classes:"quarter"}},
+      {"MailState":{visible: "ballot_address", type: :select, options: GeoState.collection_for_select, include_blank: true, required: :if_visible, classes:"quarter"}},
       {"MailZip":{visible: "ballot_address", required: :if_visible, classes:"quarter last"}},
 
 
@@ -415,6 +421,21 @@ module AbrStateMethods::NC
       return (values.compact.join(" "))
     end
   end
+
+  def test_date(datestring)
+    begin
+      @mydate = Date.strptime(datestring, "%m/%d/%Y")
+      return true
+    rescue ArgumentError
+      return false
+    end
+  end
+
+  def  date_moved_mm_dd_yyyy
+    dates = [date_moved_mm, date_moved_dd, date_moved_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    dates && dates.length == 3 ? dates.join("/") : nil
+  end
+
   
   
   
@@ -430,8 +451,8 @@ module AbrStateMethods::NC
       custom_validates_presence_of("ID_Number")
     end
 
-    if self.lived_here_long.to_s=='no' 
-      custom_validates_presence_of("date_moved")
+    if (self.lived_here_long.to_s=='No' && !test_date(self.date_moved_mm_dd_yyyy.to_s))
+        errors.add("date_moved",custom_format_message("bad_date"))       
     end
 
     if self.delivery_method.to_s=='mail' 
