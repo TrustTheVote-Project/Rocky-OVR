@@ -1,0 +1,310 @@
+- name: Albany County
+  abr_email_address: boardofelections@albanycounty.com
+  abr_contact_name: Albany County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-487-5060
+- name: Cattaraugus County
+  abr_email_address: BOE-Support@cattco.org
+  abr_contact_name: Cattaraugus County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 716-938-2400
+- name: Allegany County
+  abr_email_address: ACBOE@alleganyco.com
+  abr_contact_name: Allegany County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 585-268-9294
+- name: Cayuga County
+  abr_email_address: election@cayugacounty.us
+  abr_contact_name: Cayuga County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-253-1285
+- name: Bronx County
+  abr_email_address: voterreg@boe.nyc.ny.us
+  abr_contact_name: Bronx County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 718-299-9017
+- name: Chautauqua County
+  abr_email_address:  vote@co.chautauqua.ny.us
+  abr_contact_name: Chautauqua County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 716-753-4580
+- name: Broome County
+  abr_email_address: bcboe@co.broome.ny.us
+  abr_contact_name: Broome County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-778-2172
+- name: Chemung County
+  abr_email_address: votechemung@chemungcountyny.gov
+  abr_contact_name: Chemung County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-737-5475
+- name: Chenango County
+  abr_email_address:  boe@co.chenango.ny.us
+  abr_contact_name: Chenango County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-337-1760
+- name: Delaware County
+  abr_email_address: boe.move@co.delaware.ny.us
+  abr_contact_name: Delaware County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-832-5321
+- name: Clinton County
+  abr_email_address: BOE@clintoncountygov.com
+  abr_contact_name: Clinton County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-565-4740
+- name: Dutchess County
+  abr_email_address: dutchesselections@dutchessny.gov
+  abr_contact_name: Dutchess County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 845-486-2473
+- name: Columbia County
+  abr_email_address: elections@columbiacountyny.com
+  abr_contact_name: Columbia County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-828-3115
+- name: Erie County
+  abr_email_address: anthony.mazzanti@erie.gov
+  abr_contact_name: Erie County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 716-858-8891
+- name: Cortland County
+  abr_email_address: elections@cortland-co.org
+  abr_contact_name: Cortland County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-753-5032
+- name: Essex County
+  abr_email_address: elections@essexcountyny.gov
+  abr_contact_name: Essex County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-873-3474
+- name: Franklin County
+  abr_email_address: boe@franklincony.org
+  abr_contact_name: Franklin County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-481-1663
+- name: Hamilton County
+  abr_email_address: elections@hamiltoncountyny.gov
+  abr_contact_name: Hamilton County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-548-4684
+- name: Fulton County
+  abr_email_address: boe@fultoncountyny.gov
+  abr_contact_name: Fulton County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-736-5526
+- name: Herkimer County
+  abr_email_address: HCBoe@herkimercounty.org  
+  abr_contact_name: Herkimer County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-867-1102
+- name: Genesee County
+  abr_email_address: election@co.genesee.ny.us
+  abr_contact_name: Genesee County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 585-815-7804
+- name: Jefferson County
+  abr_email_address: elections@co.jefferson.ny.us
+  abr_contact_name: Jefferson County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-785-3027
+- name: Greene County
+  abr_email_address: elections@discovergreene.com
+  abr_contact_name: Greene County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-719-3550
+- name: Kings County
+  abr_email_address: voterreg@boe.nyc.ny.us
+  abr_contact_name: Kings County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 718-797-8800
+- name: Lewis County
+  abr_email_address: elections@lewiscountyny.org
+  abr_contact_name: Lewis County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-376-5329
+- name: Montgomery County
+  abr_email_address: boe@co.montgomery.ny.us
+  abr_contact_name: Montgomery County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-853-8180
+- name: Livingston County
+  abr_email_address: election@co.livingston.ny.us
+  abr_contact_name: Livingston County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 585-243-7090
+- name: Nassau County
+  abr_email_address: InfoBOE@nassaucountyny.gov
+  abr_contact_name: Nassau County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 516-571-8683
+- name: Madison County
+  abr_email_address: BOEcommissioners@madisoncounty.ny.gov
+  abr_contact_name: Madison County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-366-2231
+- name: Monroe County
+  abr_email_address: mcboe@monroecounty.gov
+  abr_contact_name: Monroe County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 585-753-1550
+- name: New York County
+  abr_email_address: voterreg@boe.nyc.ny.us
+  abr_contact_name: New York County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 212-886-2100
+- name: Niagara County
+  abr_email_address: ncboe@niagaracounty.com
+  abr_contact_name: Niagara County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 716-438-4040 
+- name: Orange County
+  abr_email_address: elections@orangecountygov.com
+  abr_contact_name: Orange County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 845-360-6500
+- name: Oneida County
+  abr_email_address: BoardofElections@ocgov.net
+  abr_contact_name: Oneida County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-798-5765
+- name: Orleans County
+  abr_email_address: Elections@orleansny.com
+  abr_contact_name: Orleans County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 585-589-3274
+- name: Onondaga County
+  abr_email_address: elections@ongov.net
+  abr_contact_name: Onondaga County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-435-3312
+- name: Oswego County
+  abr_email_address: OswegoCounty.BOE@oswegocounty.com
+  abr_contact_name: Oswego County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-349-8350
+- name: Ontario County
+  abr_email_address: BOE@co.ontario.ny.us
+  abr_contact_name: Ontario County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 585-396-4005
+- name: Otsego County
+  abr_email_address: boe@otsegocounty.com
+  abr_contact_name: Otsego County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-547-4247
+- name: Putnam County
+  abr_email_address: PutnamCountyElections@putnamcountyny.gov
+  abr_contact_name: Putnam County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 845-808-1300
+- name: Rockland County
+  abr_email_address: voterinfo@co.rockland.ny.us
+  abr_contact_name: Rockland County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 845-638-5172
+- name: Queens County
+  abr_email_address: voterreg@boe.nyc.ny.us
+  abr_contact_name: Queens County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 718-730-6730
+- name: Saratoga County
+  abr_email_address: elections@saratogacountyny.gov
+  abr_contact_name: Saratoga County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-885-2249
+- name: Rensselaer Countys
+  abr_email_address: RenscoBOE@rensco.com
+  abr_contact_name: Rensselaer County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-270-2990
+- name: Schenectady County
+  abr_email_address: boe@schenectadycounty.com
+  abr_contact_name: Schenectady County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-377-2469
+- name: Richmond County
+  abr_email_address: voterreg@boe.nyc.ny.us
+  abr_contact_name: Richmond County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 718-876-0079
+- name: Schoharie County
+  abr_email_address: boe@co.schoharie.ny.us
+  abr_contact_name: Schoharie County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-295-8388
+- name: Schuyler County
+  abr_email_address: elections@co.schuyler.ny.us
+  abr_contact_name: Schuyler County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-535-8195
+- name: Suffolk County
+  abr_email_address: BOEinfo@suffolkcountyny.gov
+  abr_contact_name: Suffolk County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 631-852-4500
+- name: Seneca County
+  abr_email_address: boe@co.seneca.ny.us
+  abr_contact_name: Seneca County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-539-1760
+- name: Sullivan County
+  abr_email_address: scboe@co.sullivan.ny.us
+  abr_contact_name: Sullivan County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 845-807-0400
+- name: St. Lawrence County
+  abr_email_address: slcballot@stlawco.org
+  abr_contact_name: St. Lawrence County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-379-2202
+- name: Tioga County
+  abr_email_address: votetioga@co.tioga.ny.us
+  abr_contact_name: Tioga County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-687-8261
+- name: Steuben County
+  abr_email_address: elections@SteubenCountyNY.gov
+  abr_contact_name: Steuben County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-664-2260
+- name: Tompkins County
+  abr_email_address: elections@tompkins-co.org
+  abr_contact_name: Tompkins County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 607-274-5522
+- name: Ulster County
+  abr_email_address: elections@co.ulster.ny.us
+  abr_contact_name: Ulster County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 845-334-5470
+- name: Westchester County
+  abr_email_address: BOE-West@westchestergov.com
+  abr_contact_name: Westchester County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 914-995-5700
+- name: Warren County
+  abr_email_address: boe@warrencountyny.gov
+  abr_contact_name: Warren County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-761-6456
+- name: Wyoming County
+  abr_email_address: boewyoming@wyomingco.net
+  abr_contact_name: Wyoming County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 585-786-8931
+- name: Washington County
+  abr_email_address: BoardofElections@Washingtoncountyny.gov
+  abr_contact_name: Washington County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 518-746-2180
+- name: Yates County Board of Elections
+  abr_email_address: boardofelections@yatescounty.org
+  abr_contact_name: Yates County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-536-5135
+- name: Wayne County
+  abr_email_address: elections@co.wayne.ny.us
+  abr_contact_name: Wayne County Board of Elections
+  abr_status_check_url:
+  abr_status_check_phone: 315-946-7400

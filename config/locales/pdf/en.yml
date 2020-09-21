@@ -2,20 +2,40 @@
 en:
   pdf:
     nvra:
+      esign_letter: |-
+        <p>Dear County Clerk & Recorder,</p>
+        <p>The attached voter registration application was in partnership by 
+        Minnesota Voice and Rock the Vote, via Rock the Vote’s voter registration 
+        assistance platform, which prompted the individual who was registering 
+        to input their personal information and signature in the official National 
+        Mail Voter Registration form. We have worked closely with the Secretary of 
+        State’s office to ensure that this application was collected and submitted 
+        in compliance with all Minnesota voter registration requirements and timelines.</p>
+        <p>Minnesota Voice and Rock the Vote are both non-partisan, non-profit 
+        organizations focused on civic engagement. Minnesota Voice has done this work 
+        in Minnesota since 2014, and one of the organization’s current efforts in 
+        light of the pandemic is online voter registration. Founded in 1990, Rock 
+        the Vote works at a national level to engage and empower voters.</p>
+        <p>Please feel free to contact either of our organizations personally with 
+        any questions regarding this form or our process.</p>
+        <p>Sincerely,</p>
+        <div class="signature"><p>Erickson Saye<br/>Voter Registration Director<br/>Minnesota Voice<br/>erickson@minnesotavoice.org<br/>763-377-3579</p></div>
+        <div class="signature"><p>Melissa Wyatt<br/>Director of Civic Technology & Policy<br/>Rock the Vote<br/>melissa@rockthevote.org (personal)<br/>ovrtool@rockthevote.org (team)</p></div>
+
       state_instructions_header: "%{state} Voter Registration ID Requirements"
       page1:
         title: Voter Registration
         subtitle: powered by
         top_paragraph: You are not registered until you<br/><b>sign</b>, <b>stamp</b>,
           and <b>mail</b> your completed form!
-        top_paragraph_for_printer: You are not registered until you<br/><b>add your ID, sign</b>
+        top_paragraph_for_printer: You are not registered until you<br/><b>sign</b>
           and <b>mail</b> your completed form!
         instructions_block:
           title: Instructions
           subtitle: ! 'Take these easy steps to complete your voter registration:'
           step1: Sign the form. You must sign the voter registration form before you
             mail it.
-          step1_for_printer: You are not registered until you add your ID, sign and mail your completed form. You must sign the voter registration form before you mail it.
+          step1_for_printer: You are not registered until you sign and mail your completed form. You must sign the voter registration form before you mail it.
           step2: Place your form in an envelope and hand address it to your local
             election official. Alternatively, make a mailer. Fold the form and address
             sheet in half. Make sure the address is visible on the outside. Tape or

@@ -22,7 +22,7 @@ module AbrStateMethods::NY
     "email (optional)": {
       method: "email"
     },
-    "county where you live": {},
+    "county where you live": { method: "registration_county_name" },
     "street (Residence)": {
       method: "address_line_1"
     },
@@ -32,7 +32,7 @@ module AbrStateMethods::NY
     "zip code (Residence)": {
       method: "zip"
     },
-    #Date (Applicant Signed)
+    "Date (Applicant Signed)": { method: "date_for_signature" },
     # "(address of witness to mark)": {},
     # "Name of Voter:": {
     #   method: "full_name"
@@ -79,70 +79,6 @@ module AbrStateMethods::NY
   
   def form_field_items
     [
-      {"county where you live": {type: :select, required: true, include_blank: true, options: [
-        "Albany",
-        "Allegany",
-        "Bronx",
-        "Broome",
-        "Cattaraugus",
-        "Cayuga",
-        "Chautauqua",
-        "Chemung",
-        "Chenango",
-        "Clinton",
-        "Columbia",
-        "Cortland",
-        "Delaware",
-        "Dutchess",
-        "Erie",
-        "Essex",
-        "Franklin",
-        "Fulton",
-        "Genesee",
-        "Greene",
-        "Hamilton",
-        "Herkimer",
-        "Jefferson",
-        "Kings",
-        "Lewis",
-        "Livingston",
-        "Madison",
-        "Monroe",
-        "Montgomery",
-        "Nassau",
-        "New York City",
-        "Niagara",
-        "Oneida",
-        "Onondaga",
-        "Ontario",
-        "Orange",
-        "Orleans",
-        "Oswego",
-        "Otsego",
-        "Putnam",
-        "Queens",
-        "Rensselaer",
-        "Richmond",
-        "Rockland",
-        "St. Lawrence",
-        "Saratoga",
-        "Schenectady",
-        "Schoharie",
-        "Schuyler",
-        "Seneca",
-        "Steuben",
-        "Suffolk",
-        "Sullivan",
-        "Tioga",
-        "Tompkins",
-        "Ulster",
-        "Warren",
-        "Washington",
-        "Wayne",
-        "Westchester",
-        "Wyoming",
-        "Yates",
-      ]}},
       {"reason": {type: :radio, required: true}},
       {"deliver_general_ballot": {type: :radio, required: true}},
       {"I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": {visible: "deliver_general_ballot_general_to_proxy", required: "star"}}, # :is_visible throws err

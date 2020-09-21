@@ -1,0 +1,660 @@
+- name: Accomack County
+  abr_email_address: govote@co.accomack.va.us 
+  abr_contact_name: Accomack County Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 757-787-2935 
+- name: Albemarle County
+  abr_email_address: VoterRegistration@albemarle.org 
+  abr_contact_name: Albemarle County Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 434-972-4173 
+- name: City of Alexandria 
+  abr_email_address: voters@alexandriava.gov 
+  abr_contact_name: City of Alexandria 
+  abr_status_check_url:
+  abr_status_check_phone: 703-746-4050
+- name: Alleghany County
+  abr_email_address: govote5@ntelos.net
+  abr_contact_name: Alleghany County Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 540-965-1690 
+- name: Amelia County
+  abr_email_address: govote007@tds.net 
+  abr_contact_name: Amelia County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-561-3460 
+- name: Amherst County
+  abr_email_address: dbrown@countyofamherst.com 
+  abr_contact_name: Amherst County Dept of Elections & Voter Registration Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-946-9315 
+- name: Appomattox County
+  abr_email_address: govote011@appomattoxcountyva.gov 
+  abr_contact_name: Appomattox County General Registrar's Office
+  abr_status_check_url:
+  abr_status_check_phone: 434-352-5302 
+- name: Arlington County
+  abr_email_address: voters@arlingtonva.us 
+  abr_contact_name: Arlington County Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 703-228-3456 
+- name: Augusta County
+  abr_email_address: registrar@co.augusta.va.us 
+  abr_contact_name: Augusta County Office of Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 540-245-5656 
+- name: BATH COUNTY
+  abr_email_address: bathvoter@tds.net
+  abr_contact_name: BATH COUNTY GENERAL REGISTRAR 
+  abr_status_check_url:
+  abr_status_check_phone: 540-839-7266 
+- name: Bedford County
+  abr_email_address: b.gunter@bedfordcountyva.gov
+  abr_contact_name: Bedford County Office of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 540-586-7649
+- name: Bland County
+  abr_email_address: govote021@embarqmail.com
+  abr_contact_name: Bland County Voter Registration and Elections Office 
+  abr_status_check_url:
+  abr_status_check_phone: 276-688-4441
+- name: Botetourt County
+  abr_email_address:  tclark@botetourtva.gov 
+  abr_contact_name: Botetourt County Dept of Elections & Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 540-928-2120
+- name: Bristol City
+  abr_email_address: vote@bristolva.org 
+  abr_contact_name: Bristol City Elections and Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone:  276-645-7318 
+- name: Brunswick County
+  abr_email_address: govote025@brunswickco.com 
+  abr_contact_name: Brunswick County Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-848-4414 
+- name: Buchanan County
+  abr_email_address: registrar@buchanancounty-va.gov 
+  abr_contact_name: Buchanan County Voter Registration and Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 276-935-6534 
+- name: County of Buckingham 
+  abr_email_address: elections@buckinghamcounty.virginia.gov 
+  abr_contact_name: County of Buckingham General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 434-969-4304 
+- name: Buena Vista City 
+  abr_email_address:  estaton@bvcity.org 
+  abr_contact_name: Office of the Registrar City of Buena Vista 
+  abr_status_check_url:
+  abr_status_check_phone: 540-261-8605 
+- name: Campbell County
+  abr_email_address: klmartin@co.campbell.va.us 
+  abr_contact_name: Campbell County Department of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 434-332-9579 
+- name: Caroline County 
+  abr_email_address: kmcvay@co.caroline.va.us 
+  abr_contact_name: Caroline County General Registrars Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-633-9083 
+- name: Carroll County
+  abr_email_address: kimberly.cloud@carrollcountyva.gov 
+  abr_contact_name: Carroll County Voter Registration Office
+  abr_status_check_url:
+  abr_status_check_phone: 276-730-3035 
+- name: Charles City County
+  abr_email_address: cbarneycastle@co.charles-city.va.us 
+  abr_contact_name: Charles City County General Registrar Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-652-4606 
+- name: Charlotte County
+  abr_email_address: charlottecovotes037@gmail.com 
+  abr_contact_name: Charlotte County Voter Registration Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-542-5856 
+- name: Charlottesville City
+  abr_email_address: vote@charlottesville.gov 
+  abr_contact_name: Charlottesville City Voter Registration & Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 434-970-3250 
+- name: Chesapeake City 
+  abr_email_address: mlpinkerman@cityofchesapeake.net 
+  abr_contact_name: Chesapeake City Office of the General Registrar 
+  abr_status_check_url:
+  abr_status_check_phone: 757-277-9797 
+- name: Chesterfield County
+  abr_email_address: registrar@chesterfield.gov 
+  abr_contact_name: Chesterfield Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-748-1471 
+- name: Clarke County
+  abr_email_address: vote@clarkecounty.gov 
+  abr_contact_name: Clarke County Office of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 540-955-5168 
+- name: Colonial Heights City
+  abr_email_address: schottj@colonialheightsva.gov  
+  abr_contact_name: Colonial Heights City General Registrar 
+  abr_status_check_url:
+  abr_status_check_phone: 804-520-9277 
+- name: Covington City
+  abr_email_address: govote580@ntelos.net 
+  abr_contact_name: Covington City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-965-6380 
+- name: Craig County
+  abr_email_address: vote@craigcountyva.gov 
+  abr_contact_name: Craig County Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 540-864-6190 
+- name: Culpeper County
+  abr_email_address: registrar@culpepercounty.gov 
+  abr_contact_name: Culpeper County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-825-0652 
+- name: Cumberland County 
+  abr_email_address: mwatson@cumberlandcounty.virginia.gov 
+  abr_contact_name: Cumberland County Voter Registration Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-492-4504 
+- name: Danville City
+  abr_email_address: govote@danvilleva.gov 
+  abr_contact_name: Danville City Voter Registration and Electoral Board Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-799-6560 
+- name: Dickenson County
+  abr_email_address: rchildress@dickensonva.org 
+  abr_contact_name: Dickenson County Office of Voter Registration and Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 276-926-1620 
+- name: Dinwiddie County
+  abr_email_address: lbrandon@dinwiddieva.us 
+  abr_contact_name: Dinwiddie County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone:  804-469-4500 x 2113 
+- name: Emporia City
+  abr_email_address: awall@ci.emporia.va.us 
+  abr_contact_name: Emporia City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 434-634-9533 
+- name: Essex County
+  abr_email_address: govote@essex-virginia.org 
+  abr_contact_name: Essex County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-443-4611 
+- name: City of Fairfax
+  abr_email_address: Registrar@Fairfaxva.gov 
+  abr_contact_name: City of Fairfax General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 703-385-7890 
+- name: Fairfax County
+  abr_email_address: voting@fairfaxcounty.gov 
+  abr_contact_name: Fairfax County Office of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 703-222-0776 
+- name: Falls Church City
+  abr_email_address: vote@fallschurchva.gov 
+  abr_contact_name: Falls Church City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 703-248-5085 
+- name: Fauquier County
+  abr_email_address: alex.ables@fauquiercounty.gov 
+  abr_contact_name: County of Fauquier General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-422-8290 
+- name: Floyd County
+  abr_email_address: registrar@floydcova.org 
+  abr_contact_name: Floyd County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-745-9350 
+- name: Fluvanna County
+  abr_email_address: jpace@fluvannacounty.org 
+  abr_contact_name: Fluvanna County Office of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 434-589-3593 
+- name: Franklin City
+  abr_email_address: jmaynard@franklinva.com 
+  abr_contact_name: Franklin City Voter Registration and Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 757-562-8545 
+- name: Franklin County
+  abr_email_address: kay.chitwood@franklincountyva.gov 
+  abr_contact_name: Franklin County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-483-3025 
+- name: Fredericksburg City
+  abr_email_address: vote@vote.fredericksburgva.gov 
+  abr_contact_name: Fredericksburg City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-372-1030 
+- name: Galax City
+  abr_email_address: sreavis@galaxva.com 
+  abr_contact_name: Galax City Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 276-236-7509 
+- name: Giles County
+  abr_email_address: govote071@gilescounty.org 
+  abr_contact_name: Giles County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-921-2802 
+- name: Gloucester County 
+  abr_email_address: bamorgan@gloucesterva.info 
+  abr_contact_name: Gloucester County Office of Elections and Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 804-693-3659 
+- name: Goochland County 
+  abr_email_address: Rmulligan@goochlandva.us 
+  abr_contact_name: Goochland County Office of the General Registrar 
+  abr_status_check_url:
+  abr_status_check_phone: 804-556-5803 
+- name: Grayson County
+  abr_email_address: cwingate@graysoncountyva.gov 
+  abr_contact_name: Grayson County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 276-773-2842 
+- name: Greene County
+  abr_email_address: jlewis-fowler@gcva.us 
+  abr_contact_name: Greene County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-985-5213 
+- name: Greensville County
+  abr_email_address: sconwell@greensvillecountyva.gov 
+  abr_contact_name: Greensville County Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-348-4228 
+- name: Halifax County
+  abr_email_address: hharding@co.halifax.va.us 
+  abr_contact_name: Halifax County Voter Registrar's Office
+  abr_status_check_url:
+  abr_status_check_phone: 434-476-3322 
+- name: Hampton City
+  abr_email_address: tmorgan@hampton.gov 
+  abr_contact_name: City of Hampton General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 757-727-6218 
+- name: Hanover County
+  abr_email_address: HanoverVoting@hanovercounty.gov
+  abr_contact_name: Hanover Co. Voter Registration & Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 804-365-6080 
+- name: Harrisonburg City
+  abr_email_address: mark.finks@HarrisonburgVA.gov 
+  abr_contact_name: City of Harrisonburg Voter Registration Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-432-7707 
+- name: Henrico County
+  abr_email_address: coa@henrico.us 
+  abr_contact_name: Henrico County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 804-501-4347 
+- name: Henry County
+  abr_email_address: estone@co.henry.va.us 
+  abr_contact_name: Henry County Voter Registration/Electoral Board Office 
+  abr_status_check_url:
+  abr_status_check_phone: 276-638-5108 
+- name: Highland County
+  abr_email_address: govote091@htcnet.org 
+  abr_contact_name: Highland County Voter Registration Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-468-2013 
+- name: Hopewell City
+  abr_email_address: vote@hopewellva.gov 
+  abr_contact_name: Hopewell City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 804-541-2232 x 630 
+- name: Isle of Wight County
+  abr_email_address: lbetterton@isleofwightus.net 
+  abr_contact_name: Isle of Wight County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 757-365-6230 
+- name: James City County
+  abr_email_address: vote@jamescitycountyva.gov 
+  abr_contact_name: James City County Voter Registration and Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 757-259-4949 
+- name: King and Queen County 
+  abr_email_address: dklausen@kingandqueenco.net 
+  abr_contact_name: King and Queen County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 804-785-5980 
+- name: King George County
+  abr_email_address: lgump@co.kinggeorge.state.va.us 
+  abr_contact_name: King George County Registrar 
+  abr_status_check_url:
+  abr_status_check_phone: 540-775-9186 
+- name: King William County
+  abr_email_address: gregistrar@kingwilliamcounty.us 
+  abr_contact_name: King William County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-769-4952 
+- name: Lancaster County
+  abr_email_address: sjett@lancova.com 
+  abr_contact_name: Lancaster County Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 804-462-5277 
+- name: Lee County
+  abr_email_address: govote105@leecova.org 
+  abr_contact_name: Lee County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 276-346-7780 
+- name: Lexington City
+  abr_email_address: jyowell@lexingtonva.gov 
+  abr_contact_name: Lexington City General Registrar Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-461-0535
+- name: Loudoun County
+  abr_email_address: vote@loudoun.gov 
+  abr_contact_name: Loudoun County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 703-777-0380 
+- name: Louisa County
+  abr_email_address: cwatkins@louisa.org 
+  abr_contact_name: Louisa County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-967-3427 
+- name: Lunenburg County
+  abr_email_address: cparsons@lunenburgva.net 
+  abr_contact_name: Lunenburg County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 434-696-3071 
+- name: Lynchburg City
+  abr_email_address: registrar@lynchburgva.gov 
+  abr_contact_name: Lynchburg City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 434-477-5999 
+- name: Madison County
+  abr_email_address: registrar@madisonco.virginia.gov 
+  abr_contact_name: Madison County Voter Registration Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-948-6533 
+- name: Manassas City
+  abr_email_address: voterregistration@ci.manassas.va.us 
+  abr_contact_name: City of Manassas Voter Registration and Elections Dept 
+  abr_status_check_url:
+  abr_status_check_phone: 703-257-8230 
+- name: Manassas Park City
+  abr_email_address: registrars@manassasparkva.gov 
+  abr_contact_name: Manassas Park City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 703-335-8806 
+- name: Martinsville City 
+  abr_email_address: cbarbour@ci.martinsville.va.us 
+  abr_contact_name: Martinsville City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 276-403-5122 
+- name: Mathews County
+  abr_email_address: cfaulkner@mathewscountyva.gov 
+  abr_contact_name: Mathews County Voter Registration Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-725-3200 
+- name: Mecklenburg County
+  abr_email_address: mecklenburgelections@gmail.com 
+  abr_contact_name: Mecklenburg County General Registrar 
+  abr_status_check_url:
+  abr_status_check_phone: 434-738-6191 x 4313 
+- name: Middlesex County 
+  abr_email_address: govote119@co.middlesex.va.us 
+  abr_contact_name: Middlesex County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 804-758-4420 
+- name: Montgomery County
+  abr_email_address: govote121@montgomerycountyva.gov 
+  abr_contact_name: Montgomery County Director of Elections & General Registrar 
+  abr_status_check_url:
+  abr_status_check_phone: 540-382-5741 
+- name: Nelson County
+  abr_email_address: registrar@nelsoncounty.org 
+  abr_contact_name: Nelson County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-263-7190 
+- name: New Kent County
+  abr_email_address: kmbartlett@newkent-va.us 
+  abr_contact_name: New Kent County General Registrar
+  abr_status_check_url:
+  abr_status_check_phone: 804-966-9699 
+- name: Newport News City
+  abr_email_address: lewisvv@nnva.gov 
+  abr_contact_name: Newport News City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 757-926-8683 
+- name: Norfolk City
+  abr_email_address: vote@norfolk.gov 
+  abr_contact_name: Norfolk Office of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 757-664-4353 
+- name: Northampton County
+  abr_email_address: vote@co.northampton.va.us 
+  abr_contact_name: Northampton County Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 757-678-0480 
+- name: Northumberland County
+  abr_email_address: kdavenport@co.northumberland.va.us 
+  abr_contact_name: Northumberland County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 804-580-4655 
+- name: Norton City
+  abr_email_address: govote720@yahoo.com 
+  abr_contact_name: Norton City Registrars Office
+  abr_status_check_url:
+  abr_status_check_phone: 276-679-1162 
+- name: Nottoway County
+  abr_email_address: govote135@gmail.com 
+  abr_contact_name: Nottoway County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-767-2135 
+- name: Orange County 
+  abr_email_address: vote@orangecountyva.gov 
+  abr_contact_name: Orange County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-672-5262  
+- name: Page County
+  abr_email_address: cgaunt@pagecounty.virginia.gov 
+  abr_contact_name: Page County General Registrar Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-743-3986 
+- name: Patrick County
+  abr_email_address: staylor@co.patrick.va.us
+  abr_contact_name: Patrick County General Registar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 276-694-7206 
+- name: Petersburg City 
+  abr_email_address: PetersburgElections@comcast.net
+  abr_contact_name: Petersburg City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 804-733-8071
+- name: Pittsylvania County
+  abr_email_address: kelly.keesee@pittgov.org 
+  abr_contact_name: Pittsylvania County Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 434-432-7971 
+- name: Poquoson City
+  abr_email_address: Tammi.Pinckney@poquoson-va.gov 
+  abr_contact_name: Poquoson City General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 757-868-3070 
+- name: Portsmouth City
+  abr_email_address: registrar@portsmouthva.gov 
+  abr_contact_name: Portsmouth City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 757-393-8644 
+- name: Powhatan County
+  abr_email_address: kalexander@powhatanva.gov 
+  abr_contact_name: Powhatan's Office of Elections & Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 804-598-5604 
+- name: Prince Edward County 
+  abr_email_address: registrar@co.prince-edward.va.us
+  abr_contact_name: Prince Edward County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 434-392-4767 
+- name: Prince George County
+  abr_email_address: aricheson@princegeorgecountyva.gov 
+  abr_contact_name: Prince George County General Registrar Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-722-8748 
+- name: Prince William County
+  abr_email_address: pwcvote@pwcgov.org 
+  abr_contact_name: Prince William County Office of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 703-792-6470 
+- name: Pulaski County
+  abr_email_address: kwebb@pulaskicounty.org 
+  abr_contact_name: Pulaski County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-980-2111 
+- name: Radford City
+  abr_email_address: tracy.howard@radfordva.gov 
+  abr_contact_name: Radford City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-731-3639 
+- name: Rappahannock County
+  abr_email_address: vote@rappahannockcountyva.gov 
+  abr_contact_name: Rappahannock County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-675-5380 
+- name: Richmond City
+  abr_email_address: VoterRegistration@richmondgov.com 
+  abr_contact_name: Richmond City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 804-646-5950 
+- name: Richmond County
+  abr_email_address: govote159@co.richmond.va.us 
+  abr_contact_name: Richmond County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-333-4772 
+- name: Roanoke City
+  abr_email_address: registrar@roanokeva.gov 
+  abr_contact_name: Roanoke City Voter Registration and Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 540-853-2281 
+- name: Roanoke County
+  abr_email_address: acloeter@roanokecountyva.gov 
+  abr_contact_name: Roanoke County Department of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 540-772-7500 
+- name: Rockbridge County
+  abr_email_address: shall@rockbridgecountyva.gov 
+  abr_contact_name: Rockbridge County Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 540-463-7203 
+- name: Rockingham County 
+  abr_email_address: lgooden@rockinghamcountyva.gov 
+  abr_contact_name: Rockingham County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-564-3055 
+- name: Russell County
+  abr_email_address: govote167@bvu.net 
+  abr_contact_name: Russell County
+  abr_status_check_url:
+  abr_status_check_phone: 276-889-8006 
+- name: Salem City
+  abr_email_address: doliver@salemva.gov 
+  abr_contact_name: Salem City Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-375-3034 
+- name: Scott County
+  abr_email_address: medwards@scottcountyva.com 
+  abr_contact_name: Scott County Voter Registrarion 
+  abr_status_check_url:
+  abr_status_check_phone: 276-386-3843 
+- name: Shenandoah County
+  abr_email_address: lmcdonald@shenandoahcountyva.us 
+  abr_contact_name: Shenandoah County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-459-6195 
+- name: Smyth County
+  abr_email_address: sandy.elswick@hotmail.com
+  abr_contact_name: Smyth County Department of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 276-706-8331 
+- name: Southampton County
+  abr_email_address: lburgess@socogovote.com 
+  abr_contact_name: Southampton County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 757-653-9280 
+- name: Spotsylvania County
+  abr_email_address: voter@spotsylvania.va.us 
+  abr_contact_name: Spotsylvania County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-507-7380 
+- name: Stafford County
+  abr_email_address: registrar@staffordcountyva.gov 
+  abr_contact_name: Stafford County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-658-4000 
+- name: Staunton City
+  abr_email_address: vote@ci.staunton.va.us 
+  abr_contact_name: Staunton City General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 540-332-3840 
+- name: Suffolk City
+  abr_email_address: ssaunders@suffolkva.us 
+  abr_contact_name: Suffolk City General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 757-514-7750 
+- name: Surry County
+  abr_email_address: swhite@surrycountyva.gov 
+  abr_contact_name: Surry County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 757-294-5213 
+- name: Sussex County
+  abr_email_address: right2voteSUSSEX@yahoo.com 
+  abr_contact_name: Sussex County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 434-246-1047 
+- name: Tazewell County 
+  abr_email_address: govote@tazewellcounty.org 
+  abr_contact_name: Tazewell County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 276-385-1305 
+- name: Virginia Beach City
+  abr_email_address: voter@vbgov.com 
+  abr_contact_name: Virginia Beach City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 757-385-8683 
+- name: Warren County
+  abr_email_address: vote@warrencountyva.net 
+  abr_contact_name: Warren County General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-635-4327 
+- name: Washington County
+  abr_email_address: vote@washcova.com 
+  abr_contact_name: Washington County Department of Elections 
+  abr_status_check_url:
+  abr_status_check_phone: 276-676-6227 
+- name: Waynesboro City
+  abr_email_address: jefferslp@ci.waynesboro.va.us
+  abr_contact_name: Waynesboro Voter Registration 
+  abr_status_check_url:
+  abr_status_check_phone: 540-942-6620 
+- name: Westmoreland County
+  abr_email_address: govote193@westmoreland-county.org 
+  abr_contact_name: Westmoreland County Voter Registration Office 
+  abr_status_check_url:
+  abr_status_check_phone: 804-493-8898 
+- name: Williamsburg City
+  abr_email_address: treitzel@williamsburgva.gov 
+  abr_contact_name: Williamsburg City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 757-220-6157 
+- name: Winchester City
+  abr_email_address: vote@winchesterva.gov 
+  abr_contact_name: Winchester City General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 540-545-7910 
+- name: Wise County
+  abr_email_address: registrar@wisecounty.org 
+  abr_contact_name: Wise County General Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 276-328-8331 
+- name: Wythe County
+  abr_email_address: govote@wytheco.org
+  abr_contact_name: Wythe County Registrar's Office 
+  abr_status_check_url:
+  abr_status_check_phone: 276-223-6038 
+- name: York County
+  abr_email_address: registrar@yorkcounty.gov 
+  abr_contact_name: York County - Washington Square General Registrar Office
+  abr_status_check_url:
+  abr_status_check_phone: 757-890-3440

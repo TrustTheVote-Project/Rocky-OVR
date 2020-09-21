@@ -1,0 +1,2876 @@
+- name: Abington
+  mailing_address: |-
+    Town Clerk
+    500 Gliniewicz Way
+    Abington, MA  02351
+  abr_email_address: lmadams@abingtonma.gov
+  abr_status_check_phone: 781-982-2112
+  abr_contact_name: Abington Town Clerk
+- name: Acton
+  mailing_address: |-
+    Town Clerk
+    472 Main Street
+    Acton, MA  01720
+  abr_email_address: clerk@acton-ma.gov
+  abr_status_check_phone: 978-929-6620
+  abr_contact_name: Acton Town Clerk
+- name: Acushnet
+  mailing_address: |-
+    Town Clerk
+    130 Main Street
+    Acushnet, MA  02743
+  abr_email_address: plabonte@acushnet.ma.us
+  abr_status_check_phone: 508-998-0215
+  abr_contact_name: Acushnet Town Clerk
+- name: Adams
+  mailing_address: |-
+    Town Clerk
+    8 Park Street
+    Adams, MA  01220
+  abr_email_address: hmeczywor@town.adams.ma.us
+  abr_status_check_phone: 413-743-8300 x 176
+  abr_contact_name: Adams Town Clerk
+- name: Agawam
+  mailing_address: |-
+    Town Clerk
+    36 Main Street
+    Agawam, MA  01001
+  abr_email_address: clerk@agawam.ma.us
+  abr_status_check_phone: 413-786-0400 x 8215
+  abr_contact_name: Agawam Town Clerk
+- name: Alford
+  mailing_address: |-
+    Town Clerk
+    5 Alford Center Road
+    Alford, MA  01230
+  abr_email_address: clerk@townofalford.org
+  abr_status_check_phone: 413-528-4536
+  abr_contact_name: Alford Town Clerk
+- name: Amesbury
+  mailing_address: |-
+    City Clerk
+    62 Friend Street
+    Amesbury, MA  01913
+  abr_email_address: clerklist@amesburyma.gov
+  abr_status_check_phone: 978-388-8100
+  abr_contact_name: Amesbury City Clerk
+- name: Amherst
+  mailing_address: |-
+    Town Clerk
+    4 Boltwood Avenue
+    Amherst, MA  01002
+  abr_email_address: vote@amherstma.gov
+  abr_status_check_phone: 413-259-3035
+  abr_contact_name: Amherst Town Clerk
+- name: Andover
+  mailing_address: |-
+    Town Clerk
+    36 Bartlet Street
+    Andover, MA  01810
+  abr_email_address: townclerk@andoverma.us
+  abr_status_check_phone: 978-623-8230
+  abr_contact_name: Andover Town Clerk
+- name: Aquinnah
+  mailing_address: |-
+    Town Clerk
+    955 State Road
+    Aquinnah, MA  02535
+  abr_email_address: townclerk@aquinnah-ma.gov
+  abr_status_check_phone: 508-645-2304
+  abr_contact_name: Aquinnah Town Clerk
+- name: Arlington
+  mailing_address: |-
+    Town Clerk
+    730 Massachusetts Avenue
+    Arlington, MA  02476
+  abr_email_address: townclerk@town.arlington.ma.us
+  abr_status_check_phone: 781-316-3071
+  abr_contact_name: Arlington Town Clerk
+- name: Ashburnham
+  mailing_address: |-
+    Town Clerk
+    32 Main Street
+    Ashburnham, MA  01430
+  abr_email_address: townclerk@ashburnham-ma.gov
+  abr_status_check_phone: 978-827-4100 x 3
+  abr_contact_name: Ashburnham Town Clerk
+- name: Ashby
+  mailing_address: |-
+    Town Clerk
+    895 Main Street
+    Ashby, MA  01431
+  abr_email_address: tclerk@ashbyma.gov
+  abr_status_check_phone: 978-386-2424 x 10
+  abr_contact_name: Ashby Town Clerk
+- name: Ashfield
+  mailing_address: |-
+    Town Clerk
+    412 Main Street
+    P.O. Box 560
+    Ashfield, MA  01330
+  abr_email_address: townclerk@ashfield.org
+  abr_status_check_phone: 413-628-4441 x 5
+  abr_contact_name: Ashfield Town Clerk
+- name: Ashland
+  mailing_address: |-
+    Town Clerk
+    101 Main Street
+    Ashland, MA  01721
+  abr_email_address: townclerkoffice@ashlandmass.com
+  abr_status_check_phone: 508-881-0100 x 7127
+  abr_contact_name: Ashland Town Clerk
+- name: Athol
+  mailing_address: |-
+    Town Clerk
+    584 Main Street
+    Athol, MA  01331
+  abr_email_address: vote@townofathol.org
+  abr_status_check_phone: 978-249-4551
+  abr_contact_name: Athol Town Clerk
+- name: Attleboro
+  mailing_address: |-
+    Elections Commission
+    77 Park Street
+    Attleboro, MA  02703
+  abr_email_address: elections1@cityofattleboro.us
+  abr_status_check_phone: 508-223-2222 x 3271
+  abr_contact_name: Attleboro Elections Commission
+- name: Auburn
+  mailing_address: |-
+    Town Clerk
+    104 Central Street
+    Auburn, MA  01501
+  abr_email_address: townclerkemail@town.auburn.ma.us
+  abr_status_check_phone: 508-832-7701
+  abr_contact_name: Auburn Town Clerk
+- name: Avon
+  mailing_address: |-
+    Town Clerk
+    65 East Main Street
+    Avon, MA  02322
+  abr_email_address: vote@avon-ma.gov
+  abr_status_check_phone: 508-588-0414 x 1013
+  abr_contact_name: Avon Town Clerk
+- name: Ayer
+  mailing_address: |-
+    Town Clerk
+    1 Main Street
+    Ayer, MA  01432
+  abr_email_address: clerk@ayer.ma.us
+  abr_status_check_phone: 978-772-8215
+  abr_contact_name: Ayer Town Clerk
+- name: Barnstable
+  mailing_address: |-
+    Town Clerk
+    367 Main Street
+    Hyannis, MA  02601
+  abr_email_address: vote@town.barnstable.ma.us
+  abr_status_check_phone: 508-862-4044
+  abr_contact_name: Barnstable Town Clerk
+- name: Barre
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 418
+    Barre, MA  01005-0418
+  abr_email_address: clerk@townofbarre.com
+  abr_status_check_phone: 978-355-2504 x 5
+  abr_contact_name: Barre Town Clerk
+- name: Becket
+  mailing_address: |-
+    Town Clerk
+    557 Main Street
+    Becket, MA  01223
+  abr_email_address: townclerk@townofbecket.org
+  abr_status_check_phone: 413-623-8934 x 11
+  abr_contact_name: Becket Town Clerk
+- name: Bedford
+  mailing_address: |-
+    Town Clerk
+    10 Mudge Way
+    Bedford, MA  01730
+  abr_email_address: clerk@bedfordma.gov
+  abr_status_check_phone: 781-275-0083
+  abr_contact_name: Bedford Town Clerk
+- name: Belchertown
+  mailing_address: |-
+    Town Clerk
+    2 Jabish Street, Room 201
+    P.O. Box 629
+    Belchertown, MA  01007
+  abr_email_address: clerk@belchertown.org
+  abr_status_check_phone: 413-323-0281
+  abr_contact_name: Belchertown Town Clerk
+- name: Bellingham
+  mailing_address: |-
+    Town Clerk
+    10 Mechanic Street
+    Bellingham, MA  02019
+  abr_email_address: lsposato@bellinghamma.org
+  abr_status_check_phone: 508-657-2830
+  abr_contact_name: Bellingham Town Clerk
+- name: Belmont
+  mailing_address: |-
+    Town Clerk
+    455 Concord Avenue
+    P.O. Box 56
+    Belmont, MA  02478
+  abr_email_address: voting@belmont-ma.gov
+  abr_status_check_phone: 617-993-2600
+  abr_contact_name: Belmont Town Clerk
+- name: Berkley
+  mailing_address: |-
+    Town Clerk
+    1 North Main Street
+    Berkley, MA  02779
+  abr_email_address: townclerk@berkleyma.us
+  abr_status_check_phone: 508-822-3348
+  abr_contact_name: Berkley Town Clerk
+- name: Berlin
+  mailing_address: |-
+    Town Clerk
+    23 Linden Street, #8
+    Berlin, MA  01503
+  abr_email_address: townclerk@townofberlin.com
+  abr_status_check_phone: 978-838-2931
+  abr_contact_name: Berlin Town Clerk
+- name: Bernardston
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 504
+    Bernardston, MA  01337
+  abr_email_address: townclerk@townofbernardston.org
+  abr_status_check_phone: 413-648-5408
+  abr_contact_name: Bernardston Town Clerk
+- name: Beverly
+  mailing_address: |-
+    City Clerk
+    191 Cabot Street
+    Beverly, MA  01915-5849
+  abr_email_address: lkent@beverlyma.gov
+  abr_status_check_phone: 978-605-2326
+  abr_contact_name: Beverly City Clerk
+- name: Billerica
+  mailing_address: |-
+    Town Clerk
+    365 Boston Road
+    Billerica, MA  01821
+  abr_email_address: sschult@town.billerica.ma.us
+  abr_status_check_phone: 978-671-0926
+  abr_contact_name: Billerica Town Clerk
+- name: Blackstone
+  mailing_address: |-
+    Town Clerk
+    15 St. Paul Street
+    Blackstone, MA  01504
+  abr_email_address: tsullivan@townofblackstone.org
+  abr_status_check_phone: 508-883-1500 x 146
+  abr_contact_name: Blackstone Town Clerk
+- name: Blandford
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 33
+    Blandford, MA  01008
+  abr_email_address: townclerk@townofblandford.com
+  abr_status_check_phone: 413-848-4279 x 203
+  abr_contact_name: Blandford Town Clerk
+- name: Bolton
+  mailing_address: |-
+    Town Clerk
+    663 Main Street
+    Bolton, MA  01740
+  abr_email_address: townclerk@townofbolton.com
+  abr_status_check_phone: 978-779-2771
+  abr_contact_name: Bolton Town Clerk
+- name: Boston
+  mailing_address: |-
+    Elections Department
+    One City Hall Square
+    Room 241
+    Boston, MA  02201
+  abr_email_address: absenteevoter@boston.gov
+  abr_status_check_phone: 617-635-3767 x 4
+  abr_contact_name: Boston Elections Department
+- name: Bourne
+  mailing_address: |-
+    Town Clerk
+    24 Perry Avenue
+    Buzzards Bay, MA  02532
+  abr_email_address: Elections@townofbourne.com
+  abr_status_check_phone: 508-759-0600 x 1505
+  abr_contact_name: Bourne Town Clerk
+- name: Boxborough
+  mailing_address: |-
+    Town Clerk
+    29 Middle Road
+    Boxborough, MA  01719
+  abr_email_address: emarkiewicz@boxborough-ma.gov
+  abr_status_check_phone: 978-264-1727
+  abr_contact_name: Boxborough Town Clerk
+- name: Boxford
+  mailing_address: |-
+    Town Clerk
+    7A Spofford Road
+    Boxford, MA  01921
+  abr_email_address: rphelan@town.boxford.ma.us
+  abr_status_check_phone: 978-887-0710
+  abr_contact_name: Boxford Town Clerk
+- name: Boylston
+  mailing_address: |-
+    Town Clerk
+    221 Main Street
+    Boylston, MA  01505
+  abr_email_address: dporter@boylston-ma.gov
+  abr_status_check_phone: 508-869-2234
+  abr_contact_name: Boylston Town Clerk
+- name: Braintree
+  mailing_address: |-
+    Town Clerk
+    1 J.F.K. Memorial Drive
+    Braintree, MA  02184
+  abr_email_address: dstarr@braintreema.gov
+  abr_status_check_phone: 781-794-8240
+  abr_contact_name: Braintree Town Clerk
+- name: Brewster
+  mailing_address: |-
+    Town Clerk
+    2198 Main Street
+    Brewster, MA  02631
+  abr_email_address: townclerk@brewster-ma.gov
+  abr_status_check_phone: 508-896-4506
+  abr_contact_name: Brewster Town Clerk
+- name: Bridgewater
+  mailing_address: |-
+    Town Clerk
+    66 Central Square
+    Bridgewater, MA  02324
+  abr_email_address: townclerk@bridgewaterma.org
+  abr_status_check_phone: 508-697-0921
+  abr_contact_name: Bridgewater Town Clerk
+- name: Brimfield
+  mailing_address: |-
+    Town Clerk
+    23 Main Street
+    P.O. Box 508
+    Brimfield, MA  01010
+  abr_email_address: TownClerk@BrimfieldMA.org
+  abr_status_check_phone: 413-245-4100 x 7
+  abr_contact_name: Brimfield Town Clerk
+- name: Brockton
+  mailing_address: |-
+    Elections Commission
+    45 School Street
+    Brockton, MA  02301
+  abr_email_address: elections@cobma.us
+  abr_status_check_phone: 508-580-7117
+  abr_contact_name: Brockton Elections Commission
+- name: Brookfield
+  mailing_address: |-
+    Town Clerk
+    6 Central Street
+    Brookfield, MA  01506
+  abr_email_address: mseery@brookfieldma.us
+  abr_status_check_phone: 508-867-2930 x 12
+  abr_contact_name: Brookfield Town Clerk
+- name: Brookline
+  mailing_address: |-
+    Town Clerk
+    333 Washington Street
+    Brookline, MA  02445
+  abr_email_address: townclerk@brooklinema.gov
+  abr_status_check_phone: 617-730-2010
+  abr_contact_name: Brookline Town Clerk
+- name: Buckland
+  mailing_address: |-
+    Town Clerk
+    17 State Street
+    Shelburne Falls, MA  01370
+  abr_email_address: twnclerk@town.buckland.ma.us
+  abr_status_check_phone: 413-625-6330 x 4
+  abr_contact_name: Buckland Town Clerk
+- name: Burlington
+  mailing_address: |-
+    Town Clerk
+    29 Center Street
+    Burlington, MA  01803
+  abr_email_address: vote@burlington.org
+  abr_status_check_phone: 781-270-1660
+  abr_contact_name: Burlington Town Clerk
+- name: Cambridge
+  mailing_address: |-
+    Elections Commission
+    51 Inman Street
+    First Floor
+    Cambridge, MA  02139
+  abr_email_address: elections2@cambridgema.gov
+  abr_status_check_phone: 617-349-4361
+  abr_contact_name: Cambridge Elections Commission
+- name: Canton
+  mailing_address: |-
+    Town Clerk
+    801 Washington Street
+    Canton, MA  02021
+  abr_email_address: elections@town.canton.ma.us
+  abr_status_check_phone: 781-821-5013
+  abr_contact_name: Canton Town Clerk
+- name: Carlisle
+  mailing_address: |-
+    Town Clerk
+    66 Westford Street
+    Carlisle, MA  01741
+  abr_email_address: townclerk@carlislema.gov
+  abr_status_check_phone: 978-369-6155
+  abr_contact_name: Carlisle Town Clerk
+- name: Carver
+  mailing_address: |-
+    Town Clerk
+    108 Main Street
+    Carver, MA  02330
+  abr_email_address: town.clerk@carverma.org
+  abr_status_check_phone: 508-866-3403
+  abr_contact_name: Carver Town Clerk
+- name: Charlemont
+  mailing_address: |-
+    Town Clerk
+    157 Main Street
+    Box 605
+    Charlemont, MA  01339
+  abr_email_address: kathy.reynolds@townofcharlemont.org
+  abr_status_check_phone: 413-339-4335 x 305
+  abr_contact_name: Charlemont Town Clerk
+- name: Charlton
+  mailing_address: |-
+    Town Clerk
+    37 Main Street
+    Charlton, MA  01507
+  abr_email_address: town.clerk@townofcharlton.net
+  abr_status_check_phone: 508-248-2249
+  abr_contact_name: Charlton Town Clerk
+- name: Chatham
+  mailing_address: |-
+    Town Clerk
+    549 Main Street
+    Chatham, MA  02633
+  abr_email_address: vote@chatham-ma.gov
+  abr_status_check_phone: 508-945-5101
+  abr_contact_name: Chatham Town Clerk
+- name: Chelmsford
+  mailing_address: |-
+    Town Clerk
+    50 Billerica Road
+    Chelmsford, MA  01824
+  abr_email_address: townclerk@chelmsfordma.gov
+  abr_status_check_phone: 978-250-5205
+  abr_contact_name: Chelmsford Town Clerk
+- name: Chelsea
+  mailing_address: |-
+    City Clerk
+    500 Broadway
+    Chelsea, MA  02150
+  abr_email_address: vote@chelseama.gov
+  abr_status_check_phone: 617-466-4050
+  abr_contact_name: Chelsea City Clerk
+- name: Cheshire
+  mailing_address: |-
+    Town Clerk
+    80 Church Street
+    Box S
+    Cheshire, MA  01225
+  abr_email_address: townclerk@cheshire-ma.gov
+  abr_status_check_phone: 413-743-1690 x 22
+  abr_contact_name: Cheshire Town Clerk
+- name: Chester
+  mailing_address: |-
+    Town Clerk
+    15 Middlefield Road
+    Chester, MA  01011
+  abr_email_address: rdalesandro@townofchester.net
+  abr_status_check_phone: 413-354-6603
+  abr_contact_name: Chester Town Clerk
+- name: Chesterfield
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 13
+    Chesterfield, MA  01012
+  abr_email_address: election@townofchesterfieldma.com
+  abr_status_check_phone: 413-296-4741 x 4#
+  abr_contact_name: Chesterfield Town Clerk
+- name: Chicopee
+  mailing_address: |-
+    Board Of Registrars
+    274 Front Street
+    Chicopee, MA  01013
+  abr_email_address: jsurdyka@chicopeema.gov
+  abr_status_check_phone: 413-594-1550
+  abr_contact_name: Chicopee Board Of Registrars
+- name: Chilmark
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 119
+    Chilmark, MA  02535
+  abr_email_address: townclerk@chilmarkma.gov
+  abr_status_check_phone: 508-645-2107
+  abr_contact_name: Chilmark Town Clerk
+- name: Clarksburg
+  mailing_address: |-
+    Town Clerk
+    111 River Road
+    Clarksburg, MA  01247
+  abr_email_address: townclerk@clarksburgma.gov
+  abr_status_check_phone: 413-663-8255
+  abr_contact_name: Clarksburg Town Clerk
+- name: Clinton
+  mailing_address: |-
+    Town Clerk
+    242 Church Street
+    Clinton, MA  01510
+  abr_email_address: hsargent@clintonma.gov
+  abr_status_check_phone: 978-365-4119
+  abr_contact_name: Clinton Town Clerk
+- name: Cohasset
+  mailing_address: |-
+    Town Clerk
+    41 Highland Avenue
+    Cohasset, MA  02025
+  abr_email_address: townclerk@cohassetma.org
+  abr_status_check_phone: 781-383-4100 x 105
+  abr_contact_name: Cohasset Town Clerk
+- name: Colrain
+  mailing_address: |-
+    Town Clerk
+    55 Main Road
+    Colrain, MA  01340
+  abr_email_address: townclerk@colrain-ma.gov
+  abr_status_check_phone: 413-624-7100
+  abr_contact_name: Colrain Town Clerk
+- name: Concord
+  mailing_address: |-
+    Town Clerk
+    22 Monument Square
+    P.O. Box 535
+    Concord, MA  01742
+  abr_email_address: townclerk@concordma.gov
+  abr_status_check_phone: 978-318-3080
+  abr_contact_name: Concord Town Clerk
+- name: Conway
+  mailing_address: |-
+    Town Clerk
+    32 Main Street
+    P.O. Box 240
+    Conway, MA  01341
+  abr_email_address: clerk@townofconway.com
+  abr_status_check_phone: 413-369-4235 x 4
+  abr_contact_name: Conway Town Clerk
+- name: Cummington
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 128
+    Cummington, MA  01026
+  abr_email_address: djordan@cummington-ma.gov
+  abr_status_check_phone: 413-200-5011
+  abr_contact_name: Cummington Town Clerk
+- name: Dalton
+  mailing_address: |-
+    Town Clerk
+    462 Main Street
+    Dalton, MA  01226-1677
+  abr_email_address: mblake@dalton-ma.gov
+  abr_status_check_phone: 413-684-6103 x 14
+  abr_contact_name: Dalton Town Clerk
+- name: Danvers
+  mailing_address: |-
+    Town Clerk
+    1 Sylvan Street
+    Danvers, MA  01923
+  abr_email_address: townclerk@danversma.gov
+  abr_status_check_phone: 978-777-0001
+  abr_contact_name: Danvers Town Clerk
+- name: Dartmouth
+  mailing_address: |-
+    Town Clerk
+    400 Slocum Road
+    Dartmouth, MA  02747
+  abr_email_address: clerk@town.dartmouth.ma.us
+  abr_status_check_phone: 508-910-1800
+  abr_contact_name: Dartmouth Town Clerk
+- name: Dedham
+  mailing_address: |-
+    Town Clerk
+    450 Washington Street
+    Dedham, MA  02026
+  abr_email_address: pmunchbach@dedham-ma.gov
+  abr_status_check_phone: 781-751-9200
+  abr_contact_name: Dedham Town Clerk
+- name: Deerfield
+  mailing_address: |-
+    Town Clerk
+    8 Conway Street
+    South Deerfield, MA  01373
+  abr_email_address: vote@town.deerfield.ma.us
+  abr_status_check_phone: 413-665-1400 x 102
+  abr_contact_name: Deerfield Town Clerk
+- name: Dennis
+  mailing_address: |-
+    Town Clerk
+    685 Route 134
+    Dennis, MA  02660
+  abr_email_address: clerksoffice@town.dennis.ma.us
+  abr_status_check_phone: 508-760-6112
+  abr_contact_name: Dennis Town Clerk
+- name: Dighton
+  mailing_address: |-
+    Town Clerk
+    979 Somerset Avenue
+    Dighton, MA  02715
+  abr_email_address: smedeiros@townofdighton.com
+  abr_status_check_phone: 508-669-5411
+  abr_contact_name: Dighton Town Clerk
+- name: Douglas
+  mailing_address: |-
+    Town Clerk
+    29 Depot Street
+    Douglas, MA  01516
+  abr_email_address: cfurno@douglas-ma.gov
+  abr_status_check_phone: 508-476-4000 x 255
+  abr_contact_name: Douglas Town Clerk
+- name: Dover
+  mailing_address: |-
+    Town Clerk
+    5 Springdale Avenue
+    P.O. Box 250
+    Dover, MA  02030
+  abr_email_address: townclerk@doverma.org
+  abr_status_check_phone: 508-785-0032 x 226
+  abr_contact_name: Dover Town Clerk
+- name: Dracut
+  mailing_address: |-
+    Town Clerk
+    62 Arlington Street
+    Dracut, MA  01826
+  abr_email_address: elections@dracutma.gov
+  abr_status_check_phone: 978-453-0951 X 255
+  abr_contact_name: Dracut Town Clerk
+- name: Dudley
+  mailing_address: |-
+    Town Clerk
+    71 West Main Street
+    Dudley, MA  01571
+  abr_email_address: townclerk@dudleyma.gov
+  abr_status_check_phone: 508-949-8004
+  abr_contact_name: Dudley Town Clerk
+- name: Dunstable
+  mailing_address: |-
+    Town Clerk
+    511 Main Street
+    Dunstable, MA  01827
+  abr_email_address: cskerrett@dunstable-ma.gov
+  abr_status_check_phone: 978-649-4514 x 222
+  abr_contact_name: Dunstable Town Clerk
+- name: Duxbury
+  mailing_address: |-
+    Town Clerk
+    878 Tremont Street
+    Duxbury, MA  02332
+  abr_email_address: kelley@town.duxbury.ma.us
+  abr_status_check_phone: 781-934-1100 x 5450
+  abr_contact_name: Duxbury Town Clerk
+- name: East Bridgewater
+  mailing_address: |-
+    Town Clerk
+    175 Central Street
+    Box 387
+    East Bridgewater, MA  02333
+  abr_email_address: Townclerk@eastbridgewaterma.gov
+  abr_status_check_phone: 508-378-1600
+  abr_contact_name: East Bridgewater Town Clerk
+- name: East Brookfield
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 568
+    East Brookfield, MA  01515-0568
+  abr_email_address: townclerk@eastbrookfieldma.us
+  abr_status_check_phone: 508-867-6769 x 301
+  abr_contact_name: East Brookfield Town Clerk
+- name: East Longmeadow
+  mailing_address: |-
+    Town Clerk
+    60 Center Square
+    East Longmeadow, MA  01028
+  abr_email_address: elections@eastlongmeadowma.gov
+  abr_status_check_phone: 413-525-5400 x 1001
+  abr_contact_name: East Longmeadow Town Clerk
+- name: Eastham
+  mailing_address: |-
+    Town Clerk
+    2500 State Hwy
+    Eastham, MA  02642
+  abr_email_address: townclerk@eastham-ma.gov
+  abr_status_check_phone: 774-801-3223
+  abr_contact_name: Eastham Town Clerk
+- name: Easthampton
+  mailing_address: |-
+    City Clerk
+    50 Payson Avenue
+    Suite 100
+    Easthampton, MA  01027-2260
+  abr_email_address: vote@easthamptonma.gov
+  abr_status_check_phone: 413-529-1460
+  abr_contact_name: Easthampton City Clerk
+- name: Easton
+  mailing_address: |-
+    Town Clerk
+    136 Elm Street
+    Easton, MA  02356
+  abr_email_address: votebymail@easton.ma.us
+  abr_status_check_phone: 508-230-0530
+  abr_contact_name: Easton Town Clerk
+- name: Edgartown
+  mailing_address: |-
+    Town Clerk
+    70 Main Street
+    P.O. Box 35
+    Edgartown, MA  02539
+  abr_email_address: kmedeiros@edgartown-ma.us
+  abr_status_check_phone: 508-627-6110
+  abr_contact_name: Edgartown Town Clerk
+- name: Egremont
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 368
+    South Egremont, MA  01258
+  abr_email_address: townclerk@egremont-ma.gov
+  abr_status_check_phone: 413-528-0182 x 11
+  abr_contact_name: Egremont Town Clerk
+- name: Erving
+  mailing_address: |-
+    Town Clerk
+    12 East Main Street
+    Erving, MA  01344
+  abr_email_address: richard.newton@erving-ma.gov
+  abr_status_check_phone: 413-422-2800 x 106
+  abr_contact_name: Erving Town Clerk
+- name: Essex
+  mailing_address: |-
+    Town Clerk
+    30 Martin Street
+    Essex, MA  01929
+  abr_email_address: townclerk@essexma.org
+  abr_status_check_phone: 978-768-7111
+  abr_contact_name: Essex Town Clerk
+- name: Everett
+  mailing_address: |-
+    Elections Commission
+    484 Broadway
+    Everett, MA  02149
+  abr_email_address: sergio.cornelio@ci.everett.ma.us
+  abr_status_check_phone: 617-394-2297
+  abr_contact_name: Everett Elections Commission
+- name: Fairhaven
+  mailing_address: |-
+    Town Clerk
+    40 Center Street
+    Fairhaven, MA  02719
+  abr_email_address: clerk@fairhaven-ma.gov
+  abr_status_check_phone: 508-979-4023 x 105
+  abr_contact_name: Fairhaven Town Clerk
+- name: Fall River
+  mailing_address: |-
+    Elections Commission
+    1 Government Center
+    Room 636
+    Fall River, MA  02722
+  abr_email_address: ksouza-young@fallriverma.org
+  abr_status_check_phone: 508-324-2630
+  abr_contact_name: Fall River Elections Commission
+- name: Falmouth
+  mailing_address: |-
+    Town Clerk
+    59 Town Hall Square
+    Falmouth, MA  02540
+  abr_email_address: townclerk@falmouthma.gov
+  abr_status_check_phone: 508-495-7353
+  abr_contact_name: Falmouth Town Clerk
+- name: Fitchburg
+  mailing_address: |-
+    City Clerk
+    166 Boulder Drive
+    Fitchburg, MA  01420
+  abr_email_address: vote@fitchburgma.gov
+  abr_status_check_phone: 978-829-1820
+  abr_contact_name: Fitchburg City Clerk
+- name: Florida
+  mailing_address: |-
+    Town Clerk
+    379 Mohawk Trail
+    Drury, MA  01343
+  abr_email_address: floridaclerk.floridamass@gmail.com
+  abr_status_check_phone: 413-662-2448
+  abr_contact_name: Florida Town Clerk
+- name: Foxborough
+  mailing_address: |-
+    Town Clerk
+    40 South Street
+    Foxborough, MA  02035
+  abr_email_address: bcutler@foxboroughma.gov
+  abr_status_check_phone: 508-543-1208
+  abr_contact_name: Foxborough Town Clerk
+- name: Framingham
+  mailing_address: |-
+    City Clerk
+    150 Concord Street
+    ROOM 105
+    Framingham, MA  01702
+  abr_email_address: cityclerk@framinghamma.gov
+  abr_status_check_phone: 508-532-5521
+  abr_contact_name: Framingham City Clerk
+- name: Franklin
+  mailing_address: |-
+    Town Clerk
+    355 East Central Street
+    Franklin, MA  02038
+  abr_email_address: townclerk@franklinma.gov
+  abr_status_check_phone: 508-520-4900
+  abr_contact_name: Franklin Town Clerk
+- name: Freetown
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 438
+    Assonet, MA  02702
+  abr_email_address: townclerk@freetownma.gov
+  abr_status_check_phone: 508-644-2201 x 2
+  abr_contact_name: Freetown Town Clerk
+- name: Gardner
+  mailing_address: |-
+    City Clerk
+    95 Pleasant Street
+    Room 121
+    Gardner, MA  01440
+  abr_email_address: elections@gardner-ma.gov
+  abr_status_check_phone: 978-630-4058
+  abr_contact_name: Gardner City Clerk
+- name: Georgetown
+  mailing_address: |-
+    Town Clerk
+    1 Library Street
+    Georgetown, MA  01833
+  abr_email_address: townclerk@georgetownma.gov
+  abr_status_check_phone: 978-352-5711
+  abr_contact_name: Georgetown Town Clerk
+- name: Gill
+  mailing_address: |-
+    Town Clerk
+    325 Main Road
+    Gill, MA  01354
+  abr_email_address: townclerk@gillmass.org
+  abr_status_check_phone: 413-863-8103
+  abr_contact_name: Gill Town Clerk
+- name: Gloucester
+  mailing_address: |-
+    City Clerk
+    9 Dale Avenue
+    Gloucester, MA  01930
+  abr_email_address: elections@gloucester-ma.gov
+  abr_status_check_phone: 978-281-9720 x 6
+  abr_contact_name: Gloucester City Clerk
+- name: Goshen
+  mailing_address: |-
+    Town Clerk
+    40 Main Street
+    Goshen, MA  01032
+  abr_email_address: clerk@goshen-ma.us
+  abr_status_check_phone: 413-268-8236 x 107
+  abr_contact_name: Goshen Town Clerk
+- name: Gosnold
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 28
+    Cuttyhunk, MA  02713
+  abr_email_address: gosnoldtownclerk@yahoo.com
+  abr_status_check_phone: 508-990-7408
+  abr_contact_name: Gosnold Town Clerk
+- name: Grafton
+  mailing_address: |-
+    Town Clerk
+    30 Providence Road
+    Grafton, MA  01519
+  abr_email_address: clerks@grafton-ma.gov
+  abr_status_check_phone: 508-839-5335 x 1195
+  abr_contact_name: Grafton Town Clerk
+- name: Granby
+  mailing_address: |-
+    Town Clerk
+    215 B West State Street
+    Granby, MA  01033
+  abr_email_address: kkellyregan@granby-ma.gov
+  abr_status_check_phone: 413-467-7178
+  abr_contact_name: Granby Town Clerk
+- name: Granville
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 247
+    Granville, MA  01034-0247
+  abr_email_address: townclerk@townofgranville.org
+  abr_status_check_phone: 413-357-8585 x 3
+  abr_contact_name: Granville Town Clerk
+- name: Great Barrington
+  mailing_address: |-
+    Town Clerk
+    334 Main Street
+    Great Barrington, MA  01230
+  abr_email_address: jmessina@townofgb.org
+  abr_status_check_phone: 413-528-1619 x 3
+  abr_contact_name: Great Barrington Town Clerk
+- name: Greenfield
+  mailing_address: |-
+    City Clerk
+    14 Court Square
+    Greenfield, MA  01301
+  abr_email_address: townclerk@greenfield-ma.gov
+  abr_status_check_phone: 413-772-1555 X 6162
+  abr_contact_name: Greenfield City Clerk
+- name: Groton
+  mailing_address: |-
+    Town Clerk
+    173 Main Street
+    Groton, MA  01450
+  abr_email_address: townclerk@townofgroton.org
+  abr_status_check_phone: 978-448-1100
+  abr_contact_name: Groton Town Clerk
+- name: Groveland
+  mailing_address: |-
+    Town Clerk
+    183 Main Street
+    Groveland, MA  01834
+  abr_email_address: ecunniff@grovelandma.com
+  abr_status_check_phone: 978-556-7200 x 221
+  abr_contact_name: Groveland Town Clerk
+- name: Hadley
+  mailing_address: |-
+    Town Clerk
+    100 Middle Street
+    Hadley, MA  01035
+  abr_email_address: clerk@hadleyma.org
+  abr_status_check_phone: 413-584-1590
+  abr_contact_name: Hadley Town Clerk
+- name: Halifax
+  mailing_address: |-
+    Town Clerk
+    499 Plymouth Street
+    Halifax, MA  02338
+  abr_email_address: clerksoffice@halifax-ma.org
+  abr_status_check_phone: 781-293-7970
+  abr_contact_name: Halifax Town Clerk
+- name: Hamilton
+  mailing_address: |-
+    Town Clerk
+    577 Bay Road
+    Hamilton, MA  01936
+  abr_email_address: ckale@hamiltonma.gov
+  abr_status_check_phone: 978-468-5570 x 3
+  abr_contact_name: Hamilton Town Clerk
+- name: Hampden
+  mailing_address: |-
+    Town Clerk
+    625 Main Street
+    Hampden, MA  01036
+  abr_email_address: vote@hampdenma.gov
+  abr_status_check_phone: 413-566-2151 x 103
+  abr_contact_name: Hampden Town Clerk
+- name: Hancock
+  mailing_address: |-
+    Town Clerk
+    3650 Hancock Road
+    Hancock, MA  01237
+  abr_email_address: hantclb1@aol.com
+  abr_status_check_phone: 413-738-5225
+  abr_contact_name: Hancock Town Clerk
+- name: Hanover
+  mailing_address: |-
+    Town Clerk
+    550 Hanover Street
+    Hanover, MA  02339
+  abr_email_address: clerk@hanover-ma.gov
+  abr_status_check_phone: 781-826-5000 x 1079
+  abr_contact_name: Hanover Town Clerk
+- name: Hanson
+  mailing_address: |-
+    Town Clerk
+    542 Liberty Street
+    Hanson, MA  02341
+  abr_email_address: townclerk@hanson-ma.gov
+  abr_status_check_phone: 781-293-2772
+  abr_contact_name: Hanson Town Clerk
+- name: Hardwick
+  mailing_address: |-
+    Town Clerk
+    307 Main Street
+    Box 575
+    Gilbertville, MA  01031
+  abr_email_address: clerk@townofhardwick.com
+  abr_status_check_phone: 413-477-6700 x 104
+  abr_contact_name: Hardwick Town Clerk
+- name: Harvard
+  mailing_address: |-
+    Town Clerk
+    13 Ayer Road
+    Harvard, MA  01451-1458
+  abr_email_address: townclerk@harvard.ma.us
+  abr_status_check_phone: 978-456-4100 x 316
+  abr_contact_name: Harvard Town Clerk
+- name: Harwich
+  mailing_address: |-
+    Town Clerk
+    732 Main Street
+    Harwich, MA  02645
+  abr_email_address: adoucette@town.harwich.ma.us
+  abr_status_check_phone: 508-430-7516 x 5
+  abr_contact_name: Harwich Town Clerk
+- name: Hatfield
+  mailing_address: |-
+    Town Clerk
+    59 Main Street
+    Hatfield, MA  01038
+  abr_email_address: townclerk@townofhatfield.org
+  abr_status_check_phone: 413-247-0492 x 112
+  abr_contact_name: Hatfield Town Clerk
+- name: Haverhill
+  mailing_address: |-
+    City Clerk
+    4 Summer Street
+    Room 118
+    Haverhill, MA  01830
+  abr_email_address: cityclerk@cityofhaverhill.com
+  abr_status_check_phone: 978-374-2312 x 1
+  abr_contact_name: Haverhill City Clerk
+- name: Hawley
+  mailing_address: |-
+    Town Clerk
+    8 Pudding Hollow Road
+    Hawley, MA  01339
+  abr_email_address: townclerk@townofhawley.com
+  abr_status_check_phone: 413-339-5518
+  abr_contact_name: Hawley Town Clerk
+- name: Heath
+  mailing_address: |-
+    Town Clerk
+    1 East Main Street
+    Heath, MA  01346
+  abr_email_address: townclerk@townofheath.org
+  abr_status_check_phone: 413-337-4934 x 6
+  abr_contact_name: Heath Town Clerk
+- name: Hingham
+  mailing_address: |-
+    Town Clerk
+    210 Central Street
+    Hingham, MA  02043
+  abr_email_address: townclerk@hingham-ma.gov
+  abr_status_check_phone: 781-741-1410
+  abr_contact_name: Hingham Town Clerk
+- name: Hinsdale
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 803
+    Hinsdale, MA  01235
+  abr_email_address: clerk@hinsdalema.gov
+  abr_status_check_phone: 413-655-2301
+  abr_contact_name: Hinsdale Town Clerk
+- name: Holbrook
+  mailing_address: |-
+    Town Clerk
+    50 N. Franklin Street
+    Holbrook, MA  02343
+  abr_email_address: town_clerk@holbrookmassachusetts.us
+  abr_status_check_phone: 781-767-4314
+  abr_contact_name: Holbrook Town Clerk
+- name: Holden
+  mailing_address: |-
+    Town Clerk
+    1196 Main Street
+    Holden, MA  01520
+  abr_email_address: townclerk@holdenma.gov
+  abr_status_check_phone: 508-210-5530
+  abr_contact_name: Holden Town Clerk
+- name: Holland
+  mailing_address: |-
+    Town Clerk
+    27 Sturbridge Road
+    Holland, MA  01521
+  abr_email_address: townclerk@hollandma.org
+  abr_status_check_phone: 413-245-7108 x 102
+  abr_contact_name: Holland Town Clerk
+- name: Holliston
+  mailing_address: |-
+    Town Clerk
+    703 Washington Street
+    Holliston, MA  01746
+  abr_email_address: greendalee@holliston.k12.ma.us
+  abr_status_check_phone: 508-429-0601
+  abr_contact_name: Holliston Town Clerk
+- name: Holyoke
+  mailing_address: |-
+    City Clerk
+    536 Dwight Street
+    Suite #2
+    Holyoke, MA  01040
+  abr_email_address: clerks@holyoke.org
+  abr_status_check_phone: 413-322-5540
+  abr_contact_name: Holyoke City Clerk
+- name: Hopedale
+  mailing_address: |-
+    Town Clerk
+    78 Hopedale Street
+    P.O. Box 7
+    Hopedale, MA  01747-0007
+  abr_email_address: lpedroli@hopedale-ma.gov
+  abr_status_check_phone: 508-634-2203 x 215
+  abr_contact_name: Hopedale Town Clerk
+- name: Hopkinton
+  mailing_address: |-
+    Town Clerk
+    18 Main Street
+    Hopkinton, MA  01748
+  abr_email_address: townclerk@hopkintonma.gov
+  abr_status_check_phone: 508-497-9710
+  abr_contact_name: Hopkinton Town Clerk
+- name: Hubbardston
+  mailing_address: |-
+    Town Clerk
+    7 Main Street
+    UNIT 12
+    Hubbardston, MA  01452
+  abr_email_address: tclerk@hubbardstonma.us
+  abr_status_check_phone: 978-928-1400 x 202
+  abr_contact_name: Hubbardston Town Clerk
+- name: Hudson
+  mailing_address: |-
+    Town Clerk
+    78 Main Street
+    Hudson, MA  01749
+  abr_email_address: jwordell@townofhudson.org
+  abr_status_check_phone: 978-568-9615
+  abr_contact_name: Hudson Town Clerk
+- name: Hull
+  mailing_address: |-
+    Town Clerk
+    253 Atlantic Avenue
+    Hull, MA  02045
+  abr_email_address: townclerk@town.hull.ma.us
+  abr_status_check_phone: 781-925-2000
+  abr_contact_name: Hull Town Clerk
+- name: Huntington
+  mailing_address: |-
+    Town Clerk
+    24 Russell Road
+    P.O. Box 453
+    Huntington, MA  01050
+  abr_email_address: townclerk@huntingtonma.us
+  abr_status_check_phone: 413-667-3509
+  abr_contact_name: Huntington Town Clerk
+- name: Ipswich
+  mailing_address: |-
+    Town Clerk
+    25 Green Street
+    Ipswich, MA  01938
+  abr_email_address: amya@ipswichma.gov
+  abr_status_check_phone: 978-356-6677
+  abr_contact_name: Ipswich Town Clerk
+- name: Kingston
+  mailing_address: |-
+    Town Clerk
+    26 Evergreen Street
+    Kingston, MA  02364
+  abr_email_address: pgallagher@kingstonmass.org
+  abr_status_check_phone: 781-585-0502
+  abr_contact_name: Kingston Town Clerk
+- name: Lakeville
+  mailing_address: |-
+    Town Clerk
+    346 Bedford Street
+    Lakeville, MA  02347
+  abr_email_address: vote@lakevillema.org
+  abr_status_check_phone: 508-946-8800
+  abr_contact_name: Lakeville Town Clerk
+- name: Lancaster
+  mailing_address: |-
+    Town Clerk
+    701 Main Street
+    Suite 2
+    Lancaster, MA  01523
+  abr_email_address: dreardon@lancasterma.net
+  abr_status_check_phone: 978-365-3326 x 1013
+  abr_contact_name: Lancaster Town Clerk
+- name: Lanesborough
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 1492
+    Lanesborough, MA  01237
+  abr_email_address: town.clerk@lanesborough-ma.gov
+  abr_status_check_phone: 413-442-1351
+  abr_contact_name: Lanesborough Town Clerk
+- name: Lawrence
+  mailing_address: |-
+    City Clerk
+    200 Common Street
+    Room 4
+    Lawrence, MA  01840
+  abr_email_address: rreyes@cityoflawrence.com
+  abr_status_check_phone: 978-620-3290
+  abr_contact_name: Lawrence City Clerk
+- name: Lee
+  mailing_address: |-
+    Town Clerk
+    32 Main Street
+    Lee, MA  01238
+  abr_email_address: cbrittain@town.lee.ma.us
+  abr_status_check_phone: 413-243-5505
+  abr_contact_name: Lee Town Clerk
+- name: Leicester
+  mailing_address: |-
+    Town Clerk
+    3 Washburn Square
+    Leicester, MA  01524
+  abr_email_address: townclerk@leicesterma.org
+  abr_status_check_phone: 508-892-7011
+  abr_contact_name: Leicester Town Clerk
+- name: Lenox
+  mailing_address: |-
+    Town Clerk
+    6 Walker Street
+    Lenox, MA  01240
+  abr_email_address: ksullivan@townoflenox.com
+  abr_status_check_phone: 413-637-5500 x 1207
+  abr_contact_name: Lenox Town Clerk
+- name: Leominster
+  mailing_address: |-
+    City Clerk
+    25 West Street
+    Room 5
+    Leominster, MA  01453
+  abr_email_address: clerksdept@leominster-ma.gov
+  abr_status_check_phone: 978-534-7500 x 3
+  abr_contact_name: Leominster City Clerk
+- name: Leverett
+  mailing_address: |-
+    Town Clerk
+    9 Montague Road
+    P.O. Box 300
+    Leverett, MA  01054
+  abr_email_address: townclerk@leverett.ma.us
+  abr_status_check_phone: 413-548-9150
+  abr_contact_name: Leverett Town Clerk
+- name: Lexington
+  mailing_address: |-
+    Town Clerk
+    1625 Massachusetts Avenue
+    Lexington, MA  02420
+  abr_email_address: ballots@lexingtonma.gov
+  abr_status_check_phone: 781-698-4558
+  abr_contact_name: Lexington Town Clerk
+- name: Leyden
+  mailing_address: |-
+    Town Clerk
+    7 Brattleborough Road
+    Leyden, MA  01301
+  abr_email_address: townclerk@townofleyden.com
+  abr_status_check_phone: 413-774-4111 x 3
+  abr_contact_name: Leyden Town Clerk
+- name: Lincoln
+  mailing_address: |-
+    Town Clerk
+    16 Lincoln Road
+    Lincoln, MA  01773
+  abr_email_address: townclerk@lincolntown.org
+  abr_status_check_phone: 781-259-2607
+  abr_contact_name: Lincoln Town Clerk
+- name: Littleton
+  mailing_address: |-
+    Town Clerk
+    37 Shattuck Street
+    Littleton, MA  01460
+  abr_email_address: dcrory@littletonma.org
+  abr_status_check_phone: 978-540-2401
+  abr_contact_name: Littleton Town Clerk
+- name: Longmeadow
+  mailing_address: |-
+    Town Clerk
+    20 Williams Street
+    Longmeadow, MA  01106
+  abr_email_address: kingram@longmeadow.org
+  abr_status_check_phone: 413-565-4103
+  abr_contact_name: Longmeadow Town Clerk
+- name: Lowell
+  mailing_address: |-
+    Elections Commission
+    375 Merrimack Street
+    Room 5 Basement
+    Lowell, MA  01852
+  abr_email_address: elections@lowellma.gov
+  abr_status_check_phone: 978-674-1197
+  abr_contact_name: Lowell Elections Commission
+- name: Ludlow
+  mailing_address: |-
+    Town Clerk
+    488 Chapin Street
+    Ludlow, MA  01056
+  abr_email_address: clerk@ludlow.ma.us
+  abr_status_check_phone: 413-583-5600 x 1231
+  abr_contact_name: Ludlow Town Clerk
+- name: Lunenburg
+  mailing_address: |-
+    Town Clerk
+    17 Main Street
+    P.O. Box 135
+    Lunenburg, MA  01462
+  abr_email_address: kherrick@lunenburgonline.com
+  abr_status_check_phone: 978-582-4130 x 4
+  abr_contact_name: Lunenburg Town Clerk
+- name: Lynn
+  mailing_address: |-
+    City Clerk
+    3 City Hall Square
+    Room 203
+    Lynn, MA  01901
+  abr_email_address: krichard@lynnma.gov
+  abr_status_check_phone: 781-586-6805
+  abr_contact_name: Lynn City Clerk
+- name: Lynnfield
+  mailing_address: |-
+    Town Clerk
+    55 Summer Street
+    Lynnfield, MA  01940
+  abr_email_address: lemerson@town.lynnfield.ma.us
+  abr_status_check_phone: 781-334-9401
+  abr_contact_name: Lynnfield Town Clerk
+- name: Malden
+  mailing_address: |-
+    City Clerk
+    215 Pleasant Street
+    Malden, MA  02148
+  abr_email_address: cdesiderio@cityofmalden.org
+  abr_status_check_phone: 781-397-7116
+  abr_contact_name: Malden City Clerk
+- name: Manchester By The Sea
+  mailing_address: |-
+    Town Clerk
+    10 Central Street
+    Manchester-By-The-Sea, MA  01944
+  abr_email_address: townclerk@manchester.ma.us
+  abr_status_check_phone: 978-526-2040
+  abr_contact_name: Manchester By The Sea Town Clerk
+- name: Mansfield
+  mailing_address: |-
+    Town Clerk
+    6 Park Row
+    Mansfield, MA  02048
+  abr_email_address: mstaples@mansfieldma.com
+  abr_status_check_phone: 508-261-7345
+  abr_contact_name: Mansfield Town Clerk
+- name: Marblehead
+  mailing_address: |-
+    Town Clerk
+    188 Washington Street
+    Marblehead, MA  01945
+  abr_email_address: townclerk@marblehead.org
+  abr_status_check_phone: 781-631-0528
+  abr_contact_name: Marblehead Town Clerk
+- name: Marion
+  mailing_address: |-
+    Town Clerk
+    2 Spring Street
+    Marion, MA  02738
+  abr_email_address: lmagauran@marionma.gov
+  abr_status_check_phone: 508-748-3502
+  abr_contact_name: Marion Town Clerk
+- name: Marlborough
+  mailing_address: |-
+    City Clerk
+    140 Main Street
+    Marlborough, MA  01752
+  abr_email_address: cityclerk@marlborough-ma.gov
+  abr_status_check_phone: 508-460-3775
+  abr_contact_name: Marlborough City Clerk
+- name: Marshfield
+  mailing_address: |-
+    Town Clerk
+    870 Moraine Street
+    Marshfield, MA  02050
+  abr_email_address: townclerk@townofmarshfield.org
+  abr_status_check_phone: 781-834-5540
+  abr_contact_name: Marshfield Town Clerk
+- name: Mashpee
+  mailing_address: |-
+    Town Clerk
+    16 Great Neck Road No.
+    Mashpee, MA  02649
+  abr_email_address: ddami@mashpeema.gov
+  abr_status_check_phone: 508-539-1400 x 8534
+  abr_contact_name: Mashpee Town Clerk
+- name: Mattapoisett
+  mailing_address: |-
+    Town Clerk
+    16 Main Street
+    P.O. Box 89
+    Mattapoisett, MA  02739
+  abr_email_address: townclerk@mattapoisett.net
+  abr_status_check_phone: 508-758-4100 x 207
+  abr_contact_name: Mattapoisett Town Clerk
+- name: Maynard
+  mailing_address: |-
+    Town Clerk
+    195 Main Street
+    Maynard, MA  01754
+  abr_email_address: clerk@townofmaynard.net
+  abr_status_check_phone: 978-897-1300
+  abr_contact_name: Maynard Town Clerk
+- name: Medfield
+  mailing_address: |-
+    Town Clerk
+    459 Main Street
+    Medfield, MA  02052
+  abr_email_address: jmullen@medfield.net
+  abr_status_check_phone: 508-906-3024
+  abr_contact_name: Medfield Town Clerk
+- name: Medford
+  mailing_address: |-
+    City Clerk
+    85 George Hassett Drive
+    Medford, MA  02155
+  abr_email_address: ahurtubise@medford-ma.gov
+  abr_status_check_phone: 781-393-2491
+  abr_contact_name: Medford City Clerk
+- name: Medway
+  mailing_address: |-
+    Town Clerk
+    155 Village Street
+    Medway, MA  02053
+  abr_email_address: mwhite@townofmedway.org
+  abr_status_check_phone: 508-533-3204
+  abr_contact_name: Medway Town Clerk
+- name: Melrose
+  mailing_address: |-
+    Elections Office
+    562 Main Street
+    Melrose, MA  02176
+  abr_email_address: elections@cityofmelrose.org
+  abr_status_check_phone: 781-979-4125
+  abr_contact_name: Melrose Elections Office
+- name: Mendon
+  mailing_address: |-
+    Town Clerk
+    20 Main Street
+    Mendon, MA  01756
+  abr_email_address: vote@mendonma.gov
+  abr_status_check_phone: 508-473-1085
+  abr_contact_name: Mendon Town Clerk
+- name: Merrimac
+  mailing_address: |-
+    Town Clerk
+    2 School Street
+    Merrimac, MA  01860
+  abr_email_address: townclerk@townofmerrimac.com
+  abr_status_check_phone: 978-346-8013
+  abr_contact_name: Merrimac Town Clerk
+- name: Methuen
+  mailing_address: |-
+    City Clerk
+    41 Pleasant Street
+    112
+    Methuen, MA  01844
+  abr_email_address: cityclerk@ci.methuen.ma.us
+  abr_status_check_phone: 978-983-8515
+  abr_contact_name: Methuen City Clerk
+- name: Middleborough
+  mailing_address: |-
+    Town Clerk
+    20 Centre Street. 1st Floor
+    Middleborough, MA  02346
+  abr_email_address: vote@middleborough.com
+  abr_status_check_phone: 508-946-2415
+  abr_contact_name: Middleborough Town Clerk
+- name: Middlefield
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 265
+    Middlefield, MA  01243
+  abr_email_address: townclerk@middlefieldma.net
+  abr_status_check_phone: 413-623-2079
+  abr_contact_name: Middlefield Town Clerk
+- name: Middleton
+  mailing_address: |-
+    Town Clerk
+    48 South Main Street
+    Middleton, MA  01949
+  abr_email_address: townclerk@middletonma.gov
+  abr_status_check_phone: 978-774-6927
+  abr_contact_name: Middleton Town Clerk
+- name: Milford
+  mailing_address: |-
+    Town Clerk
+    52 Main Street
+    Milford, MA  01757
+  abr_email_address: townclerksoffice@townofmilford.com
+  abr_status_check_phone: 508-634-2307
+  abr_contact_name: Milford Town Clerk
+- name: Millbury
+  mailing_address: |-
+    Town Clerk
+    127 Elm Street
+    Millbury, MA  01527
+  abr_email_address: jdavolio@townofmillbury.net
+  abr_status_check_phone: 508-865-9110
+  abr_contact_name: Millbury Town Clerk
+- name: Millis
+  mailing_address: |-
+    Town Clerk
+    900 Main Street
+    Millis, MA  02054
+  abr_email_address: townclerk@millisma.gov
+  abr_status_check_phone: 508-376-7046
+  abr_contact_name: Millis Town Clerk
+- name: Millville
+  mailing_address: |-
+    Town Clerk
+    290 Main Street
+    Millville, MA  01529
+  abr_email_address: townclerk@millvillema.org
+  abr_status_check_phone: 508-883-5849
+  abr_contact_name: Millville Town Clerk
+- name: Milton
+  mailing_address: |-
+    Town Clerk
+    525 Canton Avenue
+    Milton, MA  02186
+  abr_email_address: sgalvin@townofmilton.org
+  abr_status_check_phone: 617-898-4859
+  abr_contact_name: Milton Town Clerk
+- name: Monroe
+  mailing_address: |-
+    Town Clerk
+    102 School Street
+    Monroe, MA  01350
+  abr_email_address: elections@sec.state.ma.us
+  abr_status_check_phone: 413-424-5272
+  abr_contact_name: Monroe Town Clerk
+- name: Monson
+  mailing_address: |-
+    Town Clerk
+    110 Main Street
+    Monson, MA  01057
+  abr_email_address: townclerk@monson-ma.gov
+  abr_status_check_phone: 413-267-4115
+  abr_contact_name: Monson Town Clerk
+- name: Montague
+  mailing_address: |-
+    Town Clerk
+    One Avenue A
+    Turners Falls, MA  01376
+  abr_email_address: vote@montague-ma.gov
+  abr_status_check_phone: 413-863-3200 x 104
+  abr_contact_name: Montague Town Clerk
+- name: Monterey
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 277
+    Monterey, MA  01245
+  abr_email_address: clerk@montereyma.gov
+  abr_status_check_phone: 413-528-1443 x 113
+  abr_contact_name: Monterey Town Clerk
+- name: Montgomery
+  mailing_address: |-
+    Town Clerk
+    161 Main Road - Box 4
+    Montgomery, MA  01085
+  abr_email_address: jmurphy@montgomeryma.gov
+  abr_status_check_phone: 413-862-4478
+  abr_contact_name: Montgomery Town Clerk
+- name: Mount Washington
+  mailing_address: |-
+    Town Clerk
+    2 Plantain Pond Road
+    Mount Washington, MA  01258
+  abr_email_address: gailg@townofmtwashington.com
+  abr_status_check_phone: 413-528-9264
+  abr_contact_name: Mount Washington Town Clerk
+- name: Nahant
+  mailing_address: |-
+    Town Clerk
+    334 Nahant Road
+    Nahant, MA  01908
+  abr_email_address: ddunfee@nahant.org
+  abr_status_check_phone: 781-581-0018
+  abr_contact_name: Nahant Town Clerk
+- name: Nantucket
+  mailing_address: |-
+    Town & County Clerk
+    16 Broad Street
+    Nantucket, MA  02554
+  abr_email_address: townclerk@nantucket-ma.gov
+  abr_status_check_phone: 508-228-7216
+  abr_contact_name: Nantucket Town & County Clerk
+- name: Natick
+  mailing_address: |-
+    Town Clerk
+    13 East Central Street
+    Natick, MA  01760
+  abr_email_address: vote@natickma.org
+  abr_status_check_phone: 508-647-6459
+  abr_contact_name: Natick Town Clerk
+- name: Needham
+  mailing_address: |-
+    Town Clerk
+    1471 Highland Avenue
+    P.O. Box 920663
+    Needham, MA  02492
+  abr_email_address: votingapplications@needhamma.gov
+  abr_status_check_phone: 781-455-7500 x 216
+  abr_contact_name: Needham Town Clerk
+- name: New Ashford
+  mailing_address: |-
+    Town Clerk
+    188 Mallery Road
+    New Ashford, MA  01237
+  abr_email_address: elections@sec.state.ma.us
+  abr_status_check_phone: 413-458-5461
+  abr_contact_name: New Ashford Town Clerk
+- name: New Bedford
+  mailing_address: |-
+    Elections Commission
+    133 William Street
+    Room 114
+    New Bedford, MA  02740
+  abr_email_address: manuel.debrito@newbedford-ma.gov
+  abr_status_check_phone: 508-979-1420
+  abr_contact_name: New Bedford Elections Commission
+- name: New Braintree
+  mailing_address: |-
+    Town Clerk
+    20 Memorial Drive, Room #5
+    New Braintree, MA  01531
+  abr_email_address: townclerk@newbraintree.org
+  abr_status_check_phone: 508-867-2071 x 102
+  abr_contact_name: New Braintree Town Clerk
+- name: New Marlborough
+  mailing_address: |-
+    Town Clerk
+    807 Mill River Southfield Road
+    P.O. Box 99
+    Mill River, MA  01244
+  abr_email_address: kchretien@newmarlboroughma.gov
+  abr_status_check_phone: 413-229-8278
+  abr_contact_name: New Marlborough Town Clerk
+- name: New Salem
+  mailing_address: |-
+    Town Clerk
+    24 South Main Street
+    New Salem, MA  01355
+  abr_email_address: newsalemsclerk@aol.com
+  abr_status_check_phone: 978-544-2731
+  abr_contact_name: New Salem Town Clerk
+- name: Newbury
+  mailing_address: |-
+    Town Clerk
+    12 Kent Way
+    Newbury, MA  01922
+  abr_email_address: townclerk@townofnewbury.org
+  abr_status_check_phone: 978-465-0862 x 315
+  abr_contact_name: Newbury Town Clerk
+- name: Newburyport
+  mailing_address: |-
+    City Clerk
+    60 Pleasant Street
+    P.O. Box 550
+    Newburyport, MA  01950
+  abr_email_address: vote@cityofnewburyport.com
+  abr_status_check_phone: 978-465-4407
+  abr_contact_name: Newburyport City Clerk
+- name: Newton
+  mailing_address: |-
+    City Clerk
+    1000 Commonwealth Avenue
+    Newton, MA  02459
+  abr_email_address: elections@newtonma.gov
+  abr_status_check_phone: 617-796-1200
+  abr_contact_name: Newton City Clerk
+- name: Norfolk
+  mailing_address: |-
+    Town Clerk
+    1 Liberty Lane
+    Norfolk, MA  02056
+  abr_email_address: cgreene@norfolk.ma.us
+  abr_status_check_phone: 508-528-1400
+  abr_contact_name: Norfolk Town Clerk
+- name: North Adams
+  mailing_address: |-
+    City Clerk
+    10 Main Street
+    North Adams, MA  01247
+  abr_email_address: city_clerk@northadams-ma.gov
+  abr_status_check_phone: 413-662-3000 x 1
+  abr_contact_name: North Adams City Clerk
+- name: North Andover
+  mailing_address: |-
+    Town Clerk
+    120 Main Street
+    North Andover, MA  01845
+  abr_email_address: vote@northandoverma.gov
+  abr_status_check_phone: 978-688-9502
+  abr_contact_name: North Andover Town Clerk
+- name: North Attleborough
+  mailing_address: |-
+    Elections Commission
+    43 S. Washington Street
+    North Attleborough, MA  02760
+  abr_email_address: boardofelections@nattleboro.com
+  abr_status_check_phone: 508-699-0142
+  abr_contact_name: North Attleborough Elections Commission
+- name: North Brookfield
+  mailing_address: |-
+    Town Clerk
+    215 North Main Street
+    North Brookfield, MA  01535
+  abr_email_address: townclerk@northbrookfield.net
+  abr_status_check_phone: 508-867-0203
+  abr_contact_name: North Brookfield Town Clerk
+- name: North Reading
+  mailing_address: |-
+    Town Clerk
+    235 North Street
+    North Reading, MA  01864
+  abr_email_address: Ballots@northreadingma.gov
+  abr_status_check_phone: 978-357-5217
+  abr_contact_name: North Reading Town Clerk
+- name: Northampton
+  mailing_address: |-
+    City Clerk
+    210 Main Street
+    Room 4
+    Northampton, MA  01060
+  abr_email_address: voting@northamptonma.gov
+  abr_status_check_phone: 413-587-1291
+  abr_contact_name: Northampton City Clerk
+- name: Northborough
+  mailing_address: |-
+    Town Clerk
+    63 Main Street
+    Northborough, MA  01532
+  abr_email_address: townclerk@town.northborough.ma.us
+  abr_status_check_phone: 508-393-5001
+  abr_contact_name: Northborough Town Clerk
+- name: Northbridge
+  mailing_address: |-
+    Town Clerk
+    7 Main Street
+    Whitinsville, MA  01588
+  abr_email_address: vote@northbridgemass.org
+  abr_status_check_phone: 508-234-2001
+  abr_contact_name: Northbridge Town Clerk
+- name: Northfield
+  mailing_address: |-
+    Town Clerk
+    69 Main Street
+    Northfield, MA  01360
+  abr_email_address: townclerk@townnfld.com
+  abr_status_check_phone: 413-498-2901 x 112
+  abr_contact_name: Northfield Town Clerk
+- name: Norton
+  mailing_address: |-
+    Town Clerk
+    70 E Main Street
+    Norton, MA  02766
+  abr_email_address: ballotapplications@nortonmaus.com
+  abr_status_check_phone: 508-285-0230
+  abr_contact_name: Norton Town Clerk
+- name: Norwell
+  mailing_address: |-
+    Town Clerk
+    345 Main Street
+    P.O. Box 295
+    Norwell, MA  02061
+  abr_email_address: panderson@townofnorwell.net
+  abr_status_check_phone: 781-659-8072
+  abr_contact_name: Norwell Town Clerk
+- name: Norwood
+  mailing_address: |-
+    Town Clerk
+    566 Washington Street
+    Norwood, MA  02062
+  abr_email_address: mfolan@norwoodma.gov
+  abr_status_check_phone: 781-762-1240 x 152
+  abr_contact_name: Norwood Town Clerk
+- name: Oak Bluffs
+  mailing_address: |-
+    Town Clerk
+    56 School Street
+    P.O. Box 2490
+    Oak Bluffs, MA  02557
+  abr_email_address: cmorris@oakbluffsma.gov
+  abr_status_check_phone: 508-693-3554 x 119
+  abr_contact_name: Oak Bluffs Town Clerk
+- name: Oakham
+  mailing_address: |-
+    Town Clerk
+    2 Coldbrook Road
+    Unit # 4
+    Oakham, MA  01068
+  abr_email_address: christine.mardirosian@oakham-ma.gov
+  abr_status_check_phone: 508-882-5549 x 305
+  abr_contact_name: Oakham Town Clerk
+- name: Orange
+  mailing_address: |-
+    Town Clerk
+    6 Prospect Street
+    Orange, MA  01364
+  abr_email_address: vote@townoforange.org
+  abr_status_check_phone: 978-544-1100 x 101
+  abr_contact_name: Orange Town Clerk
+- name: Orleans
+  mailing_address: |-
+    Town Clerk
+    19 School Road
+    Orleans, MA  02653
+  abr_email_address: census@town.orleans.ma.us
+  abr_status_check_phone: 508-240-3700 x 405
+  abr_contact_name: Orleans Town Clerk
+- name: Otis
+  mailing_address: |-
+    Town Clerk
+    1 N. Main Road
+    Box 237
+    Otis, MA  01253
+  abr_email_address: tclerk.otis@gmail.com
+  abr_status_check_phone: 413-269-0100 x 5
+  abr_contact_name: Otis Town Clerk
+- name: Oxford
+  mailing_address: |-
+    Town Clerk
+    325 Main Street
+    Oxford, MA  01540
+  abr_email_address: townclerkoffice@oxfordma.us
+  abr_status_check_phone: 508-987-6032
+  abr_contact_name: Oxford Town Clerk
+- name: Palmer
+  mailing_address: |-
+    Town Clerk
+    4417 Main Street
+    Palmer, MA  01069
+  abr_email_address: scoache@townofpalmer.com
+  abr_status_check_phone: 413-283-2608
+  abr_contact_name: Palmer Town Clerk
+- name: Paxton
+  mailing_address: |-
+    Town Clerk
+    697 Pleasant Street
+    Paxton, MA  01612
+  abr_email_address: lbecker@townofpaxton.net
+  abr_status_check_phone: 508-799-7347 x 13
+  abr_contact_name: Paxton Town Clerk
+- name: Peabody
+  mailing_address: |-
+    City Clerk
+    24 Lowell Street
+    Peabody, MA  01960
+  abr_email_address: cityclerk@peabody-ma.gov
+  abr_status_check_phone: 978-538-5750
+  abr_contact_name: Peabody City Clerk
+- name: Pelham
+  mailing_address: |-
+    Town Clerk
+    351 Amherst Road
+    Pelham, MA  01002
+  abr_email_address: pelhamtownclerk@comcast.net
+  abr_status_check_phone: 413-253-0512
+  abr_contact_name: Pelham Town Clerk
+- name: Pembroke
+  mailing_address: |-
+    Town Clerk
+    100 Center Street
+    Pembroke, MA  02359
+  abr_email_address: mstruzik@townofpembrokemass.org
+  abr_status_check_phone: 781-709-1403
+  abr_contact_name: Pembroke Town Clerk
+- name: Pepperell
+  mailing_address: |-
+    Town Clerk
+    1 Main Street
+    Pepperell, MA  01463
+  abr_email_address: clerk@town.pepperell.ma.us
+  abr_status_check_phone: 978-433-0339
+  abr_contact_name: Pepperell Town Clerk
+- name: Peru
+  mailing_address: |-
+    Town Clerk
+    3 East Main Road
+    Suite 102
+    Peru, MA  01235
+  abr_email_address: townclerk@townofperuma.com
+  abr_status_check_phone: 413-655-8312 x 2
+  abr_contact_name: Peru Town Clerk
+- name: Petersham
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 486
+    Petersham, MA  01366
+  abr_email_address: petershamtownclerk@verizon.net
+  abr_status_check_phone: 978-724-6649 x 2
+  abr_contact_name: Petersham Town Clerk
+- name: Phillipston
+  mailing_address: |-
+    Town Clerk
+    50 The Common
+    Phillipston, MA  01331
+  abr_email_address: townclerk@phillipston-ma.gov
+  abr_status_check_phone: 978-249-1733
+  abr_contact_name: Phillipston Town Clerk
+- name: Pittsfield
+  mailing_address: |-
+    City Clerk
+    70 Allen Street
+    Pittsfield, MA  01201
+  abr_email_address: mbenjamin@cityofpittsfield.org
+  abr_status_check_phone: 413-499-9460
+  abr_contact_name: Pittsfield City Clerk
+- name: Plainfield
+  mailing_address: |-
+    Town Clerk
+    348 Main Street
+    Plainfield, MA  01070
+  abr_email_address: townclerk@town.plainfield.ma.us
+  abr_status_check_phone: 413-634-5420
+  abr_contact_name: Plainfield Town Clerk
+- name: Plainville
+  mailing_address: |-
+    Town Clerk
+    190 South Street
+    P.O. Box 1717
+    Plainville, MA  02762
+  abr_email_address: election@plainville.ma.us
+  abr_status_check_phone: 508-695-3010 x 19
+  abr_contact_name: Plainville Town Clerk
+- name: Plymouth
+  mailing_address: |-
+    Town Clerk
+    26 Court Street
+    Plymouth, MA  02360
+  abr_email_address: ballots@townhall.plymouth.ma.us
+  abr_status_check_phone: 508-747-1620
+  abr_contact_name: Plymouth Town Clerk
+- name: Plympton
+  mailing_address: |-
+    Town Clerk
+    5 Palmer Road
+    Plympton, MA  02367
+  abr_email_address: townclerk@plymptontown.org
+  abr_status_check_phone: 781-585-3220
+  abr_contact_name: Plympton Town Clerk
+- name: Princeton
+  mailing_address: |-
+    Town Clerk
+    6 Town Hall Drive
+    Princeton, MA  01541
+  abr_email_address: townclerk@town.princeton.ma.us
+  abr_status_check_phone: 978-464-2103
+  abr_contact_name: Princeton Town Clerk
+- name: Provincetown
+  mailing_address: |-
+    Town Clerk
+    260 Commercial Street
+    Provincetown, MA  02657
+  abr_email_address: pgaudet@provincetown-ma.gov
+  abr_status_check_phone: 508-487-7013 x 524
+  abr_contact_name: Provincetown Town Clerk
+- name: Quincy
+  mailing_address: |-
+    City Clerk
+    1305 Hancock Street
+    Quincy, MA  02169
+  abr_email_address: lbowes@quincyma.gov
+  abr_status_check_phone: 617-376-1131
+  abr_contact_name: Quincy City Clerk
+- name: Randolph
+  mailing_address: |-
+    Town Clerk
+    41 South Main Street
+    Randolph, MA  02368
+  abr_email_address: clerk@randolph-ma.gov
+  abr_status_check_phone: 781-961-0900
+  abr_contact_name: Randolph Town Clerk
+- name: Raynham
+  mailing_address: |-
+    Town Clerk
+    558 South Main Street
+    Raynham, MA  02767
+  abr_email_address: msilvia@town.raynham.ma.us
+  abr_status_check_phone: 508-824-2700
+  abr_contact_name: Raynham Town Clerk
+- name: Reading
+  mailing_address: |-
+    Town Clerk
+    16 Lowell Street
+    Reading, MA  01867
+  abr_email_address: lgemme@ci.reading.ma.us
+  abr_status_check_phone: 781-942-9050
+  abr_contact_name: Reading Town Clerk
+- name: Rehoboth
+  mailing_address: |-
+    Town Clerk
+    148 Peck Street
+    Rehoboth, MA  02769
+  abr_email_address: townclerk@RehobothMA.gov
+  abr_status_check_phone: 508-252-6502 x 3110
+  abr_contact_name: Rehoboth Town Clerk
+- name: Revere
+  mailing_address: |-
+    Elections Commission
+    P.O. Box 246
+    Revere, MA  02151
+  abr_email_address: dcolella@revere.org
+  abr_status_check_phone: 781-286-8200 x 1
+  abr_contact_name: Revere Elections Commission
+- name: Richmond
+  mailing_address: |-
+    Town Clerk
+    1529 Streetate Road
+    Richmond, MA  01254
+  abr_email_address: clerk@richmondma.org
+  abr_status_check_phone: 413-698-3555
+  abr_contact_name: Richmond Town Clerk
+- name: Rochester
+  mailing_address: |-
+    Town Clerk
+    1 Constitution Way
+    Rochester, MA  02770
+  abr_email_address: pdawson@townofrochester.com
+  abr_status_check_phone: 508-763-3871 x 17
+  abr_contact_name: Rochester Town Clerk
+- name: Rockland
+  mailing_address: |-
+    Town Clerk
+    242 Union Street
+    Rockland, MA  02370
+  abr_email_address: dshortall@rockland-ma.gov
+  abr_status_check_phone: 781-871-1874 x 1120
+  abr_contact_name: Rockland Town Clerk
+- name: Rockport
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 429
+    Rockport, MA  01966
+  abr_email_address: townclerk@rockportma.gov
+  abr_status_check_phone: 978-546-6894
+  abr_contact_name: Rockport Town Clerk
+- name: Rowe
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 308
+    Rowe, MA  01367
+  abr_email_address: townclerk@rowe-ma.gov
+  abr_status_check_phone: 413-339-5520
+  abr_contact_name: Rowe Town Clerk
+- name: Rowley
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 351
+    Rowley, MA  01969
+  abr_email_address: townclerk@townofrowley.org
+  abr_status_check_phone: 978-948-2081
+  abr_contact_name: Rowley Town Clerk
+- name: Royalston
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 127
+    Royalston, MA  01368
+  abr_email_address: townclerk@royalston-ma.gov
+  abr_status_check_phone: 978-249-0493
+  abr_contact_name: Royalston Town Clerk
+- name: Russell
+  mailing_address: |-
+    Town Clerk
+    65 Main Street
+    Russell, MA  01071
+  abr_email_address: russelltownclerk@russellma.net
+  abr_status_check_phone: 413-862-6207
+  abr_contact_name: Russell Town Clerk
+- name: Rutland
+  mailing_address: |-
+    Town Clerk
+    250 Main Street
+    Rutland, MA  01543
+  abr_email_address: elections@townofrutland.org
+  abr_status_check_phone: 508-886-4104
+  abr_contact_name: Rutland Town Clerk
+- name: Salem
+  mailing_address: |-
+    City Clerk
+    93 Washington Street
+    Salem, MA  01970
+  abr_email_address: elections@salem.com
+  abr_status_check_phone: 978-745-9595 x 41210
+  abr_contact_name: Salem City Clerk
+- name: Salisbury
+  mailing_address: |-
+    Town Clerk
+    5 Beach Road
+    Salisbury, MA  01952
+  abr_email_address: townclerk@salisburyma.gov
+  abr_status_check_phone: 978-462-7591
+  abr_contact_name: Salisbury Town Clerk
+- name: Sandisfield
+  mailing_address: |-
+    Town Clerk
+    66 Sandisfield Road
+    P.O. Box 163
+    Sandisfield, MA  01255
+  abr_email_address: townclerk@sandisfieldma.gov
+  abr_status_check_phone: 413-258-4711 x 2
+  abr_contact_name: Sandisfield Town Clerk
+- name: Sandwich
+  mailing_address: |-
+    Town Clerk
+    145 Main Street
+    Sandwich, MA  02563
+  abr_email_address: twhite@sandwichmass.org
+  abr_status_check_phone: 508-888-0340
+  abr_contact_name: Sandwich Town Clerk
+- name: Saugus
+  mailing_address: |-
+    Town Clerk
+    298 Central Street, #7
+    Saugus, MA  01906
+  abr_email_address: eschena@saugus-ma.gov
+  abr_status_check_phone: 781-231-4101
+  abr_contact_name: Saugus Town Clerk
+- name: Savoy
+  mailing_address: |-
+    Town Clerk
+    720 Main Road
+    Savoy, MA  01256
+  abr_email_address: savoytownclerk@gmail.com
+  abr_status_check_phone: 413-743-3759
+  abr_contact_name: Savoy Town Clerk
+- name: Scituate
+  mailing_address: |-
+    Town Clerk
+    600 C.J. Cushing Way
+    Scituate, MA  02066
+  abr_email_address: kgardner@scituatema.gov
+  abr_status_check_phone: 781-545-8743
+  abr_contact_name: Scituate Town Clerk
+- name: Seekonk
+  mailing_address: |-
+    Town Clerk
+    100 Peck Street
+    Seekonk, MA  02771
+  abr_email_address: townclerk@seekonk-ma.gov
+  abr_status_check_phone: 508-336-2920
+  abr_contact_name: Seekonk Town Clerk
+- name: Sharon
+  mailing_address: |-
+    Town Clerk
+    90 South Main Street
+    Sharon, MA  02067
+  abr_email_address: Vote@townofsharon.org
+  abr_status_check_phone: 781-784-1500 x 1201
+  abr_contact_name: Sharon Town Clerk
+- name: Sheffield
+  mailing_address: |-
+    Town Clerk
+    21 Depot Square
+    Sheffield, MA  01257
+  abr_email_address: fjoyce@sheffieldma.gov
+  abr_status_check_phone: 413-229-7000 x 151
+  abr_contact_name: Sheffield Town Clerk
+- name: Shelburne
+  mailing_address: |-
+    Town Clerk
+    51 Bridge Street
+    Shelburne, MA  01370
+  abr_email_address: townclerk@townofshelburnema.gov
+  abr_status_check_phone: 413-625-0300 x 3
+  abr_contact_name: Shelburne Town Clerk
+- name: Sherborn
+  mailing_address: |-
+    Town Clerk
+    19 Washington Street
+    Sherborn, MA  01770
+  abr_email_address: vote@sherbornma.org
+  abr_status_check_phone: 508-651-7853
+  abr_contact_name: Sherborn Town Clerk
+- name: Shirley
+  mailing_address: |-
+    Town Clerk
+    7 Keady Way
+    Shirley, MA  01464
+  abr_email_address: clerk@shirley-ma.gov
+  abr_status_check_phone: 978-425-2600 x 1
+  abr_contact_name: Shirley Town Clerk
+- name: Shrewsbury
+  mailing_address: |-
+    Town Clerk
+    100 Maple Avenue
+    Shrewsbury, MA  01545
+  abr_email_address: swright@shrewsburyma.gov
+  abr_status_check_phone: 508-841-8507
+  abr_contact_name: Shrewsbury Town Clerk
+- name: Shutesbury
+  mailing_address: |-
+    Town Clerk
+    1 Cooleyville Road
+    P.O. Box 264
+    Shutesbury, MA  01072
+  abr_email_address: townclerk@shutesbury.org
+  abr_status_check_phone: 413-259-1204
+  abr_contact_name: Shutesbury Town Clerk
+- name: Somerset
+  mailing_address: |-
+    Town Clerk
+    140 Wood Street
+    Somerset, MA  02726
+  abr_email_address: dberge@town.somerset.ma.us
+  abr_status_check_phone: 508-646-2818
+  abr_contact_name: Somerset Town Clerk
+- name: Somerville
+  mailing_address: |-
+    Elections Commission
+    93 Highland Avenue
+    Somerville, MA  02143
+  abr_email_address: vote@somervillema.gov
+  abr_status_check_phone: 617-625-6600 x 4200
+  abr_contact_name: Somerville Elections Commission
+- name: South Hadley
+  mailing_address: |-
+    Town Clerk
+    116 Main Street
+    Room 107
+    South Hadley, MA  01075
+  abr_email_address: chamlin@southhadleyma.gov
+  abr_status_check_phone: 413-538-5017 x 115
+  abr_contact_name: South Hadley Town Clerk
+- name: Southampton
+  mailing_address: |-
+    Town Clerk
+    210 College Hwy
+    Suite 2
+    Southampton, MA  01073
+  abr_email_address: townclerk@townofsouthampton.org
+  abr_status_check_phone: 413-527-8392
+  abr_contact_name: Southampton Town Clerk
+- name: Southborough
+  mailing_address: |-
+    Town Clerk
+    17 Common Street
+    Southborough, MA  01772
+  abr_email_address: townclerk@southboroughma.com
+  abr_status_check_phone: 508-485-0710 x 3005
+  abr_contact_name: Southborough Town Clerk
+- name: Southbridge
+  mailing_address: |-
+    Town Clerk
+    41 Elm Street
+    Southbridge, MA  01550
+  abr_email_address: mbonadies@southbridgemass.org
+  abr_status_check_phone: 508-764-5408
+  abr_contact_name: Southbridge Town Clerk
+- name: Southwick
+  mailing_address: |-
+    Town Clerk
+    454 College Hwy
+    Southwick, MA  01077
+  abr_email_address: treasurer@southwickma.net
+  abr_status_check_phone: 413-569-5504
+  abr_contact_name: Southwick Town Clerk
+- name: Spencer
+  mailing_address: |-
+    Town Clerk
+    157 Main Street
+    Spencer, MA  01562
+  abr_email_address: townclerks@spencerma.gov
+  abr_status_check_phone: 508-885-7500 x 150
+  abr_contact_name: Spencer Town Clerk
+- name: Springfield
+  mailing_address: |-
+    Elections Commission
+    36 Court Street
+    Ground Floor Room 8
+    Springfield, MA  01103
+  abr_email_address: elections@springfieldcityhall.com
+  abr_status_check_phone: 413-787-6190
+  abr_contact_name: Springfield Elections Commission
+- name: Sterling
+  mailing_address: |-
+    Town Clerk
+    1 Park Street
+    Butterick Building, #113
+    Sterling, MA  01564
+  abr_email_address: townclerk@sterling-ma.gov
+  abr_status_check_phone: 978-422-8111 x 2308
+  abr_contact_name: Sterling Town Clerk
+- name: Stockbridge
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 417
+    Stockbridge, MA  01262
+  abr_email_address: clerk@townofstockbridge.com
+  abr_status_check_phone: 413-298-4170 x 251
+  abr_contact_name: Stockbridge Town Clerk
+- name: Stoneham
+  mailing_address: |-
+    Town Clerk
+    35 Central Street
+    Stoneham, MA  02180
+  abr_email_address: townclerk@stoneham-ma.gov
+  abr_status_check_phone: 781-279-2650
+  abr_contact_name: Stoneham Town Clerk
+- name: Stoughton
+  mailing_address: |-
+    Town Clerk
+    10 Pearl Street
+    Stoughton, MA  02072
+  abr_email_address: scarrara@stoughton-ma.gov
+  abr_status_check_phone: 781-341-1300
+  abr_contact_name: Stoughton Town Clerk
+- name: Stow
+  mailing_address: |-
+    Town Clerk
+    380 Great Road
+    Stow, MA  01775-2127
+  abr_email_address: vote@stow-ma.gov
+  abr_status_check_phone: 978-897-5034
+  abr_contact_name: Stow Town Clerk
+- name: Sturbridge
+  mailing_address: |-
+    Town Clerk
+    308 Main Street
+    Sturbridge, MA  01566
+  abr_email_address: townclerk@sturbridge.gov
+  abr_status_check_phone: 508-347-2510
+  abr_contact_name: Sturbridge Town Clerk
+- name: Sudbury
+  mailing_address: |-
+    Town Clerk
+    322 Concord Road
+    Sudbury, MA  01776
+  abr_email_address: votebymail@sudbury.ma.us
+  abr_status_check_phone: 978-639-3351
+  abr_contact_name: Sudbury Town Clerk
+- name: Sunderland
+  mailing_address: |-
+    Town Clerk
+    12 School Street
+    Sunderland, MA  01375
+  abr_email_address: townclerk@townofsunderland.us
+  abr_status_check_phone: 413-665-1442
+  abr_contact_name: Sunderland Town Clerk
+- name: Sutton
+  mailing_address: |-
+    Town Clerk
+    4 Uxbridge Road
+    Sutton, MA  01590
+  abr_email_address: l.caruso@town.sutton.ma.us
+  abr_status_check_phone: 508-865-8725
+  abr_contact_name: Sutton Town Clerk
+- name: Swampscott
+  mailing_address: |-
+    Town Clerk
+    22 Monument Avenue
+    Swampscott, MA  01907
+  abr_email_address: sduplin@swampscottma.gov
+  abr_status_check_phone: 781-596-4167
+  abr_contact_name: Swampscott Town Clerk
+- name: Swansea
+  mailing_address: |-
+    Town Clerk
+    81 Main Street
+    Swansea, MA  02777
+  abr_email_address: dpelland@town.swansea.ma.us
+  abr_status_check_phone: 508-678-9389 x 2
+  abr_contact_name: Swansea Town Clerk
+- name: Taunton
+  mailing_address: |-
+    Board Of Registrars
+    141 Oak Street
+    Taunton, MA  02780
+  abr_email_address: kandrade@taunton-ma.gov
+  abr_status_check_phone: 508-821-1044
+  abr_contact_name: Taunton Board Of Registrars
+- name: Templeton
+  mailing_address: |-
+    Town Clerk
+    160 Patriots Road
+    P.O. Box 620
+    Templeton, MA  01438
+  abr_email_address: charris@templetonma.gov
+  abr_status_check_phone: 978-894-2758
+  abr_contact_name: Templeton Town Clerk
+- name: Tewksbury
+  mailing_address: |-
+    Town Clerk
+    1009 Main Street
+    Tewksbury, MA  01876
+  abr_email_address: townclerk@tewksbury-ma.gov
+  abr_status_check_phone: 978-640-4355
+  abr_contact_name: Tewksbury Town Clerk
+- name: Tisbury
+  mailing_address: |-
+    Town Clerk
+    51 Spring Street
+    P.O. Box 606
+    Vineyard Haven, MA  02568
+  abr_email_address: hconklin@tisburyma.gov
+  abr_status_check_phone: 508-696-4215
+  abr_contact_name: Tisbury Town Clerk
+- name: Tolland
+  mailing_address: |-
+    Town Clerk
+    241 W. Granville Road
+    Tolland, MA  01034
+  abr_email_address: townclerk@tolland-ma.gov
+  abr_status_check_phone: 413-258-4794 x 102
+  abr_contact_name: Tolland Town Clerk
+- name: Topsfield
+  mailing_address: |-
+    Town Clerk
+    8 West Common Street
+    Topsfield, MA  01983
+  abr_email_address: clerk@topsfield-ma.gov
+  abr_status_check_phone: 978-887-1505
+  abr_contact_name: Topsfield Town Clerk
+- name: Townsend
+  mailing_address: |-
+    Town Clerk
+    272 Main Street
+    Townsend, MA  01469
+  abr_email_address: clerk@townsend.ma.us
+  abr_status_check_phone: 978-597-1704
+  abr_contact_name: Townsend Town Clerk
+- name: Truro
+  mailing_address: |-
+    Town Clerk
+    24 Town Hall Road
+    P.O. Box 2012
+    Truro, MA  02666-2012
+  abr_email_address: sjoseph@truro-ma.gov
+  abr_status_check_phone: 508-349-7004 x 114
+  abr_contact_name: Truro Town Clerk
+- name: Tyngsborough
+  mailing_address: |-
+    Town Clerk
+    25 Bryants Lane
+    Tyngsborough, MA  01879
+  abr_email_address: jshifres@tyngsboroughma.gov
+  abr_status_check_phone: 978-649-2300 x 129
+  abr_contact_name: Tyngsborough Town Clerk
+- name: Tyringham
+  mailing_address: |-
+    Town Clerk
+    116 Main Road
+    P.O. Box 442
+    Tyringham, MA  01264
+  abr_email_address: townclerk@bcn.net
+  abr_status_check_phone: 413-243-1749 x 103
+  abr_contact_name: Tyringham Town Clerk
+- name: Upton
+  mailing_address: |-
+    Town Clerk
+    1 Main Street
+    Box 11
+    Upton, MA  01568
+  abr_email_address: vote@uptonma.gov
+  abr_status_check_phone: 508-529-3565
+  abr_contact_name: Upton Town Clerk
+- name: Uxbridge
+  mailing_address: |-
+    Town Clerk
+    21 South Main Street
+    Uxbridge, MA  01569
+  abr_email_address: kcote@uxbridge-ma.gov
+  abr_status_check_phone: 508-278-8600
+  abr_contact_name: Uxbridge Town Clerk
+- name: Wakefield
+  mailing_address: |-
+    Town Clerk
+    1 Lafayette Street
+    Wakefield, MA  01880
+  abr_email_address: bsheeran@wakefield.ma.us
+  abr_status_check_phone: 781-246-6383
+  abr_contact_name: Wakefield Town Clerk
+- name: Wales
+  mailing_address: |-
+    Town Clerk
+    3 Hollow Road
+    P.O. Box 834
+    Wales, MA  01081-0834
+  abr_email_address: townclerk@townofwales.net
+  abr_status_check_phone: 413-245-7571 x 101
+  abr_contact_name: Wales Town Clerk
+- name: Walpole
+  mailing_address: |-
+    Town Clerk
+    135 School Street
+    Walpole, MA  02081
+  abr_email_address: townclerk@walpole-ma.gov
+  abr_status_check_phone: 508-660-7296
+  abr_contact_name: Walpole Town Clerk
+- name: Waltham
+  mailing_address: |-
+    City Clerk
+    610 Main Street
+    Waltham, MA  02452
+  abr_email_address: cityclerks@city.waltham.ma.us
+  abr_status_check_phone: 781-314-3120
+  abr_contact_name: Waltham City Clerk
+- name: Ware
+  mailing_address: |-
+    Town Clerk
+    126 Main Street
+    Ware, MA  01082
+  abr_email_address: ntalbot@townofware.com
+  abr_status_check_phone: 413-967-9648 x 103
+  abr_contact_name: Ware Town Clerk
+- name: Wareham
+  mailing_address: |-
+    Town Clerk
+    54 Marion Road
+    Wareham, MA  02571
+  abr_email_address: clerk@wareham.ma.us
+  abr_status_check_phone: 508-291-3100 x 3143
+  abr_contact_name: Wareham Town Clerk
+- name: Warren
+  mailing_address: |-
+    Town Clerk
+    48 High Street
+    P.O. Box 603
+    Warren, MA  01083
+  abr_email_address: lowell@warren-ma.gov
+  abr_status_check_phone: 413-436-5701 x 3
+  abr_contact_name: Warren Town Clerk
+- name: Warwick
+  mailing_address: |-
+    Town Clerk
+    12 Athol Road
+    Warwick, MA  01378
+  abr_email_address: townclerk@town.warwick.ma.us
+  abr_status_check_phone: 978-544-8304
+  abr_contact_name: Warwick Town Clerk
+- name: Washington
+  mailing_address: |-
+    Town Clerk
+    8 Summit Hill Road
+    Washington, MA  01223
+  abr_email_address: washington.ma.townclerk@gmail.com
+  abr_status_check_phone: 413-623-8878
+  abr_contact_name: Washington Town Clerk
+- name: Watertown
+  mailing_address: |-
+    Town Clerk
+    149 Main Street
+    Watertown, MA  02472
+  abr_email_address: jflynn@watertown-ma.gov
+  abr_status_check_phone: 617-972-6486
+  abr_contact_name: Watertown Town Clerk
+- name: Wayland
+  mailing_address: |-
+    Town Clerk
+    41 Cochituate Road
+    Wayland, MA  01778
+  abr_email_address: townclerk@wayland.ma.us
+  abr_status_check_phone: 508-358-3630
+  abr_contact_name: Wayland Town Clerk
+- name: Webster
+  mailing_address: |-
+    Town Clerk
+    350 Main Street
+    Suite 3
+    Webster, MA  01570
+  abr_email_address: bcraver@webster-ma.gov
+  abr_status_check_phone: 508-949-3800 x 4003
+  abr_contact_name: Webster Town Clerk
+- name: Wellesley
+  mailing_address: |-
+    Town Clerk
+    525 Washington Street
+    Wellesley, MA  02482
+  abr_email_address: Elections@WellesleyMA.gov
+  abr_status_check_phone: 781-431-1019 x 2250
+  abr_contact_name: Wellesley Town Clerk
+- name: Wellfleet
+  mailing_address: |-
+    Town Clerk
+    300 Main Street
+    Wellfleet, MA  02667
+  abr_email_address: jennifer.congel@wellfleet-ma.gov
+  abr_status_check_phone: 508-349-0301
+  abr_contact_name: Wellfleet Town Clerk
+- name: Wendell
+  mailing_address: |-
+    Town Clerk
+    59 Lockes Village Road
+    P.O. Box 41
+    Wendell, MA  01379
+  abr_email_address: townclerk@wendellmass.us
+  abr_status_check_phone: 978-544-3395 x 2
+  abr_contact_name: Wendell Town Clerk
+- name: Wenham
+  mailing_address: |-
+    Town Clerk
+    138 Main Street
+    Wenham, MA  01984
+  abr_email_address: dbucco@wenhamma.gov
+  abr_status_check_phone: 978-468-5520 x 1
+  abr_contact_name: Wenham Town Clerk
+- name: West Boylston
+  mailing_address: |-
+    Town Clerk
+    140 Worcester Street
+    West Boylston, MA  01583
+  abr_email_address: townclerk@westboylston-ma.gov
+  abr_status_check_phone: 774-261-4020
+  abr_contact_name: West Boylston Town Clerk
+- name: West Bridgewater
+  mailing_address: |-
+    Town Clerk
+    65 North Main Street
+    West Bridgewater, MA  02379
+  abr_email_address: aiannitelli@wbridgewater.com
+  abr_status_check_phone: 508-894-1167
+  abr_contact_name: West Bridgewater Town Clerk
+- name: West Brookfield
+  mailing_address: |-
+    Town Clerk
+    2 E. Main Street
+    P. O. Box 766
+    West Brookfield, MA  01585
+  abr_email_address: vitals@wbrookfield.com
+  abr_status_check_phone: 508-867-1421 x 302
+  abr_contact_name: West Brookfield Town Clerk
+- name: West Newbury
+  mailing_address: |-
+    Town Clerk
+    381 Main Street
+    West Newbury, MA  01985
+  abr_email_address: mmccarron@wnewbury.org
+  abr_status_check_phone: 978-363-1100 x 110
+  abr_contact_name: West Newbury Town Clerk
+- name: West Springfield
+  mailing_address: |-
+    Town Clerk
+    26 Central Street
+    Suite 8
+    West Springfield, MA  01089
+  abr_email_address: clerk@tows.org
+  abr_status_check_phone: 413-263-3012
+  abr_contact_name: West Springfield Town Clerk
+- name: West Stockbridge
+  mailing_address: |-
+    Town Clerk
+    21  State Line Road
+    P.O. Box 163
+    West Stockbridge, MA  01266
+  abr_email_address: clerk@weststockbridge-ma.gov
+  abr_status_check_phone: 413-232-0300 x 300
+  abr_contact_name: West Stockbridge Town Clerk
+- name: West Tisbury
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 278
+    West Tisbury, MA  02575
+  abr_email_address: townclerk@westtisbury-ma.gov
+  abr_status_check_phone: 508-696-0148
+  abr_contact_name: West Tisbury Town Clerk
+- name: Westborough
+  mailing_address: |-
+    Town Clerk
+    34 West Main Street
+    Westborough, MA  01581
+  abr_email_address: townclerk@town.westborough.ma.us
+  abr_status_check_phone: 508-366-3020
+  abr_contact_name: Westborough Town Clerk
+- name: Westfield
+  mailing_address: |-
+    City Clerk
+    59 Court Street
+    Room 210
+    Westfield, MA  01085
+  abr_email_address: votewestfield@cityofwestfield.org
+  abr_status_check_phone: 413-572-6266
+  abr_contact_name: Westfield City Clerk
+- name: Westford
+  mailing_address: |-
+    Town Clerk
+    55 Main Street
+    Westford, MA  01886
+  abr_email_address: townclerk@westfordma.gov
+  abr_status_check_phone: 978-692-5515
+  abr_contact_name: Westford Town Clerk
+- name: Westhampton
+  mailing_address: |-
+    Town Clerk
+    One South Road
+    Westhampton, MA  01027
+  abr_email_address: clerk@westhamptonma.org
+  abr_status_check_phone: 413-203-3080
+  abr_contact_name: Westhampton Town Clerk
+- name: Westminster
+  mailing_address: |-
+    Town Clerk
+    11 South Street
+    Westminster, MA  01473
+  abr_email_address: westminstervoting@westminster-ma.gov
+  abr_status_check_phone: 978-874-7406
+  abr_contact_name: Westminster Town Clerk
+- name: Weston
+  mailing_address: |-
+    Town Clerk
+    11 Town House Road
+    P.O. Box 378
+    Weston, MA  02493
+  abr_email_address: davenport.d@westonma.gov
+  abr_status_check_phone: 781-786-5010
+  abr_contact_name: Weston Town Clerk
+- name: Westport
+  mailing_address: |-
+    Town Clerk
+    816 Main Road
+    Westport, MA  02790
+  abr_email_address: mail4westportballots@westport-ma.gov
+  abr_status_check_phone: 508-636-1000
+  abr_contact_name: Westport Town Clerk
+- name: Westwood
+  mailing_address: |-
+    Town Clerk
+    580 High Street
+    Westwood, MA  02090
+  abr_email_address: dpowers@townhall.westwood.ma.us
+  abr_status_check_phone: 781-326-3964
+  abr_contact_name: Westwood Town Clerk
+- name: Weymouth
+  mailing_address: |-
+    Town Clerk
+    75 Middle Street
+    Weymouth, MA  02189
+  abr_email_address: election@weymouth.ma.us
+  abr_status_check_phone: 781-340-5017
+  abr_contact_name: Weymouth Town Clerk
+- name: Whately
+  mailing_address: |-
+    Town Clerk
+    4 Sandy Lane
+    South Deerfield, MA  01373
+  abr_email_address: townclerk@whately.org
+  abr_status_check_phone: 413-665-4400 x 3
+  abr_contact_name: Whately Town Clerk
+- name: Whitman
+  mailing_address: |-
+    Town Clerk
+    54 South Avenue
+    P.O. Box 426
+    Whitman, MA  02382
+  abr_email_address: dawn.varley@whitman-ma.gov
+  abr_status_check_phone: 781-618-9710
+  abr_contact_name: Whitman Town Clerk
+- name: Wilbraham
+  mailing_address: |-
+    Town Clerk
+    240 Springfield Street
+    Wilbraham, MA  01095
+  abr_email_address: ctardif@wilbraham-ma.gov
+  abr_status_check_phone: 413-596-2800 x 200
+  abr_contact_name: Wilbraham Town Clerk
+- name: Williamsburg
+  mailing_address: |-
+    Town Clerk
+    141 Main Street
+    P.O. Box 447
+    Haydenville, MA  01039-0447
+  abr_email_address: townclerk@burgy.org
+  abr_status_check_phone: 413-268-8402
+  abr_contact_name: Williamsburg Town Clerk
+- name: Williamstown
+  mailing_address: |-
+    Town Clerk
+    31 North Street
+    Williamstown, MA  01267
+  abr_email_address: npedercini@williamstownma.gov
+  abr_status_check_phone: 413-458-9341
+  abr_contact_name: Williamstown Town Clerk
+- name: Wilmington
+  mailing_address: |-
+    Town Clerk
+    121 Glen Road
+    Wilmington, MA  01887
+  abr_email_address: townclerk@wilmingtonma.gov
+  abr_status_check_phone: 978-658-2030
+  abr_contact_name: Wilmington Town Clerk
+- name: Winchendon
+  mailing_address: |-
+    Town Clerk
+    109 Front Street
+    Dept. 3
+    Winchendon, MA  01475
+  abr_email_address: wstevens@townofwinchendon.com
+  abr_status_check_phone: 978-297-2766
+  abr_contact_name: Winchendon Town Clerk
+- name: Winchester
+  mailing_address: |-
+    Town Clerk
+    71 Mount Vernon
+    Winchester, MA  01890
+  abr_email_address: townclerk@winchester.us
+  abr_status_check_phone: 781-721-7130
+  abr_contact_name: Winchester Town Clerk
+- name: Windsor
+  mailing_address: |-
+    Town Clerk
+    1890 Route 9
+    Suite 2
+    Windsor, MA  01270
+  abr_email_address: windsortownclerk@gmail.com
+  abr_status_check_phone: 413-684-3811 x 3
+  abr_contact_name: Windsor Town Clerk
+- name: Winthrop
+  mailing_address: |-
+    Town Clerk
+    1 Metcalf Square
+    Winthrop, MA  02152
+  abr_email_address: cvitale@town.winthrop.ma.us
+  abr_status_check_phone: 617-846-1742
+  abr_contact_name: Winthrop Town Clerk
+- name: Woburn
+  mailing_address: |-
+    City Clerk
+    10 Common Street
+    Woburn, MA  01801
+  abr_email_address: ballot@woburnma.gov
+  abr_status_check_phone: 781-897-5850
+  abr_contact_name: Woburn City Clerk
+- name: Worcester
+  mailing_address: |-
+    City Clerk
+    455 Main Street
+    Room 208
+    Worcester, MA  01608
+  abr_email_address: elections@worcesterma.gov
+  abr_status_check_phone: 508-799-1134
+  abr_contact_name: Worcester City Clerk
+- name: Worthington
+  mailing_address: |-
+    Town Clerk
+    P.O. Box 247
+    Worthington, MA  01098-0247
+  abr_email_address: townclerk@worthington-ma.us
+  abr_status_check_phone: 413-238-5577 x 110
+  abr_contact_name: Worthington Town Clerk
+- name: Wrentham
+  mailing_address: |-
+    Town Clerk
+    79 South Street
+    Wrentham, MA  02093
+  abr_email_address: townclerk@wrentham.ma.us
+  abr_status_check_phone: 508-384-5415
+  abr_contact_name: Wrentham Town Clerk
+- name: Yarmouth
+  mailing_address: |-
+    Town Clerk
+    1146 Route 28
+    South Yarmouth, MA  02664
+  abr_email_address: sregan@yarmouth.ma.us
+  abr_status_check_phone: 508-398-2231 x 1216
+  abr_contact_name: Yarmouth Town Clerk

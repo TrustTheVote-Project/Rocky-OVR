@@ -25,6 +25,7 @@
 class RegistrationStep < ApplicationController
   CURRENT_STEP = -1
   include ApplicationHelper
+  include TwilioHelper
 
   layout "registration"
   before_filter :find_partner
@@ -44,7 +45,9 @@ class RegistrationStep < ApplicationController
   end
 
   def update
+    @pdf_assistance = params[:pdf_assistance]
     redirected = find_registrant
+    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
     return if redirected == :redirected
     @registrant.attributes = params[:registrant]
     @registrant.check_locale_change
@@ -76,6 +79,8 @@ class RegistrationStep < ApplicationController
 
   def set_up_view_variables
     @use_mobile_ui = determine_mobile_ui(@registrant)
+    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+    
   end
 
   def set_up_share_variables
@@ -89,9 +94,45 @@ class RegistrationStep < ApplicationController
     #   end
   end
 
+  def skip_advance?
+    params[:skip_advance] == "true"  || params.has_key?(:email_continue_on_device) || params.has_key?(:sms_continue_on_device)
+  end
+
+  def continue_on_device_advance
+    # Set flash message?
+    # Actually send the message
+    if params.has_key?(:email_continue_on_device) 
+      if @registrant.email_address_for_continue_on_device =~ Authlogic::Regex::EMAIL
+        Notifier.continue_on_device(@registrant, request.original_url).deliver_now
+        flash[:success] = I18n.t('txt.signature_capture.email_sent', email: @registrant.email_address_for_continue_on_device)
+        @registrant.save(validate: false) # Make sure data persists even if not valid
+      else
+        @registrant.errors.add(:email_address_for_continue_on_device, :format)
+      end
+    elsif params.has_key?(:sms_continue_on_device)
+      if @registrant.sms_number =~ /\A\d{10}\z/ #sms number has all non-digits removed
+        begin
+          twilio_client.messages.create(
+            :from => "+1#{twilio_phone_number}",
+            :to => @registrant.sms_number,
+            :body => I18n.t('txt.signature_capture.sms_body', signature_capture_url: request.original_url)
+          )
+          flash[:success] = I18n.t('txt.signature_capture.sms_sent', phone: @registrant.sms_number_for_continue_on_device)
+          @registrant.save(validate: false) # Make sure data persists even if not valid
+          
+        rescue Twilio::REST::RequestError
+          @registrant.errors.add(:sms_number_for_continue_on_device, :format)
+        end
+      else
+        #controller.flash[:warning] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+        @registrant.errors.add(:sms_number_for_continue_on_device, :format)
+      end
+    end    
+  end
 
   def attempt_to_advance
-    if params[:skip_advance] == "true"
+    if skip_advance?
+      continue_on_device_advance
       render_show
       return :rendered
     end

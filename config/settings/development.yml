@@ -1,7 +1,7 @@
 pdf_host_name: localhost:3001
 api_host_name: http://localhost:3001
 use_https: false
-from_address: "Rock The Vote <rocky-dev@gmail.com>"
+from_address:  "Rock The Vote <register@rockthevote.com>"
 default_url_host: "localhost:3000"
 ui_url_host: "localhost:3000"
 
@@ -11,7 +11,9 @@ hours_between_first_and_second_reminder: 0.0333
 hours_between_second_and_final_reminder: 0.0333
 pdf_expiration_days: .25
 
-
+pdf_assistance:
+  partners:
+    - 1
 
 blocks_configuration:
   default_turf_id: 416
@@ -21,7 +23,9 @@ blocks_configuration:
   url: https://svtesting.blocks.work
   partners:
     1:
-      turf_id: 416
+      sub_orgs:
+        Org 1: 416
+        Org 2: 417
       canvasser_id: 128
       location_id: 266
       staging_location_id: 267
@@ -68,7 +72,6 @@ states_with_online_registration:
   - CA
   - DC
   - LA
-  - MN
   - MO
   - NV
   - WA
@@ -88,8 +91,10 @@ states_with_online_registration:
   - MD
   - MA
   - MI
+  - MN
   - NC
   - NE
+  - NJ
   - NM
   - NY
   - OH

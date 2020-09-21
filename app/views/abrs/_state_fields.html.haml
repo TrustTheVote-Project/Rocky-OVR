@@ -2,7 +2,7 @@
   // TODO this is hte same as below function with changed data param and swapped show/hide
   function toggleHidden() {
     var setVisible = $("[data-hidden-conditions]");
-    console.log(setVisible.get(0))
+    //console.log(setVisible.get(0))
     $(setVisible).each(function() {
       var conditions = $(this).data("hidden-conditions");
       var conditionalFields = conditions.split(" ");
@@ -10,7 +10,7 @@
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+"")
-        console.log(showField, field, field.val())
+        //console.log(showField, field, field.val())
         showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
       }
       if (showField) {
@@ -26,7 +26,7 @@
 
   function toggleVisible() {
     var setVisible = $("[data-visible-conditions]");
-    console.log(setVisible.get(0))
+    //console.log(setVisible.get(0))
     $(setVisible).each(function() {
       var conditions = $(this).data("visible-conditions");
       var conditionValue = $(this).data("visible-conditions-value")
@@ -35,7 +35,7 @@
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+"")
-        console.log(showField, "#abr_"+fieldName+"", field, field.val())
+        //console.log(showField, "#abr_"+fieldName+"", field, field.val())
         showField = showField && field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val()))
       }
       if (showField) {
@@ -44,6 +44,30 @@
       } else {
         $(this).hide();
         $(this).find("input, select, textarea").attr("disabled", true)        
+      }
+      
+    })
+  }
+
+  function toggleHiddenAny() {
+    var setHidden = $("[data-hidden-any-conditions]");
+    //console.log(setVisible.get(0))
+    $(setHidden).each(function() {
+      var conditions = $(this).data("hidden-any-conditions");
+      var conditionalFields = conditions.split(" ");
+      var hideField = false;
+      for(let i=0,ii=conditionalFields.length;i<ii;i++) {
+        var fieldName = conditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+"")
+        //console.log(showField, field, field.val())
+        hideField = hideField ||( field && (field.prop("type")=="checkbox"|| field.prop("type")=="radio" ? field.is(":checked") : field.val()))
+      }
+      if (hideField) {
+        $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)
+      } else {
+        $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)
       }
       
     })
@@ -90,10 +114,12 @@
   }
   $(document).ready(function() {
     toggleHidden();
+    toggleHiddenAny();
     toggleVisible();
     test_ui_regex();
     $("form").change(() => {
       toggleHidden();
+      toggleHiddenAny();
       toggleVisible();
       test_ui_regex();
     })
@@ -121,6 +147,10 @@
       - data["hidden-conditions-value"] = hidden_conditions_value unless hidden_conditions_value.blank?
       - data["ui-regexp"] = ui_regexp unless ui_regexp.blank?
       - data["ui_regexp_fail_message"] = ui_regexp_fail_message unless ui_regexp.blank?
+      - hidden_any_conditions =  opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][0] : opts[:hidden_any].to_s.strip
+      - hidden_any_conditions_value = opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][1] : nil
+      - data["hidden-any-conditions"] = hidden_any_conditions unless hidden_any_conditions.blank?
+      - data["hidden-any-conditions-value"] = hidden_any_conditions_value unless hidden_any_conditions_value.blank?
       - if opts[:type] == :instructions
         %li.instructions{class: class_name, data: data}
           %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")
@@ -164,3 +194,4 @@
             = form.text_field opts[:y], value: form.object.send(opts[:y]), placeholder: 'YYYY', type: 'tel', size: 4
             
           %span.error= form.object.errors[opts[:method]].join("\n")        
+      

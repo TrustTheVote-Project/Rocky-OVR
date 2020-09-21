@@ -1,0 +1,52 @@
+:css
+  .pdf-delivery-reports tr:hover { 
+    background: rgba(255,200,200, .5)
+  }
+  .pdf-delivery-reports a:hover {
+    font-weight: normal;
+  }
+  .pdf-delivery-reports td {
+    padding: 5px;
+  }
+
+%table.pdf-delivery-reports
+  %thead
+    %tr
+      %th Date
+      %th # Req. Assistance
+      %th # Direct Mail
+      %th{colspan: 4} Files
+      %th Status
+      %th Created At
+      %th Updated At
+      
+  %tbody
+    - @reports.each do |r|
+      %tr
+        %td= r.date
+        %td= r.assistance_registrants
+        %td= r.direct_mail_registrants
+        - if r.status == "complete"
+          %td
+            = link_to 'Assistance PDFs', download_admin_pdf_delivery_report_path(r, file: r.assistance_zip_file_name) if r.assistance_registrants.to_i > 0
+          %td
+            = link_to 'Assistance CSV', download_admin_pdf_delivery_report_path(r, file: r.assistance_csv_file_name) if r.assistance_registrants.to_i > 0
+          %td
+            = link_to 'Direct Mail PDFs', download_admin_pdf_delivery_report_path(r, file: r.direct_zip_file_name) if r.direct_mail_registrants.to_i > 0
+          %td
+            = link_to 'Direct Mail CSV', download_admin_pdf_delivery_report_path(r, file: r.direct_csv_file_name) if r.direct_mail_registrants.to_i > 0
+        - else
+          %td{colspan: 4}
+            - if !r.last_error.blank?
+              = "encoutered error"
+              = link_to("Create Report", create_report_admin_pdf_delivery_reports_path(date: r.date))
+            - unless r.created_at
+              = link_to("Create Report", create_report_admin_pdf_delivery_reports_path(date: r.date))  
+        %td
+          = r.status
+          - if r.status == "complete"
+            %br
+            = link_to("Recreate Report", create_report_admin_pdf_delivery_reports_path(date: r.date))
+        %td= r.created_at
+        %td= r.updated_at
+      

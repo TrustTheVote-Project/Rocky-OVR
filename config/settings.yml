@@ -82,6 +82,7 @@ absentee_states:
   AZ:
     online_req_url: https://my.arizona.vote/Early/ApplicationLogin.aspx
     pdf_template: az.pdf
+    email_delivery: true
   CA: {}
   CO: {}
   CT:
@@ -96,14 +97,16 @@ absentee_states:
   FL:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
   GA:
+    online_req_url: https://ballotrequest.sos.ga.gov/
     pdf_template: ga.pdf
+    email_delivery: true
   HI: {}
   IA:
     pdf_template: ia.pdf
   ID:
     online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
-    pdf_template: #2020_Absentee_Request.pdf
-    pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
+    pdf_template: id.pdf #2020_Absentee_Request.pdf
+    #pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
   IL:
     pdf_template: common.pdf
     counties:
@@ -133,16 +136,18 @@ absentee_states:
     pdf_template: la.pdf
   MA:
     pdf_template: ma.pdf
+    email_delivery: true
   MD:
     online_req_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/VoterType
-    # pdf_template: md.pdf
-    pdf_url: https://elections.maryland.gov/voting/documents/Absentee_Ballot_Application_English.pdf
+    pdf_template: md.pdf
+    #pdf_url: https://elections.maryland.gov/voting/documents/Absentee_Ballot_Application_English.pdf
+    email_delivery: true
   ME:
     online_req_url: https://www1.maine.gov/cgi-bin/online/AbsenteeBallot/online-form.pl
   MI:
     online_req_url: https://mvic.sos.state.mi.us/avapplication
-    pdf_template: 
-    pdf_url: https://www.michigan.gov/documents/AbsentVoterBallot_105377_7.pdf
+    pdf_template: mi.pdf
+    #pdf_url: https://www.michigan.gov/documents/AbsentVoterBallot_105377_7.pdf
   MN:
     online_req_url: https://mnvotes.sos.state.mn.us/ABRegistration/ABRegistrationStep1.aspx
   MO:
@@ -154,27 +159,20 @@ absentee_states:
     pdf_template: nc.pdf     
   ND:
     online_req_url: https://vip.sos.nd.gov/absentee/
-    pdf_template:
-    pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
+    pdf_template: nd.pdf
+    #pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
   NE:
     pdf_template: ne.pdf
   NH:
     pdf_template: nh.pdf
-  NJ:
-    pdf_template: nj.pdf
+  NJ: {}  
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
-    pdf_template:
-    pdf_url: /abrs/nm.pdf
-  NV:
-    pdf_template: nv.pdf
-    counties:
-      "clark county":
-        online_req_url: https://www.clarkcountynv.gov/government/departments/elections/voter_services.php
-        pdf_template: nv.pdf
-        
+    pdf_template: nm.pdf
+  NV: {}
   NY:
     pdf_template: ny.pdf
+    email_delivery: true    
   OH:
     pdf_template: oh.pdf
   OK:
@@ -182,8 +180,8 @@ absentee_states:
   OR: {}      
   PA:
     online_req_url: https://www.pavoterservices.pa.gov/OnlineAbsenteeApplication/#/OnlineAbsenteeBegin
-    pdf_template:
-    pdf_url: https://www.votespa.com/Register-to-Vote/Documents/PADOS_MailInApplication.pdf
+    pdf_template: pa.pdf
+    #pdf_url: https://www.votespa.com/Register-to-Vote/Documents/PADOS_MailInApplication.pdf
   RI:
     pdf_template: ri.pdf
   SC:
@@ -197,21 +195,93 @@ absentee_states:
   UT: {}  
   VA:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
-    pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
-    #pdf_template: va.pdf
+    # pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
+    pdf_template: va.pdf
+    email_delivery: true
   VT: {} #All vote-by-mail this year
   WA: {}
   WI:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
-    # pdf_template: wi.pdf
+    pdf_template: wi.pdf
     pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
+    # email_delivery: true
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
-    pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
-    # pdf_template: wv.pdf
+    #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
+    pdf_template: wv.pdf
   WY:
     pdf_template: wy.pdf
-  
+    email_delivery: true
+      
+
+# Only configured for staging2 right now.
+mail_with_esig:
+  states:
+    MN:
+      allow_desktop_signature: true
+      state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
+  partners:
+    - 1 
+    
+pdf_assistance:
+  states:
+    - AL
+    - AK
+    - AZ
+    - AR
+    - CA
+    - CO
+    - CT
+    - DE
+    - DC
+    - FL
+    - GA
+    - HI
+    - ID
+    - IL
+    - IN
+    - IA
+    - KS
+    - KY
+    - LA
+    - ME
+    - MD
+    - MA
+    - MI
+    - MN
+    - MS
+    - MO
+    - MT
+    - NE
+    - NV
+    - NH
+    - NJ
+    - NM
+    - NY
+    - NC
+    - ND
+    - OH
+    - OK
+    - OR
+    - PA
+    - RI
+    - SC
+    - SD
+    - TN
+    - TX
+    - UT
+    - VT
+    - VA
+    - WA
+    - WV
+    - WI
+    - WY
+  partners:
+    - 26179
+    - 1
+    - 11
+    - 37622
+    
 ovr_states:
   AZ:
     redirect_to_online_reg_url: true
@@ -251,7 +321,7 @@ ovr_states:
       - en
   MN:
     redirect_to_online_reg_url: true
-    require_id: false
+    require_id: true
     languages:
       - en
   NV:
@@ -359,6 +429,12 @@ ovr_states:
     languages:
       - en
       - es
+  NJ:
+    redirect_to_online_reg_url: true
+    languages:
+      - en
+      - es
+      - ko
   NM:
     redirect_to_online_reg_url: true
     languages:

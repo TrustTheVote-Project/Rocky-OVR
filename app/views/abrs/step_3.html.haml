@@ -43,12 +43,61 @@
     .step_3_form_fields{style: @abr.should_check_registration? && @abr.last_check.is_match? ? "display: none" : ''}
       = render partial: "state_fields", locals: {form: form}
   
+      - if @abr.collect_signature?
+        - @registrant = @abr
+        = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @abr.allow_desktop_signature? }
+        :javascript
+          function selectSignatureTypeCallback() {
+            if ($("#abr_signature_method_print:checked").length > 0) {
+              $("#prepare_form").show();
+              $("#deliver_by_email").hide();
+            } else {
+              $("#prepare_form").hide();
+              $("#deliver_by_email").show();
+            }
+
+          }
+        = render partial: 'shared/signature_capture/form', locals: {form: form, home_state_key: "#{@abr.home_state_abbrev.downcase}.abr", allow_desktop_signature: @abr.allow_desktop_signature?, allow_print_and_sign: true}
+      
+      
       %ul.flat
         = render :partial=> "registrants/phone", :locals=>{:form=>form}
+
+        
       = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
       = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
-  
-      = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+      
+      - if @abr.collect_signature?
+        #deliver_by_email
+          %br
+          %br
+          %h2
+            %strong= t('txt.abr.step_3_deliver_via_email_header')
+          %p{style: "font-size: 16px; margin-top: 1em; line-height: 1.5em"}
+            = t('txt.abr.review.name')
+            %strong{style: "font-weight: bold"}= @abr.full_name
+            %br
+            = t('txt.abr.review.email')
+            %strong{style: "font-weight: bold"}= @abr.email
+          %p{style: "font-size: 16px; margin-top: 1em; line-height: 1.5em"}
+            = t('txt.abr.review.address')
+            %br
+            %strong{style: "font-weight: bold"}= @abr.full_address_3_lines.gsub(/\n/, "<br/>").html_safe
+            %br
+            %strong{style: "font-weight: bold"}= @abr.registration_county_name
+          %p{style: "font-size: 16px; margin-top: 1em; line-height: 1.5em"}
+            = t('txt.abr.review.date_of_birth')
+            %strong{style: "font-weight: bold"}= I18n.l @abr.date_of_birth, format: :long
+            
+          .declaration-text{style: "font-weight: bold; text-align: center"}
+            = t('txt.abr.step_3_deliver_via_email_instructions').html_safe
+          - confirm_label = t("states.custom.#{@abr.i18n_key}.abr.confirm_email_delivery", default: "")
+          - confirm_label = nil if confirm_label.blank?
+          = render partial: 'registrants/generic/checkbox', locals: {field_label: confirm_label, form: form, field: :confirm_email_delivery, class_name: "registrant-form__confirm_email_delivery__line", required: true, require_accepted: true}
+          = rollover_button(:prepare, I18n.t('txt.button.deliver'))
+
+      #prepare_form
+        = rollover_button(:prepare, I18n.t('txt.button.prepare'))
 
     .back
       = link_to t('txt.button.back').html_safe, step_2_abr_path(@abr)

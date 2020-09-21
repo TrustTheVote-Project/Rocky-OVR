@@ -53,6 +53,16 @@ class BlocksClient
     send(:patch, path, body: body, headers: headers)
   end
 
+  def self.canvassers(turf_id, token: )
+    path = "turfs/#{turf_id}/canvassers"
+    
+    headers = {'Content-Type' => 'application/json'}
+    body = {
+      jwt: token
+    }
+    send(:get, path, body: body, headers: headers)
+  end
+
   def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected:, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, token:)
     path = "shifts"
     headers = {'Content-Type' => 'application/json'}
@@ -73,7 +83,7 @@ class BlocksClient
     send(:post, path, body: body, headers: headers)
   end
   
-  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_delivery", token:)
+  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_qc", token:)
     path = "shifts/#{shift_id}/digital_batch"
     headers = {'Content-Type' => 'application/json'}
     

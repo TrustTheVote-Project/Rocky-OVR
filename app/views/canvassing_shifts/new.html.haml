@@ -21,7 +21,7 @@
       = "You've selected:"
       %br
       &nbsp;&nbsp;
-      %strong= @partner.organization
+      %strong= @organization
     %p Is this correct?
     %form
       .button.rollover_button
@@ -43,7 +43,8 @@
         = field_li(form, :canvasser_last_name, {skip_tooltip: true, required: true, li_options: {class: "last-name__line"}})
         = field_li(form, :canvasser_phone, {skip_tooltip: true, required: true, li_options: {class: "phone__line"}})
         = field_li(form, :canvasser_email, {skip_tooltip: true, required: true, li_options: {class: "email__line"}})
-        = field_li(form, :shift_location, {skip_tooltip: true, required: true, select_options: CanvassingShift.location_options(@partner), field_options: {include_blank: true}, li_options: {class: "location__line"}})
+        = field_li(form, :shift_location, {skip_tooltip: true, required: true, select_options: CanvassingShift.location_options(@partner, turf_id: @new_canvassing_shift.blocks_turf_id), field_options: {include_blank: true}, li_options: {class: "location__line"}})
+      = form.hidden_field :blocks_turf_id
       = hidden_field_tag "partner_id", @partner&.id
       = hidden_field_tag "source_tracking_id", @source_tracking
       = hidden_field_tag "partner_tracking_id", @partner_tracking

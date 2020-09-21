@@ -115,6 +115,29 @@
       }
     }
   }
+  @media (max-width: 600px) {
+    li {
+      &.half,
+      &.three-quarter, 
+      &.quarter,
+      {
+        display:block;
+        width:100%;
+
+        &.last {
+          display:block;
+          width:100%;
+        }
+      }
+     /*
+     &.indent,
+     &.indent-2 
+     {
+      margin-left:0;
+      }
+     */
+    }
+  }
 }
 
 @import 'abr_states/ak';
@@ -133,6 +156,8 @@
 @import 'abr_states/oh';
 
 @import 'abr_states/wy';
+
+@import 'abr_states/wv';
 
 
 

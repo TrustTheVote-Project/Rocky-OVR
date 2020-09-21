@@ -4,7 +4,6 @@ class RegistrantValidator < ActiveModel::Validator
     
     #regexp = /\A(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))\z/i
     
-    reg.validates_format_of :state_id_number, :with => /\A(none|\d{4}|([-*A-Z0-9\s]{7,42}(\s+\d{4})?))\z/i, :allow_blank => true
     
   
 
@@ -33,6 +32,7 @@ class RegistrantValidator < ActiveModel::Validator
     if (reg.at_least_step_1? && (!reg.use_short_form? || reg.home_state_id.blank?)) ||
        (reg.at_least_step_2? && reg.use_short_form? )
       validates_zip_code  reg,    :home_zip_code
+      
     end
     
     if reg.at_least_step_2?
@@ -46,6 +46,9 @@ class RegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of :us_citizen, :in => [true], message: :accepted unless reg.building_via_api_call?
     
       validate_phone_present_if_opt_in_sms(reg)
+      if reg.mail_with_esig? && reg.signature_method != VoterSignature::PRINT_METHOD
+        reg.validates_presence_of(:voter_signature_image)
+      end
     end
     
     if requires_presence_of_state_id_number(reg)
@@ -159,7 +162,8 @@ class RegistrantValidator < ActiveModel::Validator
   
   def validate_state_id_number(reg)
     return true if reg.state_id_number.blank?
-    regexp = /^(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))$/i
+    regexp = /\A(none|\d{4}|([-*A-Z0-9\s]{7,42}(\s+\d{4})?))\z/i
+    
     if (reg.state_id_number =~ regexp)==nil
       reg.errors.add(:state_id_number, :invalid)
     end
