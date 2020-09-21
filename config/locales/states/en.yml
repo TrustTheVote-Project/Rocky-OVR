@@ -1424,49 +1424,35 @@ en:
           assistant: I assisted voter in completing this form because he/she has a
             disability.
           Asisstant Name: Assistant Name
-          Street or PO Box: Street number
+          #Note PO Box moved to street name field; street name can't be required in conjunciton with 
+          #PO Box (not part of PO Box address)
+          Street or PO Box:  Street number
+          mail_street_name: Street name or PO Box
           AptUnit_2: Apt/Unit
           CityTown_2: City/Town
-          Group1: 'I herby declare that (check one):'
-          Group1__options:
-            registered: I am a duly qualified voter who is currently registered to
+          mail_state: State
+          mail_zip: Zip
+          Group_I: 'I herby declare that (check one):'
+          Group_I__options:
+            Choice2: I am a duly qualified voter who is currently registered to
               vote in this town/ward.
-            absent: I am absent from the town/city where I am domiciled and will be
+            Choice1: I am absent from the town/city where I am domiciled and will be
               until after the next election, or I am unable to register in person
               due to a disability, and request that the forms necessary for absentee
               voter registration be sent to me with the absentee ballot.
-          reason_instructions: 'I will be entitled to vote by absentee ballot because
+          Group_II: 'I will be entitled to vote by absentee ballot because
             (check one):'
-          absentee_reason__hint: 'NOTE: In light of emergency orders and public health
-            guidance, all voters with concerns about COVID-19 may request an absentee
-            ballot due to physical disability.'
-          absentee_reason: 'I will be entitled to vote by absentee ballot because
-            (check one):'
-          absentee_reason__options:
-            reason1: I plan to be absent on the day of the election from the city,
+          Group_II__options:
+            Choice1: I plan to be absent on the day of the election from the city,
               town, or unincorporated place where I live.
-            reason3: I cannot appear in public on election day because of observance
+            Choice2: I cannot appear in public on election day because of observance
               of a religious commitment.
-            reason4: I am unable to vote in person due to a disability.
-            reason5: I cannot appear at any time during polling hours at my polling
-              place because of an employment obligation. For the purposes of this
-              application, the term “employment” shall include the care of children
-              and infirm adults, with or without compensation.
-            storm_warning: It is the Monday immediately prior to the election, the
-              National Weather Service has issued a winter storm warning, blizzard
-              warning, or ice storm warning for election day, AND..
-          absentee_reason__required_message: Please select one of the above reasons
-          storm_warning_reason: 'Check one:'
-          storm_warning_reason__options:
-            reason1: I am elderly or infirm or I have a physical disability, and would
-              otherwise vote in person but I have concerns for my safety traveling
-              in the storm.
-            reason2: I anticipate that school, child care, or adult care will be canceled,
-              and would otherwise vote in person but will need to care for children
-              or infirm adults.
-          storm_warning_reason__required_message: Please select one of the above reasons
-          Group3: 'I am requesting an official absentee ballot for the following election
-            (check only one):'
+            Choice3: I am unable to vote in person due to a disability.
+            Choice4: I am unable to vote in person due to concern for the novel coronavirus (COVID-19).
+            Choice5: I cannot appear at any time during polling hours at my polling place because of an
+              employment obligation. For the purposes of this application, the term “employment” shall
+              include the care of children and infirm adults, with or without compensation.
+          Group_II__required_message: Please select one of the above reasons
           Party: 'Required for Primary Elections: I am a member of, or I am now declaring
             my affiliation with a party and I am requesting a ballot for that party’s
             primary (check only one):'
