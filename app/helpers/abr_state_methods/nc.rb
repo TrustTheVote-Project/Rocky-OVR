@@ -1,113 +1,200 @@
 module AbrStateMethods::NC
   
   PDF_FIELDS = {
-    "Voter's Last Name": {
+    #"Voter's Last Name": {
+    "Last_Name": {
       method: "last_name"
     },
-    "Voter's First Name": {
+    #"Voter's First Name": {
+    "First_Name": {
       method: "first_name"
     },
-    "Voter's Middle Name": {
+    #"Voter's Middle Name": {
+    "Middle_Name": {
       method: "middle_name"
     },
-    "Voter's Suffix": {
+    #"Voter's Suffix": {
+    "Suffix": {
       method: "name_suffix"
     },
-    "Voter's Month of Birth": {
-      method: "date_of_birth_mm"
+
+    #"Voter's Previous Last Name": {},
+    #"Voter's Previous First Name": {},
+    #"Voter's Previous Middle Name": {},
+    "Former_Name": {},
+
+    "DOB": {
+      'method': "date_of_birth_mm_dd_yyyy",
     },
-    "Voter's Date of Birth": {
-      method: "date_of_birth_dd"
+
+    #"NC Driver Licence or NCID Number": {},
+    "ID_Number": {sensitive:true},
+    "SSN4":  {sensitive:true},
+
+
+
+    #"Moved Month": { method: "date_moved_mm" },
+    #"Moved Date": { method: "date_moved_dd" },
+    #"Moved Year": { method: "date_moved_yyyy" },
+
+    "MovedDate": {
+      method: 'date_moved_mm_dd_yyyy',
     },
-    "Voter's Year of Birth": {
-      method: "date_of_birth_yyyy"
-    },
-    "Voter's Previous Last Name": {},
-    "Voter's Previous First Name": {},
-    "Voter's Previous Middle Name": {},
-    "NC Driver Licence or NCID Number": {},
-    "SSN1": { method: "ssn_1" },
-    "SSN2": { method: "ssn_2" },
-    "SSN3": { method: "ssn_3" },
-    "SSN4": { method: "ssn_4" },
-    "Voter's Current NC Residential Street Address": {
-      method: "address"
-    },
-    "Voter's regular mailing address": {},
-    "Moved Month": { method: "date_moved_mm" },
-    "Moved Date": { method: "date_moved_dd" },
-    "Moved Year": { method: "date_moved_yyyy" },
-    "Voter's Residential City": {
+    
+    #"Voter's Current NC Residential Street Address": {
+    "NCStreet": {
+        method: "address"
+      },
+
+    #"Voter's Residential City": {
+    "NCCity": {
       method: "city"
     },
-    "Voter's Residential State": {
+    #"Voter's Residential State": {
+    "NCState": {
       method: "home_state_abbrev"
     },
-    "Voter's Residential Zip Code": {
+    #"Voter's Residential Zip Code": {
+    "NCZip": {
       method: "zip"
     },
-    "Voter's Residential County": {},
-    "Voter's E-mail address": {
+    #"Voter's Residential County": {},
+    "NCCounty": {},
+
+    #"Voter's regular mailing address": {},
+    "NCMailing1": {
+      method:"reg_mail_1"
+    },
+    "NCMailing2": {
+      method: "reg_mail_rest"
+    },
+
+    #"Voter's E-mail address": {
+    "ContactEmail": {
       method: "email"
     },
-    "Voter's phone number": {
+    #"Voter's phone number": {
+    "ContactPhone": {
       method: "phone"
     },
-    "Mailing Address for Ballot": { method: "residential_or_ballot_mailing_address" },
-    "Check if you would like to request absentee ballots for all elections": { options: ["Off", "On"], value: "Off" },
-    "Mailing City": {
-      method: "residential_or_ballot_city"
+
+    #"Check if you would like to request absentee ballots for all elections": {
+    "continued_request":{
+      options: ["Off", "On"], 
+      value: "Off" 
     },
-    "Mailing State": {
-      method: "residential_or_ballot_state"
+    #Ballot mailing address below
+    #"Mailing Address for Ballot": {
+    "MailStreet": {
+      #method: "residential_or_ballot_mailing_address" 
     },
-    "Mailing Zip Code": {
-      method: "residential_or_ballot_zip"
+    #"Mailing City": {
+      "MailCity": {
+      #method: "residential_or_ballot_city"
     },
-    "Near Relative or Legal Guardian's Name": {},
-    "Near Relative or Legal Guardian's Relationship to Voter": {},
-    "Near Relative or Legal Guardian's Address": {},
-    "Near Relative or Legal Guardian's City": {},
-    "Near Relative or Legal Guardian's State": {},
-    "Near Relative or Legal Guardian's Zip Code": {},
+    #"Mailing State": {
+    "MailState": {
+      #method: "residential_or_ballot_state"
+    },
+    #"Mailing Zip Code": {
+      "MailZip": {
+      #method: "residential_or_ballot_zip"
+    },
+    #"Near Relative or Legal Guardian's Name": {},
+    #"Near Relative or Legal Guardian's Relationship to Voter": {},
+    #"Near Relative or Legal Guardian's Address": {},
+    #"Near Relative or Legal Guardian's City": {},
+    #"Near Relative or Legal Guardian's State": {},
+    #"Near Relative or Legal Guardian's Zip Code": {},
+   
+    "RelativeName": {},
+    "RelativeRelationship": {},
+    "RelativeAddress": {},
+    "RelativeCity": {},
+    "RelativeState": {},
+    "RelativeZip": {},
+
     "Voter Assistants Name": {},
     "Voter Assistant's Address": {},
     "Voter Assistant's City": {},
     "Voter Assistant's State": {},
     "Voter Assistant's Zip Code": {},
-    "Name and Address of Facility": {},
-    "Patient Yes": { options: ["Off", "On"] },
-    "Patient No": { options: ["Off", "On"] },
-    "Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence": { options: ["Off", "On"] },
-    "US citizen outside the United States": { options: ["Off", "On"] },
-    "Overseas Address": {},
-    "Overseas Mailing Address": { },
-    "Overseas E-Mail address": {  method: "uocava_email_address_if_selected" },
-    "Overseas Fax Number": {},
+
+    "AssistantFullName": {},
+    "AssistantAddress": {},
+    "AssistantAddress2": {
+      method: "assistant_address_rest"
+    },
+
+
+    
+    #"Name and Address of Facility": {},
+    "HopitalFacilityName": {},
+
+    #"Patient Yes": { options: ["Off", "On"] },
+    #"Patient No": { options: ["Off", "On"] },
+
+
+    #"Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence": { options: ["Off", "On"] },
+
+    
+    
+    
+    #"US citizen outside the United States": { options: ["Off", "On"] },
+    "UOCAVA": { options: [ "citizen", "military"] },
+
+    #"Overseas Address": {},
+    "UOCAVAAddress":{},
+    "UOCAVAAddress2":{},
+
+    "delivery_method": { 
+      options: [ "email", "mail"] 
+    }, #fax not supported?
+
+
+
+
+    #"Overseas Mailing Address": { },
+    "Mailing1":{},
+    "Mailing2":{},
+    
+    #"Overseas E-Mail address": { 
+    "Email": {
+      method: "uocava_email_address_if_selected" 
+    },
+
+    #"Overseas Fax Number": {
+      "Fax": {
+    },
+  
     "lived_here_long": { options: ["No", "Yes"] },
     #"voter_signature": {},
     #"other_signature": {},
     #"date_signed_voter": {},
     #"date_signed_other": {},
-  }
-  EXTRA_FIELDS = ["ssn1234", "has_mailing_address", "identification", "previous_name", "ballot_address", "ballot_mailing_address", "ballot_city", "ballot_state", "ballot_zip", "relative_request", "assistant", "uocava", "uocava_ballot", "date_moved_mm", "date_moved_dd", "date_moved_yyyy"]
 
-  def ssn_1
-    !ssn1234.blank? && ssn1234[0]
-  end
-  def ssn_2
-    !ssn1234.blank? && ssn1234[1]
-  end
-  def ssn_3
-    !ssn1234.blank? && ssn1234[2]
-  end
-  def ssn_4
-    !ssn1234.blank? && ssn1234[3]
-  end
-  
+  }
+  EXTRA_FIELDS = [ "has_mailing_address", "identification", "previous_name", "ballot_address", "ballot_mailing_address", "ballot_city", "ballot_state", "ballot_zip", "relative_request", "assistant", "date_moved_mm", "date_moved_dd", "date_moved_yyyy","uocava_option","AssistantAddressInput", "assistantcity", "assistantstate", "assistantzip", "patient", "reg_mail_street","reg_mail_city","reg_mail_state","reg_mail_zip"]
+
+
   def form_field_items
     [
-      {"Voter's Residential County": {type: :select, required: true, include_blank: true, options: [
+
+      {"previous_name": {type: :checkbox}},
+
+      {"Former_Name": {visible: "previous_name", required: :if_visible}},
+
+
+      {"identification": {
+        type: :radio,
+        required: true,
+        options: ["dln", "ssn"]}},
+      {"ID_Number": {visible: "identification_dln", required: "star", regexp: /\A\d{1,12}\z/}},
+      {"SSN4": {visible: "identification_ssn", required: "star", classes: "half", length:4, regexp: /\A\d{4}\z/}},
+
+      #{"Voter's Residential County":
+      {"NCCounty":
+         {type: :select, required: true, include_blank: true, options: [
         "Alamance",
         "Alexander",
         "Alleghany",
@@ -210,87 +297,78 @@ module AbrStateMethods::NC
         "Yancey",
       ]}},
       {"lived_here_long": {type: :radio}},
-      {"date_moved": {type: :date, m: "date_moved_mm", d: "date_moved_dd", y: "date_moved_yyyy", visible: "lived_here_long_no", }},
-      {"identification": {
-        type: :radio,
-        required: true,
-        options: ["dln", "ssn"]}},
-      {"NC Driver Licence or NCID Number": {visible: "identification_dln"}},
-      {"ssn1234": {visible: "identification_ssn"}}, 
+      {"date_moved": {type: :date, m: "date_moved_mm", d: "date_moved_dd", y: "date_moved_yyyy", visible: "lived_here_long_no", required: 'star' }},
+
       {"has_mailing_address": {type: :checkbox}},
-      {"Voter's regular mailing address": {visible: "has_mailing_address", required: :if_visible}},
+      {"reg_mail_street":{visible: "has_mailing_address", required: :if_visible}},
+      {"reg_mail_city":{visible: "has_mailing_address", required: :if_visible, classes:"half"}},
+      {"reg_mail_state":{visible: "has_mailing_address",type: :select, options: GeoState.collection_for_select, include_blank: true, required: :if_visible, classes:"quarter"}},
+      {"reg_mail_zip":{visible: "has_mailing_address", required: :if_visible, classes:"quarter last"}},
+
+      #{"Voter's regular mailing address": {visible: "has_mailing_address", required: :if_visible}},
+      #{"NCMailing1": {visible: "has_mailing_address", required: :if_visible}},
+      #{"NCMailing2": {visible: "has_mailing_address", required: :if_visible}},
+     
       {"ballot_address": {type: :checkbox}},
-      {"ballot_mailing_address": {visible: "ballot_address", required: :if_visible}},
-      {"ballot_city": {visible: "ballot_address", required: :if_visible, classes: "half"}},
-      {"ballot_state": {visible: "ballot_address", classes: "quarter", required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"ballot_zip": {visible: "ballot_address", classes: "quarter last", required: :if_visible, min: 5, max: 10}},
-      {"previous_name": {type: :checkbox}},
-      {"Voter's Previous First Name": {visible: "previous_name", required: :if_visible}},
-      {"Voter's Previous Middle Name": {visible: "previous_name"}},
-      {"Voter's Previous Last Name": {visible: "previous_name", required: :if_visible}},
-      {"uocava": {type: :checkbox}},
-      {"military_or_overseas": { type: :radio, options: ["military", "overseas"], visible: "uocava"}},
-      {"Overseas Address": {visible: "uocava"}},
-      {"uocava_ballot": {visible: "uocava", required: :if_visible, type: :radio, options: ["mail", "email"]}}, 
-      {"Overseas Mailing Address": {visible: "uocava_ballot_mail"}},
+      {"MailStreet":{visible: "ballot_address", required: :if_visible}},
+      {"MailCity":{visible: "ballot_address", required: :if_visible, classes:"half"}},
+      {"MailState":{visible: "ballot_address", type: :select, options: GeoState.collection_for_select, include_blank: true, required: :if_visible, classes:"quarter"}},
+      {"MailZip":{visible: "ballot_address", required: :if_visible, classes:"quarter last"}},
+
+
+      #{"ballot_mailing_address": {visible: "ballot_address", required: :if_visible}},
+      #{"ballot_city": {visible: "ballot_address", required: :if_visible, classes: "half"}},
+      #{"ballot_state": {visible: "ballot_address", classes: "quarter", required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      #{"ballot_zip": {visible: "ballot_address", classes: "quarter last", required: :if_visible, min: 5, max: 10}},
+     
+       
       {"relative_request": {type: :checkbox}},
-      {"Near Relative or Legal Guardian's Name": {visible: "relative_request"}},
-      {"Near Relative or Legal Guardian's Relationship to Voter": {visible: "relative_request"}},
-      {"Near Relative or Legal Guardian's Address": {visible: "relative_request"}},
-      {"Near Relative or Legal Guardian's City": {visible: "relative_request"}},
-      {"Near Relative or Legal Guardian's State": {visible: "relative_request", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Near Relative or Legal Guardian's Zip Code": {visible: "relative_request", min: 5, max: 10}},
+      {"RelativeName": {visible: "relative_request",required: :if_visible}},
+      {"RelativeRelationship": {visible: "relative_request",required: :if_visible}},
+      {"RelativeAddress": {visible: "relative_request", required: :if_visible}},
+      {"RelativeCity": {visible: "relative_request", required: :if_visible, classes:"half"}},
+      {"RelativeState": {visible: "relative_request", type: :select, options: GeoState.collection_for_select, include_blank: true, required: :if_visible, classes:"quarter"}},
+      {"RelativeZip": {visible: "relative_request", min: 5, max: 10, required: :if_visible, classes:"quarter last"}},
+      
       {"assistant": {type: :checkbox}},
-      {"Voter Assistants Name": {visible: "assistant"}},
-      {"Voter Assistant's Address": {visible: "assistant"}},
-      {"Voter Assistant's City": {visible: "assistant", classes: "half"}},
-      {"Voter Assistant's State": {visible: "assistant", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Voter Assistant's Zip Code": {visible: "assistant", classes: "quarter last", min: 5, max: 10}},
-      {"patient": {type: :radio, options: ["Yes", "No"]}}, 
-      {"Name and Address of Facility": {visible: "patient_yes", required: :if_visible}}
+      {"AssistantFullName": {visible: "assistant", required: :if_visible}},
+      {"AssistantAddress": {visible: "assistant", required: :if_visible}},
+      {"assistantcity": {visible: "assistant",  required: :if_visible, classes: "half"}},
+      {"assistantstate": {visible: "assistant",  required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"assistantzip": {visible: "assistant",  required: :if_visible, classes: "quarter last", min: 5, max: 10}},
+      
+      {"patient": {type: :checkbox}}, 
+      {"HopitalFacilityName": {visible: "patient", required: :if_visible}},
+
+      {"uocava_option": {type: :checkbox}},
+      {
+        #"military_or_overseas": {
+      "UOCAVA": {
+        type: :radio, 
+        options: ["military", "citizen"],
+        visible: "uocava_option",  
+        required: :if_visible}},
+      #{"Overseas Address":
+      {"UOCAVAAddress":
+         {visible: "uocava_option"}},
+      #{"UOCAVAAddress2":
+      #  {visible: "uocava_option"}},
+      {"delivery_method": {
+        visible: "uocava_option", 
+        required: :if_visible, 
+        type: :radio, 
+        options: ["mail", "email"]}}, 
+      {"Mailing1": {
+        visible: "delivery_method_mail",
+        required: "star"}},
+      #{"Mailing2": {
+      #  visible: "delivery_method_mail"}},
+
     ]
   end
   
-  def military_or_overseas
-    if self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")) == "On"
-      return "military"
-    elsif self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")) == "Off"
-      return "overseas"
-    end
-    return nil
-  end
-  
-  def military_or_overseas=(val)
-    self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "Off")
-    self.send(self.class.make_method_name("US citizen outside the United States")+"=", "Off")
-    if val == "military"
-      self.send(self.class.make_method_name("Member of the Uniformed Services or Merchant Marine on active duty or eligible spousedependent and currently absent from county of residence")+"=", "On")
-    elsif val == "overseas"
-      self.send(self.class.make_method_name("US citizen outside the United States")+"=", "On")
-    end
-  end
-  
-  def patient
-    if self.patient_yes == "On"
-      return "Yes"
-    elsif self.patient_no == "On"
-      return "No"
-    end
-    return nil
-  end
-  
-  def patient=(value)
-    self.patient_yes = "Off"
-    self.patient_no = "Off"
-    if value == "Yes"
-      self.patient_yes = "On"
-    elsif value == "No"
-      self.patient_no = "On"
-    end
-  end
-  
   def uocava_email_address_if_selected
-    email if uocava_ballot == "email"
+    email if delivery_method == "email"
   end
   
   def residential_or_ballot_mailing_address
@@ -300,6 +378,7 @@ module AbrStateMethods::NC
       self.address
     end
   end
+
   def residential_or_ballot_city
     if self.ballot_address == "1"
       self.ballot_city
@@ -307,6 +386,7 @@ module AbrStateMethods::NC
       self.city
     end
   end
+
   def residential_or_ballot_state
     if self.ballot_address == "1"
       self.ballot_state
@@ -314,6 +394,7 @@ module AbrStateMethods::NC
       self.home_state_abbrev
     end
   end
+
   def residential_or_ballot_zip
     if self.ballot_address == "1"
       self.ballot_zip
@@ -321,11 +402,63 @@ module AbrStateMethods::NC
       self.zip
     end
   end
+
+  def reg_mail_1
+    if self.has_mailing_address == "1"
+      self.reg_mail_street
+    end
+  end
+
+  def reg_mail_rest
+    if self.has_mailing_address == "1"
+      values= ["reg_mail_city", "reg_mail_state", "reg_mail_zip"].map {|m| self.send(m).to_s}
+      return (values.compact.join(" "))
+    end
+  end
+  def assistant_address_rest
+    if self.assistant == "1"
+      values= ["assistantcity", "assistantstate", "assistantzip"].map {|m| self.send(m).to_s}
+      return (values.compact.join(" "))
+    end
+  end
+
+  def test_date(datestring)
+    begin
+      @mydate = Date.strptime(datestring, "%m/%d/%Y")
+      return true
+    rescue ArgumentError
+      return false
+    end
+  end
+
+  def  date_moved_mm_dd_yyyy
+    dates = [date_moved_mm, date_moved_dd, date_moved_yyyy].collect {|d| d.blank? ? nil : d}.compact
+    dates && dates.length == 3 ? dates.join("/") : nil
+  end
+
+  
   
   
   def custom_form_field_validations
     # make sure delivery is selected if reason ==3
     # make sure fax is provided if faxtype is selected for delivery
+
+    #date_moved
+
+    if self.identification.to_s=='ssn' 
+      custom_validates_presence_of("SSN4")
+    elsif self.identification.to_s=='dln'
+      custom_validates_presence_of("ID_Number")
+    end
+
+    if (self.lived_here_long.to_s=='No' && !test_date(self.date_moved_mm_dd_yyyy.to_s))
+        errors.add("date_moved",custom_format_message("bad_date"))       
+    end
+
+    if self.delivery_method.to_s=='mail' 
+      custom_validates_presence_of("Mailing1")
+    end
+
   end
   
  

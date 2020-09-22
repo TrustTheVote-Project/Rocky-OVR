@@ -1289,6 +1289,7 @@ en:
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
         abr_form_fields:
+          bad_date__format_message: "Invalid date"
           has_mailing_address: My mailing address differs from my residential address.
           identification: Choose one of the following methods for identification
           identification__options:
@@ -1296,15 +1297,35 @@ en:
             ssn: Last four digits of your social security number
           ssn1234: Last 4 of your SSN
           previous_name: I have changed my name in my lifetime.
-          Voter's Previous Last Name: Previous Last Name
-          Voter's Previous First Name: Previous First Name
-          Voter's Previous Middle Name: Previous Middle Name
+          Former_Name: Previous Full Name
           ballot_address: I would like my absentee ballot mailed to an address other
             than my residential or my regular mailing address.
-          ballot_mailing_address: Ballot Mailing Address
-          ballot_city: City
-          ballot_state: State
-          ballot_zip: ZIP
+          MailStreet: Ballot Mailing Address
+          MailCity: City
+          MailState: State
+          MailZip: ZIP
+          RelativeName: Requestor Information
+          RelativeName__hint: Name
+          RelativeRelationship: Relationship to voter
+          RelativeAddress: Address
+          RelativeCity: City
+          RelativeState: State
+          RelativeZip: Zip
+          AssistantFullName: Assistant information
+          AssistantFullName__hint: Name
+          AssistantAddress: Address
+          assistantcity: City
+          assistantstate: State
+          assistantzip: Zip
+          SSN4: Last 4 of your SSN
+          ID_Number: NC Driver Licence or NCID Number
+          NCCounty: NC Residential County
+          reg_mail_street: Address
+          reg_mail_city: City
+          reg_mail_state: State
+          reg_mail_zip: Zip
+
+          AssistantAddressInput: 
           lived_here_long: Have you lived at your residential address for 30 days
             or more?
           date_moved: 'If ''No'', please enter the date moved (MM/DD/YYYY):'
@@ -1314,19 +1335,21 @@ en:
             or inability to read or write, and requires assistance.
           patient: If voter is a patient in a hospital, clinic, nursing home or rest
             home, does voter need assistance with voting and returning the ballot?
-          Name and Address of Facility: If Yes, what is the name and address of the
+          HopitalFacilityName: If Yes, what is the name and address of the
             hospital or facility?
-          uocava: I am an absentee military or overseas voter.
-          military_or_overseas: 'Select the best option below that describes your
+          uocava_option: I am an absentee military or overseas voter.
+          UOCAVA: 'Select the best option below that describes your
             absentee status:'
-          military_or_overseas__options:
+          UOCAVA__options:
             military: Member of the Uniformed Services or Merchant Marine on active
               duty or eligible spouse/dependent and currently absent from county of
               residence
-            overseas: U.S. citizen outside the United States
-          uocava_ballot: 'I would like my absentee ballot sent by:'
-          uocava_ballot__options:
+            citizen: U.S. citizen outside the United States
+          delivery_method: 'I would like my absentee ballot sent by:'
+          delivery_method__options:
             mail: Mail
+          UOCAVAAddress: Overseas Address
+          Mailing1: Overseas Mailing Address
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you
             are eligible to complete your registration online with the NC DMV.
