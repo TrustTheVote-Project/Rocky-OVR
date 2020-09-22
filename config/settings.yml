@@ -93,7 +93,8 @@ absentee_states:
     pdf_url: https://dcboe.org/Data-Resources-Forms/Forms-and-Resources/AbsenteeBallotRequestForm.aspx
   DE:
     online_req_url: https://ivote.de.gov/voterlogin.aspx    
-    pdf_template: absentee_ballot_application.pdf
+    #pdf_template: absentee_ballot_application.pdf
+    pdf_template: de.pdf
   FL:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
   GA:
