@@ -79,6 +79,7 @@ class Partner < ActiveRecord::Base
   has_many :registrants
   has_many :canvassing_shifts
 
+  
   def self.partner_assets_bucket
     if Rails.env.production?
       "rocky-partner-assets"
@@ -130,6 +131,7 @@ class Partner < ActiveRecord::Base
   
 
   serialize :government_partner_zip_codes
+  serialize :states_enabled_for_pdf_assistance, Array
   serialize :replace_system_css, Hash
 
   before_validation :reformat_phone

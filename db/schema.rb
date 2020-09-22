@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200918163335) do
+ActiveRecord::Schema.define(version: 20200920135138) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -293,6 +293,7 @@ ActiveRecord::Schema.define(version: 20200918163335) do
     t.string   "online_registration_system_name"
     t.string   "registrar_abr_address"
     t.string   "status_check_url"
+    t.boolean  "pdf_assistance_enabled"
   end
 
   create_table "grommet_requests", force: :cascade do |t|
@@ -371,6 +372,7 @@ ActiveRecord::Schema.define(version: 20200918163335) do
     t.string   "short_code"
     t.string   "terms_url"
     t.boolean  "enabled_for_catalist_api"
+    t.text     "states_enabled_for_pdf_assistance"
   end
 
   add_index "partners", ["email"], name: "index_partners_on_email"

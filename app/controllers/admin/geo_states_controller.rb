@@ -22,32 +22,27 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class Admin::PdfDeliveryReportsController < Admin::BaseController
+class Admin::GeoStatesController < Admin::BaseController
   
-  START_DATE = Date.parse("2020-09-01").freeze
 
   def index
-    @reports = (START_DATE..Date.yesterday).collect do |d|
-      PdfDeliveryReport.order("created_at DESC").find_or_initialize_by(date: d)
-    end.reverse
+    @geo_states = GeoState.all
   end
 
-  def create_report
-    date = Date.parse(params[:date])
-    PdfDeliveryReport.compile_for_date(date)
-    flash[:notice] = "Report queued for #{params[:date]}"
+  def bulk_update
+    GeoState.all.each do |s|
+      if params[:pdf_assistance_enabled] && params[:pdf_assistance_enabled][s.abbreviation]
+        s.pdf_assistance_enabled = params[:pdf_assistance_enabled][s.abbreviation] == "1"
+        s.save
+      end
+    end
     redirect_to action: :index
   end
 
-  def download
-    file = params[:file]
-    pdr = PdfDeliveryReport.find(params[:id])
-    send_data pdr.read_file(file), filename: file, type: file.ends_with?("csv") ? "text/csv" : "application/zip"
-  end
-  
   private
 
   def init_nav_class
-    @nav_class = {pdf_delivery_reports: :current}
+    @nav_class = {geo_states: :current}
   end  
+
 end

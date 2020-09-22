@@ -93,7 +93,8 @@ absentee_states:
     pdf_url: https://dcboe.org/Data-Resources-Forms/Forms-and-Resources/AbsenteeBallotRequestForm.aspx
   DE:
     online_req_url: https://ivote.de.gov/voterlogin.aspx    
-    pdf_template: absentee_ballot_application.pdf
+    #pdf_template: absentee_ballot_application.pdf
+    pdf_template: de.pdf
   FL:
     online_req_url: https://dos.elections.myflorida.com/supervisors/    
   GA:
@@ -166,6 +167,7 @@ absentee_states:
     pdf_template: ne.pdf
   NH:
     pdf_template: nh.pdf
+    email_delivery: true
   NJ: {}  
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
@@ -218,11 +220,11 @@ absentee_states:
 # Only configured for staging2 right now.
 mail_with_esig:
   states:
-    MN:
+    MN: 
       allow_desktop_signature: true
       state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
   partners:
-    - 1 
+    - 38408 
     
 pdf_assistance:
   states:

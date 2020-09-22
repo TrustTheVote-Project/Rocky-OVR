@@ -40,62 +40,28 @@ module AbrStateMethods::NH
     "State Zip Code": {
       method: "state_zip"
     },
-    "Applicants Phone Number": {
-      method:"phone_area"
+ 
+    "Applicants_Phone": {
+      method:"phone"
     }, 
-    "undefined": {
-      method:"phone_prefix"
-    }, 
-    "undefined_2": {
-      method:"phone_last4"
+    "email": {
+      method:"email"
     },
-=begin 
-    "Check Box12": { 
-      options: ["Off", "Yes"],
-      value: "Yes"
-     },
-    "Check Box13": { 
-      options: ["Off", "Yes"],
-      value: "Yes"
-    },
-    "Check Box14": { options: ["Off", "Yes"] },
-    "Check Box15": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-    },
-    "Check Box16": { options: ["Off", "Yes"] },
-    "Check Box17": { options: ["Off", "Yes"] },
-    "Check Box18": { options: ["Off", "Yes"] },
-    "Check Box19": { options: ["Off", "Yes"] },
-    "Check Box20": { options: ["Off", "Yes"] },
-    "Check Box21": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-    },
-    "Check Box22": { 
-      options: ["Off", "Yes"],
-      value: "Yes"
-    },
-=end
-    "Applicants Email Address": {
-      method: "email"
-    },
+
     #"voter_signature": {}
     #"Date_Signed": {}
     #"assistant_signature": {}
     "Asisstant Name": {},
 
-    "Group1": {},
-    "Group2": {
-      method: "group2"
-    },
-    "Group2a": {
-      method: "group2a"
-    },
-    "Group3": {
-      options: ["Off", "State General", "State Primary"],
-      value: "State General"
-    },
+    "Group_I": {},
+    "Group_II": {},
+
+
+    "State_Primary": { options: ["Off", "Yes"],
+      value: 'Off'},
+
+    "State_General": { options: ["Off", "Yes"],
+    value: "Yes" },
     
     "Party": {}
   }
@@ -104,14 +70,11 @@ module AbrStateMethods::NH
   
   def form_field_items
     [
-      {"Group1": {type: :radio, options:['absent','registered'], required: true}},
+      {"Group_I": {type: :radio, options:['Choice1','Choice2'], required: true}},
 
-      {"absentee_reason":{type: :radio, options:['reason1','reason3','reason4','reason5', 'storm_warning'], required: true}},
-      {"storm_warning_reason":{type: :radio, options:['reason1','reason2'], visible: "absentee_reason_storm_warning", required: "star", classes: "indent"}},
-      # {"Group3": {type: :radio,  options: ["State Primary" ,"State General" ],required:true}},
-      # {"Party": {type: :radio,  options:["Democratic",  "Republican"], required: "star", visible: "group3_state_primary",}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"Street or PO Box": {visible: "has_mailing_address", classes: "quarter", required: :if_visible}},
+      {"Group_II":{type: :radio, options:['Choice1','Choice2','Choice3','Choice4', 'Choice5'], required: true}},
+       {"has_mailing_address": {type: :checkbox}},
+      {"Street or PO Box": {visible: "has_mailing_address", classes: "quarter", }},
       {"mail_street_name": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
       {"AptUnit_2": {visible: "has_mailing_address", classes: "quarter last"}},
       {"CityTown_2": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
@@ -120,8 +83,8 @@ module AbrStateMethods::NH
       {"mail_zip": {visible: "has_mailing_address", classes: "quarter last", length:5, regexp: /\A[0-9]{5}\z/, required: :if_visible}},
 
       
-      {"assistant": {type: :checkbox}},
-      {"Asisstant Name": {visible: "assistant", required: :if_visible}},
+      #{"assistant": {type: :checkbox}},
+      #{"Asisstant Name": {visible: "assistant", required: :if_visible}},
     ]
   end
 
@@ -131,49 +94,17 @@ module AbrStateMethods::NH
     end
   end
 
-  def phone_area
-    if self.phone.to_s!=''   
-      return (phone_digits[0..2])
-    end
-  end
-
-  def phone_prefix
-    if self.phone.to_s!=''
-      return (phone_digits[3..5])
-    end
-  end
-  
-  def phone_last4
-    if self.phone.to_s!=''
-      return (phone_digits[6..9])
-    end
-  end 
+ 
 
   # Radio select
 
   # Methods below map from UI attributes to PDF fields
 
 
-  def group2 
-    if self.absentee_reason!='storm_warning'
-      return (self.absentee_reason.to_s)
-    end
-  end
- 
-  def group2a 
-    if self.absentee_reason=='storm_warning'
-      return (self.storm_warning_reason.to_s)
-    end
-  end
 
 
   def custom_form_field_validations
-    if absentee_reason.to_s=="storm_warning"
-      custom_validates_presence_of("storm_warning_reason")
-    end
-    # if group3.to_s=="State Primary"
-    #   custom_validates_presence_of("Party")
-    # end
+
   end
   
  

@@ -6,10 +6,14 @@ class PdfDeliveryReport < ActiveRecord::Base
     "Last Name",
     "Email",
     "Phone",
+    "Language",
     "DOB",
     "UID",
     "Partner ID",
     "Partner Org Name",
+    "Tracking Source",
+    "Tracking ID",
+    "Open Tracking ID",
     "Registration Address 1",
     "Registration Address 2",
     "Registration City",
@@ -62,7 +66,7 @@ class PdfDeliveryReport < ActiveRecord::Base
   end
     
   def pdf_name(d)
-    "#{date_string}_#{d.registrant.first_name}_#{d.registrant.last_name}_#{d.registrant.uid}.pdf"
+    "#{date_string}_#{d.registrant.first_name}_#{d.registrant.last_name}_#{d.registrant.uid}".parameterize + ".pdf"
   end
 
   def assistance_zip_file_name
@@ -79,31 +83,38 @@ class PdfDeliveryReport < ActiveRecord::Base
     "#{date_string}_direct_mail.csv"
   end
 
+  def deliveries
+    @deliveries ||= PdfDelivery.where(pdf_ready: true).where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature, :partner])
+  end
+
   def run!
     self.update_attributes(status: :started)
-    deliveries = PdfDelivery.where(pdf_ready: true).where("created_at >= ? AND created_at < ?", date.beginning_of_day, (date + 1.day).beginning_of_day).includes(:registrant=>[{:home_state=>[:localizations]}, {:mailing_state=>[:localizations]}, :voter_signature, :partner])
     self.update_attributes(status: "Processing #{deliveries.count} deliveries")
     assistance_rows = [CSV_HEADER]
     direct_mail_rows = [CSV_HEADER]
     FileUtils.mkdir_p(assistance_folder)
     FileUtils.mkdir_p(direct_folder)
+    d_id = nil
     deliveries.find_in_batches(batch_size: 500).with_index do |batch, batch_num|
       self.update_attributes(status: "Processing Batch Num #{batch_num + 1}")
       batch.each do |d|
-        fname = pdf_name(d)
-        fpath = nil
+        d_id = d.id
         row = csv_row(d)
-        if d.registrant.pdf_is_esigned?
-          # direct mail
-          direct_mail_rows << row
-          fpath = File.join(direct_folder, fname)
-        else
-          # assistance mail
-          assistance_rows << row
-          fpath = File.join(assistance_folder, fname)
-        end
-        File.open(fpath, "wb+") do |f|
-          f.write open(d.registrant.pdf_url).read
+        if d.registrant
+          fname = pdf_name(d)
+          fpath = nil  
+          if d.registrant.pdf_is_esigned?
+            # direct mail
+            direct_mail_rows << row
+            fpath = File.join(direct_folder, fname)
+          else
+            # assistance mail
+            assistance_rows << row
+            fpath = File.join(assistance_folder, fname)
+          end
+          File.open(fpath, "wb+") do |f|
+            f.write open(d.registrant.pdf_url).read
+          end
         end
       end
     end
@@ -139,21 +150,32 @@ class PdfDeliveryReport < ActiveRecord::Base
     `rm -rf #{folder}`
     self.update_attributes(status: :complete)
   rescue Exception => e
-    self.update_attributes(last_error: "#{e.message}\n#{e.backtrace}")
+    self.update_attributes(last_error: "Error for delivery '#{d_id}'\n#{e.message}\n#{e.backtrace}")
   end
 
   def csv_row(delivery) 
     r = delivery.registrant
+    unless r
+      return [
+        delivery.created_at,
+        delivery.registrant_id,
+        "REGISTRANT NOT FOUND"
+      ]
+    end
     [ 
       delivery.created_at,
       r.first_name,
       r.last_name,
       r.email_address,
       r.phone,
+      r.locale_english_name,
       r.pdf_date_of_birth,
       r.uid,
       r.partner_id,
       r.partner&.organization,
+      r.tracking_source,
+      r.tracking_id,
+      r.open_tracking_id,      
       r.home_address,
       r.home_unit,
       r.home_city,

@@ -234,6 +234,11 @@ Rocky::Application.routes.draw do
     resources :emails, except: [:new, :edit, :show ]
     resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]
+    resources :geo_states, only: [:index] do
+      collection do 
+        post :bulk_update
+      end
+    end
     resources :request_logs, only: [:index, :show]
     resources :blocks_submissions, only: [:index]
     resources :pdf_delivery_reports, only: [:index] do
