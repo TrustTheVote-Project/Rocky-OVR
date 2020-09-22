@@ -2,7 +2,8 @@ class CatalistLookup < ActiveRecord::Base
   include DateOfBirthMethods
   has_one :abrs_catalist_lookup
   has_one :abr, through: :abrs_catalist_lookup
-  
+  belongs_to :partner
+
   serialize :match, Hash
   
   belongs_to :state,    :class_name => "GeoState"
@@ -36,6 +37,15 @@ class CatalistLookup < ActiveRecord::Base
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email} -- #{zip}" )
     return self.uid
   end
+
+  def any_email_opt_ins?
+    collect_email_address? && (partner.rtv_email_opt_in || partner.primary? || partner.partner_email_opt_in)
+  end
+  
+  def any_phone_opt_ins?
+    partner.rtv_sms_opt_in || partner.partner_sms_opt_in? || partner.primary?
+  end
+
   
 
 
@@ -79,7 +89,19 @@ class CatalistLookup < ActiveRecord::Base
     Registrant::PHONE_TYPE_KEYS.collect {|key| I18n.t("txt.registration.phone_types.#{key}", :locale=>locale)}
   end
   
+  def use_state_flow?
+    false
+  end
+  
+  def use_short_form?
+    true
+  end
+  
   def require_email_address?
+    true
+  end
+
+  def collect_email_address?
     true
   end
 
@@ -207,7 +229,12 @@ class CatalistLookup < ActiveRecord::Base
       email: email,
       phone: phone,
       phone_type: phone_type,
-      date_of_birth: date_of_birth
+      date_of_birth: date_of_birth,
+      opt_in_email: opt_in_email,
+      opt_in_sms: opt_in_sms,
+      partner_opt_in_email: partner_opt_in_email,
+      partner_opt_in_sms: partner_opt_in_sms,
+
     })
     abr.current_step = "2"
     self.abr = abr
@@ -229,7 +256,12 @@ class CatalistLookup < ActiveRecord::Base
       email_address: email,
       phone: phone,
       phone_type: phone_type,      
-      date_of_birth: date_of_birth
+      date_of_birth: date_of_birth,
+      opt_in_email: opt_in_email,
+      opt_in_sms: opt_in_sms,
+      partner_opt_in_email: partner_opt_in_email,
+      partner_opt_in_sms: partner_opt_in_sms,
+    
     })
     registrant.locale = locale
     registrant.short_form = true

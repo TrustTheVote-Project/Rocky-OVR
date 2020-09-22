@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200922185732) do
+ActiveRecord::Schema.define(version: 20200922195536) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -220,14 +220,18 @@ ActiveRecord::Schema.define(version: 20200922185732) do
     t.string   "county"
     t.string   "phone"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.text     "match"
     t.integer  "partner_id"
     t.string   "tracking_source"
     t.string   "tracking_id"
     t.string   "uid"
     t.string   "phone_type"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_opt_in_sms"
   end
 
   add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email"

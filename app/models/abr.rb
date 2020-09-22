@@ -184,7 +184,6 @@ class Abr < ActiveRecord::Base
   
   
   def use_state_flow?
-    #TBD
     false
   end
   

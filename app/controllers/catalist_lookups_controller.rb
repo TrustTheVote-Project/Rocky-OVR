@@ -68,7 +68,12 @@ class CatalistLookupsController < ApplicationController
                "tracking_id",
                "phone",
                "phone_type",
-               "email"]
+               "email",
+               "opt_in_email",
+               "opt_in_sms",
+               "partner_opt_in_email",
+               "partner_opt_in_sms",
+              ]
     params.require(:catalist_lookup).permit(*attrs)
   end
   

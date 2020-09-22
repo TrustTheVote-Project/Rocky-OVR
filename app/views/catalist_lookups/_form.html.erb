@@ -65,6 +65,8 @@ $(document).ready(function() {
   </ul>  
 </fieldset>
 
+
+
 <ul class="flat registrant-form__email">
   <li class="width_f registrant-form__email__line">
     <h3 class='registrant-form__email__line__label'><%= form.label :email %><%- unless !@lookup.require_email_address?%><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end%></h3>
@@ -74,6 +76,10 @@ $(document).ready(function() {
     <span class="error registrant-form__email__line__error"><%= form.object.errors[:email].join("\n") %></span>
   </li>
 </ul>
+
+
+<%= render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form} %>
+        
 
 <ul class="flat">
   <li class="width_b registrant-form__phone__line">
@@ -93,6 +99,8 @@ $(document).ready(function() {
   </li>
 </ul>
 
+
+<%= render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form} %>
 
 <%= rollover_button(:next_step, I18n.t('txt.button.lookup').html_safe) %>
 
