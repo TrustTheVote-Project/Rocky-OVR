@@ -126,7 +126,7 @@ module AbrStateMethods::MN
     }
     #EXTRA_FIELDS = []
     # e.g.
-    EXTRA_FIELDS = ["has_mailing_address", "dln_check", 'ss_check', 'no_id_check','id_instruction','id_instruction_subhead']
+    EXTRA_FIELDS = ["has_mailing_address", "dln_check", 'ss_check', 'no_id_check','id_instruction']
     
     # def whatever_it_is_you_came_up_with
     #   # TODO when blah is selected it should be "abc" and otherwise left blank
