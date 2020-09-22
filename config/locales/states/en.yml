@@ -1137,6 +1137,7 @@ en:
           Absentee ballot address - State: State
           Absentee ballot address - Zip Code: Zip
           has_mailing_address: I would like my ballot sent to an address other than my residential address.
+          id_instruction: 'Your identification number  (mark all that apply)'
           dln_check: I have a Minnesota-issued driver's license or ID Card
           Minnesota Driver's License or ID Card Number: MN-issued driver’s license or MN ID card
           Minnesota Driver's License or ID Card Number__format_message: Not a valid MN-issued driver’s license or MN ID card
