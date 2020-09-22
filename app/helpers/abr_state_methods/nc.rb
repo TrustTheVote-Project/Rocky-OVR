@@ -296,7 +296,7 @@ module AbrStateMethods::NC
         "Yadkin",
         "Yancey",
       ]}},
-      {"lived_here_long": {type: :radio}},
+      {"lived_here_long": {type: :radio, required: true}},
       {"date_moved": {type: :date, m: "date_moved_mm", d: "date_moved_dd", y: "date_moved_yyyy", visible: "lived_here_long_no", required: 'star' }},
 
       {"has_mailing_address": {type: :checkbox}},
@@ -358,11 +358,16 @@ module AbrStateMethods::NC
         required: :if_visible, 
         type: :radio, 
         options: ["mail", "email"]}}, 
-      {"Mailing1": {
+      #{"Mailing1": {
+      #  visible: "delivery_method_mail",
+      #  required: "star",
+      #  max: 17
+      # }},
+      {"Mailing2": {
         visible: "delivery_method_mail",
-        required: "star"}},
-      #{"Mailing2": {
-      #  visible: "delivery_method_mail"}},
+        required: "star",
+        #max:29
+        }},
 
     ]
   end
@@ -456,7 +461,7 @@ module AbrStateMethods::NC
     end
 
     if self.delivery_method.to_s=='mail' 
-      custom_validates_presence_of("Mailing1")
+      custom_validates_presence_of("Mailing2")
     end
 
   end
