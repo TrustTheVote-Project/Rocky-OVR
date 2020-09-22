@@ -1,0 +1,77 @@
+<%= hidden_field_tag "partner", @partner_id %>
+
+<% content_for :head do %>
+<script>
+$(document).ready(function() {
+  $('#registrant_javascript_disabled').remove();
+});
+</script>
+<% end %>
+<%= form.hidden_field :first %>
+<%= form.hidden_field :last %>
+<%= form.hidden_field :tracking_source %>
+<%= form.hidden_field :tracking_id %>
+<%= form.hidden_field :state_id %>
+
+<fieldset>
+  <legend><span><%= I18n.t('txt.registration.name') %></span><%= tooltip_tag :registrant_name %></legend>
+  <ul class="stacked">
+    
+    <li class="width_b registrant-form__first-name__line">
+      <h3><%= form.label :first %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :first,  required: true %>
+      <span class="error"><%= form.object.errors[:first].join("\n") %></span>
+    </li>
+    <li class="width_b registrant-form__last-name__line">
+      <h3><%= form.label :last %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :last, required: true %>
+      <span class="error"><%= form.object.errors[:last].join("\n") %></span>
+    </li>
+  </ul>
+</fieldset>
+
+<fieldset>
+  <ul class="flat">
+    <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>
+  </ul>
+</fieldset>
+
+
+<fieldset>
+  <legend><span><%= I18n.t('txt.registration.home_address') %></span><%= tooltip_tag :home_address %></legend>
+  <ul class="stacked">
+    <li class="width_a registrant-form__home-address-__line">
+      <h3><%= form.label :address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :address, required: true %>
+      <span class="error"><%= form.object.errors[:address].join("\n") %></span>
+    </li>
+  </ul>
+  <ul class="stacked">
+    <li class="width_a registrant-form__home-city__line">
+      <h3><%= form.label :city %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :city, required: true %>
+      <span class="error"><%= form.object.errors[:city].join("\n") %></span>
+    </li>
+    <li class="width_c registrant-form__home-zip-code__line">
+      <h3><%= form.label :zip %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= field_div form, :zip, {:size => 8, required: true} %>
+      <span class="error"><%= form.object.errors[:zip].join("\n") %></span>
+    </li>
+  </ul>  
+</fieldset>
+
+<ul class="flat registrant-form__email">
+  <li class="width_f registrant-form__email__line">
+    <h3 class='registrant-form__email__line__label'><%= form.label :email %><%- unless !@lookup.require_email_address?%><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end%></h3>
+    
+    <%= field_div form, :email, {class: 'registrant-form__email__line__input', required: @lookup.require_email_address? } %>
+    <div class="tooltip registrant-form__email__line__tooltip"><%= tooltip_tag :email %></div>
+    <span class="error registrant-form__email__line__error"><%= form.object.errors[:email].join("\n") %></span>
+  </li>
+</ul>
+
+
+<%= rollover_button(:next_step, I18n.t('txt.button.lookup').html_safe) %>
+
+
+

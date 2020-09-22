@@ -1,6 +1,21 @@
 ---
 en:
   txt:
+    lookup:
+      step_1_header:
+      step_1_instructions:
+      step_2_header:
+      step_2_instructions:
+      matched: It looks like you are registered to vote. Please confirm that this
+        is you.
+      confirm: Yes, this is me.
+      abr: I would like to request and absentee or mail-in ballot.
+      reject: No, this is not me.
+      register: I would like to start a voter registration.
+      go_back: I would like to check again.
+      not_matched: 
+        one: We did not find a current %{state_abbrev} registration that matches your information. Our records were last updated %{count} day ago, so, if you registered recently, this result may not be accurate.
+        other: We did not find a current %{state_abbrev} registration that matches your information. Our records were last updated %{count} days ago, so, if you registered recently, this result may not be accurate.
     abr:
       step_1_header: ''
       step_1_instructions: "<p>Request your absentee ballot now to vote from the ease
@@ -83,6 +98,8 @@ en:
     register_to_vote_in: Register in %{state_abbrev}
     request_absentee_ballot_in: Request an Absentee Ballot In %{state_abbrev}
     request_absentee_ballot: Request An Absentee Ballot
+    check_voter_status_in: Check Voter Status In %{state_abbrev}
+    check_voter_status: Check Voter Status
     unknown_error: 'Unknown error: the web administrators have been contacted.'
     error: Something went wrong.
     try_again: Go back and try again.
@@ -92,6 +109,7 @@ en:
       text_me: Send SMS
       email_me: Send Email
       submit: Next Step
+      lookup: Check Status
       edit: Edit
       back: "&lt; Previous Step"
       download: Print your registration form now

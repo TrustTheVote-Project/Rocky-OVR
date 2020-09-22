@@ -365,7 +365,8 @@ class Abr < ActiveRecord::Base
   def to_registrant
     registrant = Registrant.new({
       partner_id: partner_id,
-      # TODO tracking params
+      tracking_source: tracking_source,
+      tracking_id: tracking_id,
       first_name: first_name,
       middle_name: middle_name,
       last_name: last_name,
