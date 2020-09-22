@@ -166,6 +166,7 @@ absentee_states:
     pdf_template: ne.pdf
   NH:
     pdf_template: nh.pdf
+    email_delivery: true
   NJ: {}  
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
