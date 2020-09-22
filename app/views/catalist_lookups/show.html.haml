@@ -5,7 +5,7 @@
 
 
 - if @lookup.is_match?
-  %p= t('txt.lookup.matched')
+  %p= t('txt.lookup.matched', first_name: @lookup.first)
   = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
   .confirm#confirm_match
     %p= t('txt.lookup.confirm')
