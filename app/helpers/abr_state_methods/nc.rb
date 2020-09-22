@@ -361,12 +361,11 @@ module AbrStateMethods::NC
       #{"Mailing1": {
       #  visible: "delivery_method_mail",
       #  required: "star",
-      #  max: 17
       # }},
       {"Mailing2": {
         visible: "delivery_method_mail",
         required: "star",
-        #max:29
+        
         }},
 
     ]
