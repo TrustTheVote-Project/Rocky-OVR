@@ -457,6 +457,8 @@ en:
           format: Invalid
           invalid: "%{attribute} is invalid."
           attributes:
+            phone_type:
+              blank: Required if providing phone number
             birthdate:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900

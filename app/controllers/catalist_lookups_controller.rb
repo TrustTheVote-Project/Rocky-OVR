@@ -40,7 +40,7 @@ class CatalistLookupsController < ApplicationController
   def abr
     find_lookup
     @abr = @lookup.to_abr
-    @abr.save
+    @abr.save!
     redirect_to step_2_abr_path(@abr)
   end
 
@@ -56,6 +56,7 @@ class CatalistLookupsController < ApplicationController
   def lookup_params
     attrs =    ["first",
                "last",
+               "suffix",
                "address",
                "city",
                "state_id",
@@ -66,6 +67,7 @@ class CatalistLookupsController < ApplicationController
                "tracking_source",
                "tracking_id",
                "phone",
+               "phone_type",
                "email"]
     params.require(:catalist_lookup).permit(*attrs)
   end

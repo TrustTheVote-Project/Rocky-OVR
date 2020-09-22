@@ -8,6 +8,15 @@ class CatalistLookup < ActiveRecord::Base
   belongs_to :state,    :class_name => "GeoState"
   
   before_create :generate_uid
+
+  validates_presence_of :first
+  validates_presence_of :last
+  validates_presence_of :birthdate
+  validates_presence_of :address
+  validates_presence_of :city
+  validates_presence_of :zip
+  validates_presence_of :email
+  validates_presence_of :phone_type, if: -> { !phone.blank? }
   
   def self.find_by_param(param)
     lookup = find_by_uid(param)
@@ -61,6 +70,13 @@ class CatalistLookup < ActiveRecord::Base
       dob = string_value
     end
     self.birthdate=dob
+  end
+
+  def suffixes
+    Registrant::SUFFIX_KEYS.collect {|key| I18n.t("txt.registration.suffixes.#{key}", :locale=>locale)}
+  end
+  def phone_types
+    Registrant::PHONE_TYPE_KEYS.collect {|key| I18n.t("txt.registration.phone_types.#{key}", :locale=>locale)}
   end
   
   def require_email_address?
@@ -182,12 +198,15 @@ class CatalistLookup < ActiveRecord::Base
       tracking_id: tracking_id,
       first_name: first,
       last_name: last,
+      name_suffix: suffix,
       street_number: street_number,
       street_name: street_name,
       city: city,
       zip: zip,
       home_state_id: state_id,
       email: email,
+      phone: phone,
+      phone_type: phone_type,
       date_of_birth: date_of_birth
     })
     abr.current_step = "2"
@@ -202,11 +221,14 @@ class CatalistLookup < ActiveRecord::Base
       tracking_id: tracking_id,
       first_name: first,
       last_name: last,
+      name_suffix: suffix,
       home_address: address,
       home_city: city,
       home_zip_code: zip,
       home_state_id: state_id,
       email_address: email,
+      phone: phone,
+      phone_type: phone_type,      
       date_of_birth: date_of_birth
     })
     registrant.locale = locale

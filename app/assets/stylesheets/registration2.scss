@@ -866,7 +866,7 @@ body {
       }
     }
   }
-  &.abr {
+  &.abr, &.lookup {
     line-height: 1.4em;
     h2 {
       text-align: center;
@@ -899,6 +899,7 @@ body {
       margin: 2em 0;
       cursor: pointer;
       p  {
+        color: #333;
         font-size: 18px;
         a {
           color: #B32426;
@@ -906,15 +907,30 @@ body {
       }
     }
     .reject {
+      color: #333;
       margin: 3em 0;
       p {
         color: #333;
         font-size: 18px;        
       }
     }
-    @import 'abr-form-fields'
+    @import 'abr-form-fields';    
   }
-  
+  &.lookup {
+    form {
+      ul {
+        li {
+          &.registrant-form__first-name__line,
+          &.registrant-form__last-name__line {
+            width: 38%
+          }
+          &.registrant-form__home-city__line {
+            width: 70%
+          }
+        }
+      }
+    }
+  }
   
 }
 

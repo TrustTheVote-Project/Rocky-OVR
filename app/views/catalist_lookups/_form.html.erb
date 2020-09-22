@@ -27,6 +27,11 @@ $(document).ready(function() {
       <%= field_div form, :last, required: true %>
       <span class="error"><%= form.object.errors[:last].join("\n") %></span>
     </li>
+     <li class="width_d registrant-form__name-suffix__line">
+      <h3><%= form.label :suffix %></h3>
+      <div><%= form.select :suffix,  @lookup.suffixes, :include_blank => t('txt.registration.select_none') %></div>
+    </li>
+
   </ul>
 </fieldset>
 
@@ -67,6 +72,24 @@ $(document).ready(function() {
     <%= field_div form, :email, {class: 'registrant-form__email__line__input', required: @lookup.require_email_address? } %>
     <div class="tooltip registrant-form__email__line__tooltip"><%= tooltip_tag :email %></div>
     <span class="error registrant-form__email__line__error"><%= form.object.errors[:email].join("\n") %></span>
+  </li>
+</ul>
+
+<ul class="flat">
+  <li class="width_b registrant-form__phone__line">
+    <h3><%= form.label :phone %></h3>
+    <div class="flat-stack">
+      <%= field_div form, :phone, placeholder: '###-###-####' %>
+      <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
+    </div>
+    <div class="tooltip"><%= tooltip_tag :phone %></div>
+  </li>
+  <li class="secondary registrant-form__phone-type__line">
+    <h3 id="registrant_phone_type_label"><%= form.label :phone_type %></h3>
+    <div class="flat-stack" id="registrant_phone_type_wrapper">
+      <div><%= form.select :phone_type, form.object.phone_types, include_blank: true %></div>
+      <span class="error"><%= form.object.errors[:phone_type].join("\n") %></span>
+    </div>
   </li>
 </ul>
 
