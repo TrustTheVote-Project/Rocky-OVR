@@ -1320,7 +1320,8 @@ en:
           assistantstate: State
           assistantzip: Zip
           SSN4: Last 4 of your SSN
-          ID_Number: NC Driver Licence or NCID Number
+          ID_Number: NC Driver's License/NC DMV ID Number
+          ID_Number__format_message: Invalid NC Driver's License/NC DMV ID Number
           NCCounty: NC Residential County
           reg_mail_street: Address
           reg_mail_city: City
@@ -1352,6 +1353,7 @@ en:
             mail: Mail
           UOCAVAAddress: Overseas Address
           Mailing1: Overseas Mailing Address
+          Mailing2: Overseas Mailing Address
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you
             are eligible to complete your registration online with the NC DMV.
