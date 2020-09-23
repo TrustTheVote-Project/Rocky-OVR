@@ -539,9 +539,11 @@ class Registrant < ActiveRecord::Base
         id_list << id
         uid_list << uid
       end      
-      StateRegistrants::PARegistrant.where(registrant_id: uid_list).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
-      StateRegistrants::VARegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
-      StateRegistrants::MIRegistrant.where(registrant_id: uid_list).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      uid_list.in_groups_of(500) do |id_list_group|
+        StateRegistrants::PARegistrant.where(registrant_id: id_list_group).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
+        StateRegistrants::VARegistrant.where(registrant_id: id_list_group).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+        StateRegistrants::MIRegistrant.where(registrant_id: id_list_group).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      end
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
         #StateRegistrants::PARegistrant
