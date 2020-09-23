@@ -126,7 +126,7 @@ module AbrStateMethods::MN
     }
     #EXTRA_FIELDS = []
     # e.g.
-    EXTRA_FIELDS = ["has_mailing_address", "dln_check", 'ss_check', 'no_id_check']
+    EXTRA_FIELDS = ["has_mailing_address", "dln_check", 'ss_check', 'no_id_check','id_instruction']
     
     # def whatever_it_is_you_came_up_with
     #   # TODO when blah is selected it should be "abc" and otherwise left blank
@@ -224,8 +224,10 @@ module AbrStateMethods::MN
             'Wright',
             'Yellow Medicine']}},
 
+            {'id_instruction': {type: :instructions}},
             {"dln_check": {
-                type: :checkbox
+                type: :checkbox,
+                classes: "indent"
             }},
 
             # Minnesota Driver's License or ID Card Number
@@ -233,20 +235,24 @@ module AbrStateMethods::MN
                 visible: 'dln_check',
                 required: :if_visible,
                 regexp: /\A[[:alpha:]]\d{12}\z/,
-                length: 13}},
+                length: 13,
+                classes: "indent"}},
 
             {"ss_check": {
-                type: :checkbox
+                type: :checkbox,
+                classes: "indent"
             }},
 
             {"Last four digits of Social Security Number": { 
                 visible: 'ss_check',
                 required: :if_visible,
                 length:4,
-                regexp: /\A\d{4}\z/}},
+                regexp: /\A\d{4}\z/,
+                classes: "indent"}},
             
             {"no_id_check": {
-                type: :checkbox
+                type: :checkbox,
+                classes: "indent"
             }},
 
 
