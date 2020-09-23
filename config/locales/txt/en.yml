@@ -4,19 +4,22 @@ en:
     lookup:
       step_1_header: Check Your Voter Registration Status
       step_1_instructions: Not sure if you're registered to vote? Take one minute and verify your voter registration status today.
-      step_2_header: Registration Results
+      step_2_header_found: We found your voter registration.
+      step_2_header_not_found: We couldn't confirm that you're registered to vote.
       step_2_instructions: ""
-      matched: Is this your address, %{first_name}?
+      matched: "%{first_name}, you are registered to vote at: "
       confirm: Yes, this is me.
-      abr: "Make sure your voice is heard on Election Day: request a Vote-by-Mail Ballot"
-      reject: No, this is not me.
-      register: I would like to start a voter registration.
+      abr: "Now that you've confirmed your voter registration, make sure your voice is heard on Election Day: request a Vote-by-Mail Ballot!"
+      abr_link: Request a Vote-by-Mail Ballot
+      reject: Not you?
+      register: Register to Vote.
       go_back: I would like to check again.
+      check_again: If this doesn't seem right, <a href="%{url}" target="_blank" rel="noopener">check again</a> with your state.
       not_matched:
         one: We couldn't confirm that you're registered to vote. If you registered to vote or updated your registration recently, we might not have the most up-to-date
-          information. Our last update from %{state_abbrev} was %{count} day ago. Check directly with your state for the most recent and accurate results.
+          information. Our last update from %{state_abbrev} was %{count} day ago. <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results.
         other: We couldn't confirm that you're registered to vote. If you registered to vote or updated your registration recently, we might not have the most up-to-date
-          information. Our last update from %{state_abbrev} was %{count} days ago. Check directly with your state for the most recent and accurate results.
+          information. Our last update from %{state_abbrev} was %{count} days ago. <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results.
     abr:
       step_1_header: ''
       step_1_instructions: "<p>Request your absentee ballot now to vote from the ease

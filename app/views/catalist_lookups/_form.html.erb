@@ -93,7 +93,7 @@ $(document).ready(function() {
   <li class="secondary registrant-form__phone-type__line">
     <h3 id="registrant_phone_type_label"><%= form.label :phone_type %></h3>
     <div class="flat-stack" id="registrant_phone_type_wrapper">
-      <div><%= form.select :phone_type, form.object.phone_types, include_blank: true %></div>
+      <div><%= form.select :phone_type, form.object.phone_types  %></div>
       <span class="error"><%= form.object.errors[:phone_type].join("\n") %></span>
     </div>
   </li>
