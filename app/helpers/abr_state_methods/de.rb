@@ -74,9 +74,6 @@ module AbrStateMethods::DE
   
   def form_field_items
     [
-      {"Political Party Affiliation": {type: :select, options: [
-        "American Delta", "Democratic", "Green", "Independent", "Libertarian", "Republican"
-      ], include_blank: true}}, # Political Party
       {"Last4 Digits of SSN": {required: false, regexp: /\A\d{4}\z/}},
       {"has_mailing_address": {type: :checkbox}},
       {"Ballot Address Line 1": {visible: "has_mailing_address", required: :if_visible}},
