@@ -49,7 +49,8 @@ module AbrStateMethods::NH
     },
 
     #"voter_signature": {}
-    #"Date_Signed": {}
+    "Date Signed":  { method: "date_for_signature" },
+
     #"assistant_signature": {}
     "Asisstant Name": {},
 
