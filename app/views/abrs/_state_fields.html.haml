@@ -9,7 +9,7 @@
       var showField = true;
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
-        var field = $("#abr_"+fieldName+"")
+        var field = $("#abr_"+fieldName+":enabled")
         //console.log(showField, field, field.val())
         showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
       }
@@ -34,7 +34,7 @@
       var showField = true;
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
-        var field = $("#abr_"+fieldName+"")
+        var field = $("#abr_"+fieldName+":enabled")
         //console.log(showField, "#abr_"+fieldName+"", field, field.val())
         showField = showField && field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val()))
       }
@@ -58,7 +58,7 @@
       var hideField = false;
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
-        var field = $("#abr_"+fieldName+"")
+        var field = $("#abr_"+fieldName+":enabled")
         //console.log(showField, field, field.val())
         hideField = hideField ||( field && (field.prop("type")=="checkbox"|| field.prop("type")=="radio" ? field.is(":checked") : field.val()))
       }
