@@ -83,8 +83,8 @@ module AbrStateMethods::NH
       {"mail_zip": {visible: "has_mailing_address", classes: "quarter last", length:5, regexp: /\A[0-9]{5}\z/, required: :if_visible}},
 
       
-      {"assistant": {type: :checkbox}},
-      {"Asisstant Name": {visible: "assistant", required: :if_visible}},
+      #{"assistant": {type: :checkbox}},
+      #{"Asisstant Name": {visible: "assistant", required: :if_visible}},
     ]
   end
 

@@ -1,0 +1,38 @@
+:javascript
+  $(document).ready(function() {
+    $(".toggle-on").click(function() {
+      var id = this.id;
+      $("." + id + " input").each(function() {
+        $(this).attr("checked", true);
+      })
+    })
+    $(".toggle-off").click(function() {
+      var id = this.id;
+      $("." + id + " input").each(function() {
+        $(this).attr("checked", false);
+      })
+    })
+  })
+
+%h1 State Configurations
+
+= form_tag bulk_update_admin_geo_states_path, method: :post do
+  %table
+    %tr
+      %th{style: "vertical-align: bottom"} State
+      %th 
+        .toggle-on#pdf_assistance_enabled{style: "cursor:pointer"} Select All
+        %br
+        .toggle-off#pdf_assistance_enabled{style: "cursor:pointer"} Deselect All
+        %br
+        PDF Assistance Enabled
+        
+    - @geo_states.each do |s|
+      %tr
+        %td= s.name
+        %td.pdf_assistance_enabled
+          = hidden_field_tag "pdf_assistance_enabled[#{s.abbreviation}]", "0"
+          = check_box_tag "pdf_assistance_enabled[#{s.abbreviation}]", "1", s.pdf_assistance_enabled
+  
+  %br
+  = submit_tag "Save"

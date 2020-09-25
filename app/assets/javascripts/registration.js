@@ -3,4 +3,10 @@ $(document).ready(function() {
   addTooltips('legend img.tooltip', 'right center', 'left bottom');
   formatDateInputs();
   initValidations();
+  if (window.isFacebookApp()) {
+    // Convert all target=_blank
+    $("a[target=_blank]").each(function () {
+      $(this).attr("target", "_self");
+    })
+  }
 });

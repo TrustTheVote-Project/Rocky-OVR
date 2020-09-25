@@ -401,23 +401,21 @@ en:
             self-quarantining or social distancing.</p>"
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
-          fill_2: Political Party
-          Security Number: Social Security Number
-          fill_10: Address where you want your ballot sent if different than home
+          Last4 Digits of SSN: Last 4 Digits of Social Security Number (OPTIONAL)
+          has_mailing_address: I would like my ballot sent to a different address than my home
             address
-          fill_11: Expected Election Day Location
-          fill_11__hint: Provide City, State or City, Country
-          Day phone: Expected Election Day Phone Number
-          absentee_reason: Select the reason you are voting by absentee ballot
-          absentee_reason__hint: '<p>If you select reason 6 below you will receive
-            a full Primary Election ballot, but your General Eletion ballot will only
-            have Federal Offices. Citizens temporarily residing outside of the U.S.
-            should use the Federal Post Card Applicatioon instead of choosing reason
-            6.</p><p>NOTE: During the current State of Emergency, voters are permitted
-            to vote by absentee ballot for the reason: "(3) I am sick, or temporarily
-            or permanently physically disabled." if they are impacted by COVID-19,
-            per the provisions of an order by the Governor. This includes those who
-            are practicing self-quarantining or social distancing.</p>'
+          check_sick_or_disabled: "Check here if you are a voter who is sick or physically disabled"
+          check_sick_or_disabled__hint:
+            "Delaware law permits you to receive and return an
+            absentee ballot electronically. If you choose to
+            receive your ballot by email, you will be able to mark
+            and submit it electronically."
+          GroupSickDisabled: "Indicate below how you would like your absentee ballot sent
+            to you by the Department of Elections:"
+          GroupSickDisabled__options:
+            ChoiceEmail: Email
+            ChoiceMail: Mail
+            ChoiceFax: Fax
           absentee_reason__options:
             '1': "(1) I am in public service of the U.S. or the State of Delaware,
               or I am a spouse or dependent residing with or accompanying him or her.
@@ -1130,28 +1128,6 @@ en:
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
-        registration:
-          has_state_license: I have a current MN driver’s license or ID card number,
-            or the last 4 numbers of my SSN.
-          has_no_state_license: I do not have a current MN driver’s license or ID
-            card number, and do not have the last 4 numbers of my SSN.
-        signature_capture:
-          desktop_provide_signature: You must provide a signature to complete your
-            registration form. You may upload a signature image, switch to a touch-enabled
-            device or print, sign and mail your PDF.
-          desktop_provide_e_signature: You must provide a signature to complete your
-            registration form. You may upload a signature image, switch to a touch-enabled
-            device or use your current device.
-        abr:
-          signature_capture:
-            desktop_provide_e_signature: In the state of Minnesota, we can email a
-              digitally signed copy of your absentee request. Please select how you'd
-              like to provide a signature.
-            desktop_provide_signature: In the state of Minnesota, we can email a digitally
-              signed copy of your absentee request. Please select how you'd like to
-              provide a signature.
-            continue_on_paper: I prefer to print, sign and mail or email my application
-              myself.
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
             state ID number or the last 4 digits of your SSN, you may request your
@@ -1170,6 +1146,48 @@ en:
             </ul>
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx">https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx</a></p>'
+        abr_form_fields:
+          bad_date__format_message: "Invalid date"
+          Absentee ballot address_1: Ballot delivery address
+          Absentee ballot address - City: City
+          Absentee ballot address - State: State
+          Absentee ballot address - Zip Code: Zip
+          has_mailing_address: I would like my ballot sent to an address other than my residential address.
+          id_instruction: 'Your identification number  (mark all that apply)'
+          dln_check: I have a Minnesota-issued driver's license or ID Card
+          Minnesota Driver's License or ID Card Number: MN-issued driver’s license or MN ID card
+          Minnesota Driver's License or ID Card Number__format_message: Not a valid MN-issued driver’s license or MN ID card
+          ss_check: I have a Social Security Number
+          no_id_check:  I do not have a Minnesota-issued driver's license or identification card, or a Social Security Number
+          no_id_check__format_message: You cannot select no id if you have a Minnesota-issued driver's license or identification card, or a Social Security Number
+          no_id_check__required_message: 'You must either provide an ID above or assert you have no identification'
+        abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Minnesota, we can email a
+              digitally signed copy of your absentee request. Please select how you'd
+              like to provide a signature.
+            desktop_provide_signature: In the state of Minnesota, we can email a digitally
+              signed copy of your absentee request. Please select how you'd like to
+              provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application
+              myself.
+          finish_instructions: '<p>You should return this to your local election office. If not
+            provided above, contact information for your local election
+            official can be found under “Find County Election Office”
+            at <a rel="noopener" target="blank" href="https://www.mnvotes.org">https://www.mnvotes.org</a></p>'
+        registration:
+          has_state_license: I have a current MN driver’s license or ID card number,
+            or the last 4 numbers of my SSN.
+          has_no_state_license: I do not have a current MN driver’s license or ID
+            card number, and do not have the last 4 numbers of my SSN.
+        signature_capture:
+          desktop_provide_signature: You must provide a signature to complete your
+            registration form. You may upload a signature image, switch to a touch-enabled
+            device or print, sign and mail your PDF.
+          desktop_provide_e_signature: You must provide a signature to complete your
+            registration form. You may upload a signature image, switch to a touch-enabled
+            device or use your current device.
+        
       mo:
         abr:
           finish_instructions: "<p>Make sure to complete and send this form in as
@@ -1273,6 +1291,7 @@ en:
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
         abr_form_fields:
+          bad_date__format_message: "Invalid date"
           has_mailing_address: My mailing address differs from my residential address.
           identification: Choose one of the following methods for identification
           identification__options:
@@ -1280,15 +1299,36 @@ en:
             ssn: Last four digits of your social security number
           ssn1234: Last 4 of your SSN
           previous_name: I have changed my name in my lifetime.
-          Voter's Previous Last Name: Previous Last Name
-          Voter's Previous First Name: Previous First Name
-          Voter's Previous Middle Name: Previous Middle Name
+          Former_Name: Previous Full Name
           ballot_address: I would like my absentee ballot mailed to an address other
             than my residential or my regular mailing address.
-          ballot_mailing_address: Ballot Mailing Address
-          ballot_city: City
-          ballot_state: State
-          ballot_zip: ZIP
+          MailStreet: Ballot Mailing Address
+          MailCity: City
+          MailState: State
+          MailZip: ZIP
+          RelativeName: Requestor Information
+          RelativeName__hint: Name
+          RelativeRelationship: Relationship to voter
+          RelativeAddress: Address
+          RelativeCity: City
+          RelativeState: State
+          RelativeZip: Zip
+          AssistantFullName: Assistant information
+          AssistantFullName__hint: Name
+          AssistantAddress: Address
+          assistantcity: City
+          assistantstate: State
+          assistantzip: Zip
+          SSN4: Last 4 of your SSN
+          ID_Number: NC Driver's License/NC DMV ID Number
+          ID_Number__format_message: Invalid NC Driver's License/NC DMV ID Number
+          NCCounty: NC Residential County
+          reg_mail_street: Address
+          reg_mail_city: City
+          reg_mail_state: State
+          reg_mail_zip: Zip
+
+          AssistantAddressInput: 
           lived_here_long: Have you lived at your residential address for 30 days
             or more?
           date_moved: 'If ''No'', please enter the date moved (MM/DD/YYYY):'
@@ -1298,19 +1338,22 @@ en:
             or inability to read or write, and requires assistance.
           patient: If voter is a patient in a hospital, clinic, nursing home or rest
             home, does voter need assistance with voting and returning the ballot?
-          Name and Address of Facility: If Yes, what is the name and address of the
+          HopitalFacilityName: If Yes, what is the name and address of the
             hospital or facility?
-          uocava: I am an absentee military or overseas voter.
-          military_or_overseas: 'Select the best option below that describes your
+          uocava_option: I am an absentee military or overseas voter.
+          UOCAVA: 'Select the best option below that describes your
             absentee status:'
-          military_or_overseas__options:
+          UOCAVA__options:
             military: Member of the Uniformed Services or Merchant Marine on active
               duty or eligible spouse/dependent and currently absent from county of
               residence
-            overseas: U.S. citizen outside the United States
-          uocava_ballot: 'I would like my absentee ballot sent by:'
-          uocava_ballot__options:
+            citizen: U.S. citizen outside the United States
+          delivery_method: 'I would like my absentee ballot sent by:'
+          delivery_method__options:
             mail: Mail
+          UOCAVAAddress: Overseas Address
+          Mailing1: Overseas Mailing Address
+          Mailing2: Overseas Mailing Address
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you
             are eligible to complete your registration online with the NC DMV.

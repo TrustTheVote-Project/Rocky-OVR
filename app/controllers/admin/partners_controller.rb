@@ -25,6 +25,13 @@
 class Admin::PartnersController < Admin::BaseController
 
   def index
+    if params[:partner_id] 
+      if Partner.find_by_id(params[:partner_id])
+        redirect_to admin_partner_path(params[:partner_id]) and return
+      else
+        flash[:warning] = "Partner ID #{params[:partner_id]} not found"
+      end
+    end
     @partners = Partner.standard.paginate(:page => params[:page], :per_page => 1000)
     @partner_zip = PartnerZip.new(nil)
   end

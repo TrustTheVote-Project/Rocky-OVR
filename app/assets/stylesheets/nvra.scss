@@ -82,33 +82,30 @@ span.smaller_prompt {
 }
 
 .esign_cover_letter {
-	.logos {
-		margin-top: 20px;
-		padding: 20px 0 0 120px;
-		height: 70px;
+	.logo {
+		width: 100%;
+		height: 100px;
+		margin-bottom: 100px;
 		text-align: center;
-		.logo {
-			padding: 0 30px;
+		img {
 			height: 100%;
-			float: left;
-			width: auto;
-			text-align: center;
-			img {
-				height: 100%;
-			}
-			margin-bottom: 80px;
 		}
 	}
 	.letter {
 		padding: 0 60px;
 		p {
-			font-size: 1.3 *$fs;
+			font-size: 1.08 *$fs;
+			margin-bottom: 1em;		
 		}
-		clear: both;
-		.signature {
-			float: left;
-			width: 50%;
+		img {
+			height: 60px;
+			margin-top: 3px;
+			margin-left: -32px;
 		}
+	}
+	.footer {
+		text-align: center;
+		margin-top: 50px;
 	}
 }
 
