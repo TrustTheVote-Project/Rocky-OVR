@@ -17,8 +17,25 @@ class CatalistLookup < ActiveRecord::Base
   validates_presence_of :city
   validates_presence_of :zip
   validates_presence_of :email
+  validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
   validates_presence_of :phone_type, if: -> { !phone.blank? }
+  validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
   
+  validate :validates_zip
+
+  def validates_zip
+    validates_zip_code(self, :zip)
+  end
+  
+  def validates_zip_code(reg, attr_name)
+    reg.validates_presence_of(attr_name)
+    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
+
+    if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
+      reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
+    end
+  end
+
   def self.find_by_param(param)
     lookup = find_by_uid(param)
     raise AbandonedRecord.new(lookup) if lookup && lookup.abandoned?

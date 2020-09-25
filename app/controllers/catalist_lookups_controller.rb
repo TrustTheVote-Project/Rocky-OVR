@@ -40,15 +40,23 @@ class CatalistLookupsController < ApplicationController
   def abr
     find_lookup
     @abr = @lookup.to_abr
-    @abr.save!
-    redirect_to step_2_abr_path(@abr)
+    @abr.save(validate: false)
+    if !@abr.valid?
+      redirect_to step_2_abr_path(@abr)
+    else
+      redirect_to abr_path(@abr)
+    end
   end
 
   def registration
     find_lookup
     @registrant = @lookup.to_registrant
-    @registrant.save!
-    redirect_to registrant_step_2_path(@registrant)
+    @registrant.save(validate: false)
+    if !@registrant.valid?
+      redirect_to registrant_step_2_path(@registrant)
+    else
+      redirect_to registrant_path(@registrant)
+    end
   end
   
   
