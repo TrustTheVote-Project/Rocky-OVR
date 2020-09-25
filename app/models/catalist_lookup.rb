@@ -20,7 +20,7 @@ class CatalistLookup < ActiveRecord::Base
   validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
   validates_presence_of :phone_type, if: -> { !phone.blank? }
   validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
-  
+  validate :validate_date_of_birth
   validate :validates_zip
 
   def validates_zip
@@ -36,6 +36,70 @@ class CatalistLookup < ActiveRecord::Base
     end
   end
 
+  def validate_date_of_birth_age
+    if birthdate < Date.parse("1900-01-01")
+      errors.add(:date_of_birth, :too_old)
+    end    
+  end
+  
+  def validate_date_of_birth
+    if birthdate_before_type_cast.is_a?(Date) || birthdate_before_type_cast.is_a?(Time)
+      validate_date_of_birth_age
+      return
+    end
+    if birthdate_before_type_cast.blank?
+      if date_of_birth_parts.compact.length == 3
+        errors.add(:date_of_birth, :invalid)
+      else
+        errors.add(:date_of_birth, :blank)
+      end
+    else
+      @raw_date_of_birth = birthdate_before_type_cast
+      date = nil
+      if matches = birthdate_before_type_cast.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
+        m,d,y = matches.captures
+        date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
+      elsif matches = birthdate_before_type_cast.to_s.match(/\A(\d{4})\D+(\d{1,2})\D+(\d{1,2})\z/)
+        y,m,d = matches.captures
+        date = Date.civil(y.to_i, m.to_i, d.to_i) rescue nil
+      end
+      if date
+        @raw_date_of_birth = nil
+        self[:birthdate] = date
+        validate_date_of_birth_age
+      else
+        errors.add(:date_of_birth, :format)
+      end
+    end
+  end
+
+  ADDRESS_FIELDS = ["address"]
+
+  CITY_FIELDS = ["city"]
+
+  NAME_FIELDS = ["first", 
+   "last",]
+
+  PDF_FIELDS = [
+    "zip",
+    "first", 
+    "last", 
+    "address",
+    "city", 
+  ]
+  
+  def self.validate_fields(list, regex, message)
+    list.each do |field|
+      validates field, format: { with: regex , 
+        message: message }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
+    end    
+  end
+
+  validate_fields(PDF_FIELDS, Registrant::OVR_REGEX, :invalid_for_pdf)
+  validate_fields(NAME_FIELDS, Registrant::OVR_REGEX, :invalid)
+  validate_fields(ADDRESS_FIELDS, Registrant::CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period")
+
+  
   def self.find_by_param(param)
     lookup = find_by_uid(param)
     raise AbandonedRecord.new(lookup) if lookup && lookup.abandoned?

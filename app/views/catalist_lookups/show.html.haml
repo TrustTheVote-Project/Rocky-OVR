@@ -15,7 +15,7 @@
       
 
   .reject
-    %a{href: "#", onclick:"$('.reject-options').show()" }= t('txt.lookup.reject')    
+    %a{href: "#", onclick:"$('.reject-options').show(); $(this).hide();" }= t('txt.lookup.reject')    
     .reject-options{style: "display: none;"}
       %br
       - url = @lookup.state&.registrar_url
