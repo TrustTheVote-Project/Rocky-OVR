@@ -1454,14 +1454,6 @@ en:
             by 5pm November 3rd. At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://app.sos.nh.gov/Public/AbsenteeBallot.aspx
             ">https://app.sos.nh.gov/Public/AbsenteeBallot.aspx</a></p>'
-          requirements: |-
-            <p>In light of emergency orders and public health guidance, all voters with concerns about COVID-19 may request an absentee ballot due to physical disability. Outside of COVID, you are eligible to vote absentee for one of the following reasons:</p>
-            <ul>
-              <li>you will not be at your domiciled location on the Election Day</li>
-              <li>you cannot vote due to observance of a religious commitment</li>
-              <li>you are disabled</li>
-              <li>you cannot vote due to an employment obligation.</li>
-            </ul>
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
           assistant: I assisted voter in completing this form because he/she has a
@@ -1479,10 +1471,10 @@ en:
           Group_I__options:
             Choice2: I am a duly qualified voter who is currently registered to
               vote in this town/ward.
-            Choice1: I am absent from the town/city where I am domiciled and will be
-              until after the next election, or I am unable to register in person
-              due to a disability, and request that the forms necessary for absentee
-              voter registration be sent to me with the absentee ballot.
+            Choice1: I am absent from the town/city where I am domiciled and will be until
+              after the next election, or I am unable to register in person due to a disability
+              or concern for the novel coronavirus (COVID-19), and request that the forms necessary 
+              for absentee voter registration be sent to me with the absentee ballot.
           Group_II: 'I will be entitled to vote by absentee ballot because
             (check one):'
           Group_II__options:
