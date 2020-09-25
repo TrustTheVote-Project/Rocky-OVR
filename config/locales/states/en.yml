@@ -382,23 +382,6 @@ en:
             30th, 2020. Your completed ballot must be RECEIVED by 8:00pm on Election
             day.</p><p>At any time you can check the status of your application and
             the status of your ballot at: <a rel="noopener" target="blank" href="https://ivote.de.gov/VoterView">https://ivote.de.gov/VoterView</a></p>'
-          requirements: "<p>To request an absentee ballot in DE, you must meet at
-            least one of the following requirments:</p><p>(1) I am in public service
-            of the  U.S. or the State of Delaware, or I am a spouse or dependent residing
-            with or accompanying him or her. Reason 1 also applies to members of the
-            \ Uniformed Services.</p><p>(2) Due to the nature of my business or occupatioon.
-            Reason 2 also applies to persons providing care to a parent, spouse or
-            child who is living at home and requires constant care,students, andotherwise
-            eligible persons who are incarcerated.</p><p>(3) I am sick, or temporarily
-            or permanently physically disabled.</p><p>(4) I am absent from the district
-            while on vaca\U0010FC00tion</p><p>(5) Due to the tenets or teachings of
-            my religion</p><p>(6) I am temporarily residing outside of the U. S. and
-            the District of Columbia, or I am a spouse or dependent residing with
-            or accompanying him or her.</p><p>NOTE: During the current State of Emergency,
-            voters are permitted to vote by absentee ballot for the reason: \"I am
-            sick, or physically disabled\" if they are impacted by COVID-19, per the
-            provisions of an order by the Governor. This includes those who are practicing
-            self-quarantining or social distancing.</p>"
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
           Last4 Digits of SSN: Last 4 Digits of Social Security Number (OPTIONAL)
@@ -406,7 +389,7 @@ en:
             address
           check_sick_or_disabled: "Check here if you are a voter who is sick or physically disabled"
           check_sick_or_disabled__hint:
-            "Delaware law permits you to receive and return an
+            "If you are a voter who is sick or physically disabled, Delaware law permits you to receive and return an
             absentee ballot electronically. If you choose to
             receive your ballot by email, you will be able to mark
             and submit it electronically."
