@@ -49,7 +49,8 @@ module AbrStateMethods::NH
     },
 
     #"voter_signature": {}
-    #"Date_Signed": {}
+    "Date Signed":  { method: "date_for_signature" },
+
     #"assistant_signature": {}
     "Asisstant Name": {},
 
@@ -79,7 +80,7 @@ module AbrStateMethods::NH
       {"AptUnit_2": {visible: "has_mailing_address", classes: "quarter last"}},
       {"CityTown_2": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
       #{"State Zip Code": {visible: "has_mailing_address", classes: "half last", required: :if_visible}},
-      {"mail_state": {visible: "has_mailing_address", classes: "quarter ", length: 2,required: :if_visible}},
+      {"mail_state": {visible: "has_mailing_address", classes: "quarter ",required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"mail_zip": {visible: "has_mailing_address", classes: "quarter last", length:5, regexp: /\A[0-9]{5}\z/, required: :if_visible}},
 
       
