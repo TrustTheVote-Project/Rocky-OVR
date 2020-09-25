@@ -2,7 +2,6 @@ Rocky::Application.routes.draw do
   
   root :to => "registrants#landing"
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui", via: :get
-  match "/pdf_assistance_report", to: "application#pdf_assistance_report", via: :get, format: :csv
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout', via: :get
   match "/registrants/new/:state_abbrev", to: "registrants#new", via: :get
   match "/registrants/map", to: "registrants#new", via: :get
@@ -235,8 +234,21 @@ Rocky::Application.routes.draw do
     resources :emails, except: [:new, :edit, :show ]
     resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]
+    resources :geo_states, only: [:index] do
+      collection do 
+        post :bulk_update
+      end
+    end
     resources :request_logs, only: [:index, :show]
     resources :blocks_submissions, only: [:index]
+    resources :pdf_delivery_reports, only: [:index] do
+      collection do 
+        get :create_report
+      end
+      member do
+        get :download
+      end
+    end
     
     resources :partners do
       member do

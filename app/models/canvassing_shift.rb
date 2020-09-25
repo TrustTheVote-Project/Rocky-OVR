@@ -50,9 +50,9 @@ class CanvassingShift < ActiveRecord::Base
     @@enabled_state_ids ||= RockyConf.blocks_configuration.states.collect {|abbrev| GeoState[abbrev].id }
   end
 
-  def self.location_options(partner)
+  def self.location_options(partner, turf_id: nil)
     b = BlocksService.new
-    locations = begin b.get_locations(partner)&.[]("locations") rescue nil end;
+    locations = begin b.get_locations(partner, turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
       return locations.map {|obj| [obj["name"], obj["id"]]}
     else
@@ -68,7 +68,7 @@ class CanvassingShift < ActiveRecord::Base
 
   def shift_location=(value)
     self[:shift_location] = value
-    location_options = CanvassingShift.location_options(self.partner)
+    location_options = CanvassingShift.location_options(self.partner, turf_id: self.blocks_turf_id)
     location_options.each do |name, id|
       self.blocks_shift_location_name = name if id.to_s.strip == value.to_s.strip
     end

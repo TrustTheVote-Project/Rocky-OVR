@@ -2,20 +2,47 @@
 en:
   pdf:
     nvra:
+      esign_letter: |-
+        <p>Dear County Clerk & Recorder:</p>
+        <p>Hello, my name is Erickson Saye and I am the Voter Registration Director 
+        with Minnesota Voice, a non-partisan, non-profit organization focused on 
+        civic engagement. Our organization has done this work in Minnesota since 2014, 
+        and one of our current efforts in light of the pandemic is online voter 
+        registration. The attached voter registration application was collected in 
+        partnership with Rock the Vote’s online voter registration assistance platform, 
+        which prompted the individual who was registering to input their personal 
+        information and signature in the official National Mail Voter Registration form. 
+        We have worked closely with the Secretary of State’s office to make sure we 
+        follow Minnesota voter registration drive rules and timelines.</p>
+        <p>To ensure compliance, we will always submit registration forms with the 
+        information exactly as it was completed by the registrant. Minnesota Voice and 
+        Rock the Vote do not in any form alter the information submitted, as agreed 
+        in a meeting with the Secretary of State’s office.</p>
+        <p>Please feel free to contact me personally ​at​ 
+        <a href="mailto:​erickson@minnesotavoice.org​">​erickson@minnesotavoice.org​</a>
+        by phone at 763-377-3579 with any questions regarding this form or our process.
+        For any technical questions related to Rock the Vote or its registration assistance 
+        platform, please feel free to include Melissa Wyatt, Director of Civic Technology 
+        & Policy at Rock the Vote in any outreach: 
+        <a href="mailto:melissa@rockthevote.org">melissa@rockthevote.org</a>.
+        <p>Sincerely,<br/>
+        %{signature_image}<br/>
+        Erickson Saye<br/>Voter Registration Director<br/>Minnesota Voice
+      esign_letter_footer: <p>1600 UNIVERSITY AVE W STE 309<br/>SAINT PAUL, MN 55104-3800</p>
       state_instructions_header: "%{state} Voter Registration ID Requirements"
       page1:
         title: Voter Registration
         subtitle: powered by
         top_paragraph: You are not registered until you<br/><b>sign</b>, <b>stamp</b>,
           and <b>mail</b> your completed form!
-        top_paragraph_for_printer: You are not registered until you<br/><b>add your ID, sign</b>
+        top_paragraph_for_printer: You are not registered until you<br/><b>sign</b>
           and <b>mail</b> your completed form!
         instructions_block:
           title: Instructions
           subtitle: ! 'Take these easy steps to complete your voter registration:'
           step1: Sign the form. You must sign the voter registration form before you
             mail it.
-          step1_for_printer: You are not registered until you add your ID, sign and mail your completed form. You must sign the voter registration form before you mail it.
+          step1_for_printer: You are not registered until you sign and mail your completed form. You must sign the voter registration form before you mail it.
           step2: Place your form in an envelope and hand address it to your local
             election official. Alternatively, make a mailer. Fold the form and address
             sheet in half. Make sure the address is visible on the outside. Tape or

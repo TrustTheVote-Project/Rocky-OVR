@@ -296,7 +296,7 @@ class Registrant < ActiveRecord::Base
   
   
   
-  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_remiinder_delivered
+  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
 
   aasm column: :status do
     state :initial, initial: true
@@ -353,7 +353,7 @@ class Registrant < ActiveRecord::Base
   belongs_to :prev_state,    :class_name => "GeoState"
 
   has_one :registrant_status
-  has_one :pdf_delivery
+  has_one :pdf_delivery, -> { order("pdf_ready DESC") } # If multiple, prefer the one that's ready
 
   delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
@@ -539,9 +539,11 @@ class Registrant < ActiveRecord::Base
         id_list << id
         uid_list << uid
       end      
-      StateRegistrants::PARegistrant.where(registrant_id: uid_list).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
-      StateRegistrants::VARegistrant.where(registrant_id: uid_list).find_each {|sr| va_registrants[sr.registrant_id] = sr}
-      StateRegistrants::MIRegistrant.where(registrant_id: uid_list).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      uid_list.in_groups_of(500) do |id_list_group|
+        StateRegistrants::PARegistrant.where(registrant_id: id_list_group).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
+        StateRegistrants::VARegistrant.where(registrant_id: id_list_group).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+        StateRegistrants::MIRegistrant.where(registrant_id: id_list_group).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      end
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
         #StateRegistrants::PARegistrant
@@ -871,7 +873,7 @@ class Registrant < ActiveRecord::Base
   
   
   def in_ovr_flow?
-    home_state_allows_ovr?
+    home_state_allows_ovr? && (!mail_with_esig?)
   end
   
   def home_state_allows_ovr?
@@ -1069,7 +1071,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def use_short_form?
-    short_form?# && !in_ovr_flow?
+    short_form? || mail_with_esig? # && !in_ovr_flow?
   end
     
 
@@ -1120,14 +1122,19 @@ class Registrant < ActiveRecord::Base
 
   
 
-  def wrap_up
+  def wrap_up(pdf_assistance = nil)
+    @requesting_pdf_assistance = pdf_assistance
     complete!
   end
 
   def complete_registration
     self.status = 'complete'
     saved = self.save!
-    queue_pdf
+    if @requesting_pdf_assistance
+      queue_pdf_delivery
+    else
+      queue_pdf
+    end
     return saved
   end
   
@@ -1286,17 +1293,22 @@ class Registrant < ActiveRecord::Base
   end
   
   def queue_pdf
-    klass = PdfGeneration
-    if self.email_address.blank?
-      klass = PriorityPdfGeneration
+    if mail_with_esig? && !skip_mail_with_esig?
+      queue_pdf_delivery
+    else
+      klass = PdfGeneration
+      if self.email_address.blank?
+        klass = PriorityPdfGeneration
+      end
+      klass.create!(:registrant_id=>self.id)
     end
-    klass.create!(:registrant_id=>self.id)
   end
   
   def queue_pdf_delivery
     d = self.pdf_delivery
     if !d
       d = self.create_pdf_delivery
+      d.save!
       klass= PdfDeliveryGeneration
       klass.create!(:registrant_id=>self.id)    
     end
@@ -1314,7 +1326,8 @@ class Registrant < ActiveRecord::Base
   end
   
   def pdf_url(pdfpre = nil, file=false)
-   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com#{pdf_path(pdfpre, file)}"
+    prefix = pdf_delivery ? "/#{pdf_delivery.pdf_prefix}" : ''
+   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com#{prefix}#{pdf_path(pdfpre, file)}"
   end
   def pdf_path(pdfpre = nil, file=false)
     pdf_writer.pdf_path(pdfpre, file)
@@ -1363,20 +1376,73 @@ class Registrant < ActiveRecord::Base
   end
   
   def home_state_enabled_for_pdf_assitance?
-    return false
-    list = %w(AL
-              AZ
-              MN
-              SD)
-    return list.include?(home_state_abbrev)
+    return home_state.pdf_assistance_enabled && partner.states_enabled_for_pdf_assistance && partner.states_enabled_for_pdf_assistance.is_a?(Array) && partner.states_enabled_for_pdf_assistance.include?(home_state.abbreviation)    
   end
   
   def can_request_pdf_assistance?
-    self.locale.to_s == 'en' && (Rails.env.production? ? self.partner_id == 2 : self.partner_id == 1) && home_state_enabled_for_pdf_assitance?
+    home_state_enabled_for_pdf_assitance?
   end
   
+  def mail_with_esig?
+    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states[self.home_state_abbrev]
+  end
+  
+  def allow_desktop_signature?
+    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].allow_desktop_signature
+  end
+  
+  def state_voter_check_url
+    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].state_voter_check_url
+  end
+  
+  def skip_mail_with_esig?
+    self.signature_method == VoterSignature::PRINT_METHOD   
+  end
+  
+  
+  
+  def pdf_is_esigned?
+    !skip_mail_with_esig? && !voter_signature_image.blank?
+  end
+  
+  has_one :voter_signature, primary_key: :uid, autosave: true
+  [
+    :voter_signature_image,
+    :signature_method,
+    :sms_number_for_continue_on_device,
+    :email_address_for_continue_on_device
+  ].each do |vs_attribute|
+    define_method "#{vs_attribute}" do
+      (voter_signature || create_voter_signature).send(vs_attribute)
+    end
+    define_method "#{vs_attribute}=" do |val|
+      (voter_signature || create_voter_signature).send("#{vs_attribute}=", val)
+    end
+  end
+  
+  def sms_number
+    self.sms_number_for_continue_on_device.to_s.gsub(/[^\d]/, '')
+  end
+  
+  
+  def signed_at_month
+    voter_signature&.updated_at&.month
+  end
+  def signed_at_day
+    voter_signature&.updated_at&.day
+  end
+  def signed_at_year
+    voter_signature&.updated_at&.year
+  end
+  
+  def signature_capture_url
+    registrant_step_2_url(self.to_param,  :protocol => "https", :host=>RockyConf.default_url_host)
+  end
+  
+  
+  
   def to_pdf_hash
-    {
+    h = {
       :id =>  id,
       :uid  =>  uid,
       :locale => locale,
@@ -1425,8 +1491,17 @@ class Registrant < ActiveRecord::Base
       :pdf_date_of_birth => pdf_date_of_birth,
       :pdf_barcode => pdf_barcode,
       pdf_assistant_info: pdf_assistant_info,
-      :created_at => created_at.to_param
+      :created_at => created_at.to_param,
     }
+    if pdf_is_esigned?
+      h = h.merge({
+        voter_signature_image: self.voter_signature_image,
+        signed_at_month: signed_at_month,
+        signed_at_year: signed_at_year,
+        signed_at_day: signed_at_day        
+      })
+    end
+    return h
   end
   
   def to_finish_with_state_array
@@ -1467,8 +1542,14 @@ class Registrant < ActiveRecord::Base
   
   def deliver_confirmation_email
     if send_emails?
-      Notifier.confirmation(self).deliver_now
-      enqueue_reminder_emails
+      if pdf_delivery && pdf_is_esigned?
+        Notifier.confirmation_with_signature(self).deliver_now        
+      elsif pdf_delivery
+        Notifier.confirmation_with_assistance(self).deliver_now        
+      else
+        Notifier.confirmation(self).deliver_now
+        enqueue_reminder_emails
+      end
     end
   end
   

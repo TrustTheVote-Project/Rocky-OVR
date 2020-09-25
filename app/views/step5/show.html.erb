@@ -1,5 +1,7 @@
 <h1><%= t('txt.registration.step_5_header') %></h1>
-<div class="text"><p><%=I18n.t('txt.registration.instructions.review') %></p></div>
+<div class="text">
+  <p><%=I18n.t('txt.registration.instructions.review') %></p>
+</div>
 
 <div class="review">
 
@@ -9,10 +11,10 @@
 
       <ul>
         <%- if @registrant.collect_email_address? %>
-          <li>
-            <span><%= I18n.t('activerecord.attributes.registrant.email_address') %></span>
-            <div><%=h @registrant.email_address %></div>
-          </li>
+        <li>
+          <span><%= I18n.t('activerecord.attributes.registrant.email_address') %></span>
+          <div><%=h @registrant.email_address %></div>
+        </li>
         <%- end%>
         <li>
           <span><%= I18n.t('activerecord.attributes.registrant.home_zip_code') %></span>
@@ -39,7 +41,7 @@
         <li class="tall">
           <span><%= I18n.t('txt.registration.home_address') %></span>
           <div>
-            <%=h @registrant.home_address %> <%=h octothorpe(@registrant.home_unit) %><br/>
+            <%=h @registrant.home_address %> <%=h octothorpe(@registrant.home_unit) %><br />
             <%=h @registrant.home_city %>, <%=h @registrant.home_state_name %> <%=h @registrant.home_zip_code %>
           </div>
         </li>
@@ -47,7 +49,7 @@
         <li class="tall">
           <span><%= I18n.t('txt.registration.mailing_address') %></span>
           <div>
-            <%=h @registrant.mailing_address %> <%=h octothorpe(@registrant.mailing_unit) %><br/>
+            <%=h @registrant.mailing_address %> <%=h octothorpe(@registrant.mailing_unit) %><br />
             <%=h @registrant.mailing_city %>, <%=h @registrant.mailing_state.name %> <%=h @registrant.mailing_zip_code %>
           </div>
         </li>
@@ -55,23 +57,23 @@
         <li class="tall">
           <span><%= I18n.t('txt.registration.previous_address') %></span>
           <div>
-            <%=h @registrant.prev_address %> <%=h octothorpe(@registrant.prev_unit) %><br/>
+            <%=h @registrant.prev_address %> <%=h octothorpe(@registrant.prev_unit) %><br />
             <%=h @registrant.prev_city %>, <%=h @registrant.prev_state.name %> <%=h @registrant.prev_zip_code %>
           </div>
         </li>
         <% end %>
         <% if @registrant.change_of_name? %>
-          <li>
-            <span><%= I18n.t('txt.registration.previous_name') %></span>
-            <div><%=h @registrant.prev_full_name %></div>
-          </li>
+        <li>
+          <span><%= I18n.t('txt.registration.previous_name') %></span>
+          <div><%=h @registrant.prev_full_name %></div>
+        </li>
         <% end %>
-        
+
         <li>
           <span><%= I18n.t('activerecord.attributes.registrant.phone') %></span>
           <div><%=h @registrant.phone_and_type %></div>
         </li>
-        
+
         <% end %>
       </ul>
     </fieldset>
@@ -88,16 +90,16 @@
           <div><%=h @registrant.state_id_number %></div>
         </li>
         <% unless @registrant.race.blank? %>
-          <li>
-            <span><%= I18n.t('activerecord.attributes.registrant.race') %></span>
-            <div><%=h @registrant.race %></div>
-          </li>
+        <li>
+          <span><%= I18n.t('activerecord.attributes.registrant.race') %></span>
+          <div><%=h @registrant.race %></div>
+        </li>
         <% end %>
         <% unless @registrant.party.blank? %>
-          <li>
-            <span><%= I18n.t('activerecord.attributes.registrant.party') %></span>
-            <div><%=h @registrant.party %></div>
-          </li>
+        <li>
+          <span><%= I18n.t('activerecord.attributes.registrant.party') %></span>
+          <div><%=h @registrant.party %></div>
+        </li>
         <% end %>
       </ul>
     </fieldset>
@@ -106,20 +108,34 @@
 </div>
 
 <%= form_for(@registrant, :url => registrant_step_5_path(@registrant)) do |form| %>
-  <ul class="affirm">
+<ul class="affirm">
+  <li>
+    <h3>
+      <%= form.check_box :attest_true %>
+      <%= form.label :attest_true %>
+    </h3>
+  </li>
+  <li>
+    <span class="error"><%= form.object.errors[:attest_true].join("\n") %></span>
+  </li>
+</ul>
+<%- if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig? %>
+<div style="font-size: 150%; text-align: center;">
+  <ul class="checkbox">
     <li>
       <h3>
-        <%= form.check_box :attest_true %>
-        <%= form.label :attest_true %>
+        <%= hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden %>
+        <%= check_box_tag :pdf_assistance, "1", @pdf_assistance == "1" %>
+        <%= label_tag :pdf_assistance, I18n.t('txt.button.download_assistance') %>
       </h3>
     </li>
-    <li>
-      <span class="error"><%= form.object.errors[:attest_true].join("\n") %></span>
-    </li>
   </ul>
+</div>
 
-  <%= rollover_button(:prepare, I18n.t('txt.button.prepare')) %>
+<%- end %>
 
-  <div class="back"><%= link_to t('txt.button.back').html_safe, (@registrant.skip_survey_and_opt_ins? && !@registrant.in_ovr_flow?) ? registrant_step_3_path(@registrant, :show_fields=>"1") : registrant_step_4_path(@registrant, :show_fields=>"1") %></div>
-  
+<%= rollover_button(:prepare, I18n.t('txt.button.prepare')) %>
+
+<div class="back"><%= link_to t('txt.button.back').html_safe, (@registrant.skip_survey_and_opt_ins? && !@registrant.in_ovr_flow?) ? registrant_step_3_path(@registrant, :show_fields=>"1") : registrant_step_4_path(@registrant, :show_fields=>"1") %></div>
+
 <% end %>

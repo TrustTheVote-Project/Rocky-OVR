@@ -21,7 +21,9 @@ blocks_configuration:
   url: https://svtesting.blocks.work
   partners:
     1:
-      turf_id: 416
+      sub_orgs:
+        Sub Org 1: 416
+        Sub Org 2: 417
       canvasser_id: 128
       location_id: 266
       staging_location_id: 267
@@ -30,6 +32,15 @@ blocks_configuration:
       canvasser_id: 129
       location_id: 266
       staging_location_id: 267
+
+mail_with_esig:
+  states:
+    MN:
+      allow_desktop_signature: true
+      state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
+  partners:
+    - 1 
+
 
 states_with_online_registration:
   - AZ
@@ -56,6 +67,7 @@ states_with_online_registration:
   - MI
   - MO
   - NE
+  - NJ
   - NM
   - NY
   - OR

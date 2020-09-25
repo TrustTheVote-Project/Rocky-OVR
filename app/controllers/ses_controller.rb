@@ -13,7 +13,6 @@ class SesController < ApplicationController
     #logger.info "bounce callback from AWS with #{json}"
     aws_needs_url_confirmed = json['SubscribeURL']
     type = json2['notificationType']
-
     
     if aws_needs_url_confirmed
       logger.info "AWS is requesting confirmation of the bounce handler URL"
@@ -28,6 +27,13 @@ class SesController < ApplicationController
         json2['bounce']['bouncedRecipients'].each do |recipient|
           #logger.info "AWS SES received a bounce on an email send attempt to #{recipient['emailAddress']}"
           e = EmailAddress.find_or_create_by(email_address: recipient['emailAddress'].to_s.strip)
+          begin
+            if AbrEmailDelivery.where(to_email: e.email_address).count > 0
+              AdminMailer.general_error("Received bounce notification for Email '#{e.email_address}' which is used for ABR delivery").deliver_now
+            end
+          rescue => exception      
+          end
+      
           e.blacklisted = true
           e.save
         end

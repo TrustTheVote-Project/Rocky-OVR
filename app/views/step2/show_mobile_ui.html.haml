@@ -1,3 +1,7 @@
+- if @registrant.mail_with_esig?
+  = render 'shared/signature_capture/scripts'
+  = flash_messages.html_safe
+
 = content_for :head do 
   :javascript
     $(document).ready(function() {
@@ -11,23 +15,17 @@
         if (currentStep == 7) {
           return !$("#registrant_change_of_address").is(":checked")
         }
-        if (currentStep == 8) {
-          var inOvrFlow = "#{@registrant.home_state_allows_ovr_ignoring_license?}" == "true";
-          var reqId = "#{@registrant.require_id?}" == "true";
-          return inOvrFlow && !reqId
-        }
         return false;
       }
       
-      initDynamicNav( 2, 2, 9, {
+      initDynamicNav( 2, 2, 8, {
         2: 10, //Eligibility
         3: 20, // Name
         4: 30, // Name part 2
         5: 40, // Home Address
         6: 50, // Mailing Address
         7: 55, // Previous Address
-        8: 60, // Identification
-        9: 65, // Personal Information
+        8: 65, // Identification
         //Download page goes up to 80%
       }, shouldSkipStep);
       $('#javascript_disabled').remove();
@@ -144,20 +142,20 @@
   .dynamic-step#step-8
     %fieldset
       %legend= t('txt.registration.mobile_ui.step_8.title')
-    - if @registrant.home_state_allows_ovr_ignoring_license?
+    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       - if @registrant.require_id?
         %ul.radio
           %li.registrant-form__has-state-license__line.has_license
             %h3
               = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
-              = form.label :has_state_license_1, I18n.t('txt.registration.has_state_license', state: @registrant.home_state_abbrev)
+              = form.label :has_state_license_1, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
             .use_state_registration.checkbox-explanation
-              %p= I18n.t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name)
+              %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
         %ul.radio
           %li.registrant-form__has-no-state-license__line
             %h3
               = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
-              = form.label :has_state_license_0, I18n.t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev)
+              = form.label :has_state_license_0, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_no_state_license", default: t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev))
 
       .skip_state_registration
         = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
@@ -166,9 +164,9 @@
     - else 
       .state-id-number
         = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+      - if @registrant.mail_with_esig?
+        = render partial: 'shared/signature_capture/form', locals: {form: form}
   
-  
-  .dynamic-step#step-9
     %fieldset
       %legend= t('txt.registration.mobile_ui.step_9.title')
     .skip_state_registration
@@ -182,6 +180,13 @@
   
       = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
 
+    .skip_state_registration
+      - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+        .checkbox{style: "font-size: 150%; text-align: center;"}
+          = hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden
+          = check_box_tag :pdf_assistance, "1", @pdf_assistance == "1"
+          = label_tag :pdf_assistance, I18n.t('txt.button.download_assistance')
+      
 
   .dynamic-navigation
     -# .back only shown when first step, .prepare only shown when last step
@@ -205,6 +210,7 @@
         .use_state_registration
           = rollover_button(:prepare, I18n.t('txt.button.submit'))
       .skip_state_registration
+        
         = rollover_button(:prepare, I18n.t('txt.button.prepare'))
       
       
