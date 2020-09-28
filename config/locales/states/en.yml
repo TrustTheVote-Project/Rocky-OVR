@@ -2373,7 +2373,7 @@ en:
             after PDF is printed.
         state_online_abr:
           requirements: 'To request an absentee online, you must provide your DMV ID # 
-            or Last Four of SSN(whichever is on file, or if you have both on file you may 
+            or Last Four of SSN (whichever is on file, or if you have both on file you may 
             choose one to enter)'
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
