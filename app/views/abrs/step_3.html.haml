@@ -23,9 +23,9 @@
     
     })
   
-  %h2= t('txt.abr.step_3_header', {state: @abr.home_state_name})
+  %h2= t("states.custom.#{@abr.i18n_key}.step_3_header", default: t('txt.abr.step_3_header', {state: @abr.home_state_name}))
   .intro-message
-    = t('txt.abr.step_3_instructions').html_safe
+    = t("states.custom.#{@abr.i18n_key}.step_3_instructions", default:t('txt.abr.step_3_instructions')).html_safe
     %br
 
 
