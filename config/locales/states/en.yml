@@ -2116,7 +2116,17 @@ en:
             <a rel="noopener" target="blank" href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>
             </p>'
           button: Finish your<br/>vote by mail request<br/> online with Virginia.
+          confirm: |-
+            Check if you meet your state's requirements, then click the button below to request your vote by mail ballot through the state's site.
+
         abr:
+          step_2_header: Where are you registered to vote?
+          step_2_instructions: "<p>We'll use this information to determine how you can
+           request your vote by mail ballot.</p>"
+          step_3_header: Prepare your %{state} PDF Vote By Mail Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+           your PDF vote by mail request form.</p>"
+
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
             By clicking the button below, I authorize Rock the Vote to apply my signature, agreeing to 
@@ -2197,10 +2207,6 @@ en:
         voter_classification: Voter Classification
         protected_voter: I am providing a Virginia P.O. Box to protect my residence
           address from public disclosure because
-        #step_3_header: You're Almost Done!
-        step_3_header: Prepare your Virginia PDF Vote By Mail Request Form
-        step_3_instructions: "<p>Please fill out the fields below so we can prepare
-          your PDF Vote By Mail request form.</p>"
         step_4_header: Review &amp; Confirm
         by_paper_header: Review &amp; Confirm
         voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE
