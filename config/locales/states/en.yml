@@ -1112,9 +1112,9 @@ en:
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide a valid
-            state ID number or the last 4 digits of your SSN, you may request your
-            absentee ballot online directly with the state.</p>"
+          requirements: "<p>If you are registered to vote and can provide an identification
+           number: MN-issued driver's license, Minnesota ID card or last 4 digits of Social 
+           Security Number, you may request your absentee ballot online directly with the state.</p>"
           instructions: |-
             <p>To request an absentee ballot in MN, you must certify that:</p>
             <ul>
