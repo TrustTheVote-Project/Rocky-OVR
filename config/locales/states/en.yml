@@ -1402,6 +1402,11 @@ en:
             carefully, then complete and send this form in as soon as possible.</p><p>Check
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your early vote ballot.</p>"
+          step_3_header: Prepare your Nebraska PDF Early Vote Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+            your PDF early vote request form.</p>"
         abr_form_fields:
           County Name2: Registered County
           Address Line 2: Mailing address
