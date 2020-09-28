@@ -1407,6 +1407,10 @@ en:
           step_3_header: Prepare your Nebraska PDF Early Vote Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF early vote request form.</p>"
+          finish_pdf_delay: It's taking a while to create your early vote request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request an early vote ballot
+            too.
         abr_form_fields:
           County Name2: Registered County
           Address Line 2: Mailing address
