@@ -1917,9 +1917,9 @@ en:
               <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
             </ul>
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide the last
-            4 digits of your SSN, you may request your absentee ballot online directly
-            with the state.</p>"
+          confirm: "In South Carolina, your absentee ballot application must be requested 
+            through the online portal or by calling or emailing the county voter registration office. 
+            The online portal is accessible here:"
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>'
       ri:
