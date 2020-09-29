@@ -36,12 +36,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
 
     data = build_attrs_from_param_names([required_params, optional_params])
     
-    blocks_location_id = data.delete(:shift_location)
-    
-    shift_location = BlocksLocation.find_by_id(blocks_location_id)&.blocks_id || blocks_location_id
-    
     c = CanvassingShift.new(data.merge({
-      shift_location: shift_location,
       shift_source: CanvassingShift::SOURCE_GROMMET        
     }))
     

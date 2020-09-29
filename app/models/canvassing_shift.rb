@@ -71,7 +71,10 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def shift_location=(value)
-    self[:shift_location] = value
+    # If it's a BlocksLocation, use the ID from that
+    blocks_location = BlocksLocation.find_by_id(value)&.blocks_id || value
+    
+    self[:shift_location] = blocks_location
     location_options = CanvassingShift.location_options(self.partner, turf_id: self.blocks_turf_id)
     location_options.each do |name, id|
       self.blocks_shift_location_name = name if id.to_s.strip == value.to_s.strip
