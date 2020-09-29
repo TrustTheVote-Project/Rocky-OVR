@@ -1345,6 +1345,8 @@ en:
             On the DMV website, click "Continue to myNCDMV Services." <br/>4. Click
             "Continue as a guest" and submit your voter registration online.'
       nd:
+        abr:
+          skip_state_online_abr: I would like to create a paper request form instead.
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
           City_2: City
@@ -1381,7 +1383,7 @@ en:
           ID_Number_dln__format_message: Invalid ND driver's license format
         state_online_abr:
           requirements: |-
-            <p>To use North Dakota's online absentee request, you must have one of these forms of ID:</p>
+            <p>To request an absentee ballot in North Datoka, you must have one of these forms of ID:</p>
             <ul>
               <li>Driver's License</li>
               <li>Non-Driver's ID</li>
