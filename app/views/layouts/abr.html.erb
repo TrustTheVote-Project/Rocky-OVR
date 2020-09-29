@@ -65,7 +65,7 @@
         <% end -%>
         <div class='header-text'>
           <%- if @abr && @abr.home_state_abbrev %>
-          <%= I18n.t("states.custom.#{@abr.i18n_key}.request_absentee_ballot_in", default: I18n.t('txt.request_absentee_ballot_in'), state_abbrev: @abr.home_state_abbrev)%>
+         <%= t 'txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev %>
           <%- else%>
           <%= t 'txt.request_absentee_ballot' %>
           <%- end %>
