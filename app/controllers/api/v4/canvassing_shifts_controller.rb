@@ -66,7 +66,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
   end
   
   def complete
-    c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id])
+    c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
       c.complete!
       jsonp({})
