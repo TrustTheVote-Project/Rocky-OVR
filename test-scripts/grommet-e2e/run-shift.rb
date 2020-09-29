@@ -19,7 +19,7 @@ end
 
 session_id = "'My Session::#{Time.now.to_i}'"
 partner_tracking_id = "'customid'"
-partner_id = 1
+partner_id = 7
 
 base_args = [partner_tracking_id, partner_id]
 

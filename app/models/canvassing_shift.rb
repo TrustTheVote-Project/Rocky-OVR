@@ -52,18 +52,22 @@ class CanvassingShift < ActiveRecord::Base
 
   def self.location_options(partner, turf_id: nil)
     b = BlocksService.new
+    locations_list = []
     locations = begin b.get_locations(partner, turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
-      return locations.map {|obj| [obj["name"], obj["id"]]}
+      locations_list = locations.map {|obj| [obj["name"], obj["id"]]}
     else
       default_location_id = begin
         RockyConf.blocks_configuration.partners[partner.id].location_id || RockyConf.blocks_configuration.default_location_id
       rescue
         nil
       end
-      return [["Default Location", default_location_id]] if default_location_id
+      locations_list = [["Default Location", default_location_id]] if default_location_id
+    end    
+    return locations_list.collect do |name, blocks_id|
+      bl = BlocksLocation.find_or_create_by(blocks_id: blocks_id, name: name)
+      [bl.name, bl.id]
     end
-    return []
   end
 
   def shift_location=(value)
