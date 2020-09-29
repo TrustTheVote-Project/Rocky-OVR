@@ -23,6 +23,7 @@ blocks_configuration:
   url: https://svtesting.blocks.work
   partners:
     1:
+      bulk_submit: false
       sub_orgs:
         Org 1: 416
         Org 2: 417
