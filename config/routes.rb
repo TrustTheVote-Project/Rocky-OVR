@@ -224,6 +224,9 @@ Rocky::Application.routes.draw do
       
       match 'voterregistrationrequest', format: 'json', controller: 'registrations', action: 'create_pa', via: :post
       resources :canvassing_shifts, only: [:create, :update] do
+        collection do
+          put :update
+        end
         member do
           get :complete
         end

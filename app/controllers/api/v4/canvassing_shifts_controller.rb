@@ -54,7 +54,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
     return required_params_response if required_params_response
     
     data = build_attrs_from_param_names(required_params)
-    c = CanvassingShift.find_by(shift_external_id: params[:id])
+    c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
       c.update_attributes(data)
       jsonp({})
@@ -66,7 +66,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
   end
   
   def complete
-    c = CanvassingShift.find_by(shift_external_id: params[:id])
+    c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id])
     if c
       c.complete!
       jsonp({})
