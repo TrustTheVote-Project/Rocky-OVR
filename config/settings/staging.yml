@@ -21,10 +21,10 @@ blocks_configuration:
   url: https://svtesting.blocks.work
   partners:
     26292:
-      turf_id: 416
-      canvasser_id: 128
-      location_id: 266
-      staging_location_id: 267
+      turf_id: 19000000023
+      canvasser_id: 19000000022
+      location_id: 19000000002
+      staging_location_id: 19000000003
     991:
       bulk_submit: false
       sub_orgs:

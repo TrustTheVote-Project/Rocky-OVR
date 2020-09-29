@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200922195536) do
+ActiveRecord::Schema.define(version: 20200929202144) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -142,6 +142,15 @@ ActiveRecord::Schema.define(version: 20200922195536) do
   add_index "blocks_form_dispositions", ["blocks_form_id"], name: "index_blocks_form_dispositions_on_blocks_form_id"
   add_index "blocks_form_dispositions", ["grommet_request_id"], name: "index_blocks_form_dispositions_on_grommet_request_id"
   add_index "blocks_form_dispositions", ["registrant_id"], name: "index_blocks_form_dispositions_on_registrant_id"
+
+  create_table "blocks_locations", force: :cascade do |t|
+    t.string   "blocks_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "blocks_locations", ["blocks_id"], name: "index_blocks_locations_on_blocks_id"
 
   create_table "blocks_service_bulk_submissions", force: :cascade do |t|
     t.datetime "shift_start"
@@ -779,15 +788,6 @@ ActiveRecord::Schema.define(version: 20200922195536) do
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
     t.integer  "penndot_retries",                                  default: 0
-    t.boolean  "request_abr"
-    t.string   "abr_address_type"
-    t.string   "abr_ballot_address"
-    t.string   "abr_ballot_city"
-    t.string   "abr_ballot_state"
-    t.string   "abr_ballot_zip"
-    t.string   "abr_ballot_address_start_year"
-    t.string   "abr_ward"
-    t.boolean  "abr_declaration"
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id"

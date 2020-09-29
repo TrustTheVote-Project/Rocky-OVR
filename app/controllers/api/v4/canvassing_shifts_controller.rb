@@ -36,10 +36,10 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
 
     data = build_attrs_from_param_names([required_params, optional_params])
     
-    
     c = CanvassingShift.new(data.merge({
       shift_source: CanvassingShift::SOURCE_GROMMET        
     }))
+    
     c.generate_shift_external_id if c.shift_external_id.blank?
     c.save!
     jsonp({
