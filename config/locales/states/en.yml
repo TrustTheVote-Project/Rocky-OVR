@@ -350,8 +350,8 @@ en:
           absentee_reason__hint: Please note, if you have a permanent disability,
             please contact your town clerk for a permanent absentee ballot instead
           absentee_reason__options:
-            '1': COVID19  All voters are able to check this box pursuant to Executive
-              Order 7QQ
+            '1': COVID19  All voters are able to check this box pursuant to 
+              Public Act 20-3 July Spec. Sess.
             '2': My active service in the Armed Forces of the United States
             '3': My absence from the town during all of the hours of voting
             '4': My illness
