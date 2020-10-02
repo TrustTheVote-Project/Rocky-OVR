@@ -965,9 +965,11 @@ en:
             desktop_provide_e_signature: In the state of Massachusetts, we can email
               a digitally signed copy of your absentee request. Please select how
               you'd like to provide a signature.
-            desktop_provide_signature: In the state of Massachusetts, we can email
-              a digitally signed copy of your absentee request. Please select how
-              you'd like to provide a signature.
+            desktop_provide_signature: If you live in West Stockbridge, email submission 
+              for your town is not currently set up. Please select the 3rd option below 
+              "I prefer to print, sign and mail or email my application myself." In the 
+              state of Massachusetts, we can email a digitally signed copy of your absentee 
+              request. Please select how you'd like to provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
           finish_instructions: '<p>Make sure to read the instructions on the form
