@@ -223,7 +223,9 @@ class Registrant < ActiveRecord::Base
     "Shift ID", #canvassing_shift_registrant.external_id
     "Blocks Shift ID", #canvassing_shift.blocks_shift_id
     "Over 18 Affirmation",
-    "Preferred Language"
+    "Preferred Language",
+    "State Flow Status",
+    "State API Transaction ID"
   ].flatten
   
   GROMMET_CSV_HEADER = [
@@ -971,8 +973,11 @@ class Registrant < ActiveRecord::Base
   end
   
   def api_submitted_with_signature
-    return nil if !is_grommet? # Right now sigs only come from grommet
-    return !grommet_submission["signature"].blank?    
+    if is_grommet? # Right now sigs only come from grommet
+      return !grommet_submission["signature"].blank?    
+    else
+      return existing_state_registrant&.voter_signature_image.present?
+    end
   end
   
   def state_transaction_id
@@ -1647,9 +1652,28 @@ class Registrant < ActiveRecord::Base
       self.canvassing_shift&.blocks_shift_id, #BLocks Shift ID
       yes_no( will_be_18_by_election?),
       grommet_preferred_language,
+      state_flow_status,
+      state_transaction_id,
     ].flatten(1)
   end
   
+  def state_flow_status
+    existing_state_registrant&.status
+  end
+  
+  def normalized_signature_image
+    if is_grommet?
+      grommet_submission["signature"].tap do |s|
+        if s
+          return "data:#{s["mime_type"]};base64,#{s["image"]}"
+        end
+      end
+    elsif existing_state_registrant
+      existing_state_registrant&.try(:voter_signature_image)
+    else
+      voter_signature_image
+    end
+  end
 
   def to_csv_array
     [
@@ -1670,7 +1694,7 @@ class Registrant < ActiveRecord::Base
       home_address,
       home_unit,
       home_city,
-      home_county,
+      home_county.blank? ? existing_state_registrant&.registration_county : home_county,
       home_state && home_state.abbreviation,
       home_zip_code,
       yes_no(has_mailing_address?),
@@ -1699,8 +1723,8 @@ class Registrant < ActiveRecord::Base
       created_at && created_at.in_time_zone("America/New_York").to_s,
       yes_no(finish_with_state?),
       yes_no(building_via_api_call?),
-      yes_no(has_state_license?),
-      yes_no(has_ssn?),
+      yes_no(has_state_license? || existing_state_registrant&.has_state_license?),
+      yes_no(has_ssn? || existing_state_registrant&.has_ssn?),
       
       vr_application_submission_modifications,
       vr_application_submission_errors,
