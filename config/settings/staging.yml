@@ -96,7 +96,7 @@ ovr_states:
       log_all_requests: true
       disclosures_font_size: 12px
       disclosures_box_height: 170px
-      web_url_base: https://tst-uat-ols.sos.ca.gov
+      web_url_base: https://tst-uat-pub.sos.ca.gov
       disclosures_url: https://covr.cdn.sos.ca.gov/discl/
       web_agency_key: RTV    
       
