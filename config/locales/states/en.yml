@@ -1688,16 +1688,12 @@ en:
           reason: 'I am requesting, in good faith, an absentee ballot due to (check
             one reason):'
           reason__options:
-            absence_from_country: absence from county or New York City on election
-              day
-            detention: detention in jail/prison, awaiting trial, awaiting action by
-              a grand jury, or in prison for a conviction of a crime or offense which
-              was not a felony
-            permanent_illness: permanent illness or physical disability
-            primary_care: duties related to primary care of one or more individuals
-              who are ill or physically disabled
-            temporary_illness: temporary illness or physical disability
-            va_resident: resident or patient of a Veterans Health Administration Hospital
+            absence_from_country: Absent from your county or, if a resident of New York City absent from the five boroughs, on Election Day.
+            detention: Detained in jail awaiting Grand Jury action or confined in prison after conviction for an offense other than a felony.
+            permanent_illness: Unable to appear at the polls due to permanent illness or disability. 
+            primary_care: Unable to appear because you are the primary care giver of one or more individuals who are ill or physically disabled.
+            temporary_illness: Unable to appear at the polls due to temporary illness or physical disability  (temporary illness includes being unable to appear due to risk of contracting or spreading a communicable disease like COVID-19). 
+            va_resident: A resident or patient of a Veterans Health Administration Hospital
       oh:
         abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
