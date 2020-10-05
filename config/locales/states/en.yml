@@ -1658,8 +1658,8 @@ en:
              <li>You are detained in jail/prison, awaiting trial, awaiting action by grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li></ul>
         state_online_abr:
           requirements: "<p>If you are registered to vote, you may request your absentee 
-          ballot online directly with the state.  You may be required to have a valid 
-          New York state ID</p>"
+            ballot online directly with the state.  You may be required to have a valid 
+            New York state ID</p>"
         abr_form_fields:
           county where you live: County where you live
           has_mailing_address: My mailing address differs from my residential address.
