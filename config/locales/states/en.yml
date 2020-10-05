@@ -372,12 +372,29 @@ en:
             </p><p>Once you have your ballot, again be sure to read the instructions
             carefully, fill out the ballot and send it back in.</p>'
       de:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In DE
         state_online_abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible. Your completed ballot must be RECEIVED by 8:00pm on
             Election day.</p><p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://ivote.de.gov/VoterView">https://ivote.de.gov/VoterView</a></p>'
+          requirements: "<p>If you are registered to vote and have a valid Deleware
+            state ID, you may request your vote by mail ballot online directly with the
+            state.</p>"
+          button: Finish your<br/>vote by mail request<br/> online with Deleware.
+          confirm: |-
+            Check if you meet your state's requirements, then click the button below to request your vote by mail ballot through the state's site.
+
         abr:
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your vote by mail ballot.</p>"
+          step_3_header: Prepare your Deleware PDF Vote By Mail Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+           your PDF vote by mail request form.</p>"
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible. Your application must be RECEIVED by Friday, October
             30th, 2020. Your completed ballot must be RECEIVED by 8:00pm on Election
