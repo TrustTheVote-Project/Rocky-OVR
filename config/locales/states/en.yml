@@ -863,10 +863,10 @@ en:
           "Delivery": "I would like to receive my ballot by:"
           Delivery__options:
             mail: U.S. Mail
-            internet: Internet Delivery
+            internet: Internet Delivery (Ballot emailed to the email you provided)
           internet_delivery_identification: "Identification for internet delivery"
           internet_delivery_identification__options:
-            dln: MD driver's license
+            dln: Maryland Driver's License or ID Card Number
             ssn: I do not have a MD driver's license or ID card
           "Gen_Address": Mailing address
           "Gen_Apt": "Apt/Unit"
@@ -875,8 +875,8 @@ en:
           "Gen_ZipCode": Zip
           #"no_dln": "I do not have a MD Driver's License or ID card."
           "SSN_Last_4": "Last 4 digits of my SSN:"
-          dln: MD driver's license
-          dln__format_message: Invalid MD driver's license format. Please enter 1 letter, followed by 12 numbers
+          dln: Maryland Driver's License or ID Card Number
+          dln__format_message: Invalid Maryland Driver's License or ID Card Number format. Please enter 1 letter, followed by 12 numbers
           "Issue_Date": "Issue Date"
           fax_number: Fax Number (xxx-xxx-xxxx)
           "Assistance_Print_Name": Name of Assistant
