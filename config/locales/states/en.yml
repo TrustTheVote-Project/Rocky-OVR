@@ -2171,7 +2171,7 @@ en:
             <p>In your state, every active registered voter automatically receives a mail ballot. Your mail ballot will be sent to the address listed on your voter registration.  If you want to check on the status of your ballot, check if you are registered (and what address is listed on file), or have general questions about your absentee ballot go to  <a rel="noopener" target="blank" href="https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p> <p> NOTE: you cannot have your ballot sent to a different address than the one listed on your voter registration.  If you have a new permanent address, submit a new voter registration to update your address. </p>
             <p> Once you have your ballot, again be sure to read the instructions carefully, fill out the ballot and send it back in.  Vote-by-mail ballots must be received by 11:59am on Election Day, or postmarked one (1) day before Election Day if returned by mail. If you are dropping your absentee ballot off in person, it can be dropped off in a ballot drop box. The ballot must be deposited in the drop box before polls close on Election Day. Any voter who is in line at a ballot drop box with a sealed return envelope containing their ballot at or before 8 p.m. must be allowed to deposit the ballot in the ballot box. </p>
       va:
-        request_absentee_ballot_in: Request a Vote by Mail Ballot In %{state_abbrev}
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In VA
         state_online_abr:
           requirements: If you're a first-time voter and have a VA ID, you can use
             Virginia's online system. If you've voted in previous elections, then
@@ -2194,7 +2194,7 @@ en:
           step_2_header: Where are you registered to vote?
           step_2_instructions: "<p>We'll use this information to determine how you can
            request your vote by mail ballot.</p>"
-          step_3_header: Prepare your %{state} PDF Vote By Mail Request Form
+          step_3_header: Prepare your Virginia PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
            your PDF vote by mail request form.</p>"
           finish_pdf_delay: It's taking a while to create your vote by mail request form to
