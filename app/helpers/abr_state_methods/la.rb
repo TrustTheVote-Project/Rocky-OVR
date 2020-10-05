@@ -30,8 +30,9 @@ module AbrStateMethods::LA
     "absent_from": { method: "absent_from_date" },
     "absent_to": { method: "absent_to_date" },
     "receive_for_elections": {
-      options: ["all_elections", "only_this_election"]
+      #options: ["all_elections", "only_this_election"],
       #value: "only_this_election" - only a static value if "options_0"
+      method: 'only_this_election_if_option_0'
     },
     #voter_signature
     #signature_date
@@ -40,6 +41,14 @@ module AbrStateMethods::LA
   
   EXTRA_FIELDS = ["hand_delivered_or_faxed", "has_mailing_address", "absent_from", "absent_to", "absent_from_mm", "absent_from_dd", "absent_from_yyyy", "absent_to_mm", "absent_to_dd", "absent_to_yyyy","dln_soft_validation",] 
   
+  def only_this_election_if_option_0
+    if self.options.to_s =='0'
+      return 'only_this_election'
+    else
+      return 'Off'
+    end
+  end
+
   
   def form_field_items
     [
