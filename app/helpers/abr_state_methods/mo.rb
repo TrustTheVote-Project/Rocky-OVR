@@ -42,6 +42,7 @@ module AbrStateMethods::MO
     [
 
       {"Reason": {type: :radio, required: true}},
+      {"covid_instructions": {type: :instructions, classes: "indent"}},
       {"has_mailing_address": {type: :checkbox}}, 
       {"mailing_address_1": {visible: "has_mailing_address", required: :if_visible}},
       {"mailing_address_2": {visible: "has_mailing_address", required: :if_visible}},
