@@ -1499,10 +1499,11 @@ en:
             my affiliation with a party and I am requesting a ballot for that party’s
             primary (check only one):'
       nj:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In NJ
         abr:
-          header: Absentee Requests In New Jersy
-          instructions: '<p>Your state is automatically sending an absentee ballot to all 
-            registered voters this year. Your absentee ballot will be sent to the address 
+          header: Vote by Mail Requests In New Jersey
+          instructions: '<p>Your state is automatically sending a vote by mail ballot to all 
+            registered voters this year. Your vote by mail ballot will be sent to the address 
             listed on your voter registration. If you have any questions, or need to 
             update your address please go to: <a href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'  
           finish_instructions: '<p>Once you receive your ballot, make sure to read
