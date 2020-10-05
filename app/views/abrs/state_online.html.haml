@@ -37,7 +37,9 @@
   - unless @abr.oabr_for_all?
     .intro-message
       %p.reject
-        = link_to I18n.t('txt.abr.skip_state_online_abr'), step_3_abr_path(@abr)
+        = link_to I18n.t("states.custom.#{@abr.i18n_key}.abr.skip_state_online_abr", default: I18n.t('txt.abr.skip_state_online_abr')), step_3_abr_path(@abr)
+        
+
   
   
     

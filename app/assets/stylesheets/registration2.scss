@@ -912,7 +912,7 @@ body {
         font-size: 18px;        
       }
     }
-    @import 'abr-form-fields'
+    @import 'abr-form-fields';
   }
   
   
@@ -952,3 +952,7 @@ body {
 @import 'registration2-mobile';
 @import 'registration2-new-mobile-ui';
 @import 'registration2-signature-capture';
+
+body.abr-page {
+  @import 'abr-page';
+}
