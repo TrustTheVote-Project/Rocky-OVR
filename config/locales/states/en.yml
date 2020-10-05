@@ -953,7 +953,20 @@ en:
             instructions carefully, fill out the ballot and send it back in. Your
             ballot must be received by 8:00pm on Election Day.</>"
       ma:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In MA
         abr:
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your vote by mail ballot.</p>"
+          step_3_header: Prepare your Massachusetts PDF Vote By Mail Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+            your PDF vote by mail request form.</p>"
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
+          step_3_deliver_via_email_instructions: <p>Please review all of the above information for accuracy.</p>
+            <p>When you click the button below, an email will be sent directly to your local election office with your vote by mail ballot request.</p>
+
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
             By clicking the button below, I authorize Rock the Vote to apply my signature, 
@@ -961,10 +974,16 @@ en:
             that this form is <i>signed under penalty of perjury</i>.
           
           signature_capture:
-            desktop_provide_e_signature: In the state of Massachusetts, we can email
+            desktop_provide_e_signature:  If you live in West Stockbridge, email submission for your 
+              town is not currently set up, please select the 3rd option below "I prefer to print, sign and 
+              mail or email my application myself." 
+              In the state of Massachusetts, we can email
               a digitally signed copy of your absentee request. Please select how
               you'd like to provide a signature.
-            desktop_provide_signature: In the state of Massachusetts, we can email
+            desktop_provide_signature: If you live in West Stockbridge, email submission for your 
+              town is not currently set up, please select the 3rd option below "I prefer to print, sign and 
+              mail or email my application myself."
+              In the state of Massachusetts, we can email
               a digitally signed copy of your absentee request. Please select how
               you'd like to provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
