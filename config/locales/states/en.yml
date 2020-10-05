@@ -2261,8 +2261,9 @@ en:
             need to update your address please go to: <a rel="noopener" target="blank"
             href="https://mvp.vermont.gov/ ">https://mvp.vermont.gov/ </a></p>'
       wa:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
         abr:
-          header: Absentee Requests In Washington
+          header: Vote by Mail Requests In Washington
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot for each election.  Your mail ballot will be sent to the
             address listed on your voter registration.  If you have any questions
