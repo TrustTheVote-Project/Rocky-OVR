@@ -2161,6 +2161,7 @@ en:
             <p>In your state, every active registered voter automatically receives a mail ballot. Your mail ballot will be sent to the address listed on your voter registration.  If you want to check on the status of your ballot, check if you are registered (and what address is listed on file), or have general questions about your absentee ballot go to  <a rel="noopener" target="blank" href="https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p> <p> NOTE: you cannot have your ballot sent to a different address than the one listed on your voter registration.  If you have a new permanent address, submit a new voter registration to update your address. </p>
             <p> Once you have your ballot, again be sure to read the instructions carefully, fill out the ballot and send it back in.  Vote-by-mail ballots must be received by 11:59am on Election Day, or postmarked one (1) day before Election Day if returned by mail. If you are dropping your absentee ballot off in person, it can be dropped off in a ballot drop box. The ballot must be deposited in the drop box before polls close on Election Day. Any voter who is in line at a ballot drop box with a sealed return envelope containing their ballot at or before 8 p.m. must be allowed to deposit the ballot in the ballot box. </p>
       va:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In %{state_abbrev}
         state_online_abr:
           requirements: If you're a first-time voter and have a VA ID, you can use
             Virginia's online system. If you've voted in previous elections, then
@@ -2175,7 +2176,21 @@ en:
             check the status of your application and the status of your ballot at:
             <a rel="noopener" target="blank" href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>
             </p>'
+          button: Finish your<br/>vote by mail request<br/> online with Virginia.
+          confirm: |-
+            Check if you meet your state's requirements, then click the button below to request your vote by mail ballot through the state's site.
+
         abr:
+          step_2_header: Where are you registered to vote?
+          step_2_instructions: "<p>We'll use this information to determine how you can
+           request your vote by mail ballot.</p>"
+          step_3_header: Prepare your %{state} PDF Vote By Mail Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+           your PDF vote by mail request form.</p>"
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
             By clicking the button below, I authorize Rock the Vote to apply my signature, agreeing to 
@@ -2187,10 +2202,10 @@ en:
             I will likely remain eligible to vote throughout the calendar year.
           signature_capture:
             desktop_provide_e_signature: In the state of Virginia, we can email a
-              digitally signed copy of your absentee request. Please select how you'd
+              digitally signed copy of your vote by mail request. Please select how you'd
               like to provide a signature.
             desktop_provide_signature: In the state of Virginia, we can email a digitally
-              signed copy of your absentee request. Please select how you'd like to
+              signed copy of your vote by mail request. Please select how you'd like to
               provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
@@ -2256,7 +2271,6 @@ en:
         voter_classification: Voter Classification
         protected_voter: I am providing a Virginia P.O. Box to protect my residence
           address from public disclosure because
-        step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
         by_paper_header: Review &amp; Confirm
         voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE
