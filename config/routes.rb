@@ -223,6 +223,7 @@ Rocky::Application.routes.draw do
           get :complete
         end
       end
+      match "completeShift/:id/complete", to: "canvassing_shifts#complete", via: :get
       
     end
   end

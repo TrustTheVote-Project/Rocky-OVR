@@ -57,7 +57,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
     c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
       c.update_attributes(data)
-      jsonp({})
+      jsonp({errors: []})
     else
       jsonp({
         errors: ["Shift with ID #{params[:id]} not found"]
@@ -69,7 +69,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
     c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
       c.complete!
-      jsonp({})
+      jsonp({errors: []})
     else
       jsonp({
         errors: ["Shift with ID #{params[:id]} not found"]
