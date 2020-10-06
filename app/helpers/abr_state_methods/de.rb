@@ -36,13 +36,17 @@ module AbrStateMethods::DE
     "Political Party Affiliation": {},
 
     "Last4 Digits of SSN": {sensitive: true},
+    "Email Address": {
+      method: "email"
+    },
 
     "Check box if you are Sick or Physically Disabled": {
       options: ["Off", "Yes"],
       method: "check_sick_or_disabled_yes"},
     "GroupSickDisabled": { options: ["ChoiceEmail", "ChoiceFax", "ChoiceMail"] },
-    "Email Address": {
-      method: "email"
+    
+    "Email Address_disabled": { # This is actually for disabled email delivery
+      method: "email_if_choice_email"
     },
     "Fax": {},
     "Phone": {
@@ -97,6 +101,10 @@ module AbrStateMethods::DE
   
   def check_sick_or_disabled_yes
     return "Yes" if self.check_sick_or_disabled.to_s=='1'
+  end
+
+  def email_if_choice_email
+    return self.email if self.groupsickdisabled.to_s=='ChoiceEmail'
   end
 
 end
