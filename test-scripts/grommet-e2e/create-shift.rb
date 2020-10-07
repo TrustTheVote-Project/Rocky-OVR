@@ -5,11 +5,11 @@ require_relative './domain.rb'
 #curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"
 URL = "#{BASE_DOMAIN}/api/v4/canvassing_shifts"
 
-def clock_in_json(partner_tracking_id: "custom tracking id", partner_id: 1)
+def clock_in_json(partner_tracking_id: "custom tracking id", partner_id: 7)
   json =<<EOJ
   {
     "partner_id": "#{partner_id}",
-    "shift_location": "267",
+    "shift_location": 27,
     "source_tracking_id": "Custom Tracking Value",
     "partner_tracking_id": "#{partner_tracking_id}",
     "open_tracking_id": "metro canvasing",
@@ -23,7 +23,7 @@ EOJ
   return JSON.parse(json)
 end
 
-def clock_in(partner_tracking_id: "custom tracking id", partner_id: 1)
+def clock_in(partner_tracking_id: "custom tracking id", partner_id: 7)
   json = clock_in_json(partner_tracking_id: partner_tracking_id, partner_id: partner_id)
   resp = RestClient.post(URL, json.to_json, {content_type: :json, accept: :json})
   return resp
