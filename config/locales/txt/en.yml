@@ -1,6 +1,25 @@
 ---
 en:
   txt:
+    lookup:
+      step_1_header: Check Your Voter Registration Status
+      step_1_instructions: Not sure if you're registered to vote? Take one minute and verify your voter registration status today.
+      step_2_header_found: We found your voter registration.
+      step_2_header_not_found: We couldn't confirm that you're registered to vote.
+      step_2_instructions: ""
+      matched: "%{first_name}, you are registered to vote at: "
+      confirm: Yes, this is me.
+      abr: "Now that you've confirmed your voter registration, make sure your voice is heard on Election Day: request a Vote-by-Mail Ballot!"
+      abr_link: Request a Vote-by-Mail Ballot
+      reject: Not you?
+      register: Register to Vote.
+      go_back: I would like to check again.
+      check_again: If this doesn't seem right, <a href="%{url}" target="_blank" rel="noopener">check again</a> with your state.
+      not_matched:
+        one: We couldn't confirm that you're registered to vote. If you registered to vote or updated your registration recently, we might not have the most up-to-date
+          information. Our last update from %{state_abbrev} was %{count} day ago. <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results.
+        other: We couldn't confirm that you're registered to vote. If you registered to vote or updated your registration recently, we might not have the most up-to-date
+          information. Our last update from %{state_abbrev} was %{count} days ago. <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results.
     abr:
       step_1_header: ''
       step_1_instructions: "<p>Request your absentee ballot now to vote from the ease
@@ -83,6 +102,8 @@ en:
     register_to_vote_in: Register in %{state_abbrev}
     request_absentee_ballot_in: Request an Absentee Ballot In %{state_abbrev}
     request_absentee_ballot: Request An Absentee Ballot
+    check_voter_status_in: Check Voter Status In %{state_abbrev}
+    check_voter_status: Check Voter Status
     unknown_error: 'Unknown error: the web administrators have been contacted.'
     error: Something went wrong.
     try_again: Go back and try again.
@@ -92,6 +113,7 @@ en:
       text_me: Send SMS
       email_me: Send Email
       submit: Next Step
+      lookup: Look Up Your Registration
       edit: Edit
       back: "&lt; Previous Step"
       download: Print your registration form now

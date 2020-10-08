@@ -1,0 +1,44 @@
+%h2
+  = @lookup.is_match? ? t('txt.lookup.step_2_header_found') : t('txt.lookup.step_2_header_not_found')
+
+.intro-message
+  = t('txt.lookup.step_2_instructions').html_safe
+
+
+- if @lookup.is_match?
+  %p= t('txt.lookup.matched', first_name: @lookup.first)
+  = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
+  .confirm#confirm_match
+    = t('txt.lookup.abr')
+    %span.rollover_button.button
+      = link_to t('txt.lookup.abr_link'), abr_catalist_lookup_path(@lookup)
+      
+
+  .reject
+    %a{href: "#", onclick:"$('.reject-options').show(); $(this).hide();" }= t('txt.lookup.reject')    
+    .reject-options{style: "display: none;"}
+      %br
+      - url = @lookup.state&.registrar_url
+      - if !url.blank?
+        = t('txt.lookup.check_again', url: @lookup.state&.registrar_url).html_safe
+      - else
+        = link_to t('txt.lookup.go_back'), new_catalist_lookup_path(zip: @lookup.zip, source: @lookup.tracking_source, tracking: @lookup.tracking_id, email: @lookup.email, first_name: @lookup.first, last_name: @lookup.last, state: @lookup.state_abbrev)
+      %br
+      %br
+      %p{style: "text-align: center"}= t('or')
+      %span.rollover_button.button
+        = link_to t('txt.lookup.register'), registration_catalist_lookup_path(@lookup)
+      
+    
+- else  
+  %p= t('txt.lookup.not_matched', state_abbrev: @lookup.state_abbrev, url:  @lookup.state&.registrar_url, count: @lookup.state_last_updated_days).html_safe
+  %span.rollover_button.button
+    = link_to t('txt.lookup.register'), registration_catalist_lookup_path(@lookup)
+  %br
+  = link_to t('txt.lookup.go_back'), new_catalist_lookup_path(zip: @lookup.zip, source: @lookup.tracking_source, tracking: @lookup.tracking_id, email: @lookup.email, first_name: @lookup.first, last_name: @lookup.last, state: @lookup.state_abbrev)
+    
+
+%p.overseas-instructions
+  %br
+  = I18n.t('txt.registration.instructions.overseas').html_safe
+
