@@ -21,17 +21,24 @@ blocks_configuration:
   url: https://svtesting.blocks.work
   partners:
     1:
+      states:
+        - NV
+      url: https://svdemo.blocks.im
+      bulk_submit: false
       sub_orgs:
-        Sub Org 1: 416
-        Sub Org 2: 417
-      canvasser_id: 128
-      location_id: 266
-      staging_location_id: 267
-    991:
-      turf_id: 417
+        Test Org 2: 417
+        Test Org 3: 424
       canvasser_id: 129
       location_id: 266
       staging_location_id: 267
+
+    991:
+      turf_id: 19000000023
+      canvasser_id: 19000000022
+      location_id: 2000002091
+      staging_location_id: 594
+
+
 
 mail_with_esig:
   states:
