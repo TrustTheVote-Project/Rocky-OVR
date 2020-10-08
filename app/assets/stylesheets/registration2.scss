@@ -942,6 +942,15 @@ body {
         }
       }
     }
+    .reject {
+      color: #666;
+      margin: 1.5em 0;
+      text-align: center;
+      p {
+        color: #666;
+        font-size: 14px;        
+      }
+    }
   }
   
 }

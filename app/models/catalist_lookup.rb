@@ -355,6 +355,10 @@ class CatalistLookup < ActiveRecord::Base
     (DateTime.now.to_date - date.to_date).to_i
   end
 
+  def state_last_updated_at
+    date = (state && state.catalist_updated_at) || 3.months.ago
+  end
+
   private 
   def format_birthdate(date)
     self.class.format_birthdate(date)
