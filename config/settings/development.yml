@@ -17,12 +17,14 @@ pdf_assistance:
 
 blocks_configuration:
   default_turf_id: 416
-  default_location_id: 266
-  default_staging_location_id: 267
+  default_location_id: 16000000827
+  default_staging_location_id: 16000000827
   shift_length: 2
   url: https://svtesting.blocks.work
   partners:
     1:
+      states:
+        - NV
       url: https://svdemo.blocks.im
       default_staging_location_id: 758
       bulk_submit: false
@@ -37,8 +39,8 @@ blocks_configuration:
     7:
       turf_id: 19000000023
       canvasser_id: 19000000022
-      location_id: 19000000002
-      staging_location_id: 19000000003
+      location_id: 2000002091
+      staging_location_id: 594
       
 ovr_states:
   CA:

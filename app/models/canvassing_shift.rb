@@ -46,14 +46,19 @@ class CanvassingShift < ActiveRecord::Base
 
   after_save :check_submit_to_blocks
 
-  def self.enabled_state_ids
-    @@enabled_state_ids ||= RockyConf.blocks_configuration.states.collect {|abbrev| GeoState[abbrev].id }
+  def enabled_state_ids
+    @enabled_state_ids ||= nil
+    if @enabled_state_ids.nil?
+      states = RockyConf.blocks_configuration.partners[self.partner_id]&.states || RockyConf.blocks_configuration.states
+      @enabled_state_ids = (states || []).collect {|abbrev| GeoState[abbrev].id }
+    end
+    return @enabled_state_ids
   end
 
   def self.location_options(partner, turf_id: nil)
     b = BlocksService.new(partner: partner)
     locations_list = []
-    locations = begin b.get_locations(partner, turf_id: turf_id)&.[]("locations") rescue nil end;
+    locations = begin b.get_locations(turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
       locations_list = locations.map {|obj| [obj["name"], obj["id"]]}
     else
@@ -215,7 +220,7 @@ class CanvassingShift < ActiveRecord::Base
           form_id = form_result["id"]
           registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
           grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
-          if !req_reg.is_a?(Registrant) || (req_reg.is_a?(Registrant) && req_reg.home_state_id = pa.id)
+          if !reg_req.is_a?(Registrant) || (reg_req.is_a?(Registrant) && reg_req.home_state_id = pa.id)
             BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
           end
         else
@@ -260,7 +265,7 @@ class CanvassingShift < ActiveRecord::Base
     @regs ||= nil
     if !@regs
       if self.is_web?
-        @regs = self.web_complete_registrants.where(home_state_id: CanvassingShift.enabled_state_ids)
+        @regs = self.web_complete_registrants.where(home_state_id: self.enabled_state_ids)
       elsif self.is_grommet?
         @regs = []
         registrant_grommet_ids = []

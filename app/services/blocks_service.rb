@@ -54,7 +54,7 @@ class BlocksService
   end
 
   def url
-    RockyConf.blocks_configuration.partners[partner.id]&.url
+    RockyConf.blocks_configuration.partners[partner.id]&.url || RockyConf.blocks_configuration.url
   end
   
   def token
@@ -174,7 +174,7 @@ class BlocksService
     
     
     location_id = shift.shift_location || RockyConf.blocks_configuration.default_location_id
-    staging_location_id = RockyConf.blocks_configuration.default_staging_location_id || shift.shift_location
+    staging_location_id = RockyConf.blocks_configuration.partners[partner_id]&.staging_location_id || shift.shift_location
     canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
     canvasser_id = canvasser["canvasser"]["id"]
     

@@ -30,8 +30,8 @@ class CanvassingShiftsController < ApplicationController
   end
 
   def create
-    @new_canvassing_shift = CanvassingShift.new(cs_params)
-    @new_canvassing_shift.partner_id = params[:partner_id]
+    @new_canvassing_shift = CanvassingShift.new(partner_id: params[:partner_id])
+    @new_canvassing_shift.attributes = cs_params
     @partner = Partner.find_by_id(params[:partner_id])
     @new_canvassing_shift.source_tracking_id = params[:source_tracking_id]
     @new_canvassing_shift.partner_tracking_id = params[:partner_tracking_id]
