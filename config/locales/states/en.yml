@@ -131,7 +131,8 @@ en:
             is impossible or unreasonable to vote at their voting place for the General
             Election on November 3, 2020 due to the declared states of emergency,
             shall be eligible to check this box:'
-          chkReason3: 'I am unable to access my assigned polling place due to a neurological,
+          chkReason3: 'I have a physical illness or infirmity which prevents my attendance at the polls.
+            I am unable to access my assigned polling place due to a neurological,
             musculoskeletal, respiratory (including speech organs), cardiovascular,
             or other life-altering disorder that affects my ability to perform manual
             tasks, stand for any length of time, walk unassisted, see, hear or speak
@@ -350,8 +351,8 @@ en:
           absentee_reason__hint: Please note, if you have a permanent disability,
             please contact your town clerk for a permanent absentee ballot instead
           absentee_reason__options:
-            '1': COVID19  All voters are able to check this box pursuant to Executive
-              Order 7QQ
+            '1': COVID19  All voters are able to check this box pursuant to 
+              Public Act 20-3 July Spec. Sess.
             '2': My active service in the Armed Forces of the United States
             '3': My absence from the town during all of the hours of voting
             '4': My illness
@@ -371,53 +372,51 @@ en:
             </p><p>Once you have your ballot, again be sure to read the instructions
             carefully, fill out the ballot and send it back in.</p>'
       de:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In DE
         state_online_abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible. Your completed ballot must be RECEIVED by 8:00pm on
             Election day.</p><p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://ivote.de.gov/VoterView">https://ivote.de.gov/VoterView</a></p>'
+          requirements: "<p>If you are registered to vote and have a valid Deleware
+            state ID, you may request your vote by mail ballot online directly with the
+            state.</p>"
+          button: Finish your<br/>vote by mail request<br/> online with Deleware.
+          confirm: |-
+            Check if you meet your state's requirements, then click the button below to request your vote by mail ballot through the state's site.
+
         abr:
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your vote by mail ballot.</p>"
+          step_3_header: Prepare your Deleware PDF Vote By Mail Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+           your PDF vote by mail request form.</p>"
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible. Your application must be RECEIVED by Friday, October
             30th, 2020. Your completed ballot must be RECEIVED by 8:00pm on Election
             day.</p><p>At any time you can check the status of your application and
             the status of your ballot at: <a rel="noopener" target="blank" href="https://ivote.de.gov/VoterView">https://ivote.de.gov/VoterView</a></p>'
-          requirements: "<p>To request an absentee ballot in DE, you must meet at
-            least one of the following requirments:</p><p>(1) I am in public service
-            of the  U.S. or the State of Delaware, or I am a spouse or dependent residing
-            with or accompanying him or her. Reason 1 also applies to members of the
-            \ Uniformed Services.</p><p>(2) Due to the nature of my business or occupatioon.
-            Reason 2 also applies to persons providing care to a parent, spouse or
-            child who is living at home and requires constant care,students, andotherwise
-            eligible persons who are incarcerated.</p><p>(3) I am sick, or temporarily
-            or permanently physically disabled.</p><p>(4) I am absent from the district
-            while on vaca\U0010FC00tion</p><p>(5) Due to the tenets or teachings of
-            my religion</p><p>(6) I am temporarily residing outside of the U. S. and
-            the District of Columbia, or I am a spouse or dependent residing with
-            or accompanying him or her.</p><p>NOTE: During the current State of Emergency,
-            voters are permitted to vote by absentee ballot for the reason: \"I am
-            sick, or physically disabled\" if they are impacted by COVID-19, per the
-            provisions of an order by the Governor. This includes those who are practicing
-            self-quarantining or social distancing.</p>"
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
-          fill_2: Political Party
-          Security Number: Social Security Number
-          fill_10: Address where you want your ballot sent if different than home
+          Last4 Digits of SSN: Last 4 Digits of Social Security Number (OPTIONAL)
+          has_mailing_address: I would like my ballot sent to a different address than my home
             address
-          fill_11: Expected Election Day Location
-          fill_11__hint: Provide City, State or City, Country
-          Day phone: Expected Election Day Phone Number
-          absentee_reason: Select the reason you are voting by absentee ballot
-          absentee_reason__hint: '<p>If you select reason 6 below you will receive
-            a full Primary Election ballot, but your General Eletion ballot will only
-            have Federal Offices. Citizens temporarily residing outside of the U.S.
-            should use the Federal Post Card Applicatioon instead of choosing reason
-            6.</p><p>NOTE: During the current State of Emergency, voters are permitted
-            to vote by absentee ballot for the reason: "(3) I am sick, or temporarily
-            or permanently physically disabled." if they are impacted by COVID-19,
-            per the provisions of an order by the Governor. This includes those who
-            are practicing self-quarantining or social distancing.</p>'
+          check_sick_or_disabled: "Check here if you are a voter who is sick or physically disabled"
+          check_sick_or_disabled__hint:
+            "If you are a voter who is sick or physically disabled, Delaware law permits you to receive and return an
+            absentee ballot electronically. If you choose to
+            receive your ballot by email, you will be able to mark
+            and submit it electronically."
+          GroupSickDisabled: "Indicate below how you would like your absentee ballot sent
+            to you by the Department of Elections:"
+          GroupSickDisabled__options:
+            ChoiceEmail: Email
+            ChoiceMail: Mail
+            ChoiceFax: Fax
           absentee_reason__options:
             '1': "(1) I am in public service of the U.S. or the State of Delaware,
               or I am a spouse or dependent residing with or accompanying him or her.
@@ -573,9 +572,9 @@ en:
           "mailingState": State
           "mailingCountry": "Country (if outside of USA)"
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide a valid
-            state ID or SSN, you may request your absentee ballot online directly
-            with the state.</p>"
+          requirements: "<p>If you are registered to vote and can provide a valid state ID
+            and last four digits of your SSN, you may request your absentee ballot online 
+            directly with the state.</p>"
           finish_instructions: '<p>Once you have your ballot, again be sure to read
             the instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You
@@ -881,10 +880,10 @@ en:
           "Delivery": "I would like to receive my ballot by:"
           Delivery__options:
             mail: U.S. Mail
-            internet: Internet Delivery
+            internet: Internet Delivery (Ballot emailed to the email you provided)
           internet_delivery_identification: "Identification for internet delivery"
           internet_delivery_identification__options:
-            dln: MD driver's license
+            dln: Maryland Driver's License or ID Card Number
             ssn: I do not have a MD driver's license or ID card
           "Gen_Address": Mailing address
           "Gen_Apt": "Apt/Unit"
@@ -893,8 +892,8 @@ en:
           "Gen_ZipCode": Zip
           #"no_dln": "I do not have a MD Driver's License or ID card."
           "SSN_Last_4": "Last 4 digits of my SSN:"
-          dln: MD driver's license
-          dln__format_message: Invalid MD driver's license format. Please enter 1 letter, followed by 12 numbers
+          dln: Maryland Driver's License or ID Card Number
+          dln__format_message: Invalid Maryland Driver's License or ID Card Number format. Please enter 1 letter, followed by 12 numbers
           "Issue_Date": "Issue Date"
           fax_number: Fax Number (xxx-xxx-xxxx)
           "Assistance_Print_Name": Name of Assistant
@@ -954,7 +953,20 @@ en:
             instructions carefully, fill out the ballot and send it back in. Your
             ballot must be received by 8:00pm on Election Day.</>"
       ma:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In MA
         abr:
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your vote by mail ballot.</p>"
+          step_3_header: Prepare your Massachusetts PDF Vote By Mail Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+            your PDF vote by mail request form.</p>"
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
+          step_3_deliver_via_email_instructions: <p>Please review all of the above information for accuracy.</p>
+            <p>When you click the button below, an email will be sent directly to your local election office with your vote by mail ballot request.</p>
+
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
             By clicking the button below, I authorize Rock the Vote to apply my signature, 
@@ -962,14 +974,18 @@ en:
             that this form is <i>signed under penalty of perjury</i>.
           
           signature_capture:
-            desktop_provide_e_signature: In the state of Massachusetts, we can email
+            desktop_provide_e_signature:  <b>If you live in West Stockbridge, email submission for your 
+              town is not currently set up, please select the 3rd option below "I prefer to print, sign and 
+              mail or email my application myself."</b><br/>
+              In the state of Massachusetts, we can email
               a digitally signed copy of your absentee request. Please select how
               you'd like to provide a signature.
-            desktop_provide_signature: If you live in West Stockbridge, email submission 
-              for your town is not currently set up. Please select the 3rd option below 
-              "I prefer to print, sign and mail or email my application myself." In the 
-              state of Massachusetts, we can email a digitally signed copy of your absentee 
-              request. Please select how you'd like to provide a signature.
+            desktop_provide_signature: <b>If you live in West Stockbridge, email submission for your 
+              town is not currently set up, please select the 3rd option below "I prefer to print, sign and 
+              mail or email my application myself."</b><br/>
+              In the state of Massachusetts, we can email
+              a digitally signed copy of your absentee request. Please select how
+              you'd like to provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
           finish_instructions: '<p>Make sure to read the instructions on the form
@@ -1132,32 +1148,10 @@ en:
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
-        registration:
-          has_state_license: I have a current MN driver’s license or ID card number,
-            or the last 4 numbers of my SSN.
-          has_no_state_license: I do not have a current MN driver’s license or ID
-            card number, and do not have the last 4 numbers of my SSN.
-        signature_capture:
-          desktop_provide_signature: You must provide a signature to complete your
-            registration form. You may upload a signature image, switch to a touch-enabled
-            device or print, sign and mail your PDF.
-          desktop_provide_e_signature: You must provide a signature to complete your
-            registration form. You may upload a signature image, switch to a touch-enabled
-            device or use your current device.
-        abr:
-          signature_capture:
-            desktop_provide_e_signature: In the state of Minnesota, we can email a
-              digitally signed copy of your absentee request. Please select how you'd
-              like to provide a signature.
-            desktop_provide_signature: In the state of Minnesota, we can email a digitally
-              signed copy of your absentee request. Please select how you'd like to
-              provide a signature.
-            continue_on_paper: I prefer to print, sign and mail or email my application
-              myself.
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide a valid
-            state ID number or the last 4 digits of your SSN, you may request your
-            absentee ballot online directly with the state.</p>"
+          requirements: "<p>If you are registered to vote and can provide an identification
+            number: MN-issued driver's license, Minnesota ID card or last 4 digits of Social 
+            Security Number, you may request your absentee ballot online directly with the state.</p>"
           instructions: |-
             <p>To request an absentee ballot in MN, you must certify that:</p>
             <ul>
@@ -1172,6 +1166,48 @@ en:
             </ul>
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx">https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx</a></p>'
+        abr_form_fields:
+          bad_date__format_message: "Invalid date"
+          Absentee ballot address_1: Ballot delivery address
+          Absentee ballot address - City: City
+          Absentee ballot address - State: State
+          Absentee ballot address - Zip Code: Zip
+          has_mailing_address: I would like my ballot sent to an address other than my residential address.
+          id_instruction: 'Your identification number  (mark all that apply)'
+          dln_check: I have a Minnesota-issued driver's license or ID Card
+          Minnesota Driver's License or ID Card Number: MN-issued driver’s license or MN ID card
+          Minnesota Driver's License or ID Card Number__format_message: Not a valid MN-issued driver’s license or MN ID card
+          ss_check: I have a Social Security Number
+          no_id_check:  I do not have a Minnesota-issued driver's license or identification card, or a Social Security Number
+          no_id_check__format_message: You cannot select no id if you have a Minnesota-issued driver's license or identification card, or a Social Security Number
+          no_id_check__required_message: 'You must either provide an ID above or assert you have no identification'
+        abr:
+          signature_capture:
+            desktop_provide_e_signature: In the state of Minnesota, we can email a
+              digitally signed copy of your absentee request. Please select how you'd
+              like to provide a signature.
+            desktop_provide_signature: In the state of Minnesota, we can email a digitally
+              signed copy of your absentee request. Please select how you'd like to
+              provide a signature.
+            continue_on_paper: I prefer to print, sign and mail or email my application
+              myself.
+          finish_instructions: '<p>You should return this to your local election office. If not
+            provided above, contact information for your local election
+            official can be found under “Find County Election Office”
+            at <a rel="noopener" target="blank" href="https://www.mnvotes.org">https://www.mnvotes.org</a></p>'
+        registration:
+          has_state_license: I have a current MN driver’s license or ID card number,
+            or the last 4 numbers of my SSN.
+          has_no_state_license: I do not have a current MN driver’s license or ID
+            card number, and do not have the last 4 numbers of my SSN.
+        signature_capture:
+          desktop_provide_signature: You must provide a signature to complete your
+            registration form. You may upload a signature image, switch to a touch-enabled
+            device or print, sign and mail your PDF.
+          desktop_provide_e_signature: You must provide a signature to complete your
+            registration form. You may upload a signature image, switch to a touch-enabled
+            device or use your current device.
+        
       mo:
         abr:
           finish_instructions: "<p>Make sure to complete and send this form in as
@@ -1219,9 +1255,30 @@ en:
             confidentiality: Certified participation in the address confidentiality
               program established under sections 589.660 to 589.681, RSMo., because
               of safety concerns
-            COVID: I have contracted or am in an at-risk category for contracting
-              or transmitting severe acute respiratory syndrome coronavirus 2, pursuant
-              to Section 115.277.6, RSMo. (No Notary Required)
+            COVID: I have contracted or am in an at-risk category for contracting or transmitting 
+              severe acute respiratory syndrome coronavirus 2(COVID-19), pursuant to 
+              Section 115.277.6,RSMo. (No Notary Required)
+          covid_instructions_formatted: 
+              "<p>At-risk voters are individuals who:</p>
+              <ul>
+              <li>Are 65 years of age or older</li>
+              <li>Live in a long-term care facility licensed under Chapter 198, RSMo.</li>
+              <li>Have serious heart conditions</li>
+              <li>Have chronic lung disease or moderate to severe asthma</li>
+              <li>Are immunocompromised</li>
+              <li>Have chronic kidney disease and are undergoing dialysis</li>
+              <li>Have liver disease</li>
+              <li>Have diabetes</li>
+              </ul>"
+          covid_instructions: 
+            "At-risk voters are individuals who: Are 65 years of age or older,
+            Live in a long-term care facility licensed under Chapter 198, RSMo.,
+            Have serious heart conditions,
+            Have chronic lung disease or moderate to severe asthma,
+            Are immunocompromised,
+            Have chronic kidney disease and are undergoing dialysis,
+            Have liver disease, or
+            Have diabetes"         
       ms:
         abr:
           header: Absentee Requests In Mississippi
@@ -1275,6 +1332,7 @@ en:
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
         abr_form_fields:
+          bad_date__format_message: "Invalid date"
           has_mailing_address: My mailing address differs from my residential address.
           identification: Choose one of the following methods for identification
           identification__options:
@@ -1282,15 +1340,36 @@ en:
             ssn: Last four digits of your social security number
           ssn1234: Last 4 of your SSN
           previous_name: I have changed my name in my lifetime.
-          Voter's Previous Last Name: Previous Last Name
-          Voter's Previous First Name: Previous First Name
-          Voter's Previous Middle Name: Previous Middle Name
+          Former_Name: Previous Full Name
           ballot_address: I would like my absentee ballot mailed to an address other
             than my residential or my regular mailing address.
-          ballot_mailing_address: Ballot Mailing Address
-          ballot_city: City
-          ballot_state: State
-          ballot_zip: ZIP
+          MailStreet: Ballot Mailing Address
+          MailCity: City
+          MailState: State
+          MailZip: ZIP
+          RelativeName: Requestor Information
+          RelativeName__hint: Name
+          RelativeRelationship: Relationship to voter
+          RelativeAddress: Address
+          RelativeCity: City
+          RelativeState: State
+          RelativeZip: Zip
+          AssistantFullName: Assistant information
+          AssistantFullName__hint: Name
+          AssistantAddress: Address
+          assistantcity: City
+          assistantstate: State
+          assistantzip: Zip
+          SSN4: Last 4 of your SSN
+          ID_Number: NC Driver's License/NC DMV ID Number
+          ID_Number__format_message: Invalid NC Driver's License/NC DMV ID Number
+          NCCounty: NC Residential County
+          reg_mail_street: Address
+          reg_mail_city: City
+          reg_mail_state: State
+          reg_mail_zip: Zip
+
+          AssistantAddressInput: 
           lived_here_long: Have you lived at your residential address for 30 days
             or more?
           date_moved: 'If ''No'', please enter the date moved (MM/DD/YYYY):'
@@ -1300,19 +1379,22 @@ en:
             or inability to read or write, and requires assistance.
           patient: If voter is a patient in a hospital, clinic, nursing home or rest
             home, does voter need assistance with voting and returning the ballot?
-          Name and Address of Facility: If Yes, what is the name and address of the
+          HopitalFacilityName: If Yes, what is the name and address of the
             hospital or facility?
-          uocava: I am an absentee military or overseas voter.
-          military_or_overseas: 'Select the best option below that describes your
+          uocava_option: I am an absentee military or overseas voter.
+          UOCAVA: 'Select the best option below that describes your
             absentee status:'
-          military_or_overseas__options:
+          UOCAVA__options:
             military: Member of the Uniformed Services or Merchant Marine on active
               duty or eligible spouse/dependent and currently absent from county of
               residence
-            overseas: U.S. citizen outside the United States
-          uocava_ballot: 'I would like my absentee ballot sent by:'
-          uocava_ballot__options:
+            citizen: U.S. citizen outside the United States
+          delivery_method: 'I would like my absentee ballot sent by:'
+          delivery_method__options:
             mail: Mail
+          UOCAVAAddress: Overseas Address
+          Mailing1: Overseas Mailing Address
+          Mailing2: Overseas Mailing Address
         state_online_registration:
           header: Because you have an NC DMV-issued Driver License or State ID, you
             are eligible to complete your registration online with the NC DMV.
@@ -1321,6 +1403,8 @@ en:
             On the DMV website, click "Continue to myNCDMV Services." <br/>4. Click
             "Continue as a guest" and submit your voter registration online.'
       nd:
+        abr:
+          skip_state_online_abr: I would like to create a paper request form instead.
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
           City_2: City
@@ -1357,7 +1441,7 @@ en:
           ID_Number_dln__format_message: Invalid ND driver's license format
         state_online_abr:
           requirements: |-
-            <p>To use North Dakota's online absentee request, you must have one of these forms of ID:</p>
+            <p>To request an absentee ballot in North Datoka, you must have one of these forms of ID:</p>
             <ul>
               <li>Driver's License</li>
               <li>Non-Driver's ID</li>
@@ -1370,6 +1454,7 @@ en:
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://vip.sos.nd.gov/AbsenteeTracker.aspx">https://vip.sos.nd.gov/AbsenteeTracker.aspx</a></p>'
       ne:
+        request_absentee_ballot_in: Request an Early Vote Ballot In NE
         abr:
           requirements: "<p>To qualify to request a ballot in NE, you only need to
             be registered to vote.</p>"
@@ -1377,6 +1462,15 @@ en:
             carefully, then complete and send this form in as soon as possible.</p><p>Check
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your early vote ballot.</p>"
+          step_3_header: Prepare your Nebraska PDF Early Vote Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+            your PDF early vote request form.</p>"
+          finish_pdf_delay: It's taking a while to create your early vote request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request an early vote ballot
+            too.
         abr_form_fields:
           County Name2: Registered County
           Address Line 2: Mailing address
@@ -1413,70 +1507,49 @@ en:
             by 5pm November 3rd. At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://app.sos.nh.gov/Public/AbsenteeBallot.aspx
             ">https://app.sos.nh.gov/Public/AbsenteeBallot.aspx</a></p>'
-          requirements: |-
-            <p>In light of emergency orders and public health guidance, all voters with concerns about COVID-19 may request an absentee ballot due to physical disability. Outside of COVID, you are eligible to vote absentee for one of the following reasons:</p>
-            <ul>
-              <li>you will not be at your domiciled location on the Election Day</li>
-              <li>you cannot vote due to observance of a religious commitment</li>
-              <li>you are disabled</li>
-              <li>you cannot vote due to an employment obligation.</li>
-            </ul>
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
           assistant: I assisted voter in completing this form because he/she has a
             disability.
           Asisstant Name: Assistant Name
-          Street or PO Box: Street number
+          #Note PO Box moved to street name field; street name can't be required in conjunciton with 
+          #PO Box (not part of PO Box address)
+          Street or PO Box:  Street number
+          mail_street_name: Street name or PO Box
           AptUnit_2: Apt/Unit
           CityTown_2: City/Town
-          Group1: 'I herby declare that (check one):'
-          Group1__options:
-            registered: I am a duly qualified voter who is currently registered to
+          mail_state: State
+          mail_zip: Zip
+          Group_I: 'I herby declare that (check one):'
+          Group_I__options:
+            Choice2: I am a duly qualified voter who is currently registered to
               vote in this town/ward.
-            absent: I am absent from the town/city where I am domiciled and will be
-              until after the next election, or I am unable to register in person
-              due to a disability, and request that the forms necessary for absentee
-              voter registration be sent to me with the absentee ballot.
-          reason_instructions: 'I will be entitled to vote by absentee ballot because
+            Choice1: I am absent from the town/city where I am domiciled and will be until
+              after the next election, or I am unable to register in person due to a disability
+              or concern for the novel coronavirus (COVID-19), and request that the forms necessary 
+              for absentee voter registration be sent to me with the absentee ballot.
+          Group_II: 'I will be entitled to vote by absentee ballot because
             (check one):'
-          absentee_reason__hint: 'NOTE: In light of emergency orders and public health
-            guidance, all voters with concerns about COVID-19 may request an absentee
-            ballot due to physical disability.'
-          absentee_reason: 'I will be entitled to vote by absentee ballot because
-            (check one):'
-          absentee_reason__options:
-            reason1: I plan to be absent on the day of the election from the city,
+          Group_II__options:
+            Choice1: I plan to be absent on the day of the election from the city,
               town, or unincorporated place where I live.
-            reason3: I cannot appear in public on election day because of observance
+            Choice2: I cannot appear in public on election day because of observance
               of a religious commitment.
-            reason4: I am unable to vote in person due to a disability.
-            reason5: I cannot appear at any time during polling hours at my polling
-              place because of an employment obligation. For the purposes of this
-              application, the term “employment” shall include the care of children
-              and infirm adults, with or without compensation.
-            storm_warning: It is the Monday immediately prior to the election, the
-              National Weather Service has issued a winter storm warning, blizzard
-              warning, or ice storm warning for election day, AND..
-          absentee_reason__required_message: Please select one of the above reasons
-          storm_warning_reason: 'Check one:'
-          storm_warning_reason__options:
-            reason1: I am elderly or infirm or I have a physical disability, and would
-              otherwise vote in person but I have concerns for my safety traveling
-              in the storm.
-            reason2: I anticipate that school, child care, or adult care will be canceled,
-              and would otherwise vote in person but will need to care for children
-              or infirm adults.
-          storm_warning_reason__required_message: Please select one of the above reasons
-          Group3: 'I am requesting an official absentee ballot for the following election
-            (check only one):'
+            Choice3: I am unable to vote in person due to a disability.
+            Choice4: I am unable to vote in person due to concern for the novel coronavirus (COVID-19).
+            Choice5: I cannot appear at any time during polling hours at my polling place because of an
+              employment obligation. For the purposes of this application, the term “employment” shall
+              include the care of children and infirm adults, with or without compensation.
+          Group_II__required_message: Please select one of the above reasons
           Party: 'Required for Primary Elections: I am a member of, or I am now declaring
             my affiliation with a party and I am requesting a ballot for that party’s
             primary (check only one):'
       nj:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In NJ
         abr:
-          header: Absentee Requests In New Jersy
-          instructions: '<p>Your state is automatically sending an absentee ballot to all 
-            registered voters this year. Your absentee ballot will be sent to the address 
+          header: Vote by Mail Requests In New Jersey
+          instructions: '<p>Your state is automatically sending a vote by mail ballot to all 
+            registered voters this year. Your vote by mail ballot will be sent to the address 
             listed on your voter registration. If you have any questions, or need to 
             update your address please go to: <a href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'  
           finish_instructions: '<p>Once you receive your ballot, make sure to read
@@ -1632,6 +1705,10 @@ en:
              <li>You have duties related to primary care of one or more individuals who are ill or physically disabled;</li>
              <li>You are a resident or patient of a Veterans Administration hospital; or</li>
              <li>You are detained in jail/prison, awaiting trial, awaiting action by grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li></ul>
+        state_online_abr:
+          requirements: "<p>If you are registered to vote, you may request your absentee 
+            ballot online directly with the state.  You may be required to have a valid 
+            New York state ID</p>"
         abr_form_fields:
           county where you live: County where you live
           has_mailing_address: My mailing address differs from my residential address.
@@ -1664,16 +1741,12 @@ en:
           reason: 'I am requesting, in good faith, an absentee ballot due to (check
             one reason):'
           reason__options:
-            absence_from_country: absence from county or New York City on election
-              day
-            detention: detention in jail/prison, awaiting trial, awaiting action by
-              a grand jury, or in prison for a conviction of a crime or offense which
-              was not a felony
-            permanent_illness: permanent illness or physical disability
-            primary_care: duties related to primary care of one or more individuals
-              who are ill or physically disabled
-            temporary_illness: temporary illness or physical disability
-            va_resident: resident or patient of a Veterans Health Administration Hospital
+            absence_from_country: Absent from your county or, if a resident of New York City absent from the five boroughs, on Election Day.
+            detention: Detained in jail awaiting Grand Jury action or confined in prison after conviction for an offense other than a felony.
+            permanent_illness: Unable to appear at the polls due to permanent illness or disability. 
+            primary_care: Unable to appear because you are the primary care giver of one or more individuals who are ill or physically disabled.
+            temporary_illness: Unable to appear at the polls due to temporary illness or physical disability  (temporary illness includes being unable to appear due to risk of contracting or spreading a communicable disease like COVID-19). 
+            va_resident: A resident or patient of a Veterans Health Administration Hospital
       oh:
         abr:
           finish_instructions: '<p>Make sure to complete and send this form in as
@@ -1915,9 +1988,9 @@ en:
               <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
             </ul>
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide the last
-            4 digits of your SSN, you may request your absentee ballot online directly
-            with the state.</p>"
+          confirm: "In South Carolina, your absentee ballot application must be requested 
+            through the online portal or by calling or emailing the county voter registration office. 
+            The online portal is accessible here:"
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>'
       ri:
@@ -2098,6 +2171,7 @@ en:
             <p>In your state, every active registered voter automatically receives a mail ballot. Your mail ballot will be sent to the address listed on your voter registration.  If you want to check on the status of your ballot, check if you are registered (and what address is listed on file), or have general questions about your absentee ballot go to  <a rel="noopener" target="blank" href="https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p> <p> NOTE: you cannot have your ballot sent to a different address than the one listed on your voter registration.  If you have a new permanent address, submit a new voter registration to update your address. </p>
             <p> Once you have your ballot, again be sure to read the instructions carefully, fill out the ballot and send it back in.  Vote-by-mail ballots must be received by 11:59am on Election Day, or postmarked one (1) day before Election Day if returned by mail. If you are dropping your absentee ballot off in person, it can be dropped off in a ballot drop box. The ballot must be deposited in the drop box before polls close on Election Day. Any voter who is in line at a ballot drop box with a sealed return envelope containing their ballot at or before 8 p.m. must be allowed to deposit the ballot in the ballot box. </p>
       va:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In VA
         state_online_abr:
           requirements: If you're a first-time voter and have a VA ID, you can use
             Virginia's online system. If you've voted in previous elections, then
@@ -2112,7 +2186,21 @@ en:
             check the status of your application and the status of your ballot at:
             <a rel="noopener" target="blank" href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>
             </p>'
+          button: Finish your<br/>vote by mail request<br/> online with Virginia.
+          confirm: |-
+            Check if you meet your state's requirements, then click the button below to request your vote by mail ballot through the state's site.
+
         abr:
+          step_2_header: Where are you registered to vote?
+          step_2_instructions: "<p>We'll use this information to determine how you can
+           request your vote by mail ballot.</p>"
+          step_3_header: Prepare your Virginia PDF Vote By Mail Request Form
+          step_3_instructions: "<p>Please fill out the fields below so we can prepare
+           your PDF vote by mail request form.</p>"
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
             By clicking the button below, I authorize Rock the Vote to apply my signature, agreeing to 
@@ -2124,10 +2212,10 @@ en:
             I will likely remain eligible to vote throughout the calendar year.
           signature_capture:
             desktop_provide_e_signature: In the state of Virginia, we can email a
-              digitally signed copy of your absentee request. Please select how you'd
+              digitally signed copy of your vote by mail request. Please select how you'd
               like to provide a signature.
             desktop_provide_signature: In the state of Virginia, we can email a digitally
-              signed copy of your absentee request. Please select how you'd like to
+              signed copy of your vote by mail request. Please select how you'd like to
               provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
@@ -2193,7 +2281,6 @@ en:
         voter_classification: Voter Classification
         protected_voter: I am providing a Virginia P.O. Box to protect my residence
           address from public disclosure because
-        step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
         by_paper_header: Review &amp; Confirm
         voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE
@@ -2237,8 +2324,9 @@ en:
             need to update your address please go to: <a rel="noopener" target="blank"
             href="https://mvp.vermont.gov/ ">https://mvp.vermont.gov/ </a></p>'
       wa:
+        request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
         abr:
-          header: Absentee Requests In Washington
+          header: Vote by Mail Requests In Washington
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot for each election.  Your mail ballot will be sent to the
             address listed on your voter registration.  If you have any questions
@@ -2370,8 +2458,9 @@ en:
           incarceration_statement: Please complete the Statement on page 2 by hand
             after PDF is printed.
         state_online_abr:
-          requirements: 'To request an absentee online, you must provide your DMV
-            ID # or Last Four of SSN.'
+          requirements: 'To request an absentee online, you must provide your DMV ID # 
+            or Last Four of SSN (whichever is on file, or if you have both on file you may 
+            choose one to enter)'
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Absentee ballots postmarked by Election Day will be accepted if RECEIVED

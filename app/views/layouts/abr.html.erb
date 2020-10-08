@@ -52,7 +52,7 @@
   <%= yield :head %>
 </head>
 
-<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<body class="abr-page <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
   <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
@@ -65,7 +65,7 @@
         <% end -%>
         <div class='header-text'>
           <%- if @abr && @abr.home_state_abbrev %>
-          <%= t 'txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev %>
+          <%= I18n.t("states.custom.#{@abr.i18n_key}.request_absentee_ballot_in", default: I18n.t('txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev))%>
           <%- else%>
           <%= t 'txt.request_absentee_ballot' %>
           <%- end %>

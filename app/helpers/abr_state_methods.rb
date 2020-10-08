@@ -66,9 +66,8 @@ module AbrStateMethods
             value = checkbox_values[1]
           end
         end
-        v = self.abr_state_values.find_or_create_by(attribute_name: method_name)
+        v = self.abr_state_values.find_or_initialize_by(attribute_name: method_name)
         v.string_value = value
-        v.save
         instance_variable_set("@#{method_name}", value)
       end
     end
