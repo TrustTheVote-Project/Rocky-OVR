@@ -44,4 +44,10 @@ class Admin::PdfDeliveryReportsController < Admin::BaseController
     pdr = PdfDeliveryReport.find(params[:id])
     send_data pdr.read_file(file), filename: file, type: file.ends_with?("csv") ? "text/csv" : "application/zip"
   end
+  
+  private
+
+  def init_nav_class
+    @nav_class = {pdf_delivery_reports: :current}
+  end  
 end

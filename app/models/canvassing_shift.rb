@@ -52,22 +52,29 @@ class CanvassingShift < ActiveRecord::Base
 
   def self.location_options(partner, turf_id: nil)
     b = BlocksService.new(partner: partner)
-    locations = begin b.get_locations(turf_id: turf_id)&.[]("locations") rescue nil end;
+    locations_list = []
+    locations = begin b.get_locations(partner, turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
-      return locations.map {|obj| [obj["name"], obj["id"]]}
+      locations_list = locations.map {|obj| [obj["name"], obj["id"]]}
     else
       default_location_id = begin
         RockyConf.blocks_configuration.partners[partner.id].location_id || RockyConf.blocks_configuration.default_location_id
       rescue
         nil
       end
-      return [["Default Location", default_location_id]] if default_location_id
+      locations_list = [["Default Location", default_location_id]] if default_location_id
+    end    
+    return locations_list.collect do |name, blocks_id|
+      bl = BlocksLocation.find_or_create_by(blocks_id: blocks_id, name: name)
+      [bl.name, bl.id]
     end
-    return []
   end
 
   def shift_location=(value)
-    self[:shift_location] = value
+    # If it's a BlocksLocation, use the ID from that
+    blocks_location = BlocksLocation.find_by_id(value)&.blocks_id || value
+    
+    self[:shift_location] = blocks_location
     location_options = CanvassingShift.location_options(self.partner, turf_id: self.blocks_turf_id)
     location_options.each do |name, id|
       self.blocks_shift_location_name = name if id.to_s.strip == value.to_s.strip

@@ -597,6 +597,8 @@ module V3
             attrs[:phone] = cls[:value]
             if cls[:capabilities].include?("sms")
               attrs[:phone_type] = I18n.t("txt.registration.phone_types.mobile")
+            else
+              attrs[:phone_type] ||= I18n.t("txt.registration.phone_types.other")
             end
           when "email"
             attrs[:email_address] = cls[:value]

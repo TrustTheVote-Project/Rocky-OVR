@@ -3,25 +3,32 @@ en:
   pdf:
     nvra:
       esign_letter: |-
-        <p>Dear County Clerk & Recorder,</p>
-        <p>The attached voter registration application was in partnership by 
-        Minnesota Voice and Rock the Vote, via Rock the Vote’s voter registration 
-        assistance platform, which prompted the individual who was registering 
-        to input their personal information and signature in the official National 
-        Mail Voter Registration form. We have worked closely with the Secretary of 
-        State’s office to ensure that this application was collected and submitted 
-        in compliance with all Minnesota voter registration requirements and timelines.</p>
-        <p>Minnesota Voice and Rock the Vote are both non-partisan, non-profit 
-        organizations focused on civic engagement. Minnesota Voice has done this work 
-        in Minnesota since 2014, and one of the organization’s current efforts in 
-        light of the pandemic is online voter registration. Founded in 1990, Rock 
-        the Vote works at a national level to engage and empower voters.</p>
-        <p>Please feel free to contact either of our organizations personally with 
-        any questions regarding this form or our process.</p>
-        <p>Sincerely,</p>
-        <div class="signature"><p>Erickson Saye<br/>Voter Registration Director<br/>Minnesota Voice<br/>erickson@minnesotavoice.org<br/>763-377-3579</p></div>
-        <div class="signature"><p>Melissa Wyatt<br/>Director of Civic Technology & Policy<br/>Rock the Vote<br/>melissa@rockthevote.org (personal)<br/>ovrtool@rockthevote.org (team)</p></div>
-
+        <p>Dear County Clerk & Recorder:</p>
+        <p>Hello, my name is Erickson Saye and I am the Voter Registration Director 
+        with Minnesota Voice, a non-partisan, non-profit organization focused on 
+        civic engagement. Our organization has done this work in Minnesota since 2014, 
+        and one of our current efforts in light of the pandemic is online voter 
+        registration. The attached voter registration application was collected in 
+        partnership with Rock the Vote’s online voter registration assistance platform, 
+        which prompted the individual who was registering to input their personal 
+        information and signature in the official National Mail Voter Registration form. 
+        We have worked closely with the Secretary of State’s office to make sure we 
+        follow Minnesota voter registration drive rules and timelines.</p>
+        <p>To ensure compliance, we will always submit registration forms with the 
+        information exactly as it was completed by the registrant. Minnesota Voice and 
+        Rock the Vote do not in any form alter the information submitted, as agreed 
+        in a meeting with the Secretary of State’s office.</p>
+        <p>Please feel free to contact me personally ​at​ 
+        <a href="mailto:​erickson@minnesotavoice.org​">​erickson@minnesotavoice.org​</a>
+        by phone at 763-377-3579 with any questions regarding this form or our process.
+        For any technical questions related to Rock the Vote or its registration assistance 
+        platform, please feel free to include Melissa Wyatt, Director of Civic Technology 
+        & Policy at Rock the Vote in any outreach: 
+        <a href="mailto:melissa@rockthevote.org">melissa@rockthevote.org</a>.
+        <p>Sincerely,<br/>
+        %{signature_image}<br/>
+        Erickson Saye<br/>Voter Registration Director<br/>Minnesota Voice
+      esign_letter_footer: <p>1600 UNIVERSITY AVE W STE 309<br/>SAINT PAUL, MN 55104-3800</p>
       state_instructions_header: "%{state} Voter Registration ID Requirements"
       page1:
         title: Voter Registration

@@ -1,0 +1,121 @@
+- name: Allegany County
+  abr_email_address:  elections@alleganygov.org
+  abr_contact_name: Allegany County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 301-777-5931
+- name: Anne Arundel County
+  abr_email_address:  elections@aacounty.org
+  abr_contact_name: Anne Arundel County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-222-6600
+- name: Baltimore City
+  abr_email_address:  election.judge@baltimorecity.gov
+  abr_contact_name: Baltimore City Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-396-5550
+- name: Baltimore County
+  abr_email_address:  elections@baltimorecountymd.gov
+  abr_contact_name: Baltimore County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-887-5700
+- name: Calvert County
+  abr_email_address:  elections@calvertcountymd.gov
+  abr_contact_name: Calvert County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-535-2214
+- name: Caroline County
+  abr_email_address:  election@carolinemd.org
+  abr_contact_name: Caroline County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-479-8145
+- name: Carroll County
+  abr_email_address:  ccboe@carrollcountymd.gov
+  abr_contact_name: Carroll County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-386-2080
+- name: Cecil County
+  abr_email_address:  voting@ccgov.org
+  abr_contact_name: Cecil County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-996-5310
+- name: Charles County
+  abr_email_address:  elections@charlescountymd.gov
+  abr_contact_name: Charles County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 301-934-8972
+- name: Dorchester County
+  abr_email_address:  Gwendolyn.dales@maryland.gov
+  abr_contact_name: Dorchester County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-228-2560
+- name: Frederick County
+  abr_email_address:  electionboard@FrederickCountyMD.gov
+  abr_contact_name: Frederick County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 301-600-8683
+- name: Garrett County
+  abr_email_address:  sfratz@garrettcounty.org
+  abr_contact_name: Garrett County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 301-334-6985
+- name: Harford County
+  abr_email_address:  elections@harfordcountymd.gov
+  abr_contact_name: Harford County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-638-3565
+- name: Howard County
+  abr_email_address: gmickley@howardcountymd.gov  
+  abr_contact_name: Howard County Board of Election
+  abr_status_check_url: 
+  abr_status_check_phone: 410-313-5820
+- name: Kent County
+  abr_email_address:  elections@kentgov.org
+  abr_contact_name: Kent County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-778-0038
+- name: Montgomery County
+  abr_email_address:  absentee@montgomerycountymd.gov
+  abr_contact_name: Montgomery County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 240-777-8500
+- name: Prince George's County
+  abr_email_address:  election@co.pg.md.us
+  abr_contact_name: Prince George's County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 301-341-7300
+- name: Queen Anne's County
+  abr_email_address:  Christine.Jones@maryland.gov
+  abr_contact_name: Queen Anne's County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-758-0832
+- name: St. Mary's County
+  abr_email_address:  Christine.Jones@maryland.gov
+  abr_contact_name: St. Mary's County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-758-0832
+- name: Somerset County
+  abr_email_address:  joanna.emely@maryland.gov
+  abr_contact_name: Somerset County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-651-0767
+- name: Talbot County
+  abr_email_address:  Jeri.Cook@maryland.gov
+  abr_contact_name: Talbot County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-770-8099
+- name: Washington County
+  abr_email_address: WashCo.Elections@maryland.gov
+  abr_contact_name: Washington County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 240-313-2050
+- name: Wicomico County
+  abr_email_address:  election@wicomicocounty.org
+  abr_contact_name: Wicomico County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-548-4830
+- name: Worcester County
+  abr_email_address:  Worcester.Elections@maryland.gov
+  abr_contact_name: Worcester County Board of Election
+  abr_status_check_url:
+  abr_status_check_phone: 410-632-1320
+

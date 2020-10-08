@@ -16,7 +16,7 @@
 - elsif !@share_only && !@pdf_ready
   %h2= t('txt.abr.finish_pdf_delay_header', state_name: @abr.home_state_name)
 
-  = t('txt.abr.finish_pdf_delay').html_safe
+  = t("states.custom.#{@abr.i18n_key}.abr.finish_pdf_delay", default: t('txt.abr.finish_pdf_delay')).html_safe
 
   = t("states.custom.#{@abr.i18n_key}.abr.finish_pdf_delay_instructions", default: "").html_safe
 

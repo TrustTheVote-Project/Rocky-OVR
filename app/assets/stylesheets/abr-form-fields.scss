@@ -119,7 +119,7 @@
     li {
       &.half,
       &.three-quarter, 
-      &.quarter,
+      &.quarter
       {
         display:block;
         width:100%;
@@ -156,6 +156,8 @@
 @import 'abr_states/oh';
 
 @import 'abr_states/wy';
+
+@import 'abr_states/wv';
 
 
 

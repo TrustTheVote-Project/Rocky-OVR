@@ -43,10 +43,10 @@ class GeoState < ActiveRecord::Base
     @@all_states_by_abbrev.map { |abbrev, state| [state.name, abbrev] }.sort
   end
 
-  # def self.collection_for_select
-  #   init_all_states
-  #   @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
-  # end
+  def self.collection_for_select_full_name
+    init_all_states
+    @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
+  end
 
   def self.init_all_states
     @@all_states_by_id ||= all.inject([]) { |arr,state| arr[state.id] = state; arr }
@@ -423,13 +423,18 @@ class GeoState < ActiveRecord::Base
       return state_abr_addr.blank? ? registrar_address(zip_code) : state_abr_addr
     end    
   end
+
   def registrar_address(zip_code=nil)
     county_address_zip = zip_code.nil? ? nil : ZipCodeCountyAddress.where(:zip=>zip_code).first
     if county_address_zip && county_address_zip.address
       county_address_zip.address.gsub(/\n/,"<br/>")
     else
-      read_attribute(:registrar_address)
+      state_registrar_address
     end
+  end
+
+  def state_registrar_address
+    read_attribute(:registrar_address)
   end
     
   

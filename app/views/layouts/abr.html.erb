@@ -3,20 +3,20 @@
 
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Online Voter Registration</title>
-  <meta name="description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
+  <title>Online Ballot Request</title>
+  <meta name="description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Rock the Vote" />
-  <meta property="og:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
+  <meta property="og:description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
   <meta property="og:site_name" content="Rock the Vote" />
   <meta property="og:image" content="https://www.rockthevote.org/wp-content/uploads/assets/v4/images/rock-the-vote-yo.jpg" />
   <meta property="og:image:secure_url" content="https://www.rockthevote.org/wp-content/uploads/assets/v4/images/rock-the-vote-yo.jpg" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
-  <meta name="twitter:title" content="Online Voter Registration" />
+  <meta name="twitter:description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
+  <meta name="twitter:title" content="Online Ballot Request" />
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://www.rockthevote.org/wp-content/uploads/assets/v4/images/rock-the-vote-yo.jpg" />
   <meta name="twitter:creator" content="@rockthevote" />
@@ -52,7 +52,7 @@
   <%= yield :head %>
 </head>
 
-<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<body class="abr-page <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
   <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
@@ -65,7 +65,7 @@
         <% end -%>
         <div class='header-text'>
           <%- if @abr && @abr.home_state_abbrev %>
-          <%= t 'txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev %>
+          <%= I18n.t("states.custom.#{@abr.i18n_key}.request_absentee_ballot_in", default: I18n.t('txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev))%>
           <%- else%>
           <%= t 'txt.request_absentee_ballot' %>
           <%- end %>

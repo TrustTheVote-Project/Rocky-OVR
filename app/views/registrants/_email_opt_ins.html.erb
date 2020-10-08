@@ -1,4 +1,6 @@
 <%- show_hr ||= false %>
+<%- @registrant ||= form.object %>
+
 <%- if @registrant.any_email_opt_ins? %>
   <%- if @registrant.partner.rtv_email_opt_in || @registrant.partner.primary? %>
     <ul class="checkbox">
