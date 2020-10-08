@@ -26,6 +26,7 @@ blocks_configuration:
       location_id: 266
       staging_location_id: 267
     991:
+      url: https://svdemo.blocks.im
       sub_orgs:
         Test Org 2: 417
         Test Org 3: 424

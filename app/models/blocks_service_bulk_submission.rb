@@ -40,6 +40,7 @@ class BlocksServiceBulkSubmission < ActiveRecord::Base
     self.partners_submitted ||= {}
     RockyConf.blocks_configuration.partners.keys.each do |pid|
       partner = Partner.find_by_id(pid.to_s)
+      service = BlocksService.new(partner: partner)          
       registrants = []
       if partner
         self.partners_submitted[pid] = {}
@@ -52,7 +53,6 @@ class BlocksServiceBulkSubmission < ActiveRecord::Base
         if registrants.any?
           self.partners_submitted[pid] = "Submitting #{registrants.count} Registrants"
           self.save
-          service = BlocksService.new
           #begin
           service.upload_complete_shift_for_partner(partner, registrants, shift_start, shift_end)
           # rescue Exception => e

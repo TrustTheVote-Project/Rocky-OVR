@@ -51,8 +51,8 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def self.location_options(partner, turf_id: nil)
-    b = BlocksService.new
-    locations = begin b.get_locations(partner, turf_id: turf_id)&.[]("locations") rescue nil end;
+    b = BlocksService.new(partner: partner)
+    locations = begin b.get_locations(turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
       return locations.map {|obj| [obj["name"], obj["id"]]}
     else
@@ -194,8 +194,9 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def submit_to_blocks
+    pa = GeoState["PA"]
     if !submitted_to_blocks? && is_ready_to_submit?
-      service = BlocksService.new
+      service = BlocksService.new(partner: self.partner)
       created_shift = service.upload_canvassing_shift(self, shift_type: blocks_shift_type)
       forms = created_shift[:forms]
       shift = created_shift[:shift]
@@ -207,7 +208,9 @@ class CanvassingShift < ActiveRecord::Base
           form_id = form_result["id"]
           registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
           grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
-          BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+          if !req_reg.is_a?(Registrant) || (req_reg.is_a?(Registrant) && req_reg.home_state_id = pa.id)
+            BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+          end
         else
           puts "No form result for #{reg_req} #{i}"
         end

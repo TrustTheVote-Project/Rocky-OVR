@@ -44,10 +44,17 @@ class BlocksService
     registrant.uid = "grommet-request-#{req.id}"
     return self.form_from_registrant(registrant)
   end
+
+  attr_reader :partner
   
-  def initialize
+  def initialize(partner: nil)
+    @partner = partner
     # call this immediately and outside of another RequestLogSession call
     get_token
+  end
+
+  def url
+    RockyConf.blocks_configuration.partners[partner.id]&.url
   end
   
   def token
@@ -56,7 +63,7 @@ class BlocksService
   
   def get_token
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      @token = BlocksClient.get_token["jwt"]
+      @token = BlocksClient.get_token(url: url)["jwt"]
       return @token
     end
   end
@@ -105,11 +112,11 @@ class BlocksService
     end
   end
   
-  def get_locations(partner, turf_id: nil)
-    turf_id ||= RockyConf.blocks_configuration.partners&.[](partner.id)&.turf_id
+  def get_locations(turf_id: nil)
+    turf_id ||= RockyConf.blocks_configuration.partners&.[](partner&.id)&.turf_id
     unless turf_id.blank?
       RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-        return BlocksClient.get_locations(turf_id, token: self.token)
+        return BlocksClient.get_locations(turf_id, token: self.token, url: url)
       end
     end
     return {
@@ -120,31 +127,31 @@ class BlocksService
   #add_metadata_to_form(form_id, meta_data={}, token:)
   def add_metadata_to_form(form_id, meta_data={})
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token)
+      return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token, url: url)
     end
   end
 
   def canvassers(turf_id)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.canvassers(turf_id, {token: self.token})
+      return BlocksClient.canvassers(turf_id, {token: self.token, url: url})
     end    
   end
 
   def create_canvasser(canvasser_data)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token}))
+      return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token, url: url}))
     end
   end
 
   def create_shift(canvasser_data)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.create_shift(canvasser_data.merge({token: self.token}))
+      return BlocksClient.create_shift(canvasser_data.merge({token: self.token, url: url}))
     end
   end
   
   def upload_registrations(shift_id, forms)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.upload_registrations(shift_id, forms, token: self.token)
+      return BlocksClient.upload_registrations(shift_id, forms, token: self.token, url: url)
     end
   end
   
