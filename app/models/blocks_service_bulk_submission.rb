@@ -39,10 +39,11 @@ class BlocksServiceBulkSubmission < ActiveRecord::Base
   def run
     self.partners_submitted ||= {}
     RockyConf.blocks_configuration.partners.keys.each do |pid|
+      bulk_submit = RockyConf.blocks_configuration.partners[pid].bulk_submit != false
       partner = Partner.find_by_id(pid.to_s)
       service = BlocksService.new(partner: partner)          
       registrants = []
-      if partner
+      if bulk_submit && partner
         self.partners_submitted[pid] = {}
         started_registrants = partner.registrants.includes(:canvassing_shift_registrant=>:canvassing_shift).where(home_state: GeoState["PA"]).where("created_at >= ? AND created_at < ?", shift_start, shift_end)
         started_registrants.each do |r|

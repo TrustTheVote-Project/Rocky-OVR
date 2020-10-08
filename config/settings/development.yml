@@ -25,6 +25,7 @@ blocks_configuration:
     1:
       url: https://svdemo.blocks.im
       default_staging_location_id: 758
+      bulk_submit: false
       sub_orgs:
         Org 1: 171
         Org 2: 172
