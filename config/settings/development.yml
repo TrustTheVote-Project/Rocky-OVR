@@ -26,7 +26,7 @@ blocks_configuration:
       states:
         - NV
       url: https://svdemo.blocks.im
-      default_staging_location_id: 758
+      staging_location_id: 758
       bulk_submit: false
       sub_orgs:
         Org 1: 171
