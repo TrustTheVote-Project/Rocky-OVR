@@ -8,8 +8,9 @@
 - if @lookup.is_match?
   %p= t('txt.lookup.matched', first_name: @lookup.first)
   = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
-  %p#confirm_match
-    = t('txt.lookup.abr')
+  #confirm_match
+    .intro-message
+      %p= t('txt.lookup.abr')
     %span.rollover_button.button
       = link_to t('txt.lookup.abr_link'), abr_catalist_lookup_path(@lookup)
       

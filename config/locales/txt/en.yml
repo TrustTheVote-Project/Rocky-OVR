@@ -12,7 +12,7 @@ en:
       abr: "Now that you've confirmed your voter registration, make sure your voice is heard on Election Day: request a Vote-by-Mail Ballot!"
       abr_link: Request a Vote-by-Mail Ballot
       reject: Not you?
-      register: Register to Vote.
+      register: Register to Vote
       go_back: I would like to check again.
       check_again: <p>If this doesn't seem right, <a href="%{url}" target="_blank" rel="noopener">check again</a> with your state.</p>
       not_matched: "<p>%{first_name}, our records did not find that you're registered to vote. You can re-register to vote at your current address.</p>"
