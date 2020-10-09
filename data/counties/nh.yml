@@ -1,0 +1,40 @@
+- name: Belknap County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Carroll County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Cheshire County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Coos County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Grafton County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Hillsborough County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Merrimack County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Rockingham County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Strafford County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 
+- name: Sullivan County
+  abr_email_address: 
+  abr_contact_name: 
+  abr_status_check_phone: 

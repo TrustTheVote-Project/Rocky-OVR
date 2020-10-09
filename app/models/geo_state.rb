@@ -43,10 +43,10 @@ class GeoState < ActiveRecord::Base
     @@all_states_by_abbrev.map { |abbrev, state| [state.name, abbrev] }.sort
   end
 
-  # def self.collection_for_select
-  #   init_all_states
-  #   @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
-  # end
+  def self.collection_for_select_full_name
+    init_all_states
+    @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
+  end
 
   def self.init_all_states
     @@all_states_by_id ||= all.inject([]) { |arr,state| arr[state.id] = state; arr }

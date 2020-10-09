@@ -229,12 +229,22 @@ ActiveRecord::Schema.define(version: 20200929202144) do
     t.string   "county"
     t.string   "phone"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.text     "match"
+    t.integer  "partner_id"
+    t.string   "tracking_source"
+    t.string   "tracking_id"
+    t.string   "uid"
+    t.string   "phone_type"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_opt_in_sms"
   end
 
   add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email"
+  add_index "catalist_lookups", ["partner_id"], name: "index_catalist_lookups_on_partner_id"
   add_index "catalist_lookups", ["state_id"], name: "index_catalist_lookups_on_state_id"
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -303,6 +313,7 @@ ActiveRecord::Schema.define(version: 20200929202144) do
     t.string   "registrar_abr_address"
     t.string   "status_check_url"
     t.boolean  "pdf_assistance_enabled"
+    t.date     "catalist_updated_at"
   end
 
   create_table "grommet_requests", force: :cascade do |t|
@@ -777,6 +788,15 @@ ActiveRecord::Schema.define(version: 20200929202144) do
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
     t.integer  "penndot_retries",                                  default: 0
+    t.boolean  "request_abr"
+    t.string   "abr_address_type"
+    t.string   "abr_ballot_address"
+    t.string   "abr_ballot_city"
+    t.string   "abr_ballot_state"
+    t.string   "abr_ballot_zip"
+    t.string   "abr_ballot_address_start_year"
+    t.string   "abr_ward"
+    t.boolean  "abr_declaration"
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id"
