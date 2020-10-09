@@ -704,6 +704,7 @@ body {
     text-align: center;
   }
   
+  &.lookup span.rollover_button a,
   .continue_shift .rollover_button a,
   .download .rollover_button a {
     background-color: #fff;
@@ -866,7 +867,18 @@ body {
       }
     }
   }
-  &.abr {
+  &.lookup {
+    span.rollover_button {
+      display: block;
+      text-align: center;
+      a {
+        cursor: pointer;
+        display: inline-block;
+        margin: 1em auto !important;
+      }
+    }
+  }
+  &.abr, &.lookup {
     line-height: 1.4em;
     h2 {
       text-align: center;
@@ -899,6 +911,7 @@ body {
       margin: 2em 0;
       cursor: pointer;
       p  {
+        color: #333;
         font-size: 18px;
         a {
           color: #B32426;
@@ -906,15 +919,46 @@ body {
       }
     }
     .reject {
+      color: #333;
       margin: 3em 0;
       p {
         color: #333;
         font-size: 18px;        
       }
     }
-    @import 'abr-form-fields'
+    @import 'abr-form-fields';    
   }
-  
+  &.lookup {
+    form {
+      ul {
+        li {
+          &.registrant-form__first-name__line,
+          &.registrant-form__last-name__line {
+            width: 38%
+          }
+          &.registrant-form__home-city__line {
+            width: 70%
+          }
+        }
+      }
+    }
+    #confirm_match {
+      padding-top: 1em;
+      p {
+        margin: 1.5em 0;
+      }
+    }
+    
+    .reject {
+      color: #666;
+      margin: 1.5em 0;
+      text-align: center;
+      p {
+        color: #666;
+        font-size: 14px;        
+      }
+    }
+  }
   
 }
 
@@ -952,3 +996,7 @@ body {
 @import 'registration2-mobile';
 @import 'registration2-new-mobile-ui';
 @import 'registration2-signature-capture';
+
+body.abr-page {
+  @import 'abr-page';
+}

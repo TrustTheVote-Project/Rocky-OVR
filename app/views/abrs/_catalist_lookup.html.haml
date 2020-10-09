@@ -1,8 +1,6 @@
 .catalist_match
-  .name
+  %p.name
     = catalist_lookup.match_name
-  .address
-    = t('txt.abr.match.address') 
     %br
     = catalist_lookup.match_address1
     - unless catalist_lookup.match_address2.blank?

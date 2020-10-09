@@ -30,12 +30,26 @@ class Admin::GeoStatesController < Admin::BaseController
   end
 
   def bulk_update
+    catalist_update_dates = {}
+    if catalist_update_file = params[:catalist_update_file]
+      begin
+        CSV.foreach(catalist_update_file.path, headers: true, col_sep: "\t") do  |row|
+          catalist_update_dates[row["State"].to_s.downcase] = Date.parse(row["Release Date"])
+        end
+      rescue
+        flash[:error] = "Expected tab delimited file with header row columns \"State\" and \"Release Date\""
+      end
+    end
     GeoState.all.each do |s|
       if params[:pdf_assistance_enabled] && params[:pdf_assistance_enabled][s.abbreviation]
         s.pdf_assistance_enabled = params[:pdf_assistance_enabled][s.abbreviation] == "1"
+        catalist_updated_at = catalist_update_dates[s.abbreviation.downcase]
+        s.catalist_updated_at = catalist_updated_at if catalist_updated_at
         s.save
       end
     end
+    
+    flash[:message] = "State Settings Updated"
     redirect_to action: :index
   end
 

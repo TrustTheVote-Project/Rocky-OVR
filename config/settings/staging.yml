@@ -26,6 +26,7 @@ blocks_configuration:
       location_id: 19000000002
       staging_location_id: 19000000003
     991:
+      bulk_submit: false
       sub_orgs:
         Test Org 2: 417
         Test Org 3: 424
@@ -95,7 +96,7 @@ ovr_states:
       log_all_requests: true
       disclosures_font_size: 12px
       disclosures_box_height: 170px
-      web_url_base: https://tst-uat-ols.sos.ca.gov
+      web_url_base: https://tst-uat-pub.sos.ca.gov
       disclosures_url: https://covr.cdn.sos.ca.gov/discl/
       web_agency_key: RTV    
       

@@ -10,7 +10,6 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
   {
     "rocky_request": {
       "lang": "en",
-      "phone_type": "home",
       "partner_id": #{partner_id},
       "opt_in_email": false,
       "opt_in_sms": false,
@@ -72,8 +71,7 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
                 "value": "555-555-5555",
                 "capabilities": [
                   "voice",
-                  "fax",
-                  "sms"
+                  "fax"
                 ]
               }
             ]
@@ -209,8 +207,7 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
               "value": "555-555-5555",
               "capabilities": [
                 "voice",
-                "fax",
-                "sms"
+                "fax"
               ]
             },
             {

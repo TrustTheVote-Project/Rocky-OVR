@@ -35,8 +35,8 @@ class RequestLog < ActiveRecord::Base
     data = RequestLog
       .build_duration_data(duration, :total_duration_ms)
       .merge(build_error_messages(error))
-
-    update_attributes(RequestLogSession.censor.protect(data, RequestLogSession.registrant))
+    censored_data = RequestLogSession.censor.protect(data, RequestLogSession.registrant)
+    update_attributes(censored_data)
   end
 
   def self.build_request_data(http, request)
@@ -49,7 +49,7 @@ class RequestLog < ActiveRecord::Base
   def self.build_response_data(response)
     {
       response_code: response&.code,
-      response_body: response&.body,
+      response_body: response&.body.force_encoding("UTF-8"),
     }
   end
 
@@ -63,9 +63,9 @@ class RequestLog < ActiveRecord::Base
     new_error = nil
     if error.present?
       if error.is_a?(Exception)
-        new_error = "#{error.class.name}: #{error.message}"
+        new_error = "#{error.class.name}: #{error.message}".force_encoding("UTF-8")
       else
-        new_error = "#{error}"
+        new_error = "#{error}".force_encoding("UTF-8")
       end
     end
 

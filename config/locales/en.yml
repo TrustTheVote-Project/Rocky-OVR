@@ -3,6 +3,10 @@ en:
   time:
     formats:
       short: "%B %d, %l:%M %p"
+      
+  date:
+    formats:
+      ymd: "%Y-%m-%d"
   'yes': 'Yes'
   'no': 'No'
   required: Required
@@ -246,6 +250,20 @@ en:
           to the best of my knowledge.
         confirm_email_delivery: I have reviewed the above information and wish to email my request to my local elections office.
         registration_county: My local elections office (i.e. my city or county)
+      catalist_lookup:
+        date_of_birth: Date of Birth
+        email: Email Address
+        zip: ZIP Code
+        first: First Name
+        last: Last Name
+        address: Address
+        city: City
+        state_name: State
+        state_abbrev: State
+        phone: Phone
+        phone_type: Type
+        opt_in_email: Receive emails
+        opt_in_sms: Receive text messages
       registrant:
         date_of_birth: Date of Birth
         email_address: Email Address
@@ -431,6 +449,16 @@ en:
           attributes:
             confirm_email_delivery:
               accepted: You must confirm before continuing.
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+        catalist_lookup:
+          blank: Required
+          format: Invalid
+          invalid: "%{attribute} is invalid."
+          attributes:
+            phone_type:
+              blank: Required if providing phone number
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900

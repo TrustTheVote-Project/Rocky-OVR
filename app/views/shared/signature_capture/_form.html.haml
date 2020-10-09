@@ -5,7 +5,7 @@
   
 %fieldset#signature_upload
   %p.instructions 
-    = I18n.t("states.custom.#{home_state_key}.signature_capture.#{allow_desktop_signature ? 'desktop_provide_e_signature' : 'desktop_provide_signature'}", default: t("txt.signature_capture.#{allow_desktop_signature ? 'desktop_provide_e_signature' : 'desktop_provide_signature'}", {state: @registrant.home_state_name}))
+    = I18n.t("states.custom.#{home_state_key}.signature_capture.#{allow_desktop_signature ? 'desktop_provide_e_signature' : 'desktop_provide_signature'}", default: t("txt.signature_capture.#{allow_desktop_signature ? 'desktop_provide_e_signature' : 'desktop_provide_signature'}", {state: @registrant.home_state_name})).html_safe
   - if form.object.errors[:voter_signature_image].any?
     %p.instructions
       %span.error
