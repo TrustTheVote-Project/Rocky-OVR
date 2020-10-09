@@ -942,6 +942,13 @@ body {
         }
       }
     }
+    #confirm_match {
+      padding-top: 1em;
+      p {
+        margin: 1.5em 0;
+      }
+    }
+    
     .reject {
       color: #666;
       margin: 1.5em 0;
