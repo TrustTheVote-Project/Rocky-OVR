@@ -24,11 +24,14 @@ blocks_configuration:
       states:
         - NV
       url: https://svdemo.blocks.im
-      staging_location_id: 758
       bulk_submit: false
       sub_orgs:
-        Org 1: 171
-        Org 2: 172
+        - name: Org 1
+          turf_id: 171
+          staging_location_id: 758
+        - name: Org 2
+          turf_id: 172
+          staging_location_id: 758
 
     991:
       turf_id: 19000000023

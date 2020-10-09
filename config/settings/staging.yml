@@ -33,8 +33,12 @@ blocks_configuration:
       staging_location_id: 758
       bulk_submit: false
       sub_orgs:
-        Org 1: 171
-        Org 2: 172canvasser_id: 129
+        - name: Org 1
+          turf_id: 171
+          staging_location_id: 758
+        - name: Org 2
+          turf_id: 172
+          staging_location_id: 758
 
 mail_with_esig:
   states:

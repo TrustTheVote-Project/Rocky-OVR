@@ -170,11 +170,12 @@ class BlocksService
   
   def build_canvassing_shift_blocks_hash(shift, shift_type)
     partner_id = shift.partner_id
+    partner_config = RockyConf.blocks_configuration.partners&.[](partner_id)
     turf_id = !shift.blocks_turf_id.blank? ? shift.blocks_turf_id : RockyConf.blocks_configuration.partners&.[](partner_id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    suborg_config = partner_config&.sub_orgs&.detect {|so| so.turf_id && so.turf_id.to_s == turf_id.to_s}
     
-    
-    location_id = shift.shift_location || RockyConf.blocks_configuration.default_location_id
-    staging_location_id = RockyConf.blocks_configuration.partners[partner_id]&.staging_location_id || shift.shift_location
+    location_id = shift.shift_location || suborg_config&.location_id || partner_config&.location_id || RockyConf.blocks_configuration.default_location_id
+    staging_location_id = suborg_config&.staging_location_id || partner_config&.staging_location_id || RockyConf.blocks_configuration.default_staging_location_id
     canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
     canvasser_id = canvasser["canvasser"]["id"]
     

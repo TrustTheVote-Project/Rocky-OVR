@@ -63,7 +63,9 @@ class CanvassingShift < ActiveRecord::Base
       locations_list = locations.map {|obj| [obj["name"], obj["id"]]}
     else
       default_location_id = begin
-        RockyConf.blocks_configuration.partners[partner.id].location_id || RockyConf.blocks_configuration.default_location_id
+        partner_config = RockyConf.blocks_configuration.partners[partner.id]
+        suborg_config = partner_config&.sub_orgs&.detect {|so| so.turf_id && so.turf_id.to_s == turf_id.to_s }
+        suborg_config&.location_id || partner_config&.location_id || RockyConf.blocks_configuration.default_location_id
       rescue
         nil
       end
