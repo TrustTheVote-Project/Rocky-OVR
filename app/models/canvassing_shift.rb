@@ -197,7 +197,7 @@ class CanvassingShift < ActiveRecord::Base
       self.abandoned_registrations = 0
       resave = true
     end
-    if !self.completed_registrations.nil?
+    if self.completed_registrations.nil?
       self.completed_registrations = self.registrants_or_requests.size
       resave = true
     end
