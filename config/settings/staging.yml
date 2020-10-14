@@ -16,7 +16,7 @@ ui_timeout_minutes: 5
 blocks_configuration:
   default_turf_id: 416
   default_location_id: 266
-  default_staging_location_id: 267
+  default_staging_location_id: 19000000003
   shift_length: 1
   url: https://svtesting.blocks.work
   partners:
