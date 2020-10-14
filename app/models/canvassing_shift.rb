@@ -182,6 +182,27 @@ class CanvassingShift < ActiveRecord::Base
     self.completed_registrations = web_complete_registrants.count
     self.abandoned_registrations = web_abandoned_registrants.count
   end
+  
+  def set_defaults!
+    resave = false
+    if !self.clock_in_datetime 
+      self.clock_in_datetime = self.created_at
+      resave = true
+    end
+    if !self.clock_out_datetime
+      self.clock_out_datetime = self.updated_at
+      resave = true
+    end
+    if self.abandoned_registrations.nil?
+      self.abandoned_registrations = 0
+      resave = true
+    end
+    if self.completed_registrations.nil?
+      self.completed_registrations = self.registrants_or_requests.size
+      resave = true
+    end
+    save! if resave      
+  end
 
   def is_ready_to_submit?
     !!(self.clock_in_datetime && self.clock_out_datetime && self.complete?)
