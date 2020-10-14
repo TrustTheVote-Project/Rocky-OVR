@@ -19,7 +19,7 @@ end
 
 def clock_out(shift_id, abandoned_registrations: 0, completed_registrations: 0)
   json = clock_out_json(abandoned_registrations: abandoned_registrations, completed_registrations: completed_registrations)
-  puts json
+  json = "{}"
   resp = RestClient.put("#{URL}?shift_id=#{shift_id}", json.to_json, {content_type: :json, accept: :json})
   return resp
 end
