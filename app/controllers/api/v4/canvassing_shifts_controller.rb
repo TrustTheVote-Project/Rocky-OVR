@@ -69,6 +69,7 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
     c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
       c.complete!
+      c.set_defaults!
       jsonp({errors: []})
     else
       jsonp({
