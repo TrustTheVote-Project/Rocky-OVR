@@ -77,6 +77,8 @@ class Partner < ActiveRecord::Base
   belongs_to :state, :class_name => "GeoState"
   belongs_to :government_partner_state, :class_name=> "GeoState"
   has_many :registrants
+  has_many :abrs
+  has_many :catalist_lookups
   has_many :canvassing_shifts
 
   
@@ -606,6 +608,30 @@ class Partner < ActiveRecord::Base
   def generate_grommet_shift_report(start_date=nil, end_date=nil)
     r = Report.new({
       report_type: Report::GROMMET_SHIFT_REPORT,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!
+    
+    return    
+  end
+
+  def generate_abr_report(start_date=nil, end_date=nil)
+    r = Report.new({
+      report_type: Report::ABR_REPORT,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!
+    
+    return    
+  end
+
+  def generate_lookup_report(start_date=nil, end_date=nil)
+    r = Report.new({
+      report_type: Report::LOOKUP_REPORT,
       start_date: start_date,
       end_date: end_date,
       partner: self      

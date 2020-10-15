@@ -85,6 +85,7 @@ Rocky::Application.routes.draw do
       post "canvassing_shift_report"
       post "grommet_registrant_report"
       post "grommet_shift_report"
+      post "abr_report"
       get "reports"
       get "download_csv"
       get "embed_codes"

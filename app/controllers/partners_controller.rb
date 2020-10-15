@@ -176,6 +176,14 @@ SCRIPT
     current_partner.generate_grommet_shift_report(start_date, end_date)
     redirect_to reports_partner_url
   end
+
+  def abr_report
+    start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
+    end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
+    
+    current_partner.generate_abr_report(start_date, end_date)
+    redirect_to reports_partner_url
+  end
   
   def download_csv
     report = Report.find_by_id(params[:report_id])
