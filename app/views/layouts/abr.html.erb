@@ -20,6 +20,9 @@
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://www.rockthevote.org/wp-content/uploads/assets/v4/images/rock-the-vote-yo.jpg" />
   <meta name="twitter:creator" content="@rockthevote" />
+  <%- unless controller.action_name == "new" %>
+    <meta name="robots" content="noindex" />
+  <%- end %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
