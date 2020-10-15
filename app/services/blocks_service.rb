@@ -151,7 +151,8 @@ class BlocksService
   
   def upload_registrations(shift_id, forms)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.upload_registrations(shift_id, forms, token: self.token, url: url)
+      shift_status = forms.any? ? "ready_for_qc" : "ready_for_delivery"
+      return BlocksClient.upload_registrations(shift_id, forms, shift_status: shift_status,  token: self.token, url: url)
     end
   end
   
