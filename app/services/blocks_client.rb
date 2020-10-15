@@ -63,21 +63,25 @@ class BlocksClient
     send(:get, path, body: body, headers: headers, url: url)
   end
 
-  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected:, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, token:, url: nil)
+  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected: nil, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, token:, url: nil)
     path = "shifts"
     headers = {'Content-Type' => 'application/json'}
+
+    shift = {
+      canvasser_id: canvasser_id,
+      location_id: location_id,
+      staging_location_id: staging_location_id,
+      shift_start: shift_start,
+      shift_end: shift_end,
+      shift_type: shift_type
+    }
+    shift[:soft_count_cards_total_collected] = soft_count_cards_total_collected unless soft_count_cards_total_collected.nil?
+    shift[:soft_count_cards_complete_collected] = soft_count_cards_complete_collected unless soft_count_cards_complete_collected.nil?
+    shift[:soft_count_cards_incomplete_collected] = soft_count_cards_incomplete_collected unless soft_count_cards_incomplete_collected.nil?
+    
+
     body = {
-      shift: {
-        canvasser_id: canvasser_id,
-        location_id: location_id,
-        staging_location_id: staging_location_id,
-        shift_start: shift_start,
-        shift_end: shift_end,
-        shift_type: shift_type,
-        soft_count_cards_total_collected: soft_count_cards_total_collected || 0,
-        soft_count_cards_complete_collected: soft_count_cards_complete_collected || 0,
-        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected || 0
-      },
+      shift: shift,
       jwt: token
     }
     send(:post, path, body: body, headers: headers, url: url)

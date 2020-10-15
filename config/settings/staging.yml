@@ -30,8 +30,8 @@ blocks_configuration:
         - NV
       url: https://svdemo.blocks.im
       bulk_submit: false
+      submit_forms: false
       staging_location_id: 758
-      bulk_submit: false
       sub_orgs:
         - name: Org 1
           turf_id: 171

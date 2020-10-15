@@ -228,26 +228,32 @@ class CanvassingShift < ActiveRecord::Base
     end
   end
 
+  def submit_forms?
+    RockyConf.blocks_configuration.partners[partner.id]&.submit_forms != false
+  end
+
   def submit_to_blocks
     pa = GeoState["PA"]
     if !submitted_to_blocks? && is_ready_to_submit?
       service = BlocksService.new(partner: self.partner)
       created_shift = service.upload_canvassing_shift(self, shift_type: blocks_shift_type)
-      forms = created_shift[:forms]
       shift = created_shift[:shift]
       self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
-      registrants_or_requests.each_with_index do |reg_req, i|
-        form_result = get_form_from_reg_req(reg_req, forms, i)
-        # Make sure form_result maps to reg_req
-        if form_result #form_matches_request(form_result, reg_req)
-          form_id = form_result["id"]
-          registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
-          grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
-          if !reg_req.is_a?(Registrant) || (reg_req.is_a?(Registrant) && reg_req.home_state_id = pa.id)
-            BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+      if submit_forms?
+        forms = created_shift[:forms]
+        registrants_or_requests.each_with_index do |reg_req, i|
+          form_result = get_form_from_reg_req(reg_req, forms, i)
+          # Make sure form_result maps to reg_req
+          if form_result #form_matches_request(form_result, reg_req)
+            form_id = form_result["id"]
+            registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
+            grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
+            if !reg_req.is_a?(Registrant) || (reg_req.is_a?(Registrant) && reg_req.home_state_id = pa.id)
+              BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+            end
+          else
+            puts "No form result for #{reg_req} #{i}"
           end
-        else
-          puts "No form result for #{reg_req} #{i}"
         end
       end
     end

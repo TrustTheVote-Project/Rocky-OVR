@@ -25,6 +25,7 @@ blocks_configuration:
         - NV
       url: https://svdemo.blocks.im
       bulk_submit: false
+      submit_forms: false
       sub_orgs:
         - name: Org 1
           turf_id: 171

@@ -74,16 +74,16 @@ class BlocksService
   
   def upload_canvassing_shift(shift, shift_type: "digital_voter_registration")
     shift_params = build_canvassing_shift_blocks_hash(shift, shift_type)
-    forms = build_blocks_forms_from_canvassing_shift(shift)
+    forms = shift.submit_forms? ? build_blocks_forms_from_canvassing_shift(shift) : []
     
-    shift = create_shift(shift_params)
-    shift_id = shift["shift"]["id"]
+    shift_response = create_shift(shift_params)
+    shift_id = shift_response["shift"]["id"]
     form_responses = []
-    if forms && forms.any?
+    if forms
       form_responses = upload_registrations(shift_id, forms)
     end
     return {
-      shift: shift,
+      shift: shift_response,
       forms: form_responses
     }
   end
@@ -183,17 +183,22 @@ class BlocksService
     soft_count_cards_complete_collected   = shift.completed_registrations
     soft_count_cards_incomplete_collected = shift.abandoned_registrations
     
-    return {
+    shift_params = {
       canvasser_id: canvasser_id,
       location_id: location_id,
       staging_location_id: staging_location_id, 
       shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
       shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
       shift_type: shift_type, 
-      soft_count_cards_total_collected: soft_count_cards_total_collected,
-      soft_count_cards_complete_collected: soft_count_cards_complete_collected,
-      soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
     }
+    if shift.submit_forms?
+      shift_params = shift_params.merge({
+        soft_count_cards_total_collected: soft_count_cards_total_collected,
+        soft_count_cards_complete_collected: soft_count_cards_complete_collected,
+        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
+      })
+    end
+    return shift_params
   end
   
 end
