@@ -7,6 +7,7 @@ Rocky::Application.routes.draw do
   match "/registrants/map", to: "registrants#new", via: :get
   match "/registrants/map/:state_abbrev", to: "registrants#new", via: :get
   match "/absentee", to: "abrs#new", via: :get
+  match "/lookup", to: "catalist_lookups#new", via: :get
   match "/share", to: "registrants#share", via: :get
   
   match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
@@ -27,6 +28,13 @@ Rocky::Application.routes.draw do
   
   match "/absentee/timeout", :to => "abr_timeouts#index", :as=>'abr_timeout', via: :get
   
+  resources "lookup", :only => [:new, :create, :show, :update], :controller=>"catalist_lookups", as: :catalist_lookups do
+    member do
+      get "registration"
+      get "abr"
+    end
+  end
+
   resources "absentee", :only => [:new, :create, :show, :update], :controller=>"abrs", as: :abrs do
     member do
       get "step_2"
@@ -216,10 +224,14 @@ Rocky::Application.routes.draw do
       
       match 'voterregistrationrequest', format: 'json', controller: 'registrations', action: 'create_pa', via: :post
       resources :canvassing_shifts, only: [:create, :update] do
+        collection do
+          put :update
+        end
         member do
           get :complete
         end
       end
+      match "completeShift/:id/complete", to: "canvassing_shifts#complete", via: :get
       
     end
   end

@@ -16,8 +16,8 @@
 
 %h1 State Configurations
 
-= form_tag bulk_update_admin_geo_states_path, method: :post do
-  %table
+= form_tag bulk_update_admin_geo_states_path, method: :post, multipart: true do
+  %table.border
     %tr
       %th{style: "vertical-align: bottom"} State
       %th 
@@ -26,6 +26,10 @@
         .toggle-off#pdf_assistance_enabled{style: "cursor:pointer"} Deselect All
         %br
         PDF Assistance Enabled
+      %th 
+        Catlist Last Update
+        %br
+        = file_field_tag "catalist_update_file"
         
     - @geo_states.each do |s|
       %tr
@@ -33,6 +37,12 @@
         %td.pdf_assistance_enabled
           = hidden_field_tag "pdf_assistance_enabled[#{s.abbreviation}]", "0"
           = check_box_tag "pdf_assistance_enabled[#{s.abbreviation}]", "1", s.pdf_assistance_enabled
+        %td
+          - if s.catalist_updated_at 
+            = l(s.catalist_updated_at, format: :ymd)
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            = (Date.today.to_date - s.catalist_updated_at).to_i
+            days ago
   
   %br
   = submit_tag "Save"

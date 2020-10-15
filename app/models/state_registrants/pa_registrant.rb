@@ -545,6 +545,14 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     r.save(validate: false)
   end
   
+  def has_state_license?
+    !self.confirm_no_penndot_number?
+  end
+  
+  def has_ssn?
+    !self.confirm_no_dl_or_ssn?
+  end
+  
 
   def self.resize_signature_url(sig_url)
     regexp = /\Adata:(.+);base64,(.+)\z/

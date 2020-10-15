@@ -23,6 +23,7 @@ blocks_configuration:
   url: https://svtesting.blocks.work
   partners:
     1:
+      bulk_submit: false
       sub_orgs:
         Org 1: 416
         Org 2: 417
@@ -34,6 +35,11 @@ blocks_configuration:
       canvasser_id: 129
       location_id: 266
       staging_location_id: 267
+    7:
+      turf_id: 19000000023
+      canvasser_id: 19000000022
+      location_id: 19000000002
+      staging_location_id: 19000000003
       
 ovr_states:
   CA:

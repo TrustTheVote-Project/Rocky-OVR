@@ -44,6 +44,12 @@ class Report < ActiveRecord::Base
   has_many :report_data
   serialize :filters, Hash
 
+  before_save :ensure_dates
+
+  def ensure_dates
+    self.start_date = 1.month.ago if self.start_date.blank? 
+    self.end_date = 1.hour.ago if self.end_date.blank? 
+  end
 
   def self.run(report_id)
     begin
@@ -253,7 +259,7 @@ class Report < ActiveRecord::Base
   def generate_canvassing_shift_report(start=0, csv_method=:to_csv_array)
     distribute_reads(failover: false) do
       return CSV.generate do |csv|
-        selector.includes(:registrants).offset(start).limit(THRESHOLD).each do |cs|
+        selector.includes(:registrants).order(:id).offset(start).limit(THRESHOLD).each do |cs|
           csv << cs.send(csv_method)
         end
       end
@@ -316,11 +322,11 @@ class Report < ActiveRecord::Base
       va_registrants = {}
       StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       mi_registrants = {}
-      StateRegistrants::MIRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MIRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
 
       
       return CSV.generate do |csv|
-        selector.includes([:home_state, :mailing_state, :partner, :registrant_status]).offset(start).limit(THRESHOLD).each do |reg|
+        selector.includes([:home_state, :mailing_state, :partner, :registrant_status]).order(:id).offset(start).limit(THRESHOLD).each do |reg|
           if reg.use_state_flow?
             sr  = nil
             case reg.home_state_abbrev
@@ -443,7 +449,7 @@ class Report < ActiveRecord::Base
   def generate_grommet_registrants_report(start=0)
     distribute_reads(failover: false) do
       csv_string = CSV.generate do |csv|
-        selector.includes( [:home_state, :mailing_state, :partner, :registrant_status]).offset(start).limit(THRESHOLD).each do |reg|
+        selector.includes( [:home_state, :mailing_state, :partner, :registrant_status]).order(:id).offset(start).limit(THRESHOLD).each do |reg|
           if reg.is_grommet?
             key = "#{reg.first_name} #{reg.last_name} #{reg.home_address}"
             rd = report_data.find_or_create_by(key: key, report_id: self.id)

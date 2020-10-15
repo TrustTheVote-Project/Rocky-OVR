@@ -36,10 +36,10 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
 
     data = build_attrs_from_param_names([required_params, optional_params])
     
-    
     c = CanvassingShift.new(data.merge({
       shift_source: CanvassingShift::SOURCE_GROMMET        
     }))
+    
     c.generate_shift_external_id if c.shift_external_id.blank?
     c.save!
     jsonp({
@@ -54,10 +54,10 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
     return required_params_response if required_params_response
     
     data = build_attrs_from_param_names(required_params)
-    c = CanvassingShift.find_by(shift_external_id: params[:id])
+    c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
       c.update_attributes(data)
-      jsonp({})
+      jsonp({errors: []})
     else
       jsonp({
         errors: ["Shift with ID #{params[:id]} not found"]
@@ -66,10 +66,11 @@ class Api::V4::CanvassingShiftsController < Api::V4::BaseController
   end
   
   def complete
-    c = CanvassingShift.find_by(shift_external_id: params[:id])
+    c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
       c.complete!
-      jsonp({})
+      c.set_defaults!
+      jsonp({errors: []})
     else
       jsonp({
         errors: ["Shift with ID #{params[:id]} not found"]

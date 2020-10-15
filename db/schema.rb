@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200920135138) do
+ActiveRecord::Schema.define(version: 20200929202144) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -143,6 +143,15 @@ ActiveRecord::Schema.define(version: 20200920135138) do
   add_index "blocks_form_dispositions", ["grommet_request_id"], name: "index_blocks_form_dispositions_on_grommet_request_id"
   add_index "blocks_form_dispositions", ["registrant_id"], name: "index_blocks_form_dispositions_on_registrant_id"
 
+  create_table "blocks_locations", force: :cascade do |t|
+    t.string   "blocks_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "blocks_locations", ["blocks_id"], name: "index_blocks_locations_on_blocks_id"
+
   create_table "blocks_service_bulk_submissions", force: :cascade do |t|
     t.datetime "shift_start"
     t.datetime "shift_end"
@@ -220,12 +229,22 @@ ActiveRecord::Schema.define(version: 20200920135138) do
     t.string   "county"
     t.string   "phone"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.text     "match"
+    t.integer  "partner_id"
+    t.string   "tracking_source"
+    t.string   "tracking_id"
+    t.string   "uid"
+    t.string   "phone_type"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_opt_in_sms"
   end
 
   add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email"
+  add_index "catalist_lookups", ["partner_id"], name: "index_catalist_lookups_on_partner_id"
   add_index "catalist_lookups", ["state_id"], name: "index_catalist_lookups_on_state_id"
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -294,6 +313,7 @@ ActiveRecord::Schema.define(version: 20200920135138) do
     t.string   "registrar_abr_address"
     t.string   "status_check_url"
     t.boolean  "pdf_assistance_enabled"
+    t.date     "catalist_updated_at"
   end
 
   create_table "grommet_requests", force: :cascade do |t|

@@ -52,22 +52,29 @@ class CanvassingShift < ActiveRecord::Base
 
   def self.location_options(partner, turf_id: nil)
     b = BlocksService.new
+    locations_list = []
     locations = begin b.get_locations(partner, turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
-      return locations.map {|obj| [obj["name"], obj["id"]]}
+      locations_list = locations.map {|obj| [obj["name"], obj["id"]]}
     else
       default_location_id = begin
         RockyConf.blocks_configuration.partners[partner.id].location_id || RockyConf.blocks_configuration.default_location_id
       rescue
         nil
       end
-      return [["Default Location", default_location_id]] if default_location_id
+      locations_list = [["Default Location", default_location_id]] if default_location_id
+    end    
+    return locations_list.collect do |name, blocks_id|
+      bl = BlocksLocation.find_or_create_by(blocks_id: blocks_id, name: name)
+      [bl.name, bl.id]
     end
-    return []
   end
 
   def shift_location=(value)
-    self[:shift_location] = value
+    # If it's a BlocksLocation, use the ID from that
+    blocks_location = BlocksLocation.find_by_id(value)&.blocks_id || value
+    
+    self[:shift_location] = blocks_location
     location_options = CanvassingShift.location_options(self.partner, turf_id: self.blocks_turf_id)
     location_options.each do |name, id|
       self.blocks_shift_location_name = name if id.to_s.strip == value.to_s.strip
@@ -174,6 +181,27 @@ class CanvassingShift < ActiveRecord::Base
   def set_counts
     self.completed_registrations = web_complete_registrants.count
     self.abandoned_registrations = web_abandoned_registrants.count
+  end
+  
+  def set_defaults!
+    resave = false
+    if !self.clock_in_datetime 
+      self.clock_in_datetime = self.created_at
+      resave = true
+    end
+    if !self.clock_out_datetime
+      self.clock_out_datetime = self.updated_at
+      resave = true
+    end
+    if self.abandoned_registrations.nil?
+      self.abandoned_registrations = 0
+      resave = true
+    end
+    if self.completed_registrations.nil?
+      self.completed_registrations = self.registrants_or_requests.size
+      resave = true
+    end
+    save! if resave      
   end
 
   def is_ready_to_submit?

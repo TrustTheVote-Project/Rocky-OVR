@@ -607,4 +607,12 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     end
     r.save(validate: false)
   end    
+  
+  def has_state_license?
+    !self.confirm_no_dln?
+  end
+  
+  def has_ssn?
+    !self.confirm_no_ssn?
+  end
 end

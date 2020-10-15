@@ -17,6 +17,13 @@ table.assets {
   margin-top: 50px;
 }
 
+table.border {
+  td {
+    border: 1px solid #eee;
+    border-collapse: collapse;
+  }
+}
+
 table.assets .name {
   width: 200px;
 }
