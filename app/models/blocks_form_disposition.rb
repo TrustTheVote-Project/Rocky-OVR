@@ -7,20 +7,33 @@ class BlocksFormDisposition < ActiveRecord::Base
   def self.submit_updates!
     updatable = self.where(final_state_submitted: false)
     if updatable.any?
-      service = BlocksService.new
       updatable.each do |blocks_form_disposition|
-        blocks_form_disposition.update_blocks_form(service)
+        blocks_form_disposition.update_blocks_form
       end
     end
   end
 
-  def update_blocks_form(service = nil)
-    service ||= BlocksService.new
+  def update_blocks_form
+    service = BlocksService.new(registrant&.partner || partner_from_grommet_request)
     status  = request_status
     service.add_metadata_to_form(blocks_form_id, status)
     if status_complete?(status)
       self.update_attributes(final_state_submitted: true)
     end
+  end
+  
+  def partner_from_grommet_request
+    if grommet_request
+      params = grommet_request.request_params.is_a?(Hash) ? grommet_request.request_params : YAML::load(grommet_request.request_params)
+      params = params.with_indifferent_access
+      partner_id = begin
+        params["rocky_request"]["partner_id"]
+      rescue
+        nil
+      end
+      return partner_id ? Partner.find_by_id(partner_id) : nil
+    end
+    return nil
   end
   
   def status_complete?(status)
