@@ -46,19 +46,26 @@ class CanvassingShift < ActiveRecord::Base
 
   after_save :check_submit_to_blocks
 
-  def self.enabled_state_ids
-    @@enabled_state_ids ||= RockyConf.blocks_configuration.states.collect {|abbrev| GeoState[abbrev].id }
+  def enabled_state_ids
+    @enabled_state_ids ||= nil
+    if @enabled_state_ids.nil?
+      states = RockyConf.blocks_configuration.partners[self.partner_id]&.states || RockyConf.blocks_configuration.states
+      @enabled_state_ids = (states || []).collect {|abbrev| GeoState[abbrev].id }
+    end
+    return @enabled_state_ids
   end
 
   def self.location_options(partner, turf_id: nil)
-    b = BlocksService.new
+    b = BlocksService.new(partner: partner)
     locations_list = []
-    locations = begin b.get_locations(partner, turf_id: turf_id)&.[]("locations") rescue nil end;
+    locations = begin b.get_locations(turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
       locations_list = locations.map {|obj| [obj["name"], obj["id"]]}
     else
       default_location_id = begin
-        RockyConf.blocks_configuration.partners[partner.id].location_id || RockyConf.blocks_configuration.default_location_id
+        partner_config = RockyConf.blocks_configuration.partners[partner.id]
+        suborg_config = partner_config&.sub_orgs&.detect {|so| so.turf_id && so.turf_id.to_s == turf_id.to_s }
+        suborg_config&.location_id || partner_config&.location_id || RockyConf.blocks_configuration.default_location_id
       rescue
         nil
       end
@@ -179,7 +186,7 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def set_counts
-    self.completed_registrations = web_complete_registrants.count
+    self.completed_registrations = registrants_or_requests.count
     self.abandoned_registrations = web_abandoned_registrants.count
   end
   
@@ -221,23 +228,32 @@ class CanvassingShift < ActiveRecord::Base
     end
   end
 
+  def submit_forms?
+    RockyConf.blocks_configuration.partners[partner.id]&.submit_forms != false
+  end
+
   def submit_to_blocks
+    pa = GeoState["PA"]
     if !submitted_to_blocks? && is_ready_to_submit?
-      service = BlocksService.new
+      service = BlocksService.new(partner: self.partner)
       created_shift = service.upload_canvassing_shift(self, shift_type: blocks_shift_type)
-      forms = created_shift[:forms]
       shift = created_shift[:shift]
       self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
-      registrants_or_requests.each_with_index do |reg_req, i|
-        form_result = get_form_from_reg_req(reg_req, forms, i)
-        # Make sure form_result maps to reg_req
-        if form_result #form_matches_request(form_result, reg_req)
-          form_id = form_result["id"]
-          registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
-          grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
-          BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
-        else
-          puts "No form result for #{reg_req} #{i}"
+      if submit_forms?
+        forms = created_shift[:forms]
+        registrants_or_requests.each_with_index do |reg_req, i|
+          form_result = get_form_from_reg_req(reg_req, forms, i)
+          # Make sure form_result maps to reg_req
+          if form_result #form_matches_request(form_result, reg_req)
+            form_id = form_result["id"]
+            registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
+            grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
+            if !reg_req.is_a?(Registrant) || (reg_req.is_a?(Registrant) && reg_req.home_state_id = pa.id)
+              BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+            end
+          else
+            puts "No form result for #{reg_req} #{i}"
+          end
         end
       end
     end
@@ -278,7 +294,7 @@ class CanvassingShift < ActiveRecord::Base
     @regs ||= nil
     if !@regs
       if self.is_web?
-        @regs = self.web_complete_registrants.where(home_state_id: CanvassingShift.enabled_state_ids)
+        @regs = self.web_complete_registrants.where(home_state_id: self.enabled_state_ids)
       elsif self.is_grommet?
         @regs = []
         registrant_grommet_ids = []

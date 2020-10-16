@@ -21,8 +21,6 @@ ui_url_host: "register5.example.com"
 blocks_configuration:
   states:
     - PA
-    - VA
-    - MI
 
 
 # this URL (if present) is shown as a WIKI nav menu item in the Partner portal
