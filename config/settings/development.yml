@@ -52,7 +52,282 @@ blocks_configuration:
       canvasser_id: 19000000022
       location_id: 2000002091
       staging_location_id: 594
-      
+    15:
+      states:
+      - NV
+      url: https://svnv.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: Faith Organizing Alliance (FOA)
+        turf_id: '2000000113'
+        location_id: '2000002089'
+        staging_location_id: '2000002090'
+      - name: Asian Community Development Council (ACDC)
+        turf_id: '2000000114'
+        location_id: '2000002091'
+        staging_location_id: '2000002092'
+      - name: 'Mi Familia Vota Education Fund  (MFVEF) '
+        turf_id: '2000000115'
+        location_id: '2000002095'
+        staging_location_id: '2000002096'
+      - name: Acting in Community Together in Organizing Northern Nevada (ACTIONN)
+        turf_id: '2000000116'
+        location_id: '2000002093'
+        staging_location_id: '2000002094'
+      - name: Chispa Nevada (CHISPA)
+        turf_id: '2000000117'
+        location_id: '2000002097'
+        staging_location_id: '2000002098'
+      - name: Fieldworks
+        turf_id: '2000000121'
+        location_id: '2000002087'
+        staging_location_id: '2000002088'
+    26429:
+      states:
+      - FL
+      url: https://svfl.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: UnidosUS (Unidos)
+        turf_id: '6000000368'
+        location_id: '6000008941'
+        staging_location_id: '6000008940'
+    37885:
+      states:
+      - FL
+      url: https://svfl.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: New Florida Majority-Education Fund (NewFM-EF)
+        turf_id: '6000000371'
+        location_id: '6000008945'
+        staging_location_id: '6000008944'
+    38107:
+      states:
+      - FL
+      url: https://svfl.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: Poder Latinx Collective Fund (PLCF)
+        turf_id: '6000000369'
+        location_id: '6000008943'
+        staging_location_id: '6000008942'
+    38350:
+      states:
+      - FL
+      url: https://svfl.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: Florida Immigrant Coalition (FLIC)
+        turf_id: '6000000372'
+        location_id: '6000008947'
+        staging_location_id: '6000008946'
+    38373:
+      states:
+      - FL
+      url: https://svfl.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: Mi Familia Vota Education Fund (MFVEF)
+        turf_id: '6000000380'
+        location_id: '6000008957'
+        staging_location_id: '6000008956'
+    38400:
+      states:
+      - FL
+      url: https://svfl.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: Engage Miami Civic Fund (EMCF)
+        turf_id: '6000000373'
+        location_id: '6000008949'
+        staging_location_id: '6000008948'
+      - name: The First Coast Leadership Foundation (TFCLF)
+        turf_id: '6000000374'
+        location_id: '6000008951'
+        staging_location_id: '6000008950'
+      - name: Real Women Radio Foundation (RWR)
+        turf_id: '6000000375'
+        location_id: '6000008953'
+        staging_location_id: '6000008952'
+      - name: Hispanic Federation (HF)
+        turf_id: '6000000378'
+        location_id: '6000008955'
+        staging_location_id: '6000008954'
+      - name: hispanic Federation MH
+        turf_id: '6000000386'
+        location_id: '6000008959'
+        staging_location_id: '6000008958'
+    38403:
+      states:
+      - NC
+      url: https://svnc.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: Unifour One (Unifour)
+        turf_id: '3000000007'
+        location_id: '3000006136'
+        staging_location_id: '3000006135'
+      - name: You Can Vote (YCV)
+        turf_id: '3000000179'
+        location_id: '3000006132'
+        staging_location_id: '3000006131'
+      - name: Action Institute NC (AINC)
+        turf_id: '3000000180'
+        location_id: '3000006130'
+        staging_location_id: '3000006129'
+      - name: North Carolina A. Philip Randolph Institute (NCAPRI)*
+        turf_id: '3000000181'
+        location_id: '3000006134'
+        staging_location_id: '3000006133'
+      - name: Alliance For Climate Education (ACE)
+        turf_id: '3000000183'
+        location_id: '3000006140'
+        staging_location_id: '3000006139'
+      - name: NC Blueprint
+        turf_id: '3000000202'
+        location_id: '3000006165'
+        staging_location_id: '3000006166'
+    38406:
+      states:
+      - MI
+      url: https://svmi.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: GBI
+        turf_id: '16000000003'
+        location_id: '16000000837'
+        staging_location_id: '16000000838'
+      - name: Michigan League of Conservation Voters Education Fund
+        turf_id: '16000000015'
+        location_id: '16000000833'
+        staging_location_id: '16000000834'
+      - name: Detroit Action
+        turf_id: '16000000025'
+        location_id: '16000000827'
+        staging_location_id: '16000000828'
+      - name: Oakland Forward
+        turf_id: '16000000026'
+        location_id: '16000000831'
+        staging_location_id: '16000000832'
+      - name: Michigan United
+        turf_id: '16000000027'
+        location_id: '16000000835'
+        staging_location_id: '16000000836'
+      - name: APIA-Vote MI
+        turf_id: '16000000030'
+        location_id: '16000000839'
+        staging_location_id: '16000000840'
+      - name: ACCESS
+        turf_id: '16000000032'
+        location_id: '16000000841'
+        staging_location_id: '16000000842'
+      - name: Better Men Outreach
+        turf_id: '16000000033'
+        location_id: '16000000843'
+        staging_location_id: '16000000844'
+      - name: Detroit Change Initiative
+        turf_id: '16000000034'
+        location_id: '16000000845'
+        staging_location_id: '16000000846'
+      - name: Rising Voices
+        turf_id: '16000000035'
+        location_id: '16000000847'
+        staging_location_id: '16000000848'
+      - name: Righteous Sons
+        turf_id: '16000000036'
+        location_id: '16000000849'
+        staging_location_id: '16000000850'
+      - name: Mothers of Hope
+        turf_id: '16000000037'
+        location_id: '16000000851'
+        staging_location_id: '16000000852'
+      - name: MI Liberation
+        turf_id: '16000000038'
+        location_id: '16000000853'
+        staging_location_id: '16000000854'
+      - name: Michigan Coalition on Black Civic Participation
+        turf_id: '16000000039'
+        location_id: '16000000855'
+        staging_location_id: '16000000856'
+      - name: Michigan Faith in Action
+        turf_id: '16000000040'
+        location_id: '16000000857'
+        staging_location_id: '16000000858'
+      - name: Michigan APRI
+        turf_id: '16000000041'
+        location_id: '16000000859'
+        staging_location_id: '16000000860'
+      - name: Detroit Hispanic Development Corp
+        turf_id: '16000000042'
+        location_id: '16000000861'
+        staging_location_id: '16000000862'
+    38408:
+      states:
+      - MN
+      url: https://svmn.blocks.im
+      bulk_submit: false
+      submit_forms: false
+      sub_orgs:
+      - name: LeadMN
+        turf_id: '17000000044'
+        location_id: '17000000437'
+        staging_location_id: '17000000438'
+      - name: Minnesota Youth Collective
+        turf_id: '17000000045'
+        location_id: '17000000439'
+        staging_location_id: '17000000440'
+      - name: Outfront MN
+        turf_id: '17000000047'
+        location_id: '17000000441'
+        staging_location_id: '17000000442'
+      - name: Asian American Organizing Project
+        turf_id: '17000000048'
+        location_id: '17000000443'
+        staging_location_id: '17000000444'
+      - name: ACER
+        turf_id: '17000000049'
+        location_id: '17000000445'
+        staging_location_id: '17000000446'
+      - name: Anika Foundation
+        turf_id: '17000000050'
+        location_id: '17000000447'
+        staging_location_id: '17000000448'
+      - name: MN350
+        turf_id: '17000000051'
+        location_id: '17000000449'
+        staging_location_id: '17000000450'
+      - name: Navigate MN
+        turf_id: '17000000052'
+        location_id: '17000000451'
+        staging_location_id: '17000000452'
+      - name: Black Civic Network
+        turf_id: '17000000053'
+        location_id: '17000000453'
+        staging_location_id: '17000000454'
+      - name: Isaiah
+        turf_id: '17000000054'
+        location_id: '17000000455'
+        staging_location_id: '17000000456'
+      - name: Honor the Earth
+        turf_id: '17000000055'
+        location_id: '17000000457'
+        staging_location_id: '17000000458'
+      - name: Minnesota Voice
+        turf_id: '17000000044'
+        location_id: '17000000584'
+        staging_location_id: '17000000585'
+
+
 ovr_states:
   CA:
     api_settings:
