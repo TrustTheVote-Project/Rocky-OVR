@@ -827,7 +827,7 @@ en:
             href="http://voterportal.sos.la.gov/">http://voterportal.sos.la.gov/</a>
             </p>
         abr:
-          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='http://voterportal.sos.la.gov/voterlogin'>online tool</a>"
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://voterportal.sos.la.gov/Home/VoterLogin'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: <p>You must request your ballot by 4:30pm CST on the
             4th day before election day.  Your ballot (unless you are Military, Overseas,
