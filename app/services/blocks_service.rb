@@ -44,10 +44,17 @@ class BlocksService
     registrant.uid = "grommet-request-#{req.id}"
     return self.form_from_registrant(registrant)
   end
+
+  attr_reader :partner
   
-  def initialize
+  def initialize(partner: nil)
+    @partner = partner
     # call this immediately and outside of another RequestLogSession call
     get_token
+  end
+
+  def url
+    RockyConf.blocks_configuration.partners[partner.id]&.url || RockyConf.blocks_configuration.url
   end
   
   def token
@@ -56,7 +63,7 @@ class BlocksService
   
   def get_token
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      @token = BlocksClient.get_token["jwt"]
+      @token = BlocksClient.get_token(url: url)["jwt"]
       return @token
     end
   end
@@ -67,16 +74,16 @@ class BlocksService
   
   def upload_canvassing_shift(shift, shift_type: "digital_voter_registration")
     shift_params = build_canvassing_shift_blocks_hash(shift, shift_type)
-    forms = build_blocks_forms_from_canvassing_shift(shift)
+    forms = shift.submit_forms? ? build_blocks_forms_from_canvassing_shift(shift) : []
     
-    shift = create_shift(shift_params)
-    shift_id = shift["shift"]["id"]
+    shift_response = create_shift(shift_params)
+    shift_id = shift_response["shift"]["id"]
     form_responses = []
-    if forms && forms.any?
+    if forms
       form_responses = upload_registrations(shift_id, forms)
     end
     return {
-      shift: shift,
+      shift: shift_response,
       forms: form_responses
     }
   end
@@ -105,11 +112,11 @@ class BlocksService
     end
   end
   
-  def get_locations(partner, turf_id: nil)
-    turf_id ||= RockyConf.blocks_configuration.partners&.[](partner.id)&.turf_id
+  def get_locations(turf_id: nil)
+    turf_id ||= RockyConf.blocks_configuration.partners&.[](partner&.id)&.turf_id
     unless turf_id.blank?
       RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-        return BlocksClient.get_locations(turf_id, token: self.token)
+        return BlocksClient.get_locations(turf_id, token: self.token, url: url)
       end
     end
     return {
@@ -120,31 +127,32 @@ class BlocksService
   #add_metadata_to_form(form_id, meta_data={}, token:)
   def add_metadata_to_form(form_id, meta_data={})
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token)
+      return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token, url: url)
     end
   end
 
   def canvassers(turf_id)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.canvassers(turf_id, {token: self.token})
+      return BlocksClient.canvassers(turf_id, {token: self.token, url: url})
     end    
   end
 
   def create_canvasser(canvasser_data)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token}))
+      return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token, url: url}))
     end
   end
 
   def create_shift(canvasser_data)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.create_shift(canvasser_data.merge({token: self.token}))
+      return BlocksClient.create_shift(canvasser_data.merge({token: self.token, url: url}))
     end
   end
   
   def upload_registrations(shift_id, forms)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.upload_registrations(shift_id, forms, token: self.token)
+      shift_status = forms.any? ? "ready_for_qc" : "ready_for_delivery"
+      return BlocksClient.upload_registrations(shift_id, forms, shift_status: shift_status,  token: self.token, url: url)
     end
   end
   
@@ -163,11 +171,12 @@ class BlocksService
   
   def build_canvassing_shift_blocks_hash(shift, shift_type)
     partner_id = shift.partner_id
+    partner_config = RockyConf.blocks_configuration.partners&.[](partner_id)
     turf_id = !shift.blocks_turf_id.blank? ? shift.blocks_turf_id : RockyConf.blocks_configuration.partners&.[](partner_id)&.turf_id || RockyConf.blocks_configuration.default_turf_id
+    suborg_config = partner_config&.sub_orgs&.detect {|so| so.turf_id && so.turf_id.to_s == turf_id.to_s}
     
-    
-    location_id = shift.shift_location || RockyConf.blocks_configuration.default_location_id
-    staging_location_id = RockyConf.blocks_configuration.default_staging_location_id || shift.shift_location
+    location_id = shift.shift_location || suborg_config&.location_id || partner_config&.location_id || RockyConf.blocks_configuration.default_location_id
+    staging_location_id = suborg_config&.staging_location_id || partner_config&.staging_location_id || RockyConf.blocks_configuration.default_staging_location_id
     canvasser = create_canvasser(turf_id: turf_id, last_name: shift.canvasser_last_name, first_name: shift.canvasser_first_name, email: shift.canvasser_email, phone_number: shift.canvasser_phone)
     canvasser_id = canvasser["canvasser"]["id"]
     
@@ -175,17 +184,22 @@ class BlocksService
     soft_count_cards_complete_collected   = shift.completed_registrations
     soft_count_cards_incomplete_collected = shift.abandoned_registrations
     
-    return {
+    shift_params = {
       canvasser_id: canvasser_id,
       location_id: location_id,
       staging_location_id: staging_location_id, 
       shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
       shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
       shift_type: shift_type, 
-      soft_count_cards_total_collected: soft_count_cards_total_collected,
-      soft_count_cards_complete_collected: soft_count_cards_complete_collected,
-      soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
     }
+    if shift.submit_forms?
+      shift_params = shift_params.merge({
+        soft_count_cards_total_collected: soft_count_cards_total_collected,
+        soft_count_cards_complete_collected: soft_count_cards_complete_collected,
+        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
+      })
+    end
+    return shift_params
   end
   
 end
