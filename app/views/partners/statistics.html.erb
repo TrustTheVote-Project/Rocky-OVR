@@ -22,7 +22,7 @@
     <%= form_tag registrations_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
         <legend>Generate a New Report with Your Registration Data</legend>
-        <p>Leave date fields blank if you would like to download all your registration data.</p>
+        <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
         <div class='date_inputs'>
           <div class='date_input'>
             <%= label_tag :start_date, 'Start Date' %>
@@ -48,7 +48,7 @@
       <fieldset>
         <legend>Generate a New Canvassing Shift Report</legend>
         <p>Includes all web-based shifts and any using the latest version of the tablet app.</p>
-        <p>Leave date fields blank if you would like to download all your registration data.</p>
+        <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
         <div class='date_inputs'>
           <div class='date_input'>
             <%= label_tag :start_date, 'Start Date' %>
@@ -69,7 +69,7 @@
       <%= form_tag grommet_registrant_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
         <fieldset>
           <legend>Generate a New PA Registration Report (Tablet registrants only through date TBD)</legend>
-          <p>Leave date fields blank if you would like to download all your registration data.</p>
+          <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
           <div class='date_input'>
             <%= label_tag :start_date, 'Start Date' %>
             <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
@@ -87,7 +87,7 @@
       <%= form_tag grommet_shift_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
         <fieldset>
           <legend>Generate a New PA Shift Report</legend>
-          <p>Leave date fields blank if you would like to download all your registration data.</p>
+          <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
           <div class='date_input'>
             <%= label_tag :start_date, 'Start Date' %>
             <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
@@ -105,8 +105,8 @@
     <%- end %>
     <%= form_tag abr_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
-        <legend>Generate a New Abesntee Request Report</legend>
-        <p>Leave date fields blank if you would like to download all your registration data.</p>
+        <legend>Generate a New Absentee Request Report</legend>
+        <p>Leave date fields blank to download the last month of data.</p>
         <div class='date_inputs'>
           <div class='date_input'>
             <%= label_tag :start_date, 'Start Date' %>
@@ -125,7 +125,7 @@
     <%= form_tag lookup_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
         <legend>Generate a New Voter Lookup Report</legend>
-        <p>Leave date fields blank if you would like to download all your registration data.</p>
+        <p>Leave date fields blank to download the last month of data.</p>
         <div class='date_inputs'>
           <div class='date_input'>
             <%= label_tag :start_date, 'Start Date' %>
