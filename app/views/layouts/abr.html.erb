@@ -49,6 +49,11 @@
       setTimeout('revealErrors();', 400);
     });
   </script>
+
+  <%- if @abr && @abr.state_custom_javascript? %>
+  <%= javascript_include_tag "abr_states/#{@abr.home_state_abbrev.to_s.downcase}.js" %>
+  <%- end %> 
+
   <%= yield :head %>
 </head>
 

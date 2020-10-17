@@ -96,6 +96,7 @@ module Rocky
     config.assets.precompile += ["locales/*.css"]
     config.assets.precompile += ["states/*.css"]
     config.assets.precompile += ["nvra/locales/*.css"]
+    config.assets.precompile += ["abr_states/*.js"]
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
     config.assets.initialize_on_precompile = false
