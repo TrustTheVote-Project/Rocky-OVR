@@ -136,6 +136,7 @@
       - class_name = "line #{opts[:classes]} #{opts[:method]} #{required ? 'required' : ''}"
       - required_message = required ?  @abr.custom_required_message(field_name).html_safe : nil
       - ui_regexp_fail_message = ui_regexp ?  @abr.custom_format_message(field_name).html_safe : nil
+      - ui_regexp_fail_message_pattern = ui_regexp ?  @abr.custom_format_message_pattern(field_name).html_safe : nil
       - data = {}
       - visible_conditions = opts[:visible].is_a?(Array) ? opts[:visible][0] : opts[:visible].to_s.strip
       - visible_conditions_value = opts[:visible].is_a?(Array) ? opts[:visible][1] : nil
@@ -146,7 +147,8 @@
       - data["hidden-conditions"] = hidden_conditions unless hidden_conditions.blank?
       - data["hidden-conditions-value"] = hidden_conditions_value unless hidden_conditions_value.blank?
       - data["ui-regexp"] = ui_regexp unless ui_regexp.blank?
-      - data["ui_regexp_fail_message"] = ui_regexp_fail_message unless ui_regexp.blank?
+      - data["ui-regexp-fail-message"] = ui_regexp_fail_message unless ui_regexp_fail_message.blank?
+      - data["ui-regexp-fail-message-pattern"] = ui_regexp_fail_message_pattern unless ui_regexp_fail_message_pattern.blank?
       - hidden_any_conditions =  opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][0] : opts[:hidden_any].to_s.strip
       - hidden_any_conditions_value = opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][1] : nil
       - data["hidden-any-conditions"] = hidden_any_conditions unless hidden_any_conditions.blank?
