@@ -6,7 +6,6 @@
 - if !@registrant.use_short_form?
   %h1= t('txt.registration.step_2_header')
     
-- # TODO assumin
 - if @registrant.state_flow_error?
   .state-flow-error
     %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
@@ -28,8 +27,12 @@
     %p= I18n.t('txt.registration.instructions.overseas').html_safe
     
 
-    
+  
+  = render :partial=> "registrants/home_address", :locals=>{:form=>form} 
 
+  - if @registrant.use_short_form?   
+    = render partial: 'previous_address_block', locals: { form: form }
+  
   = render partial: 'name', locals: {form: form}
 
   - if @registrant.use_short_form?
@@ -52,11 +55,9 @@
 
     = render partial: 'previous_name', locals: { form: form }
     
-  = render :partial=> "registrants/home_address", :locals=>{:form=>form}
   
-  - if @registrant.use_short_form?
-    
-    = render partial: 'previous_address', locals: { form: form }
+  
+  - if @registrant.use_short_form?   
     
     - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       - content_for :head do

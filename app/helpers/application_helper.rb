@@ -227,6 +227,36 @@ module ApplicationHelper
     content_tag(:div, radio_buttons, html_options.merge(:class => "#{has_error} radio-buttons"))
   end
 
+  def checkbox_block_selector(form, field, label, tooltip_key = nil, options={})
+    options ||= {}
+    html_options = {}
+    required = ""
+    if req_type = options.delete(:required)
+      required = "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>"
+      html_options[:data] ||= {}
+      if req_type == :conditional
+        html_options[:data]["client-conditional-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      else
+        html_options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      end
+    end
+    tooltip = tooltip_key ? tooltip_tag(tooltip_key) : ""
+    has_error = !form.object.errors[field].empty? ? "has_error" : nil
+    instructions = options[:instructions]
+    instructions_html = instructions.blank? ? nil : "<p class='instructions'>#{instructions}</p>"
+    label = content_tag(:h3, label.html_safe + required.html_safe + tooltip.html_safe).html_safe
+    hidden_field = form.hidden_field(field)
+    yes_selected = !!form.object.send(field)
+    yes_block = "<span class=\"block-selector__button block-selector__button--yes #{"block-selector__button--selected" if yes_selected } \">#{I18n.t('yes')}</span>"
+    no_block = "<span class=\"block-selector__button block-selector__button--no  #{"block-selector__button--selected" unless  yes_selected }\">#{I18n.t('no')}</span>"
+    children = [
+      label,
+      hidden_field,
+      "<div class='block-selector__yes-no'>#{yes_block} #{no_block}<div>".html_safe
+    ].join("\n").html_safe
+    content_tag(:div, children, html_options.merge(class: "#{has_error} block-selector__checkbox-field"))
+  end
+
   def rollover_button(name, text, button_options={})
     button_options[:id] ||= "registrant_submit"
     html =<<-HTML

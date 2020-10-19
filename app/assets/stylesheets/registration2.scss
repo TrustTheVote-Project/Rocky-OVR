@@ -332,10 +332,10 @@ body {
     .rollover_button button, .rollover_button span.button-style {
       background-color: #fff;
       background-image: none;
-      border: 2px solid #B32426;
+      border: 2px solid $red;
       border-radius: 0;
       box-shadow: none;
-      color: #B32426 !important;
+      color: $red !important;
       font-family: 'Fira Sans', helvetica, arial, sans-serif;
       font-size: 18px;
       font-weight: 700;
@@ -349,7 +349,7 @@ body {
       margin: 0;
       min-width: auto;
       &:hover {
-        background: #B32426;
+        background: $red;
         color: #fff !important;
         cursor: pointer;
         transition: background 0.9s ease-out, color 0.05s ease-in;
@@ -709,10 +709,10 @@ body {
   .download .rollover_button a {
     background-color: #fff;
     background-image: none;
-    border: 2px solid #B32426;
+    border: 2px solid $red;
     border-radius: 0;
     box-shadow: none;
-    color: #B32426 !important;
+    color: $red !important;
     font-family: 'Fira Sans', helvetica, arial, sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -726,7 +726,7 @@ body {
     margin: 0;
     min-width: auto;
     &:hover {
-      background: #B32426;
+      background: $red;
       color: #fff !important;
       cursor: pointer;
       transition: background 0.9s ease-out, color 0.05s ease-in;
@@ -770,8 +770,8 @@ body {
     left: 0;
     right: 0;
     text-align: center;
-    border: 2px solid #B32426;
-    color: #B32426 !important;
+    border: 2px solid $red;
+    color: $red !important;
     font-family: 'Fira Sans', helvetica, arial, sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -914,7 +914,7 @@ body {
         color: #333;
         font-size: 18px;
         a {
-          color: #B32426;
+          color: $red;
         }
       }
     }
@@ -992,6 +992,8 @@ body {
     }
   }
 }
+
+@import 'registration2-block-selector';
 
 @import 'registration2-mobile';
 @import 'registration2-new-mobile-ui';
