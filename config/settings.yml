@@ -210,7 +210,7 @@ absentee_states:
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
-    pdf_template: wv.pdf
+    #pdf_template: wv.pdf
   WY:
     pdf_template: wy.pdf
     email_delivery: true
