@@ -52,6 +52,7 @@ function validateField(errorMessage) {
   }
   var errorField = parent.siblings(".error")
   var currentError = errorField.html();
+  console.log(field);
   var messageIdx = currentError.indexOf(errorMessage)
   if ((!val || val == '') && errorMessage != '') {
     // Add if not present

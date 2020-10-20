@@ -17,30 +17,20 @@ $(document).ready(function() {
 <%= form.hidden_field :javascript_disabled %>
 <%= form.hidden_field :is_fake %>
 
+<%= render partial: 'step2/name', locals: {form: form} %>
+
 <%- if @registrant.collect_email_address? %>
   <ul class="flat registrant-form__email">
-    <li class="width_f registrant-form__email__line">
-      <h3 class='registrant-form__email__line__label'><%= form.label :email_address %><%- unless !@registrant.require_email_address?%><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end%></h3>
-      
-      <%= field_div form, :email_address, {class: 'registrant-form__email__line__input', autocomplete: 'email', required: @registrant.require_email_address? } %>
-      <div class="tooltip registrant-form__email__line__tooltip"><%= tooltip_tag :email_address %></div>
-      <span class="error registrant-form__email__line__error"><%= form.object.errors[:email_address].join("\n") %></span>
-    </li>
+    <%= field_li form, :email_address, {li_options: {class: 'registrant-form__email__line__input'}, field_options: {autocomplete: 'email'}, required: @registrant.require_email_address? }  %>
   </ul>
 <%- end %>
 <ul class="flat registrant-form__home-zip">
-  <li class="width_f registrant-form__home-zip__line">
-    <h3 class='registrant-form__home-zip__line__label'><%= form.label :home_zip_code %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-    <%= field_div form, :home_zip_code, class: 'registrant-form__home-zip__line__input', autocomplete: 'postal-code', required: true %>
-    <div class="tooltip registrant-form__home-zip__line__tooltip"><%= tooltip_tag :home_zip_code %></div>
-    <span class="error registrant-form__home-zip__line__error"><%= form.object.errors[:home_zip_code].join("\n") %></span>
-  </li>
+  <%= field_li form, :home_zip_code, {li_options: {class: 'width_f registrant-form__home-zip__line'}, field_options: {autocomplete: 'postal-code'}, required: true } %>
   <%- if @registrant.use_short_form? %>
     <li class="registrant-form__home-zip__button">
       <%= rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) %>
     </li>  
-  <%- end %>
-  
+  <%- end %>  
 </ul>
 <%- if !@registrant.use_short_form? %>
  <ul class="flat">

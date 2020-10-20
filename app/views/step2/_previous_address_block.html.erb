@@ -1,7 +1,7 @@
-<fieldset class='block-selector'>
-  <%= checkbox_block_selector form, :change_of_address, I18n.t('activerecord.attributes.registrant.change_of_address'), :previous_address %>
-  <fieldset id="prev_address_set" class="block-group">
-    <legend><%= I18n.t('txt.registration.previous_address') %></legend>
+<fieldset id="prev_address_set" class='block-selector'>
+  <%= checkbox_block_selector form, :change_of_address, I18n.t('activerecord.attributes.registrant.change_of_address'), :previous_address, {required: true} %>
+  <div  class="block-selector__yes-selected">
+    <h3><%= I18n.t('txt.registration.previous_address') %></h3>
     <ul class="stacked">
       <li class="width_a registrant-form__prev-address__line">
         <h3><%= form.label :prev_address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
@@ -31,7 +31,7 @@
         <span class="error"><%= form.object.errors[:prev_zip_code].join("\n") %></span>
       </li>
     </ul>
-  </fieldset>
+  </div>
 
 </fieldset>
 

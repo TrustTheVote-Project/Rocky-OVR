@@ -2,11 +2,11 @@
 <%- if include_step_2 %>
   <%= render partial: 'step2/name', locals: {form: form} %>
 
-  <%= render :partial=> "registrants/home_address", :locals=>{:form=>form} %>
-
-  <%= render partial: 'step2/previous_name', locals: { form: form } %>
+  <%= render partial: 'step2/previous_name_block', locals: { form: form } %>
   
-  <%= render partial: 'step2/previous_address', locals: { form: form } %>
+  <%= render :partial=> "registrants/home_address", :locals=>{:form=>form} %>
+  
+  <%= render partial: 'step2/previous_address_block', locals: { form: form } %>
 <%- end %>
     
   <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form} %>

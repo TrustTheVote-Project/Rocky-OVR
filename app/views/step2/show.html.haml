@@ -26,47 +26,15 @@
     %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.by_paper_header").html_safe
     %p= I18n.t('txt.registration.instructions.overseas').html_safe
     
-
-  
-  = render :partial=> "registrants/home_address", :locals=>{:form=>form} 
-
-  - if @registrant.use_short_form?   
-    = render partial: 'previous_address_block', locals: { form: form }
-  
-  = render partial: 'name', locals: {form: form}
-
   - if @registrant.use_short_form?
-    %ul.checkbox.checkbox-step-1
-      %li.spacer= "&nbsp;"
-      %li.registrant-form__us-citizen__line
-        %h3
-          = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
-          = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
-          %span.error= form.object.errors[:us_citizen].join("\n")
-          
-    - if @registrant.require_age_confirmation?
-      %ul.checkbox.checkbox-step-1
-        %li.spacer
-        %li.registrant-form__will-be-18-by-election__line
-          %h3
-            = form.check_box :will_be_18_by_election
-            = form.label :will_be_18_by_election
-            %span.error= form.object.errors[:will_be_18_by_election].join("\n")
-
-    = render partial: 'previous_name', locals: { form: form }
-    
-  
-  
-  - if @registrant.use_short_form?   
-    
     - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       - content_for :head do
         :javascript
           $(document).ready(function() {
             function hasStateLicenseSelected() {
               var hasStateLicense = true;
-              var hasStateLicenseRadio = $('input[name="registrant[has_state_license]"]:checked'); //a radio must have 1 selected
-              if (hasStateLicenseRadio.length > 0 && hasStateLicenseRadio.val()!="1") {
+              var hasStateLicenseInput = $('input[name="registrant[has_state_license]"]'); //a radio must have 1 selected
+              if (hasStateLicenseInput.length > 0 && hasStateLicenseInput.val()!="1") {
                 hasStateLicense = false;
               } 
               
@@ -90,30 +58,53 @@
               }
             }
             toggleHasStateLicense();
-            $('input[name="registrant[has_state_license]"]').click(toggleHasStateLicense);  
+            $('#has-license .block-selector__button').click(toggleHasStateLicense);  
             $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
+
           });
     
       - if @registrant.require_id?
-        %ul.radio
-          %li.registrant-form__has-state-license__line.has_license
-            %h3
-              = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
-              = form.label :has_state_license_1, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
-            .use_state_registration.checkbox-explanation
-              %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
-        %ul.radio
-          %li.registrant-form__has-no-state-license__line
-            %h3
-              = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
-              = form.label :has_state_license_0, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_no_state_license", default: t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev))
+        %fieldset.block-selector#has-license
+          - license_label = t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
+          = checkbox_block_selector form, :has_state_license, license_label, nil, {required: true}
+          .block-selector__yes-selected
+            %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
+          .block-selector__no-selected
+            = render :partial=> "registrants/state_id_number", :locals=>{:form=>form} 
 
+  = render partial: "registrants/name_display", locals: {form: form}
+
+  = render :partial=> "registrants/home_address", :locals=>{:form=>form} 
+
+  - if @registrant.use_short_form?   
+    = render partial: 'previous_address_block', locals: { form: form }
+  
+  - if @registrant.use_short_form?
+    %ul.checkbox.checkbox-step-1
+      %li.spacer= "&nbsp;"
+      %li.registrant-form__us-citizen__line
+        %h3
+          = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
+          = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
+          %span.error= form.object.errors[:us_citizen].join("\n")
+          
+    - if @registrant.require_age_confirmation?
+      %ul.checkbox.checkbox-step-1
+        %li.spacer
+        %li.registrant-form__will-be-18-by-election__line
+          %h3
+            = form.check_box :will_be_18_by_election
+            = form.label :will_be_18_by_election
+            %span.error= form.object.errors[:will_be_18_by_election].join("\n")
+
+    
+    
+  
+  
+  - if @registrant.use_short_form?
+    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       .skip_state_registration
-        = render partial: 'step4/skip_state', locals: { form: form }
-
-      %ul.flat.dob-and-phone
-        = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
-        = render :partial=> "registrants/phone", :locals=>{:form=>form}
+        = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
       
     - else
       .state-id-number
@@ -123,9 +114,11 @@
         
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
       .clear-fix
-      %ul.flat.dob-and-phone
-        = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}      
-        = render :partial=> "registrants/phone", :locals=>{:form=>form}
+    
+
+    %ul.flat.dob-and-phone
+      = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+      = render :partial=> "registrants/phone", :locals=>{:form=>form}
 
     %fieldset.no_border.opt-ins
       = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}

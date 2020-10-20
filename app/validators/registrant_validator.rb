@@ -27,20 +27,22 @@ class RegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of  :locale, :in => RockyConf.enabled_locales
       reg.validates_presence_of   :email_address unless reg.not_require_email_address?
       reg.validates_presence_of   :home_state_id
-    end
-    
-    if (reg.at_least_step_1? && (!reg.use_short_form? || reg.home_state_id.blank?)) ||
-       (reg.at_least_step_2? && reg.use_short_form? )
-      validates_zip_code  reg,    :home_zip_code
-      
-    end
-    
-    if reg.at_least_step_2?
+
       reg.validates_presence_of   :name_title
       reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
       reg.validates_presence_of   :first_name unless reg.building_via_api_call?
       reg.validates_presence_of   :last_name
       reg.validates_inclusion_of  :name_suffix, :in => Registrant::SUFFIXES, :allow_blank => true
+      
+
+    end
+    
+    if (reg.at_least_step_1? && (!reg.use_short_form? || reg.home_state_id.blank?)) ||
+       (reg.at_least_step_2? && reg.use_short_form? )
+      validates_zip_code  reg,    :home_zip_code      
+    end
+    
+    if reg.at_least_step_2?
       reg.validates_presence_of   :home_address unless reg.finish_with_state?
       reg.validates_presence_of   :home_city unless reg.finish_with_state?
       reg.validates_inclusion_of :us_citizen, :in => [true], message: :accepted unless reg.building_via_api_call?

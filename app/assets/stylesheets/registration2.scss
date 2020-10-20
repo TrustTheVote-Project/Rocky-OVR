@@ -285,22 +285,20 @@ body {
   }
   
   form {
-    
-    ul li > div.tooltip {
-      width: 25%;      
+    .required {
+      color: $red;
+      margin-left: 4px;
     }
-    ul li > div.tooltip, fieldset legend img.tooltip {
-      padding: 2px 5px;
-      float: none;
-      display: inline-block;
-      position: absolute;
-      left: 0 - $tooltip-offset;
-      top: 0;
+
+    ul, ul.flat {
+      li  div.tooltip, fieldset legend img.tooltip {
+        padding: 2px 5px;
+        float: none;
+        display: inline-block;
+        width: auto;
+      }
     }
-    fieldset legend img.tooltip {
-      top: 1em;
-    }
-    
+
     &:after {
       display: block;
       content: " ";
