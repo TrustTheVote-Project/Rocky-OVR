@@ -57,8 +57,9 @@ class PdfAbrWriter
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end
-      `pdftk #{(voter_signature && !voter_signature.voter_signature_image.blank? ? pdf_file_path : pdf_template_with_cover_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path} flatten`        
+      `pdftk #{(voter_signature && !voter_signature.voter_signature_image.blank? ? pdf_file_path : pdf_template_with_cover_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`        
 
+      `cp #{pdf_file_path}-tmp #{pdf_file_path}`  
       uploaded = nil
       if for_printer
         #uploaded = self.upload_pdf_to_printer(path, url_path)
@@ -71,6 +72,7 @@ class PdfAbrWriter
           File.delete(pdf_signature_image_path) if File.exists?(pdf_signature_image_path)
           File.delete(pdf_xfdf_path) if File.exists?(pdf_xfdf_path)
           File.delete(pdf_file_path) if File.exists?(pdf_file_path)
+          File.delete("#{pdf_file_path}-tmp") if File.exists?("#{pdf_file_path}-tmp")
           File.delete(pdf_delivery_address_path) if File.exists?((pdf_delivery_address_path))
         end
       else
