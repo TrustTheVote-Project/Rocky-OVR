@@ -115,7 +115,7 @@ module AbrPdfMethods
     Rails.root.join("data/abr_pdfs/#{abbrev}/#{pdf_template_name}")
   end
 
-  def pdf_template_with_cover_filename(pdf_template_name)
+  def pdf_template_with_cover_filename
     pdf_template_name.gsub(/\.pdf\z/, '_with_cover.pdf')
   end
 
