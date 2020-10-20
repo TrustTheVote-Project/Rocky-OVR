@@ -240,7 +240,7 @@ absentee_states:
     pdf_template: tx.pdf
     abr_status_check_url: "https://www.sos.state.tx.us/elections/voter/cclerks.shtml"
   UT: 
-    abr_status_check_url: "https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot"}
+    abr_status_check_url: "https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot"
   VA:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
     # pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
