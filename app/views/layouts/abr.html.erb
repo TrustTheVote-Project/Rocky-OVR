@@ -39,6 +39,7 @@
 
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
+  <%= stylesheet_link_tag 'select2.min' %>
   <%= stylesheet_link_tag *partner_css %>
   <!--[if !IE 7]>
     <style type="text/css">
@@ -52,6 +53,11 @@
       setTimeout('revealErrors();', 400);
     });
   </script>
+
+  <%- if @abr && @abr.state_custom_javascript? %>
+  <%= javascript_include_tag "abr_states/#{@abr.home_state_abbrev.to_s.downcase}.js" %>
+  <%- end %> 
+
   <%= yield :head %>
 </head>
 

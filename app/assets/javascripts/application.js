@@ -19,3 +19,4 @@
 //= require dynamic-nav
 //= require block-selector
 //= require registration
+//= require select2.full.min

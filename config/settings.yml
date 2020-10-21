@@ -206,7 +206,7 @@ absentee_states:
     online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
     pdf_template: wi.pdf
     pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
-    # email_delivery: true
+    email_delivery: true
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
@@ -409,6 +409,7 @@ ovr_states:
       - en
       - es
   MI:
+    grommet_min_version: 1.0.0
     api_settings:
       api_url: https://test-mvicapi.sos.state.mi.us
     redirect_to_online_reg_url: true
