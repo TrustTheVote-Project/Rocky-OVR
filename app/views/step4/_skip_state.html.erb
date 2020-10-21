@@ -1,10 +1,8 @@
 <%- include_step_2 ||= false %>
 <%- if include_step_2 %>
-  <%= render partial: 'step2/name', locals: {form: form} %>
+  <%= render partial: 'registrants/name_display', locals: {form: form, skip_state_ovr: true} %>
 
-  <%= render partial: 'step2/previous_name_block', locals: { form: form } %>
-  
-  <%= render :partial=> "registrants/home_address", :locals=>{:form=>form} %>
+  <%= render :partial=> "registrants/home_address", :locals=>{:form=>form, skip_state_ovr: true } %>
   
   <%= render partial: 'step2/previous_address_block', locals: { form: form } %>
 <%- end %>

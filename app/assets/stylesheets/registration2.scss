@@ -432,7 +432,7 @@ body {
           }
           &.has_error {
            select {
-             background: #fcc image-url('reg/select-arrow.png') no-repeat right center;
+             background: $light-red image-url('reg/select-arrow.png') no-repeat right center;
            } 
           }
         }

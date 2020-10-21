@@ -14,9 +14,9 @@ class RegistrantValidator < ActiveModel::Validator
 
      if reg.at_least_step_1?
       reg.validates_presence_of     :partner_id #, :unless=>[:remote_partner_id_present?]
-
+      reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
+        
       if !reg.use_short_form?
-        reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
         reg.validate_date_of_birth
 
         reg.validates_inclusion_of  :will_be_18_by_election, :in=>[true,false] unless reg.building_via_api_call?

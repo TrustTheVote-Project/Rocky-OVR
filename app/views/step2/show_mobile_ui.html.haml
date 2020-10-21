@@ -39,48 +39,7 @@
       
     });
     
-- if @registrant.home_state_allows_ovr_ignoring_license?
-  - content_for :head do
-    :javascript
-      $(document).ready(function() {
-        function hasStateLicenseSelected() {
-          var hasStateLicense = true;
-          var hasStateLicenseRadio = $('input[name="registrant[has_state_license]"]'); //a radio must have 1 selected
-          if (hasStateLicenseRadio.length > 0 && hasStateLicenseRadio.val()!="1") {
-            hasStateLicense = false;
-          } 
-          
-          // If check-18 checkbox is present, that must also be selected
-          var willBe18 = true;
-          var willBe18Checkbox = $('input[name="registrant[will_be_18_by_election]"]');
-          if (willBe18Checkbox.length > 0 && !willBe18Checkbox.is(":checked")) {
-            willBe18 = false;
-          }
-          return hasStateLicense && willBe18;
-        }
-        function toggleHasStateLicense() {
-          if (hasStateLicenseSelected()) {
-            $('.skip_state_registration').hide(); 
-            var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required");
-            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", val)
-            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", null)
-            clearErrors.bind($('.skip_state_registration #registrant_state_id_number').get(0))();
-            
-            $('.use_state_registration').show();  
-            $("#main").removeClass('skipping_state_registration').addClass('using_state_registration');  
-          } else {
-            $('.skip_state_registration').show();
-            var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required");
-            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", val)
-            $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", null)
-            $('.use_state_registration').hide();    
-            $("#main").addClass('skipping_state_registration').removeClass('using_state_registration');  
-          }
-        }
-        toggleHasStateLicense();
-        $('#has-license .block-selector__button').click(toggleHasStateLicense);  
-        $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
-      });
+  
 - if @registrant.has_custom_zip_code_partial?
   = render partial: @registrant.custom_zip_code_partial
 
@@ -98,26 +57,23 @@
       %legend= t 'txt.registration.mobile_ui.step_2.title'
       %p= t 'txt.registration.mobile_ui.step_2.instructions'
       
-      - if @registrant.use_short_form?
-        - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
-          - if @registrant.require_id?
-            %fieldset.block-selector#has-license
-              - license_label = t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
-              = checkbox_block_selector form, :has_state_license, license_label, nil, {required: true}
-              .block-selector__yes-selected
-                %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
-              .block-selector__no-selected
-                = render :partial=> "registrants/state_id_number", :locals=>{:form=>form} 
-      
       = render partial: "registrants/name_display", locals: {form: form}
 
       = render :partial=> "registrants/home_address", :locals=>{:form=>form} 
-
-      = render partial: 'previous_address_block', locals: { form: form }
+  
+      - if !@registrant.finish_with_state_eligible?
+        = render partial: 'previous_address_block', locals: { form: form }
+  
+      %ul.flat.phone.clear-fix
+        = render :partial=> "registrants/phone", :locals=>{:form=>form}
       
+      %fieldset.no_border.opt-ins
+        = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
+        = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
+  
   .dynamic-step#step-3  
     %fieldset
-      %legend= t('txt.registration.mobile_ui.step_3.title')
+      %legend= t('txt.registration.mobile_ui.step_9.title')
       %ul.checkbox.checkbox-step-1
         %li.spacer= "&nbsp;"
         %li.registrant-form__us-citizen__line
@@ -134,26 +90,19 @@
                 = form.label :will_be_18_by_election
                 %span.error= form.object.errors[:will_be_18_by_election].join("\n")
         
-        %ul.flat.dob-and-phone
+        %ul.flat
           = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
-
-    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
         
+    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
+      - if !@registrant.finish_with_state_eligible?
+        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form} 
+        = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
 
     - elsif @registrant.mail_with_esig?
       = render partial: 'shared/signature_capture/form', locals: {form: form}
   
-    %fieldset
-      %legend= t('txt.registration.mobile_ui.step_9.title')
-    .skip_state_registration
-      = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
-    %ul.flat.dob-and-phone.clear-fix
-      = render :partial=> "registrants/phone", :locals=>{:form=>form}
-
+    
     %fieldset.no_border.opt-ins
-      = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
-      = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
-  
       = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
 
     .skip_state_registration

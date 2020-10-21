@@ -127,6 +127,7 @@ en:
       cancel: Cancel
       text_me: Send SMS
       email_me: Send Email
+      start: Start
       submit: Next Step
       lookup: Look Up Your Registration
       edit: Edit

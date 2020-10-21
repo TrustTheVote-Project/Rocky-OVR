@@ -26,12 +26,13 @@ $(document).ready(function() {
 <%- end %>
 <ul class="flat registrant-form__home-zip">
   <%= field_li form, :home_zip_code, {li_options: {class: 'width_f registrant-form__home-zip__line'}, field_options: {autocomplete: 'postal-code'}, required: true } %>
-  <%- if @registrant.use_short_form? %>
-    <li class="registrant-form__home-zip__button">
-      <%= rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) %>
-    </li>  
-  <%- end %>  
 </ul>
+<%- if @registrant.use_short_form? %>
+  <fieldset class="block-selector">
+   <%= checkbox_block_selector form, :has_state_license, t('txt.registration.has_state_license', state: ""), nil, {required: true} %>
+  </fieldset>
+  <%= rollover_button(:next_step, I18n.t('txt.button.start').html_safe) %>
+<% end %>
 <%- if !@registrant.use_short_form? %>
  <ul class="flat">
    <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>

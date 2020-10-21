@@ -1,3 +1,4 @@
+<%- skip_state_ovr ||= false %>
 <fieldset>
   <legend><span><%= I18n.t('txt.registration.home_address') %></span><%= tooltip_tag :home_address %></legend>
   <ul class="stacked">
@@ -30,21 +31,23 @@
   </ul>
 </fieldset>
 
-<fieldset id="mailing_address_set" class="block-selector">
-  <%= checkbox_block_selector form, :has_mailing_address, I18n.t('activerecord.attributes.registrant.has_mailing_address'), nil, {required: false} %>
-  <div class="block-selector__yes-selected">
-    <h3><%= I18n.t('txt.registration.mailing_address') %> <%= tooltip_tag :mailing_address %></h3>
-    <ul class="stacked">
-      <%= field_li form, :mailing_address, {li_options: {class: 'registrant-form__mailing-address__line'}, required: true }  %>
-      <%= field_li form, :mailing_unit, {li_options: {class: 'registrant-form__mailing-unit'}, field_options: { size: 15 }, required: false }  %>
-    </ul>
-    <ul class="stacked">
-      <%= field_li form, :mailing_address, {li_options: {class: 'registrant-form__mailing-city__line'}, required: true }  %>
-      <%= field_li form, :mailing_state_abbrev, {select_options: GeoState.collection_for_select, li_options: {class: 'registrant-form__mailing-state-abbrev__line'}, required: true }  %>
-      <%= field_li form, :mailing_zip_code, {li_options: {class: 'registrant-form__mailing-zip-code__line'}, required: true }  %>
-    </ul>
-  </div>
-</fieldset>
+<%- if !@registrant.finish_with_state_eligible? || skip_state_ovr %>
+  <fieldset id="mailing_address_set" class="block-selector">
+    <%= checkbox_block_selector form, :has_mailing_address, I18n.t('activerecord.attributes.registrant.has_mailing_address'), nil, {required: false} %>
+    <div class="block-selector__yes-selected">
+      <h3><%= I18n.t('txt.registration.mailing_address') %> <%= tooltip_tag :mailing_address %></h3>
+      <ul class="stacked">
+        <%= field_li form, :mailing_address, {li_options: {class: 'registrant-form__mailing-address__line'}, required: true }  %>
+        <%= field_li form, :mailing_unit, {li_options: {class: 'registrant-form__mailing-unit'}, field_options: { size: 15 }, required: false }  %>
+      </ul>
+      <ul class="stacked">
+        <%= field_li form, :mailing_address, {li_options: {class: 'registrant-form__mailing-city__line'}, required: true }  %>
+        <%= field_li form, :mailing_state_abbrev, {select_options: GeoState.collection_for_select, li_options: {class: 'registrant-form__mailing-state-abbrev__line'}, required: true }  %>
+        <%= field_li form, :mailing_zip_code, {li_options: {class: 'registrant-form__mailing-zip-code__line'}, required: true }  %>
+      </ul>
+    </div>
+  </fieldset>
+<%- end %>
 <%- show_hr = show_hr.nil? ? true : show_hr %>
 <%- if show_hr %>
   <hr id="mailing_address_rule" style="display:none;" />

@@ -886,6 +886,10 @@ class Registrant < ActiveRecord::Base
     localization ? localization.allows_ovr_ignoring_license?(self) : false
   end
   
+  def finish_with_state_eligible?
+    home_state_allows_ovr_ignoring_license? && !mail_with_esig? && (has_state_license? || !require_id?)
+  end
+
   def skip_state_flow!
     self.state_ovr_data ||= {}
     self.state_ovr_data[:skip_state_flow] = true

@@ -7,18 +7,26 @@
     &__checkbox-field {
       h3 {
         font-weight: bold;
-        margin-bottom: 14px;
+        margin-bottom: 14px;        
+      }
+      &.has_error h3 {
+        padding: 7px;
+        margin-bottom: 7px;
+        background: $light-red;
       }
     }
     &__yes-no {
-      display: block
+      display: block;
+      font-size: 14px;
+      margin: 7px 0;
     }
     &__button {
       cursor: pointer;
       display: inline-block;
-      padding: 5px;
+      padding: 6px 12px;
       border: 1px solid $red;
       color: $red;
+      font-weight: bold;
       &--selected {
         color: $white;
         background: $red;

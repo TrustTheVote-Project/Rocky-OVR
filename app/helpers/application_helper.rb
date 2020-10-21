@@ -242,6 +242,8 @@ module ApplicationHelper
     end
     tooltip = tooltip_key ? tooltip_tag(tooltip_key) : ""
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
+    error = "<span class='error'>#{form.object.errors[field].join("\n").html_safe}</span>".html_safe
+    
     instructions = options[:instructions]
     instructions_html = instructions.blank? ? nil : "<p class='instructions'>#{instructions}</p>"
     label = content_tag(:h3, label.html_safe + required.html_safe + tooltip.html_safe).html_safe
@@ -263,7 +265,8 @@ module ApplicationHelper
     children = [
       label,
       hidden_field,
-      "<div class='block-selector__yes-no'>#{yes_block} #{no_block}</div>".html_safe
+      "<div class='block-selector__yes-no'>#{yes_block} #{no_block}</div>".html_safe,
+      error
     ].join("\n").html_safe
     content_tag(:div, children, html_options.merge(class: "#{has_error} block-selector__checkbox-field"))
   end
