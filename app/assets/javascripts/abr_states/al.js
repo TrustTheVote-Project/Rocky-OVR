@@ -179,5 +179,8 @@ var state_dln_patterns= {
 
   jQuery(document).ready(function($) {
     $('select[name="abr[drivers_license_state]"').on('change', function () {
-        al_update_dln_pattern ($(this), $)});
+        al_update_dln_pattern($(this), $)
+      });
+    //Run on page load
+    al_update_dln_pattern($('select[name="abr[drivers_license_state]"'), $);
   });
