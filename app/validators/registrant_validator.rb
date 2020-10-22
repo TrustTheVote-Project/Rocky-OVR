@@ -64,10 +64,20 @@ class RegistrantValidator < ActiveModel::Validator
     
     if reg.at_least_step_2? && reg.use_short_form? 
       if reg.home_state_allows_ovr_ignoring_license? && reg.require_id?
-        reg.validates_inclusion_of  :has_state_license, :in=>[true,false]
+        reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
+      elsif !reg.home_state_allows_ovr_ignoring_license? || reg.require_id?
+        reg.validates_inclusion_of  :has_mailing_address, :in=>[true,false] unless reg.building_via_api_call?
+        reg.validates_inclusion_of  :change_of_address, :in=>[true,false] unless reg.building_via_api_call?
+        reg.validates_inclusion_of  :change_of_name, :in=>[true,false] unless reg.building_via_api_call?
       end
       reg.validate_date_of_birth
       #validate_phone_present_if_opt_in_sms(reg)
+    end
+
+    if reg.at_least_step_4? && reg.use_short_form?
+      reg.validates_inclusion_of  :has_mailing_address, :in=>[true,false] unless reg.building_via_api_call?
+      reg.validates_inclusion_of  :change_of_address, :in=>[true,false] unless reg.building_via_api_call?
+      reg.validates_inclusion_of  :change_of_name, :in=>[true,false] unless reg.building_via_api_call?
     end
     
     

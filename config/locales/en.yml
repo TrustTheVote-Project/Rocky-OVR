@@ -468,6 +468,7 @@ en:
           blank: Required
           invalid: "%{attribute} is invalid."
           invalid_zip: Invalid ZIP
+          inclusion: Please select one
           attributes:
             home_zip_code:
               invalid: Use ZIP (xxxxx) or ZIP+4 (xxxxx-xxxx)
