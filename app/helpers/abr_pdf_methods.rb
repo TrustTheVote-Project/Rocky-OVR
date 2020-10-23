@@ -134,7 +134,6 @@ module AbrPdfMethods
       
       @pdf_writer.pdf_template_path = pdf_template_path
       @pdf_writer.pdf_template_with_cover_path = pdf_template_with_cover_path
-      #@pdf_writer.delivery_address = state_registrar_address
       @pdf_writer.voter_signature = voter_signature
       @pdf_writer.signature_pdf_field_name = signature_pdf_field_name
       @pdf_writer.deliver_to_elections_office_via_email = deliver_to_elections_office_via_email?
