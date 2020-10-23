@@ -124,6 +124,7 @@ absentee_states:
     abr_status_check_url: "https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx"
   IL:
     pdf_template: common.pdf
+    abr_status_check_url: https://www.elections.il.gov/ElectionOperations/DistrictLocator/AddressFinder.aspx?T=637389017562160156
     counties:
       "kane county": 
         online_req_url: https://www.kanecountyclerk.org/Elections/Pages/Request-Ballot-By-Mail.aspx

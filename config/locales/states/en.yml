@@ -648,6 +648,11 @@ en:
             received by 8:00pm on November 3, 2020.</p><p>You can check the status
             of your ballot here: <a rel="noopener" target="blank" href="https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx">https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx</a></p>'
       il:
+        abr:
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote By Mail Ballot status, by calling your local election official.  Find your official's contact information here:"
+          state_reminder_1: ""
+          state_reminder_2: ""
         abr_form_fields:
           ElectionPrecinct: Precinct
           VOTERS OPTIONAL ADDRESS LINE 2: Name of institution, company, or facility
