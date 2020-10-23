@@ -174,6 +174,4 @@ module AbrPdfMethods
       :created_at => created_at.to_param
     })
   end
-
-
 end

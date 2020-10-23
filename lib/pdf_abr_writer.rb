@@ -25,7 +25,6 @@ class PdfAbrWriter
       send("#{k}=", v) if self.respond_to?("#{k}=")      
     end
   end
-
   def generate_pdf(force_write = false, for_printer = false)
     if force_write || !pdf_exists?
       FileUtils.mkdir_p(pdf_file_dir)
