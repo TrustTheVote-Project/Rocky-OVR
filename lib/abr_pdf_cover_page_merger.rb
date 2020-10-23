@@ -1,6 +1,6 @@
 class AbrPdfCoverPageMerger
     
-    def self.pdf_template_path (home_state_abbrev, pdf_template_name)
+    def self.pdf_template_path(home_state_abbrev, pdf_template_name)
         abbrev = home_state_abbrev.downcase
         Rails.root.join("data/abr_pdfs/#{abbrev}/#{pdf_template_name}")
     end
@@ -9,7 +9,7 @@ class AbrPdfCoverPageMerger
         pdf_template_name.gsub(/\.pdf\z/, '_with_cover.pdf')
     end
 
-    def self.pdf_template_with_cover_path (home_state_abbrev, pdf_template_name)
+    def self.pdf_template_with_cover_path(home_state_abbrev, pdf_template_name)
         abbrev = home_state_abbrev.downcase
         Rails.root.join("data/abr_pdfs/#{abbrev}/#{pdf_template_with_cover_filename(pdf_template_name)}")
     end
@@ -35,8 +35,7 @@ class AbrPdfCoverPageMerger
     end
 
     def self.run
-        self.build_coverpage_versions
-        return(true)
+        self.build_coverpage_versionss
     end
 
 end

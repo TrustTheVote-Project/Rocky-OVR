@@ -153,7 +153,7 @@ module AbrPdfFields
   end
 
   def abr_status_check_url
-    if (home_state_abbrev)
+    if home_state_abbrev
       RockyConf.absentee_states[home_state_abbrev]&.abr_status_check_url
     end
   end
@@ -163,7 +163,7 @@ module AbrPdfFields
     reminders="";
     reminders+= I18n.t("states.custom.#{i18n_key}.abr.abr_status_check_intro", default: "")
     reminders+="\n\n";
-    reminders+=  abr_status_check_url.to_s()
+    reminders+=  abr_status_check_url.to_s
     reminders+="\n\n";
     reminders+= I18n.t("states.custom.#{i18n_key}.abr.state_reminder_1", default: "")
     reminders+="\n";
