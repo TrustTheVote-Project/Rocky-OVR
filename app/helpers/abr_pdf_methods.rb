@@ -175,8 +175,5 @@ module AbrPdfMethods
     })
   end
 
-  def make_cover_fields_hash 
-    self.pdf_cover_fields.map{ |fieldname| [fieldname, self.send("#{self.class.make_method_name(fieldname)}")] }.to_h
-  end
 
 end
