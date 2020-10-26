@@ -1,7 +1,13 @@
 class CatalistLookup < ActiveRecord::Base
   include DateOfBirthMethods
+  include CatalistLookupReportingMethods
+  
   has_one :abrs_catalist_lookup
   has_one :abr, through: :abrs_catalist_lookup
+
+  has_one :catalist_lookups_registrant
+  has_one :registrant, through: :catalist_lookups_registrant, primary_key: :uid, foreign_key: :registrant_uid
+
   belongs_to :partner
 
   serialize :match, Hash

@@ -21,8 +21,6 @@ ui_url_host: "register5.example.com"
 blocks_configuration:
   states:
     - PA
-    - VA
-    - MI
 
 
 # this URL (if present) is shown as a WIKI nav menu item in the Partner portal
@@ -197,7 +195,7 @@ absentee_states:
     abr_status_check_url: "https://www.votercheck.necvr.ne.gov/voterview/"
   NH:
     pdf_template: nh.pdf
-    email_delivery: true
+    email_delivery: false
     abr_status_check_url: "https://app.sos.nh.gov/Public/AbsenteeBallot.aspx"
   NJ: 
     abr_status_check_url: "https://voter.svrs.nj.gov/auth/sign-in"
@@ -261,7 +259,7 @@ absentee_states:
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
-    pdf_template: wv.pdf
+    #pdf_template: wv.pdf
     abr_status_check_url: "https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking"
   WY:
     pdf_template: wy.pdf

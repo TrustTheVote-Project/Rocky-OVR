@@ -30,17 +30,17 @@ class CanvassingShiftsController < ApplicationController
   end
 
   def create
-    @new_canvassing_shift = CanvassingShift.new(cs_params)
-    @new_canvassing_shift.partner_id = params[:partner_id]
+    @new_canvassing_shift = CanvassingShift.new(partner_id: params[:partner_id])
+    @new_canvassing_shift.attributes = cs_params
     @partner = Partner.find_by_id(params[:partner_id])
     @new_canvassing_shift.source_tracking_id = params[:source_tracking_id]
     @new_canvassing_shift.partner_tracking_id = params[:partner_tracking_id]
     @new_canvassing_shift.open_tracking_id = params[:open_tracking_id]
     @new_canvassing_shift.device_id = "web-#{request.ip}" #User IP?
-    @new_canvassing_shift.generate_shift_external_id
-    @new_canvassing_shift.shift_location ||= RockyConf.blocks_configuration.default_location_id
-    @new_canvassing_shift.clock_in_datetime = DateTime.now
     @new_canvassing_shift.shift_source = CanvassingShift::SOURCE_WEB
+    @new_canvassing_shift.shift_location ||= RockyConf.blocks_configuration.default_location_id
+    @new_canvassing_shift.generate_shift_external_id
+    @new_canvassing_shift.clock_in_datetime = DateTime.now
     if @new_canvassing_shift.save
       # If existing shift, clock it out
       if @canvassing_shift
@@ -84,9 +84,9 @@ class CanvassingShiftsController < ApplicationController
     @partners = Partner.where(id: RockyConf.blocks_configuration.partners.keys.collect(&:to_s))
     @partner = @partners.where(id: params[:partner]).first
     @sub_orgs = @partner ? RockyConf.blocks_configuration.partners[@partner.id.to_i][:sub_orgs] : nil
-    @sub_org = params[:sub_org] 
-    @organization = @sub_org || @partner&.organization
-    @blocks_turf_id = @sub_org ? @sub_orgs[@sub_org] : nil
+    @blocks_turf_id = params[:blocks_turf_id] 
+    @sub_org = @sub_orgs&.detect {|so| so.turf_id.to_s == @blocks_turf_id.to_s }
+    @organization = @sub_org&.name || @partner&.organization
     set_params
   end
 

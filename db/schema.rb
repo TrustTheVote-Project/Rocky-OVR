@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200929202144) do
+ActiveRecord::Schema.define(version: 20201015154203) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -246,6 +246,17 @@ ActiveRecord::Schema.define(version: 20200929202144) do
   add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email"
   add_index "catalist_lookups", ["partner_id"], name: "index_catalist_lookups_on_partner_id"
   add_index "catalist_lookups", ["state_id"], name: "index_catalist_lookups_on_state_id"
+
+  create_table "catalist_lookups_registrants", force: :cascade do |t|
+    t.string   "registrant_uid"
+    t.integer  "catalist_lookup_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "catalist_lookups_registrants", ["catalist_lookup_id"], name: "index_catalist_lookups_registrants_on_catalist_lookup_id"
+  add_index "catalist_lookups_registrants", ["registrant_uid", "catalist_lookup_id"], name: "registrants_catalist_join_index"
+  add_index "catalist_lookups_registrants", ["registrant_uid"], name: "index_catalist_lookups_registrants_on_registrant_uid"
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",                    default: 0
