@@ -25,7 +25,7 @@ module AbrPdfCoverFields
   end
 
   def state_registrar_address_newlines
-    state_registrar_address.gsub(/<br>/,"\n")
+    state_registrar_address.gsub(/<br>|<br\/>/,"\n")
   end
 
   def cover_state_deadline
