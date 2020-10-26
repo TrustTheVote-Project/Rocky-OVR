@@ -6,8 +6,9 @@ class PdfAbrWriter
   include Lolrus
 
   attr_accessor :pdf_values
+  attr_accessor :pdf_cover_values
   attr_accessor :pdf_template_path
-  attr_accessor :delivery_address
+  attr_accessor :pdf_template_with_cover_path
   attr_accessor :voter_signature
   attr_accessor :signature_pdf_field_name
   attr_accessor :deliver_to_elections_office_via_email
@@ -37,31 +38,16 @@ class PdfAbrWriter
           sig_field: self.signature_pdf_field_name
         })
         signer.sign
-        form.save_as(pdf_file_path, flatten: false)
+        form.save_as(pdf_file_path+'-signed', flatten: false)
       end
 
-      
-      unless deliver_to_elections_office_via_email?
-        # Temp solution for making sure every PDF includes address
-        html_string = "Sign and return this form to:<br/><br/><p style='font-size: 24px; line-height: 1.6em;'>#{delivery_address}</p>"
-        #0. generate address pdf
-        pdf = WickedPdf.new.pdf_from_string(
-          html_string,
-          :disable_internal_links         => false,
-          :disable_external_links         => false,
-          :encoding => 'utf8',
-          :locale=>locale,
-          :page_size => locale.to_s == "en" ? "Letter" : "A4"
-        )
-
-        File.open(pdf_delivery_address_path, "w") do |f|
-          f << pdf.force_encoding('UTF-8')
-        end
-      end
 
       # 1. generate xfdf
       xfdf_contents = "<?xml version=\"1.0\"?><xfdf xmlns=\"http://ns.adobe.com/xfdf/\"><fields>"
       pdf_values.each do |k, v|
+        xfdf_contents += "\n<field name=\"#{k}\"><value>#{v}</value></field>"
+      end
+      pdf_cover_values.each do |k, v|
         xfdf_contents += "\n<field name=\"#{k}\"><value>#{v}</value></field>"
       end
       xfdf_contents += "</fields></xfdf>"
@@ -69,13 +55,8 @@ class PdfAbrWriter
       File.open(pdf_xfdf_path, "w+") do |f|
         f.write xfdf_contents
       end
-      `pdftk #{(voter_signature && !voter_signature.voter_signature_image.blank? ? pdf_file_path : pdf_template_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path}-tmp flatten`        
-      if deliver_to_elections_office_via_email?
-        # no cover page needed
-        `cp #{pdf_file_path}-tmp #{pdf_file_path}`
-      else
-        `pdftk #{pdf_delivery_address_path} #{pdf_file_path}-tmp output #{pdf_file_path}`
-      end
+      `pdftk #{(voter_signature && !voter_signature.voter_signature_image.blank? ? pdf_file_path+'-signed' : pdf_template_with_cover_path).to_s} fill_form #{pdf_xfdf_path} output #{pdf_file_path} flatten`        
+
       uploaded = nil
       if for_printer
         #uploaded = self.upload_pdf_to_printer(path, url_path)
@@ -88,8 +69,7 @@ class PdfAbrWriter
           File.delete(pdf_signature_image_path) if File.exists?(pdf_signature_image_path)
           File.delete(pdf_xfdf_path) if File.exists?(pdf_xfdf_path)
           File.delete(pdf_file_path) if File.exists?(pdf_file_path)
-          File.delete("#{pdf_file_path}-tmp") if File.exists?("#{pdf_file_path}-tmp")
-          File.delete(pdf_delivery_address_path) if File.exists?((pdf_delivery_address_path))
+          File.delete("#{pdf_file_path}-signed") if File.exists?("#{pdf_file_path}-signed")
         end
       else
         raise "File #{pdf_file_path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
@@ -120,9 +100,6 @@ class PdfAbrWriter
     "/#{file ? pdf_file_dir(pdfpre) : pdf_dir(pdfpre)}/#{to_param}.xfdf"
   end
   
-  def delivery_address_path(pdfpre = nil, file=false)
-    "/#{file ? pdf_file_dir(pdfpre) : pdf_dir(pdfpre)}/#{to_param}-address.pdf"
-  end
 
 
   def pdf_file_dir(pdfpre = nil)
@@ -157,10 +134,6 @@ class PdfAbrWriter
     File.join(Rails.root, xfdf_path(pdfpre, true))
   end
   
-  def pdf_delivery_address_path(pdfpre = nil)
-    dir = File.join(Rails.root, pdf_file_dir(pdfpre))
-    File.join(Rails.root, delivery_address_path(pdfpre, true))
-  end
 
   def bucket_code
     super(DateTime.parse(self.created_at))
