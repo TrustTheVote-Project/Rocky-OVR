@@ -11,6 +11,7 @@ class AbTest < ActiveRecord::Base
     return nil if registrant.nil?
     return nil if registrant.javascript_disabled?
     return nil if # whitelabeled partner with old css but not new css....
+    
   end
 
   def self.assign_mobile_ui_test(registrant, controller)
