@@ -35,7 +35,7 @@ class AbrPdfCoverPageMerger
     end
 
     def self.run
-        self.build_coverpage_versionss
+        self.build_coverpage_versions
     end
 
 end
