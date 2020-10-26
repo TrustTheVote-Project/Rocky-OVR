@@ -4,6 +4,15 @@ class AbTest < ActiveRecord::Base
   MOBILE_UI="NewMobileUI".freeze
   MOBILE_UI_OLD="OLD".freeze
   MOBILE_UI_NEW="NEW".freeze
+  
+  NEW_UI_2020="NewUI2020".freeze
+
+  def self.assign_2020_ui_text(registrant, controller)
+    return nil if registrant.nil?
+    return nil if registrant.javascript_disabled?
+    return nil if # whitelabeled partner with old css but not new css....
+  end
+
   def self.assign_mobile_ui_test(registrant, controller)
     return nil if registrant.nil?
     return nil if registrant.javascript_disabled?
