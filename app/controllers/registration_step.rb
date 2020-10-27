@@ -196,7 +196,7 @@ class RegistrationStep < ApplicationController
 
   def set_ab_test
     AbTest.tests.each do |name, method|
-      instance_var_name = '@' + name.downcase.underscore
+      instance_var_name = '@' + name.downcase.underscore #@newui2020
       if @registrant && t = @registrant.ab_tests.where(name: name).first
         self.instance_variable_set(instance_var_name, t)
       else
@@ -209,14 +209,13 @@ class RegistrationStep < ApplicationController
         end
       end
       self.instance_variable_set(
-        '@use_' + name.downcase.underscore, 
+        '@use_' + name.downcase.underscore,  #@use_newui2020
         self.instance_variable_get(instance_var_name)&.assignment == AbTest::NEW
       )
       if self.instance_variable_get('@use_' + name.downcase.underscore)
         custom_locale = (I18n.locale.to_s + '-' + name.downcase.underscore).to_sym
         if I18n.available_locales.include?(custom_locale)
-          I18n.locale = custom_locale
-          
+          I18n.locale = custom_locale          
         end
       end
       

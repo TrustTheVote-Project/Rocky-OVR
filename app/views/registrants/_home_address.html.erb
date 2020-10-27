@@ -1,5 +1,5 @@
 <% if @use_newui2020 %>
-  <%= render partial: "home_address_newui2020" %>
+  <%= render partial: "registrants/home_address_newui2020", locals: { form: form } %>
 <% else %>
   <% content_for :head do %>
   <script>
