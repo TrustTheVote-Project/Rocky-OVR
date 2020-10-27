@@ -7,6 +7,12 @@ $(document).ready(function() {
     var input = blockSelector.find(".block-selector__input");
     var innerYes = blockSelector.find(".block-selector__yes-selected");
     var innerNo = blockSelector.find(".block-selector__no-selected");
+    var inputWrapper = blockSelector.find(".block-selector__checkbox-field");
+    var errors = blockSelector.find(".error")
+    var removeErrors = function() {
+      inputWrapper.removeClass("has_error");
+      errors.text("");
+    }
     console.log(yesButton.length);
 
     var checkValue = function() {
@@ -15,11 +21,13 @@ $(document).ready(function() {
         noButton.removeClass("block-selector__button--selected");
         innerYes.show();
         innerNo.hide();
+        removeErrors();
       } else if (input.attr("value") == "0") {
         noButton.addClass("block-selector__button--selected");
         yesButton.removeClass("block-selector__button--selected");
         innerYes.hide();
         innerNo.show();
+        removeErrors();
       } else {
         noButton.removeClass("block-selector__button--selected");
         yesButton.removeClass("block-selector__button--selected");

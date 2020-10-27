@@ -1,86 +1,123 @@
-- if @registrant.mail_with_esig?
-  = render 'shared/signature_capture/scripts'
-  = flash_messages.html_safe
+- if @use_newui2020
+  = render partial: 'show_mobile_ui_newui2020'
+- else 
+  - if @registrant.mail_with_esig?
+    = render 'shared/signature_capture/scripts'
+    = flash_messages.html_safe
 
-= content_for :head do 
-  :javascript
-    $(document).ready(function() {
-      var shouldSkipStep = function shouldSkipStep(currentStep) {
-        if (currentStep == 4) {
-          return !$("#registrant_change_of_name").is(":checked")
+  = content_for :head do 
+    :javascript
+      $(document).ready(function() {
+        var shouldSkipStep = function shouldSkipStep(currentStep) {
+          if (currentStep == 4) {
+            return !$("#registrant_change_of_name").is(":checked")
+          }
+          if (currentStep == 6) {
+            return !$("#registrant_has_mailing_address").is(":checked")
+          }
+          if (currentStep == 7) {
+            return !$("#registrant_change_of_address").is(":checked")
+          }
+          return false;
         }
-        if (currentStep == 6) {
-          return !$("#registrant_has_mailing_address").is(":checked")
-        }
-        if (currentStep == 7) {
-          return !$("#registrant_change_of_address").is(":checked")
-        }
-        return false;
-      }
+        
+        initDynamicNav( 2, 2, 8, {
+          2: 10, //Eligibility
+          3: 20, // Name
+          4: 30, // Name part 2
+          5: 40, // Home Address
+          6: 50, // Mailing Address
+          7: 55, // Previous Address
+          8: 65, // Identification
+          //Download page goes up to 80%
+        }, shouldSkipStep);
+        $('#javascript_disabled').remove();
+        
+        // if (window.ga) {
+        //   ga(function() {
+        //     var trackers = ga.getAll();
+        //     var tracker = trackers[0];
+        //     if (tracker) {
+        //       tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
+        //     }
+        //   });
+        // }
+        
+        
+        
+      });
       
-      initDynamicNav( 2, 2, 3, {
-        2: 30, // Basic Info
-        3: 70, // More about you
-        //Download page goes up to 80%
-      }, shouldSkipStep);
-      $('#javascript_disabled').remove();
-      
-      // if (window.ga) {
-      //   ga(function() {
-      //     var trackers = ga.getAll();
-      //     var tracker = trackers[0];
-      //     if (tracker) {
-      //       tracker.send('event', 'mobile-ui-ab-test', 'mobile-ui-ab-test-assignment-NEW');
-      //     }
-      //   });
-      // }
-      
-      
-      
-    });
+  - if @registrant.home_state_allows_ovr_ignoring_license?
+    - content_for :head do
+      :javascript
+        $(document).ready(function() {
+          function hasStateLicenseSelected() {
+            var hasStateLicense = true;
+            var hasStateLicenseRadio = $('input[name="registrant[has_state_license]"]:checked'); //a radio must have 1 selected
+            if (hasStateLicenseRadio.length > 0 && hasStateLicenseRadio.val()!="1") {
+              hasStateLicense = false;
+            } 
+            
+            // If check-18 checkbox is present, that must also be selected
+            var willBe18 = true;
+            var willBe18Checkbox = $('input[name="registrant[will_be_18_by_election]"]');
+            if (willBe18Checkbox.length > 0 && !willBe18Checkbox.is(":checked")) {
+              willBe18 = false;
+            }
+            return hasStateLicense && willBe18;
+          }
+          function toggleHasStateLicense() {
+            if (hasStateLicenseSelected()) {
+              $('.skip_state_registration').hide(); 
+              var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required");
+              $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", val)
+              $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", null)
+              clearErrors.bind($('.skip_state_registration #registrant_state_id_number').get(0))();
+              
+              $('.use_state_registration').show();  
+              //$("#main").removeClass('skipping_state_registration').addClass('using_state_registration');  
+            } else {
+              $('.skip_state_registration').show();
+              var val = $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required");
+              $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-required", val)
+              $('.skip_state_registration #registrant_state_id_number').attr("data-client-validation-not-required", null)
+              $('.use_state_registration').hide();    
+              //$("#main").addClass('skipping_state_registration').removeClass('using_state_registration');  
+            }
+          }
+          toggleHasStateLicense();
+          $('input[name="registrant[has_state_license]"]').click(toggleHasStateLicense);  
+          $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
+        });
+  - if @registrant.has_custom_zip_code_partial?
+    = render partial: @registrant.custom_zip_code_partial
+
+  = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
+    #dynamic-progress-bar
+      .filler{style: "width: 10%"}
+      .content 10%
     
-  
-- if @registrant.has_custom_zip_code_partial?
-  = render partial: @registrant.custom_zip_code_partial
-
-= form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
-  #dynamic-progress-bar
-    .filler{style: "width: 10%"}
-    .content 10%
-  
-  .dynamic-step#step-2
-    - if @registrant.state_flow_error?
-      .state-flow-error
-        %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
-    
-    %fieldset
-      %legend= t 'txt.registration.mobile_ui.step_2.title'
-      %p= t 'txt.registration.mobile_ui.step_2.instructions'
+    .dynamic-step#step-2
+      - if @registrant.state_flow_error?
+        .state-flow-error
+          %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
       
-      = render partial: "registrants/name_display", locals: {form: form}
-
-      = render :partial=> "registrants/home_address", :locals=>{:form=>form} 
-  
-      - if !@registrant.finish_with_state_eligible?
-        = render partial: 'previous_address_block', locals: { form: form }
-  
-      %ul.flat.phone.clear-fix
-        = render :partial=> "registrants/phone", :locals=>{:form=>form}
       
-      %fieldset.no_border.opt-ins
-        = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
-        = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
-  
-  .dynamic-step#step-3  
-    %fieldset
-      %legend= t('txt.registration.mobile_ui.step_9.title')
-      %ul.checkbox.checkbox-step-1
-        %li.spacer= "&nbsp;"
-        %li.registrant-form__us-citizen__line
-          %h3
-            = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
-            = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
-            %span.error= form.object.errors[:us_citizen].join("\n")
+      %fieldset
+        %legend= t 'txt.registration.mobile_ui.step_2.title'
+        %p= t 'txt.registration.mobile_ui.step_2.instructions'
+        
+        
+        
+        %ul.flat.dob-and-phone
+          = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+        %ul.checkbox.checkbox-step-1
+          %li.spacer= "&nbsp;"
+          %li.registrant-form__us-citizen__line
+            %h3
+              = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
+              = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
+              %span.error= form.object.errors[:us_citizen].join("\n")
         - if @registrant.require_age_confirmation?
           %ul.checkbox.checkbox-step-1
             %li.spacer
@@ -89,54 +126,95 @@
                 = form.check_box :will_be_18_by_election
                 = form.label :will_be_18_by_election
                 %span.error= form.object.errors[:will_be_18_by_election].join("\n")
-        
-        %ul.flat
-          = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
-        
-    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
-      - if !@registrant.finish_with_state_eligible?
-        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form} 
-        = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
 
-    - elsif @registrant.mail_with_esig?
-      = render partial: 'shared/signature_capture/form', locals: {form: form}
-  
+    .dynamic-step#step-3  
+      = render partial: 'name_mobile', locals: {form: form}
+
+    .dynamic-step#step-4
+      = render partial: 'previous_name_mobile', locals: { form: form }
     
-    %fieldset.no_border.opt-ins
-      = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+    .dynamic-step#step-5  
+      = render partial: "registrants/home_address_without_mailing", locals: { form: form }
+    
+    .dynamic-step#step-6
+      = render partial: "registrants/mailing_address", locals: { form: form }
 
-    .skip_state_registration
-      - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
-        .checkbox{style: "font-size: 150%; text-align: center;"}
-          = hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden
-          = check_box_tag :pdf_assistance, "1", @pdf_assistance == "1"
-          = label_tag :pdf_assistance, I18n.t('txt.button.download_assistance')
-      
+    .dynamic-step#step-7
+      = render partial: 'previous_address_mobile', locals: { form: form }
 
-  .dynamic-navigation
-    -# .back only shown when first step, .prepare only shown when last step
-    .back.back--link
-      .button.rollover_button
-        = link_to registrant_path(@registrant) do
-          %button{type: "button"}
-            %span <
-    .back.back--virtual 
-      .button.rollover_button
-        %a 
-          %button{type: "button"}
-            %span <
-    .next.next--virtual
-      .button.rollover_button
-        %a 
-          %button
-            %span=t 'txt.button.submit'
-    .next.next--link.prepare
-      - if  @registrant.home_state_allows_ovr_ignoring_license?
-        .use_state_registration
-          = rollover_button(:prepare, I18n.t('txt.button.submit'))
+    .dynamic-step#step-8
+      %fieldset
+        %legend= t('txt.registration.mobile_ui.step_8.title')
+      - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
+        - if @registrant.require_id?
+          %ul.radio
+            %li.registrant-form__has-state-license__line.has_license
+              %h3
+                = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
+                = form.label :has_state_license_1, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
+              .use_state_registration.checkbox-explanation
+                %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
+          %ul.radio
+            %li.registrant-form__has-no-state-license__line
+              %h3
+                = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
+                = form.label :has_state_license_0, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_no_state_license", default: t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev))
+
+        .skip_state_registration
+          = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+          
+
+      - else 
+        .state-id-number
+          = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+        - if @registrant.mail_with_esig?
+          = render partial: 'shared/signature_capture/form', locals: {form: form}
+    
+      %fieldset
+        %legend= t('txt.registration.mobile_ui.step_9.title')
       .skip_state_registration
+        = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
+      %ul.flat.dob-and-phone.clear-fix
+        = render :partial=> "registrants/phone", :locals=>{:form=>form}
+
+      %fieldset.no_border.opt-ins
+        = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
+        = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
+    
+        = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+
+      .skip_state_registration
+        - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+          .checkbox{style: "font-size: 150%; text-align: center;"}
+            = hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden
+            = check_box_tag :pdf_assistance, "1", @pdf_assistance == "1"
+            = label_tag :pdf_assistance, I18n.t('txt.button.download_assistance')
         
-        = rollover_button(:prepare, I18n.t('txt.button.prepare'))
-      
-      
-  
+
+    .dynamic-navigation
+      -# .back only shown when first step, .prepare only shown when last step
+      .back.back--link
+        .button.rollover_button
+          = link_to registrant_path(@registrant) do
+            %button{type: "button"}
+              %span <
+      .back.back--virtual 
+        .button.rollover_button
+          %a 
+            %button{type: "button"}
+              %span <
+      .next.next--virtual
+        .button.rollover_button
+          %a 
+            %button
+              %span=t 'txt.button.submit'
+      .next.next--link.prepare
+        - if  @registrant.home_state_allows_ovr_ignoring_license?
+          .use_state_registration
+            = rollover_button(:prepare, I18n.t('txt.button.submit'))
+        .skip_state_registration
+          
+          = rollover_button(:prepare, I18n.t('txt.button.prepare'))
+        
+        
+    

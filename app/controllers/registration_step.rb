@@ -147,6 +147,7 @@ class RegistrationStep < ApplicationController
         redirect_to(registrant_ineligible_url(@registrant)) and return
       end
     else
+      set_ab_test
       set_show_skip_state_fields
       render_show and return :rendererd
     end
@@ -194,6 +195,24 @@ class RegistrationStep < ApplicationController
   end
 
   def set_ab_test
+    AbTest.tests.each do |name, method|
+      instance_var_name = '@' + name.downcase.underscore
+      if @registrant && t = @registrant.ab_tests.where(name: name).first
+        self.instance_variable_set(instance_var_name, t)
+      else
+        if params[name]
+          t = AbTest.new(name: name, assignment: params[name])
+          t.registrant_id = @registrant ? @registrant.id : nil
+          self.instance_variable_set(instance_var_name, t)
+        else
+          self.instance_variable_set(instance_var_name, AbTest.send(method, @registrant, self))
+        end
+      end
+      self.instance_variable_set(
+        '@use_' + name.downcase.underscore, 
+        self.instance_variable_get(instance_var_name)&.assignment == AbTest::NEW
+      )
+    end
     # if @registrant && t = @registrant.ab_tests.where(name: AbTest::MOBILE_UI).first
     #   @mobile_ui_test = t
     # else

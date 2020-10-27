@@ -4,14 +4,38 @@ class AbTest < ActiveRecord::Base
   MOBILE_UI="NewMobileUI".freeze
   MOBILE_UI_OLD="OLD".freeze
   MOBILE_UI_NEW="NEW".freeze
+
+  OLD = "OLD".freeze
+  NEW = "NEW".freeze
   
-  NEW_UI_2020="NewUI2020".freeze
+  NEW_UI_2020="newui2020".freeze
+
+  def self.tests
+    [
+      [NEW_UI_2020, :assign_2020_ui_text]
+    ]
+  end
 
   def self.assign_2020_ui_text(registrant, controller)
     return nil if registrant.nil?
     return nil if registrant.javascript_disabled?
-    return nil if # whitelabeled partner with old css but not new css....
-    
+    return nil unless registrant.use_short_form?
+    partner = registrant.partner
+    # If whitelabeled partner has custom css but not partner3_css
+    return nil if partner.whitelabeled && partner.any_css_present? && !partner.partner3_css_present?
+    t = self.assign(NEW_UI_2020, [NEW, OLD])
+    t.save!
+    return t
+  end
+
+  def self.is_mobile_request(controller)
+    agent = controller.request.user_agent.to_s.downcase
+    RockyConf.mobile_browsers.each do |b|
+      if agent =~ /#{b}/
+        return true
+      end
+    end
+    return false
   end
 
   def self.assign_mobile_ui_test(registrant, controller)

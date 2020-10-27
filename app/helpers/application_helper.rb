@@ -48,10 +48,13 @@ module ApplicationHelper
     stylesheets += registrant_css
     if registrant && !registrant.use_short_form?
       stylesheets << partner.partner_css_url(:preview)
+      stylesheets << partner.partner2_mobile_css_url(:preview) if include_mobile
+    elsif partner.partner3_css_present(:preview)
+      stylesheets << partner.partner3_css_url(:preview)
     else
       stylesheets << partner.partner2_css_url(:preview)
+      stylesheets << partner.partner2_mobile_css_url(:preview) if include_mobile
     end
-    stylesheets << partner.partner2_mobile_css_url(:preview) if include_mobile
     return stylesheets.compact
   end
 
@@ -80,8 +83,12 @@ module ApplicationHelper
     if partner && registrant && !registrant.use_short_form?
       stylesheets << partner.partner_css_url if wl && partner.partner_css_present?
     else
-      stylesheets << partner.partner2_css_url if wl && partner.partner2_css_present?
-      stylesheets << partner.partner2_mobile_css_url if include_mobile && wl && partner.partner2_mobile_css_present?      
+      if partner.partner3_css_present? && wl
+        stylesheets << partner.partner3_css_url
+      else
+        stylesheets << partner.partner2_css_url if wl && partner.partner2_css_present?
+        stylesheets << partner.partner2_mobile_css_url if include_mobile && wl && partner.partner2_mobile_css_present?      
+      end
     end
     stylesheets
   end

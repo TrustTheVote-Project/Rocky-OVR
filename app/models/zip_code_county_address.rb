@@ -24,7 +24,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
         end
       end
     rescue Exception=>e
-      #raise e
+      raise e
       Rails.logger.info "Unable to lookup LEO address for #{self.zip}"
     end
   end

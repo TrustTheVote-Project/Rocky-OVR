@@ -41,7 +41,7 @@ class Registrant < ActiveRecord::Base
   
   scope :abandoned, -> {where(abandoned: true)}
   
-  has_many :ab_tests
+  has_many :ab_tests, autosave: true
   
   serialize :state_ovr_data, Hash
 
