@@ -1,0 +1,581 @@
+---
+en-newui2020:
+  time:
+    formats:
+      short: "%B %d, %l:%M %p"
+      
+  date:
+    formats:
+      ymd: "%Y-%m-%d"
+  'yes': 'Yes'
+  'no': 'No'
+  required: required
+  errors:
+    messages:
+      format: Invalid
+      accepted: must be accepted.
+      too_long: too long (maximum is %{count} characters).
+      too_short: too short (minimum is %{count} characters).
+      wrong_length: wrong length (should be %{count} characters).
+      too_young: You must be 18 on or before November 3, 2020 to vote in this election.
+  or: "OR"
+  affirm: Affirm
+  decline: Decline
+  language_name: English
+  language_name_translation_instructions: Please provide the name of the translated
+    language in that language. For example, if you are translating Japanese, provide
+    the japanese word for "Japanese" (the language name).
+  locales:
+    bn:
+      name: Bengali
+    en:
+      name: English
+    es:
+      name: Spanish
+    hi:
+      name: Hindi
+    ilo:
+      name: Ilocano
+    ja:
+      name: Japanese
+    km:
+      name: Khmer
+    ko:
+      name: Korean
+    th:
+      name: Thai
+    tl:
+      name: Tagalog
+    ur:
+      name: Urdu
+    vi:
+      name: Vietnamese
+    zh-tw:
+      name: Chinese (Traditional)
+    zh:
+      name: Chinese (Simplified)
+  activerecord:
+    attributes:
+      canvassing_shift:
+        canvasser_first_name: First Name
+        canvasser_last_name: Last Name
+        canvasser_phone: Phone
+        canvasser_email: Email
+        shift_location: Location
+      partner:
+        from_email: Edit "from" email address to send autoresponders from your organization,
+          rather than Rock the Vote.
+        url: URL
+        registration_instructions_url: PDF instructions URL
+      state_registrants/mi_registrant:
+        updated_dln_recently: Have you updated your driver’s license or state ID address
+          with the Secretary of State within the last 10 days?
+        requested_duplicate_dln_today: Have you applied for a duplicate driver’s license
+          or state ID today?
+        confirm_us_citizen: I am a United States citizen.
+        confirm_will_be_18: I am at least 17.5 years old and will vote only after
+          I am 18.
+        is_30_day_resident: I am a Michigan resident and will vote only after I have
+          lived in my city or township for at least 30 days.
+        registration_cancellation_authorized: I authorize the cancellation of any
+          previous registration.
+        digital_signature_authorized: I authorize the Secretary of State to use my
+          stored digital signature for voter registration.
+        full_name: Full Name (as printed on your Michigan driver's license or state
+          ID)
+        dln: Michigan Driver's License or state ID number (no dashes or spaces)
+        date_of_birth: Birthdate
+        eye_color_code: Eye color (as printed on your license or state ID)
+        ssn4: Social Security Number (Last 4 digits)
+        registration_address_number: Street Number
+        registration_address_street_name: Street Name
+        registration_address_street_type: Street Type
+        registration_address_post_directional: Direction
+        registration_unit_number: Apt/Unit
+        registration_city: City
+        registration_zip_code: ZIP Code
+        home_state: State
+        home_state_abbrev: State
+        phone: Phone Number (for election use only)
+        mailing_same_as_residential_address: Mailing address is same as residential
+          address
+        mailing_address_1: Street Number
+        mailing_address_2: Street Name
+        mailing_address_3: Street Type
+        mailing_address_unit_number: Apt/Unit
+        mailing_city: City
+        mailing_state: State
+        mailing_zip_code: ZIP Code
+        mailing_country: Country
+      state_registrants/va_registrant:
+        confirm_voter_record_update: I consent to update my voter record with the
+          state or to register to vote if I am not yet registered with Virginia
+        confirm_us_citizen: I am a US citizen
+        ssn: Social Security Number
+        confirm_no_ssn: No SSN was ever issued.
+        dln: Virginia DMV Identifier or Customer Number
+        confirm_no_dln: 'I do not have a Virginia Identifier or Customer #'
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        confirm_no_middle_name: I do not have a middle name.
+        last_name: Last Name
+        name_suffix: Suffix
+        registration_address_1: Address Line 1
+        registration_address_2: Address Line 2
+        registration_city: City
+        home_state: State
+        home_state_abbrev: State
+        registration_zip_code: ZIP
+        registration_locality: Locality
+        convicted_of_felony: Have you ever been convicted of a felony or judged mentally
+          incapacitated and disqualified to vote?
+        right_to_vote_restored: Has your right to vote been restored?
+        is_military: I am an active-duty uniformed services member, spouse or dependent;
+          or an overseas citizen.
+        no_usps_address: I am providing a P.O. Box mailing address because my residence
+          address is not serviced by the U.S. Postal Service or I am homeless.
+        is_law_enforcement: I am an active or retired law enforcement officer, judge,
+          U.S. or Virginia Attorney General attorney.
+        is_court_protected: I have a court issued protective order for my benefit.
+        is_being_stalked: I have evidence of filing a complaint with law enforcement
+          that either I or a household member is in fear for personal safety from
+          another person who has threatened or stalked either me or a household member.
+        is_confidentiality_program: I am a participant in the Virginia Attorney General’s
+          Address Confidentiality Program
+        has_mailing_address: I get my mail at a different address from the one above.
+        mailing_address_1: Address Line 1
+        mailing_address_2: Address Line 2
+        mailing_city: City
+        mailing_state: State
+        mailing_zip_code: ZIP
+        mailing_locality: Locality
+        registered_in_other_state: I am currently registered to vote in another state.
+        other_registration_state_abbrev: Other Registration State
+        interested_in_being_poll_worker: I am interested in being an Officer of Election
+          (poll worker) on Election Day.
+        confirm_affirm_privacy_notice: I have read the terms of the Privacy Act Notice.
+        confirm_voter_fraud_warning: I acknowledge that I have read the above voter
+          fraud warning.
+        confirm_register_to_vote: I swear/affirm, under felony penalty for making
+          willfully false material statements or entries, that the information provided
+          on this form is true. I authorize the cancellation of my current registration.
+      state_registrants/pa_registrant:
+        email: Email
+        registration_zip_code: ZIP Code
+        confirm_declaration: I confirm that I have read and agree to the terms above.
+        confirm_assistant_declaration: I confirm that I have read and agree to the
+          terms above.
+        date_of_birth: Date of Birth
+        confirm_us_citizen: I am a U.S. citizen.
+        confirm_will_be_18: I will be 18 or older by the next election.
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        previous_first_name: First
+        previous_middle_name: Middle
+        previous_last_name: Last
+        registration_address_1: Address
+        registration_address_2: Address Line 2
+        registration_unit_type: Unit Type
+        registration_unit_number: Unit Number
+        registration_city: City
+        registration_state: State
+        home_state_abbrev: State
+        registration_county: County
+        has_mailing_address: I get my mail at a different address from the one above.
+        mailing_address: Address
+        mailing_city: City
+        mailing_state: State
+        mailing_zip_code: Zip
+        previous_address: Address
+        previous_city: City
+        previous_state: State
+        previous_zip_code: Zip
+        previous_county: County
+        phone: Phone
+        change_of_name: I have changed my name.
+        change_of_address: I have changed my address since the last time I registered
+          to vote.
+        change_of_party: I have changed my political party.
+        party: Political Party
+        other_party: Other Party
+        race: Race
+        penndot_number: PennDOT Number
+        confirm_no_penndot_number: I do not have a PennDOT Number.
+        ssn4: Last 4 digits of your social security number
+        confirm_no_dl_or_ssn: I do not know the last four digits of my social security
+          number.
+        has_assistant: Someone helped me with this form.
+        assistant_name: Helper Name
+        assistant_address: Helper Address
+        assistant_phone: Helper Phone
+        sms_number_for_continue_on_device: 'Text me the link:'
+        email_address_for_continue_on_device: 'Email me the link:'
+        voter_signature_image: Voter Signature Image
+      abr:
+        date_of_birth: Date of Birth
+        email: Email Address
+        zip: ZIP Code
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        address: Address
+        street_name: Street Name and Type
+        unit: 'Unit/Lot #'
+        city: City
+        home_state_name: State
+        home_state_abbrev: State
+        state_name: State
+        state_abbrev: State
+        has_mailing_address: I get my mail at a different address from the one above.
+        mailing_address: Address
+        mailing_unit: 'Unit/Lot #'
+        mailing_city: City
+        mailing_state_abbrev: State
+        mailing_zip_code: Zip
+        party: Party
+        race: Race
+        state_id_number: ID Number
+        phone: Phone
+        phone_type: Type
+        opt_in_email: Receive emails
+        opt_in_sms: Receive text messages
+        attest_true: I have reviewed the above information, and it is true and accurate
+          to the best of my knowledge.
+        confirm_email_delivery: I have reviewed the above information and wish to email my request to my local elections office.
+        registration_county: My local elections office (i.e. my city or county)
+      catalist_lookup:
+        date_of_birth: Date of Birth
+        email: Email Address
+        zip: ZIP Code
+        first: First Name
+        last: Last Name
+        address: Address
+        city: City
+        state_name: State
+        state_abbrev: State
+        phone: Phone
+        phone_type: Type
+        opt_in_email: Receive emails
+        opt_in_sms: Receive text messages
+      registrant:
+        date_of_birth: Date of Birth
+        email_address: Email Address
+        first_registration: I am registering to vote for the first time.
+        home_zip_code: ZIP Code
+        us_citizen: I am a U.S. citizen.
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        home_address: Address
+        home_unit: 'Unit/Lot #'
+        home_city: City
+        home_state_name: State
+        home_state_abbrev: State
+        has_mailing_address: I get my mail at a different address from the one above.
+        has_state_license: Do you have a License or ID number?
+        will_be_18_by_election: I will be 18 or older by the next election.
+        mailing_address: Address
+        mailing_unit: 'Unit/Lot #'
+        mailing_city: City
+        mailing_state_abbrev: State
+        mailing_zip_code: Zip
+        party: Party
+        race: Race
+        state_id_number: ID Number
+        phone: Phone
+        phone_type: Type
+        change_of_name: I have changed my name.
+        prev_name_title: Title
+        prev_first_name: First
+        prev_middle_name: Middle
+        prev_last_name: Last
+        prev_name_suffix: Suffix
+        change_of_address: I have changed my address since the last time I registered
+          to vote.
+        prev_address: Address
+        prev_unit: 'Unit/Lot #'
+        prev_city: City
+        prev_state_abbrev: State
+        prev_zip_code: Zip
+        opt_in_email: Receive emails
+        opt_in_sms: Receive txt messages
+        attest_true: I have reviewed the above information, and it is true and accurate
+          to the best of my knowledge.
+        tell_from: From
+        tell_email: Your Email
+        tell_recipients: Recipients
+        tell_subject: Subject
+        tell_message: Personal Message
+        sms_number_for_continue_on_device: 'Text me the link:'
+        email_address_for_continue_on_device: 'Email me the link:'
+        voter_signature_image: Voter Signature Image
+        
+    errors:
+      models:
+        admin:
+          attributes:
+            password:
+              invalid: Password must be 10 characters, contain at least 1 lowercase
+                letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+        canvassing_shift:
+          blank: Required
+        partner:
+          attributes:
+            password:
+              invalid: Password must be 10 characters, contain at least 1 lowercase
+                letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+        state_registrants/mi_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          address_length: Address is too long.
+          attributes:
+            full_name:
+              invalid: Full Name is invalid.
+              too_long:
+                one: Full Name is too long (maximum is 1 character)
+                other: Full Name is too long (maximum is %{count} characters)
+            dln:
+              invalid: Must be one letter followed by 12 numbers.
+            confirm_us_citizen:
+              accepted: You must be a United States citizen to register to vote.
+            confirm_will_be_18:
+              accepted: Michigan law requires voters to be 17.5 before they can register.
+                Please revisit this site when you are eligible!
+            is_30_day_resident:
+              accepted: To register to vote in Michigan you must be a Michigan resident
+                (at the time you register) and a resident of your city or township
+                for at least 30 days (when you vote). <br><br> If you’re a college
+                student, you may choose to register to vote either at your campus
+                address or your previous address – whichever one you consider to be
+                your residential address.
+            registration_cancellation_authorized:
+              accepted: You must authorize the cancellation of your previous registration
+                in order to register online.
+            digital_signature_authorized:
+              accepted: You must authorize the use of your stored digital signature
+                in order to register online.
+            registration_address_street_type:
+              invalid: Street type is invalid.
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+              too_young: You must be at least 17.5 years old to register to vote
+        state_registrants/va_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          attributes:
+            confirm_voter_record_update:
+              accepted: You must consent to update your voter record or submit a new
+                voter registration.
+            confirm_us_citizen:
+              accepted: You must be a US citizen!
+            confirm_voter_fraud_warning:
+              accepted: You must confirm that you have read the voter fraud warning.
+            confirm_affirm_privacy_notice:
+              accepted: You must affirm that you accept the privacy notice.
+            confirm_no_middle_name:
+              accepted: You must check this box if you have no middle name.
+            phone:
+              invalid: 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+            assistant_phone:
+              invalid: 'Should be ###-###-####'
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+            ssn:
+              format: Should be 9 digits
+            dln:
+              format: Should be 9 numbers or letters
+            convicted_of_felony:
+              inclusion: Please select Yes or No.
+            right_to_vote_restored:
+              inclusion: Please select Yes or No.
+            confirm_register_to_vote:
+              accepted: You must consent to register to vote.
+        state_registrants/pa_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          attributes:
+            confirm_us_citizen:
+              accepted: You must be a US citizen!
+            confirm_will_be_18:
+              accepted: You must be 18 by the next election to register to vote.
+            confirm_declaration:
+              accepted: You must confirm that you agree to the terms above.
+            confirm_assitant_declaration:
+              accepted: You must confirm that you agree to the terms above.
+            sms_number_for_continue_on_device:
+              format: 'Please provide a valid number'
+            email_address_for_continue_on_device:
+              format: Please provide a valid email              
+            phone:
+              invalid: 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+            assistant_phone:
+              invalid: 'Should be ###-###-####'
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+            penndot_number:
+              format: Should be 8 digits
+              blank: Required. If you do not have a PA driver's license or PennDOT
+                ID card number, please select "I do not know my PennDOT number."
+              pa_invalid: Your PennDOT number is not valid. Please double-check and
+                try again.
+            ssn4:
+              format: Should be 4 digits
+              blank: Required. If you do not know the last four digits of your social
+                security number, please select "I do not know the last four digits
+                of my social security number.
+            voter_signature_image:
+              blank: You must provide a valid PennDOT number, or an electronic signature,
+                or sign a paper form to complete your application.
+              too_many_retries: After two unsuccessful PennDOT submissions you must
+                provide an electronic signature.
+        abr:
+          blank: Required
+          format: Invalid
+          invalid: "%{attribute} is invalid."
+          attributes:
+            confirm_email_delivery:
+              accepted: You must confirm before continuing.
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+        catalist_lookup:
+          blank: Required
+          format: Invalid
+          invalid: "%{attribute} is invalid."
+          attributes:
+            phone_type:
+              blank: Required if providing phone number
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+        registrant:
+          ca_disclosures_error: In order to finish your registration with the state
+            of California, you must accept the disclosures above.
+          blank: Required
+          invalid: "%{attribute} is invalid."
+          invalid_zip: Invalid ZIP
+          inclusion: Please select one
+          attributes:
+            home_zip_code:
+              invalid: Use ZIP (xxxxx) or ZIP+4 (xxxxx-xxxx)
+            mailing_zip_code:
+              invalid: Use ZIP (xxxxx) or ZIP+4 (xxxxx-xxxx)
+            prev_zip_code:
+              invalid: Use ZIP (xxxxx) or ZIP+4 (xxxxx-xxxx)
+            email_address:
+              invalid: Not a valid email
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+            phone:
+              invalid: 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+            attest_true:
+              accepted: You must indicate whether the above information is correct.
+            has_state_license:
+              inclusion: Please indicate whether you have a valid state license.
+            us_citizen:
+              accepted: You must be a US citizen!
+            sms_number_for_continue_on_device:
+              format: 'Please provide a valid number'
+            email_address_for_continue_on_device:
+              format: Please provide a valid email
+      messages:
+        inclusion: "%{attribute} is not included in the list."
+        exclusion: "%{attribute} is reserved."
+        format: Invalid
+        invalid: "%{attribute} is invalid."
+        invalid_for_pdf: "%{attribute} must be provided in English."
+        confirmation: "%{attribute} doesn't match confirmation."
+        accepted: "%{attribute} must be accepted."
+        empty: "%{attribute} can't be empty."
+        blank: "%{attribute} can't be blank."
+        too_long: "%{attribute} is too long (maximum is %{count} characters)."
+        too_short: "%{attribute} is too short (minimum is %{count} characters)."
+        wrong_length: "%{attribute} is the wrong length (should be %{count} characters)."
+        taken: "%{attribute} has already been taken."
+        not_a_number: "%{attribute} is not a number."
+        greater_than: "%{attribute} must be greater than %{count}."
+        greater_than_or_equal_to: "%{attribute} must be greater than or equal to %{count}."
+        equal_to: "%{attribute} must be equal to %{count}."
+        less_than: "%{attribute} must be less than %{count}."
+        less_than_or_equal_to: "%{attribute} must be less than or equal to %{count}."
+        odd: "%{attribute} must be odd."
+        even: "%{attribute} must be even."
+  authlogic:
+    error_messages:
+      login_blank: Login cannot be blank.
+      login_not_found: Login/password combination is not valid.
+      login_invalid: Username should use only letters, numbers, spaces, and .-_@ please.
+      consecutive_failed_logins_limit_exceeded: Consecutive failed logins limit exceeded,
+        account is disabled.
+      email_invalid: Email is not valid.
+      password_blank: Password can not be blank.
+      password_invalid: Login/password combination is not valid.
+      not_active: Your account is not active.
+      not_confirmed: Your account is not confirmed.
+      not_approved: Your account is not approved.
+      no_authentication_details: You did not provide any details for authentication.
+  partners:
+    branding:
+      nav: White Label
+      title: Setup Custom Branding
+      description:
+        general: This section allows partners with some knowledge of CSS and HTML
+          to fully customized their registration tool. You have the option to overwrite
+          the default CSS and modify the autoresponder emails. Simply upload new resources
+          through the portal, review changes, and submit for approval. <a href="http://wiki.rockthevote.com/index.php/Examples"
+          target="_BLANK">Here are some great examples</a>.
+        assets:
+        - Upload your graphics (background images, special icons, etc that will be
+          referenced in your CSS)
+        - Upload your licensed fonts (or include google webfonts directly in your
+          CSS file using @import)
+        - Upload a 468px wide by 400px tall logo called pdf_logo.gif and it will appear
+          in the generated pdf. (make sure to save as a gif)
+        css:
+        - 'Create a file called partner.css that overwrites the default styles with
+          your own. Reference the fonts and images already uploaded. (ie: body {background-image:
+          url(‘mybackground.jpg’); color: #cc0000;} This file will load after the
+          default styles so anything you define should change. Go to <a href="http://wiki.rockthevote.com"
+          target="_blank">wiki.rockthevote.com</a> for some examples.'
+        email_templates:
+        - The registration platform will automatically send emails to new registrants
+          to ensure they complete the process.
+        - Partners are able to modify the templates to match your tone and brand.
+        - Remember to keep those important HTML tags such as (<%= @registrant.first_name
+          %> and <%= @registrar_phone %>) intact so dynamic content such as state
+          phone numbers and other information can be pulled in appropriately.
+        - We recommend using a text editor, such as TextWrangler.
+        approval: Once you’ve made all your edits, please click the “Preview” button
+          to see your changes. When you’re happy with how the tool looks, hit the
+          “Submit for Approval” button. The Rock the Vote team will review and approve
+          as soon as possible. This process may take up to 48 hours.
+      preview_warning:
+        not_set: Custom assets are not uploaded, default assets will be used
+        not_changed: Partner's assets are not changed, continue?
+      preview: Preview
+      approval:
+        title: Preview & Submission
+        status:
+          not_found: The request is not sent.
+          open: 'Submitted at %{date}. Approval status: pending.'
+          rejected: The request was rejected %{date}.
+          done: The latest request was fulfilled %{date}.
+        open: Submit for approval
+        close: Revoke from approval
+        approve: Approve
+        reject: Reject

@@ -39,10 +39,15 @@ module ApplicationHelper
     if !partner.replace_system_css?(:preview)
       stylesheets << 'application'
       if registrant.use_state_flow? && !registrant.skip_state_flow?
-        stylesheets << 'registration2'
+        if @use_newui2020
+          stylesheets << 'registration3'
+        else
+          stylesheets << 'registration2'
+        end
         stylesheets << "states/#{registrant.home_state_abbrev.downcase}"        
       else
-        stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : 'registration2')
+        newregcss = @use_newui2020 ? 'registration3' : 'registration2'
+        stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : newregcss)
       end
     end
     stylesheets += registrant_css
@@ -67,7 +72,7 @@ module ApplicationHelper
     if !partner || !partner.replace_system_css?
       if registrant && registrant.use_state_flow? && !registrant.skip_state_flow? 
         stylesheets << "application"
-        stylesheets << 'registration2'
+        stylesheets << (@use_newui2020 ? 'registration3' : 'registration2')
         stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
       elsif partner && registrant && !registrant.use_short_form?
         stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
@@ -75,7 +80,7 @@ module ApplicationHelper
       else
         # Partners can't upload reg2 - just part2 and either keep the default reg2 or mark as reaplce_system_css
         stylesheets << "application"
-        stylesheets << "registration2"
+        stylesheets << (@use_newui2020 ? 'registration3' : 'registration2')
       end
     end
     # event with replace_system_css, keep the locale specific ones
@@ -153,7 +158,12 @@ module ApplicationHelper
     instructions = options[:instructions]
     instructions_html = instructions.blank? ? nil : "<p class='instructions'>#{instructions}</p>"
     tooltip = options[:skip_tooltip] ? "" : content_tag(:div, tooltip_tag(field_name, options[:tooltip_content]).html_safe, class: 'tooltip')
-    label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe + tooltip.html_safe).html_safe)
+    label = ''
+    if @use_newui2020 
+      label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe + tooltip.html_safe).html_safe)
+    else
+      label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe).html_safe)
+    end
     error = "<span class='error'>#{form.object.errors[field_name].join("\n").html_safe}</span>".html_safe
     field_html = nil
     if options[:required]
@@ -170,7 +180,11 @@ module ApplicationHelper
     else
       field_html = field_div(form, field, options[:field_options])
     end
-    content_tag(:li, "#{label}#{instructions_html}#{field_html.html_safe}#{error}".html_safe, options[:li_options])
+    if @use_newui2020 
+      content_tag(:li, "#{label}#{instructions_html}#{field_html.html_safe}#{error}".html_safe, options[:li_options])
+    else
+      content_tag(:li, "#{label}#{instructions_html}#{field_html.html_safe}#{tooltip}#{error}".html_safe, options[:li_options])
+    end
   end
 
   def field_div(form, field, options={})

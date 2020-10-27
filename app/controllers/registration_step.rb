@@ -212,6 +212,14 @@ class RegistrationStep < ApplicationController
         '@use_' + name.downcase.underscore, 
         self.instance_variable_get(instance_var_name)&.assignment == AbTest::NEW
       )
+      if self.instance_variable_get('@use_' + name.downcase.underscore)
+        custom_locale = (I18n.locale.to_s + '-' + name.downcase.underscore).to_sym
+        if I18n.available_locales.include?(custom_locale)
+          I18n.locale = custom_locale
+          
+        end
+      end
+      
     end
     # if @registrant && t = @registrant.ab_tests.where(name: AbTest::MOBILE_UI).first
     #   @mobile_ui_test = t

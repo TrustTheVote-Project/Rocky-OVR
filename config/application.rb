@@ -91,7 +91,7 @@ module Rocky
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
-    config.assets.precompile += %w( admin.css partner.css jquery.qtip.min.css qtip-custom.css registration.css registration2.css reset.css rocky.css nvra.css state_configuration.css select2.min.css)
+    config.assets.precompile += %w( admin.css partner.css jquery.qtip.min.css qtip-custom.css registration.css registration2.css registration3.css reset.css rocky.css nvra.css state_configuration.css select2.min.css)
     config.assets.precompile += %w( admin.js registration.js rocky.js state_configuration.js jquery.js jquery_ujs.js jquery.qtip.min.js partner.js iframeResizer.contentWindow.min.js iframeResizer.min.js rtv-igrame.js)
     config.assets.precompile += ["locales/*.css"]
     config.assets.precompile += ["states/*.css"]
@@ -103,7 +103,7 @@ module Rocky
     
     config.action_controller.allow_forgery_protection = false
 
-    config.i18n.available_locales = [:en, :es, :zh, :"zh-tw", :hi, :ur, :bn, :ja, :ko, :tl, :ilo, :th, :vi, :km]
+    config.i18n.available_locales = [:en, :"en-newui2020", :es, :zh, :"zh-tw", :hi, :ur, :bn, :ja, :ko, :tl, :ilo, :th, :vi, :km]
 
     config.i18n.fallbacks =[:en]
 

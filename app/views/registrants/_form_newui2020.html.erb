@@ -6,6 +6,7 @@
 <%= hidden_field_tag "collectemailaddress", @collect_email_address %>
 <%= hidden_field_tag "shift_id", @shift_id %>
 <%= form.hidden_field :under_18_ok, :value => 0 %>
+<%= hidden_field_tag :newui2020, "NEW" %>
 
 <% content_for :head do %>
 <script>
@@ -16,7 +17,6 @@ $(document).ready(function() {
 <% end %>
 <%= form.hidden_field :javascript_disabled %>
 <%= form.hidden_field :is_fake %>
-<%= hidden_field_tag :newui2020, "NEW" %>
 
 <%= render partial: 'step2/name', locals: {form: form} %>
 
