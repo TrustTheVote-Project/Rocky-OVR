@@ -255,7 +255,6 @@ absentee_states:
     pdf_template: wi.pdf
     pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
     email_delivery: true
-    # email_delivery: true
     abr_status_check_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
