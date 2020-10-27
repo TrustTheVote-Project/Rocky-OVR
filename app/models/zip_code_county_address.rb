@@ -9,6 +9,8 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   serialize :cities, Array
   serialize :unacceptable_cities, Array
   
+  require 'resolv-replace'
+  
   DAYS_TO_CACHE = 3
   
   def check_address
