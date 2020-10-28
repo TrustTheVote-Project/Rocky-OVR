@@ -4,8 +4,9 @@ class StateRegistrantsController < RegistrationStep
   # before_filter :find_partner
   before_filter :load_state_registrant
     
-  def edit
+  def edit   
     set_up_locale
+    set_ab_test
     @use_mobile_ui = determine_mobile_ui(@registrant)
     render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}#{@use_mobile_ui ? '_mobile' : ''}"
   end
@@ -15,6 +16,7 @@ class StateRegistrantsController < RegistrationStep
     @registrant.status = params[:step] if @registrant.should_advance(params)
     @registrant.check_locale_change
     set_up_locale
+    set_ab_test
     @registrant.save
     @registrant.check_valid_for_state_flow!
     if !@registrant.use_state_flow? || @registrant.skip_state_flow?
@@ -71,6 +73,7 @@ class StateRegistrantsController < RegistrationStep
   
   def complete
     set_up_locale
+    set_ab_test
     @use_mobile_ui = determine_mobile_ui(@registrant)
     @registrant_finish_iframe_url = @registrant.finish_iframe_url
     render "state_registrants/#{@registrant.home_state_abbrev.downcase}/complete"    
