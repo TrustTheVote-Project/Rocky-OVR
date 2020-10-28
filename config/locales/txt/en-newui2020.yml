@@ -159,6 +159,7 @@ en-newui2020:
       in_language_name: In English
       powered_by: 'powered by:'
       progress_indicator: 'Step:'
+      intro_header: Register to Vote
       intro_message: Voter registration time takes an average of two minutes or less
         to complete.
       step_1_header: New Registrant
@@ -172,7 +173,8 @@ en-newui2020:
       already_registered: Already registered? <a href="%{url}">Share with your friends</a>.
       survey_title: Questions For You
       preparing_header: Preparing Registration Form...
-      download_header: Print Your Form
+      preparing_application: We're preparing your application
+      download_header: Print and send!
       pdf_assistance_header: You should receive your voter registration form in the mail in about a week.
       finish_mail_with_esig_header: Thanks for beginning the voter registration process! 
       finish_mail_with_esig: |-
@@ -203,6 +205,8 @@ en-newui2020:
         Here's what the issue is:
       external_header: "%{state} Registrant"
       name: Full Name and Email
+      name_display: Hello!
+      state_zip_code: State zip code
       select_none: "(none)"
       home_address: Home Address
       mailing_address: Mailing Address
@@ -220,6 +224,8 @@ en-newui2020:
       volunteer: I would like to volunteer with %{organization}.
       not_given: none
       has_state_license: Do you have a License or ID number?
+      has_state_license_yes: Great! Make sure to have your ID number handy later in the process.
+      has_state_license_no: Thanks! We’ll use this information to determine the quickest way for you to register.
       has_state_license_eligible: You may be eligible to finish your voter registration
         using the %{state} online voter registration system.
       has_no_state_license: I do not have a current %{state} state identification
@@ -371,7 +377,7 @@ en-newui2020:
             p3: ''
       tooltips:
         email_address: We will email you a copy of your voter registration form.
-        home_zip_code: Enter ZIP code for the address where you live, even if you
+        state_zip_code: Enter ZIP code for the address where you live, even if you
           don't receive mail there.
         date_of_birth: On your voter registration application, you are required to
           indicate whether you will be 18 years old on or before election day.  However,

@@ -1,10 +1,7 @@
-<%- if @use_newui2020 %>
-  <%= render partial: 'downloads/preparing_newui2020' %>
-<%- else %>
 <%- if @uid.nil? %>
   <% content_for :head do -%>
     <meta http-equiv="refresh" content="3; url=<%= @refresh_location %>" />
-<%- end %>
+  <%- end %>
 <%- else %>
   <script type="text/javascript" charset="utf-8">
   <%- pdf_ready_api_url = "#{RockyConf.api_host_name}/api/v3/registrations/pdf_ready.json" %>
@@ -58,10 +55,10 @@
     <div class="filler" style="width: 80%"></div>
     <div class="content">80%</div>
   </div>
-  <%- end %>
+<%- end %>
 
 <div id="preparing_content">
-  <h1><%= I18n.t('txt.registration.download_header') %></h1>
+  <h1><%= I18n.t('txt.registration.preparing_application') %></h1>
   <div class="download" style="position:relative">
     <div>
       <h2 class="spaced_out"><%= I18n.t('txt.registration.instructions.download') %></h2>
@@ -72,6 +69,7 @@
   </div>
 </div>
 <div id="download_button_content" style="display:none;">
-  <%= render "download_button"%>
+  <%= render partial: "download_button"%>
 </div>
-<%- end%>
+
+

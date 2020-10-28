@@ -1,4 +1,6 @@
 - if !@registrant || @registrant.short_form?
+  - if @use_newui2020
+    %h2.intro-header=t('txt.registration.intro_header')
   .intro-message
     %p=t('txt.registration.intro_message')
   
