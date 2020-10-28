@@ -1,3 +1,6 @@
+<%- if @use_newui2020 %>
+  <%= render partial: 'registrants/state_id_number_newui2020', locals: { form: form } %>
+<%- else %>
 <%- include_race_and_party ||= false %>
 <%- include_date_of_birth ||= false %>
 <%- id_size = include_race_and_party ? 35 : 20 %>
@@ -22,4 +25,5 @@
   </fieldset>
 <%- else %>
   <hr/>
+<%-end %>
 <%-end %>
