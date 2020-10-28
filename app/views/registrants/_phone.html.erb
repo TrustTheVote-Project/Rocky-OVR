@@ -1,4 +1,7 @@
-  <li class="width_b registrant-form__phone__line">
+  <%- if @use_newui2020 %>
+  <%= render partial: 'registrants/phone_newui2020', locals: { form: form } %>
+<%- else %>
+<li class="width_b registrant-form__phone__line">
     <h3><%= form.label :phone %></h3>
     <div class="flat-stack">
       <%= field_div form, :phone, placeholder: '###-###-####' %>
@@ -13,3 +16,4 @@
       <span class="error"><%= form.object.errors[:phone_type].join("\n") %></span>
     </div>
   </li>
+  <%- end %>
