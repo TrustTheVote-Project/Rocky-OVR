@@ -38,11 +38,17 @@ module AbrPdfCoverFields
     end
   end
 
+  def leo_lookup_url
+    if home_state_abbrev
+      RockyConf.absentee_states[home_state_abbrev]&.leo_lookup_url
+    end
+  end
+
   def cover_state_reminders
     reminders="";
     reminders+= I18n.t("states.custom.#{i18n_key}.abr.abr_status_check_intro", default: "")
     reminders+="\n\n";
-    reminders+=  abr_status_check_url.to_s
+    reminders+=  (abr_status_check_url || leo_lookup_url).to_s
     reminders+="\n\n";
     reminders+= I18n.t("states.custom.#{i18n_key}.abr.state_reminder_1", default: "")
     reminders+="\n";

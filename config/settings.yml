@@ -79,7 +79,7 @@ absentee_states:
     abr_status_check_url: "https://myinfo.alabamavotes.gov/VoterView/AbsenteeBallotSearch.do"
   AR:
     pdf_template: ar.pdf
-    abr_status_check_url: "https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf"
+    leo_lookup_url: "https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf"
   AZ:
     online_req_url: https://my.arizona.vote/Early/ApplicationLogin.aspx
     pdf_template: az.pdf
@@ -122,7 +122,7 @@ absentee_states:
     abr_status_check_url: "https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx"
   IL:
     pdf_template: common.pdf
-    abr_status_check_url: https://www.elections.il.gov/ElectionOperations/DistrictLocator/AddressFinder.aspx?T=637389017562160156
+    leo_lookup_url: https://www.elections.il.gov/ElectionOperations/DistrictLocator/AddressFinder.aspx?T=637389017562160156
     counties:
       "kane county": 
         online_req_url: https://www.kanecountyclerk.org/Elections/Pages/Request-Ballot-By-Mail.aspx
@@ -164,7 +164,7 @@ absentee_states:
     abr_status_check_url: "https://voterservices.elections.maryland.gov/VoterSearch"
   ME:
     online_req_url: https://www1.maine.gov/cgi-bin/online/AbsenteeBallot/online-form.pl
-    abr_status_check_url: "https://www.maine.gov/sos/cec/elec/munic.html"
+    leo_lookup_url: "https://www.maine.gov/sos/cec/elec/munic.html"
   MI:
     online_req_url: https://mvic.sos.state.mi.us/avapplication
     pdf_template: mi.pdf
@@ -176,9 +176,9 @@ absentee_states:
     abr_status_check_url: "https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx"
   MO:
     pdf_template: mo.pdf
-    abr_status_check_url: "https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority"
+    leo_lookup_url: "https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority"
   MS: 
-    abr_status_check_url: "https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx"
+    leo_lookup_url: "https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx"
   MT:
     pdf_template: mt.pdf
     abr_status_check_url: "https://app.mt.gov/voterinfo/"
@@ -237,7 +237,7 @@ absentee_states:
     abr_status_check_url: "https://tnmap.tn.gov/voterlookup/"
   TX:
     pdf_template: tx.pdf
-    abr_status_check_url: "https://www.sos.state.tx.us/elections/voter/cclerks.shtml"
+    leo_lookup_url: "https://www.sos.state.tx.us/elections/voter/cclerks.shtml"
   UT: 
     abr_status_check_url: "https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot"
   VA:
