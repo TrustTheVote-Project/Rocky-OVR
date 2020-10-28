@@ -264,7 +264,7 @@ en-newui2020:
         opt_in_email: Receive emails
         opt_in_sms: Receive text messages
       registrant:
-        date_of_birth: Date of Birth
+        date_of_birth: Date of Birth (MM/DD/YYYY)
         email_address: Email Address
         first_registration: I am registering to vote for the first time.
         home_zip_code: ZIP Code
@@ -290,6 +290,7 @@ en-newui2020:
         party: Party
         race: Race
         state_id_number: ID Number
+        id_no_state_id_number: Last 4 digits of SSN
         phone: Phone
         phone_type: Type
         change_of_name: I have changed my name.

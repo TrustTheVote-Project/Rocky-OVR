@@ -31,6 +31,7 @@ class DownloadsController < RegistrationStep
     find_registrant(:download)
     set_ab_test
     set_up_view_variables
+    @registrant_finish_iframe_url = @registrant.finish_iframe_url
     @attempt = (params[:cno] || 1).to_i
     @refresh_location = @attempt >= 10 ? registrant_finish_path(@registrant) : registrant_download_path(@registrant, :cno=>@attempt+1)
     if @registrant.mail_with_esig? && !@registrant.skip_mail_with_esig?
