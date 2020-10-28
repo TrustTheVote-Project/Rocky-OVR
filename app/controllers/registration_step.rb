@@ -202,10 +202,17 @@ class RegistrationStep < ApplicationController
       else
         if params[name]
           t = AbTest.new(name: name, assignment: params[name])
+          @assigned_ab_test_name = t.name 
+          @assigned_ab_test_assignment = "#{t.name}-assigned-to-#{t.assignment}"
           t.registrant_id = @registrant ? @registrant.id : nil
           self.instance_variable_set(instance_var_name, t)
         else
-          self.instance_variable_set(instance_var_name, AbTest.send(method, @registrant, self))
+          t = AbTest.send(method, @registrant, self)
+          self.instance_variable_set(instance_var_name, t)
+          if t
+            @assigned_ab_test_name = t.name 
+            @assigned_ab_test_assignment = "#{t.name}-assigned-to-#{t.assignment}"
+          end
         end
       end
       self.instance_variable_set(

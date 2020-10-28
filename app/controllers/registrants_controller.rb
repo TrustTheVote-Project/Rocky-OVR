@@ -119,6 +119,8 @@ class RegistrantsController < RegistrationStep
       t = AbTest.new
       t.name = "newui2020"
       t.assignment = params["newui2020"]
+      @assigned_ab_test_name = t.name 
+      @assigned_ab_test_assignment = "#{t.name}-assigned-to-#{t.assignment}"          
       @registrant.ab_tests << t
     end
     

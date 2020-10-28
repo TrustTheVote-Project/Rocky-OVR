@@ -49,6 +49,22 @@
     $(document).ready(function() { hideErrors(); setTimeout('revealErrors();', 400); });
   </script>
   <%= yield :head %>
+  <%- if @assigned_ab_test_name && @assigned_ab_test_assignment %>
+    <script type="text/javascript">
+      var testName = '<%= @assigned_ab_test %>';
+      var assignment = '<%= @assigned_ab_test_assignment %>';
+      //console.log("will send google event", testName, assignment)
+      if (window.ga) {
+        ga(function() {
+          var trackers = ga.getAll();
+          var tracker = trackers[0];
+          if (tracker) {
+            tracker.send('event', testName, assignment);
+          }
+        });
+      }
+    </script>
+  <%- end %>
 </head>
 <body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
