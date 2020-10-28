@@ -11,6 +11,7 @@ class Abr < ActiveRecord::Base
   include RegistrantAbrMethods
   include AbrPdfMethods
   include AbrPdfFields
+  include AbrPdfCoverFields
   include AbrSignatureMethods
   include AbrReportingMethods
 
