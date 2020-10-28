@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201015154203) do
+ActiveRecord::Schema.define(version: 20201028204122) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -936,6 +936,10 @@ ActiveRecord::Schema.define(version: 20201015154203) do
     t.string   "req_city"
     t.string   "req_state"
     t.string   "req_zip"
+    t.string   "vr_contact_email"
+    t.string   "vr_contact_phone"
+    t.string   "req_contact_email"
+    t.string   "req_contact_phone"
   end
 
   add_index "zip_code_county_addresses", ["geo_state_id"], name: "index_zip_code_county_addresses_on_geo_state_id"

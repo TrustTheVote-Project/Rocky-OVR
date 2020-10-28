@@ -1,0 +1,15 @@
+%h2= t("txt.abr.deadline_passed_header", state: @abr.home_state_abbrev)
+.state-instructions
+  - state_instructions = "check your ballot status with your local elections office." 
+  - if @abr.abr_status_check_url.present?
+    - state_instructions = t('txt.abr.deadline_passed_state_instructions.url', url: @abr.abr_status_check_url)
+  - elsif  @abr.state_registrar_office
+    - state_instructions = t('txt.abr.deadline_passed_state_instructions.leo_contact_info', leo_contact_info: @abr.state_registrar_office.full_contact_info.join("\n").gsub(/\n/,"<br/>")).html_safe
+  - elsif @abr.leo_lookup_url
+    - state_instructions = t('txt.abr.deadline_passed_state_instructions.leo_lookup_url', leo_lookup_url: @abr.leo_lookup_url)
+  = t("txt.abr.deadline_passed_instructions", state: @abr.home_state_abbrev, state_instructions: state_instructions).html_safe
+
+#finish_page_iframe
+  %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
+
+= render :partial => 'abrs/finish_adwords'

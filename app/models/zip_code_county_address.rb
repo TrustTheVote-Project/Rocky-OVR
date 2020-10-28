@@ -95,6 +95,14 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       return addr
     end
   end
+
+  def full_contact_info
+    [
+      self.req_contact_email.present? ? self.req_contact_email : self.vr_contact_email,
+      self.req_contact_phone.present? ? self.req_contact_phone : self.vr_contact_phone,
+      self.full_req_address.present? ? self.full_req_address : self.full_vr_address
+    ]
+  end
   
   
   def ensure_up_to_date
@@ -113,7 +121,10 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       req_mailing_office = select_req_address_from_office(office)
       addresses = nil
       if mailing_office
+        primary_contact = lookup_primary_contact(mailing_office["primary_contact_uri"])
         addresses ||= {}
+        addresses[:vr_contact_email] = (primary_contact && primary_contact["email"]) || mailing_office["main_email"]
+        addresses[:vr_contact_phone] = (primary_contact && primary_contact["phone"]) || mailing_office["main_phone_number"]
         addresses[:vr_address_to] = mailing_office["address_to"]
         addresses[:vr_street1] = mailing_office["street1"]
         addresses[:vr_street2] = mailing_office["street2"]
@@ -122,7 +133,10 @@ class ZipCodeCountyAddress < ActiveRecord::Base
         addresses[:vr_zip] = mailing_office["zip"]
       end
       if req_mailing_office
+        primary_contact = lookup_primary_contact(req_mailing_office["primary_contact_uri"])
         addresses ||= {}
+        addresses[:req_contact_email] = (primary_contact && primary_contact["email"]) || req_mailing_office["main_email"]
+        addresses[:req_contact_phone] = (primary_contact && primary_contact["phone"]) || req_mailing_office["main_phone_number"]
         addresses[:req_address_to] = req_mailing_office["address_to"]
         addresses[:req_street1] = req_mailing_office["street1"]
         addresses[:req_street2] = req_mailing_office["street2"]
@@ -138,6 +152,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   def select_address_from_office(office)
     # First find any "addresses" where 
     # "type"=>"name" == "Voter Registration Mailing Address"
+    #puts office
     if office["addresses"] && office["addresses"].is_a?(Array)
       # additional_address = office["addresses"].find {|addr| addr["type"] && addr["type"]["name"]=="Voter Registration Mailing Address"}
       # Look for is_regular_mail first
@@ -190,6 +205,12 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     return "#{StateImporter::CountyAddresses.api_uri}#{path}?#{params.collect{|k,v| "#{k}=#{URI.encode(v.to_s)}"}.join("&")}"    
   end
   
+  def lookup_primary_contact(uri)
+    url = "#{uri}?oauth_consumer_key=#{StateImporter::CountyAddresses.oauth_token}"
+    response =  JSON.parse(self.class.get_ssl(url))
+    puts response
+    return response["objects"]
+  end
   
   def self.get(path)
     response =  JSON.parse(self.get_ssl("#{StateImporter::CountyAddresses.base_uri}#{path}" ))
