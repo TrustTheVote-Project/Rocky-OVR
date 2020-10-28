@@ -1,14 +1,14 @@
 <%- include_step_2 ||= false %>
 <%- if include_step_2 %>
-  <%= render partial: 'registrants/name_display', locals: {form: form, skip_state_ovr: true} %>
+  <%= render partial: 'registrants/name_display_newui2020', locals: {form: form, skip_state_ovr: true} %>
 
-  <%= render :partial=> "registrants/home_address", :locals=>{:form=>form, skip_state_ovr: true } %>
+  <%= render :partial=> "registrants/home_address_newui2020", :locals=>{:form=>form, skip_state_ovr: true } %>
   
   <%= render partial: 'step2/previous_address_block', locals: { form: form } %>
 <%- end %>
     
-  <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form} %>
+  <%= render :partial=> "registrants/state_id_number_newui2020", :locals=>{:form=>form} %>
 
-  <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
+  <%= render :partial=> "registrants/race_and_party_newui2020", :locals=>{:form=>form} %>
   
       <div class='clear-fix'></div>
