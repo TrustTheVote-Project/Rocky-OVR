@@ -10,7 +10,7 @@
         <% if @registrant.has_state_license %>
         <h3><%= form.label :state_id_number %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
         <% else %>
-        <h3><%= form.label :id_no_state_id_number %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+        <h3><%= form.label :state_id_number, I18n.t('activerecord.attributes.registrant.id_no_state_id_number') %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
         <%-end %>
         <%= field_div form, :state_id_number, {:size => id_size, required: true} %>
         <span class="error"><%= form.object.errors[:state_id_number].join("\n") %></span>
