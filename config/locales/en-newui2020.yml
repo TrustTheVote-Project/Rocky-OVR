@@ -185,7 +185,7 @@ en-newui2020:
         registration_state: State
         home_state_abbrev: State
         registration_county: County
-        has_mailing_address: I get my mail at a different address from the one above.
+        has_mailing_address: Do you get your mail at a different address from the one above?
         mailing_address: Address
         mailing_city: City
         mailing_state: State
@@ -196,8 +196,8 @@ en-newui2020:
         previous_zip_code: Zip
         previous_county: County
         phone: Phone
-        change_of_name: I have changed my name.
-        change_of_address: I have changed my address since the last time I registered
+        change_of_name: Have you changed your name?
+        change_of_address: Have you changed your address since the last time you registered
           to vote.
         change_of_party: I have changed my political party.
         party: Political Party
