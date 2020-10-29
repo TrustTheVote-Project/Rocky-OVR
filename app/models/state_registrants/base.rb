@@ -224,7 +224,9 @@ class StateRegistrants::Base < ActiveRecord::Base
       when true
         return false
       when false
-       return true 
+       return true
+      when nil
+        return nil
     end
   end
 
@@ -234,6 +236,8 @@ class StateRegistrants::Base < ActiveRecord::Base
         self.confirm_no_penndot_number=false
       when false,0,"0"
         self.confirm_no_penndot_number=true
+      when nil
+        self.confirm_no_penndot_number = nil
     end
   end
 
