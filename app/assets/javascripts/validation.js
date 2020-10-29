@@ -110,6 +110,38 @@ function validateBooleanField(errorMessage) {
   }
 }
 
+function validateYesNoCheckbox(errorMessage) {
+  var field = this;
+  if (!field) {
+    return
+  }
+  var val = $(field).val()
+  //console.log(val)
+  var parent = $(field).parent()
+  var errorField = $(field).siblings(".error")
+  var currentError = errorField.html();
+  var messageIdx = currentError.indexOf(errorMessage)
+  if (val=='') {
+    // Add if not present
+    //console.log("hi", errorMessage, errorField)
+    if (messageIdx == -1) {
+      errorField.html([currentError, errorMessage].join(" "))
+    }       
+    parent.addClass('has_error') 
+  } else {
+    if (messageIdx >= 0) {
+      currentError = currentError.split('')
+      currentError.splice(messageIdx, errorMessage.length)
+      errorField.html(currentError.join(''))
+    } 
+    //console.log(errorField.text())
+    if (errorField.html().replace(/\s/g, '') == '') {
+      parent.removeClass('has_error') 
+    }
+           
+  }
+}
+
 function initValidations() {
   $("[data-client-conditional-required]").each(function() { 
     //$(this).keydown(clearErrors.bind(this));
