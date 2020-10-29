@@ -108,12 +108,13 @@ class ZipCodeCountyAddress < ActiveRecord::Base
 
   def full_req_contact_info
     [
-      self.req_contact_office_name.present? ? self.req_contact_office_name : self.vr_contact_office_name,
-      self.req_contact_name,
-      self.req_contact_email.present? ? self.req_contact_email : self.vr_contact_email,
-      self.req_contact_phone.present? ? self.req_contact_phone : self.vr_contact_phone,
       self.req_website.present? ? self.req_website : self.vr_website,
-      self.full_req_address.present? ? self.full_req_address : self.full_vr_address
+      self.req_main_email.present? ? self.req_main_email : self.vr_main_email,
+      self.req_main_phone.present? ? self.req_main_phone : self.vr_main_phone,
+      " ",
+      self.full_req_address.present? ? self.full_req_address : self.full_vr_address,
+      
+      
     ]
   end
   
@@ -141,8 +142,10 @@ class ZipCodeCountyAddress < ActiveRecord::Base
         addresses[:vr_contact_first_name] = primary_contact && primary_contact["first_name"]
         addresses[:vr_contact_last_name] = primary_contact && primary_contact["last_name"]
         addresses[:vr_contact_suffix] = primary_contact && primary_contact["suffix"]
-        addresses[:vr_contact_email] = (primary_contact && primary_contact["email"]) || mailing_office["main_email"]
-        addresses[:vr_contact_phone] = (primary_contact && primary_contact["phone"]) || mailing_office["main_phone_number"]
+        addresses[:vr_contact_email] = primary_contact && primary_contact["email"]
+        addresses[:vr_contact_phone] = primary_contact && primary_contact["phone"]
+        addresses[:vr_main_email] = mailing_office["main_email"]
+        addresses[:vr_main_phone] = mailing_office["main_phone_number"]
         addresses[:vr_website] = mailing_office["website"]
         addresses[:vr_address_to] = mailing_office["address_to"]
         addresses[:vr_street1] = mailing_office["street1"]
@@ -159,8 +162,10 @@ class ZipCodeCountyAddress < ActiveRecord::Base
         addresses[:req_contact_first_name] = primary_contact && primary_contact["first_name"]
         addresses[:req_contact_last_name] = primary_contact && primary_contact["last_name"]
         addresses[:req_contact_suffix] = primary_contact && primary_contact["suffix"]
-        addresses[:req_contact_email] = (primary_contact && primary_contact["email"]) || req_mailing_office["main_email"]
-        addresses[:req_contact_phone] = (primary_contact && primary_contact["phone"]) || req_mailing_office["main_phone_number"]
+        addresses[:req_contact_email] = primary_contact && primary_contact["email"]
+        addresses[:req_contact_phone] = primary_contact && primary_contact["phone"]
+        addresses[:req_main_email] = req_mailing_office["main_email"]
+        addresses[:req_main_phone] = req_mailing_office["main_phone_number"]
         addresses[:req_website] = req_mailing_office["website"]
         addresses[:req_address_to] = req_mailing_office["address_to"]
         addresses[:req_street1] = req_mailing_office["street1"]
