@@ -34,7 +34,7 @@
   = @registrant.full_name
 
   %br
-  %fieldset#newui_mailing_address_set.block-selector
+  %fieldset#change_of_name_set.block-selector
     =checkbox_block_selector form, :change_of_name, I18n.t('activerecord.attributes.state_registrants/pa_registrant.change_of_name'), :previous_name, {required: true}
     %div.block-selector__yes-selected
       %fieldset#newui_prev_name_set
