@@ -80,22 +80,6 @@
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dl_or_ssn, class_name: "registrant-form__no-ssn4__line", required: false}
       
 
-    %fieldset#newui_mailing_address_set.block-selector
-      =checkbox_block_selector form, :has_assistant, I18n.t('activerecord.attributes.state_registrants/pa_registrant.has_assistant'), nil, {required: true}
-      %div.block-selector__yes-selected
-        %fieldset#assistant_set
-          %ul.stacked
-            = field_li(form, :assistant_name, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-name__line"} })
-          %ul.stacked
-            = field_li(form, :assistant_address, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-address__line"} })
-          %ul.stacked
-            = field_li(form, :assistant_phone, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-phone__line"} })
-
-    
-        .declaration-text
-          = t('states.custom.pa.assistant_declaration').html_safe
-        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_assistant_declaration, class_name: "registrant-form__assistant-confirmation__line", required: true}
-
 
   .dynamic-navigation
     -# .back only shown when first step, .prepare only shown when last step
