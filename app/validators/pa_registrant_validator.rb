@@ -4,7 +4,8 @@ class PARegistrantValidator < ActiveModel::Validator
     #.reject{|attr| NON_VALIDATABLE_ATTRS.include?(attr)}
   
   def validate(reg)
-    
+    @use_newui2020 = reg.ab_tests.detect { |t| t.name==AbTest::NEW_UI_2020 }&.assignment == AbTest::NEW
+ 
     # Validate all fields against db regex
     
     reg.validates_format_of VALIDATABLE_ATTRS, with: Registrant::DB_REGEX
@@ -16,13 +17,14 @@ class PARegistrantValidator < ActiveModel::Validator
     reg.validates_presence_of :phone_type if reg.has_phone?
 
     if reg.at_least_step_1?
+      
       reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
-
+     unless @use_newui2020
       reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
       reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
-      
+     
       reg.validate_date_of_birth
-      
+     end  
       reg.validates_presence_of   :name_title
       reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
       reg.validates_presence_of   :first_name
@@ -36,11 +38,20 @@ class PARegistrantValidator < ActiveModel::Validator
       validates_zip_code  reg,    :registration_zip_code
       reg.validates_presence_of   :registration_county
 
+      if @use_newui2020
+        validate_boolean(reg, :change_of_name )
+
+      end
+
       if reg.change_of_name?
         reg.validates_presence_of :previous_first_name
         reg.validates_presence_of :previous_last_name
       end
   
+      if @use_newui2020
+        validate_boolean(reg, :has_mailing_address )
+      end
+
       if reg.has_mailing_address? 
         reg.validates_presence_of :mailing_address
         reg.validates_presence_of :mailing_city
@@ -48,6 +59,10 @@ class PARegistrantValidator < ActiveModel::Validator
         validates_zip_code reg,   :mailing_zip_code
       end
   
+      if @use_newui2020
+        validate_boolean(reg, :change_of_address )
+      end
+
       if reg.change_of_address?
         reg.validates_presence_of :previous_address
         reg.validates_presence_of :previous_city
@@ -58,9 +73,12 @@ class PARegistrantValidator < ActiveModel::Validator
 
       validate_phone_present_if_opt_in_sms(reg)
       
-      validate_race(reg)        
-      validate_party(reg)
-      
+      unless @use_newui2020
+        #if not newUI
+        validate_race(reg)        
+        validate_party(reg) 
+      end
+     
     end
     
     if reg.at_least_step_2?
@@ -82,14 +100,46 @@ class PARegistrantValidator < ActiveModel::Validator
       elsif reg.penndot_retries > 1
         reg.errors.add(:voter_signature_image, :too_many_retries) if reg.voter_signature_image.blank?
       end
+
+      if @use_newui2020 
+        reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
+        reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
+      
+        reg.validate_date_of_birth
+
+        #if not newUI
+        validate_race(reg)        
+        validate_party(reg) 
+
+        validate_penndot(reg )
+      end
+
       
     end
     
     if reg.at_least_step_3?
+      if @use_newui2020
+        validate_boolean(reg, :has_assistant )    
+      end
       reg.validates_acceptance_of :confirm_declaration, :accept=>true
+    end
+
+    if reg.at_least_step_4?
+
     end
     
 
+  end
+
+  def validate_boolean (reg, attr_name)
+    unless [true, false].include? reg.send attr_name 
+      reg.validates_presence_of attr_name
+    end
+  end
+  def validate_penndot(reg)
+    unless [true, false].include? reg.send :confirm_no_penndot_number 
+      reg.validates_presence_of :has_penndot
+    end
   end
   
   def validates_zip_code(reg, attr_name)
@@ -118,6 +168,8 @@ class PARegistrantValidator < ActiveModel::Validator
     end
   end
   
+ 
+
   def validate_party(reg)
     if reg.party.blank?
       reg.errors.add(:party, :blank)
