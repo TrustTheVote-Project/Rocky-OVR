@@ -65,20 +65,16 @@
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__will-be-18-by-election__line", required: true, require_accepted: true}
 
   .dynamic-step#step-3
-    = render partial: 'step2/name_mobile', locals: {form: form}
-    
-    %fieldset#prev_name_set
-      = hidden_field_tag "javascript_disabled", "1"
-      %legend
-        %span= I18n.t('txt.registration.previous_name')
-      %ul.stacked
-        = field_li(form, :previous_first_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-first-name__line'} , skip_tooltip: true })
-        = field_li(form, :previous_middle_name, {required: false, label_options: nil, li_options: {class: 'registrant-form__prev-middle-name__line'}, skip_tooltip: true })
-        = field_li(form, :previous_last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-last-name__line'} , skip_tooltip: true })
-
-  
-
-
+    = render partial: 'step2/name_only_mobile', locals: {form: form}
+    %br
+    %fieldset#newui_mailing_address_set.block-selector
+      =checkbox_block_selector form, :change_of_name, I18n.t('activerecord.attributes.state_registrants/pa_registrant.change_of_name'), :previous_name, {required: true}
+      %div.block-selector__yes-selected
+        %fieldset#newui_prev_name_set
+          %ul.stacked
+            = field_li(form, :previous_first_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-first-name__line'} , skip_tooltip: true })
+            = field_li(form, :previous_middle_name, {required: false, label_options: nil, li_options: {class: 'registrant-form__prev-middle-name__line'}, skip_tooltip: true })
+            = field_li(form, :previous_last_name, {required: true, label_options: nil, field_options: {size: 15}, li_options: {class: 'registrant-form__prev-last-name__line'} , skip_tooltip: true })
 
   .dynamic-step#step-4
     %fieldset
@@ -98,39 +94,31 @@
         = field_li(form, :registration_zip_code, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
       %ul.stacked
         = field_li(form, :registration_county, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })
+
+
+      %fieldset#newui_mailing_address_set.block-selector
+        =checkbox_block_selector form, :has_mailing_address, I18n.t('activerecord.attributes.state_registrants/pa_registrant.has_mailing_address'), nil, {required: true}
+        %div.block-selector__yes-selected
+          %ul.stacked
+            = field_li(form, :mailing_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
+          %ul.stacked
+            = field_li(form, :mailing_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
+            = field_li(form, :mailing_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
+            = field_li(form, :mailing_zip_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
     
+      %fieldset#newui_prev_address_set.block-selector
+        =checkbox_block_selector form, :change_of_address, I18n.t('activerecord.attributes.state_registrants/pa_registrant.change_of_address'), :previous_address, {required: true}
+        %div.block-selector__yes-selected
+          %ul.stacked
+            = field_li(form, :previous_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
+          %ul.stacked
+            = field_li(form, :previous_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
+            = field_li(form, :previous_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
+            = field_li(form, :previous_zip_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
+          %ul.stacked
+            = field_li(form, :previous_county, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__prev-county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })
+
     
-    %fieldset.no_border
-      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_mailing_address, class_name: "registrant-form__has-mailing-address__line", required: false}
-  
-  
-    %fieldset#mailing_address_set
-      %legend
-        %span= I18n.t('txt.registration.mailing_address') 
-        = tooltip_tag :mailing_address
-      %ul.stacked
-        = field_li(form, :mailing_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
-      %ul.stacked
-        = field_li(form, :mailing_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
-        = field_li(form, :mailing_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
-        = field_li(form, :mailing_zip_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
-    
-    
-    %fieldset.no_border
-      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_address, class_name: "registrant-form__change-of-address__line", required: false}
-  
-  
-    %fieldset#prev_address_set
-      %legend
-        %span= I18n.t('txt.registration.previous_address') 
-      %ul.stacked
-        = field_li(form, :previous_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
-      %ul.stacked
-        = field_li(form, :previous_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
-        = field_li(form, :previous_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
-        = field_li(form, :previous_zip_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
-      %ul.stacked
-        = field_li(form, :previous_county, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__prev-county__line"}, select_options: StateRegistrants::PARegistrant::COUNTIES.collect(&:titleize), field_options: {include_blank: true} })
   
   .dynamic-step#step-5
     %fieldset
