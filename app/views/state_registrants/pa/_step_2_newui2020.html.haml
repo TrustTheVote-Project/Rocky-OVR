@@ -17,21 +17,10 @@
       $("#state_registrants_pa_registrant_previous_state").change(togglePreviousAddressCounty)
       togglePreviousAddressCounty();
       
-      function toggleOtherParty() {
-        var party = $("#state_registrants_pa_registrant_party").val().toLowerCase()
-        if (party=='other' || party=='otros') {
-          $("#other_party_set").show();          
-        } else {
-          $("#other_party_set").hide();
-        }        
-      }
-      
-      $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
-      toggleOtherParty();
       
     });
 
-CTW-NewUI
+-#CTW-NewUI
 = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param,controller.current_state)) do |form|
 
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
@@ -46,7 +35,7 @@ CTW-NewUI
 
   %br
   %fieldset#newui_mailing_address_set.block-selector
-    =checkbox_block_selector form, :change_of_name, I18n.t('activerecord.attributes.state_registrants/pa_registrant.change_of_name'), :previous_name, {required: false}
+    =checkbox_block_selector form, :change_of_name, I18n.t('activerecord.attributes.state_registrants/pa_registrant.change_of_name'), :previous_name, {required: true}
     %div.block-selector__yes-selected
       %fieldset#newui_prev_name_set
         %ul.stacked
@@ -77,7 +66,7 @@ CTW-NewUI
 
 
   %fieldset#newui_mailing_address_set.block-selector
-    =checkbox_block_selector form, :has_mailing_address, I18n.t('activerecord.attributes.state_registrants/pa_registrant.has_mailing_address'), nil, {required: false}
+    =checkbox_block_selector form, :has_mailing_address, I18n.t('activerecord.attributes.state_registrants/pa_registrant.has_mailing_address'), nil, {required: true}
     %div.block-selector__yes-selected
       %ul.stacked
         = field_li(form, :mailing_address, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address__line"}})
@@ -129,21 +118,8 @@ CTW-NewUI
   
   
   %br
-  %br
 
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
 
-  
-  %ul.flat.party-dropdown
-    = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
-    
-  %fieldset#other_party_set
-    %ul.flat.other-party
-      = field_li(form, :other_party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__other-party__line"}})
-    
-  
-  %ul.flat.race-dropdown
-    = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
     
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
   .back
