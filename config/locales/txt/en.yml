@@ -2,7 +2,7 @@
 en:
   txt:
     ballot_status_check:
-      step_1_header: 
+      step_1_header: ""
       step_1_instructions: <p>Enter your voting information, and we'll help you check that your 
         ballot was received and counted.</p>
       check_with_state_url: <p>If you voted absentee/by mail, first check your ballot status on 
