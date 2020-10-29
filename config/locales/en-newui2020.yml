@@ -204,17 +204,30 @@ en-newui2020:
         other_party: Other Party
         race: Race
         penndot_number: PennDOT Number
+        has_penndot: Do you have a PennDot number?
         confirm_no_penndot_number: I do not have a PennDOT Number.
         ssn4: Last 4 digits of your social security number
         confirm_no_dl_or_ssn: I do not know the last four digits of my social security
           number.
-        has_assistant: Someone helped me with this form.
+        has_assistant: Did anyone help you fill out this form?
         assistant_name: Helper Name
         assistant_address: Helper Address
         assistant_phone: Helper Phone
         sms_number_for_continue_on_device: 'Text me the link:'
         email_address_for_continue_on_device: 'Email me the link:'
         voter_signature_image: Voter Signature Image
+        voter_signature_prompt: Provide Signature
+        voter_signature_header: Signature
+        step2_next: Next step
+        step3_next: Prepare forms
+        step4_next: Send application
+        complete_title: YOU'RE DONE!
+        complete_message: Registration form sent!
+        complete_dialog_text: "<p>Your application has been sent to your county voter registration office. <b>Your registration is not complete until processed and accepted.</b></p>"
+        complete_whats_next_text: "<h2>What's next?</h2><p>If accepted, you will receive a Voter Registration Card by mail.</p>"
+        pending_text: "You won't be registered until you print, sign, and mail in your form!"
+        pending_header: "We're preparing your registration forms."
+
       abr:
         date_of_birth: Date of Birth
         email: Email Address
