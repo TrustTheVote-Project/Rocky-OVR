@@ -24,7 +24,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
         end
       end
     rescue Exception=>e
-      #raise e
+      # raise e
       Rails.logger.info "Unable to lookup LEO address for #{self.zip}"
     end
   end
@@ -45,7 +45,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       if filter_value
         regions = self.class.search_regions(filter_name, filter_value, state_abbr)
       end
-      raise "Too may region results!" if regions.count > 5
+      raise "Too many region results! #{regions.count}" if regions.count > 5
       break if regions.any?
     end
     if regions.any?
@@ -96,10 +96,23 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     end
   end
 
-  def full_contact_info
+  def vr_contact_name
+    name = [self.vr_contact_title, self.vr_contact_first_name, self.vr_contact_last_name, self.vr_contact_suffix].compact.join(" ")
+    
+  end
+
+  def req_contact_name
+    name = [self.req_contact_title, self.req_contact_first_name, self.req_contact_last_name, self.req_contact_suffix].compact.join(" ")
+    return name.present? ? name : vr_contact_name
+  end
+
+  def full_req_contact_info
     [
+      self.req_contact_office_name.present? ? self.req_contact_office_name : self.vr_contact_office_name,
+      self.req_contact_name,
       self.req_contact_email.present? ? self.req_contact_email : self.vr_contact_email,
       self.req_contact_phone.present? ? self.req_contact_phone : self.vr_contact_phone,
+      self.req_website.present? ? self.req_website : self.vr_website,
       self.full_req_address.present? ? self.full_req_address : self.full_vr_address
     ]
   end
@@ -123,8 +136,14 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       if mailing_office
         primary_contact = lookup_primary_contact(mailing_office["primary_contact_uri"])
         addresses ||= {}
+        addresses[:vr_contact_office_name] = primary_contact && primary_contact["office_name"]
+        addresses[:vr_contact_title] = primary_contact && primary_contact["title"]
+        addresses[:vr_contact_first_name] = primary_contact && primary_contact["first_name"]
+        addresses[:vr_contact_last_name] = primary_contact && primary_contact["last_name"]
+        addresses[:vr_contact_suffix] = primary_contact && primary_contact["suffix"]
         addresses[:vr_contact_email] = (primary_contact && primary_contact["email"]) || mailing_office["main_email"]
         addresses[:vr_contact_phone] = (primary_contact && primary_contact["phone"]) || mailing_office["main_phone_number"]
+        addresses[:vr_website] = mailing_office["website"]
         addresses[:vr_address_to] = mailing_office["address_to"]
         addresses[:vr_street1] = mailing_office["street1"]
         addresses[:vr_street2] = mailing_office["street2"]
@@ -135,8 +154,14 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       if req_mailing_office
         primary_contact = lookup_primary_contact(req_mailing_office["primary_contact_uri"])
         addresses ||= {}
+        addresses[:req_contact_office_name] = primary_contact && primary_contact["office_name"]
+        addresses[:req_contact_title] = primary_contact && primary_contact["title"]
+        addresses[:req_contact_first_name] = primary_contact && primary_contact["first_name"]
+        addresses[:req_contact_last_name] = primary_contact && primary_contact["last_name"]
+        addresses[:req_contact_suffix] = primary_contact && primary_contact["suffix"]
         addresses[:req_contact_email] = (primary_contact && primary_contact["email"]) || req_mailing_office["main_email"]
         addresses[:req_contact_phone] = (primary_contact && primary_contact["phone"]) || req_mailing_office["main_phone_number"]
+        addresses[:req_website] = req_mailing_office["website"]
         addresses[:req_address_to] = req_mailing_office["address_to"]
         addresses[:req_street1] = req_mailing_office["street1"]
         addresses[:req_street2] = req_mailing_office["street2"]
@@ -208,8 +233,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   def lookup_primary_contact(uri)
     url = "#{uri}?oauth_consumer_key=#{StateImporter::CountyAddresses.oauth_token}"
     response =  JSON.parse(self.class.get_ssl(url))
-    puts response
-    return response["objects"]
+    return response    
   end
   
   def self.get(path)

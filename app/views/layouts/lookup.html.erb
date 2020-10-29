@@ -67,10 +67,14 @@
       <div id="header">
         <% end -%>
         <div class='header-text'>
-          <%- if @lookup && @lookup.state_abbrev %>
-          <%= t 'txt.check_voter_status_in', state_abbrev: @lookup.state_abbrev %>
+          <%- if @bsc && @bsc.state_abbrev %>
+            <%= t 'txt.check_ballot_in', state_abbrev: @bsc.state_abbrev %>
+          <%- elsif @bsc %>
+            <%= t 'txt.check_ballot' %>
+          <%- elsif @lookup && @lookup.state_abbrev %>
+            <%= t 'txt.check_voter_status_in', state_abbrev: @lookup.state_abbrev %>
           <%- else%>
-          <%= t 'txt.check_voter_status' %>
+            <%= t 'txt.check_voter_status' %>
           <%- end %>
         </div>
       </div>

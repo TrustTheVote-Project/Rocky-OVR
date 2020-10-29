@@ -1,0 +1,32 @@
+%h2= t('txt.ballot_status_check.step_1_header')
+
+.intro-message
+  = t('txt.ballot_status_check.step_1_instructions').html_safe
+
+= form_for(@bsc) do |form|
+  = form.hidden_field :partner_id
+  = form.hidden_field :tracking_id
+  = form.hidden_field :tracking_source
+  %fieldset
+    %legend
+      %span= t('txt.registration.name')
+    %ul.stacked
+      = field_li form, :first_name, required: true, skip_tooltip: true
+      = field_li form, :last_name, required: true, skip_tooltip: true
+
+  %ul.stacked
+    = field_li form, :zip, required: true, skip_tooltip: true
+  
+  %ul.stacked
+    = field_li form, :email, required: true, skip_tooltip: true
+  = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
+  
+  %ul.stacked
+    = field_li form, :phone, skip_tooltip: true
+  
+  = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form} 
+
+  = rollover_button(:next_step, I18n.t('txt.button.trackballot').html_safe)
+
+
+
