@@ -4,7 +4,7 @@
   
   = render partial: 'state_registrants/header_mobile', locals: {percentage: 90}
   
-  %fieldset#newui_mailing_address_set.block-selector
+  %fieldset#has_assistant_set.block-selector
     =checkbox_block_selector form, :has_assistant, I18n.t('activerecord.attributes.state_registrants/pa_registrant.has_assistant'), nil, {required: true}
     %div.block-selector__yes-selected
       %fieldset#assistant_set
