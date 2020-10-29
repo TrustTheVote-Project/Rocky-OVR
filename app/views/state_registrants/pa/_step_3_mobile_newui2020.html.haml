@@ -2,18 +2,6 @@
 - content_for :head do
   :javascript
     $(document).ready(function() {
-      function togglePenndotNumber() {
-        if ($("#state_registrants_pa_registrant_confirm_no_penndot_number:checked").length > 0) {
-          $("#penndot_set").hide();
-          // if (!window.IS_TOUCH_ENABLED) {
-          //   $("#signature_upload").show();
-          // }
-        } else {
-          $("#penndot_set").show();
-          
-          // $("#signature_upload").hide();
-        }              
-      }
 
       function toggleSsn4() {
         if ($("#state_registrants_pa_registrant_confirm_no_dl_or_ssn:checked").length > 0 ) {
@@ -23,21 +11,10 @@
         }
       }
       
-      function toggleAssistant() {
-        if ($("#state_registrants_pa_registrant_has_assistant:checked").length > 0) {
-          $("#assistant_set").show();
-        } else {
-          $("#assistant_set").hide();
-        }        
-      }
       
       
-      $("#state_registrants_pa_registrant_confirm_no_penndot_number").click(togglePenndotNumber)
-      togglePenndotNumber();      
       $("#state_registrants_pa_registrant_confirm_no_dl_or_ssn").click(toggleSsn4)
       toggleSsn4();      
-      $("#state_registrants_pa_registrant_has_assistant").click(toggleAssistant)
-      toggleAssistant();
     });
 
 

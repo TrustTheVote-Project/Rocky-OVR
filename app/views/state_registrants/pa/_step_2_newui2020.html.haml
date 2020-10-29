@@ -1,9 +1,6 @@
 - content_for :head do
   :javascript
     $(document).ready(function() {
-      checkboxTogglesSet($('#state_registrants_pa_registrant_change_of_name'), $('#prev_name_set'), $('#prev_name_rule'));
-      checkboxTogglesSet($('#state_registrants_pa_registrant_has_mailing_address'), $('#mailing_address_set'));
-      checkboxTogglesSet($('#state_registrants_pa_registrant_change_of_address'), $('#prev_address_set'));
       $('#javascript_disabled').remove();
       
       function togglePreviousAddressCounty() {
