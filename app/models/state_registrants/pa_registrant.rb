@@ -521,7 +521,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       self.registration_unit_type = unit_info.shift
     end
     self.registration_unit_number = unit_info.join(' ')
-    self.has_mailing_address = r.has_mailing_address?
+    self.has_mailing_address = r.has_mailing_address? unless r.has_mailing_address.nil? 
     begin
       self.mailing_state = r.mailing_state.abbreviation
     rescue
