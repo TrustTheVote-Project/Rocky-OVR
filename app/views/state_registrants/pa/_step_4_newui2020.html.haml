@@ -165,6 +165,6 @@
   -#= rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
   -#.back    
     = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)
-  = rollover_button(:next_step, I18n.t('activerecord.attributes.state_registrants/pa_registrant.step4_next'))
+  = rollover_button(:next_step, I18n.t('txt.registration.state_registrations.pa.step4_next'))
   .back
     = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

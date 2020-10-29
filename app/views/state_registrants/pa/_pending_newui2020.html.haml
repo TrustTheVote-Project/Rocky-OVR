@@ -7,7 +7,7 @@
 
 .step_6
   #preparing_content
-    %h1= t('activerecord.attributes.state_registrants/pa_registrant.pending_header')
+    %h1= t('txt.registration.state_registrations.pa.instructions.pending_header')
     .download{style: "position:relative"}
       %div
         %h2.spaced_out
@@ -15,5 +15,5 @@
       %p.preparing
         = image_tag "reg/spinner.gif"
       %p
-        = I18n.t('activerecord.attributes.state_registrants/pa_registrant.pending_text').html_safe
+        = I18n.t('txt.registration.state_registrations.pa.instructions.pending_text').html_safe
 

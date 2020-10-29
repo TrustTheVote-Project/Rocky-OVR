@@ -86,6 +86,6 @@
     = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
   
 
-  = rollover_button(:next_step, I18n.t('activerecord.attributes.state_registrants/pa_registrant.step3_next').html_safe)  
+  = rollover_button(:next_step, I18n.t('txt.registration.state_registrations.pa.step3_next').html_safe)  
   .back    
     = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

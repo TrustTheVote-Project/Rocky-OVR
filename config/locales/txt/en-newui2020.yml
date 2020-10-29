@@ -411,6 +411,19 @@ en-newui2020:
           title: Identification
         step_9:
           title: Personal Information
+      state_registrations:
+        pa:
+          step2_next: Next step
+          step3_next: Prepare forms
+          step4_next: Send application
+          complete_title: YOU'RE DONE!
+          complete_message: Registration form sent!          
+          instructions:
+            complete_dialog_text: "<p>Your application has been sent to your county voter registration office. <b>Your registration is not complete until processed and accepted.</b></p>"
+            complete_whats_next_text: "<h2>What's next?</h2><p>If accepted, you will receive a Voter Registration Card by mail.</p>"
+            pending_text: "You won't be registered until you print, sign, and mail in your form!"
+            pending_header: "We're preparing your registration forms."
+      
     signature_capture:
       rotation_instructions: You must rotate your screen to correctly capture
         your signature. Make sure your screen rotation is enabled.
