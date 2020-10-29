@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201028204122) do
+ActiveRecord::Schema.define(version: 20201029003849) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -129,6 +129,27 @@ ActiveRecord::Schema.define(version: 20201028204122) do
 
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
   add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
+
+  create_table "ballot_status_checks", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "zip"
+    t.string   "phone"
+    t.integer  "partner_id"
+    t.string   "tracking_source"
+    t.string   "tracking_id"
+    t.string   "uid"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_opt_in_sms"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "ballot_status_checks", ["partner_id"], name: "bsc_partners"
+  add_index "ballot_status_checks", ["uid"], name: "index_ballot_status_checks_on_uid"
 
   create_table "blocks_form_dispositions", force: :cascade do |t|
     t.integer  "grommet_request_id"
@@ -916,11 +937,11 @@ ActiveRecord::Schema.define(version: 20201028204122) do
 
   create_table "zip_code_county_addresses", force: :cascade do |t|
     t.integer  "geo_state_id"
-    t.string   "zip",                 limit: 255
-    t.string   "address",             limit: 255
-    t.text     "county",              limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "zip",                     limit: 255
+    t.string   "address",                 limit: 255
+    t.text     "county",                  limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.text     "cities"
     t.text     "unacceptable_cities"
     t.datetime "last_checked"
@@ -940,6 +961,18 @@ ActiveRecord::Schema.define(version: 20201028204122) do
     t.string   "vr_contact_phone"
     t.string   "req_contact_email"
     t.string   "req_contact_phone"
+    t.string   "vr_contact_office_name"
+    t.string   "vr_contact_title"
+    t.string   "vr_contact_first_name"
+    t.string   "vr_contact_last_name"
+    t.string   "vr_contact_suffix"
+    t.string   "vr_website"
+    t.string   "req_contact_office_name"
+    t.string   "req_contact_title"
+    t.string   "req_contact_first_name"
+    t.string   "req_contact_last_name"
+    t.string   "req_contact_suffix"
+    t.string   "req_website"
   end
 
   add_index "zip_code_county_addresses", ["geo_state_id"], name: "index_zip_code_county_addresses_on_geo_state_id"

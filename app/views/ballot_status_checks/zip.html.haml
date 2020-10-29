@@ -1,0 +1,16 @@
+.intro-message
+  - leo_contact_info = @bsc.state_registrar_office&.full_req_contact_info&.join("\n")
+  - if leo_contact_info.blank?
+    - leo_contact_info = [@bsc.state&.registrar_phone, @bsc.state&.registrar_url, @bsc.state&.registrar_address].compact.join("\n")
+  - leo_contact_info = leo_contact_info.to_s.gsub(/\n/,"<br/>")
+  - if @bsc.abr_status_check_url.present?
+    = t('txt.ballot_status_check.check_with_state_url', url: @bsc.abr_status_check_url, leo_contact_info: leo_contact_info ).html_safe
+  - else
+    = t('txt.ballot_status_check.check_with_state_leo', leo_contact_info: leo_contact_info).html_safe
+
+
+- if false # need to make sure we want this
+  #finish_page_iframe
+    %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
+
+  = render :partial => 'abrs/finish_adwords'
