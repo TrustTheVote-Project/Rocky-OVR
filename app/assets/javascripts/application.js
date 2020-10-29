@@ -18,3 +18,4 @@
 //= require rocky
 //= require dynamic-nav
 //= require registration
+//= require select2.full.min
