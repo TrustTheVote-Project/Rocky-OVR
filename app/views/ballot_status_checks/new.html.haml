@@ -19,13 +19,14 @@
   
   %ul.stacked
     = field_li form, :email, required: true, skip_tooltip: true
-  = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
-  
-  %ul.stacked
-    = field_li form, :phone, skip_tooltip: true
   
   = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form} 
 
+  %ul.stacked
+    = field_li form, :phone, skip_tooltip: true
+  = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
+  
+  
   = rollover_button(:next_step, I18n.t('txt.button.trackballot').html_safe)
 
 
