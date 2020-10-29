@@ -131,8 +131,8 @@ class PARegistrantValidator < ActiveModel::Validator
 
   end
 
-  def validate_boolean (reg, attr_name)
-    unless [true, false].include? reg.send attr_name 
+  def validate_boolean(reg, attr_name)
+    unless [true, false].include? reg.send(attr_name) 
       reg.validates_presence_of attr_name
     end
   end
