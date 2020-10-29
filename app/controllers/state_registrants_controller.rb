@@ -44,6 +44,7 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def pending
+    set_ab_test
     if !@old_registrant
       # Skip other processing and render pending w/out variables set
       @use_mobile_ui = determine_mobile_ui(@registrant)
