@@ -1,3 +1,4 @@
+-#CTW-New UI
 = render 'shared/signature_capture/scripts'
 - content_for :head do
   :javascript
@@ -22,7 +23,19 @@
           $(".registrant-form__ssn4__line").show();
         }
       }
+
+      function toggleOtherParty() {
+        var party = $("#state_registrants_pa_registrant_party").val().toLowerCase()
+        if (party=='other' || party=='otros') {
+          $("#other_party_set").show();          
+        } else {
+          $("#other_party_set").hide();
+        }        
+      }
       
+      $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
+      toggleOtherParty();
+  
       function toggleAssistant() {
         if ($("#state_registrants_pa_registrant_has_assistant:checked").length > 0) {
           $("#assistant_set").show();
@@ -49,50 +62,39 @@
   = render partial: 'state_registrants/pa/header'
 
   %ul.flat
-  = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
- 
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
   
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__will-be-18-by-election__line", required: true, require_accepted: true}
-  
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__will-be-18-by-election__line", required: true, require_accepted: true}
 
-  
-  %fieldset#penndot_set
-    %ul.flat.penndot-number
-      - if @registrant.penndot_retries > 0
-        - @registrant.errors.add(:penndot_number, :pa_invalid)
-      = field_li(form, :penndot_number, {skip_tooltip: true, required: true, field_options: {size: 12, maxlength: 8}, li_options: {class: "registrant-form__penndot-number__line"} })
-          
-    %p.instructions
-      = I18n.t('states.custom.pa.penndot_number_instructions')
+    = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
 
-  
+  %fieldset#newui_mailing_address_set.block-selector
+    =checkbox_block_selector form, :has_penndot, I18n.t('activerecord.attributes.state_registrants/pa_registrant.has_penndot'), nil, {required: true}
+    %div.block-selector__yes-selected
+      %fieldset#penndot_set
+        %ul.flat.penndot-number
+          - if @registrant.penndot_retries > 0
+            - @registrant.errors.add(:penndot_number, :pa_invalid)
+          = field_li(form, :penndot_number, {skip_tooltip: true, required: true, field_options: {size: 12, maxlength: 8}, li_options: {class: "registrant-form__penndot-number__line"} })
+              
+        %p.instructions
+          = I18n.t('states.custom.pa.penndot_number_instructions')
     
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_penndot_number, class_name: "registrant-form__no-penndot-number__line", required: false}
-
-  = render partial: 'shared/signature_capture/form', locals: {form: form}
-
   %fieldset#ssn4_set
     %ul.flat.ssn4
-      = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"}, field_options: {size: 6, maxlength: 4} })
-      
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dl_or_ssn, class_name: "registrant-form__no-ssn4__line", required: false}
-      
+      = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"}, field_options: { maxlength: 4, style:'width:100%'} })
     
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_assistant, class_name: "registrant-form__has-assistant__line", required: false}
-    
-  %fieldset#assistant_set
-    %ul.stacked
-      = field_li(form, :assistant_name, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-name__line"} })
-    %ul.stacked
-      = field_li(form, :assistant_address, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-address__line"} })
-    %ul.stacked
-      = field_li(form, :assistant_phone, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__assistant-phone__line"} })
-    
-    .declaration-text
-      = t('states.custom.pa.assistant_declaration').html_safe
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_assistant_declaration, class_name: "registrant-form__assistant-confirmation__line", required: true}
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dl_or_ssn, class_name: "registrant-form__no-ssn4__line", required: false}
+  
+  %br
 
+  %h2 
+    = I18n.t('activerecord.attributes.state_registrants/pa_registrant.voter_signature_header')
+  = render partial: 'shared/signature_capture/form', locals: {form: form}
+
+    
+
+    
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
 
   
@@ -108,6 +110,6 @@
     = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
   
 
-  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
+  = rollover_button(:next_step, I18n.t('activerecord.attributes.state_registrants/pa_registrant.step3_next').html_safe)  
   .back    
     = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)
