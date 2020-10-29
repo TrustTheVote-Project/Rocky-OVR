@@ -1,7 +1,7 @@
 - if @use_newui2020
   = render partial: 'state_registrants/pa/step_2_newui2020' #, locals: { form: form }
 - else
-  CTW--OLD
+
   - content_for :head do
     :javascript
       $(document).ready(function() {
