@@ -61,7 +61,6 @@
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__will-be-18-by-election__line", required: true, require_accepted: true}
 
   .dynamic-step#step-3
-    = render partial: 'step2/name_only_mobile', locals: {form: form}
     %br
     %fieldset#change_of_name_set.block-selector
       =checkbox_block_selector form, :change_of_name, I18n.t('activerecord.attributes.state_registrants/pa_registrant.change_of_name'), :previous_name, {required: true}
