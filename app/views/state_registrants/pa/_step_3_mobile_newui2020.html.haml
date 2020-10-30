@@ -24,7 +24,7 @@
 
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
 
-  = render partial: 'state_registrants/header_mobile', locals: {percentage: 50}
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 70}
 
 
   
@@ -66,5 +66,5 @@
             %span <
 
     .next.next--link.prepare
-      = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) 
+      = rollover_button(:next_step, I18n.t('txt.registration.state_registrations.pa.step3_next').html_safe)  
   

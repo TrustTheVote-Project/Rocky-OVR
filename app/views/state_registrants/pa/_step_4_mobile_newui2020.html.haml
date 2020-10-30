@@ -161,6 +161,6 @@
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_declaration, class_name: "registrant-form__has-assistant__line", required: true}
   
   
-  = rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
+  = rollover_button(:next_step, I18n.t('txt.registration.state_registrations.pa.step4_next'))
   .back    
     = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)
