@@ -183,6 +183,8 @@ en:
           SSN_last_4: Last 4 digits of your SSN
           Drivers_License_State: Driver's License State
           Drivers_License_Number: Driver's License Number
+          Drivers_License_Number__format_pattern_message: That doesn't look like a valid %state% driver's license
+            number, please verify before continuing.
           Street_Address_1: Mailing address
           City_1: City
           State_1: State
