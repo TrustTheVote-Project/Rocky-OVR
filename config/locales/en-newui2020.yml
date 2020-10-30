@@ -185,7 +185,7 @@ en-newui2020:
         registration_state: State
         home_state_abbrev: State
         registration_county: County
-        has_mailing_address: I get my mail at a different address from the one above.
+        has_mailing_address: Do you get your mail at a different address from the one above?
         mailing_address: Address
         mailing_city: City
         mailing_state: State
@@ -196,25 +196,29 @@ en-newui2020:
         previous_zip_code: Zip
         previous_county: County
         phone: Phone
-        change_of_name: I have changed my name.
-        change_of_address: I have changed my address since the last time I registered
+        change_of_name: Have you changed your name?
+        change_of_address: Have you changed your address since the last time you registered
           to vote.
         change_of_party: I have changed my political party.
         party: Political Party
         other_party: Other Party
         race: Race
         penndot_number: PennDOT Number
+        has_penndot: Do you have a PennDot number?
         confirm_no_penndot_number: I do not have a PennDOT Number.
         ssn4: Last 4 digits of your social security number
         confirm_no_dl_or_ssn: I do not know the last four digits of my social security
           number.
-        has_assistant: Someone helped me with this form.
+        has_assistant: Did anyone help you fill out this form?
         assistant_name: Helper Name
         assistant_address: Helper Address
         assistant_phone: Helper Phone
         sms_number_for_continue_on_device: 'Text me the link:'
         email_address_for_continue_on_device: 'Email me the link:'
         voter_signature_image: Voter Signature Image
+        voter_signature_prompt: Provide Signature
+        voter_signature_header: Signature
+
       abr:
         date_of_birth: Date of Birth
         email: Email Address

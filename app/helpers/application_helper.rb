@@ -279,7 +279,12 @@ module ApplicationHelper
         ""
     end
       
-    hidden_field = form.hidden_field(field, class: "block-selector__input", value: hidden_field_value)
+    if required.blank?
+      hidden_field = form.hidden_field(field, class: "block-selector__input", value: hidden_field_value)
+    else
+      hidden_field = form.hidden_field(field, class: "block-selector__input", value: hidden_field_value,  'data-client-validation-required': 'Required')
+    end
+    
     yes_selected = !!form.object.send(field)
     yes_block = "<span class=\"block-selector__button block-selector__button--yes #{"block-selector__button--selected" if yes_selected } \">#{I18n.t('yes')}</span>"
     no_block = "<span class=\"block-selector__button block-selector__button--no  #{"block-selector__button--selected" unless  yes_selected }\">#{I18n.t('no')}</span>"
