@@ -49,6 +49,13 @@ class BallotStatusCheck < ActiveRecord::Base
     @state_registrar_address ||= state && state.abr_address(self.zip)
   end
 
+  def use_leo_contact?
+    if state_abbrev
+      return RockyConf.absentee_states[state_abbrev]&.abr_track_ballot_use_leo != false
+    end
+    return true
+  end
+
   def abr_status_check_url
     if state_abbrev
         RockyConf.absentee_states[state_abbrev]&.abr_status_check_url

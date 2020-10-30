@@ -1,5 +1,5 @@
 class BallotStatusChecksController < ApplicationController
-  layout "lookup"
+  layout "ballot_status_check"
   before_filter :find_partner
 
   def new

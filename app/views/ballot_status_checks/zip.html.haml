@@ -1,7 +1,9 @@
 .intro-message
-  - leo_contact_info = @bsc.state_registrar_office&.full_req_contact_info&.join("\n")
+  - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info&.join("\n") : nil
   - if leo_contact_info.blank?
     - leo_contact_info = [@bsc.state&.registrar_phone, @bsc.state&.registrar_url, @bsc.state&.registrar_address].compact.join("\n")
+  - else 
+    - leo_contact_info << "\n\nData provided by U.S. Vote Foundation"
   - leo_contact_info = leo_contact_info.to_s.gsub(/\n/,"<br/>")
   - if @bsc.abr_status_check_url.present?
     = t('txt.ballot_status_check.check_with_state_url', url: @bsc.abr_status_check_url, leo_contact_info: leo_contact_info ).html_safe
