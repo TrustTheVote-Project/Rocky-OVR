@@ -3,20 +3,20 @@
 
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Online Voter Status Check</title>
-  <meta name="description" content="Check your voter status now." />
+  <title>Check Your Ballot Status</title>
+  <meta name="description" content="Check your ballot status now." />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Rock the Vote" />
-  <meta property="og:description" content="Check your voter status now." />
+  <meta property="og:description" content="Check your ballot status now." />
   <meta property="og:site_name" content="Rock the Vote" />
   <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:secure_url" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:description" content="Check your voter status now." />
-  <meta name="twitter:title" content="Online Voter Status Check" />
+  <meta name="twitter:description" content="Check your ballot status now." />
+  <meta name="twitter:title" content="Check Your Ballot Status" />
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta name="twitter:creator" content="@rockthevote" />
@@ -69,17 +69,13 @@
         <div class='header-text'>
           <%- if @bsc && @bsc.state_abbrev %>
             <%= t 'txt.check_ballot_in', state_abbrev: @bsc.state_abbrev %>
-          <%- elsif @bsc %>
+          <%- else %>
             <%= t 'txt.check_ballot' %>
-          <%- elsif @lookup && @lookup.state_abbrev %>
-            <%= t 'txt.check_voter_status_in', state_abbrev: @lookup.state_abbrev %>
-          <%- else%>
-            <%= t 'txt.check_voter_status' %>
           <%- end %>
         </div>
       </div>
 
-      <div id="main" class="lookup">
+      <div id="main" class="ballot-status-check">
         <div id="main_inner">
           <%= flash_messages.html_safe %>
 

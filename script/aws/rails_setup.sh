@@ -56,6 +56,8 @@ if [ $SERVER_ROLE == 'util' ]; then
 
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
 
+    RAILS_ENV=$RAILS_ENV bundle exec rake pdf:generate_abr_cover_pages
+
     
     # ensure the file structure exists
     cd /var/www/rocky
@@ -120,7 +122,8 @@ if [ $SERVER_ROLE == 'pdf' ]; then
     # ensure the file structure exists
     cd /var/www/rocky
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
-    
+    RAILS_ENV=$RAILS_ENV bundle exec rake pdf:generate_abr_cover_pages
+
     
     mkdir -p tmp/pids
     # make sure the script is executable

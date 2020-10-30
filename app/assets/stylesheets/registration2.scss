@@ -867,7 +867,7 @@ body {
       }
     }
   }
-  &.lookup {
+  &.lookup, &.ballot-status-check {
     span.rollover_button {
       display: block;
       text-align: center;
@@ -878,7 +878,7 @@ body {
       }
     }
   }
-  &.abr, &.lookup {
+  &.abr, &.lookup, &.ballot-status-check {
     line-height: 1.4em;
     h2 {
       text-align: center;
@@ -927,6 +927,23 @@ body {
       }
     }
     @import 'abr-form-fields';    
+  }
+  &.ballot-status-check {
+    form {
+      ul {
+        li {
+          @media(min-width: $main-width + 1) {
+            &.registrant-form__first-name__line {
+              width: 48%;
+            }
+            &.registrant-form__last-name__line {
+              width: 50%;
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
   }
   &.lookup {
     form {
