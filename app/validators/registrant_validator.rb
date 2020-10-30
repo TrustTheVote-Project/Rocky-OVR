@@ -71,7 +71,7 @@ class RegistrantValidator < ActiveModel::Validator
       if reg.home_state_allows_ovr_ignoring_license? && reg.require_id?
         reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
       elsif !reg.home_state_allows_ovr_ignoring_license? || reg.require_id?
-        if @use_newui2020
+        if @use_newui2020 && !reg.using_state_online_registration?
           reg.validates_inclusion_of  :has_mailing_address, :in=>[true,false] unless reg.building_via_api_call? || reg.complete?
           reg.validates_inclusion_of  :change_of_address, :in=>[true,false] unless reg.building_via_api_call? || reg.complete?
           reg.validates_inclusion_of  :change_of_name, :in=>[true,false] unless reg.building_via_api_call? || reg.complete?
@@ -82,7 +82,7 @@ class RegistrantValidator < ActiveModel::Validator
     end
 
     if reg.at_least_step_4? && reg.use_short_form?
-      if @use_newui2020        
+      if @use_newui2020 && !reg.using_state_online_registration?
         reg.validates_inclusion_of  :has_mailing_address, :in=>[true,false] unless reg.building_via_api_call?
         reg.validates_inclusion_of  :change_of_address, :in=>[true,false] unless reg.building_via_api_call?
         reg.validates_inclusion_of  :change_of_name, :in=>[true,false] unless reg.building_via_api_call?

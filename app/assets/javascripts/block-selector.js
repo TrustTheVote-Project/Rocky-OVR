@@ -8,7 +8,7 @@ $(document).ready(function() {
     var innerYes = blockSelector.find(".block-selector__yes-selected");
     var innerNo = blockSelector.find(".block-selector__no-selected");
     var inputWrapper = blockSelector.find(".block-selector__checkbox-field");
-    var errors = blockSelector.find(".error")
+    var errors = inputWrapper.find(".error")
     var removeErrors = function() {
       inputWrapper.removeClass("has_error");
       errors.text("");

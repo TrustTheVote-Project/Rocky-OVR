@@ -91,7 +91,7 @@ class PARegistrantValidator < ActiveModel::Validator
         
         reg.validates_acceptance_of(:confirm_assistant_declaration, accept: true)
         if !reg.assistant_phone.blank?
-          reg.errors.add(:assistant_phone, :invalid) unless  reg.assistant_phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/
+          reg.errors.add(:assistant_phone, :invalid) unless reg.assistant_phone.to_s.gsub(/[^\d]/,'')=~ /\A\d{10}\z/          
         end
         
       end
@@ -107,7 +107,6 @@ class PARegistrantValidator < ActiveModel::Validator
       
         reg.validate_date_of_birth
 
-        #if not newUI
         validate_race(reg)        
         validate_party(reg) 
 

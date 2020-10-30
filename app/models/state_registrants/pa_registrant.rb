@@ -510,6 +510,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       val = r.send(v)
       self.send("#{k}=", val)
     end
+    self.confirm_no_penndot_number = r.has_state_license == false
     address_info = r.home_address.to_s.split(',')
     if address_info.size > 1
       self.registration_address_2 = address_info.pop.strip

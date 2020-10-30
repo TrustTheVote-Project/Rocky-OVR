@@ -409,6 +409,7 @@ en-newui2020:
         state_registrants/pa_registrant:
           blank: Required
           invalid_zip: Invalid ZIP
+          invalid: "Invalid"
           attributes:
             confirm_us_citizen:
               accepted: You must be a US citizen!

@@ -4,6 +4,7 @@
   = render partial: 'state_registrants/pa/header'
  
   %fieldset#has_assistant_set.block-selector
+    -# raise form.object.errors.full_messages.to_s
     =checkbox_block_selector form, :has_assistant, I18n.t('activerecord.attributes.state_registrants/pa_registrant.has_assistant'), nil, {required: true}
     %div.block-selector__yes-selected
       %fieldset#assistant_set
@@ -31,7 +32,7 @@
         = @registrant.middle_name
         = @registrant.last_name
         = @registrant.name_suffix
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), registrant_path(@registrant.registrant.to_param))
         
     - if @registrant.change_of_name?
       .review__section

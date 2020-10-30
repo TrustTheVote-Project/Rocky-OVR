@@ -414,7 +414,7 @@ en-newui2020:
       state_registrations:
         pa:
           step2_next: Next step
-          step3_next: Prepare forms
+          step3_next: Next step
           step4_next: Send application
           complete_title: YOU'RE DONE!
           complete_message: Registration form sent!          
