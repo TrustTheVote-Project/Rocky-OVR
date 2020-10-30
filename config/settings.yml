@@ -302,6 +302,7 @@ absentee_states:
     abr_status_check_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
     abr_track_ballot_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
     abr_track_ballot_use_leo: false
+    leo_lookup_url: https://myvote.wi.gov/en-US/MyMunicipalClerk
   WV:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
