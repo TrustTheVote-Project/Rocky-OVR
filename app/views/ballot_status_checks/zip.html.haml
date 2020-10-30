@@ -2,6 +2,8 @@
   - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info&.join("\n") : nil
   - if leo_contact_info.blank?
     - leo_contact_info = [@bsc.state&.registrar_phone, @bsc.state&.registrar_url, @bsc.state&.registrar_address].compact.join("\n")
+    - if @bsc.leo_lookup_url
+      - leo_contact_info << "\n\nYou can also <a href=\"#{@bsc.leo_lookup_url}\" target=\"_blank\" rel=\"noopener\">look up your local election office</a>"
   - else 
     - leo_contact_info << "\n\nData provided by U.S. Vote Foundation"
   - leo_contact_info = leo_contact_info.to_s.gsub(/\n/,"<br/>")
