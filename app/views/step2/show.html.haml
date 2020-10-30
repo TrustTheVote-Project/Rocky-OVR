@@ -1,158 +1,161 @@
-- if @registrant.mail_with_esig?
-  = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
-  = flash_messages.html_safe
+- if @use_newui2020
+  = render partial: 'show_newui2020'
+- else
+  - if @registrant.mail_with_esig?
+    = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
+    = flash_messages.html_safe
 
 
-- if !@registrant.use_short_form?
-  %h1= t('txt.registration.step_2_header')
-    
-- # TODO assumin
-- if @registrant.state_flow_error?
-  .state-flow-error
-    %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
-    = @registrant.custom_state_flow_error_message.to_s.html_safe
-
-- if @registrant.has_custom_zip_code_partial?
-  = render partial: @registrant.custom_zip_code_partial
-    
-= form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
-  - if @registrant.use_short_form?
-    #other_language_link
-      = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {selected: @registrant.locale}, onchange: "$(this.form).find('input[name=skip_advance]').val(true); $(this.form).submit()"
-      = form.hidden_field :locale, :value=>@registrant.locale      
-      = hidden_field_tag 'skip_advance', false
-
-          
-  - if @registrant.skip_state_flow?
-    %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.by_paper_header").html_safe
-    %p= I18n.t('txt.registration.instructions.overseas').html_safe
-    
-
-    
-
-  = render partial: 'name', locals: {form: form}
-
-  - if @registrant.use_short_form?
-    %ul.checkbox.checkbox-step-1
-      %li.spacer= "&nbsp;"
-      %li.registrant-form__us-citizen__line
-        %h3
-          = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
-          = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
-          %span.error= form.object.errors[:us_citizen].join("\n")
-          
-    - if @registrant.require_age_confirmation?
-      %ul.checkbox.checkbox-step-1
-        %li.spacer
-        %li.registrant-form__will-be-18-by-election__line
-          %h3
-            = form.check_box :will_be_18_by_election
-            = form.label :will_be_18_by_election
-            %span.error= form.object.errors[:will_be_18_by_election].join("\n")
-
-    = render partial: 'previous_name', locals: { form: form }
-    
-  = render :partial=> "registrants/home_address", :locals=>{:form=>form}
-  
-  - if @registrant.use_short_form?
-    
-    = render partial: 'previous_address', locals: { form: form }
-    
-    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
-      - content_for :head do
-        :javascript
-          $(document).ready(function() {
-            function hasStateLicenseSelected() {
-              var hasStateLicense = true;
-              var hasStateLicenseRadio = $('input[name="registrant[has_state_license]"]:checked'); //a radio must have 1 selected
-              if (hasStateLicenseRadio.length > 0 && hasStateLicenseRadio.val()!="1") {
-                hasStateLicense = false;
-              } 
-              
-              // If check-18 checkbox is present, that must also be selected
-              var willBe18 = true;
-              var willBe18Checkbox = $('input[name="registrant[will_be_18_by_election]"]');
-              if (willBe18Checkbox.length > 0 && !willBe18Checkbox.is(":checked")) {
-                willBe18 = false;
-              }
-              return hasStateLicense && willBe18;
-            }
-            function toggleHasStateLicense() {
-              if (hasStateLicenseSelected()) {
-                 $('.skip_state_registration').hide(); 
-                 $('.use_state_registration').show();  
-                 $("#main").removeClass('skipping_state_registration').addClass('using_state_registration');  
-              } else {
-                $('.skip_state_registration').show();
-                $('.use_state_registration').hide();    
-                $("#main").addClass('skipping_state_registration').removeClass('using_state_registration');  
-              }
-            }
-            toggleHasStateLicense();
-            $('input[name="registrant[has_state_license]"]').click(toggleHasStateLicense);  
-            $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
-          });
-    
-      - if @registrant.require_id?
-        %ul.radio
-          %li.registrant-form__has-state-license__line.has_license
-            %h3
-              = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
-              = form.label :has_state_license_1, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
-            .use_state_registration.checkbox-explanation
-              %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
-        %ul.radio
-          %li.registrant-form__has-no-state-license__line
-            %h3
-              = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
-              = form.label :has_state_license_0, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_no_state_license", default: t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev))
-
-      .skip_state_registration
-        = render partial: 'step4/skip_state', locals: { form: form }
-
-      %ul.flat.dob-and-phone
-        = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
-        = render :partial=> "registrants/phone", :locals=>{:form=>form}
+  - if !@registrant.use_short_form?
+    %h1= t('txt.registration.step_2_header')
       
+  - # TODO assumin
+  - if @registrant.state_flow_error?
+    .state-flow-error
+      %h2= t("states.custom.#{@registrant.home_state_abbrev.downcase}.state_flow_error")
+      = @registrant.custom_state_flow_error_message.to_s.html_safe
+
+  - if @registrant.has_custom_zip_code_partial?
+    = render partial: @registrant.custom_zip_code_partial
+      
+  = form_for(@registrant, :url => registrant_step_2_path(@registrant)) do |form|
+    - if @registrant.use_short_form?
+      #other_language_link
+        = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {selected: @registrant.locale}, onchange: "$(this.form).find('input[name=skip_advance]').val(true); $(this.form).submit()"
+        = form.hidden_field :locale, :value=>@registrant.locale      
+        = hidden_field_tag 'skip_advance', false
+
+            
+    - if @registrant.skip_state_flow?
+      %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.by_paper_header").html_safe
+      %p= I18n.t('txt.registration.instructions.overseas').html_safe
+      
+
+      
+
+    = render partial: 'name', locals: {form: form}
+
+    - if @registrant.use_short_form?
+      %ul.checkbox.checkbox-step-1
+        %li.spacer= "&nbsp;"
+        %li.registrant-form__us-citizen__line
+          %h3
+            = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
+            = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
+            %span.error= form.object.errors[:us_citizen].join("\n")
+            
+      - if @registrant.require_age_confirmation?
+        %ul.checkbox.checkbox-step-1
+          %li.spacer
+          %li.registrant-form__will-be-18-by-election__line
+            %h3
+              = form.check_box :will_be_18_by_election
+              = form.label :will_be_18_by_election
+              %span.error= form.object.errors[:will_be_18_by_election].join("\n")
+
+      = render partial: 'previous_name', locals: { form: form }
+      
+    = render :partial=> "registrants/home_address", :locals=>{:form=>form}
+    
+    - if @registrant.use_short_form?
+      
+      = render partial: 'previous_address', locals: { form: form }
+      
+      - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
+        - content_for :head do
+          :javascript
+            $(document).ready(function() {
+              function hasStateLicenseSelected() {
+                var hasStateLicense = true;
+                var hasStateLicenseRadio = $('input[name="registrant[has_state_license]"]:checked'); //a radio must have 1 selected
+                if (hasStateLicenseRadio.length > 0 && hasStateLicenseRadio.val()!="1") {
+                  hasStateLicense = false;
+                } 
+                
+                // If check-18 checkbox is present, that must also be selected
+                var willBe18 = true;
+                var willBe18Checkbox = $('input[name="registrant[will_be_18_by_election]"]');
+                if (willBe18Checkbox.length > 0 && !willBe18Checkbox.is(":checked")) {
+                  willBe18 = false;
+                }
+                return hasStateLicense && willBe18;
+              }
+              function toggleHasStateLicense() {
+                if (hasStateLicenseSelected()) {
+                  $('.skip_state_registration').hide(); 
+                  $('.use_state_registration').show();  
+                  $("#main").removeClass('skipping_state_registration').addClass('using_state_registration');  
+                } else {
+                  $('.skip_state_registration').show();
+                  $('.use_state_registration').hide();    
+                  $("#main").addClass('skipping_state_registration').removeClass('using_state_registration');  
+                }
+              }
+              toggleHasStateLicense();
+              $('input[name="registrant[has_state_license]"]').click(toggleHasStateLicense);  
+              $('input[name="registrant[will_be_18_by_election]"]').click(toggleHasStateLicense);  
+            });
+      
+        - if @registrant.require_id?
+          %ul.radio
+            %li.registrant-form__has-state-license__line.has_license
+              %h3
+                = form.radio_button :has_state_license, 1, checked: @registrant.has_state_license?
+                = form.label :has_state_license_1, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license", default: t('txt.registration.has_state_license', state: @registrant.home_state_abbrev))
+              .use_state_registration.checkbox-explanation
+                %p= t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_state_license_eligible", default: t('txt.registration.has_state_license_eligible', state: @registrant.home_state_name))
+          %ul.radio
+            %li.registrant-form__has-no-state-license__line
+              %h3
+                = form.radio_button :has_state_license, 0, checked: !@registrant.has_state_license?
+                = form.label :has_state_license_0, t("states.custom.#{@registrant.home_state_abbrev.downcase}.registration.has_no_state_license", default: t('txt.registration.has_no_state_license', state: @registrant.home_state_abbrev))
+
+        .skip_state_registration
+          = render partial: 'step4/skip_state', locals: { form: form }
+
+        %ul.flat.dob-and-phone
+          = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+          = render :partial=> "registrants/phone", :locals=>{:form=>form}
+        
+      - else
+        .state-id-number
+          = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
+        - if @registrant.mail_with_esig?
+          = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
+          
+        = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
+        .clear-fix
+        %ul.flat.dob-and-phone
+          = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}      
+          = render :partial=> "registrants/phone", :locals=>{:form=>form}
+
+      %fieldset.no_border.opt-ins
+        = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
+        = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
+      
+        - unless @registrant.skip_state_flow?
+          = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+
+      - if  @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
+        .use_state_registration
+          = rollover_button(:prepare, I18n.t('txt.button.submit'))
+      .skip_state_registration
+        - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+          .checkbox{style: "font-size: 150%; text-align: center;"}
+            = hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden
+            = check_box_tag :pdf_assistance, "1", @pdf_assistance == "1"
+            = label_tag :pdf_assistance, I18n.t('txt.button.download_assistance')
+          
+        = rollover_button(:prepare, I18n.t(@registrant.mail_with_esig? ? 'txt.button.prepare_with_esig' : 'txt.button.prepare'))
     - else
-      .state-id-number
-        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
-      - if @registrant.mail_with_esig?
-        = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
-        
-      = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
-      .clear-fix
-      %ul.flat.dob-and-phone
-        = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}      
+      = render(:partial => 'previous', :locals => {:form => form}) unless @registrant.first_registration?
+      %ul.flat
         = render :partial=> "registrants/phone", :locals=>{:form=>form}
-
-    %fieldset.no_border.opt-ins
-      = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
-      = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
+      -#%hr
+      = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)
     
-      - unless @registrant.skip_state_flow?
-        = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
-
-    - if  @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
-      .use_state_registration
-        = rollover_button(:prepare, I18n.t('txt.button.submit'))
-    .skip_state_registration
-      - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
-        .checkbox{style: "font-size: 150%; text-align: center;"}
-          = hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden
-          = check_box_tag :pdf_assistance, "1", @pdf_assistance == "1"
-          = label_tag :pdf_assistance, I18n.t('txt.button.download_assistance')
-        
-      = rollover_button(:prepare, I18n.t(@registrant.mail_with_esig? ? 'txt.button.prepare_with_esig' : 'txt.button.prepare'))
-  - else
-    = render(:partial => 'previous', :locals => {:form => form}) unless @registrant.first_registration?
-    %ul.flat
-      = render :partial=> "registrants/phone", :locals=>{:form=>form}
-    -#%hr
-    = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)
-  
-  .back
-    = link_to t('txt.button.back').html_safe, registrant_path(@registrant)
-    
-- if @registrant.use_short_form?
-  %p.already-registered= I18n.t('txt.registration.already_registered', url: ( "/share?partner=#{@registrant.partner_id}&registrant_finish_iframe_url=#{CGI.escape(@registrant.finish_iframe_url)}")).html_safe
+    .back
+      = link_to t('txt.button.back').html_safe, registrant_path(@registrant)
+      
+  - if @registrant.use_short_form?
+    %p.already-registered= I18n.t('txt.registration.already_registered', url: ( "/share?partner=#{@registrant.partner_id}&registrant_finish_iframe_url=#{CGI.escape(@registrant.finish_iframe_url)}")).html_safe

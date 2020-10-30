@@ -1,0 +1,97 @@
+= render 'shared/signature_capture/scripts'
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+
+      function toggleSsn4() {
+        if ($("#state_registrants_pa_registrant_confirm_no_dl_or_ssn:checked").length > 0 ) {
+          $(".registrant-form__ssn4__line").hide();
+        } else {
+          $(".registrant-form__ssn4__line").show();
+        }
+      }
+      
+      
+      
+      $("#state_registrants_pa_registrant_confirm_no_dl_or_ssn").click(toggleSsn4)
+      toggleSsn4();      
+
+      function toggleOtherParty() {
+        var party = $("#state_registrants_pa_registrant_party").val().toLowerCase()
+        if (party=='other' || party=='otros') {
+          $("#other_party_set").show();          
+        } else {
+          $("#other_party_set").hide();
+        }        
+      }
+      
+      $("#state_registrants_pa_registrant_party").change(toggleOtherParty)
+      toggleOtherParty();
+    });
+
+
+= flash_messages.html_safe
+      
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param,controller.current_state)) do |form|
+
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 70}
+
+
+  
+  .dynamic-step#step-6
+    %fieldset
+      %legend= t('txt.registration.mobile_ui.step_8.title')
+    
+  
+    %fieldset#has_penndot_set.block-selector
+      =checkbox_block_selector form, :has_penndot, I18n.t('activerecord.attributes.state_registrants/pa_registrant.has_penndot'), nil, {required: true}
+      %div.block-selector__yes-selected
+        %fieldset#penndot_set
+          %ul.flat.penndot-number
+            - if @registrant.penndot_retries > 0
+              - @registrant.errors.add(:penndot_number, :pa_invalid)
+            = field_li(form, :penndot_number, {skip_tooltip: true, required: true, field_options: {size: 12, maxlength: 8}, li_options: {class: "registrant-form__penndot-number__line"} })
+                
+          %p.instructions
+            = I18n.t('states.custom.pa.penndot_number_instructions')
+
+    = render partial: 'shared/signature_capture/form', locals: {form: form}
+    
+    %br
+    %br
+    %fieldset#ssn4_set
+      %ul.flat.ssn4
+        = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn4__line"}, field_options: {size: 6, maxlength: 4} })
+      
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dl_or_ssn, class_name: "registrant-form__no-ssn4__line", required: false}
+
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :change_of_party, class_name: "registrant-form__change-of-party__line", required: false}
+
+    %br
+  
+    %ul.flat.party-dropdown
+      = field_li(form, :party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__party__line"}, select_options: @registrant.state_parties , field_options: {include_blank: true} })
+    
+    %fieldset#other_party_set
+      %ul.flat.other-party
+        = field_li(form, :other_party, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__other-party__line"}})
+    
+  
+    %ul.flat.race-dropdown
+      = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
+       
+
+
+  .dynamic-navigation
+    -# .back only shown when first step, .prepare only shown when last step
+    .back.back--link
+      .button.rollover_button
+        = link_to update_state_registrant_path(@registrant.to_param, controller.prev_step) do
+          %button{type: "button"}
+            %span <
+
+    .next.next--link.prepare
+      = rollover_button(:next_step, I18n.t('txt.registration.state_registrations.pa.step3_next').html_safe)  
+  

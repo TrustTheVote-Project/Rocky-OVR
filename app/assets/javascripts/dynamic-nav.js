@@ -29,7 +29,12 @@ function initDynamicNav(currentStep, firstStep, lastStep, progressMap, shouldSki
       var fn = validateBooleanField.bind(this)
       fn(errorMessage)
     })
-    
+
+    $("#step-" + window._dynNav.currentStep + " .block-selector__checkbox-field input[data-client-validation-required]").each(function() {
+      var errorMessage = $(this).data("client-validation-required");
+      var fn = validateYesNoCheckbox.bind(this)
+      fn(errorMessage)
+    })
     
     $("#step-" + window._dynNav.currentStep + " .error").each(function() {
       if ($(this).text().trim() != '') {

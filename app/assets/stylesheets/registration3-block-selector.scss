@@ -1,0 +1,40 @@
+#main form  {
+  .block-selector, fieldset.block-selector {
+    margin: 14px 0;
+    border: $input-border;
+    padding: 14px;
+
+    &__checkbox-field {
+      h3 {
+        font-weight: bold;
+        margin-bottom: 14px;        
+      }
+      &.has_error h3 {
+        padding: 7px;
+        margin-bottom: 7px;
+        background: $light-red;
+      }
+    }
+    &__yes-no {
+      display: block;
+      font-size: 14px;
+      margin: 7px 0;
+    }
+    &__button {
+      cursor: pointer;
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid $red;
+      color: $red;
+      font-weight: bold;
+      &--selected {
+        color: $white;
+        background: $red;
+      }
+    }
+    .block-selector__yes-selected, .block-selector__no-selected {
+      padding-top: 14px;
+      display: block
+    }
+  }
+}

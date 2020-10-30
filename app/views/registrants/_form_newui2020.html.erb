@@ -1,0 +1,98 @@
+<%= hidden_field_tag "partner", @partner_id %>
+<%= hidden_field_tag "locale", @locale %>
+<%= hidden_field_tag "source", @source %>
+<%= hidden_field_tag "tracking", @tracking %>
+<%= hidden_field_tag "short_form", @short_form %>
+<%= hidden_field_tag "collectemailaddress", @collect_email_address %>
+<%= hidden_field_tag "shift_id", @shift_id %>
+<%= form.hidden_field :under_18_ok, :value => 0 %>
+<%= hidden_field_tag :newui2020, "NEW" %>
+
+<% content_for :head do %>
+<script>
+$(document).ready(function() {
+  $('#registrant_javascript_disabled').remove();
+});
+</script>
+<% end %>
+<%= form.hidden_field :javascript_disabled %>
+<%= form.hidden_field :is_fake %>
+
+<%= render partial: 'step2/name', locals: {form: form} %>
+
+<%- if @registrant.collect_email_address? %>
+  <br />
+  <ul class="flat registrant-form__email">
+    <%= field_li form, :email_address, {li_options: {class: 'registrant-form__email__line__input'}, field_options: {autocomplete: 'email'}, required: @registrant.require_email_address? }  %>
+  </ul>
+<%- end %>
+<fieldset>
+<legend><span><%= I18n.t('txt.registration.state_zip_code') %></span><%= tooltip_tag :state_zip_code %></legend>
+<ul class="flat registrant-form__home-zip">
+  <%= field_li form, :home_zip_code, {skip_tooltip: true,li_options: {class: 'width_f registrant-form__home-zip__line'}, field_options: {autocomplete: 'postal-code'}, required: true } %>
+</ul>
+</fieldset>
+<%- if @registrant.use_short_form? %>
+  <fieldset class="block-selector">
+   <%= checkbox_block_selector form, :has_state_license, t('txt.registration.has_state_license', state: ""), nil, {required: true} %>
+   <div  class="block-selector__yes-selected">
+   <p><%= t('txt.registration.has_state_license_yes', state: "") %></p>
+   </div>
+   <div class="block-selector__no-selected">
+   <p><%= t('txt.registration.has_state_license_no', state: "") %></p>
+   </div>
+  </fieldset>
+  <%= rollover_button(:next_step, I18n.t('txt.button.start').html_safe) %>
+<% end %>
+<%- if !@registrant.use_short_form? %>
+ <ul class="flat">
+   <%= render :partial=> "registrants/date_of_birth_newui2020", :locals=>{:form=>form} %>
+  </ul>
+
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :us_citizen %> <%= form.label :us_citizen %>
+        <span class="error"><%= form.object.errors[:us_citizen].join("\n") %></span>
+      </h3>
+    </li>
+  </ul>
+
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :has_state_license %> <%= form.label :has_state_license %>
+        <span class="error"><%= form.object.errors[:has_state_license].join("\n") %></span>
+      
+      </h3>
+    </li>
+  </ul>
+
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :will_be_18_by_election %> <%= form.label :will_be_18_by_election %>
+        <span class="error"><%= form.object.errors[:will_be_18_by_election].join("\n") %></span>
+    
+      </h3>
+    </li>
+  </ul>
+  
+  
+  <ul class="checkbox checkbox-step-1">
+    <li class="spacer">&nbsp;</li>
+    <li>
+      <h3>
+        <%= form.check_box :first_registration %> <%= form.label :first_registration %>
+        <span class="error"><%= form.object.errors[:first_registration].join("\n") %></span>
+      </h3>
+    </li>
+  </ul>
+<%- end %>
+
+
+
+

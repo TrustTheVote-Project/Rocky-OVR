@@ -1,4 +1,7 @@
-<%- if @use_mobile_ui %>
+<%- if @use_newui2020 %>
+  <%= render partial: 'download_button_newui2020' %>
+<%- else %>
+<%-if @use_mobile_ui %>
   <%- completion = "85%"%>
   <div id="dynamic-progress-bar">
     <div class="filler" style="width: <%= completion %>"></div>
@@ -24,9 +27,11 @@
   </p>
 </div>
 
+
 <div id="download_no_js">
   <div class="text">
     <p>After you have downloaded your registration form, you can continue on and let your friends know they can register to vote too.</p>
   </div>
   <p><%= rollover_image_link(:keep_going, I18n.t('txt.button.keep_going'), registrant_finish_path(@registrant)) %></p>
 </div>
+<%- end%>

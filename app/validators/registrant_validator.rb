@@ -3,10 +3,8 @@ class RegistrantValidator < ActiveModel::Validator
   def validate(reg)
     
     #regexp = /\A(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))\z/i
+    @use_newui2020 = reg.ab_tests.detect { |t| t.name==AbTest::NEW_UI_2020 }&.assignment == AbTest::NEW
     
-    
-  
-
     reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
     reg.validates_format_of :email_address, :with => Authlogic::Regex::EMAIL, :allow_blank => true
     validate_email(reg)
@@ -14,7 +12,7 @@ class RegistrantValidator < ActiveModel::Validator
 
      if reg.at_least_step_1?
       reg.validates_presence_of     :partner_id #, :unless=>[:remote_partner_id_present?]
-
+        
       if !reg.use_short_form?
         reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
         reg.validate_date_of_birth
@@ -27,12 +25,21 @@ class RegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of  :locale, :in => RockyConf.enabled_locales
       reg.validates_presence_of   :email_address unless reg.not_require_email_address?
       reg.validates_presence_of   :home_state_id
+
+      if @use_newui2020
+        reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
+        reg.validates_presence_of   :name_title
+        reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
+        reg.validates_presence_of   :first_name unless reg.building_via_api_call?
+        reg.validates_presence_of   :last_name
+        reg.validates_inclusion_of  :name_suffix, :in => Registrant::SUFFIXES, :allow_blank => true
+      end
+
     end
     
     if (reg.at_least_step_1? && (!reg.use_short_form? || reg.home_state_id.blank?)) ||
        (reg.at_least_step_2? && reg.use_short_form? )
-      validates_zip_code  reg,    :home_zip_code
-      
+      validates_zip_code  reg,    :home_zip_code      
     end
     
     if reg.at_least_step_2?
@@ -62,10 +69,24 @@ class RegistrantValidator < ActiveModel::Validator
     
     if reg.at_least_step_2? && reg.use_short_form? 
       if reg.home_state_allows_ovr_ignoring_license? && reg.require_id?
-        reg.validates_inclusion_of  :has_state_license, :in=>[true,false]
+        reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
+      elsif !reg.home_state_allows_ovr_ignoring_license? || reg.require_id?
+        if @use_newui2020 && !reg.using_state_online_registration?
+          reg.validates_inclusion_of  :has_mailing_address, :in=>[true,false] unless reg.building_via_api_call? || reg.complete?
+          reg.validates_inclusion_of  :change_of_address, :in=>[true,false] unless reg.building_via_api_call? || reg.complete?
+          reg.validates_inclusion_of  :change_of_name, :in=>[true,false] unless reg.building_via_api_call? || reg.complete?
+        end
       end
       reg.validate_date_of_birth
-      #validate_phone_present_if_opt_in_sms(reg)
+      #validate_phone_present_if_opt_in_sms(reg) 
+    end
+
+    if reg.at_least_step_4? && reg.use_short_form?
+      if @use_newui2020 && !reg.using_state_online_registration?
+        reg.validates_inclusion_of  :has_mailing_address, :in=>[true,false] unless reg.building_via_api_call?
+        reg.validates_inclusion_of  :change_of_address, :in=>[true,false] unless reg.building_via_api_call?
+        reg.validates_inclusion_of  :change_of_name, :in=>[true,false] unless reg.building_via_api_call?
+      end
     end
     
     

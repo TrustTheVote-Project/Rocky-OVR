@@ -1,3 +1,7 @@
+<%- if @use_newui2020 %>
+  <%= render partial: 'form_newui2020', locals: {form: form} %>
+<%- else %>
+
 <%= hidden_field_tag "partner", @partner_id %>
 <%= hidden_field_tag "locale", @locale %>
 <%= hidden_field_tag "source", @source %>
@@ -6,6 +10,7 @@
 <%= hidden_field_tag "collectemailaddress", @collect_email_address %>
 <%= hidden_field_tag "shift_id", @shift_id %>
 <%= form.hidden_field :under_18_ok, :value => 0 %>
+<%= hidden_field_tag :newui2020, "OLD" %>
 
 <% content_for :head do %>
 <script>
@@ -93,4 +98,4 @@ $(document).ready(function() {
 
 
 
-
+<%- end %>

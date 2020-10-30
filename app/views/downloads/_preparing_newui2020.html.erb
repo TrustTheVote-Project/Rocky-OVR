@@ -1,0 +1,75 @@
+<%- if @uid.nil? %>
+  <% content_for :head do -%>
+    <meta http-equiv="refresh" content="3; url=<%= @refresh_location %>" />
+  <%- end %>
+<%- else %>
+  <script type="text/javascript" charset="utf-8">
+  <%- pdf_ready_api_url = "#{RockyConf.api_host_name}/api/v3/registrations/pdf_ready.json" %>
+  
+  var pulseTime = 3000;
+  var attempts = 0;
+  var timeOut = <%= @timeout.to_s %>;
+  var checkPdfUrl = function() {
+    attempts += 1;
+    if (timeOut && attempts > 10) {
+      window.location = "<%=registrant_finish_path(@registrant)%>";
+    }
+    $.ajax({
+      url: '<%= pdf_ready_api_url %>',
+      data: {
+        "UID": '<%= @uid %>'
+      },
+      error: function(xhr, status, err) {
+        if (status !== "Unknown") {
+          setTimeout(checkPdfUrl, pulseTime);
+        }
+        if (status === "Unknown") {
+          return setTimeout(function() {
+            //$('#waiting').hide();
+            //return $('#download').show();
+            checkPdfUrl
+          }, pulseTime);
+        }
+      },
+      success: function(d) {
+        //console.log(d);
+        if (d["pdf_ready"]) {
+          $("#preparing_content").hide();
+          $("#download_button_content").show();
+        } else {
+          setTimeout(checkPdfUrl, pulseTime);
+        }
+      }
+    });
+  };
+  
+  $(document).ready(function() {
+    setTimeout(checkPdfUrl, pulseTime);
+  });
+  
+  </script>
+
+<%- end %>
+<%- if  @use_mobile_ui %>
+  <div id="dynamic-progress-bar">
+    <div class="filler" style="width: 80%"></div>
+    <div class="content">80%</div>
+  </div>
+<%- end %>
+
+<div id="preparing_content">
+  <h1><%= I18n.t('txt.registration.preparing_application') %></h1>
+  <div class="download" style="position:relative">
+    <div>
+      <h2 class="spaced_out"><%= I18n.t('txt.registration.instructions.download') %></h2>
+      <h2 class="preparing"><%= I18n.t('txt.registration.preparing_header') %></h2>
+    </div>
+    <p class="preparing"><%= image_tag "reg/spinner.gif" %></p>
+    <p><%= I18n.t('txt.registration.instructions.download_2') %></p>
+  </div>
+</div>
+<div id="download_button_content" style="display:none;">
+  <%= render partial: "download_button"%>
+</div>
+
+

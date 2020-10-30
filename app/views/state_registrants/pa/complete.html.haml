@@ -1,10 +1,14 @@
-- if @use_mobile_ui
-  = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
+- if @use_newui2020 
+  = render partial: 'state_registrants/pa/complete_newui2020' #, locals: { form: form }
+- else
 
-%h1
-  = I18n.t 'states.custom.pa.registration_complete'
+  - if @use_mobile_ui
+    = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
 
-.declaration-text
-  = I18n.t('states.custom.pa.registration_complete_dialog_text').html_safe
+  %h1
+    = I18n.t 'states.custom.pa.registration_complete'
 
-= render "finishes/finish_iframe"
+  .declaration-text
+    = I18n.t('states.custom.pa.registration_complete_dialog_text').html_safe
+
+  = render "finishes/finish_iframe"

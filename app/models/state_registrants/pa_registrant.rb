@@ -510,6 +510,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       val = r.send(v)
       self.send("#{k}=", val)
     end
+    self.confirm_no_penndot_number = r.has_state_license == false
     address_info = r.home_address.to_s.split(',')
     if address_info.size > 1
       self.registration_address_2 = address_info.pop.strip
@@ -521,7 +522,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       self.registration_unit_type = unit_info.shift
     end
     self.registration_unit_number = unit_info.join(' ')
-    self.has_mailing_address = r.has_mailing_address?
+    self.has_mailing_address = r.has_mailing_address? unless r.has_mailing_address.nil? 
     begin
       self.mailing_state = r.mailing_state.abbreviation
     rescue

@@ -94,6 +94,8 @@ class RegistrantsController < RegistrationStep
           shift_id: @shift_id,
           is_fake: params.keys.include?('preview_custom_assets')
       )
+      set_ab_test
+    
       render "show"
     end
   end
@@ -108,11 +110,19 @@ class RegistrantsController < RegistrationStep
                                     :tracking_id => @tracking,
                                     :short_form => @short_form,
                                     :collect_email_address => @collect_email_address))
-                                    
+
     @use_mobile_ui = determine_mobile_ui(@registrant)
     @registrant.shift_id = @shift_id if @shift_id
     @registrant.shift_id = @canvassing_shift.shift_external_id if @canvassing_shift
     
+    if params["newui2020"]
+      t = AbTest.new
+      t.name = "newui2020"
+      t.assignment = params["newui2020"]
+      @assigned_ab_test_name = t.name 
+      @assigned_ab_test_assignment = "#{t.name}-assigned-to-#{t.assignment}"          
+      @registrant.ab_tests << t
+    end
     
     if @registrant.partner.primary?
       @registrant.opt_in_email = true

@@ -1,16 +1,19 @@
-- content_for :head do 
-  %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}
+- if @use_newui2020 
+  = render partial: 'state_registrants/pa/pending_newui2020' #, locals: { form: form }
+- else
+  - content_for :head do 
+    %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}
 
-- if @use_mobile_ui
-  = render partial: 'state_registrants/header_mobile', locals: {percentage: 95}
+  - if @use_mobile_ui
+    = render partial: 'state_registrants/header_mobile', locals: {percentage: 95}
 
-.step_6
-  #preparing_content
-    %h1= t('states.custom.pa.submitting')
-    .download{style: "position:relative"}
-      %div
-        %h2.spaced_out
-        %h2.preparing= t('states.custom.pa.confirming')
-      %p.preparing
-        = image_tag "reg/spinner.gif"
+  .step_6
+    #preparing_content
+      %h1= t('states.custom.pa.submitting')
+      .download{style: "position:relative"}
+        %div
+          %h2.spaced_out
+          %h2.preparing= t('states.custom.pa.confirming')
+        %p.preparing
+          = image_tag "reg/spinner.gif"
 

@@ -147,6 +147,7 @@ class RegistrationStep < ApplicationController
         redirect_to(registrant_ineligible_url(@registrant)) and return
       end
     else
+      set_ab_test
       set_show_skip_state_fields
       render_show and return :rendererd
     end
@@ -194,6 +195,38 @@ class RegistrationStep < ApplicationController
   end
 
   def set_ab_test
+    AbTest.tests.each do |name, method|
+      instance_var_name = '@' + name.downcase.underscore #@newui2020
+      if @registrant && t = @registrant.ab_tests.where(name: name).first
+        self.instance_variable_set(instance_var_name, t)
+      else
+        if params[name]
+          t = AbTest.new(name: name, assignment: params[name])
+          @assigned_ab_test_name = t.name 
+          @assigned_ab_test_assignment = "#{t.name}-assigned-to-#{t.assignment}"
+          t.registrant_id = @registrant ? @registrant.id : nil
+          self.instance_variable_set(instance_var_name, t)
+        else
+          t = AbTest.send(method, @registrant, self)
+          self.instance_variable_set(instance_var_name, t)
+          if t
+            @assigned_ab_test_name = t.name 
+            @assigned_ab_test_assignment = "#{t.name}-assigned-to-#{t.assignment}"
+          end
+        end
+      end
+      self.instance_variable_set(
+        '@use_' + name.downcase.underscore,  #@use_newui2020
+        self.instance_variable_get(instance_var_name)&.assignment == AbTest::NEW
+      )
+      if self.instance_variable_get('@use_' + name.downcase.underscore)
+        custom_locale = (I18n.locale.to_s + '-' + name.downcase.underscore).to_sym
+        if I18n.available_locales.include?(custom_locale)
+          I18n.locale = custom_locale          
+        end
+      end
+      
+    end
     # if @registrant && t = @registrant.ab_tests.where(name: AbTest::MOBILE_UI).first
     #   @mobile_ui_test = t
     # else
