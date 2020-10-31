@@ -42,6 +42,13 @@ $(document).ready(function() {
    <p><%= t('txt.registration.has_state_license_no', state: "") %></p>
    </div>
   </fieldset>
+  <fieldset class="block-selector">
+   <%= checkbox_block_selector form, :will_be_18_by_election, I18n.t('activerecord.attributes.registrant.will_be_18_by_election'), nil, {required: true} %>
+  <div  class="block-selector__yes-selected">
+   </div>
+   <div class="block-selector__no-selected">
+   </div>
+  </fieldset>
   <%= rollover_button(:next_step, I18n.t('txt.button.start').html_safe) %>
 <% end %>
 <%- if !@registrant.use_short_form? %>

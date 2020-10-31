@@ -44,15 +44,6 @@
           = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
           %span.error= form.object.errors[:us_citizen].join("\n")
           
-    - if @registrant.require_age_confirmation?
-      %ul.checkbox.checkbox-step-1
-        %li.spacer
-        %li.registrant-form__will-be-18-by-election__line
-          %h3
-            = form.check_box :will_be_18_by_election
-            = form.label :will_be_18_by_election
-            %span.error= form.object.errors[:will_be_18_by_election].join("\n")
-
     %ul.flat
       = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
     
