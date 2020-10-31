@@ -887,7 +887,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def finish_with_state_eligible?
-    home_state_allows_ovr_ignoring_license? && !mail_with_esig? && (has_state_license? || !require_id?)
+    home_state_allows_ovr_ignoring_license? && !mail_with_esig? && (has_state_license? || !require_id?)  && (will_be_18_by_election || !require_age_confirmation?)
   end
 
   def skip_state_flow!
