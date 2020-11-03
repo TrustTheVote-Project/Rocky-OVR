@@ -1,20 +1,49 @@
+%h1= t('txt.ballot_status_check.voted_by_mail')
+- if @bsc.abr_status_check_url.present?
+  = t('txt.ballot_status_check.check_with_state_url', url: @bsc.abr_status_check_url ).html_safe
+- else
+  = t('txt.ballot_status_check.no_state_url').html_safe
+
+%br
+
+%h1= t('txt.ballot_status_check.voted_provisionally')
+%p= t('txt.ballot_status_check.voted_provisionally_text')
+
+%br
+
+
+%h1= t('txt.ballot_status_check.contact_info')
+
 .intro-message
-  - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info&.join("\n") : nil
+  - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info_hash : nil
   - if leo_contact_info.blank?
-    - leo_contact_info = [@bsc.state&.registrar_phone, @bsc.state&.registrar_url, @bsc.state&.registrar_address].compact.join("\n")
+    - leo_contact_info = {phone: @bsc.state&.registrar_phone, website: @bsc.state&.registrar_url, address: @bsc.state&.registrar_address}
     - if @bsc.leo_lookup_url
-      - leo_contact_info << "\n\nYou can also <a href=\"#{@bsc.leo_lookup_url}\" target=\"_blank\" rel=\"noopener\">look up your local election office</a>"
+      - leo_contact_info[:instructions] = "Find the <a href=\"#{@bsc.leo_lookup_url}\" target=\"_blank\" rel=\"noopener\">election office in your town/city</a>, or contact your state-level officials using the information below:"
   - else 
-    - leo_contact_info << "\n\nData provided by U.S. Vote Foundation"
-  - leo_contact_info = leo_contact_info.to_s.gsub(/\n/,"<br/>")
-  - if @bsc.abr_status_check_url.present?
-    = t('txt.ballot_status_check.check_with_state_url', url: @bsc.abr_status_check_url, leo_contact_info: leo_contact_info ).html_safe
-  - else
-    = t('txt.ballot_status_check.check_with_state_leo', leo_contact_info: leo_contact_info).html_safe
+    - leo_contact_info[:footer] = "* Election official data provided by U.S. Vote Foundation"
 
+- if leo_contact_info[:instructions] 
+  %p= leo_contact_info[:instructions].html_safe
 
-- if false # need to make sure we want this
-  #finish_page_iframe
-    %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
-
-  = render :partial => 'abrs/finish_adwords'
+%ul
+  - if leo_contact_info[:phone]
+    %li
+      %strong{style: "font-weight: bold"} Phone:
+      = leo_contact_info[:phone]
+  - if leo_contact_info[:email]
+    %li
+      %strong{style: "font-weight: bold"} Email:
+      = leo_contact_info[:email]
+  - if leo_contact_info[:website]
+    %li
+      %strong{style: "font-weight: bold"} Website:
+      = leo_contact_info[:website]
+  - if leo_contact_info[:address]
+    %li
+      %strong{style: "font-weight: bold"} Address:
+      = leo_contact_info[:address].html_safe
+- if leo_contact_info[:footer]
+  %br
+  %p{style: "font-size: 13px; text-align: center; display: block"}
+    %i= leo_contact_info[:footer]

@@ -99,6 +99,8 @@ absentee_states:
     pdf_template: ct.pdf
     abr_status_check_url: "https://portaldir.ct.gov/sots/LookUp.aspx"
     abr_track_ballot_url: "https://portaldir.ct.gov/sots/LookUp.aspx"
+    abr_track_ballot_use_leo: false
+    leo_lookup_url: https://portal.ct.gov/-/media/SOTS/ElectionServices/Town-Clerk/Town-Clerks-List.pdf
   DC:
     online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
     # pdf_template: dc.pdf
@@ -189,6 +191,7 @@ absentee_states:
     abr_status_check_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_status.pl
     abr_track_ballot_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_status.pl
     leo_lookup_url: "https://www.maine.gov/sos/cec/elec/munic.html"    
+    abr_track_ballot_use_leo: false
   MI:
     online_req_url: https://mvic.sos.state.mi.us/avapplication
     pdf_template: mi.pdf
@@ -228,6 +231,8 @@ absentee_states:
     email_delivery: false
     abr_status_check_url: "https://app.sos.nh.gov/Public/AbsenteeBallot.aspx"
     abr_track_ballot_url: "https://app.sos.nh.gov/Public/AbsenteeBallot.aspx"
+    leo_lookup_url: "https://app.sos.nh.gov/Public/ClerkDetails.aspx"    
+    abr_track_ballot_use_leo: false
   NJ: 
     abr_status_check_url: "https://voter.svrs.nj.gov/auth/sign-in"
     abr_track_ballot_url: "https://voter.svrs.nj.gov/auth/sign-in"
@@ -265,6 +270,8 @@ absentee_states:
     pdf_template: ri.pdf
     abr_status_check_url: "https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=3"
     abr_track_ballot_url: "https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=3"
+    leo_lookup_url: "https://elections.ri.gov/canvassers/"    
+    abr_track_ballot_use_leo: false
   SC:
     online_req_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeRequest
     abr_status_check_url: "https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo"
@@ -291,6 +298,8 @@ absentee_states:
   VT: 
     abr_status_check_url: "https://mvp.vermont.gov/" #All vote-by-mail this year
     abr_track_ballot_url: "https://mvp.vermont.gov/" #All vote-by-mail this year
+    leo_lookup_url: "https://sos.vermont.gov/media/vh1jv3oj/2019townclerkguide.pdf"    
+    abr_track_ballot_use_leo: false
   WA: 
     abr_status_check_url: "https://voter.votewa.gov/WhereToVote.aspx#/login"
     abr_track_ballot_url: "https://voter.votewa.gov/WhereToVote.aspx#/login"
