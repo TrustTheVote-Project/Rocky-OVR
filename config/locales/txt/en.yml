@@ -6,7 +6,7 @@ en:
       step_1_instructions: <p>Enter your voting information, and we'll help you check that your 
         ballot was received and counted.</p>
       check_with_state_url: <p>If you voted absentee/by mail, first check your ballot status on 
-        your <a href="%{url}">state's website</a>.</p><p>If your ballot has not been accepted – 
+        your <a href="%{url}" target="_blank" rel="noopener">state's website</a>.</p><p>If your ballot has not been accepted – 
         or you voted provisionally in person – reach out to your election official to ensure your 
         vote was counted. Here's their contact information:</p><p>%{leo_contact_info}</p>
       check_with_state_leo: <p>To check if your ballot has been accepted, reach out to your election 
@@ -147,6 +147,7 @@ en:
       text_me: Send SMS
       email_me: Send Email
       start: Start
+      next: Next
       submit: Next Step
       lookup: Look Up Your Registration
       trackballot: Check Ballot Status
