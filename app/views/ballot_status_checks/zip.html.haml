@@ -16,7 +16,7 @@
 
 .intro-message
   - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info_hash : nil
-  - if leo_contact_info.values.join("").blank?
+  - if leo_contact_info.blank? || leo_contact_info.values.join("").blank?
     - leo_contact_info = {phone: @bsc.state&.registrar_phone, website: @bsc.state&.registrar_url, address: @bsc.state&.registrar_address}
     - if @bsc.leo_lookup_url
       - leo_contact_info[:instructions] = "Find the <a href=\"#{@bsc.leo_lookup_url}\" target=\"_blank\" rel=\"noopener\">election office in your town/city</a>, or contact your state-level officials using the information below:"
