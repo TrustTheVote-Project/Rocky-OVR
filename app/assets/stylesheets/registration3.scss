@@ -1,4 +1,8 @@
-@import 'registration2-variables';
+@import 'registration3-variables';
+@import 'reset';
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+
 
 * {
   box-sizing: border-box;
@@ -18,26 +22,46 @@ input[type=text], input[type=tel] {
 }
 
 
+p {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+a:link {
+  color: $red;
+  font-weight: 600;
+}
+a:hover {
+  color: $red;
+}
+a:visited {
+  color: $red;
+}
+
+.rollover_button {
+  a button {
+    background-color: $red;
+    color: $white;
+    border: none;
+    background-image: none;
+    appearance: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 10px 15px;
+  }
+}
+
 body {
   width: 100%;
   height: auto;
   margin: 0px auto;
-  background-attachment: scroll;
-  background-clip: border-box;
-  background-color: #fff;
-  background-image: image-url('reg/container-repeater.gif');
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-repeat: repeat-x;
-  background-size: auto auto;
+  background-color: $black;
   padding-bottom: 60px;
+  font-family: 'Work Sans', helvetica, arial, sans-serif;
 
   #sticky_footer {
-    background-image: image-url('reg/container-repeater.gif');
-    background-origin: padding-box;
-    background-position: 0 0;
-    background-repeat: repeat;
-    background-size: auto auto;   
+    background: $black;
     border-top: 1px solid #999; 
     position: fixed;
     bottom: 0;
@@ -47,13 +71,11 @@ body {
   }
   
   #footer {
-    font-family: 'Fira Sans', helvetica, arial, sans-serif;
     width: 600px;
     height: 60px;
     padding: 0;
     border: 0;
     p {
-      text-align: left;
       width: 300px;
       line-height: 18px;
       font-size: 12px;
@@ -116,11 +138,16 @@ body {
 }
 
 #header {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-image: image-url('rtv-square-reversed.png');
   background-repeat: no-repeat;
-  background-position: 0 15px;
+  background-position:  $main-padding 15px;
   background-size: auto 50px;
+  padding-left: 100px;
+  color: white;
+    
   &.partner {
     background-size: 75px 45px;
   }
@@ -131,32 +158,28 @@ body {
   width: 100%;
   margin-bottom: 60px;  
   .header-text {
-    display: block;
-    color: white;
-    font-size: 40px;
-    text-transform: capitalize;
-    padding-top: ((80-40px)/2);
-    font-family: Caveat,cursive;
-    font-weight: 400;
-    height: 80px;
+    display: flex;
+    align-items: center;
+    height: 100%;
   }    
   #progress-bar {
     display: none;
   }
 }
 
-#header, #main {
+#header, #main_inner {
   width: $main-width;
   margin: 0px auto;
+}
+#main {
+  width: 100%;
+  background: $white;
 }
 
 .flash {
   width: 100%;
   margin: 10px auto;
-  font-size: 14px;
-  line-height: 1.5em;
   font-weight: bold;
-  text-align: center;
   li {
     list-style: none;
     margin: 0;
@@ -166,15 +189,14 @@ body {
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    border-color: blue;
+    border-color: $blue;
     background-color: #ddf;
   }
 }
 
-
-#main {
+#main_inner {
   width: $main-width - $main-padding;
-  padding: 20px $main-padding/2 60px;
+  padding: $main-padding $main-padding/2 60px;
   #other_language_link {
     text-align: right;
     margin: 1em 0;
@@ -196,222 +218,99 @@ body {
     }
   }
   
-  .intro-message {
-    p {
-      text-align: center;
-      font-size:15px;
-    }
-  }
   .special-zip-message {
-    p {
-      font-size:15px;
-    }
     ul {
       list-style: disc;
       li {
-        font-size:15px;
         margin: 1em 0;  
       }
     }
   }
   
   p {
-    margin: 2em 0;
-    color: #666;    
-    font-size: 12px;
-    a {
-      text-decoration: underline;
-    }
     &.overseas-instructions {
       margin: 4em 0;
     }
     &.already-registered {
-      font-size: 15px;
       text-align: right;
       margin: 4em 0;
     }
   }
-  
-  .step_1 {
-    h1 { 
-      display: none;
-    }
-    form {
-      ul, ul.flat {
-        li, li.width_f {
-          &.registrant-form__home-zip__line {
-            width: 60%;          
-          }
-        }
-      }
-    }
-  }
     
-  .step_4 {
-    h1 {
-      text-align: center;
-      line-height: 1.6em;
-    }
-    h3.ovr_step_4 {
-      color: #666;
-      font-weight: bold;
-      text-align: center;
-      margin: 1em auto;
-      font-size: 18px;
-      line-height: 1.4em;
-      
-      width: 70%;
-    }
-
-    .rollover_button button {
-      line-height: 1.35em;
-    }
-    
-    ul {
-      // Different here due to lack of has-state-ID question
-      li.registrant-form__state-id-number__line {
-        margin-top: 30px;
-      }
-    }
-  }
-  
-  .step_6 {
-    h1 {
-      margin: 0px auto;
-      text-align: center;
-      font-size: 28px;
-      text-transform: uppercase;      
-    }
-  }
-  
   form {
-    .required {
-      color: $red;
-      margin-left: 4px;
-    }
-
-    ul, ul.flat {
-      li  div.tooltip, fieldset legend img.tooltip {
-        padding: 2px 5px;
-        float: none;
-        display: inline-block;
-        width: auto;
-      }
-    }
-
     &:after {
       display: block;
       content: " ";
       clear: both;
     }
+    
+    .required {
+      color: $red;
+      margin-left: 4px;
+    }
+
+    div.tooltip {
+      display: inline-block;
+      width: auto;      
+    }
+
+    img.tooltip {
+      padding: 0px 5px;
+      top: 3px;
+    }
+
     padding-bottom: 2em;
     
-    fieldset {
-      margin: 0;
-      padding: 0;
-      border: none;
-      legend {
-        padding: 1em 0 0;
-      }
-      &.opt-ins {
-        margin-top: 20px;
-      }
-      &.questions {
-        legend {
-          margin-bottom: 15px;
-        }
-      }
-    }
     
     hr {
       display: none !important;
     }
     
-    .rollover_button button, .rollover_button span.button-style {
-      background-color: #fff;
-      background-image: none;
-      border: 2px solid $red;
-      border-radius: 0;
-      box-shadow: none;
-      color: $red !important;
-      font-family: 'Fira Sans', helvetica, arial, sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1em;
-      margin: 0 !important;
-      padding: 10px 20px !important;
-      text-align: center !important;
-      text-decoration: none !important;
-      text-shadow: none;
-      transition: background 0.5s ease-out 0s, color 0.05s ease-in 0s;
+    legend {
+      font-weight: bold;
+      padding-top: 30px;
+      
+    }
+
+    
+    input {
+      border: $input-border;
+      height: $input-height;
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
       margin: 0;
-      min-width: auto;
-      &:hover {
-        background: $red;
-        color: #fff !important;
-        cursor: pointer;
-        transition: background 0.9s ease-out, color 0.05s ease-in;
-      }
     }
-    
-    .rollover_button a {
-      display: block;
-      span.button-style {
-        display: inline-block;
-      }
-    }
-    
+
     ul, ul.flat {
-      margin: 0;
-      padding: 0;
-      overflow: visible;
       &:after {
         display: block;
         content: " ";
         clear: both;
       }
-      &.radio, &.checkbox { 
-        li label {
-          color: #666;
-          font-weight: bold;
-          font-size: $label-font-size - 3px;
-        }
-      }
+
       &.radio {
         li label {
           display: flex;
         }
       }
-      li.spacer {
-        display: none;
-      }
-      li, li.width_f {
-        margin: 0;
-        padding: 0 0 0;
-        width: 100%;
+
+      li {
         h3 {
-          float: none;
-          text-align: left;
-          width: auto;
-          color: #757575;
-          height: $label-height;
-          font-size: $label-font-size;
-          line-height: 1em;
-        }
-        div {
-          width: 100%;
-          height: auto;
-          input {
-            border: $input-border;
-            height: $input-height;
-            width: 100%;
-            padding: 5px 10px;
-            font-size: $label-font-size;
-            margin: 0;
-            &#registrant_home_zip_code {
-              
-            }
+          text-transform: uppercase;
+          font-size: 10px;
+          line-height: 16px;
+          font-weight: bold;
+          letter-spacing: .75px;
+          margin-top: 12px;
+          margin-bottom: 4px;
+          div.tooltip {
+            width: auto;
           }
+        }
+
+        div {
+          
           select {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -442,193 +341,7 @@ body {
           display: block;
         }
         
-        .button.rollover_button {
-          margin: 0;
-          display: inline-block;
-        }
-        
-        
-        &.registrant-form__home-zip__button {
-          width: 35%;
-          margin-left: 5%;
-          margin-top: $label-height;
-          button {
-            height: $input-height;
-            width: 100%;
-          }          
-        }
-        
-        &.registrant-form__name-title__line, &.registrant-form__prev-middle-name__line,
-        &.registrant-form__first-name__line, &.registrant-form__prev-last-name__line,
-        &.registrant-form__last-name__line, &.registrant-form__prev-first-name__line,
-        &.registrant-form__middle-name__line, &.registrant-form__prev-name-title__line {
-          margin-right: 2%;
-        }
-
-        &.registrant-form__name-title__line, &.registrant-form__prev-name-title__line, 
-        &.registrant-form__name-suffix__line, &.registrant-form__prev-name-suffix__line {        
-          width: 16%;
-        }
-        &.registrant-form__first-name__line, &.registrant-form__prev-first-name__line, 
-        &.registrant-form__last-name__line, &.registrant-form__prev-last-name__line {
-          width: 24%;
-        }
-        &.registrant-form__middle-name__line, &.registrant-form__prev-middle-name__line {
-          width: 12%;
-        }
-        
-        &.registrant-form__us-citizen__line, &.registrant-form__change-of-name__line {
-          width: 48%;
-          margin-right: 2%;
-        }
-        
-        &.registrant-form__us-citizen__line,
-        &.registrant-form__will-be-18-by-election__line,
-        &.registrant-form__required-checkbox {
-          margin: 15px auto;
-          padding: 10px 15px;
-          border: 1px solid $light-grey;
-          width: 75%;
-          margin-right: 25%;
-          h3 {
-            height: auto;
-            margin-bottom: 0;
-            margin-top: 5px;
-            input, label {
-              font-size: $label-font-size;              
-              vertical-align: top;
-              line-height: 1em;
-            }
-            input[type=checkbox] {
-              margin: 3px 5px 0 0;
-            }
-            label {
-              display: inline-block;
-              line-height: 1.6em;
-              width: 78%;
-            }
-            span.error {
-              margin-top: 5px;
-            }
-          }
-        }
-        
-        &.registrant-form__home-address-number__line {
-          width: 23%;
-          margin-right: 2%;
-        }
-        &.registrant-form__home-address-name__line {
-          width: 50%;
-          margin-right: 2%;
-        }
-        
-        &.registrant-form__home-address__line, 
-        &.registrant-form__mailing-address__line, 
-        &.registrant-form__prev-address__line {
-          width: 75%;
-          margin-right: 2%;
-        }
-
-        &.registrant-form__home-unit__line, 
-        &.registrant-form__mailing-unit__line, 
-        &.registrant-form__prev-unit__line {
-          width: 23%;
-        }     
-        
-        &.registrant-form__home-city__line, 
-        &.registrant-form__mailing-city__line, 
-        &.registrant-form__prev-city__line {
-          width: 45%;
-          margin-right: 2%;
-        }
-        
-        &.registrant-form__home-state-abbrev__line, 
-        &.registrant-form__mailing-state-abbrev__line, 
-        &.registrant-form__prev-state-abbrev__line {
-          width: 23%;
-          margin-right: 2%;
-        }
-        &.registrant-form__home-zip-code__line, 
-        &.registrant-form__mailing-zip-code__line, 
-        &.registrant-form__prev-zip-code__line {
-          width: 28%;          
-        }
-        
-        &.registrant-form__state-id-number__line {
-          width: 100%;
-          margin-right: 0%;
-        }
-        &.registrant-form__date-of-birth__line {
-          input {
-            width: 55px;
-            padding: 5px 5px;
-            text-align: center;
-            &:last-child {
-              width: 75px;
-            }
-          }
-        }
-        &.registrant-form__race__line {
-          width: 85%;
-          margin-right: 15%;
-        }
-        &.registrant-form__party__line {
-          width: 100%;
-        }
-        
-        &.registrant-form__phone__line {
-          width: 60%;
-          margin-right: 5%;          
-        }
-        &.registrant-form__phone-type__line {
-          width: 35%;
-        }
-        
-        &.registrant-form__opt-in-sms__line, .registrant-form__partner-opt-in-sms__line {
-          h3 {
-            margin-bottom: 0;
-          }
-        }
-        
-        &.registrant-form__has-no-state-license__line,
-        &.registrant-form__has-state-license__line {
-          margin: 2em 10% 0;
-          width: 80%;
-          h3 {
-            margin-bottom: 15px;
-            height: auto;
-            &:after {
-              display: block;
-              clear: both;
-              content: "";
-            }
-          }
-          input, label {
-            display: block;
-            float: left;
-            width: 95%;          
-          }
-          input {
-            width: 5%;
-            margin-left: 0;
-            margin-right: 0;
-          }
-          label {
-            text-transform: uppercase;
-            font-size: $label-font-size - 2px;
-          }
-          
-        }
-        &.registrant-form__has-no-state-license__line {
-          margin-bottom: 2em;
-          margin-top: 0;
-        }
-        
-        &.registrant-form__survey-answer-1__line,
-        &.registrant-form__survey-answer-2__line {
-          margin-bottom: 30px;
-        }
-        
+         
       }
       
       .checkbox-explanation p {
@@ -648,335 +361,35 @@ body {
           padding: 15px;
       }
     }
-    .state-id-number {
-      margin-top: 30px;
-    }
-    .instructions--state-id-number p {
-      margin-top: 0;
-    }
-    .email-checkbox-explanation p {
-      margin: 0;
-      display: none;
-    }
-    span.compliance {
-      display: inline-block;
-      font-size: 12px;
-      color: #666;
-      line-height: 1.4em;
-      padding: 0 0 1em 23px;
-      margin: 0 0 1em 0;
-    }
-    
-    
-    ul.flat.dob-and-phone {
-      li, li.width_f {
-        &.registrant-form__date-of-birth__line {
-          width: 37%;
-          margin-right: 5%;
-        }
-      
-        &.registrant-form__phone__line {
-          width: 33%;
-          margin-right: 5%;          
-        }
-        &.registrant-form__phone-type__line {
-          width: 20%;
-        }
-      }
-
-      
-    }
-    .party-dropdown, .race-dropdown {
-      width: 53%;
-      float: left;
-    }
-    .party-dropdown {
-      width: 47%;
-    }
-    
-
   }
   
-
-  .back {
-    text-align: center;
-  }
-  
-  &.lookup span.rollover_button a,
-  .continue_shift .rollover_button a,
-  .download .rollover_button a {
-    background-color: #fff;
-    background-image: none;
-    border: 2px solid $red;
-    border-radius: 0;
-    box-shadow: none;
-    color: $red !important;
-    font-family: 'Fira Sans', helvetica, arial, sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1em;
-    margin: 0 !important;
-    padding: 15px 20px !important;
-    text-align: center !important;
-    text-decoration: none !important;
-    text-shadow: none;
-    transition: background 0.5s ease-out 0s, color 0.05s ease-in 0s;
-    margin: 0;
-    min-width: auto;
-    &:hover {
-      background: $red;
-      color: #fff !important;
-      cursor: pointer;
-      transition: background 0.9s ease-out, color 0.05s ease-in;
-    }
-  }
-
-  .download {
-    position: relative;
-    width: 85%;
-    margin: 20px auto;
-  }
-
-  .download p {
-    font-size: 16px;
-    margin-bottom: 3em;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 3em;
-  	line-height: 1.6em;
-    text-align: center;
-    color: $grey;
-  }
-
-  .download h2 {
-    line-height: 1.6em;
-    font-weight: normal;
-    margin: 15px 0 25px;
-    color: $red;
-    font-size: 19px;
-    text-align: center;
-  }
-
-  .download h2.spaced_out {
-    visibility: hidden;
-    min-height: 100px;
-  }
-
-  .download h2.preparing {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    border: 2px solid $red;
-    color: $red !important;
-    font-family: 'Fira Sans', helvetica, arial, sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1em;
-    margin: 0 !important;
-    padding: 10px 20px !important;
-    text-align: center !important;
-    text-decoration: none !important;
-    height: auto;
-  }
-
-  .download p.preparing {
-    height: 80px;
-    text-align: center;
-  }
-  .download p.preparing img {
-    vertical-align: middle;
-  }
-
-  #download_no_js {
-    padding: 30px;
-  }
-
-
-
   .disclosures {
-      border: 1px solid #ccc;
-      font-size: 13px;
-      width: 100%;
-      text-align: left;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      .disclosure_num {
-        margin: 0;
-      }
-      p {
-        color: black;
-      }
+    border: 1px solid #ccc;
+    width: 100%;
+    text-align: left;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    .disclosure_num {
+      margin: 0;
+    }
   }
   
 
   .state-flow-error {
-    text-align: center;
     padding: 1em;
-    border: 1px solid $red;
+    border: 1px solid $red-border;
   }
 
   .declaration-text {
     margin-top: 2em;
-    p {
-      line-height: 1.6em;
-      font-size: 15px;
-      color: black;
-      margin: .5em 0;
-    }
     ul {
       margin-left: 40px;
       li {
         line-height: 1.6em;
-        font-size: 15px;
         list-style: disc outside none;
-      }
-      
+      }      
     }
-  }
-
-  .review {
-    width: 100%;
-    font-size: 15px;
-    line-height: 1.4em;
-    &__section {
-      width: 100%;
-      margin: 1em 0;
-      padding-top: 1em;    
-      border-top: 1px solid #ccc;
-      &:after {
-        display: block;
-        content: " ";
-        clear: both;
-      }
-      &__label, &__content {
-        float: left;
-        padding: .5em 0;
-      }
-      &__label {
-        font-weight: bold;
-        text-align: right;
-        width: 30%;
-      }
-      &__content {
-        margin-left: 20px;
-        width: calc(70% - 20px);
-      }
-    }
-  }
-  &.lookup {
-    span.rollover_button {
-      display: block;
-      text-align: center;
-      a {
-        cursor: pointer;
-        display: inline-block;
-        margin: 1em auto !important;
-      }
-    }
-  }
-  &.abr, &.lookup {
-    line-height: 1.4em;
-    h2 {
-      text-align: center;
-    }
-    p {
-      font-size: 14px;
-      margin: 0.5em 0;
-    }
-    font-size: 16px;
-    ul {
-      color: #666;
-      li {
-        margin: 0.25em 0;
-      }
-    }
-    .requirements, .state-instructions {
-      margin: 2em 0;
-      *, p {
-        font-size: 14px;
-        color: #666;
-      }
-      ul {
-        font-size: 14px;
-        list-style: disc outside;
-        margin-left: 30px;
-      }
-    }
-    .confirm {
-      color: #333;
-      margin: 2em 0;
-      cursor: pointer;
-      p  {
-        color: #333;
-        font-size: 18px;
-        a {
-          color: $red;
-        }
-      }
-    }
-    .reject {
-      color: #333;
-      margin: 3em 0;
-      p {
-        color: #333;
-        font-size: 18px;        
-      }
-    }
-    @import 'abr-form-fields';    
-  }
-  &.lookup {
-    form {
-      ul {
-        li {
-          &.registrant-form__first-name__line,
-          &.registrant-form__last-name__line {
-            width: 38%
-          }
-          &.registrant-form__home-city__line {
-            width: 70%
-          }
-        }
-      }
-    }
-    #confirm_match {
-      padding-top: 1em;
-      p {
-        margin: 1.5em 0;
-      }
-    }
-    
-    .reject {
-      color: #666;
-      margin: 1.5em 0;
-      text-align: center;
-      p {
-        color: #666;
-        font-size: 14px;        
-      }
-    }
-  }
-  
-}
-
-#main.using_state_registration {
-  .registrant-form__change-of-name__line,
-  #prev_name_set,
-  .registrant-form__has-mailing-address__line,
-  #mailing_address_set,
-  .registrant-form__change-of-address__line,
-  #prev_address_set,
-  .registrant-form__middle-name__line,
-  .registrant-form__prev-middle-name__line
-   {
-    display: none !important;
-  }
-  .registrant-form__first-name__line, .registrant-form__prev-last-name__line,
-  .registrant-form__last-name__line, .registrant-form__prev-first-name__line {
-    width: 31%;
-  }
- 
+  }  
 }
 
 #main form .rollover_button .button_pdf_assistance {
