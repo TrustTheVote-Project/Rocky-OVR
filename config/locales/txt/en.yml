@@ -148,6 +148,7 @@ en:
       cancel: Cancel
       text_me: Send SMS
       email_me: Send Email
+      start: Start
       next: Next
       submit: Next Step
       lookup: Look Up Your Registration

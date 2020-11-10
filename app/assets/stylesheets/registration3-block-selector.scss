@@ -1,8 +1,8 @@
 #main form  {
   .block-selector, fieldset.block-selector {
-    margin: 14px 0;
+    margin: 16px 0;
     border: $input-border;
-    padding: 14px;
+    padding: 16px;
 
     &__checkbox-field {
       h3 {
@@ -33,7 +33,9 @@
       }
     }
     .block-selector__yes-selected, .block-selector__no-selected {
-      padding-top: 14px;
+      border-top: $input-border;
+      margin-top: 12px;
+      padding-top: 4px;
       display: block
     }
   }
