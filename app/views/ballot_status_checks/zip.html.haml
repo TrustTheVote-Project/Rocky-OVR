@@ -1,0 +1,51 @@
+%h1= t('txt.ballot_status_check.voted_by_mail')
+- if @bsc.abr_track_ballot_url.present?
+  = t('txt.ballot_status_check.check_with_state_url', url: @bsc.abr_track_ballot_url ).html_safe
+- else
+  = t('txt.ballot_status_check.no_state_url').html_safe
+
+%br
+
+%h1= t('txt.ballot_status_check.voted_provisionally')
+%p= t('txt.ballot_status_check.voted_provisionally_text')
+
+%br
+
+
+%h1= t('txt.ballot_status_check.contact_info')
+
+.intro-message
+  - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info_hash : nil
+  - if leo_contact_info.blank? || leo_contact_info.values.join("").blank?
+    - leo_contact_info = {phone: @bsc.state&.registrar_phone, website: @bsc.state&.registrar_url, address: @bsc.state&.registrar_address}
+    - if @bsc.leo_lookup_url
+      - leo_contact_info[:instructions] = "Find the <a href=\"#{@bsc.leo_lookup_url}\" target=\"_blank\" rel=\"noopener\">election office in your town/city</a>, or contact your state-level officials using the information below:"
+  - else 
+    - leo_contact_info[:footer] = "* Election official data provided by U.S. Vote Foundation"
+
+- if leo_contact_info[:instructions] 
+  %p= leo_contact_info[:instructions].html_safe
+
+%p
+  - if leo_contact_info[:phone]
+    %strong{style: "font-weight: bold"} Phone:
+    = leo_contact_info[:phone]
+    %br
+  - if leo_contact_info[:email]
+    %strong{style: "font-weight: bold"} Email:
+    = leo_contact_info[:email]
+    %br
+  - if leo_contact_info[:website]
+    %strong{style: "font-weight: bold"} Website:
+    = leo_contact_info[:website]
+    %br
+  - if leo_contact_info[:address]
+    %strong{style: "font-weight: bold"} Address:
+    = leo_contact_info[:address].html_safe
+    %br
+- if leo_contact_info[:footer]
+  %br
+  %br
+  %p{style: "font-size: 13px; text-align: center; display: block"}
+    %i= leo_contact_info[:footer]
+  %br
