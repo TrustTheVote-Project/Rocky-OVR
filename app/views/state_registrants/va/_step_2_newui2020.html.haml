@@ -1,0 +1,118 @@
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+      
+      checkboxTogglesSet($('#state_registrants_va_registrant_has_mailing_address'), $('#mailing_address_set'));
+      
+              
+      function toggleOtherStateReg() {
+        if ($("#state_registrants_va_registrant_registered_in_other_state:checked").length > 0) {
+          $(".registrant-form__other-registration-state-abbrev__line").show();
+        } else {
+          $(".registrant-form__other-registration-state-abbrev__line").hide();            
+        }
+      }
+      $("#state_registrants_va_registrant_registered_in_other_state").click(toggleOtherStateReg);
+      toggleOtherStateReg()
+          
+    });
+    
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/va/header'
+  
+  %p.notice= I18n.t('states.custom.va.special_status_notice').html_safe
+    
+  
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_voter_record_update, class_name: "registrant-form__confirm_voter_record_update__line", required: true, require_accepted: true}
+  
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
+  
+
+      
+  %br
+  %ul.flat
+    = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+    
+    
+  = render partial: 'state_registrants/va/name', locals: {form: form}
+    
+  %fieldset
+    %legend
+      %span= I18n.t('txt.registration.home_address') 
+      = tooltip_tag :home_address
+    %ul.stacked
+      = field_li(form, :registration_address_1, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-address__line"}})
+    %ul.stacked
+      = field_li(form, :registration_address_2, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-address__line"}})
+    %ul.stacked
+      = field_li(form, :registration_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
+      = field_li(form, :home_state_abbrev, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-state-abbrev__line"} })
+      = field_li(form, :registration_zip_code, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
+    %ul.stacked
+      = field_li(form, :registration_locality, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::VARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
+  
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registered_in_other_state, class_name: "registrant-form__registered-in-other-state__line", required: false}
+  %ul.stacked
+    = field_li(form, :other_registration_state_abbrev, {skip_tooltip: true, required: true, field_options: {}, li_options: {class: "registrant-form__other-registration-state-abbrev__line"}, select_options: GeoState.all.collect {|s| [s.name, s.abbreviation] }, field_options: {include_blank: true}})
+  
+  
+  
+  %fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_mailing_address, class_name: "registrant-form__has-mailing-address__line", required: false}
+
+
+  %fieldset#mailing_address_set
+    %legend
+      %span= I18n.t('txt.registration.mailing_address') 
+      = tooltip_tag :mailing_address
+    %ul.stacked
+      = field_li(form, :mailing_address_1, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-address__line"}})
+    %ul.stacked
+      = field_li(form, :mailing_address_2, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-address__line"}})
+    %ul.stacked
+      = field_li(form, :mailing_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
+      = field_li(form, :mailing_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
+      = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
+    %ul.stacked
+      = field_li(form, :mailing_address_locality, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::VARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
+  
+    %fieldset.no-usps
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :no_usps_address, class_name: "registrant-form__no-usps-address__line", required: false}
+  
+  %fieldset.phone
+    %ul.stacked
+      = field_li(form, :phone, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone__line"}})
+      = field_li(form, :phone_type, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone-type__line"}, select_options: @registrant.phone_types,field_options: {include_blank: true} })
+      
+      
+      
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization => h("Rock the Vote")).html_safe}
+    %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h("Rock the Vote"), short_code: RockyConf.sms_short_code, terms_url: RockyConf.terms_url, privacy_url: RockyConf.privacy_url).html_safe
+  
+    - if @registrant.partner.partner_sms_opt_in? && !@registrant.partner.primary?
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_sms, class_name: "registrant-form__partner-opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization=>h(@registrant.partner.organization)).html_safe }
+      %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h(@registrant.partner.organization), short_code: @registrant.partner.short_code, terms_url: @registrant.partner.terms_url, privacy_url: @registrant.partner.privacy_url).html_safe
+      
+  
+  - if @registrant.email.blank?
+    %fieldset
+      %ul.stacked
+        = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
+  
+  %fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
+  
+    - if @registrant.partner.partner_email_opt_in && !@registrant.partner.primary?
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_email, class_name: "registrant-form__partner-opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization=>h(@registrant.partner.organization)).html_safe }
+  
+  - if @registrant.ask_for_partner_volunteers?
+    %fieldset.no_border
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_volunteer, class_name: "registrant-form__partner-volunteer", required: false, field_label: t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe }
+  
+
+  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
+  .back
+    = link_to t('txt.button.back').html_safe, registrant_path(@registrant.registrant)
+    

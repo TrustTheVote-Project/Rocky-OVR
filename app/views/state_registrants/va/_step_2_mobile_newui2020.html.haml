@@ -1,46 +1,88 @@
-- if @use_newui2020 
-  = render partial: 'state_registrants/va/step_2_newui2020' 
-- else
-  - content_for :head do
-    :javascript
-      $(document).ready(function() {
-        $('#javascript_disabled').remove();
-        
-        checkboxTogglesSet($('#state_registrants_va_registrant_has_mailing_address'), $('#mailing_address_set'));
-        
-                
-        function toggleOtherStateReg() {
-          if ($("#state_registrants_va_registrant_registered_in_other_state:checked").length > 0) {
-            $(".registrant-form__other-registration-state-abbrev__line").show();
-          } else {
-            $(".registrant-form__other-registration-state-abbrev__line").hide();            
-          }
-        }
-        $("#state_registrants_va_registrant_registered_in_other_state").click(toggleOtherStateReg);
-        toggleOtherStateReg()
-            
-      });
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+      var shouldSkipStep = function shouldSkipStep(currentStep) { return false; }
+
+      initDynamicNav( 2, 2, 5, {
+        2: 5, //Eligibility
+        3: 25, // Name
+        4: 40, // Home Address
+        5: 60, // Personal Information
+        //Download page goes up to 80%
+      }, shouldSkipStep);
       
-  = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
-    = render partial: 'state_registrants/locale_selector', locals: {form: form }
-    = render partial: 'state_registrants/va/header'
+      
+      checkboxTogglesSet($('#state_registrants_va_registrant_has_mailing_address'), $('#mailing_address_set'));
+      
+              
+      function toggleOtherStateReg() {
+        if ($("#state_registrants_va_registrant_registered_in_other_state:checked").length > 0) {
+          $(".registrant-form__other-registration-state-abbrev__line").show();
+        } else {
+          $(".registrant-form__other-registration-state-abbrev__line").hide();  
+          clearErrors.bind($("#state_registrants_va_registrant_other_registration_state_abbrev"))();          
+        }
+      }
+      $("#state_registrants_va_registrant_registered_in_other_state").click(toggleOtherStateReg);
+      toggleOtherStateReg()
+      
+      function toggleRightToVoteRestored() {
+        if ($("#state_registrants_va_registrant_convicted_of_felony_true:checked").length > 0 ) {
+          $(".right-to-vote-restored").show();
+        } else {
+          $(".right-to-vote-restored").hide();
+          clearErrors.bind($(".right-to-vote-restored div.radio-buttons"))();
+        }
+      }
+      $("#state_registrants_va_registrant_convicted_of_felony_true, #state_registrants_va_registrant_convicted_of_felony_false").click(toggleRightToVoteRestored)
+      toggleRightToVoteRestored();
+      
+      function toggleMiddleName() {
+        if ($("#state_registrants_va_registrant_confirm_no_middle_name:checked").length == 0 ) {
+          $(".registrant-form__middle-name__line").show();
+        } else {
+          $(".registrant-form__middle-name__line").hide();
+          clearErrors.bind($("#state_registrants_va_registrant_middle_name"))();
+        }
+      }
+      $("#state_registrants_va_registrant_confirm_no_middle_name").click(toggleMiddleName)
+      toggleMiddleName();
+      
+    });
+    
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 5}
+  
+  .dynamic-step#step-2
+    %fieldset
+      %legend= t 'txt.registration.mobile_ui.step_2.title'
+      %p= t 'txt.registration.mobile_ui.step_2.instructions'
     
     %p.notice= I18n.t('states.custom.va.special_status_notice').html_safe
-      
     
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_voter_record_update, class_name: "registrant-form__confirm_voter_record_update__line", required: true, require_accepted: true}
-    
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
-    
-
-        
     %br
     %ul.flat
       = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
-      
-      
-    = render partial: 'state_registrants/va/name', locals: {form: form}
-      
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
+  
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_voter_record_update, class_name: "registrant-form__confirm_voter_record_update__line", required: true, require_accepted: true}
+  
+    %fieldset.convicted-of-felony
+      %ul.stacked.radio
+        = field_li(form, :convicted_of_felony, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
+
+    %fieldset.right-to-vote-restored
+      %ul.stacked.radio
+        = field_li(form, :right_to_vote_restored, {skip_tooltip: true, required: true, radio_options: [[t("no"), false], [t("yes"), true]]})
+    
+    
+
+  .dynamic-step#step-3
+    = render partial: 'state_registrants/va/name_mobile', locals: {form: form}
+    
+  .dynamic-step#step-4
     %fieldset
       %legend
         %span= I18n.t('txt.registration.home_address') 
@@ -55,13 +97,11 @@
         = field_li(form, :registration_zip_code, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
       %ul.stacked
         = field_li(form, :registration_locality, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::VARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
-    
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registered_in_other_state, class_name: "registrant-form__registered-in-other-state__line", required: false}
-    %ul.stacked
-      = field_li(form, :other_registration_state_abbrev, {skip_tooltip: true, required: true, field_options: {}, li_options: {class: "registrant-form__other-registration-state-abbrev__line"}, select_options: GeoState.all.collect {|s| [s.name, s.abbreviation] }, field_options: {include_blank: true}})
-    
-    
-    
+  
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registered_in_other_state, class_name: "registrant-form__registered-in-other-state__line", required: false}
+      %ul.stacked
+        = field_li(form, :other_registration_state_abbrev, {skip_tooltip: true, required: true, field_options: {}, li_options: {class: "registrant-form__other-registration-state-abbrev__line"}, select_options: GeoState.all.collect {|s| [s.name, s.abbreviation] }, field_options: {include_blank: true}})
+  
     %fieldset.no_border
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_mailing_address, class_name: "registrant-form__has-mailing-address__line", required: false}
 
@@ -80,42 +120,60 @@
         = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
       %ul.stacked
         = field_li(form, :mailing_address_locality, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::VARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
-    
+  
       %fieldset.no-usps
         = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :no_usps_address, class_name: "registrant-form__no-usps-address__line", required: false}
-    
+  
+  .dynamic-step#step-5
+    %fieldset
+      %legend= t('txt.registration.mobile_ui.step_9.title')
     %fieldset.phone
       %ul.stacked
         = field_li(form, :phone, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone__line"}})
         = field_li(form, :phone_type, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone-type__line"}, select_options: @registrant.phone_types,field_options: {include_blank: true} })
-        
-        
-        
+      
+      
+      
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization => h("Rock the Vote")).html_safe}
       %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h("Rock the Vote"), short_code: RockyConf.sms_short_code, terms_url: RockyConf.terms_url, privacy_url: RockyConf.privacy_url).html_safe
-    
+  
       - if @registrant.partner.partner_sms_opt_in? && !@registrant.partner.primary?
         = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_sms, class_name: "registrant-form__partner-opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization=>h(@registrant.partner.organization)).html_safe }
         %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h(@registrant.partner.organization), short_code: @registrant.partner.short_code, terms_url: @registrant.partner.terms_url, privacy_url: @registrant.partner.privacy_url).html_safe
-        
-    
+      
+  
     - if @registrant.email.blank?
       %fieldset
         %ul.stacked
           = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
-    
+  
     %fieldset.no_border
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
-    
+  
       - if @registrant.partner.partner_email_opt_in && !@registrant.partner.primary?
         = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_email, class_name: "registrant-form__partner-opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization=>h(@registrant.partner.organization)).html_safe }
-    
+  
     - if @registrant.ask_for_partner_volunteers?
       %fieldset.no_border
         = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_volunteer, class_name: "registrant-form__partner-volunteer", required: false, field_label: t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe }
-    
+  
 
-    = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
-    .back
-      = link_to t('txt.button.back').html_safe, registrant_path(@registrant.registrant)
-      
+  .dynamic-navigation
+    -# .back only shown when first step, .prepare only shown when last step
+    .back.back--link
+      .button.rollover_button
+        = link_to registrant_path(@registrant.registrant) do
+          %button{type: "button"}
+            %span <
+    .back.back--virtual 
+      .button.rollover_button
+        %a 
+          %button{type: "button"}
+            %span <
+    .next.next--virtual
+      .button.rollover_button
+        %a 
+          %button
+            %span=t 'txt.button.submit'
+    .next.next--link.prepare
+      = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
