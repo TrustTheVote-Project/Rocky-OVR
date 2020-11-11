@@ -25,7 +25,7 @@ module AbrStateMethods::LA
     },
     "License_ID": { sensitive: true },
     "General_Election_Date": {
-      value: "11/03/2020"
+      value: "12/05/2020"
     },
     "absent_from": { method: "absent_from_date" },
     "absent_to": { method: "absent_to_date" },
