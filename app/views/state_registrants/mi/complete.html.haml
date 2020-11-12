@@ -1,14 +1,17 @@
-- if @use_mobile_ui
-  = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
+- if @use_newui2020 
+  = render partial: 'state_registrants/mi/complete_newui2020' #, locals: { form: form }
+- else
+  - if @use_mobile_ui
+    = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
 
-%h1
-  = I18n.t 'states.custom.mi.registration_complete'
+  %h1
+    = I18n.t 'states.custom.mi.registration_complete'
 
-.declaration-text
-  = I18n.t("states.custom.mi.registration_complete_success_type.#{@registrant.mi_api_voter_status_success_type}", address: @registrant.registration_address_full, city: @registrant.registration_city, zip_code: @registrant.registration_zip_code, state: @registrant.home_state_abbrev).html_safe
-  - if @registrant.date_of_birth > 18.years.ago.to_date
-    = I18n.t('states.custom.mi.registration_complete_less_than_18').html_safe
-  =#= I18n.t('states.custom.mi.registration_complete_dialog_text').html_safe
-  %br
+  .declaration-text
+    = I18n.t("states.custom.mi.registration_complete_success_type.#{@registrant.mi_api_voter_status_success_type}", address: @registrant.registration_address_full, city: @registrant.registration_city, zip_code: @registrant.registration_zip_code, state: @registrant.home_state_abbrev).html_safe
+    - if @registrant.date_of_birth > 18.years.ago.to_date
+      = I18n.t('states.custom.mi.registration_complete_less_than_18').html_safe
+    =#= I18n.t('states.custom.mi.registration_complete_dialog_text').html_safe
+    %br
 
-= render "finishes/finish_iframe"
+  = render "finishes/finish_iframe"
