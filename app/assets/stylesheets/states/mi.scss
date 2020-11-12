@@ -143,11 +143,11 @@
             ul {
               li {
                 &.registrant-form__home-address-number__line {
-                  width: 22%;
+                  width: 20%;
                   margin-right: 3%;
                 }
                 &.registrant-form__home-address-street-name__line {
-                  width: 42%;
+                  width: 30%;
                   margin-right: 3%;
                 }
                 &.registrant-form__home-address-street-type__line {
@@ -156,7 +156,7 @@
                 }
                 &.registrant-form__home-address-post-directional__line {
                   width: 13%;
-                  float:none;
+                  
                 }
                 &.registrant-form__home-address-unit-number__line {
                   width: 70%;
@@ -189,24 +189,7 @@
         }
         }
       }
-      @media (max-width: 600px) {
-        .checkbox input {
-          width: initial !important;
-        }
-        #main {
-          width:100% !important;
-          }
-        #main #main_inner {
-          width:100% !important;
-        }
-
-       #main form ul.stacked li {
-          float:none;
-          width:100% !important;
-        }
-      
-
-      }      
+     
   }
 }
 
