@@ -43,8 +43,9 @@ module ApplicationHelper
           stylesheets << 'registration3'
         else
           stylesheets << 'registration2'
+          stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
         end
-        stylesheets << "states/#{registrant.home_state_abbrev.downcase}"        
+                
       else
         newregcss = @use_newui2020 ? 'registration3' : 'registration2'
         stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : newregcss)
@@ -76,8 +77,9 @@ module ApplicationHelper
         else
           stylesheets << "application"
           stylesheets << 'registration2'
+          stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
         end
-        stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
+        
       elsif partner && registrant && !registrant.use_short_form?
         stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
         stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")

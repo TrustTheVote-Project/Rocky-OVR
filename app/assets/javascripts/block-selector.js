@@ -21,13 +21,11 @@ $(document).ready(function() {
         noButton.removeClass("block-selector__button--selected");
         innerYes.show();
         innerNo.hide();
-        removeErrors();
       } else if (input.attr("value") == "0") {
         noButton.addClass("block-selector__button--selected");
         yesButton.removeClass("block-selector__button--selected");
         innerYes.hide();
         innerNo.show();
-        removeErrors();
       } else {
         noButton.removeClass("block-selector__button--selected");
         yesButton.removeClass("block-selector__button--selected");
@@ -40,10 +38,12 @@ $(document).ready(function() {
     yesButton.click(function() {
       input.attr("value","1")
       checkValue();
+      removeErrors();
     });
     noButton.click(function() {
       input.attr("value", "0")
       checkValue();
+      removeErrors();
     });
     checkValue();
   })

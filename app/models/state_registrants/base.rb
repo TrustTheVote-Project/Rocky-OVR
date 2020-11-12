@@ -9,7 +9,8 @@ class StateRegistrants::Base < ActiveRecord::Base
   delegate :titles, :suffixes, :races, :state_parties, :phone_types, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, :javascript_disabled?, :canvassing_shift, to: :registrant
   delegate :has_phone?, :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
   
-  delegate :ab_tests,:full_name, to: :registrant 
+  delegate :ab_tests, to: :registrant
+  
   
   delegate :ask_for_partner_volunteers?, to: :registrant
 

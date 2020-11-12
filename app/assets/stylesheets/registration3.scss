@@ -13,23 +13,68 @@
   clear: both;
 }
 
-input[type=text], input[type=tel] {
+ 
+
+input[type=text], input[type=tel], input[type=email], select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border-radius: 0;
   outline: none;
+  border: $input-border;
+  height: $input-height;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: $base-font-size;
+  line-height: $base-line-height;  
+  margin: 0;      
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  background: #fff image-url('reg/select-arrow.png') no-repeat right center;
+  font-size: $base-font-size;
+  padding: 6px 40px 6px 12px;
+  height: $input-height;
+  width: 100%;
+  border: $input-border;
+  border-radius: 0;
+}
+select::-ms-expand {
+  display: none;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 
 
-p {
-  font-size: 14px;
-  line-height: 20px;
+p, span.compliance {
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  margin: 4px 0;
+}
+
+p.spinner {
+  padding: 1em;
+  text-align: center;
 }
 
 a:link {
   color: $red;
-  font-weight: 600;
+  font-weight: 400;
 }
 a:hover {
   color: $red;
@@ -38,17 +83,48 @@ a:visited {
   color: $red;
 }
 
+.back {
+  display: inline-block;
+  padding: 10px 15px;
+  a {
+    font-weight: 600;
+    font-size: $base-font-size;
+    line-height: $base-line-height;  
+  }
+}
+
+.skip_state_registration_link {
+  text-align: left;
+  display: block;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  margin: 1em 0 0;
+}
+
 .rollover_button {
-  a button {
+  display: inline-block;
+  margin: 1em 0;
+  a button, a > span {
     background-color: $red;
     color: $white;
     border: none;
     background-image: none;
     appearance: none;
-    font-size: 14px;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
     font-weight: 600;
-    line-height: 20px;
     padding: 10px 15px;
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+
+.skip_state_registration {
+  &+ .back {
+    padding-left: 0;
+  }
+  .rollover_button {
+    margin-top: 1em;
   }
 }
 
@@ -102,9 +178,10 @@ body {
       .powered-by-text {
         display: inline-block;
         vertical-align: top;
-        font-size: 15px;
         padding-top: 30px;
-        line-height: 15px;
+        font-size: $base-font-size;
+        line-height: $base-line-height;
+  
         color: #aaa;
         font-family: "Times New Roman", Times, serif;
         font-style: oblique;
@@ -196,26 +273,10 @@ body {
 
 #main_inner {
   width: $main-width - $main-padding;
-  padding: $main-padding $main-padding/2 60px;
+  padding: $main-padding 16px 60px;
   #other_language_link {
     text-align: right;
-    margin: 1em 0;
-    select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      -ms-appearance: none;
-      -o-appearance: none;
-      appearance: none;
-      background: #fff image-url('reg/select-arrow.png') no-repeat right center;
-      font-size: 14px;
-      padding: 6px 40px 6px 5px;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-      height: 34px;
-      border: 0;
-    }
-    select::-ms-expand {
-      display: none;
-    }
+    margin: 1em 0;    
   }
   
   .special-zip-message {
@@ -232,7 +293,6 @@ body {
       margin: 4em 0;
     }
     &.already-registered {
-      text-align: right;
       margin: 4em 0;
     }
   }
@@ -251,12 +311,14 @@ body {
 
     div.tooltip {
       display: inline-block;
-      width: auto;      
+      width: auto;
+      position: absolute;
+      top: -5px;
     }
 
     img.tooltip {
       padding: 0px 5px;
-      top: 3px;
+      top: 4px;
     }
 
     padding-bottom: 2em;
@@ -268,20 +330,11 @@ body {
     
     legend {
       font-weight: bold;
-      padding-top: 30px;
+      padding-top: 20px;
       
     }
 
     
-    input {
-      border: $input-border;
-      height: $input-height;
-      width: 100%;
-      padding: 10px 12px;
-      font-size: 14px;
-      margin: 0;
-    }
-
     ul, ul.flat {
       &:after {
         display: block;
@@ -289,17 +342,32 @@ body {
         clear: both;
       }
 
-      &.radio {
-        li label {
+      &.radio, &.checkbox {
+        li h3 {
           display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          input {
+            height: $label-line-height;
+            width: $label-line-height;
+            margin: 0 5px 0 0;
+          }
+          label {
+            font-size: $base-font-size;
+            line-height: $base-line-height;
+            display: flex;
+            text-transform: none;
+            font-weight: normal;
+          }
         }
       }
 
       li {
         h3 {
           text-transform: uppercase;
-          font-size: 10px;
-          line-height: 16px;
+          font-size: $label-font-size;
+          line-height: $label-line-height;
+          min-height: 22px; //min-height set for labels w/out tooltip
           font-weight: bold;
           letter-spacing: .75px;
           margin-top: 12px;
@@ -310,39 +378,30 @@ body {
         }
 
         div {
-          
-          select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            -ms-appearance: none;
-            -o-appearance: none;
-            appearance: none;
-            background: #fff image-url('reg/select-arrow.png') no-repeat right center;
-            font-size: 14px;
-            padding: 6px 40px 6px 5px;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-            height: $input-height;
-            width: 100%;
-            border: $input-border;
-            border-radius: 0;
-          }
-          select::-ms-expand {
-            display: none;
-          }
           &.has_error {
-           select {
-             background: $light-red image-url('reg/select-arrow.png') no-repeat right center;
-           } 
+            input {
+              background: $light-red;
+            }
+            select {
+              background: $light-red image-url('reg/select-arrow.png') no-repeat right center;
+            } 
           }
         }
         
         span.error {
           clear: both;
           display: block;
+          width: 100%;
+          color: $red;
+          text-transform: none;
+          font-size: $base-font-size;
+          line-height: $base-line-height;
+          margin: 4px 0;
+          font-weight: normal;
         }
         
-         
       }
+      @import 'registration3-field-widths';
       
       .checkbox-explanation p {
         margin: -5px 75px 20px 110px;
@@ -406,10 +465,15 @@ body {
 
 @import 'registration3-block-selector';
 
-@import 'registration2-mobile';
-@import 'registration2-new-mobile-ui';
-@import 'registration2-signature-capture';
+@import 'registration3-mobile';
+@import 'registration3-new-mobile-ui';
+@import 'registration3-signature-capture';
 
 body.abr-page {
   @import 'abr-page';
 }
+
+p.dummy-modified {
+    width:42px;
+}
+@import 'states/mi.scss';

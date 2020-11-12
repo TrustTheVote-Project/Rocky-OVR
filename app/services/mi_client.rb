@@ -32,15 +32,13 @@ class MiClient
   end
 
   def self.cert_key
-    OpenSSL::PKey::RSA.new(ENV['MI_CERT_KEY'])
+    ENV['MI_CERT_KEY'].blank? ? nil : OpenSSL::PKey::RSA.new(ENV['MI_CERT_KEY'])
   end
-  
   def self.cert
-    OpenSSL::X509::Certificate.new(ENV['MI_CERT'])
+    ENV['MI_CERT'].blank? ? nil : OpenSSL::X509::Certificate.new(ENV['MI_CERT'])
   end
-  
   def self.ca_cert
-    OpenSSL::X509::Certificate.new(ENV['MI_CERT_CA'])
+    ENV['MI_CERT_CA'].blank? ? nil : OpenSSL::X509::Certificate.new(ENV['MI_CERT_CA'])
   end
   
 

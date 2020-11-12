@@ -1,0 +1,52 @@
+$mr: 3%;
+li {
+  float: left;
+  width: 100%;
+  &.registrant-form, &.abr-form {
+
+    &__name-title__line,
+    &__prev-name-title__line,
+    &__name-suffix__line,
+    &__prev-name-suffix__line {
+      width: 60%;
+      margin-right: 40%;
+    }
+
+    &__home-address__line,
+    &__mailing-address__line,
+    &__prev-address__line,
+    &__home-state-abbrev__line,
+    &__mailing-state-abbrev__line,
+    &__prev-state-abbrev__line {
+      width: 100% - 35% - $mr;
+      margin-right: $mr;
+    }
+    &__home-unit__line,
+    &__mailing-unit,
+    &__prev-unit__line,
+    &__home-zip-code__line,
+    &__mailing-zip-code__line,
+    &__prev-zip-code__line {
+      width: 35%;
+    }
+
+    &__date-of-birth__line {
+      input {
+        float: left;
+        width: (100% - (2 * $mr))/3;
+        margin-right: $mr;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    &__phone__line {
+      width: 100% - 40% - $mr;
+      margin-right: $mr;
+    }
+    &__phone-type__line {
+      width: 40%;
+    }
+
+  }
+}

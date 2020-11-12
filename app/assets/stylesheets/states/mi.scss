@@ -1,111 +1,195 @@
 @import "_base";
 
-span.error {
-  white-space: normal;
-}
+.state-mi {
 
-span.error, .flat span.error, .stacked span.error {
-  min-height: 24px;
-  height: auto;
-  line-height: 16px;
-}
-
-
-#main {
-  form {
-    ul.mi-address-options {
-      font-size: 16px;
-      line-height: 1.4em;
-      li {
-        margin: 1.5em 0;
-        float: none;
-        display: flex;
-        label {
-          margin-left: .5em;
-        }
-      }
+  &.oldui {
+    span.error {
+      white-space: normal;
     }
-    ul {
-      li {
-        &.registrant-form__home-address-number__line {
-          width: 22%;
-          margin-right: 3%;
-        }
-        &.registrant-form__home-address-street-name__line {
-          width: 42%;
-          margin-right: 3%;
-        }
-        &.registrant-form__home-address-street-type__line {
-          width: 14%;
-          margin-right: 3%;
-        }
-        &.registrant-form__home-address-post-directional__line {
-          width: 13%;
-        }
-        &.registrant-form__home-address-unit-number__line {
-          width: 70%;
-          margin-right: 30%;
-        }
-        &.registrant-form__home-address-box-group__line {
-          width: 45%;
-          margin-right: 5%;
-        }
-        &.registrant-form__home-address-box-group-id__line {
-          width: 50%;
-        }
-        
-      }
+
+    span.error, .flat span.error, .stacked span.error {
+      min-height: 24px;
+      height: auto;
+      line-height: 16px;
     }
-    #mailing_address_international {
-      ul {
-        li {
-          &.registrant-form__home-zip-code__line {
-            margin-right: 5%;
-            width: 25%;
-          } 
-          &.registrant-form__home-country__line {
-            width: 70%;
-            margin-right: 0;
-          } 
-        }
-        @media(max-width: 600px) {
+    #main {
+      form {
+        ul.mi-address-options {
+          font-size: 16px;
+          line-height: 1.4em;
           li {
-            &.registrant-form__home-zip-code__line {
-              width: 40%;
-            } 
-            &.registrant-form__home-country__line {
-              width: 55%;
-            } 
+            margin: 1.5em 0;
+            float: none;
+            display: flex;
+            label {
+              margin-left: .5em;
+            }
+          }
+        }
+        ul {
+          li {
+            &.registrant-form__home-address-number__line {
+              width: 22%;
+              margin-right: 3%;
+            }
+            &.registrant-form__home-address-street-name__line {
+              width: 42%;
+              margin-right: 3%;
+            }
+            &.registrant-form__home-address-street-type__line {
+              width: 14%;
+              margin-right: 3%;
+            }
+            &.registrant-form__home-address-post-directional__line {
+              width: 13%;
+            }
+            &.registrant-form__home-address-unit-number__line {
+              width: 70%;
+              margin-right: 30%;
+            }
+            &.registrant-form__home-address-box-group__line {
+              width: 45%;
+              margin-right: 5%;
+            }
+            &.registrant-form__home-address-box-group-id__line {
+              width: 50%;
+            }
+            
+          }
+        }
+        #mailing_address_international {
+          ul {
+            li {
+              &.registrant-form__home-zip-code__line {
+                margin-right: 5%;
+                width: 25%;
+              } 
+              &.registrant-form__home-country__line {
+                width: 70%;
+                margin-right: 0;
+              } 
+            }
+            @media(max-width: 600px) {
+              li {
+                &.registrant-form__home-zip-code__line {
+                  width: 40%;
+                } 
+                &.registrant-form__home-country__line {
+                  width: 55%;
+                } 
+              }
+            }
+          }
+        }
+        ul.radio {
+          li {
+            h3 {
+              float: none;
+              text-align: left;
+              width: auto;
+              color: #757575;
+              height: auto;
+              font-size: 16px;
+              line-height: 1.4em;
+              margin: 1em 0;
+            }
+          }
+        }
+        .radio-buttons {
+          label {
+            display: block;
+            height: 40px;
+            input {
+              display: inline-block;
+              width: auto;
+              height: 1em;
+              margin-right: 5px;
+              margin-left: 20px;
+            }
           }
         }
       }
     }
-    ul.radio {
-      li {
-        h3 {
-          float: none;
-          text-align: left;
-          width: auto;
-          color: #757575;
-          height: auto;
-          font-size: 16px;
-          line-height: 1.4em;
-          margin: 1em 0;
+  }
+
+  &.newui2020 {
+
+      @media (min-width: 600px) {
+        li {
+          float:left;
+          margin-right:3%;
+        }
+        .checkbox input {
+          width: initial !important;
+        }
+  
+        .registrant-form__date-of-birth__line input {
+          width: initial !important;
+        }
+        #main {
+          form {
+            ul.mi-address-options {
+              font-size: 16px;
+              line-height: 1.4em;
+              li {
+                margin: 1.5em 0;
+                float: none;
+                display: flex;
+                label {
+                  margin-left: .5em;
+                }
+              }
+            }
+            ul {
+              li {
+                &.registrant-form__home-address-number__line {
+                  width: 20%;
+                  margin-right: 3%;
+                }
+                &.registrant-form__home-address-street-name__line {
+                  width: 30%;
+                  margin-right: 3%;
+                }
+                &.registrant-form__home-address-street-type__line {
+                  width: 20%;
+                  margin-right: 3%;
+                }
+                &.registrant-form__home-address-post-directional__line {
+                  width: 13%;
+                  
+                }
+                &.registrant-form__home-address-unit-number__line {
+                  width: 70%;
+                  margin-right: 30%;
+                }
+                &.registrant-form__home-address-box-group__line {
+                  width: 45%;
+                  margin-right: 5%;
+                }
+                &.registrant-form__home-address-box-group-id__line {
+                  width: 50%;
+                }
+                
+              }
+            }
+            #mailing_address_international {
+              ul {
+                li {
+                  &.registrant-form__home-zip-code__line {
+                    margin-right: 5%;
+                    width: 25%;
+                  } 
+                  &.registrant-form__home-country__line {
+                    width: 70%;
+                    margin-right: 0;
+                  } 
+                }
+              }
+            }
+        }
         }
       }
-    }
-    .radio-buttons {
-      label {
-        display: block;
-        height: 40px;
-        input {
-          display: inline-block;
-          width: auto;
-          height: 1em;
-          margin-right: 5px;
-          margin-left: 20px;
-        }
-      }
-    }
+     
   }
 }
+

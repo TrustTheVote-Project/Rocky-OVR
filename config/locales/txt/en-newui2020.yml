@@ -131,7 +131,7 @@ en-newui2020:
       submit: Next Step
       lookup: Look Up Your Registration
       edit: Edit
-      back: "&lt; Previous Step"
+      back: Previous Step
       download: Print your registration form now
       download_assistance: Please mail me my form, I can't print it right now
       download_abr: Print your Absentee Request now
@@ -148,12 +148,11 @@ en-newui2020:
       share_facebook: Post It!
       share_twitter: Tweet It!
       share_google_buzz: Share on Google!
-      state_online_registration: Finish your<br/>voter registration<br/> online with
-        %{state}.
-      skip_state_online_registration: "&gt; No Thanks, I'll continue with %{rtv_and_partner_name}
+      state_online_registration: Finish your voter registration online with %{state}.
+      skip_state_online_registration: "No Thanks, I'll continue with %{rtv_and_partner_name}
         and send in my form later."
       state_online_abr: Finish your<br/>absentee request<br/> online with %{state}.
-      skip_state_online_abr: "&gt; No Thanks, I'll continue with %{rtv_and_partner_name}
+      skip_state_online_abr: "No Thanks, I'll continue with %{rtv_and_partner_name}
         and send in my form later."
     registration:
       in_language_name: In English
@@ -423,7 +422,22 @@ en-newui2020:
             complete_whats_next_text: "<h2>What's next?</h2><p>If accepted, you will receive a Voter Registration Card by mail.</p>"
             pending_text: "You won't be registered until you print, sign, and mail in your form!"
             pending_header: "We're preparing your registration forms."
-      
+        mi:
+          step_2_header: Basic Info
+          step_3_header: More about you
+          step2_next: Next step
+          step3_next: Next step
+          step4_next: Prepare Forms
+          complete_title: YOU'RE DONE!
+          complete_message: Registration form sent!          
+          instructions:
+            complete_dialog_text: "<p>Your application has been sent to your county voter registration office. <b>Your registration is not complete until processed and accepted.</b></p>"
+            complete_whats_next_text: "<h2>What's next?</h2><p>If accepted, you will receive a Voter Registration Card by mail.</p>"
+            pending_text: "You won't be registered until you print, sign, and mail in your form!"
+            pending_header: "We're preparing your registration forms."
+
+
+
     signature_capture:
       rotation_instructions: You must rotate your screen to correctly capture
         your signature. Make sure your screen rotation is enabled.
