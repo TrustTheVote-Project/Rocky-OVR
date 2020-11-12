@@ -131,7 +131,7 @@ en-newui2020:
       submit: Next Step
       lookup: Look Up Your Registration
       edit: Edit
-      back: "&lt; Previous Step"
+      back: Previous Step
       download: Print your registration form now
       download_assistance: Please mail me my form, I can't print it right now
       download_abr: Print your Absentee Request now
@@ -148,12 +148,11 @@ en-newui2020:
       share_facebook: Post It!
       share_twitter: Tweet It!
       share_google_buzz: Share on Google!
-      state_online_registration: Finish your<br/>voter registration<br/> online with
-        %{state}.
-      skip_state_online_registration: "&gt; No Thanks, I'll continue with %{rtv_and_partner_name}
+      state_online_registration: Finish your voter registration online with %{state}.
+      skip_state_online_registration: "No Thanks, I'll continue with %{rtv_and_partner_name}
         and send in my form later."
       state_online_abr: Finish your<br/>absentee request<br/> online with %{state}.
-      skip_state_online_abr: "&gt; No Thanks, I'll continue with %{rtv_and_partner_name}
+      skip_state_online_abr: "No Thanks, I'll continue with %{rtv_and_partner_name}
         and send in my form later."
     registration:
       in_language_name: In English

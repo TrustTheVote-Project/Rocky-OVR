@@ -1,0 +1,66 @@
+
+$mobile-width: 100%;
+$mobile-min-width: 300px;
+
+@media(max-width: $main-width) {
+  
+  .qtip-close {
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding-top: 1px;
+    border-radius: 20px;
+  }
+  
+  body {
+    #header {
+      width: $mobile-width;
+      min-width: $mobile-min-width;
+      background-image: image-url('rock-the-vote-horz-logo-rev.png');
+      background-position: center 5px;
+      background-size: auto 30px;
+      padding: 0 16px;
+      text-align: center;
+      .header-text {
+        text-align: center;
+        padding-top: ((80-(24px+35px))/2 + 35px);
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    #main_inner {
+        width: $mobile-width;
+        min-width: $mobile-min-width;
+        padding-bottom: 30px;
+    }
+    
+    #sticky_footer, #footer {
+      height: 105px;
+      position: relative;
+    }
+    
+    #footer {
+      width: 100%;
+      min-width: $mobile-min-width;
+      p {
+        text-align: center;
+        width: 100%;
+      }
+      .copyright {
+        display: block;
+      }
+      .powered-by-logo {
+        float: none;
+        width: 100%;
+        text-align: center;
+        .powered-by-text {
+          padding-top: 22.5px;
+        }
+        img {
+          margin: 7.5px 0;            
+        }
+      }        
+      
+    }
+  }
+}
