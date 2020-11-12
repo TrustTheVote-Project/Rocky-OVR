@@ -44,7 +44,11 @@ $(document).ready(function() {
   <fieldset class="block-selector">
    <%= checkbox_block_selector form, :will_be_18_by_election, I18n.t('activerecord.attributes.registrant.will_be_18_by_election'), nil, {required: true} %>
   </fieldset>
-  <%= rollover_button(:next_step, I18n.t('txt.button.start').html_safe) %>
+  <% if @registrant.persisted? %>
+    <%= rollover_button(:next_step, I18n.t('txt.button.next').html_safe) %>
+  <% else %>
+    <%= rollover_button(:next_step, I18n.t('txt.button.start').html_safe) %>
+  <% end %>
 <% end %>
 <%- if !@registrant.use_short_form? %>
  <ul class="flat">
