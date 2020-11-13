@@ -220,26 +220,4 @@ class StateRegistrants::Base < ActiveRecord::Base
     true
   end
 
-  def has_penndot
-    case self.confirm_no_penndot_number
-      when true
-        return false
-      when false
-       return true
-      when nil
-        return nil
-    end
-  end
-
-  def has_penndot= (val)
-    case val
-      when true,1,"1"
-        self.confirm_no_penndot_number=false
-      when false,0,"0"
-        self.confirm_no_penndot_number=true
-      when nil
-        self.confirm_no_penndot_number = nil
-    end
-  end
-
 end
