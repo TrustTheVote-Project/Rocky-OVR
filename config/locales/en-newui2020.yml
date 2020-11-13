@@ -112,13 +112,16 @@ en-newui2020:
           state or to register to vote if I am not yet registered with Virginia
         confirm_us_citizen: I am a US citizen
         ssn: Social Security Number
+        has_ssn: I have a Social Security Number
         confirm_no_ssn: No SSN was ever issued.
         dln: Virginia DMV Identifier or Customer Number
+        has_dln: I have a Virginia DMV Identifier or Customer Number
         confirm_no_dln: 'I do not have a Virginia Identifier or Customer #'
         name_title: Title
         first_name: First Name
         middle_name: Middle
         confirm_no_middle_name: I do not have a middle name.
+        has_middle_name: I have a middle name.
         last_name: Last Name
         name_suffix: Suffix
         registration_address_1: Address Line 1
