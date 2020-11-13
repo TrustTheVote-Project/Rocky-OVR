@@ -14,7 +14,7 @@
         = @registrant.middle_name
         = @registrant.last_name
         = @registrant.name_suffix
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), registrant_path(@registrant))
         
     .review__section
       .review__section__label

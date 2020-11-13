@@ -1,5 +1,5 @@
 - if @use_newui2020 
-  = render partial: 'state_registrants/va/step_4_newui2020' 
+  = render partial: 'state_registrants/va/step_4_mobile_newui2020' 
 - else
   = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
     = render partial: 'state_registrants/locale_selector', locals: {form: form }

@@ -1,6 +1,6 @@
 = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
-  = render partial: 'state_registrants/header_mobile', locals: {percentage: 80}
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 90}
   
   
   .review            
@@ -14,7 +14,7 @@
         = @registrant.middle_name
         = @registrant.last_name
         = @registrant.name_suffix
-        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), registrant_path(@registrant))
         
     .review__section
       .review__section__label

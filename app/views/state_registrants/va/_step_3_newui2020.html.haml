@@ -44,28 +44,28 @@
   
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_affirm_privacy_notice, class_name: "registrant-form__confirm-affirm-privacy-notice__line", required: true}
     
+  %fieldset#ssn_set.block-selector
+    =checkbox_block_selector form, :has_ssn, I18n.t('activerecord.attributes.state_registrants/va_registrant.has_ssn'), nil, {required: true}
+    %div.block-selector__yes-selected
+      %ul.flat.ssn
+        = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 11, maxlength: 11} })
 
-  %fieldset#ssn_set
-    %ul.flat.ssn
-      = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 11, maxlength: 11} })
-      
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_ssn, class_name: "registrant-form__no-ssn__line", required: false}
-    
-  %fieldset#dln-set
-    %ul.flat.dln
-      = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
-    
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__no-ssn__line", required: false}
-    
-    
-  %fieldset.convicted-of-felony
-    %ul.stacked.radio
-      = field_li(form, :convicted_of_felony, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
 
-  %fieldset.right-to-vote-restored
-    %ul.stacked.radio
-      = field_li(form, :right_to_vote_restored, {skip_tooltip: true, required: true, radio_options: [[t("no"), false], [t("yes"), true]]})
+  %fieldset#dln_set.block-selector
+    =checkbox_block_selector form, :has_dln, I18n.t('activerecord.attributes.state_registrants/va_registrant.has_dln'), nil, {required: true}
+    %div.block-selector__yes-selected
+      %ul.flat.ssn
+        = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
   
+
+  %fieldset#convicted-of-felony_set.block-selector
+    =checkbox_block_selector form, :convicted_of_felony, I18n.t('activerecord.attributes.state_registrants/va_registrant.convicted_of_felony'), :convicted_of_felony, {required: true}
+    %div.block-selector__yes-selected
+      %fieldset#right_to_vote_restored_set
+        %ul.stacked
+          = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :right_to_vote_restored, class_name: "registrant-form__right_to_vote_restored__line", required: true, require_accepted: true}
+
+
 
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
   .back    
