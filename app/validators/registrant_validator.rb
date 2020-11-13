@@ -28,6 +28,7 @@ class RegistrantValidator < ActiveModel::Validator
 
       if @use_newui2020
         reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
+        reg.validates_inclusion_of  :will_be_18_by_election, :in=>[true,false] unless reg.building_via_api_call?
         reg.validates_presence_of   :name_title
         reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
         reg.validates_presence_of   :first_name unless reg.building_via_api_call?
