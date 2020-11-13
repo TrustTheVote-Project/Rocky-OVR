@@ -2,7 +2,8 @@ class VARegistrantValidator < ActiveModel::Validator
   VALIDATABLE_ATTRS = StateRegistrants::VARegistrant.attribute_names
   
   def validate(reg)
-    
+    @use_newui2020 = reg.ab_tests.detect { |t| t.name==AbTest::NEW_UI_2020 }&.assignment == AbTest::NEW
+
     reg.validates_format_of VALIDATABLE_ATTRS, with: Registrant::DB_REGEX
     
     if !reg.phone.blank?
@@ -17,8 +18,8 @@ class VARegistrantValidator < ActiveModel::Validator
       reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
 
       #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
-      reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
-      reg.validates_acceptance_of  :confirm_voter_record_update, :accept=>true
+      reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true,:allow_nil=>false
+      reg.validates_acceptance_of  :confirm_voter_record_update, :accept=>true,:allow_nil=>false
       
       reg.validate_date_of_birth
       
@@ -43,6 +44,8 @@ class VARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :previous_first_name
         reg.validates_presence_of :previous_last_name
       end
+
+
       
       
       if reg.registered_in_other_state?
@@ -67,6 +70,11 @@ class VARegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of :convicted_of_felony, :in => [true, false]
       if reg.convicted_of_felony?
         reg.validates_inclusion_of :right_to_vote_restored, :in => [true, false]
+      end
+
+      if @use_newui2020
+        validate_boolean(reg, :has_dln )
+        validate_boolean(reg, :has_ssn )
       end
     end
     
@@ -111,6 +119,12 @@ class VARegistrantValidator < ActiveModel::Validator
   def validate_phone_present_if_opt_in_sms(reg)
     if reg.opt_in_sms? && reg.phone.blank?
       reg.errors.add(:phone, :required_if_opt_in)
+    end
+  end
+
+  def validate_boolean(reg, attr_name)
+    unless [true, false].include? reg.send(attr_name) 
+      reg.validates_presence_of attr_name
     end
   end
   
