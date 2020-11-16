@@ -519,7 +519,7 @@ ovr_states:
   MI:
     grommet_min_version: 1.0.0
     api_settings:
-      api_url: https://test-mvicapi.sos.state.mi.us
+      api_url: https://mi-testing-endpoint.herokuapp.com/
     redirect_to_online_reg_url: true
     require_age_confirmation: true
     languages:
