@@ -1,110 +1,93 @@
 @import 'base';
 
-.state-va {
-
-  &.oldui {
-        
-    #main, body.new-mobile-ui #main {
+#main, body.new-mobile-ui #main {
+  
+  form {
+    ul.checkbox {
+      li {
+        margin-bottom: .5em;
+        h3 {
+          height: auto;
+        }
+      }
+    }
+    ul.radio {
+      li {
+        h3 {
+          float: none;
+          text-align: left;
+          width: auto;
+          color: #757575;
+          height: auto;
+          font-size: 16px;
+          line-height: 1.4em;
+          margin: 1em 0;
+        }
+      }
+    }
+    .radio-buttons {
+      label {
+        display: block;
+        height: 40px;
+        input {
+          display: inline-block;
+          width: auto;
+          height: 1em;
+          margin-right: 5px;
+          margin-left: 20px;
+        }
+      }
+    }
+    fieldset.phone {
+      margin-top: 2em;
+    }
+    ul {
+      li.registrant-form__required-checkbox {
+        width: 90%;
+        margin-right: 10%;
+        @media(max-width: 600px) {
+          width: 100%;
+          margin-right:0;
+        }
+      }
       
-      form {
-        ul.checkbox {
-          li {
-            margin-bottom: .5em;
-            h3 {
-              height: auto;
-            }
-          }
+      li.registrant-form__confirm_voter_record_update__line {
+        @media(max-width: 600px) {
+          width: 100%;
         }
-        ul.radio {
-          li {
-            h3 {
-              float: none;
-              text-align: left;
-              width: auto;
-              color: #757575;
-              height: auto;
-              font-size: 16px;
-              line-height: 1.4em;
-              margin: 1em 0;
-            }
-          }
+      }
+      
+      li.registrant-form__name-suffix__line {
+        @media(max-width: 600px) {
+          margin-left: 0;
         }
-        .radio-buttons {
-          label {
-            display: block;
-            height: 40px;
-            input {
-              display: inline-block;
-              width: auto;
-              height: 1em;
-              margin-right: 5px;
-              margin-left: 20px;
-            }
-          }
+      }
+      
+      li.registrant-form__ssn__line,  li.registrant-form__dln__line {
+        margin-top: 2em;
+        @media(max-width: 600px) {
+          h3 {
+            height: 50px;
+          }          
         }
-        fieldset.phone {
-          margin-top: 2em;
+        .error {
+          height: auto;
+          line-height: 1.5em;
+          white-space: normal;
+          padding: .5em 0;
         }
-        ul {
-          li.registrant-form__required-checkbox {
-            width: 90%;
-            margin-right: 10%;
-            @media(max-width: 600px) {
-              width: 100%;
-              margin-right:0;
-            }
-          }
-          
-          li.registrant-form__confirm_voter_record_update__line {
-            @media(max-width: 600px) {
-              width: 100%;
-            }
-          }
-          
-          li.registrant-form__name-suffix__line {
-            @media(max-width: 600px) {
-              margin-left: 0;
-            }
-          }
-          
-          li.registrant-form__ssn__line,  li.registrant-form__dln__line {
-            margin-top: 2em;
-            @media(max-width: 600px) {
-              h3 {
-                height: 50px;
-              }          
-            }
-            .error {
-              height: auto;
-              line-height: 1.5em;
-              white-space: normal;
-              padding: .5em 0;
-            }
-            width: auto;
-            div input {
-              width: auto;
-            }
-          }
+        width: auto;
+        div input {
+          width: auto;
         }
-        
       }
     }
-
-    #main p.notice {
-      line-height: 1.6em;
-      font-size: 14px;
-    }
+    
   }
+}
 
-  &.newui2020 {
-
-    @media (max-width: 600px) {
-
-      #main form ul li.registrant-form__name-suffix__line {
-        margin-left:0px;
-      }
-    }
-
-  }
+#main p.notice {
+  line-height: 1.6em;
+  font-size: 14px;
 }
 
