@@ -43,8 +43,9 @@ module ApplicationHelper
           stylesheets << 'registration3'
         else
           stylesheets << 'registration2'
+          stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
         end
-        stylesheets << "states/#{registrant.home_state_abbrev.downcase}"        
+                
       else
         newregcss = @use_newui2020 ? 'registration3' : 'registration2'
         stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : newregcss)
@@ -71,16 +72,26 @@ module ApplicationHelper
     stylesheets = []
     if !partner || !partner.replace_system_css?
       if registrant && registrant.use_state_flow? && !registrant.skip_state_flow? 
-        stylesheets << "application"
-        stylesheets << (@use_newui2020 ? 'registration3' : 'registration2')
-        stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
+        if @use_newui2020
+          stylesheets << 'registration3';
+        else
+          stylesheets << "application"
+          stylesheets << 'registration2'
+          stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
+        end
+        
       elsif partner && registrant && !registrant.use_short_form?
         stylesheets << (wl && partner.application_css_present? ? partner.application_css_url : "application")
         stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
       else
         # Partners can't upload reg2 - just part2 and either keep the default reg2 or mark as reaplce_system_css
-        stylesheets << "application"
-        stylesheets << (@use_newui2020 ? 'registration3' : 'registration2')
+        if @use_newui2020
+          stylesheets << "registration3"
+        else
+          stylesheets << "application"
+          stylesheets << 'registration2'
+        end
+        
       end
     end
     # event with replace_system_css, keep the locale specific ones

@@ -112,10 +112,18 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       self.req_main_email.present? ? self.req_main_email : self.vr_main_email,
       self.req_main_phone.present? ? self.req_main_phone : self.vr_main_phone,
       " ",
-      self.full_req_address.present? ? self.full_req_address : self.full_vr_address,
-      
+      self.full_req_address.present? ? self.full_req_address : self.full_vr_address,      
       
     ]
+  end
+
+  def full_req_contact_info_hash
+    {
+      website: self.req_website.present? ? self.req_website : self.vr_website,
+      email: self.req_main_email.present? ? self.req_main_email : self.vr_main_email,
+      phone: self.req_main_phone.present? ? self.req_main_phone : self.vr_main_phone,
+      address: self.full_req_address.present? ? self.full_req_address : self.full_vr_address,   
+    }
   end
   
   

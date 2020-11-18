@@ -3,6 +3,6 @@
   %legend
     %span= I18n.t('txt.registration.name_display')
     = tooltip_tag :registrant_name
-  = @registrant.full_name
+  %p= @registrant.full_name
 - if !@registrant.finish_with_state_eligible? || skip_state_ovr
   = render partial: 'step2/previous_name_block', locals: { form: form }

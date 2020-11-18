@@ -38,10 +38,8 @@
   = render partial: 'state_registrants/pa/header'
 
   %ul.flat
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
+    = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
   
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__will-be-18-by-election__line", required: true, require_accepted: true}
-
     = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
 
   %fieldset#has_penndot_set.block-selector

@@ -59,17 +59,13 @@
 
 <div id="preparing_content">
   <h1><%= I18n.t('txt.registration.preparing_application') %></h1>
-  <div class="download" style="position:relative">
-    <div>
-      <h2 class="spaced_out"><%= I18n.t('txt.registration.instructions.download') %></h2>
-      <h2 class="preparing"><%= I18n.t('txt.registration.preparing_header') %></h2>
-    </div>
-    <p class="preparing"><%= image_tag "reg/spinner.gif" %></p>
-    <p><%= I18n.t('txt.registration.instructions.download_2') %></p>
-  </div>
+  <h2 class="spaced_out"><%= I18n.t('txt.registration.instructions.download') %></h2>
+  <p><%= I18n.t('txt.registration.preparing_header') %></p>
+  <p class="spinner"><%= image_tag "reg/spinner.gif" %></p>
+  <p><%= I18n.t('txt.registration.instructions.download_2') %></p>  
 </div>
 <div id="download_button_content" style="display:none;">
-  <%= render partial: "download_button"%>
+  <%= render partial: "download_button_newui2020"%>
 </div>
 
 

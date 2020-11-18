@@ -61,6 +61,12 @@ class BallotStatusCheck < ActiveRecord::Base
         RockyConf.absentee_states[state_abbrev]&.abr_status_check_url
     end
   end
+  
+  def abr_track_ballot_url
+    if state_abbrev
+        RockyConf.absentee_states[state_abbrev]&.abr_track_ballot_url
+    end
+  end
 
   def leo_lookup_url
     if state_abbrev

@@ -37,7 +37,6 @@
 
   - if @registrant.use_short_form?
     %ul.checkbox.checkbox-step-1
-      %li.spacer= "&nbsp;"
       %li.registrant-form__us-citizen__line
         %h3
           = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
@@ -88,7 +87,7 @@
     = render(:partial => 'previous', :locals => {:form => form}) unless @registrant.first_registration?
     %ul.flat
       = render :partial=> "registrants/phone", :locals=>{:form=>form}
-    -#%hr
+    
     = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)
   
   .back

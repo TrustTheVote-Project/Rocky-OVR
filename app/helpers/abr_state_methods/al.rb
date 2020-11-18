@@ -12,7 +12,7 @@ module AbrStateMethods::AL
     "WorkPhone": {},
     "chkGeneralElection": {
       options: ["General", "Off"],
-      value: "General"
+      value: "Off"
     },
     "chkPrimaryElection": {
       options: ["Primary", "Off"],
@@ -24,7 +24,10 @@ module AbrStateMethods::AL
     },
     "chkSpecialElection": {
       options: ["Special", "Off"],
-      value: "Off"
+      value: "Special"
+    },
+    "txtSpecialOther": {
+      value: "03/02/2021"
     },
     "chkPriDem": {
       options: ["On", "Off"],

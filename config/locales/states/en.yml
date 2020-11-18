@@ -1442,7 +1442,7 @@ en:
           finalpage_additional_instructions:  
           header: Absentee Requests In Mississippi
           instructions: |-
-            <p>Mississippi requires all absentee requests to be completed directly through the statePlease check with your Circuit or Municipal Clerk to determine if you are entitled to vote by an absentee ballot and to learn the procedures for doing so.     If you know you will vote by an absentee ballot, you may contact your Circuit or Municipal Clerk’s Office at any time within 45 days of the election.</p>
+            <p>Mississippi requires all absentee requests to be completed directly through the state. Please check with your Circuit or Municipal Clerk to determine if you are entitled to vote by an absentee ballot and to learn the procedures for doing so.     If you know you will vote by an absentee ballot, you may contact your Circuit or Municipal Clerk’s Office at any time within 45 days of the election.</p>
             <p>Mississippi lists the following as qualifying reasons to request and absentee ballot:</p>
             <ul>
               <li>moved there from within thirty (30) days of the coming presidential election. </li>
@@ -2563,6 +2563,10 @@ en:
         voter_classification: Voter Classification
         protected_voter: I am providing a Virginia P.O. Box to protect my residence
           address from public disclosure because
+        step_2_header: Your Basic Info
+        step_2_subheader: We need to let the state know who you are and to check your
+          eligibility
+        step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
         by_paper_header: Review &amp; Confirm
         voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE

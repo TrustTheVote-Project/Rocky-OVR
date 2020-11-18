@@ -1,72 +1,75 @@
-- content_for :head do
-  :javascript
-    $(document).ready(function() {
-      $('#javascript_disabled').remove();
-      
-      function toggleSsn() {
-        if ($("#state_registrants_va_registrant_confirm_no_ssn:checked").length > 0 ) {
-          $(".registrant-form__ssn__line").hide();
-        } else {
-          $(".registrant-form__ssn__line").show();
+- if @use_newui2020 
+  = render partial: 'state_registrants/va/step_3_newui2020' 
+- else
+  - content_for :head do
+    :javascript
+      $(document).ready(function() {
+        $('#javascript_disabled').remove();
+        
+        function toggleSsn() {
+          if ($("#state_registrants_va_registrant_confirm_no_ssn:checked").length > 0 ) {
+            $(".registrant-form__ssn__line").hide();
+          } else {
+            $(".registrant-form__ssn__line").show();
+          }
+        }        
+        $("#state_registrants_va_registrant_confirm_no_ssn").click(toggleSsn)
+        toggleSsn();      
+
+        function toggleDln() {
+          if ($("#state_registrants_va_registrant_confirm_no_dln:checked").length > 0 ) {
+            $(".registrant-form__dln__line").hide();
+          } else {
+            $(".registrant-form__dln__line").show();
+          }
+        }        
+        $("#state_registrants_va_registrant_confirm_no_dln").click(toggleDln)
+        toggleDln();      
+        
+        function toggleRightToVoteRestored() {
+          if ($("#state_registrants_va_registrant_convicted_of_felony_true:checked").length > 0 ) {
+            $(".right-to-vote-restored").show();
+          } else {
+            $(".right-to-vote-restored").hide();
+          }
         }
-      }        
-      $("#state_registrants_va_registrant_confirm_no_ssn").click(toggleSsn)
-      toggleSsn();      
+        $("#state_registrants_va_registrant_convicted_of_felony_true, #state_registrants_va_registrant_convicted_of_felony_false").click(toggleRightToVoteRestored)
+        toggleRightToVoteRestored();
+        
+      });
 
-      function toggleDln() {
-        if ($("#state_registrants_va_registrant_confirm_no_dln:checked").length > 0 ) {
-          $(".registrant-form__dln__line").hide();
-        } else {
-          $(".registrant-form__dln__line").show();
-        }
-      }        
-      $("#state_registrants_va_registrant_confirm_no_dln").click(toggleDln)
-      toggleDln();      
+
+  = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+    = render partial: 'state_registrants/locale_selector', locals: {form: form }
+    = render partial: 'state_registrants/va/header'
+    
+    .declaration-text= t('states.custom.va.privacy_notice').html_safe
+    
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_affirm_privacy_notice, class_name: "registrant-form__confirm-affirm-privacy-notice__line", required: true}
       
-      function toggleRightToVoteRestored() {
-        if ($("#state_registrants_va_registrant_convicted_of_felony_true:checked").length > 0 ) {
-          $(".right-to-vote-restored").show();
-        } else {
-          $(".right-to-vote-restored").hide();
-        }
-      }
-      $("#state_registrants_va_registrant_convicted_of_felony_true, #state_registrants_va_registrant_convicted_of_felony_false").click(toggleRightToVoteRestored)
-      toggleRightToVoteRestored();
+
+    %fieldset#ssn_set
+      %ul.flat.ssn
+        = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 11, maxlength: 11} })
+        
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_ssn, class_name: "registrant-form__no-ssn__line", required: false}
       
-    });
-
-
-= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
-  = render partial: 'state_registrants/locale_selector', locals: {form: form }
-  = render partial: 'state_registrants/va/header'
-  
-  .declaration-text= t('states.custom.va.privacy_notice').html_safe
-  
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_affirm_privacy_notice, class_name: "registrant-form__confirm-affirm-privacy-notice__line", required: true}
-    
-
-  %fieldset#ssn_set
-    %ul.flat.ssn
-      = field_li(form, :ssn, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 11, maxlength: 11} })
+    %fieldset#dln-set
+      %ul.flat.dln
+        = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
       
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_ssn, class_name: "registrant-form__no-ssn__line", required: false}
-    
-  %fieldset#dln-set
-    %ul.flat.dln
-      = field_li(form, :dln, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
-    
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__no-ssn__line", required: false}
-    
-    
-  %fieldset.convicted-of-felony
-    %ul.stacked.radio
-      = field_li(form, :convicted_of_felony, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__no-ssn__line", required: false}
+      
+      
+    %fieldset.convicted-of-felony
+      %ul.stacked.radio
+        = field_li(form, :convicted_of_felony, {skip_tooltip: true, required: true, radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
 
-  %fieldset.right-to-vote-restored
-    %ul.stacked.radio
-      = field_li(form, :right_to_vote_restored, {skip_tooltip: true, required: true, radio_options: [[t("no"), false], [t("yes"), true]]})
-  
+    %fieldset.right-to-vote-restored
+      %ul.stacked.radio
+        = field_li(form, :right_to_vote_restored, {skip_tooltip: true, required: true, radio_options: [[t("no"), false], [t("yes"), true]]})
+    
 
-  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
-  .back    
-    = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)
+    = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
+    .back    
+      = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

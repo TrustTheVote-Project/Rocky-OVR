@@ -112,13 +112,16 @@ en-newui2020:
           state or to register to vote if I am not yet registered with Virginia
         confirm_us_citizen: I am a US citizen
         ssn: Social Security Number
+        has_ssn: I have a Social Security Number
         confirm_no_ssn: No SSN was ever issued.
         dln: Virginia DMV Identifier or Customer Number
+        has_dln: I have a Virginia DMV Identifier or Customer Number
         confirm_no_dln: 'I do not have a Virginia Identifier or Customer #'
         name_title: Title
         first_name: First Name
         middle_name: Middle
         confirm_no_middle_name: I do not have a middle name.
+        has_middle_name: I have a middle name.
         last_name: Last Name
         name_suffix: Suffix
         registration_address_1: Address Line 1
@@ -285,7 +288,7 @@ en-newui2020:
         home_state_abbrev: State
         has_mailing_address: I get my mail at a different address from the one above.
         has_state_license: Do you have a License or ID number?
-        will_be_18_by_election: I will be 18 or older by the next election.
+        will_be_18_by_election: Will you be 18 or older by the next election?
         mailing_address: Address
         mailing_unit: 'Unit/Lot #'
         mailing_city: City

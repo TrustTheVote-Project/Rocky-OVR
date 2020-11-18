@@ -933,10 +933,11 @@ body {
       ul {
         li {
           @media(min-width: $main-width + 1) {
-            &.registrant-form__first-name__line {
+            &.registrant-form__first-name__line, &.registrant-form__email-address__line {
               width: 48%;
+              margin-right: 2%;
             }
-            &.registrant-form__last-name__line {
+            &.registrant-form__last-name__line, &.registrant-form__phone__line {
               width: 50%;
               margin-right: 0;
             }

@@ -8,7 +8,10 @@ class RegistrantValidator < ActiveModel::Validator
     reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
     reg.validates_format_of :email_address, :with => Authlogic::Regex::EMAIL, :allow_blank => true
     validate_email(reg)
-    reg.validates_presence_of :phone_type if reg.has_phone?
+    
+    if reg.at_least_step_2?
+      reg.validates_presence_of :phone_type if reg.has_phone?
+    end
 
      if reg.at_least_step_1?
       reg.validates_presence_of     :partner_id #, :unless=>[:remote_partner_id_present?]
@@ -28,12 +31,14 @@ class RegistrantValidator < ActiveModel::Validator
 
       if @use_newui2020
         reg.validates_inclusion_of  :has_state_license, :in=>[true,false] unless reg.building_via_api_call?
+        reg.validates_inclusion_of  :will_be_18_by_election, :in=>[true,false] unless reg.building_via_api_call?
         reg.validates_presence_of   :name_title
         reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
         reg.validates_presence_of   :first_name unless reg.building_via_api_call?
         reg.validates_presence_of   :last_name
         reg.validates_inclusion_of  :name_suffix, :in => Registrant::SUFFIXES, :allow_blank => true
       end
+      puts("CTW:"+ reg.errors.full_messages.to_s)
 
     end
     

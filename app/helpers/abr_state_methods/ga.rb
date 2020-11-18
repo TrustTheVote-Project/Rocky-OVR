@@ -57,7 +57,7 @@ module AbrStateMethods::GA
     },
 
     "Date of P/E/R": {
-      value: "11/03/2020"
+      value: "01/05/2021"
     },
     #"type_of_ballot": {
     "Group1": {

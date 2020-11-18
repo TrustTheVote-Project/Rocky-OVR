@@ -1,0 +1,14 @@
+- tooltip ||= nil
+- field_label ||= nil
+- class_name ||= ''
+- require_accepted ||= nil
+- require_accepted_message ||= false
+
+- if require_accepted
+  - require_accepted_message ||= require_accept_message_for(form.object, field).html_safe
+
+
+%fieldset{:id =>"#{field}_set", :class=>'block-selector'}
+  =checkbox_block_selector form, field, "#{(field_label || form.object.class.human_attribute_name(field).html_safe)}".html_safe, tooltip, {required: required}
+
+ 
