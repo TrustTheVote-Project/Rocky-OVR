@@ -1,38 +1,44 @@
-@import 'base';
-
 .state-pa {
 
-  #main {
+  #main_inner {
     
 
     form {
       
       ul, ul.flat {
-        li.registrant-form__penndot-number__line, li.registrant-form__ssn4__line {
-          .error {
-            height: auto;
-            line-height: 1.5em;
-            white-space: normal;
-            padding: .5em 0;
+        li {
+          &.registrant-form__home-address__line {
+            width: 100%;
+            margin-right: 0;
           }
-        }
-        li.registrant-form__penndot-number__line {
-          width: auto;
-          input {
+
+          &.registrant-form__home-unit-type__line {
+            width: calc(50% - #{$mr});
+            margin-right: $mr;
+          }
+          &.registrant-form__home-unit-number__line {
+            width: 50%;
+          }
+
+          &.registrant-form__penndot-number__line, li.registrant-form__ssn4__line {
+            .error {
+              height: auto;
+              line-height: 1.5em;
+              white-space: normal;
+              padding: .5em 0;
+            }
+          }
+          &.registrant-form__penndot-number__line {
             width: auto;
+            input {
+              width: auto;
+            }
           }
+
         }
+        
       }    
     }
   }
 
-  .declaration-text {
-    border: 1px solid #e6e6e6;
-    background: #f6f6f6;
-    padding: 15px;
-    strong {
-      font-size: 20px;
-      font-weight: bold;
-    }
-  }
 }

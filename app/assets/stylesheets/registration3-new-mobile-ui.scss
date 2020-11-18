@@ -39,6 +39,7 @@ body.new-mobile-ui {
       
       bottom: 0px;
       height: 62px;
+      padding-top: 6px;
       left: 0;
       right: 0;
       width: 100%;
@@ -46,6 +47,7 @@ body.new-mobile-ui {
       justify-content: center;
       .back, .next {
         margin: 0px 10px;
+        padding: 0;
       }
       .button {
         margin: 12px auto;
@@ -89,7 +91,7 @@ body.new-mobile-ui {
   
 
   #sticky_footer {
-    margin: 400px auto 0 auto;
+    margin: 0px auto 0 auto;
   }
 }
 

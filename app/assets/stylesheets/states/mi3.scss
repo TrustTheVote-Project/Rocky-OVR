@@ -1,18 +1,6 @@
-@import "_base";
-
 .state-mi {
 
   @media (min-width: 600px) {
-    li {
-      float:left;
-      margin-right:3%;
-    }
-    .checkbox input {
-      width: initial !important;
-    }
-    .registrant-form__date-of-birth__line input {
-      width: initial !important;
-    }
     #main {
       form {
         ul.mi-address-options {
@@ -31,15 +19,15 @@
           li {
             &.registrant-form__home-address-number__line {
               width: 20%;
-              margin-right: 3%;
+              margin-right: $mr;
             }
             &.registrant-form__home-address-street-name__line {
-              width: 30%;
-              margin-right: 3%;
+              width: calc(47% - #{3 * $mr});
+              margin-right: $mr;
             }
             &.registrant-form__home-address-street-type__line {
               width: 20%;
-              margin-right: 3%;
+              margin-right: $mr;
             }
             &.registrant-form__home-address-post-directional__line {
               width: 13%;

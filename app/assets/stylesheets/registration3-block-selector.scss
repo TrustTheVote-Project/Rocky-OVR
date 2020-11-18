@@ -3,7 +3,12 @@
     margin: 16px 0;
     border: $input-border;
     padding: 16px;
-
+    
+    //Nested block selectors don't get inner box
+    .block-selector {
+      border: none; 
+      padding: 0
+    }
     &__checkbox-field {
       h3 {
         font-weight: bold;
