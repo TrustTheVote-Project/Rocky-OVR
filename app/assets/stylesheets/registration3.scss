@@ -463,12 +463,60 @@ body {
   }
 }
 
+/* CTW additions */
+
+#main_inner .declaration-text {
+  background-color: #F5EEDD;
+  padding:10px;
+  margin:20px;
+  line-height:1.5;
+}
+
+
+#main_inner form ul.checkbox li h3 {
+  align-items:normal; /* checkbox aligned to top of text*/
+}
+
+#main_inner form ul.checkbox label {
+  width:calc(100% - 30px); /* make room for checkbox*/
+}
+
+div.error {
+    clear: both;
+    display: block;
+    width: 100%;
+    color: $red;
+    text-transform: none;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    margin: 4px 0;
+    font-weight: normal;
+}
+
+#main {
+  form  {
+    .block-selector .block-selector { 
+      border: none; 
+      padding: 0
+    }
+  }
+}
+
 @import 'registration3-block-selector';
 
 @import 'registration3-mobile';
 @import 'registration3-new-mobile-ui';
 @import 'registration3-signature-capture';
+@import 'registration3-review';
 
 body.abr-page {
   @import 'abr-page';
 }
+
+p.dummy-modified {
+    width:42px;
+}
+
+@import 'states/pa3.scss';
+@import 'states/mi3.scss';
+@import 'states/va3.scss';

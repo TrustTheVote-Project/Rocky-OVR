@@ -615,4 +615,71 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   def has_ssn?
     !self.confirm_no_ssn?
   end
+
+  def has_ssn
+    case self.confirm_no_ssn
+      when true
+        return false
+      when false
+       return true
+      when nil
+        return nil
+    end
+  end
+
+  def has_dln
+    case self.confirm_no_dln
+      when true
+        return false
+      when false
+       return true
+      when nil
+        return nil
+    end
+  end
+
+  def has_middle_name
+    case self.confirm_no_middle_name
+      when true
+        return false
+      when false
+       return true
+      when nil
+        return nil
+    end
+  end
+
+  def has_ssn= (val)
+    case val
+      when true,1,"1"
+        self.confirm_no_ssn=false
+      when false,0,"0"
+        self.confirm_no_ssn=true
+      when nil
+        self.confirm_no_ssn = nil
+    end
+  end
+
+  def has_dln= (val)
+    case val
+      when true,1,"1"
+        self.confirm_no_dln=false
+      when false,0,"0"
+        self.confirm_no_dln=true
+      when nil
+        self.confirm_no_dln = nil
+    end
+  end
+
+  def has_middle_name= (val)
+    case val
+      when true,1,"1"
+        self.confirm_no_middle_name=false
+      when false,0,"0"
+        self.confirm_no_middle_name=true
+      when nil
+        self.confirm_no_middle_name = nil
+    end
+  end
+
 end

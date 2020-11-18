@@ -3,7 +3,8 @@ class MIRegistrantValidator < ActiveModel::Validator
   VALIDATABLE_ATTRS = StateRegistrants::MIRegistrant.attribute_names
   
   def validate(reg)
-    
+    @use_newui2020 = reg.ab_tests.detect { |t| t.name==AbTest::NEW_UI_2020 }&.assignment == AbTest::NEW
+
     reg.validates_format_of VALIDATABLE_ATTRS, with: Registrant::DB_REGEX
     
     if !reg.phone.blank?
@@ -16,23 +17,33 @@ class MIRegistrantValidator < ActiveModel::Validator
       #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
     end
     if reg.at_least_step_1?
-      reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
-      reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
-      reg.validates_acceptance_of  :is_30_day_resident, :accept=>true
+
+      reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true,:allow_nil=>false
+      reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true,:allow_nil=>false
+      reg.validates_acceptance_of  :is_30_day_resident, :accept=>true,:allow_nil=>false
+
+
       if !reg.registration_cancellation_authorized
         reg.errors.add(:registration_cancellation_authorized, I18n.t('states.custom.mi.custom_errors.registration_cancellation_authorized', url: reg.skip_state_flow_registrant_path).html_safe)
       end
+
       if !reg.digital_signature_authorized
         reg.errors.add(:digital_signature_authorized, I18n.t('states.custom.mi.custom_errors.digital_signature_authorized', url: reg.skip_state_flow_registrant_path).html_safe)
       end
-      
+        
+
       if reg.updated_dln_recently != false
         reg.errors.add(:updated_dln_recently, I18n.t('states.custom.mi.custom_errors.updated_dln_recently', url: reg.skip_state_flow_registrant_path).html_safe)
       end
+
       if reg.requested_duplicate_dln_today != false
         reg.errors.add(:requested_duplicate_dln_today, I18n.t('states.custom.mi.custom_errors.requested_duplicate_dln_today', url: reg.skip_state_flow_registrant_path).html_safe)
       end
+
+
+
       
+     
     end
 
     if reg.at_least_step_2?
@@ -51,6 +62,9 @@ class MIRegistrantValidator < ActiveModel::Validator
       end
       reg.validates_format_of :ssn4, with: /\A\d{4}\z/, allow_blank: true
       reg.validates_presence_of :eye_color_code
+
+
+
     end
     
     if reg.at_least_step_3?

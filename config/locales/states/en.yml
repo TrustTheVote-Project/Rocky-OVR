@@ -2563,6 +2563,10 @@ en:
         voter_classification: Voter Classification
         protected_voter: I am providing a Virginia P.O. Box to protect my residence
           address from public disclosure because
+        step_2_header: Your Basic Info
+        step_2_subheader: We need to let the state know who you are and to check your
+          eligibility
+        step_3_header: You're Almost Done!
         step_4_header: Review &amp; Confirm
         by_paper_header: Review &amp; Confirm
         voter_fraud_warning: "<p><strong>WARNING: INTENTIONALLY VOTING MORE THAN ONCE

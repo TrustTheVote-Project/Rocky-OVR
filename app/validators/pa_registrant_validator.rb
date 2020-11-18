@@ -103,7 +103,7 @@ class PARegistrantValidator < ActiveModel::Validator
 
       if @use_newui2020 
         reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
-        reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true
+        reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true, :allow_nil=>false
       
         reg.validate_date_of_birth
 

@@ -30,6 +30,8 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     SMC: "STUDENT MAILING CENTER",
     TH: "TOWNHOUSE"
   }
+
+  delegate :full_name, to: :registrant
   
   COUNTIES =%w(ADAMS ALLEGHENY ARMSTRONG BEAVER BEDFORD BERKS BLAIR BRADFORD BUCKS BUTLER CAMBRIA CAMERON CARBON CENTRE CHESTER CLARION CLEARFIELD CLINTON COLUMBIA CRAWFORD CUMBERLAND DAUPHIN DELAWARE ELK ERIE FAYETTE FOREST FRANKLIN FULTON GREENE HUNTINGDON INDIANA JEFFERSON JUNIATA LACKAWANNA LANCASTER LAWRENCE LEBANON LEHIGH LUZERNE LYCOMING MCKEAN MERCER MIFFLIN MONROE MONTGOMERY MONTOUR NORTHAMPTON NORTHUMBERLAND PERRY PHILADELPHIA PIKE POTTER SCHUYLKILL SNYDER SOMERSET SULLIVAN SUSQUEHANNA TIOGA UNION VENANGO WARREN WASHINGTON WAYNE WESTMORELAND WYOMING YORK)
   
@@ -599,6 +601,28 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
        src.unlink   # deletes the temp file
        dst.close
        dst.unlink   # deletes the temp file
+    end
+  end
+  
+  def has_penndot
+    case self.confirm_no_penndot_number
+      when true
+        return false
+      when false
+       return true
+      when nil
+        return nil
+    end
+  end
+
+  def has_penndot= (val)
+    case val
+      when true,1,"1"
+        self.confirm_no_penndot_number=false
+      when false,0,"0"
+        self.confirm_no_penndot_number=true
+      when nil
+        self.confirm_no_penndot_number = nil
     end
   end
   
