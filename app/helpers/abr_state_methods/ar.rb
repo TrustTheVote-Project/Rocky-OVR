@@ -26,7 +26,7 @@ module AbrStateMethods::AR
     },
     "Election": {
       options: ["All_Elections_In_Federal_Cycle", "All_Elections_In_One_Year", "Annual_School", "General", "Nonpartisan_General", "Off", "Preferential_Primary", "Special_Election"],
-      value: "Nonpartisan_General" 
+      value: "Annual_School" 
       #right?
     },
     "Mailing_Address_1": { method: "delivery_ballot_address_1" },
