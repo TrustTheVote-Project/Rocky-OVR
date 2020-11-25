@@ -40,37 +40,37 @@ module AbrStateMethods::NY
     #(signature of witness to mark)
     #Date (Applicant Marked)
     #Mark: (Applicant mark in lieu of signature)
-    "street number (General (or Special) Election Ballot Mailing Address)":{ 
+    "mailing_address_street_number_general":{ 
       method:"override_street_number"
     },
-    "street name (General (or Special) Election Ballot Mailing Address)":{ 
+    "street_name_general":{ 
       method:"override_street_name"
     },
-    "apartment (General (or Special) Election Ballot Mailing Address)":{ 
+    "apartment_general":{ 
       method:"override_unit"
     },
-    "city (General (or Special) Election Ballot Mailing Address)":{ 
+    "city_general":{ 
       method:"override_city"
     },
-    "state (General (or Special) Election Ballot Mailing Address)":{ 
+    "state_general":{ 
       method:"override_home_state_abbrev"
     },
-    "zip code (General (or Special) Election Ballot Mailing Address)":{ 
+    "zip_general":{ 
       method:"override_zip"
     },
-    "I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": {},
+    "authorized_recipient_name_general": {},
     "apartment (Residence)": {
       method: "unit"
     },
     "reason": {
-      options: ["absence_from_country", "detention", "permanent_illness", "primary_care", "temporary_illness", "va_resident"]
+      options: ["absence", "caregiver", "patient", "permanent_illness", "prisoner", "temporary_illness"]
     },
-    "election": {
-      options: ["any", "general", "primary", "special"],
-      value: "general"
-    },
-    "deliver_general_ballot": {
-      options: ["general_in_person", "general_mail", "general_to_proxy"]
+    "general_only": { options: ["Off", "Yes"], value: "Off" },
+    "special_only": { options: ["Off", "Yes"], value: "Yes" },
+    "primary_only": { options: ["Off", "Yes"], value: "Off" },
+    "any_election": { options: ["Off", "Yes"], value: "Off" },
+    "delivery_general": {
+      options: ["authorized_recipient", "in_person", "mail"]
     },
     #"voter_signature"
   }
@@ -80,39 +80,18 @@ module AbrStateMethods::NY
   def form_field_items
     [
       {"reason": {type: :radio, required: true}},
-      {"deliver_general_ballot": {type: :radio, required: true}},
-      {"I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections": {visible: "deliver_general_ballot_general_to_proxy", required: "star"}}, # :is_visible throws err
-      {"has_mailing_address": {type: :checkbox, visible: "deliver_general_ballot_general_mail"}},
-      # TODO mailing address only applies when "deliver_general_ballot" == "general_mail". checkbox should be hidden when "general_mail" not selected and "mail_*" fields should not be populated.
+      {"delivery_general": {type: :radio, required: true}},
+      {"authorized_recipient_name_general": {visible: "delivery_general_authorized_recipient", required: "star"}}, # :is_visible throws err
+      {"has_mailing_address": {type: :checkbox, visible: "delivery_general_mail"}},
       {"mail_street_number": {visible: "has_mailing_address",required: "star", classes: "quarter"}},
       {"mail_street_name": {visible: "has_mailing_address",required:"star", classes: "half"}},
       {"mail_unit": {visible: "has_mailing_address", classes: "quarter last"}},
       {"mail_city": {visible: "has_mailing_address", required: "star", classes: "half"}},
       {"mail_state": {visible: "has_mailing_address", required: "star", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"mail_zip": {visible: "has_mailing_address",required:"star", classes: "quarter last"}},
-      # This was removed in previous merge; ask Alex
-      #{"witness": {type: :checkbox}},
-      #{"(address of witness to mark)": {visible: "witness"}},
     ]
   end
-  #e.g.
-  # [
-  #   {"reason_instructions": {type: :instructions}}, *"reason_instructions" does NOT get put into EXTRA_FIELDS
-  #   {"County": {type: :select, required: true, include_blank: true, options: [
-  #     "Adams",
-  #   ]}},
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
   
-
   def override_field_value(override, fieldname1, fieldname2) 
     if (override) 
       #return self.send("#{self.class.make_method_name(fieldname2)}") 
@@ -128,7 +107,7 @@ module AbrStateMethods::NY
   end
 
   def conditional_set_and_override_mailing_address_field (fieldname1, fieldname2) 
-    if self.deliver_general_ballot()=="general_mail"
+    if self.delivery_general == "mail"
       return override_mailing_address_field(fieldname1, fieldname2)
     end
   end
@@ -179,8 +158,8 @@ module AbrStateMethods::NY
     end
 
     #if deliver by proxy, require proxy
-    if self.deliver_general_ballot == "general_to_proxy"
-      custom_validates_presence_of("I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections")
+    if self.delivery_general == "authorized_recipient"
+      custom_validates_presence_of("authorized_recipient_name_general")
     end
     
   end
