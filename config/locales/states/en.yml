@@ -1925,12 +1925,11 @@ en:
         abr_form_fields:
           county where you live: County where you live
           has_mailing_address: My mailing address differs from my residential address.
-          deliver_general_ballot: 'Delivery of General Election Ballot (check one):'
-          deliver_general_ballot__options:
-            general_in_person: Please deliver to me in person at the board of elections.
-            general_mail: Please mail my ballot to my residential or mailing address
-              if applicable.
-            general_to_proxy: I authorize the following person to pick up my ballot
+          delivery_general: 'Delivery of General (or Special) Election Ballot (check one):'
+          delivery_general__options:
+            in_person: Deliver to me in person at the board of elections.
+            mail: Mail ballot to me
+            authorized_recipient: I authorize the following person to pick up my ballot
               at the board of elections.
           apartment (General (or Special) Election Ballot Mailing Address): Apt
           street number (General (or Special) Election Ballot Mailing Address): Street
@@ -1948,18 +1947,17 @@ en:
           mail_zip: Zip
           witness: Due to an illness, disability, or inability to read, voter is unable
             to sign and requires a witness.
-          "(address of witness to mark)": Address of witness
-          'I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections': Name
-            of proxy
+          "address_mark_witness": Address of witness
+          authorized_recipient_name_general: Name of authorized recipient
           reason: 'I am requesting, in good faith, an absentee ballot due to (check
             one reason):'
           reason__options:
-            absence_from_country: Absent from your county or, if a resident of New York City absent from the five boroughs, on Election Day.
-            detention: Detained in jail awaiting Grand Jury action or confined in prison after conviction for an offense other than a felony.
-            permanent_illness: Unable to appear at the polls due to permanent illness or disability. 
-            primary_care: Unable to appear because you are the primary care giver of one or more individuals who are ill or physically disabled.
-            temporary_illness: Unable to appear at the polls due to temporary illness or physical disability  (temporary illness includes being unable to appear due to risk of contracting or spreading a communicable disease like COVID-19). 
-            va_resident: A resident or patient of a Veterans Health Administration Hospital
+            absence: absence from county or New York City on election day
+            temporary_illness: temporary illness or physical disability
+            permanent_illness: permanent illness or physical disability
+            caregiver: duties related to primary care of one or more individuals who are ill or physically disabled
+            patient: resident or patient of a Veterans Health !dministration Hospital
+            prisoner: detention in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony
       oh:
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
