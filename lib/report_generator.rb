@@ -15,7 +15,8 @@ class ReportGenerator
   def self.voteready_fields
     %w(id 
       locale 
-      partner_id 
+      partner_id
+      partner_name
       uid 
       date_of_birth_year
       date_of_birth_month
@@ -70,6 +71,7 @@ class ReportGenerator
     t = DateTime.now
     self.generate_24hr_registrants(t)
     self.generate_partners(t, 24)
+    self.generate_voteready_registrants
   end
   
   def self.generate_24hr_registrants(t)
@@ -102,11 +104,11 @@ class ReportGenerator
     end
   end
   
-  def self.generate_voteready_registrants
+  def self.generate_voteready_registrants(start_time = nil, end_time = nil)
     distribute_reads(failover: false) do
-      t2 = Time.now.beginning_of_hour - 1.day
-      t1 = t2 - 24.hours
-      registrants = Registrant.where(status: "complete").where("created_at >= ? AND created_at < ?", t1, t2).includes(:home_state, :prev_state, :mailing_state)
+      t2 = end_time || Time.now.beginning_of_hour - 1.day
+      t1 = start_time || t2 - 24.hours
+      registrants = Registrant.where(status: "complete").where("created_at >= ? AND created_at < ?", t1, t2).includes(:home_state, :prev_state, :mailing_state, :partner)
       csv_str = CSV.generate do |csv|
         csv << self.voteready_fields + %w(alloy_person_id permanent_absentee registration_status registration_date submitted_registration_date registration_changed_date)
         registrants.find_each do |r|
