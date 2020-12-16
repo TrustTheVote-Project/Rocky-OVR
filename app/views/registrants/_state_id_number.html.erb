@@ -15,7 +15,7 @@
         <%= render partial: 'registrants/date_of_birth', :locals=>{:form=>form} %>
       <%- end %>
     </ul>
-    <div class="instructions instructions--state-id-number"><p><%= @state_id_tooltip %></p></div>
+    <div class="instructions instructions--state-id-number"><p><%= @state_id_tooltip.html_safe %></p></div>
 
 <%- if include_race_and_party %>
   <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
