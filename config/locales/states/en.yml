@@ -3159,6 +3159,11 @@ en:
           the last four digits of your social security number. If you have neither,
           please write "NONE" on the form. A unique identifying number will instead
           be assigned to you by your State.
+        washington: |-
+          You must provide your Washington driver’s license or ID card number. If you do 
+          not have a Washington driver's license or ID card, you must provide the last 
+          four digits of your Social Security Number. <u>Failure to provide this information 
+          may prevent your registration from being processed.</u>
         wisconsin: |-
           Provide your unexpired Wisconsin driver license or DOT-issued ID
           card number. If you do not have a current and valid DOT-issued driver license
@@ -3441,9 +3446,9 @@ en:
         before the election
       vermont: received by 5pm on the Wednesday before the election
       washington: |-
-        postmarked by the Monday four weeks before the election, or received
-        in person at the county elections department the Monday one week before the
-        election
+        Online and mail registration forms must be received by an elections official no 
+        later than 8 days before the election. Register in person any time during business 
+        hours and before 8:00 p.m. on Election Day.
       postmarked_11_days: postmarked 11 days before the election
       postmarked_14_days: postmarked 14 days before the election
       postmarked_20_days: postmarked 20 days before the election
