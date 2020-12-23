@@ -8,6 +8,8 @@ Rocky::Application.routes.draw do
   match "/registrants/map/:state_abbrev", to: "registrants#new", via: :get
   match "/absentee", to: "abrs#new", via: :get
   match "/lookup", to: "catalist_lookups#new", via: :get
+  match "/trackballot", to: "ballot_status_checks#new", via: :get
+  match "/trackballot/:zip", to: "ballot_status_checks#zip", via: :get, as: :ballot_status_check_zip
   match "/share", to: "registrants#share", via: :get
   
   match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
@@ -25,6 +27,8 @@ Rocky::Application.routes.draw do
       get 'set_partner'
     end
   end
+
+  resources "trackballot", only: [:new, :create], controller: "ballot_status_checks", as: :ballot_status_checks
   
   match "/absentee/timeout", :to => "abr_timeouts#index", :as=>'abr_timeout', via: :get
   
@@ -85,6 +89,8 @@ Rocky::Application.routes.draw do
       post "canvassing_shift_report"
       post "grommet_registrant_report"
       post "grommet_shift_report"
+      post "abr_report"
+      post "lookup_report"
       get "reports"
       get "download_csv"
       get "embed_codes"

@@ -115,14 +115,25 @@ module AbrPdfMethods
     Rails.root.join("data/abr_pdfs/#{abbrev}/#{pdf_template_name}")
   end
 
+  def pdf_template_with_cover_filename
+    pdf_template_name.gsub(/\.pdf\z/, '_with_cover.pdf')
+  end
+
+  def pdf_template_with_cover_path
+    return nil unless has_pdf_template?
+    abbrev = home_state_abbrev.downcase
+    Rails.root.join("data/abr_pdfs/#{abbrev}/#{pdf_template_with_cover_filename}")
+  end
+
   def pdf_writer
     return nil unless has_pdf_template?
     if @pdf_writer.nil?
       @pdf_writer = PdfAbrWriter.new
       @pdf_writer.assign_attributes(self.to_pdf_hash)
+      @pdf_writer.pdf_cover_values = make_cover_fields_hash 
       
       @pdf_writer.pdf_template_path = pdf_template_path
-      @pdf_writer.delivery_address = state_registrar_address
+      @pdf_writer.pdf_template_with_cover_path = pdf_template_with_cover_path
       @pdf_writer.voter_signature = voter_signature
       @pdf_writer.signature_pdf_field_name = signature_pdf_field_name
       @pdf_writer.deliver_to_elections_office_via_email = deliver_to_elections_office_via_email?

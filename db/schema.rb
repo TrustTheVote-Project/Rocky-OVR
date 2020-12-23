@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200929202144) do
+ActiveRecord::Schema.define(version: 20201029141725) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -130,6 +130,27 @@ ActiveRecord::Schema.define(version: 20200929202144) do
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
   add_index "admins", ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
 
+  create_table "ballot_status_checks", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "zip"
+    t.string   "phone"
+    t.integer  "partner_id"
+    t.string   "tracking_source"
+    t.string   "tracking_id"
+    t.string   "uid"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_opt_in_sms"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "ballot_status_checks", ["partner_id"], name: "bsc_partners"
+  add_index "ballot_status_checks", ["uid"], name: "index_ballot_status_checks_on_uid"
+
   create_table "blocks_form_dispositions", force: :cascade do |t|
     t.integer  "grommet_request_id"
     t.string   "registrant_id"
@@ -246,6 +267,17 @@ ActiveRecord::Schema.define(version: 20200929202144) do
   add_index "catalist_lookups", ["email"], name: "index_catalist_lookups_on_email"
   add_index "catalist_lookups", ["partner_id"], name: "index_catalist_lookups_on_partner_id"
   add_index "catalist_lookups", ["state_id"], name: "index_catalist_lookups_on_state_id"
+
+  create_table "catalist_lookups_registrants", force: :cascade do |t|
+    t.string   "registrant_uid"
+    t.integer  "catalist_lookup_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "catalist_lookups_registrants", ["catalist_lookup_id"], name: "index_catalist_lookups_registrants_on_catalist_lookup_id"
+  add_index "catalist_lookups_registrants", ["registrant_uid", "catalist_lookup_id"], name: "registrants_catalist_join_index"
+  add_index "catalist_lookups_registrants", ["registrant_uid"], name: "index_catalist_lookups_registrants_on_registrant_uid"
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",                    default: 0
@@ -905,11 +937,11 @@ ActiveRecord::Schema.define(version: 20200929202144) do
 
   create_table "zip_code_county_addresses", force: :cascade do |t|
     t.integer  "geo_state_id"
-    t.string   "zip",                 limit: 255
-    t.string   "address",             limit: 255
-    t.text     "county",              limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "zip",                     limit: 255
+    t.string   "address",                 limit: 255
+    t.text     "county",                  limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.text     "cities"
     t.text     "unacceptable_cities"
     t.datetime "last_checked"
@@ -925,6 +957,26 @@ ActiveRecord::Schema.define(version: 20200929202144) do
     t.string   "req_city"
     t.string   "req_state"
     t.string   "req_zip"
+    t.string   "vr_contact_email"
+    t.string   "vr_contact_phone"
+    t.string   "req_contact_email"
+    t.string   "req_contact_phone"
+    t.string   "vr_contact_office_name"
+    t.string   "vr_contact_title"
+    t.string   "vr_contact_first_name"
+    t.string   "vr_contact_last_name"
+    t.string   "vr_contact_suffix"
+    t.string   "vr_website"
+    t.string   "req_contact_office_name"
+    t.string   "req_contact_title"
+    t.string   "req_contact_first_name"
+    t.string   "req_contact_last_name"
+    t.string   "req_contact_suffix"
+    t.string   "req_website"
+    t.string   "vr_main_phone"
+    t.string   "vr_main_email"
+    t.string   "req_main_phone"
+    t.string   "req_main_email"
   end
 
   add_index "zip_code_county_addresses", ["geo_state_id"], name: "index_zip_code_county_addresses_on_geo_state_id"

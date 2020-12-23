@@ -13,7 +13,7 @@
       %br
       %br
       %h3 Select an Organization
-      = select_tag :sub_org, options_for_select(@sub_orgs.keys), include_blank: true
+      = select_tag :blocks_turf_id, options_for_select(@sub_orgs.collect{|so| [so.name, so.turf_id]}), include_blank: true
     = rollover_button(:next, "Next") #I18n.t('txt.button.submit').html_safe
     
   %p

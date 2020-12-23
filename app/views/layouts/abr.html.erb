@@ -10,16 +10,19 @@
   <meta property="og:title" content="Rock the Vote" />
   <meta property="og:description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
   <meta property="og:site_name" content="Rock the Vote" />
-  <meta property="og:image" content="https://www.rockthevote.org/wp-content/uploads/assets/v4/images/rock-the-vote-yo.jpg" />
-  <meta property="og:image:secure_url" content="https://www.rockthevote.org/wp-content/uploads/assets/v4/images/rock-the-vote-yo.jpg" />
+  <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
+  <meta property="og:image:secure_url" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
   <meta name="twitter:title" content="Online Ballot Request" />
   <meta name="twitter:site" content="@rockthevote" />
-  <meta name="twitter:image" content="https://www.rockthevote.org/wp-content/uploads/assets/v4/images/rock-the-vote-yo.jpg" />
+  <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta name="twitter:creator" content="@rockthevote" />
+  <%- unless controller.action_name == "new" %>
+    <meta name="robots" content="noindex" />
+  <%- end %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
@@ -36,6 +39,7 @@
 
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
+  <%= stylesheet_link_tag 'select2.min' %>
   <%= stylesheet_link_tag *partner_css %>
   <!--[if !IE 7]>
     <style type="text/css">
@@ -49,6 +53,11 @@
       setTimeout('revealErrors();', 400);
     });
   </script>
+
+  <%- if @abr && @abr.state_custom_javascript? %>
+    <%= javascript_include_tag "abr_states/#{@abr.home_state_abbrev.to_s.downcase}.js" %>
+  <%- end %> 
+
   <%= yield :head %>
 </head>
 

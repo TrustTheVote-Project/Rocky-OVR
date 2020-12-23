@@ -11,7 +11,9 @@ class Abr < ActiveRecord::Base
   include RegistrantAbrMethods
   include AbrPdfMethods
   include AbrPdfFields
+  include AbrPdfCoverFields
   include AbrSignatureMethods
+  include AbrReportingMethods
 
   has_one :voter_signature, autosave: true
   AbrSignatureMethods::METHODS.each do |vs_attribute|

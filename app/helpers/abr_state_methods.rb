@@ -167,6 +167,10 @@ module AbrStateMethods
     custom_validation_message(field_name, "format", I18n.t("errors.messages.format"))
   end
 
+  def custom_format_message_pattern(field_name)
+    custom_validation_message(field_name, "format_pattern", I18n.t("errors.messages.format"))
+  end
+
   def custom_validates_presence_of(f)
     errors.add(self.class.make_method_name(f), custom_required_message(f)) if self.send(self.class.make_method_name(f)).blank?
   end
@@ -260,6 +264,12 @@ module AbrStateMethods
         # pp e.backtrace
         # raise e
       end
+    end
+  end
+
+  def state_custom_javascript?
+    if (!self.home_state_abbrev.blank?) 
+      return File.exists?(File.join(Rails.root, 'app/assets/javascripts/abr_states/', "#{self.home_state_abbrev.to_s.downcase}.js"))
     end
   end
   

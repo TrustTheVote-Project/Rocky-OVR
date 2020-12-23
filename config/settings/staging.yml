@@ -16,29 +16,35 @@ ui_timeout_minutes: 5
 blocks_configuration:
   default_turf_id: 416
   default_location_id: 266
-  default_staging_location_id: 267
+  default_staging_location_id: 19000000003
   shift_length: 1
   url: https://svtesting.blocks.work
   partners:
     26292:
       turf_id: 19000000023
       canvasser_id: 19000000022
-      location_id: 19000000002
-      staging_location_id: 19000000003
+      location_id: 2000002091
+      staging_location_id: 594
     991:
+      states:
+        - NV
+      url: https://svdemo.blocks.im
       bulk_submit: false
+      submit_forms: false
+      staging_location_id: 758
       sub_orgs:
-        Test Org 2: 417
-        Test Org 3: 424
-      canvasser_id: 129
-      location_id: 266
-      staging_location_id: 267
+        - name: Org 1
+          turf_id: 171
+          staging_location_id: 758
+        - name: Org 2
+          turf_id: 172
+          staging_location_id: 758
 
 mail_with_esig:
-  states:
-    MN: 
-      allow_desktop_signature: true
-      state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
+  states: {}
+    # MN: 
+    #   allow_desktop_signature: true
+    #   state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
   partners:
     - 2 
 

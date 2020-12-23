@@ -6,8 +6,10 @@ class Report < ActiveRecord::Base
   GROMMET_REGISTRANTS_REPORT="grommet_registrants_report".freeze
   REGISTRANTS_REPORT="registrants_report".freeze
   REGISTRANTS_REPORT_EXTENDED="registrants_report_extended".freeze
+  ABR_REPORT = "abr_report".freeze
+  LOOKUP_REPORT = "lookup_report".freeze
   QUEUE_NAME = "reports".freeze
-  THRESHOLD = 100
+  THRESHOLD = 500
   
   
   SHIFT_REPORT_HEADER = [
@@ -78,6 +80,10 @@ class Report < ActiveRecord::Base
       return "Registrants Report Extended"
     when CANVASSING_SHIFT_REPORT
       return "Canvassing Shift Report"
+    when ABR_REPORT
+      return "Absentee Requests Report"
+    when LOOKUP_REPORT
+      return "Voter Lookups Report"
     end
   end
   
@@ -268,6 +274,78 @@ class Report < ActiveRecord::Base
   
   
   
+
+
+  def abr_report_csv_header
+    Abr::CSV_HEADER
+  end
+  
+  def abr_report_conditions    
+    conditions = [[]]
+    if start_date
+      conditions[0] << " abrs.created_at >= ? "
+      conditions << start_date
+    end
+    if end_date
+      conditions[0] << " abrs.created_at < ? "
+      conditions << end_date + 1.day
+    end
+    conditions[0] = conditions[0].join(" AND ")
+    return conditions
+  end
+  
+  def abr_report_selector
+    @abr_report_selector ||= partner.abrs.where(abr_report_conditions)
+  end
+    
+  def generate_abr_report(start=0, csv_method=:to_csv_array)
+    distribute_reads(failover: false) do
+      return CSV.generate do |csv|
+        selector.order(:id).offset(start).limit(THRESHOLD).each do |abr|
+          csv << abr.send(csv_method)
+        end
+      end
+    end
+  end
+
+
+
+  def lookup_report_csv_header
+    CatalistLookup::CSV_HEADER
+  end
+  
+  def lookup_report_conditions    
+    conditions = [[]]
+    if start_date
+      conditions[0] << " catalist_lookups.created_at >= ? "
+      conditions << start_date
+    end
+    if end_date
+      conditions[0] << " catalist_lookups.created_at < ? "
+      conditions << end_date + 1.day
+    end
+    conditions[0] = conditions[0].join(" AND ")
+    return conditions
+  end
+  
+  def lookup_report_selector
+    @lookup_report_selector ||= partner.catalist_lookups.where(lookup_report_conditions)
+  end
+    
+  def generate_lookup_report(start=0, csv_method=:to_csv_array)
+    distribute_reads(failover: false) do
+      return CSV.generate do |csv|
+        selector.includes(abrs_catalist_lookup: [:abr], catalist_lookups_registrant: []).order(:id).offset(start).limit(THRESHOLD).each do |lookup|
+          csv << lookup.send(csv_method)
+        end
+      end
+    end
+  end
+
+
+
+
+
   
   def registrants_report_csv_header
     Registrant::CSV_HEADER
@@ -322,7 +400,7 @@ class Report < ActiveRecord::Base
       va_registrants = {}
       StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       mi_registrants = {}
-      StateRegistrants::MIRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MIRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
 
       
       return CSV.generate do |csv|
