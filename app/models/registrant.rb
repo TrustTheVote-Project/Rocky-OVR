@@ -1969,6 +1969,10 @@ class Registrant < ActiveRecord::Base
     end
   end
 
+  def partner_name
+    partner&.organization
+  end
+
   def partner_survey_question_1
     locale.blank? ? "" : partner.send("survey_question_1_#{locale}")
   end
