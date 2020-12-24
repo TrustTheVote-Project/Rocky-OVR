@@ -1,10 +1,12 @@
 #!/bin/bash
 whoami
+sudo su ec2-user
 
 # curl http://169.254.169.254/latest/meta-data/ ?
 IFS='_' read -ra ENV_ROLE <<< "$DEPLOYMENT_GROUP_NAME"
 RAILS_ENV="${ENV_ROLE[0]}"
 SERVER_ROLE="${ENV_ROLE[1]}"
+
 
 cd /var/www/rocky
 printenv
