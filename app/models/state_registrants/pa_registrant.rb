@@ -481,7 +481,9 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       "phone" => "phone",
       "party" => "party",
       "race"  => "race",
-      "locale"  => "locale"
+      "locale"  => "locale",
+      "survey_answer_1" => "survey_answer_1",
+      "survey_answer_2" => "survey_answer_2"
     }
   end
   

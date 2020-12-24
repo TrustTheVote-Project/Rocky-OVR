@@ -130,8 +130,7 @@
       = render :partial=> 'registrants/phone_opt_ins', :locals=>{:form=>form, :show_hr=>true}
       = render :partial=> 'registrants/email_opt_ins', :locals=>{:form=>form}
     
-      - unless @registrant.skip_state_flow?
-        = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+      = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
 
     - if  @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       .use_state_registration
