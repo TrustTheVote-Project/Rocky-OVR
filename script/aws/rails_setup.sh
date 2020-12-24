@@ -1,4 +1,5 @@
 #!/bin/bash
+whoami
 
 # curl http://169.254.169.254/latest/meta-data/ ?
 IFS='_' read -ra ENV_ROLE <<< "$DEPLOYMENT_GROUP_NAME"
