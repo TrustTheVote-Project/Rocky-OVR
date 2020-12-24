@@ -1,6 +1,4 @@
 #!/bin/bash
-whoami
-sudo su ec2-user
 
 # curl http://169.254.169.254/latest/meta-data/ ?
 IFS='_' read -ra ENV_ROLE <<< "$DEPLOYMENT_GROUP_NAME"
@@ -9,14 +7,11 @@ SERVER_ROLE="${ENV_ROLE[1]}"
 
 
 cd /var/www/rocky
-printenv
 
-source /etc/profile.d/rvm.sh
+#source /etc/profile.d/rvm.sh
 #rvm install 2.4.1
-
-which rvm 
-rvm --version
-rvm use ruby-2.4.1@rocky8 --create
+#rvm --version
+#rvm use ruby-2.4.1@rocky8 --create
 gem install bundler -v 1.16.3
 # Make sure JAVA envs are loaded
 . /home/ec2-user/.bash_profile    
