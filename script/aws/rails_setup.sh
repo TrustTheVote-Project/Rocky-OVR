@@ -7,16 +7,9 @@ RAILS_ENV="${ENV_ROLE[0]}"
 SERVER_ROLE="${ENV_ROLE[1]}"
 
 cd /var/www/rocky
-echo $0
-echo $SHELL
-ps  -ef | grep $$ | grep -v grep
-which rvm
-rvm --version
 source /etc/profile.d/rvm.sh
 #rvm install 2.4.1
-echo $0
-echo $SHELL
-ps  -ef | grep $$ | grep -v grep
+echo $PATH
 which rvm 
 rvm --version
 rvm use ruby-2.4.1@rocky8 --create
