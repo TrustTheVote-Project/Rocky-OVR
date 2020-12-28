@@ -285,7 +285,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     begin
       result = JSON.parse(response.to_s)
     rescue
-      raise "Can't parse response as JSON #{response.to_s}"
+      raise "Can't parse VA response as JSON: #{response.to_s}"
     end
     if result["IsProtected"]
       set_protected_voter!
@@ -471,7 +471,7 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     begin
       result = JSON.parse(response)
     rescue
-      raise "Can't parse response as JSON #{response.to_s}"
+      raise "Can't parse VA response as JSON: #{response.to_s}"
     end
     
     # TODO - what is the response actually like??
