@@ -97,7 +97,12 @@ class Api::V5::PartnersController < Api::V5::BaseController
           volunteer_messages[l] = I18n.t('txt.registration.volunteer', organization: partner.organization, locale: l)
         end
         
-        locations = CanvassingShift.location_options(partner)
+        locations = nil
+        begin 
+          locations = CanvassingShift.location_options(partner) 
+        rescue
+          locations = nil
+        end
         if locations.blank?
           locations = [["Default Location", 0]]
         end
