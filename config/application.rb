@@ -67,7 +67,7 @@ module Rocky
       g.ensure(true) { |ex| env['rack.errors'].write(ex.message) }
     end
     
-    config.middleware.insert_before ActionDispatch::ParamsParser, "CatchJsonParseErrors"
+    #config.middleware.insert_before ActionDispatch::ParamsParser, "CatchJsonParseErrors"
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -81,7 +81,7 @@ module Rocky
     # This will create an empty whitelist of attributes available for mass-assignment for all models
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
-    config.active_record.whitelist_attributes = false
+    # config.active_record.whitelist_attributes = false
 
     # Enable the asset pipeline
     config.assets.enabled = true

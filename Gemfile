@@ -1,17 +1,17 @@
-ruby "2.4.1"
+ruby "2.7.2"
 
 source 'http://rubygems.org'
 
-gem "rake", "12.3.3"
+gem "rake"
 
 gem "excon", ">= 0.71.0"
 
 gem "figaro"
 gem "config"
 
-gem "rails", "= 4.2.11.3"
+gem "rails", "= 5.2.4.4"
 
-gem 'protected_attributes'
+#gem 'protected_attributes'
 
 gem "aasm", "= 4.12.3"
 
@@ -24,13 +24,13 @@ gem 'rack-robustness'
 
 gem "authlogic", "= 4.3.0"
 gem 'daemons', '~> 1.1.9'
-gem "paperclip", "~> 5.3.0"
+gem "paperclip" #, "~> 5.3.0"
 gem 'mysql2', '~> 0.3.18'
 
 gem 'distribute_reads'
 
 
-gem "rubyzip", '~> 1.3.0'
+gem "rubyzip" #, '~> 1.3.0'
 gem 'zip-zip'
 
 gem "dotenv-rails", '~> 0.7.0'
@@ -64,14 +64,14 @@ group :development, :test do
   #gem 'pry'
   gem 'spring-commands-rspec'
   gem "spring-commands-cucumber"
-  gem "rspec-rails", "~> 3.9"
+  gem "rspec-rails"
   gem 'rspec-collection_matchers'
   gem 'rspec-activemodel-mocks'
   gem 'capybara'
   
   gem "rr", "= 0.10.11"
   
-  gem "cucumber-rails", "1.4.2", :require=>false
+  gem "cucumber-rails", :require=>false
   gem "webrat"
   gem "factory_girl_rails", :require=>false
   gem "database_cleaner"
@@ -104,14 +104,14 @@ group :test do
   gem "webmock"
 end
 
-  gem 'therubyracer'
+#  gem 'therubyracer'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
 
-gem "nokogiri", ">= 1.10.8"
+gem "nokogiri" #, ">= 1.10.8"
 
-gem "mechanize", "= 2.7.1"
+gem "mechanize" #, "= 2.7.1"
 gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
 
 gem 'json'
