@@ -56,7 +56,7 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def self.location_options(partner, turf_id: nil)
-    b = BlocksService.new(partner: partner)
+    b = begin BlocksService.new(partner: partner) rescue nil end;
     locations_list = []
     locations = begin b.get_locations(turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
