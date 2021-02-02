@@ -111,7 +111,7 @@ end
 
 gem "nokogiri", ">= 1.10.8"
 
-gem "mechanize", "= 2.7.1"
+gem "mechanize", "2.7.7"
 gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
 
 gem 'json'
