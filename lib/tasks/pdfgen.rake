@@ -8,6 +8,12 @@ namespace :pdf do
     end
   end
 
+  desc "Pre-Generate ABR PDF templates with cover pages"
+  task :generate_abr_cover_pages => :environment do
+    AbrPdfCoverPageMerger.run
+  end
+
+
   # Removed these PdfGeneration methods, not tested
   # desc "Empty the queue"
   # task :dequeue => :environment do

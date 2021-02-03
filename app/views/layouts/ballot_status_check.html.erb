@@ -3,20 +3,20 @@
 
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Online Ballot Request</title>
-  <meta name="description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
+  <title>Check Your Ballot Status</title>
+  <meta name="description" content="Check your ballot status now." />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Rock the Vote" />
-  <meta property="og:description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
+  <meta property="og:description" content="Check your ballot status now." />
   <meta property="og:site_name" content="Rock the Vote" />
   <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:secure_url" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
-  <meta name="twitter:title" content="Online Ballot Request" />
+  <meta name="twitter:description" content="Check your ballot status now." />
+  <meta name="twitter:title" content="Check Your Ballot Status" />
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta name="twitter:creator" content="@rockthevote" />
@@ -39,7 +39,6 @@
 
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
-  <%= stylesheet_link_tag 'select2.min' %>
   <%= stylesheet_link_tag *partner_css %>
   <!--[if !IE 7]>
     <style type="text/css">
@@ -53,15 +52,10 @@
       setTimeout('revealErrors();', 400);
     });
   </script>
-
-  <%- if @abr && @abr.state_custom_javascript? %>
-    <%= javascript_include_tag "abr_states/#{@abr.home_state_abbrev.to_s.downcase}.js" %>
-  <%- end %> 
-
   <%= yield :head %>
 </head>
 
-<body class="abr-page <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
   <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
@@ -73,22 +67,16 @@
       <div id="header">
         <% end -%>
         <div class='header-text'>
-          <%- if @abr && @abr.home_state_abbrev %>
-          <%= I18n.t("states.custom.#{@abr.i18n_key}.request_absentee_ballot_in", default: I18n.t('txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev))%>
-          <%- else%>
-          <%= t 'txt.request_absentee_ballot' %>
+          <%- if @bsc && @bsc.state_abbrev %>
+            <%= t 'txt.check_ballot_in', state_abbrev: @bsc.state_abbrev %>
+          <%- else %>
+            <%= t 'txt.check_ballot' %>
           <%- end %>
-        </div>
-        <div id="progress-bar">
-          <ol>
-            <li class="progress-title"><%= t('txt.registration.progress_indicator').html_safe %></li>
-            <%= progress_indicator(@num_steps).html_safe %>
-          </ol>
         </div>
       </div>
 
-      <div id="main" class="abr">
-        <div id="main_inner" class="step_<%= controller.current_step %>">
+      <div id="main" class="ballot-status-check">
+        <div id="main_inner">
           <%= flash_messages.html_safe %>
 
           <%= yield %>

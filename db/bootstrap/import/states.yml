@@ -309,7 +309,7 @@ record_20:
   sos_url: http://elections.maryland.gov/voter_registration/index.html
   registration_deadline: postmarked_21_days
   id_length_min: '4'
-  online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/VoterType
+  online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1?val=rock
 record_21:
   abbreviation: MA
   name: Massachusetts
@@ -694,7 +694,7 @@ record_47:
   name: Washington
   requires_party: false
   party_tooltip: washington
-  id_number_tooltip: drivers_license_with_state_name_2
+  id_number_tooltip: washington
   sos_address: State Elections Division<br>520 Union Ave SE<br>P.O. Box 40229<br>Olympia,
     WA 98504-0230
   sos_phone: "(360) 902-4180"

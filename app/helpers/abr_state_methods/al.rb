@@ -12,7 +12,7 @@ module AbrStateMethods::AL
     "WorkPhone": {},
     "chkGeneralElection": {
       options: ["General", "Off"],
-      value: "General"
+      value: "Off"
     },
     "chkPrimaryElection": {
       options: ["Primary", "Off"],
@@ -24,7 +24,10 @@ module AbrStateMethods::AL
     },
     "chkSpecialElection": {
       options: ["Special", "Off"],
-      value: "Off"
+      value: "Special"
+    },
+    "txtSpecialOther": {
+      value: "03/02/2021"
     },
     "chkPriDem": {
       options: ["On", "Off"],
@@ -217,7 +220,7 @@ module AbrStateMethods::AL
       {"chkReason9": {type: :checkbox}},
       {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
       {"Drivers_License_State": {visible: "identification_dln_yes", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Drivers_License_Number": {visible: "identification_dln_yes", min:1, max:16}},
+      {"Drivers_License_Number": {visible: "identification_dln_yes", min:1, max:16, ui_regexp:'^.*$'}},
       {"SSN_last_4": {min: 4, max: 4, visible: "identification_dln_no"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Street_Address_1": {visible: "has_mailing_address"}},

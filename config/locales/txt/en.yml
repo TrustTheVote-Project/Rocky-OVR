@@ -1,6 +1,18 @@
 ---
 en:
   txt:
+    ballot_status_check:
+      step_1_header: ""
+      step_1_instructions: ""
+      voted_by_mail: "If you voted absentee/by mail:"
+      voted_provisionally: "If you voted with a provisional ballot in person:"
+      voted_provisionally_text: If you used a provisional ballot, you should immediately reach out to your election official to resolve any questions and ensure your vote is counted. You can find their contact information below.
+      check_with_state_url: <p>First, check your ballot status on 
+        your <a href="%{url}" target="_blank" rel="noopener">state's website</a>.</p><p>If your ballot was rejected, you should immediately reach out to your election official to resolve any issues. You can find their contact information below.</p>
+      no_state_url: <p>To check if your ballot has been accepted or rejected, reach out to your election official immediately. You can find their contact information below.</p>
+      contact_info: "Your election official's contact information:"
+      check_with_state_leo: <p>To check if your ballot has been accepted, reach out to your election 
+        official. Here's their contact information:</p><p>%{leo_contact_info}</p>
     lookup:
       step_1_header: ""
       step_1_instructions: <p>Not sure if you're registered to vote? Take one minute and verify your voter registration status today.</p>
@@ -19,6 +31,13 @@ en:
       last_update: <p>If you registered to vote or updated your registration recently, we might not have the most up-to-date
         information. <b>Our last update from %{state} was on %{date}.</b> <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results</p>
     abr:
+      deadline_passed_header: ""
+      deadline_passed_instructions: <p>The deadline for requesting an absentee/mail ballot in %{state} for the Nov. 3 general election has passed. 
+        If you are voting absentee/by mail, %{state_instructions}</p><p>You can also check your state’s in-person voting options at <a href="https://www.rockthevote.org">rockthevote.org</a>.</p>
+      deadline_passed_state_instructions:
+        url: you can look up your status by using your state's <a href="%{url}">online tool</a>.
+        leo_contact_info: you can check with your local election official at</p><p>%{leo_contact_info}</p>
+        leo_lookup_url: you can find your local election office at <a href="%{leo_lookup_url}">%{leo_lookup_url}</a>
       step_1_header: ''
       step_1_instructions: "<p>Request your absentee ballot now to vote from the ease
         and safety of your home.</p><br/><br/>"
@@ -119,6 +138,8 @@ en:
     request_absentee_ballot: Request An Absentee Ballot
     check_voter_status_in: Check Voter Status In %{state_abbrev}
     check_voter_status: Check Voter Status
+    check_ballot_in: Check Your Ballot Status In %{state_abbrev}
+    check_ballot: Check Your Ballot Status
     unknown_error: 'Unknown error: the web administrators have been contacted.'
     error: Something went wrong.
     try_again: Go back and try again.
@@ -127,8 +148,10 @@ en:
       cancel: Cancel
       text_me: Send SMS
       email_me: Send Email
+      next: Next
       submit: Next Step
       lookup: Look Up Your Registration
+      trackballot: Check Ballot Status
       edit: Edit
       back: "&lt; Previous Step"
       download: Print your registration form now
