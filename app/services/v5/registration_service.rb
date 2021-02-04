@@ -152,6 +152,33 @@ module V5
       return []
     end
     
+    def self.create_mi_registrant(orig_data)
+      orig_data = ActiveSupport::HashWithIndifferentAccess.new(orig_data)
+      data = orig_data.deep_dup
+      email_address = data.delete(:email)
+      partner_id = data.delete(:partner_id)
+      registration_zip_code = data.delete(:registration_zip_code)
+      shift_id = data.delete(:shift_id)
+      incomplete = data.delete(:incomplete)
+      phone_type = data.delete(:phone_type)
+      r = Registrant.new({
+        locale: 'en',
+        email_address: email_address,
+        partner_id: partner_id,
+        home_zip_code: registration_zip_code,
+        shift_id: shift_id,
+        phone_type: phone_type
+      })
+      r.save
+      sr = r.state_registrant
+      
+      sr.attributes = data
+      sr.status = incomplete ? 'step_1' : 'step_4'
+      
+      # process into Registrant fields
+      return sr
+    end
+
     def self.async_register_with_pa(registrant_id)
       registrant = Registrant.find_by_id(registrant_id)
       RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'PARegistrationRequest::Grommet', censor: PACensor) do

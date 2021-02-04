@@ -79,14 +79,15 @@ class AdminMailer < ActionMailer::Base
   def grommet_duplication(grommet_request)
     mail(
       subject:"[ROCKY GROMMET#{environment_subject}] Ignoring duplicate request from grommet",
-      body: "Grommet Request - #{grommet_request.id} - not processed due to duplicate request"
+      body: "Grommet Request for #{grommet_request.state} - #{grommet_request.id} - not processed due to duplicate request"
     )
   end
   
   def grommet_registration_error(error_list=[], registrant=nil)
     name = registrant ? "#{registrant.first_name} #{registrant.last_name}" : "(name not determined)"
-    req_id = registrant ? " request ID #{registrant.state_ovr_data["grommet_request_id"]} " : " (no req ID found)"
-    registrant_details = registrant ? "\nEvent Name: #{registrant.open_tracking_id}\nEvent Zip: #{registrant.tracking_id}\nCanvasser Namer: #{registrant.tracking_source}" : nil
+    req_id = registrant ? " request ID #{registrant.grommet_request_id} " : " (no req ID found)"
+    # TODO what data to include in email of reg details
+    registrant_details = "" #registrant ? "\nEvent Name: #{registrant.open_tracking_id}\nEvent Zip: #{registrant.tracking_id}\nCanvasser Namer: #{registrant.tracking_source}" : nil
     mail(
       subject:"[ROCKY GROMMET#{environment_subject}] Error validating request from grommet",
       body: "Registrant - #{name}#{req_id} - not registered due to validation error:#{registrant_details}\n\n#{error_list.join('\n')}"

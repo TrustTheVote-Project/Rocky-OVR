@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201029141725) do
+ActiveRecord::Schema.define(version: 20210204195828) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -354,6 +354,7 @@ ActiveRecord::Schema.define(version: 20201029141725) do
     t.text     "request_params"
     t.string   "request_hash",    limit: 255
     t.text     "request_headers"
+    t.string   "state"
   end
 
   add_index "grommet_requests", ["request_hash"], name: "index_grommet_requests_on_request_hash"
@@ -749,8 +750,15 @@ ActiveRecord::Schema.define(version: 20201029141725) do
     t.text     "registration_address_matches"
     t.boolean  "has_ssn",                               default: false
     t.boolean  "has_state_license",                     default: false
+    t.boolean  "volunteer",                             default: false
+    t.string   "original_survey_question_1"
+    t.string   "original_survey_question_2"
+    t.string   "survey_answer_1"
+    t.string   "survey_answer_2"
+    t.integer  "grommet_request_id"
   end
 
+  add_index "state_registrants_mi_registrants", ["grommet_request_id"], name: "mi_grommet_id"
   add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"
 
   create_table "state_registrants_pa_registrants", force: :cascade do |t|
@@ -801,8 +809,8 @@ ActiveRecord::Schema.define(version: 20201029141725) do
     t.string   "assistant_phone",                      limit: 255
     t.boolean  "confirm_assistant_declaration"
     t.boolean  "confirm_declaration"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.string   "registrant_id",                        limit: 255
     t.string   "locale",                               limit: 255
     t.string   "status",                               limit: 255
@@ -829,6 +837,11 @@ ActiveRecord::Schema.define(version: 20201029141725) do
     t.string   "abr_ballot_address_start_year"
     t.string   "abr_ward"
     t.boolean  "abr_declaration"
+    t.boolean  "volunteer",                                        default: false
+    t.string   "original_survey_question_1"
+    t.string   "original_survey_question_2"
+    t.string   "survey_answer_1"
+    t.string   "survey_answer_2"
   end
 
   add_index "state_registrants_pa_registrants", ["original_partner_id"], name: "pa_registrants_original_partner_id"
@@ -895,14 +908,19 @@ ActiveRecord::Schema.define(version: 20201029141725) do
     t.boolean  "va_submission_complete"
     t.string   "va_transaction_id",               limit: 255
     t.text     "va_submission_error"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
     t.boolean  "has_mailing_address"
     t.boolean  "confirm_register_to_vote"
     t.string   "phone_type",                      limit: 255
     t.boolean  "partner_opt_in_sms"
     t.boolean  "partner_opt_in_email"
     t.boolean  "partner_volunteer"
+    t.boolean  "volunteer",                                   default: false
+    t.string   "original_survey_question_1"
+    t.string   "original_survey_question_2"
+    t.string   "survey_answer_1"
+    t.string   "survey_answer_2"
   end
 
   add_index "state_registrants_va_registrants", ["registrant_id"], name: "va_registrants_registrant_id"

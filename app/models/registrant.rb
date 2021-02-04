@@ -1038,7 +1038,8 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
-        #raise e
+        puts e.backtrace
+        raise e
         nil
       end
     else
@@ -1828,6 +1829,27 @@ class Registrant < ActiveRecord::Base
     ""
   end
   
+  def grommet_request_id=(val)
+    if existing_state_registrant
+      begin
+        existing_state_registrant.grommet_request_id=val
+      rescue        
+      end
+    else
+      self.state_ovr_data["grommet_request_id"] = gr_id
+    end
+  end
+
+  def grommet_request_id
+    if existing_state_registrant
+      begin
+        return existing_state_registrant.grommet_request_id
+      rescue 
+      end
+    end
+    return state_ovr_data && state_ovr_data["grommet_request_id"]
+  end
+
   def grommet_preferred_language
     self.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
   rescue

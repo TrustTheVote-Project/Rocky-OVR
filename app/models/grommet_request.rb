@@ -1,32 +1,53 @@
 class GrommetRequest < ActiveRecord::Base
   # attr_accessible :title, :body
-  
+  STATES = %w(PA MI)
+
   after_create :generate_request_hash
   
   serialize :request_params, Hash
   
   def generate_request_hash
+    if STATES.include?(self.state)
+      hash_key_method = "#{self.state.downcase}_hash_key"
+      hash_key = self.send(hash_key_method)
+      if hash_key
+        self.request_hash = Digest::MD5.hexdigest(hash_key) 
+        save(validate: false)
+      end
+    end
+  end
+    
+  def pa_hash_key
     params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
     if params["rocky_request"] && params["rocky_request"]["voter_records_request"]
       r = params["rocky_request"]["voter_records_request"]["voter_registration"]
       d = params["rocky_request"]["voter_records_request"]["generated_date"]
-      key = "#{d}-#{r}"
-      self.request_hash = Digest::MD5.hexdigest(key) 
-      puts key, request_hash
-      save(validate: false)    
+      return key = "#{d}-#{r}"      
     end
+    return nil
+  end
+
+  def mi_hash_key
+    params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
+    return "#{params["registration"]}"
   end
     
-    
   def is_duplicate?
-    self != self.class.where(request_hash: self.request_hash).order(:id).first
+    self != self.class.where(request_hash: self.request_hash, state: self.state).order(:id).first
   end
   
   def has_duplicates?
-    self.class.where(request_hash: self.request_hash).count > 1
+    self.class.where(request_hash: self.request_hash, state: self.state).count > 1
   end
   
   def resubmit
+    if STATES.include?(self.state)
+      method_name = "#{self.state.downcase}_resubmit"
+      self.send(method_name)
+    end
+  end
+
+  def pa_resubmit
     registrant = nil
     params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
     params = params.with_indifferent_access
@@ -83,11 +104,12 @@ class GrommetRequest < ActiveRecord::Base
   end
 
   def self.request_results_report_csv
-    # Only look at registrants within the last 4 months to narrow the scope. If want full scope, go back to March 29, 2018
+    # Only look at registrants within the last 4 months to narrow the scope.
+    # If want full scope, go back to March 29, 2018
     distribute_reads(failover: false) do
       start_date = 4.months.ago
       rs = Registrant.where("created_at > ?", start_date).where("state_ovr_data IS NOT NULL")
-      gs = GrommetRequest.where('created_at > ?', start_date + 2.days)
+      gs = GrommetRequest.where(state: "PA").where('created_at > ?', start_date + 2.days)
       r_reqs = {}
     
       dj_ids = Delayed::Job.all.pluck(:id)
@@ -99,7 +121,13 @@ class GrommetRequest < ActiveRecord::Base
           if dj_id && dj_ids.include?(dj_id)
             in_queue = "queued"
           end
-          r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.home_state_abbrev, in_queue, r.state_ovr_data["pa_transaction_id"], r.state_ovr_data["errors"]]
+          r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [
+            r.id, 
+            r.home_state_abbrev, 
+            in_queue, 
+            r.state_ovr_data["pa_transaction_id"], 
+            r.state_ovr_data["errors"]
+          ]
         end
       end
     

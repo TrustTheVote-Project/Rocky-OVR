@@ -60,7 +60,7 @@ class Api::V5::RegistrationsController < Api::V5::BaseController
     
     gr_id = nil
     begin
-      gr = GrommetRequest.create(request_params: params)
+      gr = GrommetRequest.create(state: "PA", request_params: params)
       gr_id = gr ? gr.id : nil
       
       # Also save request headers
@@ -138,15 +138,106 @@ class Api::V5::RegistrationsController < Api::V5::BaseController
     pa_error_result("Error building registrant: #{e.message}", registrant)
   end
 
+  
+
+  def create_mi
+    registrant = nil
+    params.delete(:debug_info)
+    
+    gr_id = nil
+    begin
+      gr = GrommetRequest.create(state: "MI", request_params: params)
+      gr_id = gr ? gr.id : nil
+      
+      # Also save request headers
+      headers = {}
+      request.headers.each do |k,v|
+        if !k.starts_with?('rack') && !k.starts_with?('action')
+          headers[k] = v
+        end
+      end
+      gr.request_headers = headers
+      gr.save(validate: false)
+      
+      if gr.is_duplicate?
+        # Send notification
+        AdminMailer.grommet_duplication(gr).deliver_now
+        return mi_success_result
+      end
+      
+    rescue Exception=>e
+      # raise e
+    end
+    
+    # Also create a CanvassingShiftGrommet request
+    begin
+      shift_id = params[:shift_id]
+      if gr_id && !shift_id.blank?
+        CanvassingShiftGrommetRequest.create(shift_external_id: shift_id, grommet_request_id: gr_id)
+      end
+    rescue Exception=>e
+      # alert?
+    end
+    
+    # 1. Build a rocky registrant record based on all of the fields
+    sr = V5::RegistrationService.create_mi_registrant(params[:registration])
+    registrant = sr.registrant
+    # 1a. do subsititutions for invalid chars
+    sr.registrant.basic_character_replacement!
+    sr.registrant.grommet_request_id = gr_id
+    
+    # 2.Check if the registrant is internally valid
+    if sr.valid? 
+      if sr.status == 'step_4'
+        sr.delay(
+          run_at: (Admin::GrommetQueueController.delay).hours.from_now, 
+          queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME
+        ).async_submit_to_online_reg_url
+        # If there are no errors, make the submission to MI
+        # This will commit the registrant with the response code
+        begin
+          sr.registrant.state_ovr_data["delayed_job_id"] = job.id
+          sr.save(validate: false)
+        rescue
+        end
+      end
+      
+      sr.save!
+      
+      mi_success_result
+    else
+      mi_error_result(sr.errors.full_messages, registrant)
+    end
+  rescue StandardError => e
+    mi_error_result("Error building registrant: #{e.message}", registrant)
+  end
+
+
+  def mi_success_result
+    grommet_success_result
+  end
+
   def pa_success_result
+    grommet_success_result
+  end
+
+  def grommet_success_result
     data = {
-        registration_success: true,
-        #errors: []
+      registration_success: true,
     }
     jsonp(data, :status => 200)
   end
 
   def pa_error_result(errors, registrant=nil)
+    grommet_error_result(errors, registrant)
+  end
+
+  def mi_error_result(errors, registrant=nil)
+    grommet_error_result(errors, registrant)
+  end
+
+
+  def grommet_error_result(errors, registrant=nil)
     if !errors.is_a?(Array)
       errors = [errors]
     end
@@ -163,17 +254,7 @@ class Api::V5::RegistrationsController < Api::V5::BaseController
     jsonp(data, :status => 200)
   end
 
-  def create_mi
-    mi_success_result
-  end
 
-  def mi_success_result
-    data = {
-        registration_success: true,
-        #errors: []
-    }
-    jsonp(data, :status => 200)
-  end
 
   def pdf_ready
     query = {
