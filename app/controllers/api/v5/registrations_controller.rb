@@ -184,12 +184,13 @@ class Api::V5::RegistrationsController < Api::V5::BaseController
     registrant = sr.registrant
     # 1a. do subsititutions for invalid chars
     sr.registrant.basic_character_replacement!
-    sr.registrant.grommet_request_id = gr_id
+    sr.grommet_request_id = gr_id
+    sr.save(validate: false)
     
     # 2.Check if the registrant is internally valid
     if sr.valid? 
-      if sr.status == 'step_4'
-        sr.delay(
+      if sr.complete?
+        job = sr.delay(
           run_at: (Admin::GrommetQueueController.delay).hours.from_now, 
           queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME
         ).async_submit_to_online_reg_url

@@ -299,7 +299,7 @@ class CanvassingShift < ActiveRecord::Base
         @regs = []
         registrant_grommet_ids = []
         self.registrants.each do |r|
-          registrant_grommet_ids << r.state_ovr_data["grommet_request_id"]
+          registrant_grommet_ids << r.grommet_request_id
           @regs << r
         end
         self.grommet_requests.each do |req|

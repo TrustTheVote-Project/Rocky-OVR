@@ -921,7 +921,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def first_registration?
-    if is_grommet? 
+    if is_grommet? && has_grommet_submission?
       pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
       return pa_adapter.is_new_registration_boolean
     elsif existing_state_registrant
@@ -969,19 +969,25 @@ class Registrant < ActiveRecord::Base
   end
   
   def is_grommet?
+    has_grommet_submission? || !!(existing_state_registrant && existing_state_registrant.grommet_request_id)
+  rescue
+    false
+  end
+
+  def has_grommet_submission?
     !grommet_submission.blank?
   end
   
   def api_submitted_with_signature
-    if is_grommet? # Right now sigs only come from grommet
-      return !grommet_submission["signature"].blank?    
+    if is_grommet? && has_grommet_submission?
+      return !grommet_submission["signature"].blank?
     else
       return existing_state_registrant&.voter_signature_image.present?
     end
   end
   
   def state_transaction_id
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       return state_ovr_data["pa_transaction_id"]
     else
       return existing_state_registrant&.state_transaction_id
@@ -990,7 +996,7 @@ class Registrant < ActiveRecord::Base
   
   def api_submission_status
     return nil if !submitted_via_state_api?
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       if state_ovr_data["pa_transaction_id"].blank?
         if state_ovr_data["errors"] && state_ovr_data["errors"].any?
           return ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
@@ -1663,7 +1669,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def normalized_signature_image
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       grommet_submission["signature"].tap do |s|
         if s
           return "data:#{s["mime_type"]};base64,#{s["image"]}"
@@ -1857,7 +1863,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def vr_application_submission_errors
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       ([state_ovr_data["errors"]].flatten.compact).collect do |e| 
         e_msg = e.is_a?(Array) ? e.join("\n") : e.to_s
         e_msg =~ /^Backtrace\n/ ? nil : e_msg 

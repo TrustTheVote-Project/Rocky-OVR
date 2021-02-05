@@ -47,6 +47,10 @@ class GrommetRequest < ActiveRecord::Base
     end
   end
 
+  # def mi_resubmit
+    
+  # end
+
   def pa_resubmit
     registrant = nil
     params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
@@ -115,18 +119,18 @@ class GrommetRequest < ActiveRecord::Base
       dj_ids = Delayed::Job.all.pluck(:id)
     
       rs.find_each do |r|
-        if r.is_grommet? && !r.state_ovr_data["grommet_request_id"].blank?
+        if r.is_grommet? && !r.grommet_request_id.blank?
           in_queue = ""
           dj_id = r.state_ovr_data["delayed_job_id"]
           if dj_id && dj_ids.include?(dj_id)
             in_queue = "queued"
           end
-          r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [
+          r_reqs[r.grommet_request_id.to_s] = [
             r.id, 
             r.home_state_abbrev, 
             in_queue, 
-            r.state_ovr_data["pa_transaction_id"], 
-            r.state_ovr_data["errors"]
+            r.state_transaction_id, 
+            r.vr_application_submission_errors
           ]
         end
       end

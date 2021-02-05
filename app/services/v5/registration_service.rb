@@ -173,7 +173,7 @@ module V5
       sr = r.state_registrant
       
       sr.attributes = data
-      sr.status = incomplete ? 'step_1' : 'step_4'
+      sr.status = incomplete ? sr.step_list.first : sr.step_list.last
       
       # process into Registrant fields
       return sr

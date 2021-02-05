@@ -82,18 +82,26 @@ class Api::V5::PartnersController < Api::V5::BaseController
   end
   
   def partner_id_validation
+    errors = []
     if params[:partner_id].blank? 
+      errors << "Missing Parameter: partner_id"
+    end
+    if params[:state].blank?
+      errors << "Missing Parameter: state"
+    end
+    if errors.any?
       jsonp({
-        errors: ["Missing Parameter: partner_id"]
+        errors: errors
       }, status: 422)
     else
       partner = Partner.find_by_id(params[:partner_id])
+      state = params[:state].to_s.upcase
       if partner && partner.enabled_for_grommet?
-        locales = RockyConf.ovr_states.PA.languages || []
+        locales = RockyConf.ovr_states[state].languages || []
         deadline_messages = {}
         volunteer_messages = {}
         locales.each do |l| 
-          deadline_messages[l] = I18n.t('states.custom.pa.registration_deadline_text', locale: l)
+          deadline_messages[l] = I18n.t("states.custom.#{state.downcase}.registration_deadline_text", locale: l)
           volunteer_messages[l] = I18n.t('txt.registration.volunteer', organization: partner.organization, locale: l)
         end
         
@@ -113,7 +121,7 @@ class Api::V5::PartnersController < Api::V5::BaseController
           is_valid: true,
           partner_name: partner.organization,
           valid_locations: locations,
-          registration_deadline_date: RockyConf.ovr_states.PA.registration_deadline.strftime("%Y-%m-%d"),
+          registration_deadline_date: RockyConf.ovr_states[state].registration_deadline.strftime("%Y-%m-%d"),
           registration_notification_text: deadline_messages,
           volunteer_text: volunteer_messages,
           errors: []
