@@ -56,7 +56,7 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def self.location_options(partner, turf_id: nil)
-    b = BlocksService.new(partner: partner)
+    b = begin BlocksService.new(partner: partner) rescue nil end;
     locations_list = []
     locations = begin b.get_locations(turf_id: turf_id)&.[]("locations") rescue nil end;
     if locations && locations.any?
@@ -299,7 +299,7 @@ class CanvassingShift < ActiveRecord::Base
         @regs = []
         registrant_grommet_ids = []
         self.registrants.each do |r|
-          registrant_grommet_ids << r.state_ovr_data["grommet_request_id"]
+          registrant_grommet_ids << r.grommet_request_id
           @regs << r
         end
         self.grommet_requests.each do |req|

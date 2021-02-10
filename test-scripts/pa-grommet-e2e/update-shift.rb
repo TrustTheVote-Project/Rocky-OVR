@@ -3,7 +3,7 @@ require 'json'
 require_relative './domain.rb'
 
 #curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"
-URL = "#{BASE_DOMAIN}/api/v4/canvassing_shifts"
+URL = "#{BASE_DOMAIN}/api/v5/canvassing_shifts"
 
 def clock_out_json(abandoned_registrations: 0, completed_registrations: 0)
   json =<<EOJ

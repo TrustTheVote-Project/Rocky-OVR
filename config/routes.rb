@@ -240,6 +240,58 @@ Rocky::Application.routes.draw do
       match "completeShift/:id/complete", to: "canvassing_shifts#complete", via: :get
       
     end
+
+    namespace :v5 do
+      resources :registrations, :only=>[:create], :format=>'json' do
+        collection do
+          get "pdf_ready", :action=>"pdf_ready"
+          post "stop_reminders", :action=>"stop_reminders"
+          post "bulk", :action=>"bulk"
+        end
+      end
+      resources :registrant_reports, :only=>[:create, :show], :format=>'json' do
+        member do
+          get "download", action: :download
+        end
+      end
+      
+      resource :state_requirements, :only=>:show, :format=>'json'
+  
+      resources :partners, :only=>[:show, :create], :format=>'json' do
+        collection do
+          get "partner", :action=>"show"
+        end
+      end
+      
+      resources :registration_states, :path=>'gregistrationstates', :as=>:gregistrationstates, :format=>'json', :only=>'index'      
+      
+      resources :partners, :path=>'partnerpublicprofiles', :only=>[], :format=>'json' do
+        collection do
+          get "partner", :action=>"show_public"
+        end
+      end
+      match 'gregistrations',      :format => 'json', :controller => 'registrations', :action => 'create_finish_with_state', :via => :post
+      match 'gregistrant_reports', :format => 'json', :controller => 'registrant_reports', :action => 'gcreate', :via => :post
+      match 'gregistrant_reports/:id', :format => 'json', :controller => 'registrant_reports', :action => 'gshow', :via => :get, as: 'gregistrant_report'
+      match 'gregistrant_reports/:id/download', :format => 'json', :controller => 'registrant_reports', :action => 'gdownload', :via => :get, as: 'download_gregistrant_report'
+      
+      match 'validateVersion', format: 'json', controller: 'partners', action: 'validate_version', via: :get
+      match 'partnerIdValidation', format: 'json', controller: 'partners', action: 'partner_id_validation', via: :get
+      
+      match 'voterregistrationrequest/pa', format: 'json', controller: 'registrations', action: 'create_pa', via: :post
+      match 'voterregistrationrequest/mi', format: 'json', controller: 'registrations', action: 'create_mi', via: :post
+      resources :canvassing_shifts, only: [:create, :update] do
+        collection do
+          put :update
+        end
+        member do
+          get :complete
+        end
+      end
+      match "completeShift/:id/complete", to: "canvassing_shifts#complete", via: :get
+      
+    end
+
   end
 
   namespace :admin do

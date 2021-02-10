@@ -30,6 +30,15 @@
   %ul
     - @jobs.each do |j|
       %li
-        - h = YAML.load(j.handler)
-        = "Registrant ID: #{h.args[0]}, Run At #{j.run_at}"
+        - begin
+          - h = YAML.load(j.handler)
+          - if h.args[0]
+            = "Registrant ID: #{h.args[0]}, Run At #{j.run_at}"
+          - else
+            = "#{h.object.class} ID: #{h.object.id}, Run At  #{j.run_at}"
+        - rescue Exception=>e
+          = e
+          %br
+          = j.handler
+        
     

@@ -60,8 +60,8 @@ class BlocksFormDisposition < ActiveRecord::Base
     status[:has_validation_errors] = self.registrant.nil?
     if self.registrant
       status[:pa_submission_status] = registrant.api_submission_status
-      status[:pa_response_errors] = registrant.state_ovr_data["errors"]
-      status[:pa_transaction_id] = registrant.state_ovr_data["pa_transaction_id"]
+      status[:pa_response_errors] = registrant.vr_application_submission_errors
+      status[:pa_transaction_id] = registrant.state_transaction_id
     end
     return status
   end

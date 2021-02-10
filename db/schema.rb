@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201224191326) do
+ActiveRecord::Schema.define(version: 20210204195828) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -354,6 +354,7 @@ ActiveRecord::Schema.define(version: 20201224191326) do
     t.text     "request_params"
     t.string   "request_hash",    limit: 255
     t.text     "request_headers"
+    t.string   "state"
   end
 
   add_index "grommet_requests", ["request_hash"], name: "index_grommet_requests_on_request_hash"
@@ -754,8 +755,10 @@ ActiveRecord::Schema.define(version: 20201224191326) do
     t.string   "original_survey_question_2"
     t.string   "survey_answer_1"
     t.string   "survey_answer_2"
+    t.integer  "grommet_request_id"
   end
 
+  add_index "state_registrants_mi_registrants", ["grommet_request_id"], name: "mi_grommet_id"
   add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"
 
   create_table "state_registrants_pa_registrants", force: :cascade do |t|

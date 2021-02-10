@@ -22,19 +22,19 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-require "#{Rails.root}/app/services/v4"
-class Api::V4::RegistrationsController < Api::V4::BaseController
+require "#{Rails.root}/app/services/v5"
+class Api::V5::RegistrationsController < Api::V5::BaseController
 
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
   def create
-    r = V4::RegistrationService.create_record(params[:registration])
+    r = V5::RegistrationService.create_record(params[:registration])
     jsonp :pdfurl => "https://#{RockyConf.pdf_host_name}#{r.pdf_download_path}", :uid=>r.uid
-  rescue V4::RegistrationService::ValidationError => e
+  rescue V5::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
-  rescue V4::RegistrationService::SurveyQuestionError => e
+  rescue V5::RegistrationService::SurveyQuestionError => e
     jsonp({ :message => e.message }, :status=>400)
-  rescue V4::UnsupportedLanguageError => e
+  rescue V5::UnsupportedLanguageError => e
     jsonp({ :message => e.message }, :status => 400)
   rescue ActiveRecord::UnknownAttributeError => e
     name = e.attribute
@@ -43,11 +43,11 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
 
   # Creates the record
   def create_finish_with_state
-    result = V4::RegistrationService.create_record(params[:registration], true)
+    result = V5::RegistrationService.create_record(params[:registration], true)
     jsonp :registrations => result.to_finish_with_state_array
-  rescue V4::RegistrationService::ValidationError => e
+  rescue V5::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
-  rescue V4::UnsupportedLanguageError => e
+  rescue V5::UnsupportedLanguageError => e
     jsonp({ :message => e.message }, :status => 400)
   rescue ActiveRecord::UnknownAttributeError => e
     name = e.attribute
@@ -104,7 +104,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     end
 
     # 1. Build a rocky registrant record based on all of the fields
-    registrant = V4::RegistrationService.create_pa_registrant(params[:rocky_request])
+    registrant = V5::RegistrationService.create_pa_registrant(params[:rocky_request])
     # 1a. do subsititutions for invalid chars
     registrant.basic_character_replacement!
     registrant.state_ovr_data["grommet_request_id"] = gr_id # lets store the original request for reference
@@ -112,7 +112,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     # 2.Check if the registrant is internally valid
     if registrant.valid?
       # If valid for rocky, ensure that it's valid for PA submissions
-      pa_validation_errors = V4::RegistrationService.valid_for_pa_submission(registrant)
+      pa_validation_errors = V5::RegistrationService.valid_for_pa_submission(registrant)
       if pa_validation_errors.any?
         pa_error_result(pa_validation_errors, registrant)
       else
@@ -120,7 +120,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
         # This will commit the registrant with the response code
         registrant.save!
         
-        job = V4::RegistrationService.delay(run_at: (Admin::GrommetQueueController.delay).hours.from_now, queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME).async_register_with_pa(registrant.id)
+        job = V5::RegistrationService.delay(run_at: (Admin::GrommetQueueController.delay).hours.from_now, queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME).async_register_with_pa(registrant.id)
         
         begin
           registrant.state_ovr_data["delayed_job_id"] = job.id
@@ -138,15 +138,107 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     pa_error_result("Error building registrant: #{e.message}", registrant)
   end
 
+  
+
+  def create_mi
+    registrant = nil
+    params.delete(:debug_info)
+    
+    gr_id = nil
+    begin
+      gr = GrommetRequest.create(state: "MI", request_params: params)
+      gr_id = gr ? gr.id : nil
+      
+      # Also save request headers
+      headers = {}
+      request.headers.each do |k,v|
+        if !k.starts_with?('rack') && !k.starts_with?('action')
+          headers[k] = v
+        end
+      end
+      gr.request_headers = headers
+      gr.save(validate: false)
+      
+      if gr.is_duplicate?
+        # Send notification
+        AdminMailer.grommet_duplication(gr).deliver_now
+        return mi_success_result
+      end
+      
+    rescue Exception=>e
+      # raise e
+    end
+    
+    # Also create a CanvassingShiftGrommet request
+    begin
+      shift_id = params[:shift_id]
+      if gr_id && !shift_id.blank?
+        CanvassingShiftGrommetRequest.create(shift_external_id: shift_id, grommet_request_id: gr_id)
+      end
+    rescue Exception=>e
+      # alert?
+    end
+    
+    # 1. Build a rocky registrant record based on all of the fields
+    sr = V5::RegistrationService.create_mi_registrant(params[:registration])
+    registrant = sr.registrant
+    # 1a. do subsititutions for invalid chars
+    sr.registrant.basic_character_replacement!
+    sr.grommet_request_id = gr_id
+    sr.save(validate: false)
+    
+    # 2.Check if the registrant is internally valid
+    if sr.valid? 
+      if sr.complete?
+        job = sr.delay(
+          run_at: (Admin::GrommetQueueController.delay).hours.from_now, 
+          queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME
+        ).async_submit_to_online_reg_url
+        # If there are no errors, make the submission to MI
+        # This will commit the registrant with the response code
+        begin
+          sr.registrant.state_ovr_data["delayed_job_id"] = job.id
+          sr.save(validate: false)
+        rescue
+        end
+      end
+      
+      sr.save!
+      
+      mi_success_result
+    else
+      mi_error_result(sr.errors.full_messages, registrant)
+    end
+  rescue StandardError => e
+    mi_error_result("Error building registrant: #{e.message}", registrant)
+  end
+
+
+  def mi_success_result
+    grommet_success_result
+  end
+
   def pa_success_result
+    grommet_success_result
+  end
+
+  def grommet_success_result
     data = {
-        registration_success: true,
-        #errors: []
+      registration_success: true,
     }
     jsonp(data, :status => 200)
   end
 
   def pa_error_result(errors, registrant=nil)
+    grommet_error_result(errors, registrant)
+  end
+
+  def mi_error_result(errors, registrant=nil)
+    grommet_error_result(errors, registrant)
+  end
+
+
+  def grommet_error_result(errors, registrant=nil)
     if !errors.is_a?(Array)
       errors = [errors]
     end
@@ -163,6 +255,8 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     jsonp(data, :status => 200)
   end
 
+
+
   def pdf_ready
     query = {
       :UID              => params[:UID]
@@ -173,7 +267,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     headers['Access-Control-Allow-Headers'] = '*'
     headers['Access-Control-Max-Age'] = "1728000"
 
-    jsonp :pdf_ready => V4::RegistrationService.check_pdf_ready(query), :UID=>params[:UID]
+    jsonp :pdf_ready => V5::RegistrationService.check_pdf_ready(query), :UID=>params[:UID]
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
@@ -188,14 +282,14 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     headers['Access-Control-Allow-Headers'] = '*'
     headers['Access-Control-Max-Age'] = "1728000"
 
-    jsonp V4::RegistrationService.stop_reminders(query).merge(:UID=>params[:UID])
+    jsonp V5::RegistrationService.stop_reminders(query).merge(:UID=>params[:UID])
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
 
   def bulk
     jsonp({
-        :registrants_added=>V4::RegistrationService.bulk_create(params[:registrants], params[:partner_id], params[:partner_API_key])
+        :registrants_added=>V5::RegistrationService.bulk_create(params[:registrants], params[:partner_id], params[:partner_API_key])
     })
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
