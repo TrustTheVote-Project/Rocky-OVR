@@ -127,9 +127,7 @@
     - if @registrant.partner.partner_email_opt_in && !@registrant.partner.primary?
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_email, class_name: "registrant-form__partner-opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization=>h(@registrant.partner.organization)).html_safe }
   
-  - if @registrant.ask_for_partner_volunteers?
-    %fieldset.no_border
-      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_volunteer, class_name: "registrant-form__partner-volunteer", required: false, field_label: t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe }
+  = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
   
   
 

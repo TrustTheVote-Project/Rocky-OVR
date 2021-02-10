@@ -728,7 +728,7 @@ class Partner < ActiveRecord::Base
     ea = kind
     ea = 'state_integrated' if ea == 'thank_you_external'
     ea = 'chase' if ea == 'chaser'
-    return "<img src=\"http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=#{ea}_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
+    return "<img src=\"https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=#{ea}_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
     
   end
   
