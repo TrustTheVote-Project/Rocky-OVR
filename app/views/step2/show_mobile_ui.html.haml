@@ -166,9 +166,11 @@
         = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
       - if @registrant.mail_with_esig?
         = render partial: 'shared/signature_capture/form', locals: {form: form}
-  
+      
     %fieldset
       %legend= t('txt.registration.mobile_ui.step_9.title')
+    - if @registrant.mail_with_esig?
+      = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
     .skip_state_registration
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
     %ul.flat.dob-and-phone.clear-fix

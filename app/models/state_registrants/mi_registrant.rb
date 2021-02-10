@@ -95,7 +95,9 @@ class StateRegistrants::MIRegistrant < StateRegistrants::Base
       "partner_volunteer"=>"partner_volunteer",
       
 
-      "locale"  => "locale"
+      "locale"  => "locale",
+      "survey_answer_1" => "survey_answer_1",
+      "survey_answer_2" => "survey_answer_2"
     }
   end
   

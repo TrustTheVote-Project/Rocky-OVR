@@ -282,7 +282,11 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     end
     self.va_check_response = response.to_s
     self.save(validate: false)
-    result = JSON.parse(response.to_s)
+    begin
+      result = JSON.parse(response.to_s)
+    rescue
+      raise "Can't parse VA response as JSON: #{response.to_s}"
+    end
     if result["IsProtected"]
       set_protected_voter!
       return false
@@ -463,7 +467,12 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
     server = RockyConf.ovr_states.VA.api_settings.api_url
     url = File.join(server, "Voter/Submit?format=json")
     response = RestClient.post(url, self.to_va_data.to_json, va_api_headers("submission"))
-    result = JSON.parse(response)
+    
+    begin
+      result = JSON.parse(response)
+    rescue
+      raise "Can't parse VA response as JSON: #{response.to_s}"
+    end
     
     # TODO - what is the response actually like??
     if result["Confirmations"] && result["Confirmations"].any?
@@ -559,7 +568,9 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
       "partner_volunteer"=>"partner_volunteer",
       
 
-      "locale"  => "locale"
+      "locale"  => "locale",
+      "survey_answer_1" => "survey_answer_1",
+      "survey_answer_2" => "survey_answer_2"
     }
   end
   

@@ -78,7 +78,7 @@ describe Notifier do
         Notifier.confirmation(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
-      email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=confirmation_open")
+      email.body.should include("https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=confirmation_open")
     end
     
     it "includes cancel reminders link" do
@@ -188,7 +188,7 @@ describe Notifier do
         Notifier.thank_you_external(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
-      email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=state_integrated_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
+      email.body.should include("https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=state_integrated_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
     end
     
   end
@@ -230,7 +230,7 @@ describe Notifier do
         Notifier.reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
-      email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=reminder_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
+      email.body.should include("https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=reminder_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
     end
     
     it "delivers the expected email in a different locale" do
@@ -301,7 +301,7 @@ describe Notifier do
         Notifier.final_reminder(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
-      email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=final_reminder_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
+      email.body.should include("https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=final_reminder_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
     end
     
     it "delivers the expected email in a different locale" do
@@ -366,7 +366,7 @@ describe Notifier do
         Notifier.chaser(registrant).deliver_now
       end
       email = ActionMailer::Base.deliveries.last
-      email.body.should include("http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=chase_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
+      email.body.should include("https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=#{registrant.uid}&t=event&ec=email&ea=chase_open&el=#{registrant.partner_id}&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=#{registrant.locale}")
     end
     
     it "uses partner template" do

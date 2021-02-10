@@ -134,6 +134,7 @@
       %ul.stacked
         = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
   
+  
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
   
@@ -141,11 +142,6 @@
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_email, class_name: "registrant-form__partner-opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization=>h(@registrant.partner.organization)).html_safe }
   
     
-  - if @registrant.ask_for_partner_volunteers?
-    %fieldset.no_border
-      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_volunteer, class_name: "registrant-form__partner-volunteer", required: false, field_label: t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe }
-  
-  
   %br
   %br
 
@@ -163,6 +159,9 @@
   %ul.flat.race-dropdown
     = field_li(form, :race, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__race__line"}, select_options: @registrant.races, field_options: {include_blank: true} })
     
+
+  = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
   .back
     = link_to t('txt.button.back').html_safe, registrant_path(@registrant.registrant)
