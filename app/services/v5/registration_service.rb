@@ -169,6 +169,7 @@ module V5
         shift_id: shift_id,
         phone_type: phone_type
       })
+      r.home_state ||= GeoState["MI"] #ensure state gets set
       r.save
       sr = r.state_registrant
       

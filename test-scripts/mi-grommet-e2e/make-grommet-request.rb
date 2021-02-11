@@ -7,7 +7,7 @@ URL = "#{BASE_DOMAIN}/api/v5/voterregistrationrequest/mi"
 
 def grommet_json(full_name: "Test Name", session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, street_number: "1.0")
    json =<<EOJ
-   {
+   {"rocky_request": {
       "partner_id": 1,
       "shift_id": "#{session_id}",
       "incomplete": #{street_number == "incomplete"},
@@ -48,7 +48,7 @@ def grommet_json(full_name: "Test Name", session_id: "Test Canvasser::123457689"
       "partner_opt_in_sms": false,
       "partner_opt_in_email": false,
       "partner_volunteer": false
-    }
+    }}
 EOJ
   return JSON.parse(json)
 end
