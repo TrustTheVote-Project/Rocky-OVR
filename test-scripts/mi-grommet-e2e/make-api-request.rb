@@ -12,7 +12,7 @@ URL = "#{BASE_DOMAIN}/api/v5/registrations.json"
 def api_json(first_name: "Test", partner_id: 1, address: "5501 Walnut St." )
    json =<<EOJ
   {
-    "registration": {
+    "registration": {"rocky_request": {
       "lang": "#{rand(2)==1 ? 'en' : 'es' }",
       "date_of_birth": "1979-06-16",      
       "email_address": "alex.mekelburg@osetfoundation.org",
@@ -31,7 +31,7 @@ def api_json(first_name: "Test", partner_id: 1, address: "5501 Walnut St." )
       "opt_in_email": "1",
       "partner_opt_in_sms": "1",
       "send_confirmation_reminder_emails": "1"
-    }
+    }}
   }
 EOJ
   return JSON.parse(json)

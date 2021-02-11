@@ -154,7 +154,7 @@ module V5
     
     def self.create_mi_registrant(orig_data)
       orig_data = ActiveSupport::HashWithIndifferentAccess.new(orig_data)
-      data = orig_data.deep_dup
+      data = orig_data.deep_dup["rocky_request"]
       email_address = data.delete(:email)
       partner_id = data.delete(:partner_id)
       registration_zip_code = data.delete(:registration_zip_code)
