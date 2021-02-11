@@ -2567,7 +2567,25 @@ en:
           IN AN ELECTION OR MAKING A MATERIALLY FALSE STATEMENT ON THIS FORM CONSTITUTES
           THE CRIME OF ELECTION FRAUD, WHICH IS PUNISHABLE UNDER VIRGINIA LAW AS A
           FELONY. VIOLATORS MAY BE SENTENCED TO UP TO 10 YEARS IN PRISON, OR UP TO
-          12 MONTHS IN JAIL AND/OR FINED UP TO $2,500.</strong></p>
+          12 MONTHS IN JAIL AND/OR FINED UP TO $2,500.</strong></p>"
+        privacy_notice: "<p>Privacy Act Notice: Article II, Section 2 of the Constitution
+          of Virginia (1971) requires that a person registering to vote provide his
+          or her social security number, if any. Therefore, if you do not provide
+          your social security number, your application for voter registration will
+          be denied. Section 7 of the Federal Privacy Act (Public Law Number 93-579)
+          allows the Commonwealth to enforce this requirement, but also requires that
+          you be advised that state and local voting officials will use the social
+          security number as a unique identifier to ensure that no person is registered
+          in more than one place.</p><p>This registration card will only be open to
+          inspection by the public if the social security number is removed. Your
+          social security number will appear on reports produced only for official
+          use by voter registration and election officials, and for jury selection
+          purposes by courts, and all lawful governmental purposes.</p>"
+        submitting: Sending Your Application
+        confirming: Confirming Submission
+        registration_complete: Registration Complete
+        registration_complete_dialog_text: "<p>Your application has been sent to the
+          Dept. of Elections to register to vote.</p>
           <p>
           Virginia law requires all voters to provide either an acceptable form of ID or 
           sign an ID Confirmation Statement at the polls. Voters arriving at the polls 
@@ -2598,24 +2616,6 @@ en:
           <p>
           Don’t have one of these forms of ID? Any registered voter who does not possess one of the above mentioned forms of ID, may sign an ID Confirmation Statement. A voter who does not bring an acceptable ID to the polls or does not sign an ID Confirmation Statement will be offered a provisional ballot.
           </p>"
-        privacy_notice: "<p>Privacy Act Notice: Article II, Section 2 of the Constitution
-          of Virginia (1971) requires that a person registering to vote provide his
-          or her social security number, if any. Therefore, if you do not provide
-          your social security number, your application for voter registration will
-          be denied. Section 7 of the Federal Privacy Act (Public Law Number 93-579)
-          allows the Commonwealth to enforce this requirement, but also requires that
-          you be advised that state and local voting officials will use the social
-          security number as a unique identifier to ensure that no person is registered
-          in more than one place.</p><p>This registration card will only be open to
-          inspection by the public if the social security number is removed. Your
-          social security number will appear on reports produced only for official
-          use by voter registration and election officials, and for jury selection
-          purposes by courts, and all lawful governmental purposes.</p>"
-        submitting: Sending Your Application
-        confirming: Confirming Submission
-        registration_complete: Registration Complete
-        registration_complete_dialog_text: "<p>Your application has been sent to the
-          Dept. of Elections to register to vote.</p>"
       vt:
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
