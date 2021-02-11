@@ -53,7 +53,7 @@ class Api::V5::CanvassingShiftsController < Api::V5::BaseController
     required_params_response = handle_required_params(required_params)
     return required_params_response if required_params_response
     
-    data = build_attrs_from_param_names(required_params)
+    data = build_attrs_from_param_names([required_params, :notes].flatten)
     c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
       c.update_attributes(data)
