@@ -11,7 +11,8 @@ def clock_out_json(abandoned_registrations: 0, completed_registrations: 0)
     "abandoned_registrations": #{abandoned_registrations},
     "completed_registrations": #{completed_registrations},
     "clock_in_datetime": "#{(DateTime.now - 0.2).new_offset(0)}",
-    "clock_out_datetime": "#{(DateTime.now - 0.1).new_offset(0)}"  
+    "clock_out_datetime": "#{(DateTime.now - 0.1).new_offset(0)}",
+    "notes": "Notes Content"
   }
 EOJ
   return JSON.parse(json)

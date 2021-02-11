@@ -48,7 +48,7 @@ class Api::V5::CanvassingShiftsController < Api::V5::BaseController
   end
   
   def update
-    required_params = [:clock_in_datetime, :clock_out_datetime, :abandoned_registrations, :completed_registrations]
+    required_params = [:clock_in_datetime, :clock_out_datetime, :abandoned_registrations, :completed_registrations, :notes]
     
     required_params_response = handle_required_params(required_params)
     return required_params_response if required_params_response
