@@ -125,7 +125,7 @@ class StateRegistrants::Base < ActiveRecord::Base
   
   
   def home_state_abbrev
-    home_state.abbreviation
+    home_state&.abbreviation
     #"PA"
   end
   def home_state_name
