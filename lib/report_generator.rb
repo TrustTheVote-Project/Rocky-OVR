@@ -298,7 +298,46 @@ class ReportGenerator
     end
   end
 
+  def self.generate_registrants_old(t, time_span)
+    distribute_reads(failover: false) do
+      registrants = Registrant.where("created_at > ?", t-time_span.hours).includes(:home_state)
+      # Also preload all PA and VA state registrants?
+      pa_registrants = {}
+      va_registrants = {}
+      mi_registrants = {}
+      StateRegistrants::PARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
+      StateRegistrants::VARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| va_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MIRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      csv_str = CsvFormatter.wrap do |csv|
+        csv << headers = self.registrant_fields.dup
+        CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
+        CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
+
+        registrants.find_each do |r|
+          # Set the @existing_state_registrant value
+          if r.use_state_flow?
+            sr  = nil
+            case r.home_state_abbrev
+            when "PA"
+              sr = pa_registrants[r.uid] || StateRegistrants::PARegistrant.new
+            when "VA"
+              sr = va_registrants[r.uid] || StateRegistrants::VARegistrant.new
+            when "MI"
+              sr = mi_registrants[r.uid] || StateRegistrants::MIRegistrant.new
+            end
+            r.instance_variable_set(:@existing_state_registrant, sr)
+          end
+          reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) }
+          csv << reg_attributes
+        end
+      end
+      file_name = self.file_name("registrants", t, time_span)
+      self.save_csv_to_s3(csv_str, file_name)
+    end
+  end
+
   def self.generate_registrants(t, time_span)
+    self.generate_registrants_old(t, time_span)
     # update the Abr method to not run after_initialize
     ENV['GENERATING_REPORTS'] = "true"
     distribute_reads(failover: false) do
@@ -362,7 +401,7 @@ class ReportGenerator
           csv << bsc_attributes
         end
       end
-      file_name = self.file_name("registrants", t, time_span)
+      file_name = time_span == 24 ? "rocky-daily.csv" : "rocky-hourly.csv"
       self.save_csv_to_s3(csv_str, file_name)
     end
     ENV['GENERATING_REPORTS'] = nil    
