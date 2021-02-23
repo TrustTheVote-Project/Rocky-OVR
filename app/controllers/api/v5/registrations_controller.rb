@@ -171,7 +171,7 @@ class Api::V5::RegistrationsController < Api::V5::BaseController
     
     # Also create a CanvassingShiftGrommet request
     begin
-      shift_id = params[:shift_id]
+      shift_id = params[:rocky_request][:shift_id]
       if gr_id && !shift_id.blank?
         CanvassingShiftGrommetRequest.create(shift_external_id: shift_id, grommet_request_id: gr_id)
       end
@@ -180,7 +180,7 @@ class Api::V5::RegistrationsController < Api::V5::BaseController
     end
     
     # 1. Build a rocky registrant record based on all of the fields
-    sr = V5::RegistrationService.create_mi_registrant(params[:registration])
+    sr = V5::RegistrationService.create_mi_registrant(params[:rocky_request])
     registrant = sr.registrant
     # 1a. do subsititutions for invalid chars
     sr.registrant.basic_character_replacement!
