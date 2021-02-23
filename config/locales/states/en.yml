@@ -2083,8 +2083,8 @@ en:
           requirements: If you are a voter with a valid PA Driver's License or PennDOT
             ID number, you can apply online with the state.  If you do not have one
             of these ID numbers, you will need to continue with creating a paper form.
-        registration_deadline_text: 10/19/2020 is the last day to register before
-          the 11/03/2020 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 05/03/2021 is the last day to register before
+          the 05/18/2021 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2168,8 +2168,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 10/19/2020 is the last day to register before
-          the 11/03/2020 election.</p>"
+          </ul> <p> Deadline Alert: 05/03/2021 is the last day to register before
+          the 05/18/2021 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
