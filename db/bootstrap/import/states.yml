@@ -251,9 +251,9 @@ record_15:
   online_registration_url: https://mymvd.iowadot.gov/Account/Login?ReturnUrl=%2fVoterRegistration
   parties:
   - democratic
-  - independent
   - republican
   - other
+  no_party: none_no_affiliation
 record_16:
   abbreviation: KS
   name: Kansas
