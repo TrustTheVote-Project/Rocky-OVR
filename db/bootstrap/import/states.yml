@@ -203,6 +203,12 @@ record_12:
   sos_url: https://idahovotes.gov/
   id_length_min: '4'
   online_registration_url: https://apps.idahovotes.gov/OnlineVoterRegistration
+  parties:
+  - democratic
+  - libertarian
+  - republican
+  - other
+  no_party: none_no_affiliation
 record_13:
   abbreviation: IL
   name: Illinois
@@ -234,15 +240,20 @@ record_15:
   name: Iowa
   requires_party: true
   party_tooltip: you_may_but_not_required
-  id_number_tooltip: drivers_license_non_driver_with_state_name
+  id_number_tooltip: drivers_license_or_ssn_or_none_4
   sos_address: Office of the Secretary of State<br>Elections Division<br>Lucas Building
     -1st Floor<br>321 E. 12th Street<br>Des Moines, IA 50319
   sos_phone: "(888) 767-8683"
   sos_url: http://www.sos.state.ia.us/
-  sub_18: 6_months_before
+  sub_18: once_turned_17_but
   registration_deadline: iowa
   id_length_min: '4'
   online_registration_url: https://mymvd.iowadot.gov/Account/Login?ReturnUrl=%2fVoterRegistration
+  parties:
+  - democratic
+  - republican
+  - other
+  no_party: none_no_affiliation
 record_16:
   abbreviation: KS
   name: Kansas
