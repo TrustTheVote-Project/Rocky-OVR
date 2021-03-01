@@ -384,20 +384,19 @@ class ReportGenerator
             end
             r.instance_variable_set(:@existing_state_registrant, sr)
           end
-          reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) }
-          csv << reg_attributes + ["", "", "", "", "", "", "vr"]
-          
+          reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) || ""}
+          csv << reg_attributes + ["", "", "", "", "", "", "", "vr"]          
         end
         abrs.find_each do |abr|
-          abr_attributes = headers.collect {|fname| abr_field_mapping(fname, abr)}
+          abr_attributes = headers.collect {|fname| abr_field_mapping(fname, abr) || ""}
           csv << abr_attributes
         end
         lookups.find_each do |lookup|
-          lookup_attributes = headers.collect {|fname| lookup_field_mapping(fname, lookup)}
+          lookup_attributes = headers.collect {|fname| lookup_field_mapping(fname, lookup) || ""}
           csv << lookup_attributes
         end
         bscs.find_each do |bsc|
-          bsc_attributes = headers.collect {|fname| bsc_field_mapping(fname, bsc)}
+          bsc_attributes = headers.collect {|fname| bsc_field_mapping(fname, bsc) || ""}
           csv << bsc_attributes
         end
       end
