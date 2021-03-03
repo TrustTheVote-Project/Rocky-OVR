@@ -30,7 +30,7 @@ puts "Got shift id '#{shift_id}'"
 base_args.unshift(shift_id)
 
 error_cases = [
-  [:street_number, "ERROR"], # Grommet removes and resubmits - but our tests always fail bc name isn't changed
+  [:street_number, "ERROR"], # Grommet resubmits - but our tests always fail bc name isn't changed
   [:street_number, "6.0"], # License not found
   [:street_number, "incomplete"], # don't submit to api
   [:street_number, "10.0"], # Busy, retry

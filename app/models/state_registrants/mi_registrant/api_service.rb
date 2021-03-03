@@ -16,6 +16,10 @@ module StateRegistrants::MIRegistrant::ApiService
     RESPONSE_BUSY, #requeue
   ]
   
+  def state_api_error
+    api_submission_error
+  end
+
   def api_submission_error
     self.mi_api_voter_status_id ? [self.response_outcome] : nil
   end
