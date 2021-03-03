@@ -2083,8 +2083,8 @@ en:
           requirements: If you are a voter with a valid PA Driver's License or PennDOT
             ID number, you can apply online with the state.  If you do not have one
             of these ID numbers, you will need to continue with creating a paper form.
-        registration_deadline_text: 10/19/2020 is the last day to register before
-          the 11/03/2020 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 05/03/2021 is the last day to register before
+          the 05/18/2021 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2168,8 +2168,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 10/19/2020 is the last day to register before
-          the 11/03/2020 election.</p>"
+          </ul> <p> Deadline Alert: 05/03/2021 is the last day to register before
+          the 05/18/2021 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
@@ -2585,7 +2585,37 @@ en:
         confirming: Confirming Submission
         registration_complete: Registration Complete
         registration_complete_dialog_text: "<p>Your application has been sent to the
-          Dept. of Elections to register to vote.</p>"
+          Dept. of Elections to register to vote.</p>
+          <p>
+          Virginia law requires all voters to provide either an acceptable form of ID or 
+          sign an ID Confirmation Statement at the polls. Voters arriving at the polls 
+          without an acceptable form of ID will be required to either sign an ID Confirmation 
+          Statement or vote a provisional ballot.  If a voter votes a provisional ballot, 
+          they will have until noon on the Friday following the election to deliver a copy 
+          of identification to their locality’s electoral board or sign an ID Confirmation 
+          Statement in order for their provisional ballot to be counted. Virginia’s ID 
+          requirements also apply to early voters who vote at the General Registrar's 
+          Office or at a satellite voting location.
+          </p>
+          <p>
+          Acceptable forms of identification for voting at the polling place or voting early include the following:
+          </p>
+          <ul>
+            <li>Voter confirmation documents you received after you registered to vote</li>
+            <li>Virginia DMV-issued Driver’s License or Identification Card</li>
+            <li>Valid United States Passport</li>
+            <li>Any ID card issued by the US, Virginia, or a local Virginia government</li>
+            <li>Any student ID card issued by a US university or community college</li>
+            <li>Valid student ID issued by a public school or private school in Virginia</li>
+            <li>Employer-issued photo ID card</li>
+            <li>Any current utility bill, bank statement, government check, 
+            paycheck, or other government document with your name and address</li>
+            <li>An ID Confirmation Statement</li>
+            <li><a href=\"https://www.elections.virginia.gov/media/formswarehouse/voter-id/outreach-materials/documents/EditedVoter-Identification-Chart-07.2020.pdf\" target=\"_blank\" rel=\"noopener\">For a more detailed list of acceptable IDs</a></li>
+          </ul>
+          <p>
+          Don’t have one of these forms of ID? Any registered voter who does not possess one of the above mentioned forms of ID, may sign an ID Confirmation Statement. A voter who does not bring an acceptable ID to the polls or does not sign an ID Confirmation Statement will be offered a provisional ballot.
+          </p>"
       vt:
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
