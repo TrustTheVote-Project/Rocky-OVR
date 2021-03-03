@@ -120,7 +120,7 @@ class Api::V5::RegistrationsController < Api::V5::BaseController
         # This will commit the registrant with the response code
         registrant.save!
         
-        job = V5::RegistrationService.delay(run_at: (Admin::GrommetQueueController.delay).hours.from_now, queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME).async_register_with_pa(registrant.id)
+        job = V5::RegistrationService.delay(run_at: (Admin::GrommetQueueController.delay("PA")).hours.from_now, queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME).async_register_with_pa(registrant.id)
         
         begin
           registrant.state_ovr_data["delayed_job_id"] = job.id
@@ -191,8 +191,8 @@ class Api::V5::RegistrationsController < Api::V5::BaseController
     if sr.valid? 
       if sr.complete?
         job = sr.delay(
-          run_at: (Admin::GrommetQueueController.delay).hours.from_now, 
-          queue: Admin::GrommetQueueController::GROMMET_QUEUE_NAME
+          run_at: (Admin::GrommetQueueController.delay("MI")).hours.from_now, 
+          queue: Admin::GrommetQueueController::MI_GROMMET_QUEUE_NAME
         ).async_submit_to_online_reg_url
         # If there are no errors, make the submission to MI
         # This will commit the registrant with the response code
