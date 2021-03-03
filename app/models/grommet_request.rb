@@ -258,7 +258,7 @@ class GrommetRequest < ActiveRecord::Base
       end
 
       csvstr = CSV.generate do |csv|
-        csv << ["Grommet Request ID", 
+        headers = ["Grommet Request ID", 
           "Partner ID", 
           "Grommet Version", 
           "Submitted At", 
@@ -270,8 +270,14 @@ class GrommetRequest < ActiveRecord::Base
           "MI Transaction ID", 
           "MI Errors", 
           "Is Duplicate Of",
-          "Is Duplicated By"
+          "Is Duplicated By",          
         ]
+
+        unless Rails.env.production?
+          headers << "Raw Request (not present on prod)"
+        end
+
+        csv << headers
       
       
         gs.find_each do |g|
@@ -300,26 +306,31 @@ class GrommetRequest < ActiveRecord::Base
               ""
             end,
             ]
+          record_array  = []
           if r_reqs[g.id.to_s]
-            csv << [g.id] + rep_fields + r_reqs[g.id.to_s]
+            record_array = [g.id] + rep_fields + r_reqs[g.id.to_s] + [nil, nil]
           else
             if !g.request_hash.blank?
               rh_ids = req_hashes[g.request_hash].dup
               if rh_ids && rh_ids.length <= 1
-                csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,nil]
+                record_array = [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,nil]
               else
                 # Am I the first
                 first_id = rh_ids.shift if rh_ids
                 if first_id == g.id
-                  csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,rh_ids]
+                  record_array = [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,rh_ids]
                 else
-                  csv << [g.id] + rep_fields + [nil,nil,nil,nil,nil,first_id,nil]
+                  record_array = [g.id] + rep_fields + [nil,nil,nil,nil,nil,first_id,nil]
                 end              
               end
             else
               csv << [g.id] + rep_fields
             end
           end
+          unless Rails.env.production?
+            record_array << req
+          end
+          csv << record_array
         end
       end
       return csvstr
