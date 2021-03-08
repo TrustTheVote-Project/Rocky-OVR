@@ -285,7 +285,7 @@ class GrommetRequest < ActiveRecord::Base
           params = params.with_indifferent_access
           req = params["rocky_request"]
           if req.nil?
-            next
+            req = {}
           end
           rep_fields = [
             req["partner_id"],
@@ -328,7 +328,7 @@ class GrommetRequest < ActiveRecord::Base
             end
           end
           unless Rails.env.production?
-            record_array << req
+            record_array << params
           end
           csv << record_array
         end
