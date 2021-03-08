@@ -11,7 +11,7 @@
 %p
   - if Settings.send("grommet_csv_ready_#{@state.downcase}")|| Settings.send("grommet_csv_ready_#{@state.downcase}") == nil
     - if Settings.send("grommet_csv_ready_#{@state.downcase}")
-      = link_to "Download grommet CSV report generated on #{Settings.grommet_csv_generated_at}", Settings.send("grommet_csv_url_#{@state.to_s.downcase}")
+      = link_to "Download grommet CSV report generated on #{Settings.send("grommet_csv_generated_at_#{@state.to_s.downcase}")}", Settings.send("grommet_csv_url_#{@state.to_s.downcase}")
     %br 
     = link_to "Generated new #{@state} grommet request CSV report", request_report_admin_grommet_queue_path(format: :csv, state: @state)
   - else
