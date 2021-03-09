@@ -94,6 +94,8 @@ class ReportGenerator
       return row.state_abbrev
     when "home_zip_code"
       return row["zip"]
+    when "home_state_abbrev"
+      return row.state_abbrev
     when "email_address"
       return row["email"]
     when "uid"
@@ -102,6 +104,12 @@ class ReportGenerator
       return row["uid"]
     when "abr_uid"
       return row.abr_uid
+    when "first_name"
+      return row.first
+    when "last_name"
+      return row.last
+    when "middle_name"
+      return row.middle
     when "tool"
       return "lookup"
     end
