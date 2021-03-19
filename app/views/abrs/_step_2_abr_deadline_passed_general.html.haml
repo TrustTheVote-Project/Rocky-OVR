@@ -9,7 +9,7 @@
     - state_instructions = t('txt.abr.deadline_passed_state_instructions.leo_lookup_url', leo_lookup_url: @abr.leo_lookup_url)
   - else
     - state_instructions = t('txt.abr.deadline_passed_state_instructions.leo_contact_info', leo_contact_info: [@abr.home_state&.registrar_phone, @abr.home_state&.registrar_url, @abr.state_registrar_address].join("<br/>")).html_safe
-  = t("txt.abr.deadline_passed_instructions", state: @abr.home_state_abbrev, state_instructions: state_instructions).html_safe
+  = t("txt.abr.deadline_passed_instructions", state: @abr.home_state_abbrev, state_instructions: state_instructions, registration_url: registration_abr_path(@abr)).html_safe
 
 #finish_page_iframe
   %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }

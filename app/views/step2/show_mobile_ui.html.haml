@@ -172,6 +172,8 @@
     
       %fieldset
         %legend= t('txt.registration.mobile_ui.step_9.title')
+      - if @registrant.mail_with_esig?
+        = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
       .skip_state_registration
         = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
       %ul.flat.dob-and-phone.clear-fix

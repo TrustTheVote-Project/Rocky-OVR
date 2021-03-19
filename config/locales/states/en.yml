@@ -1925,12 +1925,11 @@ en:
         abr_form_fields:
           county where you live: County where you live
           has_mailing_address: My mailing address differs from my residential address.
-          deliver_general_ballot: 'Delivery of General Election Ballot (check one):'
-          deliver_general_ballot__options:
-            general_in_person: Please deliver to me in person at the board of elections.
-            general_mail: Please mail my ballot to my residential or mailing address
-              if applicable.
-            general_to_proxy: I authorize the following person to pick up my ballot
+          delivery_general: 'Delivery of General (or Special) Election Ballot (check one):'
+          delivery_general__options:
+            in_person: Deliver to me in person at the board of elections.
+            mail: Mail ballot to me
+            authorized_recipient: I authorize the following person to pick up my ballot
               at the board of elections.
           apartment (General (or Special) Election Ballot Mailing Address): Apt
           street number (General (or Special) Election Ballot Mailing Address): Street
@@ -1948,18 +1947,17 @@ en:
           mail_zip: Zip
           witness: Due to an illness, disability, or inability to read, voter is unable
             to sign and requires a witness.
-          "(address of witness to mark)": Address of witness
-          'I authorize (give name): (blank space) to pick up my General (or Special) Election Ballot at the board of elections': Name
-            of proxy
+          "address_mark_witness": Address of witness
+          authorized_recipient_name_general: Name of authorized recipient
           reason: 'I am requesting, in good faith, an absentee ballot due to (check
             one reason):'
           reason__options:
-            absence_from_country: Absent from your county or, if a resident of New York City absent from the five boroughs, on Election Day.
-            detention: Detained in jail awaiting Grand Jury action or confined in prison after conviction for an offense other than a felony.
-            permanent_illness: Unable to appear at the polls due to permanent illness or disability. 
-            primary_care: Unable to appear because you are the primary care giver of one or more individuals who are ill or physically disabled.
-            temporary_illness: Unable to appear at the polls due to temporary illness or physical disability  (temporary illness includes being unable to appear due to risk of contracting or spreading a communicable disease like COVID-19). 
-            va_resident: A resident or patient of a Veterans Health Administration Hospital
+            absence: absence from county or New York City on election day
+            temporary_illness: temporary illness or physical disability
+            permanent_illness: permanent illness or physical disability
+            caregiver: duties related to primary care of one or more individuals who are ill or physically disabled
+            patient: resident or patient of a Veterans Health !dministration Hospital
+            prisoner: detention in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony
       oh:
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
@@ -2085,8 +2083,8 @@ en:
           requirements: If you are a voter with a valid PA Driver's License or PennDOT
             ID number, you can apply online with the state.  If you do not have one
             of these ID numbers, you will need to continue with creating a paper form.
-        registration_deadline_text: 10/19/2020 is the last day to register before
-          the 11/03/2020 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 05/03/2021 is the last day to register before
+          the 05/18/2021 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2170,8 +2168,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 10/19/2020 is the last day to register before
-          the 11/03/2020 election.</p>"
+          </ul> <p> Deadline Alert: 05/03/2021 is the last day to register before
+          the 05/18/2021 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
@@ -2591,7 +2589,37 @@ en:
         confirming: Confirming Submission
         registration_complete: Registration Complete
         registration_complete_dialog_text: "<p>Your application has been sent to the
-          Dept. of Elections to register to vote.</p>"
+          Dept. of Elections to register to vote.</p>
+          <p>
+          Virginia law requires all voters to provide either an acceptable form of ID or 
+          sign an ID Confirmation Statement at the polls. Voters arriving at the polls 
+          without an acceptable form of ID will be required to either sign an ID Confirmation 
+          Statement or vote a provisional ballot.  If a voter votes a provisional ballot, 
+          they will have until noon on the Friday following the election to deliver a copy 
+          of identification to their locality’s electoral board or sign an ID Confirmation 
+          Statement in order for their provisional ballot to be counted. Virginia’s ID 
+          requirements also apply to early voters who vote at the General Registrar's 
+          Office or at a satellite voting location.
+          </p>
+          <p>
+          Acceptable forms of identification for voting at the polling place or voting early include the following:
+          </p>
+          <ul>
+            <li>Voter confirmation documents you received after you registered to vote</li>
+            <li>Virginia DMV-issued Driver’s License or Identification Card</li>
+            <li>Valid United States Passport</li>
+            <li>Any ID card issued by the US, Virginia, or a local Virginia government</li>
+            <li>Any student ID card issued by a US university or community college</li>
+            <li>Valid student ID issued by a public school or private school in Virginia</li>
+            <li>Employer-issued photo ID card</li>
+            <li>Any current utility bill, bank statement, government check, 
+            paycheck, or other government document with your name and address</li>
+            <li>An ID Confirmation Statement</li>
+            <li><a href=\"https://www.elections.virginia.gov/media/formswarehouse/voter-id/outreach-materials/documents/EditedVoter-Identification-Chart-07.2020.pdf\" target=\"_blank\" rel=\"noopener\">For a more detailed list of acceptable IDs</a></li>
+          </ul>
+          <p>
+          Don’t have one of these forms of ID? Any registered voter who does not possess one of the above mentioned forms of ID, may sign an ID Confirmation Statement. A voter who does not bring an acceptable ID to the polls or does not sign an ID Confirmation Statement will be offered a provisional ballot.
+          </p>"
       vt:
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
@@ -3165,6 +3193,11 @@ en:
           the last four digits of your social security number. If you have neither,
           please write "NONE" on the form. A unique identifying number will instead
           be assigned to you by your State.
+        washington: |-
+          You must provide your Washington driver’s license or ID card number. If you do 
+          not have a Washington driver's license or ID card, you must provide the last 
+          four digits of your Social Security Number. Failure to provide this information 
+          may prevent your registration from being processed.
         wisconsin: |-
           Provide your unexpired Wisconsin driver license or DOT-issued ID
           card number. If you do not have a current and valid DOT-issued driver license
@@ -3447,9 +3480,9 @@ en:
         before the election
       vermont: received by 5pm on the Wednesday before the election
       washington: |-
-        postmarked by the Monday four weeks before the election, or received
-        in person at the county elections department the Monday one week before the
-        election
+        Online and mail registration forms must be received by an elections official no 
+        later than 8 days before the election. Register in person any time during business 
+        hours and before 8:00 p.m. on Election Day.
       postmarked_11_days: postmarked 11 days before the election
       postmarked_14_days: postmarked 14 days before the election
       postmarked_20_days: postmarked 20 days before the election

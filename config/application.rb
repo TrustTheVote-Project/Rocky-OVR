@@ -101,7 +101,7 @@ module Rocky
 
     config.assets.initialize_on_precompile = false
     
-    config.action_controller.allow_forgery_protection = false
+    config.action_controller.allow_forgery_protection = true
 
     config.i18n.available_locales = [:en, :"en-newui2020", :es, :zh, :"zh-tw", :hi, :ur, :bn, :ja, :ko, :tl, :ilo, :th, :vi, :km]
 

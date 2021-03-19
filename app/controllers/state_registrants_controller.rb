@@ -123,6 +123,8 @@ class StateRegistrantsController < RegistrationStep
       if @registrant.partner
         @partner    = @registrant.partner
         @partner_id = @partner.id
+        @question_1 = @registrant.question_1
+        @question_2 = @registrant.question_2
       end
     end
     

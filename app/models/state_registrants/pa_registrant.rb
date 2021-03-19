@@ -294,7 +294,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     
 
-    if !is_new_registration
+    if !is_new_registration && self.change_of_name?
       result['previousreglastname'] = previous_last_name
       result['previousregfirstname'] = previous_first_name
       result['previousregmiddlename'] = previous_middle_name
@@ -303,7 +303,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       result['previousregfirstname'] = nil
       result['previousregmiddlename'] = nil
     end
-    if !is_new_registration
+    if !is_new_registration && self.change_of_address?
       result['previousregaddress'] = previous_address
       result['previousregcity'] = previous_city
       result['previousregstate'] = previous_state
@@ -321,10 +321,10 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     result['previousregyear'] = ""
     result['declaration1'] = bool_to_int(confirm_declaration)
     
-    result['assistedpersonname'] = assistant_name
-    result['assistedpersonAddress'] = assistant_address
+    result['assistedpersonname'] = self.has_assistant? ? assistant_name : ''
+    result['assistedpersonAddress'] = self.has_assistant? ? assistant_address : ''
     result['assistedpersonphone'] = ""
-    if !self.assistant_phone.blank?
+    if self.has_assistant? && !self.assistant_phone.blank?
       begin
         result['assistedpersonphone'] = PhoneFormatter.process(self.assistant_phone)
       rescue
@@ -332,7 +332,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     end
     
     
-    result['assistancedeclaration2'] = confirm_assistant_declaration
+    result['assistancedeclaration2'] = self.has_assistant? && confirm_assistant_declaration
     result['ispollworker'] = ""
     result['bilingualinterpreter'] = ""
     result['pollworkerspeaklang'] = ""
@@ -483,7 +483,9 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       "phone" => "phone",
       "party" => "party",
       "race"  => "race",
-      "locale"  => "locale"
+      "locale"  => "locale",
+      "survey_answer_1" => "survey_answer_1",
+      "survey_answer_2" => "survey_answer_2"
     }
   end
   

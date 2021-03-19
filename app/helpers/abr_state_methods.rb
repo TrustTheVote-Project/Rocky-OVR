@@ -248,7 +248,7 @@ module AbrStateMethods
   attr_reader :home_state_attributes_initialized
   def add_state_attributes
     @home_state_attributes_initialized ||= nil
-    if home_state && !@home_state_attributes_initialized
+    if self.home_state && !@home_state_attributes_initialized
       type = "AbrStateMethods::#{home_state_abbrev}"
       begin
         klass = Module.const_get(type)

@@ -565,7 +565,7 @@ en:
         - 'Create a file called partner.css that overwrites the default styles with
           your own. Reference the fonts and images already uploaded. (ie: body {background-image:
           url(‘mybackground.jpg’); color: #cc0000;} This file will load after the
-          default styles so anything you define should change. Go to <a href="http://wiki.rockthevote.com"
+          default styles so anything you define should change. Go to <a href="https://wiki.rockthevote.com"
           target="_blank">wiki.rockthevote.com</a> for some examples.'
         email_templates:
         - The registration platform will automatically send emails to new registrants
