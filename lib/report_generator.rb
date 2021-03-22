@@ -10,6 +10,9 @@ class ReportGenerator
   def self.registrant_fields
     %w(id status locale partner_id uid reminders_left date_of_birth email_address first_registration? home_zip_code us_citizen name_title first_name middle_name last_name name_suffix home_address home_unit home_city home_state_abbrev has_mailing_address mailing_address mailing_unit mailing_city mailing_state_id mailing_zip_code party race state_id_number phone phone_type change_of_name prev_name_title prev_first_name prev_middle_name prev_last_name prev_name_suffix change_of_address prev_address prev_unit prev_city prev_state_id prev_zip_code opt_in_email opt_in_sms survey_answer_1 survey_answer_2 ineligible_non_participating_state ineligible_age ineligible_non_citizen created_at updated_at abandoned volunteer tracking_source tracking_id open_tracking_id finish_with_state send_confirmation_reminder_emails building_via_api_call)
   end
+  def self.registrant_fields_old
+    %w(id status locale partner_id uid reminders_left date_of_birth email_address first_registration? home_zip_code us_citizen name_title first_name middle_name last_name name_suffix home_address home_unit home_city home_state_abbrev has_mailing_address mailing_address mailing_unit mailing_city mailing_state_id mailing_zip_code party race state_id_number phone phone_type change_of_name prev_name_title prev_first_name prev_middle_name prev_last_name prev_name_suffix change_of_address prev_address prev_unit prev_city prev_state_id prev_zip_code opt_in_email opt_in_sms survey_answer_1 survey_answer_2 ineligible_non_participating_state ineligible_age ineligible_non_citizen created_at updated_at abandoned volunteer tracking_source finish_with_state send_confirmation_reminder_emails building_via_api_call)
+  end
   # p.id, p.username, p.email, p.name, p.organization, p.url, p.address, p.city, l.abbreviation, p.zip_code, p.phone, p.survey_question_1_en, p.survey_question_1_es, p.survey_question_2_en, p.survey_question_2_es, p.created_at, p.updated_at from partners p join geo_states l on (p.state_id = l.id)
 
   def self.abr_field_mapping(column_name, row)
@@ -317,7 +320,7 @@ class ReportGenerator
       StateRegistrants::VARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       StateRegistrants::MIRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
       csv_str = CsvFormatter.wrap do |csv|
-        csv << headers = self.registrant_fields.dup
+        csv << headers = self.registrant_fields_old.dup
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
         CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
 
@@ -335,7 +338,7 @@ class ReportGenerator
             end
             r.instance_variable_set(:@existing_state_registrant, sr)
           end
-          reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) }
+          reg_attributes = self.registrant_fields_old.collect {|fname| r.send(fname) }
           csv << reg_attributes
         end
       end
