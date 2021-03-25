@@ -170,7 +170,20 @@ module V5
         phone_type: phone_type
       })
       r.home_state ||= GeoState["MI"] #ensure state gets set
+      # Check for validity
+      if !r.valid?
+        if r.errors[:email_address] && r.errors[:email_address].any?
+          r.collect_email_address = 'no'
+          r.email_address = nil
+        end
+        if r.errors[:phone] && r.errors[:phone].any?
+          r.phone = nil
+          r.phone_type = nil
+        end
+      end
+
       r.save
+
       sr = r.state_registrant
       
       sr.attributes = data
