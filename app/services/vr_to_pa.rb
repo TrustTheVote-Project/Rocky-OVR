@@ -387,6 +387,7 @@ class VRToPA
 
   def phone(section = nil)
     value = query([section, :contact_methods].compact, :type, 'phone', :value)
+    value = is_empty(value) ? query([section, :contact_methods].compact, :type, 'assistant_phone', :value) : value
     is_empty(value) ? "" : PhoneFormatter.process(value)
   rescue PhoneFormatter::InvalidPhoneNumber => e
     self.mods << "Invalid #{section} Phone \"#{value}\" removed from PA Submission"
@@ -726,6 +727,9 @@ class VRToPA
     if result['assistancedeclaration2'] == '1'
       if is_empty(result['assistedpersonname']) || is_empty(result['assistedpersonAddress']) || is_empty(result['assistedpersonphone'])
         result['assistancedeclaration2'] = '0'
+        result['assistedpersonname'] = ''
+        result['assistedpersonAddress'] = ''
+        result['assistedpersonphone'] = ''
         self.mods << "Assistance declaration changed to FALSE in submission to PA due to missing assistant data"
       end
     end

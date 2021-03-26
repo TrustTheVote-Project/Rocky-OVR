@@ -67,7 +67,7 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
             },
             "contact_methods": [
               {
-                "type": "phone",
+                "type": "assistant_phone",
                 "value": "555-555-5555",
                 "capabilities": [
                   "voice",
