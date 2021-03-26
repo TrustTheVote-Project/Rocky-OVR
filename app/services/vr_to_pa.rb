@@ -387,6 +387,7 @@ class VRToPA
 
   def phone(section = nil)
     value = query([section, :contact_methods].compact, :type, 'phone', :value)
+    value = is_empty(value) ? query([section, :contact_methods].compact, :type, 'assistant_phone', :value) : value
     is_empty(value) ? "" : PhoneFormatter.process(value)
   rescue PhoneFormatter::InvalidPhoneNumber => e
     self.mods << "Invalid #{section} Phone \"#{value}\" removed from PA Submission"
