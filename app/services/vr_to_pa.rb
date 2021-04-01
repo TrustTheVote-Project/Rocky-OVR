@@ -726,6 +726,9 @@ class VRToPA
     if result['assistancedeclaration2'] == '1'
       if is_empty(result['assistedpersonname']) || is_empty(result['assistedpersonAddress']) || is_empty(result['assistedpersonphone'])
         result['assistancedeclaration2'] = '0'
+        result['assistedpersonname'] = ''
+        result['assistedpersonAddress'] = ''
+        result['assistedpersonphone'] = ''
         self.mods << "Assistance declaration changed to FALSE in submission to PA due to missing assistant data"
       end
     end
