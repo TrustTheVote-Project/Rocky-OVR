@@ -8,7 +8,7 @@ gem "excon", ">= 0.71.0"
 gem "figaro"
 gem "config"
 
-gem "rails", "= 4.2.11.1"
+gem "rails", "= 4.2.11.3"
 
 gem 'protected_attributes'
 
