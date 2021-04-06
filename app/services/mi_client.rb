@@ -49,8 +49,6 @@ class MiClient
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = uri.scheme == 'https'
-    # FIXME use proper CA file
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     http.cert = self.cert
     http.key = self.cert_key
     http.read_timeout = 125
