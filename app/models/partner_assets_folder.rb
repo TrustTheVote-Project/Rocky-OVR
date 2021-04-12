@@ -134,7 +134,11 @@ class PartnerAssetsFolder
   # when a file is deleted its public_url is not available but cached value affects nothing
   # b/c file list is not cached
   def cached_public_url(fog_file)
-    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 3.days) { fog_file.public_url } if fog_file
+    Rails.cache.fetch("#{fog_file.key}/public_url", expires_in: 3.days) { 
+      # ensure we get the latest copy of a file
+      s3_file = directory.files.get(fog_file.key)
+      s3_file.public_url if s3_file
+    } if fog_file
   end
 
   def delete_assets(names)
