@@ -1,4 +1,4 @@
-  <%- if @use_newui2020 %>
+<%- if !@old_wl && (@use_short_form || @use_newui2020) %>
   <%= render partial: 'registrants/phone_newui2020', locals: { form: form } %>
 <%- else %>
 <li class="width_b registrant-form__phone__line">

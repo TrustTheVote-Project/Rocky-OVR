@@ -11,6 +11,8 @@ class AbTest < ActiveRecord::Base
   NEW_UI_2020="newui2020".freeze
 
   def self.tests
+    # Temporarily turn off B variant
+    return []
     [
       [NEW_UI_2020, :assign_2020_ui_text]
     ]

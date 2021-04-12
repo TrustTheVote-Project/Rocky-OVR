@@ -94,7 +94,7 @@ module Rocky
     config.assets.precompile += %w( admin.css partner.css jquery.qtip.min.css qtip-custom.css registration.css registration2.css registration3.css reset.css rocky.css nvra.css state_configuration.css select2.min.css)
     config.assets.precompile += %w( admin.js registration.js rocky.js state_configuration.js jquery.js jquery_ujs.js jquery.qtip.min.js partner.js iframeResizer.contentWindow.min.js iframeResizer.min.js rtv-igrame.js)
     config.assets.precompile += ["locales/*.css"]
-    config.assets.precompile += ["states/mi.css", "sates/va.css", "states/pa.css"] # Only v1/2 files - v3 get incorporated
+    config.assets.precompile += ["states/mi.css", "states/va.css", "states/pa.css"] # Only v1/2 files - v3 get incorporated
     config.assets.precompile += ["nvra/locales/*.css"]
     config.assets.precompile += ["abr_states/*.js"]
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/

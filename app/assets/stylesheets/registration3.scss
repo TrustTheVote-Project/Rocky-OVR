@@ -13,7 +13,9 @@
   clear: both;
 }
 
- 
+.spacer {
+  visibility: hidden;
+}
 
 input[type=text], input[type=tel], input[type=email], input[type=password], select {
   -webkit-appearance: none;
@@ -265,6 +267,9 @@ body {
 #main {
   width: 100%;
   background: $white;
+  &.abr {
+    @import 'abr-form-fields';
+  }
 }
 
 .flash {
@@ -365,14 +370,30 @@ body {
         content: " ";
         clear: both;
       }
-
+      .radio-buttons {
+        label {
+          display: flex;
+          padding-bottom: 1em;
+          input {
+            display: inline-block;
+            width: auto;
+            height: 1em;
+            margin-top: 2px;
+            margin-right: 5px;
+            margin-left: 20px;
+          }
+        }
+      }
       &.radio, &.checkbox {
         li h3 {
           display: flex;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
+          align-items: flex-start;
           input {
             height: $label-line-height;
+            min-height: $label-line-height;
             width: $label-line-height;
+            min-width: $label-line-height;
             margin: 0 5px 0 0;
             position: relative;
             top: 2px;
@@ -380,10 +401,13 @@ body {
           label {
             font-size: $base-font-size;
             line-height: $base-line-height;
-            display: flex;
+            //display: flex;
             text-transform: none;
             font-weight: normal;
-            width:calc(100% - 30px); /* make room for checkbox*/
+            //max-width:calc(100% - 60px); /* make room for checkbox & optional tooltip*/
+          }
+          img.tooltip {
+            //top :0;
           }
         }
       }
@@ -477,6 +501,20 @@ body {
   }
 }
 
+#main.using_state_registration {
+  .registrant-form__change-of-name__line,
+  #prev_name_set,
+  .registrant-form__has-mailing-address__line,
+  #mailing_address_set,
+  .registrant-form__change-of-address__line,
+  #prev_address_set,
+  .registrant-form__middle-name__line,
+  .registrant-form__prev-middle-name__line
+   {
+    display: none !important;
+  }
+}
+
 @import 'registration3-block-selector';
 
 @import 'registration3-mobile';
@@ -488,3 +526,7 @@ body {
 @import 'states/pa3.scss';
 @import 'states/mi3.scss';
 @import 'states/va3.scss';
+
+body.abr-page {
+  @import 'abr-page';
+}

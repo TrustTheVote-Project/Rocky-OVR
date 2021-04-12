@@ -167,6 +167,7 @@ class RegistrationStep < ApplicationController
 
   def find_registrant(special_case = nil, p = params)
     @registrant = Registrant.find_by_param!(p[:registrant_id] || p[:id])
+    @use_short_form = @registrant.use_short_form?
     if detect_state_flow && special_case.nil?
       state_flow_redirect
       return :redirected
@@ -195,6 +196,7 @@ class RegistrationStep < ApplicationController
   end
 
   def set_ab_test
+    @old_wl = @partner && @partner.whitelabeled? && @partner.any_css_present? && !@partner.partner3_css_present?
     AbTest.tests.each do |name, method|
       instance_var_name = '@' + name.downcase.underscore #@newui2020
       if @registrant && t = @registrant.ab_tests.where(name: name).first

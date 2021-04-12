@@ -97,6 +97,8 @@ class CatalistLookupsController < ApplicationController
   def find_partner
     @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
     @partner_id = @partner.id
+    @use_short_form = true
+    @old_wl = @partner && @partner.whitelabeled? && @partner.any_css_present? && !@partner.partner3_css_present?
     set_params
   end
   

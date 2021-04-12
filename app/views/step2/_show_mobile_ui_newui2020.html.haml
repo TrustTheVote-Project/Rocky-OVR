@@ -63,7 +63,7 @@
             %span.error= form.object.errors[:us_citizen].join("\n")
 
   .dynamic-step#step-3
-    = render partial: "registrants/name_display_newui2020", locals: {form: form}
+    = render partial: "registrants/name_display", locals: {form: form}
     = render :partial=> "registrants/home_address", :locals=>{:form=>form} 
   
     - if !@registrant.finish_with_state_eligible?
@@ -75,8 +75,8 @@
       %legend= t('txt.registration.mobile_ui.step_8.title')
     - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       - if !@registrant.finish_with_state_eligible?
-        = render :partial=> "registrants/state_id_number_newui2020", :locals=>{:form=>form} 
-        = render :partial=> "registrants/race_and_party_newui2020", :locals=>{:form=>form}
+        = render :partial=> "registrants/state_id_number", :locals=>{:form=>form} 
+        = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
 
     - elsif @registrant.mail_with_esig?
       = render partial: 'shared/signature_capture/form', locals: {form: form}

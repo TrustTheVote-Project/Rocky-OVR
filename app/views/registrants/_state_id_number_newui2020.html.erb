@@ -16,13 +16,13 @@
         <span class="error"><%= form.object.errors[:state_id_number].join("\n") %></span>
       </li>
       <% if include_date_of_birth %>
-        <%= render partial: 'registrants/date_of_birth_newui2020', :locals=>{:form=>form} %>
+        <%= render partial: 'registrants/date_of_birth', :locals=>{:form=>form} %>
       <%- end %>
     </ul>
     <div class="instructions instructions--state-id-number"><p><%= @state_id_tooltip %></p></div>
 
 <%- if include_race_and_party %>
-  <%= render :partial=> "registrants/race_and_party_newui2020", :locals=>{:form=>form} %>
+  <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
   </fieldset>
 <%- else %>
   <hr/>

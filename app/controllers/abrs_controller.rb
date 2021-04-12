@@ -133,8 +133,7 @@ class AbrsController < ApplicationController
     elsif !params[:not_ready] && !params[:reminders]
       @pdf_ready = @abr.pdf_ready?
     end
-  end
-  
+  end  
   
   def not_registered
     #should we prevent a user from going back?
@@ -170,7 +169,7 @@ class AbrsController < ApplicationController
     
     @partner = @abr&.partner
     @partner_id = @partner&.id
-    
+    @old_wl = @partner && @partner.whitelabeled? && @partner.any_css_present? && !@partner.partner3_css_present?
     if @abr.finish_with_state? && special_case != :tell_friend && special_case != :finish
       @abr.update_attributes(:finish_with_state=>false)
     end
@@ -178,6 +177,10 @@ class AbrsController < ApplicationController
   end
   
   def perform_current_step
+    @partner = @abr&.partner
+    @partner_id = @partner&.id
+    @old_wl = @partner && @partner.whitelabeled? && @partner.any_css_present? && !@partner.partner3_css_present?
+    
     if @current_step == 1
       render :show
     elsif @current_step == 2
@@ -189,38 +192,38 @@ class AbrsController < ApplicationController
 
 
   def continue_on_device_advance
-      # Set flash message?
-      # Actually send the message
-      if params.has_key?(:email_continue_on_device) 
-        if @abr.email_address_for_continue_on_device =~ Authlogic::Regex::EMAIL
-          AbrNotifier.continue_on_device(@abr, @abr.signature_capture_url).deliver_now
-          flash[:success] = I18n.t('txt.signature_capture.abr.email_sent', email: @abr.email_address_for_continue_on_device)
+    # Set flash message?
+    # Actually send the message
+    if params.has_key?(:email_continue_on_device) 
+      if @abr.email_address_for_continue_on_device =~ Authlogic::Regex::EMAIL
+        AbrNotifier.continue_on_device(@abr, @abr.signature_capture_url).deliver_now
+        flash[:success] = I18n.t('txt.signature_capture.abr.email_sent', email: @abr.email_address_for_continue_on_device)
+        @abr.save(validate: false) # Make sure data persists even if not valid
+      else
+        @abr.errors.add(:email_address_for_continue_on_device, :format)
+      end
+      return :continued_on_device
+    elsif params.has_key?(:sms_continue_on_device)
+      if @abr.sms_number =~ /\A\d{10}\z/ #sms number has all non-digits removed
+        begin
+          twilio_client.messages.create(
+            :from => "+1#{twilio_phone_number}",
+            :to => @abr.sms_number,
+            :body => I18n.t('txt.signature_capture.abr.sms_body', signature_capture_url: @abr.signature_capture_url)
+          )
+          flash[:success] = I18n.t('txt.signature_capture.abr.sms_sent', phone: @abr.sms_number_for_continue_on_device)
           @abr.save(validate: false) # Make sure data persists even if not valid
-        else
-          @abr.errors.add(:email_address_for_continue_on_device, :format)
-        end
-        return :continued_on_device
-      elsif params.has_key?(:sms_continue_on_device)
-        if @abr.sms_number =~ /\A\d{10}\z/ #sms number has all non-digits removed
-          begin
-            twilio_client.messages.create(
-              :from => "+1#{twilio_phone_number}",
-              :to => @abr.sms_number,
-              :body => I18n.t('txt.signature_capture.abr.sms_body', signature_capture_url: @abr.signature_capture_url)
-            )
-            flash[:success] = I18n.t('txt.signature_capture.abr.sms_sent', phone: @abr.sms_number_for_continue_on_device)
-            @abr.save(validate: false) # Make sure data persists even if not valid
-            
-          rescue Twilio::REST::RequestError
-            @abr.errors.add(:sms_number_for_continue_on_device, :format)
-          end
-        else
-          #controller.flash[:warning] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+          
+        rescue Twilio::REST::RequestError
           @abr.errors.add(:sms_number_for_continue_on_device, :format)
         end
-        return :continued_on_device
-      end    
-    end
+      else
+        #controller.flash[:warning] = I18n.t('states.custom.pa.signature_capture.sms_sent', phone: self.sms_number)
+        @abr.errors.add(:sms_number_for_continue_on_device, :format)
+      end
+      return :continued_on_device
+    end    
+  end
 
   
   def perform_next_step
@@ -239,6 +242,8 @@ class AbrsController < ApplicationController
   end
   
   def step_2_view(abr)
+    return 'step_2'
+
     potential_view = "step_2_#{abr.home_state_abbrev.to_s.downcase}"
     if File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml"))
       # In all cases we consider this registrant done!

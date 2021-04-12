@@ -67,19 +67,10 @@
     }
       
     
-    ul.checkbox {
-      h3 {
-        height: auto;
-        display: flex;
-        flex-wrap: wrap;
-        span.error {
-          flex-basis: 100%;
-        }
-      }
-    }
+
     &.date {
       input {
-        width: 55px;
+        width: 55px !important;
         padding: 5px 5px;
         text-align: center;
         &:last-child {

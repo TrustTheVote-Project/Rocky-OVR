@@ -1,5 +1,5 @@
 
-- if @use_newui2020
+- if !@old_wl && (@use_short_form || @use_newui2020)
   = render partial: 'registrants/date_of_birth_newui2020', locals: { form: form }
 - else
   - skip_tooltip ||= false

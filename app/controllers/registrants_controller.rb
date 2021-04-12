@@ -113,7 +113,6 @@ class RegistrantsController < RegistrationStep
     @use_mobile_ui = determine_mobile_ui(@registrant)
     @registrant.shift_id = @shift_id if @shift_id
     @registrant.shift_id = @canvassing_shift.shift_external_id if @canvassing_shift
-    
     if params["newui2020"]
       t = AbTest.new
       t.name = "newui2020"

@@ -1,4 +1,4 @@
-<%- if @use_newui2020 %>
+<%- if !@old_wl && (@use_short_form || @use_newui2020) %>
   <%= render partial: 'registrants/state_id_number_newui2020', locals: { form: form } %>
 <%- else %>
 <%- include_race_and_party ||= false %>

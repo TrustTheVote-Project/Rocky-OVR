@@ -11,6 +11,8 @@ module AbrHelper
   end
   
   def set_params
+    @use_short_form = true
+    @old_wl = @partner && @partner.whitelabeled? && @partner.any_css_present? && !@partner.partner3_css_present?
     @locale = 'en'
     @votercheck = params[:votercheck].to_s.downcase
     @source = params[:source]

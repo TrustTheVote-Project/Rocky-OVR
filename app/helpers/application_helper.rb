@@ -36,18 +36,21 @@ module ApplicationHelper
 
   def preview_partner_css(partner, registrant, include_mobile)
     stylesheets = []
+    old_wl = partner.any_css_present? && !partner.partner3_css_present?
     if !partner.replace_system_css?(:preview)
       stylesheets << 'application'
       if registrant.use_state_flow? && !registrant.skip_state_flow?
-        if @use_newui2020
+        if !old_wl || @use_newui2020
           stylesheets << 'registration3'
+          # state-specific code is included in registration3 css
         else
           stylesheets << 'registration2'
           stylesheets << "states/#{registrant.home_state_abbrev.downcase}"
         end
                 
       else
-        newregcss = @use_newui2020 ? 'registration3' : 'registration2'
+        newregcss = 'registration3'
+        # newregcss = @use_newui2020 ? 'registration3' : 'registration2'
         stylesheets << (registrant && !registrant.use_short_form? ? 'registration' : newregcss)
       end
     end
@@ -69,10 +72,12 @@ module ApplicationHelper
       return preview_partner_css(partner, registrant, include_mobile)
     end
     wl = partner && partner.whitelabeled?
+    old_wl = wl && partner.any_css_present? && !partner.partner3_css_present?
     stylesheets = []
     if !partner || !partner.replace_system_css?
       if registrant && registrant.use_state_flow? && !registrant.skip_state_flow? 
-        if @use_newui2020
+
+        if !old_wl || @use_newui2020
           stylesheets << 'registration3';
         else
           stylesheets << "application"
@@ -85,7 +90,7 @@ module ApplicationHelper
         stylesheets << (wl && partner.registration_css_present? ? partner.registration_css_url : "registration")
       else
         # Partners can't upload reg2 - just part2 and either keep the default reg2 or mark as reaplce_system_css
-        if @use_newui2020
+        if !old_wl || @use_newui2020
           stylesheets << "registration3"
         else
           stylesheets << "application"
@@ -170,7 +175,8 @@ module ApplicationHelper
     instructions_html = instructions.blank? ? nil : "<p class='instructions'>#{instructions}</p>"
     tooltip = options[:skip_tooltip] ? "" : content_tag(:div, tooltip_tag(field_name, options[:tooltip_content]).html_safe, class: 'tooltip')
     label = ''
-    if @use_newui2020 
+    old_wl = @partner && @partner.whitelabeled? && @partner.any_css_present? && !@partner.partner3_css_present?
+    if !old_wl && form.object.use_short_form? 
       label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe + tooltip.html_safe).html_safe)
     else
       label = content_tag(:h3, (form.send(:label, field_name, options[:label_options]) + required.html_safe).html_safe)
@@ -191,7 +197,7 @@ module ApplicationHelper
     else
       field_html = field_div(form, field, options[:field_options])
     end
-    if @use_newui2020 
+    if !old_wl && form.object.use_short_form?
       content_tag(:li, "#{label}#{instructions_html}#{field_html.html_safe}#{error}".html_safe, options[:li_options])
     else
       content_tag(:li, "#{label}#{instructions_html}#{field_html.html_safe}#{tooltip}#{error}".html_safe, options[:li_options])

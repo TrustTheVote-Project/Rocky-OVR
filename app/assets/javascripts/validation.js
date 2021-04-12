@@ -80,15 +80,21 @@ function validateField(errorMessage) {
 
 function validateBooleanField(errorMessage) {
   var field = this;
+  console.log(field);
   if (!field) {
     return
   }
   var val = $(field).is(":checked")
   //console.log(val)
   var parent = $(field).parent()
-  var errorField = $(field).siblings(".error")
+  var errorField = $(field).siblings(".error");
+  if (!errorField.length) {
+    errorField = parent.siblings(".error")
+  }
+
   var currentError = errorField.html();
   var messageIdx = currentError.indexOf(errorMessage)
+  
   if (!val) {
     // Add if not present
     //console.log("hi", errorMessage, errorField)
@@ -138,7 +144,7 @@ function validateYesNoCheckbox(errorMessage) {
     if (errorField.html().replace(/\s/g, '') == '') {
       parent.removeClass('has_error') 
     }
-           
+
   }
 }
 

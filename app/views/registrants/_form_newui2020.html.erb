@@ -52,7 +52,7 @@ $(document).ready(function() {
 <% end %>
 <%- if !@registrant.use_short_form? %>
  <ul class="flat">
-   <%= render :partial=> "registrants/date_of_birth_newui2020", :locals=>{:form=>form} %>
+   <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>
   </ul>
 
   <ul class="checkbox checkbox-step-1">

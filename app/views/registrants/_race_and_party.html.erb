@@ -1,18 +1,22 @@
-<ul class="flat race-dropdown">
-  <li class='registrant-form__race__line'>
-    <h3><%= form.label :race %><%- if @registrant.requires_race? %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end %></h3>
-    <div><%= form.select :race, @registrant.races, :include_blank => true %></div>
-    <div class="tooltip"><%= tooltip_tag :race, @race_tooltip %></div>
-    <span class="error"><%= form.object.errors[:race].join("\n") %></span>
-  </li>
-</ul>
-<% if @state_parties && @state_parties.any? %>
-  <ul class="flat party-dropdown">
-    <li class='registrant-form__party__line'>
-      <h3><%= form.label :party %><%- if @registrant.requires_party? %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end %></h3>
-      <%= select_div form, :party, @state_parties, {:include_blank => true, required: @registrant.requires_party?} %>
-      <div class="tooltip"><%= tooltip_tag :party, @party_tooltip %></div>
-      <span class="error"><%= form.object.errors[:party].join("\n") %></span>
+<%- if !@old_wl && (@use_short_form || @use_newui2020) %>
+  <%= render partial: 'registrants/race_and_party_newui2020', locals: { form: form } %>
+<%- else %>
+  <ul class="flat race-dropdown">
+    <li class='registrant-form__race__line'>
+      <h3><%= form.label :race %><%- if @registrant.requires_race? %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end %></h3>
+      <div><%= form.select :race, @registrant.races, :include_blank => true %></div>
+      <div class="tooltip"><%= tooltip_tag :race, @race_tooltip %></div>
+      <span class="error"><%= form.object.errors[:race].join("\n") %></span>
     </li>
   </ul>
+  <% if @state_parties && @state_parties.any? %>
+    <ul class="flat party-dropdown">
+      <li class='registrant-form__party__line'>
+        <h3><%= form.label :party %><%- if @registrant.requires_party? %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end %></h3>
+        <%= select_div form, :party, @state_parties, {:include_blank => true, required: @registrant.requires_party?} %>
+        <div class="tooltip"><%= tooltip_tag :party, @party_tooltip %></div>
+        <span class="error"><%= form.object.errors[:party].join("\n") %></span>
+      </li>
+    </ul>
+  <% end %>
 <% end %>
