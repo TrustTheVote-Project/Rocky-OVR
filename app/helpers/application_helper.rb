@@ -20,7 +20,7 @@ module ApplicationHelper
       messages << content_tag(:li, flash[key], :class => "flash-#{key}").html_safe if flash[key]
     end
     if messages.empty?
-       content_tag(:div, "", :class => "flash").html_safe
+      content_tag(:div, "", :class => "flash").html_safe
     else
       content_tag(:ul, messages.join("\n").html_safe, :class => "flash").html_safe
     end
