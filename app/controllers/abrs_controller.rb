@@ -242,8 +242,6 @@ class AbrsController < ApplicationController
   end
   
   def step_2_view(abr)
-    return 'step_2'
-
     potential_view = "step_2_#{abr.home_state_abbrev.to_s.downcase}"
     if File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml"))
       # In all cases we consider this registrant done!
