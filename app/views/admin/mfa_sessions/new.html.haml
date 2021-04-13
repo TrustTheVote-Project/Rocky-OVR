@@ -1,10 +1,11 @@
 - if current_admin.google_secret
-  Enter your code:
+  %p
+    Enter your MFA code from the google authenticator app.
   = form_tag admin_mfa_sessions_path do
     %p
       %h3
-      = label_tag :mfa_code
-      = text_field_tag :mfa_code, '', autocomplete: "off"
+        %label MFA Code:&nbsp;
+        = text_field_tag :mfa_code, '', autocomplete: "off"
     = submit_tag "Submit"
       
 - else
