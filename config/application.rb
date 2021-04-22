@@ -1,24 +1,17 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 require 'base64'
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups)
-  unless ENV['NO_PDF']
-    Bundler.require(:pdf)
-  end
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+Bundler.require(*Rails.groups)
+unless ENV['NO_PDF']
+  Bundler.require(:pdf)
 end
-
-
-
 
 module Rocky
   class Application < Rails::Application
-
+    config.load_defaults 5.0
+    
     require 'dotenv'
     Dotenv.load
 

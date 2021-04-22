@@ -1,4 +1,4 @@
-Rocky::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -11,13 +11,21 @@ Rocky::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local = true
-  config.action_controller.perform_caching             = false
+  
+  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+      
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+    }
+  else
+    config.action_controller.perform_caching = false
+  
+    config.cache_store = :null_store
+  end
 
-
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
-
+  config.active_storage.service = :local
 
   ### uncomment to use DelayedJob in development.
   ### you must set config.cache_classes = true
@@ -28,20 +36,27 @@ Rocky::Application.configure do
     #   Registrant.handle_asynchronously :wrap_up
     # end
 
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :test
+
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
+
+  config.active_record.migration_error = :page_load
+  config.active_record.verbose_query_logs = true
 
   # Raise exception on mass assignment protection for Active Record models
   # config.active_record.mass_assignment_sanitizer = :strict
 
   # Do not compress assets
-  config.assets.compress = false
+  config.assets.debug = true
   
-  
-
   # Expands the lines which load the assets
-  config.assets.debug = false
-  config.assets.logger = false
+  config.assets.quiet = true
   config.eager_load = false
+
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
