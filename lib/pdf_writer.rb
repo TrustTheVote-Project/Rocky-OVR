@@ -101,7 +101,7 @@ class PdfWriter
 
   def assign_attributes(values, options = {})
     values.each do |k,v|
-      send("#{k}=", v)
+      send("#{k}=", v) if self.respond_to?("#{k}=")
     end
     # sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
     #   send("#{k}=", v)
@@ -124,7 +124,7 @@ class PdfWriter
       :locale=>self.locale
     )
     I18n.locale = prev_locale
-
+    puts html_string
     return html_string    
   end
 

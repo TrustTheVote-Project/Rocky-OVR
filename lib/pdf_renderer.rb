@@ -12,7 +12,7 @@ class PdfRenderer < AbstractController::Base
   helper ApplicationHelper
   helper PdfRendererHelper
   
-  helper_method :wicked_pdf_image_tag, :image_tag
+  helper_method :wicked_pdf_image_tag, :image_tag, :wicked_pdf_asset_base64, :wicked_pdf_stylesheet_link_tag
 
   self.view_paths = "app/views"
   
