@@ -6,7 +6,7 @@ class AbrsController < ApplicationController
   include TwilioHelper
   
   layout "abr"
-  before_filter :find_partner
+  before_action :find_partner
   
   rescue_from Abr::AbandonedRecord do |exception|
     abr = exception.abr

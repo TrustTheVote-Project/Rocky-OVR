@@ -24,8 +24,8 @@
 #***** END LICENSE BLOCK *****
 class BrandingController < PartnerBase
   layout "partners"
-  before_filter :require_partner
-  before_filter :set_partner, only: [:show, :css, :emails]
+  before_action :require_partner
+  before_action :set_partner, only: [:show, :css, :emails]
 
   MAX_MB = 5.0
 

@@ -23,7 +23,7 @@
 #
 #***** END LICENSE BLOCK *****
 class LogosController < PartnerBase
-  before_filter :require_partner
+  before_action :require_partner
 
   def show
     @partner = current_partner

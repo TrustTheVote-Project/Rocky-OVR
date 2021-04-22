@@ -23,7 +23,7 @@
 #
 #***** END LICENSE BLOCK *****
 class Admin::AdminSessionsController < Admin::BaseController
-  skip_before_filter :authenticate
+  skip_before_action :authenticate
   layout "admin"
 
   def new

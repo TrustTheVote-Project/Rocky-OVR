@@ -293,13 +293,6 @@ class Registrant < ActiveRecord::Base
     
   ]
 
-
-
-  
-  
-  
-  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
-
   aasm column: :status do
     state :initial, initial: true
     state :step_1

@@ -28,8 +28,8 @@ class RegistrationStep < ApplicationController
   include TwilioHelper
 
   layout "registration"
-  before_filter :find_partner
-  before_filter :find_canvassing_shift
+  before_action :find_partner
+  before_action :find_canvassing_shift
 
   rescue_from Registrant::AbandonedRecord do |exception|
     reg = exception.registrant

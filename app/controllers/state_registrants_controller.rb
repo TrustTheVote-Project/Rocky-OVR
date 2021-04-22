@@ -1,8 +1,8 @@
 class StateRegistrantsController < RegistrationStep
   
   # layout "registration"
-  # before_filter :find_partner
-  before_filter :load_state_registrant
+  # before_action :find_partner
+  before_action :load_state_registrant
     
   def edit
     set_up_locale

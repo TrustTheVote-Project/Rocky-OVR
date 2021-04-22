@@ -4,7 +4,7 @@ class CanvassingShiftsController < ApplicationController
   include ApplicationHelper
 
   layout "registration"
-  before_filter :find_canvassing_shift
+  before_action :find_canvassing_shift
 
   def show
     if !@canvassing_shift

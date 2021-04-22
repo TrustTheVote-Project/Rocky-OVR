@@ -4,28 +4,25 @@ source 'http://rubygems.org'
 
 gem "rake"
 
-gem "excon", ">= 0.71.0"
-
 gem "figaro"
 gem "config"
 
 gem "rails", "= 5.2.4.4"
 
-#gem 'protected_attributes'
 
-gem "aasm", "= 4.12.3"
+gem "aasm" #, "= 4.12.3"
 
-gem 'twilio-ruby', '~> 4.11.1'
+gem 'twilio-ruby' #, '~> 4.11.1'
 
 gem 'will_paginate'
 
 #gem 'utf8-cleaner'
 gem 'rack-robustness'
 
-gem "authlogic", "= 4.3.0"
+gem "authlogic" #, "= 4.3.0"
 gem 'daemons', '~> 1.1.9'
 gem "paperclip" #, "~> 5.3.0"
-gem 'mysql2', '~> 0.3.18'
+gem 'mysql2' #, '~> 0.3.18'
 
 gem 'distribute_reads'
 
@@ -37,8 +34,8 @@ gem "dotenv-rails", '~> 0.7.0'
 
 gem "haml"
 
-gem "rails-i18n", '~> 0.7.3'
-gem 'jquery-rails', '~> 4.4.0'
+gem "rails-i18n" #, '~> 0.7.3'
+gem 'jquery-rails' #, '~> 4.4.0'
 
 gem 'dalli'
 
@@ -46,7 +43,7 @@ gem 'jwt'
 
 group :pdf do
   gem 'wkhtmltopdf-binary', :git=>"https://github.com/amekelburg/wkhtmltopdf-binary", branch: "add-newer-osx"
-  gem 'wicked_pdf', '0.9.6'
+  gem 'wicked_pdf', '2.1.0' #'0.9.6'
   gem 'formfiller', git: "https://github.com/cwulfman/FormFiller", branch: "master"   
 end
 
@@ -69,7 +66,7 @@ group :development, :test do
   gem 'rspec-activemodel-mocks'
   gem 'capybara'
   
-  gem "rr", "= 0.10.11"
+  gem "rr"# , "= 0.10.11"
   
   gem "cucumber-rails", :require=>false
   gem "webrat"
@@ -88,7 +85,7 @@ group :development, :test do
   
   # Pito:
   # gem "hpricot", "0.8.6"
-  gem "sqlite3", "= 1.3.13"
+  gem "sqlite3" #, "= 1.3.13"
   
   gem "assert_difference"
   
@@ -116,7 +113,7 @@ gem "ledermann-rails-settings", "~> 2.4", :require => "rails-settings"
 
 gem 'json'
 
-gem "delayed_job_active_record", "~> 4.1"
+gem "delayed_job_active_record" #, "~> 4.1"
 gem 'delayed_cron_job'
 
 gem 'exception_notification'

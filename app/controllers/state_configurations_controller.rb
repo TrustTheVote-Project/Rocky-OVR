@@ -1,10 +1,10 @@
 class StateConfigurationsController < ApplicationController
   layout 'state_configuration'
   
-  before_filter :get_state_importer
-  before_filter :disallow_production
+  before_action :get_state_importer
+  before_action :disallow_production
   
-  before_filter :authenticate, :if => lambda { !%w{ development test }.include?(Rails.env) }
+  before_action :authenticate, :if => lambda { !%w{ development test }.include?(Rails.env) }
   
   def index
   end

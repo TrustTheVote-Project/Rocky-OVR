@@ -23,7 +23,7 @@
 #
 #***** END LICENSE BLOCK *****
 class QuestionsController < PartnerBase
-  before_filter :require_partner
+  before_action :require_partner
 
   def edit
     @partner = current_partner

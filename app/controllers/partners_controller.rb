@@ -24,7 +24,7 @@
 #***** END LICENSE BLOCK *****
 class PartnersController < PartnerBase
   layout "partners"
-  before_filter :require_partner, :except => [:new, :create]
+  before_action :require_partner, :except => [:new, :create]
 
   ### public access
 
@@ -218,4 +218,21 @@ SCRIPT
   end
 
   helper_method :partner_widget_url
+
+  def partner_params
+    params.require(:partner).permit(
+      :name,
+      :address,
+      :city,
+      :state_abbrev,
+      :zip_code,
+      :organization,
+      :url,
+      :phone,
+      :email,
+      :username,
+      :password,
+      :password_confirmation,
+    )
+  end
 end

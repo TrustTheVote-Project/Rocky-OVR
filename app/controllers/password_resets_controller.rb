@@ -23,7 +23,7 @@
 #
 #***** END LICENSE BLOCK *****
 class PasswordResetsController < PartnerBase
-  before_filter :load_partner_using_perishable_token, :only => [:edit, :update]
+  before_action :load_partner_using_perishable_token, :only => [:edit, :update]
 
   def new
   end

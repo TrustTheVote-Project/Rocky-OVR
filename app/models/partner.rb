@@ -70,8 +70,6 @@ class Partner < ActiveRecord::Base
 
   CSV_GENERATION_PRIORITY = Registrant::REMINDER_EMAIL_PRIORITY
 
-  attr_protected :crypted_password, :password_salt, :persistence_token, :perishable_token, :created_at, :updated_at, :api_key, :csv_ready, :csv_file_name, :from_email_verified_at, :from_email_verification_checked_at, :failed_login_count, :login_count, :last_request_at, :current_login_at, :current_login_ip, :last_login_ip, :grommet_csv_ready, :grommet_csv_file_name
-
   attr_accessor :tmp_asset_directory
 
   belongs_to :state, :class_name => "GeoState"

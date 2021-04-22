@@ -24,7 +24,7 @@
 #***** END LICENSE BLOCK *****
 class Api::V4::BaseController < ApplicationController
 
-  skip_before_filter :authenticate_everything
+  skip_before_action :authenticate_everything
   
   protected
   def handle_required_params(required_params)
