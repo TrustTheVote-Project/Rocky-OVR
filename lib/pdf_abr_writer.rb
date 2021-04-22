@@ -1,6 +1,6 @@
 class PdfAbrWriter
   include ActiveModel::AttributeMethods
-  include ActiveModel::MassAssignmentSecurity
+  #include ActiveModel::MassAssignmentSecurity
   include ActiveModel::Validations
 
   include Lolrus
