@@ -103,6 +103,14 @@ class Registrant < ActiveRecord::Base
   OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
   #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
   DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
+  EMAIL_REGEX = /
+      \A
+      [A-Z0-9_.&%+\-']+   # mailbox
+      @
+      (?:[A-Z0-9\-]+\.)+  # subdomains
+      (?:[A-Z]{2,25})     # TLD
+      \z
+    /ix
   
   #CA_NAME_REGEX =   /\A[a-zA-Z0-9'#,\-\/_\.@\s]*\z/ #A-Z a-z 0-9 '#,-/_ .@space
   
@@ -341,11 +349,11 @@ class Registrant < ActiveRecord::Base
     
   end
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
   
-  belongs_to :home_state,    :class_name => "GeoState"
-  belongs_to :mailing_state, :class_name => "GeoState"
-  belongs_to :prev_state,    :class_name => "GeoState"
+  belongs_to :home_state,    :class_name => "GeoState", optional: true
+  belongs_to :mailing_state, :class_name => "GeoState", optional: true
+  belongs_to :prev_state,    :class_name => "GeoState", optional: true
 
   has_one :registrant_status
   has_one :pdf_delivery, -> { order("pdf_ready DESC") } # If multiple, prefer the one that's ready

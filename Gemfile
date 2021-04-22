@@ -47,6 +47,8 @@ group :pdf do
   gem 'formfiller', git: "https://github.com/cwulfman/FormFiller", branch: "master"   
 end
 
+gem 'bootsnap', require: false
+
 gem 'rest-client'
 gem 'diffy'
 gem 'asset_sync'
@@ -55,6 +57,7 @@ gem 'fog-aws'
 
 group :development do
   gem 'rack-mini-profiler'
+  gem 'listen'
 end
 
 group :development, :test do

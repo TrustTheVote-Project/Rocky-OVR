@@ -27,9 +27,9 @@ require 'open-uri'
 class Partner < ActiveRecord::Base
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
-    c.merge_validates_length_of_password_field_options({:minimum => 10})
   end
   validates_format_of :password, with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, allow_blank: true
+  validates_length_of :password, minimum: 10
   
   validate :sms_opt_in_requirements
   
@@ -72,8 +72,8 @@ class Partner < ActiveRecord::Base
 
   attr_accessor :tmp_asset_directory
 
-  belongs_to :state, :class_name => "GeoState"
-  belongs_to :government_partner_state, :class_name=> "GeoState"
+  belongs_to :state, :class_name => "GeoState", optional: true
+  belongs_to :government_partner_state, :class_name=> "GeoState", optional: true
   has_many :registrants
   has_many :abrs
   has_many :catalist_lookups

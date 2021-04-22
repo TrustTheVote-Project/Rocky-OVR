@@ -1,7 +1,7 @@
 class StateRegistrants::Base < ActiveRecord::Base
   self.abstract_class = true
 
-  attr_protected :id, :updated_at, :created_at
+  #attr_protected :id, :updated_at, :created_at
   
   include RegistrantMethods
   
@@ -84,7 +84,7 @@ class StateRegistrants::Base < ActiveRecord::Base
     end
   end
   
-  belongs_to :registrant, primary_key: :uid
+  belongs_to :registrant, primary_key: :uid, optional: true
   # def registrant
   #   @registrant ||= Registrant.find_by_uid(self.registrant_id)
   # end

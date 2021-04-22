@@ -6,7 +6,7 @@ class CanvassingShift < ActiveRecord::Base
   has_many :canvassing_shift_grommet_requests, foreign_key: :shift_external_id, primary_key: :shift_external_id
   has_many :grommet_requests, through: :canvassing_shift_grommet_requests
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
 
   validates_presence_of :shift_external_id
 
@@ -42,7 +42,7 @@ class CanvassingShift < ActiveRecord::Base
 
   validates_presence_of [:canvasser_first_name, :canvasser_last_name, :partner_id, :canvasser_phone, :canvasser_email, :shift_location], if: :is_web?
   validates_format_of :canvasser_phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, if: :is_web?, allow_blank: true
-  validates_format_of :canvasser_email, :with => Authlogic::Regex::EMAIL, if: :is_web?, allow_blank: true
+  validates_format_of :canvasser_email, :with => Registrant::EMAIL_REGEX, if: :is_web?, allow_blank: true
 
   after_save :check_submit_to_blocks
 

@@ -1,8 +1,8 @@
 class BlocksFormDisposition < ActiveRecord::Base
   validates_presence_of :blocks_form_id
   
-  belongs_to :grommet_request
-  belongs_to :registrant, primary_key: :uid
+  belongs_to :grommet_request, optional: true
+  belongs_to :registrant, primary_key: :uid, optional: true
 
   def self.submit_updates!
     updatable = self.where(final_state_submitted: false)

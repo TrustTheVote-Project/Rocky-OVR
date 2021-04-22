@@ -676,7 +676,7 @@ class VRToPA
     if is_empty(v)
       ""
     else
-      valid = v.is_a?(String) && v =~ Authlogic::Regex::EMAIL
+      valid = v.is_a?(String) && v =~ Registrant::EMAIL_REGEX
       if valid #ParsingError.new("Invalid e-mail value \"#{v}\".") unless valid
         return v
       else

@@ -6,9 +6,9 @@ class BallotStatusCheck < ActiveRecord::Base
   validates_presence_of :partner_id
   
   validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
-  validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+  validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
     
-  belongs_to :partner
+  belongs_to :partner, optional: true
 
   def state
     zip.present? ? GeoState.for_zip_code(zip.strip) : nil

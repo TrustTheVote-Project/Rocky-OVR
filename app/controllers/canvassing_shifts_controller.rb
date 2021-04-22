@@ -71,9 +71,6 @@ class CanvassingShiftsController < ApplicationController
   def current_step
     self.class::CURRENT_STEP
   end
-  hide_action :current_step
-
-
   private
 
   def cs_params

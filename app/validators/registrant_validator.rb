@@ -8,7 +8,7 @@ class RegistrantValidator < ActiveModel::Validator
   
 
     reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
-    reg.validates_format_of :email_address, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+    reg.validates_format_of :email_address, :with => Registrant::EMAIL_REGEX, :allow_blank => true
     validate_email(reg)
     reg.validates_presence_of :phone_type if reg.has_phone?
 
@@ -70,7 +70,7 @@ class RegistrantValidator < ActiveModel::Validator
     
     
     
-    if reg.needs_mailing_address? 
+    if reg.needs_mailing_address?
       reg.validates_presence_of :mailing_address
       reg.validates_presence_of :mailing_city
       reg.validates_presence_of :mailing_state_id
@@ -114,7 +114,7 @@ class RegistrantValidator < ActiveModel::Validator
     if reg.telling_friends
       reg.validates_presence_of :tell_from
       reg.validates_presence_of :tell_email
-      reg.validates_format_of :tell_email, :with => Authlogic::Regex::EMAIL
+      reg.validates_format_of :tell_email, :with => Registrant::EMAIL_REGEX
       reg.validates_presence_of :tell_recipients
       reg.validates_presence_of :tell_subject
       reg.validates_presence_of :tell_message

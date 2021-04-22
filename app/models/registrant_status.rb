@@ -1,12 +1,12 @@
 class RegistrantStatus < ActiveRecord::Base
   # attr_accessible :title, :body
-  belongs_to :registrant
-  belongs_to :admin
-  belongs_to :geo_state
+  belongs_to :registrant, optional: true
+  belongs_to :admin, optional: true
+  belongs_to :geo_state, optional: true
   
   serialize :state_data, Hash
   
-  attr_protected :id, :created_at, :updated_at
+  #attr_protected :id, :created_at, :updated_at
   
   def self.get_columns(state)
     case state.abbreviation
