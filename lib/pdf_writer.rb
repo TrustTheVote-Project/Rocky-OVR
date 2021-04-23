@@ -124,7 +124,7 @@ class PdfWriter
       :locale=>self.locale
     )
     I18n.locale = prev_locale
-    puts html_string
+    
     return html_string    
   end
 
