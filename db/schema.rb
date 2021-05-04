@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201224191326) do
+ActiveRecord::Schema.define(version: 20210412193527) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20201224191326) do
     t.string   "current_login_ip",   limit: 255
     t.string   "last_login_ip",      limit: 255
     t.boolean  "active",                         default: true, null: false
+    t.string   "google_secret"
   end
 
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
@@ -226,6 +227,7 @@ ActiveRecord::Schema.define(version: 20201224191326) do
     t.boolean  "complete"
     t.string   "blocks_shift_location_name"
     t.string   "blocks_turf_id"
+    t.text     "notes"
   end
 
   add_index "canvassing_shifts", ["canvasser_first_name", "canvasser_last_name"], name: "shift_canvasser_name_index"
@@ -354,6 +356,7 @@ ActiveRecord::Schema.define(version: 20201224191326) do
     t.text     "request_params"
     t.string   "request_hash",    limit: 255
     t.text     "request_headers"
+    t.string   "state"
   end
 
   add_index "grommet_requests", ["request_hash"], name: "index_grommet_requests_on_request_hash"
@@ -754,8 +757,10 @@ ActiveRecord::Schema.define(version: 20201224191326) do
     t.string   "original_survey_question_2"
     t.string   "survey_answer_1"
     t.string   "survey_answer_2"
+    t.integer  "grommet_request_id"
   end
 
+  add_index "state_registrants_mi_registrants", ["grommet_request_id"], name: "mi_grommet_id"
   add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"
 
   create_table "state_registrants_pa_registrants", force: :cascade do |t|

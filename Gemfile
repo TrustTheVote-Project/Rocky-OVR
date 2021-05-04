@@ -28,6 +28,8 @@ gem 'mysql2', '~> 0.3.18'
 
 gem 'distribute_reads'
 
+gem 'google-authenticator-rails'
+
 
 gem "rubyzip", '~> 1.3.0'
 gem 'zip-zip'

@@ -1,0 +1,28 @@
+- if current_admin.google_secret
+  %p
+    Enter your MFA code from the google authenticator app.
+  = form_tag admin_mfa_sessions_path do
+    %p
+      %h3
+        %label MFA Code:&nbsp;
+        = text_field_tag :mfa_code, '', autocomplete: "off"
+    = submit_tag "Submit"
+      
+- else
+  - current_admin.set_google_secret()
+  %p Use the google authenticator app to scan the below QR code:
+  %br
+  %img{src: current_admin.google_qr_uri }  
+  %br
+  %p
+    Or enter the following setup code:
+    = current_admin.google_secret_value
+  %br
+  %p
+    Download the authenticar app:
+    %br
+    %a{href: "https://apps.apple.com/us/app/google-authenticator/id388497605"} For iPhone
+    %br
+    %a{href: "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"} For Android
+  %p
+    %a{href:""} Click here when finished.
