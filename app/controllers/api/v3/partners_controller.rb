@@ -57,6 +57,14 @@ class Api::V3::PartnersController < Api::V3::BaseController
         message: "Missing Parameter: partner_id"
       }, status: 400)
     else
+      version = request.headers['HTTP_GROMMET_VERSION']
+      if version.blank? || Gem::Version.new(version) < Gem::Version.new("3.1.0")
+        return jsonp({
+          is_valid: false,
+          message: "You are not using the newest version of the app. Please download an updated version from the Google Play Store"
+        }, status: 400)
+      end
+      
       partner = Partner.find_by_id(params[:partner_id])
       if partner && partner.enabled_for_grommet?
         locales = RockyConf.ovr_states.PA.languages || []
