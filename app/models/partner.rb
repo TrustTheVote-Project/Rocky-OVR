@@ -79,6 +79,19 @@ class Partner < ActiveRecord::Base
   has_many :catalist_lookups
   has_many :canvassing_shifts
 
+  def self.permitted_attributes
+    attrs = self.column_names - self.protected_attributes
+    return [attrs].flatten
+  end
+
+  def self.protected_attributes
+    Partner::PROTECTED_ATTRIBUTES
+  end
+
+  PROTECTED_ATTRIBUTES = [
+    :crypted_password, :password_salt, :persistence_token, :perishable_token, :created_at, :updated_at, :api_key, :csv_ready, :csv_file_name, :from_email_verified_at, :from_email_verification_checked_at, :failed_login_count, :login_count, :last_request_at, :current_login_at, :current_login_ip, :last_login_ip, :grommet_csv_ready, :grommet_csv_file_name
+  ]
+
   
   def self.partner_assets_bucket
     if Rails.env.production?

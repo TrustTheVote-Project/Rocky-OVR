@@ -3,7 +3,7 @@ class StateRegistrantsController < RegistrationStep
   # layout "registration"
   # before_action :find_partner
   before_action :load_state_registrant
-    
+  
   def edit
     set_up_locale
     @use_mobile_ui = determine_mobile_ui(@registrant)
@@ -11,7 +11,7 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def update
-    @registrant.attributes = params[@registrant.class.table_name.singularize]
+    @registrant.attributes = state_registrant_attributes
     @registrant.status = params[:step] if @registrant.should_advance(params)
     @registrant.check_locale_change
     set_up_locale
@@ -101,6 +101,12 @@ class StateRegistrantsController < RegistrationStep
   end
 
   private
+  def state_registrant_attributes 
+    params.require(@registrant.class.table_name.singularize).permit(
+      @registrant.class.permitted_attributes
+    )
+  end
+
   def load_state_registrant
     begin
       @old_registrant = Registrant.find_by_param!(params[:registrant_id])

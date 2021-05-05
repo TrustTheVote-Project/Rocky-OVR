@@ -20,7 +20,20 @@ class StateRegistrants::Base < ActiveRecord::Base
 
   attr_accessor :new_locale
   
-  
+  def self.permitted_attributes
+    attrs = self.column_names - self.protected_attributes
+    return [attrs, 
+      :date_of_birth_month,
+      :date_of_birth_day,
+      :date_of_birth_year,      
+    ].flatten
+  end
+
+  def self.protected_attributes
+    Registrant::PROTECTED_ATTRIBUTES
+  end
+
+    
   def self.from_registrant(reg)
     sr = self.find_by_registrant_id(reg.uid) || self.new
     sr.registrant_id = reg.uid

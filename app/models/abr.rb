@@ -18,10 +18,10 @@ class Abr < ActiveRecord::Base
   has_one :voter_signature, autosave: true
   AbrSignatureMethods::METHODS.each do |vs_attribute|
     define_method "#{vs_attribute}" do
-      (voter_signature || create_voter_signature).send(vs_attribute)
+      (voter_signature || build_voter_signature).send(vs_attribute)
     end
     define_method "#{vs_attribute}=" do |val|
-      (voter_signature || create_voter_signature).send("#{vs_attribute}=", val)
+      (voter_signature || build_voter_signature).send("#{vs_attribute}=", val)
     end
   end
 

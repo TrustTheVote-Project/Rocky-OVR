@@ -57,6 +57,12 @@ class BrandingController < PartnerBase
   end
 
   protected
+  def partner_params
+    params.require(:partner).permit(
+      :from_email,
+      :replace_system_css_preview,      
+    )
+  end
 
   def set_partner
     @partner = current_partner

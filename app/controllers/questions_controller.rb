@@ -31,11 +31,22 @@ class QuestionsController < PartnerBase
 
   def update
     @partner = current_partner
-    if @partner.update_attributes(params[:partner])
+    if @partner.update_attributes(partner_params)
       flash[:success] = "You have updated your survey questions."
       redirect_to partner_url
     else
       render "edit"
     end
+  end
+
+  protected
+  def partner_params
+    attrs = [:ask_for_volunteers, :partner_ask_for_volunteers]
+    RockyConf.enabled_locales.each do |loc| 
+      locale = loc.underscore
+      attrs.push("survey_question_1_#{locale}")
+      attrs.push("survey_question_2_#{locale}")
+    end
+    params.require(:partner).permit(attrs)
   end
 end

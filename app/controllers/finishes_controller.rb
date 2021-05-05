@@ -25,7 +25,7 @@
 class FinishesController < RegistrationStep
   CURRENT_STEP = 7
   
-  skip_before_action :find_partner, :redirect_app_role
+  skip_before_action :find_partner
 
   def show
     find_registrant(:finish)

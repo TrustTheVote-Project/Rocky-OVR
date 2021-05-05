@@ -1346,8 +1346,6 @@ class Registrant < ActiveRecord::Base
     pdf_writer.pdf_file_dir(pdfpre)
   end
   
-  
-
   def pdf_writer
     if @pdf_writer.nil?
       @pdf_writer = PdfWriter.new
@@ -1866,6 +1864,23 @@ class Registrant < ActiveRecord::Base
   attr_writer :tell_from, :tell_email, :tell_recipients, :tell_subject, :tell_message
   attr_accessor :tell_recipients, :tell_message
 
+  def self.permitted_attributes
+    attrs = self.column_names - self.protected_attributes
+    return [attrs, 
+      :date_of_birth_month,
+      :date_of_birth_day,
+      :date_of_birth_year,      
+    ].flatten
+  end
+
+  def self.protected_attributes
+    Registrant::PROTECTED_ATTRIBUTES
+  end
+
+  PROTECTED_ATTRIBUTES = [
+    :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
+  ]
+  
   def tell_from
     @tell_from ||= "#{first_name} #{last_name}"
   end

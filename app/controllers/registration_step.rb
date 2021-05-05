@@ -72,7 +72,7 @@ class RegistrationStep < ApplicationController
   def registrant_params
     #raise Registrant.column_names.to_s]
     if params[:registrant]
-      params.require(:registrant).permit(Registrant.column_names)
+      params.require(:registrant).permit(Registrant.permitted_attributes)
     else
       {}
     end

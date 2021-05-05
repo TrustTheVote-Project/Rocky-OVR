@@ -28,7 +28,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
   def create
-    r = V4::RegistrationService.create_record(params[:registration])
+    r = V4::RegistrationService.create_record(registration_params)
     jsonp :pdfurl => "https://#{RockyConf.pdf_host_name}#{r.pdf_download_path}", :uid=>r.uid
   rescue V4::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
@@ -43,7 +43,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
 
   # Creates the record
   def create_finish_with_state
-    result = V4::RegistrationService.create_record(params[:registration], true)
+    result = V4::RegistrationService.create_record(registration_params, true)
     jsonp :registrations => result.to_finish_with_state_array
   rescue V4::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
@@ -104,7 +104,7 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
     end
 
     # 1. Build a rocky registrant record based on all of the fields
-    registrant = V4::RegistrationService.create_pa_registrant(params[:rocky_request])
+    registrant = V4::RegistrationService.create_pa_registrant(rocky_request_params)
     # 1a. do subsititutions for invalid chars
     registrant.basic_character_replacement!
     registrant.state_ovr_data["grommet_request_id"] = gr_id # lets store the original request for reference
@@ -195,10 +195,20 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
 
   def bulk
     jsonp({
-        :registrants_added=>V4::RegistrationService.bulk_create(params[:registrants], params[:partner_id], params[:partner_API_key])
+        :registrants_added=>V4::RegistrationService.bulk_create(registrants_params, params[:partner_id], params[:partner_API_key])
     })
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
   end
 
+  protected
+  def registration_params
+    params[:registration].permit!
+  end
+  def registrants_params
+    params[:registrants].permit!
+  end
+  def rocky_request_params
+    params[:rocky_request].permit!
+  end
 end

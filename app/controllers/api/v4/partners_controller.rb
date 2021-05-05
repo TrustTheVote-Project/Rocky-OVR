@@ -40,7 +40,7 @@ class Api::V4::PartnersController < Api::V4::BaseController
   end
 
   def create
-    partner = V4::PartnerService.create_record(params[:partner])
+    partner = V4::PartnerService.create_record(partner_params)
     jsonp :partner_id => partner.id.to_s
   rescue V4::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
@@ -123,5 +123,8 @@ class Api::V4::PartnersController < Api::V4::BaseController
     end
   end
 
-
+  protected
+  def def partner_params
+    params.requiret(:partner).permit!
+  end
 end

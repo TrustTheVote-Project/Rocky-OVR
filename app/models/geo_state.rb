@@ -71,7 +71,7 @@ class GeoState < ActiveRecord::Base
         end
         @counties = {}
         file.each do |c|
-          c = c.with_indifferent_access
+          c = c.to_unsafe_h.with_indifferent_access
           @counties[c[:name].downcase.underscore] = c
         end
       else
