@@ -364,19 +364,18 @@ class ReportGenerator
       StateRegistrants::PARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       StateRegistrants::MIRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
-      csv_str = CsvFormatter.wrap do |csv|
-        headers = self.registrant_fields.dup
-        headers += [
-          "abr_uid",
-          "lookup_uid",
-          "ballot_status_check_uid",
-          "current_step",
-          "max_step",
-          "pdf_ready",
-          "gender",
-          "tool"
-        ]
-
+      headers = self.registrant_fields.dup
+      headers += [
+        "abr_uid",
+        "lookup_uid",
+        "ballot_status_check_uid",
+        "current_step",
+        "max_step",
+        "pdf_ready",
+        "gender",
+        "tool"
+      ]
+      csv_str_regs = CsvFormatter.wrap do |csv|
         csv << headers
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
         CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
@@ -398,21 +397,48 @@ class ReportGenerator
           reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) || ""}
           csv << reg_attributes + ["", "", "", "", "", "", "", "vr"]          
         end
+      end
+      csv_str_abrs = CsvFormatter.wrap do |csv|
+        csv << headers
+        CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
+        CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
         abrs.find_each do |abr|
           abr_attributes = headers.collect {|fname| abr_field_mapping(fname, abr) || ""}
           csv << abr_attributes
         end
+      end
+
+      csv_str_lookups = CsvFormatter.wrap do |csv|
+        csv << headers
+        CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
+        CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
         lookups.find_each do |lookup|
           lookup_attributes = headers.collect {|fname| lookup_field_mapping(fname, lookup) || ""}
           csv << lookup_attributes
         end
+      end
+      
+      csv_str_bscs = CsvFormatter.wrap do |csv|
+        csv << headers
+        CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
+        CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
         bscs.find_each do |bsc|
           bsc_attributes = headers.collect {|fname| bsc_field_mapping(fname, bsc) || ""}
           csv << bsc_attributes
         end
       end
-      file_name = time_span == 24 ? "rocky-daily.csv" : "rocky-hourly.csv"
-      self.save_csv_to_s3(csv_str, file_name)
+
+      file_name = time_span == 24 ? "rocky-daily-registrants.csv" : "rocky-hourly-registrants.csv"
+      self.save_csv_to_s3(csv_str_regs, file_name)
+
+      file_name = time_span == 24 ? "rocky-daily-abrs.csv" : "rocky-hourly-abrs.csv"
+      self.save_csv_to_s3(csv_str_abrs, file_name)
+
+      file_name = time_span == 24 ? "rocky-daily-lookups.csv" : "rocky-hourly-lookups.csv"
+      self.save_csv_to_s3(csv_str_lookups, file_name)
+
+      file_name = time_span == 24 ? "rocky-daily-ballot-status-checks.csv" : "rocky-hourly-ballot-status-checks.csv"
+      self.save_csv_to_s3(csv_str_bscs, file_name)
     end
     ENV['GENERATING_REPORTS'] = nil    
   end
