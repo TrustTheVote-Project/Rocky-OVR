@@ -35,7 +35,7 @@ class Abr < ActiveRecord::Base
   end
   
   
-  after_initialize :add_state_attributes
+  after_initialize :add_state_attributes, unless: ENV['GENERATING_REPORTS']
   
   has_many :abrs_catalist_lookups
   has_many :catalist_lookups, through: :abrs_catalist_lookups

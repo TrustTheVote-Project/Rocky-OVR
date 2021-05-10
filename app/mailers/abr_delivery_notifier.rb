@@ -45,7 +45,7 @@ class AbrDeliveryNotifier < ActionMailer::Base
     #TODO
     @election_office_name = abr.elections_office_name
 
-    @pdf_url = "http://#{RockyConf.pdf_host_name}#{abr.pdf_download_path}?source=email"
+    @pdf_url = "https://#{RockyConf.pdf_host_name}#{abr.pdf_download_path}?source=email"
     @cancel_reminders_url = abr.stop_reminders_url.to_s.html_safe
     @locale               = abr.locale.to_sym
     @registrar_phone      = abr.home_state.registrar_phone.to_s.html_safe
@@ -58,7 +58,7 @@ class AbrDeliveryNotifier < ActionMailer::Base
     @abr_home_state_name = abr.home_state_name.to_s.html_safe
     @abr_home_state_system_name = abr.home_state_system_name.to_s.html_safe
     @abr_home_state_abbrev = abr.home_state_abbrev.to_s.html_safe
-    @rtv_link = "<strong><a href=\"http://register.rockthevote.com/?partner=#{abr.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
+    @rtv_link = "<strong><a href=\"https://register.rockthevote.com/?partner=#{abr.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
     @home_state_email_instructions = abr.home_state_email_instructions.blank? ? '' : (abr.home_state_email_instructions + "<br/><br/>").to_s.html_safe
 
     partner = abr.partner

@@ -11,7 +11,9 @@
     </style>
   <![endif]-->
   <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
   <%= yield :head %>
+  
 </head>
 
 <body>
@@ -19,7 +21,7 @@
     <div></div>
   </div>
   <div id="container">
-    <% if current_admin %>
+    <% if current_admin && !@capture_mfa %>
     <div id="header">
       <span><%= link_to "Log out", admin_logout_path %></span>
       <p>
