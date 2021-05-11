@@ -615,7 +615,7 @@ record_40:
   race_tooltip: required_no_conditions_with_state_name
   requires_party: true
   party_tooltip: not_required
-  id_number_tooltip: ssn_or_none_2
+  id_number_tooltip: south_carolina
   sos_address: State Election Commission<br>P.O. Box 5987<br>Columbia, SC 29250-5987
   sos_phone: "(803) 734-9060"
   sos_url: http://www.scvotes.org/
