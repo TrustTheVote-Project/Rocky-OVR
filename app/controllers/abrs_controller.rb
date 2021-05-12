@@ -27,6 +27,7 @@ class AbrsController < ApplicationController
         home_state: @home_state,
         zip: @zip,
     )
+    set_up_locale
     render "show"
   end
   
@@ -38,6 +39,7 @@ class AbrsController < ApplicationController
   def create
     @current_step = 1
     @abr = Abr.new(abr_params)
+    set_up_locale
     @abr.partner_id = @partner_id
     @abr.set_max_step(@current_step)    
     if @abr.save
@@ -59,6 +61,7 @@ class AbrsController < ApplicationController
   
   def update
     @abr = Abr.find_by_uid(params[:id])
+    set_up_locale
     @current_step = begin params[:current_step].to_i rescue 1 end
     if !params[:abr_state_online_abr].nil? && @abr.eligible_for_oabr?
       redirect_to state_online_redirect_abr_path(@abr)
@@ -159,6 +162,7 @@ class AbrsController < ApplicationController
   
   def find_abr(special_case = nil)
     @abr = Abr.find_by_param!(params[:id])
+    set_up_locale
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
     raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil?
     @abr.update_attributes(current_step: @current_step) if @current_step
@@ -248,6 +252,12 @@ class AbrsController < ApplicationController
   def step_3_view(abr)
     potential_view = "step_3_#{abr.home_state_abbrev.to_s.downcase}"
     File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml")) ? potential_view : "step_3"
+  end
+
+  def set_up_locale
+    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
+    @locale = params[:locale] || (@abr ? @abr.locale : nil) || 'en'
+    I18n.locale = @locale.to_sym
   end
   
 end

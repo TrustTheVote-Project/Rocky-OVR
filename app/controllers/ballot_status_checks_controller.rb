@@ -12,14 +12,17 @@ class BallotStatusChecksController < ApplicationController
       last_name: @last_name,
       zip: @zip,
     )
+    set_up_locale
   end
   
   def zip
     @bsc = BallotStatusCheck.new(zip: params[:zip], partner_id: params[:partner])
+    set_up_locale
   end
 
   def create
     @bsc = BallotStatusCheck.new(bsc_params)
+    set_up_locale
     #@bsc.partner_id = @partner_id
     if @bsc.save
       redirect_to ballot_status_check_zip_path(zip: @bsc.zip, partner: @bsc.partner_id)      
@@ -53,5 +56,11 @@ class BallotStatusChecksController < ApplicationController
     @first_name = params[:first_name]
     @last_name = params[:last_name]
     @zip = params[:zip]
+  end
+
+  def set_up_locale
+    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
+    @locale = params[:locale] || (@bsc ? @bsc.locale : nil) || 'en'
+    I18n.locale = @locale.to_sym
   end
 end
