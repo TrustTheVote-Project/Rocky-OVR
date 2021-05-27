@@ -27,10 +27,29 @@ class Admin < ActiveRecord::Base
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
     #c.merge_validates_length_of_password_field_options({:minimum => 10})
   end
-  # Symbols: $@$!%*?&
-  validates_format_of :password, with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, allow_blank: true
-  validates_length_of :password, minimum: 10
   
+
+  acts_as_authentic do |c|
+    c.crypto_provider = Authlogic::CryptoProviders::Sha512
+  end
+  
+  validates :password,
+    confirmation: { if: :require_password? },
+    format: {
+      # Symbols: $@$!%*?&
+      with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, 
+      allow_blank: true
+    },
+    length: {
+      minimum: 10,
+      if: :require_password?
+    }
+  validates :password_confirmation,
+    length: {
+      minimum: 10,
+      if: :require_password?
+    }
+
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notifier.admin_password_reset_instructions(self).deliver_now

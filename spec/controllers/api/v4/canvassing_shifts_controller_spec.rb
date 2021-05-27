@@ -35,7 +35,7 @@ describe Api::V4::CanvassingShiftsController do
       canvasser_phone: "(123) 456-1234",
       device_id: "xxx"
     }}
-    subject { post :create, query.merge(format: 'json') }
+    subject { post :create, params: query, format: 'json' }
     it "returns a 200" do
       expect(subject.status).to eq(200)
     end
@@ -86,7 +86,7 @@ describe Api::V4::CanvassingShiftsController do
       abandoned_registrations: 3,
       completed_registrations: 10
     }}
-    subject { put :update, query.merge(format: 'json', id: shift_id) }
+    subject { put :update, params: query.merge(id: shift_id), format: 'json' }
     before(:each) do
       allow(CanvassingShift).to receive(:find_by).with(shift_external_id: shift_id).and_return(canvassing_shift)
     end
@@ -136,7 +136,7 @@ describe Api::V4::CanvassingShiftsController do
   describe "complete" do
     let(:shift_id) { "grommet-123abc" }
     let(:canvassing_shift) { double(CanvassingShift).as_null_object }
-    subject { get :complete, {format: 'json', id: shift_id} }
+    subject { get :complete, params: {id: shift_id}, format: 'json' }
     before(:each) do
       allow(CanvassingShift).to receive(:find_by).with(shift_external_id: shift_id).and_return(canvassing_shift)
     end

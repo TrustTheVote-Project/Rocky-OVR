@@ -38,26 +38,26 @@ describe Admin::PartnerZipsController do
     end
     context "results" do
       before(:each) do
-        post :create, :partner_zip => {:zip_file=>@file}
+        post :create, params: {:partner_zip => {:zip_file=>@file}}
       end
       it { should redirect_to(admin_partners_path) }      
     end
     it "extracts the zip file to a tmp directory" do
       PartnerZip.stub(:new).with(@file) { @pz }
-      post :create, :partner_zip => {:zip_file=>@file}
+      post :create, params: {:partner_zip => {:zip_file=>@file}}
       PartnerZip.should have_received(:new).with(@file)
     end
     it "creates partners in bulk from the extracted directory" do
       PartnerZip.stub(:new).with(@file) { @pz }
       @pz.stub(:create) { true }
-      post :create, :partner_zip => {:zip_file=>@file}
+      post :create, params: {:partner_zip => {:zip_file=>@file}}
       @pz.should have_received(:create)
     end
     it "sets a flash message when there are errors" do
       PartnerZip.stub(:new).with(@file) { @pz }
       @pz.stub(:create) { false }
       @pz.stub(:error_messages) {"An error message"}
-      post :create, :partner_zip => {:zip_file=>@file}
+      post :create, params: {:partner_zip => {:zip_file=>@file}}
       flash[:warning].should == "An error message"
     end
   end

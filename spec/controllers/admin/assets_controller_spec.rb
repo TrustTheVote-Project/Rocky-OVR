@@ -33,26 +33,26 @@ describe Admin::AssetsController do
 
   describe 'index' do
     before  { @paf.stub(:list_assets) { [] } }
-    before  { get :index, :partner_id => @partner }
+    before  { get :index, params: { :partner_id => @partner } }
     specify { assigns(:assets).should be }
     it      { should render_template :index }
   end
 
   describe 'destroy' do
     before  { @paf.stub(:delete_asset).with('application.css') }
-    before  { delete :destroy, :partner_id => @partner, :id => 0, :name => 'application.css' }
+    before  { delete :destroy, params: { :partner_id => @partner, :id => 0, :name => 'application.css' }}
     it      { should redirect_to admin_partner_assets_path(@partner) }
   end
 
   describe 'create' do
     before  { @file = fixture_files_file_upload('/sample.css') }
     before  { @paf.stub(:update_asset).with('sample.css', @file) }
-    before  { post :create, :partner_id => @partner, :asset => { :file => @file } }
+    before  { post :create, params: { :partner_id => @partner, :asset => { :file => @file } }}
     it      { should redirect_to admin_partner_assets_path(@partner) }
   end
 
   describe 'create without a file' do
-    before  { post :create, :partner_id => @partner }
+    before  { post :create, params: {:partner_id => @partner} }
     it      { should redirect_to admin_partner_assets_path(@partner) }
   end
 end

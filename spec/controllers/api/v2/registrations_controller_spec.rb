@@ -104,13 +104,13 @@ describe Api::V2::RegistrationsController do
   def new_registration(&block)
     data = {}
     V2::RegistrationService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', :registration => data
+    post :create, :format => 'json', params: {:registration => data}
   end
 
   def new_finish_with_state_registration(&block)
     data = { 'lang' => 'en', 'partner_id' => Partner.first.id }
     V2::RegistrationService.stub(:create_record).with(data, true, &block)
-    post :create_finish_with_state, :format => 'json', :registration => data
+    post :create_finish_with_state, :format => 'json', params: {:registration => data}
   end
 
 end

@@ -73,7 +73,7 @@ describe Api::V1::RegistrationsController do
   def new_registration(&block)
     data = {}
     V1::RegistrationService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', :registration => data
+    post :create, :format => 'json', params: {:registration => data}
   end
 
 end

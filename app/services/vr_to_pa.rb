@@ -234,7 +234,11 @@ class VRToPA
 
   def initialize(voter_records_req)
     @voter_records_request = voter_records_req
-    @request = @voter_records_request['voter_registration'].to_unsafe_h.with_indifferent_access
+    @request = @voter_records_request['voter_registration']
+    if @request.respond_to?(:to_unsafe_h)
+      @request = @request.to_unsafe_h
+    end
+    @request = @request.with_indifferent_access
     @mods = []
     raise ParsingError.new('Invalid input, voter_registration value not found') if @request.nil?
   end

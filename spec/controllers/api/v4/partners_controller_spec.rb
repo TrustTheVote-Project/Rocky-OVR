@@ -110,7 +110,7 @@ describe Api::V4::PartnersController do
         allow(mock_partner).to receive(:enabled_for_grommet?).and_return(true)
       end
       context 'when partner is allowed' do
-        subject { get :partner_id_validation, query.merge(format: 'json') }
+        subject { get :partner_id_validation, params: query, format: 'json' }
         it "returns a 200" do
           expect(subject.status).to eq(200)
         end
@@ -139,7 +139,7 @@ describe Api::V4::PartnersController do
         before(:each) do
           allow(mock_partner).to receive(:enabled_for_grommet?).and_return(false)
         end
-        subject { get :partner_id_validation, query.merge(format: 'json') }
+        subject { get :partner_id_validation, params: query, format: 'json' }
         it "returns a 200" do
           expect(subject.status).to eq(200)
         end
@@ -183,7 +183,7 @@ describe Api::V4::PartnersController do
       let(:query) {{
         :partner_id_wrong_param=>'1'
       }}
-      subject { get :partner_id_validation, query.merge(format: 'json') }
+      subject { get :partner_id_validation, params: query, format: 'json' }
       it "returns a 422" do
         expect(subject.status).to eq(422)
       end
@@ -198,7 +198,7 @@ describe Api::V4::PartnersController do
   def partner(&block)
     query = { :partner_id => "1", :partner_api_key => nil }
     V4::PartnerService.stub(:find).with(query, false, &block)
-    get :show, :format => 'json', :id=>1
+    get :show, :format => 'json', params: {:id=>1}
   end
 
   def public_partner(&block)
@@ -210,7 +210,7 @@ describe Api::V4::PartnersController do
   def new_partner(&block)
     data = {}
     V4::PartnerService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', :partner => data
+    post :create, :format => 'json', params: {:partner => data}
   end
 
 

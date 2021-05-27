@@ -48,7 +48,7 @@ describe PasswordResetsController do
     end
     context "with an invalid perishable token" do
       it "display a flash" do
-        get :edit, :id => "bogus"
+        get :edit, params: {:id => "bogus"}
         assert_redirected_to login_url
         flash[:warning].should =~ /We're sorry, but we could not locate your account/i
       end
@@ -63,13 +63,13 @@ describe PasswordResetsController do
         Partner.stub(:find_by_login).with(anything) { fake_partner }
       end
       it "sends a notification to the Partner's email to reset password" do
-        post :create, :login => "mocked@example.com"
+        post :create, params: {:login => "mocked@example.com"}
         assert_redirected_to login_url
       end
     end
     context "with an invalid email" do
       it "displays a flash" do
-        post :create, :email => ""
+        post :create, params: {:email => ""}
         assert flash[:warning] =~ /No account was found/i
         assert_template "new"
       end
@@ -86,13 +86,13 @@ describe PasswordResetsController do
     end
 
     it "should work" do
-      put :update, :id => partner.perishable_token, :partner => {:password => 'MyN3wP4ssw0rd!', :password_confirmation => 'MyN3wP4ssw0rd!'}
+      put :update, params: {:id => partner.perishable_token, :partner => {:password => 'MyN3wP4ssw0rd!', :password_confirmation => 'MyN3wP4ssw0rd!'}}
       assert_redirected_to login_url
       flash[:success].should =~ /Password successfully updated/i
     end
 
     it "shows an error when password is blank" do
-      put :update, :id => partner.perishable_token, :partner => {:password => '', :password_confirmation => ''}
+      put :update, params: {:id => partner.perishable_token, :partner => {:password => '', :password_confirmation => ''}}
       assert_response :success
       assert_template "edit"
       assert_select "span.error", "Password cannot be blank"

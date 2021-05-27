@@ -228,7 +228,7 @@ describe Api::V4::RegistrationsController do
         }
       }
     }
-    subject { post :create_pa, query.merge(format: 'json') }
+    subject { post :create_pa, params: query, format: 'json' }
 
     context 'invalid request structure' do
       let(:query) { {} }
@@ -347,18 +347,18 @@ describe Api::V4::RegistrationsController do
   def pdf_ready(&block)
     query = { :UID=>"1234"}
     V4::RegistrationService.stub(:check_pdf_ready).with(query, &block)
-    get :pdf_ready, query.merge(:format=>'json')
+    get :pdf_ready, params: query, :format=>'json'
   end
   
   def stop_reminders(&block)
     query = { :UID=>"1234"}
     V4::RegistrationService.stub(:stop_reminders).with(query, &block)
-    post :stop_reminders, query.merge(:format=>'json')
+    post :stop_reminders, params: query, :format=>'json'
   end
   def bulk(&block)
     query = { :registrants=>[], :partner_id=>1, :partner_API_key=>"1"}
     V4::RegistrationService.stub(:bulk_create).with([], 1, "1", &block)
-    post :bulk, query.merge(:format=>'json')
+    post :bulk, params: query, :format=>'json'
     
   end
   
@@ -376,13 +376,13 @@ describe Api::V4::RegistrationsController do
   def new_registration(&block)
     data = {}
     V4::RegistrationService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', :registration => data
+    post :create, :format => 'json', params: {:registration => data}
   end
 
   def new_finish_with_state_registration(&block)
     data = { 'lang' => 'en', 'partner_id' => Partner.first.id }
     V4::RegistrationService.stub(:create_record).with(data, true, &block)
-    post :create_finish_with_state, :format => 'json', :registration => data
+    post :create_finish_with_state, :format => 'json', params: {:registration => data}
   end
 
 end

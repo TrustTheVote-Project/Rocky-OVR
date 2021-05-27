@@ -82,7 +82,7 @@ describe Api::V2::PartnersController do
   def new_partner(&block)
     data = {}
     V2::PartnerService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', :partner => data
+    post :create, :format => 'json', params: {:partner => data}
   end
 
 

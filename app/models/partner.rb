@@ -28,9 +28,25 @@ class Partner < ActiveRecord::Base
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
   end
-  validates_format_of :password, with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, allow_blank: true
-  validates_length_of :password, minimum: 10
   
+  validates :password,
+    confirmation: { if: :require_password? },
+    format: {
+      with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, 
+      allow_blank: true
+    },
+    length: {
+      minimum: 10,
+      if: :require_password?
+    }
+  validates :password_confirmation,
+    length: {
+      minimum: 10,
+      if: :require_password?
+    }
+
+
+
   validate :sms_opt_in_requirements
   
   include TimeStampHelper
