@@ -54,15 +54,15 @@ class BrandingController < PartnerBase
 
     update_email_template_subjects(params[:template_subject])
 
-    redirect_to :back
+    redirect_back fallback_location: partner_branding_path
   end
 
   protected
   def partner_params
-    params.require(:partner).permit(
+    params[:partner] !params[:partner].empty? ? params.require(:partner).permit(
       :from_email,
       :replace_system_css_preview,      
-    )
+    ) : {}
   end
 
   def set_partner

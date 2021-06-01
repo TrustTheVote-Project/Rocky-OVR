@@ -78,7 +78,7 @@ describe Api::V3::PartnersController do
         })
       end
       context 'when partner is allowed' do
-        subject { get :partner_id_validation, params: query, format: 'json' }
+        subject { get :partner_id_validation, params: query, as: 'json' }
         it "returns a 200" do
           expect(subject.status).to eq(200)
         end
@@ -113,7 +113,7 @@ describe Api::V3::PartnersController do
         before(:each) do
           allow(mock_partner).to receive(:enabled_for_grommet?).and_return(false)
         end
-        subject { get :partner_id_validation, params: query, format: 'json' }
+        subject { get :partner_id_validation, params: query, as: 'json' }
         it "returns a 200" do
           expect(subject.status).to eq(200)
         end
@@ -133,7 +133,7 @@ describe Api::V3::PartnersController do
       before(:each) do
         allow(Partner).to receive(:find_by_id).with('1').and_return(nil)
       end
-      subject { get :partner_id_validation, params: query, format: 'json' }
+      subject { get :partner_id_validation, params: query, as: 'json' }
       it "returns a 200" do
         expect(subject.status).to eq(200)
       end
@@ -149,7 +149,7 @@ describe Api::V3::PartnersController do
       let(:query) {{
         :partner_id_wrong_param=>'1',
       }}
-      subject { get :partner_id_validation, params: query, format: 'json' }
+      subject { get :partner_id_validation, params: query, as: 'json' }
       it "returns a 400" do
         expect(subject.status).to eq(400)
       end
@@ -165,19 +165,19 @@ describe Api::V3::PartnersController do
   def partner(&block)
     query = { :partner_id => "1", :partner_api_key => nil }
     V3::PartnerService.stub(:find).with(query, false, &block)
-    get :show, :format => 'json', params: {:id=>1}
+    get :show, :as => 'json', params: {:id=>1}
   end
 
   def public_partner(&block)
     query = { :partner_id => nil, :partner_api_key => nil }
     V3::PartnerService.stub(:find).with(query, true, &block)
-    get :show_public, :format => 'json'
+    get :show_public, :as => 'json'
   end
 
   def new_partner(&block)
     data = {}
     V3::PartnerService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', params: {:partner => data}
+    post :create, :as => 'json', params: {:partner => data}
   end
 
 

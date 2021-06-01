@@ -41,7 +41,7 @@ describe RegistrantsController do
     it "generates bootstrap javascript targeted to server host" do
       request.stub(:protocol) { "http://" }
       request.stub(:host_with_port) { "example.com:3000" }
-      get :widget_loader, :format => "js"
+      get :widget_loader, :as => "js"
       assert_response :success
       assert_template "widget_loader"
       assert_match %r{createElement}, response.body

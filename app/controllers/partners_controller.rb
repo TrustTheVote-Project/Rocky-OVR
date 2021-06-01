@@ -38,11 +38,13 @@ class PartnersController < PartnerBase
   end
 
   def create
+    puts partner_params
     @partner = Partner.new(partner_params)
     if @partner.save
       flash[:success] = "Registered!"
       redirect_to partner_url
     else
+      puts @partner.errors.full_messages
       render "new"
     end
   end
@@ -220,7 +222,10 @@ SCRIPT
   helper_method :partner_widget_url
 
   def partner_params
-    params.require(:partner).permit(Partner.permitted_attributes)
+    params[:partner] && !params[:partner].empty? ? 
+      params.require(:partner).permit(Partner.permitted_attributes)
+      :
+      nil
     #   :name,
     #   :address,
     #   :city,

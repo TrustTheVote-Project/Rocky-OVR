@@ -146,7 +146,7 @@ class BlocksClient
     Rails.logger.debug "BLOCKS:RESPONSE>> #{response.inspect}"
     Rails.logger.debug "BLOCKS:RESPONSE>> #{response.body.to_s}"
 
-    raise InvalidResponseError, "#{response.code}: #{response.body}" if response.code != "200"
+    raise InvalidResponseError, "#{uri}\n#{response.code}: #{response.body}" if response.code != "200"
 
     result = begin
       if response.body.present?

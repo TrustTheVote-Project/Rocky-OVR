@@ -72,7 +72,7 @@ describe Admin::PartnersController do
       before  { @sample_css = fixture_files_file_upload('/sample.css') }
       before  { @paf = PartnerAssetsFolder.new(nil) }
       before  { PartnerAssetsFolder.stub(:new).with(@partner) { @paf } }
-      before  { @paf.stub(:update_css).with('application', @sample_css) }
+      before  { @paf.stub(:update_css).with('application', the_uploaded_file(@sample_css)) }
       specify { put :update, params: {:id => @partner, :css_files => { 'application' => @sample_css }} }
     end
 

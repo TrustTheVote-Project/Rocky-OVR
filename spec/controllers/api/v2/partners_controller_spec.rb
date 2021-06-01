@@ -70,19 +70,19 @@ describe Api::V2::PartnersController do
   def partner(&block)
     query = { :partner_id => nil, :partner_api_key => nil }
     V2::PartnerService.stub(:find).with(query, false, &block)
-    get :show, :format => 'json'
+    get :show, :as => 'json'
   end
 
   def public_partner(&block)
     query = { :partner_id => nil, :partner_api_key => nil }
     V2::PartnerService.stub(:find).with(query, true, &block)
-    get :show_public, :format => 'json'
+    get :show_public, :as => 'json'
   end
 
   def new_partner(&block)
     data = {}
     V2::PartnerService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', params: {:partner => data}
+    post :create, :as => 'json', params: {:partner => data}
   end
 
 

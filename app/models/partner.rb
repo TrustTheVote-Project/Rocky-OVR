@@ -97,7 +97,7 @@ class Partner < ActiveRecord::Base
 
   def self.permitted_attributes
     attrs = self.column_names - self.protected_attributes
-    return [attrs].flatten
+    return [attrs, :password, :password_confirmation].flatten
   end
 
   def self.protected_attributes

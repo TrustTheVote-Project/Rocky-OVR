@@ -32,9 +32,8 @@ class Admin::AssetsController < Admin::BaseController
   # Uploads new asset
   def create
     asset_file = params[:asset].try(:[], :file)
-
     if asset_file
-      name = asset_file.original_filename
+      name = asset_file.tempfile && asset_file.original_filename
       assets_folder.update_asset(name, asset_file)
     end
 

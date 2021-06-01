@@ -25,6 +25,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../rails_helper')
 
 describe Api::V4::CanvassingShiftsController do
+  before(:each) do
+    BlocksClient.stub(:get_token).and_return({
+      "jwt"=>"abc123"
+    })
+    BlocksClient.stub(:send)
+  end
   describe "create" do
     let(:query) {{
       partner_id: 5,
@@ -35,7 +41,7 @@ describe Api::V4::CanvassingShiftsController do
       canvasser_phone: "(123) 456-1234",
       device_id: "xxx"
     }}
-    subject { post :create, params: query, format: 'json' }
+    subject { post :create, params: query, as: 'json' }
     it "returns a 200" do
       expect(subject.status).to eq(200)
     end
@@ -76,8 +82,8 @@ describe Api::V4::CanvassingShiftsController do
   
   
   describe "update" do
-    let(:clockin) { 5.hours.ago }
-    let(:clockout) { 1.hour.ago }
+    let(:clockin) { 5.hours.ago.iso8601 }
+    let(:clockout) { 1.hour.ago.iso8601 }
     let(:shift_id) { "grommet-123abc" }
     let(:canvassing_shift) { double(CanvassingShift).as_null_object }
     let(:query) {{
@@ -86,7 +92,7 @@ describe Api::V4::CanvassingShiftsController do
       abandoned_registrations: 3,
       completed_registrations: 10
     }}
-    subject { put :update, params: query.merge(id: shift_id), format: 'json' }
+    subject { put :update, params: query.merge(id: shift_id), as: 'json' }
     before(:each) do
       allow(CanvassingShift).to receive(:find_by).with(shift_external_id: shift_id).and_return(canvassing_shift)
     end
@@ -99,7 +105,7 @@ describe Api::V4::CanvassingShiftsController do
       subject
     end
     it "returns an empty body" do
-      expect(JSON.parse(subject.body)).to eq({})
+      expect(JSON.parse(subject.body)).to eq({"errors"=>[]})
     end
     context "shift not found" do
       it "returns 404 with error message" do
@@ -136,7 +142,7 @@ describe Api::V4::CanvassingShiftsController do
   describe "complete" do
     let(:shift_id) { "grommet-123abc" }
     let(:canvassing_shift) { double(CanvassingShift).as_null_object }
-    subject { get :complete, params: {id: shift_id}, format: 'json' }
+    subject { get :complete, params: {id: shift_id}, as: 'json' }
     before(:each) do
       allow(CanvassingShift).to receive(:find_by).with(shift_external_id: shift_id).and_return(canvassing_shift)
     end
@@ -149,7 +155,7 @@ describe Api::V4::CanvassingShiftsController do
       subject
     end
     it "returns an empty body" do
-      expect(JSON.parse(subject.body)).to eq({})
+      expect(JSON.parse(subject.body)).to eq({"errors"=>[]})
     end
     context "shift not found" do
       it "returns 404 with error message" do

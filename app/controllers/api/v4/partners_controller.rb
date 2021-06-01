@@ -124,7 +124,8 @@ class Api::V4::PartnersController < Api::V4::BaseController
   end
 
   protected
-  def def partner_params
-    params.requiret(:partner).permit!
+  def partner_params
+    puts params
+    params[:partner] && !params[:partner].empty? ? params.require(:partner).permit! : {}
   end
 end

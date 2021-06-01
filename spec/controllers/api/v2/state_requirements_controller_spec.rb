@@ -48,7 +48,7 @@ describe Api::V2::StateRequirementsController do
   def state_requirements(&block)
     query = { :lang => nil, :home_state_id => nil, :home_zip_code => nil, :date_of_birth => nil }
     V2::StateRequirements.stub(:find).with(query, &block)
-    get :show, :format => 'json', params: {:query => query}
+    get :show, :as => 'json', params: {:query => query}
   end
 
 end

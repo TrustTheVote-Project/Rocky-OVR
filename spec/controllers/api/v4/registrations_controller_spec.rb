@@ -228,7 +228,7 @@ describe Api::V4::RegistrationsController do
         }
       }
     }
-    subject { post :create_pa, params: query, format: 'json' }
+    subject { post :create_pa, params: query, as: 'json' }
 
     context 'invalid request structure' do
       let(:query) { {} }
@@ -365,24 +365,24 @@ describe Api::V4::RegistrationsController do
   def registrations(&block)
     query = { :partner_id => nil, :partner_api_key => nil, :since => nil, :email=>nil }
     V4::RegistrationService.stub(:find_records).with(query, &block)
-    get :index, :format => 'json'
+    get :index, :as => 'json'
   end
   def gregistrations(&block)
     query = { :gpartner_id => nil, :gpartner_api_key => nil, :since => nil, :email=>nil }
     V4::RegistrationService.stub(:find_records).with(query, &block)
-    get :index_gpartner, :format => 'json'
+    get :index_gpartner, :as => 'json'
   end
 
   def new_registration(&block)
     data = {}
     V4::RegistrationService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', params: {:registration => data}
+    post :create, :as => 'json', params: {:registration => data}
   end
 
   def new_finish_with_state_registration(&block)
     data = { 'lang' => 'en', 'partner_id' => Partner.first.id }
-    V4::RegistrationService.stub(:create_record).with(ActionController::Parameters.new(data), true, &block)
-    post :create_finish_with_state, :format => 'json', params: {:registration => data}
+    V4::RegistrationService.stub(:create_record).with(ActionController::Parameters.new(data).permit!, true, &block)
+    post :create_finish_with_state, :as => 'json', params: {:registration => data}
   end
 
 end

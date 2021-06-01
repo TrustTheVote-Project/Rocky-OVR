@@ -67,13 +67,13 @@ describe Api::V1::RegistrationsController do
   def registrations(&block)
     query = { :partner_id => nil, :partner_password => nil, :since => nil }
     V1::RegistrationService.stub(:find_records).with(query, &block)
-    get :index, :format => 'json'
+    get :index, :as => 'json'
   end
 
   def new_registration(&block)
     data = {}
     V1::RegistrationService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', params: {:registration => data}
+    post :create, params: {:registration => data}, :as => 'json'
   end
 
 end

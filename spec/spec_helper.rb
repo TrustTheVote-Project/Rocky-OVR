@@ -93,6 +93,13 @@ RSpec.configure do |config|
 =end
 end
 
+RSpec::Matchers.define :the_uploaded_file do |test_file|
+  match do |actual| 
+    actual.is_a?(ActionDispatch::Http::UploadedFile) && actual.original_filename == test_file.original_filename
+  end
+end
+
+
 
 def rspec_partner_auth
   activate_authlogic

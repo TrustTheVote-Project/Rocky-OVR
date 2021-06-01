@@ -67,7 +67,7 @@ describe Api::V4::PartnersController do
     let(:query) {{
       version: RockyConf.ovr_states.PA.grommet_min_version 
     }}
-    subject { get :validate_version, query.merge(format: 'json') }
+    subject { get :validate_version, params: query, as: 'json'}
     it "returns a 200" do
       expect(subject.status).to eq(200)
     end
@@ -104,13 +104,14 @@ describe Api::V4::PartnersController do
       let(:query) {{
         :partner_id=>'1'
       }}
-      let(:mock_partner) { double(Partner, :organization=>"Partner Org Name")}
+      let(:mock_partner) { double(Partner, :organization=>"Partner Org Name", id: '1')}
       before(:each) do
+        allow(CanvassingShift).to receive(:location_options).and_return(nil)
         allow(Partner).to receive(:find_by_id).with('1').and_return(mock_partner)
         allow(mock_partner).to receive(:enabled_for_grommet?).and_return(true)
       end
       context 'when partner is allowed' do
-        subject { get :partner_id_validation, params: query, format: 'json' }
+        subject { get :partner_id_validation, params: query, as: 'json' }
         it "returns a 200" do
           expect(subject.status).to eq(200)
         end
@@ -139,7 +140,7 @@ describe Api::V4::PartnersController do
         before(:each) do
           allow(mock_partner).to receive(:enabled_for_grommet?).and_return(false)
         end
-        subject { get :partner_id_validation, params: query, format: 'json' }
+        subject { get :partner_id_validation, params: query, as: 'json' }
         it "returns a 200" do
           expect(subject.status).to eq(200)
         end
@@ -163,7 +164,7 @@ describe Api::V4::PartnersController do
       before(:each) do
         allow(Partner).to receive(:find_by_id).with('1').and_return(nil)
       end
-      subject { get :partner_id_validation, query.merge(format: 'json') }
+      subject { get :partner_id_validation, params: query, as: 'json' }
       it "returns a 200" do
         expect(subject.status).to eq(200)
       end
@@ -183,7 +184,7 @@ describe Api::V4::PartnersController do
       let(:query) {{
         :partner_id_wrong_param=>'1'
       }}
-      subject { get :partner_id_validation, params: query, format: 'json' }
+      subject { get :partner_id_validation, params: query, as: 'json' }
       it "returns a 422" do
         expect(subject.status).to eq(422)
       end
@@ -198,19 +199,19 @@ describe Api::V4::PartnersController do
   def partner(&block)
     query = { :partner_id => "1", :partner_api_key => nil }
     V4::PartnerService.stub(:find).with(query, false, &block)
-    get :show, :format => 'json', params: {:id=>1}
+    get :show, :as => 'json', params: {:id=>1}
   end
 
   def public_partner(&block)
     query = { :partner_id => nil, :partner_api_key => nil }
     V4::PartnerService.stub(:find).with(query, true, &block)
-    get :show_public, :format => 'json'
+    get :show_public, :as => 'json'
   end
 
   def new_partner(&block)
     data = {}
     V4::PartnerService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', params: {:partner => data}
+    post :create, params: {:partner => data}, :as => 'json'
   end
 
 
