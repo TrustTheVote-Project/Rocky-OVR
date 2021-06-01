@@ -87,7 +87,7 @@ class BlocksClient
     send(:post, path, body: body, headers: headers, url: url)
   end
   
-  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_qc", token:, url:)
+  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_qc", token:, url: nil)
     path = "shifts/#{shift_id}/digital_batch"
     headers = {'Content-Type' => 'application/json'}
     
@@ -104,8 +104,8 @@ class BlocksClient
   BASE_PATH = "/api/v1/external/"
 
   def self.send(method, path, body: {}, params: {}, headers: {}, url: nil)
-    base_url = url || RockyConf.blocks_configuration.url 
-    uri = URI.join(url, BASE_PATH, path)
+    base_url = url || RockyConf.blocks_configuration.url
+    uri = URI.join(base_url, BASE_PATH, path)
     uri.query = params.to_query if params.any?
     RequestLogSession.request_log_instance.log_uri(uri) if RequestLogSession.request_log_instance
 

@@ -154,9 +154,10 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def set_attributes_from_data!(data)
-    set_attribute_from_data(:shift_location, data, :canvass_location_id)
-    %w(partner_id
-      source_tracking_id
+    d = data.with_indifferent_access
+    set_attribute_from_data("partner_id", d)
+    set_attribute_from_data(:shift_location, d, :canvass_location_id)
+    %w(source_tracking_id
       partner_tracking_id
       geo_location
       open_tracking_id
@@ -171,7 +172,7 @@ class CanvassingShift < ActiveRecord::Base
       abandoned_registrations
       completed_registrations
     ).each do |attribute|
-      set_attribute_from_data(attribute, data)
+      set_attribute_from_data(attribute, d)
     end
 
     self.save!

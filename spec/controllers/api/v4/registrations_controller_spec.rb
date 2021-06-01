@@ -381,7 +381,7 @@ describe Api::V4::RegistrationsController do
 
   def new_finish_with_state_registration(&block)
     data = { 'lang' => 'en', 'partner_id' => Partner.first.id }
-    V4::RegistrationService.stub(:create_record).with(data, true, &block)
+    V4::RegistrationService.stub(:create_record).with(ActionController::Parameters.new(data), true, &block)
     post :create_finish_with_state, :format => 'json', params: {:registration => data}
   end
 

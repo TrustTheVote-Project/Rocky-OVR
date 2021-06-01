@@ -582,7 +582,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
       src.close
       wh = `identify -format "%wx%h" #{src.path}`
       if wh.to_s.strip !="#{SIG_WIDTH}x#{SIG_HEIGHT}"
-        # dst.close
+        dst.close
         #  -background skyblue -extent 100x60
         cmd = "convert #{src.path} -background white -extent #{SIG_WIDTH}x#{SIG_HEIGHT} -density #{RESOLUTION} #{dst.path}"
         `#{cmd}`

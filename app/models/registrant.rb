@@ -977,7 +977,7 @@ class Registrant < ActiveRecord::Base
     if is_grommet? # Right now sigs only come from grommet
       return !grommet_submission["signature"].blank?    
     else
-      return existing_state_registrant&.voter_signature_image.present?
+      return existing_state_registrant && existing_state_registrant.voter_signature_image.present?
     end
   end
   

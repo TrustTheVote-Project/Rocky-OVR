@@ -66,7 +66,7 @@ describe BrandingController do
       expect(@fs3.files.count).to be_eql 0
 
       request.env["HTTP_REFERER"] = "example.com"
-      post :update, params: {{file: file}}
+      post :update, params: {file: file}
 
       expect(@fs3.files.count).to be_eql 1
       expect(@fs3.files[0].key).to be_eql File.join(@partner.partner_path, 'preview', 'partner_logo.jpg')

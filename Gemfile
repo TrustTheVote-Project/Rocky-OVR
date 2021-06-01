@@ -62,6 +62,7 @@ end
 
 group :development, :test do
   #gem 'pry'
+  gem 'rails-controller-testing'
   gem 'spring-commands-rspec'
   gem "spring-commands-cucumber"
   gem "rspec-rails"

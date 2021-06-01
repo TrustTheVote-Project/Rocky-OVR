@@ -39,12 +39,13 @@ class BrandingController < PartnerBase
 
   def update
     @partner = current_partner
-    @partner.update_attributes(params[:partner])
+    @partner.update_attributes(partner_params)
     # remove assets before uploading new ones
     params[:remove].try(:each) do |filename, _|
       assets_folder.delete_asset(filename, :preview)
     end
-
+    params.permit!
+    
     update_custom_css(params[:css_files])
 
     upload_custom_asset(params.try(:[], :file))

@@ -32,7 +32,7 @@ class PasswordResetsController < PartnerBase
   end
 
   def create
-    if @partner = Partner.find_by_login(params[:login].permit!.to_h)
+    if @partner = Partner.find_by_login(params.permit![:login].to_h)
       @partner.deliver_password_reset_instructions!
       flash[:message] = "Instructions to reset your password have been emailed to you. Please check your email."
       redirect_to login_url

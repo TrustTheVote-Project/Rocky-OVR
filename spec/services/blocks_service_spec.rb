@@ -133,12 +133,12 @@ describe BlocksService do
       it "calls get_locations on the blocks client with logging" do
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
         expect(BlocksClient).to receive(:get_locations).with(turf_id, token: s.token)        
-        s.get_locations(partner)
+        s.get_locations()
       end
       it "uses turf_id when present" do
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
-        expect(BlocksClient).to receive(:get_locations).with("456", token: s.token)        
-        s.get_locations(partner, turf_id: "456")
+        expect(BlocksClient).to receive(:get_locations).with("456", token: s.token, url: RockyConf.blocks_configuration.url)        
+        s.get_locations( turf_id: "456")
       end
     end
     describe "add_metadata_to_form" do
@@ -154,7 +154,7 @@ describe BlocksService do
       it "makes call to BlocksClient with logging and added token" do
         input1 = {first_name: "val", last_name: "val", phone_number: "val", email: "val", turf_id: "val"}
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
-        expect(BlocksClient).to receive("create_canvasser").with(**input1, token: s.token)
+        expect(BlocksClient).to receive("create_canvasser").with(**input1, token: s.token, url: RockyConf.blocks_configuration.url)
         s.create_canvasser(input1)
       end            
     end
@@ -171,7 +171,7 @@ describe BlocksService do
         input1 = double("Input")
         input2 = double("Input")
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
-        expect(BlocksClient).to receive("upload_registrations").with(input1, input2, token: s.token)        
+        expect(BlocksClient).to receive("upload_registrations").with(input1, input2, token: s.token, url: RockyConf.blocks_configuration.url)        
         s.upload_registrations(input1, input2)
       end      
       

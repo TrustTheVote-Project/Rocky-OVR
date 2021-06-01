@@ -238,8 +238,13 @@ RSpec.describe CanvassingShift, type: :model do
   end
   
   describe "submit_to_blocks" do
-    let(:c) { CanvassingShift.new }
     let(:service) { double("Service") }
+    let(:p) { double("Partner") }
+    let(:c) { CanvassingShift.new(partner: p) }
+    before(:each) do
+      allow(p).to receive(:id).and_return(123456)
+    end
+
     before(:each) do
       allow(BlocksService).to receive(:new).and_return(service)
       allow(service).to receive(:upload_canvassing_shift).and_return({forms: [], shift: {"shift"=>{"id"=>"id"}}})

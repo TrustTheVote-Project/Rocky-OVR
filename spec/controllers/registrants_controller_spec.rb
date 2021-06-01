@@ -220,6 +220,7 @@ describe RegistrantsController do
           home_zip_code: "90210"
         }}
         it "goes to the create method" do
+          controller.stub(:layout).and_return(false)
           expect(controller).to receive(:create) { controller.render text: '' }
           get :new, params: params
         end
@@ -231,6 +232,7 @@ describe RegistrantsController do
           state: "CA"
         }}
         it "goes to the create method" do
+          controller.stub(:layout).and_return(false)
           expect(controller).to receive(:create) { controller.render text: '' }
           get :new, params: params
         end
