@@ -1,0 +1,32 @@
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+      
+      checkboxTogglesSet($('#state_registrants_mn_registrant_has_mailing_address'), $('#mailing_address_set'));
+      
+              
+      function toggleOtherStateReg() {
+        if ($("#state_registrants_mn_registrant_registered_in_other_state:checked").length > 0) {
+          $(".registrant-form__other-registration-state-abbrev__line").show();
+        } else {
+          $(".registrant-form__other-registration-state-abbrev__line").hide();            
+        }
+      }
+      $("#state_registrants_mn_registrant_registered_in_other_state").click(toggleOtherStateReg);
+      toggleOtherStateReg()
+          
+    });
+    
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/mn/header'
+  
+  
+  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_eligibility, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}  
+  
+
+  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
+  .back
+    = link_to t('txt.button.back').html_safe, registrant_path(@registrant.registrant)
+    

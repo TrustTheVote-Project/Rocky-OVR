@@ -1,0 +1,23 @@
+- content_for :head do
+  = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
+  :javascript
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+      
+      
+    });
+
+
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/mn/header'
+  
+
+
+  = render partial: 'shared/signature_capture/form', locals: {form: form}
+
+  
+
+  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
+  .back    
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

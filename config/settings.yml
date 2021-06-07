@@ -430,6 +430,9 @@ ovr_states:
     languages:
       - en
   MN:
+    languages:
+      - en
+      - es
     redirect_to_online_reg_url: true
     require_id: true
     languages:

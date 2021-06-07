@@ -29,6 +29,16 @@ class StateRegistrants::Base < ActiveRecord::Base
     sr
   end
   
+  include Rails.application.routes.url_helpers
+  def default_url_options
+    ActionMailer::Base.default_url_options
+  end
+  
+  
+  def signature_capture_url
+    update_state_registrant_url(self.to_param, self.signature_step)
+  end
+  
   def voter_signature_image
     read_attribute(:voter_signature_image)
   rescue
