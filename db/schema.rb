@@ -799,7 +799,7 @@ ActiveRecord::Schema.define(version: 20210607184852) do
     t.string   "mailing_address"
     t.string   "mailing_city"
     t.string   "mailing_unit"
-    t.string   "mailing_state"
+    t.string   "mailing_state_id"
     t.string   "mailing_zip_code"
     t.boolean  "change_of_address"
     t.string   "prev_address"

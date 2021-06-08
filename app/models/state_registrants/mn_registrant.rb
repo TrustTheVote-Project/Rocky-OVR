@@ -1,6 +1,7 @@
 class StateRegistrants::MNRegistrant < StateRegistrants::Base
   belongs_to :prev_state,    :class_name => "GeoState"
-    
+  belongs_to :mailing_state, :class_name => "GeoState"
+
   delegate :allow_desktop_signature?, to: :registrant
   def steps
     %w(step_1 step_2 step_3 step_4 step_5 complete)
@@ -46,6 +47,7 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
       "has_mailing_address" => "has_mailing_address",
       "mailing_address" => "mailing_address",
       "mailing_city"  => "mailing_city",
+      "mailing_state_id" => "mailing_state_id",
       "mailing_zip_code"  => "mailing_zip_code",
 
       "change_of_address" => "change_of_address",
@@ -90,11 +92,6 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
     
     r.state_id_number = self.dln.blank? ? self.ssn4 : self.dln
 
-    if !self.mailing_state.blank? #always an abbrev
-      r.mailing_state = GeoState[self.mailing_state]
-    else
-      r.mailing_state = nil
-    end
     r.save(validate: false)
   end
 
@@ -105,10 +102,6 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
       self.send("#{k}=", val)
     end
     
-    if r.mailing_state
-      self.mailing_state = r.mailing_state.abbreviation
-    end
-
     self.save(validate: false)
   end
 
@@ -121,5 +114,17 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
     !self.confirm_no_ssn?
   end
 
+  def async_submit_to_online_reg_url
+    # Insted of submtting to an API, we just generate the direct-mail PDF
+    self.registrant.complete_registration
+  end
+
+  def submitted?
+    return self.registrant.pdf_delivery.present?
+  end
+
+  def state_transaction_id
+    self.registrant.pdf_delivery&.id
+  end
 
 end

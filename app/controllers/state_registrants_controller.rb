@@ -27,6 +27,7 @@ class StateRegistrantsController < RegistrationStep
         @registrant.async_submit_to_online_reg_url
         redirect_to pending_state_registrant_path(@registrant.to_param, state: @registrant.home_state_abbrev.downcase)
       else
+        #raise edit_state_registrant_path(@registrant.to_param, @registrant.status).to_s
         redirect_to edit_state_registrant_path(@registrant.to_param, @registrant.status)
       end
     else

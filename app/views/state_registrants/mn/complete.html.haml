@@ -2,7 +2,7 @@
   = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
 
 %h1
-  = I18n.t 'states.custom.mi.registration_complete'
+  = I18n.t 'states.custom.mn.registration_complete'
 
 .declaration-text
   = I18n.t("states.custom.mi.registration_complete_success_type.#{@registrant.mi_api_voter_status_success_type}", address: @registrant.registration_address_full, city: @registrant.registration_city, zip_code: @registrant.registration_zip_code, state: @registrant.home_state_abbrev).html_safe
