@@ -203,7 +203,6 @@ class RegistrationStep < ApplicationController
 
 
   def detect_state_flow
-
     if @registrant && @registrant.use_state_flow? && !@registrant.skip_state_flow? && current_step != 1
       # PASS registrant over to state flow, creating a new state-specific registrant
       return true

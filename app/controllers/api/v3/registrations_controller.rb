@@ -104,7 +104,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     
     gr_id = nil
     begin
-      gr = GrommetRequest.create(request_params: params)
+      gr = GrommetRequest.create(state: "PA", request_params: params)
       gr_id = gr ? gr.id : nil
       
       # Also save request headers
