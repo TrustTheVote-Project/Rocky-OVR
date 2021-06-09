@@ -316,9 +316,11 @@ class ReportGenerator
       pa_registrants = {}
       va_registrants = {}
       mi_registrants = {}
+      mn_registrants = {}
       StateRegistrants::PARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       StateRegistrants::MIRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MNRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
       csv_str = CsvFormatter.wrap do |csv|
         csv << headers = self.registrant_fields_old.dup
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
@@ -361,9 +363,11 @@ class ReportGenerator
       pa_registrants = {}
       va_registrants = {}
       mi_registrants = {}
+      mn_registrants = {}
       StateRegistrants::PARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       StateRegistrants::MIRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      StateRegistrants::MNRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
       csv_str = CsvFormatter.wrap do |csv|
         headers = self.registrant_fields.dup
         headers += [

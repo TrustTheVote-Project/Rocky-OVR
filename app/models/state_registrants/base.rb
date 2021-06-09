@@ -5,7 +5,7 @@ class StateRegistrants::Base < ActiveRecord::Base
   
   include RegistrantMethods
   
-  delegate :use_state_flow?, :skip_state_flow?, :skip_state_flow!, to: :registrant
+  delegate :use_state_flow?, :skip_state_flow?, :skip_state_flow!, :not_require_email_address?, to: :registrant
   delegate :any_ask_for_volunteers?, :ask_for_primary_volunteers?, :question_1, :question_2, to: :registrant
   delegate :titles, :suffixes, :races, :state_parties, :phone_types, :partner, :partner_id, :partner_id=, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, :javascript_disabled?, :canvassing_shift, to: :registrant
 
@@ -28,6 +28,16 @@ class StateRegistrants::Base < ActiveRecord::Base
     sr.status ||= :step_2
     sr.set_from_original_registrant
     sr
+  end
+  
+  include Rails.application.routes.url_helpers
+  def default_url_options
+    ActionMailer::Base.default_url_options
+  end
+  
+  
+  def signature_capture_url
+    update_state_registrant_url(self.to_param, self.signature_step)
   end
   
   def voter_signature_image

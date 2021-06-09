@@ -1,0 +1,142 @@
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+      checkboxTogglesSet($('#state_registrants_mi_registrant_mailing_same_as_residential_address'), $('#mailing_address_set'), null, true);
+      
+      
+      function toggleMailingAddressType() {
+        $(".mailing-address-type-group").hide();
+        $(".mailing-address-type-group input, .mailing-address-type-group select").attr("disabled", true)
+        var maType = $("#state_registrants_mi_registrant_mailing_address_type").val();
+        if (maType == "STANDARD") {
+          $("#mailing_address_standard").show();
+          $("#mailing_address_standard input, #mailing_address_standard select").attr("disabled", false);
+        } else if (maType == "PO_BOX") {
+          $("#mailing_address_po_box").show();
+          $("#mailing_address_po_box input, #mailing_address_po_box select").attr("disabled", false);
+        } else if (maType == "MILITARY") {
+          $("#mailing_address_military").show();
+          $("#mailing_address_military input, #mailing_address_military select").attr("disabled", false);
+        } else if (maType == "INTERNATIONAL") {
+          $("#mailing_address_international").show();
+          $("#mailing_address_international input, #mailing_address_international select").attr("disabled", false);
+        }
+      }
+      $("#state_registrants_mi_registrant_mailing_address_type").change(toggleMailingAddressType);
+      toggleMailingAddressType();
+      
+    });
+
+
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 75}
+
+  .dynamic-step#step-4
+  
+
+    %fieldset
+      %legend
+        %span= I18n.t('states.custom.mi.registration.home_address') 
+        = tooltip_tag :home_address
+      %ul.stacked
+        = field_li(form, :registration_address_number, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__home-address-number__line"}})
+        = field_li(form, :registration_address_street_name, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-address-street-name__line"}})
+        = field_li(form, :registration_address_street_type, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__home-address-street-type__line"}, field_options: {autocomplete: "off"}})
+        = field_li(form, :registration_address_post_directional, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__home-address-post-directional__line"}, field_options: {autocomplete: "off", include_blank: true}, select_options: StateRegistrants::MIRegistrant::PostDirectional::VALUES})
+      - if form.object.errors[:registration_address_street_type].any?
+        %p= I18n.t('states.custom.mi.valid_street_types', types: @registrant.matching_street_types)
+      %ul.stacked
+        = field_li(form, :registration_unit_number, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__home-address-unit-number__line"}, field_options: {autocomplete: "off"}})
+      %ul.stacked
+        = field_li(form, :registration_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
+        = field_li(form, :home_state_abbrev, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-state-abbrev__line"} })
+        = field_li(form, :registration_zip_code, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
+  
+  
+    %fieldset.no_border
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :mailing_same_as_residential_address, class_name: "registrant-form__has-mailing-address__line", required: false}
+
+
+    %fieldset#mailing_address_set
+      %legend
+        %span= I18n.t('txt.registration.mailing_address') 
+        = tooltip_tag :mailing_address
+      %ul.stacked
+        = field_li(form, :mailing_address_type, {skip_tooltip: true, required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__mailing-address-type__line"}, select_options: @registrant.mailing_address_types, field_options: {include_blank: false}})
+      #mailing_address_standard.mailing-address-type-group      
+        %ul.stacked
+          = field_li(form, :mailing_address_1, {skip_tooltip: true, required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-number__line"}})
+          = field_li(form, :mailing_address_2, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-street-name__line"}})
+          = field_li(form, :mailing_address_3, {skip_tooltip: true,required: false, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-street-type__line"}})
+        %ul.stacked
+          = field_li(form, :mailing_address_unit_number, {skip_tooltip: true,required: false, field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-unit-number__line"}})
+        %ul.stacked
+          = field_li(form, :mailing_city, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-city__line"} })
+          = field_li(form, :mailing_state, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true, disabled: true}})
+          = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-zip-code__line"} })
+      #mailing_address_po_box.mailing-address-type-group  
+        %ul.stacked
+          = field_li(form, :mailing_address_1, {skip_tooltip: true, required: true, label_options: I18n.t('states.custom.mi.mailing_address.po_box.mailing_address_1'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
+        %ul.stacked
+          = field_li(form, :mailing_city, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-city__line"} })
+          = field_li(form, :mailing_state, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true, disabled: true}})
+          = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-zip-code__line"} })
+        
+        
+      #mailing_address_military.mailing-address-type-group  
+        %ul.stacked
+          = field_li(form, :mailing_address_1, {skip_tooltip: true, required: true, label_options: I18n.t('states.custom.mi.mailing_address.military.mailing_address_1'),field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-box-group__line"}, select_options: @registrant.mailing_military_units, field_options: {include_blank: true}})
+          = field_li(form, :mailing_address_2, {skip_tooltip: true, required: true, label_options: I18n.t('states.custom.mi.mailing_address.military.mailing_address_2'),field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-box-group-id__line"}})
+          = field_li(form, :mailing_address_3, {skip_tooltip: true, required: true, label_options: I18n.t('states.custom.mi.mailing_address.military.mailing_address_3'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-address-box-group-number__line"}})
+        %ul.stacked
+          = field_li(form, :mailing_city, {skip_tooltip: true,required: true, label_options: I18n.t('states.custom.mi.mailing_address.military.mailing_city'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-city__line"}, select_options: @registrant.mailing_military_cities, field_options: {include_blank: true} })
+          = field_li(form, :mailing_state, {skip_tooltip: true,required: true, label_options: I18n.t('states.custom.mi.mailing_address.military.mailing_state'), li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: @registrant.mailing_military_states, field_options: {include_blank: true}})
+          = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-zip-code__line"} })
+      #mailing_address_international.mailing-address-type-group      
+        %ul.stacked
+          = field_li(form, :mailing_address_1, {skip_tooltip: true, required: true, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_1'),field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
+          = field_li(form, :mailing_address_2, {skip_tooltip: true, required: false, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_2'),field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
+          = field_li(form, :mailing_address_3, {skip_tooltip: true, required: false, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_address_3'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-address__line"}})
+        %ul.stacked
+          = field_li(form, :mailing_zip_code, {skip_tooltip: true,required: false, label_options: I18n.t('states.custom.mi.mailing_address.international.mailing_zip_code'), field_options: {disabled: true}, li_options: {class: "registrant-form__home-zip-code__line"} })   
+          = field_li(form, :mailing_country, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-country__line"} })
+  
+  
+    %fieldset.phone
+      %ul.stacked
+        = field_li(form, :phone, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__phone__line"}})
+      
+      
+      
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_sms, class_name: "registrant-form__opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization => h("Rock the Vote")).html_safe}
+      %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h("Rock the Vote"), short_code: RockyConf.sms_short_code, terms_url: RockyConf.terms_url, privacy_url: RockyConf.privacy_url).html_safe
+  
+      - if @registrant.partner.partner_sms_opt_in? && !@registrant.partner.primary?
+        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_sms, class_name: "registrant-form__partner-opt-in-sms_line", required: false, field_label: t('txt.registration.opt_in_sms', :organization=>h(@registrant.partner.organization)).html_safe }
+        %span.compliance= t('txt.registration.opt_in_sms_compliance', organization: h(@registrant.partner.organization), short_code: @registrant.partner.short_code, terms_url: @registrant.partner.terms_url, privacy_url: @registrant.partner.privacy_url).html_safe
+      
+  
+    %fieldset
+      %ul.stacked
+        = field_li(form, :email, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__email__line"}})
+  
+    %fieldset.no_border
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :opt_in_email, class_name: "registrant-form__opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization => h("Rock the Vote")).html_safe}
+  
+      - if @registrant.partner.partner_email_opt_in && !@registrant.partner.primary?
+        = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :partner_opt_in_email, class_name: "registrant-form__partner-opt-in-email_line", required: false, field_label: t('txt.registration.opt_in_email', :organization=>h(@registrant.partner.organization)).html_safe }
+  
+    = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
+
+    .dynamic-navigation
+      .back.back--link
+        .button.rollover_button
+          = link_to update_state_registrant_path(@registrant.to_param, controller.prev_step) do
+            %button{type: "button"}
+              %span <
+
+      .next.next--link.prepare
+        = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)
+

@@ -1289,6 +1289,21 @@ en:
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
+        dln_instructions: Your identification number will not be available to the public. For more information, read the privacy notice.        
+        by_paper_header: Complete Registration By Paper
+        declaration: >
+          <p>I declare that:</p>
+          <ul>
+          <li>I will be at least 18 years old on election day;
+          <li>I am a citizen of the United States;
+          <li>I will have resided in Minnesota for 20 days immediately preceding election day;
+          <li>I have maintained residence at the address given on the registration form;
+          <li>I am not under court-ordered guardianship in which the court order revokes my right to vote;
+          <li>I have not been found by a court to be legally incompetent to vote; have the right to vote because, if I have been convicted of a felony, my felony sentence has expired (been completed) or I have been discharged from my sentence; and 
+          </ul>
+        custom_errors:
+          confirm_eligibility: >
+            You must confirm eligibility to continue with voter registration.
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide an identification
             number: MN-issued driver's license, Minnesota ID card or last 4 digits of Social 

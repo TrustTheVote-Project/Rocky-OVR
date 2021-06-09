@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210211173931) do
+ActiveRecord::Schema.define(version: 20210608133844) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20210211173931) do
     t.string   "current_login_ip",   limit: 255
     t.string   "last_login_ip",      limit: 255
     t.boolean  "active",                         default: true, null: false
+    t.string   "google_secret"
   end
 
   add_index "admins", ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
@@ -347,6 +348,10 @@ ActiveRecord::Schema.define(version: 20210211173931) do
     t.string   "status_check_url"
     t.boolean  "pdf_assistance_enabled"
     t.date     "catalist_updated_at"
+    t.boolean  "enable_direct_mail",                          default: false
+    t.boolean  "allow_desktop_signature",                     default: false
+    t.text     "direct_mail_partner_ids"
+    t.string   "state_voter_check_url"
   end
 
   create_table "grommet_requests", force: :cascade do |t|
@@ -761,6 +766,59 @@ ActiveRecord::Schema.define(version: 20210211173931) do
 
   add_index "state_registrants_mi_registrants", ["grommet_request_id"], name: "mi_grommet_id"
   add_index "state_registrants_mi_registrants", ["registrant_id"], name: "mi_registrants_registrant_id"
+
+  create_table "state_registrants_mn_registrants", force: :cascade do |t|
+    t.string   "email"
+    t.string   "registrant_id"
+    t.string   "locale"
+    t.string   "status"
+    t.boolean  "confirm_eligibility"
+    t.string   "name_title"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "name_suffix"
+    t.date     "date_of_birth"
+    t.string   "phone"
+    t.string   "phone_type"
+    t.boolean  "opt_in_email"
+    t.boolean  "opt_in_sms"
+    t.boolean  "volunteer",                                       default: false
+    t.boolean  "partner_opt_in_sms"
+    t.boolean  "partner_opt_in_email"
+    t.boolean  "partner_volunteer"
+    t.string   "dln"
+    t.string   "ssn4"
+    t.boolean  "confirm_no_dln"
+    t.boolean  "confirm_no_dl_or_ssn"
+    t.string   "signature_method"
+    t.text     "voter_signature_image"
+    t.string   "sms_number_for_continue_on_device"
+    t.string   "email_address_for_continue_on_device"
+    t.string   "home_address"
+    t.string   "home_unit"
+    t.string   "home_city"
+    t.string   "home_zip_code",                        limit: 10
+    t.boolean  "has_mailing_address"
+    t.string   "mailing_address"
+    t.string   "mailing_city"
+    t.string   "mailing_unit"
+    t.string   "mailing_state_id"
+    t.string   "mailing_zip_code"
+    t.boolean  "change_of_address"
+    t.string   "prev_address"
+    t.string   "prev_unit"
+    t.string   "prev_city"
+    t.integer  "prev_state_id"
+    t.string   "prev_zip_code"
+    t.string   "original_survey_question_1"
+    t.string   "original_survey_question_2"
+    t.string   "survey_answer_1"
+    t.string   "survey_answer_2"
+    t.boolean  "confirm_declaration"
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+  end
 
   create_table "state_registrants_pa_registrants", force: :cascade do |t|
     t.string   "email",                                limit: 255

@@ -1,0 +1,22 @@
+- if @use_mobile_ui
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
+
+- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank?
+  = @registrant.partner.external_conversion_snippet.to_s.html_safe
+
+-# - if  @use_mobile_ui %>
+-#     <%- completion = "90%"%>
+-#     <div id="dynamic-progress-bar">
+-#       <div class="filler" style="width: <%= completion %>"></div>
+-#       <div class="content"><%= completion %></div>
+-#     </div>
+-#   <%- end %>
+%h1
+  = I18n.t('txt.registration.finish_mail_with_esig_header').html_safe
+
+.fulltext
+  %p= I18n.t('txt.registration.finish_mail_with_esig', state_voter_check_url: @registrant.state_voter_check_url).html_safe
+  
+= render "finishes/finish_iframe"
+
+= render :partial => 'finishes/adwords'

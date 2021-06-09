@@ -535,6 +535,7 @@ class Registrant < ActiveRecord::Base
     pa_registrants = {}
     va_registrants = {}
     mi_registrants = {}
+    mn_registrants = {}
     distribute_reads do 
       both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
       both_ids.each do |id, uid|
@@ -545,6 +546,7 @@ class Registrant < ActiveRecord::Base
         StateRegistrants::PARegistrant.where(registrant_id: id_list_group).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
         StateRegistrants::VARegistrant.where(registrant_id: id_list_group).find_each {|sr| va_registrants[sr.registrant_id] = sr}
         StateRegistrants::MIRegistrant.where(registrant_id: id_list_group).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+        StateRegistrants::MNRegistrant.where(registrant_id: id_list_group).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
       end
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
@@ -558,6 +560,8 @@ class Registrant < ActiveRecord::Base
             sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
           when "MI"
             sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
+          when "MN"
+            sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
           end
           reg.instance_variable_set(:@existing_state_registrant, sr)
         end
@@ -875,7 +879,7 @@ class Registrant < ActiveRecord::Base
   
   
   def in_ovr_flow?
-    home_state_allows_ovr? && (!mail_with_esig?)
+    home_state_allows_ovr? && (!can_mail_with_esig?)
   end
   
   def home_state_allows_ovr?
@@ -1044,8 +1048,7 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
-        puts e.backtrace
-        raise e
+        # raise e
         nil
       end
     else
@@ -1305,7 +1308,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def queue_pdf
-    if mail_with_esig? && !skip_mail_with_esig?
+    if mail_with_esig?
       queue_pdf_delivery
     else
       klass = PdfGeneration
@@ -1395,22 +1398,39 @@ class Registrant < ActiveRecord::Base
     home_state_enabled_for_pdf_assitance?
   end
   
-  def mail_with_esig?
-    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states[self.home_state_abbrev]
-  end
   
   def allow_desktop_signature?
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].allow_desktop_signature
+    can_mail_with_esig? && self.home_state.allow_desktop_signature
   end
   
   def state_voter_check_url
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].state_voter_check_url
+    can_mail_with_esig? && self.home_state.state_voter_check_url
   end
   
+  def can_mail_with_esig?
+    self.home_state && self.home_state.enable_direct_mail && 
+      (self.home_state.direct_mail_partner_ids || []).collect(&:to_s).include?(self.partner_id.to_s)    
+  end
+
+  def mail_with_esig?
+    self.can_mail_with_esig? && self.signature_method != VoterSignature::PRINT_METHOD
+  end
+  
+
   def skip_mail_with_esig?
-    self.signature_method == VoterSignature::PRINT_METHOD   
+    h = self.state_ovr_data || {}
+    !!h[:skip_mail_with_esig]
+  rescue
+    false
   end
   
+
+  def skip_mail_with_esig!
+    self.state_ovr_data ||= {}
+    self.state_ovr_data[:skip_mail_with_esig] = true
+    self.finish_with_state = false
+    self.save(validate: false)
+  end
   
   
   def pdf_is_esigned?

@@ -23,13 +23,23 @@
 #
 #***** END LICENSE BLOCK *****
 class Admin < ActiveRecord::Base
+  acts_as_google_authenticated method: :email_with_label
+
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
     c.merge_validates_length_of_password_field_options({:minimum => 10})
   end
   # Symbols: $@$!%*?&
   validates_format_of :password, with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, allow_blank: true
-  
+
+  def email_with_label
+    "RTV Admin #{env_label}(#{email})"
+  end
+
+  def env_label
+    Rails.env.production? ? '' : "- #{Rails.env} "
+  end
+
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notifier.admin_password_reset_instructions(self).deliver_now

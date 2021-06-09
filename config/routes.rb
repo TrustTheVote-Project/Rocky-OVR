@@ -295,6 +295,7 @@ Rocky::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :mfa_sessions, only: [:new, :create]
     root :controller => 'partners', :action => 'index'
     resource :grommet_queue, only: [:show],controller: "grommet_queue" do
       get :flush
@@ -304,9 +305,12 @@ Rocky::Application.routes.draw do
     resources :emails, except: [:new, :edit, :show ]
     resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]
-    resources :geo_states, only: [:index] do
+    resources :geo_states, only: [:index, :edit, :update, :show] do
       collection do 
         post :bulk_update
+      end
+      member do
+        get :remove_direct_mail_partner_id
       end
     end
     resources :request_logs, only: [:index, :show]
