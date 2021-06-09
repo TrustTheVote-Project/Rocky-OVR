@@ -6,12 +6,10 @@
       function toggleDlnNumber() {
         if ($("#state_registrants_mn_registrant_confirm_no_dln:checked").length > 0) {
           $("#dln_set").hide();
-          // if (!window.IS_TOUCH_ENABLED) {
-          //   $("#signature_upload").show();
-          // }
+          $("#ssn4_set").show();          
         } else {
           $("#dln_set").show();
-          
+          $("#ssn4_set").hide();
           // $("#signature_upload").hide();
         }              
       }
@@ -26,7 +24,7 @@
       
       
       
-      $("#state_registrants_mn_registrant_confirm_no_dln").click(togglePenndotNumber)
+      $("#state_registrants_mn_registrant_confirm_no_dln").click(toggleDlnNumber)
       toggleDlnNumber();      
       $("#state_registrants_mn_registrant_confirm_no_dl_or_ssn").click(toggleSsn4)
       toggleSsn4();      

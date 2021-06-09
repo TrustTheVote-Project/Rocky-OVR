@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210607184852) do
+ActiveRecord::Schema.define(version: 20210608133844) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer  "registrant_id"
@@ -348,6 +348,10 @@ ActiveRecord::Schema.define(version: 20210607184852) do
     t.string   "status_check_url"
     t.boolean  "pdf_assistance_enabled"
     t.date     "catalist_updated_at"
+    t.boolean  "enable_direct_mail",                          default: false
+    t.boolean  "allow_desktop_signature",                     default: false
+    t.text     "direct_mail_partner_ids"
+    t.string   "state_voter_check_url"
   end
 
   create_table "grommet_requests", force: :cascade do |t|

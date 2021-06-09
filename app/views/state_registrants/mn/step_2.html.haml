@@ -22,9 +22,8 @@
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
   = render partial: 'state_registrants/mn/header'
   
-  
-  = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_eligibility, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}  
-  
+  %ul.stacked.radio
+    = field_li form, :confirm_eligibility, { skip_tooltip: true, radio_options: [[t('activerecord.attributes.state_registrants/mn_registrant.confirm_eligibility_yes'), true], [I18n.t('activerecord.attributes.state_registrants/mn_registrant.confirm_eligibility_no'), false]]}
 
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
   .back

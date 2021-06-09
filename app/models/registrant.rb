@@ -875,7 +875,7 @@ class Registrant < ActiveRecord::Base
   
   
   def in_ovr_flow?
-    home_state_allows_ovr? && (!mail_with_esig?)
+    home_state_allows_ovr? && (!can_mail_with_esig?)
   end
   
   def home_state_allows_ovr?
@@ -1298,7 +1298,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def queue_pdf
-    if mail_with_esig? && !skip_mail_with_esig?
+    if mail_with_esig?
       queue_pdf_delivery
     else
       klass = PdfGeneration
@@ -1388,22 +1388,39 @@ class Registrant < ActiveRecord::Base
     home_state_enabled_for_pdf_assitance?
   end
   
-  def mail_with_esig?
-    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states[self.home_state_abbrev]
-  end
   
   def allow_desktop_signature?
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].allow_desktop_signature
+    can_mail_with_esig? && self.home_state.allow_desktop_signature
   end
   
   def state_voter_check_url
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].state_voter_check_url
+    can_mail_with_esig? && self.home_state.state_voter_check_url
   end
   
+  def can_mail_with_esig?
+    self.home_state && self.home_state.enable_direct_mail && 
+      (self.home_state.direct_mail_partner_ids || []).collect(&:to_s).include?(self.partner_id.to_s)    
+  end
+
+  def mail_with_esig?
+    self.can_mail_with_esig? && self.signature_method != VoterSignature::PRINT_METHOD
+  end
+  
+
   def skip_mail_with_esig?
-    self.signature_method == VoterSignature::PRINT_METHOD   
+    h = self.state_ovr_data || {}
+    !!h[:skip_mail_with_esig]
+  rescue
+    false
   end
   
+
+  def skip_mail_with_esig!
+    self.state_ovr_data ||= {}
+    self.state_ovr_data[:skip_mail_with_esig] = true
+    self.finish_with_state = false
+    self.save(validate: false)
+  end
   
   
   def pdf_is_esigned?

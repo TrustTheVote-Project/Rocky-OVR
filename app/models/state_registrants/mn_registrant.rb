@@ -1,8 +1,10 @@
 class StateRegistrants::MNRegistrant < StateRegistrants::Base
+  validates_with MNRegistrantValidator
+
   belongs_to :prev_state,    :class_name => "GeoState"
   belongs_to :mailing_state, :class_name => "GeoState"
 
-  delegate :allow_desktop_signature?, to: :registrant
+  delegate :allow_desktop_signature?, :state_voter_check_url, to: :registrant
   def steps
     %w(step_1 step_2 step_3 step_4 step_5 complete)
   end
@@ -14,6 +16,10 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
   def signature_step
     "step_5"
   end
+  
+  def skip_state_flow_registrant_path
+    Rails.application.routes.url_helpers.skip_state_flow_registrant_path(self)
+  end
 
   def home_state
     home_zip_code.blank? ? GeoState[self.default_state_abbrev] : GeoState.for_zip_code(home_zip_code.strip)
@@ -21,6 +27,10 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
 
   def complete?
     status == step_list.last && valid? && confirm_eligibility? && confirm_declaration?
+  end
+
+  def ssn_digits
+    self.ssn4.to_s.gsub(/[^\d]/, '')
   end
 
   def mappings
@@ -67,6 +77,10 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
       "partner_opt_in_sms"=>"partner_opt_in_sms",
       "partner_volunteer"=>"partner_volunteer",
       
+      "voter_signature_image" => "voter_signature_image",
+      "signature_method" => "signature_method",
+      "sms_number_for_continue_on_device" => "sms_number_for_continue_on_device",
+      "email_address_for_continue_on_device" => "email_address_for_continue_on_device",
 
       "locale"  => "locale",
       "original_survey_question_1" => "original_survey_question_1",
@@ -89,8 +103,13 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
     
     r.us_citizen = self.confirm_eligibility
     r.will_be_18_by_election = self.confirm_eligibility
-    
-    r.state_id_number = self.dln.blank? ? self.ssn4 : self.dln
+    if !self.dln.blank? && !self.confirm_no_dln?
+      r.state_id_number = self.dln
+    elsif !self.ssn4.blank? && !self.confirm_no_dl_or_ssn?
+      r.state_id_number = self.ssn4
+    elsif self.confirm_no_dl_or_ssn?
+      r.state_id_number = "NONE"
+    end
 
     r.save(validate: false)
   end
@@ -100,6 +119,11 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
     mappings.each do |k,v|
       val = r.send(v)
       self.send("#{k}=", val)
+    end
+
+    if r.state_id_number == "NONE"
+      self.confirm_no_dln = true
+      self.confirm_no_dl_or_ssn = true
     end
     
     self.save(validate: false)
@@ -125,6 +149,13 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
 
   def state_transaction_id
     self.registrant.pdf_delivery&.id
+  end
+
+  def cleanup!
+    # TODO make sure we don't keep SSN
+    self.ssn4 = nil
+    self.dln = nil
+    self.save(validate: false)
   end
 
 end

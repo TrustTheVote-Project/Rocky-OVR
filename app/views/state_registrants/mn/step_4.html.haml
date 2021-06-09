@@ -1,8 +1,8 @@
 - content_for :head do
   :javascript
     $(document).ready(function() {
-      checkboxTogglesSet($('#state_registrants_mn_registrant_has_mailing_address'), $('#mailing_address_set'), $('#mailing_address_rule'));
-      checkboxTogglesSet($('#state_registrants_mn_registrant_change_of_address'), $('#prev_address_set'), $('#prev_address_rule'));
+      //checkboxTogglesSet($('#state_registrants_mn_registrant_has_mailing_address'), $('#mailing_address_set'), $('#mailing_address_rule'));
+      //checkboxTogglesSet($('#state_registrants_mn_registrant_change_of_address'), $('#prev_address_set'), $('#prev_address_rule'));
       $('#javascript_disabled').remove();
     });
 
@@ -11,8 +11,8 @@
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
   = render partial: 'state_registrants/mn/header'
   
-  = render :partial=> "registrants/home_address", :locals=>{:form=>form}
-  = render partial: 'step2/previous_address', locals: { form: form }
+  = render :partial=> "registrants/home_address", :locals=>{:form=>form, toggle_selector_source: '#state_registrants_mn_registrant_has_mailing_address'}
+  = render partial: 'step2/previous_address', locals: { form: form, toggle_selector_source: '#state_registrants_mn_registrant_change_of_address' }
   
   
   = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    

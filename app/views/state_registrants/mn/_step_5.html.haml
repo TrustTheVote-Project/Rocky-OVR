@@ -12,10 +12,12 @@
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
   = render partial: 'state_registrants/mn/header'
   
+  .declaration-text= t('states.custom.mn.declaration').html_safe
+
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_declaration, class_name: "registrant-form__confirm-declaration__line", required: true, require_accepted: true}  
   
 
-  = render partial: 'shared/signature_capture/form', locals: {form: form}
+  = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
 
   
 

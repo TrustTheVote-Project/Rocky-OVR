@@ -39,6 +39,7 @@ class StateRegistrantsController < RegistrationStep
   
   def skip_state_flow
     @registrant.registrant.skip_state_flow!
+    @registrant.registrant.skip_mail_with_esig!
     go_to_paper
   end
   

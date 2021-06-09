@@ -5,7 +5,7 @@ class StateRegistrants::Base < ActiveRecord::Base
   
   include RegistrantMethods
   
-  delegate :use_state_flow?, :skip_state_flow?, :skip_state_flow!, to: :registrant
+  delegate :use_state_flow?, :skip_state_flow?, :skip_state_flow!, :not_require_email_address?, to: :registrant
   delegate :any_ask_for_volunteers?, :ask_for_primary_volunteers?, :question_1, :question_2, to: :registrant
   delegate :titles, :suffixes, :races, :state_parties, :phone_types, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, :javascript_disabled?, :canvassing_shift, to: :registrant
   delegate :has_phone?, :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant

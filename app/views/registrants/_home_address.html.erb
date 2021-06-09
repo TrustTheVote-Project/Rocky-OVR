@@ -1,7 +1,8 @@
+<%- toggle_selector_source = toggle_selector_source || "#registrant_has_mailing_address" %>
 <% content_for :head do %>
 <script>
 $(document).ready(function() {
-  checkboxTogglesSet($('#registrant_has_mailing_address'), $('#mailing_address_set'), $('#mailing_address_rule'));
+  checkboxTogglesSet($('<%= toggle_selector_source %>'), $('#mailing_address_set'), $('#mailing_address_rule'));
   $('#javascript_disabled').remove();
 });
 </script>
