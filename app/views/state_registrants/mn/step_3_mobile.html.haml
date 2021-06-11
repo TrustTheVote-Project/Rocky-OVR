@@ -12,15 +12,15 @@
 
   .dynamic-step#step-3
     %h1
-      %p.notice= I18n.t('states.custom.mi.skip_online_registration_no_dln', url: skip_state_flow_registrant_path(@registrant)).html_safe
+      %p.notice= I18n.t('states.custom.mn.skip_online_registration_no_dln', url: skip_state_flow_registrant_path(@registrant)).html_safe
 
       
     %br
-    = render partial: 'state_registrants/mi/name', locals: {form: form}
+    = render partial: 'state_registrants/mn/name', locals: {form: form}
   
     
     %ul.flat.dln
-      = field_li(form, :dln, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.dln', url: @registrant.skip_state_flow_registrant_path), li_options: {class: "registrant-form__dln__line"}, field_options: {autocomplete: "off", size: 12, maxlength: 19} })
+      = field_li(form, :dln, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mn.custom_errors.dln', url: @registrant.skip_state_flow_registrant_path), li_options: {class: "registrant-form__dln__line"}, field_options: {autocomplete: "off", size: 12, maxlength: 19} })
     
     %ul.flat
       = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form, skip_tooltip: true}
@@ -29,7 +29,7 @@
       = field_li(form, :eye_color_code, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__eye-color__line"}, select_options: @registrant.eye_colors, field_options: {include_blank: true} })
 
     %ul.flat.ssn
-      = field_li(form, :ssn4, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.ssn4', url: @registrant.skip_state_flow_registrant_path), li_options: {class: "registrant-form__ssn__line"}, field_options: {autocomplete: "off", type: :password, size: 4, maxlength: 4} })
+      = field_li(form, :ssn4, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mn.custom_errors.ssn4', url: @registrant.skip_state_flow_registrant_path), li_options: {class: "registrant-form__ssn__line"}, field_options: {autocomplete: "off", type: :password, size: 4, maxlength: 4} })
       
     
 
