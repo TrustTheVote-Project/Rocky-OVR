@@ -86,7 +86,7 @@ values need to be specified.
 
 To watch a particular codedeploy, run on the ec2 server:
 
-    tail -n100 -f  /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log
+    tail -n1000 -f  /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log
 
 ## 3. Configure servers
 
