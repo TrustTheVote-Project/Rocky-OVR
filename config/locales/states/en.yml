@@ -1289,6 +1289,10 @@ en:
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
       mn:
+        step_2_header: Eligibility
+        step_3_header: Who Are You?
+        step_4_header: Where You Live
+        step_5_header: Review & Sign
         dln_instructions: Your identification number will not be available to the public. For more information, read the privacy notice.        
         by_paper_header: Complete Registration By Paper
         declaration: >
