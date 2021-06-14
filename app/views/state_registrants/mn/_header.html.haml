@@ -1,10 +1,10 @@
 #form_header
   .state-integration
-    = render partial: 'state_registrants/mi/steps'
+    = render partial: 'state_registrants/mn/steps'
 
     %h1
-      = t("states.custom.mi.#{params[:step]}_header").html_safe
-      .sub-header= t("states.custom.mi.#{params[:step]}_subheader", default: '').html_safe
-      %p.notice= I18n.t("states.custom.mi.#{params[:step]}_notice", default: '').html_safe
+      = t("states.custom.mn.#{params[:step]}_header").html_safe
+      .sub-header= t("states.custom.mn.#{params[:step]}_subheader", default: '').html_safe
+      %p.notice= I18n.t("states.custom.mn.#{params[:step]}_notice", default: '').html_safe
     
       
