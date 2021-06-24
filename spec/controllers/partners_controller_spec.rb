@@ -99,17 +99,24 @@ describe PartnersController do
       end
 
       it "shows widget html for plain text link" do
-        assert_select 'textarea[name=text_link_html][readonly]', 1
+        #puts response.body
+        assert_select 'textarea[name=text_link_html][readonly]', 1 do |elements|
+          elements.each do |element|
+            assert element.children.text.include?("a href=\"https://example.com/?partner=5\"")
+          end
+        end
         #@output_buffer = HTML::Node.parse(nil, 0, 0, assigns(:text_link_html))
-        assert_select "a[href='https://example.com/?partner=5']"
         assert_match />Register to Vote Here</, assigns(:text_link_html)
       end
 
       it "shows widget html for image link" do
-        assert_select 'textarea[name=image_link_html][readonly]', 1
+        assert_select 'textarea[name=image_link_html][readonly]', 1 do |elements|
+          elements.each do |element|
+            assert element.children.text.include?("a href=\"https://example.com/?partner=5&source=embed-rtv100x100v1\"")
+          end
+        end
         assert_match %r{<img src=.*/images/widget/rtv-100x100-v1.gif}, assigns(:image_link_html)
         #@output_buffer = HTML::Node.parse(nil, 0, 0, assigns(:image_link_html))
-        assert_select "a[href='https://example.com/?partner=5&source=embed-rtv100x100v1']"
       end
 
       # it "shows widget html for image overlay widget" do

@@ -59,7 +59,7 @@ class BrandingController < PartnerBase
 
   protected
   def partner_params
-    params[:partner] !params[:partner].empty? ? params.require(:partner).permit(
+    params[:partner] && !params[:partner].empty? ? params.require(:partner).permit(
       :from_email,
       :replace_system_css_preview,      
     ) : {}

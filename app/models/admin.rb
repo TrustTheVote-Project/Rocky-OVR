@@ -25,13 +25,10 @@
 class Admin < ActiveRecord::Base
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
-    #c.merge_validates_length_of_password_field_options({:minimum => 10})
   end
   
-
-  acts_as_authentic do |c|
-    c.crypto_provider = Authlogic::CryptoProviders::Sha512
-  end
+  validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
+  
   
   validates :password,
     confirmation: { if: :require_password? },

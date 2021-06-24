@@ -29,6 +29,8 @@ class Partner < ActiveRecord::Base
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
   end
   
+  validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
+  
   validates :password,
     confirmation: { if: :require_password? },
     format: {
