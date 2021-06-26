@@ -37,7 +37,7 @@ class Notifier < ActionMailer::Base
   end
   
   def password_reset_instructions(partner)
-    @url = "https://#{RockyConf.default_url_host}#{edit_password_reset_path(:id => partner.perishable_token)}"
+    @url = "https://#{edit_password_reset_url(host: RockyConf.default_url_host, :id => partner.perishable_token)}"
     
     
     mail(:subject=> "Password Reset Instructions",
@@ -47,7 +47,7 @@ class Notifier < ActionMailer::Base
   end
   
   def admin_password_reset_instructions(admin)
-    @url = "https://#{RockyConf.default_url_host}#{edit_admin_password_reset_path(:id => admin.perishable_token)}"
+    @url = "https://#{edit_admin_password_reset_url(host: RockyConf.default_url_host, :id => admin.perishable_token)}"
     
     
     mail(:subject=> "Password Reset Instructions",
@@ -57,7 +57,7 @@ class Notifier < ActionMailer::Base
   end
   
   def admin_password_reset_required(admin)
-    @url = "https://#{RockyConf.default_url_host}#{new_admin_password_reset_path}"
+    @url = "https://#{new_admin_password_reset_url(host: RockyConf.default_url_host)}"
     
     
     mail(:subject=> "Password Reset Required",

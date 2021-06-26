@@ -56,17 +56,21 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def self.location_options(partner, turf_id: nil)
-    b = BlocksService.new(partner: partner)
     locations_list = []
-    locations = begin b.get_locations(turf_id: turf_id)&.[]("locations") rescue nil end;
+    locations = begin 
+      b = BlocksService.new(partner: partner)
+      b.get_locations(turf_id: turf_id)&.[]("locations") 
+    rescue 
+      nil 
+    end;
     if locations && locations.any?
       locations_list = locations.map {|obj| [obj["name"], obj["id"]]}
     else
       default_location_id = begin
-        partner_config = RockyConf.blocks_configuration.partners[partner.id]
+        partner_config = RockyConf.blocks_configuration.partners[partner&.id]
         suborg_config = partner_config&.sub_orgs&.detect {|so| so.turf_id && so.turf_id.to_s == turf_id.to_s }
         suborg_config&.location_id || partner_config&.location_id || RockyConf.blocks_configuration.default_location_id
-      rescue
+      rescue Exception => e
         nil
       end
       locations_list = [["Default Location", default_location_id]] if default_location_id
@@ -186,7 +190,7 @@ class CanvassingShift < ActiveRecord::Base
     self.registrants.abandoned.where.not(status: :complete)
   end
 
-  def set_counts
+  def set_counts    
     self.completed_registrations = registrants_or_requests.count
     self.abandoned_registrations = web_abandoned_registrants.count
   end

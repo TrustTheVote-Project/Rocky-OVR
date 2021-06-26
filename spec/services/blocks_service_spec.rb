@@ -100,6 +100,7 @@ describe BlocksService do
       end
       it "calls create_shift with blocks shift args" do
         shift = double(CanvassingShift)
+        shift.stub(:submit_forms?).and_return(true)
         expect(s).to receive(:build_canvassing_shift_blocks_hash).with(shift, "digital_voter_registration").and_return("transformed shift args")
         expect(s).to receive(:create_shift).with("transformed shift args").and_return({
           "shift"=> {"id" => "shift_id"}
@@ -108,6 +109,7 @@ describe BlocksService do
       end
       it "calls upload registrations for the shift ID and forms" do
         shift = double(CanvassingShift)
+        shift.stub(:submit_forms?).and_return(true)
         forms = double("FormsList")
         allow(s).to receive(:create_shift).and_return({
           "shift"=> {"id" => "shift_id"}
@@ -132,8 +134,8 @@ describe BlocksService do
       end
       it "calls get_locations on the blocks client with logging" do
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
-        expect(BlocksClient).to receive(:get_locations).with(turf_id, token: s.token)        
-        s.get_locations()
+        expect(BlocksClient).to receive(:get_locations).with(turf_id, token: s.token, url: nil)        
+        s.get_locations(turf_id: turf_id)
       end
       it "uses turf_id when present" do
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
@@ -146,7 +148,7 @@ describe BlocksService do
         input1 = double("Input")
         input2 = double("Input")
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
-        expect(BlocksClient).to receive("add_metadata_to_form").with(input1, input2, token: s.token)        
+        expect(BlocksClient).to receive("add_metadata_to_form").with(input1, input2, token: s.token, url: RockyConf.blocks_configuration.url)        
         s.add_metadata_to_form(input1, input2)
       end      
     end
@@ -162,7 +164,7 @@ describe BlocksService do
       it "makes call to BlocksClient with logging and added token" do
         input1 = {canvasser_id: "val", location_id: "val", staging_location_id: "val", shift_start: "val", shift_end: "val", shift_type: "val", soft_count_cards_total_collected: "val"}
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
-        expect(BlocksClient).to receive("create_shift").with(**input1, token: s.token)        
+        expect(BlocksClient).to receive("create_shift").with(**input1, token: s.token, url: RockyConf.blocks_configuration.url)        
         s.create_shift(input1)
       end            
     end
@@ -170,8 +172,9 @@ describe BlocksService do
       it "makes call to BlocksClient with logging and added token" do
         input1 = double("Input")
         input2 = double("Input")
+        input2.stub(:any?).and_return(true)
         expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
-        expect(BlocksClient).to receive("upload_registrations").with(input1, input2, token: s.token, url: RockyConf.blocks_configuration.url)        
+        expect(BlocksClient).to receive("upload_registrations").with(input1, input2, shift_status: "ready_for_qc", token: s.token, url: RockyConf.blocks_configuration.url)        
         s.upload_registrations(input1, input2)
       end      
       

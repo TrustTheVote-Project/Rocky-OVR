@@ -33,10 +33,12 @@ RSpec.describe CanvassingShift, type: :model do
     let(:b) { double("BlocksService") }
     let(:p) { double("Partner") }
     before(:each) do
+      allow_any_instance_of(BlocksLocation).to receive(:id) {|bl| bl.blocks_id }
       allow(RockyConf.blocks_configuration).to receive(:default_location_id).and_return("default-id")
       allow(BlocksService).to receive(:new).and_return(b)
+      allow(BlocksService).to receive(:new).with({partner: p}).and_return(b)
       allow(p).to receive(:id).and_return(123456)
-      allow(b).to receive(:get_locations).with(p, {turf_id: nil}).and_return({
+      allow(b).to receive(:get_locations).with({turf_id: nil}).and_return({
         "locations"=> [
           {"name"=>"Location 1",
           "id"=>"L1"},
@@ -52,17 +54,17 @@ RSpec.describe CanvassingShift, type: :model do
       ])
     end
     it "returns default location when partner is missing" do
-      allow(b).to receive(:get_locations).with(nil, {turf_id: nil}).and_raise "error"
+      allow(b).to receive(:get_locations).with({turf_id: nil}).and_raise "error"
       expect(CanvassingShift.location_options(nil, {turf_id: nil})).to eq([
         ["Default Location", "default-id"]
       ])
     end
     it "returns default location when blocks returns none" do
-      allow(b).to receive(:get_locations).with(p,  {turf_id: nil}).and_return(nil)
+      allow(b).to receive(:get_locations).with({turf_id: nil}).and_return(nil)
       expect(CanvassingShift.location_options(p)).to eq([
         ["Default Location", "default-id"]
       ])
-      allow(b).to receive(:get_locations).with(p,  {turf_id: nil}).and_return([])
+      allow(b).to receive(:get_locations).with({turf_id: nil}).and_return([])
       expect(CanvassingShift.location_options(p)).to eq([
         ["Default Location", "default-id"]
       ])
@@ -171,6 +173,7 @@ RSpec.describe CanvassingShift, type: :model do
           r = FactoryGirl.create(:completed_registrant)
           r.shift_id = "shift-id"
         end
+        c.stub(:enabled_state_ids).and_return([Registrant.last.home_state_id]);
         c.set_counts
         expect(c.completed_registrations).to eq(3)        
       end
@@ -239,7 +242,7 @@ RSpec.describe CanvassingShift, type: :model do
   
   describe "submit_to_blocks" do
     let(:service) { double("Service") }
-    let(:p) { double("Partner") }
+    let(:p) { FactoryGirl.create(:partner) }
     let(:c) { CanvassingShift.new(partner: p) }
     before(:each) do
       allow(p).to receive(:id).and_return(123456)

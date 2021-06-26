@@ -54,35 +54,35 @@ describe RegistrantsController do
     end
     it "redirects to /new, and leaves out partner when none given" do
       get :landing
-      assert_redirected_to new_registrant_url(:protocol => "https")
+      assert_redirected_to new_registrant_url(:protocol => "http")
     end
 
     it "keeps partner, locale, source, tracking, home_zip_code, email_address, state, first_name, last_name, collectemailaddress and short_form params when redirecting" do
       get :landing, params: {:partner => "2"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2")
+      assert_redirected_to new_registrant_url(:protocol => "http", :partner => "2")
       get :landing, params: {:locale => "es"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :locale => "es")
+      assert_redirected_to new_registrant_url(:protocol => "http", :locale => "es")
       get :landing, params: {:source => "email"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :source => "email")
+      assert_redirected_to new_registrant_url(:protocol => "http", :source => "email")
       get :landing, params: {:tracking => "trackid"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :tracking => "trackid")
+      assert_redirected_to new_registrant_url(:protocol => "http", :tracking => "trackid")
       get :landing, params: {:collectemailaddress => "yesnooptional"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :collectemailaddress => "yesnooptional")
+      assert_redirected_to new_registrant_url(:protocol => "http", :collectemailaddress => "yesnooptional")
       get :landing, params: {:source => "email", :tracking=>"trackid"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :source => "email", :tracking=>"trackid")
+      assert_redirected_to new_registrant_url(:protocol => "http", :source => "email", :tracking=>"trackid")
       get :landing, params: {:partner => "2", :locale => "es"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es")
+      assert_redirected_to new_registrant_url(:protocol => "http", :partner => "2", :locale => "es")
       get :landing, params: {:partner => "2", :locale => "es", :source => "email"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es", :source => "email")
+      assert_redirected_to new_registrant_url(:protocol => "http", :partner => "2", :locale => "es", :source => "email")
       get :landing, params: {:partner => "2", :locale => "es", :source => "email", :tracking=>"trackid"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid")
+      assert_redirected_to new_registrant_url(:protocol => "http", :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid")
       get :landing, params: {:partner => "2", :locale => "es", :source => "email", :short_form=>"1"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es", :source => "email", :short_form=>"1")
+      assert_redirected_to new_registrant_url(:protocol => "http", :partner => "2", :locale => "es", :source => "email", :short_form=>"1")
       get :landing, params: {:partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0")
+      assert_redirected_to new_registrant_url(:protocol => "http", :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0")
       
       get :landing, params: {:partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0", first_name: "first", last_name: "last", state: "CA", home_zip_code: "90210", email_address: "email@example.com"}
-      assert_redirected_to new_registrant_url(:protocol => "https", :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0", first_name: "first", last_name: "last", state: "CA", home_zip_code: "90210", email_address: "email@example.com")
+      assert_redirected_to new_registrant_url(:protocol => "http", :partner => "2", :locale => "es", :source => "email", :tracking=>"trackid", :short_form=>"0", first_name: "first", last_name: "last", state: "CA", home_zip_code: "90210", email_address: "email@example.com")
       
     end
 
@@ -92,7 +92,7 @@ describe RegistrantsController do
       Partner.stub(:find).with("43243243").and_raise("Not Found")
       assert Partner.find_by_id(non_existent_partner_id).nil?
       get :landing, params: {:partner => non_existent_partner_id.to_s}
-      assert_redirected_to new_registrant_url(:protocol => "https", :partner => Partner::DEFAULT_ID)
+      assert_redirected_to new_registrant_url(:protocol => "http", :partner => Partner::DEFAULT_ID)
     end
   end
 
@@ -169,7 +169,7 @@ describe RegistrantsController do
 
         assert_response :success
         assert_select "#header.partner"
-        assert_select "#partner-logo img[src=http://abc123]"
+        assert_select "#partner-logo img[src='http://abc123']"
       end
       it "should show partner banner and logo for non-primary partner with custom logo on short form" do
         partner = Partner.new
@@ -180,7 +180,7 @@ describe RegistrantsController do
         get :new, params: {:partner => partner.to_param}
 
         assert_response :success
-        assert_select "#header.partner[style=background-image: url('http://abc123')]"
+        assert_select "#header.partner[style=\"background-image: url('http://abc123')\"]"
       end
     end
       
@@ -194,7 +194,7 @@ describe RegistrantsController do
         response.should render_template :show
       end
       it "shows mobile for another partner even if short_form is false" do
-        partner = Partner.new
+        partner = Partner.new(id:12345)
         partner.stub(:custom_logo?) { true }
         partner.stub(:logo) { "http://abc123" }
         Partner.stub(:find_by_id).with(partner.to_param).and_return(partner)
@@ -220,8 +220,7 @@ describe RegistrantsController do
           home_zip_code: "90210"
         }}
         it "goes to the create method" do
-          controller.stub(:layout).and_return(false)
-          expect(controller).to receive(:create) { controller.render text: '' }
+          expect(controller).to receive(:create) { controller.render html: '', layout: false }
           get :new, params: params
         end
       end
@@ -232,8 +231,7 @@ describe RegistrantsController do
           state: "CA"
         }}
         it "goes to the create method" do
-          controller.stub(:layout).and_return(false)
-          expect(controller).to receive(:create) { controller.render text: '' }
+          expect(controller).to receive(:create) { controller.render html: '', layout: false }
           get :new, params: params
         end
       end
@@ -244,20 +242,10 @@ describe RegistrantsController do
           home_zip_code: "02113"
         }}
         it "goes to the create method" do
-          expect(controller).to receive(:create) { controller.render text: '' }
+          expect(controller).to receive(:create) { controller.render html: '' }
           get :new, params: params
         end
-      end
-      context "when state is not enabled" do
-        let(:params) { {
-          short_form: true,
-          state: "WY"
-        }}
-        it "redirects to ineligible state" do
-          get :new, params: params
-          expect(response).to redirect_to registrant_ineligible_url(assigns[:registrant])          
-        end
-      end
+      end      
     end
     
   end

@@ -41,7 +41,7 @@ describe PasswordResetsController do
         Partner.stub(:find_using_perishable_token).with(anything) { partner }
       end
       it "should work" do
-        get :edit, :id => partner.perishable_token
+        get :edit, params: {:id => partner.perishable_token}
         response.should be_success
         response.should render_template(:edit)
       end

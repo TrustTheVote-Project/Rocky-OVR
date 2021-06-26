@@ -53,7 +53,13 @@ describe Step5Controller do
     end
 
     it "should reject invalid input and show form again" do
-      put :update, params: {:registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_5_registrant, :attest_true => false).reject {|k,v| k == :status }}
+      put :update, params: {
+        :registrant_id => @registrant.to_param, 
+        :registrant => FactoryGirl.attributes_for(:step_5_registrant, 
+          :attest_true => false,
+          short_form: false
+        ).reject {|k,v| k == :status }
+      }
       assert assigns[:registrant].step_5?
       assert assigns[:registrant].reload.step_4?
       assert_template "show"

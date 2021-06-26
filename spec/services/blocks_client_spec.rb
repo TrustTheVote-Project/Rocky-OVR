@@ -172,7 +172,7 @@ describe BlocksClient do
           jwt: "token"
         }
         
-        expect(BlocksClient).to receive(:send).with(:post, "shifts", body: body, headers: headers)
+        expect(BlocksClient).to receive(:send).with(:post, "shifts", body: body, headers: headers, url: nil)
         BlocksClient.create_shift(canvasser_id: canvasser_id,
             location_id: location_id,
             staging_location_id: staging_location_id,

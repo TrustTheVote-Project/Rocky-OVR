@@ -107,8 +107,9 @@ class RegistrantValidator < ActiveModel::Validator
       validates_zip_code reg,    :prev_zip_code
     end
 
-    if reg.at_least_step_5?
-      reg.validates_acceptance_of :attest_true
+    if reg.at_least_step_5? && !reg.building_via_api_call? && !reg.use_short_form?
+      reg.validates_inclusion_of  :attest_true, :in=>[true]
+      #reg.validates_acceptance_of :attest_true, :accept=>true
     end
 
     if reg.telling_friends
