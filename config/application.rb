@@ -27,6 +27,12 @@ module Rocky
       #{Rails.root}/app/models/state_customizations
     )
 
+    config.eager_load_paths += %W( #{Rails.root}/app/services
+      #{Rails.root}/app/presenters
+      #{Rails.root}/lib
+      #{Rails.root}/app/models/state_customizations
+    )
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
