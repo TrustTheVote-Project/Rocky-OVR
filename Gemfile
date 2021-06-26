@@ -44,10 +44,10 @@ gem 'jwt'
 group :pdf do
   gem 'wkhtmltopdf-binary', :git=>"https://github.com/amekelburg/wkhtmltopdf-binary", branch: "add-newer-osx"
   gem 'wicked_pdf', '2.1.0' #'0.9.6'
-  #gem 'formfiller', git: "https://github.com/cwulfman/FormFiller", branch: "master"   
+  gem 'formfiller', git: "https://github.com/cwulfman/FormFiller", branch: "master"   
 end
 
-#gem 'bootsnap', require: false
+gem 'bootsnap', require: false
 
 gem 'rest-client'
 gem 'diffy'
@@ -105,7 +105,7 @@ group :test do
   gem "webmock"
 end
 
-#  gem 'therubyracer'
+  gem 'therubyracer'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
