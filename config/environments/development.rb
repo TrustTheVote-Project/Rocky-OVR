@@ -56,7 +56,7 @@ Rails.application.configure do
   
   # Expands the lines which load the assets
   config.assets.quiet = true
-  config.eager_load = false
+  config.eager_load = true
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end

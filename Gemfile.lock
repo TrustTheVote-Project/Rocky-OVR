@@ -1,18 +1,18 @@
 GIT
+  remote: https://github.com/TrustTheVote-Project/FormFiller
+  revision: 07b396b4b2d521d3b51d148a280193daa431be33
+  branch: rails5
+  specs:
+    formfiller (0.1.1)
+      nokogiri (~> 1.8)
+      rjb (~> 1.6)
+
+GIT
   remote: https://github.com/amekelburg/wkhtmltopdf-binary
   revision: f7ecebfa6b4dc55a3c0b54ee0e3a7037db23fce3
   branch: add-newer-osx
   specs:
     wkhtmltopdf-binary (0.12.5)
-
-GIT
-  remote: https://github.com/cwulfman/FormFiller
-  revision: a7ba8468dd09a8ffcecd8d30ba18b536a1c499ff
-  branch: master
-  specs:
-    formfiller (0.1.0)
-      nokogiri (~> 1.8)
-      rjb (~> 1.6)
 
 GEM
   remote: http://rubygems.org/
@@ -1355,7 +1355,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.0)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.3)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
@@ -1367,7 +1367,7 @@ GEM
       connection_pool (~> 2.2)
     netrc (0.11.0)
     nio4r (2.5.7)
-    nokogiri (1.11.3)
+    nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     paperclip (6.1.0)
@@ -1376,7 +1376,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    passenger (5.3.4)
+    passenger (5.3.7)
       rack
       rake (>= 0.8.1)
     protobuf-cucumber (3.10.8)
@@ -1584,7 +1584,7 @@ DEPENDENCIES
   mysql2
   nokogiri
   paperclip
-  passenger (= 5.3.4)
+  passenger (= 5.3.7)
   rack-mini-profiler
   rack-robustness
   rails (= 5.2.4.4)
