@@ -44,7 +44,7 @@ gem 'jwt'
 group :pdf do
   gem 'wkhtmltopdf-binary', :git=>"https://github.com/amekelburg/wkhtmltopdf-binary", branch: "add-newer-osx"
   gem 'wicked_pdf', '2.1.0' #'0.9.6'
-  gem 'formfiller', git: "https://github.com/TrustTheVote-Project/FormFiller", branch: "rails5"   
+  gem 'formfiller', git: "https://github.com/TrustTheVote-Project/FormFiller", branch: "master"   
 end
 
 gem 'bootsnap', require: false
