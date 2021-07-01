@@ -14,7 +14,7 @@ class VARegistrantValidator < ActiveModel::Validator
 
 
     if reg.at_least_step_1?
-      reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+      reg.validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
 
       #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
       reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true

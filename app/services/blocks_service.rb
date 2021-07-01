@@ -54,7 +54,7 @@ class BlocksService
   end
 
   def url
-    RockyConf.blocks_configuration.partners[partner.id]&.url || RockyConf.blocks_configuration.url
+    (partner && RockyConf.blocks_configuration.partners[partner.id]&.url) || RockyConf.blocks_configuration.url
   end
   
   def token

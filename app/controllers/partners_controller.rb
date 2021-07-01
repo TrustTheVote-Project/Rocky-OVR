@@ -24,7 +24,7 @@
 #***** END LICENSE BLOCK *****
 class PartnersController < PartnerBase
   layout "partners"
-  before_filter :require_partner, :except => [:new, :create]
+  before_action :require_partner, :except => [:new, :create]
 
   ### public access
 
@@ -38,11 +38,13 @@ class PartnersController < PartnerBase
   end
 
   def create
-    @partner = Partner.new(params[:partner])
+    puts partner_params
+    @partner = Partner.new(partner_params)
     if @partner.save
       flash[:success] = "Registered!"
       redirect_to partner_url
     else
+      puts @partner.errors.full_messages
       render "new"
     end
   end
@@ -55,7 +57,7 @@ class PartnersController < PartnerBase
 
   def update
     @partner = current_partner
-    if @partner.update_attributes(params[:partner])
+    if @partner.update_attributes(partner_params)
       flash[:success] = "You have updated your profile."
       redirect_to partner_url
     else
@@ -218,4 +220,24 @@ SCRIPT
   end
 
   helper_method :partner_widget_url
+
+  def partner_params
+    params[:partner] && !params[:partner].empty? ? 
+      params.require(:partner).permit(Partner.permitted_attributes)
+      :
+      nil
+    #   :name,
+    #   :address,
+    #   :city,
+    #   :state_abbrev,
+    #   :zip_code,
+    #   :organization,
+    #   :url,
+    #   :phone,
+    #   :email,
+    #   :username,
+    #   :password,
+    #   :password_confirmation,
+    # )
+  end
 end

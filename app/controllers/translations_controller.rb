@@ -1,9 +1,9 @@
 class TranslationsController < ApplicationController
   layout 'state_configuration'
   
-  before_filter :disallow_production
-  before_filter :get_translations
-  before_filter :get_locale_and_translation, :except=>[:index, :all_languages, :preview_pdf]
+  before_action :disallow_production
+  before_action :get_translations
+  before_action :get_locale_and_translation, :except=>[:index, :all_languages, :preview_pdf]
   
 
   def index

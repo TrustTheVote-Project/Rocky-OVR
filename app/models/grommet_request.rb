@@ -29,6 +29,9 @@ class GrommetRequest < ActiveRecord::Base
   def resubmit
     registrant = nil
     params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
+    if params.respond_to?(:to_unsafe_h)
+      params = params.to_unsafe_h
+    end
     params = params.with_indifferent_access
     [:rocky_request, :voter_records_request, :voter_registration].tap do |keys|
       value = params
@@ -119,7 +122,7 @@ class GrommetRequest < ActiveRecord::Base
       
         gs.find_each do |g|
           params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
-          params = params.with_indifferent_access
+          params = params.to_unsafe_h.with_indifferent_access
           req = params["rocky_request"]
           if req.nil?
             next
