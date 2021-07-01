@@ -23,7 +23,8 @@
 #
 #***** END LICENSE BLOCK *****
 class Admin::AdminSessionsController < Admin::BaseController
-  skip_before_action :authenticate
+  skip_before_filter :authenticate
+  skip_before_filter :check_mfa
   layout "admin"
 
   def new
@@ -44,6 +45,7 @@ class Admin::AdminSessionsController < Admin::BaseController
   end
 
   def destroy
+    AdminMfaSession::destroy
     if current_admin_session
       current_admin_session.destroy
       flash[:message] = "Successfully logged out"

@@ -1304,6 +1304,13 @@ GEM
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    google-authenticator-rails (2.0.0)
+      actionpack
+      activerecord
+      google-qr
+      rails
+      rotp (= 3.3.0)
+    google-qr (0.2.2)
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
@@ -1435,8 +1442,9 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.2.5)
     rjb (1.6.4)
+    rotp (3.3.0)
+    rexml (3.2.5)
     rr (3.0.0)
     rspec-activemodel-mocks (1.1.0)
       activemodel (>= 3.0)
@@ -1574,6 +1582,7 @@ DEPENDENCIES
   figaro
   fog-aws
   formfiller!
+  google-authenticator-rails
   haml
   jquery-rails
   json

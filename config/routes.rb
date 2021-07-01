@@ -243,6 +243,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :mfa_sessions, only: [:new, :create]
     root :controller => 'partners', :action => 'index'
     resource :grommet_queue, only: [:show],controller: "grommet_queue" do
       get :flush

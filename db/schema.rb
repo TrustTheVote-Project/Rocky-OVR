@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_191326) do
+ActiveRecord::Schema.define(version: 20210412193527) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -116,9 +116,10 @@ ActiveRecord::Schema.define(version: 2020_12_24_191326) do
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
-    t.string "current_login_ip", limit: 255
-    t.string "last_login_ip", limit: 255
-    t.boolean "active", default: true, null: false
+    t.string   "current_login_ip",   limit: 255
+    t.string   "last_login_ip",      limit: 255
+    t.boolean  "active",                         default: true, null: false
+    t.string   "google_secret"
     t.index ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
   end
@@ -214,6 +215,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_191326) do
     t.boolean "complete"
     t.string "blocks_shift_location_name"
     t.string "blocks_turf_id"
+    t.text     "notes"
     t.index ["canvasser_first_name", "canvasser_last_name"], name: "shift_canvasser_name_index"
     t.index ["partner_id"], name: "canvasser_index"
     t.index ["partner_id"], name: "index_canvassing_shifts_on_partner_id"
@@ -336,6 +338,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_191326) do
     t.text "request_params"
     t.string "request_hash", limit: 255
     t.text "request_headers"
+    t.string   "state"
     t.index ["request_hash"], name: "index_grommet_requests_on_request_hash"
   end
 
@@ -667,7 +670,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_191326) do
     t.index ["state_id"], name: "index_state_localizations_on_state_id"
   end
 
-  create_table "state_registrants_mi_registrants", force: :cascade do |t|
+create_table "state_registrants_mi_registrants", force: :cascade do |t|
     t.string "registrant_id"
     t.string "locale"
     t.string "status"
@@ -723,6 +726,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_191326) do
     t.string "original_survey_question_2"
     t.string "survey_answer_1"
     t.string "survey_answer_2"
+    t.integer  "grommet_request_id"    
     t.index ["registrant_id"], name: "mi_registrants_registrant_id"
   end
 

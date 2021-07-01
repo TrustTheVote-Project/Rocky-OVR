@@ -1354,7 +1354,6 @@ en:
           desktop_provide_e_signature: You must provide a signature to complete your
             registration form. You may upload a signature image, switch to a touch-enabled
             device or use your current device.
-        
       mo:
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
@@ -2083,8 +2082,8 @@ en:
           requirements: If you are a voter with a valid PA Driver's License or PennDOT
             ID number, you can apply online with the state.  If you do not have one
             of these ID numbers, you will need to continue with creating a paper form.
-        registration_deadline_text: 05/03/2021 is the last day to register before
-          the 05/18/2021 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 10/18/2021 is the last day to register before
+          the 11/02/2021 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2168,8 +2167,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 05/03/2021 is the last day to register before
-          the 05/18/2021 election.</p>"
+          </ul> <p> Deadline Alert: 10/18/2021 is the last day to register before
+          the 11/02/2021 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
@@ -3198,6 +3197,12 @@ en:
           Provide your unexpired Wisconsin driver license or DOT-issued ID
           card number. If you do not have a current and valid DOT-issued driver license
           or ID card, provide the last four digits of your social security number.
+        south_carolina: |-
+          You must provide at least the last four digits of your social security number. 
+          You may provide your full social security number on a voluntary basis. Social 
+          security number does not appear on any report produced by the State Election 
+          Commission nor is it released to any unauthorized individual. (South Carolina 
+          Title 7-5-170)
         south_dakota: |-
           Your driver’s license number is requested. If you do not have
           a valid driver's license, you must provide the last four digits of your

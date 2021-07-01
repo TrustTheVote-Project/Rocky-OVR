@@ -26,9 +26,10 @@ class Admin::BaseController < ApplicationController
 
   layout 'admin'
 
-  skip_before_action :authenticate_everything
-  before_action :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
-  before_action :init_nav_class
+  skip_before_filter :authenticate_everything
+  before_filter :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
+  before_filter :check_mfa
+  before_filter :init_nav_class
 
   helper_method :current_admin
 
@@ -53,6 +54,13 @@ class Admin::BaseController < ApplicationController
       redirect_to admin_login_path
     end
   end
+
+  def check_mfa
+    if !(admin_mfa_session = AdminMfaSession.find) && (admin_mfa_session ? admin_mfa_session.record == current_admin : !admin_mfa_session)
+      store_location
+      redirect_to new_admin_mfa_session_path
+   end
+ end
 
   def current_admin_session
     return @current_admin_session if defined?(@current_admin_session)

@@ -23,8 +23,18 @@
 #
 #***** END LICENSE BLOCK *****
 class Admin < ActiveRecord::Base
+  acts_as_google_authenticated method: :email_with_label
+
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
+  end
+
+  def email_with_label
+    "RTV Admin #{env_label}(#{email})"
+  end
+
+  def env_label
+    Rails.env.production? ? '' : "- #{Rails.env} "
   end
   
   validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
