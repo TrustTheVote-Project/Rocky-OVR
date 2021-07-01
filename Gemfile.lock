@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/TrustTheVote-Project/FormFiller
-  revision: 07b396b4b2d521d3b51d148a280193daa431be33
-  branch: rails5
+  revision: a7ba8468dd09a8ffcecd8d30ba18b536a1c499ff
+  branch: master
   specs:
-    formfiller (0.1.1)
+    formfiller (0.1.0)
       nokogiri (~> 1.8)
       rjb (~> 1.6)
 
