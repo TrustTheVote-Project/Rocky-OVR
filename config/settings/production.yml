@@ -471,7 +471,7 @@ states_with_online_registration:
   - UT
   - VT
   - VA
-  #- WA
+  - WA
   - WI
   - WV
 
@@ -489,13 +489,13 @@ ovr_states:
     api_settings:
       api_url: https://mvicapi.sos.state.mi.us
     
-  #WA:
-  #  languages:
-  #    - en
-  #    - es
-  #    - zh
-  #    - vi
-  #    - ko
+  WA:
+    languages:
+      - en
+      - es
+      - zh
+      - vi
+      - ko
 
 enabled_locales:
   - en
