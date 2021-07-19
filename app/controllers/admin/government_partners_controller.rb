@@ -32,7 +32,7 @@ class Admin::GovernmentPartnersController < Admin::PartnersController
   end
   
   def create
-    @partner = Partner.new(params[:partner].merge(:is_government_partner=>true))
+    @partner = Partner.new(partner_params.merge(:is_government_partner=>true))
     @partner.generate_username
     @partner.generate_random_password
     if @partner.save
