@@ -24,7 +24,7 @@ class BlocksFormDisposition < ActiveRecord::Base
   
   def partner_from_grommet_request
     if grommet_request
-      params = grommet_request.request_params.is_a?(Hash) ? grommet_request.request_params : YAML::load(grommet_request.request_params)
+      params = grommet_request.request_params.is_a?(Hash) || grommet_request.request_params.is_a?(ActionController::Parameters) ? grommet_request.request_params : YAML::load(grommet_request.request_params)
       params = params.to_unsafe_h if params.respond_to?(:to_unsafe_h)
       params = params.with_indifferent_access
       partner_id = begin
