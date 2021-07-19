@@ -122,7 +122,8 @@ class GrommetRequest < ActiveRecord::Base
       
         gs.find_each do |g|
           params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
-          params = params.to_unsafe_h.with_indifferent_access
+          params = params.to_unsafe_h if params.respond_to?(:to_unsafe_h)
+          params = params.with_indifferent_access
           req = params["rocky_request"]
           if req.nil?
             next

@@ -2,9 +2,11 @@ class CatalistService
 
   class CatalistCensor < RequestLogSession::BaseCensor
     def self.protect(request_data=nil, registrant=nil)
-      params = request_data.to_unsafe_h.deep_dup.with_indifferent_access
+      params = request_data.deep_dup.with_indifferent_access
       begin
-        values = JSON.parse(params[:request_body]).to_unsafe_h.with_indifferent_access
+        values = JSON.parse(params[:request_body])
+        values = values.to_unsafe_h if values.respond_to?(:to_unsafe_h)
+        values = values.with_indifferent_access
         if values[:client_secret]
           values[:client_secret] = " * redacted * "
         end
