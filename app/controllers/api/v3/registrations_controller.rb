@@ -104,7 +104,8 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     
     gr_id = nil
     begin
-      gr = GrommetRequest.create(request_params: params)
+      request_params = params.respond_to?(:to_unsafe_h) ? params.to_unsafe_h : params
+      gr = GrommetRequest.create(request_params: request_params)
       gr_id = gr ? gr.id : nil
       
       # Also save request headers
