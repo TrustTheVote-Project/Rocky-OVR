@@ -487,6 +487,7 @@ class Registrant < ActiveRecord::Base
   attr_accessor :api_version
   # Builds the record from the API data and sets the correct state
   def self.build_from_api_data(data, api_finish_with_state = false)
+    data = data.permit! if data.respond_to?(:permit!)
     r = Registrant.new(data)
     r.partner_opt_in_sms = false unless r.partner && (r.partner.primary? || r.partner.partner_sms_opt_in)
     r.building_via_api_call   = true

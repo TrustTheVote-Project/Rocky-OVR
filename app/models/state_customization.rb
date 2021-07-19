@@ -67,7 +67,7 @@ class StateCustomization
   
   def redirect_to_online_reg_url(registrant)
     return false if ovr_settings.blank?
-    return !!ovr_settings.redirect_to_online_reg_url
+    return true #!!ovr_settings.redirect_to_online_reg_url
   end
   
   def ovr_settings

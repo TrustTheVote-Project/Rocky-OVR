@@ -340,7 +340,6 @@ ovr_states:
       api_url: "https://fake-pa-endpoint.herokuapp.com"
   
   VA:
-    redirect_to_online_reg_url: false
     languages:
       - en
     api_settings:
