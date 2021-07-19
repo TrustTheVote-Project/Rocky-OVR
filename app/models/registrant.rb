@@ -1867,6 +1867,7 @@ class Registrant < ActiveRecord::Base
   def self.permitted_attributes
     attrs = self.column_names - self.protected_attributes
     return [attrs, 
+      :new_locale,
       :prev_state_abbrev,
       :mailing_state_abbrev,
       :date_of_birth_month,
