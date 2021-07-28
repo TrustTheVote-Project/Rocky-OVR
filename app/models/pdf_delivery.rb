@@ -1,7 +1,7 @@
 require 'net/ftp'
 class PdfDelivery < ActiveRecord::Base
   
-  belongs_to :registrant
+  belongs_to :registrant, optional: true
   
   def generate_pdf!
     generate_pdf(true)

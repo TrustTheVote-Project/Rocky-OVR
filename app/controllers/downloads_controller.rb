@@ -25,7 +25,7 @@
 class DownloadsController < RegistrationStep
   CURRENT_STEP = 6
 
-  skip_before_filter :find_partner, only: :pdf
+  skip_before_action :find_partner, only: :pdf
   
   def show
     find_registrant(:download)

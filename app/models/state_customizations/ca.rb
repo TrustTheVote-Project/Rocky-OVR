@@ -246,6 +246,9 @@ class CA < StateCustomization
   XML_ERROR_CODE_REGEXP = /\<ErrorCode\>(.+)\<\/ErrorCode\>/
   XML_ERROR_MESSAGE_REGEXP = /\<ErrorMessage\>(.+)\<\/ErrorMessage\>/
   
+  def redirect_to_online_reg_url(registrant)
+    return false
+  end
   
   # http://covrtest.sos.ca.gov/?
   #    language=en-US&

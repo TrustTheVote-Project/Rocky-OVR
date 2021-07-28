@@ -24,7 +24,8 @@
 #***** END LICENSE BLOCK *****
 require "#{Rails.root}/app/services/v1"
 class Api::V1::RegistrationsController < Api::V1::BaseController
-
+  layout false
+  
   # Lists registrations
   def index
     jsonp({
@@ -37,6 +38,7 @@ class Api::V1::RegistrationsController < Api::V1::BaseController
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
   def create
+    puts params
     pdf_path = V1::RegistrationService.create_record(params[:registration]).pdf_download_path
     jsonp :pdfurl => "https://#{RockyConf.pdf_host_name}#{pdf_path}"
   rescue V1::RegistrationService::ValidationError => e

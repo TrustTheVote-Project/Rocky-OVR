@@ -8,11 +8,11 @@ class CatalistLookup < ActiveRecord::Base
   has_one :catalist_lookups_registrant
   has_one :registrant, through: :catalist_lookups_registrant, primary_key: :uid, foreign_key: :registrant_uid
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
 
   serialize :match, Hash
   
-  belongs_to :state,    :class_name => "GeoState"
+  belongs_to :state,    :class_name => "GeoState", optional: true
   
   before_create :generate_uid
 
@@ -23,7 +23,7 @@ class CatalistLookup < ActiveRecord::Base
   validates_presence_of :city
   validates_presence_of :zip
   validates_presence_of :email
-  validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+  validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   validates_presence_of :phone_type, if: -> { !phone.blank? }
   validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
   validate :validate_date_of_birth

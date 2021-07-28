@@ -103,6 +103,14 @@ class Registrant < ActiveRecord::Base
   OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
   #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
   DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
+  EMAIL_REGEX = /
+    \A
+    [A-Z0-9_.&%+\-']+   # mailbox
+    @
+    (?:[A-Z0-9\-]+\.)+  # subdomains
+    (?:[A-Z]{2,25})     # TLD
+    \z
+  /ix.freeze
   
   #CA_NAME_REGEX =   /\A[a-zA-Z0-9'#,\-\/_\.@\s]*\z/ #A-Z a-z 0-9 '#,-/_ .@space
   
@@ -293,13 +301,6 @@ class Registrant < ActiveRecord::Base
     
   ]
 
-
-
-  
-  
-  
-  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
-
   aasm column: :status do
     state :initial, initial: true
     state :step_1
@@ -348,11 +349,11 @@ class Registrant < ActiveRecord::Base
     
   end
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
   
-  belongs_to :home_state,    :class_name => "GeoState"
-  belongs_to :mailing_state, :class_name => "GeoState"
-  belongs_to :prev_state,    :class_name => "GeoState"
+  belongs_to :home_state,    :class_name => "GeoState", optional: true
+  belongs_to :mailing_state, :class_name => "GeoState", optional: true
+  belongs_to :prev_state,    :class_name => "GeoState", optional: true
 
   has_one :registrant_status
   has_one :pdf_delivery, -> { order("pdf_ready DESC") } # If multiple, prefer the one that's ready
@@ -486,6 +487,7 @@ class Registrant < ActiveRecord::Base
   attr_accessor :api_version
   # Builds the record from the API data and sets the correct state
   def self.build_from_api_data(data, api_finish_with_state = false)
+    data = data.permit! if data.respond_to?(:permit!)
     r = Registrant.new(data)
     r.partner_opt_in_sms = false unless r.partner && (r.partner.primary? || r.partner.partner_sms_opt_in)
     r.building_via_api_call   = true
@@ -976,7 +978,7 @@ class Registrant < ActiveRecord::Base
     if is_grommet? # Right now sigs only come from grommet
       return !grommet_submission["signature"].blank?    
     else
-      return existing_state_registrant&.voter_signature_image.present?
+      return existing_state_registrant && existing_state_registrant.voter_signature_image.present?
     end
   end
   
@@ -1345,8 +1347,6 @@ class Registrant < ActiveRecord::Base
     pdf_writer.pdf_file_dir(pdfpre)
   end
   
-  
-
   def pdf_writer
     if @pdf_writer.nil?
       @pdf_writer = PdfWriter.new
@@ -1865,6 +1865,26 @@ class Registrant < ActiveRecord::Base
   attr_writer :tell_from, :tell_email, :tell_recipients, :tell_subject, :tell_message
   attr_accessor :tell_recipients, :tell_message
 
+  def self.permitted_attributes
+    attrs = self.column_names - self.protected_attributes
+    return [attrs, 
+      :new_locale,
+      :prev_state_abbrev,
+      :mailing_state_abbrev,
+      :date_of_birth_month,
+      :date_of_birth_day,
+      :date_of_birth_year,      
+    ].flatten
+  end
+
+  def self.protected_attributes
+    Registrant::PROTECTED_ATTRIBUTES
+  end
+
+  PROTECTED_ATTRIBUTES = [
+    :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
+  ]
+  
   def tell_from
     @tell_from ||= "#{first_name} #{last_name}"
   end

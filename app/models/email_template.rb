@@ -36,7 +36,7 @@ class EmailTemplate < ActiveRecord::Base
   # [ [ 'confirmation.en', 'Confirmation EN' ], [ 'confirmation.es', 'Confirmation ES' ],
   #      [ 'reminder.en', 'Reminder EN' ], [ 'reminder.es', 'Reminder ES' ] ]
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
 
   validates :partner, presence: true
   validates :name, uniqueness: {:scope => :partner_id}, presence: true

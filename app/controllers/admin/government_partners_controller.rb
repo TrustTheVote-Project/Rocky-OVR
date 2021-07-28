@@ -32,7 +32,7 @@ class Admin::GovernmentPartnersController < Admin::PartnersController
   end
   
   def create
-    @partner = Partner.new(params[:partner].merge(:is_government_partner=>true))
+    @partner = Partner.new(partner_params.merge(:is_government_partner=>true))
     @partner.generate_username
     @partner.generate_random_password
     if @partner.save
@@ -45,7 +45,7 @@ class Admin::GovernmentPartnersController < Admin::PartnersController
   def update
     @partner = Partner.find(params[:id])
 
-    if @partner.update_attributes(params[:partner])
+    if @partner.update_attributes(partner_params)
       update_email_templates(@partner, params[:template])
       update_custom_css(@partner, params[:css_files])
 
@@ -55,5 +55,9 @@ class Admin::GovernmentPartnersController < Admin::PartnersController
     end
   end
   
+  private 
+  def partner_params
+    params[:partner] ? params.require(:partner).permit! : {}
+  end
   
 end

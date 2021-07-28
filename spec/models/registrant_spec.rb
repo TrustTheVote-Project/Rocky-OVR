@@ -938,9 +938,9 @@ describe Registrant do
       assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "$234567")
 
 
-      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "S345671 24323")
-      assert_attribute_valid_with(:step_3_registrant, :state_id_number => "S345671  4323")
-      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "1234 4323")
+      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "S3456734567345673456734567345673456734567 24323")
+      assert_attribute_valid_with(:step_3_registrant, :state_id_number => "S3456734567345673456734567345673456734567  4323")
+      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "1 4323")
       assert_attribute_valid_with(:step_3_registrant, :state_id_number => "S345671 2323")
 
     end
@@ -1011,7 +1011,7 @@ describe Registrant do
 
   describe "step 5" do
     it "requires attestations" do
-      assert_attribute_invalid_with(:step_5_registrant, :attest_true => "0")
+      assert_attribute_invalid_with(:step_5_registrant, {:attest_true => "0"}, {short_form: false})
     end
   end
 
@@ -2311,7 +2311,6 @@ describe Registrant do
   def assert_attribute_invalid_with(model, attributes, other_attributes = {})
     reg = FactoryGirl.build(model, attributes.merge(other_attributes))
     assert !reg.valid?
-    puts reg.errors.to_hash, attributes
     attributes.keys.each do |k|
       expect(reg.errors[k]).to_not be_empty
     end

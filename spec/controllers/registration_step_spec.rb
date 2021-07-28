@@ -46,7 +46,7 @@ describe RegistrationStep do
   end
   
   it 'should set collect_email_address' do
-    @rs.stub(:params).and_return({:collectemailaddress=>"val"})
+    @rs.stub(:params).and_return(ActionController::Parameters.new({:collectemailaddress=>"val"}))
     @rs.send(:find_partner)
     @rs.instance_variable_get("@collect_email_address").should == "val"
   end
