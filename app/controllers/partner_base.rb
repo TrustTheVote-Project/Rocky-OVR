@@ -26,7 +26,7 @@ class PartnerBase < ApplicationController
   layout "partners"
   
   helper_method :current_partner_session, :current_partner
-  before_filter :init_nav_class
+  before_action :init_nav_class
 
 
   def current_partner

@@ -63,7 +63,7 @@ describe ZipCodeCountyAddress do
     end
     it "sets the db_address when successful" do
       expect(z).to receive(:lookup_region).and_return("1234")
-      expect(z).to receive(:lookup_office_address).with("1234").and_return("New Address");
+      expect(z).to receive(:lookup_office_address).with("1234").and_return({vr_address_to: "New Address"});
       z.check_address
       expect(z.address).to eq("New Address")
     end
@@ -124,6 +124,9 @@ describe ZipCodeCountyAddress do
   
   describe '#lookup_office_address(region_id)' do
     let(:z) { ZipCodeCountyAddress.new }
+    before(:each) do
+      z.stub(:lookup_primary_contact)
+    end
     it "returns nil if no match" do
       ZipCodeCountyAddress.stub(:get).and_return([])
       expect(z.lookup_office_address("123")).to be_nil
@@ -165,7 +168,25 @@ describe ZipCodeCountyAddress do
           "zip"=>     "111111"
         }
       }])
-      expect(z.lookup_office_address("123")).to eq("The Right Street\nBoston, MA, 02110")      
+      lookup = z.lookup_office_address("123")
+      expect(lookup).to eq({
+        :vr_address_to => nil,
+        :vr_city => "Boston",
+        :vr_contact_email => nil,
+        :vr_contact_first_name => nil,
+        :vr_contact_last_name => nil,
+        :vr_contact_office_name => nil,
+        :vr_contact_phone => nil,
+        :vr_contact_suffix => nil,
+        :vr_contact_title => nil,
+        :vr_main_email => nil,
+        :vr_main_phone => nil,
+        :vr_state => "MA",
+        :vr_street1 => "The Right Street",
+        :vr_street2 => nil,
+        :vr_website => nil,
+        :vr_zip => "02110",
+      })      
     end
     it "returns first address with DOM_VR function regardless of is_regular_mail setting" do
       ZipCodeCountyAddress.stub(:get).and_return([{
@@ -199,7 +220,24 @@ describe ZipCodeCountyAddress do
           "zip"=>     "111111"
         }
       }])
-      expect(z.lookup_office_address("123")).to eq("The Right Street\nBoston, MA, 02110")            
+      expect(z.lookup_office_address("123")).to eq({
+        :vr_address_to => nil,
+        :vr_city => "Boston",
+        :vr_contact_email => nil,
+        :vr_contact_first_name => nil,
+        :vr_contact_last_name => nil,
+        :vr_contact_office_name => nil,
+        :vr_contact_phone => nil,
+        :vr_contact_suffix => nil,
+        :vr_contact_title => nil,
+        :vr_main_email => nil,
+        :vr_main_phone => nil,
+        :vr_state => "MA",
+        :vr_street1 => "The Right Street",
+        :vr_street2 => nil,
+        :vr_website => nil,
+        :vr_zip => "02110",
+      })            
     end
 
   end

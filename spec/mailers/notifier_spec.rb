@@ -110,7 +110,7 @@ describe Notifier do
       
       Notifier.confirmation(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
-      email.body.should match(%r{PDF: http://.*source=email})
+      email.body.should match(%r{PDF: https://.*source=email})
       email.subject.should == 'First, Here is your pdf'
       email.from.should include(RockyConf.from_address)
       
@@ -122,7 +122,7 @@ describe Notifier do
       Notifier.confirmation(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       
-      email.body.should include("http://register.rockthevote.com/?partner=#{partner.id}&source=email-confirmation")
+      email.body.should include("https://register.rockthevote.com/?partner=#{partner.id}&source=email-confirmation")
     end
     
     it "sends from partner email when configured and is verified in aws" do
@@ -391,7 +391,7 @@ describe Notifier do
       Notifier.chaser(registrant).deliver_now
       email = ActionMailer::Base.deliveries.last
       
-      email.body.should include("http://register.rockthevote.com/?partner=#{partner.id}&source=email-chaser")
+      email.body.should include("https://register.rockthevote.com/?partner=#{partner.id}&source=email-chaser")
     end
     
   end

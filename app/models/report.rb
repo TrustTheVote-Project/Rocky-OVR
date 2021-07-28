@@ -42,7 +42,7 @@ class Report < ActiveRecord::Base
     failed: :failed
   })
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
   has_many :report_data
   serialize :filters, Hash
 

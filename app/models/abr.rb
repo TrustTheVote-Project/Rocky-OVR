@@ -18,10 +18,10 @@ class Abr < ActiveRecord::Base
   has_one :voter_signature, autosave: true
   AbrSignatureMethods::METHODS.each do |vs_attribute|
     define_method "#{vs_attribute}" do
-      (voter_signature || create_voter_signature).send(vs_attribute)
+      (voter_signature || build_voter_signature).send(vs_attribute)
     end
     define_method "#{vs_attribute}=" do |val|
-      (voter_signature || create_voter_signature).send("#{vs_attribute}=", val)
+      (voter_signature || build_voter_signature).send("#{vs_attribute}=", val)
     end
   end
 
@@ -42,8 +42,8 @@ class Abr < ActiveRecord::Base
   
   has_many :abr_state_values, autosave: true
   
-  belongs_to :home_state,    :class_name => "GeoState"
-  belongs_to :partner
+  belongs_to :home_state,    :class_name => "GeoState", optional: true
+  belongs_to :partner, optional: true
   
   before_validation :reformat_phone
   
@@ -60,7 +60,7 @@ class Abr < ActiveRecord::Base
 
   validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
   validates_presence_of :email
-  validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+  validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   validates_presence_of :phone_type, if: :has_phone?
   validates_presence_of :registration_county, if: :requires_county?
   validate :validates_zip

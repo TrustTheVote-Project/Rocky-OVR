@@ -7,15 +7,15 @@ SERVER_ROLE="${ENV_ROLE[1]}"
 
 
 cd /var/www/rocky
-
 #source /etc/profile.d/rvm.sh
 #rvm install 2.4.1
-#rvm --version
-#rvm use ruby-2.4.1@rocky8 --create
-gem install bundler -v 1.16.3
+#rvm use ruby-2.7.2@rocky8 --create
+#gem install bundler -v 2.1.4
 # Make sure JAVA envs are loaded
 . /home/ec2-user/.bash_profile    
-bundle install --without development test
+bundle config set without 'development test'
+bundle install
+# --without development test
 
 # Make sure we have the config files downloaded
 aws s3 cp s3://rocky-cloudformation-assets/database.$RAILS_ENV.yml config/database.yml --region us-west-2

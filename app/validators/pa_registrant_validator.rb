@@ -16,7 +16,7 @@ class PARegistrantValidator < ActiveModel::Validator
     reg.validates_presence_of :phone_type if reg.has_phone?
 
     if reg.at_least_step_1?
-      reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+      reg.validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
 
       reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
       reg.validates_acceptance_of  :confirm_us_citizen, :accept=>true

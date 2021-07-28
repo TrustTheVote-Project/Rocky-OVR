@@ -1,6 +1,6 @@
 class PdfAbrWriter
   include ActiveModel::AttributeMethods
-  include ActiveModel::MassAssignmentSecurity
+  #include ActiveModel::MassAssignmentSecurity
   include ActiveModel::Validations
 
   include Lolrus
@@ -21,9 +21,12 @@ class PdfAbrWriter
   
   def assign_attributes(values, options = {})
     self.pdf_values = values
-    sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
-      send("#{k}=", v) if self.respond_to?("#{k}=")      
+    values.each do |k,v|
+      send("#{k}=", v) if self.respond_to?("#{k}=")
     end
+    # sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
+    #   send("#{k}=", v) if self.respond_to?("#{k}=")      
+    # end
   end
   def generate_pdf(force_write = false, for_printer = false)
     if force_write || !pdf_exists?

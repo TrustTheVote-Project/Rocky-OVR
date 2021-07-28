@@ -118,7 +118,6 @@ ovr_states:
       - vi
       - ko
   VA:
-    redirect_to_online_reg_url: true
     languages:
       - en
     api_settings:

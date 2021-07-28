@@ -1,5 +1,5 @@
 class ReportDatum < ActiveRecord::Base
-  belongs_to :report
+  belongs_to :report, optional: true
   
   serialize :h_value, Hash
   

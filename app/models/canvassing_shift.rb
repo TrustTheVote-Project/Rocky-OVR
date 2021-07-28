@@ -6,7 +6,7 @@ class CanvassingShift < ActiveRecord::Base
   has_many :canvassing_shift_grommet_requests, foreign_key: :shift_external_id, primary_key: :shift_external_id
   has_many :grommet_requests, through: :canvassing_shift_grommet_requests
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
 
   validates_presence_of :shift_external_id
 
@@ -42,7 +42,7 @@ class CanvassingShift < ActiveRecord::Base
 
   validates_presence_of [:canvasser_first_name, :canvasser_last_name, :partner_id, :canvasser_phone, :canvasser_email, :shift_location], if: :is_web?
   validates_format_of :canvasser_phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, if: :is_web?, allow_blank: true
-  validates_format_of :canvasser_email, :with => Authlogic::Regex::EMAIL, if: :is_web?, allow_blank: true
+  validates_format_of :canvasser_email, :with => Registrant::EMAIL_REGEX, if: :is_web?, allow_blank: true
 
   after_save :check_submit_to_blocks
 
@@ -56,17 +56,21 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def self.location_options(partner, turf_id: nil)
-    b = begin BlocksService.new(partner: partner) rescue nil end;
     locations_list = []
-    locations = begin b.get_locations(turf_id: turf_id)&.[]("locations") rescue nil end;
+    locations = begin 
+      b = BlocksService.new(partner: partner)
+      b.get_locations(turf_id: turf_id)&.[]("locations") 
+    rescue 
+      nil 
+    end;
     if locations && locations.any?
       locations_list = locations.map {|obj| [obj["name"], obj["id"]]}
     else
       default_location_id = begin
-        partner_config = RockyConf.blocks_configuration.partners[partner.id]
+        partner_config = RockyConf.blocks_configuration.partners[partner&.id]
         suborg_config = partner_config&.sub_orgs&.detect {|so| so.turf_id && so.turf_id.to_s == turf_id.to_s }
         suborg_config&.location_id || partner_config&.location_id || RockyConf.blocks_configuration.default_location_id
-      rescue
+      rescue Exception => e
         nil
       end
       locations_list = [["Default Location", default_location_id]] if default_location_id
@@ -154,9 +158,10 @@ class CanvassingShift < ActiveRecord::Base
   end
 
   def set_attributes_from_data!(data)
-    set_attribute_from_data(:shift_location, data, :canvass_location_id)
-    %w(partner_id
-      source_tracking_id
+    d = data.with_indifferent_access
+    set_attribute_from_data("partner_id", d)
+    set_attribute_from_data(:shift_location, d, :canvass_location_id)
+    %w(source_tracking_id
       partner_tracking_id
       geo_location
       open_tracking_id
@@ -171,7 +176,7 @@ class CanvassingShift < ActiveRecord::Base
       abandoned_registrations
       completed_registrations
     ).each do |attribute|
-      set_attribute_from_data(attribute, data)
+      set_attribute_from_data(attribute, d)
     end
 
     self.save!
@@ -185,7 +190,7 @@ class CanvassingShift < ActiveRecord::Base
     self.registrants.abandoned.where.not(status: :complete)
   end
 
-  def set_counts
+  def set_counts    
     self.completed_registrations = registrants_or_requests.count
     self.abandoned_registrations = web_abandoned_registrants.count
   end

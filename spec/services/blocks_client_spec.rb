@@ -89,7 +89,7 @@ describe BlocksClient do
           email: 'BLOCKS_USER_EMAIL',
           password: 'BLOCKS_USER_PASSWORD'
         }
-        expect(BlocksClient).to receive(:send).with(:post, "account/sign_in", body: body, headers: headers)
+        expect(BlocksClient).to receive(:send).with(:post, "account/sign_in", body: body, headers: headers, url: nil)
         BlocksClient.get_token
       end
     end
@@ -98,7 +98,7 @@ describe BlocksClient do
       it "sends get request to turfts/<id>/locations" do
         turf_id = "123"
         body = {jwt: "token"}
-        expect(BlocksClient).to receive(:send).with(:get, "turfs/#{turf_id}/locations", body: body, headers: headers)
+        expect(BlocksClient).to receive(:send).with(:get, "turfs/#{turf_id}/locations", body: body, headers: headers, url: nil)
         BlocksClient.get_locations(turf_id, token: "token")
       end      
     end
@@ -116,7 +116,7 @@ describe BlocksClient do
           jwt: "token"
         }
         
-        expect(BlocksClient).to receive(:send).with(:put, "forms/#{form_id}/add_metadata", body: body, headers: headers)
+        expect(BlocksClient).to receive(:send).with(:put, "forms/#{form_id}/add_metadata", body: body, headers: headers, url: nil)
         BlocksClient.add_metadata_to_form(form_id, meta_data, token: "token")
       end      
     end
@@ -140,7 +140,7 @@ describe BlocksClient do
           jwt: "token"
         }
         
-        expect(BlocksClient).to receive(:send).with(:patch, "turfs/#{turf_id}/canvassers/upsert", body: body, headers: headers)
+        expect(BlocksClient).to receive(:send).with(:patch, "turfs/#{turf_id}/canvassers/upsert", body: body, headers: headers, url: nil)
         BlocksClient.create_canvasser(first_name: first_name, last_name: last_name, email: email, phone_number: phone, turf_id: turf_id, token: "token")
       end      
     end
@@ -172,7 +172,7 @@ describe BlocksClient do
           jwt: "token"
         }
         
-        expect(BlocksClient).to receive(:send).with(:post, "shifts", body: body, headers: headers)
+        expect(BlocksClient).to receive(:send).with(:post, "shifts", body: body, headers: headers, url: nil)
         BlocksClient.create_shift(canvasser_id: canvasser_id,
             location_id: location_id,
             staging_location_id: staging_location_id,
@@ -199,7 +199,7 @@ describe BlocksClient do
           jwt: "token"
         }
         
-        expect(BlocksClient).to receive(:send).with(:post, "shifts/#{shift_id}/digital_batch", body: body, headers: headers)
+        expect(BlocksClient).to receive(:send).with(:post, "shifts/#{shift_id}/digital_batch", body: body, headers: headers, url: nil)
         BlocksClient.upload_registrations(shift_id, forms, shift_status: "status", token: "token")
       end      
     end

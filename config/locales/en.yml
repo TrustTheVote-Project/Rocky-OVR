@@ -567,6 +567,7 @@ en:
               required_if_opt_in: Required if receiving TXT
             attest_true:
               accepted: You must indicate whether the above information is correct.
+              inclusion: You must indicate whether the above information is correct.
             has_state_license:
               inclusion: Please indicate whether you have a valid state license.
             us_citizen:

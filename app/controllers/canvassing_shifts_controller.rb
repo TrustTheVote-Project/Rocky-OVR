@@ -4,7 +4,7 @@ class CanvassingShiftsController < ApplicationController
   include ApplicationHelper
 
   layout "registration"
-  before_filter :find_canvassing_shift
+  before_action :find_canvassing_shift
 
   def show
     if !@canvassing_shift
@@ -71,9 +71,6 @@ class CanvassingShiftsController < ApplicationController
   def current_step
     self.class::CURRENT_STEP
   end
-  hide_action :current_step
-
-
   private
 
   def cs_params

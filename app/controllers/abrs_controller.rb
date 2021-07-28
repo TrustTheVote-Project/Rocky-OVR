@@ -6,7 +6,7 @@ class AbrsController < ApplicationController
   include TwilioHelper
   
   layout "abr"
-  before_filter :find_partner
+  before_action :find_partner
   
   rescue_from Abr::AbandonedRecord do |exception|
     abr = exception.abr
@@ -188,7 +188,7 @@ class AbrsController < ApplicationController
       # Set flash message?
       # Actually send the message
       if params.has_key?(:email_continue_on_device) 
-        if @abr.email_address_for_continue_on_device =~ Authlogic::Regex::EMAIL
+        if @abr.email_address_for_continue_on_device =~ Registrant::EMAIL_REGEX
           AbrNotifier.continue_on_device(@abr, @abr.signature_capture_url).deliver_now
           flash[:success] = I18n.t('txt.signature_capture.abr.email_sent', email: @abr.email_address_for_continue_on_device)
           @abr.save(validate: false) # Make sure data persists even if not valid
@@ -235,6 +235,7 @@ class AbrsController < ApplicationController
   end
   
   def step_2_view(abr)
+    return 'step_2'
     potential_view = "step_2_#{abr.home_state_abbrev.to_s.downcase}"
     if File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml"))
       # In all cases we consider this registrant done!

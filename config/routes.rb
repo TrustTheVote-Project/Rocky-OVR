@@ -1,5 +1,5 @@
-Rocky::Application.routes.draw do
-  
+Rails.application.routes.draw do
+    
   root :to => "registrants#landing"
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui", via: :get
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout', via: :get
