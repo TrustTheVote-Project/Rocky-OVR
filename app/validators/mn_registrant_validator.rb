@@ -14,7 +14,7 @@ class MNRegistrantValidator < ActiveModel::Validator
 
 
     if reg.at_least_step_1?
-      reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+      reg.validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
       reg.validates_presence_of   :email unless reg.not_require_email_address?
 
       reg.validates_inclusion_of  :locale, :in => RockyConf.enabled_locales
