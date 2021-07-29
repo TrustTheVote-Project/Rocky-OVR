@@ -40,7 +40,6 @@ class Api::V4::PartnersController < Api::V4::BaseController
   end
 
   def create
-    raise partner_params.to_s
     partner = V4::PartnerService.create_record(partner_params)
     jsonp :partner_id => partner.id.to_s
   rescue V4::RegistrationService::ValidationError => e
