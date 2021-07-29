@@ -24,6 +24,7 @@
 #***** END LICENSE BLOCK *****
 require "#{Rails.root}/app/services/v3"
 class Api::V3::PartnersController < Api::V3::BaseController
+  wrap_parameters :partner, include: ([:contact_state] + Partner.permitted_attributes + V4::PartnerService::API_PARAM_MAP).flatten
 
   def show(only_public = false)
     query = {
@@ -40,7 +41,7 @@ class Api::V3::PartnersController < Api::V3::BaseController
   end
 
   def create
-    partner = V3::PartnerService.create_record(params[:partner])
+    partner = V3::PartnerService.create_record(partner_params)
     jsonp :partner_id => partner.id.to_s
   rescue V3::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
@@ -95,5 +96,9 @@ class Api::V3::PartnersController < Api::V3::BaseController
     end
   end
 
+  protected
+  def partner_params
+    params[:partner] && !params[:partner].empty? ? params.require(:partner).permit! : {}
+  end
 
 end

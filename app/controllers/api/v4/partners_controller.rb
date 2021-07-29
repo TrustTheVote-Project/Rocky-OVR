@@ -25,6 +25,8 @@
 require "#{Rails.root}/app/services/v4"
 class Api::V4::PartnersController < Api::V4::BaseController
 
+  wrap_parameters :partner, include: ([:contact_state] + Partner.permitted_attributes + V4::PartnerService::API_PARAM_MAP).flatten
+
   def show(only_public = false)
     query = {
       :partner_id      => params[:id] || params[:partner_id],
