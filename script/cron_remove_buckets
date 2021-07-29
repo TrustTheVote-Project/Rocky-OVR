@@ -6,4 +6,4 @@ CURRENT_DIR=/var/www/rocky
 #GEMSET=`cat $CURRENT_DIR/.ruby-gemset`
 ENV_NAME=$1
 #source $RVM_ENV_DIR/$RUBY_VERSION@$GEMSET && 
-cd $CURRENT_DIR && bundle exec rake -s utility:remove_buckets RAILS_ENV=$ENV_NAME
+cd $CURRENT_DIR && /usr/local/bin/bundle exec rake -s utility:remove_buckets RAILS_ENV=$ENV_NAME
