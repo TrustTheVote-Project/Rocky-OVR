@@ -501,9 +501,9 @@ class Report < ActiveRecord::Base
           row << counts[:email_opt_in]
           row << counts[:sms_opt_in]
           row << counts[:dl_count]
-          row << '%.2f %' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
+          row << '%.2f %%' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
           row << counts[:ssn_count]
-          row << '%.2f %' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
+          row << '%.2f %%' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
           row << eastern_time(ci.tracking_data["clock_in_datetime"])
           if co
             row << eastern_time(co.tracking_data["clock_out_datetime"])
