@@ -3,7 +3,7 @@
 CURRENT_DIR=/var/www/rocky
 #RVM_ENV_DIR=/usr/local/rvm/environments
 #RUBY_VERSION=`cat $CURRENT_DIR/.ruby-version`
-GEMSET=`cat $CURRENT_DIR/.ruby-gemset`
+#GEMSET=`cat $CURRENT_DIR/.ruby-gemset`
 ENV_NAME=$1
 #source $RVM_ENV_DIR/$RUBY_VERSION@$GEMSET && 
 cd $CURRENT_DIR && bundle exec rake -s utility:deactivate_stale_partners RAILS_ENV=$ENV_NAME

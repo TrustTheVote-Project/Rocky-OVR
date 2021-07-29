@@ -25,8 +25,6 @@
 require "#{Rails.root}/app/services/v4"
 class Api::V4::PartnersController < Api::V4::BaseController
 
-  wrap_parameters :partner, include: ([:contact_state] + Partner.permitted_attributes + V4::PartnerService::API_PARAM_MAP).flatten
-
   def show(only_public = false)
     query = {
       :partner_id      => params[:id] || params[:partner_id],
@@ -42,6 +40,7 @@ class Api::V4::PartnersController < Api::V4::BaseController
   end
 
   def create
+    raise partner_params.to_s
     partner = V4::PartnerService.create_record(partner_params)
     jsonp :partner_id => partner.id.to_s
   rescue V4::RegistrationService::ValidationError => e
