@@ -24,8 +24,8 @@
 #***** END LICENSE BLOCK *****
 require "#{Rails.root}/app/services/v2"
 class Api::V2::PartnersController < Api::V2::BaseController
-  wrap_parameters :partner, include: Partner.permitted_attributes + [:ZIP, :org_URL, :contact_email]
-
+  wrap_parameters :partner, include: ([:contact_state] + Partner.permitted_attributes + V2::PartnerService::API_PARAM_MAP).flatten
+  
   def show(only_public = false)
     query = {
       :partner_id      => params[:partner_id],
