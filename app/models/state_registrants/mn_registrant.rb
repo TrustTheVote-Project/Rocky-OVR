@@ -1,8 +1,8 @@
 class StateRegistrants::MNRegistrant < StateRegistrants::Base
   validates_with MNRegistrantValidator
 
-  belongs_to :prev_state,    :class_name => "GeoState"
-  belongs_to :mailing_state, :class_name => "GeoState"
+  belongs_to :prev_state,    :class_name => "GeoState", optional: true
+  belongs_to :mailing_state, :class_name => "GeoState", optional: true
 
   delegate :allow_desktop_signature?, :state_voter_check_url, to: :registrant
   def steps
