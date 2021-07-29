@@ -1410,13 +1410,14 @@ class Registrant < ActiveRecord::Base
     !skip_mail_with_esig? && !voter_signature_image.blank?
   end
   
-  has_one :voter_signature, primary_key: :uid, autosave: true
-  [
+  VOTER_SIGNATURE_ATTRIBUTES = [
     :voter_signature_image,
     :signature_method,
     :sms_number_for_continue_on_device,
     :email_address_for_continue_on_device
-  ].each do |vs_attribute|
+  ]
+  has_one :voter_signature, primary_key: :uid, autosave: true
+  VOTER_SIGNATURE_ATTRIBUTES.each do |vs_attribute|
     define_method "#{vs_attribute}" do
       (voter_signature || create_voter_signature).send(vs_attribute)
     end
@@ -1873,7 +1874,8 @@ class Registrant < ActiveRecord::Base
       :mailing_state_abbrev,
       :date_of_birth_month,
       :date_of_birth_day,
-      :date_of_birth_year,      
+      :date_of_birth_year,    
+      VOTER_SIGNATURE_ATTRIBUTES
     ].flatten
   end
 
