@@ -39,7 +39,7 @@ class SesController < ApplicationController
         end
       end
     end
-    render nothing: true, status: 200
+    render body: nil, status: 200
   end
   
 end

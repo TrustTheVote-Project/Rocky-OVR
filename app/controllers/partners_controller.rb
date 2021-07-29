@@ -38,7 +38,6 @@ class PartnersController < PartnerBase
   end
 
   def create
-    puts partner_params
     @partner = Partner.new(partner_params)
     if @partner.save
       flash[:success] = "Registered!"
