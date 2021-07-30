@@ -7,7 +7,7 @@ class Settings < ActiveRecord::Base
   
   # Support old plugin
   if defined?(SettingsDefaults::DEFAULTS)
-    @@defaults = SettingsDefaults::DEFAULTS.with_indifferent_access
+    @@defaults = SettingsDefaults::DEFAULTS.to_unsafe_h.with_indifferent_access
   end
   
   #get or set a variable with the variable as the called method

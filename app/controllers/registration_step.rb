@@ -28,8 +28,8 @@ class RegistrationStep < ApplicationController
   include TwilioHelper
 
   layout "registration"
-  before_filter :find_partner
-  before_filter :find_canvassing_shift
+  before_action :find_partner
+  before_action :find_canvassing_shift
 
   rescue_from Registrant::AbandonedRecord do |exception|
     reg = exception.registrant
@@ -49,7 +49,7 @@ class RegistrationStep < ApplicationController
     redirected = find_registrant
     @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
     return if redirected == :redirected
-    @registrant.attributes = params[:registrant]
+    @registrant.attributes = registrant_params
     @registrant.check_locale_change
     set_ab_test
     if detect_state_flow
@@ -63,12 +63,21 @@ class RegistrationStep < ApplicationController
     end
   end
 
+
   def current_step
     self.class::CURRENT_STEP
   end
-  hide_action :current_step
 
   protected
+  def registrant_params
+    #raise Registrant.column_names.to_s]
+    if params[:registrant]
+      params.require(:registrant).permit(Registrant.permitted_attributes)
+    else
+      {}
+    end
+  end
+
 
   def set_up_locale
     params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
@@ -102,7 +111,7 @@ class RegistrationStep < ApplicationController
     # Set flash message?
     # Actually send the message
     if params.has_key?(:email_continue_on_device) 
-      if @registrant.email_address_for_continue_on_device =~ Authlogic::Regex::EMAIL
+      if @registrant.email_address_for_continue_on_device =~ Registrant::EMAIL_REGEX
         Notifier.continue_on_device(@registrant, request.original_url).deliver_now
         flash[:success] = I18n.t('txt.signature_capture.email_sent', email: @registrant.email_address_for_continue_on_device)
         @registrant.save(validate: false) # Make sure data persists even if not valid
@@ -188,7 +197,7 @@ class RegistrationStep < ApplicationController
   end
 
   def find_partner
-    @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
+    @partner = Partner.find_by_id(params.permit![:partner]) || Partner.find(Partner::DEFAULT_ID)
     @partner_id = @partner.id
     set_params
   end

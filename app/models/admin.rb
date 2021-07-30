@@ -27,10 +27,7 @@ class Admin < ActiveRecord::Base
 
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
-    c.merge_validates_length_of_password_field_options({:minimum => 10})
   end
-  # Symbols: $@$!%*?&
-  validates_format_of :password, with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, allow_blank: true
 
   def email_with_label
     "RTV Admin #{env_label}(#{email})"
@@ -39,6 +36,26 @@ class Admin < ActiveRecord::Base
   def env_label
     Rails.env.production? ? '' : "- #{Rails.env} "
   end
+  
+  validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
+  
+  
+  validates :password,
+    confirmation: { if: :require_password? },
+    format: {
+      # Symbols: $@$!%*?&
+      with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, 
+      allow_blank: true
+    },
+    length: {
+      minimum: 10,
+      if: :require_password?
+    }
+  validates :password_confirmation,
+    length: {
+      minimum: 10,
+      if: :require_password?
+    }
 
   def deliver_password_reset_instructions!
     reset_perishable_token!

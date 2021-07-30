@@ -1,10 +1,10 @@
 module ApiHelperMethods
   def expect_api_response(data)
-    controller.stub(:jsonp).with(data) { controller.render :nothing=>true }
+    controller.stub(:jsonp).with(data) { controller.render json: data }
   end
 
   def expect_api_error(data)
-    controller.stub(:jsonp).with(data, :status => 400)  { controller.render :nothing=>true }
+    controller.stub(:jsonp).with(data, :status => 400)  { controller.render json: data}
   end
   
   def expect_api_deprecation_response

@@ -24,7 +24,7 @@
 #***** END LICENSE BLOCK *****
 class ApprovalController < PartnerBase
   layout "partners"
-  before_filter :require_partner, :load_data
+  before_action :require_partner, :load_data
 
 
   def show

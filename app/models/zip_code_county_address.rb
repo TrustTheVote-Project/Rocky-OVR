@@ -1,6 +1,6 @@
 class ZipCodeCountyAddress < ActiveRecord::Base
   # attr_accessible :title, :body
-  belongs_to :geo_state
+  belongs_to :geo_state, optional: true
   
   validates :zip, uniqueness: true, presence: true
   validates :geo_state_id, presence: true

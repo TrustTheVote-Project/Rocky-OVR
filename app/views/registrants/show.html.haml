@@ -14,7 +14,7 @@
       %option Select Language
       - RockyConf.enabled_locales.each do |loc|
         - unless loc.to_s == I18n.locale.to_s
-          %option{:value=>new_registrant_path(params.dup.merge({:locale=>loc}))}
+          %option{:value=>new_registrant_path(registrant_params.dup.to_h.deep_symbolize_keys.merge({:locale=>loc}))}
             = t('txt.registration.in_language_name', :locale=>loc)
 
 = form_for(@registrant) do |form|

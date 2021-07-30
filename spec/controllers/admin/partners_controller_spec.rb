@@ -39,7 +39,7 @@ describe Admin::PartnersController do
   describe 'show' do
     it 'should display partner record' do
       partner = FactoryGirl.create(:partner)
-      get :show, :id => partner.id
+      get :show, params: {:id => partner.id}
       assigns(:partner).should == partner
       response.should render_template :show
     end
@@ -48,7 +48,7 @@ describe Admin::PartnersController do
   describe 'edit' do
     it 'should display edit form' do
       partner = FactoryGirl.create(:partner)
-      get :edit, :id => partner.id
+      get :edit, params: {:id => partner.id}
       assigns(:partner).should == partner
       response.should render_template :edit
     end
@@ -58,13 +58,13 @@ describe Admin::PartnersController do
     before  { @partner = FactoryGirl.create(:partner) }
 
     context 'valid data' do
-      before  { put :update, :id => @partner, :partner => { :name => 'new_name' } }
+      before  { put :update, params: {:id => @partner, :partner => { :name => 'new_name' }} }
       it      { should redirect_to edit_admin_partner_path(@partner) }
       specify { @partner.reload.name.should == 'new_name' }
     end
 
     context 'template updates' do
-      before  { put :update, :id => @partner, :template => { 'confirmation.en' => 'body' } }
+      before  { put :update, params: {:id => @partner, :template => { 'confirmation.en' => 'body' }} }
       specify { EmailTemplate.get(@partner, 'confirmation.en').should == 'body' }
     end
 
@@ -72,12 +72,12 @@ describe Admin::PartnersController do
       before  { @sample_css = fixture_files_file_upload('/sample.css') }
       before  { @paf = PartnerAssetsFolder.new(nil) }
       before  { PartnerAssetsFolder.stub(:new).with(@partner) { @paf } }
-      before  { @paf.stub(:update_css).with('application', @sample_css) }
-      specify { put :update, :id => @partner, :css_files => { 'application' => @sample_css } }
+      before  { @paf.stub(:update_css).with('application', the_uploaded_file(@sample_css)) }
+      specify { put :update, params: {:id => @partner, :css_files => { 'application' => @sample_css }} }
     end
 
     context 'invalid data' do
-      before  { put :update, :id => @partner, :partner => { :name => '' } }
+      before  { put :update, params: {:id => @partner, :partner => { :name => '' }} }
       it      { should render_template :edit }
     end
   end
@@ -87,7 +87,7 @@ describe Admin::PartnersController do
       @partner = FactoryGirl.create(:partner)
       @partner.stub(:generate_api_key!) { true }
       Partner.stub(:find).with("1") { @partner }
-      get :regen_api_key, :id=>"1"
+      get :regen_api_key, params: {:id=>"1"}
     end
     it { 
       should redirect_to admin_partner_path(@partner)

@@ -394,13 +394,11 @@ pdf_assistance:
     
 ovr_states:
   AZ:
-    redirect_to_online_reg_url: true
     require_id: false
     languages:
       - en
       - es    
   CA:
-    redirect_to_online_reg_url: true
     api_settings:
       api_url: https://covrapi.sos.ca.gov/PostingEntityInterfaceService.svc
       api_key: <%= ENV['CA_API_KEY'] %>
@@ -426,93 +424,73 @@ ovr_states:
       - km
       - th
   LA:
-    redirect_to_online_reg_url: true
     languages:
       - en
   MN:
-    redirect_to_online_reg_url: true
     require_id: true
     languages:
       - en
   NV:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   AK:
-    redirect_to_online_reg_url: true
     languages:
       - en
   AL:
-    redirect_to_online_reg_url: true
     languages:
       - en
   CO:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   CT:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   DC:
-    redirect_to_online_reg_url: false
     languages:
       - en
   DE:
-    redirect_to_online_reg_url: true
     require_age_confirmation: true
     require_id: false
     languages:
       - en
   FL:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   GA:
-    redirect_to_online_reg_url: true
     languages:
       - en
   HI:
-    redirect_to_online_reg_url: true
     languages:
       - en
   IL:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   IN:
-    redirect_to_online_reg_url: true
     languages:
       - en
   IA:
-    redirect_to_online_reg_url: true
     languages:
       - en
   ID:
-    redirect_to_online_reg_url: true
     languages:
       - en
   KS:
-    redirect_to_online_reg_url: false # We have ks.html.erb that takes care of the redirect
     require_id: false
     languages:
       - en
   KY:
-    redirect_to_online_reg_url: true
     require_id: false
     languages:
       - en
   MA:
-    redirect_to_online_reg_url: true
     languages:
       - en
   MD:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
@@ -520,49 +498,40 @@ ovr_states:
     grommet_min_version: 1.0.0
     api_settings:
       api_url: https://mi-testing-endpoint.herokuapp.com/
-    redirect_to_online_reg_url: true
     require_age_confirmation: true
     languages:
       - en
     
   MO:
-    redirect_to_online_reg_url: true
     require_age_confirmation: true
     require_id: false
     languages:
       - en
   NC:
-    redirect_to_online_reg_url: true
     languages:
       - en
   NE:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   NJ:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
       - ko
   NM:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   NY:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   OH:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   OR:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
@@ -575,37 +544,30 @@ ovr_states:
       api_key: <%= ENV['PA_API_KEY'] %>
       canvassing_session_timeout_minutes: 1440
       canvassing_validation_timeout_minutes: 2880
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   RI:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
   SC:
-    redirect_to_online_reg_url: true
     languages:
       - en
   TN:
-    redirect_to_online_reg_url: true
     require_age_confirmation: true
     require_id: false
     languages:
       - en
   UT:
-    redirect_to_online_reg_url: true
     languages:
       - en
   VT:
     require_age_confirmation: true
-    redirect_to_online_reg_url: true
     require_id: false
     languages:
       - en
   VA:
-    redirect_to_online_reg_url: true
     languages:
       - en
     api_settings:
@@ -613,7 +575,6 @@ ovr_states:
         api_username: "RockTheVote"
         api_key: <%= ENV['VA_API_KEY'] %>
   WA:
-    redirect_to_online_reg_url: true
     languages:
       - en
       - es
@@ -621,11 +582,9 @@ ovr_states:
       - vi
       - ko
   WV:
-    redirect_to_online_reg_url: true
     languages:
       - en
   WI:
-    redirect_to_online_reg_url: true
     languages:
       - en
 

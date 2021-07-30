@@ -38,7 +38,10 @@ class BlocksService
   end
   
   def self.form_from_grommet_request(req)
-    registrant = V4::RegistrationService.create_pa_registrant(req.request_params[:rocky_request])    
+    params = req.request_params
+    params = params.to_unsafe_h if params.respond_to?(:to_unsafe_h)
+    params = params.with_indifferent_access
+    registrant = V4::RegistrationService.create_pa_registrant(params[:rocky_request])    
     registrant.basic_character_replacement!
     registrant.state_ovr_data ||= {}
     registrant.uid = "grommet-request-#{req.id}"
@@ -54,7 +57,7 @@ class BlocksService
   end
 
   def url
-    RockyConf.blocks_configuration.partners[partner.id]&.url || RockyConf.blocks_configuration.url
+    (partner && RockyConf.blocks_configuration.partners[partner.id]&.url) || RockyConf.blocks_configuration.url
   end
   
   def token

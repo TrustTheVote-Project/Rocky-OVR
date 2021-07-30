@@ -26,10 +26,10 @@ class Admin::BaseController < ApplicationController
 
   layout 'admin'
 
-  skip_before_filter :authenticate_everything
-  before_filter :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
-  before_filter :check_mfa
-  before_filter :init_nav_class
+  skip_before_action :authenticate_everything
+  before_action :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
+  before_action :check_mfa
+  before_action :init_nav_class
 
   helper_method :current_admin
 

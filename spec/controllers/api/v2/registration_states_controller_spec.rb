@@ -29,7 +29,7 @@ describe Api::V2::RegistrationStatesController do
   describe 'index' do
     it 'should return data' do
       
-      get :index, :format => 'json'
+      get :index, :as => 'json'
       GeoState.states_with_online_registration.each do |state_abbr|
         state = GeoState[state_abbr]
         assigns(:data)[:states].should include(name: state.abbreviation, url: state.online_reg_url(nil))

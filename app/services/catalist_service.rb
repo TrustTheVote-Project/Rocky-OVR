@@ -4,7 +4,9 @@ class CatalistService
     def self.protect(request_data=nil, registrant=nil)
       params = request_data.deep_dup.with_indifferent_access
       begin
-        values = JSON.parse(params[:request_body]).with_indifferent_access
+        values = JSON.parse(params[:request_body])
+        values = values.to_unsafe_h if values.respond_to?(:to_unsafe_h)
+        values = values.with_indifferent_access
         if values[:client_secret]
           values[:client_secret] = " * redacted * "
         end
