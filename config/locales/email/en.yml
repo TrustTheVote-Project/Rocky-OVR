@@ -98,8 +98,7 @@ en:
       subject: ! 'Thank you for registering'
       body:
         greeting: Dear %{registrant_first_name},
-        main: ! 'Thanks for completing your voter registration application. %{registrant_rtv_and_partner_name} will mail 
-          your voter registration application to your county election office.
+        main: ! 'Thanks for completing your voter registration application. %{registrant_rtv_and_partner_name} will submit your voter registration application to the %{registrant_home_state_name} Secretary of State.
 
           If you''d like a copy of your voter registration form, you can download and save <a href="%{pdf_url}">your application</a>.<br><br>
 
