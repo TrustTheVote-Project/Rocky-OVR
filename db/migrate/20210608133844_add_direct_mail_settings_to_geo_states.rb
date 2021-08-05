@@ -1,4 +1,4 @@
-class AddDirectMailSettingsToGeoStates < ActiveRecord::Migration
+class AddDirectMailSettingsToGeoStates <  ActiveRecord::Migration[4.2]
   def change
     add_column :geo_states, :enable_direct_mail, :boolean, default: false
     add_column :geo_states, :allow_desktop_signature, :boolean, default: false
