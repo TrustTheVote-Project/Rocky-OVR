@@ -149,7 +149,11 @@ class AbrsController < ApplicationController
   
   private
   def abr_params
-    attrs = [:first_name, :middle_name, :last_name, :name_suffix, :email, :street_name, :street_number, :unit, :city, :zip, :registration_county, :date_of_birth_month, :date_of_birth_day, :date_of_birth_year, :votercheck, :phone, :phone_type, :opt_in_email, :opt_in_sms, :partner_opt_in_email, :partner_opt_in_sms, :tracking_id, :tracking_source]
+    attrs = [:first_name, :middle_name, :last_name, :name_suffix, :email, :street_name, :street_number, :unit, :city, :zip, :registration_county, 
+      :date_of_birth_month, :date_of_birth_day, :date_of_birth_year, 
+      :prev_state_abbrev, :mailing_state_abbrev, :shift_id,
+      :votercheck, :phone, :phone_type, :opt_in_email, :opt_in_sms, :partner_opt_in_email, 
+      :partner_opt_in_sms, :tracking_id, :tracking_source]
     if @abr
       attrs += @abr.permitted_attrs
       attrs += @abr.allowed_signature_attrs
@@ -235,7 +239,6 @@ class AbrsController < ApplicationController
   end
   
   def step_2_view(abr)
-    return 'step_2'
     potential_view = "step_2_#{abr.home_state_abbrev.to_s.downcase}"
     if File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml"))
       # In all cases we consider this registrant done!
