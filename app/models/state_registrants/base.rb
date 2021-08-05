@@ -24,9 +24,19 @@ class StateRegistrants::Base < ActiveRecord::Base
   def self.permitted_attributes
     attrs = self.column_names - self.protected_attributes
     return [attrs, 
+      :new_locale,
+      :home_zip_code,
+      :shift_id,
+      :prev_state_abbrev,
+      :mailing_state_abbrev,
+      :date_of_birth,
       :date_of_birth_month,
       :date_of_birth_day,
-      :date_of_birth_year,      
+      :date_of_birth_year,
+      :covr_token,
+      :covr_success,
+      :ca_disclosures,
+      Registrant::VOTER_SIGNATURE_ATTRIBUTES  
     ].flatten
   end
 

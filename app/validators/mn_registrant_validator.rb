@@ -18,12 +18,12 @@ class MNRegistrantValidator < ActiveModel::Validator
       reg.validates_presence_of   :email unless reg.not_require_email_address?
 
       reg.validates_inclusion_of  :locale, :in => RockyConf.enabled_locales
-
+      reg.validates_inclusion_of  :confirm_eligibility, in: [true], message: I18n.t('states.custom.mn.custom_errors.confirm_eligibility')
+      
       validates_zip_code  reg,    :home_zip_code
     end
 
     if reg.at_least_step_2?
-      reg.validates_inclusion_of  :confirm_eligibility, in: [true], message: I18n.t('states.custom.mn.custom_errors.confirm_eligibility')
       reg.validates_presence_of   :name_title
       reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
       reg.validates_presence_of   :first_name

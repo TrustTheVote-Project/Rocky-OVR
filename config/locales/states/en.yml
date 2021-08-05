@@ -1307,7 +1307,7 @@ en:
           </ul>
         custom_errors:
           confirm_eligibility: >
-            You must confirm eligibility to continue with voter registration.
+            You must meet all the above requirements to register to vote in Minnesota.
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide an identification
             number: MN-issued driver's license, Minnesota ID card or last 4 digits of Social 

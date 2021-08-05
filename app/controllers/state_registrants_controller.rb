@@ -22,7 +22,7 @@ class StateRegistrantsController < RegistrationStep
     end
     if @registrant.should_advance(params) && @registrant.valid?
       @registrant.status = next_step 
-      @registrant.save
+      @registrant.save    
       if @registrant.complete? && params[:step]==@registrant.step_list[-2]
         @registrant.async_submit_to_online_reg_url
         redirect_to pending_state_registrant_path(@registrant.to_param, state: @registrant.home_state_abbrev.downcase)
