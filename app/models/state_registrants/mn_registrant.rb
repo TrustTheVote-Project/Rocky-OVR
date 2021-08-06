@@ -144,11 +144,11 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
   end
 
   def submitted?
-    return self.registrant.pdf_delivery.present?
+    return self.registrant&.pdf_delivery.present?
   end
 
   def state_transaction_id
-    self.registrant.pdf_delivery&.id
+    self.registrant&.pdf_delivery&.id
   end
 
   def cleanup!
