@@ -3,7 +3,8 @@ require 'rest-client'
 require_relative './domain.rb'
 
 #curl -vX POST http://localhost:3000/api/v3/voterregistrationrequest -d @grommet_req.json --header "Content-Type: application/json"
-URL = "#{BASE_DOMAIN}/api/v5/voterregistrationrequest/pa"
+# URL = "#{BASE_DOMAIN}/api/v5/voterregistrationrequest/pa"
+URL = "#{BASE_DOMAIN}/api/v4/voterregistrationrequest"
 
 def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", partner_tracking_id: "custom tracking id", partner_id: 1, address: "5501 Walnut St." )
    json =<<EOJ
