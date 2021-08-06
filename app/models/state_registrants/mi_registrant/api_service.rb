@@ -16,6 +16,14 @@ module StateRegistrants::MIRegistrant::ApiService
     RESPONSE_BUSY, #requeue
   ]
   
+  def state_api_error
+    api_submission_error
+  end
+
+  def api_submission_error
+    self.mi_api_voter_status_id ? [self.response_outcome] : nil
+  end
+  
   def response_outcome
     case self.mi_api_voter_status_id.to_s
     when "0.0", "5.0", "9.0", "12.0"

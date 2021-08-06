@@ -1,11 +1,19 @@
-%h2 Grommet Request Report Download:
+%br
+%br
+%div{style: "display: flex; padding-top: 1em"}
+  = link_to "PA Grommet", admin_grommet_queue_path(state: "PA"), style: "font-weight: bold; font-size: 120%; margin-right: 20px; #{@state == "PA" ? "text-decoration: underline;" : ''}"
+  = link_to "MI Grommet", admin_grommet_queue_path(state: "MI"), style: "font-weight: bold; font-size: 120%; margin-right: 20px; #{@state == "MI" ? "text-decoration: underline;" : ''}"
+
+%h2 
+  = @state
+  Grommet Request Report Download:
 
 %p
-  - if Settings.grommet_csv_ready || Settings.grommet_csv_ready == nil
-    - if Settings.grommet_csv_ready
-      = link_to "Download grommet CSV report generated on #{Settings.grommet_csv_generated_at}", Settings.grommet_csv_url
+  - if Settings.send("grommet_csv_ready_#{@state.downcase}")|| Settings.send("grommet_csv_ready_#{@state.downcase}") == nil
+    - if Settings.send("grommet_csv_ready_#{@state.downcase}")
+      = link_to "Download grommet CSV report generated on #{Settings.send("grommet_csv_generated_at_#{@state.to_s.downcase}")}", Settings.send("grommet_csv_url_#{@state.to_s.downcase}")
     %br 
-    = link_to "Generate new grommet request CSV report", request_report_admin_grommet_queue_path(format: :csv)
+    = link_to "Generate new grommet request CSV report", request_report_admin_grommet_queue_path(format: :csv, state: @state)
   - else
     Generating new grommet csv report...
 
@@ -17,19 +25,28 @@
 %h3 
   Current Grommet Queue Delay (in hours): 
   = @hours_delay
-  = form_tag update_delay_admin_grommet_queue_path(:format => :csv), method: :patch do 
+  = form_tag update_delay_admin_grommet_queue_path(state: @state), method: :patch do 
     = text_field_tag :delay, @hours_delay
     = submit_tag "Update Delay"
     
 - if @jobs.count > 0 
   %br
   %br
-  %h3= link_to "Flush Queue (will also set queue delay to 0)", flush_admin_grommet_queue_path
+  %h3= link_to "Flush Queue (will also set queue delay to 0)", flush_admin_grommet_queue_path(state: @state)
   %br
   %br
   %ul
     - @jobs.each do |j|
       %li
-        - h = YAML.load(j.handler)
-        = "Registrant ID: #{h.args[0]}, Run At #{j.run_at}"
+        - begin
+          - h = YAML.load(j.handler)
+          - if h.args[0]
+            = "Registrant ID: #{h.args[0]}, Run At #{j.run_at}"
+          - else
+            = "#{h.object.class} ID: #{h.object.id}, Run At  #{j.run_at}"
+        - rescue Exception=>e
+          = e
+          %br
+          = j.handler
+        
     

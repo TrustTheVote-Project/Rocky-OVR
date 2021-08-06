@@ -126,7 +126,7 @@ ovr_states:
         api_key: <%= ENV['VA_API_KEY'] %>
   MI:
     api_settings:
-      api_url: https://test-mvicapi.sos.state.mi.us
+      api_url: https://mi-testing-endpoint.herokuapp.com
 
   
       

@@ -1,34 +1,59 @@
 class GrommetRequest < ActiveRecord::Base
   # attr_accessible :title, :body
-  
+  STATES = %w(PA MI)
+
   after_create :generate_request_hash
   
   serialize :request_params, Hash
   
   def generate_request_hash
+    if STATES.include?(self.state)
+      hash_key_method = "#{self.state.downcase}_hash_key"
+      hash_key = self.send(hash_key_method)
+      if hash_key
+        self.request_hash = Digest::MD5.hexdigest(hash_key) 
+        save(validate: false)
+      end
+    end
+  end
+    
+  def pa_hash_key
     params = self.request_params.is_a?(Hash) || self.request_params.is_a?(ActionController::Parameters) ? self.request_params : YAML::load(self.request_params)
     params = params.to_unsafe_h if params.respond_to?(:to_unsafe_h)
     params = params.with_indifferent_access
     if params["rocky_request"] && params["rocky_request"]["voter_records_request"]
       r = params["rocky_request"]["voter_records_request"]["voter_registration"]
       d = params["rocky_request"]["voter_records_request"]["generated_date"]
-      key = "#{d}-#{r}"
-      self.request_hash = Digest::MD5.hexdigest(key) 
-      puts key, request_hash
-      save(validate: false)    
+      return key = "#{d}-#{r}"      
     end
+    return nil
+  end
+
+  def mi_hash_key
+    params = self.request_params.is_a?(Hash) ? self.request_params : YAML::load(self.request_params)
+    return "#{params["registration"]}"
   end
     
-    
   def is_duplicate?
-    self != self.class.where(request_hash: self.request_hash).order(:id).first
+    self != self.class.where(request_hash: self.request_hash, state: self.state).order(:id).first
   end
   
   def has_duplicates?
-    self.class.where(request_hash: self.request_hash).count > 1
+    self.class.where(request_hash: self.request_hash, state: self.state).count > 1
   end
   
   def resubmit
+    if STATES.include?(self.state)
+      method_name = "#{self.state.downcase}_resubmit"
+      self.send(method_name)
+    end
+  end
+
+  # def mi_resubmit
+    
+  # end
+
+  def pa_resubmit
     registrant = nil
     params = self.request_params.is_a?(Hash) || self.request_params.is_a?(ActionController::Parameters) ? self.request_params : YAML::load(self.request_params)
     if params.respond_to?(:to_unsafe_h)
@@ -65,8 +90,8 @@ class GrommetRequest < ActiveRecord::Base
     end
   end
 
-  def self.upload_request_results_report_csv
-    contents = GrommetRequest.request_results_report_csv
+  def self.upload_request_results_report_csv(state)
+    contents = GrommetRequest.request_results_report_csv(state)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
       :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
@@ -76,35 +101,46 @@ class GrommetRequest < ActiveRecord::Base
     bucket_name = "rtv-reports"
     directory = connection.directories.get(bucket_name)
     file = directory.files.create(
-      :key    => "#{Rails.env}/grommet_requests.csv",
+      :key    => "#{Rails.env}/grommet_requests_#{state}.csv",
       :body   => contents,
       :content_type => "text/csv",
       :encryption => 'AES256', #Make sure its encrypted on their own hard drives
       :public => true
     )
-    Settings.grommet_csv_ready = true
-    Settings.grommet_csv_generated_at = DateTime.now
-    Settings.grommet_csv_url = "https://s3-us-west-2.amazonaws.com/rtv-reports/#{Rails.env}/grommet_requests.csv"
+    Settings.send("grommet_csv_ready_#{state.to_s.downcase}=", true)
+    Settings.send("grommet_csv_generated_at_#{state.to_s.downcase}=", DateTime.now)
+    Settings.send("grommet_csv_url_#{state.to_s.downcase}=", "https://s3-us-west-2.amazonaws.com/rtv-reports/#{Rails.env}/grommet_requests_#{state}.csv")
   end
 
-  def self.request_results_report_csv
-    # Only look at registrants within the last 4 months to narrow the scope. If want full scope, go back to March 29, 2018
+  def self.request_results_report_csv(state)
+    self.send("request_results_report_csv_#{state.downcase}")
+  end
+
+  def self.request_results_report_csv_pa
+    # Only look at registrants within the last 4 months to narrow the scope.
+    # If want full scope, go back to March 29, 2018
     distribute_reads(failover: false) do
       start_date = 4.months.ago
       rs = Registrant.where("created_at > ?", start_date).where("state_ovr_data IS NOT NULL")
-      gs = GrommetRequest.where('created_at > ?', start_date + 2.days)
+      gs = GrommetRequest.where(state: "PA").where('created_at > ?', start_date + 2.days)
       r_reqs = {}
     
       dj_ids = Delayed::Job.all.pluck(:id)
     
       rs.find_each do |r|
-        if r.is_grommet? && !r.state_ovr_data["grommet_request_id"].blank?
+        if r.is_grommet? && !r.grommet_request_id.blank?
           in_queue = ""
           dj_id = r.state_ovr_data["delayed_job_id"]
           if dj_id && dj_ids.include?(dj_id)
             in_queue = "queued"
           end
-          r_reqs[r.state_ovr_data["grommet_request_id"].to_s] = [r.id, r.home_state_abbrev, in_queue, r.state_ovr_data["pa_transaction_id"], r.state_ovr_data["errors"]]
+          r_reqs[r.grommet_request_id.to_s] = [
+            r.id, 
+            r.home_state_abbrev, 
+            in_queue, 
+            r.state_transaction_id, 
+            r.vr_application_submission_errors
+          ]
         end
       end
     
@@ -181,6 +217,126 @@ class GrommetRequest < ActiveRecord::Base
               csv << [g.id] + rep_fields
             end
           end
+        end
+      end
+      return csvstr
+    end
+  end
+
+
+  def self.request_results_report_csv_mi
+    # Only look at registrants within the last 4 months to narrow the scope.
+    # If want full scope, go back to March 01, 2021
+    distribute_reads(failover: false) do
+      start_date = 4.months.ago
+      mi_rs = StateRegistrants::MIRegistrant.where("created_at > ?", start_date).where("grommet_request_id IS NOT NULL")
+      gs = GrommetRequest.where(state: "MI").where('created_at > ?', start_date + 2.days)
+      r_reqs = {}
+    
+      dj_ids = Delayed::Job.all.pluck(:id)
+    
+      mi_rs.find_each do |mi_r|
+        r = mi_r.registrant
+        if r.state_ovr_data
+          in_queue = ""
+          dj_id = r.state_ovr_data["delayed_job_id"]
+          if dj_id && dj_ids.include?(dj_id)
+            in_queue = "queued"
+          end
+          r_reqs[mi_r.grommet_request_id.to_s] = [
+            r.id, 
+            r.home_state_abbrev, 
+            in_queue, 
+            r.state_transaction_id, 
+            r.vr_application_submission_errors
+          ]
+        end
+      end
+    
+    
+    
+      req_hashes= {}
+      gs.find_each do |g|
+        if !g.request_hash.blank?
+          req_hashes[g.request_hash] ||= []
+          req_hashes[g.request_hash].push(g.id)
+        end
+      end
+
+      csvstr = CSV.generate do |csv|
+        headers = ["Grommet Request ID", 
+          "Partner ID", 
+          "Grommet Version", 
+          "Submitted At", 
+          "Session ID", 
+          "Name", 
+          "Registrant ID", 
+          "Registrant Home State", 
+          "In Queue", 
+          "MI Transaction ID", 
+          "MI Errors", 
+          "Is Duplicate Of",
+          "Is Duplicated By",          
+        ]
+
+        unless Rails.env.production?
+          headers << "Raw Request (not present on prod)"
+        end
+
+        csv << headers
+      
+      
+        gs.find_each do |g|
+          params = g.request_params.is_a?(Hash) ? g.request_params : YAML::load(g.request_params)
+          params = params.with_indifferent_access
+          req = params["rocky_request"]
+          if req.nil?
+            req = {}
+          end
+          rep_fields = [
+            req["partner_id"],
+            begin
+              if g.request_headers.to_s =~ /HTTP_GROMMET_VERSION\"=>\"([\d\.]+)\"/
+                $1
+              else
+                nil
+              end
+            rescue
+              nil
+            end,
+            g.created_at,
+            req["shift_id"],
+            begin
+              req["full_name"]
+            rescue
+              ""
+            end,
+            ]
+          record_array  = []
+          if r_reqs[g.id.to_s]
+            record_array = [g.id] + rep_fields + r_reqs[g.id.to_s] + [nil, nil]
+          else
+            if !g.request_hash.blank?
+              rh_ids = req_hashes[g.request_hash].dup
+              if rh_ids && rh_ids.length <= 1
+                record_array = [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,nil]
+              else
+                # Am I the first
+                first_id = rh_ids.shift if rh_ids
+                if first_id == g.id
+                  record_array = [g.id] + rep_fields + [nil,nil,nil,nil,nil,nil,rh_ids]
+                else
+                  record_array = [g.id] + rep_fields + [nil,nil,nil,nil,nil,first_id,nil]
+                end              
+              end
+            else
+              csv << [g.id] + rep_fields
+            end
+          end
+          unless Rails.env.production?
+            record_array << params
+          end
+          csv << record_array
         end
       end
       return csvstr

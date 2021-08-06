@@ -193,7 +193,7 @@ class Notifier < ActionMailer::Base
     @registrant_home_state_abbrev = registrant.home_state_abbrev.to_s.html_safe
     @rtv_link = "<strong><a href=\"https://register.rockthevote.com/?partner=#{registrant.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
     @home_state_email_instructions = registrant.home_state_email_instructions.blank? ? '' : (registrant.home_state_email_instructions + "<br/><br/>").to_s.html_safe
-
+    
     partner = registrant.partner
     use_custom_template = partner.whitelabeled? || kind.starts_with?("preview_")
     custom_template = partner && use_custom_template && EmailTemplate.get(partner, "#{kind}.#{registrant.locale}")

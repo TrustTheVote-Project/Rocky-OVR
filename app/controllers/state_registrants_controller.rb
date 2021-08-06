@@ -22,11 +22,12 @@ class StateRegistrantsController < RegistrationStep
     end
     if @registrant.should_advance(params) && @registrant.valid?
       @registrant.status = next_step 
-      @registrant.save
+      @registrant.save    
       if @registrant.complete? && params[:step]==@registrant.step_list[-2]
         @registrant.async_submit_to_online_reg_url
         redirect_to pending_state_registrant_path(@registrant.to_param, state: @registrant.home_state_abbrev.downcase)
       else
+        #raise edit_state_registrant_path(@registrant.to_param, @registrant.status).to_s
         redirect_to edit_state_registrant_path(@registrant.to_param, @registrant.status)
       end
     else
@@ -38,6 +39,7 @@ class StateRegistrantsController < RegistrationStep
   
   def skip_state_flow
     @registrant.registrant.skip_state_flow!
+    @registrant.registrant.skip_mail_with_esig!
     go_to_paper
   end
   

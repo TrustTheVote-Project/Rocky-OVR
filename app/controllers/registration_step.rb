@@ -47,7 +47,7 @@ class RegistrationStep < ApplicationController
   def update
     @pdf_assistance = params[:pdf_assistance]
     redirected = find_registrant
-    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?
     return if redirected == :redirected
     @registrant.attributes = registrant_params
     @registrant.check_locale_change
@@ -88,7 +88,7 @@ class RegistrationStep < ApplicationController
 
   def set_up_view_variables
     @use_mobile_ui = determine_mobile_ui(@registrant)
-    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?
     
   end
 
@@ -212,7 +212,6 @@ class RegistrationStep < ApplicationController
 
 
   def detect_state_flow
-
     if @registrant && @registrant.use_state_flow? && !@registrant.skip_state_flow? && current_step != 1
       # PASS registrant over to state flow, creating a new state-specific registrant
       return true

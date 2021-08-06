@@ -5,9 +5,10 @@ class StateRegistrants::Base < ActiveRecord::Base
   
   include RegistrantMethods
   
-  delegate :use_state_flow?, :skip_state_flow?, :skip_state_flow!, to: :registrant
+  delegate :use_state_flow?, :skip_state_flow?, :skip_state_flow!, :not_require_email_address?, to: :registrant
   delegate :any_ask_for_volunteers?, :ask_for_primary_volunteers?, :question_1, :question_2, to: :registrant
-  delegate :titles, :suffixes, :races, :state_parties, :phone_types, :partner, :partner_id, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, :javascript_disabled?, :canvassing_shift, to: :registrant
+  delegate :titles, :suffixes, :races, :state_parties, :phone_types, :partner, :partner_id, :partner_id=, :state_registrar_address, :rtv_and_partner_name, :home_state_email_instructions, :email_address_to_send_from,  :finish_iframe_url, :javascript_disabled?, :canvassing_shift, to: :registrant
+
   delegate :has_phone?, :is_fake?, :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
   
   delegate :ask_for_partner_volunteers?, to: :registrant
@@ -23,9 +24,19 @@ class StateRegistrants::Base < ActiveRecord::Base
   def self.permitted_attributes
     attrs = self.column_names - self.protected_attributes
     return [attrs, 
+      :new_locale,
+      :home_zip_code,
+      :shift_id,
+      :prev_state_abbrev,
+      :mailing_state_abbrev,
+      :date_of_birth,
       :date_of_birth_month,
       :date_of_birth_day,
-      :date_of_birth_year,      
+      :date_of_birth_year,
+      :covr_token,
+      :covr_success,
+      :ca_disclosures,
+      Registrant::VOTER_SIGNATURE_ATTRIBUTES  
     ].flatten
   end
 
@@ -40,6 +51,16 @@ class StateRegistrants::Base < ActiveRecord::Base
     sr.status ||= :step_2
     sr.set_from_original_registrant
     sr
+  end
+  
+  include Rails.application.routes.url_helpers
+  def default_url_options
+    ActionMailer::Base.default_url_options
+  end
+  
+  
+  def signature_capture_url
+    update_state_registrant_url(self.to_param, self.signature_step)
   end
   
   def voter_signature_image

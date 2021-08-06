@@ -199,10 +199,9 @@ en:
       finish_mail_with_esig: |-
         <p class="instructions">Next steps:</p>
         <p class="instructions">
-          1. We will send your voter registration application to your county election office.<br/>
-          2. We will also email you a link to a copy of your application.<br/>
-          3. You should reach out to your friends and family to make sure they register to vote to make their voices heard too!<br/>
-          4. <a href="%{state_voter_check_url}" target="_blank" rel="noopener">Check to confirm your registration</a> by October 13, the deadline to register in advance for the November 3 election.<br/>
+          1. We will send your voter registration application to the %{state} Secretary of State.<br/>
+          2. We will email you a copy of your application, plus information on how to check the status of your voter registration.<br/>
+          3. Reach out to your friends and family to make sure they register to vote to make their voices heard too!<br/>
         </p>
       finish_header: Spread the word!
       finish_pdf_delay_header: Check Your Email

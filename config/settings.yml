@@ -427,6 +427,9 @@ ovr_states:
     languages:
       - en
   MN:
+    languages:
+      - en
+      - es
     require_id: true
     languages:
       - en
@@ -496,6 +499,7 @@ ovr_states:
       - es
   MI:
     grommet_min_version: 1.0.0
+    registration_deadline: 2020-11-03 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
     api_settings:
       api_url: https://mi-testing-endpoint.herokuapp.com/
     require_age_confirmation: true

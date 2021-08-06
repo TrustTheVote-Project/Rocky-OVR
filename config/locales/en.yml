@@ -57,6 +57,8 @@ en:
       name: Chinese (Simplified)
   activerecord:
     attributes:
+      geo_state:
+        add_direct_mail_partner_id: Add Partner By ID
       canvassing_shift:
         canvasser_first_name: First Name
         canvasser_last_name: Last Name
@@ -108,6 +110,61 @@ en:
         mailing_state: State
         mailing_zip_code: ZIP Code
         mailing_country: Country
+      state_registrants/mn_registrant:
+        confirm_declaration: I have read and understand this statement, that giving false information is a felony punishable by not more than 5 years imprisonment or a fine of not more than $10,000, or both.
+        confirm_eligibility: > 
+          Do you meet all the following requirements?
+          <ul>
+          <li>I am a U.S. citizen</li>
+          <li>I am at least 18 on or before the next election</li>
+          <li>I am currently NOT incarcerated, on parole, or on probation as part of a felony conviction sentence. (If you’ve had a felony conviction, you can vote once you complete your sentence.)</li>
+          </ul>
+        confirm_eligibility_yes: YES, I meet all requirements
+        confirm_eligibility_no: NO, I do not meet all requirements
+        date_of_birth: Date of Birth
+        email: Email Address
+        home_zip_code: ZIP Code
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        home_address: Address
+        home_unit: 'Unit/Lot #'
+        home_city: City
+        home_state_name: State
+        home_state_abbrev: State
+        has_mailing_address: I cannot receive mail here.
+        has_state_license: I have a driver's license or state ID card.
+        mailing_address: Address
+        mailing_unit: 'Unit/Lot #'
+        mailing_city: City
+        mailing_state_abbrev: State
+        mailing_zip_code: Zip
+        dln: Minnesota Driver's License Number or State I.D. Card Number
+        confirm_no_dln: I do not have a Minnesota Driver's License Number or State I.D. Card
+        confirm_no_dl_or_ssn: I don’t have either an MN State I.D. Card or a social security number
+        ssn4: Last four digits of your social security number
+        phone: Phone
+        phone_type: Type
+        change_of_address: I have moved since you last registered to vote.
+        prev_address: Address
+        prev_unit: 'Unit/Lot #'
+        prev_city: City
+        prev_state_abbrev: State
+        prev_zip_code: Zip
+        opt_in_email: Receive emails
+        opt_in_sms: Receive txt messages
+        attest_true: I have reviewed the above information, and it is true and accurate
+          to the best of my knowledge.
+        tell_from: From
+        tell_email: Your Email
+        tell_recipients: Recipients
+        tell_subject: Subject
+        tell_message: Personal Message
+        sms_number_for_continue_on_device: 'Text me the link:'
+        email_address_for_continue_on_device: 'Email me the link:'
+        voter_signature_image: Voter Signature Image
       state_registrants/va_registrant:
         confirm_voter_record_update: I consent to update my voter record with the
           state or to register to vote if I am not yet registered with Virginia
@@ -379,6 +436,17 @@ en:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
               too_young: You must be at least 17.5 years old to register to vote
+        state_registrants/mn_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          attributes:
+            ssn4:
+              format: Should be 4 digits
+            phone:
+              invalid: 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+            confirm_declaration:
+              accepted: You must confirm that you agree to the terms above.
         state_registrants/va_registrant:
           blank: Required
           invalid_zip: Invalid ZIP

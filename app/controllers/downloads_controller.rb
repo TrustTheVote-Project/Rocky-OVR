@@ -33,7 +33,7 @@ class DownloadsController < RegistrationStep
     set_up_view_variables
     @attempt = (params[:cno] || 1).to_i
     @refresh_location = @attempt >= 10 ? registrant_finish_path(@registrant) : registrant_download_path(@registrant, :cno=>@attempt+1)
-    if @registrant.mail_with_esig? && !@registrant.skip_mail_with_esig?
+    if @registrant.mail_with_esig?
       redirect_to registrant_finish_url(@registrant)      
     elsif @registrant.pdf_delivery
       redirect_to registrant_finish_url(@registrant)      

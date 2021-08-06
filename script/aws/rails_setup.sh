@@ -5,6 +5,7 @@ IFS='_' read -ra ENV_ROLE <<< "$DEPLOYMENT_GROUP_NAME"
 RAILS_ENV="${ENV_ROLE[0]}"
 SERVER_ROLE="${ENV_ROLE[1]}"
 
+
 cd /var/www/rocky
 #source /etc/profile.d/rvm.sh
 #rvm install 2.4.1

@@ -25,10 +25,4 @@
 
 <hr size="3" align="left" width="100%" color="black"><br><br>
 
-<%= I18n.t('email.confirmation_with_signature.body.send_to_friends',
-  :rtv_link=>@rtv_link,
-  :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %>
-
-<hr size="3" align="left" width="100%" color="black"><br><br>
-
 <%= I18n.t('email.confirmation_with_signature.body.footer', :locale => @locale).html_safe %>

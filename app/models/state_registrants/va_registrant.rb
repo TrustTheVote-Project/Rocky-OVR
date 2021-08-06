@@ -183,6 +183,10 @@ class StateRegistrants::VARegistrant < StateRegistrants::Base
   def state_transaction_id
     va_transaction_id
   end
+
+  def api_submission_error
+    self.va_submission_error.to_s
+  end
   
   def cleanup!
     # TODO make sure we don't keep SSN

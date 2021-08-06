@@ -46,7 +46,7 @@ class RegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of :us_citizen, :in => [true], message: :accepted unless reg.building_via_api_call?
     
       validate_phone_present_if_opt_in_sms(reg)
-      if reg.mail_with_esig? && reg.signature_method != VoterSignature::PRINT_METHOD
+      if reg.mail_with_esig?
         reg.validates_presence_of(:voter_signature_image)
       end
     end

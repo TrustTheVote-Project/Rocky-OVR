@@ -537,6 +537,7 @@ class Registrant < ActiveRecord::Base
     pa_registrants = {}
     va_registrants = {}
     mi_registrants = {}
+    mn_registrants = {}
     distribute_reads do 
       both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
       both_ids.each do |id, uid|
@@ -547,6 +548,7 @@ class Registrant < ActiveRecord::Base
         StateRegistrants::PARegistrant.where(registrant_id: id_list_group).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
         StateRegistrants::VARegistrant.where(registrant_id: id_list_group).find_each {|sr| va_registrants[sr.registrant_id] = sr}
         StateRegistrants::MIRegistrant.where(registrant_id: id_list_group).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+        StateRegistrants::MNRegistrant.where(registrant_id: id_list_group).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
       end
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
@@ -560,6 +562,8 @@ class Registrant < ActiveRecord::Base
             sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
           when "MI"
             sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
+          when "MN"
+            sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
           end
           reg.instance_variable_set(:@existing_state_registrant, sr)
         end
@@ -877,7 +881,7 @@ class Registrant < ActiveRecord::Base
   
   
   def in_ovr_flow?
-    home_state_allows_ovr? && (!mail_with_esig?)
+    home_state_allows_ovr? && (!can_mail_with_esig?)
   end
   
   def home_state_allows_ovr?
@@ -923,7 +927,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def first_registration?
-    if is_grommet? 
+    if is_grommet? && has_grommet_submission?
       pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
       return pa_adapter.is_new_registration_boolean
     elsif existing_state_registrant
@@ -971,19 +975,25 @@ class Registrant < ActiveRecord::Base
   end
   
   def is_grommet?
+    has_grommet_submission? || !!(existing_state_registrant && existing_state_registrant.grommet_request_id)
+  rescue
+    false
+  end
+
+  def has_grommet_submission?
     !grommet_submission.blank?
   end
   
   def api_submitted_with_signature
-    if is_grommet? # Right now sigs only come from grommet
-      return !grommet_submission["signature"].blank?    
+    if is_grommet? && has_grommet_submission?
+      return !grommet_submission["signature"].blank?
     else
       return existing_state_registrant && existing_state_registrant.voter_signature_image.present?
     end
   end
   
   def state_transaction_id
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       return state_ovr_data["pa_transaction_id"]
     else
       return existing_state_registrant&.state_transaction_id
@@ -992,7 +1002,7 @@ class Registrant < ActiveRecord::Base
   
   def api_submission_status
     return nil if !submitted_via_state_api?
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       if state_ovr_data["pa_transaction_id"].blank?
         if state_ovr_data["errors"] && state_ovr_data["errors"].any?
           return ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
@@ -1040,7 +1050,7 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
-        #raise e
+        # raise e
         nil
       end
     else
@@ -1300,7 +1310,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def queue_pdf
-    if mail_with_esig? && !skip_mail_with_esig?
+    if mail_with_esig?
       queue_pdf_delivery
     else
       klass = PdfGeneration
@@ -1388,22 +1398,39 @@ class Registrant < ActiveRecord::Base
     home_state_enabled_for_pdf_assitance?
   end
   
-  def mail_with_esig?
-    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states[self.home_state_abbrev]
-  end
   
   def allow_desktop_signature?
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].allow_desktop_signature
+    can_mail_with_esig? && self.home_state.allow_desktop_signature
   end
   
   def state_voter_check_url
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].state_voter_check_url
+    can_mail_with_esig? && self.home_state.state_voter_check_url
   end
   
+  def can_mail_with_esig?
+    self.home_state && self.home_state.enable_direct_mail && 
+      (self.home_state.direct_mail_partner_ids || []).collect(&:to_s).include?(self.partner_id.to_s)    
+  end
+
+  def mail_with_esig?
+    self.can_mail_with_esig? && self.signature_method != VoterSignature::PRINT_METHOD
+  end
+  
+
   def skip_mail_with_esig?
-    self.signature_method == VoterSignature::PRINT_METHOD   
+    h = self.state_ovr_data || {}
+    !!h[:skip_mail_with_esig]
+  rescue
+    false
   end
   
+
+  def skip_mail_with_esig!
+    self.state_ovr_data ||= {}
+    self.state_ovr_data[:skip_mail_with_esig] = true
+    self.finish_with_state = false
+    self.save(validate: false)
+  end
   
   
   def pdf_is_esigned?
@@ -1663,7 +1690,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def normalized_signature_image
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       grommet_submission["signature"].tap do |s|
         if s
           return "data:#{s["mime_type"]};base64,#{s["image"]}"
@@ -1829,6 +1856,27 @@ class Registrant < ActiveRecord::Base
     ""
   end
   
+  def grommet_request_id=(val)
+    if existing_state_registrant
+      begin
+        existing_state_registrant.grommet_request_id=val
+      rescue        
+      end
+    else
+      self.state_ovr_data["grommet_request_id"] = gr_id
+    end
+  end
+
+  def grommet_request_id
+    if existing_state_registrant
+      begin
+        return existing_state_registrant.grommet_request_id
+      rescue 
+      end
+    end
+    return state_ovr_data && state_ovr_data["grommet_request_id"]
+  end
+
   def grommet_preferred_language
     self.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
   rescue
@@ -1836,7 +1884,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def vr_application_submission_errors
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       ([state_ovr_data["errors"]].flatten.compact).collect do |e| 
         e_msg = e.is_a?(Array) ? e.join("\n") : e.to_s
         e_msg =~ /^Backtrace\n/ ? nil : e_msg 
