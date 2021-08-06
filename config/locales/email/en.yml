@@ -105,7 +105,7 @@ en:
           You should receive confirmation of your registration from your state election officials. Sometimes processing can take several weeks. 
           If you want to check on the status of your voter registration application, call the %{registrant_home_state_name} 
           Secretary of State at %{registrar_phone}, or <a href="%{registrar_url}">check online</a>.
-
+          <br><br>
           Thanks,<br>
           Your friends at %{registrant_rtv_and_partner_name}<br><br>
 
