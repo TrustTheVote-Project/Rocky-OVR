@@ -135,7 +135,7 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
   end
   
   def has_ssn?
-    !self.confirm_no_ssn?
+    !self.confirm_no_dl_or_ssn?
   end
 
   def async_submit_to_online_reg_url
