@@ -1,9 +1,9 @@
 class StateRegistrantsController < RegistrationStep
   
   # layout "registration"
-  # before_filter :find_partner
-  before_filter :load_state_registrant
-    
+  # before_action :find_partner
+  before_action :load_state_registrant
+  
   def edit
     set_up_locale
     @use_mobile_ui = determine_mobile_ui(@registrant)
@@ -11,7 +11,7 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def update
-    @registrant.attributes = params[@registrant.class.table_name.singularize]
+    @registrant.attributes = state_registrant_attributes
     @registrant.status = params[:step] if @registrant.should_advance(params)
     @registrant.check_locale_change
     set_up_locale
@@ -22,11 +22,12 @@ class StateRegistrantsController < RegistrationStep
     end
     if @registrant.should_advance(params) && @registrant.valid?
       @registrant.status = next_step 
-      @registrant.save
+      @registrant.save    
       if @registrant.complete? && params[:step]==@registrant.step_list[-2]
         @registrant.async_submit_to_online_reg_url
         redirect_to pending_state_registrant_path(@registrant.to_param, state: @registrant.home_state_abbrev.downcase)
       else
+        #raise edit_state_registrant_path(@registrant.to_param, @registrant.status).to_s
         redirect_to edit_state_registrant_path(@registrant.to_param, @registrant.status)
       end
     else
@@ -38,6 +39,7 @@ class StateRegistrantsController < RegistrationStep
   
   def skip_state_flow
     @registrant.registrant.skip_state_flow!
+    @registrant.registrant.skip_mail_with_esig!
     go_to_paper
   end
   
@@ -101,6 +103,12 @@ class StateRegistrantsController < RegistrationStep
   end
 
   private
+  def state_registrant_attributes 
+    params.require(@registrant.class.table_name.singularize).permit(
+      @registrant.class.permitted_attributes
+    )
+  end
+
   def load_state_registrant
     begin
       @old_registrant = Registrant.find_by_param!(params[:registrant_id])

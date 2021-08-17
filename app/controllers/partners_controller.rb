@@ -24,7 +24,7 @@
 #***** END LICENSE BLOCK *****
 class PartnersController < PartnerBase
   layout "partners"
-  before_filter :require_partner, :except => [:new, :create]
+  before_action :require_partner, :except => [:new, :create]
 
   ### public access
 
@@ -38,11 +38,12 @@ class PartnersController < PartnerBase
   end
 
   def create
-    @partner = Partner.new(params[:partner])
+    @partner = Partner.new(partner_params)
     if @partner.save
       flash[:success] = "Registered!"
       redirect_to partner_url
     else
+      puts @partner.errors.full_messages
       render "new"
     end
   end
@@ -55,7 +56,7 @@ class PartnersController < PartnerBase
 
   def update
     @partner = current_partner
-    if @partner.update_attributes(params[:partner])
+    if @partner.update_attributes(partner_params)
       flash[:success] = "You have updated your profile."
       redirect_to partner_url
     else
@@ -118,8 +119,8 @@ SCRIPT
     @share_link_facebook = "https://www.facebook.com/sharer/sharer.php?u=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=fb-share"
     
     @share_link_facebook_b = "https://www.facebook.com/sharer/sharer.php?u=https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=fb-share"
-    @share_link_twitter = "https://twitter.com/home?status=Register%20to%20Vote%20today%3A%20https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
-    @share_link_twitter_b = "https://twitter.com/home?status=Register%20to%20Vote%20today%3A%20https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
+    @share_link_twitter = "https://twitter.com/intent/tweet?text=Register%20to%20Vote%20today%20https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
+    @share_link_twitter_b = "https://twitter.com/intent/tweet?text=Register%20to%20Vote%20today%20https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
     @share_link_google = "https://plus.google.com/share?url=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=G%2B-share"
     @share_link_google_b = "https://plus.google.com/share?url=https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=G%2B-share"
         
@@ -218,4 +219,24 @@ SCRIPT
   end
 
   helper_method :partner_widget_url
+
+  def partner_params
+    params[:partner] && !params[:partner].empty? ? 
+      params.require(:partner).permit(Partner.permitted_attributes)
+      :
+      nil
+    #   :name,
+    #   :address,
+    #   :city,
+    #   :state_abbrev,
+    #   :zip_code,
+    #   :organization,
+    #   :url,
+    #   :phone,
+    #   :email,
+    #   :username,
+    #   :password,
+    #   :password_confirmation,
+    # )
+  end
 end

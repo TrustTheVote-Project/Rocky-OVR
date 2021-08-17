@@ -4,14 +4,16 @@ class PdfRenderer < AbstractController::Base
   include AbstractController::Translation
   include AbstractController::AssetPaths
   include ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::AssetTagHelper
   include ActionView::Rendering
   include Rails.application.routes.url_helpers
-  include WickedPdfHelper
-  include WickedPdfHelper::Assets
+  include WickedPdf::WickedPdfHelper
+  include WickedPdf::WickedPdfHelper::Assets
   helper ApplicationHelper
   helper PdfRendererHelper
   
-  
+  helper_method :wicked_pdf_image_tag, :image_tag, :wicked_pdf_asset_base64, :wicked_pdf_stylesheet_link_tag
+
   self.view_paths = "app/views"
   
   attr_accessor :registrant, :state, :logo_image_tag, :locale, :registrant_instructions_link

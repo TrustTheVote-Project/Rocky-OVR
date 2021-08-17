@@ -21,7 +21,7 @@
     <div></div>
   </div>
   <div id="container">
-    <% if current_admin %>
+    <% if current_admin && !@capture_mfa %>
     <div id="header">
       <span><%= link_to "Log out", admin_logout_path %></span>
       <p>
@@ -29,11 +29,12 @@
         <%= link_to "Grommet Queue", admin_grommet_queue_path, class: @nav_class[:grommet_queue] %>|
         <%= link_to "Whitelabel requests (#{branding_open_requests_count})", requests_admin_whitelabel_path, class: @nav_class[:whitelabel] %>|
         <%= link_to "PDF Download Stats", downloads_admin_stats_path, class: @nav_class[:statistics] %>|
-        <%= link_to "Blocked Emails", admin_emails_path, class: @nav_class[:emails] %>|
+        <%= link_to "Blocked Emails", admin_emails_path, class: @nav_class[:emails] %>
+        <br/>
         <%= link_to "A/B Tests", admin_ab_tests_path, class: @nav_class[:ab_tests] %>|
-        <%= link_to "Request Logs", admin_request_logs_path, class: @nav_class[:request_logs] %>
-        <%= link_to "Blocks Bulk Submissions", admin_blocks_submissions_path, class: @nav_class[:blocks_submissions] %>
-        <%= link_to "PDF Deliveries", admin_pdf_delivery_reports_path, class: @nav_class[:pdf_delivery_reports] %>
+        <%= link_to "Request Logs", admin_request_logs_path, class: @nav_class[:request_logs] %>|
+        <%= link_to "Blocks Bulk Submissions", admin_blocks_submissions_path, class: @nav_class[:blocks_submissions] %>|
+        <%= link_to "PDF Deliveries", admin_pdf_delivery_reports_path, class: @nav_class[:pdf_delivery_reports] %>|
         <%= link_to "State Configuration", admin_geo_states_path, class: @nav_class[:geo_states] %>
       </p>
     </div>

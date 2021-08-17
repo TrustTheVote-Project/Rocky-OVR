@@ -5,4 +5,9 @@ class NV < StateCustomization
     lang = registrant.locale.to_s
     "#{root_url}&lang=#{lang}"
   end
+
+  def redirect_to_online_reg_url(registrant)
+    return false
+  end
+  
 end

@@ -1,10 +1,10 @@
 class StateConfigurationsController < ApplicationController
   layout 'state_configuration'
   
-  before_filter :get_state_importer
-  before_filter :disallow_production
+  before_action :get_state_importer
+  before_action :disallow_production
   
-  before_filter :authenticate, :if => lambda { !%w{ development test }.include?(Rails.env) }
+  before_action :authenticate, :if => lambda { !%w{ development test }.include?(Rails.env) }
   
   def index
   end
@@ -14,7 +14,7 @@ class StateConfigurationsController < ApplicationController
   # end
   
   def submit
-    file = @state_importer.generate_yml(params[:config])
+    file = @state_importer.generate_yml(config_parameters)
     if @state_importer.has_errors?
       render :action=>:show
     else
@@ -26,6 +26,9 @@ class StateConfigurationsController < ApplicationController
   end
   
 protected
+  def config_parameters
+    params[:config].permit!
+  end
   def disallow_production
     if Rails.env.production?
       raise ActionController::RoutingError.new('Not Found')

@@ -37,7 +37,7 @@ class Notifier < ActionMailer::Base
   end
   
   def password_reset_instructions(partner)
-    @url = "https://#{RockyConf.default_url_host}#{edit_password_reset_path(:id => partner.perishable_token)}"
+    @url = "#{edit_password_reset_url(host: RockyConf.default_url_host, :id => partner.perishable_token)}"
     
     
     mail(:subject=> "Password Reset Instructions",
@@ -47,7 +47,7 @@ class Notifier < ActionMailer::Base
   end
   
   def admin_password_reset_instructions(admin)
-    @url = "https://#{RockyConf.default_url_host}#{edit_admin_password_reset_path(:id => admin.perishable_token)}"
+    @url = "#{edit_admin_password_reset_url(host: RockyConf.default_url_host, :id => admin.perishable_token)}"
     
     
     mail(:subject=> "Password Reset Instructions",
@@ -57,7 +57,7 @@ class Notifier < ActionMailer::Base
   end
   
   def admin_password_reset_required(admin)
-    @url = "https://#{RockyConf.default_url_host}#{new_admin_password_reset_path}"
+    @url = "#{new_admin_password_reset_url(host: RockyConf.default_url_host)}"
     
     
     mail(:subject=> "Password Reset Required",
@@ -193,7 +193,7 @@ class Notifier < ActionMailer::Base
     @registrant_home_state_abbrev = registrant.home_state_abbrev.to_s.html_safe
     @rtv_link = "<strong><a href=\"https://register.rockthevote.com/?partner=#{registrant.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
     @home_state_email_instructions = registrant.home_state_email_instructions.blank? ? '' : (registrant.home_state_email_instructions + "<br/><br/>").to_s.html_safe
-
+    
     partner = registrant.partner
     use_custom_template = partner.whitelabeled? || kind.starts_with?("preview_")
     custom_template = partner && use_custom_template && EmailTemplate.get(partner, "#{kind}.#{registrant.locale}")

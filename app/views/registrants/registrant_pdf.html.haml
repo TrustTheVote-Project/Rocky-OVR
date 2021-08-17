@@ -16,7 +16,7 @@
       %h1= I18n.t('pdf.nvra.state_instructions_header', state: @registrant.home_state_name)
       = @registrant.state_id_tooltip
       
-- if @esign
+- if @esign && false
   %div.page#page_1.esign_cover_letter
     .logo= wicked_pdf_image_tag("pdf/esign/#{@registrant.home_state_name.downcase}.png")
     .letter

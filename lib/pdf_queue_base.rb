@@ -15,8 +15,6 @@ module PdfQueueBase
   end
   
   def queue_registrant(registrant_id)
-    puts self.class.to_s
-    puts queue_url
     resp = queue.send_message({
       queue_url: queue_url, # required
       message_body: "#{self.name}::#{registrant_id}", # required
@@ -123,7 +121,7 @@ module PdfQueueBase
   def receive_and_generate
     puts "Receive and generate for #{self.name}"
     registrant_id, message, klass = receive
-    puts registrant_id, message, klass
+    # puts registrant_id, message, klass
     if registrant_id && message && klass
       klass.constantize.generate(registrant_id, message)
     else

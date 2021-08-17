@@ -234,7 +234,11 @@ class VRToPA
 
   def initialize(voter_records_req)
     @voter_records_request = voter_records_req
-    @request = @voter_records_request['voter_registration'].with_indifferent_access
+    @request = @voter_records_request['voter_registration']
+    if @request.respond_to?(:to_unsafe_h)
+      @request = @request.to_unsafe_h
+    end
+    @request = @request.with_indifferent_access
     @mods = []
     raise ParsingError.new('Invalid input, voter_registration value not found') if @request.nil?
   end
@@ -677,7 +681,7 @@ class VRToPA
     if is_empty(v)
       ""
     else
-      valid = v.is_a?(String) && v =~ Authlogic::Regex::EMAIL
+      valid = v.is_a?(String) && v =~ Registrant::EMAIL_REGEX
       if valid #ParsingError.new("Invalid e-mail value \"#{v}\".") unless valid
         return v
       else

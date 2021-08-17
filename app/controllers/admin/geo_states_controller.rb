@@ -29,6 +29,34 @@ class Admin::GeoStatesController < Admin::BaseController
     @geo_states = GeoState.all
   end
 
+  def edit
+    @geo_state = GeoState[params[:id]]
+  end
+
+  def show
+    @geo_state = GeoState[params[:id]]
+    render :edit
+  end
+
+  def update
+    @geo_state = GeoState[params[:id]]
+    if @geo_state.update_attributes(geo_state_params)
+      flash[:message] = "Updated #{@geo_state.name} settings"
+    else
+      flash[:warning] =  "Error updating #{@geo_state.name} settings"
+    end
+    redirect_to edit_admin_geo_state_path(@geo_state)
+  end
+
+  def remove_direct_mail_partner_id
+    @geo_state = GeoState[params[:id]]
+    @geo_state.direct_mail_partner_ids.delete(params[:partner_id])
+    @geo_state.save
+    partner = Partner.find_by_id(params[:partner_id])
+    flash[:message] = "Removed partner #{params[:partner_id]}#{partner && ": #{partner.organization}"}"
+    redirect_to edit_admin_geo_state_path(@geo_state)
+  end
+
   def bulk_update
     catalist_update_dates = {}
     if catalist_update_file = params[:catalist_update_file]
@@ -59,4 +87,12 @@ class Admin::GeoStatesController < Admin::BaseController
     @nav_class = {geo_states: :current}
   end  
 
+  def geo_state_params
+    params.require(:geo_state).permit(
+      :enable_direct_mail,
+      :allow_desktop_signature,
+      :add_direct_mail_partner_id,
+      :state_voter_check_url
+    )
+  end
 end

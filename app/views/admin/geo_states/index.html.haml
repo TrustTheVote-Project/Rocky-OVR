@@ -27,13 +27,13 @@
         %br
         PDF Assistance Enabled
       %th 
-        Catlist Last Update
+        Catalist Last Update
         %br
         = file_field_tag "catalist_update_file"
         
     - @geo_states.each do |s|
       %tr
-        %td= s.name
+        %td= link_to s.name, edit_admin_geo_state_path(s)
         %td.pdf_assistance_enabled
           = hidden_field_tag "pdf_assistance_enabled[#{s.abbreviation}]", "0"
           = check_box_tag "pdf_assistance_enabled[#{s.abbreviation}]", "1", s.pdf_assistance_enabled

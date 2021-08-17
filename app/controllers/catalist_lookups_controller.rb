@@ -2,7 +2,7 @@ class CatalistLookupsController < ApplicationController
   include ApplicationHelper
   
   layout "lookup"
-  before_filter :find_partner
+  before_action :find_partner
   
   def new
     @lookup = CatalistLookup.new(
@@ -15,6 +15,7 @@ class CatalistLookupsController < ApplicationController
       state: @home_state,
       zip: @zip,
     )
+    set_up_locale
   end
   
   def show
@@ -23,6 +24,7 @@ class CatalistLookupsController < ApplicationController
   
   def create
     @lookup = CatalistLookup.new(lookup_params)
+    set_up_locale
     @lookup.partner_id = @partner_id
     if @lookup.save
       @lookup.lookup!
@@ -87,6 +89,7 @@ class CatalistLookupsController < ApplicationController
   
   def find_lookup(special_case = nil)
     @lookup = CatalistLookup.find_by_param!(params[:id])
+    set_up_locale
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
     # raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil?
   end
@@ -108,6 +111,12 @@ class CatalistLookupsController < ApplicationController
     @zip = params[:zip]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     @home_state ||= @zip ? GeoState.for_zip_code(@zip.strip) : nil
+  end
+
+  def set_up_locale
+    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
+    @locale = params[:locale] || (@lookup ? @lookup.locale : nil) || 'en'
+    I18n.locale = @locale.to_sym
   end
 
 end

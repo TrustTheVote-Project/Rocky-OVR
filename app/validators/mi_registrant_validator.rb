@@ -11,7 +11,7 @@ class MIRegistrantValidator < ActiveModel::Validator
     end
     
     if reg.at_least_step_1?
-      reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+      reg.validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
       
       #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
     end
@@ -54,7 +54,6 @@ class MIRegistrantValidator < ActiveModel::Validator
     end
     
     if reg.at_least_step_3?
-
       reg.validates_format_of :email, with: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
       reg.validates_length_of :email, maximum: 80
       
@@ -64,6 +63,7 @@ class MIRegistrantValidator < ActiveModel::Validator
       reg.validates_format_of :registration_address_street_name, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
       reg.validates_length_of :registration_address_street_name, maximum: 255
       reg.validates_format_of :registration_address_street_type, with: /\A[a-zA-Z0-9\s_#\/',\.-]*\z/
+      
       validates_street_type reg
       validate_address_line(reg, [:registration_address_street_name, :registration_address_number, :registration_address_street_type, :registration_address_post_directional])
       
@@ -80,8 +80,6 @@ class MIRegistrantValidator < ActiveModel::Validator
       
       
       reg.validates_acceptance_of :confirm_affirm_privacy_notice, :accept=>true
-
-      
     end
     
     

@@ -103,6 +103,14 @@ class Registrant < ActiveRecord::Base
   OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
   #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
   DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
+  EMAIL_REGEX = /
+    \A
+    [A-Z0-9_.&%+\-']+   # mailbox
+    @
+    (?:[A-Z0-9\-]+\.)+  # subdomains
+    (?:[A-Z]{2,25})     # TLD
+    \z
+  /ix.freeze
   
   #CA_NAME_REGEX =   /\A[a-zA-Z0-9'#,\-\/_\.@\s]*\z/ #A-Z a-z 0-9 '#,-/_ .@space
   
@@ -293,13 +301,6 @@ class Registrant < ActiveRecord::Base
     
   ]
 
-
-
-  
-  
-  
-  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
-
   aasm column: :status do
     state :initial, initial: true
     state :step_1
@@ -348,11 +349,11 @@ class Registrant < ActiveRecord::Base
     
   end
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
   
-  belongs_to :home_state,    :class_name => "GeoState"
-  belongs_to :mailing_state, :class_name => "GeoState"
-  belongs_to :prev_state,    :class_name => "GeoState"
+  belongs_to :home_state,    :class_name => "GeoState", optional: true
+  belongs_to :mailing_state, :class_name => "GeoState", optional: true
+  belongs_to :prev_state,    :class_name => "GeoState", optional: true
 
   has_one :registrant_status
   has_one :pdf_delivery, -> { order("pdf_ready DESC") } # If multiple, prefer the one that's ready
@@ -486,6 +487,7 @@ class Registrant < ActiveRecord::Base
   attr_accessor :api_version
   # Builds the record from the API data and sets the correct state
   def self.build_from_api_data(data, api_finish_with_state = false)
+    data = data.permit! if data.respond_to?(:permit!)
     r = Registrant.new(data)
     r.partner_opt_in_sms = false unless r.partner && (r.partner.primary? || r.partner.partner_sms_opt_in)
     r.building_via_api_call   = true
@@ -535,6 +537,7 @@ class Registrant < ActiveRecord::Base
     pa_registrants = {}
     va_registrants = {}
     mi_registrants = {}
+    mn_registrants = {}
     distribute_reads do 
       both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
       both_ids.each do |id, uid|
@@ -545,6 +548,7 @@ class Registrant < ActiveRecord::Base
         StateRegistrants::PARegistrant.where(registrant_id: id_list_group).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
         StateRegistrants::VARegistrant.where(registrant_id: id_list_group).find_each {|sr| va_registrants[sr.registrant_id] = sr}
         StateRegistrants::MIRegistrant.where(registrant_id: id_list_group).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+        StateRegistrants::MNRegistrant.where(registrant_id: id_list_group).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
       end
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
@@ -558,6 +562,8 @@ class Registrant < ActiveRecord::Base
             sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
           when "MI"
             sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
+          when "MN"
+            sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
           end
           reg.instance_variable_set(:@existing_state_registrant, sr)
         end
@@ -875,7 +881,7 @@ class Registrant < ActiveRecord::Base
   
   
   def in_ovr_flow?
-    home_state_allows_ovr? && (!mail_with_esig?)
+    home_state_allows_ovr? && (!can_mail_with_esig?)
   end
   
   def home_state_allows_ovr?
@@ -921,7 +927,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def first_registration?
-    if is_grommet? 
+    if is_grommet? && has_grommet_submission?
       pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
       return pa_adapter.is_new_registration_boolean
     elsif existing_state_registrant
@@ -969,19 +975,25 @@ class Registrant < ActiveRecord::Base
   end
   
   def is_grommet?
+    has_grommet_submission? || !!(existing_state_registrant && existing_state_registrant.grommet_request_id)
+  rescue
+    false
+  end
+
+  def has_grommet_submission?
     !grommet_submission.blank?
   end
   
   def api_submitted_with_signature
-    if is_grommet? # Right now sigs only come from grommet
-      return !grommet_submission["signature"].blank?    
+    if is_grommet? && has_grommet_submission?
+      return !grommet_submission["signature"].blank?
     else
-      return existing_state_registrant&.voter_signature_image.present?
+      return existing_state_registrant && existing_state_registrant.voter_signature_image.present?
     end
   end
   
   def state_transaction_id
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       return state_ovr_data["pa_transaction_id"]
     else
       return existing_state_registrant&.state_transaction_id
@@ -990,7 +1002,7 @@ class Registrant < ActiveRecord::Base
   
   def api_submission_status
     return nil if !submitted_via_state_api?
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       if state_ovr_data["pa_transaction_id"].blank?
         if state_ovr_data["errors"] && state_ovr_data["errors"].any?
           return ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
@@ -1038,7 +1050,7 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
-        #raise e
+        # raise e
         nil
       end
     else
@@ -1298,7 +1310,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def queue_pdf
-    if mail_with_esig? && !skip_mail_with_esig?
+    if mail_with_esig?
       queue_pdf_delivery
     else
       klass = PdfGeneration
@@ -1345,8 +1357,6 @@ class Registrant < ActiveRecord::Base
     pdf_writer.pdf_file_dir(pdfpre)
   end
   
-  
-
   def pdf_writer
     if @pdf_writer.nil?
       @pdf_writer = PdfWriter.new
@@ -1388,35 +1398,53 @@ class Registrant < ActiveRecord::Base
     home_state_enabled_for_pdf_assitance?
   end
   
-  def mail_with_esig?
-    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states[self.home_state_abbrev]
-  end
   
   def allow_desktop_signature?
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].allow_desktop_signature
+    can_mail_with_esig? && self.home_state.allow_desktop_signature
   end
   
   def state_voter_check_url
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].state_voter_check_url
+    can_mail_with_esig? && self.home_state.state_voter_check_url
   end
   
+  def can_mail_with_esig?
+    self.home_state && self.home_state.enable_direct_mail && 
+      (self.home_state.direct_mail_partner_ids || []).collect(&:to_s).include?(self.partner_id.to_s)    
+  end
+
+  def mail_with_esig?
+    self.can_mail_with_esig? && self.signature_method != VoterSignature::PRINT_METHOD
+  end
+  
+
   def skip_mail_with_esig?
-    self.signature_method == VoterSignature::PRINT_METHOD   
+    h = self.state_ovr_data || {}
+    !!h[:skip_mail_with_esig]
+  rescue
+    false
   end
   
+
+  def skip_mail_with_esig!
+    self.state_ovr_data ||= {}
+    self.state_ovr_data[:skip_mail_with_esig] = true
+    self.finish_with_state = false
+    self.save(validate: false)
+  end
   
   
   def pdf_is_esigned?
     !skip_mail_with_esig? && !voter_signature_image.blank?
   end
   
-  has_one :voter_signature, primary_key: :uid, autosave: true
-  [
+  VOTER_SIGNATURE_ATTRIBUTES = [
     :voter_signature_image,
     :signature_method,
     :sms_number_for_continue_on_device,
     :email_address_for_continue_on_device
-  ].each do |vs_attribute|
+  ]
+  has_one :voter_signature, primary_key: :uid, autosave: true
+  VOTER_SIGNATURE_ATTRIBUTES.each do |vs_attribute|
     define_method "#{vs_attribute}" do
       (voter_signature || create_voter_signature).send(vs_attribute)
     end
@@ -1662,7 +1690,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def normalized_signature_image
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       grommet_submission["signature"].tap do |s|
         if s
           return "data:#{s["mime_type"]};base64,#{s["image"]}"
@@ -1828,6 +1856,27 @@ class Registrant < ActiveRecord::Base
     ""
   end
   
+  def grommet_request_id=(val)
+    if existing_state_registrant
+      begin
+        existing_state_registrant.grommet_request_id=val
+      rescue        
+      end
+    else
+      self.state_ovr_data["grommet_request_id"] = gr_id
+    end
+  end
+
+  def grommet_request_id
+    if existing_state_registrant
+      begin
+        return existing_state_registrant.grommet_request_id
+      rescue 
+      end
+    end
+    return state_ovr_data && state_ovr_data["grommet_request_id"]
+  end
+
   def grommet_preferred_language
     self.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
   rescue
@@ -1835,7 +1884,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def vr_application_submission_errors
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       ([state_ovr_data["errors"]].flatten.compact).collect do |e| 
         e_msg = e.is_a?(Array) ? e.join("\n") : e.to_s
         e_msg =~ /^Backtrace\n/ ? nil : e_msg 
@@ -1865,6 +1914,33 @@ class Registrant < ActiveRecord::Base
   attr_writer :tell_from, :tell_email, :tell_recipients, :tell_subject, :tell_message
   attr_accessor :tell_recipients, :tell_message
 
+  def self.permitted_attributes
+    attrs = self.column_names - self.protected_attributes
+    return [attrs, 
+      :new_locale,
+      :home_zip_code,
+      :shift_id,
+      :prev_state_abbrev,
+      :mailing_state_abbrev,
+      :date_of_birth,
+      :date_of_birth_month,
+      :date_of_birth_day,
+      :date_of_birth_year,
+      :covr_token,
+      :covr_success,
+      :ca_disclosures,
+      VOTER_SIGNATURE_ATTRIBUTES
+    ].flatten
+  end
+
+  def self.protected_attributes
+    Registrant::PROTECTED_ATTRIBUTES
+  end
+
+  PROTECTED_ATTRIBUTES = [
+    :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
+  ]
+  
   def tell_from
     @tell_from ||= "#{first_name} #{last_name}"
   end

@@ -35,7 +35,7 @@ describe FinishesController do
       Registrant.any_instance.stub(:pdf_ready?).and_return(false)
     end
     it "does not render :complete partial when still in step_5" do
-      get :show, :registrant_id => @registrant.to_param
+      get :show, params: {:registrant_id => @registrant.to_param}
       assert_response :success
       assert_select "h1", :text=>"Spread the word!", :count=>0
     end
@@ -54,7 +54,7 @@ describe FinishesController do
     # end
 
     it "shows no share links instead has the iframe" do
-      get :show, :registrant_id => @registrant.to_param
+      get :show, params: {:registrant_id => @registrant.to_param}
       assert !assigns[:registrant].nil?
       assert_response :success
       assert_template "finishes/show"
@@ -81,7 +81,7 @@ describe FinishesController do
     # end
 
     it "does not show share links" do
-      get :show, :registrant_id => @registrant.to_param
+      get :show, params: {:registrant_id => @registrant.to_param}
       
       response.body.should have_selector("h1") do |headers|
         headers.should have_content("You're on the list")
@@ -111,14 +111,14 @@ describe FinishesController do
     it "stops remaining emails from coming" do
       reg = FactoryGirl.create(:completed_registrant, :reminders_left => 2)
       Registrant.any_instance.stub(:pdf_ready?).and_return(true)
-      get :show, :registrant_id => reg.to_param, :reminders => "stop"
+      get :show, params: {:registrant_id => reg.to_param, :reminders => "stop"}
       reg.reload
       assert_equal 0, reg.reminders_left
     end
     it "marks final reminder as delivered" do
       reg = FactoryGirl.create(:completed_registrant, :reminders_left => 2)
       Registrant.any_instance.stub(:pdf_ready?).and_return(true)
-      get :show, :registrant_id => reg.to_param, :reminders => "stop"
+      get :show, params: {:registrant_id => reg.to_param, :reminders => "stop"}
       reg.reload
       assert_equal true, reg.final_reminder_delivered
     end
@@ -128,7 +128,7 @@ describe FinishesController do
         ENV['ROCKY_ROLE'] = 'web'
         reg = FactoryGirl.create(:completed_registrant, :reminders_left => 2)
         Registrant.any_instance.stub(:pdf_ready?).and_return(true)
-        get :show, :registrant_id => reg.to_param, :reminders => "stop"
+        get :show, params: {:registrant_id => reg.to_param, :reminders => "stop"}
         response.status.should == 200
         reg.reload
         assert_equal 0, reg.reminders_left
@@ -141,7 +141,7 @@ describe FinishesController do
       it "should show thank you message" do
         reg = FactoryGirl.create(:completed_registrant, :reminders_left => 2)
         Registrant.any_instance.stub(:pdf_ready?).and_return(true)
-        get :show, :registrant_id => reg.to_param, :reminders => "stop"
+        get :show, params: {:registrant_id => reg.to_param, :reminders => "stop"}
         assert_select "h1", "Thanks for Registering!"
         #assert_match /Hey, I just registered to vote/, assigns[:registrant].tell_message
       end
@@ -153,7 +153,7 @@ describe FinishesController do
     it "includes text about pending PDF" do
       reg = FactoryGirl.create(:step_5_registrant, :pdf_ready => false)
       Registrant.any_instance.stub(:pdf_ready?).and_return(false)
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert_select "h1", "Check Your Email"
       #assert_match /Hey, I just registered to vote/, assigns[:registrant].tell_message
     end

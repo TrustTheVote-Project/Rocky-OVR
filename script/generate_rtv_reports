@@ -1,9 +1,11 @@
 #!/bin/bash
 . /home/ec2-user/.bash_profile
 CURRENT_DIR=/var/www/rocky
-RVM_ENV_DIR=/usr/local/rvm/environments
-RUBY_VERSION=`cat $CURRENT_DIR/.ruby-version`
-GEMSET=`cat $CURRENT_DIR/.ruby-gemset`
+#RVM_ENV_DIR=/usr/local/rvm/environments
+#RUBY_VERSION=`cat $CURRENT_DIR/.ruby-version`
+#GEMSET=`cat $CURRENT_DIR/.ruby-gemset`
 ENV_NAME=$2
 HOURS=$1
-source $RVM_ENV_DIR/$RUBY_VERSION@$GEMSET && cd $CURRENT_DIR && bundle exec rake -s utility:generate_rtv_reports[$HOURS] RAILS_ENV=$ENV_NAME
+#source $RVM_ENV_DIR/$RUBY_VERSION@$GEMSET && 
+export PATH=$PATH:/usr/local/bin:/usr/local/lib/ruby/gems/2.7.0/bin
+cd $CURRENT_DIR && RUBYOPT="-W0" bundle exec rake -s utility:generate_rtv_reports[$HOURS] RAILS_ENV=$ENV_NAME
