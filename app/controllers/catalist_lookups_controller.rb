@@ -2,7 +2,7 @@ class CatalistLookupsController < ApplicationController
   include ApplicationHelper
   
   layout "lookup"
-  before_filter :find_partner
+  before_action :find_partner
   
   def new
     @lookup = CatalistLookup.new(

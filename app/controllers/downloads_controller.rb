@@ -25,7 +25,7 @@
 class DownloadsController < RegistrationStep
   CURRENT_STEP = 6
 
-  skip_before_filter :find_partner, only: :pdf
+  skip_before_action :find_partner, only: :pdf
   
   def show
     find_registrant(:download)
@@ -33,7 +33,7 @@ class DownloadsController < RegistrationStep
     set_up_view_variables
     @attempt = (params[:cno] || 1).to_i
     @refresh_location = @attempt >= 10 ? registrant_finish_path(@registrant) : registrant_download_path(@registrant, :cno=>@attempt+1)
-    if @registrant.mail_with_esig? && !@registrant.skip_mail_with_esig?
+    if @registrant.mail_with_esig?
       redirect_to registrant_finish_url(@registrant)      
     elsif @registrant.pdf_delivery
       redirect_to registrant_finish_url(@registrant)      

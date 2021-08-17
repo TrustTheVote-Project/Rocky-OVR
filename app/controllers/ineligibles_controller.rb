@@ -41,7 +41,7 @@ class IneligiblesController < RegistrationStep
 
   def update
     find_registrant
-    @registrant.update_attributes(params[:registrant])
+    @registrant.update_attributes(registrant_params)
     @registrant.request_reminder!
     redirect_to registrant_finish_url(@registrant)
   end

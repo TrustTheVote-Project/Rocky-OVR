@@ -1,0 +1,67 @@
+- if @use_mobile_ui
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 95}
+
+- if !@old_registrant #we've cleared it out
+  .step_6
+    %p.instructions= I18n.t('states.custom.mn.ineligible_registrant').html_safe
+- elsif @registrant && @registrant.response_outcome == StateRegistrants::MNRegistrant::ApiService::RESPONSE_ALLOW_RETRY
+  .step_6
+    #preparing_content
+      %h1 There was an issue with your submission
+      - if @registrant.dln_not_found?
+        %p.notice
+          Please
+          = link_to 'review your personal information', update_state_registrant_path(@registrant.to_param, 'step_3')
+          again and resubmit. 
+        %p.notice
+          If you’ve re-checked your personal information, you can 
+          = I18n.t('states.custom.mn.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe
+      - if @registrant.address_not_found?
+        %p.notice
+          Your Registration Address did not match our records.
+        %p.notice
+          You can
+          = link_to "make a change", update_state_registrant_path(@registrant.to_param, 'step_4')
+          to your address and try again.
+        %p.notice= I18n.t('states.custom.mn.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe
+          
+- elsif @registrant && @registrant.response_outcome == StateRegistrants::MNRegistrant::ApiService::RESPONSE_ADDRESS_AMBIGUOUS && @registrant.registration_address_match_list.any?
+  .step_6
+    #preparing_content
+      %h1 There was an issue with your submission
+      %p.notice
+        Your address was not found. Is one of these the correct address?
+      = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, 'step_4')) do |form|        
+        %ul.mn-address-options      
+          - @registrant.registration_address_match_list.each_with_index do |match, idx|
+            %li
+              = form.radio_button :address_match_select_index, idx
+              = form.label :"address_match_select_index_#{idx}" do
+                = match.address_line_1
+                - unless match.address_line_2.blank? 
+                  %br
+                  = match.address_line_2
+                %br
+                = "#{match.city}, MN #{match.zip_code}"
+        = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
+      
+      %p.notice= I18n.t('states.custom.mn.skip_online_registration', url: skip_state_flow_registrant_path(@registrant)).html_safe    
+- elsif @registrant.mn_api_voter_status_id? && !@registrant.mn_pending? #error message
+  .state-flow-error
+    = @registrant.custom_state_flow_error_message.to_s.html_safe
+    
+- else
+  - content_for :head do 
+    %meta{"http-equiv"=>"refresh", content: "3; url=#{@refresh_location}"}
+
+
+  .step_6
+    #preparing_content
+      %h1= t('states.custom.mn.submitting')
+      .download{style: "position:relative"}
+        %div
+          %h2.spaced_out
+          %h2.preparing= t('states.custom.mn.confirming')
+        %p.preparing
+          = image_tag "reg/spinner.gif"
+

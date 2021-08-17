@@ -1,4 +1,4 @@
-- if @registrant.mail_with_esig?
+- if @registrant.can_mail_with_esig?
   = render 'shared/signature_capture/scripts'
   = flash_messages.html_safe
 
@@ -142,7 +142,7 @@
   .dynamic-step#step-8
     %fieldset
       %legend= t('txt.registration.mobile_ui.step_8.title')
-    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
+    - if @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.can_mail_with_esig?
       - if @registrant.require_id?
         %ul.radio
           %li.registrant-form__has-state-license__line.has_license
@@ -164,12 +164,12 @@
     - else 
       .state-id-number
         = render :partial=> "registrants/state_id_number", :locals=>{:form=>form, :include_race_and_party=>false, :include_date_of_birth=>false}
-      - if @registrant.mail_with_esig?
+      - if @registrant.can_mail_with_esig? && !@registrant.skip_mail_with_esig?
         = render partial: 'shared/signature_capture/form', locals: {form: form}
       
     %fieldset
       %legend= t('txt.registration.mobile_ui.step_9.title')
-    - if @registrant.mail_with_esig?
+    - if @registrant.can_mail_with_esig? && !@registrant.skip_mail_with_esig?
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
     .skip_state_registration
       = render :partial=> "registrants/race_and_party", :locals=>{:form=>form}
@@ -183,7 +183,7 @@
       = render :partial=>'registrants/survey_and_volunteer', :locals=>{:form=>form}
 
     .skip_state_registration
-      - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+      - if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?
         .checkbox{style: "font-size: 150%; text-align: center;"}
           = hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden
           = check_box_tag :pdf_assistance, "1", @pdf_assistance == "1"

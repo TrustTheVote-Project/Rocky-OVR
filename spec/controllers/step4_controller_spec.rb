@@ -32,7 +32,7 @@ describe Step4Controller do
   describe "#show" do
     it "should show the step 4 input form" do
       reg = FactoryGirl.create(:step_3_registrant)
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert assigns[:registrant].step_3?
       assert !assigns[:question_1].nil?
       assert !assigns[:question_2].nil?
@@ -44,11 +44,11 @@ describe Step4Controller do
       reg.partner.survey_question_1_en = "In English?"
       reg.partner.survey_question_1_es = "En Espanol?"
       reg.partner.save
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert_equal "In English?", assigns[:question_1]
       reg.locale = "es"
       reg.save(:validate=>false)
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert_equal "En Espanol?", assigns[:question_1]
     end
 
@@ -58,7 +58,7 @@ describe Step4Controller do
         partner = FactoryGirl.create(:partner, :partner_ask_for_volunteers => true)
 
         reg = FactoryGirl.create(:step_3_registrant, :partner_id => partner.to_param)
-        get :show, :registrant_id => reg.to_param
+        get :show, params: {:registrant_id => reg.to_param}
 
         assert_select "#registrant_partner_volunteer"
       end
@@ -70,7 +70,7 @@ describe Step4Controller do
         partner = FactoryGirl.create(:partner, :ask_for_volunteers => false)
 
         reg = FactoryGirl.create(:step_3_registrant, :partner_id => partner.to_param)
-        get :show, :registrant_id => reg.to_param
+        get :show, params: {:registrant_id => reg.to_param}
 
         assert_select "#registrant_volunteer", 0
       end
@@ -88,7 +88,7 @@ describe Step4Controller do
       
       it "should run the registrant's OVR precheck instead of the redirect" do
         reg.should_receive(:inspect)
-        get :show, :registrant_id => reg.to_param
+        get :show, params: {:registrant_id => reg.to_param}
         assert_template("show")
       end
     end
@@ -100,14 +100,14 @@ describe Step4Controller do
     end
 
     it "should update registrant and complete step 4 when using long form" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_4_registrant).reject {|k,v| k == :status }.merge(short_form: 0)
+      put :update, params: {:registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_4_registrant).reject {|k,v| k == :status }.merge(short_form: 0)}
       assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_4?
       assert_redirected_to registrant_step_5_url(assigns[:registrant])
     end
 
     it "should reject invalid input and show form again when using long form" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_4_registrant, :state_id_number => nil).reject {|k,v| k == :status }.merge(short_form: 0)
+      put :update, params: {:registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_4_registrant, :state_id_number => nil).reject {|k,v| k == :status }.merge(short_form: 0)}
       assert assigns[:registrant].step_4?
       assert assigns[:registrant].reload.step_3?
       assert assigns[:show_fields] == "1"
@@ -115,9 +115,11 @@ describe Step4Controller do
     end
     
     it "should show the state-specific system when registrant_state_online_registration button is pressed" do
-      put :update, :registrant_id => @registrant.to_param, 
+      put :update, params: {
+        :registrant_id => @registrant.to_param, 
                    :registrant => FactoryGirl.attributes_for(:step_4_registrant, :has_state_license=>true).reject {|k,v| k == :status },
                    :registrant_state_online_registration => ""
+      }
       assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_4?
       assert assigns[:registrant].using_state_online_registration?

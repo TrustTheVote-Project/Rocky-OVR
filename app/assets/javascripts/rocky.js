@@ -16,6 +16,7 @@ function revealErrors() {
 };
 
 function toggleFieldSet(checkbox, set, rule, speed, hideOnCheck) {
+  console.log(checkbox, set, rule)
   var show = hideOnCheck ? !$(checkbox).is(':checked') : $(checkbox).is(':checked')
 	if (show) {
     $(rule).hide(0);

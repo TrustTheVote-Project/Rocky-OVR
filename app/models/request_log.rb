@@ -49,7 +49,7 @@ class RequestLog < ActiveRecord::Base
   def self.build_response_data(response)
     {
       response_code: response&.code,
-      response_body: response&.body.force_encoding("UTF-8"),
+      response_body: response&.body&.force_encoding("UTF-8"),
     }
   end
 

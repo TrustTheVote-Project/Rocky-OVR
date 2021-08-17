@@ -36,7 +36,6 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   INVALID_PENNDOT= "VR_WAPI_InvalidOVRDL".freeze
   
-  include RegistrantMethods
   include TwilioHelper
   
   validates_with PARegistrantValidator
@@ -95,14 +94,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     return params[:skip_advance] != "true"    
   end
   
-  include Rails.application.routes.url_helpers
-  def default_url_options
-    ActionMailer::Base.default_url_options
-  end
   
-  def signature_capture_url
-    update_state_registrant_url(self.to_param, self.signature_step)
-  end
   
   def custom_advance(controller, params)
     # Set flash message?

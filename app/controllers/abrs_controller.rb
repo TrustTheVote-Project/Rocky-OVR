@@ -6,7 +6,7 @@ class AbrsController < ApplicationController
   include TwilioHelper
   
   layout "abr"
-  before_filter :find_partner
+  before_action :find_partner
   
   rescue_from Abr::AbandonedRecord do |exception|
     abr = exception.abr
@@ -152,7 +152,11 @@ class AbrsController < ApplicationController
   
   private
   def abr_params
-    attrs = [:first_name, :middle_name, :last_name, :name_suffix, :email, :street_name, :street_number, :unit, :city, :zip, :registration_county, :date_of_birth_month, :date_of_birth_day, :date_of_birth_year, :votercheck, :phone, :phone_type, :opt_in_email, :opt_in_sms, :partner_opt_in_email, :partner_opt_in_sms, :tracking_id, :tracking_source]
+    attrs = [:first_name, :middle_name, :last_name, :name_suffix, :email, :street_name, :street_number, :unit, :city, :zip, :registration_county, 
+      :date_of_birth_month, :date_of_birth_day, :date_of_birth_year, 
+      :prev_state_abbrev, :mailing_state_abbrev, :shift_id,
+      :votercheck, :phone, :phone_type, :opt_in_email, :opt_in_sms, :partner_opt_in_email, 
+      :partner_opt_in_sms, :tracking_id, :tracking_source]
     if @abr
       attrs += @abr.permitted_attrs
       attrs += @abr.allowed_signature_attrs
@@ -192,7 +196,7 @@ class AbrsController < ApplicationController
       # Set flash message?
       # Actually send the message
       if params.has_key?(:email_continue_on_device) 
-        if @abr.email_address_for_continue_on_device =~ Authlogic::Regex::EMAIL
+        if @abr.email_address_for_continue_on_device =~ Registrant::EMAIL_REGEX
           AbrNotifier.continue_on_device(@abr, @abr.signature_capture_url).deliver_now
           flash[:success] = I18n.t('txt.signature_capture.abr.email_sent', email: @abr.email_address_for_continue_on_device)
           @abr.save(validate: false) # Make sure data persists even if not valid

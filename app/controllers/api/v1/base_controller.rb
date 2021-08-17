@@ -24,7 +24,6 @@
 #***** END LICENSE BLOCK *****
 require "#{Rails.root}/app/services/v1"
 class Api::V1::BaseController < ApplicationController
-
   protected
 
   # Renders the data as JSON and wraps into the <callback>(...); if

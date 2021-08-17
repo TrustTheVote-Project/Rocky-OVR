@@ -118,7 +118,6 @@ ovr_states:
       - vi
       - ko
   VA:
-    redirect_to_online_reg_url: true
     languages:
       - en
     api_settings:
@@ -127,7 +126,7 @@ ovr_states:
         api_key: <%= ENV['VA_API_KEY'] %>
   MI:
     api_settings:
-      api_url: https://test-mvicapi.sos.state.mi.us
+      api_url: https://mi-testing-endpoint.herokuapp.com
 
   
       

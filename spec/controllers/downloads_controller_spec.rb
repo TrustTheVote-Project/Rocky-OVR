@@ -40,7 +40,7 @@ describe DownloadsController do
       end
 
       it "provides a link to download the PDF" do
-        get :show, :registrant_id => @registrant.to_param
+        get :show, params: {:registrant_id => @registrant.to_param}
         assert !assigns[:registrant].nil?
         assert_response :success
         assert_template "show"
@@ -58,7 +58,7 @@ describe DownloadsController do
       context 'with javascript enabled' do
         context 'when email address is present' do
           it "renders a preparing page that polls the PDF ready api with the registrant UID and a timeout redirect" do
-            get :show, :registrant_id => @registrant.to_param
+            get :show, params: {:registrant_id => @registrant.to_param}
             assert !assigns[:registrant].nil?
             assert assigns[:timeout] == true
             assert_response :success
@@ -70,7 +70,7 @@ describe DownloadsController do
             @registrant.collect_email_address = 'no'
             @registrant.email_address = ''
             @registrant.save!
-            get :show, :registrant_id => @registrant.to_param
+            get :show, params: {:registrant_id => @registrant.to_param}
             assert !assigns[:registrant].nil?
             assert assigns[:timeout] == false
             assert_response :success
@@ -84,7 +84,7 @@ describe DownloadsController do
           @registrant.save!
         end
         it "provides a link to download the PDF" do
-          get :show, :registrant_id => @registrant.to_param
+          get :show, params: {:registrant_id => @registrant.to_param}
           assert !assigns[:registrant].nil?
           assert_response :success
           assert_template "preparing"
@@ -92,7 +92,7 @@ describe DownloadsController do
         context 'when the user has an email address' do
           it "times out preparing page after 30 seconds" do
             Registrant.where("id = #{@registrant.id}").update_all("updated_at = '#{35.seconds.ago.to_s(:db)}'")
-            get :show, :registrant_id => @registrant.to_param
+            get :show, params: {:registrant_id => @registrant.to_param}
             assert !assigns[:registrant].nil?
             assert_redirected_to registrant_finish_url(@registrant)
           end
@@ -105,7 +105,7 @@ describe DownloadsController do
           end
           it "does not times out preparing page after 30 seconds" do
             Registrant.where("id = #{@registrant.id}").update_all("updated_at = '#{125.seconds.ago.to_s(:db)}'")
-            get :show, :registrant_id => @registrant.to_param
+            get :show, params: {:registrant_id => @registrant.to_param}
             assert !assigns[:registrant].nil?
             assert_response :success
             assert_template "preparing"
@@ -127,12 +127,12 @@ describe DownloadsController do
         registrant.update_attributes(pdf_ready: false)
       end    
       it 'redirects to finish page w/not ready' do
-        get :pdf, registrant_id: registrant.to_param
+        get :pdf, params: {registrant_id: registrant.to_param}
         #/registrants/"+uid+"/finish?not_ready=true
         assert_redirected_to registrant_finish_path(registrant, not_ready: true)
       end  
       it "does not set pdf_downloaded" do
-        get :pdf, registrant_id: registrant.to_param
+        get :pdf, params: {registrant_id: registrant.to_param}
         
         registrant.reload
         registrant.pdf_downloaded.should == false
@@ -146,13 +146,13 @@ describe DownloadsController do
         registrant.update_attributes(pdf_ready: true)
       end 
       it 'sets pdf_downloaded' do        
-        get :pdf, registrant_id: registrant.to_param
+        get :pdf, params: {registrant_id: registrant.to_param}
         registrant.reload
         registrant.pdf_downloaded.should == true
         registrant.pdf_downloaded_at.should_not be_nil
       end
       it 'renders a page to pdf file' do
-        get :pdf, registrant_id: registrant.to_param
+        get :pdf, params: {registrant_id: registrant.to_param}
         assert_template("pdf")
         expect(response.body).to include("<meta http-equiv=\"refresh\" content=\"3;URL='#{registrant.pdf_url}'\" />")
       end

@@ -1,6 +1,6 @@
 class BallotStatusChecksController < ApplicationController
   layout "ballot_status_check"
-  before_filter :find_partner
+  before_action :find_partner
 
   def new
     @bsc = BallotStatusCheck.new(
