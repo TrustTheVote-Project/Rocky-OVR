@@ -1,4 +1,4 @@
-class AddVolunteerAndSurveyToStateRegistrants < ActiveRecord::Migration
+class AddVolunteerAndSurveyToStateRegistrants < ActiveRecord::Migration[4.2]
   def change
     add_column :state_registrants_pa_registrants, "volunteer",                  :boolean,  default: false
     add_column :state_registrants_pa_registrants, "original_survey_question_1", :string

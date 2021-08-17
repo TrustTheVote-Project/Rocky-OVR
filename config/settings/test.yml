@@ -37,7 +37,6 @@ ovr_states:
     languages:
       - en
   WA:
-    redirect_to_online_reg_url: false
     languages:
       - en
       - es

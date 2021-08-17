@@ -51,14 +51,21 @@ describe ReminderMailer do
   describe 'deliver_final_reminders' do
     it "finds registrants who haven't downloaded their PDF, haven't been sent a final reminder and have had the configured amount of time passed since the last reminder" do
       frt = double('final_reminder_time')
-      expect(rm).to receive(:final_reminder_time) { frt }
-      reg =  double('registrant')
+      expect(rm).to receive(:final_reminder_time).twice { frt }
+      reg =  FactoryGirl.create(:completed_registrant)
+      abr = double("abr")
+      expect(abr).to receive(:deliver_final_reminder_email)
       relation = double('ActiveRecord::Relation')
+      abr_relation = double("ActiveRecord::Relation")
       expect(reg).to receive(:deliver_final_reminder_email)
       expect(Registrant).to receive(:where).with(["reminders_left=0 AND pdf_downloaded = ? AND updated_at < ? AND final_reminder_delivered = ? AND pdf_ready=?", false, frt, false, true ]).and_return(relation)
       expect(relation).to receive(:find_each).with({
         batch_size: 500,
       }).and_yield(reg)
+      expect(Abr).to receive(:where).with(["reminders_left=0 AND pdf_downloaded = ? AND updated_at < ? AND final_reminder_delivered = ? AND pdf_ready=?", false, frt, false, true]).and_return(abr_relation)
+      expect(abr_relation).to receive(:find_each).with({
+        batch_size: 500,
+      }).and_yield(abr)
       rm.deliver_final_reminders
     end
   end

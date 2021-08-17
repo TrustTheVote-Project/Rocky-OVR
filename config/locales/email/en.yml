@@ -95,28 +95,23 @@ en:
 
           Please send question or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
     confirmation_with_signature:
-      subject: ! 'Thank you for registering'
+      subject: ! 'Thanks for completing your voter registration application!'
       body:
         greeting: Dear %{registrant_first_name},
-        main: ! 'Thanks for completing your voter registration application. %{registrant_rtv_and_partner_name} will mail 
-          your voter registration application to your county election office.
+        main: ! 'Thanks for completing your voter registration application. %{registrant_rtv_and_partner_name} will submit your voter registration application to the %{registrant_home_state_name} Secretary of State.
 
           If you''d like a copy of your voter registration form, you can download and save <a href="%{pdf_url}">your application</a>.<br><br>
 
           You should receive confirmation of your registration from your state election officials. Sometimes processing can take several weeks. 
           If you want to check on the status of your voter registration application, call the %{registrant_home_state_name} 
           Secretary of State at %{registrar_phone}, or <a href="%{registrar_url}">check online</a>.
-
-          We also need your help getting others registered to vote. There are important elections all over the country. 
-          Make sure everybody has their say: send an email to your family and friends, or pass on the message below.<br><br>
-
+          <br><br>
           Thanks,<br>
           Your friends at %{registrant_rtv_and_partner_name}<br><br>
 
-          P.S. Visit <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong> for more information on voting, 
-          the elections, and the issues you care about, as well as for tools to start your own voter registration campaign.<br><br>
-
-          <hr size="3" align="left" width="100%" color="black"><br><br>'
+          P.S. We also need your help getting others registered to vote. There are important elections all over the country. 
+          Make sure everybody has their say: send an email to your family and friends, or pass on the message below.<br><br>'
+          
         send_to_friends: ! '<em><strong>Copy and paste the following in your favorite mail client, and send to your friends.</strong></em><br><br>
 
           Hey,<br><br>

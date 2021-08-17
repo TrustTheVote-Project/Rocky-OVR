@@ -1,8 +1,8 @@
 class BlocksFormDisposition < ActiveRecord::Base
   validates_presence_of :blocks_form_id
   
-  belongs_to :grommet_request
-  belongs_to :registrant, primary_key: :uid
+  belongs_to :grommet_request, optional: true
+  belongs_to :registrant, primary_key: :uid, optional: true
 
   def self.submit_updates!
     updatable = self.where(final_state_submitted: false)
@@ -14,7 +14,7 @@ class BlocksFormDisposition < ActiveRecord::Base
   end
 
   def update_blocks_form
-    service = BlocksService.new(registrant&.partner || partner_from_grommet_request)
+    service = BlocksService.new(partner: (registrant&.partner || partner_from_grommet_request))
     status  = request_status
     service.add_metadata_to_form(blocks_form_id, status)
     if status_complete?(status)
@@ -24,7 +24,8 @@ class BlocksFormDisposition < ActiveRecord::Base
   
   def partner_from_grommet_request
     if grommet_request
-      params = grommet_request.request_params.is_a?(Hash) ? grommet_request.request_params : YAML::load(grommet_request.request_params)
+      params = grommet_request.request_params.is_a?(Hash) || grommet_request.request_params.is_a?(ActionController::Parameters) ? grommet_request.request_params : YAML::load(grommet_request.request_params)
+      params = params.to_unsafe_h if params.respond_to?(:to_unsafe_h)
       params = params.with_indifferent_access
       partner_id = begin
         params["rocky_request"]["partner_id"]
@@ -60,8 +61,8 @@ class BlocksFormDisposition < ActiveRecord::Base
     status[:has_validation_errors] = self.registrant.nil?
     if self.registrant
       status[:pa_submission_status] = registrant.api_submission_status
-      status[:pa_response_errors] = registrant.state_ovr_data["errors"]
-      status[:pa_transaction_id] = registrant.state_ovr_data["pa_transaction_id"]
+      status[:pa_response_errors] = registrant.vr_application_submission_errors
+      status[:pa_transaction_id] = registrant.state_transaction_id
     end
     return status
   end

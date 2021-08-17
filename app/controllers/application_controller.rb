@@ -25,10 +25,10 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
-  before_filter :ensure_https
-  before_filter :strict_transport_security
+  before_action :ensure_https
+  before_action :strict_transport_security
 
-  before_filter :authenticate_everything, :if => lambda { !%w{ development test production loadtest }.include?(Rails.env) }
+  before_action :authenticate_everything, :if => lambda { !%w{ development test production loadtest }.include?(Rails.env) }
 
 
   def vr_to_pa_debug_ui

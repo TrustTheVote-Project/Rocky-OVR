@@ -50,7 +50,7 @@ describe LogosController do
 
   it "can upload a logo" do
     logo_fixture = fixture_files_file_upload('/partner_logo.jpg','image/jpeg')
-    put :update, :partner => { :logo => logo_fixture }
+    put :update, params: {:partner => { :logo => logo_fixture }}
     assert_redirected_to partner_logo_url
     @partner.reload
     assert_match %r{logos/[\d\/]+/header/partner_logo.jpg}, @partner.logo.url(:header)
@@ -59,20 +59,20 @@ describe LogosController do
 
   it "shows an error message when you upload something crazy" do
     logo_fixture = fixture_files_file_upload('/crazy.txt','text/plain')
-    put :update, :partner => { :logo => logo_fixture }
+    put :update, params: {:partner => { :logo => logo_fixture }}
     assert_response :success
     assert_match /JPG, GIF, or PNG/, assigns[:partner].errors[:logo_content_type].to_s
   end
 
   describe "shows an error message when you upload nothing" do
     it "no partner params" do
-      put :update, :partner => {}
+      put :update, params: {:partner => {}}
       assert_response :success
       assert_match /You must select an image file to upload/, assigns[:partner].errors[:logo].to_s
     end
 
     it "no partner[logo] param" do
-      put :update, :partner => { :logo => "" }
+      put :update, params: {:partner => { :logo => "" }}
       assert_response :success
       assert_match /You must select an image file to upload/, assigns[:partner].errors[:logo].to_s
     end
@@ -86,7 +86,7 @@ describe LogosController do
     end
     
     file = Rack::Test::UploadedFile.new("/tmp/over_a_megabyte.jpg", "image/jpeg")
-    put :update, :partner => { :logo => file }
+    put :update, params: {:partner => { :logo => file }}
     
     # File.open("/tmp/over_a_megabyte.jpg") do |big_file|
     #   put :update, :partner => { :logo => big_file }

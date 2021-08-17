@@ -25,6 +25,8 @@
 class RegistrantsController < RegistrationStep
   CURRENT_STEP = 1
 
+  helper_method :registrant_params
+
   # GET /widget_loader.js
   def widget_loader
     @host = host_url
@@ -101,14 +103,13 @@ class RegistrantsController < RegistrationStep
   # POST /registrants
   def create
     set_up_locale
-    @registrant = Registrant.new((params[:registrant] || {}).reverse_merge(
+    @registrant = Registrant.new((registrant_params || {}).reverse_merge(
                                     :locale => @locale,
                                     :partner_id => @partner_id,
                                     :tracking_source => @source,
                                     :tracking_id => @tracking,
                                     :short_form => @short_form,
                                     :collect_email_address => @collect_email_address))
-                                    
     @use_mobile_ui = determine_mobile_ui(@registrant)
     @registrant.shift_id = @shift_id if @shift_id
     @registrant.shift_id = @canvassing_shift.shift_external_id if @canvassing_shift

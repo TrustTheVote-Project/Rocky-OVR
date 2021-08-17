@@ -42,7 +42,7 @@ class Report < ActiveRecord::Base
     failed: :failed
   })
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
   has_many :report_data
   serialize :filters, Hash
 
@@ -401,6 +401,8 @@ class Report < ActiveRecord::Base
       StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       mi_registrants = {}
       StateRegistrants::MIRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      mn_registrants = {}
+      StateRegistrants::MNRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mn_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
 
       
       return CSV.generate do |csv|
@@ -414,6 +416,8 @@ class Report < ActiveRecord::Base
               sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
             when "MI"
               sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
+            when "MN"
+              sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
             end
             reg.instance_variable_set(:@existing_state_registrant, sr)
           end
@@ -501,9 +505,9 @@ class Report < ActiveRecord::Base
           row << counts[:email_opt_in]
           row << counts[:sms_opt_in]
           row << counts[:dl_count]
-          row << '%.2f %' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
+          row << '%.2f %%' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
           row << counts[:ssn_count]
-          row << '%.2f %' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
+          row << '%.2f %%' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
           row << eastern_time(ci.tracking_data["clock_in_datetime"])
           if co
             row << eastern_time(co.tracking_data["clock_out_datetime"])

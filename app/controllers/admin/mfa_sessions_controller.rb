@@ -1,6 +1,6 @@
 class Admin::MfaSessionsController < Admin::BaseController
   before_action :set_capture_mfa
-  skip_before_filter :check_mfa
+  skip_before_action :check_mfa
   layout "admin"
 
   def new

@@ -23,7 +23,7 @@
 #
 #***** END LICENSE BLOCK *****
 class PasswordResetsController < PartnerBase
-  before_filter :load_partner_using_perishable_token, :only => [:edit, :update]
+  before_action :load_partner_using_perishable_token, :only => [:edit, :update]
 
   def new
   end
@@ -32,7 +32,7 @@ class PasswordResetsController < PartnerBase
   end
 
   def create
-    if @partner = Partner.find_by_login(params[:login])
+    if @partner = Partner.find_by_login(params.permit![:login])
       @partner.deliver_password_reset_instructions!
       flash[:message] = "Instructions to reset your password have been emailed to you. Please check your email."
       redirect_to login_url
@@ -47,7 +47,7 @@ class PasswordResetsController < PartnerBase
     if pw.blank?
       @partner.errors.add(:password, "Password cannot be blank")
       render "edit"
-    elsif @partner.update_attributes(params[:partner].try(:slice, :password, :password_confirmation))
+    elsif @partner.update_attributes(params[:partner].permit!.to_h.try(:slice, :password, :password_confirmation))
       flash[:success] = "Password successfully updated. Please log in using new password."
       redirect_to login_url
     else

@@ -67,7 +67,7 @@ class Admin::PartnersController < Admin::BaseController
   def update
     @partner = Partner.find(params[:id])
 
-    if @partner.update_attributes(params[:partner])
+    if @partner.update_attributes(partner_params)
       update_email_templates(@partner, params[:template])
       update_email_template_subjects(@partner, params[:template_subject])
       update_custom_css(@partner, params[:css_files])
@@ -92,6 +92,10 @@ class Admin::PartnersController < Admin::BaseController
   end
 
   private
+
+  def partner_params
+    params[:partner] ? params.require(:partner).permit! : {}
+  end
 
   def update_email_templates(partner, templates)
     (templates || {}).each do |name, body|

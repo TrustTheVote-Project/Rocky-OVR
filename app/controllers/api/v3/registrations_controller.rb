@@ -48,7 +48,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   # Creates the record and returns the URL to the PDF file or
   # the error message with optional invalid field name.
   def create
-    r = V3::RegistrationService.create_record(params[:registration])
+    r = V3::RegistrationService.create_record(registration_params)
     jsonp :pdfurl => "https://#{RockyConf.pdf_host_name}#{r.pdf_download_path}", :uid=>r.uid
   rescue V3::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
@@ -63,7 +63,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
   # Creates the record
   def create_finish_with_state
-    result = V3::RegistrationService.create_record(params[:registration], true)
+    result = V3::RegistrationService.create_record(registration_params, true)
     jsonp :registrations => result.to_finish_with_state_array
   rescue V3::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
@@ -75,7 +75,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   end
 
   def clock_in
-    data = params.deep_dup
+    data = params.require(:registration).permit!.to_h.deep_dup
     data.delete(:debug_info)
     data.delete(:format)
     data.delete(:controller)
@@ -87,7 +87,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
   end
 
   def clock_out
-    data = params.deep_dup
+    data = params.require(:registration).permit!.to_h.deep_dup
     data.delete(:debug_info)
     data.delete(:format)
     data.delete(:controller)
@@ -104,7 +104,8 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     
     gr_id = nil
     begin
-      gr = GrommetRequest.create(request_params: params)
+      request_params = params.respond_to?(:to_unsafe_h) ? params.to_unsafe_h : params
+      gr = GrommetRequest.create(state: "PA", request_params: request_params)
       gr_id = gr ? gr.id : nil
       
       # Also save request headers
@@ -138,7 +139,7 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
     end
 
     # 1. Build a rocky registrant record based on all of the fields
-    registrant = V3::RegistrationService.create_pa_registrant(params[:rocky_request])
+    registrant = V3::RegistrationService.create_pa_registrant(rocky_request_params)
     # 1a. do subsititutions for invalid chars
     registrant.basic_character_replacement!
     registrant.state_ovr_data["grommet_request_id"] = gr_id # lets store the original request for reference
@@ -228,10 +229,21 @@ class Api::V3::RegistrationsController < Api::V3::BaseController
 
   def bulk
     jsonp({
-        :registrants_added=>V3::RegistrationService.bulk_create(params[:registrants], params[:partner_id], params[:partner_API_key])
+        :registrants_added=>V3::RegistrationService.bulk_create(registrants_params, params[:partner_id], params[:partner_API_key])
     })
   rescue Exception => e
     jsonp({ :message => e.message }, :status => 400)
+  end
+
+  private
+  def registration_params
+    params[:registration].permit!
+  end
+  def registrants_params
+    params[:registrants].permit!
+  end
+  def rocky_request_params
+    params[:rocky_request].permit!
   end
 
 end

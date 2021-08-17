@@ -1,24 +1,17 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 require 'base64'
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups)
-  unless ENV['NO_PDF']
-    Bundler.require(:pdf)
-  end
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+Bundler.require(*Rails.groups)
+unless ENV['NO_PDF']
+  Bundler.require(:pdf)
 end
-
-
-
 
 module Rocky
   class Application < Rails::Application
-
+    config.load_defaults 5.0
+    
     require 'dotenv'
     Dotenv.load
 
@@ -29,6 +22,12 @@ module Rocky
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W( #{Rails.root}/app/services
+      #{Rails.root}/app/presenters
+      #{Rails.root}/lib
+      #{Rails.root}/app/models/state_customizations
+    )
+
+    config.eager_load_paths += %W( #{Rails.root}/app/services
       #{Rails.root}/app/presenters
       #{Rails.root}/lib
       #{Rails.root}/app/models/state_customizations
@@ -67,7 +66,7 @@ module Rocky
       g.ensure(true) { |ex| env['rack.errors'].write(ex.message) }
     end
     
-    config.middleware.insert_before ActionDispatch::ParamsParser, "CatchJsonParseErrors"
+    #config.middleware.insert_before ActionDispatch::ParamsParser, "CatchJsonParseErrors"
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -81,7 +80,7 @@ module Rocky
     # This will create an empty whitelist of attributes available for mass-assignment for all models
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
-    config.active_record.whitelist_attributes = false
+    # config.active_record.whitelist_attributes = false
 
     # Enable the asset pipeline
     config.assets.enabled = true
@@ -89,16 +88,7 @@ module Rocky
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.1'
 
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
-
-    config.assets.precompile += %w( admin.css partner.css jquery.qtip.min.css qtip-custom.css registration.css registration2.css reset.css rocky.css nvra.css state_configuration.css select2.min.css)
-    config.assets.precompile += %w( admin.js registration.js rocky.js state_configuration.js jquery.js jquery_ujs.js jquery.qtip.min.js partner.js iframeResizer.contentWindow.min.js iframeResizer.min.js rtv-igrame.js)
-    config.assets.precompile += ["locales/*.css"]
-    config.assets.precompile += ["states/*.css"]
-    config.assets.precompile += ["nvra/locales/*.css"]
-    config.assets.precompile += ["abr_states/*.js"]
-    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
-
+    
     config.assets.initialize_on_precompile = false
     
     config.action_controller.allow_forgery_protection = true
