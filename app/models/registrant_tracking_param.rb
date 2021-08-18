@@ -1,0 +1,2 @@
+class RegistrantTrackingParam < ApplicationRecord
+end

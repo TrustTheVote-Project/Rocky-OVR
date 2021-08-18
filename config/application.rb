@@ -10,7 +10,7 @@ end
 
 module Rocky
   class Application < Rails::Application
-    config.load_defaults 5.0
+    config.load_defaults 5.2
     
     require 'dotenv'
     Dotenv.load

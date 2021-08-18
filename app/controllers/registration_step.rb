@@ -249,7 +249,24 @@ class RegistrationStep < ApplicationController
       end
     end
 
-
+    @query_parameters = request.query_parameters.clone.transform_keys(&:to_s).except(*([
+      "source",
+      "tracking",
+      "short_form",
+      "collectemailaddress",
+      "email_address",
+      "first_name",
+      "last_name",
+      "state_abbrev",
+      "state",
+      "home_zip_code",
+      "locale",
+      "pdf_assistance",
+      "skip_advance",
+      "partner",
+      "registrant_finish_iframe_url",
+    ] + (Registrant.permitted_attributes.collect(&:to_s))))
+    
     if !@state_abbrev.blank?
       @short_form = true
     end

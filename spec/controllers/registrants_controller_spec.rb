@@ -86,6 +86,11 @@ describe RegistrantsController do
       
     end
 
+    it "keeps arbitrary tracking parameters" do
+      get :landing, params: {utm_source: "utm source value", other_param: "otherparamvalue"}
+      assert_redirected_to new_registrant_url(protocol: "http", utm_source: "utm source value", other_param: "otherparamvalue")
+    end
+
 
     it "assumes default partner when partner given doesn't exist" do
       non_existent_partner_id = "43243243"
@@ -146,6 +151,17 @@ describe RegistrantsController do
         assert_select "input[name=source][value=email]"
         assert_select "input[name=tracking][value=trackid]"
         assert_select "input[name=short_form][value=true]"
+      end
+
+      it "should keep query params" do
+        get :new, params: {:locale => 'es', :partner => '2', :source => 'email', :tracking=>'trackid', :short_form=>true, utm_source: 
+          "utm source value", abc: "def"}
+        assert_equal({
+          "utm_source" => "utm source value",
+          "abc" => "def"
+        }, assigns[:query_parameters])
+        
+        
       end
     end
 
