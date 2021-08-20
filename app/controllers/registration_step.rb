@@ -249,7 +249,7 @@ class RegistrationStep < ApplicationController
       end
     end
 
-    @query_parameters = request.query_parameters.clone.transform_keys(&:to_s).except(*([
+    @query_parameters = params[:query_parameters] || request.query_parameters.clone.transform_keys(&:to_s).except(*([
       "source",
       "tracking",
       "short_form",

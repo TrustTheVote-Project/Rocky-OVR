@@ -42,6 +42,26 @@ class Registrant < ActiveRecord::Base
   scope :abandoned, -> {where(abandoned: true)}
   
   has_many :ab_tests
+  has_many :registrant_tracking_params
+
+  def query_parameters
+    qp = {}
+    registrant_tracking_params.each do |rtp|
+      qp[rtp.name.to_s] = rtp.value
+    end
+    return qp
+  end
+
+  def query_parameters=(val)
+    if val && val.keys && val.keys.length
+      val.keys.each do |key|
+        self.registrant_tracking_params.build({
+          name: key.to_s,
+          value: val[key].to_s
+        })
+      end
+    end
+  end
   
   serialize :state_ovr_data, Hash
 
@@ -1929,6 +1949,7 @@ class Registrant < ActiveRecord::Base
       :covr_token,
       :covr_success,
       :ca_disclosures,
+      :query_parameters,
       VOTER_SIGNATURE_ATTRIBUTES
     ].flatten
   end

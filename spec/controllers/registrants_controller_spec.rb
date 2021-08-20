@@ -160,8 +160,7 @@ describe RegistrantsController do
           "utm_source" => "utm source value",
           "abc" => "def"
         }, assigns[:query_parameters])
-        
-        
+        assert_select "input[name=\"query_parameters[utm_source]\"][value=\"utm source value\"]"        
       end
     end
 
@@ -291,6 +290,26 @@ describe RegistrantsController do
       assert_equal "trackid", assigns[:registrant].tracking_id
       assert_equal "yes", assigns[:registrant].collect_email_address
       assert_equal true, assigns[:registrant].short_form?
+    end
+
+    it "should set extra query parameters" do
+      post :create, params: {
+        :registrant => @reg_attributes, 
+        :partner => @partner.id, 
+        :locale => "es", 
+        :source => "email", 
+        :tracking=>"trackid", 
+        :short_form=>"1", 
+        :collectemailaddress=>'yes',
+        :query_parameters=>{
+          "utm_source" => "utm source",
+          "abc" => "def"
+        }
+      }
+      assert_equal({
+        "utm_source" => "utm source",
+        "abc" => "def"
+      }, assigns[:registrant].query_parameters)
     end
 
     it "should reject invalid input and show form again" do

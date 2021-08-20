@@ -113,7 +113,8 @@ class RegistrantsController < RegistrationStep
                                     :tracking_source => @source,
                                     :tracking_id => @tracking,
                                     :short_form => @short_form,
-                                    :collect_email_address => @collect_email_address))
+                                    :collect_email_address => @collect_email_address,
+                                    :query_parameters => @query_parameters))
     @use_mobile_ui = determine_mobile_ui(@registrant)
     @registrant.shift_id = @shift_id if @shift_id
     @registrant.shift_id = @canvassing_shift.shift_external_id if @canvassing_shift
