@@ -8,6 +8,9 @@
 <%- (@query_parameters || {}).keys.each do |qpk| %>
   <%= hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk] %>
 <%- end %>
+<%- (@additional_registrant_params || {}).keys.each do |rpk| %>
+  <%= hidden_field_tag "registrant[#{rpk}]", @additional_registrant_params[rpk] %>
+<%- end %>
 <%= form.hidden_field :under_18_ok, :value => 0 %>
 
 <% content_for :head do %>

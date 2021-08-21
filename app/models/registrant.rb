@@ -246,6 +246,21 @@ class Registrant < ActiveRecord::Base
   CSV_HEADER_EXTENDED = [
     "Registrant UID",
     CSV_HEADER,
+    
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "other_parameters",
+    
+    "Change of Name",
+    "Prev Name Title",
+    "Prev First Name",
+    "Prev Middle Name",
+    "Prev Last Name",
+    "Prev Name Suffix",
+
     "Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
     "Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
     "Shift ID", #canvassing_shift_registrant.external_id
@@ -1693,6 +1708,27 @@ class Registrant < ActiveRecord::Base
   def to_csv_extended_array
     arr = [self.uid]
     arr = arr + self.to_csv_array
+    extra_query_params = self.query_parameters.clone
+    arr = arr + [
+      extra_query_params.delete("utm_source"),
+      extra_query_params.delete("utm_medium"),
+      extra_query_params.delete("utm_campaign"),
+      extra_query_params.delete("utm_term"),
+      extra_query_params.delete("utm_content"),
+    ]
+    arr = arr + [
+      extra_query_params.collect {|k,v| "#{k}=#{v}"}.join("&")
+    ]
+
+    arr = arr + [
+      yes_no(self.change_of_name?),
+      self.prev_name_title,
+      self.prev_first_name,
+      self.prev_middle_name,
+      self.prev_last_name,
+      self.prev_name_suffix,
+    ]
+
     arr = arr + [
       self.is_grommet? ? "Tablet" : (building_via_api_call? ? "Rocky API" : "Web"), #"Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
       finish_with_state? ? "Redirected to SOS" : (submitted_via_state_api? ? "Submitted Via State API" : "Paper"), #"Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
