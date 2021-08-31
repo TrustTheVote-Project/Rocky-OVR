@@ -14,7 +14,8 @@ API_REGISTER = File.join(path, 'make-api-request.rb')
 def run(cmd, args)
   output = `ruby #{cmd} #{args.join(" ")}`
   puts output
-  return output.to_s.strip
+  output = output.to_s.strip
+  return output === '' ? nil : output
 end
 
 session_id = "'My Session::#{Time.now.to_i}'"
@@ -23,7 +24,7 @@ partner_id = 7
 
 base_args = [partner_tracking_id, partner_id]
 
-shift_id = run(CREATE_SHIFT, base_args)
+shift_id = run(CREATE_SHIFT, base_args) || session_id #CREATE SHIFT only exists for v4
 puts "Got shift id '#{shift_id}'"
 base_args.unshift(shift_id)
 
