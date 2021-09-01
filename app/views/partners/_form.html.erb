@@ -1,10 +1,27 @@
 <fieldset>
-  <legend>Your Information</legend>
+  <legend>Organization Information</legend>
   <ul class="stacked">
     <li class="width_a">
-      <h3><%= form.label :name %></h3>
-      <%= field_div form, :name %>
-      <span class="error"><%= form.object.errors[:name].join("\n") %></span>
+      <h3><%= form.label :organization, "Organization" %></h3>
+      <%= field_div form, :organization %>
+      <span class="error"><%= form.object.errors[:organization].join("\n") %></span>
+    </li>
+    <li class="width_a">
+      <h3><%= form.label :url %></h3>
+      <%= field_div form, :url %>
+      <span class="error"><%= form.object.errors[:url].join("\n") %></span>
+    </li>
+  </ul>
+  <ul class="stacked">
+    <li class="width_a">
+      <h3><%= form.label :phone %></h3>
+      <%= field_div form, :phone %>
+      <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
+    </li>
+    <li class="width_a">
+      <h3><%= form.label :email %></h3>
+      <%= field_div form, :email %>
+      <span class="error"><%= form.object.errors[:email].join("\n") %></span>
     </li>
   </ul>
   <ul class="stacked">
@@ -31,50 +48,15 @@
       <span class="error"><%= form.object.errors[:zip_code].join("\n") %></span>
     </li>
   </ul>
+  </fieldset>
+  <fieldset>
+  <legend>Primary Contact Information</legend>
+
   <ul class="stacked">
     <li class="width_a">
-      <h3><%= form.label :organization, "Organization" %></h3>
-      <%= field_div form, :organization %>
-      <span class="error"><%= form.object.errors[:organization].join("\n") %></span>
-    </li>
-    <li class="width_a">
-      <h3><%= form.label :url %></h3>
-      <%= field_div form, :url %>
-      <span class="error"><%= form.object.errors[:url].join("\n") %></span>
+      <h3><%= form.label :name %></h3>
+      <%= field_div form, :name %>
+      <span class="error"><%= form.object.errors[:name].join("\n") %></span>
     </li>
   </ul>
-  <ul class="stacked">
-    <li class="width_a">
-      <h3><%= form.label :phone %></h3>
-      <%= field_div form, :phone %>
-      <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
-    </li>
-    <li class="width_a">
-      <h3><%= form.label :email %></h3>
-      <%= field_div form, :email %>
-      <span class="error"><%= form.object.errors[:email].join("\n") %></span>
-    </li>
-  </ul>
-</fieldset>
-<fieldset>
-  <legend>Login and Password</legend>
-  <ul class="stacked">
-    <li class="width_a">
-      <h3><%= form.label :username %></h3>
-      <%= field_div form, :username, :disabled => !form.object.new_record? %>
-      <span class="error"><%= form.object.errors[:username].join("\n") %></span>
-    </li>
-  </ul>
-  <ul class="stacked">
-    <li class="width_a">
-      <h3><%= form.label :password, form.object.new_record? ? nil : "Change password" %></h3>
-      <%= field_div form, :password, :kind => "password" %>
-      <span class="error"><%= form.object.errors[:password].join("\n") %></span>
-    </li>
-    <li class="width_a">
-      <h3><%= form.label :password_confirmation, "Confirm Password" %></h3>
-      <%= field_div form, :password_confirmation, :kind => "password" %>
-      <span class="error"><%= form.object.errors[:password_confirmation].join("\n") %></span>
-    </li>
-  </ul>
-</fieldset>
+  </fieldset>

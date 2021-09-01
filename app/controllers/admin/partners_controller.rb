@@ -52,7 +52,7 @@ class Admin::PartnersController < Admin::BaseController
   def impersonate
     @partner = Partner.find(params[:id])
     PartnerSession.create!(@partner)
-    redirect_to partner_path
+    redirect_to partner_path(@partner)
   end
   
 
@@ -72,7 +72,7 @@ class Admin::PartnersController < Admin::BaseController
       update_email_template_subjects(@partner, params[:template_subject])
       update_custom_css(@partner, params[:css_files])
       flash[:message]= "Partner Updated"
-      redirect_to edit_admin_partner_path
+      redirect_to edit_admin_partner_path(@partner) 
     else
       flash[:warning]= "There was en error updating the partner"
       render :edit

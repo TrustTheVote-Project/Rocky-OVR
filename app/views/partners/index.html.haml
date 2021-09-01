@@ -1,0 +1,4 @@
+%p Select a partner
+%ul
+  - @partners.each do |partner|
+    %li= link_to partner.organization, partner_path(partner)

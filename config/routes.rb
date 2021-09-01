@@ -78,11 +78,16 @@ Rails.application.routes.draw do
     
   end
 
-  resource  "partner_session"
-  match  "login",  :to => "partner_sessions#new", :as=>'login', via: :get
-  match "logout", :to => "partner_sessions#destroy", :as=>'logout', via: :get
+  resource  "user_session"
+  match  "login",  :to => "user_sessions#new", :as=>'login', via: :get
+  match "logout", :to => "user_sessions#destroy", :as=>'logout', via: :get
   
-  resource "partner", :path_names => {:new => "register", :edit => "profile"} do
+  resource "user", path_names: {:new => "register", :edit => "profile"} do
+  end
+  # MFA for user accounts
+  resources :mfa_sessions, only: [:new, :create]
+
+  resources "partners", :path_names => {:new => "register"} do
     member do
       get "statistics"
       post "registrations"

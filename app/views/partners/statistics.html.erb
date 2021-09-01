@@ -12,14 +12,14 @@
       <p>You can view and download all reports you've generated within the last 30 days.</p>
       <div class='submit_button'>
         <div class="button rollover_button">
-          <a class="<%= "button_downloadcsv_#{I18n.locale} button_downloadcsv"%>" href="<%= reports_partner_path %>">
+          <a class="<%= "button_downloadcsv_#{I18n.locale} button_downloadcsv"%>" href="<%= reports_partner_path(@partner)  %>">
               <span>View Existing Reports</span>
           </a>
         </div>
       </div>
     </fieldset>
   </div>
-    <%= form_tag registrations_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
+    <%= form_tag registrations_partner_path(@partner) , method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
         <legend>Generate a New Report with Your Registration Data</legend>
         <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
@@ -44,7 +44,7 @@
         </div>
       </fieldset>
     <%- end %>
-    <%= form_tag canvassing_shift_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
+    <%= form_tag canvassing_shift_report_partner_path(@partner) , method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
         <legend>Generate a New Canvassing Shift Report</legend>
         <p>Includes all web-based shifts and any using the latest version of the tablet app.</p>
@@ -65,8 +65,8 @@
       </fieldset>
     <%- end %>
     
-    <%- if current_partner.enabled_for_grommet? %>    
-      <%= form_tag grommet_registrant_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
+    <%- if @partner.enabled_for_grommet? %>    
+      <%= form_tag grommet_registrant_report_partner_path(@partner), method: :post, :class=> 'form_downloadcsv' do %>
         <fieldset>
           <legend>Generate a New PA Registration Report (Tablet registrants only through date TBD)</legend>
           <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
@@ -84,7 +84,7 @@
           </div>
         </fieldset>
       <%- end %>
-      <%= form_tag grommet_shift_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
+      <%= form_tag grommet_shift_report_partner_path(@partner) , method: :post, :class=> 'form_downloadcsv' do %>
         <fieldset>
           <legend>Generate a New PA Shift Report</legend>
           <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
@@ -103,7 +103,7 @@
         </fieldset>
       <%- end %>
     <%- end %>
-    <%= form_tag abr_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
+    <%= form_tag abr_report_partner_path(@partner), method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
         <legend>Generate a New Absentee Request Report</legend>
         <p>Leave date fields blank to download the last month of data.</p>
@@ -122,7 +122,7 @@
         </div>
       </fieldset>
     <%- end %>
-    <%= form_tag lookup_report_partner_path, method: :post, :class=> 'form_downloadcsv' do %>
+    <%= form_tag lookup_report_partner_path(@partner) , method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
         <legend>Generate a New Voter Lookup Report</legend>
         <p>Leave date fields blank to download the last month of data.</p>

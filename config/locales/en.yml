@@ -395,7 +395,7 @@ en:
                 letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
         canvassing_shift:
           blank: Required
-        partner:
+        user:
           attributes:
             password:
               invalid: Password must be 10 characters, contain at least 1 lowercase

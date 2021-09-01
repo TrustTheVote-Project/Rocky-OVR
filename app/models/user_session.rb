@@ -22,23 +22,10 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class PartnerSessionsController < PartnerBase
-  def new
-    @partner_session = PartnerSession.new
-  end
-
-  def create
-    @partner_session = PartnerSession.new(params[:partner_session].permit!.to_h)
-    if @partner_session.save
-      redirect_back_or_default partner_path(@partner)
-    else
-      render :action => :new
-    end
-  end
-
-  def destroy
-    current_partner_session.destroy
-    flash[:success] = "Logged out"
-    redirect_back_or_default login_url
-  end
+class UserSession < Authlogic::Session::Base
+  #record_selection_method :find_by_login
+  allow_http_basic_auth false
+  
+  logout_on_timeout true
+  consecutive_failed_logins_limit 10
 end

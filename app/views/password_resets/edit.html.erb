@@ -1,7 +1,7 @@
 <h1>Change My Password</h1>
 
 <div class="login">
-  <%= form_for @partner, :url => password_reset_path(@partner.perishable_token), :method => :put do |form| %>
+  <%= form_for @user, :url => password_reset_path(@user.perishable_token), :method => :put do |form| %>
     <fieldset>
       <legend>Reset Password</legend>
       <ul class="stacked">

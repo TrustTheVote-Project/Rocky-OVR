@@ -55,9 +55,28 @@ strong {
 
 #header {
   position: relative;
-  height: 100px;
   width: 100%;
   background: #ddd image-url('partner/header_bg.jpg') no-repeat top left;
+}
+
+#header {
+  background-color: #fbfbfb;
+  height: 160px
+}
+#header > p {
+  text-align: center;
+  width: 100%
+}
+#header p {
+  left: 0px
+}
+
+#header p {
+    font-size: 17px;
+    text-align: center
+}
+#header p a:first-child {
+    margin-left: 0
 }
 
 #header.not_logged_in {
@@ -90,8 +109,18 @@ strong {
 
 #header p {
   position: absolute;
-  bottom: 0;
-  left: 20px;
+  bottom: 0px;
+  &.partner-name {
+    bottom: 32px;
+    font-size: 30px;
+    line-height: 32px;
+    color: black;
+    a {
+      font-size: .6em;
+      text-transform: none;
+      font-weight: normal;  
+    }
+  }
 }
 
 #header p, #customize_nav p {
@@ -205,8 +234,13 @@ div.login {
 .login .stacked span.error {
   width: 228px;
   white-space: normal;
+  height: auto;
 }
 
+span.error {
+  white-space: normal;
+  height: auto;
+}
 
 #main .login p {
   margin: 10px 0 10px 18px;
@@ -569,17 +603,6 @@ background:#fbfbfb;
 border: 1px solid #252525;
 min-height: 95%
 }
-#header {
-    background-color: #fbfbfb;
-    height: 115px
-}
-#header > p {
-    text-align: center;
-    width: 100%
-}
-#header p {
-    left: 0px
-}
 #main_inner {
     padding: 0 25px 25px 25px;
 }
@@ -606,10 +629,7 @@ border: 1px solid #ccc
 #customizations li {
     font-size: 13px
 }
-#header p {
-    font-size: 17px;
-    text-align: center
-}
+
 #customize_nav > p {
     font-size: 15px;
     text-align: center
@@ -619,9 +639,7 @@ border: 1px solid #ccc
     font-size: 13px;
 }
 
-#header p a:first-child {
-    margin-left: 0
-}
+
 .profile form {
     width: 100%
 }

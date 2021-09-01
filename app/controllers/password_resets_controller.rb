@@ -23,7 +23,7 @@
 #
 #***** END LICENSE BLOCK *****
 class PasswordResetsController < PartnerBase
-  before_action :load_partner_using_perishable_token, :only => [:edit, :update]
+  before_action :load_user_using_perishable_token, :only => [:edit, :update]
 
   def new
   end
@@ -32,8 +32,8 @@ class PasswordResetsController < PartnerBase
   end
 
   def create
-    if @partner = Partner.find_by_login(params.permit![:login])
-      @partner.deliver_password_reset_instructions!
+    if user = User.find_by_email(params.permit![:email])
+      user.deliver_password_reset_instructions!
       flash[:message] = "Instructions to reset your password have been emailed to you. Please check your email."
       redirect_to login_url
     else
@@ -43,11 +43,11 @@ class PasswordResetsController < PartnerBase
   end
 
   def update
-    pw = params[:partner] && params[:partner][:password]
+    pw = params[:user] && params[:user][:password]
     if pw.blank?
-      @partner.errors.add(:password, "Password cannot be blank")
+      @user.errors.add(:password, "Password cannot be blank")
       render "edit"
-    elsif @partner.update_attributes(params[:partner].permit!.to_h.try(:slice, :password, :password_confirmation))
+    elsif @user.update_attributes(params[:user].permit!.to_h.try(:slice, :password, :password_confirmation))
       flash[:success] = "Password successfully updated. Please log in using new password."
       redirect_to login_url
     else
@@ -57,8 +57,8 @@ class PasswordResetsController < PartnerBase
 
   protected
 
-  def load_partner_using_perishable_token
-    unless @partner = Partner.find_using_perishable_token(params[:id])
+  def load_user_using_perishable_token
+    unless @user = User.find_using_perishable_token(params[:id])
       flash[:warning] = "We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
       redirect_to login_url
     end

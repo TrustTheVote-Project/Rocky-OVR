@@ -25,8 +25,14 @@
 require 'open-uri'
 
 class Partner < ActiveRecord::Base
+
+  has_many :partner_users, dependent: :destroy
+  has_many :users, through: :partner_users
+
+
   acts_as_authentic do |c|
-    c.crypto_provider = Authlogic::CryptoProviders::Sha512
+    c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
+    c.crypto_provider = Authlogic::CryptoProviders::SCrypt
   end
   
   validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
@@ -592,11 +598,6 @@ class Partner < ActiveRecord::Base
         self.phone = [digits[0..2], digits[3..5], digits[6..9]].join('-')
       end
     end
-  end
-
-  def deliver_password_reset_instructions!
-    reset_perishable_token!
-    Notifier.password_reset_instructions(self).deliver_now
   end
 
   def generate_registrants_csv(start_date=nil, end_date=nil)

@@ -36,7 +36,7 @@ class ApprovalController < PartnerBase
     @update_request.open rescue error = true
 
     flash = error ? { warning: "Invalid operation" } : {}
-    redirect_to partner_branding_approval_path, flash: flash
+    redirect_to partner_branding_approval_path(@partner) , flash: flash
   end
 
   def destroy
@@ -45,17 +45,16 @@ class ApprovalController < PartnerBase
     @update_request.delete rescue error = true
 
     flash = error ? { warning: "Invalid operation" } : {}
-    redirect_to partner_branding_approval_path, flash: flash
+    redirect_to partner_branding_approval_path(@partner) , flash: flash
   end
 
   def preview
-    redirect_to current_partner.preview_custom_assets_link
+    redirect_to @partner.preview_custom_assets_link
   end
 
   private
 
   def load_data
-    @partner = current_partner
     @update_request = BrandingUpdateRequest.new(@partner)
   end
 

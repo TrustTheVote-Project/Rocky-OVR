@@ -59,8 +59,8 @@ class Admin::BaseController < ApplicationController
     if !(admin_mfa_session = AdminMfaSession.find) && (admin_mfa_session ? admin_mfa_session.record == current_admin : !admin_mfa_session)
       store_location
       redirect_to new_admin_mfa_session_path
-   end
- end
+    end
+  end
 
   def current_admin_session
     return @current_admin_session if defined?(@current_admin_session)

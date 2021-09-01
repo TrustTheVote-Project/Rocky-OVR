@@ -1,0 +1,41 @@
+<h1>Voter Registration Partner Portal Log In</h1>
+
+<p>
+  Welcome to the Partner Portal of the <%= RockyConf.sponsor.name %> online voter registration tool.
+  Please log in with your email address and password below.
+  <!-- If you do not have a partner account yet, you can
+  <%= link_to "register", new_partner_path %> to get started. //-->
+</p>
+
+<div class="login">
+  <%= form_for @user_session, :url => user_session_path do |form| %>
+    <fieldset>
+      <legend>Log In</legend>
+      <span class="error" style="white-space: unset">
+        <%- if form.object.errors.any?  %>
+          <p>Login/password combination is not valid. Contact an admin if you cannot log in.
+          <br/><br/>
+          If you had a previous partner account with this email address,
+          use the "Forgot your password?" link to
+          set a password for your new user account.
+          </p>
+        <%- end %>
+      </span>
+
+      <ul class="stacked">
+        <li class="width_a">
+          <h3><%= form.label :email, "Email" %></h3>
+          <%= form.text_field :email %>
+        </li>
+      </ul>
+      <ul class="stacked">
+        <li class="width_a">
+          <h3><%= form.label :password %></h3>
+          <%= form.password_field :password, :kind => "password", :autocomplete => "off" %>
+        </li>
+      </ul>
+      <p><%= link_to "Forgot your password?", new_password_reset_path %></p>
+    </fieldset>
+    <%= partner_rollover_button("login", "Log in") %>
+  <% end %>
+</div>

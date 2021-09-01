@@ -15,21 +15,21 @@
           <tr class="odd">
             <th>
               <ul>
-                <li><%= link_to "Add custom survey questions and set volunteer sign up options", edit_partner_questions_path %></li>
-                <li><%= link_to "Upload your own logo", partner_logo_path %></li>
-                <li><%= link_to "Select a button or banner", partner_widget_image_path %></li>
-                <li><%= link_to "Get your embed code", embed_codes_partner_path %></li>
+                <li><%= link_to "Add custom survey questions and set volunteer sign up options", edit_partner_questions_path(@partner) %></li>
+                <li><%= link_to "Upload your own logo", partner_logo_path(@partner)  %></li>
+                <li><%= link_to "Select a button or banner", partner_widget_image_path(@partner)  %></li>
+                <li><%= link_to "Get your embed code", embed_codes_partner_path(@partner)  %></li>
               </ul>
             </th>
           </tr>
         </tbody>
       </table>
     </div>
-    <%= rollover_image_link("link_customizetool", "Customize Tool", partner_logo_path, id: "link_customizetool") %>
+    <%= rollover_image_link("link_customizetool", "Customize Tool", partner_logo_path(@partner) , id: "link_customizetool") %>
   </div>
 
   <div id="dash_left" class="dash">
     <%= render :partial => 'stats_by_completion_date' %>
-    <%= rollover_image_link("link_viewreport", "View Full Report and Download Data", statistics_partner_path, id: "link_viewreport") %>
+    <%= rollover_image_link("link_viewreport", "View Full Report and Download Data", statistics_partner_path(@partner) , id: "link_viewreport") %>
   </div>
 </div>

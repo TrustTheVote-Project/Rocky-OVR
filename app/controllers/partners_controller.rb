@@ -24,53 +24,59 @@
 #***** END LICENSE BLOCK *****
 class PartnersController < PartnerBase
   layout "partners"
-  before_action :require_partner, :except => [:new, :create]
-
   ### public access
+  skip_before_action :require_partner, only: [:index, :new, :create]
 
-  def new
-    if current_partner
-      force_logout
-      redirect_to new_partner_url
-    else
-      @partner = Partner.new
+  def index
+    @partners = current_user.partners
+    if @partners.count == 1
+      redirect_to partner_path(@partners.first)
     end
   end
 
+  def new
+    # TODO this should show a "contact us" page
+
+    # if current_partner
+    #   force_logout
+    #   redirect_to new_partner_url
+    # else
+    #   @partner = Partner.new
+    # end
+  end
+
   def create
-    @partner = Partner.new(partner_params)
-    if @partner.save
-      flash[:success] = "Registered!"
-      redirect_to partner_url
-    else
-      puts @partner.errors.full_messages
-      render "new"
-    end
+    # TODO disable for now
+
+    # @partner = Partner.new(partner_params)
+    # if @partner.save
+    #   flash[:success] = "Registered!"
+    #   redirect_to partner_url
+    # else
+    #   puts @partner.errors.full_messages
+    #   render "new"
+    # end
   end
 
   ### require login
 
   def edit
-    @partner = current_partner
   end
 
   def update
-    @partner = current_partner
     if @partner.update_attributes(partner_params)
       flash[:success] = "You have updated your profile."
-      redirect_to partner_url
+      redirect_to partner_path(@partner)
     else
       render "edit"
     end
   end
 
   def show
-    @partner = current_partner
     @stats_by_completion_date = @partner.registration_stats_completion_date
   end
 
   def embed_codes
-    @partner = current_partner
     @text_link_html = %Q[<a href="https://#{RockyConf.ui_url_host}#{root_path(:partner => partner_id)}">Register to Vote Here</a>]
     @text_link_html_b = %Q[<a href="https://register2.rockthevote.com#{root_path(:partner => partner_id)}">Register to Vote Here</a>]
 
@@ -129,7 +135,6 @@ SCRIPT
   end
 
   def statistics
-    @partner = current_partner
     @stats_by_state = @partner.registration_stats_state
     @stats_by_completion_date = @partner.registration_stats_completion_date
     #@stats_by_completion_date_finish_with_state = @partner.registration_stats_finish_with_state_completion_date
@@ -140,65 +145,65 @@ SCRIPT
   end
   
   def reports
-    @reports = Report.where(partner_id: current_partner.id).order("created_at DESC")
+    @reports = Report.where(partner_id: @partner.id).order("created_at DESC")
   end
 
   def registrations
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
     if  params[:generate_extended]=="1"
-      current_partner.generate_registrants_extended_csv(start_date, end_date)
+      @partner.generate_registrants_extended_csv(start_date, end_date)
     else
-      current_partner.generate_registrants_csv(start_date, end_date)
+      @partner.generate_registrants_csv(start_date, end_date)
     end
-    redirect_to reports_partner_url #download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})    
+    redirect_to reports_partner_path(@partner) #download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})    
   end
   
   def canvassing_shift_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
     
-    current_partner.generate_canvassing_shift_csv(start_date, end_date)
-    redirect_to reports_partner_url
+    @partner.generate_canvassing_shift_csv(start_date, end_date)
+    redirect_to reports_partner_path(@partner)
   end
   
   def grommet_registrant_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
         
-    current_partner.generate_grommet_registrants_csv(start_date, end_date)
-    redirect_to reports_partner_url
+    @partner.generate_grommet_registrants_csv(start_date, end_date)
+    redirect_to reports_partner_path(@partner)
   end
   
   def grommet_shift_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
     
-    current_partner.generate_grommet_shift_report(start_date, end_date)
-    redirect_to reports_partner_url
+    @partner.generate_grommet_shift_report(start_date, end_date)
+    redirect_to reports_partner_path(@partner)
   end
 
   def abr_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
     
-    current_partner.generate_abr_report(start_date, end_date)
-    redirect_to reports_partner_url
+    @partner.generate_abr_report(start_date, end_date)
+    redirect_to reports_partner_path(@partner)
   end
   
   def lookup_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
     
-    current_partner.generate_lookup_report(start_date, end_date)
-    redirect_to reports_partner_url
+    @partner.generate_lookup_report(start_date, end_date)
+    redirect_to reports_partner_path(@partner)
   end
   
   def download_csv
     report = Report.find_by_id(params[:report_id])
-    if report.nil? || report.partner != current_partner
+    if report.nil? || report.partner != @partner
       flash[:warning] = "You don't have permissions to view that report"
-      redirect_to reports_partner_url
+      redirect_to reports_partner_path(@partner)
     else
       send_data report.read, filename: report.download_file_name, type: "text/csv"
       # respond_to do |format|
@@ -211,7 +216,7 @@ SCRIPT
   protected
 
   def partner_id
-    current_partner && current_partner.to_param
+    @partner && @partner.to_param
   end
 
   def partner_widget_url
