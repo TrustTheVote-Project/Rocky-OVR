@@ -23,6 +23,11 @@
 #
 #***** END LICENSE BLOCK *****
 class PasswordResetsController < PartnerBase
+  skip_before_action :check_mfa
+  skip_before_action :require_user
+  skip_before_action :require_partner
+  
+
   before_action :load_user_using_perishable_token, :only => [:edit, :update]
 
   def new
