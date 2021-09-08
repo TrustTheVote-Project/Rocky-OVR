@@ -92,6 +92,9 @@ module Rocky
     config.assets.initialize_on_precompile = false
     
     config.action_controller.allow_forgery_protection = true
+    # This is turned on in 5.2 for all controllers, but we're not prepared for it (APIs)
+    config.action_controller.default_protect_from_forgery = false
+
 
     config.i18n.available_locales = [:en, :es, :zh, :"zh-tw", :hi, :ur, :bn, :ja, :ko, :tl, :ilo, :th, :vi, :km]
 
