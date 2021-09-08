@@ -44,7 +44,7 @@
     
   %fieldset#dln_set
     %ul.flat.dln
-      = field_li(form, :dln, {skip_tooltip: true, required: true, field_options: {size: 12, maxlength: 8}, li_options: {class: "registrant-form__dln__line"} })
+      = field_li(form, :dln, {skip_tooltip: true, required: true, field_options: {size: 22, maxlength: 13}, li_options: {class: "registrant-form__dln__line"} })
           
     %p.instructions
       = I18n.t('states.custom.mn.dln_instructions')

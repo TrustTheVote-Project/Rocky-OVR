@@ -37,17 +37,21 @@ class RegistrantsController < RegistrationStep
     find_partner
     options = {}
     options[:partner] = @partner.to_param if params[:partner]
-    options[:locale] = params[:locale] if params[:locale]
-    options[:source] = params[:source] if params[:source]
-    options[:tracking] = params[:tracking] if params[:tracking]
-    options[:short_form] = params[:short_form] if params[:short_form]
-    options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
-    options[:home_zip_code] = params[:home_zip_code] if params[:home_zip_code]
-    options[:state_abbrev] = params[:state_abbrev] if params[:state_abbrev]
-    options[:state] = params[:state] if params[:state]
-    options[:first_name] = params[:first_name] if params[:first_name]
-    options[:last_name] = params[:last_name] if params[:last_name]
-    options[:email_address] = params[:email_address] if params[:email_address]
+    
+    request.query_parameters.keys.each do |key|
+      options[key] = params[key] unless key.to_s === "partner"
+    end
+    # options[:locale] = params[:locale] if params[:locale]
+    # options[:source] = params[:source] if params[:source]
+    # options[:tracking] = params[:tracking] if params[:tracking]
+    # options[:short_form] = params[:short_form] if params[:short_form]
+    # options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
+    # options[:home_zip_code] = params[:home_zip_code] if params[:home_zip_code]
+    # options[:state_abbrev] = params[:state_abbrev] if params[:state_abbrev]
+    # options[:state] = params[:state] if params[:state]
+    # options[:first_name] = params[:first_name] if params[:first_name]
+    # options[:last_name] = params[:last_name] if params[:last_name]
+    # options[:email_address] = params[:email_address] if params[:email_address]
     options.merge!(:protocol => "https") if RockyConf.use_https
     redirect_to new_registrant_url(options)
   end
@@ -109,7 +113,8 @@ class RegistrantsController < RegistrationStep
                                     :tracking_source => @source,
                                     :tracking_id => @tracking,
                                     :short_form => @short_form,
-                                    :collect_email_address => @collect_email_address))
+                                    :collect_email_address => @collect_email_address,
+                                    :query_parameters => @query_parameters))
     @use_mobile_ui = determine_mobile_ui(@registrant)
     @registrant.shift_id = @shift_id if @shift_id
     @registrant.shift_id = @canvassing_shift.shift_external_id if @canvassing_shift

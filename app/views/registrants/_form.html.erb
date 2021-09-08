@@ -5,6 +5,12 @@
 <%= hidden_field_tag "short_form", @short_form %>
 <%= hidden_field_tag "collectemailaddress", @collect_email_address %>
 <%= hidden_field_tag "shift_id", @shift_id %>
+<%- (@query_parameters || {}).keys.each do |qpk| %>
+  <%= hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk] %>
+<%- end %>
+<%- (@additional_registrant_params || {}).keys.each do |rpk| %>
+  <%= hidden_field_tag "registrant[#{rpk}]", @additional_registrant_params[rpk] %>
+<%- end %>
 <%= form.hidden_field :under_18_ok, :value => 0 %>
 
 <% content_for :head do %>
