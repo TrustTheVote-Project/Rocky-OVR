@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_08_133844) do
+ActiveRecord::Schema.define(version: 2021_08_17_191958) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -477,6 +477,15 @@ ActiveRecord::Schema.define(version: 2021_06_08_133844) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_transaction_id", "geo_state_id"], name: "registrant_statues_state_id_index"
+  end
+
+  create_table "registrant_tracking_params", force: :cascade do |t|
+    t.integer "registrant_id"
+    t.string "name"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registrant_id"], name: "index_registrant_tracking_params_on_registrant_id"
   end
 
   create_table "registrants", force: :cascade do |t|
