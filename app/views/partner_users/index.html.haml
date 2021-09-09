@@ -10,10 +10,13 @@
       - unless user === current_user
         = link_to "remove", partner_partner_user_path(@partner, user), method: :delete
 
-
+%br
+%br
 %h2 Add user by email:
 = form_tag partner_partner_users_path do
-  = label_tag "Email"
-  = text_field_tag "email"
+  %ul.stacked
+    %li.width_a
+      %h3= label_tag "Email Address"
+      %div= text_field_tag "email"
 
   = partner_rollover_button("Add", "add")

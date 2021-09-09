@@ -56,7 +56,9 @@ class User < ApplicationRecord
       user.deliver_password_reset_instructions!
     end
     
-    user.partners << partner
+    unless user.partners.include?(partner)
+      user.partners << partner
+    end
     user.save
     begin
       user.send_invite(partner)
