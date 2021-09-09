@@ -48,6 +48,27 @@ class User < ApplicationRecord
     Partner::PROTECTED_ATTRIBUTES
   end
 
+  def self.add_to_partner!(email, partner)
+    user = User.find_by_email(email)
+    if !user
+      user = User.create({email: email})
+      user.password = user.password_confirmation = 'aBc123!@' + SecureRandom.hex(10) + 'a'
+      user.deliver_password_reset_instructions!
+    end
+    
+    user.partners << partner
+    user.save
+    begin
+      user.send_invite(partner)
+    rescue 
+    end
+    return user
+  end
+
+  def send_invite(partner)
+    AdminMailer.invite_user(self, partner).deliver_now    
+  end
+
   def email_with_label
     "RTV Partner Platform #{env_label}(#{email})"
   end

@@ -1,0 +1,19 @@
+%h1 
+  Users Enabled for
+  = @partner.organization
+
+%ul
+  - @users.each do |user|
+    %li
+      = user.name
+      = "<#{user.email}>"
+      - unless user === current_user
+        = link_to "remove", partner_partner_user_path(@partner, user), method: :delete
+
+
+%h2 Add user by email:
+= form_tag partner_partner_users_path do
+  = label_tag "Email"
+  = text_field_tag "email"
+
+  = partner_rollover_button("Add", "add")

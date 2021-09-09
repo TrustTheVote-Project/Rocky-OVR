@@ -96,10 +96,11 @@ Rails.application.routes.draw do
       post "grommet_shift_report"
       post "abr_report"
       post "lookup_report"
-      get "reports"
+      get "reports"      
       get "download_csv"
       get "embed_codes"
     end
+    resources "partner_users", only: [:index, :create, :destroy]
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]
     resource "logo",          :only => [:show, :update, :destroy]

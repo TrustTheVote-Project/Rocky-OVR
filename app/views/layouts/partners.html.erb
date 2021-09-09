@@ -33,13 +33,29 @@
             <%= link_to "Dashboard", partner_path(@partner), :class => @nav_class[:dashboard] %> |
             <%= link_to "Reports", statistics_partner_path(@partner), :class => @nav_class[:statistics] %> |
             <%= link_to "Customize", partner_logo_path(@partner), :class => @nav_class[:customize] %> |
-            <%= link_to "Embed Codes", embed_codes_partner_path(@partner), :class => @nav_class[:embed] %>
+            <%= link_to "Embed Codes", embed_codes_partner_path(@partner), :class => @nav_class[:embed] %> |
+            <%= link_to "Users", partner_partner_users_path(@partner), :class => @nav_class[:users] %>
             <%= "|".html_safe + link_to("Wiki", RockyConf.partner_wiki_url, target: "_blank") if RockyConf.partner_wiki_url.present? %>
           </p>
           <p class='partner-name'>
             <%= @partner.organization %>
             <%= link_to "(edit #{@partner.organization})", edit_partner_path(@partner) %>
+            <%- if current_user && current_user.partners.length > 1 %>
+            <% if current_user.partners.length > 1 %>
+              <%= link_to "Partners dashboard", partners_path %>
+            <%- end %>
+        <%- end %>
           </p>
+        <%- else %>
+          <%- if current_user && current_user.partners.length == 1 %>
+            <p class='partner-name'>
+              <%= link_to "#{current_user.partners.first.organization} dashboard", partner_path(current_user.partners.first) %>
+            <p>
+          <%- elsif current_user.partners.length > 1 %>
+            <p class='partner-name'>
+              <%= link_to "Partners dashboard", partners_path %>
+            <p>
+          <%- end %>
         <%- end %>
     <% else %>
       <div id="header" class="not_logged_in">
