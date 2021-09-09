@@ -9,7 +9,8 @@ class User < ApplicationRecord
   end
   
   validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
-  
+  validates :email, presence: true
+
   validates :password,
     confirmation: { if: :require_password? },
     format: {
