@@ -5,7 +5,7 @@ api_host_name: https://staging.rocky.rockthevote.com
 ui_url_host: "staging.rocky.rockthevote.com"
 
 admin:
-  branding_to: "david@rockthevote.com, melissa@rockthevote.com, alex.mekelburg@osetfoundation.org"
+  branding_to: "david@rockthevote.com, melissa@rockthevote.com, lauren@rockthevote.com, alex.mekelburg@osetfoundation.org"
 
 hours_before_first_reminder: 0.0333
 hours_between_first_and_second_reminder: 0.0333
