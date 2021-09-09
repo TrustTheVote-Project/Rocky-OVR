@@ -249,6 +249,34 @@ class RegistrationStep < ApplicationController
       end
     end
 
+    remaining_query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
+      "source",
+      "tracking",
+      "short_form",
+      "collectemailaddress",
+      "email_address",
+      #"first_name",
+      #"last_name",
+      "state_abbrev",
+      "state",
+      "home_zip_code",
+      "locale",
+      "pdf_assistance",
+      "skip_advance",
+      "partner",
+      "registrant_finish_iframe_url",
+    ] ))) || {}
+    
+    @query_parameters ={}
+    @additional_registrant_params = {}
+    
+    remaining_query_parameters.each do |key,value|
+      if Registrant.permitted_attributes.collect(&:to_s).include?(key.to_s)
+        @additional_registrant_params[key] = value
+      else
+        @query_parameters[key] = value
+      end
+    end
 
     if !@state_abbrev.blank?
       @short_form = true
