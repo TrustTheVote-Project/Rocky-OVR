@@ -5,14 +5,21 @@
 ### Linux Workstation Setup
 
     sudo apt-get install git curl default-libmysqlclient-dev default-jdk
+    export JAVA_HOME=/usr/lib/jvm/default-java
+    
     git clone git@github.com:trustthevote/Rocky-OVR.git rocky
     curl -L https://get.rvm.io | bash -s stable
     source ~/.bash_profile
     rvm install $(cat .ruby-version)
+    
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+    nvm install --lts
+    nvm use --lts
+
     cd rocky
-    export JAVA_HOME=/usr/lib/jvm/default-java
     gem install bundler
     bundle install
+    
     vim .env # add variable settings as needed (see below)
 
 ### App Deployment
