@@ -2,14 +2,15 @@
 
 ## 0. Quick Summary
 
-### Workstation Setup
+### Linux Workstation Setup
 
-    sudo apt-get install curl libxml2-dev libxslt-dev libqt4-dev libmysqlclient-dev
-    git clone git@github.com:trustthevote/Rocky.git
+    sudo apt-get install git curl default-libmysqlclient-dev default-jdk
+    git clone git@github.com:trustthevote/Rocky-OVR.git rocky
     curl -L https://get.rvm.io | bash -s stable
     source ~/.bash_profile
-    rvm install ruby-1.9.3-p125
-    cd Rocky
+    rvm install $(cat .ruby-version)
+    cd rocky
+    export JAVA_HOME=/usr/lib/jvm/default-java
     gem install bundler
     bundle install
     vim .env # add variable settings as needed (see below)
