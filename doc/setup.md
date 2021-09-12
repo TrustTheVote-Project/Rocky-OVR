@@ -74,9 +74,7 @@ versions, run:
   
 If the database hasn't been created yet, set that up by running
 
-    $ bundle exec rake db:create
-    $ bundle exec rake db:migrate
-    $ bundle exec rake db:bootstrap
+    $ bundle exec rake db:create db:schema:load db:migrate db:bootstrap
 
 ## 2. Configure deploy scripts
 
