@@ -308,6 +308,7 @@ Rails.application.routes.draw do
       get :request_report, format: :csv
       patch :update_delay
     end
+    resources :users, except: [:show]
     resources :emails, except: [:new, :edit, :show ]
     resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]

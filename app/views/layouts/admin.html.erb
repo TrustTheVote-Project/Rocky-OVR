@@ -26,6 +26,7 @@
       <span><%= link_to "Log out", admin_logout_path %></span>
       <p>
         <%= link_to "Dashboard", admin_partners_path, class: @nav_class[:dashboard] %>|
+        <%= link_to "Users", admin_users_path, class: @nav_class[:users] %>|
         <%= link_to "Grommet Queue", admin_grommet_queue_path, class: @nav_class[:grommet_queue] %>|
         <%= link_to "Whitelabel requests (#{branding_open_requests_count})", requests_admin_whitelabel_path, class: @nav_class[:whitelabel] %>|
         <%= link_to "PDF Download Stats", downloads_admin_stats_path, class: @nav_class[:statistics] %>|

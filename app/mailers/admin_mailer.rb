@@ -30,6 +30,7 @@ class AdminMailer < ActionMailer::Base
     @partner = partner
     mail(
       to: user.email,
+      from: RockyConf.admin.branding_from,      
       subject: "You've been added to #{@partner.organization} on Rock The Vote"
     )
   end

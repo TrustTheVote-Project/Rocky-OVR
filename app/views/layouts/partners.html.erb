@@ -24,7 +24,7 @@
       <div id="header">
         <span class='edit-profile-link'>
           <%= link_to edit_user_path do %>
-            Edit User Profile for<br/> <%= current_user.email %>
+            Edit User Profile
           <%- end %>
         </span>
         <span><%= link_to "Log out", logout_path %></span>
@@ -39,7 +39,7 @@
           </p>
           <p class='partner-name'>
             <%= @partner.organization %>
-            <%= link_to "(edit #{@partner.organization})", edit_partner_path(@partner) %>
+            <%= link_to "(edit organization)", edit_partner_path(@partner) %>
             <%- if current_user && current_user.partners.length > 1 %>
             <% if current_user.partners.length > 1 %>
               <%= link_to "Partners dashboard", partners_path %>
