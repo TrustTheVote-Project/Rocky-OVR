@@ -37,21 +37,21 @@ class Partner < ActiveRecord::Base
   
   validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   
-  validates :password,
-    confirmation: { if: :require_password? },
-    format: {
-      with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, 
-      allow_blank: true
-    },
-    length: {
-      minimum: 10,
-      if: :require_password?
-    }
-  validates :password_confirmation,
-    length: {
-      minimum: 10,
-      if: :require_password?
-    }
+  # validates :password,
+  #   confirmation: { if: :require_password? },
+  #   format: {
+  #     with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, 
+  #     allow_blank: true
+  #   },
+  #   length: {
+  #     minimum: 10,
+  #     if: :require_password?
+  #   }
+  # validates :password_confirmation,
+  #   length: {
+  #     minimum: 10,
+  #     if: :require_password?
+  #   }
 
 
 
