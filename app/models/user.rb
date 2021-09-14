@@ -53,7 +53,7 @@ class User < ApplicationRecord
     if !user
       user = User.create({email: email})
       user.password = user.password_confirmation = 'aBc123!@' + SecureRandom.hex(10) + 'a'
-      user.deliver_password_reset_instructions!
+      #user.deliver_password_reset_instructions!
     end
     
     unless user.partners.include?(partner)

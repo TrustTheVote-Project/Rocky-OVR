@@ -338,8 +338,9 @@ Rails.application.routes.draw do
     resources :partners do
       member do
         get :regen_api_key
-        get :impersonate
+        post :add_user
         post :publish
+        delete :remove_user
       end
       collection do 
         post :upload_registrant_statuses

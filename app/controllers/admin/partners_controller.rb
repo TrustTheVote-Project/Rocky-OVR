@@ -49,10 +49,30 @@ class Admin::PartnersController < Admin::BaseController
     render action: :index
   end
   
-  def impersonate
+  def add_user
     @partner = Partner.find(params[:id])
-    PartnerSession.create!(@partner)
-    redirect_to partner_path(@partner)
+    @user = User.add_to_partner!(params[:email], @partner)
+    if @user
+      flash[:success] = "Added #{@user.email}"
+    else
+      flash[:warning] = "Error adding #{params[:email]} to this partner"
+    end
+    redirect_to admin_partner_path(@partner)
+  end
+
+  def remove_user
+    @partner = Partner.find(params[:id])    
+    @user = User.find_by_id(params[:user_id])
+    if (@partner && @user)
+      @partner_user = PartnerUser.where(partner: @partner, user: @user).first
+      if @partner_user && @partner_user.delete
+        flash[:success] = "Removed #{@user.email} from this partner"
+        redirect_back_or_default admin_partner_path(@partner) 
+        return
+      end
+    end
+    flash[:warning] = "Error removing #{@user&.email} from this partner"
+    redirect_back_or_default admin_partner_path(@partner) 
   end
   
 

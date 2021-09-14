@@ -1,9 +1,4 @@
 %h1 Edit user profile
 
 .profile
-  = form_for @user, url: admin_user_path do |f|
-    %ul.stacked
-      = field_li f, :name, {skip_tooltip: true, li_options: {class: "width_a"}}
-      = field_li f, :email, {skip_tooltip: true, li_options: {class: "width_a"}}
-      = field_li f, :phone, {skip_tooltip: true, li_options: {class: "width_a"}}
-    = partner_rollover_button("update", "update")
+  = render partial: 'form', locals: { user: @user }

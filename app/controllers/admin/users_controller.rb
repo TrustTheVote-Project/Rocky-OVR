@@ -26,16 +26,27 @@ class Admin::UsersController < Admin::BaseController
   def index
     if params[:email] 
       if user = Partner.find_by_email(params[:email])
-        redirect_to admin_user_path(user.id) and return
+        redirect_to edit_admin_user_path(user.id) and return
       else
         flash[:warning] = "User #{params[:email]} not found"
       end
     end
     @users = User.paginate(:page => params[:page], :per_page => 1000)
   end
-  
+
   def edit
     @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.attributes = params.require(:user).permit(:name, :email, :phone)
+    if @user.save
+      flash[:success] = "Successfully updated user profile!"      
+      redirect_back_or_default admin_users_path
+    else
+      render action: :edit
+    end
   end
 
   def impersonate
