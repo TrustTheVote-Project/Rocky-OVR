@@ -49,6 +49,28 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def deactivate
+    @user = User.find(params[:id])
+    @user.active = false
+    if @user.save(validate: false)
+      flash[:success] = "Deactivated #{@user.email}"
+    else
+      flash[:warning] = "Could not deactivate #{@user.email}"
+    end
+    redirect_back_or_default admin_users_path
+  end
+
+  def reactivate
+    @user = User.find(params[:id])
+    @user.active = true
+    if @user.save(validate: false)
+      flash[:success] = "Reactivated #{@user.email}"
+    else
+      flash[:warning] = "Could not reactivate #{@user.email}"
+    end
+    redirect_back_or_default admin_users_path
+  end
+
   def impersonate
     @user = User.find(params[:id])
     UserSession.create!(@user)

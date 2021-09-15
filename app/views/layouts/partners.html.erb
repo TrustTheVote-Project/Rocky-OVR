@@ -22,12 +22,18 @@
   <div id="container">
     <% if current_user %>
       <div id="header">
-        <span class='edit-profile-link'>
+        <span>
+          <%= link_to "Log out", logout_path %>
+          <br/><br/>
           <%= link_to edit_user_path do %>
-            Edit User Profile
+            Edit user profile
           <%- end %>
+          <br/>
+          <%- if current_user.partners.length > 1 %>
+            <%= link_to "Change partner", partners_path %>
+          <%- end %>
+        <br/>
         </span>
-        <span><%= link_to "Log out", logout_path %></span>
         <%- if @partner %>
           <p>
             <%= link_to "Dashboard", partner_path(@partner), :class => @nav_class[:dashboard] %> |
@@ -39,23 +45,14 @@
           </p>
           <p class='partner-name'>
             <%= @partner.organization %>
-            <%= link_to "(edit organization)", edit_partner_path(@partner) %>
-            <%- if current_user && current_user.partners.length > 1 %>
-            <% if current_user.partners.length > 1 %>
-              <%= link_to "Partners dashboard", partners_path %>
-            <%- end %>
-        <%- end %>
+            <%= link_to "(edit partner)", edit_partner_path(@partner) %>
           </p>
         <%- else %>
           <%- if current_user && current_user.partners.length == 1 %>
             <p class='partner-name'>
               <%= link_to "#{current_user.partners.first.organization} dashboard", partner_path(current_user.partners.first) %>
             <p>
-          <%- elsif current_user.partners.length > 1 %>
-            <p class='partner-name'>
-              <%= link_to "Partners dashboard", partners_path %>
-            <p>
-          <%- end %>
+          <%- end %> 
         <%- end %>
     <% else %>
       <div id="header" class="not_logged_in">

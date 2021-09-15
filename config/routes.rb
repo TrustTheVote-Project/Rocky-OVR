@@ -310,7 +310,9 @@ Rails.application.routes.draw do
     end
     resources :users, except: [:show] do
       member do
-        get :impersonate        
+        get :impersonate
+        get :deactivate
+        get :reactivate
       end
     end
     resources :emails, except: [:new, :edit, :show ]

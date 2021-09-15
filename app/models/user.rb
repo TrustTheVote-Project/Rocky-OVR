@@ -39,6 +39,21 @@ class User < ApplicationRecord
   rescue
   end
 
+  def self.deactivate_stale_users!
+    date = 12.hours.ago #90.days.ago
+    users = User.where("(current_login_at < ? OR current_login_at IS NULL) AND created_at < ?", date, date)
+    users.each do |u|
+      u.active = false
+      u.save(validate: false)
+    end
+    
+    if users.any?
+      AdminMailer.deactivate_users(users).deliver_now
+    end
+    
+  end
+
+
   def self.permitted_attributes
     attrs = self.column_names - self.protected_attributes
     return [attrs, :password, :password_confirmation, :state_abbrev].flatten

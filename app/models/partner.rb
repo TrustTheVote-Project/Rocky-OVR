@@ -30,12 +30,13 @@ class Partner < ActiveRecord::Base
   has_many :users, through: :partner_users
 
 
-  # acts_as_authentic do |c|
-  #   c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
-  #   c.crypto_provider = Authlogic::CryptoProviders::SCrypt
-  # end
+  acts_as_authentic do |c|
+    c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
+    c.crypto_provider = Authlogic::CryptoProviders::SCrypt
+  end
   
   validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
+  validates :email, presence: true
   
   # validates :password,
   #   confirmation: { if: :require_password? },

@@ -13,8 +13,13 @@
       <legend>Log In</legend>
       <span class="error" style="white-space: unset">
         <%- if form.object.errors.any?  %>
-          <p>Login/password combination is not valid. Contact an admin if you cannot log in.
-          <br/><br/>
+          <p>There was a problem logging in:</p>
+          <%- form.object.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+          <%- end %>
+          <br/>
+          <br?>
+          <p>
           If you had a previous partner account with this email address,
           use the "Forgot your password?" link to
           set a password for your new user account.
@@ -38,4 +43,9 @@
     </fieldset>
     <%= partner_rollover_button("login", "Log in") %>
   <% end %>
+    <p>
+    If you want to set up civic tech tools for a new partner organization, 
+    please email 
+    <%= link_to "ovrtool@rockthevote.org", "mailto:ovrtool@rockthevote.org" %>.
+    <p>
 </div>

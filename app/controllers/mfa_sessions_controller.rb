@@ -14,7 +14,7 @@ class MfaSessionsController < PartnerBase
       UserMfaSession.create(user)
       redirect_back_or_default partners_path
     else
-      flash[:warning] = "The code you've entered is not correct"
+      flash.now[:warning] = "The code you've entered is not correct"
       render :new
     end
   end

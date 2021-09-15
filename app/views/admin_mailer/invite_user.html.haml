@@ -4,9 +4,11 @@
   organization on Rock The Vote. 
 
 %p
-  If you do not have an account yet, please visit the
+  If you do not have an account with another organization, please visit the
   = link_to "log in page (#{login_url})", login_url
   and click "Forgot your password?" to set up your password.
 
 %p
-  If you already have an account, you will have access immediately.
+  If you already have an account with Rock the Vote, you will have access to
+  = @partner.organization 
+  immediately.

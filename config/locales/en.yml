@@ -66,6 +66,8 @@ en:
         canvasser_email: Email
         shift_location: Location
       partner:
+        name: "Contact Name"
+        organization: "Partner Organization Name"
         from_email: Edit "from" email address to send autoresponders from your organization,
           rather than Rock the Vote.
         url: URL

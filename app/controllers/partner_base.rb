@@ -85,7 +85,7 @@ class PartnerBase < ApplicationController
 
   def force_logout
     UserMfaSession::destroy    
-    current_user_session.destroy if current_user
+    current_user_session.destroy if current_user_session
     remove_instance_variable :@current_user_session if defined?(@current_user_session)
     remove_instance_variable :@current_user if defined?(@current_user)
     reset_session

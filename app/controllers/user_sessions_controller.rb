@@ -53,7 +53,7 @@ class UserSessionsController < PartnerBase
 
   def destroy
     UserMfaSession::destroy
-    current_user_session.destroy
+    current_user_session.destroy if current_user_session
     flash[:success] = "Logged out"
     redirect_back_or_default login_url
   end

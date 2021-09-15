@@ -1,4 +1,15 @@
-%p Select a partner
+%h1 Partners Dashboard
+
+%p
+  Welcome to the Partners Dashboard. If you have access to multiple Partners, they will appear here. 
+  Click the link to access the Partner Portal where you can customize your voter registration tool, 
+  track progress, and grab a unique embed code to place the tool on your website.
+%p
+  To return to the Partners Dashboard and access another Partner, 
+  Click "Change partner" in the upper right corner.
+
+%h2 Select a partner
+
 %ul
   - @partners.each do |partner|
     %li= link_to partner.organization, partner_path(partner)

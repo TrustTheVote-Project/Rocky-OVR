@@ -1,0 +1,20 @@
+%p
+  The following users have been deactivated
+
+-# partner id, email, organization name, phone, first/last name, date of deactivation
+
+
+%table
+  %tr
+    %th ID
+    %th Email
+    %th User Name
+    %th Phone
+    
+  - @users.each do |u|
+    %tr
+      %td= u.id
+      %td= u.email
+      %td= u.phone
+      %td= u.name
+    
