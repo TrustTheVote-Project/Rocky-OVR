@@ -1,4 +1,4 @@
-%h1 Partners Dashboard
+%h1{role: "heading", "aria-level"=>1} Partners Dashboard
 
 %p
   Welcome to the Partners Dashboard. If you have access to multiple Partners, they will appear here. 
@@ -8,7 +8,7 @@
   To return to the Partners Dashboard and access another Partner, 
   Click "Change partner" in the upper right corner.
 
-%h2 Select a partner
+%h2{role: "heading", "aria-level"=>2}  Select a partner
 
 %ul
   - @partners.each do |partner|

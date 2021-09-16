@@ -1,6 +1,15 @@
-%h1 
+%h1{role: "heading", "aria-level": 1}
   Users Enabled for
   = @partner.organization
+
+%p 
+  The following users have access to 
+  = "#{@partner.organization}."
+  You can add or remove users at any time.
+%p 
+  Removing a user will cause them to lose access to
+  = "#{@partner.organization}."
+  It will not deactivate their account with Rock the Vote. 
 
 %ul
   - @users.each do |user|
@@ -14,7 +23,7 @@
 
 %br
 %br
-%h2 Add user by email:
+%h2{role: "heading", "aria-level": 2} Add user by email:
 = form_tag partner_partner_users_path do
   %ul.stacked
     %li.width_a
