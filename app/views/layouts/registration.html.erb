@@ -52,6 +52,11 @@
   <%= yield :head %>
 </head>
 <body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+  <%- if @registrant %>
+    <script type="text/javascript">
+      window._registrantUID = "<%= j @registrant.uid %>";
+    </script>
+  <%- end %>
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
     <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
