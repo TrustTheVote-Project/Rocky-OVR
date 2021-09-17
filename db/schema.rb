@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_191958) do
+ActiveRecord::Schema.define(version: 2021_09_16_185349) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -346,6 +346,15 @@ ActiveRecord::Schema.define(version: 2021_08_17_191958) do
     t.index ["request_hash"], name: "index_grommet_requests_on_request_hash"
   end
 
+  create_table "partner_users", force: :cascade do |t|
+    t.integer "partner_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["partner_id"], name: "index_partner_users_on_partner_id"
+    t.index ["user_id"], name: "index_partner_users_on_user_id"
+  end
+
   create_table "partners", force: :cascade do |t|
     t.string "username", limit: 255, null: false
     t.string "email", limit: 255, null: false
@@ -435,6 +444,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_191958) do
     t.boolean "pdf_ready"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "api_vendor_id"
+    t.text "api_vendor_response"
     t.index ["registrant_id"], name: "index_pdf_deliveries_on_registrant_id"
   end
 
@@ -971,6 +982,30 @@ ActiveRecord::Schema.define(version: 2021_08_17_191958) do
     t.index ["open_tracking_id"], name: "index_tracking_events_on_open_tracking_id"
     t.index ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
     t.index ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "crypted_password"
+    t.string "password_salt"
+    t.string "persistence_token"
+    t.string "perishable_token"
+    t.integer "login_count", default: 0, null: false
+    t.integer "failed_login_count", default: 0, null: false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string "current_login_ip"
+    t.string "last_login_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "google_secret"
+    t.boolean "active", default: true, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["perishable_token"], name: "index_users_on_perishable_token", unique: true
+    t.index ["persistence_token"], name: "index_users_on_persistence_token", unique: true
   end
 
   create_table "voter_signatures", force: :cascade do |t|

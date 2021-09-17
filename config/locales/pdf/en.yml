@@ -44,9 +44,15 @@ en:
             election official. Alternatively, make a mailer. Fold the form and address
             sheet in half. Make sure the address is visible on the outside. Tape or
             staple the folded form at the bottom to create the mailer.
+          step2_for_printer: Hand your form to your local election official. 
+            Alternatively, cut or tear off the portion of the page with your 
+            election official's address below the dotted line on the page with 
+            your address. Place your form in the enclosed envelope. Make sure 
+            the address is visible on the outside.  
+
           step2mailer: HOW TO MAKE A MAILER
           step3: Stamp it. Place first class stamp on your envelope or folded mailer.
-          step3_for_printer: If making a mailer, your postage has been paid for you. No stamp is required.
+          step3_for_printer: Stamp it. Place first class stamp on the envelope.
           step4: Mail it. Put your voter registration form in the mail.
           step5: Vote. On Election Day, go to the polls and vote.
         submit_block:
