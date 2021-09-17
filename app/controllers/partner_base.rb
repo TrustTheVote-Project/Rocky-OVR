@@ -25,7 +25,7 @@
 class PartnerBase < ApplicationController
   layout "partners"
   
-  helper_method :current_user, :current_admin, :current_admin_session
+  helper_method :current_user
   before_action :require_user
   before_action :require_partner
   before_action :check_mfa
@@ -46,15 +46,6 @@ class PartnerBase < ApplicationController
     end
   end
 
-  def current_admin_session
-    return @current_admin_session if defined?(@current_admin_session)
-    @current_admin_session = AdminSession.find
-  end
-
-  def current_admin
-    return @current_admin if defined?(@current_admin)
-    @current_admin = current_admin_session && current_admin_session.record
-  end
 
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
@@ -63,7 +54,7 @@ class PartnerBase < ApplicationController
 
   def require_partner
     @partner = Partner.find( params[:partner_id] || params[:id])
-    if current_admin || current_user.partners.include?(@partner)
+    if current_user.partners.include?(@partner)
       return true
     else
       flash[:warning] = "You do not have access to this partner"
@@ -73,7 +64,7 @@ class PartnerBase < ApplicationController
   end
 
   def require_user
-    unless current_user || current_admin
+    unless current_user
       store_location
       force_logout
       flash[:warning] = "You must be logged in to access this page"

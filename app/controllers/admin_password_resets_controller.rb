@@ -22,8 +22,12 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AdminPasswordResetsController < PartnerBase
+class AdminPasswordResetsController < Admin::BaseController
   before_action :load_admin_using_perishable_token, :only => [:edit, :update]
+
+  skip_before_action :authenticate
+  skip_before_action :check_mfa
+  skip_before_action :init_nav_class
 
   def new
   end
