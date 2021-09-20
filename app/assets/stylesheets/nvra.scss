@@ -70,7 +70,7 @@ span.smaller_prompt {
   }
 	.perforation {
 		position: absolute;
-		top: 1100px * 2/3;
+		top: 1100px * 2/3  + 50px;
 		left: 0;
 		right: 0;
 		border-top: 1px dashed #000;
@@ -78,8 +78,8 @@ span.smaller_prompt {
 	}
 	.election_official_address {
 		position: absolute;
-		left: 400px;
-		top: 950px;
+		left: 410px;
+		top: 100px;
 		font-size: $fs * 1.3;
     line-height: 1.3 * $fs;
 	}
