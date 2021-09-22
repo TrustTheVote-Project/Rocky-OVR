@@ -240,7 +240,8 @@ class Registrant < ActiveRecord::Base
     "VR Application Status Details",
     "VR Application Status Imported DateTime",
     "Submitted Via State API",
-    "Submitted Signature to State API"
+    "Submitted Signature to State API",
+    "Requested Assistance",
   ]
   
   CSV_HEADER_EXTENDED = [
@@ -1819,6 +1820,7 @@ class Registrant < ActiveRecord::Base
       
       yes_no(submitted_via_state_api?),
       api_submitted_with_signature,
+      yes_no_nothing(requested_pdf_assistance?),
       
     ]
   end
@@ -2062,6 +2064,13 @@ class Registrant < ActiveRecord::Base
     end
   end
 
+  def requested_pdf_assistance?
+    if pdf_delivery && !pdf_is_esigned?
+      return true
+    end
+
+    nil
+  end
 
   private ###
 
