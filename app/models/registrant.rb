@@ -1470,7 +1470,7 @@ class Registrant < ActiveRecord::Base
   
   
   def pdf_is_esigned?
-    !skip_mail_with_esig? && !voter_signature_image.blank?
+    !skip_mail_with_esig? && voter_signature.present? && voter_signature_image.present?
   end
   
   VOTER_SIGNATURE_ATTRIBUTES = [

@@ -386,6 +386,7 @@ class Report < ActiveRecord::Base
     else
       @registrants_report_selector ||= partner.registrants.where(registrants_report_conditions)
     end
+    @registrants_report_selector.includes(:pdf_delivery, :voter_signature)
   end
   
   def registrants_report_extended_selector
