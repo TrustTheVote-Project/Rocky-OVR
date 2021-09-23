@@ -60,7 +60,7 @@ en:
         submit_block:
           title: ! 'SUBMIT YOUR COMPLETED, SIGNED FORM TO:'
         deadline_block:
-          title: ! 'REGISTRATION DEADLINE:'
+          title: ! 'MAIL-IN REGISTRATION DEADLINE:'
         other_block: You must read %{instructions_url} for complete general and state-specific
           instructions, including eligibility requirements.
         ep_hotline: ! '<strong>QUESTIONS?</strong><br/>
