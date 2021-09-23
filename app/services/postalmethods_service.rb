@@ -11,13 +11,19 @@ class PostalmethodsService
     send_zipcode= ''
     if registrant.has_mailing_address
       send_address1 = registrant.mailing_address
-      send_address2 = registrant.mailing_unit
+      if !registrant.mailing_unit.blank?
+        send_address1 += ", #{registrant.mailing_unit}"
+      end
+      #send_address2 = registrant.mailing_unit
       send_city = registrant.mailing_city
       send_state = registrant.mailing_state
       send_zipcode = registrant.mailing_zip_code
     else
       send_address1 = registrant.home_address
-      send_address2 = registrant.home_unit
+      if !registrant.home_unit.blank?
+        send_address1 += ", #{registrant.home_unit}"
+      end
+      #send_address2 = registrant.home_unit
       send_city = registrant.home_city
       send_state = registrant.home_state_abbrev
       send_zipcode = registrant.home_zip_code
@@ -34,7 +40,7 @@ class PostalmethodsService
         description: "#{registrant.full_name}, UID: #{registrant.uid}, Partner: #{registrant.partner_id}",
         #send_to: registrant.full_name.strip,
         send_address1: send_address1.strip,
-        send_address2: send_address2.strip,
+        send_address2: "", #send_address2.strip,
         send_city: send_city.strip,
         send_state: send_state.strip,
         send_zipcode: send_zipcode.strip,

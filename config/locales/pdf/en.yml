@@ -36,19 +36,21 @@ en:
           and <b>mail</b> your completed form!
         instructions_block:
           title: Instructions
-          subtitle: ! 'Take these easy steps to complete your voter registration:'
+          subtitle: ! 'Take these easy steps to complete your voter registration. YOU ARE NOT REGISTERED UNTIL YOU SIGN AND SUBMIT YOUR COMPLETED FORM.'
           step1: Sign the form. You must sign the voter registration form before you
             mail it.
-          step1_for_printer: You are not registered until you sign and mail your completed form. You must sign the voter registration form before you mail it.
+          step1_for_printer: Sign it. You must sign the voter registration form before 
+            you mail or hand it in.
           step2: Place your form in an envelope and hand address it to your local
             election official. Alternatively, make a mailer. Fold the form and address
             sheet in half. Make sure the address is visible on the outside. Tape or
             staple the folded form at the bottom to create the mailer.
-          step2_for_printer: Hand your form to your local election official. 
-            Alternatively, cut or tear off the portion of the page with your 
-            election official's address below the dotted line on the page with 
-            your address. Place your form in the enclosed envelope. Make sure 
-            the address is visible on the outside.  
+          step2_for_printer: Hand your form to your local election official or mail 
+            it in. If you received your registration form by mail, cut off the 
+            portion of the page with your election official's address. Place your 
+            form in the enclosed envelope. Make sure the address is visible on the 
+            outside. If you printed the form, copy the address onto an envelope.
+
 
           step2mailer: HOW TO MAKE A MAILER
           step3: Stamp it. Place first class stamp on your envelope or folded mailer.
