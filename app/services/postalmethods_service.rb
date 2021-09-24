@@ -12,7 +12,7 @@ class PostalmethodsService
     if registrant.has_mailing_address
       send_address1 = registrant.mailing_address
       if !registrant.mailing_unit.blank?
-        send_address1 += ", #{registrant.mailing_unit}"
+        send_address1 += " #{registrant.mailing_unit}"
       end
       #send_address2 = registrant.mailing_unit
       send_city = registrant.mailing_city
@@ -21,7 +21,7 @@ class PostalmethodsService
     else
       send_address1 = registrant.home_address
       if !registrant.home_unit.blank?
-        send_address1 += ", #{registrant.home_unit}"
+        send_address1 += " #{registrant.home_unit}"
       end
       #send_address2 = registrant.home_unit
       send_city = registrant.home_city
