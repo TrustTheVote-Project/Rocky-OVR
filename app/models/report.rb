@@ -386,11 +386,11 @@ class Report < ActiveRecord::Base
     else
       @registrants_report_selector ||= partner.registrants.where(registrants_report_conditions)
     end
-    @registrants_report_selector.includes(:pdf_delivery, :voter_signature)
+    @registrants_report_selector.includes(:voter_signature)
   end
   
   def registrants_report_extended_selector
-    @registrants_report_extended_selector ||= registrants_report_selector.includes({:canvassing_shift_registrant => :canvassing_shift})    
+    @registrants_report_extended_selector ||= registrants_report_selector.includes(:pdf_delivery, {:canvassing_shift_registrant => :canvassing_shift})    
   end
   
   

@@ -241,7 +241,6 @@ class Registrant < ActiveRecord::Base
     "VR Application Status Imported DateTime",
     "Submitted Via State API",
     "Submitted Signature to State API",
-    "Requested Assistance",
   ]
   
   CSV_HEADER_EXTENDED = [
@@ -269,7 +268,8 @@ class Registrant < ActiveRecord::Base
     "Over 18 Affirmation",
     "Preferred Language",
     "State Flow Status",
-    "State API Transaction ID"
+    "State API Transaction ID",
+    "Requested Assistance",
   ].flatten
   
   GROMMET_CSV_HEADER = [
@@ -1739,6 +1739,7 @@ class Registrant < ActiveRecord::Base
       grommet_preferred_language,
       state_flow_status,
       state_transaction_id,
+      yes_no_nothing(requested_pdf_assistance?),
     ].flatten(1)
   end
   
@@ -1820,7 +1821,6 @@ class Registrant < ActiveRecord::Base
       
       yes_no(submitted_via_state_api?),
       api_submitted_with_signature,
-      yes_no_nothing(requested_pdf_assistance?),
       
     ]
   end
