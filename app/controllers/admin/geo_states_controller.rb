@@ -69,8 +69,20 @@ class Admin::GeoStatesController < Admin::BaseController
       end
     end
     GeoState.all.each do |s|
+      updated = false
       if params[:pdf_assistance_enabled] && params[:pdf_assistance_enabled][s.abbreviation]
         s.pdf_assistance_enabled = params[:pdf_assistance_enabled][s.abbreviation] == "1"
+        updated = true
+      end
+      if params[:abr_deadline_passed] && params[:abr_deadline_passed][s.abbreviation]
+        s.abr_deadline_passed = params[:abr_deadline_passed][s.abbreviation] == "1"
+        updated = true
+      end
+      if params[:abr_splash_page] && params[:abr_splash_page][s.abbreviation]
+        s.abr_splash_page = params[:abr_splash_page][s.abbreviation] == "1"
+        updated = true
+      end
+      if updated
         catalist_updated_at = catalist_update_dates[s.abbreviation.downcase]
         s.catalist_updated_at = catalist_updated_at if catalist_updated_at
         s.save

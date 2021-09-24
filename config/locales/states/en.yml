@@ -320,8 +320,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote-By-Mail status, by using your state&#39;s <a target='_blank' href='https://voterstatus.sos.ca.gov/'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          header: Absentee Requests In California
-          instructions: '<p>Your state is automatically sending an absentee ballot
+          splash_header: Absentee Requests In California
+          splash_instructions: '<p>Your state is automatically sending an absentee ballot
             to all voters this year.  Your absentee ballot will be sent to the address
             listed on your voter registration.</p><p>If you have any questions, or
             need to update your address please go to: <a rel="noopener" target="blank"
@@ -350,8 +350,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Mail-in Ballots status, by using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          header: Absentee Requests In Colorado
-          instructions: '<p>In your state, every registered voter automatically receives
+          splash_header: Absentee Requests In Colorado
+          splash_instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot. Your mail ballot will be sent to the address listed on
             your voter registration.  If you have any questions, or need to update
             your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To
@@ -414,8 +414,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee (Mail-in Ballot) status, by using your state&#39;s <a target='_blank' href='https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot'>online tool</a>"
           finalpage_additional_instructions:  
-          header: Absentee Requests In DC
-          instructions: '<p>DC is automatically sending an absentee ballot to all
+          splash_header: Absentee Requests In DC
+          splash_instructions: '<p>DC is automatically sending an absentee ballot to all
             voters this year. Your absentee ballot will be sent to the address listed
             on your voter registration.</p><p>If you have any questions, or need to
             update your address please go to: <a rel="noopener" target="blank" href="https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot">https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot</a>
@@ -596,19 +596,22 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://ballotstatus.hawaii.gov/Default'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          header: Absentee Requests In Hawaii
-          instructions: '<p>In your state, every registered voter automatically receives
-            a mail ballot for each election. Your mail ballot will be sent to the
-            address listed on your voter registration.  If you need to update your
-            address for this election, please go to: <a rel="noopener" target="blank"
-            href="https://elections.hawaii.gov/applications/">https://elections.hawaii.gov/voters/applications/</a>.  You
-            can submit a One-Time Absentee Application to request your ballot be mailed
-            to a different address.  If you have moved and have a new permanent address,
-            you can fill out a voter registration application on the same page, to
-            update the address on your registration.  </p><p>Once you have your ballot,
-            again be sure to read the instructions carefully, fill out the ballot
-            and send it back in.  Vote-by-mail ballots that are mailed must be received
-            by 7:00pm on Election Day.</p>'
+          splash_header: "Hawaii automatically mails all registered voters a ballot. Make sure you're registered!!"
+          splash_instructions: |-
+            <p> All elections in Hawaii are conducted by mail. If you're registered to vote, you will receive a ballot in the mail.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to <a href="https://olvr.hawaii.gov/Default.aspx?redir=1">https://olvr.hawaii.gov/Default.aspx?redir=1</a></p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>To update your name or address, go to <a href="https://olvr.hawaii.gov/Default.aspx?redir=1">https://olvr.hawaii.gov/Default.aspx?redir=1</a></a>
+            <p>If you will be away during the election, you can request a <a href="https://elections.hawaii.gov/wp-content/uploads/2015/03/AB-Form-English-20210614E-Form-Fillabe.pdf">one-time absentee application (PDF)</a> to have a ballot mailed to you.</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Ballots must be received by the County Elections Division by the close of 
+            voting on Election day at 7:00 p.m. Voter Service Centers are open 10 days prior to 
+            the election offering accessible voting, in person voting and same day registration. 
+            For more information, view Hawaii's 
+            <a href="https://elections.hawaii.gov/voting/absentee-voting/">absentee voting information page</a>.
+
+
       ia:
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
@@ -879,8 +882,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          header: Absentee Requests In Kentucky
-          instructions: |-
+          splash_header: Absentee Requests In Kentucky
+          splash_instructions: |-
             <p>Unforatunately, Kentucky requires all absentee requests to be completed directly through the state.</p><p>In Kentucky, you are only allowed to request an absentee ballot if you are eligible to vote AND meet one of these criteria:</p>
             <ul>
             <li>Student who temporarily resides outside the county of their residence; </li>
@@ -1458,8 +1461,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx'>Directory</a>"
           finalpage_additional_instructions:  
-          header: Absentee Requests In Mississippi
-          instructions: |-
+          splash_header: Absentee Requests In Mississippi
+          splash_instructions: |-
             <p>Mississippi requires all absentee requests to be completed directly through the state. Please check with your Circuit or Municipal Clerk to determine if you are entitled to vote by an absentee ballot and to learn the procedures for doing so.     If you know you will vote by an absentee ballot, you may contact your Circuit or Municipal Clerk’s Office at any time within 45 days of the election.</p>
             <p>Mississippi lists the following as qualifying reasons to request and absentee ballot:</p>
             <ul>
@@ -1760,8 +1763,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://voter.svrs.nj.gov/auth/sign-in'>online tool</a>"
           finalpage_additional_instructions:  "If you haven't signed up before, you will need to sign up to use your state's look up tool.  You can do this on the same page."
-          header: Vote by Mail Requests In New Jersey
-          instructions: '<p>Your state is automatically sending a vote by mail ballot to all 
+          splash_header: Vote by Mail Requests In New Jersey
+          splash_instructions: '<p>Your state is automatically sending a vote by mail ballot to all 
             registered voters this year. Your vote by mail ballot will be sent to the address 
             listed on your voter registration. If you have any questions, or need to 
             update your address please go to: <a href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'  
@@ -1839,8 +1842,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://www.nvsos.gov/votersearch/'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          header: Absentee Requests In Nevada
-          instructions: '<p>Your state is automatically sending an absentee ballot to all 
+          splash_header: Absentee Requests In Nevada
+          splash_instructions: '<p>Your state is automatically sending an absentee ballot to all 
             registered voters this year. Your absentee ballot will be sent to the address 
             listed on your voter registration. If you have any questions, please reach out 
             to your local election official or call the Nevada Secretary of State''s 
@@ -2037,8 +2040,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          header: Absentee Requests In Oregon
-          instructions: '<p>In your state, every registered voter automatically receives
+          splash_header: Absentee Requests In Oregon
+          splash_instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot. Your mail ballot will be sent to the address listed on
             your voter registration.  If you have any questions, or need to check
             your address on file please go to <a rel="noopener" target="blank" href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS">Oregon''s
@@ -2458,8 +2461,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot'>online tool</a>"
           finalpage_additional_instructions: 
-          header: Absentee Requests In Utah
-          instructions: |-
+          splash_header: Absentee Requests In Utah
+          splash_instructions: |-
             <p>In your state, every active registered voter automatically receives a mail ballot. Your mail ballot will be sent to the address listed on your voter registration.  If you want to check on the status of your ballot, check if you are registered (and what address is listed on file), or have general questions about your absentee ballot go to  <a rel="noopener" target="blank" href="https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p> <p> NOTE: you cannot have your ballot sent to a different address than the one listed on your voter registration.  If you have a new permanent address, submit a new voter registration to update your address. </p>
             <p> Once you have your ballot, again be sure to read the instructions carefully, fill out the ballot and send it back in.  Vote-by-mail ballots must be received by 11:59am on Election Day, or postmarked one (1) day before Election Day if returned by mail. If you are dropping your absentee ballot off in person, it can be dropped off in a ballot drop box. The ballot must be deposited in the drop box before polls close on Election Day. Any voter who is in line at a ballot drop box with a sealed return envelope containing their ballot at or before 8 p.m. must be allowed to deposit the ballot in the ballot box. </p>
       va:
@@ -2646,8 +2649,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://mvp.vermont.gov/'>online tool</a>"
           finalpage_additional_instructions: "You will need to first look up your voter registration, then you can see your ballot status as well."
-          header: Absentee Requests In Vermont
-          instructions: '<p>Your state is automatically sending an absentee ballot
+          splash_header: Absentee Requests In Vermont
+          splash_instructions: '<p>Your state is automatically sending an absentee ballot
             to all voters this year, as long as you are registered more than 18 days
             before the election. Your absentee ballot will be sent to the address
             listed on your voter registration.</p><p>Once your ballot has arrived,
@@ -2666,8 +2669,8 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://voter.votewa.gov/WhereToVote.aspx#/login'>online tool</a>"
           finalpage_additional_instructions: "You will need to first look up your voter registration, then you can see your ballot status as well."
-          header: Vote by Mail Requests In Washington
-          instructions: '<p>In your state, every registered voter automatically receives
+          splash_header: Vote by Mail Requests In Washington
+          splash_instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot for each election.  Your mail ballot will be sent to the
             address listed on your voter registration.  If you have any questions
             or need to update your address please go to: <a rel="noopener" target="blank"

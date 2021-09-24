@@ -249,6 +249,13 @@ class AbrsController < ApplicationController
       @abr.dead_end!
       return potential_view
     else
+      if @abr.home_state
+        if @abr.home_state.abr_deadline_passed
+          return 'step_2_abr_deadline_passed_general' 
+        elsif @abr.home_state.abr_splash_page
+          return 'step_2_abr_splash_page_general'
+        end
+      end
       return 'step_2'
     end
   end
