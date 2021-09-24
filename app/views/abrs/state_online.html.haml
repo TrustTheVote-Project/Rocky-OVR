@@ -1,9 +1,9 @@
 
 = form_for(@abr) do |form|
   - if @abr.oabr_for_all?
-    %h2= t("states.custom.#{@abr.i18n_key}.state_online_abr.header", default: I18n.t('txt.abr.state_online_defaults.header', state: @abr.home_state_name))
+    %h2{"role"=>"heading", "aria-level"=>2}= t("states.custom.#{@abr.i18n_key}.state_online_abr.header", default: I18n.t('txt.abr.state_online_defaults.header', state: @abr.home_state_name))
   - else
-    %h2= t("states.custom.#{@abr.i18n_key}.state_online_abr.header_choice", default: I18n.t('txt.abr.state_online_defaults.header_choice', state: @abr.home_state_name))
+    %h2{"role"=>"heading", "aria-level"=>2}= t("states.custom.#{@abr.i18n_key}.state_online_abr.header_choice", default: I18n.t('txt.abr.state_online_defaults.header_choice', state: @abr.home_state_name))
   .intro-message
     %p= I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm'))
   - unless @abr.oabr_for_all?
@@ -35,7 +35,8 @@
         }, 1000);
       }
   - unless @abr.oabr_for_all?
-    .intro-message
+    .intro-message.requirements
+      = I18n.t("states.custom.#{@abr.i18n_key}.abr.skip_state_online_abr_intro", default: "").html_safe
       %p.reject
         = link_to I18n.t("states.custom.#{@abr.i18n_key}.abr.skip_state_online_abr", default: I18n.t('txt.abr.skip_state_online_abr')), step_3_abr_path(@abr)
         

@@ -23,10 +23,11 @@ en:
             of your current driver’s license, state ID, passport, birth certifiate,
             hunting and fishing license or current and valid photo ID with your application.</p>"
         state_online_abr:
-          requirements: "<p>To use the Online Absentee Ballot System, you must have
-            a valid Alaska driver's license or state ID card and the information you
-            enter when applying must match the information on your Division of Motor
-            Vehicles (DMV) record.</p>"
+          confirm: "" 
+          requirements: |-
+            <p>Every registered voter in Alaska can request an absentee ballot.</p>
+            <p>Check if you are registered by visiting <a href="https://myvoterinformation.alaska.gov/">the Alaska voter information site</a></p>
+            <p>If you are registered to vote and have a valid Alaska driver's license or state ID, you can request an absentee ballot online.</p>
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             the instructions carefully, fill out the ballot and send it back in. Your
             absentee ballot must be post marked by election day.</p><p>At any time
@@ -185,7 +186,7 @@ en:
           Drivers_License_Number: Driver's License Number
           Drivers_License_Number__format_pattern_message: That doesn't look like a valid %state% driver's license
             number, please verify before continuing.
-          Street_Address_1: Mailing address
+          Mailing_Address: Mailing address
           City_1: City
           State_1: State
           ZIP_1: Zip
@@ -897,6 +898,16 @@ en:
             <p>You can go here to request a ballot if you are eligible: <a target="_blank" rel="noopener" href="https://vrsws.sos.ky.gov/abrweb/">https://vrsws.sos.ky.gov/abrweb/</a></p>
       la:
         state_online_abr:
+          confirm: TBD There are requirements to request an absenteed ballot.
+          requirements: |-
+            <p>You can only request an absentee ballot in Louisiana if you meet ceratin requirements. 
+            There are different ways to request depending on which requirement you meet</p>
+            <p>Are you:</p>
+            <ul>
+            <li>Reason One</li>
+            <li>Reason Two</li>
+            </ul>
+          
           finish_instructions: <p>Once you have your ballot, be sure to read the instructions
             carefully, fill out the ballot and send it back in. Your ballot (unless
             you are Military, Overseas, or Hospitalized) must be received by your
@@ -917,6 +928,11 @@ en:
             4:30pm CST on the day before election day.</p><p>Not sure where your registrar
             of voters is? <a target="_blank" rel="noopener" href="https://voterportal.sos.la.gov/registrar">Check
             the Registrar of voters</a></p>
+          skip_state_online_abr_intro: |-
+            <p>Are you</p>
+            <ul>
+            <li>physically disabled?</li>
+            </ul>
           requirements: |-
             <p>To qualify to request a ballot in LA, you must meet one of the following criteria:</p>
             <ul>
@@ -2064,6 +2080,7 @@ en:
           Address_1: Mailing address
           City_Town_1: City/Town
           Zip code_2: Zip
+          Mailing_Address_Type: This address is my (e.g. vacation home, temporary residence, etc.)
           identification: PennDOT Identification
           identification__options:
             dln: I have a PA driver’s license or a PennDOT ID card
