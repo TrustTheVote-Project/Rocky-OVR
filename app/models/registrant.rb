@@ -1431,7 +1431,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def can_request_pdf_assistance?
-    home_state_enabled_for_pdf_assitance?
+    self.locale == "en" && home_state_enabled_for_pdf_assitance?
   end
   
   
