@@ -32,7 +32,7 @@ record_0:
   sos_phone: "(800) 274-VOTE"
   sos_url: http://www.alabamavotes.gov/
   sub_18: be_by_next_election
-  registration_deadline: postmarked_14_days
+  registration_deadline: alabama
   online_registration_url: https://www.alabamavotes.gov/olvr/default.aspx
 record_1:
   abbreviation: AK
@@ -143,7 +143,7 @@ record_8:
   sos_phone: "(202) 727-2525"
   sos_url: http://www.dcboee.org/
   sub_18: when_at_least_16
-  registration_deadline: postmarked_30_days
+  registration_deadline: district_of_columbia
   online_registration_url: https://www.vote4dc.com/ApplyInstructions/Register
 record_9:
   abbreviation: FL
@@ -159,6 +159,7 @@ record_9:
   sos_url: https://dos.myflorida.com/elections/
   sub_18: when_is_16
   id_length_min: '4'
+  registration_deadline: florida
   online_registration_url: https://registertovoteflorida.gov/eligibilityreactive
 record_10:
   abbreviation: GA
@@ -307,7 +308,7 @@ record_19:
   sos_phone: "(207) 624-7650"
   sos_url: https://www.maine.gov/sos/cec/elec/index.html
   sub_18: once_turned_17_but
-  registration_deadline: received_21_days
+  registration_deadline: maine
   id_length_min: '4'
 record_20:
   abbreviation: MD
@@ -339,7 +340,7 @@ record_21:
     Place - Room 1705<br>Boston, MA 02108
   sos_phone: "(800) 462-VOTE"
   sos_url: http://www.sec.state.ma.us/ele
-  registration_deadline: postmarked_20_days
+  registration_deadline: massachusetts
   id_length_min: '4'
   online_registration_url: https://www.sec.state.ma.us/OVR/Pages/MinRequirements.aspx?RMVId=True
   sub_18: once_turned_16
@@ -353,7 +354,7 @@ record_22:
     MI 48901-0726
   sos_phone: "(517) 373-2540"
   sos_url: http://www.michigan.gov/sos/0,1607,7-127-1633---,00.html
-  registration_deadline: postmarked_30_days
+  registration_deadline: michigan
   online_registration_url: https://mvic.sos.state.mi.us/RegisterVoter?Length=0
   online_registration_system_name: Michigan Voter Information Center
   id_length_min: '4'
@@ -368,7 +369,7 @@ record_23:
     Paul, MN 55155-1299
   sos_phone: "(651) 215-1440"
   sos_url: http://www.sos.state.mn.us/elections-voting/
-  registration_deadline: received_21_days
+  registration_deadline: minnesota
   id_length_min: '4'
 record_24:
   abbreviation: MS
@@ -380,7 +381,7 @@ record_24:
   sos_phone: "(800) 829-6786"
   sos_url: http://www.sos.ms.gov/elections-voting/pages/default.aspx
   sub_18: be_by_next_general_election_november
-  registration_deadline: postmarked_30_days
+  registration_deadline: mississippi
   id_length_min: '4'
 record_25:
   abbreviation: MO
@@ -406,7 +407,7 @@ record_26:
   sos_phone: "(406) 444-4732"
   sos_url: http://sos.mt.gov/elections/index.asp
   sub_18: turn_by_next_election_2
-  registration_deadline: postmarked_30_days
+  registration_deadline: montana
   id_length_min: '4'
 record_27:
   abbreviation: NE
@@ -463,7 +464,7 @@ record_30:
     NJ 08628-0304
   sos_phone: "(609) 292-3760"
   sos_url: http://www.nj.gov/state/elections/
-  registration_deadline: received_21_days
+  registration_deadline: new_jersey
   id_length_min: '4'
   online_registration_url: https://voter.svrs.nj.gov/register
 record_31:
@@ -475,7 +476,7 @@ record_31:
   sos_address: Bureau of Elections<br>325 Don Gaspar, Suite 300<br>Santa Fe, NM 87503
   sos_phone: "(505) 827-3600"
   sos_url: http://www.sos.state.nm.us/
-  registration_deadline: postmarked_28_days
+  registration_deadline: new_mexico
   online_registration_url: https://portal.sos.state.nm.us/OVR/(S(od4445h5uj2f5tyucvvhszdf))/WebPages/InstructionsStep1.aspx
   sub_18: turn_by_next_general_election_november
 record_32:
@@ -512,7 +513,7 @@ record_33:
   sos_address: State Board of Elections<br>P.O. Box 27255<br>Raleigh, NC 27611-7255
   sos_phone: "(919) 814-0700"
   sos_url: http://www.ncsbe.gov/
-  registration_deadline: received_25_days
+  registration_deadline: north_carolina
   id_length_min: '4'
   online_registration_url: https://payments.ncdot.gov/service/nc_voter_registration/workflow/nc_voter_reg_standalone_entry/1?initialTalkObject=%7B%22dashboard%22%3A%7B%22serviceOfferingId%22%3A%22nc_voter_registration%22%2C%22licenses%22%3A%5B%5D%7D%7D
 record_34:
@@ -532,6 +533,7 @@ record_34:
   sos_phone: "(800) 352-0867"
   sos_url: https://vip.sos.nd.gov/PortalList.aspx
   sub_18: blank
+  registration_deadline: north_dakota
 record_35:
   abbreviation: OH
   name: Ohio
@@ -543,7 +545,7 @@ record_35:
   sos_phone: "(614) 466-2585"
   sos_url: https://www.sos.state.oh.us/elections/
   sub_18: turn_by_next_general_election_november_2
-  registration_deadline: received_30_days
+  registration_deadline: ohio
   id_length_min: '4'
   online_registration_url: https://olvr.ohiosos.gov
 record_36:
@@ -592,7 +594,7 @@ record_38:
     PA 17120-0029
   sos_phone: "(717) 787-5280"
   sos_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationStatus.aspx
-  registration_deadline: received_15_days
+  registration_deadline: pennsylvania
   online_registration_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx
 record_39:
   abbreviation: RI
@@ -605,7 +607,7 @@ record_39:
     RI 02904-2790
   sos_phone: "(401) 222-2345"
   sos_url: http://www.elections.state.ri.us/
-  registration_deadline: postmarked_30_days
+  registration_deadline: rhode_island
   id_length_min: '4'
   online_registration_url: https://vote.sos.ri.gov/Home/RegistertoVote?ActiveFlag=1
 record_40:
@@ -658,7 +660,7 @@ record_43:
   sos_phone: "(800) 252-VOTE"
   sos_url: http://www.sos.state.tx.us/elections/index.shtml
   sub_18: 2_months_before
-  registration_deadline: postmarked_30_days
+  registration_deadline: texas
   id_length_min: '4'
 record_44:
   abbreviation: UT
@@ -698,7 +700,7 @@ record_46:
     VA 23219
   sos_phone: "(804) 864-8901"
   sos_url: http://www.sbe.state.va.us/
-  registration_deadline: received_22_days
+  registration_deadline: virginia
   online_registration_url: https://vote.elections.virginia.gov/Registration/Eligibility
 record_47:
   abbreviation: WA
@@ -737,7 +739,7 @@ record_49:
   sos_phone: "(608) 266-8005"
   sos_url: https://myvote.wi.gov
   sub_18: 17_turn_18
-  registration_deadline: postmarked_20_days
+  registration_deadline: wisconsin
   pdf_other_instructions: wisconsin
   id_length_min: '4'
   email_instructions: wisconsin
