@@ -37,7 +37,7 @@ class PostalmethodsService
       response = PostalmethodsClient.send_letter_with_address(url: nil, 
         delivery_id: "#{Rails.env}-#{pdf_delivery.id}::#{pdf_delivery.delivery_attempts}",
         pdf_url: registrant.pdf_url.strip,
-        description: "#{registrant.full_name}, UID: #{registrant.uid}, Partner: #{registrant.partner_id}",
+        description: "#{registrant.first_name} #{registrant.last_name}, UID: #{registrant.uid}, Partner: #{registrant.partner_id}",
         #send_to: registrant.full_name.strip,
         send_address1: send_address1.strip,
         send_address2: "", #send_address2.strip,
@@ -54,6 +54,9 @@ class PostalmethodsService
       # assuming now error thrown from response, if response is good
       if response && response["success"]
         pdf_delivery.api_vendor_id = response["result"] && response["result"]["id"]
+        if response["result"] && response["result"]["description"]
+          response["result"]["description"] = response["result"]["description"].to_s.force_encoding("UTF-8")
+        end
         pdf_delivery.api_vendor_response = response
         pdf_delivery.deliverd_to_printer = true
         pdf_delivery.save(validate: false)
