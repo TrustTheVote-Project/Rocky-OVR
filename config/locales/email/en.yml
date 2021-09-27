@@ -48,12 +48,12 @@ en:
 
           Please send question or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
     confirmation_with_assistance:
-      subject: ! 'Reminder: Mail your voter registration form'
+      subject: ! "Your registration form is on the way: don't forget to mail it!"
       body:
         greeting: Dear %{registrant_first_name},
         reminder: |-
           Don't forget!<br>
-          You must sign &amp; mail your form.
+          When your registration form arrives, you must sign &amp; mail your form.
         main: |-
           Thanks for completing your voter registration application. You should receive it in the mail in about a week. 
           You can also <a href="%{pdf_url}">download your application here</a>.<br><br>
@@ -62,7 +62,7 @@ en:
 
           %{home_state_email_instructions}
 
-          When you receive your voter registration form in the mail, <strong>please make sure to SIGN, STAMP and MAIL your form to the address provided on the form and shown below.</strong><br><br>
+          When you receive your voter registration form in the mail, <strong>please make sure to SIGN, STAMP and MAIL your form using the enclosed envelope.</strong><br><br>
 
           %{registrar_address}<br><br>
           If you have already mailed in your form, you can <a href="%{cancel_reminders_url}">click here</a> to stop receiving reminders about sending it in.  You should receive confirmation of your registration from your state's election officials.  Sometimes processing can take several weeks.  If you want to check on the status of your voter registration application, call your Secretary of State at %{registrar_phone}, or check online at %{registrar_url}.<br><br>

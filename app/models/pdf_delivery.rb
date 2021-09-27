@@ -1,22 +1,30 @@
 require 'net/ftp'
 class PdfDelivery < ActiveRecord::Base
-  
   belongs_to :registrant, optional: true
   
+  serialize :api_vendor_response, Hash
+  
   def generate_pdf!
-    generate_pdf(true)
+    generate_pdf(true, true)
   end
   
-  def generate_pdf(force = false)
+  def generate_pdf(force = false, deliver = false)
     if registrant.pdf_writer.valid?
       if registrant.pdf_writer.generate_pdf(force, true, registrant.pdf_is_esigned?, created_at)
         registrant.deliver_confirmation_email
+        self.delay.deliver_via_api if deliver
         return true
       else
         return false
       end
     else
       return false
+    end
+  end
+
+  def deliver_via_api
+    if !registrant.pdf_is_esigned?
+      PostalmethodsService.submit_pdf_delivery(self)
     end
   end
   

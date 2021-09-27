@@ -56,18 +56,33 @@ span.smaller_prompt {
 
 #page_mailing_address {
   height: $page_height / 3;
-  width: 850;
+	width: 850px;
   border: 1px solid white;
   .address {
     display: block;
-    margin-top: 200px;
-    margin-left: 95px;
+    margin-top: 235px;
+    margin-left: 10px;
     width: 450px;
     height: 137px;
     border: 1px solid #FFF;
     font-size: $fs * 1.3;
-    line-height: 1.5 * $fs * 1.3;
+    line-height: 1.3 * $fs;
   }
+	.perforation {
+		position: absolute;
+		top: 785px;
+		left: 0;
+		right: 0;
+		border-top: 1px dashed #000;
+		height: 1px;
+	}
+	.election_official_address {
+		position: absolute;
+		left: 415px;
+		top: 1025px;
+		font-size: $fs * 1.3;
+    line-height: 1.3 * $fs;
+	}
 }
 
 #state_instructions {

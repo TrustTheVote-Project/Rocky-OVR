@@ -1,20 +1,21 @@
-- if @for_printer && !@esign && false
+- if @for_printer && !@esign
   %div.page#page_mailing_address
     .address
       = "#{(@registrant.first_name).to_s.html_safe} #{(@registrant.last_name).to_s.html_safe}"
-      %br
-      - if @registrant.has_mailing_address
-        = ("#{@registrant.mailing_address} #{@registrant.mailing_unit}").to_s.html_safe
+      - if false #hiding address so API vendor can included it
         %br
-        =  [@registrant.mailing_city.to_s, "#{@registrant.mailing_state_id.to_s} #{@registrant.mailing_zip_code}"].join(', ').html_safe
-      - else 
-        = ("#{@registrant.home_address} #{@registrant.home_unit}").to_s.html_safe
-        %br
-        =  [@registrant.home_city.to_s, "#{@registrant.home_state_id.to_s} #{@registrant.home_zip_code}"].join(', ').html_safe
-  
-    %div.page#state_instructions
-      %h1= I18n.t('pdf.nvra.state_instructions_header', state: @registrant.home_state_name)
-      = @registrant.state_id_tooltip
+        - if @registrant.has_mailing_address
+          = ("#{@registrant.mailing_address} #{@registrant.mailing_unit}").to_s.html_safe
+          %br
+          =  [@registrant.mailing_city.to_s, "#{@registrant.mailing_state_id.to_s} #{@registrant.mailing_zip_code}"].join(', ').html_safe
+        - else 
+          = ("#{@registrant.home_address} #{@registrant.home_unit}").to_s.html_safe
+          %br
+          =  [@registrant.home_city.to_s, "#{@registrant.home_state_id.to_s} #{@registrant.home_zip_code}"].join(', ').html_safe
+
+    .perforation 
+    .election_official_address
+      = @registrant.state_registrar_address.html_safe
       
 - if @esign && false
   %div.page#page_1.esign_cover_letter
@@ -37,10 +38,13 @@
           %ol
             %li=  @for_printer ? I18n.t('pdf.nvra.page1.instructions_block.step1_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.instructions_block.step1' ).to_s.html_safe
             %li
-              = I18n.t('pdf.nvra.page1.instructions_block.step2' ).to_s.html_safe
-              .mailer
-                .instructions= I18n.t('pdf.nvra.page1.instructions_block.step2mailer' ).to_s.html_safe
-                .image= wicked_pdf_image_tag("pdf/mailer.png")
+              - if @for_printer
+                = I18n.t('pdf.nvra.page1.instructions_block.step2_for_printer' ).to_s.html_safe
+              - else 
+                = I18n.t('pdf.nvra.page1.instructions_block.step2' ).to_s.html_safe
+                .mailer
+                  .instructions= I18n.t('pdf.nvra.page1.instructions_block.step2mailer' ).to_s.html_safe
+                  .image= wicked_pdf_image_tag("pdf/mailer.png")
             %li= @for_printer ? I18n.t('pdf.nvra.page1.instructions_block.step3_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.instructions_block.step3' ).to_s.html_safe
             %li= I18n.t('pdf.nvra.page1.instructions_block.step4' ).to_s.html_safe
             %li= I18n.t('pdf.nvra.page1.instructions_block.step5' ).to_s.html_safe
@@ -343,9 +347,10 @@
     %h4.bottom_half_footer
       = form_prompt('pdf.nvra.page2.bottom_half_footer' ).to_s.html_safe
 
-.page#page_3
-  #page_3_wrapper
-    #page_3_background= @for_printer ? wicked_pdf_image_tag("pdf/page_3_for_printer.png") : wicked_pdf_image_tag("pdf/page_3.png")
-    %h1= form_prompt('pdf.nvra.page3.fouo' ).to_s.html_safe
-    #address
-      .line.line1= @registrant.state_registrar_address.to_s.html_safe
+- unless @for_printer 
+  .page#page_3
+    #page_3_wrapper
+      #page_3_background= @for_printer ? wicked_pdf_image_tag("pdf/page_3_for_printer.png") : wicked_pdf_image_tag("pdf/page_3.png")
+      %h1= form_prompt('pdf.nvra.page3.fouo' ).to_s.html_safe
+      #address
+        .line.line1= @registrant.state_registrar_address.to_s.html_safe
