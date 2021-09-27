@@ -54,6 +54,9 @@ class PostalmethodsService
       # assuming now error thrown from response, if response is good
       if response && response["success"]
         pdf_delivery.api_vendor_id = response["result"] && response["result"]["id"]
+        if response["result"] && response["result"]["description"]
+          response["result"]["description"] = response["result"]["description"].to_s.force_encoding("UTF-8")
+        end
         pdf_delivery.api_vendor_response = response
         pdf_delivery.deliverd_to_printer = true
         pdf_delivery.save(validate: false)
