@@ -1936,49 +1936,16 @@ ko:
       2_months_before: 18세 생일 2 개월 전에 등록이 가능합니다.
       17_turn_18: 현재 17세이고 다음 선거 전에 18세가 되는 경우 등록이 가능합니다.
     registration_deadline:
-      alabama: ''
-      california: ''
-      colorado: ''
-      connecticut: ''
-      district_of_columbia: ''
       delaware: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 전 선거날 부터 역순으로 계산해서 4번째 토요일 (예를 들어 11월
         4일이 선거날일 경우 10월 11일까지). 또는 본선/경선이 아닌 특별 선거의 경우 10일 전까지, 우체국 소인(postmark)이
         찍히도록 해서 보내세요.
-      florida: ''
-      georgia: ''
-      idaho: ''
-      illinois: ''
-      iowa: ''
-      kansas: ''
-      maine: ''
-      massachusetts: ''
-      michigan: ''
-      minnesota: ''
-      mississippi: ''
       missouri: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 전 선거날 부터 역순으로 계산해서 4번째 수요일 (예를 들어 11월
         4일이 선거날일 경우 10월 8일까지) 오후 5시까지 선거관리국에 도착하도록 보내세요.
-      montana: ''
-      new_hampshire: ''
-      new_jersey: ''
-      new_mexico: ''
-      new_york: ''
-      north_carolina: ''
-      north_dakota: ''
       nebraska: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 전 선거날 부터 역순으로 계산해서 3번째 금요일까지 (예를 들어 11월
         4일이 선거날일 경우 10월 17일까지) 선거관리국에 도착하도록 보내거나 직접 전달 할 경우 선거날 전 2번째 금요일 (10월 24일)
         오후 6시까지 전달하세요.
       nevada: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 31일 전까지 우체국 소인(postmark)이 찍히도록 해서 보내세요.
         온라인으로 등록 할 경우 21일 전까지 등록을 하세요. 직접 선거관리국에 가서 등록 할 경우 21일 전까지 전달해야 합니다.
-      ohio: ''
-      oklahoma: ''
-      pennsylvania: ''
-      rhode_island: ''
-      texas: ''
-      utah: ''
-      vermont: ''
-      virginia: ''
-      washington: ''
-      wisconsin: ''
       postmarked_11_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 11일 전까지 우체국 소인(postmark)이 찍히도록
         해서 보내세요
       postmarked_14_days: 선거날에 투표하기 위해서는 이 용지를 선거날이 되기 14일 전까지 우체국 소인(postmark)이 찍히도록

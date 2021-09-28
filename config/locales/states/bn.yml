@@ -2108,47 +2108,15 @@ bn:
       17_turn_18: যদি আপনার বর্তমান বয়স ১৭ হয়ে থাকে এবং আগামী নির্বাচনের পূর্বে
         ১৮ বছরে উন্নীত হন
     registration_deadline:
-      alabama: ''
-      california: ''
-      colorado: ''
-      connecticut: ''
-      district_of_columbia: ''
       delaware: সাধারণ অথবা প্রাথমিক নির্বাচনের চার সপ্তাহ আগের শনিবারে ডাকমোহর ছাপকৃত
         অথবা বিশেষ নির্বাচনের ক্ষেত্রে ১০ দিন পূর্বে
-      florida: ''
-      georgia: ''
-      idaho: ''
-      illinois: ''
-      iowa: ''
-      kansas: ''
-      maine: ''
-      massachusetts: ''
-      michigan: ''
-      minnesota: ''
-      mississippi: ''
-      missouri: ''
-      montana: ''
-      new_hampshire: ''
-      new_jersey: ''
-      new_mexico: ''
-      new_york: ''
-      north_carolina: ''
-      north_dakota: ''
       nebraska: নির্বাচনের তৃতীয় সপ্তাহ আগের শুক্রবারের মধ্যে ডাকমোহর ছাপকৃত অথবা
         হাতে হাতে জমা দিয়ে থাকলে নির্বাচনের দুই সপ্তাহ পূর্বের শুক্রবারের মধ্যে
       nevada: ডাকমোহর ছাপকৃত হতে হবে নির্বাচনের ৩১দিন আগে অথবা কেরাণির অফিসে সরাসরি
         বা অনলাইনে জমা দিলে ২১ দিন আগে হলেও চলবে।
-      ohio: ''
-      oklahoma: ''
-      pennsylvania: ''
       rhode_island: 10/3/2021
-      texas: ''
-      utah: ''
-      vermont: ''
-      virginia: ''
       washington: নির্বাচনের চার সপ্তাহ আগের সোমবারের ডাকমোহর ছাপকৃত অথবা সরাসরি কাউন্টি
         অফিসের নির্বাচনী ডিপার্টমেন্টে জমা দিলে নির্বাচনের এক সপ্তাহ আগের সোমবার পর্যন্ত।
-      wisconsin: ''
       postmarked_11_days: নির্বাচনের ১১ দিন পূর্বের ডাকমোহর ছাপকৃত
       postmarked_14_days: নিবাচনের ১৪ দিন আগে ডাকে দিন
       postmarked_20_days: নির্বাচনের ২০ দিন পূর্বের ডাকমোহর ছাপকৃত

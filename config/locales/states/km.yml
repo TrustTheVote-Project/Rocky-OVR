@@ -2032,45 +2032,11 @@ km:
       2_months_before: ពីរខែមុនថ្ងៃកំណើតទី១៨របស់អ្នក
       17_turn_18: បើអ្នកអាយុ១៧ឆ្នាំ ហើយនឹងមានអាយុ១៨ឆ្នាំ មុនពេលបោះឆ្នោតលើកក្រោយ
     registration_deadline:
-      alabama: ''
-      california: ''
-      colorado: ''
-      connecticut: ''
-      district_of_columbia: ''
       delaware: បានបោះត្រា នៅថ្ងៃសៅរ៍ទីបួន មុនការបោះឆ្នោតសកល ឬ ការបោះឆ្នោតបឋម ឬ ១០ថ្ងៃមុនការបោះឆ្នោតពិសេស
-      florida: ''
-      georgia: ''
-      idaho: ''
-      illinois: ''
-      iowa: ''
-      kansas: ''
-      maine: ''
-      massachusetts: ''
-      michigan: ''
-      minnesota: ''
-      mississippi: ''
-      missouri: ''
-      montana: ''
-      new_hampshire: ''
-      new_jersey: ''
-      new_mexico: ''
-      new_york: ''
-      north_carolina: ''
-      north_dakota: ''
       nebraska: បានបោះត្រា នៅថ្ងៃសុក្រទីបី មុនពេល ការបោះឆ្នោត ឬ បានទទួលផ្ទាល់ដៃ នៅម៉ោង
         ៦ល្ងាច នៅចំថ្ងៃសុក្រទីពីរ មុនពេល ការបោះឆ្នោត
       nevada: បានបោះត្រា ៣១ថ្ងៃ មុនពេល ការបោះឆ្នោត ឬ ផ្ញើតាមបណ្តាញអនឡាញ ២១ថ្ងៃ មុនពេល
         ការបោះឆ្នោត ឬ បានទទួល ផ្ទាល់ដៃ នៅ ការិយាល័យស្មៀនការិយាល័យ ២១ថ្ងៃ មុនពេលការបោះឆ្នោត។
-      ohio: ''
-      oklahoma: ''
-      pennsylvania: ''
-      rhode_island: ''
-      texas: ''
-      utah: ''
-      vermont: ''
-      virginia: ''
-      washington: ''
-      wisconsin: ''
       postmarked_11_days: បានបោះត្រា ១១ថ្ងៃមុនពេលការបោះឆ្នោត
       postmarked_14_days: ប្រៃសណីយ៏បោះត្រា ១៤ ថ្ងៃមុនការបោះឆ្នោត។
       postmarked_20_days: បានបោះត្រា ២០ថ្ងៃ មុនពេល ការបោះឆ្នោត

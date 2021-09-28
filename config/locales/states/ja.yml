@@ -1820,43 +1820,10 @@ ja:
       2_months_before: 18歳の誕生日の2ヶ月前
       17_turn_18: 現在17歳で次の選挙の前に18歳になる場合
     registration_deadline:
-      alabama: ''
-      california: ''
-      colorado: ''
-      connecticut: ''
-      district_of_columbia: ''
       delaware: 一般選挙か予備選挙の前の第四土曜日まで、あるいは特別選挙の１０日前までの消印で郵送する。
-      florida: ''
-      georgia: ''
-      idaho: ''
-      illinois: ''
-      iowa: ''
-      kansas: ''
-      maine: ''
-      massachusetts: ''
-      michigan: ''
-      minnesota: ''
-      mississippi: ''
       missouri: 選挙の前の第４水曜日、午後５時（または通常の就業終了時間）までに提出する。
-      montana: ''
-      new_hampshire: ''
-      new_jersey: ''
-      new_mexico: ''
-      new_york: ''
-      north_carolina: ''
-      north_dakota: ''
       nebraska: 選挙の前の第３金曜日までの消印で郵送するか、選挙の前の第２金曜日の午後６時までに提出する。
       nevada: 選挙の３１日前までの消印で郵送する、選挙の２１日前までにオンラインで提出する、あるいは選挙の２１日前までに事務官事務所で直接提出する。
-      ohio: ''
-      oklahoma: ''
-      pennsylvania: ''
-      rhode_island: ''
-      texas: ''
-      utah: ''
-      vermont: ''
-      virginia: ''
-      washington: ''
-      wisconsin: ''
       postmarked_11_days: 選挙の１１日前の消印のあるもの
       postmarked_14_days: 選挙の14日前の消印のあるもの
       postmarked_20_days: 選挙の２０日前の消印のあるもの

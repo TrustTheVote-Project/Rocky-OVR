@@ -2092,48 +2092,15 @@ vi:
       17_turn_18: nếu bạn được 17 tuổi, và sẽ bước sang 18 trước khi cuộc bầu cử lần
         sau
     registration_deadline:
-      alabama: ''
-      california: ''
-      colorado: ''
-      connecticut: ''
-      district_of_columbia: ''
       delaware: đóng dấu bưu điện ngày thứ Bảy thứ tư trước khi một cuộc tổng tuyển
         cử hoặc chính, hoặc 10 ngày trước khi một cuộc bầu cử đặc biệt
-      florida: ''
-      georgia: ''
-      idaho: ''
-      illinois: ''
-      iowa: ''
-      kansas: ''
-      maine: ''
-      massachusetts: ''
-      michigan: ''
-      minnesota: ''
-      mississippi: ''
       missouri: nhận được trước 5 giờ chiều (hoặc gần bình thường của doanh nghiệp)
         vào thứ tư thứ tư trước cuộc bầu cử
-      montana: ''
-      new_hampshire: ''
-      new_jersey: ''
-      new_mexico: ''
-      new_york: ''
-      north_carolina: ''
-      north_dakota: ''
       nebraska: đóng dấu bưu điện vào ngày thứ Sáu thứ ba trước khi cuộc bầu cử, hoặc
         nhận được trong người bởi 06:00 ngày thứ sáu thứ hai trước khi cuộc bầu cử
       nevada: đóng dấu bưu điện 31 ngày trước bầu cử, hoặc nộp trực tuyến 21 ngày
         trước cuộc bầu cử, hoặc nhận trực tiếp tại văn phòng của một nhân viên bán
         hàng 21 ngày trước khi cuộc bầu cử.
-      ohio: ''
-      oklahoma: ''
-      pennsylvania: ''
-      rhode_island: ''
-      texas: ''
-      utah: ''
-      vermont: ''
-      virginia: ''
-      washington: ''
-      wisconsin: ''
       postmarked_11_days: đóng dấu bưu điện 11 ngày trước bầu cử
       postmarked_14_days: đóng dấu bưu điện 14 ngày trước bầu cử
       postmarked_20_days: đóng dấu bưu điện 20 ngày trước bầu cử
