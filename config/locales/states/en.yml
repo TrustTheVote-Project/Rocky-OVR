@@ -2606,13 +2606,13 @@ en:
           Dept. of Elections to register to vote.</p>
           <p>
           Virginia law requires all voters to provide either an acceptable form of ID or 
-          sign an ID Confirmation Statement at the polls. Voters arriving at the polls 
+          sign an ID Confirmation Statement at the polls. Voters arriving at the polls 
           without an acceptable form of ID will be required to either sign an ID Confirmation 
-          Statement or vote a provisional ballot.  If a voter votes a provisional ballot, 
+          Statement or vote a provisional ballot.  If a voter votes a provisional ballot, 
           they will have until noon on the Friday following the election to deliver a copy 
           of identification to their locality’s electoral board or sign an ID Confirmation 
           Statement in order for their provisional ballot to be counted. Virginia’s ID 
-          requirements also apply to early voters who vote at the General Registrar's 
+          requirements also apply to early voters who vote at the General Registrar's 
           Office or at a satellite voting location.
           </p>
           <p>
@@ -2632,7 +2632,7 @@ en:
             <li><a href=\"https://www.elections.virginia.gov/media/formswarehouse/voter-id/outreach-materials/documents/EditedVoter-Identification-Chart-07.2020.pdf\" target=\"_blank\" rel=\"noopener\">For a more detailed list of acceptable IDs</a></li>
           </ul>
           <p>
-          Don’t have one of these forms of ID? Any registered voter who does not possess one of the above mentioned forms of ID, may sign an ID Confirmation Statement. A voter who does not bring an acceptable ID to the polls or does not sign an ID Confirmation Statement will be offered a provisional ballot.
+          Don’t have one of these forms of ID? Any registered voter who does not possess one of the above mentioned forms of ID, may sign an ID Confirmation Statement. A voter who does not bring an acceptable ID to the polls or does not sign an ID Confirmation Statement will be offered a provisional ballot.
           </p>"
       vt:
         state_online_abr:
@@ -3455,35 +3455,35 @@ en:
       2_months_before: two months before your 18th birthday
       17_turn_18: if you are 17 and will turn 18 before the next election
     registration_deadline:
-      california: |-
-        postmarked or submitted to an elections office (or NVRA voter registration
-        agency) on or before 15 days prior to Election Day (to vote in that election)
-      colorado: You may register up to, and on, Election Day. You must register 8
-        days or more before election day to have a ballot mailed to you. If you register
-        less than 8 days before election day, then you must appear in person in your
-        county to vote.
-      connecticut: |-
-        postmarked seven (7) days before the election; postmarked five (5) days before
-        the primary
+      alabama: received by 10/25/2021
+      california: postmarked by 10/18/2021
+      colorado: postmarked by 10/25/2021
+      connecticut: postmarked by 10/26/2021, 12:00 Eastern
+      district_of_columbia: received 21 days before the election
       delaware: |-
         postmarked by the fourth Saturday before a general or primary election,
         or 10 days before a special election
-      georgia: postmarked by the fifth Monday before the election
-      illinois: |-
-        Online Registration is available until 16 days before the election and in-person
-        registration is available through Election Day.
-      iowa: |-
-        received in-person 10 days before General and Primary Elections (11 days
-        before all other elections), or postmarked 15 days before Election Day.
-      kansas: |-
-        postmarked 21 days before the election if mailed, received at the county
-        office 21 days before the election if delivered in person.
+      florida: 10/4/2021, 7:00pm
+      georgia: received by 10/4/2021
+      idaho: postmarked by 10/8/2021
+      illinois: 27 days prior to an election
+      iowa: 5pm 10/18/2021
+      kansas: postmarked by 10/12/2021
+      maine: received by close of business, 10/12/21
+      massachusetts: postmarked by 8:00 pm 10/13/2021
+      michigan: postmarked by 10/18/2021
+      minnesota: 5pm, 10/12/2021
+      mississippi: postmarked by 5pm on 10/4/21 for the November 2, 2021 elections and postmarked by 5pm 10/25/2021 for the 11/23/2021 elections
       missouri: |-
         received before 5pm (or normal close of business) on the fourth Wednesday
         prior to the election
-      new_york: |-
-        postmarked 25 days before the election and received no less than 20
-        days before the election
+      montana: postmarked by 10/4/21 and received within 3 days. 
+      new_hampshire: Register to vote at your town hall before the deadline or register to vote the day of the election at the polling place.
+      new_jersey: 10/12/2021
+      new_mexico: postmarked by 10/5/2021
+      new_york: postmarked by 10/8/2021, mail received by 10/13/2021
+      north_carolina: 10/8/2021
+      north_dakota: North Dakota does not have voter registration.
       nebraska: |-
         postmarked by the third Friday before the election, or received in-person
         by 6pm on the second Friday before the election
@@ -3495,14 +3495,16 @@ en:
         at the office of the County Clerk/Registrar of Voters. The deadline for online
         voter registration at www.RegisterToVoteNV.gov is the Thursday preceding the
         first day of the early voting period.
-      utah: |-
-        postmarked 30 days before the election, or received in person 15 days
-        before the election
-      vermont: received by 5pm on the Wednesday before the election
-      washington: |-
-        Online and mail registration forms must be received by an elections official no 
-        later than 8 days before the election. Register in person any time during business 
-        hours and before 8:00 p.m. on Election Day.
+      ohio: postmarked by 10/4/2021
+      oklahoma: received by 10/15/2021
+      pennsylvania: received by 10/18/2021
+      rhode_island: 10/3/2021
+      texas: 10/4/2021
+      utah: no later than 5:00 pm 11 calendar days before the election.
+      vermont: any day up to and including the day of the election
+      virginia: postmarked by 10/11/2021
+      washington: received by 10/25/2021
+      wisconsin: postmarked no later than the 3rd Wednesday preceding the election
       postmarked_11_days: postmarked 11 days before the election
       postmarked_14_days: postmarked 14 days before the election
       postmarked_20_days: postmarked 20 days before the election
