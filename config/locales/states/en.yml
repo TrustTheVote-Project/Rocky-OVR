@@ -4,19 +4,12 @@ en:
     custom:
       ak:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://myvoterinformation.alaska.gov/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://myvoterinformation.alaska.gov/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: '<p>Your application for a by-mail ballot must be received
             ten (10) days before Election Day (October 24, 2020).</p><p>Once you receive
             your ballot, make sure to read the instructions carefully, fill out the
@@ -90,18 +83,12 @@ en:
           Ballot Mailing Address 3: "&nbsp;"
       al:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: Please note that a copy of your valid photo identification
-            must be submitted along with this application.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://myinfo.alabamavotes.gov/VoterView/AbsenteeBallotSearch.do'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "Please note that a copy of your valid photo identification must be submitted along with this application."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://myinfo.alabamavotes.gov/VoterView/AbsenteeBallotSearch.do'>online tool</a>"
+          finalpage_additional_instructions:  
           finish_instructions: <p>Make sure to read the instructions on the form carefully,
             then complete and send this form in as soon as possible. Your absentee
             ballot application must be received in the office of the Absentee Election
@@ -156,13 +143,13 @@ en:
             is impossible or unreasonable to vote at their voting place for the General
             Election on November 3, 2020 due to the declared states of emergency,
             shall be eligible to check this box:'
-          chkReason3: 'I have a physical illness or infirmity which prevents my attendance
-            at the polls. I am unable to access my assigned polling place due to a
-            neurological, musculoskeletal, respiratory (including speech organs),
-            cardiovascular, or other life-altering disorder that affects my ability
-            to perform manual tasks, stand for any length of time, walk unassisted,
-            see, hear or speak and: a) I am an elderly voter aged 65 or older; or
-            b) I am a voter with a disability. (ID Not Required)'
+          chkReason3: 'I have a physical illness or infirmity which prevents my attendance at the polls.
+            I am unable to access my assigned polling place due to a neurological,
+            musculoskeletal, respiratory (including speech organs), cardiovascular,
+            or other life-altering disorder that affects my ability to perform manual
+            tasks, stand for any length of time, walk unassisted, see, hear or speak
+            and: a) I am an elderly voter aged 65 or older; or b) I am a voter with
+            a disability. (ID Not Required)'
           chkReason4: I expect to work a shift which has at least ten (10) hours that
             coincide with the polling hours at my regular polling place.
           chkReason5: I am enrolled as a student at an educational institution located
@@ -196,8 +183,8 @@ en:
           SSN_last_4: Last 4 digits of your SSN
           Drivers_License_State: Driver's License State
           Drivers_License_Number: Driver's License Number
-          Drivers_License_Number__format_pattern_message: That doesn't look like a
-            valid %state% driver's license number, please verify before continuing.
+          Drivers_License_Number__format_pattern_message: That doesn't look like a valid %state% driver's license
+            number, please verify before continuing.
           Street_Address_1: Mailing address
           City_1: City
           State_1: State
@@ -205,18 +192,12 @@ en:
           WorkPhone: Work Phone
       ar:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            calling your local election official.  Find your official''s contact information
-            here:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: 'You can look up your Absentee Ballot status, by
-            calling your local election official.  Find your official&#39;s contact
-            information here: <a target=''_blank'' href=''https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf''>Directory</a>'
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official's contact information here:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf'>Directory</a>"
+          finalpage_additional_instructions:  
           finish_instructions: "<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible. If
             mailing in your absentee ballot application, the application must be received
@@ -271,23 +252,18 @@ en:
             time you can check the status of your application and the status of your
             ballot at: <a rel="noopener" target="blank" href="https://my.arizona.vote/PortalList.aspx">https://my.arizona.vote/PortalList.aspx</a></p>'
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Ballot-By-Mail status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Ballot-By-Mail status, by using
-            your state&#39;s <a target='_blank' href='https://my.arizona.vote/AbsenteeTracker.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: ''
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to the following statement on my request form "I swear or affirm that
-            I am a registered voter in my county of residence and that the above information
-            is true and correct"
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Ballot-By-Mail status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Ballot-By-Mail status, by using your state&#39;s <a target='_blank' href='https://my.arizona.vote/AbsenteeTracker.aspx'>online tool</a>"
+          finalpage_additional_instructions:  
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to the following statement on my request form "I swear or affirm that 
+            I am a registered voter in my county of residence and that the above 
+            information is true and correct"
           signature_capture:
             desktop_provide_e_signature: In the state of Arizona, we can email a digitally
               signed copy of your absentee request. Please select how you'd like to
@@ -338,19 +314,12 @@ en:
           last_4_ssn: 'Last 4 digits of SSN #'
       ca:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote-By-Mail status, by using
-            your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Vote-By-Mail status, by using
-            your state&#39;s <a target='_blank' href='https://voterstatus.sos.ca.gov/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote-By-Mail status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Vote-By-Mail status, by using your state&#39;s <a target='_blank' href='https://voterstatus.sos.ca.gov/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           header: Absentee Requests In California
           instructions: '<p>Your state is automatically sending an absentee ballot
             to all voters this year.  Your absentee ballot will be sent to the address
@@ -362,7 +331,7 @@ en:
             you have your ballot, again be sure to read the instructions carefully,
             fill out the ballot and send it back in.  Vote-by-mail ballots that are
             mailed must be postmarked on or before Election Day and received by your
-            county elections office no later than 17 days after Election Day.</p>'
+            county elections office no later than 17 days after Election Day.</p>'          
         online_instructions: |-
           You can complete your voter registration online with
           the state right now - using the application provided by the Secretary of
@@ -375,19 +344,12 @@ en:
         ca_disclosures: I have reviewed and accepted the notices above.
       co:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Mail-in Ballots status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Mail-in Ballots status, by
-            using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Mail-in Ballots status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Mail-in Ballots status, by using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           header: Absentee Requests In Colorado
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot. Your mail ballot will be sent to the address listed on
@@ -406,19 +368,12 @@ en:
             return it to vote.</p>'
       ct:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://portaldir.ct.gov/sots/LookUp.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://portaldir.ct.gov/sots/LookUp.aspx'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: "<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible.</p><p>Once
             you have your ballot, again be sure to read the instructions carefully,
@@ -440,8 +395,8 @@ en:
           absentee_reason__hint: Please note, if you have a permanent disability,
             please contact your town clerk for a permanent absentee ballot instead
           absentee_reason__options:
-            '1': COVID19  All voters are able to check this box pursuant to Public
-              Act 20-3 July Spec. Sess.
+            '1': COVID19  All voters are able to check this box pursuant to 
+              Public Act 20-3 July Spec. Sess.
             '2': My active service in the Armed Forces of the United States
             '3': My absence from the town during all of the hours of voting
             '4': My illness
@@ -453,17 +408,12 @@ en:
           absentee_reason__required_message: Please select one of the above reasons
       dc:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee (Mail-in Ballot)
-            status, by using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee (Mail-in Ballot) status,
-            by using your state&#39;s <a target='_blank' href='https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee (Mail-in Ballot) status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee (Mail-in Ballot) status, by using your state&#39;s <a target='_blank' href='https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot'>online tool</a>"
+          finalpage_additional_instructions:  
           header: Absentee Requests In DC
           instructions: '<p>DC is automatically sending an absentee ballot to all
             voters this year. Your absentee ballot will be sent to the address listed
@@ -479,34 +429,28 @@ en:
             Election day.</p><p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://ivote.de.gov/VoterView">https://ivote.de.gov/VoterView</a></p>'
           requirements: "<p>If you are registered to vote and have a valid Deleware
-            state ID, you may request your vote by mail ballot online directly with
-            the state.</p>"
+            state ID, you may request your vote by mail ballot online directly with the
+            state.</p>"
           button: Finish your<br/>vote by mail request<br/> online with Deleware.
-          confirm: Check if you meet your state's requirements, then click the button
-            below to request your vote by mail ballot through the state's site.
+          confirm: |-
+            Check if you meet your state's requirements, then click the button below to request your vote by mail ballot through the state's site.
+
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote-By-Mail status, by using
-            your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Vote-By-Mail status, by using
-            your state&#39;s <a target='_blank' href='https://ivote.de.gov/VoterView'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
-          step_2_instructions: "<p>We'll use this information to determine how you
-            can request your vote by mail ballot.</p>"
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote-By-Mail status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Vote-By-Mail status, by using your state&#39;s <a target='_blank' href='https://ivote.de.gov/VoterView'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your vote by mail ballot.</p>"
           step_3_header: Prepare your Deleware PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
-            your PDF vote by mail request form.</p>"
-          finish_pdf_delay: It's taking a while to create your vote by mail request
-            form to download, but don't worry. We'll send you an email when it's ready.
-            In the mean time, you can let your friends know how they can request a
-            vote by mail ballot too.
+           your PDF vote by mail request form.</p>"
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible. Your application must be RECEIVED by Friday, October
             30th, 2020. Your completed ballot must be RECEIVED by 8:00pm on Election
@@ -515,16 +459,16 @@ en:
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
           Last4 Digits of SSN: Last 4 Digits of Social Security Number (OPTIONAL)
-          has_mailing_address: I would like my ballot sent to a different address
-            than my home address
-          check_sick_or_disabled: Check here if you are a voter who is sick or physically
-            disabled
-          check_sick_or_disabled__hint: If you are a voter who is sick or physically
-            disabled, Delaware law permits you to receive and return an absentee ballot
-            electronically. If you choose to receive your ballot by email, you will
-            be able to mark and submit it electronically.
-          GroupSickDisabled: 'Indicate below how you would like your absentee ballot
-            sent to you by the Department of Elections:'
+          has_mailing_address: I would like my ballot sent to a different address than my home
+            address
+          check_sick_or_disabled: "Check here if you are a voter who is sick or physically disabled"
+          check_sick_or_disabled__hint:
+            "If you are a voter who is sick or physically disabled, Delaware law permits you to receive and return an
+            absentee ballot electronically. If you choose to
+            receive your ballot by email, you will be able to mark
+            and submit it electronically."
+          GroupSickDisabled: "Indicate below how you would like your absentee ballot sent
+            to you by the Department of Elections:"
           GroupSickDisabled__options:
             ChoiceEmail: Email
             ChoiceMail: Mail
@@ -552,17 +496,12 @@ en:
             spouse or child who is living at home and requires constant care."
       fl:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote-By-Mail status, by using
-            your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Vote-By-Mail status, by using
-            your state&#39;s <a target='_blank' href='https://registration.elections.myflorida.com/CheckVoterStatus'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote-By-Mail status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Vote-By-Mail status, by using your state&#39;s <a target='_blank' href='https://registration.elections.myflorida.com/CheckVoterStatus'>online tool</a>"
+          finalpage_additional_instructions:  
         state_online_abr:
           header: To request an absentee ballot in Florida, you need to contact your
             Supervisor of Elections.  Click below to find your Supervisor of Elections
@@ -579,23 +518,17 @@ en:
             of your ballot here: <a rel="noopener" target="blank" href="https://registration.elections.myflorida.com/CheckVoterStatus">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>'
       ga:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://www.mvp.sos.ga.gov/MVP/mvp.do'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to email my request form, certifying that all information is accurate.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://www.mvp.sos.ga.gov/MVP/mvp.do'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate.
+          
           signature_capture:
             desktop_provide_e_signature: In the state of Georgia, we can email a digitally
               signed copy of your absentee request. Please select how you'd like to
@@ -657,19 +590,12 @@ en:
           request_electronic_transmission: I request my ballot to be emailed to me.
       hi:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://ballotstatus.hawaii.gov/Default'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://ballotstatus.hawaii.gov/Default'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           header: Absentee Requests In Hawaii
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot for each election. Your mail ballot will be sent to the
@@ -685,17 +611,12 @@ en:
             by 7:00pm on Election Day.</p>'
       ia:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search'>online tool</a>"
+          finalpage_additional_instructions:  
           finish_instructions: '<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible  Your
             request must be received by 5:00 pm on October 24, 2020.</p><p>Once you
@@ -726,34 +647,27 @@ en:
       id:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
-          mailingAddress: Mailing address
-          mailingZipCode: Zip
-          mailingCity: City
-          mailingState: State
-          mailingCountry: Country (if outside of USA)
+          "mailingAddress": Mailing address
+          "mailingZipCode": Zip
+          "mailingCity": City
+          "mailingState": State
+          "mailingCountry": "Country (if outside of USA)"
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide a valid
-            state ID and last four digits of your SSN, you may request your absentee
-            ballot online directly with the state.</p>"
+          requirements: "<p>If you are registered to vote and can provide a valid state ID
+            and last four digits of your SSN, you may request your absentee ballot online 
+            directly with the state.</p>"
           finish_instructions: '<p>Once you have your ballot, again be sure to read
             the instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You
             can check the status of your ballot here: <a rel="noopener" target="blank"
             href="https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx">https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx</a></p>'
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: "<p>To qualify to request a ballot in ID, you only need to
             be registered to vote.</p>"
           finish_instructions: '<p>Make sure to read the instructions on the form
@@ -765,14 +679,10 @@ en:
             of your ballot here: <a rel="noopener" target="blank" href="https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx">https://apps.idahovotes.gov/YourPollingPlace/AbsenteeBallotEnquiry.aspx</a></p>'
       il:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote By Mail Ballot status,
-            by calling your local election official.  Find your official''s contact
-            information here:'
-          state_reminder_1: ''
-          state_reminder_2: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote By Mail Ballot status, by calling your local election official.  Find your official's contact information here:"
+          state_reminder_1: ""
+          state_reminder_2: ""
         abr_form_fields:
           ElectionPrecinct: Precinct
           VOTERS OPTIONAL ADDRESS LINE 2: Name of institution, company, or facility
@@ -838,21 +748,12 @@ en:
             must be received by 12:00pm on November 3, 2020. You can check the status
             of your ballot here:  <a rel="noopener" target="blank" href="http://www.indianavoters.com/">http://www.indianavoters.com/</a></p>'
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: Click on "Check Voting Status".
-          state_reminder_2: Also please note, that if you are a first time voter in
-            Indiana who registered to vote by mail and did not provide proof of residency,
-            you must include that evidence with your absentee balloting materials.
-            This can be a state-issued ID where the address matches their registration,
-            but can also be a bank statement, utility bill, etc.
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='http://www.indianavoters.com/'>online
-            tool</a>
-          finalpage_additional_instructions: Click on "Check Voting Status".
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: 'Click on "Check Voting Status".'
+          state_reminder_2: "Also please note, that if you are a first time voter in Indiana who registered to vote by mail and did not provide proof of residency, you must include that evidence with your absentee balloting materials. This can be a state-issued ID where the address matches their registration, but can also be a bank statement, utility bill, etc."
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='http://www.indianavoters.com/'>online tool</a>"
+          finalpage_additional_instructions:  'Click on "Check Voting Status".'
           finish_page: '<p>Make sure to read the instructions on the form carefully,
             then complete and send this form in as soon as possible. Your request
             must be received by 11:59 pm on October 22, 2020. Once you have your ballot,
@@ -921,22 +822,12 @@ en:
               the entire twelve (12) hours that the polls are open.
       ks:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Advance Ballot by Mail status,
-            by using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: 'Also please note, that if you only if you don''t provide
-            a license number or ID card # on your request form, you are required to
-            submit a copy of your ID with your application. A full list of acceptable
-            IDs can be found on the application.'
-          finalpage_instructions: You can look up your Advance Ballot by Mail status,
-            by using your state&#39;s <a target='_blank' href='https://myvoteinfo.voteks.org/voterview'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Advance Ballot by Mail status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: "Also please note, that if you only if you don't provide a license number or ID card # on your request form, you are required to submit a copy of your ID with your application. A full list of acceptable IDs can be found on the application."
+          finalpage_instructions: "You can look up your Advance Ballot by Mail status, by using your state&#39;s <a target='_blank' href='https://myvoteinfo.voteks.org/voterview'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: "<p>To qualify to request a ballot in KS, you only need to
             be registered to vote and be able to provide your Kansas driver's license
             number or non driver's identification card number.</p><p>Examples of acceptable
@@ -982,19 +873,12 @@ en:
           voter registration system.
       ky:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           header: Absentee Requests In Kentucky
           instructions: |-
             <p>Unforatunately, Kentucky requires all absentee requests to be completed directly through the state.</p><p>In Kentucky, you are only allowed to request an absentee ballot if you are eligible to vote AND meet one of these criteria:</p>
@@ -1018,19 +902,12 @@ en:
             href="http://voterportal.sos.la.gov/">http://voterportal.sos.la.gov/</a>
             </p>
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://voterportal.sos.la.gov/Home/VoterLogin'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://voterportal.sos.la.gov/Home/VoterLogin'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: <p>You must request your ballot by 4:30pm CST on the
             4th day before election day.  Your ballot (unless you are Military, Overseas,
             or Hospitalized) must be received by your parish registrar of voters by
@@ -1115,46 +992,39 @@ en:
           mailto__options:
             address_below: A different mailing address.
             same_as_above: My residential address.
-          movedate: 'I moved to my residential address on (MM/DD/YYYY or MM/YYYY):'
-          Delivery: 'I would like to receive my ballot by:'
+          "movedate": "I moved to my residential address on (MM/DD/YYYY or MM/YYYY):" 
+          "Delivery": "I would like to receive my ballot by:"
           Delivery__options:
             mail: U.S. Mail
             internet: Internet Delivery (Ballot emailed to the email you provided)
-          internet_delivery_identification: Identification for internet delivery
+          internet_delivery_identification: "Identification for internet delivery"
           internet_delivery_identification__options:
             dln: Maryland Driver's License or ID Card Number
             ssn: I do not have a MD driver's license or ID card
-          Gen_Address: Mailing address
-          Gen_Apt: Apt/Unit
-          Gen_City: City/Town
-          Gen_State: State
-          Gen_ZipCode: Zip
-          SSN_Last_4: 'Last 4 digits of my SSN:'
+          "Gen_Address": Mailing address
+          "Gen_Apt": "Apt/Unit"
+          "Gen_City": "City/Town"
+          "Gen_State": State
+          "Gen_ZipCode": Zip
+          #"no_dln": "I do not have a MD Driver's License or ID card."
+          "SSN_Last_4": "Last 4 digits of my SSN:"
           dln: Maryland Driver's License or ID Card Number
-          dln__format_message: Invalid Maryland Driver's License or ID Card Number
-            format. Please enter 1 letter, followed by 12 numbers
-          Issue_Date: Issue Date
+          dln__format_message: Invalid Maryland Driver's License or ID Card Number format. Please enter 1 letter, followed by 12 numbers
+          "Issue_Date": "Issue Date"
           fax_number: Fax Number (xxx-xxx-xxxx)
-          Assistance_Print_Name: Name of Assistant
-          assistant: I had help completing this application
+          "Assistance_Print_Name": Name of Assistant
+          "assistant": I had help completing this application
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Mail-in Voting status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Mail-in Voting status, by using
-            your state&#39;s <a target='_blank' href='https://voterservices.elections.maryland.gov/VoterSearch'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to email my request form, certifying that all information is accurate.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Mail-in Voting status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Mail-in Voting status, by using your state&#39;s <a target='_blank' href='https://voterservices.elections.maryland.gov/VoterSearch'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate.
           signature_capture:
             desktop_provide_e_signature: In the state of Maryland, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -1197,18 +1067,12 @@ en:
             </ul>
       me:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            calling your local election official.  Find your official''s contact information
-            here:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: 'You can look up your Absentee Ballot status, by
-            calling your local election official.  Find your official&#39;s contact
-            information here: <a target=''_blank'' href=''https://www.maine.gov/sos/cec/elec/munic.html''>Directory</a>'
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official's contact information here:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.maine.gov/sos/cec/elec/munic.html'>Directory</a>"
+          finalpage_additional_instructions:  
         state_online_abr:
           confirm: To qualify to request a ballot in ME, you only need to be registered
             to vote.
@@ -1220,48 +1084,43 @@ en:
       ma:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In MA
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote by mail status, by using
-            your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Vote by mail status, by using
-            your state&#39;s <a target='_blank' href='https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: ''
-          step_2_instructions: "<p>We'll use this information to determine how you
-            can request your vote by mail ballot.</p>"
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote by mail status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Vote by mail status, by using your state&#39;s <a target='_blank' href='https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx'>online tool</a>"
+          finalpage_additional_instructions:  
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your vote by mail ballot.</p>"
           step_3_header: Prepare your Massachusetts PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
-          finish_pdf_delay: It's taking a while to create your vote by mail request
-            form to download, but don't worry. We'll send you an email when it's ready.
-            In the mean time, you can let your friends know how they can request a
-            vote by mail ballot too.
-          step_3_deliver_via_email_instructions: "<p>Please review all of the above
-            information for accuracy.</p> <p>When you click the button below, an email
-            will be sent directly to your local election office with your vote by
-            mail ballot request.</p>"
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to email my request form, certifying that all information is accurate
-            and that this form is <i>signed under penalty of perjury</i>.
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
+          step_3_deliver_via_email_instructions: <p>Please review all of the above information for accuracy.</p>
+            <p>When you click the button below, an email will be sent directly to your local election office with your vote by mail ballot request.</p>
+
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to email my request form, certifying that all information is accurate and 
+            that this form is <i>signed under penalty of perjury</i>.
+          
           signature_capture:
-            desktop_provide_e_signature: <b>If you live in West Stockbridge, email
-              submission for your town is not currently set up, please select the
-              3rd option below "I prefer to print, sign and mail or email my application
-              myself."</b><br/> In the state of Massachusetts, we can email a digitally
-              signed copy of your absentee request. Please select how you'd like to
-              provide a signature.
-            desktop_provide_signature: <b>If you live in West Stockbridge, email submission
-              for your town is not currently set up, please select the 3rd option
-              below "I prefer to print, sign and mail or email my application myself."</b><br/>
-              In the state of Massachusetts, we can email a digitally signed copy
-              of your absentee request. Please select how you'd like to provide a
-              signature.
+            desktop_provide_e_signature:  <b>If you live in West Stockbridge, email submission for your 
+              town is not currently set up, please select the 3rd option below "I prefer to print, sign and 
+              mail or email my application myself."</b><br/>
+              In the state of Massachusetts, we can email
+              a digitally signed copy of your absentee request. Please select how
+              you'd like to provide a signature.
+            desktop_provide_signature: <b>If you live in West Stockbridge, email submission for your 
+              town is not currently set up, please select the 3rd option below "I prefer to print, sign and 
+              mail or email my application myself."</b><br/>
+              In the state of Massachusetts, we can email
+              a digitally signed copy of your absentee request. Please select how
+              you'd like to provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
           finish_instructions: '<p>Make sure to read the instructions on the form
@@ -1276,8 +1135,8 @@ en:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
           mailing_address_input: Mailing address
-          assistance_required: Check this box if you received assistance in completing
-            this application due to a physical disability.
+          assistance_required: Check this box if you received assistance in completing this 
+            application due to a physical disability.
           assisting_person: Assisting person's name
           Assisting persons address: Assisting person's address
           the ballot: Name of messenger
@@ -1290,13 +1149,13 @@ en:
             the ballot:'
       mi:
         abr_form_fields:
-          bad_date__format_message: Invalid date
+          bad_date__format_message: "Invalid date"
           November 3 Address: Mailing address
           November 4 City: City
           November 3 State: State
           November 3 Zip: Zip
-          address_begindate: 'Date leaving for this address:'
-          address_enddate: 'Date returning from this address:'
+          "address_begindate": "Date leaving for this address:"
+          "address_enddate": "Date returning from this address:"
           jurisdiction_type: 'Please select one of the following:'
           jurisdiction_type__options:
             town: I live in a township.
@@ -1308,19 +1167,12 @@ en:
             this application for the voter.
           has_mailing_address: My mailing address differs from my residential address.
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Michigan, this application must be RECEIVED by Friday,
             October 30th, 2020.</p><p>You can check on the status of your absent voter
@@ -1441,26 +1293,25 @@ en:
         step_3_header: Who Are You?
         step_4_header: Where You Live
         step_5_header: Review & Sign
-        dln_instructions: Your identification number will not be available to the
-          public. For more information, read the privacy notice.
+        dln_instructions: Your identification number will not be available to the public. For more information, read the privacy notice.        
         by_paper_header: Complete Registration By Paper
-        declaration: "<p>I declare that:</p> <ul> <li>I will be at least 18 years
-          old on election day; <li>I am a citizen of the United States; <li>I will
-          have resided in Minnesota for 20 days immediately preceding election day;
-          <li>I have maintained residence at the address given on the registration
-          form; <li>I am not under court-ordered guardianship in which the court order
-          revokes my right to vote; <li>I have not been found by a court to be legally
-          incompetent to vote; have the right to vote because, if I have been convicted
-          of a felony, my felony sentence has expired (been completed) or I have been
-          discharged from my sentence; and  </ul>"
+        declaration: >
+          <p>I declare that:</p>
+          <ul>
+          <li>I will be at least 18 years old on election day;
+          <li>I am a citizen of the United States;
+          <li>I will have resided in Minnesota for 20 days immediately preceding election day;
+          <li>I have maintained residence at the address given on the registration form;
+          <li>I am not under court-ordered guardianship in which the court order revokes my right to vote;
+          <li>I have not been found by a court to be legally incompetent to vote; have the right to vote because, if I have been convicted of a felony, my felony sentence has expired (been completed) or I have been discharged from my sentence; and 
+          </ul>
         custom_errors:
-          confirm_eligibility: You must meet all the above requirements to register
-            to vote in Minnesota.
+          confirm_eligibility: >
+            You must meet all the above requirements to register to vote in Minnesota.
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide an identification
-            number: MN-issued driver's license, Minnesota ID card or last 4 digits
-            of Social Security Number, you may request your absentee ballot online
-            directly with the state.</p>"
+            number: MN-issued driver's license, Minnesota ID card or last 4 digits of Social 
+            Security Number, you may request your absentee ballot online directly with the state.</p>"
           instructions: |-
             <p>To request an absentee ballot in MN, you must certify that:</p>
             <ul>
@@ -1476,38 +1327,27 @@ en:
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx">https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx</a></p>'
         abr_form_fields:
-          bad_date__format_message: Invalid date
+          bad_date__format_message: "Invalid date"
           Absentee ballot address_1: Ballot delivery address
           Absentee ballot address - City: City
           Absentee ballot address - State: State
           Absentee ballot address - Zip Code: Zip
-          has_mailing_address: I would like my ballot sent to an address other than
-            my residential address.
-          id_instruction: Your identification number  (mark all that apply)
+          has_mailing_address: I would like my ballot sent to an address other than my residential address.
+          id_instruction: 'Your identification number  (mark all that apply)'
           dln_check: I have a Minnesota-issued driver's license or ID Card
-          Minnesota Driver's License or ID Card Number: MN-issued driver’s license
-            or MN ID card
-          Minnesota Driver's License or ID Card Number__format_message: Not a valid
-            MN-issued driver’s license or MN ID card
+          Minnesota Driver's License or ID Card Number: MN-issued driver’s license or MN ID card
+          Minnesota Driver's License or ID Card Number__format_message: Not a valid MN-issued driver’s license or MN ID card
           ss_check: I have a Social Security Number
-          no_id_check: I do not have a Minnesota-issued driver's license or identification
-            card, or a Social Security Number
-          no_id_check__format_message: You cannot select no id if you have a Minnesota-issued
-            driver's license or identification card, or a Social Security Number
-          no_id_check__required_message: You must either provide an ID above or assert
-            you have no identification
+          no_id_check:  I do not have a Minnesota-issued driver's license or identification card, or a Social Security Number
+          no_id_check__format_message: You cannot select no id if you have a Minnesota-issued driver's license or identification card, or a Social Security Number
+          no_id_check__required_message: 'You must either provide an ID above or assert you have no identification'
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx'>online tool</a>"
+          finalpage_additional_instructions:  
           signature_capture:
             desktop_provide_e_signature: In the state of Minnesota, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -1517,10 +1357,10 @@ en:
               provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
-          finish_instructions: <p>You should return this to your local election office.
-            If not provided above, contact information for your local election official
-            can be found under “Find County Election Office” at <a rel="noopener"
-            target="blank" href="https://www.mnvotes.org">https://www.mnvotes.org</a></p>
+          finish_instructions: '<p>You should return this to your local election office. If not
+            provided above, contact information for your local election
+            official can be found under “Find County Election Office”
+            at <a rel="noopener" target="blank" href="https://www.mnvotes.org">https://www.mnvotes.org</a></p>'
         registration:
           has_state_license: I have a current MN driver’s license or ID card number,
             or the last 4 numbers of my SSN.
@@ -1535,23 +1375,12 @@ en:
             device or use your current device.
       mo:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            calling your local election official.  Find your official''s contact information
-            here:'
-          state_reminder_1: 'If you registered by mail and this is your first time
-            voting, you must provide a copy of either: (1) an ID issued by the Federal
-            Government, state of Missouri, or a local election authority; (2) ID issued
-            by a Missouri institution (public or private) of higher education; or
-            (3) a current utility bill, bank statement, paycheck, government check
-            or other government document that contains your name and address.'
-          state_reminder_2: ''
-          finalpage_instructions: 'You can look up your Absentee Ballot status, by
-            calling your local election official.  Find your official&#39;s contact
-            information here: <a target=''_blank'' href=''https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority''>Directory</a>'
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official's contact information here:"
+          state_reminder_1: "If you registered by mail and this is your first time voting, you must provide a copy of either: (1) an ID issued by the Federal Government, state of Missouri, or a local election authority; (2) ID issued by a Missouri institution (public or private) of higher education; or (3) a current utility bill, bank statement, paycheck, government check or other government document that contains your name and address."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority'>Directory</a>"
+          finalpage_additional_instructions:  
           finish_instructions: "<p>Make sure to complete and send this form in as
             soon as possible. \n</p>\n<p>Please read through the instructions on the
             form on how to submit your application.</p>\n<p>Your absentee ballot application
@@ -1597,35 +1426,38 @@ en:
             confidentiality: Certified participation in the address confidentiality
               program established under sections 589.660 to 589.681, RSMo., because
               of safety concerns
-            COVID: I have contracted or am in an at-risk category for contracting
-              or transmitting severe acute respiratory syndrome coronavirus 2(COVID-19),
-              pursuant to Section 115.277.6,RSMo. (No Notary Required)
-          covid_instructions_formatted: "<p>At-risk voters are individuals who:</p>
-            <ul> <li>Are 65 years of age or older</li> <li>Live in a long-term care
-            facility licensed under Chapter 198, RSMo.</li> <li>Have serious heart
-            conditions</li> <li>Have chronic lung disease or moderate to severe asthma</li>
-            <li>Are immunocompromised</li> <li>Have chronic kidney disease and are
-            undergoing dialysis</li> <li>Have liver disease</li> <li>Have diabetes</li>
-            </ul>"
-          covid_instructions: 'At-risk voters are individuals who: Are 65 years of
-            age or older, Live in a long-term care facility licensed under Chapter
-            198, RSMo., Have serious heart conditions, Have chronic lung disease or
-            moderate to severe asthma, Are immunocompromised, Have chronic kidney
-            disease and are undergoing dialysis, Have liver disease, or Have diabetes'
+            COVID: I have contracted or am in an at-risk category for contracting or transmitting 
+              severe acute respiratory syndrome coronavirus 2(COVID-19), pursuant to 
+              Section 115.277.6,RSMo. (No Notary Required)
+          covid_instructions_formatted: 
+              "<p>At-risk voters are individuals who:</p>
+              <ul>
+              <li>Are 65 years of age or older</li>
+              <li>Live in a long-term care facility licensed under Chapter 198, RSMo.</li>
+              <li>Have serious heart conditions</li>
+              <li>Have chronic lung disease or moderate to severe asthma</li>
+              <li>Are immunocompromised</li>
+              <li>Have chronic kidney disease and are undergoing dialysis</li>
+              <li>Have liver disease</li>
+              <li>Have diabetes</li>
+              </ul>"
+          covid_instructions: 
+            "At-risk voters are individuals who: Are 65 years of age or older,
+            Live in a long-term care facility licensed under Chapter 198, RSMo.,
+            Have serious heart conditions,
+            Have chronic lung disease or moderate to severe asthma,
+            Are immunocompromised,
+            Have chronic kidney disease and are undergoing dialysis,
+            Have liver disease, or
+            Have diabetes"         
       ms:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            calling your local election official.  Find your official''s contact information
-            here:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: 'You can look up your Absentee Ballot status, by
-            calling your local election official.  Find your official&#39;s contact
-            information here: <a target=''_blank'' href=''https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx''>Directory</a>'
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official's contact information here:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx'>Directory</a>"
+          finalpage_additional_instructions:  
           header: Absentee Requests In Mississippi
           instructions: |-
             <p>Mississippi requires all absentee requests to be completed directly through the state. Please check with your Circuit or Municipal Clerk to determine if you are entitled to vote by an absentee ballot and to learn the procedures for doing so.     If you know you will vote by an absentee ballot, you may contact your Circuit or Municipal Clerk’s Office at any time within 45 days of the election.</p>
@@ -1648,19 +1480,12 @@ en:
             </ul>
       mt:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://app.mt.gov/voterinfo/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://app.mt.gov/voterinfo/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: Any registered voter who has been a resident of Montana for
             at least 30 days may request an absentee ballot.
         abr_form_fields:
@@ -1685,24 +1510,18 @@ en:
             of designee who will pick up my absentee ballot:'
       nc:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your  status, by using your state''s
-            online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your  status, by using your state&#39;s
-            <a target='_blank' href='https://vt.ncsbe.gov/RegLkup/'>online tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your  status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your  status, by using your state&#39;s <a target='_blank' href='https://vt.ncsbe.gov/RegLkup/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: "<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible.</p><p>Check
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
         abr_form_fields:
-          bad_date__format_message: Invalid date
+          bad_date__format_message: "Invalid date"
           has_mailing_address: My mailing address differs from my residential address.
           identification: Choose one of the following methods for identification
           identification__options:
@@ -1738,7 +1557,8 @@ en:
           reg_mail_city: City
           reg_mail_state: State
           reg_mail_zip: Zip
-          AssistantAddressInput: ''
+
+          AssistantAddressInput: 
           lived_here_long: Have you lived at your residential address for 30 days
             or more?
           date_moved: 'If ''No'', please enter the date moved (MM/DD/YYYY):'
@@ -1748,10 +1568,11 @@ en:
             or inability to read or write, and requires assistance.
           patient: If voter is a patient in a hospital, clinic, nursing home or rest
             home, does voter need assistance with voting and returning the ballot?
-          HopitalFacilityName: If Yes, what is the name and address of the hospital
-            or facility?
+          HopitalFacilityName: If Yes, what is the name and address of the
+            hospital or facility?
           uocava_option: I am an absentee military or overseas voter.
-          UOCAVA: 'Select the best option below that describes your absentee status:'
+          UOCAVA: 'Select the best option below that describes your
+            absentee status:'
           UOCAVA__options:
             military: Member of the Uniformed Services or Merchant Marine on active
               duty or eligible spouse/dependent and currently absent from county of
@@ -1772,17 +1593,12 @@ en:
             "Continue as a guest" and submit your voter registration online.'
       nd:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: You can look up your Absentee Ballot status, by
-            using your state's online tool
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://vip.sos.nd.gov/AbsenteeTracker.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://vip.sos.nd.gov/AbsenteeTracker.aspx'>online tool</a>"
+          finalpage_additional_instructions:  
           skip_state_online_abr: I would like to create a paper request form instead.
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
@@ -1835,34 +1651,27 @@ en:
       ne:
         request_absentee_ballot_in: Request an Early Vote Ballot In NE
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Early Voting Ballot status,
-            by using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Early Voting Ballot status,
-            by using your state&#39;s <a target='_blank' href='https://www.votercheck.necvr.ne.gov/voterview/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Early Voting Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Early Voting Ballot status, by using your state&#39;s <a target='_blank' href='https://www.votercheck.necvr.ne.gov/voterview/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: "<p>To qualify to request a ballot in NE, you only need to
             be registered to vote.</p>"
           finish_instructions: "<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible.</p><p>Check
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
-          step_2_instructions: "<p>We'll use this information to determine how you
-            can request your early vote ballot.</p>"
+          step_2_instructions: "<p>We'll use this information to determine how you can
+            request your early vote ballot.</p>"
           step_3_header: Prepare your Nebraska PDF Early Vote Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF early vote request form.</p>"
-          finish_pdf_delay: It's taking a while to create your early vote request
-            form to download, but don't worry. We'll send you an email when it's ready.
-            In the mean time, you can let your friends know how they can request an
-            early vote ballot too.
+          finish_pdf_delay: It's taking a while to create your early vote request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request an early vote ballot
+            too.
         abr_form_fields:
           County Name2: Registered County
           Address Line 2: Mailing address
@@ -1884,17 +1693,12 @@ en:
               office.)
       nh:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your  status, by using your state''s
-            online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your  status, by using your state&#39;s
-            <a target='_blank' href='https://app.sos.nh.gov/Public/AbsenteeBallot.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your  status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your  status, by using your state&#39;s <a target='_blank' href='https://app.sos.nh.gov/Public/AbsenteeBallot.aspx'>online tool</a>"
+          finalpage_additional_instructions:  
           signature_capture:
             desktop_provide_e_signature: In the state of New Hampshire, we can email
               a digitally signed copy of your absentee request. Please select how
@@ -1915,7 +1719,9 @@ en:
           assistant: I assisted voter in completing this form because he/she has a
             disability.
           Asisstant Name: Assistant Name
-          Street or PO Box: Street number
+          #Note PO Box moved to street name field; street name can't be required in conjunciton with 
+          #PO Box (not part of PO Box address)
+          Street or PO Box:  Street number
           mail_street_name: Street name or PO Box
           AptUnit_2: Apt/Unit
           CityTown_2: City/Town
@@ -1923,27 +1729,24 @@ en:
           mail_zip: Zip
           Group_I: 'I herby declare that (check one):'
           Group_I__options:
-            Choice2: I am a duly qualified voter who is currently registered to vote
-              in this town/ward.
-            Choice1: I am absent from the town/city where I am domiciled and will
-              be until after the next election, or I am unable to register in person
-              due to a disability or concern for the novel coronavirus (COVID-19),
-              and request that the forms necessary for absentee voter registration
-              be sent to me with the absentee ballot.
-          Group_II: 'I will be entitled to vote by absentee ballot because (check
-            one):'
+            Choice2: I am a duly qualified voter who is currently registered to
+              vote in this town/ward.
+            Choice1: I am absent from the town/city where I am domiciled and will be until
+              after the next election, or I am unable to register in person due to a disability
+              or concern for the novel coronavirus (COVID-19), and request that the forms necessary 
+              for absentee voter registration be sent to me with the absentee ballot.
+          Group_II: 'I will be entitled to vote by absentee ballot because
+            (check one):'
           Group_II__options:
             Choice1: I plan to be absent on the day of the election from the city,
               town, or unincorporated place where I live.
             Choice2: I cannot appear in public on election day because of observance
               of a religious commitment.
             Choice3: I am unable to vote in person due to a disability.
-            Choice4: I am unable to vote in person due to concern for the novel coronavirus
-              (COVID-19).
-            Choice5: I cannot appear at any time during polling hours at my polling
-              place because of an employment obligation. For the purposes of this
-              application, the term “employment” shall include the care of children
-              and infirm adults, with or without compensation.
+            Choice4: I am unable to vote in person due to concern for the novel coronavirus (COVID-19).
+            Choice5: I cannot appear at any time during polling hours at my polling place because of an
+              employment obligation. For the purposes of this application, the term “employment” shall
+              include the care of children and infirm adults, with or without compensation.
           Group_II__required_message: Please select one of the above reasons
           Party: 'Required for Primary Elections: I am a member of, or I am now declaring
             my affiliation with a party and I am requesting a ballot for that party’s
@@ -1951,25 +1754,17 @@ en:
       nj:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In NJ
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote By Mail status, by using
-            your state''s online tool:'
-          state_reminder_1: If you haven't signed up before, you will need to sign
-            up to use your state's look up tool.  You can do this on the same page.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Vote By Mail status, by using
-            your state&#39;s <a target='_blank' href='https://voter.svrs.nj.gov/auth/sign-in'>online
-            tool</a>
-          finalpage_additional_instructions: If you haven't signed up before, you
-            will need to sign up to use your state's look up tool.  You can do this
-            on the same page.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote By Mail status, by using your state's online tool:"
+          state_reminder_1: "If you haven't signed up before, you will need to sign up to use your state's look up tool.  You can do this on the same page."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://voter.svrs.nj.gov/auth/sign-in'>online tool</a>"
+          finalpage_additional_instructions:  "If you haven't signed up before, you will need to sign up to use your state's look up tool.  You can do this on the same page."
           header: Vote by Mail Requests In New Jersey
-          instructions: '<p>Your state is automatically sending a vote by mail ballot
-            to all registered voters this year. Your vote by mail ballot will be sent
-            to the address listed on your voter registration. If you have any questions,
-            or need to update your address please go to: <a href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'
+          instructions: '<p>Your state is automatically sending a vote by mail ballot to all 
+            registered voters this year. Your vote by mail ballot will be sent to the address 
+            listed on your voter registration. If you have any questions, or need to 
+            update your address please go to: <a href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'  
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your application must be received seven days prior to Election Day (October
@@ -2014,23 +1809,18 @@ en:
           messenger_birth_date__required_message: Birthdate not valid
       nm:
         abr_form_fields:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
           has_mailing_address: My mailing address differs from my residence address.
           mail_address1: Mailing address line 1
           mail_address2: Mailing address line 2
           mail_address3: Mailing address line 3
           county: County
         abr:
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker'>online tool</a>"
+          finalpage_additional_instructions:  
           finish_instructions: <p>Make sure to complete and send this form in as soon
             as possible. In New Mexico, this application must be turned in to your
             County Clerk's office within 48 hours of completetion. Your absentee ballot
@@ -2043,25 +1833,19 @@ en:
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>'
       nv:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://www.nvsos.gov/votersearch/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://www.nvsos.gov/votersearch/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           header: Absentee Requests In Nevada
-          instructions: "<p>Your state is automatically sending an absentee ballot
-            to all registered voters this year. Your absentee ballot will be sent
-            to the address listed on your voter registration. If you have any questions,
-            please reach out to your local election official or call the Nevada Secretary
-            of State's Elections Division: (775) 684-5705.</p>"
+          instructions: '<p>Your state is automatically sending an absentee ballot to all 
+            registered voters this year. Your absentee ballot will be sent to the address 
+            listed on your voter registration. If you have any questions, please reach out 
+            to your local election official or call the Nevada Secretary of State''s 
+            Elections Division: (775) 684-5705.</p>'  
+
         clark county:
           state_online_abr:
             header: You can request an Absentee Ballot online directly with Clark
@@ -2114,26 +1898,21 @@ en:
           to print, sign, and mail in the form.</p>
       ny:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://nysballot.elections.ny.gov/TrackMyBallot/Search'>online
-            tool</a>
-          finalpage_additional_instructions: ''
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to the following statement on my request form "I certify that I am a qualified
-            and a registered (and for primary, enrolled) voter; and that the information
-            in this application is true and correct and that this application will
-            be accepted for all purposes as the equivalent of an affidavit and, if
-            it contains a material false statement, shall subject me to the same penalties
-            as if I had been duly sworn."
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://nysballot.elections.ny.gov/TrackMyBallot/Search'>online tool</a>"
+          finalpage_additional_instructions:  
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to the following statement on my request form "I certify that I am a 
+            qualified and a registered (and for primary, enrolled) voter; and that the 
+            information in this application is true and correct and that this application will 
+            be accepted for all purposes as the equivalent of an affidavit and, if it contains 
+            a material false statement, shall subject me to the same penalties as if I had 
+            been duly sworn."
           signature_capture:
             desktop_provide_e_signature: In the state of New York, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -2158,14 +1937,13 @@ en:
              <li>You are a resident or patient of a Veterans Administration hospital; or</li>
              <li>You are detained in jail/prison, awaiting trial, awaiting action by grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li></ul>
         state_online_abr:
-          requirements: "<p>If you are registered to vote, you may request your absentee
-            ballot online directly with the state.  You may be required to have a
-            valid New York state ID</p>"
+          requirements: "<p>If you are registered to vote, you may request your absentee 
+            ballot online directly with the state.  You may be required to have a valid 
+            New York state ID</p>"
         abr_form_fields:
           county where you live: County where you live
           has_mailing_address: My mailing address differs from my residential address.
-          delivery_general: 'Delivery of General (or Special) Election Ballot (check
-            one):'
+          delivery_general: 'Delivery of General (or Special) Election Ballot (check one):'
           delivery_general__options:
             in_person: Deliver to me in person at the board of elections.
             mail: Mail ballot to me
@@ -2187,7 +1965,7 @@ en:
           mail_zip: Zip
           witness: Due to an illness, disability, or inability to read, voter is unable
             to sign and requires a witness.
-          address_mark_witness: Address of witness
+          "address_mark_witness": Address of witness
           authorized_recipient_name_general: Name of authorized recipient
           reason: 'I am requesting, in good faith, an absentee ballot due to (check
             one reason):'
@@ -2195,25 +1973,17 @@ en:
             absence: absence from county or New York City on election day
             temporary_illness: temporary illness or physical disability
             permanent_illness: permanent illness or physical disability
-            caregiver: duties related to primary care of one or more individuals who
-              are ill or physically disabled
+            caregiver: duties related to primary care of one or more individuals who are ill or physically disabled
             patient: resident or patient of a Veterans Health !dministration Hospital
-            prisoner: detention in jail/prison, awaiting trial, awaiting action by
-              a grand jury, or in prison for a conviction of a crime or offense which
-              was not a felony
+            prisoner: detention in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony
       oh:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: You can look up your Absentee Ballot status, by
-            using your state's online tool
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/'>online tool</a>"
+          finalpage_additional_instructions:  
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible. Your application must be RECEIVED by October 31st, 2020.</p><p>Once
             you receive your ballot, make sure to read it carefully and follow the
@@ -2246,19 +2016,12 @@ en:
           SSN4: Last four digits of your Social Security Number
       ok:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://okvoterportal.okelections.us/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""   
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://okvoterportal.okelections.us/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well.      "
         state_online_abr:
           confirm: To qualify to request a ballot in OK, you only need to be registered
             to vote.
@@ -2268,19 +2031,12 @@ en:
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://www.ok.gov/elections/OVP.html">https://www.ok.gov/elections/OVP.html</a></p>'
       or:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote By Mail status, by using
-            your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Vote By Mail status, by using
-            your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote By Mail status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           header: Absentee Requests In Oregon
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot. Your mail ballot will be sent to the address listed on
@@ -2315,26 +2071,18 @@ en:
             no_ssn: I do not have a SSN
           PA drivers license or PennDOT ID card number__format_message: 'Invalid PA
             license #. Please enter 8 digits'
-          assert_no_id: I do not have a PA driver’s license or a PennDOT ID card or
-            a Social Security number.<br><br>(You will be required to enclose a photocopy
-            of an acceptable ID with your application.  Your pdf form will have more
-            instructions.)
+          assert_no_id: "I do not have a PA driver’s license or a PennDOT ID card or a Social Security number.<br><br>(You will be required to enclose a photocopy of an acceptable ID with your application.  Your pdf form will have more instructions.)"
           ssn_last_4_input: 'Last 4 digits of your SSN:'
           ssn_last_4_input__format_message: Invalid format. Please enter 4 digits
           Municipality: Municipality (City, Town, or Village), if known
           Same_as_above: 'Select one:'
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Mail in ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Mail in ballot status, by using
-            your state&#39;s <a target='_blank' href='https://www.pavoterservices.pa.gov/pages/ballottracking.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Mail in ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Mail in ballot status, by using your state&#39;s <a target='_blank' href='https://www.pavoterservices.pa.gov/pages/ballottracking.aspx'>online tool</a>"
+          finalpage_additional_instructions:  
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.</p><p>In Pennsylvania, this application must be RECEIVED
             by Tuesday, October 27th, 2020.</p><p>Once you receive your ballot, make
@@ -2471,17 +2219,12 @@ en:
             copy_link: Copy Link
       sc:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo'>online tool</a>"
+          finalpage_additional_instructions:
           requirements: |-
             <p>In your state, you are only allowed to vote absentee if you meet one of the following criteria:</p>
             <ul>
@@ -2505,26 +2248,19 @@ en:
               <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
             </ul>
         state_online_abr:
-          confirm: 'In South Carolina, your absentee ballot application must be requested
-            through the online portal or by calling or emailing the county voter registration
-            office. The online portal is accessible here:'
+          confirm: "In South Carolina, your absentee ballot application must be requested 
+            through the online portal or by calling or emailing the county voter registration office. 
+            The online portal is accessible here:"
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>'
       ri:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Mail Ballot status, by using
-            your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Mail Ballot status, by using
-            your state&#39;s <a target='_blank' href='https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=3'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Mail Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Mail Ballot status, by using your state&#39;s <a target='_blank' href='https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=3'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: |-
             <p>Any registered voter can request an absentee ballot in Rhode Island, and must identify one of the following reasons for requesting the absentee ballot:</p>
             <ul>
@@ -2570,21 +2306,12 @@ en:
               I am a United States citizen who will be outside the United States.
       sd:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: Please note that your application requires you to either
-            attach a copy of an acceptable ID (examples listed on the form) or have
-            your form notarized.  Please review the application form for more information.
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://vip.sdsos.gov/VIPLogin.aspx'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: "Please note that your application requires you to either attach a copy of an acceptable ID (examples listed on the form) or have your form notarized.  Please review the application form for more information."
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://vip.sdsos.gov/VIPLogin.aspx'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: "<p>In South Dakota to submit a request to vote absentee,
             you must be a registered South Dakota voter, be able to provide a copy
             of your photo identification OR have your application notarized.Military
@@ -2628,19 +2355,12 @@ en:
           uocava_3: I am a U.S. citizen residing outside the United States.
       tn:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://tnmap.tn.gov/voterlookup/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://tnmap.tn.gov/voterlookup/'>online tool</a>"
+          finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
           Mailing Address (if different): Mailing address
@@ -2688,18 +2408,12 @@ en:
             even if the ballot is emailed. Send military/overseas ballot by:'
       tx:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Ballot by Mail status, by
-            calling your local election official.  Find your official''s contact information
-            here:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: 'You can look up your Ballot by Mail status, by
-            calling your local election official.  Find your official&#39;s contact
-            information here: <a target=''_blank'' href=''https://www.sos.state.tx.us/elections/voter/cclerks.shtml''>Directory</a>'
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Ballot by Mail status, by calling your local election official.  Find your official's contact information here:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Ballot by Mail status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.state.tx.us/elections/voter/cclerks.shtml'>Directory</a>"
+          finalpage_additional_instructions:  
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
           has_mailing_address__hint: If you selected "Expected absence from the county"
@@ -2738,17 +2452,12 @@ en:
           Zip code of witness: ZIP
       ut:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot'>online tool</a>"
+          finalpage_additional_instructions: 
           header: Absentee Requests In Utah
           instructions: |-
             <p>In your state, every active registered voter automatically receives a mail ballot. Your mail ballot will be sent to the address listed on your voter registration.  If you want to check on the status of your ballot, check if you are registered (and what address is listed on file), or have general questions about your absentee ballot go to  <a rel="noopener" target="blank" href="https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p> <p> NOTE: you cannot have your ballot sent to a different address than the one listed on your voter registration.  If you have a new permanent address, submit a new voter registration to update your address. </p>
@@ -2770,50 +2479,42 @@ en:
             <a rel="noopener" target="blank" href="https://vote.elections.virginia.gov/VoterInformation">https://vote.elections.virginia.gov/VoterInformation</a>
             </p>'
           button: Finish your<br/>vote by mail request<br/> online with Virginia.
-          confirm: Check if you meet your state's requirements, then click the button
-            below to request your vote by mail ballot through the state's site.
+          confirm: |-
+            Check if you meet your state's requirements, then click the button below to request your vote by mail ballot through the state's site.
+
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote By Mail status, by using
-            your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Vote By Mail status, by using
-            your state&#39;s <a target='_blank' href='https://vote.elections.virginia.gov/VoterInformation'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote By Mail status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://vote.elections.virginia.gov/VoterInformation'>online tool</a>"
+          finalpage_additional_instructions: "You will need to first look up your voter registration, then you can see your ballot status as well."
           step_2_header: Where are you registered to vote?
-          step_2_instructions: "<p>We'll use this information to determine how you
-            can request your vote by mail ballot.</p>"
+          step_2_instructions: "<p>We'll use this information to determine how you can
+           request your vote by mail ballot.</p>"
           step_3_header: Prepare your Virginia PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
-            your PDF vote by mail request form.</p>"
-          finish_pdf_delay: It's taking a while to create your vote by mail request
-            form to download, but don't worry. We'll send you an email when it's ready.
-            In the mean time, you can let your friends know how they can request a
-            vote by mail ballot too.
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to the following statement on my request form.<br/><br/>I swear/affirm,
-            subject to felony penalties for making false statements pursuant to VA
-            Code § 24.2-1016, that (1) the information provided in this form is true,
-            (2) I am not requesting a ballot or voting in any other jurisdictions
-            in the US, (3) I am registered to vote in the city/county where I am applying
-            to vote, and (4) if I checked the box (in Section 3) to vote by mail for
-            the calendar year, I will likely remain eligible to vote throughout the
-            calendar year.
+           your PDF vote by mail request form.</p>"
+          finish_pdf_delay: It's taking a while to create your vote by mail request form to
+            download, but don't worry. We'll send you an email when it's ready. In the
+            mean time, you can let your friends know how they can request a vote by mail ballot
+            too.
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, agreeing to 
+            the following statement on my request form.<br/><br/>I swear/affirm, subject to felony penalties 
+            for making false statements pursuant to VA Code § 24.2-1016, that (1) the information 
+            provided in this form is true, (2) I am not requesting a ballot or voting in any other 
+            jurisdictions in the US, (3) I am registered to vote in the city/county where I am applying to 
+            vote, and (4) if I checked the box (in Section 3) to vote by mail for the calendar year, 
+            I will likely remain eligible to vote throughout the calendar year.
           signature_capture:
             desktop_provide_e_signature: In the state of Virginia, we can email a
-              digitally signed copy of your vote by mail request. Please select how
-              you'd like to provide a signature.
+              digitally signed copy of your vote by mail request. Please select how you'd
+              like to provide a signature.
             desktop_provide_signature: In the state of Virginia, we can email a digitally
-              signed copy of your vote by mail request. Please select how you'd like
-              to provide a signature.
+              signed copy of your vote by mail request. Please select how you'd like to
+              provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
           finish_instructions: '<p>Make sure to print off and complete your application.
@@ -2855,8 +2556,7 @@ en:
             ballot_mailing_address: My mailing address
             email_address: My email address
           has_mailing_address: My mailing address differs from my residential address.
-          has_mailing_address__required_message: A mailing address is required for
-            the chosen delivery option.
+          has_mailing_address__required_message: A mailing address is required for the chosen delivery option.
           need_assistance: I need assistance completing my ballot due to a disability,
             blindness, or inability to read or write.
           Assistant_Name: Assistant's name
@@ -2902,52 +2602,50 @@ en:
         submitting: Sending Your Application
         confirming: Confirming Submission
         registration_complete: Registration Complete
-        registration_complete_dialog_text: '<p>Your application has been sent to the
-          Dept. of Elections to register to vote.</p> <p> Virginia law requires all
-          voters to provide either an acceptable form of ID or sign an ID Confirmation
-          Statement at the polls. Voters arriving at the polls without an acceptable
-          form of ID will be required to either sign an ID Confirmation Statement
-          or vote a provisional ballot.  If a voter votes a provisional ballot, they
-          will have until noon on the Friday following the election to deliver a copy
-          of identification to their locality’s electoral board or sign an ID Confirmation
-          Statement in order for their provisional ballot to be counted. Virginia’s
-          ID requirements also apply to early voters who vote at the General Registrar''s
-          Office or at a satellite voting location. </p> <p> Acceptable forms of identification
-          for voting at the polling place or voting early include the following: </p>
-          <ul> <li>Voter confirmation documents you received after you registered
-          to vote</li> <li>Virginia DMV-issued Driver’s License or Identification
-          Card</li> <li>Valid United States Passport</li> <li>Any ID card issued by
-          the US, Virginia, or a local Virginia government</li> <li>Any student ID
-          card issued by a US university or community college</li> <li>Valid student
-          ID issued by a public school or private school in Virginia</li> <li>Employer-issued
-          photo ID card</li> <li>Any current utility bill, bank statement, government
-          check, paycheck, or other government document with your name and address</li>
-          <li>An ID Confirmation Statement</li> <li><a href="https://www.elections.virginia.gov/media/formswarehouse/voter-id/outreach-materials/documents/EditedVoter-Identification-Chart-07.2020.pdf"
-          target="_blank" rel="noopener">For a more detailed list of acceptable IDs</a></li>
-          </ul> <p> Don’t have one of these forms of ID? Any registered voter who
-          does not possess one of the above mentioned forms of ID, may sign an ID
-          Confirmation Statement. A voter who does not bring an acceptable ID to the
-          polls or does not sign an ID Confirmation Statement will be offered a provisional
-          ballot. </p>'
+        registration_complete_dialog_text: "<p>Your application has been sent to the
+          Dept. of Elections to register to vote.</p>
+          <p>
+          Virginia law requires all voters to provide either an acceptable form of ID or 
+          sign an ID Confirmation Statement at the polls. Voters arriving at the polls 
+          without an acceptable form of ID will be required to either sign an ID Confirmation 
+          Statement or vote a provisional ballot.  If a voter votes a provisional ballot, 
+          they will have until noon on the Friday following the election to deliver a copy 
+          of identification to their locality’s electoral board or sign an ID Confirmation 
+          Statement in order for their provisional ballot to be counted. Virginia’s ID 
+          requirements also apply to early voters who vote at the General Registrar's 
+          Office or at a satellite voting location.
+          </p>
+          <p>
+          Acceptable forms of identification for voting at the polling place or voting early include the following:
+          </p>
+          <ul>
+            <li>Voter confirmation documents you received after you registered to vote</li>
+            <li>Virginia DMV-issued Driver’s License or Identification Card</li>
+            <li>Valid United States Passport</li>
+            <li>Any ID card issued by the US, Virginia, or a local Virginia government</li>
+            <li>Any student ID card issued by a US university or community college</li>
+            <li>Valid student ID issued by a public school or private school in Virginia</li>
+            <li>Employer-issued photo ID card</li>
+            <li>Any current utility bill, bank statement, government check, 
+            paycheck, or other government document with your name and address</li>
+            <li>An ID Confirmation Statement</li>
+            <li><a href=\"https://www.elections.virginia.gov/media/formswarehouse/voter-id/outreach-materials/documents/EditedVoter-Identification-Chart-07.2020.pdf\" target=\"_blank\" rel=\"noopener\">For a more detailed list of acceptable IDs</a></li>
+          </ul>
+          <p>
+          Don’t have one of these forms of ID? Any registered voter who does not possess one of the above mentioned forms of ID, may sign an ID Confirmation Statement. A voter who does not bring an acceptable ID to the polls or does not sign an ID Confirmation Statement will be offered a provisional ballot.
+          </p>"
       vt:
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
             state ID or your SSN, you may request your absentee ballot online directly
             with the state.</p>"
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://mvp.vermont.gov/'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://mvp.vermont.gov/'>online tool</a>"
+          finalpage_additional_instructions: "You will need to first look up your voter registration, then you can see your ballot status as well."
           header: Absentee Requests In Vermont
           instructions: '<p>Your state is automatically sending an absentee ballot
             to all voters this year, as long as you are registered more than 18 days
@@ -2962,19 +2660,12 @@ en:
       wa:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Vote By Mail status, by using
-            your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Vote By Mail status, by using
-            your state&#39;s <a target='_blank' href='https://voter.votewa.gov/WhereToVote.aspx#/login'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Vote By Mail status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://voter.votewa.gov/WhereToVote.aspx#/login'>online tool</a>"
+          finalpage_additional_instructions: "You will need to first look up your voter registration, then you can see your ballot status as well."
           header: Vote by Mail Requests In Washington
           instructions: '<p>In your state, every registered voter automatically receives
             a mail ballot for each election.  Your mail ballot will be sent to the
@@ -3041,23 +2732,12 @@ en:
             can check the status of your application and the status of your ballot
             at: <a rel="noopener" target="blank" href="https://myvote.wi.gov/en-us/MyVoterInfo">https://myvote.wi.gov/en-us/MyVoterInfo</a></p>'
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: You will need to first look up your voter registration,
-            then you can see your ballot status as well.
-          state_reminder_2: Please note that  if you will receive your absentee ballot
-            by mail, and have not previously provided a copy of acceptable photo ID
-            with a prior by-mail absentee ballot request, a copy of photo ID must
-            accompany this application.  You may submit your application and a copy
-            of your ID by mail, fax or email.
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://myvote.wi.gov/en-us/MyVoterInfo'>online
-            tool</a>
-          finalpage_additional_instructions: You will need to first look up your voter
-            registration, then you can see your ballot status as well.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
+          state_reminder_2: "Please note that  if you will receive your absentee ballot by mail, and have not previously provided a copy of acceptable photo ID with a prior by-mail absentee ballot request, a copy of photo ID must accompany this application.  You may submit your application and a copy of your ID by mail, fax or email."
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://myvote.wi.gov/en-us/MyVoterInfo'>online tool</a>"
+          finalpage_additional_instructions: "You will need to first look up your voter registration, then you can see your ballot status as well."
           signature_capture:
             desktop_provide_e_signature: In the state of Wisconsin, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -3079,8 +2759,7 @@ en:
         abr_form_fields:
           resident_county: County
           has_mailing_address: My mailing address differs from my residential address.
-          has_mailing_address__required_message: A mailing address outside of your
-            county of residence is required.
+          has_mailing_address__required_message: A mailing address outside of your county of residence is required.
           mail_address: Mailing address
           mail_city: City
           mail_state: State
@@ -3093,43 +2772,42 @@ en:
               me from voting in person and from voting a paper ballot without assistance.
           reason_a: 'Please select one:'
           reason_a__options:
-            address_confidentiality: "<p>I am a participant in the Address Confidentiality
+            address_confidentiality: <p>I am a participant in the Address Confidentiality
               Program (ACP) with the Office of the Secretary of State. <u>If selected,
-              send your application to the Secretary of State’s Office.</u></p>"
-            business_or_travel: "<p>Personal business or travel. <u>If selected, your
-              ballot must be mailed outside of your county of residence.</u></p>"
-            college: "<p>Attendance at college, university, or other place of education
+              send your application to the Secretary of State’s Office.</u></p>
+            business_or_travel: <p>Personal business or travel. <u>If selected, your ballot
+              must be mailed outside of your county of residence.</u></p>
+            college: <p>Attendance at college, university, or other place of education
               or training. <u>If selected, your ballot must be mailed outside of your
-              county of residence.</u></p>"
-            disability: "<p>The county absentee voting office and my polling place
-              are inaccessible to me due to my physical disability.</p>"
-            elected_away: "<p>Temporarily living outside of the county due to serving
-              as an elected or appointed federal or state officer. <u>If selected,
-              your ballot must be mailed outside of your county of residence.</u></p>"
-            employment: "<p>Employment which because of hours worked and distance
-              from the county seat makes voting in person impossible.</p>"
+              county of residence.</u></p>
+            disability: <p>The county absentee voting office and my polling place are
+              inaccessible to me due to my physical disability.</p>
+            elected_away: <p>Temporarily living outside of the county due to serving
+              as an elected or appointed federal or state officer. <u>If selected, your
+              ballot must be mailed outside of your county of residence.</u></p>
+            employment: <p>Employment which because of hours worked and distance from
+              the county seat makes voting in person impossible.</p>
             illness: "<p>Illness, injury or other medical reason which keeps me confined.
-              <br/>NOTE: due to COVID-19, West Virginia's Secretary of State has announced
-              that all West Virginia voters can use this option as the excuse for
-              requesting a ballot.</p>"
-            immobility: "<p>Immobility due to advanced age or a physical disability.</p>"
-            incarceration: "<p>Incarceration or detention in jail or home. I am not
-              under conviction of any felony, of treason or of bribery in an election
-              (including any period of probation or parole). <u>If selected you must
-              complete the statement on page 2 after printing this form.</u></p>"
-            working_away: "<p>Temporarily living outside of the county due to a temporary
+              <br/>NOTE: due to COVID-19, West Virginia's Secretary of State has 
+              announced that all West Virginia voters can use this option as the 
+              excuse for requesting a ballot.</p>"
+            immobility: <p>Immobility due to advanced age or a physical disability.</p>
+            incarceration: <p>Incarceration or detention in jail or home. I am not under
+              conviction of any felony, of treason or of bribery in an election (including
+              any period of probation or parole). <u>If selected you must complete the
+              statement on page 2 after printing this form.</u></p>
+            working_away: <p>Temporarily living outside of the county due to a temporary
               assignment by my employer for a specific period of four years or less.
-              <u>If selected, your ballot must be mailed outside of your county of
-              residence.</u></p>"
+              <u>If selected, your ballot must be mailed outside of your county of residence.</u></p>
           disability_want_electronic__hint: 'B. I am applying for an electronic absentee
             ballot due to:'
           incarceration_statement: Please complete the Statement on page 2 by hand
             after PDF is printed.
         state_online_abr:
           confirm: ''
-          requirements: 'To request an absentee online, you must provide your DMV
-            ID # or Last Four of SSN (whichever is on file, or if you have both on
-            file you may choose one to enter)'
+          requirements: 'To request an absentee online, you must provide your DMV ID # 
+            or Last Four of SSN (whichever is on file, or if you have both on file you may 
+            choose one to enter)'
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Absentee ballots postmarked by Election Day will be accepted if RECEIVED
@@ -3140,17 +2818,12 @@ en:
             ballot at any time here: <a rel="noopener" target="blank" href="https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking">https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking</a>
             </p>'
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking'>online
-            tool</a>
-          finalpage_additional_instructions: ''
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking'>online tool</a>"
+          finalpage_additional_instructions: 
           requirements: |-
             <p>Voters not able to vote in person during Early Voting or Election Day due to one of the following circumstances may vote a regular absentee ballot by mail:</p>
              <ul>
@@ -3178,23 +2851,18 @@ en:
             </p>'
       wy:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          abr_status_check_intro: 'You can look up your Absentee Ballot status, by
-            using your state''s online tool:'
-          state_reminder_1: ''
-          state_reminder_2: ''
-          finalpage_instructions: You can look up your Absentee Ballot status, by
-            using your state&#39;s <a target='_blank' href='https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf'>online
-            tool</a>
-          finalpage_additional_instructions: ''
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to the following statement on my request form "I hereby state that I am
-            a registered voter and entitled to vote in the election indicated above".
-            The election indicated is the Nov 3rd, 2020 General Election.
+          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          state_reminder_1: ""
+          state_reminder_2: ""
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf'>online tool</a>"
+          finalpage_additional_instructions: 
+          confirm_email_delivery: I have reviewed the above information and wish to email my 
+            request to my local elections office.<br/><br/>
+            By clicking the button below, I authorize Rock the Vote to apply my signature, 
+            agreeing to the following statement on my request form "I hereby state that I am 
+            a registered voter and entitled to vote in the election indicated above". The 
+            election indicated is the Nov 3rd, 2020 General Election.
           signature_capture:
             desktop_provide_e_signature: In the state of Wyoming, we can email a digitally
               signed copy of your absentee request. Please select how you'd like to
@@ -3221,8 +2889,8 @@ en:
             Y: 'Yes'
             N: 'No'
           Individual's name who may pick up my ballot: Authorized Ballot Pick-up
-          Individual's name who may pick up my ballot__hint: 'To authorize another
-            individual to pick up your ballot for you, add their name here:'
+          Individual's name who may pick up my ballot__hint: 'To authorize another individual
+            to pick up your ballot for you, add their name here:'
     parties:
       democratic: Democratic
       independent: Independent
@@ -3539,19 +3207,21 @@ en:
           the last four digits of your social security number. If you have neither,
           please write "NONE" on the form. A unique identifying number will instead
           be assigned to you by your State.
-        washington: "You must provide your Washington driver’s license or ID card
-          number. If you do \nnot have a Washington driver's license or ID card, you
-          must provide the last \nfour digits of your Social Security Number. Failure
-          to provide this information \nmay prevent your registration from being processed."
+        washington: |-
+          You must provide your Washington driver’s license or ID card number. If you do 
+          not have a Washington driver's license or ID card, you must provide the last 
+          four digits of your Social Security Number. Failure to provide this information 
+          may prevent your registration from being processed.
         wisconsin: |-
           Provide your unexpired Wisconsin driver license or DOT-issued ID
           card number. If you do not have a current and valid DOT-issued driver license
           or ID card, provide the last four digits of your social security number.
-        south_carolina: "You must provide at least the last four digits of your social
-          security number. \nYou may provide your full social security number on a
-          voluntary basis. Social \nsecurity number does not appear on any report
-          produced by the State Election \nCommission nor is it released to any unauthorized
-          individual. (South Carolina \nTitle 7-5-170)"
+        south_carolina: |-
+          You must provide at least the last four digits of your social security number. 
+          You may provide your full social security number on a voluntary basis. Social 
+          security number does not appear on any report produced by the State Election 
+          Commission nor is it released to any unauthorized individual. (South Carolina 
+          Title 7-5-170)
         south_dakota: |-
           Your driver’s license number is requested. If you do not have
           a valid driver's license, you must provide the last four digits of your
@@ -3633,3 +3303,263 @@ en:
           you do not have a driver's license, please provide the last four digits
           of your Social Security number.  If you have neither, please enter "NONE"
           and a unique identifier will be assigned to you by the state.
+        drivers_license_or_ssn_or_none_3: |-
+          You must provide your driver's license number,
+          if you have one. If you do not have a driver's license number, you must
+          provide the last four digits of your Social Security number. If you do not
+          have either number, please write "NONE."
+        drivers_license_or_ssn_or_none_4: |-
+          You must provide your driver's license number.  If
+          you do not have a driver's license number, you must provide the last four
+          digits of your Social Security number.  If you do not have either number,
+          enter "NONE" and a unique identifying number will be assigned to you by
+          the state.
+        drivers_license_or_ssn_county_clerk_with_state_name: |-
+          You must supply a %{state_name}
+          driver's license number if you have been issued one.  If you do not have
+          a driver's license number, you must provide the last four digits of your
+          Social Security number.  If you do not have a driver's license or a Social
+          Security number, please contact your county clerk to be assigned a unique
+          identifier.
+        drivers_license_or_dmv_with_state_name: |-
+          You must provide your %{state_name}
+          driver's license number or Department of Motor Vehicles identification number.  If
+          you do not have a driver's license or identification number, you must provide
+          the last four digits of your Social Security number.  If you do not have
+          any of these, enter "NONE" and the state will assign you an identification
+          number.
+        drivers_license_with_state_name: |-
+          You must provide your %{state_name} driver's
+          license number or state identification card number.  If you do not have
+          either of those,  you must provide the last four digits of your Social Security
+          number.  If you do not have any of these identification numbers,  please
+          enter "NONE" and a unique identification number will be assigned to you
+          by the state for voter registration purposes.
+        drivers_license_with_state_name_2: |-
+          You must provide your %{state_name} driver's
+          license number or state identification card.  If you do not have a driver's
+          license number, then you must provide the last four digits of your Social
+          Security number.  If you do not have a driver's license or a Social Security
+          number, you will be registered to vote, but must provide alternate identification
+          when casting your first ballot.
+        drivers_license_if_issued_with_state_name: |-
+          You must provide your %{state_name}
+          driver's license number if issued.  If not issued, you must provide at least
+          the last four digits of your Social Security number.  If you do not have
+          a driver's license or a Social Security number, please enter "NONE" and
+          the state will assign you an identification number.
+        drivers_license_required_at_voting_with_state_name: |-
+          You must provide your
+          %{state_name} driver's license or %{state_name} identification card number.  If
+          you do not have either a driver's license or ID card, you must provide the
+          last four digits of your Social Security number.  If you do not include
+          this information, you will be required to provide identification when you
+          vote.
+        drivers_license_non_driver_with_state_name: |-
+          You must provide your %{state_name}
+          driver's license number or non-driver identification number.  If you do
+          not have either of those, please provide the last four digits of your Social
+          Security number.  If you do not have a driver's license, identification
+          card, or Social Security number, please enter "NONE" and an identification
+          number will be assigned to you by the state.
+        drivers_license_non_driver_2: |-
+          You must provide your state-issued driver's
+          license number or nondriver's identification card number.  If you do not
+          have a driver's license or nondriver's identification card, you must provide
+          the last four digits of your Social Security number.  If you do not have
+          any of these, please enter "NONE" and a unique identifying number will be
+          assigned to you by the state.
+        drivers_license_not_operating: |-
+          You must provide your state-issued driver's
+          license number or non-operating identification license number.  If you do
+          not have a driver's license or non-operating identification number, you
+          must provide the last four digits of your Social Security number.  If you
+          do not have any of these forms of identification, please enter "NONE" and
+          a unique identifying number will be assigned by the state.
+        drivers_license_non_operating_with_state_name: |-
+          You must provide your %{state_name}
+          driver's license number or non-operating identification license number.  If
+          you do not have a driver's license or non-operating identification number,
+          you must provide the last four digits of your Social Security number.  If
+          you do not have any of these forms of identification, please enter "NONE"
+          and a unique identifying number will be assigned by the state.
+        drivers_license_personal_identification_with_state_name: |-
+          You must provide
+          your %{state_name} driver's license number or state-issued personal identification
+          card number.  If you do not have a driver's license or identification card
+          number, you must provide the last four digits of your Social Security number.  If
+          you do not have any of these forms of identification, please enter "NONE"
+          and a unique identifying number will be assigned by the state.
+        drivers_license_state_id_with_state_name: |-
+          You must provide your %{state_name}
+          Driver's License number or State ID number.  If you do not have a driver's
+          license number, please provide the last four digits of your Social Security
+          number.  If you have neither, please enter "NONE" and a unique identifying
+          number will be assigned to you.
+        drivers_license_or_photo_id_and_other: |-
+          You must provide your %{state_name}
+          driver's license number.  If you do not have a driver's license, please
+          provide the last four digits of your Social Security number.  If you have
+          neither a driver's license nor a Social Security number, please provide
+          a copy of a current and valid photo I.D. or a copy of a current utility
+          bill, bank statement, government check, paycheck, or government document
+          that shows your name and address, in order to avoid additional ID requirements
+          the first time you vote.
+        drivers_license_current_and_valid: |-
+          You must provide your current and valid
+          driver's license number.  If you do not have one, please provide the last
+          four digits of your Social Security number.  If you have neither a driver's
+          license nor a Social Security number, please enter "NONE" and an identification
+          number will be assigned to you by the state.
+        drivers_license_current_and_valid_with_state_name: |-
+          You must provide your %{state_name}
+          driver's license number if you have been issued a current and valid driver's
+          license.  If you have not been issued a current and valid driver's license,
+          then you must provide the last four digits of your Social Security number.  If
+          you do not have a driver's license or a Social Security number, please enter
+          "NONE" and the state will assign you an identification number.
+        driver_license_state_issues_and_ssn: |-
+          You must provide you state-issued driver's
+          license number AND the last four digits of your Social Security number.
+          Please input both of these numbers in the identification field, separated
+          by a space. If you do not have a driver's license or a Social Security number,
+          please enter "NONE" and a unique identifying number will be assigned by
+          the state.
+    sub_18:
+      blank: ''
+      be_by_next_election: if you will be 18 by the next election
+      be_by_next_general_election_november: |-
+        if you will be 18 before the next general
+        election (which is usually in November)
+      once_turned_16: |-
+        once you have turned 16 years old (but you cannot vote until
+        you turn 18)
+      once_turned_17: once you have turned 17 years old
+      once_turned_17_but: once you turned 17 years old (but you have to be 18 to vote)
+      turn_by_next_election: if you will turn 18 before the next election
+      turn_by_next_election_2: if you will turn 18 by the next election
+      turn_by_next_general_election_november: |-
+        if you will turn 18 before the next
+        general election (which is usually in November)
+      turn_by_next_general_election_november_2: |-
+        if you will turn 18 before the next
+        election in November
+      when_at_least_16: when the person is at least 16 years of age
+      when_is_16: when the person is 16 years old
+      when_will_be_18: when the person will be 18 on or before the next election
+      90_days_before: 90 days before your 18th birthday
+      6_months_before: six months before your 18th birthday.
+      60_days_before_election_novemeber: |-
+        if it is 60 days before the next election
+        and you will be 18 years old by that election (usually in November)
+      2_months_before: two months before your 18th birthday
+      17_turn_18: if you are 17 and will turn 18 before the next election
+    registration_deadline:
+      alabama: received by 10/25/2021
+      california: postmarked by 10/18/2021
+      colorado: postmarked by 10/25/2021
+      connecticut: postmarked by 10/26/2021, 12:00 Eastern
+      district_of_columbia: received 21 days before the election
+      delaware: |-
+        postmarked by the fourth Saturday before a general or primary election,
+        or 10 days before a special election
+      florida: 10/4/2021, 7:00pm
+      georgia: received by 10/4/2021
+      idaho: postmarked by 10/8/2021
+      illinois: 27 days prior to an election
+      iowa: 5pm 10/18/2021
+      kansas: postmarked by 10/12/2021
+      maine: received by close of business, 10/12/21
+      massachusetts: postmarked by 8:00 pm 10/13/2021
+      michigan: postmarked by 10/18/2021
+      minnesota: 5pm, 10/12/2021
+      mississippi: postmarked by 5pm on 10/4/21 for the November 2, 2021 elections and postmarked by 5pm 10/25/2021 for the 11/23/2021 elections
+      missouri: |-
+        received before 5pm (or normal close of business) on the fourth Wednesday
+        prior to the election
+      montana: postmarked by 10/4/21 and received within 3 days. 
+      new_hampshire: Register to vote at your town hall before the deadline or register to vote the day of the election at the polling place.
+      new_jersey: 10/12/2021
+      new_mexico: postmarked by 10/5/2021
+      new_york: postmarked by 10/8/2021, mail received by 10/13/2021
+      north_carolina: 10/8/2021
+      north_dakota: North Dakota does not have voter registration.
+      nebraska: |-
+        postmarked by the third Friday before the election, or received in-person
+        by 6pm on the second Friday before the election
+      nevada: The deadline for mail-in voter registration is the fourth Tuesday before
+        any primary or general election. This is the date by which a mail-in voter
+        registration application must be postmarked. In-person voter registration
+        remains available until 7:00 p.m. on the third Tuesday preceding any primary
+        or general election. You may register to vote in person only by appearing
+        at the office of the County Clerk/Registrar of Voters. The deadline for online
+        voter registration at www.RegisterToVoteNV.gov is the Thursday preceding the
+        first day of the early voting period.
+      ohio: postmarked by 10/4/2021
+      oklahoma: received by 10/15/2021
+      pennsylvania: received by 10/18/2021
+      rhode_island: 10/3/2021
+      texas: 10/4/2021
+      utah: no later than 5:00 pm 11 calendar days before the election.
+      vermont: any day up to and including the day of the election
+      virginia: postmarked by 10/11/2021
+      washington: received by 10/25/2021
+      wisconsin: postmarked no later than the 3rd Wednesday preceding the election
+      postmarked_11_days: postmarked 11 days before the election
+      postmarked_14_days: postmarked 14 days before the election
+      postmarked_20_days: postmarked 20 days before the election
+      postmarked_21_days: postmarked 21 days before the election
+      postmarked_25_days: postmarked 25 days before the election
+      postmarked_27_days: postmarked 27 days before the election
+      postmarked_28_days: postmarked 28 days before the election
+      postmarked_29_days: postmarked 29 days before the election
+      postmarked_30_days: postmarked 30 days before the election
+      received_10_days: received 10 days before the election
+      received_14_days: received 14 days before the election
+      received_15_days: received 15 days before the election
+      received_21_days: received 21 days before the election
+      received_22_days: received 22 days before the election
+      received_25_days: received 25 days before the election
+      received_29_days: received 29 days before the election
+      received_30_days: received 30 days before the election
+      received_at_least_30_days: received at least 30 days before the election
+      thirty_days_before: 30 days before the election
+    pdf_instructions:
+      blank: ''
+      arizona: |-
+        <b>*Note for First Time Voter Registration Applicants And Recent
+        Movers: You must ALSO submit proof of citizenship to vote in state elections!</b><br/><i>If
+        this is your first time registering in Arizona or you have moved to another
+        county, your voter registration form must also include proof of citizenship
+        to vote in state elections (ie. Governor, Secretary of State, &amp; state
+        legislature). Otherwise you will ONLY be eleigible to vote in federal elections.
+        If you have an AZ driver license or state ID card issued after 10/1/1996,
+        that is suffient "proof of citizenship" and no other documentation is needed.
+        If not, you must submit "proof of citizenship" along with your voter registration
+        application. The most common "proof" is a photocopy of your birth certificate
+        or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>
+    pdf_other_instructions:
+      blank: ''
+      wisconsin: |-
+        Visit https://myvote.wi.gov up to 20 days before the election if
+        the voter has a current and valid Wisconsin driver license or state-issued
+        ID card.
+    email_instructions:
+      blank: ''
+      arizona: |-
+        <b>*Note for First Time Voter Registration Applicants And Recent
+        Movers: You must ALSO submit proof of citizenship to vote in state elections!</b><br/><i>If
+        this is your first time registering in Arizona or you have moved to another
+        county, your voter registration form must also include proof of citizenship
+        to vote in state elections (ie. Governor, Secretary of State, &amp; state
+        legislature). Otherwise you will ONLY be eleigible to vote in federal elections.
+        If you have an AZ driver license or state ID card issued after 10/1/1996,
+        that is suffient "proof of citizenship" and no other documentation is needed.
+        If not, you must submit "proof of citizenship" along with your voter registration
+        application. The most common "proof" is a photocopy of your birth certificate
+        or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>
+      wisconsin: '<strong>*Note: Applicants must always provide a Proof of Residence
+        document when registering in Wisconsin.</strong><br> If you are registering
+        by mail, you can use any of the Proof of Residence listed <a href="http://www.gab.wi.gov/publications/voter-guides/proof-of-residence"  target="_blank">here</a>
+        that must include the voter’s name and current address.'
+    online_registration_system_name: "%{state_name} Secretary of State"
