@@ -2,7 +2,179 @@
 vi:
   states:
     custom:
+      ak:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+          requirements: ''
+        state_online_abr:
+          requirements: ''
+          finish_instructions: ''
+        abr_form_fields:
+          us_citizen: ''
+          us_citizen__required_message: ''
+          attest_is_18: ''
+          attest_is_18__required_message: ''
+          Former Name: ''
+          Voter No: ''
+          has_mailing_address: ''
+          Perm Mailing 1: ''
+          Perm Mailing 2: ''
+          Perm Mailing 3: ''
+          SSN or Last 4: ''
+          ADL: ''
+          ADL__required_message: ''
+          ADL__format_message: ''
+          attest_no_ssn_or_dln: ''
+          gender: ''
+          gender__options:
+            male: ''
+            female: ''
+          gender__hint: ''
+          Party: ''
+          Party__hint: ''
+          ballot_selection: ''
+          ballot_selection__options:
+            dem: ''
+            rep: ''
+          attest_remote: ''
+          has_ballot_mailing_address: ''
+          Ballot Mailing Address 1: ''
+          Ballot Mailing Address 1__hint: ''
+          Ballot Mailing Address 2: ''
+          Ballot Mailing Address 3: ''
+      al:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+          requirements: ''
+        abr_form_fields:
+          Return this application to: ''
+          Please note that only one application may be placed in the same envelope: ''
+          reason_instructions: ''
+          chkReason1: ''
+          chkReason2: ''
+          chkReason2__hint: ''
+          chkReason3: ''
+          chkReason4: ''
+          chkReason5: ''
+          chkReason6: ''
+          chkReason7: ''
+          chkReason8: ''
+          chkReason9: ''
+          txtEarlierExpDate: ''
+          txtEarlierExpDate__hint: ''
+          has_mailing_address: ''
+          Precinct: ''
+          Precinct__hint: ''
+          identification: ''
+          identification__options:
+            dln_yes: ''
+            dln_no: ''
+          SSN_last_4: ''
+          Drivers_License_State: ''
+          Drivers_License_Number: ''
+          Drivers_License_Number__format_pattern_message: ''
+          Street_Address_1: ''
+          City_1: ''
+          State_1: ''
+          ZIP_1: ''
+          WorkPhone: ''
+      ar:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+        abr_form_fields:
+          Reason: ''
+          reason_covid: ''
+          Reside: ''
+          Where_Receive: ''
+          Where_Receive__options:
+            County_Clerk_Office: ''
+            Designated_Bearer: ''
+            Electronic_Means: ''
+            Mail: ''
+          Designated_Bearer_Name: ''
+          delivery_email_address: ''
+          mailing_addr_1: ''
+          mailing_addr_2: ''
+          mailing_addr_3: ''
+          Reason__options:
+            absent: ''
+            illness: ''
+            long_term_care: ''
+          Reside__options:
+            UOCAVA_1: ''
+            UOCAVA_2: ''
+            UOCAVA_3: ''
+            outside_county: ''
+            within_county: ''
+      az:
+        state_online_abr:
+          requirements: ''
+          finish_instructions: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          confirm_email_delivery: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          requirements: ''
+          finish_instructions: ''
+        abr_form_fields:
+          County_of_Residence: ''
+          election_selection: ''
+          election_selection__options:
+            general: ''
+            all: ''
+          has_mailing_address: ''
+          Mailing_Address: ''
+          Place_of_Birth_or_Drivers_licence_or_last_4_ssn: ''
+          primary_ballot_selection: ''
+          primary_ballot_selection__hint: ''
+          primary_ballot_selection__options:
+            green_pima_county_voters_only: ''
+            municipalonly_nonpartisan: ''
+          identification_selection: ''
+          identification_selection__options:
+            drivers_license_id: ''
+            place_of_birth: ''
+            last_4_ssn: ''
+          drivers_license_id: ''
+          drivers_license_id__format_message: ''
+          place_of_birth: ''
+          last_4_ssn: ''
       ca:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
         online_instructions: Bạn có thể hoàn thành đăng ký cử tri trực tuyến của bạn
           với tiểu bang ngay bây giờ - qua việc sử dụng đơn đăng ký cung cấp bởi Thư
           ký Bang.
@@ -11,7 +183,934 @@ vi:
           instruction_text: Bạn có đủ điều kiện để hoàn thành đăng ký của bạn bằng
             cách sử dụng hệ thống đăng ký cử tri trực tuyến của Bang.
         ca_disclosures: Tôi đã xem qua và chấp thuận các thông báo ở trên.
+      co:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      ct:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          Mailing Address 2: ''
+          Mailing Address 3: ''
+          assistant: ''
+          Printed Name: ''
+          Tel No: ''
+          absentee_reason: ''
+          absentee_reason__hint: ''
+          absentee_reason__options:
+            '1': ''
+            '2': ''
+            '3': ''
+            '4': ''
+            '5': ''
+            '6': ''
+            '7': ''
+          absentee_reason__required_message: ''
+      dc:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      de:
+        request_absentee_ballot_in: ''
+        state_online_abr:
+          finish_instructions: ''
+          requirements: ''
+          button: ''
+          confirm: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          step_2_instructions: ''
+          step_3_header: ''
+          step_3_instructions: ''
+          finish_pdf_delay: ''
+          finish_instructions: ''
+          email_instructions: ''
+        abr_form_fields:
+          Last4 Digits of SSN: ''
+          has_mailing_address: ''
+          check_sick_or_disabled: ''
+          check_sick_or_disabled__hint: ''
+          GroupSickDisabled: ''
+          GroupSickDisabled__options:
+            ChoiceEmail: ''
+            ChoiceMail: ''
+            ChoiceFax: ''
+          absentee_reason__options:
+            '1': ''
+            '2': ''
+            '3': ''
+            '4': ''
+            '5': ''
+            '6': ''
+          absentee_delivery: ''
+          Fax or: ''
+          Make me a permanent absentee voter__hint: ''
+      fl:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+        state_online_abr:
+          header: ''
+          confirm: ''
+          requirements: ''
+          finish_instructions: ''
+      ga:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          confirm_email_delivery: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          Permanent County: ''
+          Temporary Street Address: ''
+          Temporary City: ''
+          Temporary State: ''
+          Temporary Zip: ''
+          Temporary County: ''
+          address_has_changed: ''
+          Group1: ''
+          Group1__options:
+            Democratic: ''
+            Republican: ''
+            Non_Partisan: ''
+          Group2: ''
+          assisted_voter: ''
+          Group2__options:
+            temporarily residing out of the country: ''
+            physically disabled: ''
+          Text23: ''
+          requestor: ''
+          Elegibility: ''
+          Elegibility__hint: ''
+          Elegibility__options:
+            E: ''
+            D: ''
+            U: ''
+          Group3: ''
+          Group3__options:
+            MOS: ''
+            MST: ''
+            OST: ''
+            OSP: ''
+          request_electronic_transmission: ''
+      hi:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      ia:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+        abr_form_fields:
+          identification__options:
+            dln: ''
+            vic: ''
+          license: ''
+          voter_pin: ''
+          voter_pin__hint: ''
+          identification: ''
+          Mail Address: ''
+          Mailing Address City: ''
+          Mailing Address State: ''
+          Mailing Address Zip Code: ''
+          has_mailing_address: ''
+          Do not add this contact info to my voter recored check box: ''
+      id:
+        abr_form_fields:
+          has_mailing_address: ''
+          mailingAddress: ''
+          mailingZipCode: ''
+          mailingCity: ''
+          mailingState: ''
+          mailingCountry: ''
+        state_online_abr:
+          requirements: ''
+          finish_instructions: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          requirements: ''
+          finish_instructions: ''
+      il:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+        abr_form_fields:
+          ElectionPrecinct: ''
+          VOTERS OPTIONAL ADDRESS LINE 2: ''
+          VOTERS OPTIONAL ADDRESS LINE 3: ''
+          VOTERS OPTIONAL ADDRESS LINE 4: ''
+          has_mailing_address: ''
+        chicago:
+          state_online_abr:
+            header: ''
+            confirm: ''
+            requirements: ''
+            button: ''
+          abr_form_fields:
+            '0': ''
+            '1': ''
+            has_mailing_address: ''
+            Mailed Ballot Sent: ''
+            Address: ''
+            Apartment Number2: ''
+            ZiP Code: ''
+            Precinct: ''
+            Ward: ''
+        bloomington:
+          state_online_abr:
+            header: ''
+            confirm: ''
+            button: ''
+        kane county:
+          state_online_abr:
+            header: ''
+            confirm: ''
+            button: ''
+        lake county:
+          state_online_abr:
+            header: ''
+            confirm: ''
+            button: ''
+        madison county:
+          state_online_abr:
+            header: ''
+            confirm: ''
+            button: ''
+        mchenry county:
+          state_online_abr:
+            header: ''
+            confirm: ''
+            button: ''
+        sangamon county:
+          state_online_abr:
+            header: ''
+            confirm: ''
+            button: ''
+      in:
+        state_online_abr:
+          finish_page: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_page: ''
+          requirements: ''
+        abr_form_fields:
+          Mailing Address number and street: ''
+          CityTown State ZIP Code_2: ''
+          Registration Address number and street_2: ''
+          CityTown State ZIP Code_3: ''
+          Mailing Address number and street_2: ''
+          CityTown State ZIP Code_4: ''
+          ssn4: ''
+          SSN_last_4: ''
+          No_SSN: ''
+          assistant: ''
+          Name Please print_2: ''
+          assist_phone_day: ''
+          assist_phone_evening: ''
+          assist_birthdate: ''
+          has_mailing_address: ''
+          Reason__options:
+            age: ''
+            caregiver: ''
+            disability: ''
+            election_duties: ''
+            expected_absence: ''
+            fail_safe_voter: ''
+            illness: ''
+            lack_transportation: ''
+            military: ''
+            religious: ''
+            sex_offender: ''
+            work: ''
+      ks:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          requirements: ''
+          finish_instructions: ''
+        abr_form_fields:
+          identification: ''
+          identification__hint: ''
+          identification__options:
+            dln_yes: ''
+            dln_no: ''
+          has_mailing_address: ''
+          identification_number: ''
+          identification_number__format_message: ''
+          county_1: ''
+          state_2: ''
+          county_2: ''
+          Mailing_Address: ''
+          Mailing_City: ''
+          Mailing_State: ''
+          Mailing_Zip_Code: ''
+        redirect_to_online_registration: ''
+      ky:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      la:
+        state_online_abr:
+          finish_instructions: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+          requirements: ''
+          finish_pdf_delay_instructions: ''
+        abr_form_fields:
+          Options: ''
+          Options__options:
+            '0': ''
+            '1': ''
+            '2': ''
+            '3': ''
+            '4': ''
+            '5': ''
+            '6': ''
+            '7': ''
+            '8': ''
+            '9': ''
+            '10': ''
+            '11': ''
+          hand_delivered_or_faxed: ''
+          submitted_by: ''
+          relationship_to_applicant: ''
+          NumberStreetCityStateZip Code: ''
+          has_mailing_address: ''
+          absent_from: ''
+          absent_to: ''
+          id_instructions: ''
+          SSN_Last_4: ''
+          License_ID: ''
+          License_ID__format_message: ''
+      md:
+        abr_form_fields:
+          mailto: ''
+          mailto__options:
+            address_below: ''
+            same_as_above: ''
+          movedate: ''
+          Delivery: ''
+          Delivery__options:
+            mail: ''
+            internet: ''
+          internet_delivery_identification: ''
+          internet_delivery_identification__options:
+            dln: ''
+            ssn: ''
+          Gen_Address: ''
+          Gen_Apt: ''
+          Gen_City: ''
+          Gen_State: ''
+          Gen_ZipCode: ''
+          SSN_Last_4: ''
+          dln: ''
+          dln__format_message: ''
+          Issue_Date: ''
+          fax_number: ''
+          Assistance_Print_Name: ''
+          assistant: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          confirm_email_delivery: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+        state_online_abr:
+          finish_instructions: ''
+          requirements: ''
+      me:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+        state_online_abr:
+          confirm: ''
+          requirements: ''
+          finish_instructions: ''
+      ma:
+        request_absentee_ballot_in: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          step_2_instructions: ''
+          step_3_header: ''
+          step_3_instructions: ''
+          finish_pdf_delay: ''
+          step_3_deliver_via_email_instructions: ''
+          confirm_email_delivery: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          mailing_address_input: ''
+          assistance_required: ''
+          assisting_person: ''
+          Assisting persons address: ''
+          the ballot: ''
+          Voter is a member of military on active duty or dependent family member of: ''
+          Voter has been admitted to a healthcare facility after noon on the fifth day: ''
+      mi:
+        abr_form_fields:
+          bad_date__format_message: ''
+          November 3 Address: ''
+          November 4 City: ''
+          November 3 State: ''
+          November 3 Zip: ''
+          address_begindate: ''
+          address_enddate: ''
+          jurisdiction_type: ''
+          jurisdiction_type__options:
+            town: ''
+            city: ''
+          Name of Person assisting the voter: ''
+          assist_birthdate: ''
+          Adress of person assisting: ''
+          assistant: ''
+          has_mailing_address: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+        state_online_abr:
+          finish_instructions: ''
+        wi_zip:
+          message: ''
+          register_in_wi: ''
+          register_in_mi: ''
+        registration:
+          home_address: ''
+        custom_errors:
+          dln_is_expired: ''
+          mi_api_error: ''
+          registration_cancellation_authorized: ''
+          digital_signature_authorized: ''
+          dln: ''
+          ssn4: ''
+          updated_dln_recently: ''
+          requested_duplicate_dln_today: ''
+          po_box:
+            mailing_address_1: ''
+            mailing_address_1_length: ''
+        state_flow_error: ''
+        by_paper_header: ''
+        skip_online_registration: ''
+        skip_online_registration_no_dln: ''
+        step_2_header: ''
+        step_3_header: ''
+        step_3_notice: ''
+        step_4_header: ''
+        eye_color:
+          UNK: ''
+          BLK: ''
+          BLU: ''
+          BRO: ''
+          GRN: ''
+          GRY: ''
+          HAZ: ''
+          MAR: ''
+          MUL: ''
+          PNK: ''
+        mailing_address_types:
+          STANDARD: ''
+          PO_BOX: ''
+          MILITARY: ''
+          INTERNATIONAL: ''
+        mailing_address:
+          po_box:
+            mailing_address_1: ''
+          military:
+            mailing_address_1: ''
+            mailing_address_2: ''
+            mailing_address_3: ''
+            mailing_city: ''
+            mailing_state: ''
+          international:
+            mailing_address_1: ''
+            mailing_address_2: ''
+            mailing_address_3: ''
+            mailing_zip_code: ''
+            mailing_country: ''
+        registration_complete: ''
+        registration_complete_success_type:
+          new: ''
+          existing: ''
+          updated: ''
+        registration_complete_less_than_18: ''
+        registration_complete_dialog_text: ''
+        valid_street_types: ''
+      mn:
+        step_2_header: ''
+        step_3_header: ''
+        step_4_header: ''
+        step_5_header: ''
+        dln_instructions: ''
+        by_paper_header: ''
+        declaration: ''
+        custom_errors:
+          confirm_eligibility: ''
+        state_online_abr:
+          requirements: ''
+          instructions: ''
+          finish_instructions: ''
+        abr_form_fields:
+          bad_date__format_message: ''
+          Absentee ballot address_1: ''
+          Absentee ballot address - City: ''
+          Absentee ballot address - State: ''
+          Absentee ballot address - Zip Code: ''
+          has_mailing_address: ''
+          id_instruction: ''
+          dln_check: ''
+          Minnesota Driver's License or ID Card Number: ''
+          Minnesota Driver's License or ID Card Number__format_message: ''
+          ss_check: ''
+          no_id_check: ''
+          no_id_check__format_message: ''
+          no_id_check__required_message: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
+        signature_capture:
+          desktop_provide_signature: ''
+          desktop_provide_e_signature: ''
+      mo:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+          requirements: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          mailing_address_1: ''
+          mailing_address_1__hint: ''
+          mailing_address_2: ''
+          Reason: ''
+          Reason__options:
+            absence: ''
+            incapacity: ''
+            religious: ''
+            employment: ''
+            incarceration: ''
+            confidentiality: ''
+            COVID: ''
+          covid_instructions_formatted: ''
+          covid_instructions: ''
+      ms:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      mt:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          requirements: ''
+        abr_form_fields:
+          address_instructions: ''
+          has_mailing_address: ''
+          ? Check if the mailing address listed above is for part of the year only
+            and if so complete the information below for absentee ballot list only
+          : ''
+          Mailing Address required if differs from residence address: ''
+          Zip Code_2: ''
+          City and State_2: ''
+          Zip Code_3: ''
+          period_from: ''
+          period_to: ''
+          Seasonal Mailing Address Optional: ''
+          designee: ''
+          Receipt of absentee ballot by designee I received the absentee ballot for the applicant on: ''
+      nc:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+        abr_form_fields:
+          bad_date__format_message: ''
+          has_mailing_address: ''
+          identification: ''
+          identification__options:
+            dln: ''
+            ssn: ''
+          ssn1234: ''
+          previous_name: ''
+          Former_Name: ''
+          ballot_address: ''
+          MailStreet: ''
+          MailCity: ''
+          MailState: ''
+          MailZip: ''
+          RelativeName: ''
+          RelativeName__hint: ''
+          RelativeRelationship: ''
+          RelativeAddress: ''
+          RelativeCity: ''
+          RelativeState: ''
+          RelativeZip: ''
+          AssistantFullName: ''
+          AssistantFullName__hint: ''
+          AssistantAddress: ''
+          assistantcity: ''
+          assistantstate: ''
+          assistantzip: ''
+          SSN4: ''
+          ID_Number: ''
+          ID_Number__format_message: ''
+          NCCounty: ''
+          reg_mail_street: ''
+          reg_mail_city: ''
+          reg_mail_state: ''
+          reg_mail_zip: ''
+          AssistantAddressInput: ''
+          lived_here_long: ''
+          date_moved: ''
+          relative_request: ''
+          assistant: ''
+          patient: ''
+          HopitalFacilityName: ''
+          uocava_option: ''
+          UOCAVA: ''
+          UOCAVA__options:
+            military: ''
+            citizen: ''
+          delivery_method: ''
+          delivery_method__options:
+            mail: ''
+          UOCAVAAddress: ''
+          Mailing1: ''
+          Mailing2: ''
+        state_online_registration:
+          header: ''
+          instructions: ''
+      nd:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          skip_state_online_abr: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          City_2: ''
+          State_2: ''
+          ZIP Code_2: ''
+          Ballot_Delivery_Address: ''
+          uocava: ''
+          Military_Overseas_Voter__options:
+            Military_in_US: ''
+            Military_outside_US: ''
+            citizen_outside_us: ''
+          Fax_Number: ''
+          Printed Name of Attester: ''
+          Preferred_Delivery: ''
+          unable_to_sign: ''
+          Attestor_ID: ''
+          Daytime Telephone Number_2: ''
+          ID_Number: ''
+          ID_Type: ''
+          ID_Type__options:
+            drivers_license: ''
+            long_term_care_certificate: ''
+            no_id: ''
+            non_drivers_id: ''
+            passport_or_military_id: ''
+            tribal_id: ''
+          Military_Overseas_Voter: ''
+          ID_Number_dln__format_message: ''
+        state_online_abr:
+          requirements: ''
+          finish_instructions: ''
+      ne:
+        request_absentee_ballot_in: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          requirements: ''
+          finish_instructions: ''
+          step_2_instructions: ''
+          step_3_header: ''
+          step_3_instructions: ''
+          finish_pdf_delay: ''
+        abr_form_fields:
+          County Name2: ''
+          Address Line 2: ''
+          City, State, Zip1: ''
+          agent: ''
+          Relationship: ''
+          has_mailing_address: ''
+          mailing_address: ''
+          mailing_city_state_zip: ''
+          Ballot Method: ''
+          Ballot Method__options:
+            mail_ballot: ''
+            take_ballot: ''
+            vote_here: ''
+      nh:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          assistant: ''
+          Asisstant Name: ''
+          Street or PO Box: ''
+          mail_street_name: ''
+          AptUnit_2: ''
+          CityTown_2: ''
+          mail_state: ''
+          mail_zip: ''
+          Group_I: ''
+          Group_I__options:
+            Choice2: ''
+            Choice1: ''
+          Group_II: ''
+          Group_II__options:
+            Choice1: ''
+            Choice2: ''
+            Choice3: ''
+            Choice4: ''
+            Choice5: ''
+          Group_II__required_message: ''
+          Party: ''
+      nj:
+        request_absentee_ballot_in: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+          finish_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          Mailing_Address_2: ''
+          Mailing_Address_3: ''
+          assistant: ''
+          messenger: ''
+          Apt_3: ''
+          Municipality CityTown_3: ''
+          State_3: ''
+          Date_of_Birth_Messenger: ''
+          Name_Assistor: ''
+          Address_Assistor: ''
+          Apt_2: ''
+          Municipality CityTown_2: ''
+          State_2: ''
+          Zip_2: ''
+          Authorizied_Messenger_Name: ''
+          UOCAVA_only: ''
+          UOCAVA: ''
+          UOCAVA__options:
+            'Off': ''
+            Choice1: ''
+            Choice2: ''
+            Choice3: ''
+            Choice4: ''
+          messenger_birth_date: ''
+          messenger_birth_date__required_message: ''
+      nm:
+        abr_form_fields:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          has_mailing_address: ''
+          mail_address1: ''
+          mail_address2: ''
+          mail_address3: ''
+          county: ''
+        abr:
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+        state_online_abr:
+          finish_instructions: ''
       nv:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+        clark county:
+          state_online_abr:
+            header: ''
+            requirements: ''
+            button: ''
+          abr_form_fields:
+            RegistrationNo: ''
+            MailingAddress: ''
+            MailApt: ''
+            MailingCity: ''
+            MailingState: ''
+            MailingZip: ''
+            military_instructions: ''
+            MilitaryDomestic: ''
+            MilitaryOverseas: ''
+            CivilianOverseas: ''
+            ProvidedBy: ''
+            has_mailing_address: ''
+        abr_form_fields:
+          RegistrationNo: ''
+          MailingAddress: ''
+          MailApt: ''
+          MailingCity: ''
+          MailingState: ''
+          MailingZip: ''
+          military_instructions: ''
+          MilitaryDomestic: ''
+          MilitaryOverseas: ''
+          CivilianOverseas: ''
+          ProvidedBy: ''
+          has_mailing_address: ''
         online_instructions: <p>Dưới đây bạn có thể hoàn tất đăng ký cử tri trực tuyến
           của bạn với bang mình.  Đơn cử tri trực tuyến Nevada (NOVA) được cung cấp
           bởi Thư ký Bang Nevada, cho công dân Nevada đăng ký đi bầu, hoặc thay đổi
@@ -20,6 +1119,553 @@ vi:
           bạn không thể tìm thấy hay xác nhận hồ sơ xe của bạn - xin đừng lo  - bạn
           cũng có thể <a href="%{next_url}"> hoàn thành đăng ký của bạn với %{rtv_and_partner_name}</a>.
           Bạn sẽ chỉ cần in ra, ký tên, và gởi mẫu đi. </P>
+      ny:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          confirm_email_delivery: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+          requirements: ''
+        state_online_abr:
+          requirements: ''
+        abr_form_fields:
+          county where you live: ''
+          has_mailing_address: ''
+          delivery_general: ''
+          delivery_general__options:
+            in_person: ''
+            mail: ''
+            authorized_recipient: ''
+          apartment (General (or Special) Election Ballot Mailing Address): ''
+          street number (General (or Special) Election Ballot Mailing Address): ''
+          street name (General (or Special) Election Ballot Mailing Address): ''
+          city (General (or Special) Election Ballot Mailing Address): ''
+          state (General (or Special) Election Ballot Mailing Address): ''
+          zip code (General (or Special) Election Ballot Mailing Address): ''
+          mail_unit: ''
+          mail_street_number: ''
+          mail_street_name: ''
+          mail_city: ''
+          mail_state: ''
+          mail_zip: ''
+          witness: ''
+          address_mark_witness: ''
+          authorized_recipient_name_general: ''
+          reason: ''
+          reason__options:
+            absence: ''
+            temporary_illness: ''
+            permanent_illness: ''
+            caregiver: ''
+            patient: ''
+            prisoner: ''
+      oh:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+        abr_form_fields:
+          County: ''
+          has_mailing_address: ''
+          Street Address or PO  box: ''
+          City_2: ''
+          State: ''
+          ZIP_2: ''
+          identification: ''
+          identification__options:
+            dln: ''
+            ssn4: ''
+            photoid: ''
+          Ohio_driver_license: ''
+          Ohio_driver_license__format_message: ''
+          SSN4: ''
+      ok:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+        state_online_abr:
+          confirm: ''
+          requirements: ''
+          finish_instructions: ''
+      or:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      pa:
+        abr_form_fields:
+          bad_date__format_message: ''
+          address_date: ''
+          Same_as_above__options:
+            'Off': ''
+            'On': ''
+          Address_1: ''
+          City_Town_1: ''
+          Zip code_2: ''
+          identification: ''
+          identification__options:
+            dln: ''
+            no_dln: ''
+          identification2: ''
+          identification2__options:
+            ssn: ''
+            no_ssn: ''
+          PA drivers license or PennDOT ID card number__format_message: ''
+          assert_no_id: ''
+          ssn_last_4_input: ''
+          ssn_last_4_input__format_message: ''
+          Municipality: ''
+          Same_as_above: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          finish_instructions: ''
+        state_online_abr:
+          finish_instructions: ''
+          requirements: ''
+        registration_deadline_text: ''
+        state_flow_error: ''
+        step_2_header: ''
+        step_2_subheader: ''
+        step_3_header: ''
+        step_4_header: ''
+        by_paper_header: ''
+        penndot_number_instructions: ''
+        penndot_number_missing: ''
+        declaration: ''
+        assistant_declaration: ''
+        unit_type:
+          APT: ''
+          BSM: ''
+          BOX: ''
+          BLD: ''
+          DEP: ''
+          FL: ''
+          FRN: ''
+          HNG: ''
+          LBB: ''
+          LOT: ''
+          LOW: ''
+          OFC: ''
+          PH: ''
+          PIE: ''
+          POL: ''
+          REA: ''
+          RM: ''
+          SID: ''
+          SLI: ''
+          SPC: ''
+          STO: ''
+          STE: ''
+          TRL: ''
+          TRLR: ''
+          UNI: ''
+          UPP: ''
+          CBN: ''
+          HUB: ''
+          SMC: ''
+          TH: ''
+        submitting: ''
+        confirming: ''
+        registration_complete: ''
+        registration_complete_dialog_text: ''
+        signature_capture:
+          rotation_instructions: ''
+          upload_signature_image: ''
+          touch_sign_instructions: ''
+          desktop_provide_signature: ''
+          upload_file_instructions: ''
+          upload_file_zoom: ''
+          continue_on_device: ''
+          email_sent: ''
+          sms_sent: ''
+          sms_body: ''
+          continue_via_copy: ''
+          link_copied: ''
+          continue_on_paper: ''
+          buttons:
+            done: ''
+            reset: ''
+            remove: ''
+            provide_signature: ''
+            select_file: ''
+            copy_link: ''
+      sc:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          requirements: ''
+        state_online_abr:
+          confirm: ''
+          finish_instructions: ''
+      ri:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          requirements: ''
+          finish_instructions: ''
+        abr_form_fields:
+          Text Field 11: ''
+          mail_address: ''
+          mail_city: ''
+          mail_state: ''
+          mail_zip: ''
+          has_mailing_address: ''
+          eligibility: ''
+          eligibility__options:
+            absent: ''
+            confined: ''
+            incapacitated: ''
+            military: ''
+      sd:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          requirements: ''
+          finish_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          ? SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your
+            address changes after this is submitted you must submit a new form
+          : ''
+          City State_2: ''
+          Zip Code_2: ''
+          Last Name_2: ''
+          First Name_2: ''
+          Daytime telephone: ''
+          Apt or Lot_2: ''
+          Zip Code_3: ''
+          to serve as my authorized messenger to pick up my absentee ballot I: ''
+          As the authorized messenger I acknowledge receipt of the ballot for: ''
+          messenger: ''
+          uocava: ''
+          uocava_email: ''
+          uocava_1: ''
+          uocava_2: ''
+          uocava_3: ''
+      tn:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          Mailing Address (if different): ''
+          voter_cannot_sign: ''
+          Address of Person Assisting: ''
+          Address of Witness: ''
+          Reason: ''
+          Reason__options:
+            Choice1: ''
+            Choice2: ''
+            Choice3: ''
+            Choice4: ''
+            Choice5: ''
+            Choice6: ''
+            Choice7: ''
+            Choice8: ''
+            Choice9: ''
+            Choice10: ''
+            Choice11: ''
+            Choice12: ''
+            Choice13: ''
+            Choice14: ''
+            Choice15: ''
+          CDL or TWIC Number: ''
+          Transmission: ''
+          transmission_13: ''
+          transmission_14: ''
+          transmission_15: ''
+      tx:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          has_mailing_address__hint: ''
+          Mail_Address: ''
+          ZIP Code_2: ''
+          Mailing City: ''
+          witness: ''
+          Witness_relation: ''
+          Assisted: ''
+          where_to_mail: ''
+          where_to_mail__options:
+            hospital: ''
+            jail: ''
+            mailing_address: ''
+            nursing_home: ''
+            outside_county: ''
+            relative: ''
+            retirement_center: ''
+          Reason: ''
+          Reason__options:
+            age: ''
+            confinement: ''
+            disability: ''
+            absence: ''
+          relative_relationship: ''
+          Apt number of witness: ''
+          City of witness: ''
+          State of witness: ''
+          Zip code of witness: ''
+      ut:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      va:
+        request_absentee_ballot_in: ''
+        state_online_abr:
+          requirements: ''
+          finish_instructions: ''
+          button: ''
+          confirm: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          step_2_header: ''
+          step_2_instructions: ''
+          step_3_header: ''
+          step_3_instructions: ''
+          finish_pdf_delay: ''
+          confirm_email_delivery: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+        abr_form_fields:
+          Birth_Year: ''
+          SSN_Last_4: ''
+          Mailing_Address_1: ''
+          Mailing_Address_2: ''
+          Mailing_Address_3: ''
+          Mailing_Zip_Code: ''
+          Mailing_State: ''
+          Mailing_Country: ''
+          UOCAVA: ''
+          Category_Code: ''
+          A: ''
+          B: ''
+          C: ''
+          D: ''
+          Last_Date_of_Residency: ''
+          moved_permanently: ''
+          Deliver_to: ''
+          Deliver_to__options:
+            Residence: ''
+            ballot_mailing_address: ''
+            email_address: ''
+          has_mailing_address: ''
+          has_mailing_address__required_message: ''
+          need_assistance: ''
+          Assistant_Name: ''
+          Assistant_Address: ''
+          Assistant_Apt: ''
+          Assistant_City: ''
+          Assistant_State: ''
+          Asistant_Zip: ''
+          Assistant_Phone: ''
+        state_flow_error: ''
+        ineligible_registrant: ''
+        step_2_header: ''
+        step_2_subheader: ''
+        special_status_notice: ''
+        voter_classification: ''
+        protected_voter: ''
+        step_4_header: ''
+        by_paper_header: ''
+        voter_fraud_warning: ''
+        privacy_notice: ''
+        submitting: ''
+        confirming: ''
+        registration_complete: ''
+        registration_complete_dialog_text: ''
+      vt:
+        state_online_abr:
+          requirements: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      wa:
+        request_absentee_ballot_in: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          header: ''
+          instructions: ''
+      wi:
+        abr_form_fields:
+          Municipality: ''
+          Municipality__hint: ''
+          has_mailing_address: ''
+          Mailing Address Street Number  Name: ''
+          Apt Number_2: ''
+          City_2: ''
+          State  ZIP_2: ''
+          state_mail: ''
+          zip_mail: ''
+          Care Facility Name if applicable: ''
+          C  O if applicable: ''
+          receive_by: ''
+          receive_by__options:
+            Clerk_Office: ''
+            Mail: ''
+            Email: ''
+            Fax: ''
+          receive_by__format_message: ''
+          military_overseas: ''
+          UOCAVA: ''
+          UOCAVA__options:
+            Military: ''
+            Permanent_Overseas: ''
+            Temporary_Overseas: ''
+          request_agent: ''
+        state_online_abr:
+          requirements: ''
+          finish_instructions: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+      wv:
+        abr_form_fields:
+          resident_county: ''
+          has_mailing_address: ''
+          has_mailing_address__required_message: ''
+          mail_address: ''
+          mail_city: ''
+          mail_state: ''
+          mail_zip: ''
+          reason_meta: ''
+          reason_meta__options:
+            A: ''
+            B: ''
+          reason_a: ''
+          reason_a__options:
+            address_confidentiality: ''
+            business_or_travel: ''
+            college: ''
+            disability: ''
+            elected_away: ''
+            employment: ''
+            illness: ''
+            immobility: ''
+            incarceration: ''
+            working_away: ''
+          disability_want_electronic__hint: ''
+          incarceration_statement: ''
+        state_online_abr:
+          confirm: ''
+          requirements: ''
+          finish_instructions: ''
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          requirements: ''
+          finish_instructinos: ''
+      wy:
+        abr:
+          request_deadline: ''
+          abr_status_check_intro: ''
+          state_reminder_1: ''
+          state_reminder_2: ''
+          finalpage_instructions: ''
+          finalpage_additional_instructions: ''
+          confirm_email_delivery: ''
+          signature_capture:
+            desktop_provide_e_signature: ''
+            desktop_provide_signature: ''
+            continue_on_paper: ''
+          finish_instructions: ''
+        abr_form_fields:
+          has_mailing_address: ''
+          MAIL MY BALLOT TO: ''
+          CITY_2: ''
+          STATE_2: ''
+          ZIP_2: ''
+          ACTIVE MILITARY Y  N: ''
+          ACTIVE MILITARY Y  N__options:
+            Y: ''
+            N: ''
+          Individual's name who may pick up my ballot: ''
+          Individual's name who may pick up my ballot__hint: ''
     parties:
       democratic: Đảng Dân Chủ
       independent: Đảng Độc Lập
@@ -27,11 +1673,13 @@ vi:
       libertarian: Đảng Tự Do
       republican: Đảng Cộng Hòa
       working_families: Đảng Gia đình Làm việc
+      unenrolled: ''
       other: Khác
       independence: Independence
       sam: SAM
     no_party_label:
       none: Không đảng
+      none_no_affiliation: ''
       decline_to_state: Từ chối nêu ra
       blank: ''
     tooltips:
@@ -104,11 +1752,13 @@ vi:
           để biết các đảng chính trị cho phép cử tri không liên kết tham gia bỏ phiếu
           trong cuộc bầu cử chính của họ.
         colorado: ''
-        idaho: ! 'Bạn phải đăng ký với một đảng nếu bạn muốn tham gia vào cuộc bầu
-          cử của đảng đó. Ghi vào Ưu tiên Đảng Chính Trị của bạn. Lựa chọn: Hiến pháp,
+        connecticut: ''
+        idaho: 'Bạn phải đăng ký với một đảng nếu bạn muốn tham gia vào cuộc bầu cử
+          của đảng đó. Ghi vào Ưu tiên Đảng Chính Trị của bạn. Lựa chọn: Hiến pháp,
           Dân chủ, Tự do, Cộng hòa hoặc không liên kết (không có sở thích đối với
           đảng nào). Nếu phần này để trống, bạn sẽ nhận được lá phiếu đề bên trên
           Không Liên Kết.'
+        illinois: ''
         indiana: Pháp luật bang Indiana không cho phép một người cho biết đảng của
           họ trong hồ sơ đăng ký. Bạn sẽ phải tuyên bố đảng bạn liên kết trước khi
           bỏ phiếu trong cuộc bầu cử chính.
@@ -219,24 +1869,30 @@ vi:
           điều này thông qua việc đánh các khung thích hợp, và cung cấp bốn số cuối
           của số an sinh xã hội của bạn. Nếu bạn không có bất kỳ mẫu nhận dạng nào,
           thư ký của bang sẽ chỉ định cho bạn một số nhận dạng riêng.
+        connecticut: ''
         georgia: Bạn phải cung cấp số bằng lái xe của Georgia hoặc số nhận dạng do
           bang cấp. Nếu bạn không có một trong những thứ đó, bạn phải cung cấp bốn
           số cuối của số an sinh xã hội của bạn. Nếu bạn không có bất kỳ mã số yêu
           cầu, vui lòng nhập vào chữ "NONE" và bạn sẽ được chỉ định một số nhận dạng
           riêng của bang.
+        illinois: ''
         indiana: Bạn phải cung cấp số giấy phép lái xe gồm mười số của Indiana hoặc
           số ID do Cục Vận Chuyển cấp . Nếu bạn không có giấy phép lái xe hoặc thẻ
           ID tiểu bang Indiana BMV, xin vui lòng nhập bốn số cuối của số an sinh xã
           hội của bạn. Xin chỉ định số đã được cung cấp.
+        louisiana: ''
         maryland: Nếu bạn có giấy phép lái xe Maryland hợp lệ, hoặc thẻ nhận dạng
           quản lý xe cơ giới, bạn phải nhập vào giấy phép lái xe hoặc số nhận dạng.
           Nếu bạn không có cái nào, bạn phải nhập vào bốn số cuối của số an sinh xã
           hội của bạn. Nếu bạn không có bất kỳ của những con số này, vui lòng nhập
           vào chữ "NONE" và số nhận dạng riêng của bang sẽ được cấp cho bạn.
+        massachusetts: ''
         oklahoma: Bốn số cuối của số an sinh xã hội của bạn được yêu cầu. Bang cũng
           yêu cầu số giấy phép lái xe Oklahoma của bạn. Nếu bạn không có số nào, vui
           lòng nhập vào chữ "NONE" và bang sẽ chỉ định một mã số riêng cho bạn.
+        rhode_island: ''
         texas: ''
+        washington: ''
         wisconsin: Nếu bạn đã được cấp bằng lái xe Wisconsin hiện tại và hợp lệ, hoặc
           thẻ căn cước (ID) do DOT WI  cấp,  bạn phải cung cấp số của nó. Nếu giấy
           phép lái xe WI của bạn bị thu hồi, đình chỉ, hoặc đã hết hạn, vui lòng cung
@@ -245,6 +1901,7 @@ vi:
           số cuối của số an sinh xã hội của bạn. Nếu bạn không có bằng lái xe của
           WI, hoặc ID do DOT WI cấp hoặc thẻ an sinh xã hội, xin điền vào vòng tròn
           thích hợp.
+        south_carolina: ''
         south_dakota: Giấy phép lái xe của bạn là cần thiết. Nếu bạn không có bằng
           lái xe hợp lệ, bạn phải cung cấp bốn số cuối của số an sinh xã hội của bạn.
           Nếu bạn không có một trong hai giấy phép lái xe hoặc một số an sinh xã hội,
@@ -295,18 +1952,10 @@ vi:
           xin vui lòng cung cấp bốn số cuối của số an sinh xã hội của bạn. Nếu bạn
           có không, vui lòng nhậpvào chữ "NONE" và số nhận dạng riêng sẽ được chỉ
           định cho bạn.
-        drivers_license_or_other_with_state_name_3: ! 'Bạn phải cung cấp số giấy phép
-          lái xe bang %{state_name} của bạn. Nếu bạn không có số giấy phép lái xe
-          bang %{state_name},  bạn phải cung cấp bốn số cuối của số an sinh xã hội
-          của bạn. Nếu bạn không có giấy phép lái xe hoặc một số an sinh xã hội, vui
-          lòng nhập vào chữ "NONE" và bang sẽ chỉ định cho bạn một mã số riêng.
+        drivers_license_or_other_with_state_name_3: |-
+          Bạn phải cung cấp số giấy phép lái xe bang %{state_name} của bạn. Nếu bạn không có số giấy phép lái xe bang %{state_name},  bạn phải cung cấp bốn số cuối của số an sinh xã hội của bạn. Nếu bạn không có giấy phép lái xe hoặc một số an sinh xã hội, vui lòng nhập vào chữ "NONE" và bang sẽ chỉ định cho bạn một mã số riêng.
 
-
-          Bạn phải cung cấp số giấy phép lái xe bang %{state_name}. Nếu bạn không
-          có số giấy phép lái xe bang %{state_name}, bạn phải cung cấp bốn số cuối
-          của số an sinh xã hội của bạn. Nếu bạn không có giấy phép lái xe hoặc một
-          số an sinh xã hội, vui lòng nhập "NONE" và bang sẽ chỉ định cho bạn một
-          mã số.'
+          Bạn phải cung cấp số giấy phép lái xe bang %{state_name}. Nếu bạn không có số giấy phép lái xe bang %{state_name}, bạn phải cung cấp bốn số cuối của số an sinh xã hội của bạn. Nếu bạn không có giấy phép lái xe hoặc một số an sinh xã hội, vui lòng nhập "NONE" và bang sẽ chỉ định cho bạn một mã số.
         drivers_license_or_other_with_state_name_4: Bạn phải cung cấp số giấy phép
           lái xe bang %{state_name} của bạn. Nếu bạn không có số giấy phép lái xe,
           bạn phải cung cấp bốn số cuối của số an sinh xã hội của bạn. Nếu bạn không
@@ -443,37 +2092,48 @@ vi:
       17_turn_18: nếu bạn được 17 tuổi, và sẽ bước sang 18 trước khi cuộc bầu cử lần
         sau
     registration_deadline:
-      california: đóng dấu bưu điện hoặc nộp cho một văn phòng bầu cử (hoặc cơ quan
-        đăng ký cử tri NVRA) vào hoặc trước 15 ngày trước ngày bầu cử (bỏ phiếu trong
-        cuộc bầu cử đó)
-      connecticut: đóng dấu bưu điện đến 7 ngày trước khi cuộc bầu cử hoặc nhận được
-        trong người 7 ngày trước bầu cử
+      alabama: ''
+      california: ''
+      colorado: ''
+      connecticut: ''
+      district_of_columbia: ''
       delaware: đóng dấu bưu điện ngày thứ Bảy thứ tư trước khi một cuộc tổng tuyển
         cử hoặc chính, hoặc 10 ngày trước khi một cuộc bầu cử đặc biệt
-      georgia: đóng dấu bưu điện vào ngày thứ Hai thứ năm trước khi cuộc bầu cử
-      iowa: nhận được trong người 10 ngày trước chung và Tiểu học Bầu Cử (11 ngày
-        trước khi mọi cuộc bầu cử khác), hoặc dấu bưu điện 15 ngày trước ngày bầu
-        cử.
-      kansas: đóng dấu bưu điện trước 21 ngày trước cuộc bầu cử nếu được gửi đi, được
-        nhận tại văn phòng quận 21 ngày trước bầu cử nếu giao trong người.
+      florida: ''
+      georgia: ''
+      idaho: ''
+      illinois: ''
+      iowa: ''
+      kansas: ''
+      maine: ''
+      massachusetts: ''
+      michigan: ''
+      minnesota: ''
+      mississippi: ''
       missouri: nhận được trước 5 giờ chiều (hoặc gần bình thường của doanh nghiệp)
         vào thứ tư thứ tư trước cuộc bầu cử
-      new_york: đóng dấu bưu điện 25 ngày trước bầu cử và nhận được không ít hơn 20
-        ngày trước bầu cử
+      montana: ''
+      new_hampshire: ''
+      new_jersey: ''
+      new_mexico: ''
+      new_york: ''
+      north_carolina: ''
+      north_dakota: ''
       nebraska: đóng dấu bưu điện vào ngày thứ Sáu thứ ba trước khi cuộc bầu cử, hoặc
         nhận được trong người bởi 06:00 ngày thứ sáu thứ hai trước khi cuộc bầu cử
       nevada: đóng dấu bưu điện 31 ngày trước bầu cử, hoặc nộp trực tuyến 21 ngày
         trước cuộc bầu cử, hoặc nhận trực tiếp tại văn phòng của một nhân viên bán
         hàng 21 ngày trước khi cuộc bầu cử.
-      rhode_island: nhận 30 ngày trước bầu cử. Các hình thức đăng ký cử tri gửi nhận
-        sau thời hạn sẽ được chấp nhận miễn là thư được đóng dấu bưu điện vào hoặc
-        trước thời hạn đăng ký cử tri.
-      utah: đóng dấu bưu điện 30 ngày trước bầu cử, hoặc nhận được trong người 15
-        ngày trước bầu cử
-      vermont: nhận được 5 giờ chiều ngày thứ Tư trước khi cuộc bầu cử
-      washington: đóng dấu bưu điện vào ngày thứ Hai bốn tuần trước khi cuộc bầu cử,
-        hoặc nhận trực tiếp tại bộ phận bầu cử quận thứ hai một tuần trước khi cuộc
-        bầu cử
+      ohio: ''
+      oklahoma: ''
+      pennsylvania: ''
+      rhode_island: ''
+      texas: ''
+      utah: ''
+      vermont: ''
+      virginia: ''
+      washington: ''
+      wisconsin: ''
       postmarked_11_days: đóng dấu bưu điện 11 ngày trước bầu cử
       postmarked_14_days: đóng dấu bưu điện 14 ngày trước bầu cử
       postmarked_20_days: đóng dấu bưu điện 20 ngày trước bầu cử
@@ -495,8 +2155,8 @@ vi:
       thirty_days_before: 30 ngày trước cuộc bầu cử
     pdf_instructions:
       blank: ''
-      arizona: ! '<b>*Note for First Time Voter Registration Applicants And Recent
-        Movers: You must ALSO submit proof of citizenship to vote in state elections!</b><br/><i>If
+      arizona: '<b>*Note for First Time Voter Registration Applicants And Recent Movers:
+        You must ALSO submit proof of citizenship to vote in state elections!</b><br/><i>If
         this is your first time registering in Arizona or you have moved to another
         county, your voter registration form must also include proof of citizenship
         to vote in state elections (ie. Governor, Secretary of State, &amp; state
@@ -506,20 +2166,12 @@ vi:
         If not, you must submit "proof of citizenship" along with your voter registration
         application. The most common "proof" is a photocopy of your birth certificate
         or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>'
-      kansas: ! '* Lưu ý cho nộp đơn đăng ký lần đầu tiên cử tri: Bạn CŨNG phải nộp
-        bằng chứng về quyền công dân bỏ phiếu trong cuộc bầu cử nhà nước! Nếu đây
-        là lần đầu tiên bạn đăng ký ở Kansas, mẫu đăng ký cử tri của bạn cũng phải
-        bao gồm bằng chứng của quyền công dân bỏ phiếu trong cuộc bầu cử nhà nước
-        (ví dụ: Thống đốc, Bộ trưởng Ngoại giao, và cơ quan lập pháp nhà nước). Nếu
-        không, bạn sẽ chỉ có đủ điều kiện để bỏ phiếu trong cuộc bầu cử liên bang.
-        Phổ biến nhất "bằng chứng" là một bản sao giấy khai sinh hoặc hộ chiếu, nhưng
-        một danh sách đầy đủ các tài liệu có thể chấp nhận có thể được tìm thấy trực
-        tuyến.<br/>
-
-        <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">http://www.gotvoterid.com/proof-of-citizenship.html#evidence</a>'
+    pdf_other_instructions:
+      blank: ''
+      wisconsin: ''
     email_instructions:
       blank: ''
-      arizona: ! '* Lưu ý cho lần đầu tiên cử tri đăng ký nộp đơn và Movers gần đây:
+      arizona: '* Lưu ý cho lần đầu tiên cử tri đăng ký nộp đơn và Movers gần đây:
         Bạn CŨNG phải nộp bằng chứng về quyền công dân bỏ phiếu trong cuộc bầu cử
         nhà nước! Nếu đây là lần đầu tiên bạn đăng ký ở Arizona hoặc bạn đã chuyển
         sang quận khác, hình thức đăng ký cử tri của bạn cũng phải bao gồm bằng chứng
@@ -532,14 +2184,5 @@ vi:
         Phổ biến nhất "bằng chứng" là một bản sao giấy khai sinh hoặc hộ chiếu. Một
         danh sách đầy đủ các tài liệu có thể chấp nhận có thể được tìm thấy trực tuyến.<BR><a
         href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">http://www.azsos.gov/election/VoterRegistration.htm#Proof</a>'
-      kansas: ! '* Lưu ý cho nộp đơn đăng ký lần đầu tiên cử tri: Bạn CŨNG phải nộp
-        bằng chứng về quyền công dân bỏ phiếu trong cuộc bầu cử nhà nước! Nếu đây
-        là lần đầu tiên bạn đăng ký ở Kansas, mẫu đăng ký cử tri của bạn cũng phải
-        bao gồm bằng chứng của quyền công dân bỏ phiếu trong cuộc bầu cử nhà nước
-        (ví dụ: Thống đốc, Bộ trưởng Ngoại giao, và cơ quan lập pháp nhà nước). Nếu
-        không, bạn sẽ chỉ có đủ điều kiện để bỏ phiếu trong cuộc bầu cử liên bang.
-        Phổ biến nhất "bằng chứng" là một bản sao giấy khai sinh hoặc hộ chiếu, nhưng
-        một danh sách đầy đủ các tài liệu có thể chấp nhận có thể được tìm thấy trực
-        tuyến.<br/>
-
-        <a href="http://www.gotvoterid.com/proof-of-citizenship.html#evidence">http://www.gotvoterid.com/proof-of-citizenship.html#evidence</a>'
+      wisconsin: ''
+    online_registration_system_name: ''
