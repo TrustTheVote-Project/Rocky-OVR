@@ -61,14 +61,13 @@ en:
       state_online_defaults:
         header: You can request an Absentee Ballot online directly with the state
           of %{state}
-        header_choice: Eligibility to Request an Absentee Ballot
+        header_choice: How do you want to request your ballot?
         requirements: "<p>If you are registered to vote and have a valid %{state}
           state ID, you may request your absentee ballot online directly with the
           state.</p>"
         confirm: |-
-          Check if you meet your state's requirements, then click the button below to request your absentee ballot through the state's site.
-
-          If you don't meet these requirements, you can also print, sign and mail a paper request form.
+          <p>Review the requirements below, then click the "finish" button below to request your absentee ballot through %{state_abbr}'s site. </p>
+          <p>If you don't meet these requirements, you can also print, sign and mail a paper request form by clicking the link below the button.</p>
       skip_state_online_abr: I do not meet these requirements, and I would like to
         create a paper request form.
       preparing_header: We're generating your form
@@ -173,7 +172,7 @@ en:
         %{state}.
       skip_state_online_registration: "&gt; No Thanks, I'll continue with %{rtv_and_partner_name}
         and send in my form later."
-      state_online_abr: Finish your<br/>absentee request<br/> online with %{state}.
+      state_online_abr: Finish your<br />absentee request<br /> online with %{state}.
       skip_state_online_abr: "&gt; No Thanks, I'll continue with %{rtv_and_partner_name}
         and send in my form later."
     registration:
