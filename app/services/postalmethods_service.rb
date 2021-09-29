@@ -16,7 +16,7 @@ class PostalmethodsService
       end
       #send_address2 = registrant.mailing_unit
       send_city = registrant.mailing_city
-      send_state = registrant.mailing_state
+      send_state = registrant.mailing_state_abbrev
       send_zipcode = registrant.mailing_zip_code
     else
       send_address1 = registrant.home_address

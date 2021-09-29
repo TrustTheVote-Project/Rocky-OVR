@@ -90,6 +90,9 @@ class StateRegistrants::MNRegistrant < StateRegistrants::Base
     }
   end
 
+  def first_registration?
+    false
+  end
 
   def update_original_registrant
     r = self.registrant
