@@ -2118,9 +2118,10 @@ en:
             by 8pm November 3rd.</p><p>At any time you can check the status of your
             application and the status of your ballot at: <a rel="noopener" target="blank"
             href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>'
-          requirements: If you are a voter with a valid PA Driver's License or PennDOT
-            ID number, you can apply online with the state.  If you do not have one
-            of these ID numbers, you will need to continue with creating a paper form.
+          requirements: |-
+            <p>If you are registered to vote and can provide a valid state ID or the last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
+            <p>Check if you are registered by visiting <a href="https://www.pavoterservices.pa.gov/Pages/voterregistrationstatus.aspx?lang=EN-US">the Pennsylvania voter information search site</a></p>
+            <p>You do not need an excuse to vote by mail. When prompted, you will be allowed to request a mail-in ballot even if you select "no" to the questions regarding being absent from the municipality or having an illness or disability. </p>
         registration_deadline_text: 10/18/2021 is the last day to register before
           the 11/02/2021 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
