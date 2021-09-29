@@ -1380,7 +1380,7 @@ class Registrant < ActiveRecord::Base
   
   def pdf_url(pdfpre = nil, file=false)
     prefix = pdf_delivery ? "/#{pdf_delivery.pdf_prefix}" : ''
-   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com#{prefix}#{pdf_path(pdfpre, file)}"
+   "https://download.#{RockyConf.pdf_host_name}#{prefix}#{pdf_path(pdfpre, file)}"
   end
   def pdf_path(pdfpre = nil, file=false)
     pdf_writer.pdf_path(pdfpre, file)
