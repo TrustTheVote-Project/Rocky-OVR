@@ -247,8 +247,8 @@ absentee_states:
     abr_track_ballot_url: "https://nevada.ballottrax.net/voter/"
   NY:
     online_req_url: https://absenteeballot.elections.ny.gov
-    pdf_template: ny.pdf
-    email_delivery: true
+    #pdf_template: ny.pdf
+    #email_delivery: true
     #abr_status_check_url: "https://nysballot.elections.ny.gov/TrackMyBallot/Search"
     #leo_lookup_url: https://www.elections.ny.gov/NYSBOE/Counties/CountyBoardRoster10052020.pdf
   OH:

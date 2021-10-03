@@ -1955,6 +1955,16 @@ en:
              <li>You are a resident or patient of a Veterans Administration hospital; or</li>
              <li>You are detained in jail/prison, awaiting trial, awaiting action by grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li></ul>
         state_online_abr:
+          header: Requesting an Absentee Ballot in New York
+          confirm: ""            
+          instructions: | 
+            <p>You can apply for an Absentee Ballot in New York in any of these ways:</p>
+            <ul> 
+            <li>Click the button below to use the Absentee Application Portal</a></li>
+            <li>In person at the <a href="https://www.elections.ny.gov/CountyBoards.html">county board of elections</a></li>
+            <li>By designating another person to deliver your application in-person to your local <a href="https://www.elections.ny.gov/CountyBoards.html">county board of elections</a></li>
+            </ul>
+
           requirements: "<p>If you are registered to vote, you may request your absentee 
             ballot online directly with the state.  You may be required to have a valid 
             New York state ID</p>"
