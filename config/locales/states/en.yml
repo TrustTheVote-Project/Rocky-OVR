@@ -2053,7 +2053,7 @@ en:
         state_online_abr:
           confirm: <p>All registered voters in Oklahoma can vote absentee!</p>
           instructions: |-
-            <p>You can request an Absentee Ballot online on the <a href="https://okvoterportal.okelections.us/">OK Voter Portal</a> or 
+            <p>You can request an Absentee Ballot online on the OK Voter Portal by clicking the button below, or 
             by <a href="https://oklahoma.gov/content/dam/ok/en/elections/absentee-ballots/absentee-ballot-application-012020.pdf">downloading an Oklahoma Application for Absentee Ballot form</a> and mailing, 
             e-mailing or faxing it to your County Election Board office.</p>
             <h2 role="heading" aria-level="2">Voter Registration in Oklahoma</h2>
