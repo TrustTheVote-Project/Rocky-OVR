@@ -59,8 +59,7 @@ en:
         address: "Registered Address:"
         date_of_birth: "Date of Birth:"
       state_online_defaults:
-        header: You can request an Absentee Ballot online directly with the state
-          of %{state}
+        header: Absentee Ballots in %{state}
         header_choice: How do you want to request your ballot?
         requirements: "<p>If you are registered to vote and have a valid %{state}
           state ID, you may request your absentee ballot online directly with the
