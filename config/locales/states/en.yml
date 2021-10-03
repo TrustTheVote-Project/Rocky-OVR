@@ -497,6 +497,24 @@ en:
             spouse or child who is living at home and requires constant care."
       fl:
         abr:
+          splash_header: Requesting a Vote-by-Mail ballot in Florida
+          splash_instructions: |-
+            <p>Registered voters can request a Vote-by-Mail ballot in Florida.</p>
+            <p>You can request a Vote-by-Mail ballot by:
+            <ul>
+            <li>Sending a signed letter by mail, fax or scanned attachment by email to the your <a href="https://dos.elections.myflorida.com/supervisors/">County Supervisor of Elections</a>,</li>
+            <li>Delivering a letter in person to the Supervisor of Elections' office, or</li>
+            <li>Calling the Supervisor of Elections' office.</li>
+            </ul>
+            </p>
+            <p>Learn more about what must be included in your request to Vote-by-Mail in Florida and who may submit the request at the Florida <a href="https://dos.myflorida.com/elections/for-voters/voting/vote-by-mail/">Florida Vote-by-Mail</a> site. 
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to the <a href="https://registration.elections.myflorida.com/en/CheckVoterStatus/Index">Florida Voter Information Lookup</a> site.</p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>The deadline to request that a vote-by-mail ballot be mailed is no later than 5 p.m. on the 10th day before the election.</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Instructions on how to vote with your Vote-by-Mail ballot are included with the ballot.</p>
+            <p> For more information, view Florida's <a href="https://dos.myflorida.com/elections/for-voters/voting/vote-by-mail/"> Vote-by-Mail</a> site. </p>
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Vote-By-Mail status, by using your state's online tool:"
           state_reminder_1: ""
