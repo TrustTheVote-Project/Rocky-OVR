@@ -1477,26 +1477,25 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx'>Directory</a>"
           finalpage_additional_instructions:  
-          splash_header: Absentee Requests In Mississippi
+          splash_header: Absentee Ballots In Mississippi
           splash_instructions: |-
-            <p>Mississippi requires all absentee requests to be completed directly through the state. Please check with your Circuit or Municipal Clerk to determine if you are entitled to vote by an absentee ballot and to learn the procedures for doing so.     If you know you will vote by an absentee ballot, you may contact your Circuit or Municipal Clerk’s Office at any time within 45 days of the election.</p>
-            <p>Mississippi lists the following as qualifying reasons to request and absentee ballot:</p>
-            <ul>
-              <li>moved there from within thirty (30) days of the coming presidential election. </li>
-              <li>an enlisted or commissioned member, male or female, of any component of the United States Armed Forces and am a citizen of Mississippi, or spouse or dependent of such member. </li>
-              <li>a member of the Merchant Marine or the American Red Cross and am a citizen of Mississippi or spouse or dependent of such member. </li>
-              <li>a disabled war veteran who is a patient in any hospital and am a citizen of Mississippi or spouse or dependent of such veteran</li>
-              <li>a civilian attached to and serving outside of the United States with any branch of the Armed Forces or with the Merchant Marine or American Red Cross, and am a citizen of Mississippi or spouse or dependent of such civilian</li>
-              <li>a citizen of Mississippi temporarily residing outside the territorial limits of the United States and the District of Columbia. </li>
-              <li>a student, teacher or administrator at a college, university, junior or community college, high, junior high, elementary or grade school, whose studies or employment at such institution necessitates my absence from the county of my voting residence or spouse or dependent of such student, teacher or administrator who maintains a common domicile outside the county of my voting residence with such student, teacher or administrator.</li>
-              <li>a person who is outside the county on election day.</li>
-              <li>a person with a temporary or permanent physical disability. </li>
-              <li>a person who is sixty-five (65) years of age or older. </li>
-              <li>the parent, spouse or dependent of a person with a temporary or permanent physical disability who is hospitalized outside his county of residence or more than fifty (50) miles away from his residence, and I will be with such person on election day.</li>
-              <li>a member of the congressional delegation, or spouse or dependent of a member of the congressional delegation. </li>
-              <li>a person who is required to be at work on election day during the times which the polls will be open.</li>
-              <li>I have a temporary or permanent physical disability, which may include, but is not limited to, a physician-imposed quarantine due to COVID-19 during the year 2020. Or, I am caring for a dependent that is under a physician-imposed quarantine due to COVID-19</li>
-            </ul>
+            <p>In Mississippi, you must have a reason to vote absentee vote or be a military or 
+            overseas voter. You can review the requirements on the Mississippi 
+            <a href="https://www.sos.ms.gov/content/documents/elections/yallvotedocs/Step-by-Step%20Voter%20Guide%20to%20Absentee%20Voting2021.pdf">Step-by-Step Absentee Guide [PDF]</a>. 
+            If you meet one of these requirements, contact your local Election Clerk to request 
+            an absentee ballot application.</p>
+            <h2 role="heading" aria-level="2">Voter Registration in Mississippi</h2>
+            <p>Not sure if you're registered to vote? Check your voter registration status on the Mississippi 
+            <a href="https://www.msegov.com/sos/voter_registration/AmIRegistered">Are You Registered to Vote?</a> 
+            page.</p>
+            <form><div class="button rollover_button">
+            <a href="https://www.sos.ms.gov/elections-voting/county-election-information" class="button_prepare button_prepare_en">
+            <span class="button-style" role="button">
+            Contact Your Local Election Clerk to <br/>Request an Absentee Ballot Application
+            </span>
+            </a>
+            </div></form>
+
       mt:
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
