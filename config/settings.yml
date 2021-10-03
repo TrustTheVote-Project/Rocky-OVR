@@ -214,7 +214,8 @@ absentee_states:
     abr_status_check_url: "https://app.mt.gov/voterinfo/"
     abr_track_ballot_url: "https://app.mt.gov/voterinfo/"
   NC:
-    pdf_template: nc.pdf
+    online_req_url: https://votebymail.ncsbe.gov/app/absentee/lookup
+    #pdf_template: nc.pdf
     abr_status_check_url: "https://vt.ncsbe.gov/RegLkup/"
     abr_track_ballot_url: "https://vt.ncsbe.gov/RegLkup/"
   ND:
