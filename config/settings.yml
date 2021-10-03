@@ -168,7 +168,7 @@ absentee_states:
     abr_status_check_url: "https://vrsws.sos.ky.gov/VIC/"
     abr_track_ballot_url: "https://vrsws.sos.ky.gov/VIC/"
   LA:
-    online_req_url: https://www.sos.la.gov/ElectionsAndVoting/Vote/VoteByMail/Pages/default.aspx
+    online_req_url: https://voterportal.sos.la.gov
     pdf_template: la.pdf
     abr_status_check_url: "http://voterportal.sos.la.gov/voterlogin"
     abr_track_ballot_url: "http://voterportal.sos.la.gov/voterlogin"

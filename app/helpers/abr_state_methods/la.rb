@@ -8,9 +8,6 @@ module AbrStateMethods::LA
     "Residential Address": {
       method: "full_address_1_line"
     },
-    "Options": {
-      options: ["0", "1", "10", "11", "2", "3", "4", "5", "6", "7", "8", "9"]
-    },
     "NumberStreetCityStateZip Code": {}, #mailing address
     "submitted_by": {},
     "relationship_to_applicant": {},
@@ -29,24 +26,122 @@ module AbrStateMethods::LA
     },
     "absent_from": { method: "absent_from_date" },
     "absent_to": { method: "absent_to_date" },
-    "receive_for_elections": {
-      #options: ["all_elections", "only_this_election"],
-      #value: "only_this_election" - only a static value if "options_0"
-      method: 'only_this_election_if_option_0'
+    "receive_for_one_elections": {
+      options: ["Off", "On"],
+      value: "Off"
+    },
+    "receive_for_all_elections": {
+      options: ["Off", "On"],
+      value: "On"
+    },
+
+    "already_approved": {
+      options: ["Off", "On"],
+      method: "reason_already"
+    },
+    "submitting_proof": {
+      options: ["Off", "On"],
+      method: "reason_submitting"
+    },
+    "homebound_submitting_proof": {
+      options: ["Off", "On"],
+      method: "reason_homebound_submitting"
+    },
+
+    "receipt_type_email": {
+      options: ["Off", "On"],
+      method: "receipt_type_email"
+    },
+    "receipt_type_mail": {
+      options: ["Off", "On"],
+      method: "receipt_type_mail"
+    },
+    "receipt_type_fax": {
+      options: ["Off", "On"],
+      method: "receipt_type_fax"
+    },
+
+
+    "email": {
+      method: :email_if_email_receipt
+    },
+    "mailing_1": {
+      method: :mailing_1_if_mail_receipt
+    },
+    "mailing_2": {
+      method: :mailing_2_if_mail_receipt
+    },
+    "fax": {
+      method: :fax_if_fax_receipt
     },
     #voter_signature
     #signature_date
     
   }
   
-  EXTRA_FIELDS = ["hand_delivered_or_faxed", "has_mailing_address", "absent_from", "absent_to", "absent_from_mm", "absent_from_dd", "absent_from_yyyy", "absent_to_mm", "absent_to_dd", "absent_to_yyyy","dln_soft_validation",] 
+  EXTRA_FIELDS = ["hand_delivered_or_faxed", "has_mailing_address","dln_soft_validation","reason","receipt_type", "mailing_address_1", "mailing_address_2", "fax_number"] 
   
-  def only_this_election_if_option_0
-    if self.options.to_s =='0'
-      return 'only_this_election'
-    else
-      return 'Off'
+  def reason_already
+    if self.reason === "already"
+      return "On"
     end
+    return "Off"
+  end
+  def reason_submitting
+    if self.reason === "submitting"
+      return "On"
+    end
+    return "Off"
+  end
+  def reason_homebound_submitting
+    if self.reason === "homebound_submitting"
+      return "On"
+    end
+    return "Off"
+  end
+
+  def email_if_email_receipt
+    if self.receipt_type.to_s === "email"
+      return self.email
+    end
+    return ''
+  end
+  def mailing_1_if_mail_receipt
+    if self.receipt_type.to_s === "mail"
+      return self.has_mailing_address == "1"  ? self.mailing_address_1 : self.address
+    end
+    return ''
+  end
+  def mailing_2_if_mail_receipt
+    if self.receipt_type.to_s === "mail"
+      return self.has_mailing_address == "1" ? self.mailing_address_2 : self.address_city_state_zip
+    end
+    return ''
+  end
+  def fax_if_fax_receipt
+    if self.receipt_type.to_s === "fax"
+      return self.fax_number
+    end
+    return ''
+  end
+
+  def receipt_type_email
+    if self.receipt_type.to_s === "email"
+      return "On"
+    end
+    return "Off"
+  end
+  def receipt_type_mail
+    if self.receipt_type.to_s === "mail"
+      return "On"
+    end
+    return "Off"
+  end
+  def receipt_type_fax
+    if self.receipt_type.to_s === "fax"
+      return "On"
+    end
+    return "Off"
   end
 
   
@@ -122,14 +217,13 @@ module AbrStateMethods::LA
       {"id_instructions": {type: :instructions}},
       {"SSN_Last_4": {min:4, max: 4}},
       {"License_ID": {ui_regexp:"^0[0-9]{7}$"}},
-      {"Options": {type: :radio, required: true}}, 
-      {"absent_from_date": {visible: "options_1", required: "show_star", type: :date, m: "absent_from_mm", d: "absent_from_dd", y: "absent_from_yyyy"}},
-      {"absent_to_date": {visible: "options_1", required: "show_star", type: :date, m: "absent_to_mm", d: "absent_to_dd", y: "absent_to_yyyy"}},
-      {"hand_delivered_or_faxed": {type: :checkbox}},
-      {"submitted_by": {classes: "indent", visible: "hand_delivered_or_faxed", required: :if_visible}},
-      {"relationship_to_applicant": {classes: "indent", visible: "hand_delivered_or_faxed", required: :if_visible}},
+      {"reason": {type: :radio, options: ["already", "submitting", "homebound_submitting"]}},
+
+      {"receipt_type": {type: :radio, options: ["email", "mail", "fax"]}},
+      {"fax_number": {visible: "receipt_type_fax"}},
       {"has_mailing_address": {type: :checkbox}},
-      {"NumberStreetCityStateZip Code": {visible: "has_mailing_address", required: :if_visible}},
+      {"mailing_address_1": {visible: "has_mailing_address", required: :if_visible}},
+      {"mailing_address_2": {visible: "has_mailing_address", required: :if_visible}},
       {"dln_soft_validation": {type: :hidden}},
     ]
   end
@@ -146,44 +240,9 @@ module AbrStateMethods::LA
   #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
   # ]
   
-  def absent_from_date
-    dates = [absent_from_mm, absent_from_dd, absent_from_yyyy].collect {|d| d.blank? ? nil : d}.compact
-    if dates.length == 3
-      dates.join("/")
-    else
-      nil
-    end
-  end
+
   
-  def absent_to_date
-    dates = [absent_to_mm, absent_to_dd, absent_to_yyyy].collect {|d| d.blank? ? nil : d}.compact
-    if dates.length == 3
-      dates.join("/")
-    else
-      nil
-    end
-  end
   
-  def custom_form_field_validations
-    if self.options == "1"
-      custom_validates_presence_of("absent_from_date")
-      custom_validates_presence_of("absent_to_date")
-    end
-    if self.hand_delivered_or_faxed.to_s == "1"
-      custom_validates_presence_of("submitted_by")
-      custom_validates_presence_of("relationship_to_applicant")      
-    end
-    if self.has_mailing_address.to_s == "1"
-      custom_validates_presence_of("NumberStreetCityStateZip Code")
-    end
-  end
-  
-  # "only_this_election" - only a static value if "options_0"
-  def receive_for_elections
-    if self.options == "0"
-      return "only_this_election"
-    end
-  end
   
  
 end

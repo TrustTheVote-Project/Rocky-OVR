@@ -906,14 +906,30 @@ en:
             <p>You can go here to request a ballot if you are eligible: <a target="_blank" rel="noopener" href="https://vrsws.sos.ky.gov/abrweb/">https://vrsws.sos.ky.gov/abrweb/</a></p>
       la:
         state_online_abr:
-          confirm: TBD There are requirements to request an absenteed ballot.
+          header_choice: Eligibility to Request an Absentee Ballot
+          confirm: ""
           requirements: |-
-            <p>You can only request an absentee ballot in Louisiana if you meet ceratin requirements. 
-            There are different ways to request depending on which requirement you meet</p>
-            <p>Are you:</p>
+            <p>In Louisiana, you must have a reason to vote absentee vote or be a military or 
+            overseas voter. If you meet one of these requirements and have have a valid 
+            Louisiana state ID, you can request an absentee ballot 
+            directly <a href=https://voterportal.sos.la.gov/" "title=GeauxVote">from the state</a>. 
+            If you are requesting an absentee ballot due to physical disability, you will need to fill out and mail a 
+            <a href="https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf">paper form</a>. 
+            You can fill out this paper form by clicking the link at the bottom of the page.</p>
+            <p> If you are:</p>
             <ul>
-            <li>Reason One</li>
-            <li>Reason Two</li>
+            <li>Senior citizen (65 or older); </li>
+            <li>Temporarily outside LA or parish during early voting period and on Election Day, or expect to be (must include the dates you will be outside territorial limits on application); </li>
+            <li>Working offshore or expect to be during early voting period and on Election Day; </li>
+            <li> Live in nursing home/veteran’s home or hospital for extended stay due to physical disability and are unable to vote in person; </li>
+            <li>Living outside parish of registration due to higher education (students, instructors and professors); </li>
+            <li>Clergy member assigned outside parish of registration or spouse/dependent of one; </li>
+            <li>Moved more than 100 miles from parish seat of former residence after voter registration books closed (30 days prior to election); </li>
+            <li>Involuntarily confined in mental treatment institution outside parish of registration and are not interdicted and not judicially declared incompetent; </li>
+            <li>Hospitalized; </li>
+            <li>Incarcerated outside parish of registration (except for orders of imprisonment and felonies); </li>
+            <li>Address Confidentiality Program participant; or
+            <li>Juror sequestered on Election Day,</li>
             </ul>
           
           finish_instructions: <p>Once you have your ballot, be sure to read the instructions
@@ -923,6 +939,7 @@ en:
             sure where your registrar of voters is? <a rel="noopener" target="blank"
             href="http://voterportal.sos.la.gov/">http://voterportal.sos.la.gov/</a>
             </p>
+          
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
@@ -936,11 +953,7 @@ en:
             4:30pm CST on the day before election day.</p><p>Not sure where your registrar
             of voters is? <a target="_blank" rel="noopener" href="https://voterportal.sos.la.gov/registrar">Check
             the Registrar of voters</a></p>
-          skip_state_online_abr_intro: |-
-            <p>Are you</p>
-            <ul>
-            <li>physically disabled?</li>
-            </ul>
+          skip_state_online_abr: I am physically disabled and need to complete a paper Disabled Application.
           requirements: |-
             <p>To qualify to request a ballot in LA, you must meet one of the following criteria:</p>
             <ul>
@@ -963,48 +976,34 @@ en:
             your registrar of voters is? <a target="_blank" rel="noopener" href="https://voterportal.sos.la.gov/registrar">Check
             the Registrar of voters</a></p>
         abr_form_fields:
-          Options: Check the reason for which you are eligible to vote by mail
-          Options__options:
-            '0': Senior Citizen - I am 65 years of age or older.
-            '1': Temporarily absent - I am or expect to be temporarily outside the
-              territorial limits of my state/parish of registration during the early
-              voting period and on election day. You must indicate the dates you will
-              be temporarily absent below if the ballot is being mailed within your
-              parish.
-            '2': Offshore - I expect to be out of my precinct of registration and
-              upon the waters of the state during early voting and on election day
-              because of my employment or occupation.
-            '3': Nursing home - I am a resident of a nursing home (includes veterans'
-              home and extended hospital stay for a physical disability).
-            '4': Higher Education - I am a student (you must enclose a copy of student
-              ID or fee bill if voting for 1st time), instructor, or professor located
-              and living outside my parish of registration, or a spouse/dependent.
-            '5': CLERGY - I am a minister, priest, rabbi, or other member of the clergy
-              assigned outside my parish of registration, or a spouse/dependent.
-            '6': MOVED OUT OF PARISH less than 30 days before election - I moved my
-              residence to another parish more than 100 miles from the parish seat
-              of my former residence after the voter registration books closed.
-            '7': INVOLUNTARY CONFINEMENT - I am involuntarily confined in an institution
-              for mental treatment outside my parish of registration and I am not
-              interdicted and not judicially declared incompetent.
-            '8': HOSPITALIZED - I expect to be hospitalized on election day and I
-              did not have knowledge until after the time for early voting had expired;
-              or I was hospitalized during the time for early voting and I expect
-              to be hospitalized on election day; or I was either hospitalized or
-              restricted to my bed by my physician during early voting and on election
-              day (you must enclose proof of hospitalization).
-            '9': INCARCERATED - I am incarcerated in an institution inside/outside
-              my parish of registration and I am not under an order of imprisonment
-              for conviction of a felony. (You must enclose a certification by sheriff.)
-            '10': ACP - I am a program participant in the Department of State Address
-              Confidentiality Program.
-            '11': JUROR - I will be sequestered on the day of the election and during
-              early voting. (You must enclose a certified copy of court order.)
+          reason: I have been previously approved in the Disability Program, or I am disabled or homebound. 
+          reason__options:
+            already: I have already been approved by the registrar of voters for the Disability Program.
+            submitting: I am submitting proof of disability with this application to the registrar of 
+              voters for the Disability Program. <br/>Proof of disability may be a certification from a
+              physician, optometrist, physician assistant, or nurse practitioner, 
+              copy of mobility-impaired ID card with photo, or copy of current documentation 
+              showing eligibility for disability benefits from Social Security, Veterans 
+              Affairs, paratransit services, the Office of Citizens with Developmental 
+              Disabilities, or the LA Rehabilitation Services.
+            homebound_submitting: I am homebound, voting for the first time, 
+              and I am submitting proof of disability with this application to the registrar of voters 
+              for the Disability Program. <br/>Proof of disability for reason of being homebound must 
+              be a physician’s letter certifying that the voter is unable to vote in person because 
+              of their disability.
+
+          receipt_type: Check an option to receive your ballot
+          receipt_type__options:
+            email: By electronic delivery (email)
+            mail: By mail
+            fax: By fax
+          fax_number: My fax number is
           hand_delivered_or_faxed: An immediate family member or I am hand delivering
             or faxing my application.
           submitted_by: 'Submitted by:'
           relationship_to_applicant: 'Relationship to Applicant:'
-          NumberStreetCityStateZip Code: Mailing address
+          mailing_address_1: Mailing address
+          mailing_address_2: Mailing City, State, ZIP
           has_mailing_address: My mailing address differs from my residential address.
           absent_from: Absent from (MM/DD/YYYY)
           absent_to: Thru (MM/DD/YYYY)
