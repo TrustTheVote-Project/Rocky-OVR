@@ -236,6 +236,7 @@ absentee_states:
     leo_lookup_url: "https://app.sos.nh.gov/Public/ClerkDetails.aspx"    
     abr_track_ballot_use_leo: false
   NJ: 
+    pdf_template: nj.pdf
     abr_status_check_url: "https://voter.svrs.nj.gov/auth/sign-in"
     abr_track_ballot_url: "https://voter.svrs.nj.gov/auth/sign-in"
   NM:
