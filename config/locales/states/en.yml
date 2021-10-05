@@ -2502,16 +2502,18 @@ en:
           has_mailing_address: My mailing address differs from my residence address
           has_mailing_address__hint: If you selected "Expected absence from the county"
             above, you must provide an address outside of your residence county.
-          Mail_Address: Mailing address
-          ZIP Code_2: Zip
-          Mailing City: City
+          Address_2: Mailing address
+          Apt if any 2: Apt
+          Zip Code 2: Zip
+          City 2: City
+          State 2: State
           witness: Check here if applicant is unable to sign and you are acting as
             a witness
           Witness_relation: Witness Relationship to Applicant
           Assisted: Check here if you also assisted applicant in completing this application
-          where_to_mail: Please indicate where the ballot will be mailed from the
+          where_to_mail_all: Please indicate where the ballot will be mailed from the
             following options
-          where_to_mail__options:
+          where_to_mail_all__options:
             hospital: Hospital
             jail: Address of the jail
             mailing_address: Mailing Address as listed on my voter registration certificate
@@ -2523,11 +2525,10 @@ en:
           Reason: Reason for voting by mail
           Reason__options:
             age: 65 years of age or older
-            confinement: Confinement to jail. You will receive a ballot for the upcoming
-              election only.
-            disability: Disability
-            absence: Expected absence from the county. You will receive a ballot for
-              the upcoming election only.
+            confinement: Confined in Jail or Involuntary Civil Commitment (You may only apply for a ballot for one election and any resulting runoff)
+            disability: Disability (as defined in Texas Election Code 82.002(a)). By checking this box, “I affirm that I have a sickness or physical condition that prevents me from appearing at the polling place on election day without a likelihood of needing personal assistance or of injuring my health.”
+            maternity: Expected to give birth within three weeks before or after Election Day
+            absence: Expected Absence from the County (You may apply for a ballot for one election and its resulting runoff, if your dates of absence from the county include both elections)
           relative_relationship: Your relationship to person to whom the ballot will
             be mailed
           Apt number of witness: 'Apt #'
