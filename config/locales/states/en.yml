@@ -1234,6 +1234,14 @@ en:
             can find your clerk''s office contact info here: <a rel="noopener" target="blank"
             href="https://mvic.sos.state.mi.us/">https://mvic.sos.state.mi.us/</a>'
         state_online_abr:
+          confirm: |-
+            <p>All registered voters in Michigan are eligible to vote at home (absentee). <a href="https://mvic.sos.state.mi.us/Voter/Index" title="Your voter information">Make sure you're registered</a>.</p>
+            <p>Review the requirements to request your ballot online below, then click the "finish" button below to request your absentee ballot through MI's site.</p>
+          requirements:
+            <h2 role="heading" aria-level="2">Requirements to apply for an absentee ballot online</h2> 
+            <p>If you are registered to vote and have a valid Michigan
+            state ID, you may request your absentee ballot online directly with the
+            state.</p>
           finish_instructions: '<p>You can check on the status of your absent voter
             ballot request by contacting your city or township clerk''s office. You
             can find your clerk''s office contact info here: <a rel="noopener" target="blank"
