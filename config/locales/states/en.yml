@@ -909,19 +909,24 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          splash_header: Absentee Requests In Kentucky
+          splash_header: Requesting an Absentee Ballot in Kentucky
           splash_instructions: |-
-            <p>Unforatunately, Kentucky requires all absentee requests to be completed directly through the state.</p><p>In Kentucky, you are only allowed to request an absentee ballot if you are eligible to vote AND meet one of these criteria:</p>
+            <p>Requests for absentee ballots in Kentucky must be made online. You must provide your complete Social Security number and date of birth. If you cannot access the portal or provide your full Social Security number, contact your <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx">County Clerk</a>.
+            <p> You must have an excuse to vote absentee in Kentucky. Review the reasons on the <a href="https://vrsws.sos.ky.gov/abrweb/">Kentucky Absentee Request Portal</a>.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to the <a href="https://vrsws.sos.ky.gov/vic/">Kentucky Voter Registration Portal</a>.</p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>If you live in the 22nd Senate District, the 51st House District or the 89th House and have an election in 2021, the deadline to apply online for an Absentee ballot is October 19, 2021 no later than 11:59 p.m. EST.</p>
+            <p>Absentee ballots requests must be received fourteen (14) days before the election.</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>There are three ways for Kentucky voters to cast their ballot for this November’s SPECIAL election:
             <ul>
-            <li>Student who temporarily resides outside the county of their residence; </li>
-            <li>Incarcerated in jail and charged with a crime, but not been convicted; </li>
-            <li>Changing or has changed their place of residence to a different state while the registration books are closed in the new state of residence before an election of electors for President and Vice President of the United States, in which case the voter shall be permitted to cast an absentee ballot or electors of the President and Vice President of the United States only; </li>
-            <li>Temporarily residing outside the state but still eligible to vote in this state; </li>
-            <li>Prevented from voting in person at the polls on Election Day and from casting an in-person absentee ballot in the county clerk’s office on all days in-person absentee voting is conducted because their employment location requires them to be absent from the county of their residence all hours and all days in-person absentee voting is conducted; </li>
-            <li>A participant in the Secretary of State’s crime victim address confidentiality program; or</li>
-            <li>Not able to appear at the polls on Election Day on the account of age, disability, or illness, and who has not been declared mentally disabled by a court of competent jurisdiction.</li>
-            </ul>
-            <p>You can go here to request a ballot if you are eligible: <a target="_blank" rel="noopener" href="https://vrsws.sos.ky.gov/abrweb/">https://vrsws.sos.ky.gov/abrweb/</a></p>
+            <li>In-person Absentee Early Voting before Election Day, Oct. 28th - 30th, 2021.</li>
+            <li> In-person on Election Day, Nov. 2nd, 2021.</li>
+            <li>By Absentee ballot (return by mail or ballot dropbox</li>
+            </p>
+            <p> For more information, view Kentucky's 
+            <a href="https://vrsws.sos.ky.gov/abrweb">Absentee Request Portal</a> </p>
       la:
         state_online_abr:
           header_choice: Eligibility to Request an Absentee Ballot
