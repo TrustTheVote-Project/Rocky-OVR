@@ -1549,6 +1549,14 @@ en:
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: Any registered voter who has been a resident of Montana for
             at least 30 days may request an absentee ballot.
+          step_3_header: Any registered voter in Montana may vote by absentee ballot.
+
+          step_3_instructions: |-
+            <p>All registered voters in Montana are eligible to vote by absentee ballot. <a href="https://app.mt.gov/voterinfo/" title="My Voter Page">Make sure you're registered</a>.</p>
+            <h2 role="heading" aria-level="2">Prepare your registration form</h2>
+            <p>Please fill out the fields below so we can prepare
+            your PDF early vote request form.</p>
+          
         abr_form_fields:
           address_instructions: 'Please choose one or both of the following options,
             if applicable:'
