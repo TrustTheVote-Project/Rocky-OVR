@@ -31,8 +31,10 @@ en:
       last_update: <p>If you registered to vote or updated your registration recently, we might not have the most up-to-date
         information. <b>Our last update from %{state} was on %{date}.</b> <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results</p>
     abr:
-      deadline_passed_header: ""
-      deadline_passed_instructions: <p>We don't have an upcoming election in our database to request an absentee ballot for. When there's an election in your area, we'll email you with information on how to request an absentee ballot.</p><p>Right now, make sure that you're a <a href="%{registration_url}">registered voter</a> so that you're able to vote by mail in future elections.</p>
+      deadline_passed_header: "Requesting an Absentee Ballot in %{state}"
+      deadline_passed_instructions: |-
+        <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. When there's an election in your area, we'll email you with information on how to request an absentee ballot.</p>
+        <p>Right now, make sure that you're a <a href="%{registration_url}">registered voter</a> so that you're able to vote by mail in future elections.</p>
       deadline_passed_state_instructions:
         url: you can look up your status by using your state's <a href="%{url}">online tool</a>.
         leo_contact_info: you can check with your local election official at</p><p>%{leo_contact_info}</p>
