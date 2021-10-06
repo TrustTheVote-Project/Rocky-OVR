@@ -702,9 +702,9 @@ en:
           "mailingState": State
           "mailingCountry": "Country (if outside of USA)"
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide a valid state ID
-            and last four digits of your SSN, you may request your absentee ballot online 
-            directly with the state.</p>"
+          requirements: |-
+            <p>If you are registered to vote and can provide a valid state ID and last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
+            <p>Check if you are registered by visiting <a href="https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx" target="_blank" rel="noopener noreferrer">the Idaho voter information search site</a></p>
           finish_instructions: '<p>Once you have your ballot, again be sure to read
             the instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 8:00pm on November 3, 2020.</p><p>You
@@ -1875,13 +1875,21 @@ en:
           abr_status_check_intro: "You can look up your Vote By Mail status, by using your state's online tool:"
           state_reminder_1: "If you haven't signed up before, you will need to sign up to use your state's look up tool.  You can do this on the same page."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://voter.svrs.nj.gov/auth/sign-in'>online tool</a>"
+          step_3_instructions: |-
+            <p>All registered voters in New Jersey are eligible to vote by mail. <a href="https://voter.svrs.nj.gov/registration-check" title="Voter Search" target="_blank" rel="noopener noreferrer">Make sure you're registered</a>.</p>
+          finalpage_instructions: "You can look up your Vote By Mail status, by using New Jersey's <a href=\"https://voter.svrs.nj.gov/auth/sign-in\">My Voter Record</a> tool.
+"
           finalpage_additional_instructions:  "If you haven't signed up before, you will need to sign up to use your state's look up tool.  You can do this on the same page."
           splash_header: Vote by Mail Requests In New Jersey
           splash_instructions: '<p>Your state is automatically sending a vote by mail ballot to all 
             registered voters this year. Your vote by mail ballot will be sent to the address 
             listed on your voter registration. If you have any questions, or need to 
             update your address please go to: <a href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'  
+          finish_instructions_1_hint: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID 
+            or anything else with your request.</i></p>
+            <p><i>If you have designated an authorized messenger or someone assisted you with this form, make sure that you have signed in both boxes, and they have signed and dated the form.</i></p>
+
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your application must be received seven days prior to Election Day (October
@@ -1892,16 +1900,20 @@ en:
             PM).</p><p>At any time you can check the status of your application and
             the status of your ballot at: <a rel="noopener" target="blank" href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'
         abr_form_fields:
+          Election: "I hereby apply for a Mail-In Ballot for:"
+          Election__options:
+            All: All Future Elections, until I request otherwise in writing.
+            General: Only the next General (November) election
           has_mailing_address: My mailing address differs from my residential address.
           Mailing_Address_2: Mailing address
           Mailing_Address_3: City, State, Zip
-          assistant: I assisted voter in completing this form because he/she has a
-            disability.
-          messenger: I am designating someone else to be my Authorized Messenger to
-            deliver my Mail-in ballot.
+          assistant: A person providing assistance to the voter in completing this application must check this box to continue.
+          messenger: |-
+            Any voter may apply for a Mail-In Ballot by Authorized Messenger. <br/>Messenger shall be a family member or a registered voter of this County. No Authorized Messenger can (1) be a Candidate in the election for which the voter is requesting a Mail-In Ballot or (2) serve as messenger for more than THREE qualified voters per election, except that an authorized messenger or bearer may serve as such for up to five qualified voters in an election if those voters are immediate family members residing in the same household as the messenger or bearer.
           Apt_3: Apt/Unit
           Municipality CityTown_3: City/Town
           State_3: State
+          Zip_3: Zip
           Date_of_Birth_Messenger: Date of Birth (MM/DD/YYYY)
           Name_Assistor: Name of Assistor
           Address_Assistor: Address

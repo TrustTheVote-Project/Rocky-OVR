@@ -131,7 +131,7 @@ absentee_states:
     abr_status_check_url: "https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search"
     abr_track_ballot_url: "https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search"
   ID:
-    online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
+    online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/BeginAbsenteeRequest.aspx
     pdf_template: id.pdf #2020_Absentee_Request.pdf
     #pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
     abr_status_check_url: "https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx"
