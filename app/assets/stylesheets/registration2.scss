@@ -897,9 +897,12 @@ body {
     }
     .requirements, .state-instructions {
       margin: 2em 0;
-      *, p {
+      p, li, span, div {
         font-size: 14px;
         color: #666;
+      }
+      a {
+        color: #B32426;
       }
       ul {
         font-size: 14px;
