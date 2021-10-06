@@ -118,9 +118,9 @@ absentee_states:
     abr_status_check_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
     abr_track_ballot_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
   GA:
-    online_req_url: https://ballotrequest.sos.ga.gov/
-    pdf_template: ga.pdf
-    email_delivery: true
+    #pdf_template: ga.pdf
+    pdf_url: https://sos.ga.gov/admin/uploads/2021_Absentee_App.9721_2.pdf
+    email_delivery: false
     abr_status_check_url: "https://www.mvp.sos.ga.gov/MVP/mvp.do"
     abr_track_ballot_url: "https://www.mvp.sos.ga.gov/MVP/mvp.do"
   HI: 
