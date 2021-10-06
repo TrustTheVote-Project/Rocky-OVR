@@ -156,6 +156,7 @@ module AbrStateMethods::MT
       {"period_to": {
           visible: self.class.make_method_name("Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only"), 
           type: :date, m: "period_to_mm", d: "period_to_dd", y: "period_to_yyyy"}},
+      {"designee_instructions": {type: :instructions}},
       {"designee": {type: :checkbox}},
       {"Receipt of absentee ballot by designee I received the absentee ballot for the applicant on": {visible: "designee"}},
     ]

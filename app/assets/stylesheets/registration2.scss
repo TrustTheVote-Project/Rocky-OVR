@@ -884,6 +884,7 @@ body {
       text-align: center;
     }
     p {
+      text-align: left;
       font-size: 14px;
       margin: 0.5em 0;
     }
@@ -896,9 +897,12 @@ body {
     }
     .requirements, .state-instructions {
       margin: 2em 0;
-      *, p {
+      p, li, span, div {
         font-size: 14px;
         color: #666;
+      }
+      a {
+        color: #B32426;
       }
       ul {
         font-size: 14px;

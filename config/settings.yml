@@ -118,9 +118,9 @@ absentee_states:
     abr_status_check_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
     abr_track_ballot_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
   GA:
-    online_req_url: https://ballotrequest.sos.ga.gov/
-    pdf_template: ga.pdf
-    email_delivery: true
+    #pdf_template: ga.pdf
+    pdf_url: https://sos.ga.gov/admin/uploads/2021_Absentee_App.9721_2.pdf
+    email_delivery: false
     abr_status_check_url: "https://www.mvp.sos.ga.gov/MVP/mvp.do"
     abr_track_ballot_url: "https://www.mvp.sos.ga.gov/MVP/mvp.do"
   HI: 
@@ -131,7 +131,7 @@ absentee_states:
     abr_status_check_url: "https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search"
     abr_track_ballot_url: "https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search"
   ID:
-    online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/AbsenteeSearch.aspx
+    online_req_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/BeginAbsenteeRequest.aspx
     pdf_template: id.pdf #2020_Absentee_Request.pdf
     #pdf_url: https://sos.idaho.gov/elect/clerk/forms/2020_Absentee_Request.pdf
     abr_status_check_url: "https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx"
@@ -168,13 +168,13 @@ absentee_states:
     abr_status_check_url: "https://vrsws.sos.ky.gov/VIC/"
     abr_track_ballot_url: "https://vrsws.sos.ky.gov/VIC/"
   LA:
-    online_req_url: https://voterportal.sos.la.gov/Home/VoterLogin
+    online_req_url: https://voterportal.sos.la.gov
     pdf_template: la.pdf
     abr_status_check_url: "http://voterportal.sos.la.gov/voterlogin"
     abr_track_ballot_url: "http://voterportal.sos.la.gov/voterlogin"
   MA:
     pdf_template: ma.pdf
-    email_delivery: true
+    #email_delivery: true
     abr_status_check_url: "https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx"
     abr_track_ballot_url: "https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx"
     abr_track_ballot_use_leo: false
@@ -187,7 +187,7 @@ absentee_states:
     abr_status_check_url: "https://voterservices.elections.maryland.gov/VoterSearch"
     abr_track_ballot_url: "https://voterservices.elections.maryland.gov/VoterSearch"
   ME:
-    online_req_url: https://www1.maine.gov/cgi-bin/online/AbsenteeBallot/online-form.pl
+    online_req_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_begin.pl
     abr_status_check_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_status.pl
     abr_track_ballot_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_status.pl
     leo_lookup_url: "https://www.maine.gov/sos/cec/elec/munic.html"    
@@ -214,7 +214,8 @@ absentee_states:
     abr_status_check_url: "https://app.mt.gov/voterinfo/"
     abr_track_ballot_url: "https://app.mt.gov/voterinfo/"
   NC:
-    pdf_template: nc.pdf
+    online_req_url: https://votebymail.ncsbe.gov/app/absentee/lookup
+    #pdf_template: nc.pdf
     abr_status_check_url: "https://vt.ncsbe.gov/RegLkup/"
     abr_track_ballot_url: "https://vt.ncsbe.gov/RegLkup/"
   ND:
@@ -235,6 +236,7 @@ absentee_states:
     leo_lookup_url: "https://app.sos.nh.gov/Public/ClerkDetails.aspx"    
     abr_track_ballot_use_leo: false
   NJ: 
+    pdf_template: nj.pdf
     abr_status_check_url: "https://voter.svrs.nj.gov/auth/sign-in"
     abr_track_ballot_url: "https://voter.svrs.nj.gov/auth/sign-in"
   NM:
@@ -247,15 +249,15 @@ absentee_states:
     abr_track_ballot_url: "https://nevada.ballottrax.net/voter/"
   NY:
     online_req_url: https://absenteeballot.elections.ny.gov
-    pdf_template: ny.pdf
-    email_delivery: true
+    #pdf_template: ny.pdf
+    #email_delivery: true
     #abr_status_check_url: "https://nysballot.elections.ny.gov/TrackMyBallot/Search"
     #leo_lookup_url: https://www.elections.ny.gov/NYSBOE/Counties/CountyBoardRoster10052020.pdf
   OH:
     pdf_template: oh.pdf
     abr_status_check_url: "https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/"
   OK:
-    online_req_url: https://www.ok.gov/elections/OVP.html
+    online_req_url: https://okvoterportal.okelections.us/
     abr_status_check_url: "https://okvoterportal.okelections.us/"
     abr_track_ballot_url: "https://okvoterportal.okelections.us/"
   OR: 
@@ -293,8 +295,8 @@ absentee_states:
   VA:
     online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
     # pdf_url: https://www.elections.virginia.gov/media/formswarehouse/absentee-voting/applications/SBE-701-Absentee-Ballot-Application-Rev7-17-long.pdf
-    pdf_template: va.pdf
-    email_delivery: true
+    # pdf_template: va.pdf
+    # email_delivery: true
     abr_status_check_url: "https://vote.elections.virginia.gov/VoterInformation"
   VT: 
     abr_status_check_url: "https://mvp.vermont.gov/" #All vote-by-mail this year

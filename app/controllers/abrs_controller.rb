@@ -42,6 +42,18 @@ class AbrsController < ApplicationController
     set_up_locale
     @abr.partner_id = @partner_id
     @abr.set_max_step(@current_step)    
+    if @abr.partner.primary?
+      @abr.opt_in_email = true
+      # @registrant.opt_in_sms = true
+    else
+      if @abr.partner.rtv_email_opt_in?
+        @abr.opt_in_email = true
+      end
+      if @abr.partner.partner_email_opt_in?
+        @abr.partner_opt_in_email = true
+      end
+    end
+
     if @abr.save
       redirect_to step_2_abr_path(@abr)
     else
@@ -249,6 +261,13 @@ class AbrsController < ApplicationController
       @abr.dead_end!
       return potential_view
     else
+      if @abr.home_state
+        if @abr.home_state.abr_deadline_passed
+          return 'step_2_abr_deadline_passed_general' 
+        elsif @abr.home_state.abr_splash_page
+          return 'step_2_abr_splash_page_general'
+        end
+      end
       return 'step_2'
     end
   end

@@ -21,27 +21,33 @@ module AbrStateMethods::MA
     "Email Address": {
       method: "email"
     },
-    "mailing_address": {
-      method: "override_mailing_address",
+    "mailing_address1": {
+      method: "override_mailing_address1",
+    },
+    "mailing_address2": {
+      method: "override_mailing_address2",
     },
 
     "assistance_required": { options: ["Off", "On"] },
 
     #"Assisting persons name": {},
     "assisting_person": {},
-    "Assisting persons address": {},
-    "Date": { method: "date_for_signature" }
+    "Assisting persons address 1": {},
+    "Assisting persons address 2": {},
+    # "Date": { method: "date_for_signature" }
     #"voter_signature": {}
   }
-  EXTRA_FIELDS = ["has_mailing_address", "mailing_address_input"]
+  EXTRA_FIELDS = ["has_mailing_address", "mailing_address_input", "mailing_address_input2"]
 
   def form_field_items
     [
       {"has_mailing_address": {type: :checkbox}},
       {"mailing_address_input": {visible: "has_mailing_address", required: :if_visible}},
+      {"mailing_address_input2": {visible: "has_mailing_address", required: :if_visible}},
       {"assistance_required": {type: :checkbox}},
       {"assisting_person": {visible: "assistance_required", required: :if_visible}},
-      {"Assisting persons address": {visible: "assistance_required", required: :if_visible}},
+      {"Assisting persons address 1": {visible: "assistance_required", required: :if_visible}},
+      {"Assisting persons address 2": {visible: "assistance_required", required: :if_visible}},
     ]
   end
   #e.g.
@@ -70,8 +76,11 @@ module AbrStateMethods::MA
       return override_field_value((self.has_mailing_address.to_s == "1"), fieldname1, fieldname2)
   end
 
-  def override_mailing_address
-    return override_mailing_address_field("full_address_1_line", "mailing_address_input")
+  def override_mailing_address1
+    return override_mailing_address_field("address", "mailing_address_input")
+  end
+  def override_mailing_address2
+    return override_mailing_address_field("address_city_state_zip", "mailing_address_input2")
   end
 
   

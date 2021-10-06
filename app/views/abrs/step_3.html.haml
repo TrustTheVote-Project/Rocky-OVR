@@ -1,5 +1,5 @@
 - unless @abr.has_pdf_template?
-  %h2= t('txt.abr.step_3_pending_header', {state: @abr.home_state_name})
+  %h2{role: "heading", "aria-level": "2"}= t('txt.abr.step_3_pending_header', {state: @abr.home_state_name})
   .intro-message
     = t('txt.abr.step_3_pending_instructions', {state: @abr.home_state_name, pdf_url: @abr.state_pdf_url}).html_safe
   %p{onclick: "window.open('#{@abr.state_pdf_url}','_blank'); window.location='#{finish_abr_path(@abr, share_only: true)}';"}
@@ -23,7 +23,7 @@
     
     })
   
-  %h2= t("states.custom.#{@abr.i18n_key}.abr.step_3_header", default: t('txt.abr.step_3_header', {state: @abr.home_state_name}))
+  %h2{role: "heading", "aria-level": "2"}= t("states.custom.#{@abr.i18n_key}.abr.step_3_header", default: t('txt.abr.step_3_header', {state: @abr.home_state_name}))
   .intro-message
     = t("states.custom.#{@abr.i18n_key}.abr.step_3_instructions", default:t('txt.abr.step_3_instructions')).html_safe
     %br

@@ -26,6 +26,10 @@
         .toggle-off#pdf_assistance_enabled{style: "cursor:pointer"} Deselect All
         %br
         PDF Assistance Enabled
+      %th
+        ABR Deadline Passed
+      %th
+        ABR Splash Page (all types)
       %th 
         Catalist Last Update
         %br
@@ -37,6 +41,13 @@
         %td.pdf_assistance_enabled
           = hidden_field_tag "pdf_assistance_enabled[#{s.abbreviation}]", "0"
           = check_box_tag "pdf_assistance_enabled[#{s.abbreviation}]", "1", s.pdf_assistance_enabled
+        %td
+          = hidden_field_tag "abr_deadline_passed[#{s.abbreviation}]", "0"
+          = check_box_tag "abr_deadline_passed[#{s.abbreviation}]", "1", s.abr_deadline_passed
+        %td
+          = hidden_field_tag "abr_splash_page[#{s.abbreviation}]", "0"
+          = check_box_tag "abr_splash_page[#{s.abbreviation}]", "1", s.abr_splash_page
+        
         %td
           - if s.catalist_updated_at 
             = l(s.catalist_updated_at, format: :ymd)
