@@ -1553,22 +1553,26 @@ en:
 
       mt:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "Applications must be received by noon on November 1, 2021. We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
-          state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://app.mt.gov/voterinfo/'>online tool</a>"
+          state_reminder_2: "\nIf you have designated another person to pick up your absentee ballot, make sure that they have also signed the form and you have signed and dated on the appropriate lines."
+          finalpage_instructions: "You can look up your Absentee Ballot status, by using Montana's <a href=\"https://app.mt.gov/voterinfo/\">My Voter Page</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: Any registered voter who has been a resident of Montana for
             at least 30 days may request an absentee ballot.
           step_3_header: Any registered voter in Montana may vote by absentee ballot.
 
           step_3_instructions: |-
-            <p>All registered voters in Montana are eligible to vote by absentee ballot. <a href="https://app.mt.gov/voterinfo/" title="My Voter Page">Make sure you're registered</a>.</p>
+            <p>All registered voters in Montana are eligible to vote by absentee ballot. <a href="https://app.mt.gov/voterinfo/" title="My Voter Page" target="_blank" rel="noopener noreferrer">Make sure you're registered</a>.</p>
             <h2 role="heading" aria-level="2">Prepare your registration form</h2>
             <p>Please fill out the fields below so we can prepare
             your PDF early vote request form.</p>
-          
+          finish_instructions_1_hint: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID 
+            or anything else with your request.</i></p>
+            <p><i>If you have designated another person to pick up your absentee ballot, make sure that they have also signed the form and you have signed and dated on the appropriate lines.</i></p>
+
         abr_form_fields:
           address_instructions: 'Please choose one or both of the following options,
             if applicable:'
@@ -1585,6 +1589,7 @@ en:
           period_from: From (MM/DD/YYYY)
           period_to: To (MM/DD/YYYY)
           Seasonal Mailing Address Optional: Part-time Mailing Address
+          designee_instructions: Optional – Designate another person to pick up your absentee ballot
           designee: I would like to designate someone else to pick up my absentee
             ballot.
           Receipt of absentee ballot by designee I received the absentee ballot for the applicant on: 'Name
