@@ -1135,8 +1135,18 @@ en:
           finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.maine.gov/sos/cec/elec/munic.html'>Directory</a>"
           finalpage_additional_instructions:  
         state_online_abr:
-          confirm: To qualify to request a ballot in ME, you only need to be registered
-            to vote.
+          header: All registered voters in Maine can vote absentee!
+          confirm: |-
+            <p>If you are registered to vote, you can request an absentee ballot. Look up your voter registration on the <a href="https://www.maine.gov/portal/government/edemocracy/voter_lookup.php">Maine Voter Information Lookup Service</a> page.</p>            
+          instructions: |-
+            <h2 role="heading" aria-level="2">Absentee Ballots in Maine</h2>
+            <p>You can apply for an Absentee Ballot in Maine in any of these ways:
+            <ul> 
+            <li>Click the button below to use the Maine Absentee Ballot Portal.</li>
+            <li>Contact the municipal clerk by phone or in writing. <a href="https://www.maine.gov/sos/cec/elec/munic.html">Find your Municipal Clerk</a>.</li>
+            <li>Download and submit an <a href="https://apps.web.maine.gov/online/AbsenteeBallot/ABS-2021-11-02.pdf">Application for Absentee Ballot [PDF]</a> to your Municipal Clerk.</li>
+            </ul>
+            </p>
           requirements: "<p>If you are registered to vote and have a valid state ID,
             you may request your absentee ballot online directly with the state.</p>"
           finish_instructions: "<p>Once you have your ballot, be sure to read the
