@@ -1211,10 +1211,12 @@ en:
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
           mailing_address_input: Mailing address
+          mailing_address_input2: "City, State, ZIP"
           assistance_required: Check this box if you received assistance in completing this 
             application due to a physical disability.
           assisting_person: Assisting person's name
-          Assisting persons address: Assisting person's address
+          Assisting persons address 1: Assisting person's address
+          Assisting persons address 2: City, State, ZIP
           the ballot: Name of messenger
           Voter is a member of military on active duty or dependent family member of: Voter
             is a member of military on active duty or dependent family member of active
