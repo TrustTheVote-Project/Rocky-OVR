@@ -2159,18 +2159,24 @@ en:
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""   
-          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://okvoterportal.okelections.us/'>online tool</a>"
+          finalpage_instructions: "You can find your Absentee Ballot status on the <a href=\"https://oklahoma.gov/elections/ovp.html\">OK Voter Portal</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well.      "
+          finish_instructions_1_hint: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID 
+            or anything else with your request.</i></p>
+            <p><i>Your absentee ballot request must be notarized. Read more on 
+            the <a href="https://oklahoma.gov/elections/voters/absentee-voting/standard-absentee-voters.html">Standard Absentee Voters</a> page</i></p>
+
         state_online_abr:
           confirm: <p>All registered voters in Oklahoma can vote absentee!</p>
           instructions: |-
-            <p>You can request an Absentee Ballot online on the OK Voter Portal by clicking the button below, or 
-            by <a href="https://oklahoma.gov/content/dam/ok/en/elections/absentee-ballots/absentee-ballot-application-012020.pdf">downloading an Oklahoma Application for Absentee Ballot form</a> and mailing, 
-            e-mailing or faxing it to your County Election Board office.</p>
             <h2 role="heading" aria-level="2">Voter Registration in Oklahoma</h2>
             <p>Not sure if you're registered to vote? Check your voter registration 
             status on the <a href="https://oklahoma.gov/elections/ovp.html">OK Voter Portal</a>.</p>
-
+            <h2 role="heading" aria-level="2">Request an Absentee Ballot</h2>
+            <p>You can request an Absentee Ballot online on the OK Voter Portal or by downloading an Oklahoma Application for Absentee Ballot form mailing, e-mailing or faxing it to your County Election Board office.</p>
+            <p>You will need to find your voter information before requesting an absentee ballot.</>
+          button: Visit the Oklahoma Absentee Voting page to Request an Absentee Ballot
           requirements: "<p>If you are registered to vote and have a valid state ID,
             you may request your absentee ballot online directly with the state.</p>"
           finish_instructions: '<p>At any time you can check the status of your application
