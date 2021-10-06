@@ -2237,16 +2237,16 @@ en:
           has_assistance: I hereby state that I am unable to sign my application for a mail-in ballot without assistance because I am unable to write by reason of my illness or physical disability. I have made or have received assistance in making my mark in lieu of my signature.
           Address of witness: Address of witness or assistant
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "Received by 5pm on October 26, 2021."
           abr_status_check_intro: "You can look up your Mail in ballot status, by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Mail in ballot status, by using Pennsylvania's <a href=\"https://www.pavoterservices.pa.gov/pages/ballottracking.aspx\">Election Ballot Status</a> page"
+          finalpage_instructions: "You can look up your mail-in ballot status by using Pennsylvania's <a href=\"https://www.pavoterservices.pa.gov/pages/ballottracking.aspx\">Election Ballot Status</a> page"
           finalpage_additional_instructions:
           finish_instructions_1_hint: |-
             <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
             <p><i>If you received help with this form, make that the witness has also signed the form and included their address.</i></p>
-  
+            <p><i>Your application must be received by your local county board of elections by 5pm on October 26, 2021.</i></p>
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.</p><p>In Pennsylvania, this application must be RECEIVED
             by Tuesday, October 27th, 2020.</p><p>Once you receive your ballot, make
