@@ -1617,21 +1617,21 @@ en:
         state_online_abr:
           confirm: |-
             <p>Requests for absentee ballots in North Carolina may be made online or on paper. You will need to provide either your North Carolina driver license number or NCDMV issued identification card number or the last four digits of your Social Security number.</p>
-            <p>You do not need an excuse to vote by mail in North Carolina: any registered voter may vote by absentee ballot by mail.</p>
+            <p>You do not need an excuse to vote by mail in North Carolina: Any registered voter may vote an absentee ballot by mail.</p>
           instructions: |-
             <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
-            <p>Double check that you're registered to vote by going to the <a href="https://vt.ncsbe.gov/RegLkup/">North Carolina Voter Search</a> tool.</p>
+            <p>Double check that you're registered to vote by going to the <a target="_blank" rel="noopener noreferrer" href="https://vt.ncsbe.gov/RegLkup/">North Carolina Voter Search</a> tool.</p>
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-            <p>You can also request an Absentee Ballot using a <a href="https://s3.amazonaws.com/dl.ncsbe.gov/Forms/2021-NC-Absentee-Ballot-Request-Form-Fillable-English.pdf">paper request form [PDF]</a>.</p>
+            <p>You can also request an Absentee Ballot using a <a target="_blank" rel="noopener noreferrer"  href="https://s3.amazonaws.com/dl.ncsbe.gov/Forms/2021-NC-Absentee-Ballot-Request-Form-Fillable-English.pdf">paper request form [PDF]</a>.</p>
             <p>The deadline to request an absentee ballot is 5:00 PM the Tuesday before Election Day (Oct. 26, 2021).</p>
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-            <p>Your county may offer Early voting or have delayed their elections until 2022. Review the  <a href="https://www.ncsbe.gov/2021-municipal-voter-tool" title="2021 Municipal Voter Tool">2021 election dates</a> by municipality.</p>            
+            <p>Your county may offer Early voting or have delayed their elections until 2022. Review the  <a target="_blank" rel="noopener noreferrer" href="https://www.ncsbe.gov/2021-municipal-voter-tool" title="2021 Municipal Voter Tool">2021 election dates</a> by municipality.</p>            
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your  status, by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your  status, by using your state&#39;s <a target='_blank' href='https://vt.ncsbe.gov/RegLkup/'>online tool</a>"
+          finalpage_instructions: "You can look up your status by using North Carolina's <a href=\"https://vt.ncsbe.gov/RegLkup/\">Voter Search</a> tool."
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: "<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible.</p><p>Check
