@@ -2072,8 +2072,8 @@ en:
             <p>You can apply for an Absentee Ballot in New York in any of these ways:</p>
             <ul> 
             <li>Click the button below to use the Absentee Application Portal</a></li>
-            <li>In person at the <a href="https://www.elections.ny.gov/CountyBoards.html">county board of elections</a></li>
-            <li>By designating another person to deliver your application in-person to your local <a href="https://www.elections.ny.gov/CountyBoards.html">county board of elections</a></li>
+            <li>In person at the <a target="_blank" rel="noopener noreferrer" href="https://www.elections.ny.gov/CountyBoards.html">county board of elections</a></li>
+            <li>By designating another person to deliver your application in-person to your local <a target="_blank" rel="noopener noreferrer"  href="https://www.elections.ny.gov/CountyBoards.html">county board of elections</a></li>
             </ul>
 
           requirements: "<p>If you are registered to vote, you may request your absentee 
