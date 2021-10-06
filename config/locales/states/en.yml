@@ -2229,13 +2229,24 @@ en:
           ssn_last_4_input__format_message: Invalid format. Please enter 4 digits
           Municipality: Municipality (City, Town, or Village), if known
           Same_as_above: 'Select one:'
+          annual_request: I would like to receive mail-in ballots this year and receive annual applications for mail-in ballots each year.
+          annual_request__instructions: If you would like to apply to receive mail-in ballots for the remainder of this year and if you would like to automatically receive an annual application for mail-in ballots each year, please indicate below. If you update your voter registration due to relocation out of county after you submit an annual mail-in ballot request, please ensure your annual status is transferred when updating your address.
+          annual_request__options:
+            "Yes": "Yes"
+            "Off": "No"
+          has_assistance: I hereby state that I am unable to sign my application for a mail-in ballot without assistance because I am unable to write by reason of my illness or physical disability. I have made or have received assistance in making my mark in lieu of my signature.
+          Address of witness: Address of witness or assistant
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Mail in ballot status, by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Mail in ballot status, by using your state&#39;s <a target='_blank' href='https://www.pavoterservices.pa.gov/pages/ballottracking.aspx'>online tool</a>"
-          finalpage_additional_instructions:  
+          finalpage_instructions: "You can look up your Mail in ballot status, by using Pennsylvania's <a href=\"https://www.pavoterservices.pa.gov/pages/ballottracking.aspx\">Election Ballot Status</a> page"
+          finalpage_additional_instructions:
+          finish_instructions_1_hint: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
+            <p><i>If you received help with this form, make that the witness has also signed the form and included their address.</i></p>
+  
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.</p><p>In Pennsylvania, this application must be RECEIVED
             by Tuesday, October 27th, 2020.</p><p>Once you receive your ballot, make
@@ -2245,15 +2256,16 @@ en:
             of your application and the status of your ballot at: <a rel="noopener"
             target="blank" href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>'
         state_online_abr:
+          confirm: <p>Any registered Pennsylvania voter may vote by mail. Review the requirements below to decide how to request your ballot.</p> 
           finish_instructions: '<p>Once you receive your ballot, make sure to read
             it carefully and follow the instructions to fill it out and return it.
             Your completed ballot must be RECEIVED by your county election office
             by 8pm November 3rd.</p><p>At any time you can check the status of your
-            application and the status of your ballot at: <a rel="noopener" target="blank"
+            application and the status of your ballot at: <a rel="noopener" target="_blank"
             href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>'
           requirements: |-
             <p>If you are registered to vote and can provide a valid state ID or the last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
-            <p>Check if you are registered by visiting <a href="https://www.pavoterservices.pa.gov/Pages/voterregistrationstatus.aspx?lang=EN-US">the Pennsylvania voter information search site</a></p>
+            <p>Check if you are registered by visiting <a rel="noopener noreferrer" target="_blank" href="https://www.pavoterservices.pa.gov/Pages/voterregistrationstatus.aspx?lang=EN-US">the Pennsylvania voter information search site</a></p>
             <p>You do not need an excuse to vote by mail. When prompted, you will be allowed to request a mail-in ballot even if you select "no" to the questions regarding being absent from the municipality or having an illness or disability. </p>
         registration_deadline_text: 10/18/2021 is the last day to register before
           the 11/02/2021 election. If you are not a U.S. citizen and a resident of

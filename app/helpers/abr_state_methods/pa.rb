@@ -49,8 +49,14 @@ module AbrStateMethods::PA
         method: "check_assert_no_id"
       },
       "Same_as_above": { options: ["On", "Off"] },
+      "annual_request": {
+        options: ["Yes", "Off"]
+      },
+      "Address of witness": {}
+
+
     }
-    EXTRA_FIELDS = ["no_PennDOT", "assert_no_id", 'ssn_last_4_input', 'identification', 'identification2','address_date','address_date_mm', 'address_date_dd','address_date_yyyy']
+    EXTRA_FIELDS = ["has_assistance", "no_PennDOT", "assert_no_id", 'ssn_last_4_input', 'identification', 'identification2','address_date','address_date_mm', 'address_date_dd','address_date_yyyy']
     
     
     def form_field_items
@@ -139,7 +145,10 @@ module AbrStateMethods::PA
         {"City_Town_1": {visible: "same_as_above_off", classes: "half", required:'star'}},
         {"State": {visible: "same_as_above_off", required: 'star', classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
         {"Zip code_2": {visible: "same_as_above_off", required:'star', classes: "quarter last"}},
-        {"Mailing_Address_Type":  {visible: "same_as_above_off", required:'star'}}
+        {"Mailing_Address_Type":  {visible: "same_as_above_off", required:'star'}},
+        {"annual_request": {type: :radio}},
+        {"has_assistance": {type: :checkbox}},
+        {"Address of witness": {visible: "has_assistance", required: :if_visible}}
       ]
     end
     #e.g.

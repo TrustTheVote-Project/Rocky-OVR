@@ -43,7 +43,7 @@
   .finish_instructions
     %ol
       %li= t('txt.abr.finish_instructions_1_state').html_safe
-      = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint", default: t('txt.abr.finish_instructions_1_hint')).html_safe
+      = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint_state", default: t('txt.abr.finish_instructions_1_hint')).html_safe
       %li= t('txt.abr.finish_instructions_2').html_safe
       .status_check
         %p= t("states.custom.#{@abr.i18n_key}.abr.finalpage_instructions", default: "").html_safe
