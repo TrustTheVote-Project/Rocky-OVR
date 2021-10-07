@@ -1496,6 +1496,26 @@ en:
           no_id_check__format_message: You cannot select no id if you have a Minnesota-issued driver's license or identification card, or a Social Security Number
           no_id_check__required_message: 'You must either provide an ID above or assert you have no identification'
         abr:
+          step_3_pending_header: Requesting an Absentee Ballot in Minnesota
+          step_3_pending_instructions: |-
+            <p>All eligible voters can apply to vote by mail in Minnesota. You do not need to be registered to apply.</p>
+            <p>If you are not registered at the legal residence address provided, you will be sent a voter registration application with your ballot materials.</p>
+
+            <p>You can return your absentee ballot application by mail, fax or as a scanned attachment to an email. Find the contact information for your local election official under “Find County Election Office” on the <a href="https://www.sos.state.mn.us/elections-voting/" target="_blank" rel="noopener noreferrer">Minnesota Elections and Voting page</a>.
+
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+
+            <p>You can apply for a ballot any time during the year, except the day of the election. You should leave time for election officials to mail your ballot. Your returned ballot must be received by Election Day.</p>
+            <p>We recommend returning your absentee ballot application at least a week before the election.</p>
+
+            <p>To check the status of your absentee or mail ballot ballot, you can go to the <a href="https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx" target="_blank" rel="noopener noreferrer">Minnesota Elections & Voting</a> page.</p>
+
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+
+            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
+            <p>You will need a witness when you vote and complete your ballot. The witness can be either a registered Minnesota voter or a notary. Your witness must sign the signature envelope and list their address. Notaries should write their name and title, sign the signature envelope, and affix their notary stamp.</p>
+
+            <p>Your ballot must be received by Election Day  or it will not be counted.</p>
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
           state_reminder_1: ""
