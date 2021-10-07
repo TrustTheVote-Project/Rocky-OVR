@@ -1517,7 +1517,7 @@ en:
             <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
             <p>You will need a witness when you vote and complete your ballot. The witness can be either a registered Minnesota voter or a notary. Your witness must sign the signature envelope and list their address. Notaries should write their name and title, sign the signature envelope, and affix their notary stamp.</p>
 
-            <p>Your ballot must be received by Election Day  or it will not be counted.</p>
+            <p>Your ballot must be received by Election Day or it will not be counted.</p>
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
           state_reminder_1: ""
