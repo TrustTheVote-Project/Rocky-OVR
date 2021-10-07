@@ -1216,16 +1216,20 @@ en:
         abr:
           step_2_header: All registered voters in Massachusetts can vote absentee for all local and state elections through December, 2021.
           step_2_instructions: |-
-            <p>If you are registered to vote, you can request a vote by mail ballot. Look up your voter registration on the Massachusetts <a href="https://www.sec.state.ma.us/VoterRegistrationSearch/MyVoterRegStatus.aspx">Find my voter registration status</a> page.</p>
+            <p>If you are registered to vote, you can request a vote by mail ballot. Look up your voter registration on the Massachusetts <a target="_blank" rel="noopener noreferrer" href="https://www.sec.state.ma.us/VoterRegistrationSearch/MyVoterRegStatus.aspx">Find my voter registration status</a> page.</p>
             <p>&nbsp;</p>
             <h2 role="heading" aria-level="2">Where are you registered to vote?</h2>
             <p>We'll use this information to determine how you can request your absentee ballot.</p>
 
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          finish_instructions_1_hint: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID 
+            or anything else with your request.</i></p>
+            <p><i>Applications can be submitted by mail, email, or fax. If you are emailing your application, you may either scan or take a photo of your signed application and email it to your local election office, or you may sign your application using a mouse, finger, or stylus and email the completed and signed attachment. Typed signatures are not acceptable.</i></p>
+          request_deadline: "received by 10/27/2021."
           abr_status_check_intro: "You can look up your Vote by mail status, by using your state's online tool:"
-          state_reminder_1: ""
+          state_reminder_1: "Applications can be submitted by mail, email, or fax. If you are emailing your application, you may either scan or take a photo of your signed application and email it to your local election office, or you may sign your application using a mouse, finger, or stylus and email the completed and signed attachment. Typed signatures are not acceptable."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Vote by mail status, by using your state&#39;s <a target='_blank' href='https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx'>online tool</a>"
+          finalpage_instructions: "You can look up your Absentee Ballot request status by using the <a href=\"https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx\">Track My Ballot</a> tool."
           finalpage_additional_instructions:  
           step_3_header: Prepare your Massachusetts PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
