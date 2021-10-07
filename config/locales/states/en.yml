@@ -244,15 +244,23 @@ en:
             within_county: within the county in which I am registered to vote.
       az:
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide a valid
-            state ID number, voter ID number, or SSN, you may request your absentee
-            ballot online directly with the state.</p>"
+          header_choice: All Registered Voters in Arizona Can Vote by Mail
+          confirm: ''
+          instructions: |-
+            <p>Arizona voters have two choices when requesting a ballot:</p>
+            <ul>
+            <li>Join the Permanent Early Voting list, or</li>
+            <li>Request a one-time ballot-by-mail.</li>
+            </ul>
+          button: Request a one-time ballot-by-mail
+          requirements: ""
           finish_instructions: '<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in.  Your
             absentee ballot must be received by 7:00pm on Election Day</p><p>At any
             time you can check the status of your application and the status of your
             ballot at: <a rel="noopener" target="blank" href="https://my.arizona.vote/PortalList.aspx">https://my.arizona.vote/PortalList.aspx</a></p>'
         abr:
+          skip_state_online_abr: I'd like to become a Permanent Early Voter
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Ballot-By-Mail status, by using your state's online tool:"
           state_reminder_1: ""
