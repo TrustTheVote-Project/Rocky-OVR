@@ -1191,7 +1191,7 @@ en:
           abr_status_check_intro: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official's contact information here:"
           state_reminder_1: ""
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.maine.gov/sos/cec/elec/munic.html'>Directory</a>"
+          finalpage_instructions: "You can look up your Absentee Ballot status by checking the <a href=\"https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_status.pl\">Absentee Ballot Request Status</a> page."
           finalpage_additional_instructions:  
         state_online_abr:
           header: All registered voters in Maine can vote absentee!
