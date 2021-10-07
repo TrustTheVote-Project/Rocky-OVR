@@ -557,6 +557,28 @@ en:
             of your ballot here: <a rel="noopener" target="blank" href="https://registration.elections.myflorida.com/CheckVoterStatus">https://registration.elections.myflorida.com/CheckVoterStatus</a></p>'
       ga:
         abr:
+          step_3_pending_header: Requesting an Absentee Ballot in Georgia
+          step_3_pending_instructions: |-
+            <p>Any registered voter who prefers to vote by mail instead of voting in-person may request an absentee ballot in Georgia.</p>
+            <p>You can request an absentee ballot in Georgia by downloading a form, filling it out, signing it and mailing it, faxing it, emailing it or delivering it in person to your <a href="https://elections.sos.ga.gov/Elections/countyregistrars.do" target="_blank" rel="noopener noreferrer">County Board of Registrar’s Office</a>.
+            </p>
+
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+
+            <p>Double check that you're registered to vote by going to the <a href="https://georgia.gov/vote-absentee-ballot" target="_blank" rel="noopener noreferrer">Georgia My Voter Page (MVP)</a>.</p>
+
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+
+            <p>Your absentee ballot request must be received by 10/22/2021.</p>
+
+            <p>Make sure to include your Georgia Driver’s License or Identification Card number OR a copy of an acceptable identification from the list in the instructions.</p>
+
+            <p>To check the status of your Absentee Application, go to the <a href="https://georgia.gov/vote-absentee-ballot" target="_blank" rel="noopener noreferrer">Georgia My Voter Page (MVP)</a>.</p>
+
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+
+            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided. You will receive all the forms and envelopes necessary for marking and return of the ballot.</p>
+            <p>All absentee ballots must be received at your county election office by 7:00 pm on Election Day, November 2, 2021, whether mailed or turned in at a drop-off location in your county. Contact your <a href="https://elections.sos.ga.gov/Elections/countyregistrars.do" target="_blank" rel="noopener noreferrer">county registrar</> for available drop-off locations.</p>
           step_3_header: All registered voters in Georgia can vote by mail!
           step_3_instructions:
             <p>If you are registered to vote, you can request an absentee ballot. Look up your voter registration on the Georgia <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do" target="_blank" rel="noopener noreferrer">My Voter</a> page.</p>
