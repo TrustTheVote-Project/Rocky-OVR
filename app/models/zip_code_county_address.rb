@@ -131,6 +131,10 @@ class ZipCodeCountyAddress < ActiveRecord::Base
     if self.last_checked.nil? || self.last_checked < (DateTime.now - DAYS_TO_CACHE.days)
       check_address
     end
+    begin
+      self.reload
+    rescue
+    end
   end
   
   def lookup_office_address(region_id)
