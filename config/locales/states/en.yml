@@ -1304,11 +1304,11 @@ en:
             this application for the voter.
           has_mailing_address: My mailing address differs from my residential address.
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
-          abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
+          request_deadline: "received by 5pm on October 29, 2021"
+          abr_status_check_intro: "You can look up your absent voter status, by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status, by using your Michigan's <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>Your voter information</a> tool"
+          finalpage_instructions: "You can look up your absent voter status by using Michigan's <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>Your voter information</a> tool"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.  In Michigan, this application must be RECEIVED by Friday,
@@ -1316,6 +1316,11 @@ en:
             ballot request by contacting your city or township clerk''s office.  You
             can find your clerk''s office contact info here: <a rel="noopener" target="blank"
             href="https://mvic.sos.state.mi.us/">https://mvic.sos.state.mi.us/</a>'
+          finish_instructions_1_hint: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID 
+            or anything else with your request.</i></p>
+            <p><i>If you receive help with returning the application, make sure that the person returning your ballot also signs and dates the application.</i></p>
+            <p><i>Your application must be received by your local clerk by 5pm on October 29, 2021.</i></p>
         state_online_abr:
           confirm: |-
             <p>All registered voters in Michigan are eligible to vote at home (absentee). <a href="https://mvic.sos.state.mi.us/Voter/Index" title="Your voter information" target="_blank" rel="noopener noreferrer">Make sure you're registered</a>.</p>
@@ -2033,7 +2038,7 @@ en:
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
 
             <p>Absentee voting begins on Tuesday, October 5, 2021 for the Regular Local Election. </p>
-
+          
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>'
       nv:
