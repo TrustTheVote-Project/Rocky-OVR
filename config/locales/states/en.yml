@@ -84,11 +84,11 @@ en:
           Ballot Mailing Address 3: "&nbsp;"
       al:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "received by Tuesday, November 9 for the November 16, 2021 Primary Election and by December 7 for the December 14, 2021 Primary Runoff Election."
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
           state_reminder_1: "Please note that a copy of your valid photo identification must be submitted along with this application."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://myinfo.alabamavotes.gov/VoterView/AbsenteeBallotSearch.do'>online tool</a>"
+          finalpage_instructions: "You can find your Absentee Ballot status on Alabama's <a href=\"https://myinfo.alabamavotes.gov/voterview\">Registration Information</a> page."
           finalpage_additional_instructions:  
           finish_instructions: <p>Make sure to read the instructions on the form carefully,
             then complete and send this form in as soon as possible. Your absentee
@@ -102,6 +102,7 @@ en:
             5 p.m.) on the day prior to Election Day (November 2, 2020).</p><p>You
             can check the status of your ballot at <a rel="noopener" target="blank"
             href=" https://myinfo.alabamavotes.gov/VoterView/AbsenteeBallotSearch.do">https://myinfo.alabamavotes.gov/VoterView/AbsenteeBallotSearch.do</a></p>
+          finish_instructions_1_hint: <p><i>A copy of your valid photo identification must be submitted along with this application.</i></p>
           requirements: '<p>To qualify to request a ballot in AL, you need to be a
             registered Alabama voter, be able to provide a copy of your valid photo
             identification and have at least one of the following reasons to apply
