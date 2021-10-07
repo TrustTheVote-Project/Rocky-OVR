@@ -1035,12 +1035,13 @@ en:
             </p>
           
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "Received by November 9, 2021 election for 11/13/2021 election or December 7, 2021 for the 12/10/2021 election."
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://voterportal.sos.la.gov/Home/VoterLogin'>online tool</a>"
+          finalpage_instructions: "You can look up your Absentee Ballot status by using your state's online tool:<br /> <a href=\"https://voterportal.sos.la.gov/\">https://voterportal.sos.la.gov/</a> "
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
+          finish_instructions_1_hint: <p><i>Be sure to review what you must submit as proof of disability, as well as identification.</i></p>
           finish_instructions: <p>You must request your ballot by 4:30pm CST on the
             4th day before election day.  Your ballot (unless you are Military, Overseas,
             or Hospitalized) must be received by your parish registrar of voters by

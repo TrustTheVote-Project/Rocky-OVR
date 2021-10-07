@@ -171,8 +171,8 @@ absentee_states:
   LA:
     online_req_url: https://voterportal.sos.la.gov
     pdf_template: la.pdf
-    abr_status_check_url: "http://voterportal.sos.la.gov/voterlogin"
-    abr_track_ballot_url: "http://voterportal.sos.la.gov/voterlogin"
+    abr_status_check_url: "http://voterportal.sos.la.gov/"
+    abr_track_ballot_url: "http://voterportal.sos.la.gov/"
   MA:
     pdf_template: ma.pdf
     #email_delivery: true
