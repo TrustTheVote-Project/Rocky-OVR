@@ -2013,6 +2013,27 @@ en:
             on Election Day. At any time you can check the status of your application
             and the status of your ballot at:<a rel="noopener" target="blank" href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker</a></p>
         state_online_abr:
+          header: Requesting an Absentee Ballot in New Mexico
+          confirm: ""
+          instructions: |-
+            <p>Any registered voter in New Mexico can request an absentee ballot.</p>
+            <p>You can request an absentee ballot in New Mexico by:</p>
+            <ul>
+            <li>Filling out an application online (requires a New Mexico driver’s license or state identification), 
+            </li>
+            <li>Contacting your <a href="https://www.sos.state.nm.us/voting-and-elections/voter-information-portal/county-clerk-information/" target="_blank" rel="noopener noreferrer">County Clerk’s Office</a> in person, by phone, mail or email, or</li>
+            <li>Downloading an absentee ballot request online and returning it to your County Clerk.</li>
+            </ul>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>Your absentee ballot request must be received no later than 5:00 pm on Thursday, October 28, 2021.</p>
+            <p>To check the status of your Absentee Application, go to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
+            <!-- <p>Make sure to include  //-->
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+
+            <p>Absentee voting begins on Tuesday, October 5, 2021 for the Regular Local Election. </p>
+
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>'
       nv:
