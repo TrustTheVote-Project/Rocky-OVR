@@ -1204,8 +1204,8 @@ en:
             <p>You can apply for an Absentee Ballot in Maine in any of these ways:
             <ul> 
             <li>Click the button below to use the Maine Absentee Ballot Portal.</li>
-            <li>Contact the municipal clerk by phone or in writing. <a href="https://www.maine.gov/sos/cec/elec/munic.html">Find your Municipal Clerk</a>.</li>
-            <li>Download and submit an <a href="https://apps.web.maine.gov/online/AbsenteeBallot/ABS-2021-11-02.pdf">Application for Absentee Ballot [PDF]</a> to your Municipal Clerk.</li>
+            <li>Contact the municipal clerk by phone or in writing. <a target="_blank" rel="noopener noreferrer" href="https://www.maine.gov/sos/cec/elec/munic.html">Find your Municipal Clerk</a>.</li>
+            <li>Download and submit an <a target="_blank" rel="noopener noreferrer" href="https://apps.web.maine.gov/online/AbsenteeBallot/ABS-2021-11-02.pdf">Application for Absentee Ballot [PDF]</a> to your Municipal Clerk.</li>
             </ul>
             </p>
           requirements: "<p>If you are registered to vote and have a valid state ID,
