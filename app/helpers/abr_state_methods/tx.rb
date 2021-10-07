@@ -95,8 +95,13 @@ module AbrStateMethods::TX
       "which_election2": { 
         #method: "november_election_if_confined_to_jail",
         method: "any_resulting_runoff_if_confined_to_jail",        
-        options: ["Any resulting runoff", "May_election", "November_election", "Off", "Other"] 
+        options: ["Yes", "Off",] 
       },
+      "which_election2_runoff": {
+        method: "any_resulting_runoff_if_confined_to_jail",        
+        options: ["Yes", "Off",] 
+      },
+
       "name": {
         method: "full_name" #return address
       },
@@ -140,7 +145,7 @@ module AbrStateMethods::TX
   end
   
   def november_election_if_confined_to_jail
-    if self.send(self.class.make_method_name("Reason")) == "confinement" || self.send(self.class.make_method_name("Reason")) == "absence"
+    if self.send(self.class.make_method_name("Reason")) == "confinement" || self.send(self.class.make_method_name("Reason")) == "absence" 
       "November_election" 
     else
       "Off"
@@ -149,15 +154,15 @@ module AbrStateMethods::TX
 
   def any_resulting_runoff_if_over_65
     if self.send(self.class.make_method_name("Reason")) == "age" || self.send(self.class.make_method_name("Reason")) == "disability"
-      "On" 
+      "Yes" 
     else
       "Off"
     end
   end
   
   def any_resulting_runoff_if_confined_to_jail
-    if self.send(self.class.make_method_name("Reason")) == "confinement" || self.send(self.class.make_method_name("Reason")) == "absence"
-      "Any resulting runoff" 
+    if self.send(self.class.make_method_name("Reason")) == "confinement" || self.send(self.class.make_method_name("Reason")) == "absence" || self.send(self.class.make_method_name("Reason")) == "maternity"
+      "Yes" 
     else
       "Off"
     end
