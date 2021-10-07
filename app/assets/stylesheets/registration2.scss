@@ -895,9 +895,9 @@ body {
         margin: 0.25em 0;
       }
     }
-    .requirements, .state-instructions {
+    .requirements, .state-instructions, .intro-message {
       margin: 2em 0;
-      p, li, span, div {
+      p, ul, li, span, div {
         font-size: 14px;
         color: #666;
       }

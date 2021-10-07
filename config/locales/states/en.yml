@@ -2151,6 +2151,14 @@ en:
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool"
           state_reminder_1: ""
           state_reminder_2: ""
+          step_3_instructions: |-
+            <p>Any registered Ohio voter whose registration information is up-to-date can request an absentee ballot. <a href="https://voterlookup.ohiosos.gov/voterlookup.aspx" title="Voter Search" target="_blank" rel="noopener noreferrer">Make sure you're registered</a>.</p>
+            <p>You can apply for an Absentee Ballot in New York in any of these ways:</p>
+            <ul> 
+            <li>Complete your request and mail it to your county Board of Elections by continuing with Rock the Vote.</li>
+            <li>Have an application mailed to you by your Board of elections. Find your <a href="https://www.ohiosos.gov/elections/elections-officials/county-boards-of-elections-directory/" target="_blank" rel="noopener noreferrer">Board of Elections</a>.</li>
+            <li>Make your own application and mail it in. <a href="https://www.ohiosos.gov/elections/voters/absentee-voting-by-mail/makeyourown/" title="Make Your Own Vote-by-Mail Ballot Request" target="_blank" rel="noopener noreferrer">Read the requirements for creating your own application</a>.</li>
+            </ul>
           finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/'>online tool</a>"
           finalpage_additional_instructions:  
           finish_instructions: '<p>Make sure to complete and send this form in as
