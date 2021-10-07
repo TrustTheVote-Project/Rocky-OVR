@@ -2278,6 +2278,11 @@ en:
             or anything else with your request.</i></p>
             <p><i>Your absentee ballot request must be notarized. Read more on 
             the <a href="https://oklahoma.gov/elections/voters/absentee-voting/standard-absentee-voters.html">Standard Absentee Voters</a> page</i></p>
+          finish_instructions_1_hint_state: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID 
+            or anything else with your request.</i></p>
+            <p><i>Your absentee ballot request must be notarized. Read more on 
+            the <a href="https://oklahoma.gov/elections/voters/absentee-voting/standard-absentee-voters.html">Standard Absentee Voters</a> page</i></p>
 
         state_online_abr:
           confirm: <p>All registered voters in Oklahoma can vote absentee!</p>
@@ -2293,6 +2298,7 @@ en:
             you may request your absentee ballot online directly with the state.</p>"
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://www.ok.gov/elections/OVP.html">https://www.ok.gov/elections/OVP.html</a></p>'
+            
       or:
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
