@@ -875,6 +875,28 @@ en:
           abr_status_check_intro: "You can look up your Advance Ballot by Mail status, by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: "Also please note, that if you only if you don't provide a license number or ID card # on your request form, you are required to submit a copy of your ID with your application. A full list of acceptable IDs can be found on the application."
+          step_3_pending_header: Requesting an Absentee Ballot in Kansas
+          step_3_pending_instructions: |-
+            <p>Any registered voter can request an advance ballot in Kansas.</p>
+
+            <p>You must request an advanced by mail ballot mailed to you for each election as ballots are sent at the request of the voter.</p>
+
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+
+            <p>Double check that you're registered to vote by going to the <a href="https://myvoteinfo.voteks.org/voterview" target="_blank" rel="noopener noreferrer">Kansas VoterView page</a>.</p>
+
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+
+            <p>Your absentee ballot request must be received by 5:00 pm on 10/26/2021.</p>
+
+            <p>Make sure to include your driver’s license number or a copy of your photo identification with your request.</p>
+
+            <p>To check the status of your advance ballot application, you can call your local election office or go to the <a href="https://myvoteinfo.voteks.org/voterview" target="_blank" rel="noopener noreferrer">Kansas VoterView page</a>.</p>
+
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+
+            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
+            <p>All ballots must be postmarked on or before election day (November 2, 2021) and received in the county election office by the close of business on the Friday following the election.</p>
           finalpage_instructions: "You can look up your Advance Ballot by Mail status, by using your state&#39;s <a target='_blank' href='https://myvoteinfo.voteks.org/voterview'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: "<p>To qualify to request a ballot in KS, you only need to
