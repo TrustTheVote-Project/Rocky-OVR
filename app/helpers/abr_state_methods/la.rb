@@ -21,8 +21,11 @@ module AbrStateMethods::LA
       method: "date_of_birth_mm_dd_yyyy"
     },
     "License_ID": { sensitive: true },
+    "on on": { #Primary election date
+      value: "11/13/2021"
+    },
     "General_Election_Date": {
-      value: "12/05/2020"
+      value: "12/10/2021"
     },
     "absent_from": { method: "absent_from_date" },
     "absent_to": { method: "absent_to_date" },
