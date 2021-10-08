@@ -41,7 +41,7 @@ class RequestLog < ActiveRecord::Base
 
   def self.build_request_data(http, request)
     {
-      request_body: request.body,
+      request_body: request.body || request.instance_variable_get(:@body_data),
       request_headers: request.each_header.map { |h,v| "#{h}=#{v}" }.join(";"),
     }
   end

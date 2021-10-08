@@ -259,7 +259,7 @@ module ApplicationHelper
     html =<<-HTML
       <div class="button rollover_button">
         <a class="button_#{name}_#{I18n.locale} button_#{name}" href="#">
-          <button type="submit" id="#{button_options.delete(:id)}" #{button_options.collect{|k,v| "#{k}=\"#{v}\"" }.join(" ")}>
+          <button role="button" type="submit" id="#{button_options.delete(:id)}" #{button_options.collect{|k,v| "#{k}=\"#{v}\"" }.join(" ")}>
             <span>#{text}</span>
           </button>
         </a>

@@ -31,8 +31,10 @@ en:
       last_update: <p>If you registered to vote or updated your registration recently, we might not have the most up-to-date
         information. <b>Our last update from %{state} was on %{date}.</b> <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results</p>
     abr:
-      deadline_passed_header: ""
-      deadline_passed_instructions: <p>We don't have an upcoming election in our database to request an absentee ballot for. When there's an election in your area, we'll email you with information on how to request an absentee ballot.</p><p>Right now, make sure that you're a <a href="%{registration_url}">registered voter</a> so that you're able to vote by mail in future elections.</p>
+      deadline_passed_header: "Requesting an Absentee Ballot in %{state}"
+      deadline_passed_instructions: |-
+        <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. When there's an election in your area, we'll email you with information on how to request an absentee ballot.</p>
+        <p>Right now, make sure that you're a <a href="%{registration_url}">registered voter</a> so that you're able to vote by mail in future elections.</p>
       deadline_passed_state_instructions:
         url: you can look up your status by using your state's <a href="%{url}">online tool</a>.
         leo_contact_info: you can check with your local election official at</p><p>%{leo_contact_info}</p>
@@ -59,16 +61,14 @@ en:
         address: "Registered Address:"
         date_of_birth: "Date of Birth:"
       state_online_defaults:
-        header: You can request an Absentee Ballot online directly with the state
-          of %{state}
+        header: Absentee Ballots in %{state}
         header_choice: How do you want to request your ballot?
         requirements: "<p>If you are registered to vote and have a valid %{state}
           state ID, you may request your absentee ballot online directly with the
           state.</p>"
         confirm: |-
-          Check if you meet your state's requirements, then click the button below to request your absentee ballot through the state's site.
-
-          If you don't meet these requirements, you can also print, sign and mail a paper request form.
+          <p>Review the requirements below, then click the "finish" button below to request your absentee ballot through %{state_abbr}'s site. </p>
+          <p>If you don't meet these requirements, you can also print, sign and mail a paper request form by clicking the link below the button.</p>
       skip_state_online_abr: I do not meet these requirements, and I would like to
         create a paper request form.
       preparing_header: We're generating your form
@@ -173,7 +173,7 @@ en:
         %{state}.
       skip_state_online_registration: "&gt; No Thanks, I'll continue with %{rtv_and_partner_name}
         and send in my form later."
-      state_online_abr: Finish your<br/>absentee request<br/> online with %{state}.
+      state_online_abr: Finish your<br />absentee request<br /> online with %{state}.
       skip_state_online_abr: "&gt; No Thanks, I'll continue with %{rtv_and_partner_name}
         and send in my form later."
     registration:
@@ -302,7 +302,7 @@ en:
           & mail or deliver your registration form to your local elections office.
         download_assitance_header: ''
         download_assitance: ''
-        pdf_assistance: <p>Don't want to wait for the mail? <a href="%{pdf_url}">Print your registration form now.</a> (may take 5-10 seconds before it's ready)</p><p>You will need to sign your form and mail it to your local 
+        pdf_assistance: <p>Don't want to wait for the mail? <a href="%{pdf_url}">Print your registration form now.</a> The form may take a minute to generate. Please click the link again if nothing happens.</p><p>You will need to sign your form and mail it to your local 
           election official to finish the registration process! We've also emailed 
           you a copy for your records.</p>
         finish: 'Don''t forget to tell your friends and family how easy it was to
