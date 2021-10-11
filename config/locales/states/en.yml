@@ -1522,8 +1522,12 @@ en:
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx'>online tool</a>"
-          finalpage_additional_instructions:  
+          finish_instructions_1_hint: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID 
+            or anything else with your request.</i></p>
+            <p>You can return this application by mail, fax or as a scanned attachment to an email.</p>
+          finalpage_instructions: "You can look up your absentee ballot status on the <a href='https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx'>Minnesota Elections & Voting</a> page."
+          finalpage_additional_instructions: 
           signature_capture:
             desktop_provide_e_signature: In the state of Minnesota, we can email a
               digitally signed copy of your absentee request. Please select how you'd
