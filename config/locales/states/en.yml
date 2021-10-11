@@ -262,11 +262,11 @@ en:
             ballot at: <a rel="noopener" target="blank" href="https://my.arizona.vote/PortalList.aspx">https://my.arizona.vote/PortalList.aspx</a></p>'
         abr:
           skip_state_online_abr: I'd like to become a Permanent Early Voter
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "received by October 22, 2021 at 5:00 PM"
           abr_status_check_intro: "You can look up your Ballot-By-Mail status, by using your state's online tool:"
-          state_reminder_1: ""
+          state_reminder_1: "You can mail, fax, or email a scanned copy or photo of the completed form to your County Recorder’s Office."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Ballot-By-Mail status, by using your state&#39;s <a target='_blank' href='https://my.arizona.vote/AbsenteeTracker.aspx'>online tool</a>"
+          finalpage_instructions: "You can look up your Ballot-by-Mail/Early Ballot status by using <a href=\"https://my.arizona.vote/AbsenteeTracker.aspx\">Arizona's Voter Information Portal</a>."
           finalpage_additional_instructions:  
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
@@ -285,6 +285,9 @@ en:
               myself.
           requirements: "<p>To qualify to request a ballot in AZ, you only need to
             be registered to vote.</p>"
+          finish_instructions_1_hint: 
+            <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
+            <p><i>Mail, fax, or email a scanned copy or photo of the completed form to your County Recorder’s Office.</i></p>
           finish_instructions: '<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible. Your
             absentee ballot application must be received by 5pm on October 23, 2020.</p><p>Once
@@ -2236,7 +2239,7 @@ en:
             <li>Make your own application and mail it in. <a href="https://www.ohiosos.gov/elections/voters/absentee-voting-by-mail/makeyourown/" title="Make Your Own Vote-by-Mail Ballot Request" target="_blank" rel="noopener noreferrer">Read the requirements for creating your own application</a>.</li>
             </ul>
           finalpage_instructions: "You can look up your Absentee Ballot status by using your Ohio's <a href=\"https://www.ohiosos.gov/elections/voters/toolkit/\">Voter Toolkit</a>."
-          finalpage_instructions_1_hint: |-
+          finish_instructions_1_hint: |-
             <p><i>If you did not provide the last 4 digits of your Social Security number or your Ohio Driver License number, remember to provide a copy of a current identification and valid photo identification. Make a copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck, or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address.</i></p>
           finalpage_additional_instructions:  
           finish_instructions: '<p>Make sure to complete and send this form in as
