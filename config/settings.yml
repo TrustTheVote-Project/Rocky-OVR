@@ -86,7 +86,7 @@ absentee_states:
   AZ:
     online_req_url: https://my.arizona.vote/Early/ApplicationLogin.aspx
     pdf_template: az.pdf
-    email_delivery: true
+    #email_delivery: true
     abr_status_check_url: "https://my.arizona.vote/AbsenteeTracker.aspx"
     abr_track_ballot_url: "https://my.arizona.vote/AbsenteeTracker.aspx"
   CA: 

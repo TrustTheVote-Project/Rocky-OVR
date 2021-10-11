@@ -310,6 +310,8 @@ Rails.application.routes.draw do
         post :bulk_update
       end
       member do
+        get :zip_codes
+        get :check_zip_code
         get :remove_direct_mail_partner_id
       end
     end
