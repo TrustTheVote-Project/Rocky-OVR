@@ -928,7 +928,7 @@ en:
 
             <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
             <p>All ballots must be postmarked on or before election day (November 2, 2021) and received in the county election office by the close of business on the Friday following the election.</p>
-          finalpage_instructions: "You can look up your Advance Ballot by Mail status, by using your state&#39;s <a target='_blank' href='https://myvoteinfo.voteks.org/voterview'>online tool</a>"
+          finalpage_instructions: "You can look up your Advance Ballot by Mail status by using the Kansas <a href='https://myvoteinfo.voteks.org/voterview'>VoterView</a>."
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: "<p>To qualify to request a ballot in KS, you only need to
             be registered to vote and be able to provide your Kansas driver's license
@@ -944,6 +944,8 @@ en:
             carefully, then complete and send this form in as soon as possible.</p><p>Check
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
+          finish_instructions_1_hint_state: |-
+            <p>If you do not provide a current and valid Kansas driver’s license number or Kansas nondriver’s identification card number, make sure to provide a copy of one of the forms of photo identification listed in the application. </p>
         abr_form_fields:
           identification: 'Please select one of the following:'
           identification__hint: "<p style='font-size: 13px; margin-left: 20px'>Examples
