@@ -1524,7 +1524,7 @@ en:
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
-          finish_instructions_1_hint: |-
+          finish_instructions_1_hint_state: |-
             <p><i>Be sure to check if you need to send in a copy of your ID 
             or anything else with your request.</i></p>
             <p>You can return this application by mail, fax or as a scanned attachment to an email.</p>
