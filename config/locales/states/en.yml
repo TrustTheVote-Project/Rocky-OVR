@@ -2223,9 +2223,9 @@ en:
             prisoner: detention in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony
       oh:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "received by October 30, 2021, 12:00 PM."
           abr_status_check_intro: "You can look up your Absentee Ballot status, by using your state's online tool"
-          state_reminder_1: ""
+          state_reminder_1: " If you did not provide the last 4 digits of your Social Security number or your Ohio Driver License number, remember to provide a copy of a current identification and valid photo identification. Make a copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck, or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address."
           state_reminder_2: ""
           step_3_instructions: |-
             <p>Any registered Ohio voter whose registration information is up-to-date can request an absentee ballot. <a href="https://voterlookup.ohiosos.gov/voterlookup.aspx" title="Voter Search" target="_blank" rel="noopener noreferrer">Make sure you're registered</a>.</p>
@@ -2235,7 +2235,9 @@ en:
             <li>Have an application mailed to you by your Board of elections. Find your <a href="https://www.ohiosos.gov/elections/elections-officials/county-boards-of-elections-directory/" target="_blank" rel="noopener noreferrer">Board of Elections</a>.</li>
             <li>Make your own application and mail it in. <a href="https://www.ohiosos.gov/elections/voters/absentee-voting-by-mail/makeyourown/" title="Make Your Own Vote-by-Mail Ballot Request" target="_blank" rel="noopener noreferrer">Read the requirements for creating your own application</a>.</li>
             </ul>
-          finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/'>online tool</a>"
+          finalpage_instructions: "You can look up your Absentee Ballot status by using your Ohio's <a href=\"https://www.ohiosos.gov/elections/voters/toolkit/\">Voter Toolkit</a>."
+          finalpage_instructions_1_hint: |-
+            <p><i>If you did not provide the last 4 digits of your Social Security number or your Ohio Driver License number, remember to provide a copy of a current identification and valid photo identification. Make a copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck, or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address.</i></p>
           finalpage_additional_instructions:  
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible. Your application must be RECEIVED by October 31st, 2020.</p><p>Once
