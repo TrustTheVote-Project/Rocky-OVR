@@ -2739,9 +2739,9 @@ en:
           abr_status_check_intro: "You may be able to find out your Ballot by Mail status by calling your local election official.  Find your official's contact information here:"
           state_reminder_1: "If a witness or assistant helped with this request form, make sure they print and sign their name."
           state_reminder_2: "You can return this form in person to the Early Voting Clerk, by mail, by common or contract carrier, by fax or email. If you submit the application by fax or email, you must also send the original hardcopy to the Early Voting Clerk."
-          finalpage_instructions: "You can look up your Ballot by Mail status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.state.tx.us/elections/voter/cclerks.shtml'>Directory</a>"
+          finalpage_instructions: "You may be able to find out your Ballot by Mail status by calling your local election official. <a href='https://www.sos.state.tx.us/elections/voter/cclerks.shtml' target='_blank' rel='noopener noreferrer'>List of County Clerks</a>."
           finalpage_additional_instructions:
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p><p>If a witness or assistant helped with this request form, make sure they print and sign their name.</p><p>You can return this form in person to the Early Voting Clerk, by mail, by common or contract carrier, by fax or email. If you submit the application by fax or email, you must also send the original hardcopy to the Early Voting Clerk.</p>" 
+          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p><p><i>If a witness or assistant helped with this request form, make sure they print and sign their name.</i></p><p><i>You can return this form in person to the Early Voting Clerk, by mail, by common or contract carrier, by fax or email. If you submit the application by fax or email, you must also send the original hardcopy to the Early Voting Clerk.</i></p>" 
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
           has_mailing_address__hint: If you selected "Expected absence from the county"
