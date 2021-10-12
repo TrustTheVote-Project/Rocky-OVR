@@ -949,7 +949,8 @@ en:
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
           finish_instructions_1_hint_state: |-
-            <p>If you do not provide a current and valid Kansas driver’s license number or Kansas nondriver’s identification card number, make sure to provide a copy of one of the forms of photo identification listed in the application. </p>
+            <p><i>Follow the directions on your state's absentee ballot request form (this opened in another tab).</i></p>
+            <p><i>If you do not provide a current and valid Kansas driver’s license number or Kansas nondriver’s identification card number, make sure to provide a copy of one of the forms of photo identification listed in the application.</i></p>
         abr_form_fields:
           identification: 'Please select one of the following:'
           identification__hint: "<p style='font-size: 13px; margin-left: 20px'>Examples
