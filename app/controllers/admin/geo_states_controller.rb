@@ -38,6 +38,19 @@ class Admin::GeoStatesController < Admin::BaseController
     render :edit
   end
 
+  def zip_codes
+    @geo_state = GeoState[params[:id]]
+    @zip_codes = ZipCodeCountyAddress.where(geo_state_id: @geo_state.id)
+  end
+  def check_zip_code
+    @geo_state = GeoState[params[:id]]
+    zcca = ZipCodeCountyAddress.where(zip: params[:zip_code]).first
+    @region_result = zcca.check_address
+    
+    @zip_codes = ZipCodeCountyAddress.where(geo_state_id: @geo_state.id)
+    render action: :zip_codes
+  end
+
   def update
     @geo_state = GeoState[params[:id]]
     if @geo_state.update_attributes(geo_state_params)

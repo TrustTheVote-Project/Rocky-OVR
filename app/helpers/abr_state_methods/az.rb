@@ -11,11 +11,11 @@ module AbrStateMethods::AZ
     },
     "General Election Only": {
       options: ["Off", "On"],
-      value: "On" # TODO remove this once we can figure out AZ email handling
+      value: "Off" # TODO remove this once we can figure out AZ email handling
     },
     "Every Election I authorize the County Recorder to include my name on the PEVL and automatically send": {
       options: ["Off", "On"],
-      value: "Off" # TODO remove this once we can figure out AZ email handling
+      value: "On" # TODO remove this once we can figure out AZ email handling
     },
     "Democratic": {
       options: ["Off", "On"],

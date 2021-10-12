@@ -3,6 +3,9 @@
   = @geo_state.name
   Settings
 
+%h2
+  = link_to "View Zipcode Addresses", zip_codes_admin_geo_state_path(@geo_state)
+
 = form_for [:admin, @geo_state] do |f|
   %fieldset 
     %legend Direct Mail Configuration

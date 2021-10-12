@@ -1,0 +1,33 @@
+%h1 
+  Zip Codes for
+  = @geo_state.name
+
+- if @region_result
+  %h2 
+    Office selected for 
+    = params[:zip_code]
+  %pre= JSON.pretty_generate(@region_result)
+
+%ul
+  - @zip_codes.each do |z|
+    %li
+      %h2.zip_code 
+        = z.zip
+        %br
+        County Names: 
+        = z.county
+        City Names: 
+        = z.cities
+      Last Checked:
+      = z.last_checked
+      = link_to "check now", check_zip_code_admin_geo_state_path(@geo_state, zip_code: z.zip)
+      .addresses{style: "display: flex; margin-top: 1em",}
+        .vr_address{style: "flex-basis: 50%; border: 1px solid grey; padding: 5px; margin: 0 5px"}
+          %h3 Voter Registration Address
+          = z.full_vr_address&.gsub("\n","<br/>")&.html_safe
+        .req_address{style: "flex-basis: 50%; border: 1px solid grey; padding: 5px; margin: 0 5px"}
+          %h3 Absentee Request Address
+          = z.full_req_address&.gsub("\n","<br/>")&.html_safe
+      .last_checked 
+        %br
+        
