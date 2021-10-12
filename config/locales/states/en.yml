@@ -569,7 +569,7 @@ en:
 
             <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
 
-            <p>Double check that you're registered to vote by going to the <a href=" https://www.mvp.sos.ga.gov/MVP/mvp.do" target="_blank" rel="noopener noreferrer">Georgia My Voter Page (MVP)</a>.</p>
+            <p>Double check that you're registered to vote by going to the <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do" target="_blank" rel="noopener noreferrer">Georgia My Voter Page (MVP)</a>.</p>
 
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
 
@@ -577,7 +577,7 @@ en:
 
             <p>Make sure to include your Georgia Driver’s License or Identification Card number OR a copy of an acceptable identification from the list in the instructions.</p>
 
-            <p>To check the status of your Absentee Application, go to the <a href=" https://www.mvp.sos.ga.gov/MVP/mvp.do" target="_blank" rel="noopener noreferrer">Georgia My Voter Page (MVP)</a>.</p>
+            <p>To check the status of your Absentee Application, go to the <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do" target="_blank" rel="noopener noreferrer">Georgia My Voter Page (MVP)</a>.</p>
 
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
 
@@ -596,6 +596,7 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "To check the status of your Absentee Application, go to the <a href='https://www.mvp.sos.ga.gov/MVP/mvp.do'>Georgia My Voter Page (MVP)</a>."
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
+          finish_instructions_1_hint: "<p><i>Make sure to include your Georgia Driver’s License or Identification Card number OR a copy of an acceptable identification from the list in the instructions.</i></p>"
           finish_instructions_1_hint_state: "<p><i>Make sure to include your Georgia Driver’s License or Identification Card number OR a copy of an acceptable identification from the list in the instructions.</i></p>"
           confirm_email_delivery: I have reviewed the above information and wish to email my 
             request to my local elections office.<br/><br/>
@@ -949,7 +950,8 @@ en:
             with your local elections officials for submission deadlines and additional
             information on voting by mail.</p>"
           finish_instructions_1_hint_state: |-
-            <p>If you do not provide a current and valid Kansas driver’s license number or Kansas nondriver’s identification card number, make sure to provide a copy of one of the forms of photo identification listed in the application. </p>
+            <p><i>Follow the directions on your state's absentee ballot request form (this opened in another tab).</i></p>
+            <p><i>If you do not provide a current and valid Kansas driver’s license number or Kansas nondriver’s identification card number, make sure to provide a copy of one of the forms of photo identification listed in the application.</i></p>
         abr_form_fields:
           identification: 'Please select one of the following:'
           identification__hint: "<p style='font-size: 13px; margin-left: 20px'>Examples
