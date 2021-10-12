@@ -195,8 +195,8 @@ absentee_states:
     abr_track_ballot_use_leo: false
   MI:
     online_req_url: https://mvic.sos.state.mi.us/avapplication
-    pdf_template: mi.pdf
-    #pdf_url: https://www.michigan.gov/documents/AbsentVoterBallot_105377_7.pdf
+    #pdf_template: mi.pdf
+    #pdf_url: https://www.michigan.gov/documents/sos/AVApp_535884_7.pdf
     abr_status_check_url: "https://mvic.sos.state.mi.us/Voter/Index"
     abr_track_ballot_url: "https://mvic.sos.state.mi.us/Voter/Index"
     leo_lookup_url: https://mvic.sos.state.mi.us/Clerk
