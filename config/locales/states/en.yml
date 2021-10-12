@@ -3006,20 +3006,17 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://voter.votewa.gov/WhereToVote.aspx#/login'>online tool</a>"
           finalpage_additional_instructions: "You will need to first look up your voter registration, then you can see your ballot status as well."
-          splash_header: Vote by Mail Requests In Washington
-          splash_instructions: '<p>In your state, every registered voter automatically receives
-            a mail ballot for each election.  Your mail ballot will be sent to the
-            address listed on your voter registration.  If you have any questions
-            or need to update your address please go to: <a rel="noopener" target="blank"
-            href="https://voter.votewa.gov/">https://voter.votewa.gov/</a>  Enter
-            your personal information (name and date of birth) to access more information
-            about your registered address and the status of your ballot.  If you have
-            any further questions about your mail ballot''s status, contact your local
-            county election official''s office. </p><p>Once you receive your ballot,
-            be sure to read through the instructions on how to complete and return
-            your ballot. Vote-by-mail ballots must be postmarked for return by Tuesday,
-            November 3, 2020 (Election Day). If returning your ballot in-person, it
-            must be dropped off by 8:00 pm on Election Day.</p>'
+          splash_header: Washington Automatically Mails All Registered Voters a Ballot. Make Sure You're Registered!
+          splash_instructions: |-
+            <p>If you are registered to vote in Washington you do not need to request an absentee ballot.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to <a href="VoteWA.gov">VoteWA.gov</a>.</p>
+            <p>Online and mail-in voter registrations must be received by October 25.</p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>To update your name or address, go to <a href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA</a></p>
+            <p>If you will be away when ballots are being mailed, your county may allow ballots to be forwarded. The best thing to do is contact your <a href="https://www.sos.wa.gov/elections/auditors/">County Elections Department</a> and ask for a temporary change in your mailing address.</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Your ballot must either be postmarked no later than Election Day or returned to a ballot drop box by 8 p.m. on Election Day. If mailing your ballot within a week of Election Day, be mindful of mailbox collection times or use an official ballot drop box. A late postmark could disqualify your ballot.</p>
       wi:
         abr_form_fields:
           Municipality: Which of the following best describes the place where you
