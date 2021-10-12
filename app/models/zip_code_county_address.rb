@@ -205,7 +205,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       # Otherwise take the first that includes DOM_VR
       dom_vr_address ||= office["addresses"].find {|addr| (addr["functions"] || []).include?("DOM_VR")}
       # Otherwise take the first that is marked as "is_reqular_mail"
-      dom_vr_address ||= office["addresses"].find {|addr| addr["is_regular_mail"] }
+      # dom_vr_address ||= office["addresses"].find {|addr| addr["is_regular_mail"] }
       if dom_vr_address
         return dom_vr_address
       end
@@ -222,7 +222,7 @@ class ZipCodeCountyAddress < ActiveRecord::Base
       # Otherwise take the first that includes DOM_REQ
       dom_req_address ||= office["addresses"].find {|addr| (addr["functions"] || []).include?("DOM_REQ")}
       # Otherwise take the first that is marked as "is_reqular_mail"
-      dom_req_address ||= office["addresses"].find {|addr| addr["is_regular_mail"] }      
+      # dom_req_address ||= office["addresses"].find {|addr| addr["is_regular_mail"] }      
       if dom_req_address
         return dom_req_address
       end
