@@ -1565,7 +1565,34 @@ en:
         abr:
           step_3_pending_header: Requesting an Absentee Ballot in Missouri
           step_3_pending_instructions: |-
-            <p>Not all counties in Missouri have an election in November, 2021. We recommend contacting your County Clerk to learn about local elections. </p>
+            <p>You must have a reason to request an absentee ballot in Missouri. </p>
+            <ul>
+            <li>Absence on Election Day from the jurisdiction of the election authority in which such voter is registered to vote;</li>
+            <li>Incapacity or confinement due to illness or physical disability, including a person who is primarily responsible for the physical care of a person who is incapacitated or confined due to illness or disability;</li>
+            <li>Religious belief or practice;</li>
+            <li>Employment as an election authority, as a member of an election authority, or by an election authority at a location other than such voter's polling place;</li>
+            <li>Incarceration, provided all qualifications for voting are retained.</li>
+            <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681 because of safety concerns.</li>
+            </ul>
+            <p>Voters can request absentee ballots from their local election authority in person, by mail, by fax or by e-mail.</p>
+            <p>You must return your request to your local election authority. Find your <a href="https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority" target="_blank" rel="noopener noreferrer">local election authority</a>.
+
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+
+            <p>Double check that you're registered to vote by going to the <a href="https://www.sos.mo.gov/elections/goVoteMissouri/register" target="_blank" rel="noopener noreferrer">Missouri voter registration page</a>.</p>
+
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+
+            <p>Your absentee ballot request must be received by 5pm on October 20, 2021.</p>
+
+            <p>Make sure to review the identification requirements for voters who have not voted in person.</p>
+
+            <p>You may be able to track the status of your absentee ballot request. Contact your local election authority.</p>
+
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+
+            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
+            <p>All absentee ballots must be received at your county election office by 7pm on  Tue Nov 2, 2021.</p>
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official's contact information here:"
           state_reminder_1: "If you registered by mail and this is your first time voting, you must provide a copy of either: (1) an ID issued by the Federal Government, state of Missouri, or a local election authority; (2) ID issued by a Missouri institution (public or private) of higher education; or (3) a current utility bill, bank statement, paycheck, government check or other government document that contains your name and address."
