@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_16_185349) do
+ActiveRecord::Schema.define(version: 2021_09_24_140207) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -334,6 +334,8 @@ ActiveRecord::Schema.define(version: 2021_09_16_185349) do
     t.boolean "allow_desktop_signature", default: false
     t.text "direct_mail_partner_ids"
     t.string "state_voter_check_url"
+    t.boolean "abr_deadline_passed"
+    t.boolean "abr_splash_page"
   end
 
   create_table "grommet_requests", force: :cascade do |t|

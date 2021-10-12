@@ -28,7 +28,11 @@ module AbrStateMethods::AK
     },
     "Suffix" => {
       method: "name_suffix"
-    },      
+    },    
+    "House Number" => {
+      method: "street_number"
+    },
+
     "Street Name" => {
       method: "street_name"
     },  
@@ -53,9 +57,6 @@ module AbrStateMethods::AK
     },
     "18 Years No" => {
       options: ["Off", "No_2"]
-    },
-    "House Number" => {
-      method: "street_number"
     },
     "Perm Mailing 1"=>{},
     "Perm Mailing 2"=>{},
@@ -109,7 +110,6 @@ module AbrStateMethods::AK
       {"attest_no_ssn_or_dln": { type: :checkbox}}, # Must either provide ssn, alaska state ID or check "attest_no..."
       {"gender": {type: :radio, options: ["male", "female"]}},
       "Party",
-      {"ballot_selection": {type: :radio, options: ["dem", "rep"]}},
       {"attest_remote": {type: :checkbox}},
       {"has_ballot_mailing_address": {type: :checkbox}},
       {"Ballot Mailing Address 1": {visible: "has_ballot_mailing_address"}},

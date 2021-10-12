@@ -11,8 +11,8 @@ module AbrStateMethods::AL
     },
     "WorkPhone": {},
     "chkGeneralElection": {
-      options: ["General", "Off"],
-      value: "Off"
+      options: ["Off", "On"],
+      value: "On"
     },
     "chkPrimaryElection": {
       options: ["Primary", "Off"],
@@ -24,10 +24,10 @@ module AbrStateMethods::AL
     },
     "chkSpecialElection": {
       options: ["Special", "Off"],
-      value: "Special"
+      value: "Off"
     },
     "txtSpecialOther": {
-      value: "03/02/2021"
+      value: ""
     },
     "chkPriDem": {
       options: ["On", "Off"],
@@ -111,7 +111,7 @@ module AbrStateMethods::AL
     "Street_Address": {
       method: "address"
     },
-    "Street_Address_1": {},
+    "Mailing_Address": {},
     "City": {
       method: "city"
     },
@@ -223,7 +223,7 @@ module AbrStateMethods::AL
       {"Drivers_License_Number": {visible: "identification_dln_yes", min:1, max:16, ui_regexp:'^.*$'}},
       {"SSN_last_4": {min: 4, max: 4, visible: "identification_dln_no"}},
       {"has_mailing_address": {type: :checkbox}},
-      {"Street_Address_1": {visible: "has_mailing_address"}},
+      {"Mailing_Address": {visible: "has_mailing_address"}},
       {"City_1": {visible: "has_mailing_address"}},
       {"State_1": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
       {"ZIP_1": {visible: "has_mailing_address", min: 5, max: 10}}, 
@@ -250,7 +250,7 @@ module AbrStateMethods::AL
     end
     if self.has_mailing_address.to_s == "1"
       ["State_1",
-      "Street_Address_1",
+      "Mailing_Address",
       "City_1",
       "ZIP_1"].each do |f|
         custom_validates_presence_of(f)

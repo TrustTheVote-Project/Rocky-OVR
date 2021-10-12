@@ -1,7 +1,7 @@
 - abbrev = @abr.i18n_key
-%h2= t("states.custom.#{abbrev}.abr.header")
+%h2{role: "heading", "aria-level": 2}= t("states.custom.#{abbrev}.abr.splash_header")
 .state-instructions
-  = t("states.custom.#{abbrev}.abr.instructions").html_safe
+  = t("states.custom.#{abbrev}.abr.splash_instructions").html_safe
 
 #finish_page_iframe
   %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }

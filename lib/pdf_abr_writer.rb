@@ -44,7 +44,6 @@ class PdfAbrWriter
         form.save_as(pdf_file_path+'-signed', flatten: false)
       end
 
-
       # 1. generate xfdf
       xfdf_contents = "<?xml version=\"1.0\"?><xfdf xmlns=\"http://ns.adobe.com/xfdf/\"><fields>"
       pdf_values.each do |k, v|
