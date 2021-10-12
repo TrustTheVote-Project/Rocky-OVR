@@ -1597,7 +1597,11 @@ en:
           abr_status_check_intro: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official's contact information here:"
           state_reminder_1: "If you registered by mail and this is your first time voting, you must provide a copy of either: (1) an ID issued by the Federal Government, state of Missouri, or a local election authority; (2) ID issued by a Missouri institution (public or private) of higher education; or (3) a current utility bill, bank statement, paycheck, government check or other government document that contains your name and address."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority'>Directory</a>"
+          finish_instructions_1_hint_state: |-
+            <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
+            <p><i>Your absentee ballot request must be received by 5pm on October 20, 2021.</i></p>
+          finalpage_instructions: "You may be able to track the status of your absentee ballot request. Contact your local election authority.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority'>Directory</a>"
+
           finalpage_additional_instructions:  
           finish_instructions: "<p>Make sure to complete and send this form in as
             soon as possible. \n</p>\n<p>Please read through the instructions on the
