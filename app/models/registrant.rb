@@ -240,7 +240,7 @@ class Registrant < ActiveRecord::Base
     "VR Application Status Details",
     "VR Application Status Imported DateTime",
     "Submitted Via State API",
-    "Submitted Signature to State API"
+    "Submitted Signature to State API",
   ]
   
   CSV_HEADER_EXTENDED = [
@@ -268,7 +268,8 @@ class Registrant < ActiveRecord::Base
     "Over 18 Affirmation",
     "Preferred Language",
     "State Flow Status",
-    "State API Transaction ID"
+    "State API Transaction ID",
+    "Requested Assistance",
   ].flatten
   
   GROMMET_CSV_HEADER = [
@@ -1379,7 +1380,7 @@ class Registrant < ActiveRecord::Base
   
   def pdf_url(pdfpre = nil, file=false)
     prefix = pdf_delivery ? "/#{pdf_delivery.pdf_prefix}" : ''
-   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com#{prefix}#{pdf_path(pdfpre, file)}"
+   "https://download.#{RockyConf.pdf_host_name}#{prefix}#{pdf_path(pdfpre, file)}"
   end
   def pdf_path(pdfpre = nil, file=false)
     pdf_writer.pdf_path(pdfpre, file)
@@ -1430,7 +1431,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def can_request_pdf_assistance?
-    home_state_enabled_for_pdf_assitance?
+    self.locale == "en" && home_state_enabled_for_pdf_assitance?
   end
   
   
@@ -1469,7 +1470,7 @@ class Registrant < ActiveRecord::Base
   
   
   def pdf_is_esigned?
-    !skip_mail_with_esig? && !voter_signature_image.blank?
+    !skip_mail_with_esig? && voter_signature.present? && voter_signature_image.present?
   end
   
   VOTER_SIGNATURE_ATTRIBUTES = [
@@ -1738,6 +1739,7 @@ class Registrant < ActiveRecord::Base
       grommet_preferred_language,
       state_flow_status,
       state_transaction_id,
+      yes_no_nothing(requested_pdf_assistance?),
     ].flatten(1)
   end
   
@@ -2062,6 +2064,13 @@ class Registrant < ActiveRecord::Base
     end
   end
 
+  def requested_pdf_assistance?
+    if pdf_delivery && !pdf_is_esigned?
+      return true
+    end
+
+    nil
+  end
 
   private ###
 

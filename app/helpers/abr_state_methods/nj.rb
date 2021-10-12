@@ -37,9 +37,9 @@ module AbrStateMethods::NJ
     "Apt_3": {},
     "Municipality CityTown_3": {},
     "State_3": {},
+    "Zip_3": {},
     "Election": { 
-      options: ["All", "Fire", "General", "Municipal", "Off", "Primary", "School", "Special"],
-      value: "General"
+      options: ["All", "Fire", "General", "Municipal", "Off", "Primary", "School", "Special"],     
     },
     "UOCAVA": { options: ["Off", "Choice1", "Choice2", "Choice3", "Choice4"], default: "Off" },
     #"voter_signature": {}
@@ -75,16 +75,17 @@ module AbrStateMethods::NJ
     #"Signed_Date": {}
     #"messenger_date": {}
   }
-  EXTRA_FIELDS = ["has_mailing_address", "assistant", "messenger","messenger_birth_date", "messenger_birth_dd","messenger_birth_mm","messenger_birth_yyyy"]
+  EXTRA_FIELDS = ["election_selection", "has_mailing_address", "assistant", "messenger","messenger_birth_date", "messenger_birth_dd","messenger_birth_mm","messenger_birth_yyyy"]
   
   
   def form_field_items
     [
+      {"Election": {type: :radio, options:["All", "General"], required: true}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_2":{visible: "has_mailing_address"}},
       {"Mailing_Address_3":{visible: "has_mailing_address"}},
-      {"UOCAVA_only": {type: :instructions}},
-      {"UOCAVA": {type: :radio}},
+      # {"UOCAVA_only": {type: :instructions}},
+      # {"UOCAVA": {type: :radio}},
       {"assistant": {type: :checkbox}},
       {"Name_Assistor": {visible: "assistant", required: :if_visible}},
       {"Address_Assistor": {visible: "assistant", classes: "three-quarter", required: :if_visible}},
@@ -97,7 +98,8 @@ module AbrStateMethods::NJ
       {"Address of Messenger": {visible: "messenger", required: :if_visible, classes: "three-quarter"}},
       {"Apt_3": {visible: "messenger", classes: "quarter last"}},
       {"Municipality CityTown_3": {visible: "messenger", required: :if_visible, classes: "half"}},
-      {"State_3": {visible: "messenger", required: :if_visible, classes: "half last", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"State_3": {visible: "messenger", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Zip_3": {visible: "messenger", required: :if_visible, classes: "quarter last"}},
       # TODO: change to type: :date #ToDone
       {"messenger_birth_date": {visible: "messenger", type: :date,  m: "messenger_birth_mm", d: "messenger_birth_dd", y: "messenger_birth_yyyy", required: :if_visible}},
       # TODO: Messenger zip code is currently erroneously filled by Zip_2 above (Assistant zip code). We need a zip_3

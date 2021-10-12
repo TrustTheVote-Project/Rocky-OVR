@@ -1,4 +1,4 @@
-%h2= t("txt.abr.deadline_passed_header", state: @abr.home_state_abbrev)
+%h2{role: "heading", "aria-level": "2"}= t("txt.abr.deadline_passed_header", state: @abr.home_state_name)
 .state-instructions
   - state_instructions = "check your ballot status with your local elections office." 
   - if @abr.abr_status_check_url.present?

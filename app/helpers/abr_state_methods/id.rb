@@ -25,6 +25,7 @@ module AbrStateMethods::ID
       "zipCode": {
         method: "zip"
       },
+      "County": {},
       "phoneNumber": {
         method: "phone"
       },
@@ -36,20 +37,62 @@ module AbrStateMethods::ID
       "mailingState": {},
       "mailingZipCode": {},
       "mailingCountry": {},
-      "GeneralBallotRequest": { 
-        options: ["Off", "Yes"],
-        value: "Yes"
-      },
-      "AugustBallotRequest": { 
-        options: ["Off", "Yes"],
-        value: "Off"
-      },
+      "allElections2021": {
+        options: ["On", "Off"],
+        value: "On"
+      }
+
     }
     EXTRA_FIELDS = ["has_mailing_address"]
   
     
     def form_field_items
-      [
+      [{"County": {type: :select, required: true, include_blank: true, options: [
+        "Ada County",
+        "Adams County",
+        "Bannock County",
+        "Bear Lake County",
+        "Benewah County",
+        "Bingham County",
+        "Blaine County",
+        "Boise County",
+        "Bonner County",
+        "Bonneville County",
+        "Boundary County",
+        "Butte County",
+        "Camas County",
+        "Canyon County",
+        "Caribou County",
+        "Cassia County",
+        "Clark County",
+        "Clearwater County",
+        "Custer County",
+        "Elmore County",
+        "Franklin County",
+        "Fremont County",
+        "Gem County",
+        "Gooding County",
+        "Idaho County",
+        "Jefferson County",
+        "Jerome County",
+        "Kootenai County",
+        "Latah County",
+        "Lemhi County",
+        "Lewis County",
+        "Lincoln County",
+        "Madison County",
+        "Minidoka County",
+        "Nez Perce County",
+        "Oneida County",
+        "Owyhee County",
+        "Payette County",
+        "Power County",
+        "Shoshone County",
+        "Teton County",
+        "Twin Falls County",
+        "Valley County",
+        "Washington County",
+      ]}},
         {"has_mailing_address": {type: :checkbox}},
         {"mailingAddress": {visible: "has_mailing_address", required: :if_visible}},
         {"mailingCity": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
