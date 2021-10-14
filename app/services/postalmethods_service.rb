@@ -41,7 +41,7 @@ class PostalmethodsService
       reply_zip = reply_city_state_zip_parts[2]
     else
       reply_city = reply_city_state_zip_parts[0]
-      reply_state_zip = reply_city_state_zip_parts.split(" ")
+      reply_state_zip = reply_city_state_zip_parts[1].split(" ")
       reply_state = reply_state_zip[0]
       reply_zip = reply_state_zip[1]
     end
