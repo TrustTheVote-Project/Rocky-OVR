@@ -29,6 +29,29 @@ class PostalmethodsService
       send_zipcode = registrant.home_zip_code
     end
 
+    delivery_lines = registrant.state_registrar_address.split(/<br\s*\/?>/)
+    reply_city_state_zip = delivery_lines.last
+    reply_city_state_zip_parts = reply_city_state_zip.split(", ")    
+    reply_city = ""
+    reply_state = ""
+    reply_zip = ""
+    if reply_city_state_zip_parts.length == 3
+      reply_city = reply_city_state_zip_parts[0]
+      reply_state = reply_city_state_zip_parts[1]
+      reply_zip = reply_city_state_zip_parts[2]
+    else
+      reply_city = reply_city_state_zip_parts[0]
+      reply_state_zip = reply_city_state_zip_parts[1].split(" ")
+      reply_state = reply_state_zip[0]
+      reply_zip = reply_state_zip[1]
+    end
+
+    reply_address_1 = delivery_lines[delivery_lines.length - 2]
+    reply_name = delivery_lines[0]
+    if delivery_lines.length == 4
+      reply_name += " " + delivery_lines[1]
+    end
+
 
     RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'postalmethods') do
       pdf_delivery.delivery_attempts ||= 0
@@ -50,6 +73,12 @@ class PostalmethodsService
         # return_city: return_city.strip,
         # return_state: return_state.strip,
         # return_zipcode: return_zipcode.strip,
+        reply_address_name: reply_name,
+        reply_address1: reply_address_1,
+        reply_address2: "",
+        reply_address_city: reply_city,
+        reply_address_state: reply_state,
+        reply_address_zipcode: reply_zip,
       )
       # assuming now error thrown from response, if response is good
       if response && response["success"]
