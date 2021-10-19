@@ -194,12 +194,15 @@ en:
           WorkPhone: Work Phone
       ar:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
-          abr_status_check_intro: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official's contact information here:"
-          state_reminder_1: ""
+          request_deadline: "by 7 days before the election"
+          abr_status_check_intro: "You can look up your Absentee Ballot status by using the VoterView tool: "
+          state_reminder_1: "If you have authorized a designated bearer to pick up your absentee ballot, make sure they also sign your ballot application."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status, by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf'>Directory</a>"
+          finalpage_instructions: You can look up your Absentee Ballot status by using the <a href="https://www.voterview.ar-nova.org/VoterView">Arkansas VoterView tool</a>.
           finalpage_additional_instructions:  
+          finish_instructions_1_hint: 
+            <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
+            <p><i>If you have authorized a designated bearer to pick up your absentee ballot, make sure they also sign your ballot application.</i></p>
           finish_instructions: "<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible. If
             mailing in your absentee ballot application, the application must be received
@@ -209,15 +212,18 @@ en:
             fill out the ballot and send it back in.</p>"
         abr_form_fields:
           Reason: 'I request an absentee ballot because:'
-          reason_covid: The Arkansas Board of Election Commissioners passed a resolution
-            that allows voters who are concerned about their health or that of others
-            as a result of the COVID-19 pandemic to request an absentee ballot because
-            they will be "unavoidably absent from the polling site on Election Day."
+          reason_covid: ""
           Reside: 'I reside:'
           Where_Receive: 'I will receive my ballot by:'
           Where_Receive__options:
-            County_Clerk_Office: Coming to the office of the county clerk
-            Designated_Bearer: Designated Bearer, Administrator, or Authorized Agent
+            County_Clerk_Office: Coming to the office of the county clerk by the time the county clerk’s office regularly closes on the day before the election
+            Designated_Bearer: |-
+                Designated Bearer, Administrator, or Authorized Agent
+                <br/><br/>
+                Note: A designated bearer may obtain or deliver absentee ballots for no more than two (2) voters per election and may only do so within the 15 days before a school, special election, preferential primary, or general election or the 7 days before a runoff or general primary election
+                <br/><br/>
+                A bearer, administrator, or agent must provide a current and valid photo ID to the clerk and must sign the register, under oath, when picking up or delivering an absentee ballot.
+            Designated_Bearer__instructions: Test 
             Electronic_Means: Electronic means (Only available for UOCAVA voters)
             Mail: 'Mail. I request that you mail my ballot to the following address:'
           Designated_Bearer_Name: Designated Bearer Name
@@ -228,8 +234,7 @@ en:
           Reason__options:
             absent: I will be unavoidably absent from my polling site on Election
               Day.
-            illness: I will be unable to attend the polls on Election Day because
-              of illness or physical diability.
+            illness: I will be unable to attend the polls on Election Day because of illness or physical disability.
             long_term_care: I reside in long-term care or residential facility licensed
               by the state.
           Reside__options:
@@ -1143,6 +1148,7 @@ en:
           "Assistance_Print_Name": Name of Assistant
           "assistant": I had help completing this application
         abr:
+        
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Mail-in Voting status, by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
@@ -1176,6 +1182,7 @@ en:
             rel="noopener" target="blank" href="https://voterservices.elections.maryland.gov/VoterSearch">https://voterservices.elections.maryland.gov/VoterSearch</a>
             </p>'
         state_online_abr:
+          header_choice: All Registered Voters in Maryland Can Vote by Mail
           finish_instructions: '<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in. Your
             ballot must be postmarked by Election Day and received by your local board
@@ -1185,14 +1192,14 @@ en:
             can check your ballot status at: <a rel="noopener" target="blank" href="https://voterservices.elections.maryland.gov/VoterSearch">https://voterservices.elections.maryland.gov/VoterSearch</a>
             </p>'
           requirements: |-
-            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state.</p>
+            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state. If you do not have a valid Maryland ID, you can also print, sign and mail a paper request form by clicking the link below the button.</p>
             <p>To request a ballot, the following personal information has to match the information about you that is on file with the Maryland MVA:</p>
             <ul>
-              <li>Your name</li>
-              <li>Your date of birth</li>
-              <li>Your driver’s license number, ID number, or Learner's Permit number</li>
-              <li>Your signature at the MVA will become your official voter registration signature</li>
-            </ul>
+            <li>Your name</li>
+            <li>Your date of birth</li>
+            <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
+            <p>Your signature at the MVA will become your official voter registration signature.</p>
+
       me:
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
@@ -2371,9 +2378,9 @@ en:
             <p>Double check that you're registered to vote by going to <a href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS">My Vote</a>.</p>
             <p>​​The deadline to register is 21 days before Election Day.</p>
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-            <p>You can also update your registration at My Vote, or learn more from the <a href="https://sos.oregon.gov/voting/Pages/updatevoterregistration.aspx" title="Update Voter Registration Information">Secretary of State</a></p>
+            <p>You can also update your registration at My Vote, or learn more from the <a href="https://sos.oregon.gov/voting/Pages/updatevoterregistration.aspx" title="Update Voter Registration Information">Secretary of State</a>.</p>
             <p>You will be sent a voters' pamphlets two to three weeks before an election so you can research issues and candidates.</p>
-            <p>Your ballot can be mailed or dropped off at any ​across the state..</p>
+            <p>Your ballot can be mailed or dropped off at any ​across the state.</p>
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
             <p>Ballots must be received by 8 p.m. on Election Day.​​​​​​​​</p>
       pa:
@@ -2801,6 +2808,7 @@ en:
           finalpage_additional_instructions: 
           splash_header: Utah Automatically Mails All Registered Voters a Ballot. Make Sure You're Registered!
           splash_instructions: |-
+            <p>All an active registered voters in Utah automatically receive a ballot in the mail.</p>
             <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
             <p>Double check that you're registered to vote by going to Utah's <a href="https://votesearch.utah.gov/voter-search/search/search-by-voter/voter-info" target="_blank" rel="noopener noreferrer">Find my voter registration</a> tool.
             </p>
