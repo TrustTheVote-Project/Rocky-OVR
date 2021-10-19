@@ -2364,20 +2364,18 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote By Mail status, by using your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          splash_header: Absentee Requests In Oregon
-          splash_instructions: '<p>In your state, every registered voter automatically receives
-            a mail ballot. Your mail ballot will be sent to the address listed on
-            your voter registration.  If you have any questions, or need to check
-            your address on file please go to <a rel="noopener" target="blank" href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS">Oregon''s
-            My Vote website</a>.</p><br><p>You can use Oregon''s My Vote website to
-            check on your ballot status, view and update your voter registration information,
-            find a ballot drop site near you, and more.</p><br><p>NOTE: if you will
-            be away from your registration address during an election, and you need
-            your ballot mailed elsewhere, you must submit an Absentee Ballot Request
-            Form: <a rel="noopener" target="blank" href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">Oregon
-            Absentee Ballot Request Form</a></p><br><p>Once you have your ballot,
-            read the instructions carefully, fill out the ballot and send it back
-            in. Vote-by-mail ballots must be received by 8:00pm on Election Day.</p>'
+          splash_header: Oregon Conducts All Elections by Mail. Make Sure You're Registered!
+          splash_instructions: |-
+            <p> If you are registered to vote in Oregon you do not need to request an absentee ballot- one will be mailed to you.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to <a href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS">My Vote</a>.</p>
+            <p>​​The deadline to register is 21 days before Election Day.</p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>You can also update your registration at My Vote, or learn more from the <a href="https://sos.oregon.gov/voting/Pages/updatevoterregistration.aspx" title="Update Voter Registration Information">Secretary of State</a></p>
+            <p>You will be sent a voters' pamphlets two to three weeks before an election so you can research issues and candidates.</p>
+            <p>Your ballot can be mailed or dropped off at any ​across the state..</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Ballots must be received by 8 p.m. on Election Day.​​​​​​​​</p>
       pa:
         abr_form_fields:
           bad_date__format_message: Invalid date
@@ -2801,10 +2799,17 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status, by using your state&#39;s <a target='_blank' href='https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot'>online tool</a>"
           finalpage_additional_instructions: 
-          splash_header: Absentee Requests In Utah
+          splash_header: Utah Automatically Mails All Registered Voters a Ballot. Make Sure You're Registered!
           splash_instructions: |-
-            <p>In your state, every active registered voter automatically receives a mail ballot. Your mail ballot will be sent to the address listed on your voter registration.  If you want to check on the status of your ballot, check if you are registered (and what address is listed on file), or have general questions about your absentee ballot go to  <a rel="noopener" target="blank" href="https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p> <p> NOTE: you cannot have your ballot sent to a different address than the one listed on your voter registration.  If you have a new permanent address, submit a new voter registration to update your address. </p>
-            <p> Once you have your ballot, again be sure to read the instructions carefully, fill out the ballot and send it back in.  Vote-by-mail ballots must be received by 11:59am on Election Day, or postmarked one (1) day before Election Day if returned by mail. If you are dropping your absentee ballot off in person, it can be dropped off in a ballot drop box. The ballot must be deposited in the drop box before polls close on Election Day. Any voter who is in line at a ballot drop box with a sealed return envelope containing their ballot at or before 8 p.m. must be allowed to deposit the ballot in the ballot box. </p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to Utah's <a href="https://votesearch.utah.gov/voter-search/search/search-by-voter/voter-info" target="_blank" rel="noopener noreferrer">Find my voter registration</a> tool.
+            </p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>To update your voter registration information, go to <a href="https://secure.utah.gov/voterreg/login.html?selection=UPDATE" target="_blank" rel="noopener noreferrer">Your Personal Information</a>.</p>
+            <p>Your county clerk will mail ballots between October 12, 2021 and October 26, 2021. If you are registered to vote in San Juan County, your ballot may be mailed sooner. If you do not receive a ballot shortly after this time, <a href="https://voteinfo.utah.gov/county-clerk-contact-information/" target="_blank" rel="noopener noreferrer"> contact your county clerk’s office</a>.
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Your mail ballot must be postmarked by November 1, 2021. You can also drop your ballot off at a drop box location before 8:00 pm on Election Day. <a href="https://votesearch.utah.gov/voter-search/search/search-by-address/how-and-where-can-i-vote" title="How can I vote?" target="_blank" rel="noopener noreferrer">Find drop boxes near you</a>.
+            </p>
       va:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In VA
         state_online_abr:
