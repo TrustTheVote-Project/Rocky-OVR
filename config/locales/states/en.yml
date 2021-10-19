@@ -366,22 +366,17 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Mail-in Ballots status, by using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          splash_header: Absentee Requests In Colorado
-          splash_instructions: '<p>In your state, every registered voter automatically receives
-            a mail ballot. Your mail ballot will be sent to the address listed on
-            your voter registration.  If you have any questions, or need to update
-            your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To
-            check the status of your mail ballot please use<a rel="noopener" target="_blank"
-            href="https://www.sos.state.co.us/voter/pages/pub/home.xhtml ">the Secretary
-            of State''s Voter Status tool</a>. Then log in to your voter record, which
-            will show whether your mail ballot has been mailed. If you have further
-            questions about your mail ballot''s status, contact your local county
-            clerk and recorder''s office.</p><p>Once you have your ballot, again be
-            sure to read the instructions carefully, fill out the ballot and send
-            it back in.  Vote-by-mail ballots must be received by 7:00pm on Election
-            Day.</p><p>NOTE: If you recently registered for the first time, you may
-            need to provide a copy of your ID along with your mail ballot when you
-            return it to vote.</p>'
+          splash_header: Colorado Automatically Mails All Registered Voters a Ballot. Make Sure You're Registered!
+          splash_instructions: |-
+            <p>If you are registered to vote in Colorado you do not need to request an absentee ballot.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to Colorado's <a href="https://www.sos.state.co.us/voter/pages/pub/olvr/findVoterReg.xhtml" target="_blank" rel="noopener noreferrer">Find My Voter Registration</a> tool.</p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>To update the name on your voter registration, <a href="https://www.sos.state.co.us/pubs/elections/vote/VoterRegFormEnglish.pdf" target="_blank" rel="noopener noreferrer">fill out a voter registration form [PDF]</a>. This must be done on paper- it cannot be completed online.</p>
+            <p>To update other information on your registration, <a href="https://www.sos.state.co.us/voter/pages/pub/olvr/findVoterReg.xhtml" target="_blank" rel="noopener noreferrer">find your registration</a> and you will be able to update your address, phone number, email address, party affiliation, mail-in voter status and military or overseas information.</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Mail ballots must be received by the county clerk and recorder no later than 7:00 PM on Election Day.</p>
+            <p>You can also <a href="https://www.coloradosos.gov/pubs/elections/FAQs/ElectionDay.html" target="_blank" rel="noopener noreferrer" title="Election Day FAQs">vote in person</a>, even though you receive a mail ballot.</p>
       ct:
         abr:
           splash_header: Absentee Ballots in Connecticut
