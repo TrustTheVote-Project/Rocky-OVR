@@ -1211,7 +1211,7 @@ en:
         state_online_abr:
           header: All registered voters in Maine can vote absentee!
           confirm: |-
-            <p>If you are registered to vote, you can request an absentee ballot. Look up your voter registration on the <a href="https://www.maine.gov/portal/government/edemocracy/voter_lookup.php">Maine Voter Information Lookup Service</a> page.</p>            
+            <p>To verify if you are are registered, contact the municipal clerk in the town where you reside. <a href="https://www.maine.gov/sos/cec/elec/munic.html" target="_blank" rel="noopener noreferrer">Directory of clerks</a>.</p>            
           instructions: |-
             <h2 role="heading" aria-level="2">Absentee Ballots in Maine</h2>
             <p>You can apply for an Absentee Ballot in Maine in any of these ways:
