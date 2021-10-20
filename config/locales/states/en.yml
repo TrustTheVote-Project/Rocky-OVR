@@ -338,7 +338,7 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote-By-Mail status, by using your state&#39;s <a target='_blank' href='https://voterstatus.sos.ca.gov/'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          splash_header: California Automatically Mails All Registered Voters a Ballot. Make Sure You're Registered!
+          splash_header: California Automatically Mails All Registered Voters a Ballot.
           splash_instructions: |-
             <p>Beginning in 2021, if you are registered to vote in California you do not need to request an absentee ballot.</p>
             <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
@@ -349,7 +349,7 @@ en:
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
             <ul>
             <li>If you hand-deliver your vote-by-mail ballot, it must be delivered no later than the close of polls at 8:00 p.m. on Election Day.</li>
-            <li>If you mail your vote-by-mail ballot, it must mailed postmarked on or before Election Day and received by your county elections office no later than 7 days after Election Day. </li>
+            <li>If you mail your vote-by-mail ballot, it must be postmarked on or before Election Day and received by your county elections office no later than 7 days after Election Day.</li>
             <li>If you are not sure your vote-by-mail ballot will arrive in time if mailed, take it to your county elections office on or before Election Day or to any polling place in your county between 7:00 a.m. and 8:00 p.m. on Election Day.</li>
             </ul>
             
