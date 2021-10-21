@@ -194,12 +194,15 @@ en:
           WorkPhone: Work Phone
       ar:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
-          abr_status_check_intro: "You can look up your Absentee Ballot status by calling your local election official.  Find your official's contact information here:"
-          state_reminder_1: ""
+          request_deadline: "by 7 days before the election"
+          abr_status_check_intro: "You can look up your Absentee Ballot status by using the VoterView tool: "
+          state_reminder_1: "If you have authorized a designated bearer to pick up your absentee ballot, make sure they also sign your ballot application."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Absentee Ballot status by calling your local election official.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf'>Directory</a>"
+          finalpage_instructions: You can look up your Absentee Ballot status by using the <a href="https://www.voterview.ar-nova.org/VoterView">Arkansas VoterView tool</a>.
           finalpage_additional_instructions:  
+          finish_instructions_1_hint: 
+            <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
+            <p><i>If you have authorized a designated bearer to pick up your absentee ballot, make sure they also sign your ballot application.</i></p>
           finish_instructions: "<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible. If
             mailing in your absentee ballot application, the application must be received
@@ -209,15 +212,18 @@ en:
             fill out the ballot and send it back in.</p>"
         abr_form_fields:
           Reason: 'I request an absentee ballot because:'
-          reason_covid: The Arkansas Board of Election Commissioners passed a resolution
-            that allows voters who are concerned about their health or that of others
-            as a result of the COVID-19 pandemic to request an absentee ballot because
-            they will be "unavoidably absent from the polling site on Election Day."
+          reason_covid: ""
           Reside: 'I reside:'
           Where_Receive: 'I will receive my ballot by:'
           Where_Receive__options:
-            County_Clerk_Office: Coming to the office of the county clerk
-            Designated_Bearer: Designated Bearer, Administrator, or Authorized Agent
+            County_Clerk_Office: Coming to the office of the county clerk by the time the county clerk’s office regularly closes on the day before the election
+            Designated_Bearer: |-
+                Designated Bearer, Administrator, or Authorized Agent
+                <br/><br/>
+                Note: A designated bearer may obtain or deliver absentee ballots for no more than two (2) voters per election and may only do so within the 15 days before a school, special election, preferential primary, or general election or the 7 days before a runoff or general primary election
+                <br/><br/>
+                A bearer, administrator, or agent must provide a current and valid photo ID to the clerk and must sign the register, under oath, when picking up or delivering an absentee ballot.
+            Designated_Bearer__instructions: Test 
             Electronic_Means: Electronic means (Only available for UOCAVA voters)
             Mail: 'Mail. I request that you mail my ballot to the following address:'
           Designated_Bearer_Name: Designated Bearer Name
@@ -228,8 +234,7 @@ en:
           Reason__options:
             absent: I will be unavoidably absent from my polling site on Election
               Day.
-            illness: I will be unable to attend the polls on Election Day because
-              of illness or physical diability.
+            illness: I will be unable to attend the polls on Election Day because of illness or physical disability.
             long_term_care: I reside in long-term care or residential facility licensed
               by the state.
           Reside__options:
@@ -333,18 +338,21 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote-By-Mail status by using your state&#39;s <a target='_blank' href='https://voterstatus.sos.ca.gov/'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          splash_header: Absentee Requests In California
-          splash_instructions: '<p>Your state is automatically sending an absentee ballot
-            to all voters this year.  Your absentee ballot will be sent to the address
-            listed on your voter registration.</p><p>If you have any questions, or
-            need to update your address please go to: <a rel="noopener" target="blank"
-            href="https://www.sos.ca.gov/elections/voter-registration/">https://www.sos.ca.gov/elections/voter-registration/</a></p><p>At
-            any time you can check the status of your application and the status of
-            your ballot at: <a rel="noopener" target="blank" href="https://california.ballottrax.net/voter/">https://california.ballottrax.net/voter/</a></p><p>Once
-            you have your ballot, again be sure to read the instructions carefully,
-            fill out the ballot and send it back in.  Vote-by-mail ballots that are
-            mailed must be postmarked on or before Election Day and received by your
-            county elections office no later than 17 days after Election Day.</p>'          
+          splash_header: California Automatically Mails All Registered Voters a Ballot.
+          splash_instructions: |-
+            <p>Beginning in 2021, if you are registered to vote in California you do not need to request an absentee ballot.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to California's <a href="https://voterstatus.sos.ca.gov/" target="_blank" rel="noopener noreferrer">voter status tool</a>.
+            </p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>To update your name or address, submit a new <a href="https://register.rockthevote.com/">voter registration</a>.</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <ul>
+            <li>If you hand-deliver your vote-by-mail ballot, it must be delivered no later than the close of polls at 8:00 p.m. on Election Day.</li>
+            <li>If you mail your vote-by-mail ballot, it must be postmarked on or before Election Day and received by your county elections office no later than 7 days after Election Day.</li>
+            <li>If you are not sure your vote-by-mail ballot will arrive in time if mailed, take it to your county elections office on or before Election Day or to any polling place in your county between 7:00 a.m. and 8:00 p.m. on Election Day.</li>
+            </ul>
+            
         online_instructions: |-
           You can complete your voter registration online with
           the state right now - using the application provided by the Secretary of
@@ -363,22 +371,17 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Mail-in Ballots status by using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          splash_header: Absentee Requests In Colorado
-          splash_instructions: '<p>In your state, every registered voter automatically receives
-            a mail ballot. Your mail ballot will be sent to the address listed on
-            your voter registration.  If you have any questions, or need to update
-            your address please go to: <a rel="noopener" target="_blank" href="https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html">https://www.sos.state.co.us/pubs/elections/FAQs/mailBallotsFAQ.html</a>.</p>         <p>To
-            check the status of your mail ballot please use<a rel="noopener" target="_blank"
-            href="https://www.sos.state.co.us/voter/pages/pub/home.xhtml ">the Secretary
-            of State''s Voter Status tool</a>. Then log in to your voter record, which
-            will show whether your mail ballot has been mailed. If you have further
-            questions about your mail ballot''s status, contact your local county
-            clerk and recorder''s office.</p><p>Once you have your ballot, again be
-            sure to read the instructions carefully, fill out the ballot and send
-            it back in.  Vote-by-mail ballots must be received by 7:00pm on Election
-            Day.</p><p>NOTE: If you recently registered for the first time, you may
-            need to provide a copy of your ID along with your mail ballot when you
-            return it to vote.</p>'
+          splash_header: Colorado Automatically Mails All Registered Voters a Ballot.
+          splash_instructions: |-
+            <p>If you are registered to vote in Colorado you do not need to request an absentee ballot.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to Colorado's <a href="https://www.sos.state.co.us/voter/pages/pub/olvr/findVoterReg.xhtml" target="_blank" rel="noopener noreferrer">Find My Voter Registration</a> tool.</p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>To update the name on your voter registration, <a href="https://www.sos.state.co.us/pubs/elections/vote/VoterRegFormEnglish.pdf" target="_blank" rel="noopener noreferrer">fill out a voter registration form [PDF]</a>. This must be done on paper- it cannot be completed online.</p>
+            <p>To update other information on your registration, <a href="https://www.sos.state.co.us/voter/pages/pub/olvr/findVoterReg.xhtml" target="_blank" rel="noopener noreferrer">find your registration</a> and you will be able to update your address, phone number, email address, party affiliation, mail-in voter status and military or overseas information.</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Mail ballots must be received by the county clerk and recorder no later than 7:00 PM on Election Day.</p>
+            <p>You can also <a href="https://www.coloradosos.gov/pubs/elections/FAQs/ElectionDay.html" target="_blank" rel="noopener noreferrer" title="Election Day FAQs">vote in person</a>, even though you receive a mail ballot.</p>
       ct:
         abr:
           splash_header: Absentee Ballots in Connecticut
@@ -1145,6 +1148,7 @@ en:
           "Assistance_Print_Name": Name of Assistant
           "assistant": I had help completing this application
         abr:
+        
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Mail-in Voting status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
@@ -1178,6 +1182,7 @@ en:
             rel="noopener" target="blank" href="https://voterservices.elections.maryland.gov/VoterSearch">https://voterservices.elections.maryland.gov/VoterSearch</a>
             </p>'
         state_online_abr:
+          header_choice: All Registered Voters in Maryland Can Vote by Mail
           finish_instructions: '<p>Once you have your ballot, be sure to read the
             instructions carefully, fill out the ballot and send it back in. Your
             ballot must be postmarked by Election Day and received by your local board
@@ -1187,14 +1192,14 @@ en:
             can check your ballot status at: <a rel="noopener" target="blank" href="https://voterservices.elections.maryland.gov/VoterSearch">https://voterservices.elections.maryland.gov/VoterSearch</a>
             </p>'
           requirements: |-
-            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state.</p>
+            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state. If you do not have a valid Maryland ID, you can also print, sign and mail a paper request form by clicking the link below the button.</p>
             <p>To request a ballot, the following personal information has to match the information about you that is on file with the Maryland MVA:</p>
             <ul>
-              <li>Your name</li>
-              <li>Your date of birth</li>
-              <li>Your driver’s license number, ID number, or Learner's Permit number</li>
-              <li>Your signature at the MVA will become your official voter registration signature</li>
-            </ul>
+            <li>Your name</li>
+            <li>Your date of birth</li>
+            <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
+            <p>Your signature at the MVA will become your official voter registration signature.</p>
+
       me:
         abr:
           request_deadline: "received by the Municipal Clerk by the close of business on Thursday, October 28, 2021."
@@ -1206,7 +1211,7 @@ en:
         state_online_abr:
           header: All registered voters in Maine can vote absentee!
           confirm: |-
-            <p>If you are registered to vote, you can request an absentee ballot. Look up your voter registration on the <a href="https://www.maine.gov/portal/government/edemocracy/voter_lookup.php">Maine Voter Information Lookup Service</a> page.</p>            
+            <p>To verify if you are are registered, contact the municipal clerk in the town where you reside. <a href="https://www.maine.gov/sos/cec/elec/munic.html" target="_blank" rel="noopener noreferrer">Directory of clerks</a>.</p>            
           instructions: |-
             <h2 role="heading" aria-level="2">Absentee Ballots in Maine</h2>
             <p>You can apply for an Absentee Ballot in Maine in any of these ways:
@@ -2366,20 +2371,18 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Vote By Mail status by using your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online tool</a>"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
-          splash_header: Absentee Requests In Oregon
-          splash_instructions: '<p>In your state, every registered voter automatically receives
-            a mail ballot. Your mail ballot will be sent to the address listed on
-            your voter registration.  If you have any questions, or need to check
-            your address on file please go to <a rel="noopener" target="blank" href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS">Oregon''s
-            My Vote website</a>.</p><br><p>You can use Oregon''s My Vote website to
-            check on your ballot status, view and update your voter registration information,
-            find a ballot drop site near you, and more.</p><br><p>NOTE: if you will
-            be away from your registration address during an election, and you need
-            your ballot mailed elsewhere, you must submit an Absentee Ballot Request
-            Form: <a rel="noopener" target="blank" href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">Oregon
-            Absentee Ballot Request Form</a></p><br><p>Once you have your ballot,
-            read the instructions carefully, fill out the ballot and send it back
-            in. Vote-by-mail ballots must be received by 8:00pm on Election Day.</p>'
+          splash_header: Oregon Conducts All Elections by Mail. Make Sure You're Registered!
+          splash_instructions: |-
+            <p> If you are registered to vote in Oregon you do not need to request an absentee ballot- one will be mailed to you.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to <a href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS">My Vote</a>.</p>
+            <p>​​The deadline to register is 21 days before Election Day.</p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>You can also update your registration at My Vote, or learn more from the <a href="https://sos.oregon.gov/voting/Pages/updatevoterregistration.aspx" title="Update Voter Registration Information">Secretary of State</a>.</p>
+            <p>You will be sent a voters' pamphlets two to three weeks before an election so you can research issues and candidates.</p>
+            <p>Your ballot can be mailed or dropped off at any ​across the state.</p>
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Ballots must be received by 8 p.m. on Election Day.​​​​​​​​</p>
       pa:
         abr_form_fields:
           bad_date__format_message: Invalid date
@@ -2803,10 +2806,18 @@ en:
           state_reminder_2: ""
           finalpage_instructions: "You can look up your Absentee Ballot status by using your state&#39;s <a target='_blank' href='https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot'>online tool</a>"
           finalpage_additional_instructions: 
-          splash_header: Absentee Requests In Utah
+          splash_header: Utah Automatically Mails All Registered Voters a Ballot.
           splash_instructions: |-
-            <p>In your state, every active registered voter automatically receives a mail ballot. Your mail ballot will be sent to the address listed on your voter registration.  If you want to check on the status of your ballot, check if you are registered (and what address is listed on file), or have general questions about your absentee ballot go to  <a rel="noopener" target="blank" href="https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/">https://voteinfo.utah.gov/learn-about-voting-by-mail-and-absentee-voting/</a></p> <p> NOTE: you cannot have your ballot sent to a different address than the one listed on your voter registration.  If you have a new permanent address, submit a new voter registration to update your address. </p>
-            <p> Once you have your ballot, again be sure to read the instructions carefully, fill out the ballot and send it back in.  Vote-by-mail ballots must be received by 11:59am on Election Day, or postmarked one (1) day before Election Day if returned by mail. If you are dropping your absentee ballot off in person, it can be dropped off in a ballot drop box. The ballot must be deposited in the drop box before polls close on Election Day. Any voter who is in line at a ballot drop box with a sealed return envelope containing their ballot at or before 8 p.m. must be allowed to deposit the ballot in the ballot box. </p>
+            <p>All active registered voters in Utah automatically receive a ballot in the mail.</p>
+            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+            <p>Double check that you're registered to vote by going to Utah's <a href="https://votesearch.utah.gov/voter-search/search/search-by-voter/voter-info" target="_blank" rel="noopener noreferrer">Find my voter registration</a> tool.
+            </p>
+            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
+            <p>To update your voter registration information, go to <a href="https://secure.utah.gov/voterreg/login.html?selection=UPDATE" target="_blank" rel="noopener noreferrer">Your Personal Information</a>.</p>
+            <p>Your county clerk will mail ballots between October 12, 2021 and October 26, 2021. If you are registered to vote in San Juan County, your ballot may be mailed sooner. If you do not receive a ballot shortly after this time, <a href="https://voteinfo.utah.gov/county-clerk-contact-information/" target="_blank" rel="noopener noreferrer"> contact your county clerk’s office</a>.
+            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
+            <p>Your mail ballot must be postmarked by November 1, 2021. You can also drop your ballot off at a drop box location before 8:00 pm on Election Day. <a href="https://votesearch.utah.gov/voter-search/search/search-by-address/how-and-where-can-i-vote" title="How can I vote?" target="_blank" rel="noopener noreferrer">Find drop boxes near you</a>.
+            </p>
       va:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In VA
         state_online_abr:
