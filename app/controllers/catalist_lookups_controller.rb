@@ -14,6 +14,7 @@ class CatalistLookupsController < ApplicationController
       last: @last_name,
       state: @home_state,
       zip: @zip,
+      phone_type: "mobile"
     )
     set_up_locale
   end
@@ -24,6 +25,7 @@ class CatalistLookupsController < ApplicationController
   
   def create
     @lookup = CatalistLookup.new(lookup_params)
+    @lookup.phone_type = "mobile"
     set_up_locale
     @lookup.partner_id = @partner_id
     if @lookup.save
