@@ -1956,7 +1956,7 @@ en:
               office.)
       nh:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "received by 6 p.m. on the second Friday preceding the election."
           abr_status_check_intro: "You can look up your  status by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
@@ -2128,7 +2128,7 @@ en:
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>'
       nv:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "All registered voters receive a ballot by mail. Registrations must be postmarked the fourth Tuesday before any primary or general election."
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
