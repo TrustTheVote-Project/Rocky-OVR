@@ -2,16 +2,26 @@
 
 ## 0. Quick Summary
 
-### Workstation Setup
+### Linux Workstation Setup
 
-    sudo apt-get install curl libxml2-dev libxslt-dev libqt4-dev libmysqlclient-dev
-    git clone git@github.com:trustthevote/Rocky.git
+    sudo apt-get install git curl default-libmysqlclient-dev default-jdk
+    export JAVA_HOME=/usr/lib/jvm/default-java
+    export LD_LIBRARY_PATH=$JAVA_HOME/lib:$JAVA_HOME/lib/server
+    
+    git clone git@github.com:trustthevote/Rocky-OVR.git rocky
     curl -L https://get.rvm.io | bash -s stable
     source ~/.bash_profile
-    rvm install ruby-1.9.3-p125
-    cd Rocky
+    rvm install $(cat .ruby-version)
+    
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+    nvm install --lts
+    nvm use --lts
+
+    cd rocky
     gem install bundler
+    gem install ffi -- --disable-system-libffi
     bundle install
+    
     vim .env # add variable settings as needed (see below)
 
 ### App Deployment
@@ -66,9 +76,7 @@ versions, run:
   
 If the database hasn't been created yet, set that up by running
 
-    $ bundle exec rake db:create
-    $ bundle exec rake db:migrate
-    $ bundle exec rake db:bootstrap
+    $ bundle exec rake db:create db:schema:load db:migrate db:bootstrap
 
 ## 2. Configure deploy scripts
 
