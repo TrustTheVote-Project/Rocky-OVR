@@ -40,7 +40,7 @@ class User < ApplicationRecord
   end
 
   def self.deactivate_stale_users!
-    date = 12.hours.ago #90.days.ago
+    date = 90.days.ago
     users = User.where("(current_login_at < ? OR current_login_at IS NULL) AND created_at < ?", date, date)
     users.each do |u|
       u.active = false
