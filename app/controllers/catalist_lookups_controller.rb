@@ -14,8 +14,18 @@ class CatalistLookupsController < ApplicationController
       last: @last_name,
       state: @home_state,
       zip: @zip,
-      phone_type: "mobile"
+      phone_type: "mobile",
     )
+    if @lookup.partner.primary?
+      @lookup.opt_in_email = true
+    else
+      if @lookup.partner.rtv_email_opt_in?
+        @lookup.opt_in_email = true
+      end
+      if @lookup.partner.partner_email_opt_in?
+        @lookup.partner_opt_in_email = true
+      end
+    end
     set_up_locale
   end
   

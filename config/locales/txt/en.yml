@@ -18,7 +18,7 @@ en:
       step_1_instructions: <p>Not sure if you're registered to vote? Take one minute and verify your voter registration status today.</p>
       step_2_header_check: We found a likely match.
       step_2_header_found: "%{first_name}, we found your voter registration."
-      step_2_header_not_found: We couldn't confirm that you're registered to vote.
+      step_2_header_not_found: "%{first_name}, we couldn't confirm that you're registered to vote."
       step_2_instructions: ""
       accept: "Yes"
       reject: "No"
