@@ -1,6 +1,6 @@
 - reject_content = capture_haml do
   - url = @lookup.state&.registrar_url
-  = t('txt.lookup.check_again', address: @lookup.address, first_name: @lookup.first, state: @lookup.state.name, state_date: l(@lookup.state_last_updated_at, format: :long)).html_safe
+  = t('txt.lookup.check_again', address: @lookup.address, first_name: @lookup.first, state: @lookup.state.name, state_date: l(@lookup.state_last_updated_at.to_date, format: :long)).html_safe
   - if url
     %span.rollover_button.button{role: "button"}
       = link_to t('txt.lookup.check_with_state'), url, {target: "_blank", rel: "noopener"}
