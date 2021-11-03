@@ -1956,7 +1956,7 @@ en:
               office.)
       nh:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "received by 6 p.m. on the second Friday preceding the election."
           abr_status_check_intro: "You can look up your  status by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
@@ -2128,7 +2128,7 @@ en:
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>'
       nv:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "All registered voters receive a ballot by mail. Registrations must be postmarked the fourth Tuesday before any primary or general election."
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
@@ -2814,9 +2814,9 @@ en:
             </p>
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
             <p>To update your voter registration information, go to <a href="https://secure.utah.gov/voterreg/login.html?selection=UPDATE" target="_blank" rel="noopener noreferrer">Your Personal Information</a>.</p>
-            <p>Your county clerk will mail ballots between October 12, 2021 and October 26, 2021. If you are registered to vote in San Juan County, your ballot may be mailed sooner. If you do not receive a ballot shortly after this time, <a href="https://voteinfo.utah.gov/county-clerk-contact-information/" target="_blank" rel="noopener noreferrer"> contact your county clerk’s office</a>.
+            <p>If you are an active registered voter then you will automatically receive a ballot in the mail.</a>.
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-            <p>Your mail ballot must be postmarked by November 1, 2021. You can also drop your ballot off at a drop box location before 8:00 pm on Election Day. <a href="https://votesearch.utah.gov/voter-search/search/search-by-address/how-and-where-can-i-vote" title="How can I vote?" target="_blank" rel="noopener noreferrer">Find drop boxes near you</a>.
+            <p>Your mail ballot must be postmarked by the U.S. Post Office the day before Election Day. You can also drop your ballot off at a drop box location before 8:00 pm on Election Day. <a href="https://votesearch.utah.gov/voter-search/search/search-by-address/how-and-where-can-i-vote" title="How can I vote?" target="_blank" rel="noopener noreferrer">Find drop boxes near you</a>.
             </p>
       va:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In VA
