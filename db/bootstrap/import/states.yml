@@ -90,7 +90,7 @@ record_4:
   sos_phone: "(800) 345-VOTE"
   sos_url: http://www.sos.ca.gov/elections/registration-status/
   online_registration_url: http://www.registertovote.ca.gov/
-  registration_deadline: california
+  registration_deadline: postmarked_15_days
   sub_18: once_turned_16
 record_5:
   abbreviation: CO
@@ -143,7 +143,7 @@ record_8:
   sos_phone: "(202) 727-2525"
   sos_url: http://www.dcboee.org/
   sub_18: when_at_least_16
-  registration_deadline: district_of_columbia
+  registration_deadline: received_21_days
   online_registration_url: https://www.vote4dc.com/ApplyInstructions/Register
 record_9:
   abbreviation: FL
@@ -159,7 +159,7 @@ record_9:
   sos_url: https://dos.myflorida.com/elections/
   sub_18: when_is_16
   id_length_min: '4'
-  registration_deadline: florida
+  registration_deadline: default
   online_registration_url: https://registertovoteflorida.gov/eligibilityreactive
 record_10:
   abbreviation: GA
@@ -190,7 +190,7 @@ record_11:
   sos_phone: "(808) 453-8683"
   sos_url: http://www.hawaii.gov/elections/
   sub_18: once_turned_16
-  registration_deadline: received_at_least_30_days
+  registration_deadline: postmarked_25_days
   online_registration_url: https://olvr.hawaii.gov/register.aspx
 record_12:
   abbreviation: ID
@@ -267,7 +267,7 @@ record_16:
   sos_phone: "(785) 296-4561"
   sos_url: http://www.voteks.org/
   sub_18: be_by_next_general_election_november
-  registration_deadline: kansas
+  registration_deadline: postmarked_21_days
   id_length_min: '4'
   online_registration_url: https://www.KSVotes.org/ref?ref=rockthevote
   online_registration_system_name: VoteKS.org
@@ -296,7 +296,7 @@ record_18:
   sos_phone: "(225) 922-0900"
   sos_url: https://www.sos.la.gov/ElectionsAndVoting/GetElectionInformation/Pages/default.aspx
   sub_18: once_turned_17
-  registration_deadline: received_30_days
+  registration_deadline: postmarked_30_days
   id_length_min: '4'
 record_19:
   abbreviation: ME
@@ -309,7 +309,7 @@ record_19:
   sos_phone: "(207) 624-7650"
   sos_url: https://www.maine.gov/sos/cec/elec/index.html
   sub_18: once_turned_17_but
-  registration_deadline: maine
+  registration_deadline: received_21_days
   id_length_min: '4'
 record_20:
   abbreviation: MD
@@ -320,7 +320,7 @@ record_20:
   sos_address: State Board of Elections<br>P.O. Box 6486<br>Annapolis, MD 21401-0486
   sos_phone: "(800) 222-VOTE"
   sos_url: http://elections.maryland.gov/voter_registration/index.html
-  registration_deadline: postmarked_21_days
+  registration_deadline: received_21_days
   id_length_min: '4'
   online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1?val=rock
 record_21:
@@ -370,7 +370,7 @@ record_23:
     Paul, MN 55155-1299
   sos_phone: "(651) 215-1440"
   sos_url: http://www.sos.state.mn.us/elections-voting/
-  registration_deadline: minnesota
+  registration_deadline: received_21_days
   id_length_min: '4'
 record_24:
   abbreviation: MS
@@ -382,7 +382,7 @@ record_24:
   sos_phone: "(800) 829-6786"
   sos_url: http://www.sos.ms.gov/elections-voting/pages/default.aspx
   sub_18: be_by_next_general_election_november
-  registration_deadline: mississippi
+  registration_deadline: postmarked_30_days
   id_length_min: '4'
 record_25:
   abbreviation: MO
@@ -408,7 +408,7 @@ record_26:
   sos_phone: "(406) 444-4732"
   sos_url: http://sos.mt.gov/elections/index.asp
   sub_18: turn_by_next_election_2
-  registration_deadline: montana
+  registration_deadline: postmarked_30_days
   id_length_min: '4'
 record_27:
   abbreviation: NE
@@ -477,7 +477,7 @@ record_31:
   sos_address: Bureau of Elections<br>325 Don Gaspar, Suite 300<br>Santa Fe, NM 87503
   sos_phone: "(505) 827-3600"
   sos_url: http://www.sos.state.nm.us/
-  registration_deadline: new_mexico
+  registration_deadline: postmarked_28_days
   online_registration_url: https://portal.sos.state.nm.us/OVR/(S(od4445h5uj2f5tyucvvhszdf))/WebPages/InstructionsStep1.aspx
   sub_18: turn_by_next_general_election_november
 record_32:
@@ -500,7 +500,7 @@ record_32:
   sos_phone: "(518) 474-6220"
   sos_url: http://www.elections.ny.gov
   status_check_url: https://absenteeballot.elections.ny.gov/
-  registration_deadline: new_york
+  registration_deadline: postmarked_25_days
   id_length_min: '4'
   online_registration_url: http://dmv.ny.gov/org/more-info/electronic-voter-registration-application
 record_33:
@@ -514,7 +514,7 @@ record_33:
   sos_address: State Board of Elections<br>P.O. Box 27255<br>Raleigh, NC 27611-7255
   sos_phone: "(919) 814-0700"
   sos_url: http://www.ncsbe.gov/
-  registration_deadline: north_carolina
+  registration_deadline: postmarked_25_days
   id_length_min: '4'
   online_registration_url: https://payments.ncdot.gov/service/nc_voter_registration/workflow/nc_voter_reg_standalone_entry/1?initialTalkObject=%7B%22dashboard%22%3A%7B%22serviceOfferingId%22%3A%22nc_voter_registration%22%2C%22licenses%22%3A%5B%5D%7D%7D
 record_34:
@@ -546,7 +546,7 @@ record_35:
   sos_phone: "(614) 466-2585"
   sos_url: https://www.sos.state.oh.us/elections/
   sub_18: turn_by_next_general_election_november_2
-  registration_deadline: ohio
+  registration_deadline: postmarked_30_days
   id_length_min: '4'
   online_registration_url: https://olvr.ohiosos.gov
 record_36:
@@ -608,7 +608,7 @@ record_39:
     RI 02904-2790
   sos_phone: "(401) 222-2345"
   sos_url: http://www.elections.state.ri.us/
-  registration_deadline: rhode_island
+  registration_deadline: postmarked_30_days
   id_length_min: '4'
   online_registration_url: https://vote.sos.ri.gov/Home/RegistertoVote?ActiveFlag=1
 record_40:
@@ -661,7 +661,7 @@ record_43:
   sos_phone: "(800) 252-VOTE"
   sos_url: http://www.sos.state.tx.us/elections/index.shtml
   sub_18: 2_months_before
-  registration_deadline: texas
+  registration_deadline: received_30_days
   id_length_min: '4'
 record_44:
   abbreviation: UT
