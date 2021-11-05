@@ -68,7 +68,7 @@ en:
       partner:
         name: "Contact Name"
         organization: "Partner Organization Name"
-        from_email: Edit "from" email address to send autoresponders from your organization,
+        from_email: Edit "from" email address to send autoresponders from a custom email address, 
           rather than Rock the Vote.
         url: URL
         registration_instructions_url: PDF instructions URL
