@@ -14,7 +14,7 @@
         <%- if form.object.errors.any?  %>
           <p>There was a problem logging in:</p>
           <%- form.object.errors.full_messages.each do |message| %>
-            <p><%= message %></p>
+            <p><%= message.html_safe %></p>
           <%- end %>
           <br/>
           <br?>
@@ -22,7 +22,7 @@
           If you had a previous partner account with this email address
           and haven't set up your new user account yet,
           use the "Forgot your password?" link to
-          set a password for your new user account.
+          set a password for <%= form.object.email %>.
           </p>
         <%- end %>
       </span>
