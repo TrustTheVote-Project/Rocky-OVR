@@ -1250,7 +1250,7 @@ es:
           finish_instructions: ''
           requirements: ''
         registration_deadline_text: 'Atención: La fecha límite para inscribirse y
-          poder votar en las próximas elecciones d 11/02/2021, es 10/18/2021. Si usted
+          poder votar en las próximas elecciones d 05/17/2022, es 05/02/2022. Si usted
           NO es un ciudadano de los Estados Unidos y un residente de Pennsylvania
           por lo menos 30 días antes de la próxima elección, usted NO puede registrarse
           para votar. Si tiene preguntas, llame al 1.877.VOTESPA (1.877.868.3772).'
@@ -1340,7 +1340,7 @@ es:
           Votante por correo.</li><li>Si en 14 días no ha recibido su Tarjeta de Inscripción
           de Votante, llame a su oficina de inscripción de votantes.</li><p>Atención:
           La fecha límite para inscribirse y poder votar en las próximas elecciones
-          11/02/2021, es 10/18/2021</p>"
+          05/17/2022, es 05/02/2022</p>"
         signature_capture:
           rotation_instructions: Debe girar la pantalla para capturar correctamente
             su firma. Asegúrese de que la rotación de su pantalla esté habilitada.
@@ -2180,7 +2180,7 @@ es:
         fecha límite para la inscripción de votantes en línea en www.RegisterToVoteNV.gov
         es el jueves anterior al primer día del período de votación anticipada.
       oklahoma: recibido antes del 10/15/2021
-      pennsylvania: recibido antes del 10/18/2021
+      pennsylvania: recibido antes del 05/02/2022
       rhode_island: 10/3/2021
       texas: 10/4/2021
       washington: recibido antes del 10/25/2021
