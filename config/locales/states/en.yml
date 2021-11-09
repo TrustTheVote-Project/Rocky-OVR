@@ -687,8 +687,6 @@ en:
             the election offering accessible voting, in person voting and same day registration. 
             For more information, view Hawaii's 
             <a href="https://elections.hawaii.gov/voting/absentee-voting/">absentee voting information page</a>.
-
-
       ia:
         abr:
           step_2_header: All registered voters in Iowa can vote absentee!
@@ -1199,7 +1197,6 @@ en:
             <li>Your date of birth</li>
             <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
             <p>Your signature at the MVA will become your official voter registration signature.</p>
-
       me:
         abr:
           request_deadline: "received by the Municipal Clerk by the close of business on Thursday, October 28, 2021."
@@ -1715,7 +1712,6 @@ en:
             </span>
             </a>
             </div></form>
-
       mt:
         abr:
           request_deadline: "Applications must be received by noon on November 1, 2021. We recommend sending in your application/request and ballot as soon as possible."
@@ -2362,7 +2358,6 @@ en:
             you may request your absentee ballot online directly with the state.</p>"
           finish_instructions: '<p>At any time you can check the status of your application
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://www.ok.gov/elections/OVP.html">https://www.ok.gov/elections/OVP.html</a></p>'
-            
       or:
         abr:
           request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
@@ -2447,8 +2442,8 @@ en:
             <p>If you are registered to vote and can provide a valid state ID or the last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
             <p>Check if you are registered by visiting <a rel="noopener noreferrer" target="_blank" href="https://www.pavoterservices.pa.gov/Pages/voterregistrationstatus.aspx?lang=EN-US">the Pennsylvania voter information search site</a></p>
             <p>You do not need an excuse to vote by mail. When prompted, you will be allowed to request a mail-in ballot even if you select "no" to the questions regarding being absent from the municipality or having an illness or disability. </p>
-        registration_deadline_text: 10/18/2021 is the last day to register before
-          the 11/02/2021 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 05/02/2022 is the last day to register before
+          the 05/17/2022 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2532,8 +2527,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 10/18/2021 is the last day to register before
-          the 11/02/2021 election.</p>"
+          </ul> <p> Deadline Alert: 05/02/2022 is the last day to register before
+          the 05/17/2022 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
@@ -3857,7 +3852,7 @@ en:
         first day of the early voting period.
       ohio: postmarked by 10/4/2021
       oklahoma: received by 10/15/2021
-      pennsylvania: received by 10/18/2021
+      pennsylvania: received by 05/02/2022
       rhode_island: 10/3/2021
       texas: 10/4/2021
       utah: no later than 5:00 pm 11 calendar days before the election.
