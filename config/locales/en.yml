@@ -610,7 +610,7 @@ en:
       email_invalid: Email is not valid.
       password_blank: Password can not be blank.
       password_invalid: Login/password combination is not valid.
-      not_active: Your account is not active. Please contact <a href="mailto:ovrtool@rockthevote.org">ovrtool@rockthevote.org</a> to re-activate your account.
+      not_active: Your account is not active. Please contact <a href="mailto:civictech@rockthevote.org">civictech@rockthevote.org</a> to re-activate your account.
       not_confirmed: Your account is not confirmed.
       not_approved: Your account is not approved.
       no_authentication_details: You did not provide any details for authentication.
