@@ -12,7 +12,7 @@ $(document).ready(function() {
 <%= form.hidden_field :state_id %>
 
 <fieldset>
-  <legend><span><%= I18n.t('txt.registration.name') %></span><%= tooltip_tag :registrant_name %></legend>
+  <legend><span><%= I18n.t('txt.registration.name') %></span></legend>
   <ul class="stacked">
     
     <li class="width_b registrant-form__first-name__line">
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 <fieldset>
-  <legend><span><%= I18n.t('txt.registration.home_address') %></span><%= tooltip_tag :home_address %></legend>
+  <legend><span><%= I18n.t('txt.registration.home_address') %></span></legend>
   <ul class="stacked">
     <li class="width_a registrant-form__home-address-__line">
       <h3><%= form.label :address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
@@ -80,7 +80,6 @@ $(document).ready(function() {
         <%= field_div form, :phone, placeholder: '###-###-####' %>
         <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
       </div>
-      <div class="tooltip"><%= tooltip_tag :phone %></div>
     </li>
   </ul>
 
