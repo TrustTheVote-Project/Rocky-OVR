@@ -28,7 +28,7 @@
   .check 
     %p= t('txt.lookup.check.matched', first_name: @lookup.first)
     = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
-    %p
+    %p{style: "text-transform: capitalize" }
       = t('txt.lookup.check.gender', gender: @lookup.matched_data["gender"])
       %br
       = t('txt.lookup.check.birth_date', birth_date: @lookup.matched_data["birthdate"])
