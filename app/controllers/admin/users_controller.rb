@@ -25,7 +25,7 @@
 class Admin::UsersController < Admin::BaseController
   def index
     if params[:email] 
-      if user = Partner.find_by_email(params[:email])
+      if user = User.find_by_email(params[:email])
         redirect_to edit_admin_user_path(user.id) and return
       else
         flash[:warning] = "User #{params[:email]} not found"
