@@ -632,7 +632,7 @@ record_41:
   abbreviation: SD
   name: South Dakota
   requires_party: true
-  party_tooltip: required_for_primary
+  party_tooltip: south_dakota
   id_number_tooltip: south_dakota
   sos_address: Elections, Secretary of State<br>500 E. Capitol<br>Pierre, SD 57501-5070
   sos_phone: "(605) 773-3537"
