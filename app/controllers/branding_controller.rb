@@ -25,7 +25,7 @@
 class BrandingController < PartnerBase
   layout "partners"
   before_action :require_partner
-  before_action :set_partner, only: [:show, :css, :emails]
+  #before_action :set_partner, only: [:show, :css, :emails]
 
   MAX_MB = 5.0
 
@@ -38,7 +38,6 @@ class BrandingController < PartnerBase
 
 
   def update
-    @partner = current_partner
     @partner.update_attributes(partner_params)
     # remove assets before uploading new ones
     params[:remove].try(:each) do |filename, _|
@@ -54,7 +53,7 @@ class BrandingController < PartnerBase
 
     update_email_template_subjects(params[:template_subject])
 
-    redirect_back fallback_location: partner_branding_path
+    redirect_back fallback_location: partner_branding_path(@partner) 
   end
 
   protected
@@ -63,10 +62,6 @@ class BrandingController < PartnerBase
       :from_email,
       :replace_system_css_preview,      
     ) : {}
-  end
-
-  def set_partner
-    @partner = current_partner
   end
 
   def upload_custom_asset(asset_file)

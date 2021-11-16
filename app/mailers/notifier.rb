@@ -36,13 +36,13 @@ class Notifier < ActionMailer::Base
          date: Time.now.to_s(:db))
   end
   
-  def password_reset_instructions(partner)
-    @url = "#{edit_password_reset_url(host: RockyConf.default_url_host, :id => partner.perishable_token)}"
+  def password_reset_instructions(user)
+    @url = "#{edit_password_reset_url(host: RockyConf.default_url_host, :id => user.perishable_token)}"
     
     
     mail(:subject=> "Password Reset Instructions",
          :from => RockyConf.from_address,
-         :to => partner.email,
+         :to => user.email,
          :date => Time.now.to_s(:db))
   end
   

@@ -25,11 +25,29 @@
 class AdminMailer < ActionMailer::Base
   default from: RockyConf.admin.from_address, to: RockyConf.admin.admin_recipients
   
+  def invite_user(user, partner)
+    @user = user
+    @partner = partner
+    mail(
+      to: user.email,
+      from: RockyConf.admin.branding_from,      
+      subject: "You've been added to #{@partner.organization} on Rock The Vote"
+    )
+  end
+
   def deactivate_partners(partners)
     @partners = partners
     mail(
       to: RockyConf.admin.partner_status_to,
       subject: "[ROCKY#{environment_subject}] Inactive Parters Login Disabled"
+    )
+  end
+
+  def deactivate_users(users)
+    @users = users
+    mail(
+      to: RockyConf.admin.partner_status_to,
+      subject: "[ROCKY#{environment_subject}] Inactive Users Login Disabled"
     )
   end
   

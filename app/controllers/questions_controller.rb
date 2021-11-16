@@ -26,14 +26,12 @@ class QuestionsController < PartnerBase
   before_action :require_partner
 
   def edit
-    @partner = current_partner
   end
 
   def update
-    @partner = current_partner
     if @partner.update_attributes(partner_params)
       flash[:success] = "You have updated your survey questions."
-      redirect_to partner_url
+      redirect_to partner_path(@partner)
     else
       render "edit"
     end

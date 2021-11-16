@@ -134,7 +134,7 @@ en:
             ballot application which reads as follows:</p> <p>"I have a physical illness
             or infirmity which prevents my attendance at the polls. [ID REQUIRED]"</p>'
         abr_form_fields:
-          Return this application to: 'County Clerk''s Full Address:'
+          Return this application to: "County Clerk's Full Address:"
           Please note that only one application may be placed in the same envelope: County
           reason_instructions: 'I am applying for an absentee ballot because: (check
             all that apply)'
@@ -194,7 +194,7 @@ en:
           WorkPhone: Work Phone
       ar:
         abr:
-          request_deadline: "by 7 days before the election"
+          request_deadline: "received at least 11 days before the election"
           abr_status_check_intro: "You can look up your Absentee Ballot status by using the VoterView tool: "
           state_reminder_1: "If you have authorized a designated bearer to pick up your absentee ballot, make sure they also sign your ballot application."
           state_reminder_2: ""
@@ -206,8 +206,7 @@ en:
           finish_instructions: "<p>Make sure to read the instructions on the form
             carefully, then complete and send this form in as soon as possible. If
             mailing in your absentee ballot application, the application must be received
-            7 days before the election. Your absentee ballot application (if delivered
-            in-person) must be received by the close of business November 2, 2020.</p><p>Once
+            7 days before the election. </p><p>Once
             you have your ballot, again be sure to read the instructions carefully,
             fill out the ballot and send it back in.</p>"
         abr_form_fields:
@@ -365,7 +364,7 @@ en:
         ca_disclosures: I have reviewed and accepted the notices above.
       co:
         abr:
-          request_deadline: "October 25, 2021."
+          request_deadline: "through the 8th day before Election Day"
           abr_status_check_intro: "You can look up your Mail-in Ballots status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
@@ -542,7 +541,7 @@ en:
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
             <p>Instructions on how to vote with your Vote-by-Mail ballot are included with the ballot.</p>
             <p> For more information, view Florida's <a href="https://dos.myflorida.com/elections/for-voters/voting/vote-by-mail/"> Vote-by-Mail</a> site. </p>
-          request_deadline: "Mail Ballot Pickup from Election Office by Tue Nov 2, 2021."
+          request_deadline: "no later than 5 p.m. on the 10th day before the election"
           abr_status_check_intro: "You can look up your Vote-By-Mail status by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
@@ -576,7 +575,7 @@ en:
 
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
 
-            <p>Your absentee ballot request must be received by 10/22/2021.</p>
+            <p>You can request an absentee ballot no earlier than 78 days and no later than 11 days prior to an election.</p>
 
             <p>Make sure to include your Georgia Driver’s License or Identification Card number OR a copy of an acceptable identification from the list in the instructions.</p>
 
@@ -593,7 +592,7 @@ en:
             <p>Please fill out the fields below so we can prepare
             your PDF early vote request form.</p>
             
-          request_deadline: "received by 10/22/2021."
+          request_deadline: "no later than 11 days prior to an election."
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
@@ -697,7 +696,7 @@ en:
             <h2 role="heading" aria-level="2">Where are you registered to vote?</h2>
             <p>We'll use this information to determine how you can request your absentee ballot.</p>
 
-          request_deadline: "received by 5:00 p.m October 18, 2021"
+          request_deadline: "received by your County Auditor no later than 5:00 p.m. 15 days before the election"
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
@@ -748,7 +747,7 @@ en:
             can check the status of your ballot here: <a rel="noopener" target="blank"
             href="https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx">https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx</a></p>'
         abr:
-          request_deadline: "received by October 22, 2021"
+          request_deadline: "received by the county clerk’s office by the 11th day prior to the election"
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
@@ -908,7 +907,7 @@ en:
               the entire twelve (12) hours that the polls are open.
       ks:
         abr:
-          request_deadline: "5:00 pm on 10/26/2021."
+          request_deadline: "received the Tuesday before the election"
           abr_status_check_intro: "You can look up your Advance Ballot by Mail status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: "Also please note, that if you only if you don't provide a license number or ID card # on your request form, you are required to submit a copy of your ID with your application. A full list of acceptable IDs can be found on the application."
@@ -924,7 +923,7 @@ en:
 
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
 
-            <p>Your absentee ballot request must be received by 5:00 pm on 10/26/2021.</p>
+            <p>Your absentee ballot request must be received Tuesday [one week] before the election, although in many situations the applications need to be submitted earlier to allow sufficient time for mailing the ballots and returning them..</p>
 
             <p>Make sure to include your driver’s license number or a copy of your photo identification with your request.</p>
 
@@ -933,7 +932,7 @@ en:
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
 
             <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
-            <p>All ballots must be postmarked on or before election day (November 2, 2021) and received in the county election office by the close of business on the Friday following the election.</p>
+            <p>All ballots must be postmarked on or before election day and received in the county election office by the close of business on the Friday following the election.</p>
           finalpage_instructions: "You can look up your Advance Ballot by Mail status by using the Kansas <a href='https://myvoteinfo.voteks.org/voterview'>VoterView</a>."
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           requirements: "<p>To qualify to request a ballot in KS, you only need to
@@ -984,7 +983,7 @@ en:
           voter registration system.
       ky:
         abr:
-          request_deadline: "received by October 19, 2021."
+          request_deadline: "received Tuesday before the election"
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
@@ -997,15 +996,7 @@ en:
             <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
             <p>Double check that you're registered to vote by going to the <a href="https://vrsws.sos.ky.gov/vic/">Kentucky Voter Registration Portal</a>.</p>
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-            <p>If you live in the 22nd Senate District, the 51st House District or the 89th House and have an election in 2021, the deadline to apply online for an Absentee ballot is October 19, 2021 no later than 11:59 p.m. EST.</p>
             <p>Absentee ballots requests must be received fourteen (14) days before the election.</p>
-            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-            <p>There are three ways for Kentucky voters to cast their ballot for this November’s SPECIAL election:
-            <ul>
-            <li>In-person Absentee Early Voting before Election Day, Oct. 28th - 30th, 2021.</li>
-            <li> In-person on Election Day, Nov. 2nd, 2021.</li>
-            <li>By Absentee ballot (return by mail or ballot dropbox).</li>
-            </p>
             <p> For more information, view Kentucky's 
             <a href="https://vrsws.sos.ky.gov/abrweb">Absentee Request Portal</a> </p>
       la:
@@ -1199,7 +1190,7 @@ en:
             <p>Your signature at the MVA will become your official voter registration signature.</p>
       me:
         abr:
-          request_deadline: "received by the Municipal Clerk by the close of business on Thursday, October 28, 2021."
+          request_deadline: "until the 3rd business day prior to the election, unless special circumstances exist"
           abr_status_check_intro: "You can look up your Absentee Ballot status by calling your local election official.  Find your official's contact information here:"
           state_reminder_1: ""
           state_reminder_2: ""
@@ -1237,7 +1228,7 @@ en:
             <p><i>Be sure to check if you need to send in a copy of your ID 
             or anything else with your request.</i></p>
             <p><i>Applications can be submitted by mail, email, or fax. If you are emailing your application, you may either scan or take a photo of your signed application and email it to your local election office, or you may sign your application using a mouse, finger, or stylus and email the completed and signed attachment. Typed signatures are not acceptable.</i></p>
-          request_deadline: "received by 10/27/2021."
+          request_deadline: "received at least 4 business days before Election Day."
           abr_status_check_intro: "You can look up your Vote by mail status by using your state's online tool:"
           state_reminder_1: "Applications can be submitted by mail, email, or fax. If you are emailing your application, you may either scan or take a photo of your signed application and email it to your local election office, or you may sign your application using a mouse, finger, or stylus and email the completed and signed attachment. Typed signatures are not acceptable."
           state_reminder_2: ""
@@ -1327,15 +1318,14 @@ en:
             <h2 role="heading" aria-level="2">Where are you registered to vote?</h2>
             <p>We'll use this information to determine how you can request your absentee ballot.</p>
 
-          request_deadline: "received by 5pm on October 29, 2021"
+          request_deadline: "received by your clerk no later than 5 p.m. the Friday before the election"
           abr_status_check_intro: "You can look up your absent voter status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
           finalpage_instructions: "You can look up your absent voter status by using Michigan's <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>Your voter information</a> tool"
           finalpage_additional_instructions:  "You will need to first look up your voter registration, then you can see your ballot status as well."
           finish_instructions: '<p>Make sure to complete and send this form in as
-            soon as possible.  In Michigan, this application must be RECEIVED by Friday,
-            October 30th, 2020.</p><p>You can check on the status of your absent voter
+            soon as possible. The application must be received by your clerk no later than 5 p.m. the Friday before the election.</p><p>You can check on the status of your absent voter
             ballot request by contacting your city or township clerk''s office.  You
             can find your clerk''s office contact info here: <a rel="noopener" target="blank"
             href="https://mvic.sos.state.mi.us/">https://mvic.sos.state.mi.us/</a>'
@@ -1343,10 +1333,10 @@ en:
             <p><i>Be sure to check if you need to send in a copy of your ID 
             or anything else with your request.</i></p>
             <p><i>If you receive help with returning the application, make sure that the person returning your ballot also signs and dates the application.</i></p>
-            <p><i>Your application must be received by your local clerk by 5pm on October 29, 2021.</i></p>
+            <p><i>Your application must be received by your local clerk by received by your clerk no later than 5 p.m. the Friday before the election.</i></p>
         state_online_abr:
           confirm: |-
-            <p>You can apply for an Absentee Ballot in Maine in any of these ways:</p>
+            <p>You can apply for an Absentee Ballot in Michigan in any of these ways:</p>
             <ul> 
             <li>Online – Registered voters can request an absentee ballot online</li>
             <li>Call your city or township clerk and ask that an application be mailed to you</li>
@@ -1597,7 +1587,7 @@ en:
 
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
 
-            <p>Your absentee ballot request must be received by 5pm on October 20, 2021.</p>
+            <p>You can apply for a ballot any time during the year, except the day of the election. Leave time for election officials to mail your ballot.</p>
 
             <p>Make sure to review the identification requirements for voters who have not voted in person.</p>
 
@@ -1606,14 +1596,14 @@ en:
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
 
             <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
-            <p>All absentee ballots must be received at your county election office by 7pm on  Tue Nov 2, 2021.</p>
-          request_deadline: "received by 5pm on October 20, 2021."
+            <p>All absentee ballots must be received at your county election office by 7pm on Election Day.</p>
+          request_deadline: "You can apply for a ballot any time during the year, except the day of the election. Leave time for election officials to mail your ballot."
           abr_status_check_intro: "You can look up your Absentee Ballot status by calling your local election official.  Find your official's contact information here:"
           state_reminder_1: "If you registered by mail and this is your first time voting, you must provide a copy of either: (1) an ID issued by the Federal Government, state of Missouri, or a local election authority; (2) ID issued by a Missouri institution (public or private) of higher education; or (3) a current utility bill, bank statement, paycheck, government check or other government document that contains your name and address."
           state_reminder_2: ""
           finish_instructions_1_hint_state: |-
             <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
-            <p><i>Your absentee ballot request must be received by 5pm on October 20, 2021.</i></p>
+            <p><i>Your absentee ballot request must be received no later than the 5:00 p.m. on the second Wednesday prior to any election.</i></p>
           finalpage_instructions: "You may be able to track the status of your absentee ballot request. Contact your local election authority.  Find your official&#39;s contact information here: <a target='_blank' href='https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority'>Directory</a>"
 
           finalpage_additional_instructions:  
@@ -1688,7 +1678,7 @@ en:
             Have diabetes"         
       ms:
         abr:
-          request_deadline: "The deadline to apply for an absentee ballot is election day since ballots can technically be sent on election day, and will be counted if returned by 7 days after the election.."
+          request_deadline: "The deadline to apply for an absentee ballot is election day since ballots can technically be sent on election day, and will be counted if returned by 7 days after the election."
           abr_status_check_intro: "You can look up your Absentee Ballot status by calling your local election official.  Find your official's contact information here:"
           state_reminder_1: ""
           state_reminder_2: ""
@@ -1714,7 +1704,7 @@ en:
             </div></form>
       mt:
         abr:
-          request_deadline: "Applications must be received by noon on November 1, 2021. We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "Applications must be received by the county election office by noon the day before the election. We recommend sending in your application and ballot as soon as possible."
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: "\nIf you have designated another person to pick up your absentee ballot, make sure that they have also signed the form and you have signed and dated on the appropriate lines."
@@ -1765,7 +1755,7 @@ en:
             <p>Double check that you're registered to vote by going to the <a target="_blank" rel="noopener noreferrer" href="https://vt.ncsbe.gov/RegLkup/">North Carolina Voter Search</a> tool.</p>
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
             <p>You can also request an Absentee Ballot using a <a target="_blank" rel="noopener noreferrer"  href="https://s3.amazonaws.com/dl.ncsbe.gov/Forms/2021-NC-Absentee-Ballot-Request-Form-Fillable-English.pdf">paper request form [PDF]</a>.</p>
-            <p>The deadline to request an absentee ballot is 5:00 PM the Tuesday before Election Day (Oct. 26, 2021).</p>
+            <p>The deadline to request an absentee ballot is 5:00 PM the Tuesday before Election Day.</p>
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
             <p>Your county may offer Early voting or have delayed their elections until 2022. Review the  <a target="_blank" rel="noopener noreferrer" href="https://www.ncsbe.gov/2021-municipal-voter-tool" title="2021 Municipal Voter Tool">2021 election dates</a> by municipality.</p>            
         abr:
@@ -2013,7 +2003,7 @@ en:
       nj:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In NJ
         abr:
-          request_deadline: "received by October 26, 2021"
+          request_deadline: "received up to 7 days prior to the election."
           abr_status_check_intro: "You can look up your Vote By Mail status by using your state's online tool:"
           state_reminder_1: "If you haven't signed up before, you will need to sign up to use your state's look up tool.  You can do this on the same page."
           state_reminder_2: "If you have designated an authorized messenger or someone assisted you with this form, make sure that you have signed in both boxes, and they have signed and dated the form."
@@ -2023,7 +2013,7 @@ en:
 "
           finalpage_additional_instructions:  "If you haven't signed up before, you will need to sign up to use your state's look up tool.  You can do this on the same page."
           splash_header: Vote by Mail Requests In New Jersey
-          splash_instructions: '<p>Your state is automatically sending a vote by mail ballot to all 
+          splash_instructions: '<p>Newe Jersey is automatically sending a vote by mail ballot to all 
             registered voters this year. Your vote by mail ballot will be sent to the address 
             listed on your voter registration. If you have any questions, or need to 
             update your address please go to: <a href="https://voter.svrs.nj.gov/auth/sign-in">https://voter.svrs.nj.gov/auth/sign-in</a></p>'  
@@ -2113,15 +2103,9 @@ en:
             <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
             <p>Double check that you're registered to vote by going to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-            <p>Your absentee ballot request must be received no later than 5:00 pm on Thursday, October 28, 2021.</p>
+            <p>Your absentee ballot request must be received no later than 14 days before the election.</p>
             <p>To check the status of your Absentee Application, go to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
-            <!-- <p>Make sure to include  //-->
-            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-
-            <p>Absentee voting begins on Tuesday, October 5, 2021 for the Regular Local Election. </p>
-          
-          finish_instructions: '<p>At any time you can check the status of your application
-            and the status of your ballot at: <a rel="noopener" target="blank" href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1">https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker&AspxAutoDetectCookieSupport=1</a>'
+           
       nv:
         abr:
           request_deadline: "All registered voters receive a ballot by mail. Registrations must be postmarked the fourth Tuesday before any primary or general election."
@@ -2189,7 +2173,7 @@ en:
           to print, sign, and mail in the form.</p>
       ny:
         abr:
-          request_deadline: "Creceived by October 18, 2021e."
+          request_deadline: "received no later than fifteen days before the election."
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
@@ -2279,9 +2263,9 @@ en:
             prisoner: detention in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony
       oh:
         abr:
-          request_deadline: "received by October 30, 2021, 12:00 PM."
+          request_deadline: "received three days before the election."
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool"
-          state_reminder_1: " If you did not provide the last 4 digits of your Social Security number or your Ohio Driver License number, remember to provide a copy of a current identification and valid photo identification. Make a copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck, or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address."
+          state_reminder_1: "If you did not provide the last 4 digits of your Social Security number or your Ohio Driver License number, remember to provide a copy of a current identification and valid photo identification. Make a copy of a current and valid photo identification, military identification, or a current (within the last 12 months) utility bill, bank statement, government check, paycheck, or other government document (other than a notice of voter registration mailed by a board of elections) that contains your name and current address."
           state_reminder_2: ""
           step_3_instructions: |-
             <p>Any registered Ohio voter whose registration information is up-to-date can request an absentee ballot. <a href="https://voterlookup.ohiosos.gov/voterlookup.aspx" title="Voter Search" target="_blank" rel="noopener noreferrer">Make sure you're registered</a>.</p>
@@ -2327,7 +2311,7 @@ en:
           SSN4: Last four digits of your Social Security Number
       ok:
         abr:
-          request_deadline: "received by 5pm on November 2, 2021 for the November 9, 2021 election."
+          request_deadline: "received no later than 5 p.m. the Tuesday before the election."
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""   
@@ -2412,7 +2396,7 @@ en:
           has_assistance: I hereby state that I am unable to sign my application for a mail-in ballot without assistance because I am unable to write by reason of my illness or physical disability. I have made or have received assistance in making my mark in lieu of my signature.
           Address of witness: Address of witness or assistant
         abr:
-          request_deadline: "Received by 5pm on October 26, 2021."
+          request_deadline: "received by 5:00PM on the Tuesday before the election"
           abr_status_check_intro: "You can look up your Mail in ballot status by using your state's online tool:"
           state_reminder_1: "If you received help with this form, make sure that the witness has also signed the form and included their address."
           state_reminder_2: ""
@@ -2421,7 +2405,7 @@ en:
           finish_instructions_1_hint: |-
             <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
             <p><i>If you received help with this form, make sure that the witness has also signed the form and included their address.</i></p>
-            <p><i>Your application must be received by your local county board of elections by 5pm on October 26, 2021.</i></p>
+            <p><i>Your application must be received by your local county board of elections by 5:00PM on the Tuesday before the election.</i></p>
           finish_instructions: '<p>Make sure to complete and send this form in as
             soon as possible.</p><p>In Pennsylvania, this application must be RECEIVED
             by Tuesday, October 27th, 2020.</p><p>Once you receive your ballot, make
@@ -2596,7 +2580,7 @@ en:
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo">https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a></p>'
       ri:
         abr:
-          request_deadline: "Check with your local election officials for your state's voting deadlines.  We recommend sending in your application/request and ballot as soon as possible."
+          request_deadline: "received by the local board no later than 4:00 P.M. on the 21st day before the election."
           abr_status_check_intro: "You can look up your Mail Ballot status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
@@ -2749,7 +2733,7 @@ en:
             even if the ballot is emailed. Send military/overseas ballot by:'
       tx:
         abr:
-          request_deadline: "received by October 22, 2021"
+          request_deadline: "received at least 11 days before the election, before the close of regular business or 12 noon, whichever is later."
           abr_status_check_intro: "You may be able to find out your Ballot by Mail status by calling your local election official.  Find your official's contact information here:"
           state_reminder_1: "If a witness or assistant helped with this request form, make sure they print and sign their name."
           state_reminder_2: "You can return this form in person to the Early Voting Clerk, by mail, by common or contract carrier, by fax or email. If you submit the application by fax or email, you must also send the original hardcopy to the Early Voting Clerk."
@@ -2795,7 +2779,7 @@ en:
           Zip code of witness: ZIP
       ut:
         abr:
-          request_deadline: "postmarked November 1, 2021."
+          request_deadline: "If you are an active registered voter then you will automatically receive a ballot in the mail."
           abr_status_check_intro: "You can look up your Absentee Ballot status by using your state's online tool:"
           state_reminder_1: ""
           state_reminder_2: ""
@@ -2835,7 +2819,7 @@ en:
           button: Finish your<br/>vote by mail request<br/> online with Virginia.
           
         abr:
-          request_deadline: "received by Friday, October 22 2021 at 5pm."
+          request_deadline: "received by 5:00 pm on the eleventh (11th) day before the election."
           abr_status_check_intro: "You can look up your Vote By Mail status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
@@ -3018,18 +3002,18 @@ en:
       wa:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
         abr:
-          request_deadline: "received by October 25, 2021."
+          request_deadline: "If you are registered to vote in Washington, you do not need to request a ballot. Online and mail registrations must be received 8 days before Election Day."
           abr_status_check_intro: "You can look up your Vote By Mail status by using your state's online tool:"
           state_reminder_1: "You will need to first look up your voter registration, then you can see your ballot status as well."
           state_reminder_2: ""
-          finalpage_instructions: "You can look up your Vote By Mail status by using your state&#39;s <a target='_blank' href='https://voter.votewa.gov/WhereToVote.aspx#/login'>online tool</a>"
+          finalpage_instructions: "You can look up your Vote By Mail status by using Washington's <a target='_blank' href='https://voter.votewa.gov/WhereToVote.aspx#/login'>online tool</a>"
           finalpage_additional_instructions: "You will need to first look up your voter registration, then you can see your ballot status as well."
           splash_header: Washington Automatically Mails All Registered Voters a Ballot. Make Sure You're Registered!
           splash_instructions: |-
             <p>If you are registered to vote in Washington you do not need to request an absentee ballot.</p>
             <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
             <p>Double check that you're registered to vote by going to <a href="VoteWA.gov">VoteWA.gov</a>.</p>
-            <p>Online and mail-in voter registrations must be received by October 25.</p>
+            <p>Online and mail-in voter registrations must be received 8 days before Election Day.</p>
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
             <p>To update your name or address, go to <a href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA</a></p>
             <p>If you will be away when ballots are being mailed, your county may allow ballots to be forwarded. The best thing to do is contact your <a href="https://www.sos.wa.gov/elections/auditors/">County Elections Department</a> and ask for a temporary change in your mailing address.</p>
