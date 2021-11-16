@@ -78,11 +78,16 @@ Rails.application.routes.draw do
     
   end
 
-  resource  "partner_session"
-  match  "login",  :to => "partner_sessions#new", :as=>'login', via: :get
-  match "logout", :to => "partner_sessions#destroy", :as=>'logout', via: :get
+  resource  "user_session"
+  match  "login",  :to => "user_sessions#new", :as=>'login', via: :get
+  match "logout", :to => "user_sessions#destroy", :as=>'logout', via: :get
   
-  resource "partner", :path_names => {:new => "register", :edit => "profile"} do
+  resource "user", path_names: {:new => "register", :edit => "profile"} do
+  end
+  # MFA for user accounts
+  resources :mfa_sessions, only: [:new, :create]
+
+  resources "partners", :path_names => {:new => "register"} do
     member do
       get "statistics"
       post "registrations"
@@ -91,10 +96,11 @@ Rails.application.routes.draw do
       post "grommet_shift_report"
       post "abr_report"
       post "lookup_report"
-      get "reports"
+      get "reports"      
       get "download_csv"
       get "embed_codes"
     end
+    resources "partner_users", only: [:index, :create, :destroy]
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]
     resource "logo",          :only => [:show, :update, :destroy]
@@ -302,6 +308,13 @@ Rails.application.routes.draw do
       get :request_report, format: :csv
       patch :update_delay
     end
+    resources :users, except: [:show] do
+      member do
+        get :impersonate
+        get :deactivate
+        get :reactivate
+      end
+    end
     resources :emails, except: [:new, :edit, :show ]
     resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]
@@ -310,6 +323,8 @@ Rails.application.routes.draw do
         post :bulk_update
       end
       member do
+        get :zip_codes
+        get :check_zip_code
         get :remove_direct_mail_partner_id
       end
     end
@@ -327,8 +342,9 @@ Rails.application.routes.draw do
     resources :partners do
       member do
         get :regen_api_key
-        get :impersonate
+        post :add_user
         post :publish
+        delete :remove_user
       end
       collection do 
         post :upload_registrant_statuses

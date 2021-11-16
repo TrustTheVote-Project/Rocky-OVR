@@ -49,12 +49,35 @@ class Admin::PartnersController < Admin::BaseController
     render action: :index
   end
   
-  def impersonate
+  def add_user
     @partner = Partner.find(params[:id])
-    PartnerSession.create!(@partner)
-    redirect_to partner_path
+    @user = User.add_to_partner!(params[:email], @partner)
+    if @user
+      flash[:success] = "Added #{@user.email}"
+    else
+      flash[:warning] = "Error adding #{params[:email]} to this partner"
+    end
+    redirect_to admin_partner_path(@partner)
   end
-  
+
+  def remove_user
+    @partner = Partner.find(params[:id])    
+    @user = User.find_by_id(params[:user_id])
+    if (@partner && @user)
+      @partner_user = PartnerUser.where(partner: @partner, user: @user).first
+      if @partner_user && @partner_user.delete
+        flash[:success] = "Removed #{@user.email} from this partner"
+        redirect_back_or_default admin_partner_path(@partner) 
+        return
+      end
+    end
+    flash[:warning] = "Error removing #{@user&.email} from this partner"
+    redirect_back_or_default admin_partner_path(@partner) 
+  end
+
+  def new
+    @partner = Partner.new
+  end
 
   def show
     @partner = Partner.find(params[:id])
@@ -62,6 +85,21 @@ class Admin::PartnersController < Admin::BaseController
 
   def edit
     @partner = Partner.find(params[:id])
+  end
+
+  def create
+    @partner = Partner.new(partner_params)
+    @partner.password = 'aBc123!@' + SecureRandom.hex(10) + 'a'
+    if @partner.save
+      update_email_templates(@partner, params[:template])
+      update_email_template_subjects(@partner, params[:template_subject])
+      update_custom_css(@partner, params[:css_files])
+      flash[:message]= "Partner Created"
+      redirect_to edit_admin_partner_path(@partner) 
+    else
+      flash.now[:warning]= "There was en error creating the partner"
+      render :new
+    end
   end
 
   def update
@@ -72,9 +110,9 @@ class Admin::PartnersController < Admin::BaseController
       update_email_template_subjects(@partner, params[:template_subject])
       update_custom_css(@partner, params[:css_files])
       flash[:message]= "Partner Updated"
-      redirect_to edit_admin_partner_path
+      redirect_to edit_admin_partner_path(@partner) 
     else
-      flash[:warning]= "There was en error updating the partner"
+      flash.now[:warning]= "There was en error updating the partner"
       render :edit
     end
   end

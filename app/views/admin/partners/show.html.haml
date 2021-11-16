@@ -1,0 +1,22 @@
+- edit_path = edit_admin_partner_path(@partner)
+- list_path = admin_partners_path
+= render :partial=>'admin/shared/partner_properties', :locals=>{:edit_path=>edit_path, :list_path=>list_path}
+
+%br
+%br
+
+%h2 Users
+
+= render partial: "admin/shared/users_table", locals: {users: @partner.users}
+
+%br
+%br
+
+%h3 Add user by email:
+= form_tag add_user_admin_partner_path(@partner) do
+  %ul.stacked
+    %li.width_a
+      %h3= label_tag "Email Address"
+      %div= text_field_tag "email"
+
+  = partner_rollover_button("Add", "add")

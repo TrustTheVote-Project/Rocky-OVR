@@ -1,0 +1,22 @@
+- @nav_class[:users] = :current
+= render :partial=>"admin/shared/admin_nav"
+
+%h1 Users
+
+%h2 Find user by email 
+
+= form_tag admin_users_path, method: :get do
+  = text_field_tag :email
+  = submit_tag "Find"
+
+%br
+%br
+
+= will_paginate @users 
+
+= render partial: "admin/shared/users_table", locals: {users: @users}
+        
+= will_paginate @users
+
+%br
+%br
