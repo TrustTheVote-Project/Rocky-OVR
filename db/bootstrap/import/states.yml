@@ -184,7 +184,7 @@ record_11:
   race_tooltip: not_required_but_appreciated_with_state_name_2
   requires_party: true
   party_tooltip: not_required_to_vote
-  id_number_tooltip: ssn_full
+  id_number_tooltip: hawaii
   sos_address: State of Hawaii<br>Office of Elections<br>802 Lehua Avenue<br>Pearl
     City, HI 96782
   sos_phone: "(808) 453-8683"
