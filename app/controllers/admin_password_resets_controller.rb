@@ -55,7 +55,7 @@ class AdminPasswordResetsController < Admin::BaseController
       @admin.password = params[:admin][:password]
       @admin.password_confirmation = params[:admin][:password_confirmation]
       if @admin.save_without_session_maintenance
-        flash[:success] = "Password successfully updated. Please log in using new password."
+        flash[:success] = "Password successfully updated."
         redirect_to admin_login_url
       else
         render "edit"

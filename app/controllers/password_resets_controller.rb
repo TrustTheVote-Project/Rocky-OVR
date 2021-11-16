@@ -53,7 +53,7 @@ class PasswordResetsController < PartnerBase
       @user.errors.add(:password, "Password cannot be blank")
       render "edit"
     elsif @user.update_attributes(params[:user].permit!.to_h.try(:slice, :password, :password_confirmation))
-      flash[:success] = "Password successfully updated. Please log in using new password."
+      flash[:success] = "Password successfully updated."
       redirect_to login_url
     else
       render "edit"
