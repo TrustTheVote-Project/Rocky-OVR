@@ -3495,12 +3495,13 @@ en:
           any of the requested identification numbers, please enter "NONE" and you
           will be assigned a unique identification number by the state.
         hawaii: |-
-          When you register to vote, you must provide your Hawaii driver’s license
+          When you register to vote, you must provide your Hawaii driver's license
           or State identification number, if you have one. If you do not have a
           driver's license or ID number, you must provide the last four digits of
           your Social Security Number (SSN). If you do not have any of this
-          information, the Clerk's Office will issue you a unique identification
-          number, which will serve to identify you for voter registration purposes.
+          information, please enter NONE and the Clerk's Office will issue you a
+          unique identification number, which will serve to identify you for voter
+          registration purposes.
         illinois: 'Illinois requires either the Driver''s License (or Secretary of
           State ID Card) or the last 4 digits of Social Security Number. For people
           who do not have either of those items, and have not registered in Illinois
