@@ -631,7 +631,7 @@ record_40:
 record_41:
   abbreviation: SD
   name: South Dakota
-  requires_party: true
+  requires_party: false
   party_tooltip: south_dakota
   id_number_tooltip: south_dakota
   sos_address: Elections, Secretary of State<br>500 E. Capitol<br>Pierre, SD 57501-5070
