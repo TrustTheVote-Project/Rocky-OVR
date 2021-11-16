@@ -1,0 +1,41 @@
+%br
+%br
+%table#users
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th Phone
+      %th Email
+      %th Status
+      %th Impersonate
+      %th Organizations
+      
+  %tbody
+    - users.each do |user|
+      %tr{class: "user-#{user.id} #{user.active ? 'active' : 'inactive'}"}
+        %td= user.id
+        %td
+          = link_to user.name || user.email, edit_admin_user_path(user)
+        %td= user.phone
+        %td= user.email
+        %td
+          - if user.active
+            active
+            = link_to 'deactivate', deactivate_admin_user_path(user), method: :get, data: {:confirm => "Are you sure you want to deactivate #{user.email}?"}
+          - else
+            inactive
+            = link_to 're-activate', reactivate_admin_user_path(user), method: :get, data: {:confirm => "Are you sure you want to re-activate #{user.email}?"}
+
+            
+        %td
+          = link_to "Impersonate #{user.email}", impersonate_admin_user_path(user) 
+        %td
+          - user.partners.each do |partner|
+            %span.partner-link
+              = link_to partner.organization, admin_partner_path(partner)
+              - if @partner && partner == @partner
+                = link_to "(x)", remove_user_admin_partner_path(partner, user_id: user.id), method: :delete, data: {:confirm => "Are you sure you want to remove #{user.email} from #{partner.organization}?"}
+
+            
+        

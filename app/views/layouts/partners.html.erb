@@ -20,17 +20,40 @@
 <body>
   <div id="bg"><div></div></div>
   <div id="container">
-    <% if current_partner_session %>
+    <% if current_user %>
       <div id="header">
-        <span class='edit-profile-link'><%= link_to "Edit Profile", edit_partner_path %></span>
-        <span><%= link_to "Log out", logout_path %></span>
-        <p>
-          <%= link_to "Dashboard", partner_path, :class => @nav_class[:dashboard] %> |
-          <%= link_to "Reports", statistics_partner_path, :class => @nav_class[:statistics] %> |
-          <%= link_to "Customize", partner_logo_path, :class => @nav_class[:customize] %> |
-          <%= link_to "Embed Codes", embed_codes_partner_path, :class => @nav_class[:embed] %>
-          <%= "|".html_safe + link_to("Wiki", RockyConf.partner_wiki_url, target: "_blank") if RockyConf.partner_wiki_url.present? %>
-        </p>
+        <span>
+          <%= link_to "Log out", logout_path %>
+          <br/><br/>
+          <%= link_to edit_user_path do %>
+            Edit user profile
+          <%- end %>
+          <br/>
+          <%- if current_user.partners.length > 1 %>
+            <%= link_to "Change partner", partners_path %>
+          <%- end %>
+        <br/>
+        </span>
+        <%- if @partner %>
+          <p>
+            <%= link_to "Dashboard", partner_path(@partner), :class => @nav_class[:dashboard] %> |
+            <%= link_to "Reports", statistics_partner_path(@partner), :class => @nav_class[:statistics] %> |
+            <%= link_to "Customize", partner_logo_path(@partner), :class => @nav_class[:customize] %> |
+            <%= link_to "Embed Codes", embed_codes_partner_path(@partner), :class => @nav_class[:embed] %> |
+            <%= link_to "Users", partner_partner_users_path(@partner), :class => @nav_class[:users] %>
+            <%= "|".html_safe + link_to("Wiki", RockyConf.partner_wiki_url, target: "_blank") if RockyConf.partner_wiki_url.present? %>
+          </p>
+          <p class='partner-name'>
+            <%= @partner.organization %>
+            <%= link_to "(edit partner)", edit_partner_path(@partner) %>
+          </p>
+        <%- else %>
+          <%- if current_user && current_user.partners.length == 1 %>
+            <p class='partner-name'>
+              <%= link_to "#{current_user.partners.first.organization} dashboard", partner_path(current_user.partners.first) %>
+            <p>
+          <%- end %> 
+        <%- end %>
     <% else %>
       <div id="header" class="not_logged_in">
         <span><%= link_to "Log in", login_path %></span>
@@ -39,6 +62,7 @@
 
     <div id="main">
       <div id="main_inner">
+
         <%= yield :subnav %>
         <%= flash_messages.html_safe %>
         <%= yield %>

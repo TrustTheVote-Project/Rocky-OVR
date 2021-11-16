@@ -26,7 +26,8 @@ class Admin < ActiveRecord::Base
   acts_as_google_authenticated method: :email_with_label
 
   acts_as_authentic do |c|
-    c.crypto_provider = Authlogic::CryptoProviders::Sha512
+    c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
+    c.crypto_provider = Authlogic::CryptoProviders::SCrypt
   end
 
   def email_with_label

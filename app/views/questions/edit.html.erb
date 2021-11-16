@@ -7,7 +7,7 @@
   <h1>Survey Questions</h1>
 
   <p>
-    You can ask applicants to answer two questions during the voter registration process. Responses can be reviewed when you <%= link_to "download your voter registration data", statistics_partner_path %>. Also, make sure you check the box below to ask applicants if they want to volunteer.
+    You can ask applicants to answer two questions during the voter registration process. Responses can be reviewed when you <%= link_to "download your voter registration data", statistics_partner_path(@partner)  %>. Also, make sure you check the box below to ask applicants if they want to volunteer.
   </p>
   <p>
     To create the survey questions, simply enter your questions in the text boxes below. If you don't have translations available, just leave those boxes blank.
@@ -23,7 +23,7 @@
 
 
   <div id="survey_questions">
-    <%= form_for @partner, :url => partner_questions_path, :method => :put do |form| %>
+    <%= form_for @partner, :url => partner_questions_path(@partner) , :method => :put do |form| %>
       <%- if @partner.errors.count > 0 %>
         <div id="error_explanation">
           <h2><%= pluralize(@partner.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -52,7 +52,7 @@
           <%= form.check_box field_name %>
           <%= form.label field_name, "Ask for volunteers for <strong>#{@partner.organization}</strong>".html_safe %>
           <% if @partner.organization.blank? %>
-            &hellip; (you should fill in your organization name in your <%= link_to "profile", edit_partner_path %>)
+            &hellip; (you should fill in your organization name in your <%= link_to "profile", edit_partner_path(@partner)  %>)
           <% end %>
         </p>
       </fieldset>

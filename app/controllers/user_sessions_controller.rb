@@ -22,22 +22,38 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class PartnerSessionsController < PartnerBase
+class UserSessionsController < PartnerBase
+  skip_before_action :require_user
+  skip_before_action :require_partner
+  skip_before_action :check_mfa
+
   def new
-    @partner_session = PartnerSession.new
+    if current_user
+      redirect_to partners_path
+    else
+      @user_session = UserSession.new
+    end
   end
 
   def create
-    @partner_session = PartnerSession.new(params[:partner_session].permit!.to_h)
-    if @partner_session.save
-      redirect_back_or_default partner_url
+    @user_session = UserSession.new(params[:user_session].permit!.to_h)
+    if @user_session.save
+      redirect_back_or_default partners_path
     else
-      render :action => :new
+      # See if this login is a an existing partner
+      login = params[:user_session][:email]
+      partner = Partner.find_by_login(login)
+      if partner && partner.users.count == 0
+        User.create_default_partner_user(partner)
+      end
+      current_user_session&.destroy
+      render action: :new
     end
   end
 
   def destroy
-    current_partner_session.destroy
+    UserMfaSession::destroy
+    current_user_session.destroy if current_user_session
     flash[:success] = "Logged out"
     redirect_back_or_default login_url
   end

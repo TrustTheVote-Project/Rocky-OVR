@@ -59,7 +59,7 @@ locale: "string" // 2-letter locale code (lower case) e.g. "es"
       <h2><label for="image_link_html">Add a graphical button:</label></h2>
       <p class="plain_text">
         The code will create a graphical button or banner on your site that links to your unique voter 
-        registration tool. There are several graphics to choose from. You can <%= link_to "view your current choice", partner_widget_url, :target => "_blank" %> or <%= link_to "change it", partner_widget_image_path %>.</p>
+        registration tool. There are several graphics to choose from. You can <%= link_to "view your current choice", partner_widget_url, :target => "_blank" %> or <%= link_to "change it", partner_widget_image_path(@partner)  %>.</p>
         <p><textarea name="image_link_html" readonly="readonly" rows="10" ><%= h @image_link_html %></textarea></p>        
     </div>
     
