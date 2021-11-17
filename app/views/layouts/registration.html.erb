@@ -47,7 +47,13 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() { hideErrors(); setTimeout('revealErrors();', 400); });
+    $(document).ready(function() {
+      <%- if @registrant.persisted? %>
+        trackView("<%= track_view_registrant_path(@registrant) %>", "<%= params["controller"] %>", "<%= params["action"] %>");
+      <%- end %>
+      hideErrors(); 
+      setTimeout('revealErrors();', 400); 
+    });
   </script>
   <% if Rails.env.production? %>
 <!-- Begin Inspectlet Asynchronous Code -->
