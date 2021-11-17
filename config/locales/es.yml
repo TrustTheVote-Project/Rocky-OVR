@@ -333,26 +333,4 @@ es:
       not_active: Tu cuenta no está activada.
       not_confirmed: Tu cuenta no está confirmada.
       not_approved: Tu cuenta no ha sido aprobada.
-      no_authentication_details: Faltan detalles de autentificación.
-  partners:
-    branding:
-      nav: NEED TRANSLATION
-      title: NEED TRANSLATION
-      description:
-        general: NEED TRANSLATION
-        approval: NEED TRANSLATION
-      preview_warning:
-        not_set: NEED TRANSLATION
-        not_changed: NEED TRANSLATION
-      preview: NEED TRANSLATION
-      approval:
-        title: NEED TRANSLATION
-        status:
-          not_found: NEED TRANSLATION
-          open: 'Submitted at %{date}. Approval status: pending.'
-          rejected: The request was rejected %{date}.
-          done: The latest request was fulfilled %{date}.
-        open: NEED TRANSLATION
-        close: NEED TRANSLATION
-        approve: NEED TRANSLATION
-        reject: NEED TRANSLATION
+      no_authentication_details: Faltan detalles de autentificación.  

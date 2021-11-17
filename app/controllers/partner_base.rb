@@ -25,35 +25,60 @@
 class PartnerBase < ApplicationController
   layout "partners"
   
-  helper_method :current_partner_session, :current_partner
+  helper_method :current_user
+  before_action :require_user
+  before_action :require_partner
+  before_action :check_mfa
   before_action :init_nav_class
 
 
-  def current_partner
-    return @current_partner if defined?(@current_partner)
-    @current_partner = current_partner_session && current_partner_session.record
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.record
   end
 
   protected
+  
+  def check_mfa
+    if !(user_mfa_session = UserMfaSession.find) && (user_mfa_session ? user_mfa_session.record == current_user : !user_mfa_session)
+      store_location
+      redirect_to new_mfa_session_path
+    end
+  end
 
-  def current_partner_session
-    return @current_partner_session if defined?(@current_partner_session)
-    @current_partner_session = PartnerSession.find
+
+  def current_user_session
+    return @current_user_session if defined?(@current_user_session)
+    @current_user_session = UserSession.find
   end
 
   def require_partner
-    unless current_partner
-      store_location
-      flash[:warning] = "You must be logged in to access this page"
-      redirect_to login_url
+    @partner = Partner.find( params[:partner_id] || params[:id])
+    if current_user.partners.include?(@partner)
+      return true
+    else
+      flash[:warning] = "You do not have access to this partner"
+      redirect_to partners_path
       return false
     end
   end
 
+  def require_user
+    unless current_user
+      store_location
+      force_logout
+      flash[:warning] = "You must be logged in to access this page"
+      redirect_to login_url
+      return false
+    end
+    return true
+  end
+
   def force_logout
-    current_partner_session.destroy if current_partner
-    remove_instance_variable :@current_partner_session if defined?(@current_partner_session)
-    remove_instance_variable :@current_partner if defined?(@current_partner)
+    UserMfaSession::destroy    
+    current_user_session.destroy if current_user_session
+    remove_instance_variable :@current_user_session if defined?(@current_user_session)
+    remove_instance_variable :@current_user if defined?(@current_user)
     reset_session
   end
 

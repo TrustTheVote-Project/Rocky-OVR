@@ -34,6 +34,9 @@
   
 <br/>
 <br/>
+<p>
+<%= link_to "Add new partner", new_admin_partner_path %>
+</p>
 <%= will_paginate @partners %>
 <br/>
 <br/>
@@ -41,8 +44,8 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Name</th>
-      <th>Organization</th>
+      <th>Contact Name</th>
+      <th>Partner</th>
       <th>API Key</th>
       <th>Whitelabeled</th>
       <th></th>

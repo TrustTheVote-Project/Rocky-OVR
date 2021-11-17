@@ -22,8 +22,8 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class PartnerSession < Authlogic::Session::Base
-  record_selection_method :find_by_login
+class UserSession < Authlogic::Session::Base
+  #record_selection_method :find_by_login
   allow_http_basic_auth false
   
   logout_on_timeout true

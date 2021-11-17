@@ -1283,6 +1283,9 @@ GEM
     faraday-net_http (1.0.1)
     faraday-net_http_persistent (1.1.0)
     ffi (1.15.0)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
     fog-aws (3.10.0)
@@ -1482,6 +1485,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    scrypt (3.0.7)
+      ffi-compiler (>= 1.0, < 2.0)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -1607,6 +1612,7 @@ DEPENDENCIES
   rspec-rails
   rubyzip
   sass-rails
+  scrypt
   shoulda
   simplecov
   spring-commands-cucumber

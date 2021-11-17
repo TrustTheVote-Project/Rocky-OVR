@@ -66,7 +66,9 @@ en:
         canvasser_email: Email
         shift_location: Location
       partner:
-        from_email: Edit "from" email address to send autoresponders from your organization,
+        name: "Contact Name"
+        organization: "Partner Organization Name"
+        from_email: Edit "from" email address to send autoresponders from a custom email address, 
           rather than Rock the Vote.
         url: URL
         registration_instructions_url: PDF instructions URL
@@ -395,7 +397,7 @@ en:
                 letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
         canvassing_shift:
           blank: Required
-        partner:
+        user:
           attributes:
             password:
               invalid: Password must be 10 characters, contain at least 1 lowercase
@@ -611,7 +613,7 @@ en:
       email_invalid: Email is not valid.
       password_blank: Password can not be blank.
       password_invalid: Login/password combination is not valid.
-      not_active: Your account is not active.
+      not_active: Your account is not active. Please contact <a href="mailto:civictech@rockthevote.org">civictech@rockthevote.org</a> to re-activate your account.
       not_confirmed: Your account is not confirmed.
       not_approved: Your account is not approved.
       no_authentication_details: You did not provide any details for authentication.
