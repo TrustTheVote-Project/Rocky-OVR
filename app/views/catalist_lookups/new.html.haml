@@ -1,9 +1,7 @@
-%h2= t('txt.lookup.step_1_header')
+%h1{role: "heading", "aria-level": 1}= t('txt.lookup.step_1_header')
 
 .intro-message
   = t('txt.lookup.step_1_instructions').html_safe
 
 = form_for(@lookup) do |form|
   = render partial: 'form', :object => form
-
-  

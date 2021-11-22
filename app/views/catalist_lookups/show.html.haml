@@ -1,39 +1,65 @@
-%h2
-  = @lookup.is_match? ? t('txt.lookup.step_2_header_found') : t('txt.lookup.step_2_header_not_found')
+- reject_content = capture_haml do
+  - url = @lookup.state&.registrar_url
+  = t('txt.lookup.check_again', address: @lookup.address, first_name: @lookup.first, state: @lookup.state.name, state_date: l(@lookup.state_last_updated_at.to_date, format: :long)).html_safe
+  - if url
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.lookup.check_with_state'), url, {target: "_blank", rel: "noopener"}
+  
+  %span.rollover_button.button{role: "button"}
+    = link_to t('txt.lookup.register'), registration_catalist_lookup_path(@lookup)
+  
+  %span.rollover_button.button{role: "button"}
+    = link_to t('txt.lookup.go_back'), new_catalist_lookup_path(partner: @lookup.partner, zip: @lookup.zip, source: @lookup.tracking_source, tracking: @lookup.tracking_id, email: @lookup.email, first_name: @lookup.first, last_name: @lookup.last, state: @lookup.state_abbrev)
+
+
+%h1{role: "heading", "aria-level": 1}
+  - if @lookup.is_match?
+    .check= t('txt.lookup.step_2_header_check')
+    .accept{style: "display: none"}= t('txt.lookup.step_2_header_found', first_name: @lookup.first)
+    .reject{style: "display: none"}= t('txt.lookup.step_2_header_not_found', first_name: @lookup.first) 
+  - else
+    = t('txt.lookup.step_2_header_not_found', first_name: @lookup.first)
 
 .intro-message
   = t('txt.lookup.step_2_instructions').html_safe
 
 
 - if @lookup.is_match?
-  %p= t('txt.lookup.matched', first_name: @lookup.first)
-  = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
-  #confirm_match
-    .intro-message
-      %p= t('txt.lookup.abr')
-    %span.rollover_button.button
-      = link_to t('txt.lookup.abr_link'), abr_catalist_lookup_path(@lookup)
+  .check 
+    %p= t('txt.lookup.check.matched', first_name: @lookup.first)
+    = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
+    %p{style: "text-transform: capitalize" }
+      = t('txt.lookup.check.gender', gender: @lookup.matched_data["gender"])
+      %br
+      = t('txt.lookup.check.birth_date', birth_date: @lookup.matched_data["birthdate"])
+      %br
+      = t('txt.lookup.check.voter_status', voter_status: @lookup.matched_data["voterstatus"])
+
+    %div{style: "display: flex"}
+      %span.rollover_button.button{style: "margin-right: 20px", role: "button", "aria-label": t('txt.lookup.accept')}
+        %a{href: "#", onclick:"$('.accept').show(); $('.check').hide();" }= t('txt.lookup.accept')    
+      %span.rollover_button.button{role: "button", "aria-label": t('txt.lookup.accept')}
+        %a{href: "#", onclick:"$('.reject').show(); $('.check').hide();" }= t('txt.lookup.reject')    
+    
+
+  .accept{style: "display: none;"}
+    %p= t('txt.lookup.matched', first_name: @lookup.first)
+    = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
+    #confirm_match
+      .intro-message
+        %p= t('txt.lookup.how_to_vote', url: "https://www.rockthevote.org/how-to-vote/#{@lookup.state.name.downcase.gsub(/\s+/,'-')}").html_safe
       
 
-  .reject
-    %a{href: "#", onclick:"$('.reject-options').show(); $(this).hide();" }= t('txt.lookup.reject')    
-    .reject-options{style: "display: none;"}
-      %p
-        - url = @lookup.state&.registrar_url
-        - if !url.blank?
-          = t('txt.lookup.check_again', url: @lookup.state&.registrar_url).html_safe
-        - else
-          = link_to t('txt.lookup.go_back'), new_catalist_lookup_path(zip: @lookup.zip, source: @lookup.tracking_source, tracking: @lookup.tracking_id, email: @lookup.email, first_name: @lookup.first, last_name: @lookup.last, state: @lookup.state_abbrev)
-      %p{style: "text-align: center"}= t('or')
-      %span.rollover_button.button
-        = link_to t('txt.lookup.register'), registration_catalist_lookup_path(@lookup)
-      
+  .reject{style: "display: none;"}
+    = reject_content
     
-- else  
-  = t('txt.lookup.not_matched', first_name: @lookup.first, state_abbrev: @lookup.state_abbrev, url:  @lookup.state&.registrar_url, count: @lookup.state_last_updated_days).html_safe
-  %span.rollover_button.button
-    = link_to t('txt.lookup.register'), registration_catalist_lookup_path(@lookup)
-  %br
-  = t('txt.lookup.check_again', state_abbrev: @lookup.state_abbrev, url: @lookup.state&.registrar_url, count: @lookup.state_last_updated_days).html_safe
-  = t('txt.lookup.last_update', state: @lookup.state_name, url: @lookup.state&.registrar_url, date: l(@lookup.state_last_updated_at, format: :long)).html_safe
+- else 
+  .reject
+    = reject_content
+  -# = t('txt.lookup.not_matched', first_name: @lookup.first, state_abbrev: @lookup.state_abbrev, url:  @lookup.state&.registrar_url, count: @lookup.state_last_updated_days).html_safe
+  -# %span.rollover_button.button
+  -#   = link_to t('txt.lookup.register'), registration_catalist_lookup_path(@lookup)
+  -# %br
+  -# = t('txt.lookup.check_again', state_abbrev: @lookup.state_abbrev, url: @lookup.state&.registrar_url, count: @lookup.state_last_updated_days).html_safe
+  -# = t('txt.lookup.last_update', state: @lookup.state_name, url: @lookup.state&.registrar_url, date: l(@lookup.state_last_updated_at.to_date, format: :long)).html_safe
   
