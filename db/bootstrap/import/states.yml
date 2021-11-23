@@ -137,7 +137,7 @@ record_8:
   race_tooltip: washington_dc
   requires_party: true
   party_tooltip: required_for_primary
-  id_number_tooltip: blank
+  id_number_tooltip: drivers_license_or_ssn_no_none
   sos_address: DC Board of Elections<br /> 1015 Half Street, SE, Suite 750<br /> Washington,
     DC 20003
   sos_phone: "(202) 727-2525"
