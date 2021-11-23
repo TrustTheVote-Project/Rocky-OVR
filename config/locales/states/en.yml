@@ -3672,6 +3672,10 @@ en:
           digits of your Social Security number.  If you do not have either number,
           enter "NONE" and a unique identifying number will be assigned to you by
           the state.
+        drivers_license_or_ssn_no_none: |-
+          Federal law now requires that all voter registration applications must
+          include either the applicant's driver's license number or the last four
+          digits of the applicant's social security number in order to be processed.
         drivers_license_or_ssn_county_clerk_with_state_name: |-
           You must supply a %{state_name}
           driver's license number if you have been issued one.  If you do not have
