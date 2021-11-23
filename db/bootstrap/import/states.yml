@@ -573,7 +573,7 @@ record_37:
   name: Oregon
   requires_party: true
   party_tooltip: required_for_primary_2
-  id_number_tooltip: drivers_license_or_other_with_state_name_4
+  id_number_tooltip: drivers_license_non_driver_with_state_name
   sos_address: Oregon Secretary of State Elections Division <br /> Public Service
     Building Suite 501<br /> 255 Capitol St. NE <br /> Salem OR 97310
   sos_phone: "(503) 986-1518"
@@ -643,6 +643,7 @@ record_41:
   sos_phone: "(605) 773-3537"
   sos_url: https://sdsos.gov/elections-voting/default.aspx
   registration_deadline: received_15_days
+  no_party: blank
 record_42:
   abbreviation: TN
   name: Tennessee
