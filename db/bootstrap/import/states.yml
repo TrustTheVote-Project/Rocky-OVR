@@ -572,7 +572,7 @@ record_37:
   abbreviation: OR
   name: Oregon
   requires_party: true
-  party_tooltip: required_for_primary_2
+  party_tooltip: oregon
   id_number_tooltip: drivers_license_non_driver_with_state_name
   sos_address: Oregon Secretary of State Elections Division <br /> Public Service
     Building Suite 501<br /> 255 Capitol St. NE <br /> Salem OR 97310
