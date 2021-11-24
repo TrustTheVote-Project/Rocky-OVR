@@ -637,13 +637,20 @@ record_41:
   name: South Dakota
   requires_party: true
   party_tooltip: south_dakota
+  parties:
+  - democratic
+  - independent
+  - green
+  - libertarian
+  - republican
+  - other
+  - none
   id_number_tooltip: south_dakota
   sos_address: Secretary of State<br /> Capitol Building<br />  500 East Capitol Avenue
     Ste 204 <br /> Pierre, SD 57501-5070
   sos_phone: "(605) 773-3537"
   sos_url: https://sdsos.gov/elections-voting/default.aspx
   registration_deadline: received_15_days
-  no_party: blank
 record_42:
   abbreviation: TN
   name: Tennessee
