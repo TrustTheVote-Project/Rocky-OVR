@@ -644,7 +644,7 @@ record_41:
   - libertarian
   - republican
   - other
-  - none
+  no_party: none_no_affiliation
   id_number_tooltip: south_dakota
   sos_address: Secretary of State<br /> Capitol Building<br />  500 East Capitol Avenue
     Ste 204 <br /> Pierre, SD 57501-5070
