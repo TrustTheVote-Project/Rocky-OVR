@@ -3817,47 +3817,48 @@ en:
       2_months_before: two months before your 18th birthday
       17_turn_18: if you are 17 and will turn 18 before the next election
     registration_deadline:
-      alabama: received by 10/25/2021
+      alabama: 15 days before the election
       california: postmarked by 10/18/2021
-      colorado: postmarked by 10/25/2021
-      connecticut: postmarked by 10/26/2021, 12:00 Eastern
+      colorado: through the 8th day before Election Day
+      connecticut: Postmarked the 5th day before a Primary Election. Postmarked or Received by the 7th day before a General Election.
       district_of_columbia: received 21 days before the election
       delaware: |-
         postmarked by the fourth Saturday before a general or primary election,
         or 10 days before a special election
       florida: 10/4/2021, 7:00pm
-      georgia: received by 10/4/2021
+      georgia: postmarked by the close of business on the fifth Monday before the election
       idaho: postmarked by 10/8/2021
-      illinois: 27 days prior to an election
-      iowa: 5pm 10/18/2021
+      illinois: received 27 days prior to an election
+      iowa: postmarked 15 days before the election
       kansas: postmarked by 10/12/2021
       maine: received by close of business, 10/12/21
-      massachusetts: postmarked by 8:00 pm 10/13/2021
-      michigan: postmarked by 10/18/2021
+      massachusetts: For regular elections or town meetings, twenty (20) days prior to the date. For special town meetings, ten (10) days prior special town meeting.
+      michigan: postmarked at least 15 days before the election 
       minnesota: 5pm, 10/12/2021
       mississippi: postmarked by 5pm on 10/4/21 for the November 2, 2021 elections and postmarked by 5pm 10/25/2021 for the 11/23/2021 elections
       missouri: postmarked by the 4th Wednesday before the election
       montana: postmarked by 10/4/21 and received within 3 days. 
-      new_hampshire: Register to vote at your town hall before the deadline or register to vote the day of the election at the polling place.
-      new_jersey: 10/12/2021
+      new_hampshire: 6 to 13 days prior to the election. Please check with your clerk's office for the time and place of the meeting in your town or city. 
+      new_jersey: received at least seven days before the election
       new_mexico: postmarked by 10/5/2021
       new_york: postmarked by 10/8/2021, mail received by 10/13/2021
       north_carolina: 10/8/2021
       north_dakota: North Dakota does not have voter registration.
-      nebraska: postmarked or delivered on or before the third Friday preceding an election
+      nebraska: Postmarked or delivered on or before the third Friday preceding an election
       nevada: postmarked by the fourth Tuesday before Election Day
       ohio: postmarked by 10/4/2021
-      oklahoma: received by 10/15/2021
+      oklahoma: received no later than 5 p.m., the Tuesday preceding the election
       pennsylvania: received by 05/02/2022
       rhode_island: 10/3/2021
       texas: 10/4/2021
       utah: no later than 5:00 pm 11 calendar days before the election.
       vermont: any day up to and including the day of the election
-      virginia: postmarked by 10/11/2021
-      washington: received by 10/25/2021
+      virginia: for general and primary elections, postmarked 22 days before the election. For special elections, postmarked 14 days before the election.
+      washington: received no later than eight days before the election
       wisconsin: postmarked no later than the 3rd Wednesday preceding the election
       postmarked_11_days: postmarked 11 days before the election
       postmarked_14_days: postmarked 14 days before the election
+      postmarked_15_days: postmarked 15 days before the election
       postmarked_20_days: postmarked 20 days before the election
       postmarked_21_days: postmarked 21 days before the election
       postmarked_25_days: postmarked 25 days before the election
