@@ -7,14 +7,12 @@ $(document).ready(function() {
 });
 </script>
 <% end %>
-<%= form.hidden_field :first %>
-<%= form.hidden_field :last %>
 <%= form.hidden_field :tracking_source %>
 <%= form.hidden_field :tracking_id %>
 <%= form.hidden_field :state_id %>
 
 <fieldset>
-  <legend><span><%= I18n.t('txt.registration.name') %></span><%= tooltip_tag :registrant_name %></legend>
+  <legend><span><%= I18n.t('txt.registration.name') %></span></legend>
   <ul class="stacked">
     
     <li class="width_b registrant-form__first-name__line">
@@ -37,13 +35,13 @@ $(document).ready(function() {
 
 <fieldset>
   <ul class="flat">
-    <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form} %>
+    <%= render :partial=> "registrants/date_of_birth", :locals=>{:form=>form, skip_tooltip: true} %>
   </ul>
 </fieldset>
 
 
 <fieldset>
-  <legend><span><%= I18n.t('txt.registration.home_address') %></span><%= tooltip_tag :home_address %></legend>
+  <legend><span><%= I18n.t('txt.registration.home_address') %></span></legend>
   <ul class="stacked">
     <li class="width_a registrant-form__home-address-__line">
       <h3><%= form.label :address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
@@ -66,42 +64,31 @@ $(document).ready(function() {
 </fieldset>
 
 
+<fieldset>
+  <legend><span><%= I18n.t('txt.registration.contact_information') %></span></legend>
 
-<ul class="flat registrant-form__email">
-  <li class="width_f registrant-form__email__line">
-    <h3 class='registrant-form__email__line__label'><%= form.label :email %><%- unless !@lookup.require_email_address?%><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end%></h3>
-    
-    <%= field_div form, :email, {class: 'registrant-form__email__line__input', required: @lookup.require_email_address? } %>
-    <div class="tooltip registrant-form__email__line__tooltip"><%= tooltip_tag :email %></div>
-    <span class="error registrant-form__email__line__error"><%= form.object.errors[:email].join("\n") %></span>
-  </li>
-</ul>
+  <ul class="stacked ">
+    <li class="width_f registrant-form__email__line">
+      <h3 class='registrant-form__email__line__label'><%= form.label :email %><%- unless !@lookup.require_email_address?%><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end%></h3>
+      
+      <%= field_div form, :email, {class: 'registrant-form__email__line__input', required: @lookup.require_email_address? } %>
+      <span class="error registrant-form__email__line__error"><%= form.object.errors[:email].join("\n") %></span>
+    </li>
+    <li class="width_b registrant-form__phone__line">
+      <h3><%= form.label :phone %></h3>
+      <div class="flat-stack">
+        <%= field_div form, :phone, placeholder: '###-###-####' %>
+        <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
+      </div>
+    </li>
+  </ul>
+
 
 
 <%= render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form} %>
-        
-
-<ul class="flat">
-  <li class="width_b registrant-form__phone__line">
-    <h3><%= form.label :phone %></h3>
-    <div class="flat-stack">
-      <%= field_div form, :phone, placeholder: '###-###-####' %>
-      <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
-    </div>
-    <div class="tooltip"><%= tooltip_tag :phone %></div>
-  </li>
-  <li class="secondary registrant-form__phone-type__line">
-    <h3 id="registrant_phone_type_label"><%= form.label :phone_type %></h3>
-    <div class="flat-stack" id="registrant_phone_type_wrapper">
-      <div><%= form.select :phone_type, form.object.phone_types  %></div>
-      <span class="error"><%= form.object.errors[:phone_type].join("\n") %></span>
-    </div>
-  </li>
-</ul>
-
 
 <%= render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form} %>
-
+</fieldset>
 <%= rollover_button(:next_step, I18n.t('txt.button.lookup').html_safe) %>
 
 

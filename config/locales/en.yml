@@ -536,6 +536,9 @@ en:
           blank: Required
           format: Invalid
           invalid: "%{attribute} is invalid."
+          attributes:
+            phone:
+              required_if_opt_in: Required if receiving TXT
         ballot_status_check:
           blank: Required
           format: Invalid
