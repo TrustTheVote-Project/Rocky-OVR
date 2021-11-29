@@ -10,7 +10,7 @@ hours_before_first_reminder: 0.0333
 hours_between_first_and_second_reminder: 0.0333
 hours_between_second_and_final_reminder: 0.0333
 pdf_expiration_days: .25
-hours_before_chaser_redilivery: 0.01
+hours_before_chaser_redelivery: 0.01
 
 pdf_assistance:
   partners:
