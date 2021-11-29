@@ -3356,6 +3356,10 @@ en:
           with a political party may only vote in that party's primary. In a primary,
           unaffiliated voters may choose to vote either a partisan ballot or a non-partisan
           ballot.
+        oregon: |-
+          In many cases, you must register with a party if you want to take part in that
+          party's primary election. If you are not a member of a party or you select none,
+          you will be registered as a nonaffiliated voter.
         rhode_island: |-
           In Rhode Island, a person must register with a party if they wish to take part
           in that party's primary election. A person who fails to register with a party at
@@ -3363,6 +3367,12 @@ en:
           of that party's primary and take part in that party's primary election. If a
           person does not register with a party, they can still vote in general elections
           and nonpartisan primary elections.
+        south_dakota: |-
+          If you are currently registered to vote and you leave the choice of party field
+          blank, you will remain registered with your current party affiliation. If you
+          are not currently registered to vote and you leave the choice of party field
+          blank, you will be entered as an independent/no party affiliation voter, which
+          is not a political party in South Dakota.
         tennessee: |-
           Tennessee does not register by political party. When you wish to
           vote in a primary election, you will have to declare a party at that time.
@@ -3488,6 +3498,14 @@ en:
           the last four digits of your Social Security number.  If you do not have
           any of the requested identification numbers, please enter "NONE" and you
           will be assigned a unique identification number by the state.
+        hawaii: |-
+          When you register to vote, you must provide your Hawaii driver's license
+          or State identification number, if you have one. If you do not have a
+          driver's license or ID number, you must provide the last four digits of
+          your Social Security Number (SSN). If you do not have any of this
+          information, please enter NONE and the Clerk's Office will issue you a
+          unique identification number, which will serve to identify you for voter
+          registration purposes.
         illinois: 'Illinois requires either the Driver''s License (or Secretary of
           State ID Card) or the last 4 digits of Social Security Number. For people
           who do not have either of those items, and have not registered in Illinois
@@ -3518,12 +3536,11 @@ en:
           of a registered voter or circulate the social \nsecurity numbers of registered
           voters on commercial lists (R.S. 18:104 and 154; \n42 U.S.C. § 405)."
         maryland: |-
-          If you have a current, valid Maryland driver's license or a Motor
-          Vehicle Administration identification card, you must enter the driver's
-          license or identification number.  If you have neither, you must enter the
-          last four digits of your Social Security number.  If you do not have any
-          of these numbers, please enter "NONE" and a unique identifying number will
-          be assigned to you by the state.
+          If you do not have a current, valid Maryland driver's license or MVA ID card,
+          you must enter the last 4 digits of your social security number. The statutory
+          authority allowing officials to request the last 4 digits of your social security
+          number is Election Law Article, § 3-202. The number will only be used for
+          registration and other administrative purposes. It will be kept confidential.
         massachusetts: |-
           Federal law requires that you provide your driver's license number to register
           to vote. If you do not have a current and valid Massachusetts' driver's license
@@ -3562,9 +3579,11 @@ en:
           Commission nor is it released to any unauthorized individual. (South Carolina 
           Title 7-5-170)
         south_dakota: |-
-          Your driver’s license number is requested. If you do not have
-          a valid driver's license, you must provide the last four digits of your
-          social security number.
+          You must provide your valid South Dakota driver license number or a South Dakota
+          nondriver identification number. If you do not have a valid South Dakota driver
+          license or a South Dakota nondriver identification number, provide the last four
+          digits of your social security number. If you do not have any of these, you may
+          only register at the county auditor's office.
         ssn_requested: |-
           Your Social Security number is requested.  Providing this information
           is voluntary.   If you do not provide your Social Security number, you must
@@ -3653,6 +3672,10 @@ en:
           digits of your Social Security number.  If you do not have either number,
           enter "NONE" and a unique identifying number will be assigned to you by
           the state.
+        drivers_license_or_ssn_no_none: |-
+          Federal law now requires that all voter registration applications must
+          include either the applicant's driver's license number or the last four
+          digits of the applicant's social security number in order to be processed.
         drivers_license_or_ssn_county_clerk_with_state_name: |-
           You must supply a %{state_name}
           driver's license number if you have been issued one.  If you do not have
@@ -3813,9 +3836,7 @@ en:
       michigan: postmarked by 10/18/2021
       minnesota: 5pm, 10/12/2021
       mississippi: postmarked by 5pm on 10/4/21 for the November 2, 2021 elections and postmarked by 5pm 10/25/2021 for the 11/23/2021 elections
-      missouri: |-
-        received before 5pm (or normal close of business) on the fourth Wednesday
-        prior to the election
+      missouri: postmarked by the 4th Wednesday before the election
       montana: postmarked by 10/4/21 and received within 3 days. 
       new_hampshire: Register to vote at your town hall before the deadline or register to vote the day of the election at the polling place.
       new_jersey: 10/12/2021
@@ -3823,17 +3844,8 @@ en:
       new_york: postmarked by 10/8/2021, mail received by 10/13/2021
       north_carolina: 10/8/2021
       north_dakota: North Dakota does not have voter registration.
-      nebraska: |-
-        postmarked by the third Friday before the election, or received in-person
-        by 6pm on the second Friday before the election
-      nevada: The deadline for mail-in voter registration is the fourth Tuesday before
-        any primary or general election. This is the date by which a mail-in voter
-        registration application must be postmarked. In-person voter registration
-        remains available until 7:00 p.m. on the third Tuesday preceding any primary
-        or general election. You may register to vote in person only by appearing
-        at the office of the County Clerk/Registrar of Voters. The deadline for online
-        voter registration at www.RegisterToVoteNV.gov is the Thursday preceding the
-        first day of the early voting period.
+      nebraska: postmarked or delivered on or before the third Friday preceding an election
+      nevada: postmarked by the fourth Tuesday before Election Day
       ohio: postmarked by 10/4/2021
       oklahoma: received by 10/15/2021
       pennsylvania: received by 05/02/2022

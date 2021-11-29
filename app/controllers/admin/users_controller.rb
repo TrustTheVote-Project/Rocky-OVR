@@ -31,7 +31,7 @@ class Admin::UsersController < Admin::BaseController
         flash[:warning] = "User #{params[:email]} not found"
       end
     end
-    @users = User.paginate(:page => params[:page], :per_page => 10)
+    @users = User.paginate(:page => params[:page], :per_page => 100)
   end
 
   def edit

@@ -83,7 +83,7 @@ class Report < ActiveRecord::Base
     when ABR_REPORT
       return "Absentee Requests Report"
     when LOOKUP_REPORT
-      return "Voter Lookups Report"
+      return "Voter Status Lookup Report"
     end
   end
   
