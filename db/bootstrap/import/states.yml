@@ -566,7 +566,7 @@ record_36:
   sos_phone: "(405) 521-2391"
   sos_url: https://oklahoma.gov/elections.html
   sub_18: 60_days_before_election_novemeber
-  registration_deadline: postmarked_25_days
+  registration_deadline: oklahoma
   id_length_min: '4'
 record_37:
   abbreviation: OR
