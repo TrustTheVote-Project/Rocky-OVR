@@ -36,7 +36,7 @@ en:
           and <b>mail</b> your completed form!
         instructions_block:
           title: Instructions
-          subtitle: ! 'Take these easy steps to complete your voter registration. YOU ARE NOT REGISTERED UNTIL YOU SIGN AND SUBMIT YOUR COMPLETED FORM.'
+          subtitle: ! 'Take these easy steps to complete your voter registration:'
           step1: Sign the form. You must sign the voter registration form before you
             mail it.
           step1_for_printer: Sign it. You must sign the voter registration form before 

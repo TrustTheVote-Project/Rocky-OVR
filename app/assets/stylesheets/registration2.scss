@@ -923,8 +923,6 @@ body {
       }
     }
     .reject {
-      color: #333;
-      margin: 3em 0;
       p {
         color: #333;
         font-size: 18px;        
@@ -961,6 +959,14 @@ body {
           &.registrant-form__home-city__line {
             width: 70%
           }
+          &.registrant-form__email__line {
+            width: 58%;
+            margin-right: 7%;
+          }
+          &.registrant-form__phone__line {
+            width: 35%;
+            margin-right: 0;
+          }
         }
       }
     }
@@ -972,12 +978,14 @@ body {
     }
     
     .reject {
-      color: #666;
-      margin: 1.5em 0;
-      text-align: center;
-      p {
+      p, li {
         color: #666;
         font-size: 14px;        
+      }
+      ol li {
+        margin-left: 40px;
+        margin-bottom: 10px;
+        list-style: number;
       }
     }
   }

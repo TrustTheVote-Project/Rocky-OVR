@@ -28,6 +28,14 @@ class CatalistLookup < ActiveRecord::Base
   validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
   validate :validate_date_of_birth
   validate :validates_zip
+  validate :validate_phone_present_if_opt_in_sms
+
+  def validate_phone_present_if_opt_in_sms
+    if (self.opt_in_sms? || self.partner_opt_in_sms?) && self.phone.blank?
+      self.errors.add(:phone, :required_if_opt_in)
+    end
+  end
+  
 
   def validates_zip
     validates_zip_code(self, :zip)

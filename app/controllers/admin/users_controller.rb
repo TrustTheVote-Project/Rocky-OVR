@@ -25,13 +25,13 @@
 class Admin::UsersController < Admin::BaseController
   def index
     if params[:email] 
-      if user = Partner.find_by_email(params[:email])
+      if user = User.find_by_email(params[:email])
         redirect_to edit_admin_user_path(user.id) and return
       else
         flash[:warning] = "User #{params[:email]} not found"
       end
     end
-    @users = User.paginate(:page => params[:page], :per_page => 10)
+    @users = User.paginate(:page => params[:page], :per_page => 100)
   end
 
   def edit
