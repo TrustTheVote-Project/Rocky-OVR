@@ -88,8 +88,7 @@ class RegistrationStep < ApplicationController
 
   def set_up_view_variables
     @use_mobile_ui = determine_mobile_ui(@registrant)
-    @pdf_assistance ||= "0" if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?
-    
+    @pdf_assistance ||= "0" if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?    
   end
 
   def set_up_share_variables

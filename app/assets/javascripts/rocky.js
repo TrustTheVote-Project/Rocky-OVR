@@ -6,6 +6,14 @@ function isFacebookApp() {
   return ((ua.indexOf("fban") > -1) || (ua.indexOf("fbav") > -1) || (ua.indexOf("instagram") > -1));
 }
 
+function trackView(trackingUrl, controller, action) {
+  if (trackingUrl) {
+    console.log(trackingUrl, controller, action)
+    $.post(trackingUrl, {
+      rendered_step: controller+"-"+action
+    });
+  }
+}
 
 function hideErrors() {
   $('.error').each(function(){ $(this).css('opacity', 0); });
