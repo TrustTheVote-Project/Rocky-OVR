@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'rest-client'
-num_threads = 50
+num_threads = 1
 threads = []
 num_threads.times do |i|
   threads << Thread.new do
@@ -9,7 +9,12 @@ num_threads.times do |i|
       id = (i % 2) + 2
       #puts id
       #&before=2019-01-01
-      resp = RestClient.get("https://staging.rocky.rockthevote.com/api/v3/registrations.json?partner_id=#{id}&partner_API_key=1b573fa91bea1a2904ade27f0f4edb9d65f1306c")
+      #resp = RestClient.get("https://staging.rocky.rockthevote.com/api/v3/registrations.json?partner_id=#{id}&partner_API_key=1b573fa91bea1a2904ade27f0f4edb9d65f1306c")
+      resp = RestClient.post("https://staging.rocky.rockthevote.com/api/v4/registrant_reports.json", {
+        partner_id: id,
+        partner_API_key: "1b573fa91bea1a2904ade27f0f4edb9d65f1306c"
+      })
+      puts resp
       puts "Done with request #{i}"
     rescue Exception => e
       puts "#{e.message}"

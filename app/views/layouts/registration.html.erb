@@ -48,7 +48,7 @@
   <%= csrf_meta_tags %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      <%- if @registrant.persisted? %>
+      <%- if @registrant && @registrant.persisted? %>
         trackView("<%= track_view_registrant_path(@registrant) %>", "<%= params["controller"] %>", "<%= params["action"] %>");
       <%- end %>
       hideErrors(); 
