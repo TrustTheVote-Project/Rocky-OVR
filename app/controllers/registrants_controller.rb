@@ -32,6 +32,12 @@ class RegistrantsController < RegistrationStep
     @host = host_url
   end
 
+  def track_view
+    # Record that a particular page got viewed
+    find_registrant
+    TrackingEvent.track_registrant_view(@registrant, params[:rendered_step])
+  end
+
   # GET /registrants
   def landing
     find_partner

@@ -30,6 +30,12 @@ class AbrsController < ApplicationController
     set_up_locale
     render "show"
   end
+
+  def track_view
+    # Record that a particular page got viewed
+    find_abr
+    TrackingEvent.track_abr_view(@abr, params[:rendered_step])
+  end
   
   def show
     @current_step = 1
