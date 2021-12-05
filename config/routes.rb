@@ -52,6 +52,9 @@ Rails.application.routes.draw do
       get "state_online_redirect"
     end
   end
+
+  resources 'alerts', only: [:new, :create, :show], controller: 'alert_requests', as: :alert_requests
+  match "/alerts", to: "alert_requests#new", via: :get
   
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]

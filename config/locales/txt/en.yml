@@ -154,6 +154,15 @@ en:
       not_registered_instructions: "<p>It looks like you don't have an active voter
         registration record in %{state_name}.</p>"
       not_registered_link: <p>Would you like to <a href="%{url}">registration to vote</a>?</p>
+    alert_request:
+      pledge_to_vote: Pledge to Vote
+      pledge_to_vote_in: Pledge to Vote
+      step_1_header: Pledge to Vote
+      step_1_instructions: Pledge to vote and get personalized reminders about upcoming election dates and deadlines- never miss an election!
+      step_1_consent: By signing up, you consent to receive periodic text messages from Rock the Vote (788663). Text HELP for help or STOP to end. Msg & Data Rates May Apply. No purchase necessary. See terms and conditions and privacy policy.
+      success_header: Success
+      success_message: ''
+      sign_up: Sign me up!
     register_to_vote: Register To Vote
     register_to_vote_in: Register in %{state_abbrev}
     request_absentee_ballot_in: Request an Absentee Ballot In %{state_abbrev}

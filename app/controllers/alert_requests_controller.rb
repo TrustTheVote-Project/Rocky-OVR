@@ -1,0 +1,109 @@
+class AlertRequestsController < ApplicationController
+  layout 'alert_request'
+  before_action :find_partner
+
+  def new
+    @alert_request = AlertRequest.new(
+      partner_id: @partner_id, 
+      tracking_source: @source,
+      tracking_id: @tracking,
+      email: @email,
+      first: @first_name,
+      last: @last_name,
+      state: @home_state,
+      zip: @zip,
+      phone_type: 'mobile',
+    )
+
+    # do we need this?
+    # if @alert_request.partner.primary?
+    #   @alert_request.opt_in_email = true
+    # else
+    #   if @alert_request.partner.rtv_email_opt_in?
+    #     @alert_request.opt_in_email = true
+    #   end
+    #   if @alert_request.partner.partner_email_opt_in?
+    #     @alert_request.partner_opt_in_email = true
+    #   end
+    # end
+  
+    set_up_locale
+    @registrant = OpenStruct.new
+    @question_1 = @alert_request.question_1
+    @question_2 = @alert_request.question_2
+  end
+
+  def create
+    @alert_request = AlertRequest.create(alert_request_params.merge(uid: SecureRandom.hex(20)))
+    if @alert_request.save
+      redirect_to alert_request_path(@alert_request)
+    else
+      @registrant = OpenStruct.new
+      @question_1 = @alert_request.question_1
+      @question_2 = @alert_request.question_2
+      render :new
+    end
+  end
+
+  def show
+    @alert_request = AlertRequest.find_by_param(params[:id])
+  end
+
+  private
+
+  def alert_request_params
+    attrs =    [
+      'first',
+      'last',
+      'suffix',
+      'address',
+      'city',
+      'state_id',
+      'zip',
+      'date_of_birth_month',
+      'date_of_birth_day',
+      'date_of_birth_year',
+      'tracking_source',
+      'tracking_id',
+      'phone',
+      'phone_type',
+      'email',
+      # ?
+      # 'opt_in_email',
+      # 'opt_in_sms',
+      # 'partner_opt_in_email',
+      # 'partner_opt_in_sms',
+
+      # TODO: survey answers
+      # TODO: extra tracking params
+     ]
+    params.require(:alert_request).permit(*attrs)
+  end
+
+  def find_partner
+    # temporary commented out - demo partner's CSS hides some translated strings
+    # @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
+    # @partner_id = @partner.id
+    set_params
+  end
+
+  def set_params
+    @locale = 'en'
+    @source = params[:source]
+    @tracking = params[:tracking]
+    @email = params[:email]
+    @first_name = params[:first_name]
+    @last_name = params[:last_name]
+    # not needed?
+    # @state_abbrev = params[:state_abbrev] || params[:state]
+    # @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
+    @zip = params[:zip]
+    @home_state ||= @zip ? GeoState.for_zip_code(@zip.strip) : nil
+  end
+
+  def set_up_locale
+    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
+    @locale = params[:locale] || @alert_request&.locale || 'en'
+    I18n.locale = @locale.to_sym
+  end
+end
