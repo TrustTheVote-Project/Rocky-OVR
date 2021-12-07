@@ -7,11 +7,6 @@ class AlertRequestsController < ApplicationController
       partner_id: @partner_id, 
       tracking_source: @source,
       tracking_id: @tracking,
-      email: @email,
-      first: @first_name,
-      last: @last_name,
-      state: @home_state,
-      zip: @zip,
       phone_type: 'mobile',
     )
 
@@ -34,13 +29,21 @@ class AlertRequestsController < ApplicationController
   end
 
   def create
-    @alert_request = AlertRequest.create(alert_request_params.merge(uid: SecureRandom.hex(20)))
+    @alert_request = AlertRequest.create(
+      alert_request_params.merge(
+        uid: SecureRandom.hex(20),
+        state: @home_state,
+        partner_id: @partner_id,
+      )
+    )
+    @question_1 = @alert_request.question_1
+    @question_2 = @alert_request.question_2
+    update_partner_questions
+
     if @alert_request.save
       redirect_to alert_request_path(@alert_request)
     else
       @registrant = OpenStruct.new
-      @question_1 = @alert_request.question_1
-      @question_2 = @alert_request.question_2
       render :new
     end
   end
@@ -52,13 +55,12 @@ class AlertRequestsController < ApplicationController
   private
 
   def alert_request_params
-    attrs =    [
+    @alert_request_params ||= params.require(:alert_request).permit(
       'first',
       'last',
       'suffix',
       'address',
       'city',
-      'state_id',
       'zip',
       'date_of_birth_month',
       'date_of_birth_day',
@@ -68,22 +70,20 @@ class AlertRequestsController < ApplicationController
       'phone',
       'phone_type',
       'email',
+      'survey_answer_1',
+      'survey_answer_2',
       # ?
       # 'opt_in_email',
       # 'opt_in_sms',
       # 'partner_opt_in_email',
       # 'partner_opt_in_sms',
-
-      # TODO: survey answers
       # TODO: extra tracking params
-     ]
-    params.require(:alert_request).permit(*attrs)
+    )
   end
 
   def find_partner
-    # temporary commented out - demo partner's CSS hides some translated strings
-    # @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
-    # @partner_id = @partner.id
+    @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
+    @partner_id = @partner.id
     set_params
   end
 
@@ -91,19 +91,24 @@ class AlertRequestsController < ApplicationController
     @locale = 'en'
     @source = params[:source]
     @tracking = params[:tracking]
-    @email = params[:email]
-    @first_name = params[:first_name]
-    @last_name = params[:last_name]
-    # not needed?
-    # @state_abbrev = params[:state_abbrev] || params[:state]
-    # @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
-    @zip = params[:zip]
-    @home_state ||= @zip ? GeoState.for_zip_code(@zip.strip) : nil
+    zip = params.dig(:alert_request, :zip)
+    @home_state ||= zip ? GeoState.for_zip_code(zip.strip) : nil
   end
 
   def set_up_locale
     params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
     @locale = params[:locale] || @alert_request&.locale || 'en'
     I18n.locale = @locale.to_sym
+  end
+
+  def update_partner_questions
+    answer_1 = alert_request_params[:survey_answer_1]
+    answer_2 = alert_request_params[:survey_answer_2]
+    original_survey_question_1 = @alert_request.question_1 if answer_1.present?
+    original_survey_question_2 = @alert_request.question_2 if answer_2.present?
+    @alert_request.assign_attributes(
+      original_survey_question_1: original_survey_question_1,
+      original_survey_question_2: original_survey_question_2
+    )
   end
 end

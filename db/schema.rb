@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 2021_12_04_215614) do
     t.integer "partner_id"
     t.string "first"
     t.string "last"
-    t.string "suffix"
     t.date "birthdate"
     t.string "email"
     t.string "phone"

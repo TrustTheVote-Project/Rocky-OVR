@@ -8,7 +8,6 @@ class AlertRequest < ApplicationRecord
   validates_presence_of :birthdate
   validates_presence_of :address
   validates_presence_of :city
-  validates_presence_of :zip
   validates_presence_of :email
   validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   validates_presence_of :phone_type, if: -> { !phone.blank? }

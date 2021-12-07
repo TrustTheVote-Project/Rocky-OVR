@@ -19,7 +19,6 @@ en:
       wrong_length: wrong length (should be %{count} characters).
       too_young: You must be 18 on or before November 3, 2020 to vote in this election.
   or: "OR"
-  required: "Required"
   affirm: Affirm
   decline: Decline
   language_name: English
@@ -531,6 +530,13 @@ en:
               accepted: You must confirm before continuing.
             date_of_birth:
               format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+        alert_request:
+          blank: Required
+          format: Invalid
+          invalid: "%{attribute} is invalid."
+          attributes:
+            date_of_birth:
               too_old: Must be after 1900
         catalist_lookup:
           blank: Required

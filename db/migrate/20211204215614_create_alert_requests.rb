@@ -7,7 +7,7 @@ class CreateAlertRequests < ActiveRecord::Migration[5.2]
       t.string :first
       # t.string :middle safe to remove?
       t.string :last
-      t.string :suffix
+      # t.string :suffix
       t.date :birthdate
       t.string :email, index: true
       t.string :phone
