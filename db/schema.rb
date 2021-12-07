@@ -293,6 +293,17 @@ ActiveRecord::Schema.define(version: 2021_12_04_215614) do
     t.index ["registrant_uid"], name: "index_catalist_lookups_registrants_on_registrant_uid"
   end
 
+  create_table "chaser_deliveries", force: :cascade do |t|
+    t.string "email"
+    t.integer "abr_id"
+    t.integer "registrant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["abr_id"], name: "index_chaser_deliveries_on_abr_id"
+    t.index ["email"], name: "index_chaser_deliveries_on_email"
+    t.index ["registrant_id"], name: "index_chaser_deliveries_on_registrant_id"
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0
     t.integer "attempts", default: 0
@@ -1011,6 +1022,7 @@ ActiveRecord::Schema.define(version: 2021_12_04_215614) do
     t.index ["open_tracking_id"], name: "index_tracking_events_on_open_tracking_id"
     t.index ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
     t.index ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
+    t.index ["tracking_event_name"], name: "index_tracking_events_on_tracking_event_name"
   end
 
   create_table "users", force: :cascade do |t|

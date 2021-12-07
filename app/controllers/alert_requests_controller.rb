@@ -23,7 +23,6 @@ class AlertRequestsController < ApplicationController
     # end
   
     set_up_locale
-    @registrant = OpenStruct.new
     @question_1 = @alert_request.question_1
     @question_2 = @alert_request.question_2
   end
@@ -43,7 +42,6 @@ class AlertRequestsController < ApplicationController
     if @alert_request.save
       redirect_to alert_request_path(@alert_request)
     else
-      @registrant = OpenStruct.new
       render :new
     end
   end

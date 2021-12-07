@@ -1,5 +1,15 @@
 class AlertRequest < ApplicationRecord
   include DateOfBirthMethods
+  include SurveyQuestionMethods
+  # TODO create model fields for volunteering booleans before removing these overrides:
+  def ask_for_primary_volunteers?
+    false
+  end
+  def ask_for_partner_volunteers?
+    false
+  end
+
+
   belongs_to :partner, optional: true
   belongs_to :state, class_name: 'GeoState', optional: true
 
@@ -28,6 +38,14 @@ class AlertRequest < ApplicationRecord
     'en'
   end
 
+  def use_short_form?
+    true
+  end
+  def use_state_flow?
+    false
+  end
+
+  
   def question_1
     partner&.send("survey_question_1_#{self.locale}")
   end
