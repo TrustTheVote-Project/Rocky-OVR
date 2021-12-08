@@ -21,6 +21,14 @@ $(document).ready(function() {
       <%= field_div form, :first,  required: true %>
       <span class="error"><%= form.object.errors[:first].join("\n") %></span>
     </li>
+
+    <li class="width_c registrant-form__middle-name__line">
+      <%- middle_name_required = false %>
+      <h3><%= form.label :middle %><% if middle_name_required %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><% end %></h3>
+      <%= field_div form, :middle,  required: middle_name_required %>
+      <span class="error"><%= form.object.errors[:middle].join("\n") %></span>
+    </li>
+
     <li class="width_b registrant-form__last-name__line">
       <h3><%= form.label :last %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
       <%= field_div form, :last, required: true %>
@@ -70,7 +78,7 @@ $(document).ready(function() {
       <%= field_div form, :email, {class: 'registrant-form__email__line__input', required: @alert_request.require_email_address? } %>
       <span class="error registrant-form__email__line__error"><%= form.object.errors[:email].join("\n") %></span>
     </li>
-    <li class="width_b registrant-form__phone__line">
+    <li class="width_f registrant-form__phone__line">
       <h3><%= form.label :phone %></h3>
       <div class="flat-stack">
         <%= field_div form, :phone, placeholder: '###-###-####' %>

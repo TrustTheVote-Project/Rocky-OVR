@@ -55,8 +55,8 @@ class AlertRequestsController < ApplicationController
   def alert_request_params
     @alert_request_params ||= params.require(:alert_request).permit(
       'first',
+      'middle',
       'last',
-      'suffix',
       'address',
       'city',
       'zip',

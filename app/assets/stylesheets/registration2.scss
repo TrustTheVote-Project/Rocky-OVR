@@ -989,7 +989,54 @@ body {
       }
     }
   }
-  
+
+  &.alert_request {
+    form {
+      ul {
+        li {
+          &.registrant-form__first-name__line {
+            width: 38%
+          }
+          &.registrant-form__last-name__line {
+            width: 38%;
+            margin-right: 0%;
+          }
+          &.registrant-form__middle-name__line {
+            width: 20%
+          }
+          &.registrant-form__home-city__line {
+            width: 70%
+          }
+          &.registrant-form__email__line {
+            width: 58%;
+            margin-right: 7%;
+          }
+          &.registrant-form__phone__line {
+            width: 35%;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    #confirm_match {
+      padding-top: 1em;
+      p {
+        margin: 1.5em 0;
+      }
+    }
+    
+    .reject {
+      p, li {
+        color: #666;
+        font-size: 14px;        
+      }
+      ol li {
+        margin-left: 40px;
+        margin-bottom: 10px;
+        list-style: number;
+      }
+    }
+  }
 }
 
 #main.using_state_registration {
