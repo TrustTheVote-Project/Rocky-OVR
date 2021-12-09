@@ -989,7 +989,36 @@ body {
       }
     }
   }
-  
+
+  &.alert_request {
+    form {
+      ul {
+        li {
+          &.registrant-form__first-name__line {
+            width: 38%
+          }
+          &.registrant-form__last-name__line {
+            width: 38%;
+            margin-right: 0%;
+          }
+          &.registrant-form__middle-name__line {
+            width: 20%
+          }
+          &.registrant-form__home-city__line {
+            width: 70%
+          }
+          &.registrant-form__email__line {
+            width: 58%;
+            margin-right: 7%;
+          }
+          &.registrant-form__phone__line {
+            width: 35%;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 #main.using_state_registration {

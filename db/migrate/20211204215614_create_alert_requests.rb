@@ -5,10 +5,9 @@ class CreateAlertRequests < ActiveRecord::Migration[5.2]
       t.integer :partner_id, index: true
 
       t.string :first
-      # t.string :middle safe to remove?
+      t.string :middle
       t.string :last
-      # t.string :suffix
-      t.date :birthdate
+      t.date :date_of_birth
       t.string :email, index: true
       t.string :phone
       t.string :phone_type
@@ -18,10 +17,11 @@ class CreateAlertRequests < ActiveRecord::Migration[5.2]
       t.integer :state_id, index: true
       t.string :zip
 
-      # t.boolean :opt_in_email
-      # t.boolean :opt_in_sms
-      # t.boolean :partner_opt_in_email
-      # t.boolean :partner_opt_in_sms
+      t.boolean :opt_in_email
+      t.boolean :opt_in_sms
+      t.boolean :partner_opt_in_email
+      t.boolean :partner_opt_in_sms
+
       t.string :tracking_source
       t.string :tracking_id
 

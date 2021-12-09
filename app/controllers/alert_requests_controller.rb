@@ -10,17 +10,16 @@ class AlertRequestsController < ApplicationController
       phone_type: 'mobile',
     )
 
-    # do we need this?
-    # if @alert_request.partner.primary?
-    #   @alert_request.opt_in_email = true
-    # else
-    #   if @alert_request.partner.rtv_email_opt_in?
-    #     @alert_request.opt_in_email = true
-    #   end
-    #   if @alert_request.partner.partner_email_opt_in?
-    #     @alert_request.partner_opt_in_email = true
-    #   end
-    # end
+    if @alert_request.partner.primary?
+      @alert_request.opt_in_email = true
+    else
+      if @alert_request.partner.rtv_email_opt_in?
+        @alert_request.opt_in_email = true
+      end
+      if @alert_request.partner.partner_email_opt_in?
+        @alert_request.partner_opt_in_email = true
+      end
+    end
   
     set_up_locale
     @question_1 = @alert_request.question_1
@@ -30,7 +29,6 @@ class AlertRequestsController < ApplicationController
   def create
     @alert_request = AlertRequest.create(
       alert_request_params.merge(
-        uid: SecureRandom.hex(20),
         state: @home_state,
         partner_id: @partner_id,
       )
@@ -55,8 +53,8 @@ class AlertRequestsController < ApplicationController
   def alert_request_params
     @alert_request_params ||= params.require(:alert_request).permit(
       'first',
+      'middle',
       'last',
-      'suffix',
       'address',
       'city',
       'zip',
@@ -70,12 +68,10 @@ class AlertRequestsController < ApplicationController
       'email',
       'survey_answer_1',
       'survey_answer_2',
-      # ?
-      # 'opt_in_email',
-      # 'opt_in_sms',
-      # 'partner_opt_in_email',
-      # 'partner_opt_in_sms',
-      # TODO: extra tracking params
+      'opt_in_email',
+      'opt_in_sms',
+      'partner_opt_in_email',
+      'partner_opt_in_sms',
     )
   end
 
