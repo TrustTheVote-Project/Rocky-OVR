@@ -30,7 +30,12 @@ module AbrReportingMethods
     :pdf_ready,
     :finish_with_state,
     :confirm_email_delivery, #whether a user confirms to have their ABR delivered via email
+    :viewed_steps,
   ]
+
+  def viewed_steps
+    render_view_events.collect{|te| te.tracking_data[:rendered_step] }.join(",")
+  end
 
   def to_csv_array
     CSV_HEADER.collect{|m| self.send(m) }

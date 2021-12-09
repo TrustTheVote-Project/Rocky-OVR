@@ -16,7 +16,7 @@ module CatalistLookupReportingMethods
     "email", 
     "created_at", 
     "updated_at", 
-    "match", 
+    "match_status", 
     "partner_id", 
     "tracking_source", 
     "tracking_id", 
@@ -39,6 +39,10 @@ module CatalistLookupReportingMethods
 
   def registrant_uid
     self.catalist_lookups_registrant&.registrant_uid
+  end
+
+  def match_status
+    return match && match["status"]
   end
 
 end
