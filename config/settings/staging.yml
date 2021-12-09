@@ -20,7 +20,7 @@ blocks_configuration:
   default_location_id: 266
   default_staging_location_id: 19000000003
   shift_length: 1
-  url: https://svtesting.blocks.work
+  url: https://svpa.blocks.app
   partners:
     26292:
       turf_id: 19000000023
@@ -30,7 +30,7 @@ blocks_configuration:
     991:
       states:
         - NV
-      url: https://svdemo.blocks.im
+      url: https://svpa.blocks.app
       bulk_submit: false
       submit_forms: false
       staging_location_id: 758
