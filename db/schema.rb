@@ -5,7 +5,7 @@
 # Note that this schema.rb definition is the authoritative source for your
 # database schema. If you need to create the application database on another
 # system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainablegit st approach (the more migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
@@ -296,6 +296,17 @@ ActiveRecord::Schema.define(version: 2021_12_04_215614) do
     t.index ["catalist_lookup_id"], name: "index_catalist_lookups_registrants_on_catalist_lookup_id"
     t.index ["registrant_uid", "catalist_lookup_id"], name: "registrants_catalist_join_index"
     t.index ["registrant_uid"], name: "index_catalist_lookups_registrants_on_registrant_uid"
+  end
+
+  create_table "chaser_deliveries", force: :cascade do |t|
+    t.string "email"
+    t.integer "abr_id"
+    t.integer "registrant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["abr_id"], name: "index_chaser_deliveries_on_abr_id"
+    t.index ["email"], name: "index_chaser_deliveries_on_email"
+    t.index ["registrant_id"], name: "index_chaser_deliveries_on_registrant_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -1016,6 +1027,7 @@ ActiveRecord::Schema.define(version: 2021_12_04_215614) do
     t.index ["open_tracking_id"], name: "index_tracking_events_on_open_tracking_id"
     t.index ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
     t.index ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
+    t.index ["tracking_event_name"], name: "index_tracking_events_on_tracking_event_name"
   end
 
   create_table "users", force: :cascade do |t|
