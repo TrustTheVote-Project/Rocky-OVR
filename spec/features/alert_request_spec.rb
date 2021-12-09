@@ -40,6 +40,10 @@ RSpec.feature 'Alert Request' do
       original_survey_question_2: 'What is your favorite musical group?',
       survey_answer_1: 'answer 1',
       survey_answer_2: 'answer 2',
+      opt_in_email: true,
+      opt_in_sms: nil,
+      partner_opt_in_email: nil,
+      partner_opt_in_sms: nil
     )
   end
 end

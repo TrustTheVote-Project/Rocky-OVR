@@ -17,10 +17,11 @@ class CreateAlertRequests < ActiveRecord::Migration[5.2]
       t.integer :state_id, index: true
       t.string :zip
 
-      # t.boolean :opt_in_email
-      # t.boolean :opt_in_sms
-      # t.boolean :partner_opt_in_email
-      # t.boolean :partner_opt_in_sms
+      t.boolean :opt_in_email
+      t.boolean :opt_in_sms
+      t.boolean :partner_opt_in_email
+      t.boolean :partner_opt_in_sms
+
       t.string :tracking_source
       t.string :tracking_id
 
