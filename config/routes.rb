@@ -50,6 +50,8 @@ Rails.application.routes.draw do
       get "finish"
       get "state_online"
       get "state_online_redirect"
+
+      post "track_view", format: :json
     end
   end
 
@@ -74,6 +76,7 @@ Rails.application.routes.draw do
     resource "state_online_registration", :only=>:show
     member do 
       get "stop_reminders", :to=>'reminders#stop', :as=>'stop_reminders'
+      post "track_view", format: :json
     end
     collection do
       get 'new/:state_abbrev', action: 'new'

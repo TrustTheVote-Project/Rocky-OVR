@@ -42,6 +42,8 @@ class Abr < ActiveRecord::Base
   
   has_many :abr_state_values, autosave: true
   
+  has_many :tracking_events, foreign_key: :source_tracking_id, primary_key: :uid
+
   belongs_to :home_state,    :class_name => "GeoState", optional: true
   belongs_to :partner, optional: true
   
@@ -66,6 +68,10 @@ class Abr < ActiveRecord::Base
   validate :validates_zip
   validate :validates_signature
   
+  def render_view_events
+    tracking_events.where(tracking_event_name: "abr::render_view")
+  end
+
   def requires_county?
     advancing_to_step_3? && home_state&.counties&.any?
   end
@@ -253,7 +259,19 @@ class Abr < ActiveRecord::Base
   
   def deliver_chaser_email
     if send_emails?
-      AbrNotifier.chaser(self).deliver_now
+      rendered_step2 = begin
+        self.render_view_events.collect {|te| te.tracking_data[:rendered_step] }.include?("abrs-step_2")
+      rescue
+        false
+      end
+      
+      if rendered_step2 && ChaserDelivery.can_send_chaser?(self.email)
+        ChaserDelivery.create({
+          email: self.email,
+          abr: self
+        })
+        AbrNotifier.chaser(self).deliver_now
+      end
     end
   end
   

@@ -45,6 +45,12 @@ class Registrant < ActiveRecord::Base
   has_many :ab_tests
   has_many :registrant_tracking_params
 
+  has_many :tracking_events, foreign_key: :source_tracking_id, primary_key: :uid
+
+  def render_view_events
+    tracking_events.where(tracking_event_name: "registrant::render_view")
+  end
+
   def query_parameters
     qp = {}
     registrant_tracking_params.each do |rtp|
@@ -271,6 +277,7 @@ class Registrant < ActiveRecord::Base
     "State Flow Status",
     "State API Transaction ID",
     "Requested Assistance",
+    "Viewed Steps"
   ].flatten
   
   GROMMET_CSV_HEADER = [
@@ -1607,7 +1614,20 @@ class Registrant < ActiveRecord::Base
   
   def deliver_chaser_email
     if send_emails?
-      Notifier.chaser(self).deliver_now
+      # Make sure user has at least viewed step 2
+      rendered_step2 = begin
+        self.render_view_events.collect {|te| te.tracking_data[:rendered_step] }.include?("step2-show")
+      rescue
+        false
+      end
+      
+      if rendered_step2 && ChaserDelivery.can_send_chaser?(self.email_address)
+        ChaserDelivery.create({
+          email: self.email_address,
+          registrant: self
+        })
+        Notifier.chaser(self).deliver_now
+      end
     end
   end
   
@@ -1723,6 +1743,7 @@ class Registrant < ActiveRecord::Base
       state_flow_status,
       state_transaction_id,
       yes_no_nothing(requested_pdf_assistance?),
+      render_view_events.collect{|te| te.tracking_data[:rendered_step] }.join(",")
     ].flatten(1)
   end
   

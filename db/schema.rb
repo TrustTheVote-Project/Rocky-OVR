@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_12_04_215614) do
+=======
+ActiveRecord::Schema.define(version: 2021_11_17_192951) do
+>>>>>>> c55db22324c5f255852823063348586aad57dcb4
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
