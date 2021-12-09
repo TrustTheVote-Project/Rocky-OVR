@@ -29,7 +29,6 @@ class AlertRequestsController < ApplicationController
   def create
     @alert_request = AlertRequest.create(
       alert_request_params.merge(
-        uid: SecureRandom.hex(20),
         state: @home_state,
         partner_id: @partner_id,
       )

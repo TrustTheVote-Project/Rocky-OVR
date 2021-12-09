@@ -14,6 +14,7 @@ class Abr < ActiveRecord::Base
   include AbrPdfCoverFields
   include AbrSignatureMethods
   include AbrReportingMethods
+  include UidGenerator
 
   has_one :voter_signature, autosave: true
   AbrSignatureMethods::METHODS.each do |vs_attribute|
@@ -144,9 +145,6 @@ class Abr < ActiveRecord::Base
   def advancing_to_step_4?
     advancing_to_step?(4)
   end
-  
-  
-  before_create :generate_uid
   
   def set_max_step(step)
     self.max_step = [(self.max_step || "0").to_i, step.to_i].max
@@ -322,11 +320,6 @@ class Abr < ActiveRecord::Base
     if zip && !zip.blank?
       self.home_state_id = (s = GeoState.for_zip_code(zip.strip)) ? s.id : self.home_state_id
     end
-  end
-  
-  def generate_uid
-    self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email} -- #{zip}" )
-    return self.uid
   end
   
   def can_continue?
