@@ -26,7 +26,7 @@ RSpec.feature 'Alert Request' do
       first: 'First',
       middle: 'Middle',
       last: 'Last',
-      birthdate: Date.new(2000, 1, 2),
+      date_of_birth: Date.new(2000, 1, 2),
       email: 'email@mail.com',
       phone: '123-123-1234',
       phone_type: 'mobile',

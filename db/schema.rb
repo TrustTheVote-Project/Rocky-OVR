@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 2021_12_04_215614) do
     t.string "first"
     t.string "middle"
     t.string "last"
-    t.date "birthdate"
+    t.date "date_of_birth"
     t.string "email"
     t.string "phone"
     t.string "phone_type"

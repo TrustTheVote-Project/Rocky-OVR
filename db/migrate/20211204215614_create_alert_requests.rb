@@ -7,7 +7,7 @@ class CreateAlertRequests < ActiveRecord::Migration[5.2]
       t.string :first
       t.string :middle
       t.string :last
-      t.date :birthdate
+      t.date :date_of_birth
       t.string :email, index: true
       t.string :phone
       t.string :phone_type
