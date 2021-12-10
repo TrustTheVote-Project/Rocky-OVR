@@ -69,4 +69,32 @@ RSpec.feature 'Alert Request' do
       answers.merge(javascript_disabled: true)
     )
   end
+
+  scenario 'query params', js: true do
+    query = {
+      partner_id: Partner.last.id,
+      tracking_source: 'tracking_source',
+      tracking_id: 'tracking_id',
+      first: 'First',
+      middle: 'Middle',
+      last: 'Last',
+      address: 'Address',
+      city: 'City',
+      zip: '99801',
+      date_of_birth_month: 1,
+      date_of_birth_day: 2,
+      date_of_birth_year: 2000,
+      phone: '123-123-1234',
+      email: 'email@mail.com',
+    }.to_query
+
+    visit '/pledge?' + query
+    fill_in 'What school did you go to?', with: 'answer 1'
+    fill_in 'What is your favorite musical group?', with: 'answer 2'
+
+    find(:button, text: 'Sign me up!').click
+    expect(page).to have_content('Thank you for joining us.')
+
+    expect(AlertRequest.last).to have_attributes(answers)
+  end  
 end

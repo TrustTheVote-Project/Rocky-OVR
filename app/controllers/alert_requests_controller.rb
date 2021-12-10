@@ -3,12 +3,7 @@ class AlertRequestsController < ApplicationController
   before_action :find_partner
 
   def new
-    @alert_request = AlertRequest.new(
-      partner_id: @partner_id, 
-      tracking_source: @source,
-      tracking_id: @tracking,
-      phone_type: 'mobile',
-    )
+    @alert_request = AlertRequest.new(new_alert_request_params)
 
     if @alert_request.partner.primary?
       @alert_request.opt_in_email = true
@@ -30,7 +25,6 @@ class AlertRequestsController < ApplicationController
     @alert_request = AlertRequest.create(
       alert_request_params.merge(
         state: @home_state,
-        partner_id: @partner_id,
         opt_in_sms: alert_request_params[:phone].present?,
       )
     )
@@ -71,10 +65,31 @@ class AlertRequestsController < ApplicationController
       'survey_answer_2',
       'opt_in_email',
       'opt_in_sms',
+      'partner_id',
       'partner_opt_in_email',
       'partner_opt_in_sms',
       'javascript_disabled',
     )
+  end
+
+  def new_alert_request_params
+    {
+      partner_id: @partner_id, 
+      tracking_source: params[:source],
+      tracking_id: params[:tracking],
+      first: params[:first],
+      middle: params[:middle],
+      last: params[:last],
+      address: params[:address],
+      city: params[:city],
+      zip: params[:zip],
+      date_of_birth_month: params[:date_of_birth_month],
+      date_of_birth_day: params[:date_of_birth_day],
+      date_of_birth_year: params[:date_of_birth_year],
+      phone: params[:phone],
+      email: params[:email],
+      phone_type: 'mobile',
+    }
   end
 
   def find_partner
@@ -85,8 +100,6 @@ class AlertRequestsController < ApplicationController
 
   def set_params
     @locale = 'en'
-    @source = params[:source]
-    @tracking = params[:tracking]
     zip = params.dig(:alert_request, :zip)
     @home_state ||= zip ? GeoState.for_zip_code(zip.strip) : nil
   end
