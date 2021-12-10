@@ -72,6 +72,7 @@ class AlertRequestsController < ApplicationController
       'opt_in_sms',
       'partner_opt_in_email',
       'partner_opt_in_sms',
+      'javascript_disabled',
     )
   end
 

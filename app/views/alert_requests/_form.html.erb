@@ -3,7 +3,7 @@
 <% content_for :head do %>
 <script>
 $(document).ready(function() {
-  $('#registrant_javascript_disabled').remove();
+  $('#alert_request_javascript_disabled').remove();
 });
 </script>
 <% end %>
@@ -13,6 +13,7 @@ $(document).ready(function() {
 <%= form.hidden_field :state_id %>
 <%= form.hidden_field :opt_in_email %>
 <%= form.hidden_field :partner_opt_in_email %>
+<%= form.hidden_field :javascript_disabled, value: '1' %>
 
 <fieldset>
   <legend><span><%= I18n.t('txt.registration.name') %></span></legend>

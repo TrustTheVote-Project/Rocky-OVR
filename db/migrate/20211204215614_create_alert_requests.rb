@@ -22,6 +22,7 @@ class CreateAlertRequests < ActiveRecord::Migration[5.2]
       t.boolean :partner_opt_in_email
       t.boolean :partner_opt_in_sms
 
+      t.boolean :javascript_disabled, null: false, default: false
       t.string :tracking_source
       t.string :tracking_id
 
