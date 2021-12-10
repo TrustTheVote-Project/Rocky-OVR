@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Alert Request' do
 
   scenario 'html form all fields', js: true do
-    visit '/alerts'
+    visit '/pledge'
     fill_in 'First', with: 'First'
     fill_in 'Middle', with: 'Middle'
     fill_in 'Last', with: 'Last'
