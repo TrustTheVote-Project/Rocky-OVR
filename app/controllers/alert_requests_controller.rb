@@ -31,6 +31,7 @@ class AlertRequestsController < ApplicationController
       alert_request_params.merge(
         state: @home_state,
         partner_id: @partner_id,
+        opt_in_sms: alert_request_params[:phone].present?,
       )
     )
     @question_1 = @alert_request.question_1

@@ -26,6 +26,7 @@ RSpec.feature 'Alert Request' do
       opt_in_sms: nil,
       partner_opt_in_email: nil,
       partner_opt_in_sms: nil,
+      opt_in_sms: true,
     }
   end
 
