@@ -948,7 +948,7 @@ body {
       }
     }
   }
-  &.lookup, &.alert_request {
+  &.lookup {
     form {
       ul {
         li {
@@ -970,6 +970,8 @@ body {
         }
       }
     }
+  }
+  &.lookup, &.alert_request {    
     #confirm_match {
       padding-top: 1em;
       p {
@@ -994,6 +996,11 @@ body {
     form {
       ul {
         li {
+          &.registrant-form__opt-in-email__line, 
+          &.registrant-form__opt-in-sms__line 
+          {
+            display: none
+          }
           &.registrant-form__first-name__line {
             width: 38%
           }
@@ -1003,6 +1010,12 @@ body {
           }
           &.registrant-form__middle-name__line {
             width: 20%
+          }
+          &.registrant-form__home-address__line {
+            width: 50%
+          }
+          &.registrant-form__home-address-2__line {
+            width: 48%
           }
           &.registrant-form__home-city__line {
             width: 70%
@@ -1017,11 +1030,6 @@ body {
           }
         }
       }
-    }
-    
-    .banner {
-      text-align: center;
-      font-size: x-large;
     }
   }
 }

@@ -1,4 +1,11 @@
 %h1{role: "heading", "aria-level": 1}= t('txt.alert_request.success_header')
 
-.banner
+.finish_instructions
   = t('txt.alert_request.success_message').html_safe
+
+
+#finish_page_iframe
+  %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @alert_request_finish_iframe_url }
+  
+  
+= render :partial => 'abrs/finish_adwords'

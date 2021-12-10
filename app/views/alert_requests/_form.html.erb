@@ -51,10 +51,15 @@ $(document).ready(function() {
 <fieldset>
   <legend><span><%= I18n.t('txt.registration.home_address') %></span></legend>
   <ul class="stacked">
-    <li class="width_a registrant-form__home-address-__line">
+    <li class="width_a registrant-form__home-address__line">
       <h3><%= form.label :address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
       <%= field_div form, :address, required: true %>
       <span class="error"><%= form.object.errors[:address].join("\n") %></span>
+    </li>
+    <li class="width_a registrant-form__home-address-2__line">
+      <h3><%= form.label :address_2 %></h3>
+      <%= field_div form, :address_2 %>
+      <span class="error"><%= form.object.errors[:address_2].join("\n") %></span>
     </li>
   </ul>
   <ul class="stacked">
@@ -93,8 +98,8 @@ $(document).ready(function() {
   <div>
     <%= I18n.t('txt.alert_request.step_1_consent') %>
   </div>
-  <%#= render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form} %>
-  <%#= render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form} %>
+  <%= render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form} %>
+  <%= render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form} %>
 </fieldset>
 <fieldset class='no_border'>
   <%= render :partial=> "registrants/survey_and_volunteer", locals: { form: form } %>

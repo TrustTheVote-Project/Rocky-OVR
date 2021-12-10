@@ -1,5 +1,6 @@
 module RegistrantAbrMethods
   def finish_iframe_url
+    
     base_url = self.is_a?(Abr) ? "https://s3.rockthevote.com/rocky/rtv-abr-share.php" : Registrant::FINISH_IFRAME_URL
     if self.partner && !self.partner.primary? && self.partner.whitelabeled? && !self.partner.finish_iframe_url.blank?
       base_url = self.partner.finish_iframe_url

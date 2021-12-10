@@ -25,6 +25,7 @@ class AlertRequestsController < ApplicationController
     @alert_request = AlertRequest.create(
       alert_request_params.merge(
         state: @home_state,
+        opt_in_email: true,
         opt_in_sms: alert_request_params[:phone].present?,
       )
     )
@@ -41,6 +42,7 @@ class AlertRequestsController < ApplicationController
 
   def show
     @alert_request = AlertRequest.find_by_param(params[:id])
+    @alert_request_finish_iframe_url = @alert_request.finish_iframe_url
   end
 
   private
@@ -51,6 +53,7 @@ class AlertRequestsController < ApplicationController
       'middle',
       'last',
       'address',
+      'address_2',
       'city',
       'zip',
       'date_of_birth_month',
@@ -81,6 +84,7 @@ class AlertRequestsController < ApplicationController
       middle: params[:middle],
       last: params[:last],
       address: params[:address],
+      address_2: params[:address_2],
       city: params[:city],
       zip: params[:zip],
       date_of_birth_month: params[:date_of_birth_month],

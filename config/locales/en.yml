@@ -308,6 +308,17 @@ en:
           to the best of my knowledge.
         confirm_email_delivery: I have reviewed the above information and wish to email my request to my local elections office.
         registration_county: My local elections office (i.e. my city or county)
+      alert_request:
+        first: First Name
+        middle: Middle
+        last: Last Name
+        date_of_birth: Date of Birth
+        address: Address
+        address_2: Address Line 2
+        city: City
+        zip: ZIP Code
+        email: Email Address
+        phone: Phone
       catalist_lookup:
         date_of_birth: Date of Birth
         email: Email Address

@@ -13,6 +13,7 @@ class CreateAlertRequests < ActiveRecord::Migration[5.2]
       t.string :phone_type
 
       t.string :address
+      t.string :address_2
       t.string :city
       t.integer :state_id, index: true
       t.string :zip

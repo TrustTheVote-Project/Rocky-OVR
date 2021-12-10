@@ -2,6 +2,7 @@ class AlertRequest < ApplicationRecord
   include DateOfBirthMethods
   include SurveyQuestionMethods
   include UidGenerator
+  include RegistrantAbrMethods
 
   # TODO create model fields for volunteering booleans before removing these overrides:
   def ask_for_primary_volunteers?
@@ -26,7 +27,33 @@ class AlertRequest < ApplicationRecord
   validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
   validate :validate_date_of_birth
   validate :validates_zip
-  # validate :validate_phone_present_if_opt_in_sms
+  validate :validate_phone_present_if_opt_in_partner_sms
+
+  ADDRESS_FIELDS = ["address", 
+    "address_2"]
+
+  CITY_FIELDS = ["city"]
+
+  NAME_FIELDS = ["first", 
+   "last", 
+   "middle"]
+
+  def self.validate_fields(list, regex, message)
+    list.each do |field|
+      validates field, format: { with: regex , 
+        message: message }
+    end    
+  end
+  
+  validate_fields(NAME_FIELDS, Registrant::OVR_REGEX, :invalid)
+  validate_fields(ADDRESS_FIELDS, Registrant::CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period")
+
+  def validate_phone_present_if_opt_in_partner_sms
+    if (self.partner_opt_in_sms?) && self.phone.blank?
+      self.errors.add(:phone, :required_if_opt_in)
+    end
+  end
+  
 
   def to_param
     uid
@@ -40,6 +67,13 @@ class AlertRequest < ApplicationRecord
     'en'
   end
 
+  def email_address
+    email
+  end
+
+  def collect_email_address?
+    true
+  end
   def use_short_form?
     true
   end
