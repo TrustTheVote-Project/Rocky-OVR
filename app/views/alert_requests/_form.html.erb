@@ -96,7 +96,7 @@ $(document).ready(function() {
     </li>
   </ul>
   <div>
-    <%= I18n.t('txt.alert_request.step_1_consent') %>
+    <%= t('txt.alert_request.step_1_consent', organization: h("Rock the Vote"), short_code: RockyConf.sms_short_code, terms_url: RockyConf.terms_url, privacy_url: RockyConf.privacy_url).html_safe%>
   </div>
   <%= render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form} %>
   <%= render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form} %>

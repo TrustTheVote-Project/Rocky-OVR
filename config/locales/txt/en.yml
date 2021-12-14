@@ -159,7 +159,13 @@ en:
       pledge_to_vote_in: Pledge to Vote
       step_1_header: Pledge to Vote
       step_1_instructions: Pledge to vote and get personalized reminders about upcoming election dates and deadlines - never miss an election!
-      step_1_consent: By entering your phone number, you consent to receive periodic text messages from Rock the Vote (788663). Text HELP for help or STOP to end. Msg & Data Rates May Apply. No purchase necessary. See terms and conditions and privacy policy.
+      step_1_consent: |-
+        By entering your phone number, you consent to receive periodic text messages
+        from %{organization} (%{short_code}). Text HELP for help or STOP to end. 
+        Msg & Data Rates May Apply. 
+        No purchase necessary. See
+        <a href="%{terms_url}" target="_blank" rel="noopener">terms and conditions</a>
+        and <a href="%{privacy_url}"  target="_blank" rel="noopener">privacy policy</a>.
       success_header: Thank you for joining us.
       success_message: <p>Encourage your friends and family to do the same.</p>
       sign_up: Sign me up!
