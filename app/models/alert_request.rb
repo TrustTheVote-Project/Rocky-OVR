@@ -3,6 +3,7 @@ class AlertRequest < ApplicationRecord
   include SurveyQuestionMethods
   include UidGenerator
   include RegistrantAbrMethods
+  include AlertRequestReportingMethods
 
   # TODO create model fields for volunteering booleans before removing these overrides:
   def ask_for_primary_volunteers?

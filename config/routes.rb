@@ -102,6 +102,7 @@ Rails.application.routes.draw do
       post "grommet_shift_report"
       post "abr_report"
       post "lookup_report"
+      post "alert_request_report"
       get "reports"      
       get "download_csv"
       get "embed_codes"
