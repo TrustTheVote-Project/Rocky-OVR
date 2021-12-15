@@ -38,8 +38,7 @@ module AlertRequestReportingMethods
         ["original_survey_question_2", "Survey question 2"],
         ["survey_answer_1", "Survey answer 1"],
         ["survey_answer_2", "Survey answer 2"],
-        ["created_at", "Created At"],
-        ["updated_at", "Updated At"],
+        ["created_at", "Submitted At"],
       ]
     end
   end
