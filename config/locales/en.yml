@@ -549,6 +549,8 @@ en:
           attributes:
             date_of_birth:
               too_old: Must be after 1900
+            phone:
+              required_if_opt_in: Required if receiving TXT
         catalist_lookup:
           blank: Required
           format: Invalid
