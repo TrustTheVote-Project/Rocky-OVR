@@ -1,6 +1,6 @@
 module AlertRequestReportHelper
   def alert_request_report_csv_header
-    AlertRequest::CSV_HEADER
+    AlertRequest.csv_header
   end
   
   def alert_request_report_conditions    
