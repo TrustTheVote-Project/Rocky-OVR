@@ -58,7 +58,7 @@
 
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      <%- if @abr.persisted? %>
+      <%- if @abr && @abr.persisted? %>
         trackView("<%= track_view_abr_path(@abr) %>", "<%= params["controller"] %>", "<%= params["action"] %>");
       <%- end %>
       

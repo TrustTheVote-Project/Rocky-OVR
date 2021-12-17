@@ -83,7 +83,7 @@ record_4:
   name: California
   requires_party: true
   party_tooltip: california
-  no_party: decline_to_state
+  no_party: no_party_preference
   id_number_tooltip: drivers_license_required_at_voting_with_state_name
   sos_address: Secretary of State<br>Elections Division<br>1500 11th Street, 5th FL<br>Sacramento,
     CA 95814
