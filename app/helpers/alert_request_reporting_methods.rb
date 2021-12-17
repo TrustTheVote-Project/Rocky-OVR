@@ -16,7 +16,7 @@ module AlertRequestReportingMethods
     def csv_columns
       [
         ["uid", "Pledge UID"],
-        ["locale", "Language"],
+        ["locale_english_name", "Language"],
         ["first", "First name"],
         ["middle", "Middle name"],
         ["last", "Last name"],

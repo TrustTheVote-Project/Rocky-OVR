@@ -25,6 +25,10 @@ module RegistrantAbrMethods
     url
   end
 
+  def locale_english_name
+    I18n.t("locales.#{self.locale}.name", locale: "en")
+  end
+
 
   def any_email_opt_ins?
     collect_email_address? && (partner.rtv_email_opt_in || partner.primary? || partner.partner_email_opt_in)

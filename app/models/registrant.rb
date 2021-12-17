@@ -477,9 +477,7 @@ class Registrant < ActiveRecord::Base
 
   
   
-  def locale_english_name
-    I18n.t("locales.#{locale}.name", locale: "en")
-  end
+  
 
 
   def collect_email_address?
