@@ -13,6 +13,7 @@ RSpec.feature 'Alert Request' do
       phone: '123-123-1234',
       phone_type: 'mobile',
       address: 'Address',
+      address_2: 'Address 2',
       city: 'City',
       state_id: 2,
       zip: '99801',
@@ -38,8 +39,9 @@ RSpec.feature 'Alert Request' do
     fill_in 'alert_request_date_of_birth_day', with: '2'
     fill_in 'alert_request_date_of_birth_year', with: '2000'
     fill_in 'Address', with: 'Address'
+    fill_in 'Address Line 2', with: 'Address 2'
     fill_in 'City', with: 'City'
-    fill_in 'Zip', with: '99801'
+    fill_in 'ZIP Code', with: '99801'
     fill_in 'Email', with: 'email@mail.com'
     fill_in 'Phone', with: '123-123-1234'
     fill_in 'What school did you go to?', with: 'answer 1'
@@ -79,6 +81,7 @@ RSpec.feature 'Alert Request' do
       middle: 'Middle',
       last: 'Last',
       address: 'Address',
+      address_2: 'Address 2',
       city: 'City',
       zip: '99801',
       date_of_birth_month: 1,
