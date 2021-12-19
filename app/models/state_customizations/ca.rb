@@ -369,7 +369,12 @@ class CA < StateCustomization
         num = i+1
         begin
           RestClient.proxy = ENV["PROXIMO_URL"]
-          @@disclosures[locale.to_s][num] = RestClient.get(disclosure_url(locale, num)).to_s.force_encoding('UTF-8')
+          res = RestClient.get(disclosure_url(locale, num)).to_s.force_encoding('UTF-8')
+          unless res.valid_encoding?
+            res = res.force_encoding('ISO-8859-1').encode('UTF-8')
+            puts [locale.to_sym, num, res.valid_encoding?]
+          end
+          @@disclosures[locale.to_s][num] = res
         rescue Exception=>e
           log_covr_error("While loading disclosures from #{disclosure_url(locale, num)} - #{e.message}\n#{e.backtrace.join("\n\t")}")
         end
