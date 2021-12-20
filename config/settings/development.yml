@@ -21,12 +21,12 @@ blocks_configuration:
   default_location_id: 16000000827
   default_staging_location_id: 16000000827
   shift_length: 2
-  url: https://svtesting.blocks.work
+  url: https://v2.api.blocks.app
+  url_client_path: svpa
   partners:
     1:
       states:
         - NV
-      url: https://svdemo.blocks.im
       staging_location_id: 758
       bulk_submit: false
       submit_forms: false
@@ -56,7 +56,7 @@ blocks_configuration:
     15:
       states:
       - NV
-      url: https://svnv.blocks.im
+      url: https://v2.api.blocks.app
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -87,7 +87,7 @@ blocks_configuration:
     26429:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -98,7 +98,7 @@ blocks_configuration:
     37885:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -109,7 +109,7 @@ blocks_configuration:
     38107:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -120,7 +120,7 @@ blocks_configuration:
     38350:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -131,7 +131,7 @@ blocks_configuration:
     38373:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -142,7 +142,7 @@ blocks_configuration:
     38400:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -169,7 +169,7 @@ blocks_configuration:
     38403:
       states:
       - NC
-      url: https://svnc.blocks.im
+      #url: https://svnc.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -200,7 +200,7 @@ blocks_configuration:
     38406:
       states:
       - MI
-      url: https://svmi.blocks.im
+      #url: https://svmi.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -275,7 +275,7 @@ blocks_configuration:
     38408:
       states:
       - MN
-      url: https://svmn.blocks.im
+      #url: https://svmn.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
