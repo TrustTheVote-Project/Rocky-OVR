@@ -567,6 +567,7 @@ record_36:
   sos_url: https://oklahoma.gov/elections.html
   sub_18: 60_days_before_election_novemeber
   registration_deadline: oklahoma
+  online_registration_url: https://okvoterportal.okelections.us/Home/RegWizard
   id_length_min: '4'
 record_37:
   abbreviation: OR
@@ -678,6 +679,7 @@ record_43:
   sos_url: https://www.votetexas.gov/
   sub_18: 2_months_before
   registration_deadline: texas
+  online_registration_url: https://vrapp.sos.state.tx.us/index.asp
   id_length_min: '4'
 record_44:
   abbreviation: UT
