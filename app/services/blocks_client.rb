@@ -104,7 +104,7 @@ class BlocksClient
   BASE_PATH = "/api/v1/external/"
 
   def self.send(method, path, body: {}, params: {}, headers: {}, url: nil, url_client_path: nil)
-    url = url || RockyConf.blocks_configuration.url
+    base_url = url || RockyConf.blocks_configuration.url
     url_client_path = url_client_path || RockyConf.blocks_configuration.url_client_path
 
     uri = URI.join(base_url, url_client_path, BASE_PATH, path)
