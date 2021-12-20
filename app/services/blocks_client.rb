@@ -107,7 +107,7 @@ class BlocksClient
     base_url = url || RockyConf.blocks_configuration.url
     url_client_path = url_client_path || RockyConf.blocks_configuration.url_client_path
 
-    uri = URI.join(base_url, url_client_path, BASE_PATH, path)
+    uri = URI.join(base_url, File.join(url_client_path, BASE_PATH, path))
     uri.query = params.to_query if params.any?
     RequestLogSession.request_log_instance.log_uri(uri) if RequestLogSession.request_log_instance
 
