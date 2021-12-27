@@ -39,11 +39,12 @@ class Registrant < ActiveRecord::Base
   #include RegistrantAbrMethods # included in RegistrantMethods
   include SurveyQuestionMethods
   include TimeStampHelper
+
+  include TrackableMethods
   
   scope :abandoned, -> {where(abandoned: true)}
   
   has_many :ab_tests
-  has_many :registrant_tracking_params
 
   has_many :tracking_events, foreign_key: :source_tracking_id, primary_key: :uid
 
@@ -51,24 +52,7 @@ class Registrant < ActiveRecord::Base
     tracking_events.where(tracking_event_name: "registrant::render_view")
   end
 
-  def query_parameters
-    qp = {}
-    registrant_tracking_params.each do |rtp|
-      qp[rtp.name.to_s] = rtp.value
-    end
-    return qp
-  end
-
-  def query_parameters=(val)
-    if val && val.keys && val.keys.length
-      val.keys.each do |key|
-        self.registrant_tracking_params.build({
-          name: key.to_s,
-          value: val[key].to_s
-        })
-      end
-    end
-  end
+  
   
   serialize :state_ovr_data, Hash
 
@@ -1710,16 +1694,13 @@ class Registrant < ActiveRecord::Base
   def to_csv_extended_array
     arr = [self.uid]
     arr = arr + self.to_csv_array
-    extra_query_params = self.query_parameters.clone
     arr = arr + [
-      extra_query_params.delete("utm_source"),
-      extra_query_params.delete("utm_medium"),
-      extra_query_params.delete("utm_campaign"),
-      extra_query_params.delete("utm_term"),
-      extra_query_params.delete("utm_content"),
-    ]
-    arr = arr + [
-      extra_query_params.collect {|k,v| "#{k}=#{v}"}.join("&")
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      utm_content,
+      other_parameters
     ]
 
     arr = arr + [

@@ -34,7 +34,9 @@ class CatalistLookupsController < ApplicationController
   end
   
   def create
-    @lookup = CatalistLookup.new(lookup_params)
+    @lookup = CatalistLookup.new(lookup_params.to_h.merge(
+      query_parameters: @query_parameters
+    ))
     @lookup.phone_type = "mobile"
     set_up_locale
     @lookup.partner_id = @partner_id
@@ -123,6 +125,19 @@ class CatalistLookupsController < ApplicationController
     @zip = params[:zip]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     @home_state ||= @zip ? GeoState.for_zip_code(@zip.strip) : nil
+
+    @query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
+      "locale",
+      "source",
+      "tracking",
+      "email",
+      "first_name",
+      "last_name",
+      "state_abbrev",
+      "state",
+      "zip",
+      "partner",
+    ] ))) || {}
   end
 
   def set_up_locale

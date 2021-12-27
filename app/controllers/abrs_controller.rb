@@ -179,7 +179,8 @@ class AbrsController < ApplicationController
       attrs += @abr.permitted_attrs
       attrs += @abr.allowed_signature_attrs
     end
-    params.require(:abr).permit(*attrs)
+    permitted = params.require(:abr).permit(*attrs)
+    return permitted.to_h.merge({query_parameters: @query_parameters})
   end
   
   def find_abr(special_case = nil)
