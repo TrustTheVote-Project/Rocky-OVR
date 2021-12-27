@@ -1,7 +1,18 @@
 !function(w) {
   w.RtvIframe = w.RtvIframe || {
-    id: "rtv-iframe",
-    init: function(params) {
+    initAbsentee: function(params) {
+      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_abr_path %>", "rtv-absentee-iframe");
+    },
+    initPledge: function(params) {
+      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_alert_request_path %>", "rtv-pledge-iframe");
+    },
+    initLookup: function(params) {
+      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_catalist_lookup_path %>", "rtv-lookup-iframe");
+    },
+    initTrackBallot: function(params) {
+      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.ballot_status_checks_path %>", "rtv-trackballot-iframe");
+    },
+    init: function(params, path="/", id="rtv-iframe") {
       params = params || {};
       var queryString = "";
       if (typeof(params)==="object") {
@@ -15,21 +26,25 @@
           queryString = queryString + key + "=" + value;
         }
       }
+
       var baseUrl = "<%= Rails.env.development? ? 'http' : 'https' %>://<%= RockyConf.ui_url_host %>";
-      var url = baseUrl;
+      var url = baseUrl + path;
+      // Include any window query params
+      var parentSearch = window.location.search || '?'
+      url = url + parentSearch // Always adds a ?
       if (queryString != "") {
-        url = url + "?" + queryString;
+        url = url + '&' + queryString;
       }
-      document.write("<iframe id=\""+this.id+"\"src=\""+url+"\" width=\"100%\" scrolling=\"no\" height=\"400\" frameborder=\"0\"></iframe>")
+      document.write("<iframe id=\""+id+"\"src=\""+url+"\" width=\"100%\" scrolling=\"no\" height=\"400\" frameborder=\"0\"></iframe>")
 
       var script = w.document.createElement('script');
-      script.onload = this.onScriptLoad.bind(this);
+      script.onload = this.onScriptLoad.bind(this, id);
       var scriptUrl = "<%= asset_url 'iframeResizer.min.js' %>";
       script.src = scriptUrl //baseUrl + "/assets/iframeResizer.min.js";
       w.document.head.appendChild(script);
     },
-    onScriptLoad: function() {
-      iFrameResize({ log: <%= Rails.env.development? %>, checkOrigin: false }, "#" + this.id)
+    onScriptLoad: function(id) {
+      iFrameResize({ log: <%= Rails.env.development? %>, checkOrigin: false }, "#" + id)
     },
     
   }
