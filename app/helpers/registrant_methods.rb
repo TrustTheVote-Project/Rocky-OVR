@@ -53,19 +53,7 @@ module RegistrantMethods
     at_least_step?(5)
   end
   
-  def yes_no(attribute)
-    attribute ? "Yes" : "No"
-  end
   
-  def yes_no_nothing(attribute)
-    return nil if attribute.nil?
-
-    attribute ? "Yes" : "No"
-  end
-  
-  def yes_no_localized(attribute)
-    attribute ? I18n.t('yes', locale: self.locale) : I18n.t('no', locale: self.locale)
-  end
   
   def male_titles
     RockyConf.enabled_locales.collect { |loc|

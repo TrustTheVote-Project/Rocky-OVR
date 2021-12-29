@@ -1,0 +1,130 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>Pledge to Vote</title>
+  <meta name="description" content="Pledge to vote now." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rock the Vote" />
+  <meta property="og:description" content="Pledge to vote now." />
+  <meta property="og:site_name" content="Rock the Vote" />
+  <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
+  <meta property="og:image:secure_url" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="576" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="Pledge to vote now." />
+  <meta name="twitter:title" content="Pledge to Vote" />
+  <meta name="twitter:site" content="@rockthevote" />
+  <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
+  <meta name="twitter:creator" content="@rockthevote" />
+  <%- unless controller.action_name == "new" %>
+    <meta name="robots" content="noindex" />
+  <%- end %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <%= javascript_include_tag "iframeResizer.contentWindow.min.js" %>
+
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Caveat:400', 'Fira Sans:400,700,700i']
+      }
+    });
+  </script>
+
+  <%= stylesheet_link_tag 'jquery.qtip.min' %>
+  <%= stylesheet_link_tag 'qtip-custom' %>
+  <%= stylesheet_link_tag *partner_css %>
+  <!--[if !IE 7]>
+    <style type="text/css">
+      #container { display:table; height:100% }
+    </style>
+  <![endif]-->
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      hideErrors();
+      setTimeout('revealErrors();', 400);
+    });
+  </script>
+  <% if Rails.env.production? %>
+<!-- Begin Inspectlet Asynchronous Code -->
+<script type="text/javascript">
+(function() {
+window.__insp = window.__insp || [];
+__insp.push(['wid', 1505231353]);
+var ldinsp = function(){
+if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1505231353&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+setTimeout(ldinsp, 0);
+})();
+</script>
+<!-- End Inspectlet Asynchronous Code -->
+<% end %>
+  <%= yield :head %>
+</head>
+
+<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+  <%- if @partner && !@partner.external_tracking_snippet.blank? %>
+  <%= @partner.external_tracking_snippet.to_s.html_safe %>
+  <%- end %>
+  <div id="container">
+    <% if @partner && @partner.custom_logo? -%>
+    <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
+      <% else -%>
+      <div id="header">
+        <% end -%>
+        <div class='header-text'>
+          <%- if @alert && @alert.state_abbrev %>
+            <%= t 'txt.pledge_to_vote_in', state_abbrev: @alert.state_abbrev %>
+          <%- else%>
+            <%= t 'txt.pledge_to_vote' %>
+          <%- end %>
+        </div>
+      </div>
+
+      <div id="main" class="alert_request">
+        <div id="main_inner">
+          <%= flash_messages.html_safe %>
+
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
+    <div id="sticky_footer">
+      <%= render :partial => 'layouts/footer' %>
+    </div>
+
+
+    <%= render :partial => 'layouts/urchin' %>
+    <%= javascript_include_tag "iframeResizer.contentWindow.min" %>
+    <script>
+      var ls = window.localStorage
+      window.IS_TOUCH_ENABLED = false;
+      if (ls && ls.getItem('IS_TOUCH_ENABLED')) {
+        window.IS_TOUCH_ENABLED = true;
+        window.registerTouch();
+      } else {
+        window.addEventListener('touchstart', function onFirstTouch() {
+          // or set some global variable
+          window.IS_TOUCH_ENABLED = true;
+          if (ls) {
+            ls.setItem('IS_TOUCH_ENABLED', true);
+          }
+          window.registerTouch();
+          // we only need to know once that a human touched the screen, so we can stop listening now
+          window.removeEventListener('touchstart', onFirstTouch, false);
+        }, false);
+      }
+    </script>
+
+</body>
+
+</html>

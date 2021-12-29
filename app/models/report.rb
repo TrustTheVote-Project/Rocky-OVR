@@ -8,8 +8,12 @@ class Report < ActiveRecord::Base
   REGISTRANTS_REPORT_EXTENDED="registrants_report_extended".freeze
   ABR_REPORT = "abr_report".freeze
   LOOKUP_REPORT = "lookup_report".freeze
+  ALERT_REQUEST_REPORT = "alert_request_report".freeze
+  
   QUEUE_NAME = "reports".freeze
   THRESHOLD = 500
+
+  include AlertRequestReportHelper
   
   
   SHIFT_REPORT_HEADER = [
@@ -84,6 +88,8 @@ class Report < ActiveRecord::Base
       return "Absentee Requests Report"
     when LOOKUP_REPORT
       return "Voter Status Lookup Report"
+    when ALERT_REQUEST_REPORT
+      return "Voter Pledge Report"
     end
   end
   

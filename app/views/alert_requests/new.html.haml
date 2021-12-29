@@ -1,0 +1,6 @@
+%h2{role: "heading", "aria-level": 1}= t('txt.alert_request.step_1_header')
+
+.intro-message= t('txt.alert_request.step_1_instructions').html_safe
+
+= form_for(@alert_request) do |form|
+  = render partial: 'form', :object => form

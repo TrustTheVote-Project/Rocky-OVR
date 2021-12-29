@@ -103,6 +103,7 @@ class Partner < ActiveRecord::Base
   has_many :abrs
   has_many :catalist_lookups
   has_many :canvassing_shifts
+  has_many :alert_requests
 
   def self.permitted_attributes
     attrs = self.column_names - self.protected_attributes
@@ -683,6 +684,16 @@ class Partner < ActiveRecord::Base
     return 
   end
   
+  def generate_alert_request_report(start_date=nil, end_date=nil)
+    r = Report.new({
+      report_type: Report::ALERT_REQUEST_REPORT,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!
+    return 
+  end
   
   def widget_image_name
     WIDGET_IMAGES.detect { |widget| widget[0] == self.widget_image }[1]

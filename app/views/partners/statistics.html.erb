@@ -141,6 +141,25 @@
         </div>
       </fieldset>
     <%- end %>
+    <%= form_tag alert_request_report_partner_path(@partner) , method: :post, :class=> 'form_downloadcsv' do %>
+      <fieldset>
+        <legend>Generate a new Voter Pledge Report</legend>
+        <p>Leave date fields blank to download the last month of data.</p>
+        <div class='date_inputs'>
+          <div class='date_input'>
+            <%= label_tag :start_date, 'Start Date' %>
+            <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+          <div class='date_input'>
+            <%= label_tag :end_date, 'End Date' %>
+            <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+        </div>
+        <div class='submit_button'>
+          <%= rollover_button "downloadcsv", "Generate New Report", id: "downloadcsv"%>
+        </div>
+      </fieldset>
+    <%- end %>
   
 
 <table id="statistics" cellspacing="0">

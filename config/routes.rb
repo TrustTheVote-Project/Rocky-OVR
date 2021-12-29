@@ -54,6 +54,9 @@ Rails.application.routes.draw do
       post "track_view", format: :json
     end
   end
+
+  resources 'pledge', only: [:new, :create, :show], controller: 'alert_requests', as: :alert_requests
+  match "/pledge", to: "alert_requests#new", via: :get
   
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
@@ -99,6 +102,7 @@ Rails.application.routes.draw do
       post "grommet_shift_report"
       post "abr_report"
       post "lookup_report"
+      post "alert_request_report"
       get "reports"      
       get "download_csv"
       get "embed_codes"

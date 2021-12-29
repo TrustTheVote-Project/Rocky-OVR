@@ -1,4 +1,6 @@
-<%- if !@question_1.blank? || !@question_2.blank? || @registrant.any_ask_for_volunteers? %>
+<%- model ||= @registant || form.object %>
+
+<%- if !@question_1.blank? || !@question_2.blank? || model.any_ask_for_volunteers? %>
   <fieldset class="questions">
     <%- if !@question_1.blank? || !@question_2.blank?  %>
       <legend><%= t('txt.registration.survey_title') %></legend>
@@ -21,7 +23,7 @@
         </li>
       </ul>
     <% end %>
-    <% if @registrant.ask_for_primary_volunteers? %>
+    <% if model.ask_for_primary_volunteers? %>
       <ul class="checkbox">
         <li class="spacer">&nbsp;</li>
         <li class='registrant-form__volunteer__line'>
@@ -32,13 +34,13 @@
         </li>
       </ul>
     <% end %>
-    <% if @registrant.ask_for_partner_volunteers? %>
+    <% if model.ask_for_partner_volunteers? %>
       <ul class="checkbox">
         <li class="spacer">&nbsp;</li>
         <li class='registrant-form__partner-volunteer__line'>
           <h3>
             <%= form.check_box :partner_volunteer %>
-            <%= form.label :partner_volunteer, t('txt.registration.volunteer', :organization => h(@registrant.partner.organization)).html_safe %>
+            <%= form.label :partner_volunteer, t('txt.registration.volunteer', :organization => h(model.partner.organization)).html_safe %>
           </h3>
         </li>
       </ul>

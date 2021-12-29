@@ -867,7 +867,7 @@ body {
       }
     }
   }
-  &.lookup, &.ballot-status-check {
+  &.lookup, &.ballot-status-check, &.alert_request {
     span.rollover_button {
       display: block;
       text-align: center;
@@ -878,7 +878,7 @@ body {
       }
     }
   }
-  &.abr, &.lookup, &.ballot-status-check {
+  &.abr, &.lookup, &.alert_request, &.ballot-status-check {
     line-height: 1.4em;
     h2 {
       text-align: center;
@@ -970,6 +970,8 @@ body {
         }
       }
     }
+  }
+  &.lookup, &.alert_request {    
     #confirm_match {
       padding-top: 1em;
       p {
@@ -989,7 +991,47 @@ body {
       }
     }
   }
-  
+
+  &.alert_request {
+    form {
+      ul {
+        li {
+          &.registrant-form__opt-in-email__line, 
+          &.registrant-form__opt-in-sms__line 
+          {
+            display: none
+          }
+          &.registrant-form__first-name__line {
+            width: 38%
+          }
+          &.registrant-form__last-name__line {
+            width: 38%;
+            margin-right: 0%;
+          }
+          &.registrant-form__middle-name__line {
+            width: 20%
+          }
+          &.registrant-form__home-address__line {
+            width: 50%
+          }
+          &.registrant-form__home-address-2__line {
+            width: 48%
+          }
+          &.registrant-form__home-city__line {
+            width: 70%
+          }
+          &.registrant-form__email__line {
+            width: 58%;
+            margin-right: 7%;
+          }
+          &.registrant-form__phone__line {
+            width: 35%;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 #main.using_state_registration {
