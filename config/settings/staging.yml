@@ -16,31 +16,32 @@ minutes_before_abandoned: 5
 ui_timeout_minutes: 5
 
 blocks_configuration:
-  default_turf_id: 416
-  default_location_id: 266
-  default_staging_location_id: 19000000003
+  default_turf_id: 19000000053
+  default_location_id: 19000000704
+  default_staging_location_id: 19000000704
   shift_length: 1
-  url: https://svpa.blocks.app
+  url: https://v2.api.blocks.app
+  url_client_path: svpa
   partners:
     26292:
-      turf_id: 19000000023
-      canvasser_id: 19000000022
-      location_id: 2000002091
-      staging_location_id: 594
+      turf_id: 19000000053
+      canvasser_id: 19000000380
+      location_id: 19000000704
+      staging_location_id: 19000000704
     991:
       states:
         - NV
-      url: https://svpa.blocks.app
+      url_client_path: svpa
       bulk_submit: false
       submit_forms: false
-      staging_location_id: 758
+      staging_location_id: 19000000704
       sub_orgs:
         - name: Org 1
-          turf_id: 171
-          staging_location_id: 758
+          turf_id: 19000000053
+          staging_location_id: 19000000704
         - name: Org 2
-          turf_id: 172
-          staging_location_id: 758
+          turf_id: 19000000053
+          staging_location_id: 19000000704
 
 mail_with_esig:
   states: 

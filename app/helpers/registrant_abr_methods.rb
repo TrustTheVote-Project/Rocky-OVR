@@ -1,5 +1,20 @@
 module RegistrantAbrMethods
+  def yes_no(attribute)
+    attribute ? "Yes" : "No"
+  end
+  
+  def yes_no_nothing(attribute)
+    return nil if attribute.nil?
+
+    attribute ? "Yes" : "No"
+  end
+  
+  def yes_no_localized(attribute)
+    attribute ? I18n.t('yes', locale: self.locale) : I18n.t('no', locale: self.locale)
+  end
+
   def finish_iframe_url
+    
     base_url = self.is_a?(Abr) ? "https://s3.rockthevote.com/rocky/rtv-abr-share.php" : Registrant::FINISH_IFRAME_URL
     if self.partner && !self.partner.primary? && self.partner.whitelabeled? && !self.partner.finish_iframe_url.blank?
       base_url = self.partner.finish_iframe_url
@@ -9,6 +24,10 @@ module RegistrantAbrMethods
     url += "&source=#{self.tracking_source}" if !self.tracking_source.blank?
     url += "&tracking=#{self.tracking_id}" if !self.tracking_id.blank?
     url
+  end
+
+  def locale_english_name
+    I18n.t("locales.#{self.locale}.name", locale: "en")
   end
 
 

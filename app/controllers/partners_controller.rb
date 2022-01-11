@@ -198,7 +198,15 @@ SCRIPT
     @partner.generate_lookup_report(start_date, end_date)
     redirect_to reports_partner_path(@partner)
   end
-  
+
+  def alert_request_report
+    start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
+    end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
+    
+    @partner.generate_alert_request_report(start_date, end_date)
+    redirect_to reports_partner_path(@partner)
+  end
+
   def download_csv
     report = Report.find_by_id(params[:report_id])
     if report.nil? || report.partner != @partner

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_17_192951) do
+ActiveRecord::Schema.define(version: 2021_12_04_215614) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -122,6 +122,40 @@ ActiveRecord::Schema.define(version: 2021_11_17_192951) do
     t.string "google_secret"
     t.index ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
+  end
+
+  create_table "alert_requests", force: :cascade do |t|
+    t.string "uid", null: false
+    t.integer "partner_id"
+    t.string "first"
+    t.string "middle"
+    t.string "last"
+    t.date "date_of_birth"
+    t.string "email"
+    t.string "phone"
+    t.string "phone_type"
+    t.string "address"
+    t.string "address_2"
+    t.string "city"
+    t.integer "state_id"
+    t.string "zip"
+    t.boolean "opt_in_email"
+    t.boolean "opt_in_sms"
+    t.boolean "partner_opt_in_email"
+    t.boolean "partner_opt_in_sms"
+    t.boolean "javascript_disabled", default: false, null: false
+    t.string "tracking_source"
+    t.string "tracking_id"
+    t.string "original_survey_question_1"
+    t.string "original_survey_question_2"
+    t.string "survey_answer_1"
+    t.string "survey_answer_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_alert_requests_on_email"
+    t.index ["partner_id"], name: "index_alert_requests_on_partner_id"
+    t.index ["state_id"], name: "index_alert_requests_on_state_id"
+    t.index ["uid"], name: "index_alert_requests_on_uid"
   end
 
   create_table "ballot_status_checks", force: :cascade do |t|
