@@ -31,6 +31,12 @@ module AbrReportingMethods
     :finish_with_state,
     :confirm_email_delivery, #whether a user confirms to have their ABR delivered via email
     :viewed_steps,
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "other_parameters",
   ]
 
   def viewed_steps
