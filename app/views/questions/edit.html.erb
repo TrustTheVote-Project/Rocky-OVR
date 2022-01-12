@@ -7,20 +7,26 @@
   <h1>Survey Questions</h1>
 
   <p>
-    You can ask applicants to answer two questions during the voter registration process. Responses can be reviewed when you <%= link_to "download your voter registration data", statistics_partner_path(@partner)  %>. Also, make sure you check the box below to ask applicants if they want to volunteer.
+    The Voter Registration and Pledge to Vote tools allow you to ask registrants up to two questions. These questions will display at the end of the Voter Registration process and the bottom of the Pledge to Vote sign up tool, and registrants are not required to answer the questions to complete the processes. We recommend using this feature to collect useful information for developing your voter outreach program. If you don't enter questions, no default questions will appear. You can update or edit your questions at any time.
   </p>
   <p>
-    To create the survey questions, simply enter your questions in the text boxes below. If you don't have translations available, just leave those boxes blank.
+    To add personalized survey questions, simply enter your text in the boxes below. If you have translations, enter them in the boxes. If the registrant has selected a non-English language, the applicable translation will appear.
   </p>
   <p class="extra_leading">
     We recommend asking questions that can be answered in a few words. For example:
   </p>
   <ul>
-    <li>What is the top issue facing the country right now?</li>
+    <li>Is this your first time registering to vote?</li>
     <li>If you are in school, where do you go?</li>
-    <li>What is your favorite band?</li>
+    <li>How did you hear about <your program's name>?</li>
   </ul>
+<p>When you <%= link_to "download your data", statistics_partner_path(@partner)  %>, the 
+answers the registrants provide will be included.</p>
 
+<p>
+Also note, below the inputs for the survey questions, you have the option to request volunteers for your program. Check the box to enable that option on the voter registration form. 
+</p>
+    
 
   <div id="survey_questions">
     <%= form_for @partner, :url => partner_questions_path(@partner) , :method => :put do |form| %>
