@@ -10,6 +10,17 @@ class Report < ActiveRecord::Base
   LOOKUP_REPORT = "lookup_report".freeze
   ALERT_REQUEST_REPORT = "alert_request_report".freeze
   
+  REPORT_TYPES = [
+    GROMMET_SHIFT_REPORT,
+    CANVASSING_SHIFT_REPORT,
+    GROMMET_REGISTRANTS_REPORT,
+    REGISTRANTS_REPORT,
+    REGISTRANTS_REPORT_EXTENDED,
+    ABR_REPORT,
+    LOOKUP_REPORT,
+    ALERT_REQUEST_REPORT
+  ].freeze
+
   QUEUE_NAME = "reports".freeze
   THRESHOLD = 500
 
