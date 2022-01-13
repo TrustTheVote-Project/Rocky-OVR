@@ -25,24 +25,33 @@
   <%= render :partial => "layouts/customize_nav" %>
 <% end -%>
 <div class="customize">
-  <h1>Grab Your Embed Code</h1>
+  <h1 role="heading" aria-level="1">EMBED CODES AND SOCIAL SHARING</h1>
+  
+  <h2 role="heading" aria-level="2">Pick your embed code.</label></h2>
   <p>
-  Copy the embed code under your preferred interface, and paste that code onto your website, blog, or other web platform.  We suggest you take the code for the "widget" or "iFrame" as those keep users on your website and have the highest completion rates.
+   An embed code for each of Rock the Vote's civic tools is available below. 
+   Copy the code and paste it into your website, blog or other web platform. 
+   We recommend using this code as is: it will generate a "widget" that will keep 
+   users on your website and lead to the highest completion rates. You can access 
+   reports on these users by clicking the "Reports" tab.
+  </p>
+  <p>You can include additional parameters with your embed codes. To view these parameters, go to the 
+  <a href="https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/" title="Getting Started with Your Voter Registration Tool">Civic Tech FAQs</a> 
+  and look for "Ways to Use URL Parameters."
+  </p>
+  <p>
+    Place the scripts tag in the &lt;body&gt; of your HTML where you want the interface to display.
   </p>
 
-  <form class="copy_html" action="#" method="get" accept-charset="utf-8">   
-    
+  <h3 role="heading" aria-level="3">Voter Registration embed code</h3>    
+  <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
     <div>
-      <h2><label for="image_link_html">Add our embed code:</label></h2>
-      <p class="plain_text">
-        Place this script tag in the &lt;body&gt; of your HTML where you want the interface to display:
-      </p>
       <p><textarea name="js_src" readonly="readonly" rows="10" ><%= h @js_src_tag %>
 <%= h @js_script %></textarea></p>      
-      <p class="plain_text">
+      <p class="plain_text" style="display: none;">
         Other optional parameters include:
       </p>
-      <textarea name="js_script" readonly="readonly" rows="10" >
+      <p  style="display: none;"><textarea name="js_script" readonly="readonly" rows="10" >
 source: "string",
 tracking: "string",
 state: "string", // 2-letter state abbreviation (capital letters) e.g. "CA"
@@ -51,46 +60,126 @@ email_address: "string",
 first_name: "string",
 last_name: "string",
 locale: "string" // 2-letter locale code (lower case) e.g. "es"
-      </textarea>
+      </textarea></p>
     </div>
-    
-    
-    <div>
-      <h2><label for="image_link_html">Add a graphical button:</label></h2>
-      <p class="plain_text">
-        The code will create a graphical button or banner on your site that links to your unique voter 
-        registration tool. There are several graphics to choose from. You can <%= link_to "view your current choice", partner_widget_url, :target => "_blank" %> or <%= link_to "change it", partner_widget_image_path(@partner)  %>.</p>
-        <p><textarea name="image_link_html" readonly="readonly" rows="10" ><%= h @image_link_html %></textarea></p>        
-    </div>
-    
-    <div>
-      <h2><label for="share_link_facebook">Social Sharing:</label></h2>
-      <p class="plain_text">Add these links to your site so everyone can promote voter registration.</p>
-      <h4><strong>Facebook</strong></h4>
-      <p><textarea name="share_link_facebook" readonly="readonly" rows="6" ><%= h @share_link_facebook %></textarea></p>
-      <h4><strong>Twitter</strong></h4>
-      <p><textarea name="share_link_twitter" readonly="readonly" rows="6" ><%= h @share_link_twitter %></textarea></p>
-      <h4><strong>Google+</strong></h4>
-      <p><textarea name="share_link_google" readonly="readonly" rows="6" ><%= h @share_link_google %></textarea></p>
-    </div>
-    
-    <div>
-      <h2><label for="text_link_html">Text link:</label></h2>
-      <p class="plain_text">Just paste this HTML code into a page on your site and you will create a link to your unique voter registration tool.</p>
-      <p><textarea name="text_link_html" readonly="readonly" rows="6" ><%= h @text_link_html %></textarea></p>      
-    </div>
-    
   </form>
   
-  <p><span class="bold">Note:</span> If you aren't putting a link or button on a website, blog, or other platform, you can always promote your voter registration tool by using this unique url: 
-    </p>
+  <h3 role="heading" aria-level="3">Absentee Ballot Request tool embed code</h3>    
+  <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
+    <div>
+      <p><textarea name="js_src" readonly="readonly" rows="10" ><%= h @js_src_tag %>
+<%= h @js_abr_script %></textarea></p>      
+      <p class="plain_text"  style="display: none;">
+        Other optional parameters include:
+      </p>
+      <p  style="display: none;"><textarea name="js_script" readonly="readonly" rows="10" >
+source: "string",
+tracking: "string",
+state: "string", // 2-letter state abbreviation (capital letters) e.g. "CA"
+zip: "string", // 5-digit zip code
+email: "string",
+first_name: "string",
+last_name: "string"
+      </textarea></p>
+    </div>
+  </form>
+
+  <h3 role="heading" aria-level="3">Voter Status Lookup tool embed code</h3>    
+  <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
+    <div>
+      <p><textarea name="js_src" readonly="readonly" rows="10" ><%= h @js_src_tag %>
+<%= h @js_lookup_script %></textarea></p>      
+      <p class="plain_text"  style="display: none;">
+        Other optional parameters include:
+      </p>
+      <p  style="display: none;"><textarea name="js_script" readonly="readonly" rows="10" >
+source: "string",
+tracking: "string",
+state: "string", // 2-letter state abbreviation (capital letters) e.g. "CA"
+zip: "string", // 5-digit zip code
+email: "string",
+first_name: "string",
+last_name: "string"
+      </textarea></p>
+    </div>
+  </form>
+
+  <h3 role="heading" aria-level="3">Pledge to Vote tool embed code</h3>    
+  <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
+    <div>
+      <p><textarea name="js_src" readonly="readonly" rows="10" ><%= h @js_src_tag %>
+<%= h @js_alert_request_script %></textarea></p>      
+      <p class="plain_text"  style="display: none;">
+        Other optional parameters include:
+      </p>
+      <p  style="display: none;"><textarea name="js_script" readonly="readonly" rows="10" >
+source: "string",
+tracking: "string",
+state: "string", // 2-letter state abbreviation (capital letters) e.g. "CA"
+email: "string",
+first: "string",
+last: "string"
+      </textarea></p>
+    </div>
+  </form>
+
+  <h3 role="heading" aria-level="3" style="display: none;">Ballot status tool embed code</h3>    
+  <form class="copy_html" action="#" method="get" accept-charset="utf-8" style="display: none;">       
+    <div>
+      <p><textarea name="js_src" readonly="readonly" rows="10" ><%= h @js_src_tag %>
+<%= h @js_bsc_script %></textarea></p>      
+      <p class="plain_text"  style="display: none;">
+        Other optional parameters include:
+      </p>
+      <p  style="display: none;"><textarea name="js_script" readonly="readonly" rows="10" >
+source: "string",
+tracking: "string",
+email: "string",
+first: "string",
+last: "string",
+zip: "string" // 5-digit zip code
+      </textarea></p>
+    </div>
+  </form>
+    
+  <h2 aria-level="2" role="heading">Share your voter registration tool!</h2>
+
   <p>
-    <br/>
-    <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}" %>
+  If you aren't embedding your voter registration tool in a website, blog, or other platform, 
+  you can always promote your voter registration tool by linking to it in another way.
   </p>
-  <br/>
-  <p>Use them in emails, in your Facebook or Twitter status updates, or in other custom ways.         <br/>
-    Get creative!</p>
-  
+  <p>
+  Share your voter registration link with a button or banner. Change your button or banner at 
+  any time by clicking <%= link_to "Select Button", partner_widget_image_path(@partner), {target: "blank", rel: "noopener"} %>. (available in English and Spanish).
+  </p>
+  <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
+    <div>
+      <p><textarea name="image_link_html" readonly="readonly" rows="5" ><%= h @image_link_html %></textarea></p>        
+    </div>
+  </form>  
+
+
+  <p>
+  Promote your tool with unique url: <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}" %>
+  </p>
+
+
+  <h2 role="heading" aria-level="2">Social Sharing:</h2>
+  <p>
+  Generate links for Facebook or Twitter.
+  </p>
+
+   <h3 role="heading" aria-level="3">Facebook</h3>
+   <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
+    <div>
+      <p><textarea name="share_link_facebook" readonly="readonly" rows="6" ><%= h @share_link_facebook %></textarea></p>
+    </div>
+  </form>
+  <h3 role="heading" aria-level="3">Twitter</h3>
+  <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
+    <div>
+      <p><textarea name="share_link_twitter" readonly="readonly" rows="6" ><%= h @share_link_twitter %></textarea></p>
+    </div>
+  </form>
   
 </div>

@@ -1,18 +1,18 @@
 !function(w) {
   w.RtvIframe = w.RtvIframe || {
     initAbsentee: function(params) {
-      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_abr_path %>", "rtv-absentee-iframe");
+      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_abr_path %>", "rtv-absentee-iframe", "Request An Absentee Ballot");
     },
     initPledge: function(params) {
-      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_alert_request_path %>", "rtv-pledge-iframe");
+      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_alert_request_path %>", "rtv-pledge-iframe", "Pledge to Vote");
     },
     initLookup: function(params) {
-      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_catalist_lookup_path %>", "rtv-lookup-iframe");
+      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.new_catalist_lookup_path %>", "rtv-lookup-iframe", "Check Your Voter Registration Status");
     },
     initTrackBallot: function(params) {
-      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.ballot_status_checks_path %>", "rtv-trackballot-iframe");
+      window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.ballot_status_checks_path %>", "rtv-trackballot-iframe", "Check Your Ballot Status");
     },
-    init: function(params, path="/", id="rtv-iframe") {
+    init: function(params, path="/", id="rtv-iframe", title="Online Voter Registration") {
       params = params || {};
       var queryString = "";
       if (typeof(params)==="object") {
@@ -35,7 +35,7 @@
       if (queryString != "") {
         url = url + '&' + queryString;
       }
-      document.write("<iframe id=\""+id+"\"src=\""+url+"\" width=\"100%\" scrolling=\"no\" height=\"400\" frameborder=\"0\"></iframe>")
+      document.write("<iframe title=\""+title+"\" id=\""+id+"\"src=\""+url+"\" width=\"100%\" scrolling=\"no\" height=\"400\" frameborder=\"0\"></iframe>")
 
       var script = w.document.createElement('script');
       script.onload = this.onScriptLoad.bind(this, id);
