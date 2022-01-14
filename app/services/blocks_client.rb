@@ -5,7 +5,7 @@ class BlocksClient
   class NetworkingError < StandardError; end
   class InvalidResponseError < NetworkingError; end
 
-  def self.get_token(url: nil)
+  def self.get_token(url: nil, url_client_path: nil)
     path = "account/sign_in"
     headers = {'Content-Type' => 'application/json'}
     
@@ -17,16 +17,16 @@ class BlocksClient
       password: password
     }
     
-    send(:post, path, body: body, headers: headers, url: url)    
+    send(:post, path, body: body, headers: headers, url: url, url_client_path: url_client_path)    
   end
   
-  def self.get_locations(turf_id, token:, url: nil)
+  def self.get_locations(turf_id, token:, url: nil, url_client_path: nil)
     path = "turfs/#{turf_id}/locations"
     headers = {'Content-Type' => 'application/json'}
-    send(:get, path, body: {jwt: token}, headers: headers, url: url)
+    send(:get, path, body: {jwt: token}, headers: headers, url: url, url_client_path: url_client_path)
   end
   
-  def self.add_metadata_to_form(form_id, meta_data={}, token:, url: nil)
+  def self.add_metadata_to_form(form_id, meta_data={}, token:, url: nil, url_client_path: nil)
     #591
     path = "forms/#{form_id}/add_metadata"
     headers = {'Content-Type' => 'application/json'}
@@ -34,10 +34,10 @@ class BlocksClient
       content: meta_data,
       jwt: token
     }
-    send(:put, path, body: body, headers: headers, url: url)    
+    send(:put, path, body: body, headers: headers, url: url, url_client_path: url_client_path)    
   end
 
-  def self.create_canvasser(first_name:, last_name:, phone_number:, email:, turf_id:, token:, url: nil)
+  def self.create_canvasser(first_name:, last_name:, phone_number:, email:, turf_id:, token:, url: nil, url_client_path: nil)
     path = "turfs/#{turf_id}/canvassers/upsert"
     
     headers = {'Content-Type' => 'application/json'}
@@ -50,20 +50,20 @@ class BlocksClient
       },
       jwt: token
     }
-    send(:patch, path, body: body, headers: headers, url: url)
+    send(:patch, path, body: body, headers: headers, url: url, url_client_path: url_client_path)
   end
 
-  def self.canvassers(turf_id, token:, url: nil)
+  def self.canvassers(turf_id, token:, url: nil, url_client_path: nil)
     path = "turfs/#{turf_id}/canvassers"
     
     headers = {'Content-Type' => 'application/json'}
     body = {
       jwt: token
     }
-    send(:get, path, body: body, headers: headers, url: url)
+    send(:get, path, body: body, headers: headers, url: url, url_client_path: url_client_path)
   end
 
-  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected: nil, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, token:, url: nil)
+  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, shift_type:, soft_count_cards_total_collected: nil, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, token:, url: nil, url_client_path: nil)
     path = "shifts"
     headers = {'Content-Type' => 'application/json'}
 
@@ -84,10 +84,10 @@ class BlocksClient
       shift: shift,
       jwt: token
     }
-    send(:post, path, body: body, headers: headers, url: url)
+    send(:post, path, body: body, headers: headers, url: url, url_client_path: url_client_path)
   end
   
-  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_qc", token:, url: nil)
+  def self.upload_registrations(shift_id, registrations, shift_status: "ready_for_qc", token:, url: nil, url_client_path: nil)
     path = "shifts/#{shift_id}/digital_batch"
     headers = {'Content-Type' => 'application/json'}
     
@@ -98,14 +98,16 @@ class BlocksClient
       },
       jwt: token
     }
-    send(:post, path, body: body, headers: headers, url: url) 
+    send(:post, path, body: body, headers: headers, url: url, url_client_path: url_client_path) 
   end
   
   BASE_PATH = "/api/v1/external/"
 
-  def self.send(method, path, body: {}, params: {}, headers: {}, url: nil)
+  def self.send(method, path, body: {}, params: {}, headers: {}, url: nil, url_client_path: nil)
     base_url = url || RockyConf.blocks_configuration.url
-    uri = URI.join(base_url, BASE_PATH, path)
+    url_client_path = url_client_path || RockyConf.blocks_configuration.url_client_path
+
+    uri = URI.join(base_url, File.join(url_client_path, BASE_PATH, path))
     uri.query = params.to_query if params.any?
     RequestLogSession.request_log_instance.log_uri(uri) if RequestLogSession.request_log_instance
 

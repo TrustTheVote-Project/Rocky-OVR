@@ -1,6 +1,7 @@
 class CatalistLookup < ActiveRecord::Base
   include DateOfBirthMethods
   include CatalistLookupReportingMethods
+  include UidGenerator
   
   has_one :abrs_catalist_lookup
   has_one :abr, through: :abrs_catalist_lookup
@@ -13,8 +14,6 @@ class CatalistLookup < ActiveRecord::Base
   serialize :match, Hash
   
   belongs_to :state,    :class_name => "GeoState", optional: true
-  
-  before_create :generate_uid
 
   validates_presence_of :first
   validates_presence_of :last
@@ -128,10 +127,6 @@ class CatalistLookup < ActiveRecord::Base
     uid
   end
 
-  def generate_uid
-    self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email} -- #{zip}" )
-    return self.uid
-  end
 
   def any_email_opt_ins?
     collect_email_address? && (partner.rtv_email_opt_in || partner.primary? || partner.partner_email_opt_in)

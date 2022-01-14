@@ -170,7 +170,7 @@ class ReportGenerator
       return "ballot_status_check"
     end
     begin
-      if catalist_lookup_fields.include?(column_name)
+      if ballot_status_check_fields.include?(column_name)
         return row.send(column_name)
       else
         return ""
@@ -199,6 +199,78 @@ class ReportGenerator
       "ballot_status_check_uid"
     ]
   end
+
+  def self.alert_field_mapping(column_name, row)
+    case column_name
+    when "first_name"
+      return row.first
+    when "last_name"
+      return row.last
+    when "middle_name"
+      return row.middle
+    when "email_address"
+      return row["email"]
+    when "home_zip_code"
+      return row["zip"]
+    when "tool"
+      return "alert_requests"
+    when "home_address"
+      return row["address"]
+    when "home_unit"
+      return row["address_2"]
+    when "home_city"
+      return row["city"]
+    when "home_zip_code"
+      return row["zip"]
+    when "abbreviation"
+      return row.state_abbrev
+    when "alert_request_uid"
+      return row["uid"]
+    end
+    begin
+      if alert_request_fields.include?(column_name)
+        return row.send(column_name)
+      else
+        return ""
+      end
+    rescue
+      return ""
+    end
+  end
+
+  def self.alert_request_fields
+    ["id",
+    "locale",
+    "partner_id",
+    "first",
+    "middle",
+    "last",
+    "date_of_birth",
+    "email",
+    "phone",
+    "phone_type",
+    "address",
+    "address_2",
+    "city",
+    "state_id",
+    "zip",
+    "opt_in_email",
+    "opt_in_sms",
+    "partner_opt_in_email",
+    "partner_opt_in_sms",
+    "javascript_disabled",
+    "tracking_source",
+    "tracking_id",
+    "original_survey_question_1",
+    "original_survey_question_2",
+    "survey_answer_1",
+    "survey_answer_2",
+    "created_at",
+    "updated_at",
+
+    "alert_request_uid"]
+  end
+
 
   def self.voteready_fields
     %w(id 
@@ -360,6 +432,7 @@ class ReportGenerator
       abrs = Abr.where("created_at > ?", t-time_span.hours).includes(:home_state)
       lookups = CatalistLookup.where("created_at > ?", t-time_span.hours).includes(:state, :abr)
       bscs = BallotStatusCheck.where("created_at > ?", t-time_span.hours)
+      alerts = AlertRequest.where("created_at > ?", t-time_span.hours).includes(:state)
 
       # Also preload all PA and VA state registrants?
       pa_registrants = {}
@@ -376,6 +449,7 @@ class ReportGenerator
         "abr_uid",
         "lookup_uid",
         "ballot_status_check_uid",
+        "alert_request_uid",
         "current_step",
         "max_step",
         "pdf_ready",
@@ -404,7 +478,7 @@ class ReportGenerator
             r.instance_variable_set(:@existing_state_registrant, sr)
           end
           reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) || ""}
-          csv << reg_attributes + ["", "", "", "", "", "", "", "vr"]          
+          csv << reg_attributes + ["", "", "", "", "", "", "", "", "vr"]          
         end
       end
       csv_str_abrs = CsvFormatter.wrap do |csv|
@@ -436,6 +510,14 @@ class ReportGenerator
           csv << bsc_attributes
         end
       end
+      
+      csv_str_alerts  = CsvFormatter.wrap do |csv|
+        csv << headers
+        alerts.find_each do |alert|
+          alert_attributes = headers.collect {|fname| alert_field_mapping(fname, alert) || ""}
+          csv << alert_attributes
+        end
+      end
 
       file_name = time_span == 24 ? "rocky-daily-registrants.csv" : "rocky-hourly-registrants.csv"
       self.save_csv_to_s3(csv_str_regs, file_name)
@@ -448,6 +530,9 @@ class ReportGenerator
 
       file_name = time_span == 24 ? "rocky-daily-ballot-status-checks.csv" : "rocky-hourly-ballot-status-checks.csv"
       self.save_csv_to_s3(csv_str_bscs, file_name)
+
+      file_name = time_span == 24 ? "rocky-daily-election-alerts.csv" : "rocky-hourly-election-alerts.csv"
+      self.save_csv_to_s3(csv_str_alerts, file_name)
     end
     ENV['GENERATING_REPORTS'] = nil    
   end
