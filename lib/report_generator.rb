@@ -478,7 +478,7 @@ class ReportGenerator
             r.instance_variable_set(:@existing_state_registrant, sr)
           end
           reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) || ""}
-          csv << reg_attributes + ["", "", "", "", "", "", "", "vr"]          
+          csv << reg_attributes + ["", "", "", "", "", "", "", "", "vr"]          
         end
       end
       csv_str_abrs = CsvFormatter.wrap do |csv|
