@@ -39,6 +39,12 @@ module AlertRequestReportingMethods
         ["survey_answer_1", "Survey answer 1"],
         ["survey_answer_2", "Survey answer 2"],
         ["created_at", "Submitted At"],
+        ["utm_source",     "utm_source"],
+        ["utm_medium",     "utm_medium"],
+        ["utm_campaign",     "utm_campaign"],
+        ["utm_term",     "utm_term"],
+        ["utm_content",     "utm_content"],
+        ["other_parameters",     "other_parameters"],
       ]
     end
   end

@@ -14,6 +14,10 @@ $(document).ready(function() {
 <%= form.hidden_field :tracking_source %>
 <%= form.hidden_field :tracking_id %>
 <%= form.hidden_field :home_state %>
+<%- (@query_parameters || {}).keys.each do |qpk| %>
+  <%= hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk] %>
+<%- end %>
+
 
 <ul class="flat registrant-form__email">
   <li class="width_f registrant-form__email__line">

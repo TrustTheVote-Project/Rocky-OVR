@@ -15,6 +15,7 @@ class Abr < ActiveRecord::Base
   include AbrSignatureMethods
   include AbrReportingMethods
   include UidGenerator
+  include TrackableMethods
 
   has_one :voter_signature, autosave: true
   AbrSignatureMethods::METHODS.each do |vs_attribute|

@@ -254,8 +254,6 @@ class RegistrationStep < ApplicationController
       "short_form",
       "collectemailaddress",
       "email_address",
-      #"first_name",
-      #"last_name",
       "state_abbrev",
       "state",
       "home_zip_code",
