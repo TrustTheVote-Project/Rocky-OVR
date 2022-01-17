@@ -371,8 +371,7 @@ class CA < StateCustomization
           RestClient.proxy = ENV["PROXIMO_URL"]
           res = RestClient.get(disclosure_url(locale, num)).to_s.force_encoding('UTF-8')
           unless res.valid_encoding?
-            res = res.force_encoding('ISO-8859-1').encode('UTF-8')
-            puts [locale.to_sym, num, res.valid_encoding?]
+            res = res.force_encoding('ISO-8859-1').encode('UTF-8')            
           end
           @@disclosures[locale.to_s][num] = res
         rescue Exception=>e
