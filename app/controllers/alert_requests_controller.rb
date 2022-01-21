@@ -23,10 +23,11 @@ class AlertRequestsController < ApplicationController
 
   def create
     @alert_request = AlertRequest.create(
-      alert_request_params.merge(
+      alert_request_params.to_h.merge(
         state: @home_state,
         opt_in_email: true,
         opt_in_sms: alert_request_params[:phone].present?,
+        query_parameters: @query_parameters,
       )
     )
     @question_1 = @alert_request.question_1
@@ -106,6 +107,12 @@ class AlertRequestsController < ApplicationController
     @locale = 'en'
     zip = params.dig(:alert_request, :zip)
     @home_state ||= zip ? GeoState.for_zip_code(zip.strip) : nil
+
+    @query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
+      "locale",
+      "zip",
+      "partner",
+    ] ))) || {}
   end
 
   def set_up_locale
