@@ -696,7 +696,8 @@ class Partner < ActiveRecord::Base
   end
   
   def widget_image_name
-    WIDGET_IMAGES.detect { |widget| widget[0] == self.widget_image }[1]
+    img = WIDGET_IMAGES.detect { |widget| widget[0] == self.widget_image }
+    img && img[1]
   end
 
   def widget_image_name=(name)
