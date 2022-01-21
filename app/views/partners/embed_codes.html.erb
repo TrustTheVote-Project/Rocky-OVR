@@ -33,7 +33,7 @@
    Copy the code and paste it into your website, blog or other web platform. 
    We recommend using this code as is: it will generate a "widget" that will keep 
    users on your website and lead to the highest completion rates. You can access 
-   reports on these users by clicking the "Reports" tab.
+   reports on these users by clicking the <%= link_to "Reports", statistics_partner_path(@partner) %> tab.
   </p>
   <p>You can include additional parameters with your embed codes. To view these parameters, go to the 
   <a href="https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/" title="Getting Started with Your Voter Registration Tool">Civic Tech FAQs</a> 
@@ -144,13 +144,19 @@ zip: "string" // 5-digit zip code
     
   <h2 aria-level="2" role="heading">Share your voter registration tool!</h2>
 
+  
   <p>
-  If you aren't embedding your voter registration tool in a website, blog, or other platform, 
+  If you aren't embedding your voter registration tool in a website, blog or other platform, 
   you can always promote your voter registration tool by linking to it in another way.
   </p>
+  
+  <h3 arial-level="3" role="heading">Share your Voter Registration tool with a button or banner.</h3>
+  
   <p>
-  Share your voter registration link with a button or banner. Change your button or banner at 
-  any time by clicking <%= link_to "Select Button", partner_widget_image_path(@partner), {target: "blank", rel: "noopener"} %>. (available in English and Spanish).
+  Go to the <%= link_to "Select Button", partner_widget_image_path(@partner), {target: "blank", rel: "noopener"} %>
+  page to pick a button, and then copy the code below. 
+  Buttons are available in English and Spanish. 
+  You can change your button at any time by repeating these steps.
   </p>
   <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
     <div>
@@ -158,9 +164,9 @@ zip: "string" // 5-digit zip code
     </div>
   </form>  
 
-
+  <h3>Share a link to your Voter Registration tool.</h3>
   <p>
-  Promote your tool with unique url: <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}" %>
+  Use this URL to promote your Voter Registration tool: <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}" %>
   </p>
 
 
