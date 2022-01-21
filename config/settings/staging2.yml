@@ -93,17 +93,15 @@ states_with_online_registration:
 ovr_states:
   CA:
     api_settings:
-      api_url: https://covrapitest.sos.ca.gov/PostingEntityInterfaceService.svc
-      api_key: d2DE1Nht8I
+      api_url: https://tst-uat-ols.sos.ca.gov/PostingEntityInterfaceService.svc
       api_posting_entity_name: RTV
       debug_in_ui: false
       log_all_requests: true
       disclosures_font_size: 12px
       disclosures_box_height: 170px
-      web_url_base: https://covrtest.sos.ca.gov
+      web_url_base: https://tst-uat-pub.sos.ca.gov
       disclosures_url: https://covr.cdn.sos.ca.gov/discl/
-      
-      web_agency_key: RTV
+      web_agency_key: RTV    
   PA:
     api_settings:
       api_url: "https://fake-pa-endpoint.herokuapp.com"

@@ -4,11 +4,11 @@
 
 ### Linux Workstation Setup
 
-    sudo apt-get install git curl default-libmysqlclient-dev default-jdk
+    sudo apt-get install git curl default-libmysqlclient-dev default-jdk shared-mime-info
     export JAVA_HOME=/usr/lib/jvm/default-java
     export LD_LIBRARY_PATH=$JAVA_HOME/lib:$JAVA_HOME/lib/server
     
-    git clone git@github.com:trustthevote/Rocky-OVR.git rocky
+    git clone git@github.com:TrustTheVote-Project/Rocky-OVR.git rocky
     curl -L https://get.rvm.io | bash -s stable
     source ~/.bash_profile
     rvm install $(cat .ruby-version)
