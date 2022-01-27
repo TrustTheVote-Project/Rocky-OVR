@@ -192,9 +192,12 @@
           - unless instructions.blank?
             %p.instructions= instructions
           %div{class: form.object.errors[opts[:method]].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, opts[:method])}}
-            = form.text_field opts[:m], value: form.object.send(opts[:m]), placeholder: 'MM', type: 'tel', size: 2
-            = form.text_field opts[:d], value: form.object.send(opts[:d]), placeholder: 'DD', type: 'tel', size: 2
-            = form.text_field opts[:y], value: form.object.send(opts[:y]), placeholder: 'YYYY', type: 'tel', size: 4
+            - m_method = opts[:m] || "#{opts[:method]}_mm"
+            - d_method = opts[:d] || "#{opts[:method]}_dd"
+            - y_method = opts[:y] || "#{opts[:method]}_yyyy"
+            = form.text_field m_method, value: form.object.send(m_method), placeholder: 'MM', type: 'tel', size: 2
+            = form.text_field d_method, value: form.object.send(d_method), placeholder: 'DD', type: 'tel', size: 2
+            = form.text_field y_method, value: form.object.send(y_method), placeholder: 'YYYY', type: 'tel', size: 4
             
           %span.error= form.object.errors[opts[:method]].join("\n")        
       

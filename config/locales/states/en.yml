@@ -3050,6 +3050,7 @@ en:
             or email. If you submit the application by fax or email, you must also
             send the original hardcopy to the Early Voting Clerk.</i></p>"
         abr_form_fields:
+          id_instructions: "One of the following types of ID is required:"
           has_mailing_address: My mailing address differs from my residence address
           has_mailing_address__hint: If you selected "Expected absence from the county"
             above, you must provide an address outside of your residence county.
