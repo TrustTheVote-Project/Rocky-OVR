@@ -49,6 +49,32 @@
     })
   }
 
+  function toggleVisibleAny() {
+    var setVisible = $("[data-visible-any-conditions]");
+    //console.log(setVisible.get(0))
+    $(setVisible).each(function() {
+      var conditions = $(this).data("visible-any-conditions");
+      var conditionValue = $(this).data("visible-any-conditions-value")
+      var conditionalFields = conditions.split(" ");
+      var showField = false;
+      for(let i=0,ii=conditionalFields.length;i<ii;i++) {
+        var fieldName = conditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+":enabled")
+        console.log(showField, "#abr_"+fieldName+"", field, field.val(), field.is(":checked"))
+        showField = showField || ( field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val())))
+      }
+      if (showField) {
+        $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)        
+      } else {
+        $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)        
+      }
+      
+    })
+  }
+
+
   function toggleHiddenAny() {
     var setHidden = $("[data-hidden-any-conditions]");
     //console.log(setVisible.get(0))
@@ -116,11 +142,13 @@
     toggleHidden();
     toggleHiddenAny();
     toggleVisible();
+    toggleVisibleAny();
     test_ui_regex();
     $("form").change(() => {
       toggleHidden();
       toggleHiddenAny();
       toggleVisible();
+      toggleVisibleAny();
       test_ui_regex();
     })
     $("[data-ui-regexp] input").keyup(test_ui_regex);
@@ -150,6 +178,10 @@
       - data["ui-regexp"] = ui_regexp unless ui_regexp.blank?
       - data["ui-regexp-fail-message"] = ui_regexp_fail_message unless ui_regexp_fail_message.blank?
       - data["ui-regexp-fail-message-pattern"] = ui_regexp_fail_message_pattern unless ui_regexp_fail_message_pattern.blank?
+      - visible_any_conditions =  opts[:visible_any].is_a?(Array) ? opts[:visible_any][0] : opts[:visible_any].to_s.strip
+      - visible_any_conditions_value = opts[:visible_any].is_a?(Array) ? opts[:visible_any][1] : nil
+      - data["visible-any-conditions"] = visible_any_conditions unless visible_any_conditions.blank?
+      - data["visible-any-conditions-value"] = visible_any_conditions_value unless visible_any_conditions_value.blank?
       - hidden_any_conditions =  opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][0] : opts[:hidden_any].to_s.strip
       - hidden_any_conditions_value = opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][1] : nil
       - data["hidden-any-conditions"] = hidden_any_conditions unless hidden_any_conditions.blank?

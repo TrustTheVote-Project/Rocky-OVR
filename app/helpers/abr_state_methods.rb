@@ -74,7 +74,12 @@ module AbrStateMethods
             value = checkbox_values[1]
           end
         end
+        
         v = self.abr_state_values.find_or_initialize_by(attribute_name: method_name)
+        unless v.new_record?
+          self.association(:abr_state_values).add_to_target(v) 
+        end
+      
         v.string_value = value
         instance_variable_set("@#{method_name}", value)
       end
@@ -115,7 +120,7 @@ module AbrStateMethods
     form_fields.collect do |fname, h| 
       ms = [h[:method]]
       if h[:type] == :date
-        ms << [h[:d], h[:m], h[:y]]
+        ms << [h[:d] || "#{h[:method]}_dd", h[:m] || "#{h[:method]}_mm", h[:y] || "#{h[:method]}_yyyy"]
       end
       ms
     end.flatten
@@ -207,7 +212,8 @@ module AbrStateMethods
         if field_opts[:required] == :if_visible && field_opts[:visible]
           method = field_opts[:visible]
           h_method = field_opts[:hidden]
-          if (method.blank? || self.send(method) == "1") && (h_method.blank? || self.send(h_method) != "1")
+          puts field_name, method, h_method, value        
+          if (method.blank? || self.send(method) == "1" || self.send(method) == true) && (h_method.blank? || (self.send(h_method) != "1" && self.send(h_method) != true))
             is_required = true
           end
         end

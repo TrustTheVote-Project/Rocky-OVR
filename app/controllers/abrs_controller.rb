@@ -187,7 +187,7 @@ class AbrsController < ApplicationController
     @abr = Abr.find_by_param!(params[:id])
     set_up_locale
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
-    raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil?
+    raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil? && Rails.env != "development" #Don't raise on dev - allow re-editing
     @abr.update_attributes(current_step: @current_step) if @current_step
     @abr_finish_iframe_url = @abr.finish_iframe_url
     
