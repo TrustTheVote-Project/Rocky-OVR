@@ -110,7 +110,7 @@ en:
       finish_instructions_1: "<p>Download and print your form.  Review the information on your form 
         carefully. Make sure that all necessary fields are completed and accurate.  
         <b>Sign and date</b>, then immediately send your request to your 
-        election official:</p><center><p>%{registrar_address}</p></center>"
+        election official:</p><center><p class='status_check'>%{registrar_address}</p></center>"
       finish_instructions_1_hint: "<p><i>Be sure to check if you need to send in a copy of your ID 
         or anything else with your request.</i></p>"
       finish_instructions_2: "<p>Track your ballot request status by: </p>"

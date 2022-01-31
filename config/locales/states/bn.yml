@@ -8,8 +8,7 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
           finish_instructions: ''
           requirements: ''
         state_online_abr:
@@ -54,8 +53,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
           requirements: ''
         abr_form_fields:
@@ -96,8 +95,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
         abr_form_fields:
           Reason: ''
@@ -133,8 +132,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           confirm_email_delivery: ''
           signature_capture:
             desktop_provide_e_signature: ''
@@ -171,8 +170,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
         online_instructions: সেক্রেটারি অব স্টেট ডেব্রা বাউয়েন-এর সহায়তায় এই আবেদনপত্রটি
@@ -188,8 +187,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       ct:
@@ -198,8 +197,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
         abr_form_fields:
           has_mailing_address: ''
@@ -225,8 +224,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       de:
@@ -241,8 +240,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           step_2_instructions: ''
           step_3_header: ''
           step_3_instructions: ''
@@ -275,8 +274,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
         state_online_abr:
           header: ''
           confirm: ''
@@ -288,8 +287,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           confirm_email_delivery: ''
           signature_capture:
             desktop_provide_e_signature: ''
@@ -336,8 +335,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       ia:
@@ -346,8 +345,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
         abr_form_fields:
           identification__options:
@@ -379,8 +378,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           requirements: ''
           finish_instructions: ''
       il:
@@ -449,8 +448,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_page: ''
           requirements: ''
         abr_form_fields:
@@ -488,8 +487,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           requirements: ''
           finish_instructions: ''
         abr_form_fields:
@@ -515,8 +514,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       la:
@@ -527,8 +526,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
           requirements: ''
           finish_pdf_delay_instructions: ''
@@ -590,8 +589,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           confirm_email_delivery: ''
           signature_capture:
             desktop_provide_e_signature: ''
@@ -607,8 +606,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
         state_online_abr:
           confirm: ''
           requirements: ''
@@ -620,8 +619,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           step_2_instructions: ''
           step_3_header: ''
           step_3_instructions: ''
@@ -665,8 +664,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
         state_online_abr:
           finish_instructions: ''
@@ -769,8 +768,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           signature_capture:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
@@ -788,8 +787,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
           requirements: ''
         abr_form_fields:
@@ -814,8 +813,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       mt:
@@ -824,8 +823,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           requirements: ''
         abr_form_fields:
           address_instructions: ''
@@ -848,8 +847,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
         abr_form_fields:
           bad_date__format_message: ''
@@ -914,8 +913,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           skip_state_online_abr: ''
         abr_form_fields:
           has_mailing_address: ''
@@ -955,8 +954,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           requirements: ''
           finish_instructions: ''
           step_2_instructions: ''
@@ -983,8 +982,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           signature_capture:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
@@ -1020,8 +1019,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
           finish_instructions: ''
@@ -1064,8 +1063,8 @@ bn:
           mail_address3: ''
           county: ''
         abr:
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
         state_online_abr:
           finish_instructions: ''
@@ -1075,8 +1074,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
         clark county:
@@ -1126,8 +1125,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           confirm_email_delivery: ''
           signature_capture:
             desktop_provide_e_signature: ''
@@ -1174,8 +1173,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
         abr_form_fields:
           County: ''
@@ -1198,8 +1197,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
         state_online_abr:
           confirm: ''
           requirements: ''
@@ -1210,8 +1209,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       pa:
@@ -1243,8 +1242,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           finish_instructions: ''
         state_online_abr:
           finish_instructions: ''
@@ -1322,8 +1321,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           requirements: ''
         state_online_abr:
           confirm: ''
@@ -1334,8 +1333,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           requirements: ''
           finish_instructions: ''
         abr_form_fields:
@@ -1357,8 +1356,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           requirements: ''
           finish_instructions: ''
         abr_form_fields:
@@ -1387,8 +1386,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           Mailing Address (if different): ''
@@ -1423,8 +1422,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           has_mailing_address__hint: ''
@@ -1460,8 +1459,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       va:
@@ -1476,8 +1475,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           step_2_header: ''
           step_2_instructions: ''
           step_3_header: ''
@@ -1544,8 +1543,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       wa:
@@ -1555,8 +1554,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           header: ''
           instructions: ''
       wi:
@@ -1594,8 +1593,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           signature_capture:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
@@ -1637,8 +1636,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           requirements: ''
           finish_instructinos: ''
       wy:
@@ -1647,8 +1646,8 @@ bn:
           abr_status_check_intro: ''
           state_reminder_1: ''
           state_reminder_2: ''
-          finalpage_instructions: ''
-          finalpage_additional_instructions: ''
+          status_check_instructions: ''
+          
           confirm_email_delivery: ''
           signature_capture:
             desktop_provide_e_signature: ''
