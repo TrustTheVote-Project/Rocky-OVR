@@ -3004,7 +3004,7 @@ en:
             </p>
           
         abr_form_errors:
-          must_select_one_witness_type: You must select either witness or assistant or both
+          must_select_one_witness_type: You must select the box either for Witness, Assistant or both.
           id_required: You must provide a Texas ID or the last four digits of your SSN or confirm that you nave neither.
         abr_form_fields:
           abr_id_instructions: "One of the following types of ID is required:"
@@ -3032,6 +3032,7 @@ en:
           abr_relationship1: Indicate Relationship
           abr_relationship2: Indicate Relationship
           abr_reason_selections: Select your reason for voting by mail
+          abr_reason_selections__hint: You must have a reason for requesting an absentee ballot in Texas. If you are not sure if one of these applies to you, please see <a href="https://www.sos.texas.gov/elections/voter/reqabbm.shtml" title="Application for a Ballot by Mail">the Texas Secretary of State</a> site.
           abr_reason_selections__options:
             abr_reason1: 65 Years of Age or Older
             abr_reason2: Disability (as defined in Texas Election Code 82.002(a), see instructions on reverse) By checking this box, “I affirm that I have a sickness or physical condition that prevents me from appearing at the polling place on Election Day without a likelihood of needing personal assistance or of injuring my health.”
@@ -3053,8 +3054,10 @@ en:
             abr_primary_type3: Do Not Send me a Primary Ballot
           abr_election_type_selections: "Select a type of election:"
           abr_election_type_selections__options:
-            abr_election_type1: Uniform Election Dates <br> You must submit a separate ballot request form for each election.
-            abr_election_type2: Primary Election <br> You must submit a separate ballot request form for each election.
+            abr_election_type1: Uniform Election Dates
+            abr_election_type1__hint: You must submit a separate ballot request form for each election.
+            abr_election_type2: Primary Election
+            abr_election_type2__hint: You must submit a separate ballot request form for each election.
           abr_election_type1_selections: " "
           abr_election_type1_selections__options:
             abr_election_type1_subtype1: November Election
@@ -3067,8 +3070,9 @@ en:
             abr_runoff_type3: Any Resulting Runoff
             abr_primary_type5: Republican Primary
             abr_runoff_type5: Any Resulting Runoff
+          abr_assistant_instructions: If someone helps you fill out this form, they must complete this section.
           abr_has_assistant: Check this box if someone helped you complete this form or delivers it by mail, fax or email. <br>That person must complete the section below. 
-          abr_assistant_check1: Check this box if the applicant is unable to make a mark and then complete all of the rest of the information. <br> Do not sign for the voter in box 5.
+          abr_assistant_check1: Check this box if the applicant is unable to make a mark and then complete all of the rest of the information. <br> Do not sign for the voter in Box 5 on the printed form.
           abr_witness_info1: "(Indicate Relationship)"
           abr_witness_check1: "Witness: Check this box if you are acting as a witness to the applicant's signature or mark, or signing on the applicant's behalf."
           abr_witness_full_name: Name of Witness or Assistant

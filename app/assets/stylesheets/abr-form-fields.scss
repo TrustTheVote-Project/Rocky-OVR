@@ -98,6 +98,9 @@
   }
   .radio label {
     margin-bottom: 1em;
+    span .instructions {
+      font-weight: normal;
+    }
   }
   .radio h3 {
     height: auto;

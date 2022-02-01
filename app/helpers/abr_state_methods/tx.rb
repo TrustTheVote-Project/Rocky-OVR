@@ -157,25 +157,25 @@ module AbrStateMethods::TX
   
   def form_field_items
     [
+      {"abr_reason_selections": {type: :radio, required: true}},
+      {"abr_absence_begin_date": {visible: "abr_reason_selections_abr_reason4", type: :date, required: :if_visible}},
+      {"abr_absence_end_date": {visible: "abr_reason_selections_abr_reason4", type: :date, required: :if_visible}},
       {"abr_id_instructions": {type: :instructions }},
       {"abr_drivers_license": {required: false, regexp: /\A\d{8}\z/}},
       {"abr_last_4_ssn": {required: false, regexp: /\A\d{4}\z/}},
       {"abr_no_id": {type: :checkbox, required: false,}},
-      {"abr_delivery_address": {type: :radio}},
+      {"abr_delivery_address": {type: :radio, required: true}},
       {"abr_mailing_street_address": {visible: "abr_delivery_address_abr_mailing_address", required: :if_visible}},
       {"abr_mailing_unit": {visible: "abr_delivery_address_abr_mailing_address"}},
       {"abr_mailing_city": {visible: "abr_delivery_address_abr_mailing_address", required: :if_visible}},
-      {"abr_mailing_state_name": {visible: "abr_delivery_address_abr_mailing_address", type: :select, options: GeoState.collection_for_select}},
+      {"abr_mailing_state_name": {visible: "abr_delivery_address_abr_mailing_address", required: :if_visible, type: :select, options: GeoState.collection_for_select}},
       
       {"abr_mailing_zip": {visible: "abr_delivery_address_abr_mailing_address", required: :if_visible}},
 
       {"abr_address_type_selections": {type: :radio, visible: "abr_delivery_address_abr_mailing_address", required: :if_visible}},
       {"abr_relationship1": {visible: "abr_address_type_selections_abr_address_type3", required: :if_visible}},
       {"abr_relationship2": {visible: "abr_address_type_selections_abr_address_type4", required: :if_visible}},
-      {"abr_reason_selections": {type: :radio, required: true}},
-      {"abr_absence_begin_date": {visible: "abr_reason_selections_abr_reason4", type: :date, required: :if_visible}},
-      {"abr_absence_end_date": {visible: "abr_reason_selections_abr_reason4", type: :date, required: :if_visible}},
-
+      
       {"abr_application_type1_instructions_header": {type: :instructions}},
       {"abr_application_type1_instructions": {type: :instructions, visible: "abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2"}},
 
@@ -189,19 +189,20 @@ module AbrStateMethods::TX
       {"abr_election_type1_selections": {type: :radio, visible: "abr_election_type_selections_abr_election_type1", required: :if_visible}},
       {"abr_primary_type_selections2": {type: :radio, visible: "abr_election_type_selections_abr_election_type2", required: :if_visible}},
 
+      {"abr_assistant_instructions": {type: :instructions}},
       {"abr_has_assistant": {type: :checkbox}},
 
       {"abr_witness_check1": {type: :checkbox, visible: "abr_has_assistant"}},
       {"abr_witness_info1": {visible: "abr_witness_check1", required: :if_visible}},
       {"abr_assistant_check1": {type: :checkbox, visible: "abr_has_assistant"}},
+      {"abr_assistant_check2": {type: :checkbox, visible: "abr_has_assistant"}},
       {"abr_witness_full_name": {visible: "abr_has_assistant", required: :if_visible }},
       {"abr_assistant_address_line_1": {visible: "abr_has_assistant", required: :if_visible}},
       {"abr_assistant_unit": {visible: "abr_has_assistant"}},
       {"abr_assistant_city": {visible: "abr_has_assistant", required: :if_visible}},
       {"abr_assistant_state_name": {visible: "abr_has_assistant", required: :if_visible,  type: :select, options: GeoState.collection_for_select}},
       {"abr_assistant_zip": {visible: "abr_has_assistant", required: :if_visible}},
-      {"abr_assistant_check2": {type: :checkbox, visible: "abr_has_assistant"}},
-
+      
       # {"Reason": {required: true, type: :radio}}, 
       # {"absent_from": {classes: 'half', visible: "reason_absence", type: :date, d: "absence_from_dd", m: "absence_from_mm", y: "absence_from_yyyy" }},
       # {"absent_to": {classes: 'half last', visible: "reason_absence", type: :date, d: "absence_to_dd", m: "absence_to_mm", y: "absencs_to_yyyy" }},

@@ -133,7 +133,7 @@
       
       }
       else {
-        track_soft_validation(this,"pass");
+        track_soft_validation(this,"pass");f
         soft_validation_feedback(this, '', str);
       }    
     });
@@ -203,16 +203,16 @@
                 %span.error= form.object.errors[opts[:method]].join("\n").html_safe
           
       - elsif opts[:type] == :string
-        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions})
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: !!required, label_options: field_label, instructions: instructions})
       - elsif opts[:type] == :hidden
         = field_div(form, opts[:method], {kind: 'hidden'}) 
       - elsif opts[:type] == :radio
         %li{class: "#{class_name} #{opts[:method]}",  data: data}
           %ul.stacked.radio
-            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
+            - radio_options = opts[:options].collect{|v| txt = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}").html_safe; txt_hint =  t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}__hint", default: '').html_safe; txt = "<span>#{txt}<br/><span class='instructions'>#{txt_hint}</span></span>".html_safe if !txt_hint.blank?; [txt, v]} #[[t('no'), false], [I18n.t('yes'), true]]
             = field_li(form, opts[:method], {label_options:  field_label, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
       - elsif opts[:type] == :select
-        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: !!required, label_options: field_label, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })
       - elsif opts[:type] == :date
         %li.date{class: class_name, data: data}
           %h3
