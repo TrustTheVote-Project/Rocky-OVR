@@ -1,5 +1,58 @@
 :javascript
   // TODO this is hte same as below function with changed data param and swapped show/hide
+
+  function toggleHiddenVisible() {
+    var setVisible = $("[data-hidden-conditions], [data-visible-conditions], [data-visible-any-conditions]");
+    //console.log(setVisible.get(0))
+    $(setVisible).each(function() {
+      var hiddenConditions = $(this).data("hidden-conditions");
+      var hiddenConditionalFields = hiddenConditions ? hiddenConditions.split(" ") : []
+      
+      var hideField = hiddenConditionalFields.length > 0;
+      for(let i=0,ii=hiddenConditionalFields.length;i<ii;i++) {
+        var fieldName = hiddenConditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+":enabled")
+        //console.log(showField, field, field.val())
+        hideField = hideField && !!field && !!(field.prop("type")=="checkbox" || field.prop("type")=="radio"  ? field.is(":checked") : field.val())
+      }
+
+      var visibleConditions = $(this).data("visible-conditions");
+      var visibleConditionalFields = visibleConditions ? visibleConditions.split(" ") : [];
+      
+      var visibleAnyConditions = $(this).data("visible-any-conditions");
+      var visibleAnyConditionsValue = $(this).data("visible-any-conditions-value")
+      var visibleAnyConditionalFields = visibleAnyConditions ? visibleAnyConditions.split(" ") : [];
+     
+      
+      //If the only conditions are "any", then start as false
+      var showField = visibleConditionalFields.length > 0 || visibleAnyConditionalFields.length === 0; 
+      for(let i=0,ii=visibleConditionalFields.length;i<ii;i++) {
+        var fieldName = visibleConditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+":enabled")
+        showField = showField && !!field && !!(field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : field.val())
+      }
+
+      var showFieldAny = false;
+      for(let i=0,ii=visibleAnyConditionalFields.length;i<ii;i++) {
+        var fieldName = visibleAnyConditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+":enabled")
+        showFieldAny = showFieldAny || ( field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val())))
+      }
+      
+
+      
+      if ((showField || showFieldAny) && !hideField) {
+        $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)
+      } else {
+        $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)
+        
+      }
+      
+    })
+  }
+
   function toggleHidden() {
     var setVisible = $("[data-hidden-conditions]");
     //console.log(setVisible.get(0))
@@ -11,7 +64,7 @@
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+":enabled")
         //console.log(showField, field, field.val())
-        showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
+        showField = showField && field && (field.prop("type")=="checkbox"  || field.prop("type")=="radio" ? field.is(":checked") : field.val())
       }
       if (showField) {
         $(this).hide();
@@ -44,6 +97,7 @@
       } else {
         $(this).hide();
         $(this).find("input, select, textarea").attr("disabled", true)        
+        
       }
       
     })
@@ -60,7 +114,6 @@
       for(let i=0,ii=conditionalFields.length;i<ii;i++) {
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+":enabled")
-        console.log(showField, "#abr_"+fieldName+"", field, field.val(), field.is(":checked"))
         showField = showField || ( field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val())))
       }
       if (showField) {
@@ -69,6 +122,11 @@
       } else {
         $(this).hide();
         $(this).find("input, select, textarea").attr("disabled", true)        
+        // If it's a checkbox, also uncheck it
+        console.log(this, $(this).find("input"), $(this).find("input").prop("type"))
+        if ($(this).find("input").prop("type")=="checkbox") {
+          console.log(this)
+        }
       }
       
     })
@@ -139,16 +197,16 @@
     });
   }
   $(document).ready(function() {
-    toggleHidden();
+    toggleHiddenVisible();
     toggleHiddenAny();
-    toggleVisible();
-    toggleVisibleAny();
+    //toggleVisible();
+    //toggleVisibleAny();
     test_ui_regex();
     $("form").change(() => {
-      toggleHidden();
+      toggleHiddenVisible();
       toggleHiddenAny();
-      toggleVisible();
-      toggleVisibleAny();
+      //toggleVisible();
+      //toggleVisibleAny();
       test_ui_regex();
     })
     $("[data-ui-regexp] input").keyup(test_ui_regex);
@@ -188,7 +246,7 @@
       - data["hidden-any-conditions-value"] = hidden_any_conditions_value unless hidden_any_conditions_value.blank?
       - if opts[:type] == :instructions
         %li.instructions{class: class_name, data: data}
-          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")
+          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}").html_safe
       - if opts[:type] == :checkbox
         - class_name += " registrant-form__required-checkbox " if required
         %li{class: class_name, data: data}

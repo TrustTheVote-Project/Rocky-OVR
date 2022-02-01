@@ -53,6 +53,8 @@ module AbrPdfCoverFields
     reminders+= I18n.t("states.custom.#{i18n_key}.abr.state_reminder_1", default: "")
     reminders+="\n";
     reminders+= I18n.t("states.custom.#{i18n_key}.abr.state_reminder_2", default: "")
+    reminders+="\n";
+    reminders+= I18n.t("states.custom.#{i18n_key}.abr.status_check_instructions", default: "")
   end
 
 end
