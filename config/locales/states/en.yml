@@ -2981,7 +2981,7 @@ en:
             even if the ballot is emailed. Send military/overseas ballot by:'
       tx:
         abr:
-          request_deadline: Your ballot must be received by February 18, 2022.
+          request_deadline: Your ballot request must be received by February 18, 2022.
           abr_status_check_intro: 'You may be able to find out your Ballot by Mail
             status by calling your local election official.  Find your official''s
             contact information here:'
@@ -3007,6 +3007,8 @@ en:
         abr_form_errors:
           must_select_one_witness_type: You must select the box either for Witness, Assistant or both.
           id_required: You must provide a Texas ID or the last four digits of your SSN or confirm that you nave neither.
+          absence_end_date_after_begin_date: Absence end date must be after absence begin date.
+          absence_end_date_after_today: Absence end date must be after today.
         abr_form_fields:
           abr_id_instructions: "One of the following types of ID is required:"
           abr_id_selections:

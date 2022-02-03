@@ -248,7 +248,24 @@ module AbrStateMethods::TX
       errors.add(:abr_drivers_license, t)
       errors.add(:abr_last_4_ssn, t)
     end
-
+    
+    abr_absence_begin_date = begin
+      self.date_field_value(method: :abr_absence_begin_date)
+    rescue
+      nil
+    end
+    abr_absence_end_date = begin
+      self.date_field_value(method: :abr_absence_end_date)
+    rescue
+      nil
+    end
+    
+    if abr_absence_end_date && abr_absence_end_date < Date.today
+      errors.add(:abr_absence_end_date, I18n.t('states.custom.tx.abr_form_errors.absence_end_date_after_today'))
+    end
+    if abr_absence_begin_date && abr_absence_end_date && abr_absence_end_date < abr_absence_begin_date
+      errors.add(:abr_absence_end_date, I18n.t('states.custom.tx.abr_form_errors.absence_end_date_after_begin_date'))
+    end
   end
   # def where_to_mail_consolidated
   #   val = self.send(self.class.make_method_name("where_to_mail_all")) 
