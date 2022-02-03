@@ -2992,13 +2992,16 @@ en:
             submit the application by fax or email, you must also send the original
             hardcopy to the Early Voting Clerk.
           finish_instructions_1_hint: |
-            <p>If you were unable to sign the application and someone witnessed your signature, that person must complete Section 11.</p>
-            <p>If someone helped you complete the application or mailed the application for you, that person must complete Section 11.</p>
+            <p>
+            If you were unable to sign the application and someone witnessed your signature, that person must complete Section 11.
+            </p><p>
+            If someone helped you complete the application or mailed the application for you, that person must complete Section 11.
+            </p>
           status_check_instructions: |
             <p>
-              You can track the status of your absentee ballot request by going to the 
-              <a target="_blank" rel="noopener noreferrer" href="https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login">Ballot by Mail Tracker</a>
-              website.
+            You can track the status of your absentee ballot request by going to the 
+            <a target="_blank" rel="noopener noreferrer" href="https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login">Ballot by Mail Tracker (https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login)</a>
+            website.
             </p>
           
         abr_form_errors:

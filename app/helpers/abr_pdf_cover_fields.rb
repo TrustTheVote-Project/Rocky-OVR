@@ -45,16 +45,16 @@ module AbrPdfCoverFields
   end
 
   def cover_state_reminders
+    tracking_info = I18n.t("states.custom.#{i18n_key}.abr.status_check_instructions", default: "")
+
     reminders="";
-    reminders+= I18n.t("states.custom.#{i18n_key}.abr.abr_status_check_intro", default: "")
-    reminders+="\n\n";
-    reminders+=  (abr_status_check_url || leo_lookup_url).to_s
-    reminders+="\n\n";
-    reminders+= I18n.t("states.custom.#{i18n_key}.abr.state_reminder_1", default: "")
+    reminders+= I18n.t("states.custom.#{i18n_key}.abr.finish_instructions_1_hint", default: I18n.t('txt.abr.finish_instructions_1_hint'))
     reminders+="\n";
-    reminders+= I18n.t("states.custom.#{i18n_key}.abr.state_reminder_2", default: "")
-    reminders+="\n";
-    reminders+= I18n.t("states.custom.#{i18n_key}.abr.status_check_instructions", default: "")
+    if ! tracking_info.blank?
+      reminders+= I18n.t('txt.abr.finish_instructions_2').html_safe
+      reminders+="\n";
+      reminders+= tracking_info
+    end
   end
 
 end
