@@ -3055,7 +3055,7 @@ en:
           abr_election_selection__options:
             abr_election_selection_type1: November Election
             abr_election_selection_type2: May Election (not a primary runoff)
-            abr_election_selection_type3: Other Special Election
+            abr_election_selection3: Other Special Election
             abr_election_selection_type4: Democratic Primary
             abr_election_selection_type5: Republican Primary
           abr_assistant_instructions: Information about Witnesses and Assistants

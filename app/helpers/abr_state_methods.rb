@@ -209,20 +209,20 @@ module AbrStateMethods
       value = value.is_a?(String) ? value.strip : value
       if field_opts[:required]
         is_required = field_opts[:required] == true
-        if field_opts[:required] == :if_visible && field_opts[:visible]
+        if field_opts[:required] == :if_visible && (field_opts[:visible] || field_opts[:hidden])
           method = field_opts[:visible]
           h_method = field_opts[:hidden]
-          puts field_name, method, h_method, value        
+          puts field_name, method, h_method, value   
           if (method.blank? || self.send(method) == "1" || self.send(method) == true) && (h_method.blank? || (self.send(h_method) != "1" && self.send(h_method) != true))
             is_required = true
           end
         end
-        if field_opts[:required] == :if_visible && field_opts[:hidden]
-          method = field_opts[:hidden]
-          if self.send(method) != "1"
-            is_required = true
-          end
-        end
+        # if field_opts[:required] == :if_visible && field_opts[:hidden]
+        #   method = field_opts[:hidden]
+        #   if self.send(method) != "1"
+        #     is_required = true
+        #   end
+        # end
         if is_required && value.blank?
           errors.add(field_opts[:method], custom_required_message(field_name))
         end
