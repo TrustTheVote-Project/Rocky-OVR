@@ -1,5 +1,58 @@
 :javascript
   // TODO this is hte same as below function with changed data param and swapped show/hide
+
+  function toggleHiddenVisible() {
+    var setVisible = $("[data-hidden-conditions], [data-visible-conditions], [data-visible-any-conditions]");
+    //console.log(setVisible.get(0))
+    $(setVisible).each(function() {
+      var hiddenConditions = $(this).data("hidden-conditions");
+      var hiddenConditionalFields = hiddenConditions ? hiddenConditions.split(" ") : []
+      
+      var hideField = hiddenConditionalFields.length > 0;
+      for(let i=0,ii=hiddenConditionalFields.length;i<ii;i++) {
+        var fieldName = hiddenConditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+":enabled")
+        //console.log(showField, field, field.val())
+        hideField = hideField && !!field && !!(field.prop("type")=="checkbox" || field.prop("type")=="radio"  ? field.is(":checked") : field.val())
+      }
+
+      var visibleConditions = $(this).data("visible-conditions");
+      var visibleConditionalFields = visibleConditions ? visibleConditions.split(" ") : [];
+      
+      var visibleAnyConditions = $(this).data("visible-any-conditions");
+      var visibleAnyConditionsValue = $(this).data("visible-any-conditions-value")
+      var visibleAnyConditionalFields = visibleAnyConditions ? visibleAnyConditions.split(" ") : [];
+     
+      
+      //If the only conditions are "any", then start as false
+      var showField = visibleConditionalFields.length > 0 || visibleAnyConditionalFields.length === 0; 
+      for(let i=0,ii=visibleConditionalFields.length;i<ii;i++) {
+        var fieldName = visibleConditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+":enabled")
+        showField = showField && !!field && !!(field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : field.val())
+      }
+
+      var showFieldAny = false;
+      for(let i=0,ii=visibleAnyConditionalFields.length;i<ii;i++) {
+        var fieldName = visibleAnyConditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+":enabled")
+        showFieldAny = showFieldAny || ( field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val())))
+      }
+      
+
+      
+      if ((showField || showFieldAny) && !hideField) {
+        $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)
+      } else {
+        $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)
+        
+      }
+      
+    })
+  }
+
   function toggleHidden() {
     var setVisible = $("[data-hidden-conditions]");
     //console.log(setVisible.get(0))
@@ -11,7 +64,7 @@
         var fieldName = conditionalFields[i].trim();
         var field = $("#abr_"+fieldName+":enabled")
         //console.log(showField, field, field.val())
-        showField = showField && field && (field.prop("type")=="checkbox" ? field.is(":checked") : field.val())
+        showField = showField && field && (field.prop("type")=="checkbox"  || field.prop("type")=="radio" ? field.is(":checked") : field.val())
       }
       if (showField) {
         $(this).hide();
@@ -44,10 +97,41 @@
       } else {
         $(this).hide();
         $(this).find("input, select, textarea").attr("disabled", true)        
+        
       }
       
     })
   }
+
+  function toggleVisibleAny() {
+    var setVisible = $("[data-visible-any-conditions]");
+    //console.log(setVisible.get(0))
+    $(setVisible).each(function() {
+      var conditions = $(this).data("visible-any-conditions");
+      var conditionValue = $(this).data("visible-any-conditions-value")
+      var conditionalFields = conditions.split(" ");
+      var showField = false;
+      for(let i=0,ii=conditionalFields.length;i<ii;i++) {
+        var fieldName = conditionalFields[i].trim();
+        var field = $("#abr_"+fieldName+":enabled")
+        showField = showField || ( field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val())))
+      }
+      if (showField) {
+        $(this).show();
+        $(this).find("input, select, textarea").attr("disabled", false)        
+      } else {
+        $(this).hide();
+        $(this).find("input, select, textarea").attr("disabled", true)        
+        // If it's a checkbox, also uncheck it
+        console.log(this, $(this).find("input"), $(this).find("input").prop("type"))
+        if ($(this).find("input").prop("type")=="checkbox") {
+          console.log(this)
+        }
+      }
+      
+    })
+  }
+
 
   function toggleHiddenAny() {
     var setHidden = $("[data-hidden-any-conditions]");
@@ -107,20 +191,22 @@
       
       }
       else {
-        track_soft_validation(this,"pass");
+        track_soft_validation(this,"pass");f
         soft_validation_feedback(this, '', str);
       }    
     });
   }
   $(document).ready(function() {
-    toggleHidden();
+    toggleHiddenVisible();
     toggleHiddenAny();
-    toggleVisible();
+    //toggleVisible();
+    //toggleVisibleAny();
     test_ui_regex();
     $("form").change(() => {
-      toggleHidden();
+      toggleHiddenVisible();
       toggleHiddenAny();
-      toggleVisible();
+      //toggleVisible();
+      //toggleVisibleAny();
       test_ui_regex();
     })
     $("[data-ui-regexp] input").keyup(test_ui_regex);
@@ -150,13 +236,17 @@
       - data["ui-regexp"] = ui_regexp unless ui_regexp.blank?
       - data["ui-regexp-fail-message"] = ui_regexp_fail_message unless ui_regexp_fail_message.blank?
       - data["ui-regexp-fail-message-pattern"] = ui_regexp_fail_message_pattern unless ui_regexp_fail_message_pattern.blank?
+      - visible_any_conditions =  opts[:visible_any].is_a?(Array) ? opts[:visible_any][0] : opts[:visible_any].to_s.strip
+      - visible_any_conditions_value = opts[:visible_any].is_a?(Array) ? opts[:visible_any][1] : nil
+      - data["visible-any-conditions"] = visible_any_conditions unless visible_any_conditions.blank?
+      - data["visible-any-conditions-value"] = visible_any_conditions_value unless visible_any_conditions_value.blank?
       - hidden_any_conditions =  opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][0] : opts[:hidden_any].to_s.strip
       - hidden_any_conditions_value = opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][1] : nil
       - data["hidden-any-conditions"] = hidden_any_conditions unless hidden_any_conditions.blank?
       - data["hidden-any-conditions-value"] = hidden_any_conditions_value unless hidden_any_conditions_value.blank?
       - if opts[:type] == :instructions
         %li.instructions{class: class_name, data: data}
-          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")
+          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}").html_safe
       - if opts[:type] == :checkbox
         - class_name += " registrant-form__required-checkbox " if required
         %li{class: class_name, data: data}
@@ -171,16 +261,16 @@
                 %span.error= form.object.errors[opts[:method]].join("\n").html_safe
           
       - elsif opts[:type] == :string
-        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions})
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: !!required, label_options: field_label, instructions: instructions})
       - elsif opts[:type] == :hidden
         = field_div(form, opts[:method], {kind: 'hidden'}) 
       - elsif opts[:type] == :radio
         %li{class: "#{class_name} #{opts[:method]}",  data: data}
           %ul.stacked.radio
-            - radio_options = opts[:options].collect{|v| [t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}").html_safe, v]} #[[t('no'), false], [I18n.t('yes'), true]]
+            - radio_options = opts[:options].collect{|v| txt = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}").html_safe; txt_hint =  t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__options.#{v}__hint", default: '').html_safe; txt = "<span>#{txt}<br/><span class='instructions'>#{txt_hint}</span></span>".html_safe if !txt_hint.blank?; [txt, v]} #[[t('no'), false], [I18n.t('yes'), true]]
             = field_li(form, opts[:method], {label_options:  field_label, instructions: instructions, skip_tooltip: true, required: required, required_message: required_message, radio_options: radio_options})
       - elsif opts[:type] == :select
-        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: required, label_options: field_label, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })
+        = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: !!required, label_options: field_label, instructions: instructions, select_options: opts[:options], field_options: {include_blank: opts[:include_blank]} })
       - elsif opts[:type] == :date
         %li.date{class: class_name, data: data}
           %h3
@@ -192,9 +282,12 @@
           - unless instructions.blank?
             %p.instructions= instructions
           %div{class: form.object.errors[opts[:method]].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, opts[:method])}}
-            = form.text_field opts[:m], value: form.object.send(opts[:m]), placeholder: 'MM', type: 'tel', size: 2
-            = form.text_field opts[:d], value: form.object.send(opts[:d]), placeholder: 'DD', type: 'tel', size: 2
-            = form.text_field opts[:y], value: form.object.send(opts[:y]), placeholder: 'YYYY', type: 'tel', size: 4
+            - m_method = opts[:m] || "#{opts[:method]}_mm"
+            - d_method = opts[:d] || "#{opts[:method]}_dd"
+            - y_method = opts[:y] || "#{opts[:method]}_yyyy"
+            = form.text_field m_method, value: form.object.send(m_method), placeholder: 'MM', type: 'tel', size: 2
+            = form.text_field d_method, value: form.object.send(d_method), placeholder: 'DD', type: 'tel', size: 2
+            = form.text_field y_method, value: form.object.send(y_method), placeholder: 'YYYY', type: 'tel', size: 4
             
           %span.error= form.object.errors[opts[:method]].join("\n")        
       

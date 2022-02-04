@@ -72,6 +72,39 @@ class Abr < ActiveRecord::Base
   validate :validates_zip
   validate :validates_signature
   
+
+  def self.generate_abr_for_zip(zip)
+    if Rails.env != "development"
+      raise "Can only run in dev"
+    else
+      a = Abr.new(:zip=>zip)
+      a.email = "test+abr@rockthevote.com"
+      a.street_number = "1"
+      a.street_name = "Main St"
+      a.unit = "5R"
+
+      a.first_name =  "SamplePerson"
+      a.middle_name = "AbsenteeBallot"
+      a.last_name = "Requstor"
+      a.name_suffix= "Jr."
+      a.city = "Citytown"
+      a.phone = "123 123 1234"
+      a.phone_type = "Mobile"
+      a.date_of_birth = "1985-05-01"
+      a.pdf_fields.each do |name,f|
+        if f[:virtual_attribute] && !f[:value] # Automatically populates 
+          value = f[:options] ? f[:options][1] : name
+          a.send("#{name}=", value)
+        end
+      end
+      if a.save
+        a.generate_pdf(true)
+        puts a.pdf_path        
+      end
+      return a
+    end
+  end
+
   def render_view_events
     tracking_events.where(tracking_event_name: "abr::render_view")
   end
