@@ -13,7 +13,7 @@
   
 
   %ul.flat
-    = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
+    = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form, skip_tooltip: true}
   
   
   - if  @abr.home_state_allows_oabr?

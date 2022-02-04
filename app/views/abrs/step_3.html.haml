@@ -65,7 +65,7 @@
       
       
       %ul.flat
-        = render :partial=> "registrants/phone", :locals=>{:form=>form}
+        = render :partial=> "registrants/phone", :locals=>{:form=>form, skip_tooltip: true}
 
         
       = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
