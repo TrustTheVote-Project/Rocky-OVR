@@ -43,7 +43,7 @@ module AbrStateMethods::TX
      "abr_absence_end_date_dd": {},
      "abr_absence_end_date_yyyy": {},
 
-     "abr_application_type1": {options: ["Off", "Yes"]},
+     "abr_application_type1": {options: ["Off", "Yes"], method: :yes_if_abr_reason1_or_abr_reason2 },
 
      "abr_primary_type_selections1": {
        options: [
@@ -142,7 +142,13 @@ module AbrStateMethods::TX
   #   end
   # end
   
-  
+  def yes_if_abr_reason1_or_abr_reason2
+    if self.abr_reason_selections == "abr_reason1" || self.abr_reason_selections == "abr_reason2"
+      "Yes"
+    else
+      "Off"
+    end
+  end
   
   
   def form_field_items
@@ -171,19 +177,19 @@ module AbrStateMethods::TX
       # {"abr_application_type1_instructions_header": {type: :instructions}},
       # {"abr_application_type1_instructions": {type: :instructions, visible: "abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2"}},
 
-      {"abr_application_type1": {type: :checkbox, visible_any: "abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2"}},
+      #{"abr_application_type1": {type: :checkbox, visible_any: "abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2"}},
 
-      {"abr_primary_type_selections1": {type: :radio, visible: "abr_application_type1", required: :if_visible}},
+      {"abr_primary_type_selections1": {type: :radio, visible_any: "abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2", required: :if_visible}},
 
       
-      {"abr_election_selection": {type: :radio, hidden: "abr_application_type1", required: :if_visible}},      
+      {"abr_election_selection": {type: :radio, visible_any: "abr_reason_selections_abr_reason3 abr_reason_selections_abr_reason4 abr_reason_selections_abr_reason5", required: :if_visible}},      
       
       {"abr_assistant_instructions": {type: :instructions}},
       # {"abr_assistant_information": {type: :instructions}},
       {"abr_has_assistant": {type: :checkbox}},
+      {"abr_assistant_check1": {type: :checkbox, visible: "abr_has_assistant"}},
       {"abr_witness_check1": {type: :checkbox, visible: "abr_has_assistant"}},
       {"abr_witness_info1": {visible: "abr_witness_check1", required: :if_visible}},
-      # {"abr_assistant_check1": {type: :checkbox, visible: "abr_has_assistant"}},
       {"abr_assistant_check2": {type: :checkbox, visible: "abr_has_assistant"}},
       {"abr_witness_full_name": {visible: "abr_has_assistant", required: :if_visible }},
       {"abr_assistant_address_line_1": {classes: "three-quarter",visible: "abr_has_assistant", required: :if_visible}},

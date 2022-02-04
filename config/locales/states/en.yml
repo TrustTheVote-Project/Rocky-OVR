@@ -3007,16 +3007,16 @@ en:
         abr_form_errors:
           must_select_one_witness_type: You must select the box either for Witness, Assistant or both.
           id_required: You must provide a Texas ID or the last four digits of your SSN or confirm that you nave neither.
-          absence_end_date_after_begin_date: Absence end date must be after absence begin date.
-          absence_end_date_after_today: Absence end date must be after today.
+          absence_end_date_after_begin_date: "The date you return to you residence address must be after the date you can begin receiving mail at your out of county address."
+          absence_end_date_after_today: "The date you return to you residence address must be after today."
         abr_form_fields:
           abr_id_instructions: "One of the following types of ID is required:"
           abr_id_selections:
           abr_drivers_license: Texas ID Number
-          abr_drivers_license__hint: Texas Driver’s License, Texas Personal Identification Number or Election Identification Certificate Number issued by the Department of Public Safety (NOT your voter registration VUID#)
-          abr_no_drivers_license: I have not been issued a Texas Driver’s License/Texas Personal Identification Number/Texas Election Identification Certificate
+          abr_drivers_license__hint: Texas Driver's License, Texas Personal Identification Number or Election Identification Certificate Number issued by the Department of Public Safety (NOT your voter registration VUID#)
+          abr_no_drivers_license: I have not been issued a Texas Driver's License/Texas Personal Identification Number/Texas Election Identification Certificate
           abr_last_4_ssn: Last 4 digits of your SSN
-          abr_last_4_ssn__hint: If you do not have a Texas Driver’s License, Texas Personal Identification Number or a Texas Election Identification Certificate Number, give the last 4 digits of your Social Security Number 
+          abr_last_4_ssn__hint: If you do not have a Texas Driver'’'s License, Texas Personal Identification Number or a Texas Election Identification Certificate Number, give the last 4 digits of your Social Security Number 
           abr_no_id:  I have not been issued a Social Security Number
           abr_delivery_address: "Mail my Ballot to:"
           abr_delivery_address__options:
