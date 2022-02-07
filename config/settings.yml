@@ -585,6 +585,11 @@ ovr_states:
         api_username: "RockTheVote"
         api_key: <%= ENV['VA_API_KEY'] %>
   WA:
+    redirect_to_online_reg_url: false
+    api_settings:
+      api_url: "https://fake-wa-endpoint.herokuapp.com:443"
+      api_username: "RTVAVR"
+    #CTW are we actually supporting all these languages?
     languages:
       - en
       - es
