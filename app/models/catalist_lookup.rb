@@ -2,6 +2,7 @@ class CatalistLookup < ActiveRecord::Base
   include DateOfBirthMethods
   include CatalistLookupReportingMethods
   include UidGenerator
+  include TrackableMethods
   
   has_one :abrs_catalist_lookup
   has_one :abr, through: :abrs_catalist_lookup

@@ -26,8 +26,16 @@ module CatalistLookupReportingMethods
     "partner_opt_in_email", 
     "partner_opt_in_sms",
     "abr_uid",
-    "registrant_uid"
+    "registrant_uid",
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "other_parameters",
   ]
+
+  
 
   def to_csv_array
     CSV_HEADER.collect{|m| self.send(m) }

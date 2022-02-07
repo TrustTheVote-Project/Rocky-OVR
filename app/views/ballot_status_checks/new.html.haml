@@ -7,6 +7,11 @@
   = form.hidden_field :partner_id
   = form.hidden_field :tracking_id
   = form.hidden_field :tracking_source
+  - (@query_parameters || {}).keys.each do |qpk|
+    = hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk]
+
+
+
   %fieldset
     %ul.stacked
       = field_li form, :first_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__first-name__line'}

@@ -537,15 +537,6 @@ ActiveRecord::Schema.define(version: 2022_02_06_211421) do
     t.index ["state_transaction_id", "geo_state_id"], name: "registrant_statues_state_id_index"
   end
 
-  create_table "registrant_tracking_params", force: :cascade do |t|
-    t.integer "registrant_id"
-    t.string "name"
-    t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["registrant_id"], name: "index_registrant_tracking_params_on_registrant_id"
-  end
-
   create_table "registrants", force: :cascade do |t|
     t.string "status", limit: 255
     t.string "locale", limit: 64
@@ -1115,6 +1106,16 @@ ActiveRecord::Schema.define(version: 2022_02_06_211421) do
     t.index ["partner_tracking_id"], name: "index_tracking_events_on_partner_tracking_id"
     t.index ["source_tracking_id"], name: "index_tracking_events_on_source_tracking_id"
     t.index ["tracking_event_name"], name: "index_tracking_events_on_tracking_event_name"
+  end
+
+  create_table "tracking_params", force: :cascade do |t|
+    t.string "name"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "query_param_trackable_type"
+    t.integer "query_param_trackable_id"
+    t.index ["query_param_trackable_type", "query_param_trackable_id"], name: "index_tracking_params_on_polymorphic"
   end
 
   create_table "users", force: :cascade do |t|

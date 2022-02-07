@@ -21,7 +21,9 @@ class BallotStatusChecksController < ApplicationController
   end
 
   def create
-    @bsc = BallotStatusCheck.new(bsc_params)
+    @bsc = BallotStatusCheck.new(bsc_params.to_h.merge(
+      query_parameters: @query_parameters
+    ))
     set_up_locale
     #@bsc.partner_id = @partner_id
     if @bsc.save
@@ -56,6 +58,17 @@ class BallotStatusChecksController < ApplicationController
     @first_name = params[:first_name]
     @last_name = params[:last_name]
     @zip = params[:zip]
+
+    @query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
+      "locale",
+      "source",
+      "tracking",
+      "email",
+      "first_name",
+      "last_name",
+      "zip",
+      "partner",
+    ] ))) || {}
   end
 
   def set_up_locale

@@ -179,14 +179,15 @@ class AbrsController < ApplicationController
       attrs += @abr.permitted_attrs
       attrs += @abr.allowed_signature_attrs
     end
-    params.require(:abr).permit(*attrs)
+    permitted = params.require(:abr).permit(*attrs)
+    return permitted.to_h.merge({query_parameters: @query_parameters})
   end
   
   def find_abr(special_case = nil)
     @abr = Abr.find_by_param!(params[:id])
     set_up_locale
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
-    raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil?
+    raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil? && Rails.env != "development" #Don't raise on dev - allow re-editing
     @abr.update_attributes(current_step: @current_step) if @current_step
     @abr_finish_iframe_url = @abr.finish_iframe_url
     

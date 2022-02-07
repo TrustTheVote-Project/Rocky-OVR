@@ -22,6 +22,21 @@ module AbrHelper
     @zip = params[:zip]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     @home_state ||= @zip ? GeoState.for_zip_code(@zip.strip) : nil
+
+    @query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
+      "locale",
+      "votercheck",
+      "source",
+      "tracking",
+      "email",
+      "first_name",
+      "last_name",
+      "state_abbrev",
+      "state",
+      "zip",
+      "partner",
+    ] ))) || {}
+        
   end
     
 end
