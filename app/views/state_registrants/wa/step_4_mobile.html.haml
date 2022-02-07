@@ -1,0 +1,134 @@
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 90}
+  
+  
+  .review            
+  
+    .review__section
+      .review__section__label 
+        = t('txt.registration.name')
+      .review__section__content
+        = @registrant.name_title
+        = @registrant.first_name
+        = @registrant.middle_name
+        = @registrant.last_name
+        = @registrant.name_suffix
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), registrant_path(@registrant))
+        
+    .review__section
+      .review__section__label
+        = t('activerecord.attributes.registrants.date_of_birth')
+      .review__section__content
+        = I18n.l @registrant.date_of_birth, format: :long
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+    
+    .review__section
+      .review__section__label 
+        = t('txt.registration.home_address')
+      .review__section__content
+        = @registrant.residence_address
+        %br
+        = "#{@registrant.residence_unit_type}  #{@registrant.residence_unit_number}"
+        %br
+        = "#{@registrant.residence_city}, WA #{@registrant.residence_zip}"
+        %br
+        = "#{@registrant.res_county_code}"
+        = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+
+    - if @registrant.has_previous_address?
+      .review__section
+        .review__section__label 
+          = t('txt.registration.previous_address') 
+        .review__section__content
+          = @registrant.prev_residence_address
+          %br
+          = "#{@registrant.prev_residence_city}, #{@registrant.prev_residence_state} #{@registrant.prev_residence_zip}"
+          %br
+          = @registrant.prev_res_county_code
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+
+
+    - if @registrant.has_mailing_address?
+      .review__section
+        .review__section__label 
+          = t('txt.registration.mailing_address') 
+        .review__section__content
+          = @registrant.mailing_address
+          %br
+          = "#{@registrant.mailing_city}, #{@registrant.mailing_state} #{@registrant.mailing_zip}"
+          %br
+          = @registrant.mail_county_code
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+
+    - if @registrant.has_previous_mailing_address?
+      .review__section
+        .review__section__label 
+          = t('txt.registration.previous_mailing_address') 
+        .review__section__content
+          = @registrant.prev_mailing_address
+          %br
+          = "#{@registrant.prev_mailing_city}, #{@registrant.prev_mailing_state} #{@registrant.prev_mailing_zip}"
+          %br
+          = @registrant.mail_county_code
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+
+
+    - if !@registrant.ssn4.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/wa_registrant.ssn')
+        .review__section__content
+          = @registrant.ssn4
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
+
+    - if !@registrant.driver_license.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/wa_registrant.dln')
+        .review__section__content
+          = "#{@registrant.driver_license}"
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/wa_registrant.issue_date')
+        .review__section__content
+          = "#{@registrant.issue_date}"
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
+
+    - if true || !@registrant.military_flag.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/wa_registrant.military_flag')
+        .review__section__content
+          = @registrant.military_flag
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
+
+    - if true || !@registrant.is_homeless.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.state_registrants/wa_registrant.is_homeless')
+        .review__section__content
+          = @registrant.is_homeless
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
+
+
+          
+    - unless @registrant.email.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.registrants.email_address')
+        .review__section__content
+          = @registrant.email
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), registrant_path(@registrant))
+    - unless @registrant.phone.blank?
+      .review__section
+        .review__section__label
+          = t('activerecord.attributes.registrants.phone')
+        .review__section__content
+          = PhoneFormatter.process @registrant.phone
+          = @registrant.phone_type
+          = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_2'))
+  
+  
+  = rollover_button(:next_step, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_abbrev))
+  .back    
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

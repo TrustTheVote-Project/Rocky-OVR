@@ -1,0 +1,69 @@
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+
+      checkboxTogglesSet($('#state_registrants_wa_registrant_has_ssn'), $('#ssn_set')); //, $('#prev_name_rule')
+
+ 
+    });
+
+
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/wa/header'
+  
+  
+  %fieldset#dln_set.block-selector
+
+    %ul.flat.ssn
+      = field_li(form, :driver_license, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
+      -#= field_li(form, :issue_date, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__issue-date__line"}})
+      %li.registrant-form__issue-date__line
+        %h3
+          = form.label :issue_date
+          %span.required 
+            *
+            %span.required--text{style: 'display:none;'}= I18n.t('required')
+        %div{class: form.object.errors[:issue_date].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, :issue_date)}}
+          = form.text_field :issue_date_mm, value: form.object.issue_date_mm, placeholder: 'MM', type: 'tel', size: 2, class: 'issue_date_mm'
+          = form.text_field :issue_date_dd, value: form.object.issue_date_dd, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
+          = form.text_field :issue_date_yyyy, value: form.object.issue_date_yyyy, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
+        %span.error= form.object.errors[:issue_date].join("\n")
+  %fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_ssn, class_name: "registrant-form__has_ssn__line",  required: true}
+
+  -#  %div.block-selector__no-selected
+  %fieldset#ssn_set.block-selector
+    -#=checkbox_block_selector form, :has_ssn, I18n.t('activerecord.attributes.state_registrants/wa_registrant.has_ssn'), nil, {required: true}
+    -#%div.block-selector__yes-selected
+    %ul.flat.ssn
+      = field_li(form, :ssn4, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 11, maxlength: 11} })
+
+  %fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :military_flag, class_name: "registrant-form__military-flag__line", required: false}
+
+  %fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false}
+
+  -#%fieldset#military_set.block-selector
+    =checkbox_block_selector form, :military_flag, I18n.t('activerecord.attributes.state_registrants/wa_registrant.military_flag'), nil, {required: true}
+
+  -#%fieldset#homeless_set.block-selector
+    =checkbox_block_selector form, :is_homeless, I18n.t('activerecord.attributes.state_registrants/wa_registrant.is_homeless'), nil, {required: true}
+
+
+  
+
+  -# %fieldset#convicted-of-felony_set.block-selector
+    =checkbox_block_selector form, :convicted_of_felony, I18n.t('activerecord.attributes.state_registrants/wa_registrant.convicted_of_felony'), :convicted_of_felony, {required: true}
+    %div.block-selector__yes-selected
+      %fieldset#right_to_vote_restored_set
+        %ul.stacked
+          = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :right_to_vote_restored, class_name: "registrant-form__right_to_vote_restored__line", required: true, require_accepted: true}
+
+
+
+  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
+  .back    
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)

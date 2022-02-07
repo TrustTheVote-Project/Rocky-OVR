@@ -1,0 +1,38 @@
+<fieldset id="prev_residence_address_set" class='block-selector'>
+  <%= checkbox_block_selector form, :has_previous_address, I18n.t('activerecord.attributes.registrant.has_prev_residence_address'), :prev_residence_address, {required: true} %>
+  <div  class="block-selector__yes-selected">
+    <h3><%= I18n.t('txt.registration.prev_residence_address') %></h3>
+    <ul class="stacked">
+      <li class="width_a registrant-form__prev-address__line">
+        <h3><%= form.label :prev_residence_address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+        <%= field_div form, :prev_residence_address, required: true %>
+        <span class="error"><%= form.object.errors[:prev_residence_address].join("\n") %></span>
+    </li>
+      <li class="width_b registrant-form__prev-unit__line">
+        <h3><%= form.label :prev_residence_unit_number %></h3>
+        <%= field_div form, :prev_residence_unit_number, {:size => 15} %>
+        <span class="error"><%= form.object.errors[:prev_residence_unit_number].join("\n") %></span>
+      </li>
+    </ul>
+    <ul class="stacked">
+      <li class="width_a registrant-form__prev-city__line">
+        <h3><%= form.label :prev_residence_city %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+        <%= field_div form, :prev_residence_city, required: true %>
+        <span class="error"><%= form.object.errors[:prev_residence_city].join("\n") %></span>
+      </li>
+      <li class="width_b registrant-form__prev-state-abbrev__line">
+        <h3><%= form.label :prev_residence_state %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+        <div><%= form.select :prev_residence_state, GeoState.collection_for_select, required: true %></div>
+        <span class="error"><%= form.object.errors[:prev_residence_state].join("\n") %></span>
+      </li>
+      <li class="width_c registrant-form__prev-zip-code__line">
+        <h3><%= form.label :prev_residence_zip %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+        <%= field_div form, :prev_residence_zip, {:size => 10, :maxlength => 10, required: true} %>
+        <span class="error"><%= form.object.errors[:prev_residence_zip].join("\n") %></span>
+      </li>
+    </ul>
+  </div>
+
+</fieldset>
+
+
