@@ -266,6 +266,7 @@ en:
       mailing_address: Mailing Address
       previous_name: Previous Name
       previous_address: Previous Address
+      previous_mailing_address: Previous Mailing Address
       contact_information: Contact Information
       opt_in_sms: Send me text messages from %{organization}.
       opt_in_sms_compliance: By signing up, you consent to receive periodic text messages
