@@ -1,7 +1,7 @@
 class MI < StateCustomization
-  #def enabled_for_language?(locale, reg=nil)
-  #  false
-  #end
+  def enabled_for_language?(locale, reg=nil)
+   false
+  end
   
   def use_state_flow?(registrant)
     return false
