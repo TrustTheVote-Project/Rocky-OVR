@@ -1,3 +1,4 @@
+= render 'shared/signature_capture/scripts'
 - content_for :head do
   :javascript
     $(document).ready(function() {
@@ -46,21 +47,7 @@
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false}
 
-  -#%fieldset#military_set.block-selector
-    =checkbox_block_selector form, :military_flag, I18n.t('activerecord.attributes.state_registrants/wa_registrant.military_flag'), nil, {required: true}
-
-  -#%fieldset#homeless_set.block-selector
-    =checkbox_block_selector form, :is_homeless, I18n.t('activerecord.attributes.state_registrants/wa_registrant.is_homeless'), nil, {required: true}
-
-
-  
-
-  -# %fieldset#convicted-of-felony_set.block-selector
-    =checkbox_block_selector form, :convicted_of_felony, I18n.t('activerecord.attributes.state_registrants/wa_registrant.convicted_of_felony'), :convicted_of_felony, {required: true}
-    %div.block-selector__yes-selected
-      %fieldset#right_to_vote_restored_set
-        %ul.stacked
-          = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :right_to_vote_restored, class_name: "registrant-form__right_to_vote_restored__line", required: true, require_accepted: true}
+  = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
 
 
 

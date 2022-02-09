@@ -1,6 +1,30 @@
 class StateRegistrants::WARegistrant < StateRegistrants::Base
 
+  delegate :allow_desktop_signature?, :state_voter_check_url, to: :registrant
 
+ 
+  
+
+  
+  def self.permitted_attributes
+    attrs = super
+    return ([attrs,
+            :issue_date_day,
+            :issue_date_month,
+            :issue_date_year].flatten)
+  end
+
+  def sms_number_for_continue_on_device
+    self.read_attribute(:sms_number_for_continue_on_device) || self.phone
+  end
+
+  def email_address_for_continue_on_device
+    self.read_attribute(:email_address_for_continue_on_device) || self.email
+  end
+
+  def signature_step
+    "step_3"
+  end
 
   def self.localities
   [{"Code" =>"01","Name"=>"Adams"},
@@ -54,28 +78,33 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   def set_issue_date_from_parts
     date=nil
     date = Date.civil(issue_date_year.to_i, issue_date_month.to_i, issue_date_day.to_i) rescue nil
-    if !date.nil?
-      self.issue_date=date
+    if (!date.nil?) 
+      if (date >Date.parse("1900-01-01"))
+        self.issue_date=date
+      end
+    else
+      self.issue_date=nil
     end
+  
   
   end
 
   def issue_date_day
-     @issue_date_day
+    @issue_date_day || issue_date&.day 
   end
   def issue_date_day=(string_value)
     @issue_date_day= string_value
     set_issue_date_from_parts
   end
   def issue_date_month
-     @issue_date_month
+   @issue_date_month || issue_date&.month 
   end
   def issue_date_month=(string_value)
     @issue_date_month= string_value
     set_issue_date_from_parts
   end
   def issue_date_year
-     @issue_date_year
+     @issue_date_year ||  issue_date&.year
   end    
   def issue_date_year=(string_value)
     @issue_date_year= string_value
@@ -105,7 +134,6 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   end
   
   def cleanup!
-    # TODO make sure we don't keep SSN
     self.ssn4 = nil
     self.driver_license = nil
     self.save(validate: false)
@@ -114,11 +142,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   def default_state_abbrev
     'WA'
   end
-=begin  
-  def registration_county
-    registration_locality_name
-  end
-=end
+
 
   
   def steps
@@ -260,8 +284,8 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
       "dateOfBirth"	=>	self.date_of_birth.strftime("%m/%d/%Y"),
 
       "driverLicense"	=>	self.driver_license.to_s.gsub(/\s-/, ''),
-      #"issueDate"	=>	self.issue_date,
-      # To do "issueDate"	=>	
+  
+      
       "issue_date" =>self.issue_date.iso8601, #CTW check foramt
       "SSN4"	=>	self.ssn4, #CTW Check
       
@@ -273,6 +297,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
       "isHomeless"	=> self.is_homeless,
       
       #"Signature"	=>	self.foo, # Need to know format and then ask Alex how to collect
+      "Signature" =>self.class.resize_signature_url(voter_signature_image),
 
       "transactionID" => self.uid,
       "registrationDate"	=>	self.updated_at.iso8601, # CTW ask Alex *now*, check format
@@ -377,6 +402,10 @@ Response as:
         
   end
 
+def allow_desktop_signature?
+  #Allow later customization
+  return false
+end
 
 
   def home_state
@@ -451,20 +480,7 @@ Response as:
       val = r.send(v)
       self.send("#{k}=", val)
     end
-=begin
-    regs = r.home_address.to_s.split(', ')
-    self.registration_address_1 = regs[0]
-    self.registration_address_2 = regs[1..regs.length].to_a.join(', ')
 
-    mails = r.mailing_address.to_s.split(', ')
-    self.mailing_address_1 = mails[0]
-    self.mailing_address_2 = mails[1..mails.length].to_a.join(', ')
-    
-    
-    if r.mailing_state
-      self.mailing_state = r.mailing_state.abbreviation
-    end
-=end
     self.save(validate: false)
   end
   
@@ -474,99 +490,60 @@ Response as:
       val = self.send(k)
       r.send("#{v}=", val)
     end
-=begin    
-    r.home_address = [self.registration_address_1, self.registration_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
-    r.mailing_address = [self.mailing_address_1, self.mailing_address_2].collect{|v| v.blank? ? nil : v}.compact.join(', ')
-    
-    r.has_ssn = !self.confirm_no_ssn?
-    r.has_state_license = !self.confirm_no_dln?
-    
-    
-    if !self.mailing_state.blank? #always an abbrev
-      r.mailing_state = GeoState[self.mailing_state]
-    else
-      r.mailing_state = nil
-    end
-=end
+
     r.save(validate: false)
   end    
 
-=begin
-  def has_state_license?
-    !self.confirm_no_dln?
-  end
-  
-  def has_ssn?
-    !self.confirm_no_ssn?
-  end
 
-  def has_ssn
-    case self.confirm_no_ssn
-      when true
-        return false
-      when false
-       return true
-      when nil
-        return nil
-    end
-  end
 
-  def has_dln
-    case self.confirm_no_dln
-      when true
-        return false
-      when false
-       return true
-      when nil
-        return nil
-    end
-  end
-
-  def has_middle_name
-    case self.confirm_no_middle_name
-      when true
-        return false
-      when false
-       return true
-      when nil
-        return nil
-    end
-  end
-
-  def has_ssn= (val)
-    case val
-      when true,1,"1"
-        self.confirm_no_ssn=false
-      when false,0,"0"
-        self.confirm_no_ssn=true
-      when nil
-        self.confirm_no_ssn = nil
-    end
-  end
-
-  def has_dln= (val)
-    case val
-      when true,1,"1"
-        self.confirm_no_dln=false
-      when false,0,"0"
-        self.confirm_no_dln=true
-      when nil
-        self.confirm_no_dln = nil
-    end
-  end
-=end
-
-=begin
-  def has_middle_name= (val)
-    case val
-      when true,1,"1"
-        self.confirm_no_middle_name=false
-      when false,0,"0"
-        self.confirm_no_middle_name=true
-      when nil
-        self.confirm_no_middle_name = nil
-    end
-  end
-=end
  
+
+
+  def self.resize_signature_url(sig_url)
+    regexp = /\Adata:(.+);base64,(.+)\z/
+    if sig_url =~ regexp
+      type = $1
+      data = $2
+      return "data:#{type};base64,#{process_signature(data)[0]}"
+    else
+      return sig_url
+    end
+  # rescue
+  #   return sig_url
+  end
+
+  SIG_WIDTH = 180
+  SIG_HEIGHT = 60
+  RESOLUTION =  100
+  def self.process_signature(base64data, mods=[])
+    image_blob = Base64.decode64(base64data)
+    src = Tempfile.new('src')
+    dst = Tempfile.new('dst')
+    begin
+      src.binmode
+      src.write(image_blob)
+      src.close
+      wh = `identify -format "%wx%h" #{src.path}`
+      if wh.to_s.strip !="#{SIG_WIDTH}x#{SIG_HEIGHT}"
+        dst.close
+        #  -background skyblue -extent 100x60
+        cmd = "convert #{src.path} -background white -extent #{SIG_WIDTH}x#{SIG_HEIGHT} -density #{RESOLUTION} #{dst.path}"
+        `#{cmd}`
+        dst.open
+        dst.binmode
+        converted = dst.read
+        converted64 = Base64.encode64(converted)
+        mods << "Converted #{wh} image to #{SIG_WIDTH}x#{SIG_HEIGHT}"
+        return converted64.gsub("\n",''), mods
+      else
+        return base64data, mods
+      end
+    ensure
+      src.close
+      src.unlink   # deletes the temp file
+      dst.close
+      dst.unlink   # deletes the temp file
+    end
+  end
+
 end

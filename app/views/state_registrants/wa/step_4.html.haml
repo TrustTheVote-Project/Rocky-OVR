@@ -92,7 +92,7 @@
         .review__section__label
           = t('activerecord.attributes.state_registrants/wa_registrant.issue_date')
         .review__section__content
-          = DateTime.new(@registrant.issue_date_yyyy, @registrant.issue_date_mm,@registrant.issue_date_dd).strftime('%m/%d/%Y') 
+          = @registrant.issue_date.strftime('%m/%d/%Y') 
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
 
     - if true || !@registrant.military_flag.blank?

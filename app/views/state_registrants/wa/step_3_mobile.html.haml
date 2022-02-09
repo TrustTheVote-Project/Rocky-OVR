@@ -1,3 +1,4 @@
+= render 'shared/signature_capture/scripts'
 - content_for :head do
   :javascript
     $(document).ready(function() {
@@ -28,9 +29,9 @@
             *
             %span.required--text{style: 'display:none;'}= I18n.t('required')
         %div{class: form.object.errors[:issue_date].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, :issue_date)}}
-          = form.text_field :issue_date_mm, value: form.object.issue_date_mm, placeholder: 'MM', type: 'tel', size: 2, class: 'issue_date_mm'
-          = form.text_field :issue_date_dd, value: form.object.issue_date_dd, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
-          = form.text_field :issue_date_yyyy, value: form.object.issue_date_yyyy, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
+          = form.text_field :issue_date_month, value: form.object.issue_date_month, placeholder: 'MM', type: 'tel', size: 2, class: 'issue_date_mm'
+          = form.text_field :issue_date_day, value: form.object.issue_date_day, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
+          = form.text_field :issue_date_year, value: form.object.issue_date_year, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
         %span.error= form.object.errors[:issue_date].join("\n")
         
   %fieldset.no_border
@@ -47,6 +48,9 @@
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false}
    
+
+  = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
+
   .dynamic-navigation
     -# .back only shown when first step, .prepare only shown when last step
     .back.back--link

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_06_211421) do
+ActiveRecord::Schema.define(version: 2022_02_09_204452) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -1088,9 +1088,10 @@ ActiveRecord::Schema.define(version: 2022_02_06_211421) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name_title"
-    t.integer "issue_date_mm"
-    t.integer "issue_date_dd"
-    t.integer "issue_date_yyyy"
+    t.string "voter_signature_image"
+    t.string "signature_method"
+    t.string "sms_number_for_continue_on_device"
+    t.string "email_address_for_continue_on_device"
   end
 
   create_table "tracking_events", force: :cascade do |t|

@@ -64,12 +64,15 @@ class WARegistrantValidator < ActiveModel::Validator
     if reg.at_least_step_2?
       #reg.validates_acceptance_of  :has_dln, :accept=>true,:allow_nil=>false
       reg.validates_presence_of :driver_license
+      reg.validates_presence_of :issue_date
 
       date=nil
       date = Date.civil(reg.issue_date_year.to_i, reg.issue_date_month.to_i, reg.issue_date_day.to_i) rescue nil
-      if date.nil?
+      if (date.nil?)
         reg.errors.add(:issue_date, :format)
-      end 
+      end
+        
+
     end
     
   end
