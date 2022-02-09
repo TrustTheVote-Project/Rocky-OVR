@@ -56,32 +56,20 @@ class WARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :mailing_state
         validates_zip_code reg,   :mailing_zip       
       end
-  
       
       validate_phone_present_if_opt_in_sms(reg)
     end
+  
 
     if reg.at_least_step_2?
       #reg.validates_acceptance_of  :has_dln, :accept=>true,:allow_nil=>false
       reg.validates_presence_of :driver_license
-      reg.validates_presence_of :issue_date_mm
-      reg.validates_presence_of :issue_date_dd
-      reg.validates_presence_of :issue_date_yyyy
-      reg.validates_format_of(:issue_date_mm, {:with => /\d{1,2}/, :allow_blank => false});
-      reg.validates_format_of(:issue_date_dd, {:with => /\d{1,2}/, :allow_blank => false});
-      reg.validates_format_of(:issue_date_yyyy, {:with => /\d{4}/, :allow_blank => false});
 
-
-        date=nil
-        date = Date.civil(reg.issue_date_yyyy.to_i, reg.issue_date_mm.to_i, reg.issue_date_dd.to_i) rescue nil
-        if date.nil?
-          reg.errors.add(:issue_date, :format)      
-        else
-          # Ask Alex
-          reg.issue_date=date
-        end 
-
-
+      date=nil
+      date = Date.civil(reg.issue_date_year.to_i, reg.issue_date_month.to_i, reg.issue_date_day.to_i) rescue nil
+      if date.nil?
+        reg.errors.add(:issue_date, :format)
+      end 
     end
     
   end

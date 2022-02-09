@@ -50,6 +50,37 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
 
   
   serialize :wa_submission_error, Array
+
+  def set_issue_date_from_parts
+    date=nil
+    date = Date.civil(issue_date_year.to_i, issue_date_month.to_i, issue_date_day.to_i) rescue nil
+    if !date.nil?
+      self.issue_date=date
+    end
+  
+  end
+
+  def issue_date_day
+     @issue_date_day
+  end
+  def issue_date_day=(string_value)
+    @issue_date_day= string_value
+    set_issue_date_from_parts
+  end
+  def issue_date_month
+     @issue_date_month
+  end
+  def issue_date_month=(string_value)
+    @issue_date_month= string_value
+    set_issue_date_from_parts
+  end
+  def issue_date_year
+     @issue_date_year
+  end    
+  def issue_date_year=(string_value)
+    @issue_date_year= string_value
+    set_issue_date_from_parts
+  end
   
   
   def gender
@@ -537,4 +568,5 @@ Response as:
     end
   end
 =end
+ 
 end

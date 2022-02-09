@@ -26,9 +26,9 @@
             *
             %span.required--text{style: 'display:none;'}= I18n.t('required')
         %div{class: form.object.errors[:issue_date].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, :issue_date)}}
-          = form.text_field :issue_date_mm, value: form.object.issue_date_mm, placeholder: 'MM', type: 'tel', size: 2, class: 'issue_date_mm'
-          = form.text_field :issue_date_dd, value: form.object.issue_date_dd, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
-          = form.text_field :issue_date_yyyy, value: form.object.issue_date_yyyy, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
+          = form.text_field :issue_date_month, value: form.object.issue_date_month, placeholder: 'MM', type: 'tel', size: 2, class: 'issue_date_mm'
+          = form.text_field :issue_date_day, value: form.object.issue_date_day, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
+          = form.text_field :issue_date_year, value: form.object.issue_date_year, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
         %span.error= form.object.errors[:issue_date].join("\n")
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_ssn, class_name: "registrant-form__has_ssn__line",  required: true}
