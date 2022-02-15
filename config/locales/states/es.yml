@@ -1578,21 +1578,21 @@ es:
           Assistant_State: ''
           Asistant_Zip: ''
           Assistant_Phone: ''
-        state_flow_error: NEED TRANSLATION
-        ineligible_registrant: NEED TRANSLATION
-        step_2_header: NEED TRANSLATION
-        step_2_subheader: "."
-        special_status_notice: NEED TRANSLATION
-        voter_classification: NEED TRANSLATION
-        protected_voter: NEED TRANSLATION
-        step_4_header: NEED TRANSLATION
+        state_flow_error: ''
+        ineligible_registrant: ''
+        step_2_header: ''
+        step_2_subheader: ''
+        special_status_notice: ''
+        voter_classification: ''
+        protected_voter: ''
+        step_4_header: ''
         by_paper_header: ''
-        voter_fraud_warning: NEED TRANSLATION
-        privacy_notice: NEED TRANSLATION
-        submitting: NEED TRANSLATION
-        confirming: NEED TRANSLATION
-        registration_complete: NEED TRANSLATION
-        registration_complete_dialog_text: NEED TRANSLATION
+        voter_fraud_warning: ''
+        privacy_notice: ''
+        submitting: ''
+        confirming: ''
+        registration_complete: ''
+        registration_complete_dialog_text: ''
       vt:
         state_online_abr:
           requirements: ''
@@ -2157,37 +2157,48 @@ es:
       17_turn_18: Si tienes 17 anos y vas a cumplir 18 años antes de las próximas
         elecciones.
     registration_deadline:
-      california: Sello postal o presentarse a la oficina de elecciones (o agencia
-        de registro electoral NVRA) en o antes de 15 días antes del Día de la elección
-        (a votar en la elección)
-      delaware: Matasellos de la cuarta el sábado antes de una elección primaria o
-        general, o 10 días antes de una elección especial
-      iowa: 5pm 10/18/2021
-      minnesota: 5pm, 10/12/2021
-      missouri: 5pm, 10/12/2021
-      new_jersey: 10/12/2021
-      new_york: Matasellos 25 días antes de la elección y recibió no menos de 20 días
-        antes de la elección
-      nebraska: Matasellos de la tercera el Viernes antes de las elecciones, o recibido
-        en persona a las 6pm del segundo viernes antes de las elecciones
-      nevada: La fecha límite para la inscripción de votantes por correo es el cuarto
-        martes antes de cualquier elección primaria o general. Esta es la fecha en
-        la que la solicitud de inscripción de votantes por correo debe ser matasellada.
-        La inscripción de votantes en persona permanece disponible hasta las 7:00
-        p. m. del tercer martes anterior a cualquier elección primaria o general.
-        Puede inscribirse para votar en persona solo si se presenta en la oficina
-        del Secretario del condado/Secretario a cargo del Registro de votantes. La
-        fecha límite para la inscripción de votantes en línea en www.RegisterToVoteNV.gov
-        es el jueves anterior al primer día del período de votación anticipada.
-      oklahoma: recibido antes del 10/15/2021
+      alabama: ''
+      california: ''
+      colorado: ''
+      connecticut: ''
+      district_of_columbia: ''
+      delaware: ''
+      florida: ''
+      georgia: ''
+      idaho: ''
+      illinois: ''
+      iowa: ''
+      kansas: ''
+      maine: ''
+      massachusetts: ''
+      michigan: ''
+      minnesota: ''
+      mississippi: ''
+      missouri: ''
+      montana: ''
+      new_hampshire: ''
+      new_jersey: ''
+      new_mexico: ''
+      new_york: ''
+      north_carolina: ''
+      north_dakota: ''
+      nebraska: ''
+      nevada: ''
+      ohio: ''
+      oklahoma: ''
       pennsylvania: recibido antes del 05/02/2022
-      rhode_island: 10/3/2021
-      texas: recibido en la oficina electoral 10/10/2022
-      washington: recibido antes del 10/25/2021
+      rhode_island: ''
+      texas: ''
+      utah: ''
+      vermont: ''
+      virginia: ''
+      washington: ''
+      wisconsin: ''
       postmarked_11_days: Tiene que tener el cello del correo 11 días antes de la
         elección.
       postmarked_14_days: Tiene que tener el cello del correo 14 días antes de la
         elección.
+      postmarked_15_days: ''
       postmarked_20_days: Tiene que tener el cello del correo 20 días antes de la
         elección.
       postmarked_21_days: Tiene que tener el cello del correo 21 días antes de la
