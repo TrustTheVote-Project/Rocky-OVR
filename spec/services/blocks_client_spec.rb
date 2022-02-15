@@ -103,23 +103,23 @@ describe BlocksClient do
       end      
     end
 
-    describe "add_metadata_to_form" do
-      it "sends put request to forms/<id>/add_metadata" do
-        form_id = "123"
+    # describe "add_metadata_to_form" do
+    #   it "sends put request to forms/<id>/add_metadata" do
+    #     form_id = "123"
         
-        meta_data = {
-          firstName: "new first name"
-        }
+    #     meta_data = {
+    #       firstName: "new first name"
+    #     }
         
-        body = {
-          content: meta_data,
-          jwt: "token"
-        }
+    #     body = {
+    #       content: meta_data,
+    #       jwt: "token"
+    #     }
         
-        expect(BlocksClient).to receive(:send).with(:put, "forms/#{form_id}/add_metadata", body: body, headers: headers, url: nil)
-        BlocksClient.add_metadata_to_form(form_id, meta_data, token: "token")
-      end      
-    end
+    #     expect(BlocksClient).to receive(:send).with(:put, "forms/#{form_id}/add_metadata", body: body, headers: headers, url: nil)
+    #     BlocksClient.add_metadata_to_form(form_id, meta_data, token: "token")
+    #   end      
+    # end
     
     describe "create_canvasser" do
       it "sends patch request to turfs/<id>/canvassers/upsert" do
