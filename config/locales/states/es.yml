@@ -2156,44 +2156,8 @@ es:
       2_months_before: dos meses antes que cumples 18 años
       17_turn_18: Si tienes 17 anos y vas a cumplir 18 años antes de las próximas
         elecciones.
-    registration_deadline:
-      alabama: ''
-      california: ''
-      colorado: ''
-      connecticut: ''
-      district_of_columbia: ''
-      delaware: ''
-      florida: ''
-      georgia: ''
-      idaho: ''
-      illinois: ''
-      iowa: ''
-      kansas: ''
-      maine: ''
-      massachusetts: ''
-      michigan: ''
-      minnesota: ''
-      mississippi: ''
-      missouri: ''
-      montana: ''
-      new_hampshire: ''
-      new_jersey: ''
-      new_mexico: ''
-      new_york: ''
-      north_carolina: ''
-      north_dakota: ''
-      nebraska: ''
-      nevada: ''
-      ohio: ''
-      oklahoma: ''
+    registration_deadline:      
       pennsylvania: recibido antes del 05/02/2022
-      rhode_island: ''
-      texas: ''
-      utah: ''
-      vermont: ''
-      virginia: ''
-      washington: ''
-      wisconsin: ''
       postmarked_11_days: Tiene que tener el cello del correo 11 días antes de la
         elección.
       postmarked_14_days: Tiene que tener el cello del correo 14 días antes de la
