@@ -292,9 +292,9 @@ module V4
       report_type = Report::REGISTRANTS_REPORT
       if query[:report_type] && query[:report_type].to_s.downcase == "extended"
         report_type = Report::REGISTRANTS_REPORT_EXTENDED
+      elsif query[:report_type] && Report::REPORT_TYPES.include?(query[:report_type])
+        report_type = query[:report_type]
       end
-      
-      
       
       filters = {}
       g_partner = false

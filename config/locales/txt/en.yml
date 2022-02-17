@@ -56,7 +56,7 @@ en:
     abr:
       deadline_passed_header: "Requesting an Absentee Ballot in %{state}"
       deadline_passed_instructions: |-
-        <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. When there's an election in your area, we'll email you with information on how to request an absentee ballot.</p>
+        <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. <a href="https://register.rockthevote.com/pledge" title="pledge to vote">Sign up for our election reminders</a> to receive an email with information about requesting an absentee ballot when there's an election in your area.</p>
         <p>Right now, make sure that you're a <a href="%{registration_url}">registered voter</a> so that you're able to vote by mail in future elections.</p>
       deadline_passed_state_instructions:
         url: you can look up your status by using your state's <a href="%{url}">online tool</a>.

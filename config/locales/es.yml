@@ -1,10 +1,25 @@
 ---
 es:
+  time:
+    formats:
+      short: ''
+  date:
+    formats:
+      ymd: ''
   'yes': Sí
   'no': 'No'
-  required: " (Requerido)"
-  affirm: NEED TRANSLATION
-  decline: NEED TRANSLATION
+  required: "(Requerido)"
+  errors:
+    messages:
+      format: ''
+      accepted: ''
+      too_long: ''
+      too_short: ''
+      wrong_length: ''
+      too_young: ''
+  or: ''
+  affirm: ''
+  decline: ''
   language_name: español
   language_name_translation_instructions: Por favor, indique el nombre de la lengua
     traducida en ese idioma. Por ejemplo, si se está traduciendo japonés, proporcione
@@ -40,50 +55,144 @@ es:
       name: Chino (simplificado)
   activerecord:
     attributes:
+      geo_state:
+        add_direct_mail_partner_id: ''
+      canvassing_shift:
+        canvasser_first_name: Nombre
+        canvasser_last_name: Apellido
+        canvasser_phone: Numero
+        canvasser_email: Correo electronico
+        shift_location: ''
       partner:
+        name: ''
+        organization: ''
         from_email: De correo electrónico
         url: URL
-        registration_instructions_url: NEED TRANSLATION
+        registration_instructions_url: ''
+      state_registrants/mi_registrant:
+        updated_dln_recently: ''
+        requested_duplicate_dln_today: ''
+        confirm_us_citizen: Soy ciudadano de los Estados Unidos.
+        confirm_will_be_18: ''
+        is_30_day_resident: ''
+        registration_cancellation_authorized: ''
+        digital_signature_authorized: ''
+        full_name: ''
+        dln: ''
+        date_of_birth: Fecha de nac
+        eye_color_code: ''
+        ssn4: ''
+        registration_address_number: ''
+        registration_address_street_name: ''
+        registration_address_street_type: ''
+        registration_address_post_directional: Dirección
+        registration_unit_number: No.
+        registration_city: Ciudad
+        registration_zip_code: Código Postal
+        home_state: Estado
+        home_state_abbrev: Estado
+        phone: ''
+        mailing_same_as_residential_address: ''
+        mailing_address_1: ''
+        mailing_address_2: ''
+        mailing_address_3: ''
+        mailing_address_unit_number: No.
+        mailing_city: Ciudad
+        mailing_state: Estado
+        mailing_zip_code: Codigo postal
+        mailing_country: País
+      state_registrants/mn_registrant:
+        confirm_declaration: ''
+        confirm_eligibility: ''
+        confirm_eligibility_yes: SÍ, cumplo con todos los requisitos.
+        confirm_eligibility_no: ''
+        date_of_birth: Fecha de Nac
+        email: Correo Electrónico
+        home_zip_code: Código postal
+        name_title: Título
+        first_name: Nombre
+        middle_name: Segundo nombre
+        last_name: Apellido
+        name_suffix: Sufijo
+        home_address: Dirección
+        home_unit: No.
+        home_city: Ciudad
+        home_state_name: Estado
+        home_state_abbrev: Estado
+        has_mailing_address: ''
+        has_state_license: Tengo una licencia de conducir o una tarjeta de identificación
+          del estado.
+        mailing_address: ''
+        mailing_unit: No.
+        mailing_city: Ciudad
+        mailing_state_abbrev: Estado
+        mailing_zip_code: Código postal
+        dln: ''
+        confirm_no_dln: ''
+        confirm_no_dl_or_ssn: ''
+        ssn4: Los últimos 4 dígitos de su número de seguro social
+        phone: Teléfono
+        phone_type: ''
+        change_of_address: He cambiado mi dirección desde la última vez que registré
+          a votar.
+        prev_address: ''
+        prev_unit: No.
+        prev_city: Ciudad
+        prev_state_abbrev: Estado
+        prev_zip_code: Código postal
+        opt_in_email: ''
+        opt_in_sms: Recibir correo electronico
+        attest_true: I have reviewed the above information, and it is true and accurate
+          to the best of my knowledge.
+        tell_from: De
+        tell_email: Su correo electrónico
+        tell_recipients: Destinatarios
+        tell_subject: línea de asunto
+        tell_message: Mensaje
+        sms_number_for_continue_on_device: Enviar enlace por SMS
+        email_address_for_continue_on_device: Envíeme por correo electrónico el enlace
+        voter_signature_image: Firma del votante
       state_registrants/va_registrant:
-        confirm_voter_record_update: NEED TRANSLATION
-        confirm_us_citizen: NEED TRANSLATION
-        ssn: NEED TRANSLATION
-        confirm_no_ssn: NEED TRANSLATION
-        dln: NEED TRANSLATION
-        confirm_no_dln: NEED TRANSLATION
-        name_title: NEED TRANSLATION
-        first_name: NEED TRANSLATION
-        middle_name: NEED TRANSLATION
-        confirm_no_middle_name: NEED TRANSLATION
-        last_name: NEED TRANSLATION
-        name_suffix: NEED TRANSLATION
-        registration_address_1: NEED TRANSLATION
-        registration_address_2: NEED TRANSLATION
-        registration_city: NEED TRANSLATION
-        home_state: NEED TRANSLATION
-        registration_zip_code: NEED TRANSLATION
-        registration_locality: NEED TRANSLATION
-        convicted_of_felony: NEED TRANSLATION
-        right_to_vote_restored: NEED TRANSLATION
-        is_military: NEED TRANSLATION
-        no_usps_address: NEED TRANSLATION
-        is_law_enforcement: NEED TRANSLATION
-        is_court_protected: NEED TRANSLATION
-        is_being_stalked: NEED TRANSLATION
-        is_confidentiality_program: NEED TRANSLATION
-        has_mailing_address: NEED TRANSLATION
-        mailing_address_1: NEED TRANSLATION
-        mailing_address_2: NEED TRANSLATION
-        mailing_city: NEED TRANSLATION
-        mailing_state: NEED TRANSLATION
-        mailing_zip_code: NEED TRANSLATION
-        mailing_locality: NEED TRANSLATION
-        registered_in_other_state: NEED TRANSLATION
-        other_registration_state_abbrev: NEED TRANSLATION
-        interested_in_being_poll_worker: NEED TRANSLATION
-        confirm_affirm_privacy_notice: NEED TRANSLATION
-        confirm_voter_fraud_warning: NEED TRANSLATION
-        confirm_register_to_vote: NEED TRANSLATION
+        confirm_voter_record_update: ''
+        confirm_us_citizen: ''
+        ssn: ''
+        confirm_no_ssn: ''
+        dln: ''
+        confirm_no_dln: ''
+        name_title: Título
+        first_name: Nombre
+        middle_name: Segundo Nombre
+        confirm_no_middle_name: No tengo nombre segundo
+        last_name: Apellido
+        name_suffix: Sufijo
+        registration_address_1: ''
+        registration_address_2: ''
+        registration_city: Ciudad
+        home_state: Estado
+        home_state_abbrev: Estado
+        registration_zip_code: Código postal
+        registration_locality: ''
+        convicted_of_felony: ''
+        right_to_vote_restored: ''
+        is_military: ''
+        no_usps_address: ''
+        is_law_enforcement: ''
+        is_court_protected: ''
+        is_being_stalked: ''
+        is_confidentiality_program: ''
+        has_mailing_address: ''
+        mailing_address_1: ''
+        mailing_address_2: ''
+        mailing_city: Ciudad
+        mailing_state: Estado
+        mailing_zip_code: Código postal
+        mailing_locality: ''
+        registered_in_other_state: ''
+        other_registration_state_abbrev: ''
+        interested_in_being_poll_worker: ''
+        confirm_affirm_privacy_notice: ''
+        confirm_voter_fraud_warning: ''
+        confirm_register_to_vote: ''
       state_registrants/pa_registrant:
         email: Correo Electrónico
         registration_zip_code: Código Postal
@@ -93,7 +202,7 @@ es:
         date_of_birth: Fecha de Nac
         confirm_us_citizen: Soy ciudadano americano.
         confirm_will_be_18: Tendré 18 años en el próximo día de elecciones.
-        name_title: Titulo
+        name_title: Título
         first_name: Nombre
         middle_name: Segundo Nombre
         last_name: Apellido
@@ -139,6 +248,76 @@ es:
         sms_number_for_continue_on_device: Enviar enlace por SMS
         email_address_for_continue_on_device: Envíeme por correo electrónico el enlace
         voter_signature_image: Firma del votante
+      abr:
+        date_of_birth: Fecha de Nac
+        email: Correo Electrónico
+        zip: Código postal
+        name_title: Título
+        first_name: Nombre
+        middle_name: Segundo Nombre
+        last_name: Apellido
+        name_suffix: Sufijo
+        address: ''
+        street_name: ''
+        unit: No.
+        city: Ciudad
+        home_state_name: Estado
+        home_state_abbrev: Estado
+        state_name: Estado
+        state_abbrev: Estado
+        has_mailing_address: Recibo mi correo en una dirección diferente a la provista
+          anteriormente.
+        mailing_address: Dirección Casa
+        mailing_unit: No.
+        mailing_city: Ciudad
+        mailing_state_abbrev: Estado
+        mailing_zip_code: Código Postal
+        party: Partido
+        race: Raza
+        state_id_number: Número de identificación
+        phone: Teléfono
+        phone_type: ''
+        opt_in_email: Recibir correo electronico
+        opt_in_sms: Recibir mensajes de texto
+        attest_true: He revisado la información detalladamente, es fidedigna y veraz
+          dentro de mi conocimiento.
+        confirm_email_delivery: ''
+        registration_county: ''
+      alert_request:
+        first: Nombre
+        middle: Nombre Segundo
+        last: Apellido
+        date_of_birth: Fecha de Nac
+        address: ''
+        address_2: ''
+        city: Ciudad
+        zip: Código postal
+        email: Correo Electrónico
+        phone: Teléfono
+      catalist_lookup:
+        date_of_birth: Fecha de Nac
+        email: Correo Electrónico
+        zip: Codigo postal
+        first: Nombre
+        last: Apellido
+        address: ''
+        city: Ciudad
+        state_name: Estado
+        state_abbrev: Estado
+        phone: Teléfono
+        phone_type: ''
+        opt_in_email: Recibir correo electronico
+        opt_in_sms: Recibir mensajes de texto
+      ballot_status_check:
+        email: Correo Electrónico
+        zip: Código postal
+        first_name: Nombre
+        last_name: Apellido
+        address: ''
+        city: Ciudad
+        state_name: Estado
+        state_abbrev: Estado
+        phone: Teléfono
       registrant:
         date_of_birth: Fecha de Nac
         email_address: Correo Electrónico
@@ -171,7 +350,7 @@ es:
         phone: Teléfono
         phone_type: Tipo
         change_of_name: He cambiado mi nombre
-        prev_name_title: Titulo
+        prev_name_title: Título
         prev_first_name: Nombre
         prev_middle_name: Segundo Nombre
         prev_last_name: Apellido
@@ -191,6 +370,9 @@ es:
         tell_recipients: Destinatarios
         tell_subject: línea de asunto
         tell_message: Mensaje
+        sms_number_for_continue_on_device: Enviar enlace por SMS
+        email_address_for_continue_on_device: Envíeme por correo electrónico el enlace
+        voter_signature_image: Firma del votante
     errors:
       models:
         admin:
@@ -198,43 +380,83 @@ es:
             password:
               invalid: Password must be 10 characters, contain at least 1 lowercase
                 letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
-        partner:
+        canvassing_shift:
+          blank: Requerido
+        user:
           attributes:
             password:
-              invalid: Password must be 10 characters, contain at least 1 lowercase
-                letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
+              invalid: ''
+        state_registrants/mi_registrant:
+          blank: Requerido
+          invalid_zip: Código Postal Invalido
+          address_length: ''
+          attributes:
+            full_name:
+              invalid: ''
+              too_long:
+                one: ''
+                other: ''
+            dln:
+              invalid: ''
+            confirm_us_citizen:
+              accepted: ''
+            confirm_will_be_18:
+              accepted: ''
+            is_30_day_resident:
+              accepted: ''
+            registration_cancellation_authorized:
+              accepted: ''
+            digital_signature_authorized:
+              accepted: ''
+            registration_address_street_type:
+              invalid: ''
+            date_of_birth:
+              format: Debe ser MM-DD-AAAA
+              too_old: Debe ser después de 1900
+              too_young: ''
+        state_registrants/mn_registrant:
+          blank: Requerido
+          invalid_zip: Código Postal Invalido
+          attributes:
+            ssn4:
+              format: Los últimos 4 dígitos de su número de seguro social
+            phone:
+              invalid: 'Debe ser ###-###-####'
+              required_if_opt_in: Si necesita recibir TXT
+            confirm_declaration:
+              accepted: Confirmo que leí y que acepto los términos anteriores.
         state_registrants/va_registrant:
-          blank: NEED TRANSLATION
-          invalid_zip: NEED TRANSLATION
+          blank: Requerido
+          invalid_zip: Código Postal Invalido
           attributes:
             confirm_voter_record_update:
-              accepted: NEED TRANSLATION
+              accepted: ''
             confirm_us_citizen:
-              accepted: NEED TRANSLATION
+              accepted: "¡Debes ser un ciudadano estadounidense!"
             confirm_voter_fraud_warning:
-              accepted: NEED TRANSLATION
+              accepted: ''
             confirm_affirm_privacy_notice:
-              accepted: NEED TRANSLATION
+              accepted: ''
             confirm_no_middle_name:
-              accepted: NEED TRANSLATION
+              accepted: ''
             phone:
-              invalid: NEED TRANSLATION
-              required_if_opt_in: NEED TRANSLATION
+              invalid: 'Debe ser ###-###-####'
+              required_if_opt_in: Si necesita recibir TXT
             assistant_phone:
-              invalid: NEED TRANSLATION
+              invalid: 'Debe ser ###-###-####'
             date_of_birth:
-              format: NEED TRANSLATION
-              too_old: NEED TRANSLATION
+              format: Debe ser MM-DD-AAAA
+              too_old: Debe ser después de 1900
             ssn:
-              format: NEED TRANSLATION
+              format: Debe ser 9 dígitos
             dln:
-              format: NEED TRANSLATION
+              format: ''
             convicted_of_felony:
-              inclusion: NEED TRANSLATION
+              inclusion: ''
             right_to_vote_restored:
-              inclusion: NEED TRANSLATION
+              inclusion: ''
             confirm_register_to_vote:
-              accepted: NEED TRANSLATION
+              accepted: ''
         state_registrants/pa_registrant:
           blank: Requerido
           invalid_zip: Código Postal Invalido
@@ -249,6 +471,10 @@ es:
                 a lo mejor de mi conocimiento.
             confirm_assitant_declaration:
               accepted: Confirmo que leí y que acepto los términos anteriores.
+            sms_number_for_continue_on_device:
+              format: ''
+            email_address_for_continue_on_device:
+              format: ''
             phone:
               invalid: Deber ser ***-***-****
               required_if_opt_in: Si necesita recibir TXT
@@ -273,10 +499,47 @@ es:
                 o firmar un formulario en papel para completar su solicitud.
               too_many_retries: Después de dos errores PennDOT, debe proporcionar
                 una firma electrónica.
+        abr:
+          blank: Requerido
+          format: Invalido
+          invalid: "%{attribute} es inválido."
+          attributes:
+            confirm_email_delivery:
+              accepted: ''
+            date_of_birth:
+              format: Debe ser MM-DD-AAAA
+              too_old: Debe ser después de 1900
+        alert_request:
+          blank: Requerido
+          format: Invalido
+          invalid: "%{attribute} es inválido"
+          attributes:
+            date_of_birth:
+              too_old: Debe ser después de 1900
+            phone:
+              required_if_opt_in: Si necesita recibir TXT
+        catalist_lookup:
+          blank: Requerido
+          format: Invalido
+          invalid: "%{attribute} es inválido"
+          attributes:
+            phone:
+              required_if_opt_in: Si necesita recibir TXT
+        ballot_status_check:
+          blank: Requerido
+          format: Invalido
+          invalid: "%{attribute} es inválido"
+          attributes:
+            phone_type:
+              blank: ''
+            date_of_birth:
+              format: Debe ser MM-DD-AAAA
+              too_old: Debe ser después de 1900
         registrant:
           ca_disclosures_error: Para completar su inscripción para votar en el estado
             de California debe aceptar las condiciones arriba mencionadas.
           blank: Requerido
+          invalid: "%{attribute} es inválido"
           invalid_zip: Código Postal Invalido
           attributes:
             home_zip_code:
@@ -295,13 +558,19 @@ es:
               required_if_opt_in: Si necesita recibir TXT
             attest_true:
               accepted: Debe indicar si la información arriba es correcta
+              inclusion: Debe indicar si la información arriba es correcta
             has_state_license:
               inclusion: Requerido
             us_citizen:
               accepted: "¡Debes ser un ciudadano estadounidense!"
+            sms_number_for_continue_on_device:
+              format: ''
+            email_address_for_continue_on_device:
+              format: ''
       messages:
         inclusion: "%{attribute} no esta incluida en la lista"
         exclusion: "%{attribute} esta reservado"
+        format: ''
         invalid: "%{attribute} es inválido"
         invalid_for_pdf: "%{attribute} debe ser proporcionada en Inglés"
         confirmation: "%{attribute} no concuerda con la confirmación"
@@ -333,4 +602,26 @@ es:
       not_active: Tu cuenta no está activada.
       not_confirmed: Tu cuenta no está confirmada.
       not_approved: Tu cuenta no ha sido aprobada.
-      no_authentication_details: Faltan detalles de autentificación.  
+      no_authentication_details: Faltan detalles de autentificación.
+  partners:
+    branding:
+      nav: ''
+      title: ''
+      description:
+        general: ''
+        approval: ''
+      preview_warning:
+        not_set: ''
+        not_changed: ''
+      preview: ''
+      approval:
+        title: ''
+        status:
+          not_found: ''
+          open: ''
+          rejected: ''
+          done: ''
+        open: ''
+        close: ''
+        approve: ''
+        reject: ''

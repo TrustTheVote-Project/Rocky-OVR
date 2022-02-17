@@ -1,10 +1,10 @@
 class MI < StateCustomization
-  #def enabled_for_language?(locale, reg=nil)
-  #  false
-  #end
+  def enabled_for_language?(locale, reg=nil)
+   false
+  end
   
   def use_state_flow?(registrant)
-    return false
+    #return false
     return false if ovr_settings.blank?
     lang_list = ovr_settings["languages"]
     return true if lang_list.blank? || lang_list.empty?
