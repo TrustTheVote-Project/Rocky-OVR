@@ -194,6 +194,10 @@ class CanvassingShift < ActiveRecord::Base
     self.completed_registrations = registrants_or_requests.count
     self.abandoned_registrations = web_abandoned_registrants.count
   end
+
+  def registrations_with_phone_count
+    
+  end
   
   def set_defaults!
     resave = false

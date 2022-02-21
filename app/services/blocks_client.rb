@@ -73,7 +73,7 @@ class BlocksClient
   # field_end, field_start ?
   # no more staging location ?
   # do we always pass digital: true if we will later call /digital_batch?
-  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, soft_count_cards_total_collected: nil, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, token:, url: nil, url_client_path: nil)
+  def self.create_shift(canvasser_id:, location_id:, staging_location_id:, shift_start:, shift_end:, soft_count_cards_total_collected: nil, soft_count_cards_complete_collected: nil, soft_count_cards_incomplete_collected: nil, soft_count_cards_with_phone_collected: nil, token:, url: nil, url_client_path: nil)
     path = "shifts"
     headers = {'Content-Type' => 'application/json'}
     params = {
@@ -85,13 +85,16 @@ class BlocksClient
       #staging_location_id: staging_location_id,
       shift_start: shift_start,
       shift_end: shift_end,
+      field_start: shift_start,
+      field_end: shift_end,
       #shift_type: shift_type
       digital: true
     }
     shift[:soft_count_cards_total_collected] = soft_count_cards_total_collected unless soft_count_cards_total_collected.nil?
     shift[:soft_count_cards_complete_collected] = soft_count_cards_complete_collected unless soft_count_cards_complete_collected.nil?
     shift[:soft_count_cards_incomplete_collected] = soft_count_cards_incomplete_collected unless soft_count_cards_incomplete_collected.nil?
-    
+    shift[:soft_count_cards_with_phone_collected] = soft_count_cards_with_phone_collected unless soft_count_cards_with_phone_collected.nil?
+    shift[:soft_count_pre_registration_cards_collected] = 0
 
     body = {
       shift: shift
