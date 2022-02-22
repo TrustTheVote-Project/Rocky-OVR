@@ -26,7 +26,7 @@ blocks_configuration:
       states:
         - NV
       bulk_submit: false
-      submit_forms: false
+      submit_forms: true
       sub_orgs:
         - name: Org 1
           turf_id: 19000000053
