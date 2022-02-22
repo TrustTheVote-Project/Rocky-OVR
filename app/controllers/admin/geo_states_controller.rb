@@ -95,6 +95,10 @@ class Admin::GeoStatesController < Admin::BaseController
         s.abr_splash_page = params[:abr_splash_page][s.abbreviation] == "1"
         updated = true
       end
+      if params[:abr_all_ballot_by_mail] && params[:abr_all_ballot_by_mail][s.abbreviation]
+        s.abr_all_ballot_by_mail = params[:abr_all_ballot_by_mail][s.abbreviation] == "1"
+        updated = true
+      end
       if updated
         catalist_updated_at = catalist_update_dates[s.abbreviation.downcase]
         s.catalist_updated_at = catalist_updated_at if catalist_updated_at

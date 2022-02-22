@@ -54,6 +54,14 @@ en:
       last_update: <p>If you registered to vote or updated your registration recently, we might not have the most up-to-date
         information. <b>Our last update from %{state} was on %{date}.</b> <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results</p>
     abr:
+      everyone_gets_ballot:
+        header_1: "%{state_name} Automatically Mails All Registered Voters a Ballot"
+        instructions_1: |-
+          <p>If you are registered to vote in %{state_name} you do not need to request an absentee ballot.</p>
+          <p><a href="%{url}">Make sure you are registered to vote!</a></p>
+        header_2: Questions About Your Absentee Ballot
+        header_3: Don't Forget To Vote!
+          
       deadline_passed_header: "Requesting an Absentee Ballot in %{state}"
       deadline_passed_instructions: |-
         <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. <a href="https://register.rockthevote.com/pledge" title="pledge to vote">Sign up for our election reminders</a> to receive an email with information about requesting an absentee ballot when there's an election in your area.</p>
