@@ -365,7 +365,7 @@ record_23:
   abbreviation: MN
   name: Minnesota
   requires_party: false
-  online_registration_url: https://mnvotes.sos.state.mn.us/VoterRegistration/VoterRegistrationMain.aspxhttps://mnvotes.sos.state.mn.us/VoterRegistration/VoterRegistrationMain.aspx
+  online_registration_url: https://mnvotes.sos.state.mn.us/VoterRegistration/VoterRegistrationMain.aspx
   party_tooltip: blank
   id_number_tooltip: drivers_license_state_id_with_state_name
   sos_address: 180 State Office Building<br /> 100 Rev. Dr. Martin Luther King Jr.
