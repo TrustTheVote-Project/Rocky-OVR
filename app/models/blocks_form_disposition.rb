@@ -16,7 +16,7 @@ class BlocksFormDisposition < ActiveRecord::Base
   def update_blocks_form
     service = BlocksService.new(partner: (registrant&.partner || partner_from_grommet_request))
     status  = request_status
-    service.add_metadata_to_form(blocks_form_id, status)
+    #service.add_metadata_to_form(blocks_form_id, status)
     if status_complete?(status)
       self.update_attributes(final_state_submitted: true)
     end

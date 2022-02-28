@@ -34,7 +34,6 @@ blocks_configuration:
         - NV
       url_client_path: svpa
       bulk_submit: false
-      submit_forms: false
       staging_location_id: 19000000704
       sub_orgs:
         - name: Org 1
