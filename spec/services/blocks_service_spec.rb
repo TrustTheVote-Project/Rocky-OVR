@@ -143,15 +143,15 @@ describe BlocksService do
         s.get_locations( turf_id: "456")
       end
     end
-    describe "add_metadata_to_form" do
-      it "makes call to BlocksClient with logging and added token" do
-        input1 = double("Input")
-        input2 = double("Input")
-        expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
-        expect(BlocksClient).to receive("add_metadata_to_form").with(input1, input2, token: s.token, url: RockyConf.blocks_configuration.url)        
-        s.add_metadata_to_form(input1, input2)
-      end      
-    end
+    # describe "add_metadata_to_form" do
+    #   it "makes call to BlocksClient with logging and added token" do
+    #     input1 = double("Input")
+    #     input2 = double("Input")
+    #     expect(RequestLogSession).to receive(:make_call_with_logging).and_yield
+    #     expect(BlocksClient).to receive("add_metadata_to_form").with(input1, input2, token: s.token, url: RockyConf.blocks_configuration.url)        
+    #     s.add_metadata_to_form(input1, input2)
+    #   end      
+    # end
     describe "create_canvasser" do
       it "makes call to BlocksClient with logging and added token" do
         input1 = {first_name: "val", last_name: "val", phone_number: "val", email: "val", turf_id: "val"}

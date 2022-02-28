@@ -1,7 +1,12 @@
 class BlocksService
   
+  # Notes:
+  # new fields
+  #   completed (needed?)
+  #   proof_of_residence_image_url (required?)
   def self.form_from_registrant(r)
     form = {
+      completed: r.is_grommet? ? true : r.status === 'complete',
       date_of_birth: r.date_of_birth&.to_s("%Y-%m-%d"),
       eligible_voting_age: true, #r.ineligible_age checks for is==18 *now* not by deadline?
       email_address: r.email_address,
@@ -82,7 +87,7 @@ class BlocksService
   def upload_canvassing_shift(shift, shift_type: "digital_voter_registration")
     shift_params = build_canvassing_shift_blocks_hash(shift, shift_type)
     forms = shift.submit_forms? ? build_blocks_forms_from_canvassing_shift(shift) : []
-    
+    sleep(5)
     shift_response = create_shift(shift_params)
     shift_id = shift_response["shift"]["id"]
     form_responses = []
@@ -132,11 +137,11 @@ class BlocksService
   end
   
   #add_metadata_to_form(form_id, meta_data={}, token:)
-  def add_metadata_to_form(form_id, meta_data={})
-    RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token, url: url, url_client_path: url_client_path)
-    end
-  end
+  # def add_metadata_to_form(form_id, meta_data={})
+  #   RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
+  #     return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token, url: url, url_client_path: url_client_path)
+  #   end
+  # end
 
   def canvassers(turf_id)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
@@ -189,21 +194,28 @@ class BlocksService
     
     soft_count_cards_total_collected      = shift.completed_registrations
     soft_count_cards_complete_collected   = shift.completed_registrations
-    soft_count_cards_incomplete_collected = shift.abandoned_registrations
-    
+    soft_count_cards_incomplete_collected = 0 #shift.abandoned_registrations
+    soft_count_cards_with_phone_collected = 0
+    begin
+      forms = shift.submit_forms? ? build_blocks_forms_from_canvassing_shift(shift) : []
+      soft_count_cards_with_phone_collected = forms.select {|f| !f[:phone_number].blank? }.count
+    rescue
+    end
+
     shift_params = {
       canvasser_id: canvasser_id,
       location_id: location_id,
       staging_location_id: staging_location_id, 
       shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
       shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
-      shift_type: shift_type, 
+      #shift_type: shift_type, 
     }
     if shift.submit_forms?
       shift_params = shift_params.merge({
         soft_count_cards_total_collected: soft_count_cards_total_collected,
         soft_count_cards_complete_collected: soft_count_cards_complete_collected,
-        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
+        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected,
+        soft_count_cards_with_phone_collected: soft_count_cards_with_phone_collected
       })
     end
     return shift_params
