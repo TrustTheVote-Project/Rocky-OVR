@@ -12,7 +12,10 @@
     initTrackBallot: function(params) {
       window.RtvIframe.init(params, "<%= Rails.application.routes.url_helpers.ballot_status_checks_path %>", "rtv-trackballot-iframe", "Check Your Ballot Status");
     },
-    init: function(params, path="/", id="rtv-iframe", title="Online Voter Registration") {
+    init: function(params, path, id, title) {
+      path = path || "/";
+      id = id || "rtv-iframe";
+      title = title || "Online Voter Registration";
       params = params || {};
       var queryString = "";
       if (typeof(params)==="object") {
