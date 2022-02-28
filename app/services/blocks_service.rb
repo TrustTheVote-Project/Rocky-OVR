@@ -194,7 +194,7 @@ class BlocksService
     
     soft_count_cards_total_collected      = shift.completed_registrations
     soft_count_cards_complete_collected   = shift.completed_registrations
-    soft_count_cards_incomplete_collected = shift.abandoned_registrations
+    soft_count_cards_incomplete_collected = 0 #shift.abandoned_registrations
     soft_count_cards_with_phone_collected = 0
     begin
       forms = shift.submit_forms? ? build_blocks_forms_from_canvassing_shift(shift) : []
