@@ -1,0 +1,22 @@
+- abbrev = @abr.i18n_key
+%h2{role: "heading", "aria-level": 2}= t("txt.abr.everyone_gets_ballot.header_1", state_name: @abr.home_state_name).html_safe
+
+.state-instructions
+  = t("txt.abr.everyone_gets_ballot.instructions_1", state_name: @abr.home_state_name, url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip)).html_safe
+
+%h2{role: "heading", "aria-level": 2}= t("txt.abr.everyone_gets_ballot.header_2").html_safe
+
+.state-instructions
+  = t("states.custom.#{abbrev}.abr.everyone_gets_ballot.instructions_2", registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip)).html_safe
+
+%h2{role: "heading", "aria-level": 2}= t("txt.abr.everyone_gets_ballot.header_3").html_safe
+
+.state-instructions
+  = t("states.custom.#{abbrev}.abr.everyone_gets_ballot.instructions_3").html_safe
+
+
+
+#finish_page_iframe
+  %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
+
+= render :partial => 'abrs/finish_adwords'

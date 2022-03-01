@@ -29,7 +29,9 @@
       %th
         ABR Deadline Passed
       %th
-        ABR Splash Page (all types)
+        ABR Everyone Gets a Ballot
+      %th
+        ABR Generic Splash Page
       %th 
         Catalist Last Update
         %br
@@ -44,6 +46,9 @@
         %td
           = hidden_field_tag "abr_deadline_passed[#{s.abbreviation}]", "0"
           = check_box_tag "abr_deadline_passed[#{s.abbreviation}]", "1", s.abr_deadline_passed
+        %td
+          = hidden_field_tag "abr_all_ballot_by_mail[#{s.abbreviation}]", "0"
+          = check_box_tag "abr_all_ballot_by_mail[#{s.abbreviation}]", "1", s.abr_all_ballot_by_mail
         %td
           = hidden_field_tag "abr_splash_page[#{s.abbreviation}]", "0"
           = check_box_tag "abr_splash_page[#{s.abbreviation}]", "1", s.abr_splash_page

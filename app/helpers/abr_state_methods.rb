@@ -279,8 +279,8 @@ module AbrStateMethods
       rescue Exception=>e
         # self.singleton_class.send(:extend, AllClassMethods) # Add default methods
         # puts e.message
-        # pp e.backtrace
-        raise e if Rails.env == "development"
+        # pp e.backtrace        
+        raise e if Rails.env == "development" && e.class != TypeError && e.class != NameError
       end
     end
   end
