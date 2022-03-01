@@ -740,6 +740,31 @@ en:
           request_electronic_transmission: I request my ballot to be emailed to me.
       hi:
         abr:
+          everyone_gets_ballot:
+            instructions_2: |- 
+              <p>Every registered voter will automatically receive an absentee ballot in the mail. These will arrive by</p>
+              <ul>
+              <li>Primary Election: July 26, 2022</li>
+              <li>General Election: October 21, 2022</li>
+              </ul>
+
+              <h3>College students or other voters away from Hawaii</h3>
+              <p>Hawaii residents attending college away from their home address (in or out of state) can submit an Absentee Application to request for your ballot to be mailed to your current mailing address. You will need to submit an Absentee Application each election year that you are away from your Hawaii residence.</p>
+              <p>Other voters who are away from their Hawaii residence during the election may submit an Absentee Application to have their ballot mailed to an alternate mailing address for the primary election, general election, or both.</p>
+              <p><a href="https://elections.hawaii.gov/voting/college-students/" title="College Students">Request an application with the state.</a></p>
+            instructions_3: |-
+              <h3>Deadlines for delivering your ballot</h3>
+              <p>
+              You may return your voted ballot by mail or in person at a designated place of deposit within your county. Voted ballots must be received by your County Elections Division by 7:00 p.m. on Election Day.</p>
+
+              <h3>Voting at a Voter Service Center</h3>
+              You can also vote at a Voting Service Center. VSC's are 10 days prior and on Election Day. Services include accessible in person voting and same day registration.
+              </p>
+              <p>
+              <strong>Check the status of your ballot</strong>
+              </p>
+              <p>You may check on the status of your ballot, whether it has been mailed and/or received, by contacting your <a href="https://elections.hawaii.gov/resources/county-election-divisions/">County Elections Division</a>.
+              </p>
           request_deadline: Check with your local election officials for your state's
             voting deadlines.  We recommend sending in your application/request and
             ballot as soon as possible.
@@ -2299,6 +2324,35 @@ en:
             <p>To check the status of your Absentee Application, go to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
       nv:
         abr:
+          everyone_gets_ballot:
+            instructions_2: |-
+              <p>Beginning in 2022, if you are registered to vote in Nevada you do not need to request an 
+              absentee ballot. One will be automatically mailed to you.
+              </p>
+              <h3>First time voters</h3>
+              <p>First time voters may be required to present ID for voting. Make sure to respond to the 
+              request from the County Clerk requesting identification. See more 
+              at <a href="https://www.nvsos.gov/sos/elections/voters/mail-ballot-voting" title="Mail Ballot Voting">the 
+              Nevada Secretary of State</a> site. 
+              </p>
+              <h3>
+              College students and people away from Nevada
+              </h3>
+              <p> If you are a student living out of state or outside your voting precinct, it may not be possible 
+              for you to get to the polls on Election Day. Your best option is to request to vote by mail or absentee ballot. </p>
+              <p>Any registered voter may request to vote by mail. To request an absentee ballot, 
+              you must complete and submit an 
+              <a href="https://www.nvsos.gov/sos/home/showpublisheddocument/8262/637792261599270000">Absentee Ballot Request Form</a>.</p>
+              <p>The Absentee Ballot Request Form must be received by your local county election official by the appropriate deadline.</p>
+            instructions_3: |-
+              <h3>Deadlines for delivering your ballot</h3>
+              <p>
+              Your ballot must be delivered by the close of polls on the date of election, or if you mail it, postmarked by election day.
+              </p>
+              <h3>Check the status of your ballot</h3>
+              </p>
+              <p>You may check on the status of your ballot by clicking "Voter History" at Nevada's <a href="https://www.nvsos.gov/votersearch/">Registered Voter Services</a>.
+              </p>
           request_deadline: All registered voters receive a ballot by mail. Registrations
             must be postmarked the fourth Tuesday before any primary or general election.
           abr_status_check_intro: 'You can look up your Absentee Ballot status by
@@ -2568,6 +2622,47 @@ en:
             and the status of your ballot at: <a rel="noopener" target="blank" href="https://www.ok.gov/elections/OVP.html">https://www.ok.gov/elections/OVP.html</a></p>'
       or:
         abr:
+          everyone_gets_ballot:
+            instructions_2: |-
+              <p>All registered voters will receive an official ballot to complete and return.</p>
+              <p>You can update your voter registration information until 8 pm on Election day and still cast a ballot. Learn how at the <a href="https://sos.oregon.gov/voting/Pages/updatevoterregistration.aspx">Update Voter Registration</a> page.</p>
+              <h3>
+              College students and other voters away from home</h3>
+              <p>If you are a college student in Oregon, or an Oregon resident at college away from Oregon, 
+              you can vote at your residential address. You can choose where that is - home or at school - but you 
+              can only vote in one county in one state.</p>
+              <p>
+              For students, your residential address can be your parents' or other family home, or your 
+              home where you are a student. You get to choose, but you can only choose one. Oregon 
+              residency requirements for voting are not the same as residency for in-state 
+              tuition purposes. Your residential address is the address that you consider home and the 
+              place you intend to return to. That address determines which candidates and measures 
+              will be on your ballot. If you live on campus and provide a campus address as your 
+              residential address, be sure to list your dormitory and room number; a 
+              PO Box is not a residential address.
+              </p>
+              <p>
+              For more information, please see 
+              the <a href="https://sos.oregon.gov/voting/Pages/student-voters.aspx">Student Voters</a> page.
+              </p>
+              <p>
+              Students and other voters away from home during an election should fill out an 
+              <a href="https://sos.oregon.gov/elections/Documents/SEL111.pdf">absentee ballot form</a> and 
+              mail it to their <a href="https://sos.oregon.gov/elections/Pages/countyofficials.aspx">county elections office</a>, 
+              or update their address online.</p>
+            instructions_3: |-
+              <h3>Deadlines for delivering your ballot</h3>
+              <p>
+              Your ballot can be mailed or dropped off at any <a 
+              href="https://sos.oregon.gov/voting/Pages/drop-box-locator.aspx">official drop box</a> across the state.
+              </p>
+              <p>
+              Ballots must be received at a dropbox or mailed with a valid post mark by 8 p.m. on Election Day.
+              </p>
+
+              <h3>Check the status of your ballot</h3>
+              <p>You can check the status of your ballot at <a href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS">My Vote</a>.</p>
+
           request_deadline: Check with your local election officials for your state's
             voting deadlines.  We recommend sending in your application/request and
             ballot as soon as possible.
@@ -3376,6 +3471,26 @@ en:
       wa:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
         abr:
+          everyone_gets_ballot:
+            instructions_2: |- 
+              <p>Your ballot will be mailed to you at least 18 days before each election.</p>
+              <h3>College students</h3>
+              <p>You should vote based on your residential address, not your mailing address: 
+              Your residential address determines what's on your ballot, but you can have your vote mailed to you 
+              anywhere in the world!</p>
+              <p>If your registration doesn't match your current address, <a href="%{registration_url}">update it now</a>.</p>
+              <p>Learn more about <a href="https://www.sos.wa.gov/elections/voters/voters-away-at-college.aspx" title="Voters Away at College">voting as a student</a>.</p> 
+            instructions_3: |-
+              <p>
+              <h3>Deadlines for delivering your ballot</h3>
+              <p>
+              Your ballot must either be postmarked no later than Election Day or returned to a ballot drop box by 8 p.m. on Election Day. 
+              </p>
+              <p>If mailed, the <a href="https://www.sos.wa.gov/elections/usps-and-election-mail-resources.aspx" title="USPS and Election Mail Resources">USPS</a> recommends that you mail a week before Election Day.</a>
+              </p>
+              <h3>Check the status of your ballot</h3>
+              <p>You may check on the status of your ballot at <a href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA.gov</a>.
+              </p>
           request_deadline: If you are registered to vote in Washington, you do not
             need to request a ballot. Online and mail registrations must be received
             8 days before Election Day.
