@@ -18,7 +18,8 @@ class AbrPdfCoverPageMerger
         Rails.root.join("data/abr_coverpage/coverpage.pdf")
     end
 
-    def self.make_cover_version(state_abbrev, pdf_template_name)
+    def self.make_cover_version(state_abbrev)
+        pdf_template_name = "#{state_abbrev}.pdf".downcase
         cover_path=self.pdf_cover_path
         template_path=self.pdf_template_path(state_abbrev, pdf_template_name)
         template_with_cover_path=self.pdf_template_with_cover_path(state_abbrev, pdf_template_name)

@@ -8,6 +8,22 @@
 
 = form_for [:admin, @geo_state] do |f|
   %fieldset 
+    %legend Absentee Ballot Request Configuration
+    %ul.stacked
+      = field_li f, :abr_online_req_url, {li_options: {class: 'full-width'}, skip_tooltip: true}
+      %li.full-width= @geo_state.state_customization.abr_settings.online_req_url
+    %ul.stacked
+      = field_li f, :abr_status_check_url, {li_options: {class: 'full-width'}, skip_tooltip: true}
+      %li.full-width= @geo_state.state_customization.abr_settings.abr_status_check_url
+    %ul.stacked
+      = field_li f, :abr_track_ballot_url, {li_options: {class: 'full-width'}, skip_tooltip: true}
+      %li.full-width= @geo_state.state_customization.abr_settings.abr_track_ballot_url
+    %ul.stacked
+      = field_li f, :leo_lookup_url, {li_options: {class: 'full-width'}, skip_tooltip: true}
+      %li.full-width= @geo_state.state_customization.abr_settings.leo_lookup_url
+      
+  
+  %fieldset 
     %legend Direct Mail Configuration
     %ul.stacked.flat
       = field_li f, :enable_direct_mail, {li_options: {class: 'full-width'}, skip_tooltip: true, field_options: {kind: :checkbox}}

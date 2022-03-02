@@ -95,6 +95,10 @@ class Admin::GeoStatesController < Admin::BaseController
         s.abr_splash_page = params[:abr_splash_page][s.abbreviation] == "1"
         updated = true
       end
+      if params[:abr_pdf_enabled] && params[:abr_pdf_enabled][s.abbreviation]
+        s.abr_pdf_enabled = params[:abr_pdf_enabled][s.abbreviation] == "1"
+        updated = true
+      end      
       if params[:abr_all_ballot_by_mail] && params[:abr_all_ballot_by_mail][s.abbreviation]
         s.abr_all_ballot_by_mail = params[:abr_all_ballot_by_mail][s.abbreviation] == "1"
         updated = true
@@ -121,7 +125,12 @@ class Admin::GeoStatesController < Admin::BaseController
       :enable_direct_mail,
       :allow_desktop_signature,
       :add_direct_mail_partner_id,
-      :state_voter_check_url
+      :state_voter_check_url,
+      :abr_online_req_url,
+      :leo_lookup_url,
+      :abr_status_check_url,
+      :abr_track_ballot_url,
+      :abr_pdf_enabled,
     )
   end
 end
