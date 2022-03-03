@@ -9,7 +9,7 @@ def clock_in_json(partner_tracking_id: "custom tracking id", partner_id: 7)
   json =<<EOJ
   {
     "partner_id": "#{partner_id}",
-    "shift_location": 27,
+    "shift_location": 9,
     "source_tracking_id": "Custom Tracking Value",
     "partner_tracking_id": "#{partner_tracking_id}",
     "open_tracking_id": "metro canvasing",
