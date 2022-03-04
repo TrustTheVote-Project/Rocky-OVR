@@ -32,6 +32,8 @@
         ABR Everyone Gets a Ballot
       %th
         ABR Generic Splash Page
+      %th
+        ABR PDF Enabled
       %th 
         Catalist Last Update
         %br
@@ -52,6 +54,9 @@
         %td
           = hidden_field_tag "abr_splash_page[#{s.abbreviation}]", "0"
           = check_box_tag "abr_splash_page[#{s.abbreviation}]", "1", s.abr_splash_page
+        %td
+          = hidden_field_tag "abr_pdf_enabled[#{s.abbreviation}]", "0"
+          = check_box_tag "abr_pdf_enabled[#{s.abbreviation}]", "1", s.abr_pdf_enabled
         
         %td
           - if s.catalist_updated_at 

@@ -102,7 +102,7 @@ module AbrPdfMethods
   end
   
   def has_pdf_template?
-    !pdf_template_name.blank?
+    !pdf_template_name.blank? && home_state&.abr_pdf_enabled
   end
   
   def has_state_pdf_url?

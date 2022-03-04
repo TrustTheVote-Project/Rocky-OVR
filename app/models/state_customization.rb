@@ -75,7 +75,15 @@ class StateCustomization
   end
   
   def abr_settings
-    RockyConf.absentee_states[state.abbreviation]
+    config_file_settings = RockyConf.absentee_states[state.abbreviation]
+    config_file_settings.online_req_url = state.abr_online_req_url if !state.abr_online_req_url.blank?
+    config_file_settings.abr_status_check_url = state.abr_status_check_url if !state.abr_status_check_url.blank?
+    config_file_settings.abr_track_ballot_url = state.abr_track_ballot_url if !state.abr_track_ballot_url.blank?
+    
+    # This isn't necessarily an abr setting, but that's where it was originally grouped
+    config_file_settings.leo_lookup_url = state.leo_lookup_url if !state.leo_lookup_url.blank?
+
+    return config_file_settings
   end
   
   def online_abr_enabled?(abr)
