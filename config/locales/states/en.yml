@@ -3382,7 +3382,7 @@ en:
         registration_complete_title: Registration is not complete until processed and accepted.
         registration_complete_message: If accepted, you will receive notices and voting materials by mail.
         instructions:
-          registration_complete_dialog_text: '<p>If you have not received your ballot by 15 days before an election, contact your local elections office.</p><p>Confirm your registration at <a target="_blank" rel="noreferrer noopener" href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA.gov</a>.</p>'
+          registration_complete_dialog_text: '<p>If you have not received your ballot by 15 days before an election, contact your local elections office.</p><p>Confirm your registration by entering your name and date of birth at <a target="_blank" rel="noreferrer noopener" href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA.gov</a>.</p>'
           registration_complete_whats_next_text: '<p></p>'
       wi:
         abr_form_fields:
