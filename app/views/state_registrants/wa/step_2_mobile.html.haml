@@ -57,7 +57,9 @@
 
     %br
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
-    
+    %br
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__confirm_will_be_18__line", required: true, require_accepted: true}
+ 
     %br
     %ul.flat
       = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}

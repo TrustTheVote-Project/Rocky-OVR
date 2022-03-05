@@ -4,7 +4,7 @@
     $(document).ready(function() {
       $('#javascript_disabled').remove();
 
-      checkboxTogglesSet($('#state_registrants_wa_registrant_has_ssn'), $('#ssn_set')); //, $('#prev_name_rule')
+      //checkboxTogglesSet($('#state_registrants_wa_registrant_has_ssn'), $('#ssn_set')); //, $('#prev_name_rule')
 
  
     });
@@ -20,7 +20,7 @@
   %fieldset#dln_set.block-selector
 
     %ul.flat.ssn
-      = field_li(form, :driver_license, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 11} })
+      = field_li(form, :driver_license, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 12} })
       -#= field_li(form, :issue_date, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__issue-date__line"}})
       %li.registrant-form__issue-date__line
         %h3
@@ -34,19 +34,19 @@
           = form.text_field :issue_date_year, value: form.object.issue_date_year, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
         %span.error= form.object.errors[:issue_date].join("\n")
         
-  %fieldset.no_border
+  -#%fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_ssn, class_name: "registrant-form__has_ssn__line",  required: true}
 
   %fieldset#ssn_set.block-selector
 
     %ul.flat.ssn
-      = field_li(form, :ssn4, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 11, maxlength: 11} })
+      = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 4, maxlength: 4} })
 
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :military_flag, class_name: "registrant-form__military-flag__line", required: false}
 
   %fieldset.no_border
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false}
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false, tooltip: 'is_homeless_hint_wa'}
    
 
   = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
