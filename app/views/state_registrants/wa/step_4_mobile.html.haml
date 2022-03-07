@@ -88,10 +88,11 @@
           = t('activerecord.attributes.state_registrants/wa_registrant.dln')
         .review__section__content
           = "#{@registrant.driver_license}"
+          %br
         .review__section__label
           = t('activerecord.attributes.state_registrants/wa_registrant.issue_date')
         .review__section__content
-          = "#{@registrant.issue_date}"
+          = @registrant.issue_date.strftime('%m/%d/%Y')
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
 
     - if true || !@registrant.military_flag.blank?

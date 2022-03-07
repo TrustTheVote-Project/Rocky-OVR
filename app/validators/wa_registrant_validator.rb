@@ -18,12 +18,13 @@ class WARegistrantValidator < ActiveModel::Validator
       #CTW 2022 reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
       reg.validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
 
-      #reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
+      reg.validates_acceptance_of  :confirm_will_be_18, :accept=>true
       
       reg.validates_acceptance_of  :is_citizen, :accept=>true,:allow_nil=>false
       #reg.validates_acceptance_of  :confirm_voter_record_update, :accept=>true,:allow_nil=>false
       
       reg.validate_date_of_birth
+      validate_age(reg)
       
       reg.validates_presence_of   :name_title
       reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
@@ -56,31 +57,25 @@ class WARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :mailing_state
         validates_zip_code reg,   :mailing_zip       
       end
-  
       
       validate_phone_present_if_opt_in_sms(reg)
     end
+  
 
     if reg.at_least_step_2?
       #reg.validates_acceptance_of  :has_dln, :accept=>true,:allow_nil=>false
-      reg.validates_presence_of :driver_license
-      reg.validates_presence_of :issue_date_mm
-      reg.validates_presence_of :issue_date_dd
-      reg.validates_presence_of :issue_date_yyyy
-      reg.validates_format_of(:issue_date_mm, {:with => /\d{1,2}/, :allow_blank => false});
-      reg.validates_format_of(:issue_date_dd, {:with => /\d{1,2}/, :allow_blank => false});
-      reg.validates_format_of(:issue_date_yyyy, {:with => /\d{4}/, :allow_blank => false});
+      #reg.validates_presence_of :driver_license
+      
 
+      validate_dln_ssn(reg)
 
-        date=nil
-        date = Date.civil(reg.issue_date_yyyy.to_i, reg.issue_date_mm.to_i, reg.issue_date_dd.to_i) rescue nil
-        if date.nil?
-          reg.errors.add(:issue_date, :format)      
-        else
-          # Ask Alex
-          reg.issue_date=date
-        end 
-
+      reg.validates_presence_of :issue_date
+      date=nil
+      date = Date.civil(reg.issue_date_year.to_i, reg.issue_date_month.to_i, reg.issue_date_day.to_i) rescue nil
+      if (date.nil?)
+        reg.errors.add(:issue_date, :format)
+      end
+        
 
     end
     
@@ -104,6 +99,26 @@ class WARegistrantValidator < ActiveModel::Validator
   def validate_boolean(reg, attr_name)
     unless [true, false].include? reg.send(attr_name) 
       reg.validates_presence_of attr_name
+    end
+  end
+
+    
+  def validate_dln_ssn(reg)
+      reg.validates_presence_of(:driver_license) 
+      reg.errors.add(:driver_license, :format) unless reg.driver_license.blank? || reg.driver_license.length==12
+      #reg.penndot_number.to_s.gsub(/[^\d]/,'') =~ /\A\d{8}\z/ || reg.penndot_number.blank?
+    #end
+    #unless reg.confirm_no_dl_or_ssn?
+      #reg.validates_presence_of(:ssn4) if reg.confirm_no_penndot_number? 
+      reg.errors.add(:ssn4, :format) unless (reg.ssn4.to_s.gsub(/[^\d]/,'') =~ /\A\d{4}\z/) || reg.ssn4.blank?
+    #end
+  end
+
+  def validate_age(reg)
+    return if reg.date_of_birth.blank?
+    earliest_date = Date.today - 16.years 
+    if reg.date_of_birth > earliest_date
+      reg.errors.add(:date_of_birth, :too_young)
     end
   end
   
