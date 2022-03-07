@@ -431,6 +431,7 @@ en:
               to re-enter the correct information.
             p3: ''
       tooltips:
+        is_homeless_hint_wa: "You can vote if you live in a place where you cannot receive mail. Register by providing A place where you spend most of your time and a place where you can receive mail."
         email_address: We will email you a copy of your voter registration form.
         home_zip_code: Enter ZIP code for the address where you live, even if you
           don't receive mail there.

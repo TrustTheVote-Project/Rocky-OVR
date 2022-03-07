@@ -276,6 +276,7 @@ en:
         voter_signature_image: Voter Signature Image
       state_registrants/wa_registrant:
         is_citizen: I am a US citizen
+        confirm_will_be_18: I am at least sixteen years old and will not vote in a special or general election until I turn eighteen.
         has_previous_name: I have changed my name
         ssn4: Last 4 Digits of Social Security Number
         has_ssn: I have a Social Security Number
@@ -313,8 +314,7 @@ en:
         prev_residence_state_abbrev: State
         prev_residence_zip: ZIP
         prev_res_county_code: Previous Residential County
-        military_flag: I am an active-duty uniformed services member, spouse or dependent;
-          or an overseas citizen.
+        military_flag: I am an active-duty uniformed services member, spouse or dependent.
         is_homeless: I am homeless
         has_mailing_address: I get my mail at a different address from the one above.
         mailing_address: Address
@@ -610,7 +610,7 @@ en:
             is_citizen:
               accepted: You must be a US citizen!
             confirm_will_be_18:
-              accepted: You must be 18 by the next election to register to vote.
+              accepted: You must be at least sixteen and must be at least eighteen in order to vote.
             confirm_declaration:
               accepted: You must confirm that you agree to the terms above.
             confirm_assitant_declaration:
@@ -627,11 +627,11 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
-            penndot_number:
-              format: Should be 8 digits
-              blank: Required. If you do not have a PA driver's license or PennDOT
-                ID card number, please select "I do not know my PennDOT number."
-              pa_invalid: Your PennDOT number is not valid. Please double-check and
+              too_young: Must be at least sixteen
+            dln:
+              format: Should be 12 digits
+              blank: Required.
+              wa_invalid: Your WA DLN number is not valid. Please double-check and
                 try again.
             ssn4:
               format: Should be 4 digits

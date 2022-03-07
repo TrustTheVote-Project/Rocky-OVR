@@ -3378,7 +3378,10 @@ en:
             <p>If you will be away when ballots are being mailed, your county may allow ballots to be forwarded. The best thing to do is contact your <a href="https://www.sos.wa.gov/elections/auditors/">County Elections Department</a> and ask for a temporary change in your mailing address.</p>
             <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
             <p>Your ballot must either be postmarked no later than Election Day or returned to a ballot drop box by 8 p.m. on Election Day. If mailing your ballot within a week of Election Day, be mindful of mailbox collection times or use an official ballot drop box. A late postmark could disqualify your ballot.</p>
-        
+                step_2_header: Your Basic Info
+        step_2_header: Registrant
+        step_3_header: Additional Registration information
+        step_4_header: Review &amp; Confirm
         registration_complete_title: Registration is not complete until processed and accepted.
         registration_complete_message: If accepted, you will receive notices and voting materials by mail.
         instructions:
