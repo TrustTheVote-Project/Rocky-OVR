@@ -8,7 +8,7 @@
     = I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm', state_abbr: @abr.home_state_abbrev)).html_safe
   - unless @abr.oabr_for_all?
     .intro-message.requirements
-      = I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.requirements", default: I18n.t('txt.abr.state_online_defaults.requirements', state: @abr.home_state_name)).html_safe
+      = I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.requirements", lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), default: I18n.t('txt.abr.state_online_defaults.requirements', state: @abr.home_state_name )).html_safe
       
     
   #abr_state_online_abr_section

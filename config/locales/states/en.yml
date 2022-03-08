@@ -2731,7 +2731,7 @@ voter registration mailed by a board of elections) that shows your name and curr
             href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>'
           requirements: |-
             <p>If you are registered to vote and can provide a valid state ID or the last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
-            <p>Check if you are registered by visiting <a rel="noopener noreferrer" target="_blank" href="https://www.pavoterservices.pa.gov/Pages/voterregistrationstatus.aspx?lang=EN-US">the Pennsylvania voter information search site</a></p>
+            <p><a href="%{lookup_url}">Check if you are registered to vote</a></p>
             <p>You do not need an excuse to vote by mail. When prompted, you will be allowed to request a mail-in ballot even if you select "no" to the questions regarding being absent from the municipality or having an illness or disability. </p>
         registration_deadline_text: 05/02/2022 is the last day to register before
           the 05/17/2022 election. If you are not a U.S. citizen and a resident of
