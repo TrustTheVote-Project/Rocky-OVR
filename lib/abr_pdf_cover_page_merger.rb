@@ -30,7 +30,7 @@ class AbrPdfCoverPageMerger
     def self.build_coverpage_versions
         RockyConf.absentee_states.each do |state_abbrev, state_config| 
             if state_config&.pdf_template
-                self.make_cover_version(state_abbrev,state_config&.pdf_template)
+                self.make_cover_version(state_abbrev)
             end
         end
     end

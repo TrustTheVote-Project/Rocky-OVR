@@ -2518,73 +2518,43 @@ en:
               was not a felony
       oh:
         abr:
-          request_deadline: received three days before the election.
-          abr_status_check_intro: You can look up your Absentee Ballot status by using
-            your state's online tool
-          state_reminder_1: If you did not provide the last 4 digits of your Social
-            Security number or your Ohio Driver License number, remember to provide
-            a copy of a current identification and valid photo identification. Make
-            a copy of a current and valid photo identification, military identification,
-            or a current (within the last 12 months) utility bill, bank statement,
-            government check, paycheck, or other government document (other than a
-            notice of voter registration mailed by a board of elections) that contains
-            your name and current address.
-          state_reminder_2: ''
-          step_3_instructions: "<p>Any registered Ohio voter whose registration information
-            is up-to-date can request an absentee ballot. <a href=\"https://voterlookup.ohiosos.gov/voterlookup.aspx\"
-            title=\"Voter Search\" target=\"_blank\" rel=\"noopener noreferrer\">Make
-            sure you're registered</a>.</p>\n<p>You can apply for an Absentee Ballot
-            in Ohio in any of these ways:</p>\n<ul> \n<li>Complete your request and
-            mail it to your county Board of Elections by continuing with Rock the
-            Vote.</li>\n<li>Have an application mailed to you by your Board of elections.
-            Find your <a href=\"https://www.ohiosos.gov/elections/elections-officials/county-boards-of-elections-directory/\"
-            target=\"_blank\" rel=\"noopener noreferrer\">Board of Elections</a>.</li>\n<li>Make
-            your own application and mail it in. <a href=\"https://www.ohiosos.gov/elections/voters/absentee-voting-by-mail/makeyourown/\"
-            title=\"Make Your Own Vote-by-Mail Ballot Request\" target=\"_blank\"
-            rel=\"noopener noreferrer\">Read the requirements for creating your own
-            application</a>.</li>\n</ul>"
-          status_check_instructions: You can look up your Absentee Ballot status by using
-            your Ohio's <a href="https://www.ohiosos.gov/elections/voters/toolkit/">Voter
-            Toolkit</a>.
-          finish_instructions_1_hint: "<p><i>If you did not provide the last 4 digits
-            of your Social Security number or your Ohio Driver License number, remember
-            to provide a copy of a current identification and valid photo identification.
-            Make a copy of a current and valid photo identification, military identification,
-            or a current (within the last 12 months) utility bill, bank statement,
-            government check, paycheck, or other government document (other than a
-            notice of voter registration mailed by a board of elections) that contains
-            your name and current address.</i></p>"
+          request_deadline: <p>Your request must be received by <ul><li>April 30th for the primary election, and </li><li>November 5th for the general election.</li></ul></p>
           
-          finish_instructions: '<p>Make sure to complete and send this form in as
-            soon as possible. Your application must be RECEIVED by October 31st, 2020.</p><p>Once
-            you receive your ballot, make sure to read it carefully and follow the
-            instructions to fill it out and return it. Your completed ballot must
-            be post marked by November 2nd. Your completed ballot must be RECEIVED
-            by November 13th, if also post marked by November 2nd.</p><p>At any time
-            you can check the status of your application and the status of your ballot
-            at: <a rel="noopener" target="blank" href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a></p>'
+          status_check_instructions: <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a>
+          finish_instructions_1_hint: |-
+            <p>If you did not provide your Ohio driver's license number or the last four digits of your 
+            Social Security number, make sure to include a copy of one of the forms of identification 
+            listed here: <a href="https://www.ohiosos.gov/elections/voters/absentee-voting/">https://www.ohiosos.gov/elections/voters/absentee-voting/</a>
+            </p>
+          
         abr_form_fields:
-          County: County in which you are registered to vote
-          has_mailing_address: I wish to have my ballot mailed to a different address
-            than where I am registered to vote
-          Street Address or PO  box: Mailing Address
-          City_2: City
-          State: State
-          ZIP_2: Zip
-          identification: Choose one of the following methods for identification
-          identification__options:
-            dln: Your Ohio driver license number
-            ssn4: Last four digits of your social security number
-            photoid: Copy of a current and valid photo identification, military identification,
-              or a current (within the last 12 months) utility bill, bank statement,
-              government check, paycheck or other government document (other than
-              a notice of voter registration mailed by a board of elections) that
-              contains your name and current address.
-          Ohio_driver_license: Ohio Driver license number (2 letters followed by 6
-            numbers)
-          Ohio_driver_license__format_message: That doesn't look like a driver's license
-            number, please verify before continuing.
-          SSN4: Last four digits of your Social Security Number
+          abr_county: County
+          abr_id_type: "You must provide one of the following forms of identification:"
+          abr_id_type__options:
+            abr_id_type1: The last four digits of your Social Security number
+            abr_id_type2: Your Ohio driver license number
+            abr_no_id: "I do not have a Social Security Number or Ohio Drivers License and will provide a copy of one of the following with my application: a current and valid photo identification, military identification, or a current (within the last 12 months)
+utility bill, bank statement, government check, paycheck or other government document (other than a notice of
+voter registration mailed by a board of elections) that shows your name and current address."
+          abr_last_4_ssn: Enter the last four digits of your Social Security number
+          abr_driver_license: Enter your Ohio driver license number (2 letters followed by 6 numbers)
+          abr_election_type1selections:	Select the election to request an absentee ballot for. 
+          abr_election_type1selections__hint: You must fill out a separate form for each election.
+          abr_election_type1selections__options:
+            abr_election_type1: November General Election
+            abr_election_type2: Special Election
+            abr_election_type3: Primary Election
+          abr_primary_type_selections: Which type of ballot would you like to receive?
+          abr_primary_type_selections__options:
+            abr_primary_type1: Democratic
+            abr_primary_type2: Republican
+            abr_primary_type3: Issues Only
+          abr_check_mailing_address: I get my mail at a different address from the one above
+          abr_mailing_address_instructions: Mailing address
+          abr_mailing_street_address: Street Address (or P.O. Box)
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
       ok:
         abr:
           request_deadline: received no later than 5 p.m. the Tuesday before the election.
