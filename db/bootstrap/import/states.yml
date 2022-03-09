@@ -484,7 +484,7 @@ record_31:
   sos_phone: 505-827-3600 (Option 2)
   sos_url: https://www.sos.state.nm.us/voting-and-elections/
   registration_deadline: new_mexico
-  online_registration_url: nmvote.org
+  online_registration_url: https://www.sos.state.nm.us/voting-and-elections/voter-information-portal/
   sub_18: turn_by_next_general_election_november
 record_32:
   abbreviation: NY
