@@ -1,4 +1,4 @@
-class CreateRegistrantStatuses < ActiveRecord::Migration
+class CreateRegistrantStatuses < ActiveRecord::Migration[4.2]
   def change
     create_table :registrant_statuses do |t|
       t.belongs_to :registrant

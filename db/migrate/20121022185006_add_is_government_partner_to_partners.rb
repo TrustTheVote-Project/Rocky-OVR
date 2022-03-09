@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddIsGovernmentPartnerToPartners < ActiveRecord::Migration
+class AddIsGovernmentPartnerToPartners < ActiveRecord::Migration[4.2]
   def self.up
     add_column :partners, :is_government_partner, :boolean, :default=>false
   end

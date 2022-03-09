@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddPartyTooltipToStateLocalization < ActiveRecord::Migration
+class AddPartyTooltipToStateLocalization < ActiveRecord::Migration[4.2]
   def self.up
     add_column :state_localizations, :party_tooltip, :string, :limit => 1024
   end

@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddLogoToPartner < ActiveRecord::Migration
+class AddLogoToPartner < ActiveRecord::Migration[4.2]
   def self.up
     add_column "partners", "logo_file_name", :string
     add_column "partners", "logo_content_type", :string

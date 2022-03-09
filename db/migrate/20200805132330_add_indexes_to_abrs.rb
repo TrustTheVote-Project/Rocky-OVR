@@ -1,4 +1,4 @@
-class AddIndexesToAbrs < ActiveRecord::Migration
+class AddIndexesToAbrs < ActiveRecord::Migration[4.2]
   def change
     add_index :abrs, :abandoned
     add_index :abrs, :dead_end

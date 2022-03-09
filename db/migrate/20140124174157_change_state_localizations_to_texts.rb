@@ -1,4 +1,4 @@
-class ChangeStateLocalizationsToTexts < ActiveRecord::Migration
+class ChangeStateLocalizationsToTexts < ActiveRecord::Migration[4.2]
   def up
     change_column :state_localizations, :parties,  :string, :limit => 1024
     change_column :state_localizations, :sub_18,  :string, :limit => 1024

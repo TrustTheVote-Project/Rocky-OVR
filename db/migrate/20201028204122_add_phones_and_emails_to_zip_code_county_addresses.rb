@@ -1,4 +1,4 @@
-class AddPhonesAndEmailsToZipCodeCountyAddresses < ActiveRecord::Migration
+class AddPhonesAndEmailsToZipCodeCountyAddresses < ActiveRecord::Migration[4.2]
   def change
     add_column :zip_code_county_addresses, :vr_contact_email, :string
     add_column :zip_code_county_addresses, :vr_contact_phone, :string

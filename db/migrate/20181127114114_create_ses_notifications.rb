@@ -1,4 +1,4 @@
-class CreateSesNotifications < ActiveRecord::Migration
+class CreateSesNotifications < ActiveRecord::Migration[4.2]
   def change
     create_table :ses_notifications do |t|
       t.text :request_params

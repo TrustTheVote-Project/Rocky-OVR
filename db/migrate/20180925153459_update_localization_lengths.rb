@@ -1,4 +1,4 @@
-class UpdateLocalizationLengths < ActiveRecord::Migration
+class UpdateLocalizationLengths < ActiveRecord::Migration[4.2]
   def change
     
     change_column :state_localizations, :parties, :text,                   limit: 20480

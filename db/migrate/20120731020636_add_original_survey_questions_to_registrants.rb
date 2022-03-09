@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddOriginalSurveyQuestionsToRegistrants < ActiveRecord::Migration
+class AddOriginalSurveyQuestionsToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrants, :original_survey_question_1, :string
     add_column :registrants, :original_survey_question_2, :string
