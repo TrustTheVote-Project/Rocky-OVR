@@ -170,6 +170,7 @@ module AbrStateMethods::PA
     
     def check_assert_no_id
         return ("Yes") if self.assert_no_id.to_s=='1'
+        return "Off"
     end
 
     def ssn_if_not_no_id
