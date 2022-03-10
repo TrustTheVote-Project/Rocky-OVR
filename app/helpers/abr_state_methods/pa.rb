@@ -45,7 +45,7 @@ module AbrStateMethods::PA
       "Mailing_Address_Type": {},
       "SSN_last_4": {sensitive:true, method: 'ssn_if_not_no_id'},
       "no_id": {
-        options: ["On", "Off"],
+        options: ["Yes", "Off"],
         method: "check_assert_no_id"
       },
       "Same_as_above": { options: ["On", "Off"] },
@@ -169,7 +169,7 @@ module AbrStateMethods::PA
     # ]
     
     def check_assert_no_id
-        return ("On") if self.assert_no_id.to_s=='1'
+        return ("Yes") if self.assert_no_id.to_s=='1'
     end
 
     def ssn_if_not_no_id
