@@ -411,6 +411,40 @@ en:
         ca_disclosures: I have reviewed and accepted the notices above.
       co:
         abr:
+          everyone_gets_ballot:
+            instructions_2: |- 
+              <p>Every Colorado voter will receive a mail ballot. The ballot will be sent to the mailing
+               address you provided in your voter registration file.</p>
+              <p><a href="https://register.rockthevote.com/lookup">Check if your voter registration
+              is up to date.</a></p>
+              <h3>
+              College students 
+              </h3>
+              <p>Students residing in Colorado for college or university can register to vote in Colorado.
+               Registration is based on your residence address, and you can decide whether that is in Colorado
+               or another state.</p>
+              <p> "Residence" means the principal or primary home or place in which a person lives and when absent,
+              has the intention of returning to. You can specify a mailing address where you'd like your ballot
+              to be mailed to. If you need to update your address, 
+              <a href="https://register.rockthevote.com/">submit a new voter registration</a>.</p>
+              <p>If you attend college or university out-of-state and want to register to vote there, check that
+              state's voter registration rules. If you change your voter registration to a different state, you
+              are no longer eligible to vote in Colorado.</p>
+            instructions_3: |-
+              <h3>Deadlines for delivering your ballot</h3>
+              <ul>
+              <li>Your county clerk must receive your ballot no later than 7:00 PM on Election Day. If you are not sure 
+              if your ballot will arrive in time, drop it off in person. Contact your 
+              <a target="_blank" href="https://www.coloradosos.gov/pubs/elections/Resources/CountyElectionOffices.html">county clerk and
+               recorder's office</a> for drop-off and drop-box locations.</li>
+              </ul>
+              <h3>Voting for the first time</h3>
+              <p>If you recently registered for the first time, you may need to provide a copy of your ID along with your mail ballot. Your county clerk will provide instructions about the ID requirement along with your ballot.</p>
+              <h3>Check the status of your ballot</h3>
+              <p>To check the status of your mail ballot, contact your 
+              <a target="_blank" href="https://www.coloradosos.gov/pubs/elections/Resources/CountyElectionOffices.html">local county
+               clerk and recorder's office</a> or sign up for <a target="_blank" href="https://colorado.ballottrax.net/">BallotTrax.</a>
+              </p>
           request_deadline: through the 8th day before Election Day
           abr_status_check_intro: 'You can look up your Mail-in Ballots status by
             using your state''s online tool:'
@@ -489,6 +523,33 @@ en:
           absentee_reason__required_message: Please select one of the above reasons
       dc:
         abr:
+          everyone_gets_ballot:
+            instructions_2: |- 
+              <p>All active registered voters will be mailed a ballot for the 2022 elections. </p>
+              <p>To update your name or address, submit a new <a href="https://register.rockthevote.com/">voter registration</a>.</p>
+              <h3>
+              College students and people away from DC
+              </h3>
+              </p>
+              <p>If you are registered to vote in DC and you will be away during an election, 
+              you may <a target="_blank" href="https://vr.dcboe.org/213115759199060" title="absentee ballot request">request
+              an absentee ballot.</a> 
+              Your request for an absentee ballot must be received by no later than 15 days before the 
+              election in which you wish to vote.</p>
+            instructions_3: |-
+              <h3>Deadlines for delivering your ballot</h3>
+              <ul>
+              <li>Your voted and mailed ballot must be postmarked or otherwise demonstrated to have been sent on or
+               before Election Day, and must arrive no later than the 10th day after Election Day. </li>
+              <li>If you are concerned that you may not be able to receive or cast your ballot in time for it to be counted, 
+              please contact the D.C. Board of Elections at 202.727.2525.</li>
+              </ul>
+              <h3>Voting for the first time</h3>
+              <p>If you are a first-time voter who registered to vote by mail or online, you are
+               required to provide ID documents with your ballot. Read about what <a target="_blank" href="https://dcboe.org/Voters/How-to-Vote/Mail-Ballot-Instructions" title="Mail Ballot Instructions">qualifies as identification</a>.</p>
+              <h3>Check the status of your ballot</h3>
+              <p>You can <a target="_blank" href="https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot">track the status of your ballot</a> online with the Board of Elections.
+              </p>
           request_deadline: Check with your local election officials for your state's
             voting deadlines.  We recommend sending in your application/request and
             ballot as soon as possible.
@@ -3207,6 +3268,26 @@ voter registration mailed by a board of elections) that shows your name and curr
           Zip code of witness: ZIP
       ut:
         abr:
+          everyone_gets_ballot:
+            instructions_2: |- 
+              <p>Every active registered voter will automatically receive a ballot in the mail.</p>
+              <p>To update your name or address, submit a new 
+              <a href="https://register.rockthevote.com/">voter registration</a>.</p>
+              <h3>
+              College students and other voters away from Utah
+              </h3>
+              <p>Utah voters who are away from their Utah residence during the election
+              may submit an <a target="_blank" href="https://voteinfo.utah.gov/wp-content/uploads/sites/42/2020/05/Alternate-Address-Form5-20.pdf">Absentee Application [PDF]</a>
+              to have their ballot mailed to an alternate address.</p>
+            instructions_3: |-
+              <h3>Deadlines for delivering your ballot</h3>
+              <ul>
+              <li>If you mail your ballot, it must be postmarked on or before Election Day. </li>
+              <li>You can also drop your ballot off at a <a target="_blank" href="https://votesearch.utah.gov/voter-search/search/search-by-address/how-and-where-can-i-vote" title="How Can I Vote">drop box location</a> before 8:00 pm on Election Day.</li>
+              </ul>
+              <h3>Check the status of your ballot</h3>
+              <p>You can <a target="_blank" href="https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot">track your mail ballot</a> online with the state.
+              </p>
           request_deadline: If you are an active registered voter then you will automatically
             receive a ballot in the mail.
           abr_status_check_intro: 'You can look up your Absentee Ballot status by
