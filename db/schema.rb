@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_22_205642) do
+ActiveRecord::Schema.define(version: 2022_03_02_223613) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -382,6 +382,11 @@ ActiveRecord::Schema.define(version: 2022_02_22_205642) do
     t.boolean "abr_deadline_passed"
     t.boolean "abr_splash_page"
     t.boolean "abr_all_ballot_by_mail"
+    t.string "abr_online_req_url"
+    t.string "leo_lookup_url"
+    t.string "abr_status_check_url"
+    t.string "abr_track_ballot_url"
+    t.boolean "abr_pdf_enabled"
   end
 
   create_table "grommet_requests", force: :cascade do |t|

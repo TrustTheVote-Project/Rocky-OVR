@@ -33,15 +33,12 @@ module AbrPdfCoverFields
   end
 
   def abr_status_check_url
-    if home_state_abbrev
-        RockyConf.absentee_states[home_state_abbrev]&.abr_status_check_url
-    end
+    home_state&.state_customization&.abr_settings&.abr_status_check_url
+    #RockyConf.absentee_states[home_state_abbrev]&.abr_status_check_url
   end
 
   def leo_lookup_url
-    if home_state_abbrev
-      RockyConf.absentee_states[home_state_abbrev]&.leo_lookup_url
-    end
+    home_state&.state_customization&.abr_settings&.leo_lookup_url
   end
 
   def cover_state_reminders

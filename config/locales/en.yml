@@ -58,6 +58,10 @@ en:
     attributes:
       geo_state:
         add_direct_mail_partner_id: Add Partner By ID
+        abr_online_req_url: URL for online absentee ballot requests
+        abr_status_check_url: URL for checking status of absentee ballot requests
+        abr_track_ballot_url: URL for checking status of absentee ballot submissions
+        leo_lookup_url: URL for state's local-election-office directory/lookup
       canvassing_shift:
         canvasser_first_name: First Name
         canvasser_last_name: Last Name

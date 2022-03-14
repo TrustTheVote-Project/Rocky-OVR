@@ -18,47 +18,53 @@
 
 = form_tag bulk_update_admin_geo_states_path, method: :post, multipart: true do
   %table.border
-    %tr
-      %th{style: "vertical-align: bottom"} State
-      %th 
-        .toggle-on#pdf_assistance_enabled{style: "cursor:pointer"} Select All
-        %br
-        .toggle-off#pdf_assistance_enabled{style: "cursor:pointer"} Deselect All
-        %br
-        PDF Assistance Enabled
-      %th
-        ABR Deadline Passed
-      %th
-        ABR Everyone Gets a Ballot
-      %th
-        ABR Generic Splash Page
-      %th 
-        Catalist Last Update
-        %br
-        = file_field_tag "catalist_update_file"
-        
-    - @geo_states.each do |s|
-      %tr
-        %td= link_to s.name, edit_admin_geo_state_path(s)
-        %td.pdf_assistance_enabled
-          = hidden_field_tag "pdf_assistance_enabled[#{s.abbreviation}]", "0"
-          = check_box_tag "pdf_assistance_enabled[#{s.abbreviation}]", "1", s.pdf_assistance_enabled
-        %td
-          = hidden_field_tag "abr_deadline_passed[#{s.abbreviation}]", "0"
-          = check_box_tag "abr_deadline_passed[#{s.abbreviation}]", "1", s.abr_deadline_passed
-        %td
-          = hidden_field_tag "abr_all_ballot_by_mail[#{s.abbreviation}]", "0"
-          = check_box_tag "abr_all_ballot_by_mail[#{s.abbreviation}]", "1", s.abr_all_ballot_by_mail
-        %td
-          = hidden_field_tag "abr_splash_page[#{s.abbreviation}]", "0"
-          = check_box_tag "abr_splash_page[#{s.abbreviation}]", "1", s.abr_splash_page
-        
-        %td
-          - if s.catalist_updated_at 
-            = l(s.catalist_updated_at, format: :ymd)
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            = (Date.today.to_date - s.catalist_updated_at).to_i
-            days ago
-  
+    %thead{style: "display: block; width: 100%;"}
+      %tr{style: "width: 100%; display: block;"}
+        %th{style: "vertical-align: bottom; ", width: "152px" } State
+        %th{style: "vertical-align: bottom; width: 102px"}
+          .toggle-on#pdf_assistance_enabled{style: "cursor:pointer"} Select All
+          %br
+          .toggle-off#pdf_assistance_enabled{style: "cursor:pointer"} Deselect All
+          %br
+          PDF Assistance Enabled
+        %th{style: "vertical-align: bottom; width: 102px"}
+          ABR Deadline Passed
+        %th{style: "vertical-align: bottom; width: 102px"}
+          ABR Everyone Gets a Ballot
+        %th{style: "vertical-align: bottom; width: 102px"}
+          ABR Generic Splash Page
+        %th{style: "vertical-align: bottom; width: 102px"}
+          ABR PDF Enabled
+        %th{style: "vertical-align: bottom; width: 185px"}
+          Catalist Last Update
+          %br
+          = file_field_tag "catalist_update_file"
+    %tbody{style: "max-height: 50vh; overflow: auto; display: block; width: 100%;"}
+      - @geo_states.each do |s|
+        %tr{style: "width: 100%; display: block;"}
+          %td{style: "width: 150px"}= link_to s.name, edit_admin_geo_state_path(s)
+          %td.pdf_assistance_enabled{style: "width: 100px"}
+            = hidden_field_tag "pdf_assistance_enabled[#{s.abbreviation}]", "0"
+            = check_box_tag "pdf_assistance_enabled[#{s.abbreviation}]", "1", s.pdf_assistance_enabled
+          %td{style: "width: 100px"}
+            = hidden_field_tag "abr_deadline_passed[#{s.abbreviation}]", "0"
+            = check_box_tag "abr_deadline_passed[#{s.abbreviation}]", "1", s.abr_deadline_passed
+          %td{style: "width: 100px"}
+            = hidden_field_tag "abr_all_ballot_by_mail[#{s.abbreviation}]", "0"
+            = check_box_tag "abr_all_ballot_by_mail[#{s.abbreviation}]", "1", s.abr_all_ballot_by_mail
+          %td{style: "width: 100px"}
+            = hidden_field_tag "abr_splash_page[#{s.abbreviation}]", "0"
+            = check_box_tag "abr_splash_page[#{s.abbreviation}]", "1", s.abr_splash_page
+          %td{style: "width: 100px"}
+            = hidden_field_tag "abr_pdf_enabled[#{s.abbreviation}]", "0"
+            = check_box_tag "abr_pdf_enabled[#{s.abbreviation}]", "1", s.abr_pdf_enabled
+          
+          %td{style: "width: 170px"}
+            - if s.catalist_updated_at 
+              = l(s.catalist_updated_at, format: :ymd)
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              = (Date.today.to_date - s.catalist_updated_at).to_i
+              days ago
+    
   %br
   = submit_tag "Save"
