@@ -54,6 +54,10 @@ en:
       last_update: <p>If you registered to vote or updated your registration recently, we might not have the most up-to-date
         information. <b>Our last update from %{state} was on %{date}.</b> <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results</p>
     abr:
+      splash: 
+        header_1: Requesting a ballot in %{state_name}
+        header_2: Questions about your ballot
+        header_3: Don't forget to vote!
       everyone_gets_ballot:
         header_1: "%{state_name} Automatically Mails All Registered Voters a Ballot"
         instructions_1: |-
