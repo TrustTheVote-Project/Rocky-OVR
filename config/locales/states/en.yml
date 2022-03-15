@@ -74,17 +74,20 @@ en:
       al:
         abr:
           request_deadline: |-
-            <p>If you mail your absentee ballot request, it must be received by</p>
-            <ul><li>May 17th for the primary election, and </li>
+            <p>If you mail your absentee ballot request, it must be received by </p>
+            <ul>
+            <li>May 17th for the primary election, and </li>
             <li>November 11th for the general election.</li>
             </ul>
           status_check_instructions: <a href="https://myinfo.alabamavotes.gov/voterview">https://myinfo.alabamavotes.gov/voterview</a>
           
           finish_instructions_1_hint: |-
             <p>Make sure to include a copy of your valid photo identification with your application. 
-            Only submit one request per envelope.</p>
+            Only submit one request per envelope.
+            </p>
             <p>When you receive your ballot, make sure to follow all of the instructions about the 
-            envelopes and notarization requirements.</p>
+            envelopes and notarization requirements.
+            </p>
 
           requirements: '<p>To qualify to request a ballot in AL, you need to be a
             registered Alabama voter, be able to provide a copy of your valid photo
@@ -1870,16 +1873,21 @@ en:
             primary (check only one):'
       nj:
         abr:
-          request_deadline: received up to 7 days prior to the election.
+          request_deadline: |-
+            <p>Your application must be received by: </p>
+            <ul>
+            <li>May 31st for the primary, and </li>
+            <li>November 1st for the general election.</li>
+            </ul>
           step_3_instructions: <p>Good news! everyone in <state> can request an absentee ballot!</p>
-          status_check_instructions: You can look up your Vote By Mail status by using
-            New Jersey's <a href="https://voter.svrs.nj.gov/auth/sign-in">My Voter
-            Record</a> tool.
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>If
-            you have designated an authorized messenger or someone assisted you with
-            this form, make sure that you have signed in both boxes, and they have
-            signed and dated the form.</i></p>"
+          status_check_instructions: <a href="https://nj.gov/state/elections/vote.shtml">https://nj.gov/state/elections/vote.shtml</a>.
+          finish_instructions_1_hint: |-
+            <p>If you received help with this form, make sure that the assistor has also 
+            signed the form and included their address.
+            </p>
+            <p>If you have designated an authorized messenger, make sure to sign and date box 11. 
+            The messenger should not sign and date the form until they are turning in the form.
+            </p>
           
         abr_form_fields:
           Election: 'I hereby apply for a Mail-In Ballot for:'
@@ -1895,7 +1903,7 @@ en:
           assistant: A person providing assistance to the voter in completing this
             application must check this box to continue.
           messenger: Any voter may apply for a Mail-In Ballot by Authorized Messenger.
-            <br/>Messenger shall be a family member or a registered voter of this
+          messenger__hint: Messenger shall be a family member or a registered voter of this
             County. No Authorized Messenger can (1) be a Candidate in the election
             for which the voter is requesting a Mail-In Ballot or (2) serve as messenger
             for more than THREE qualified voters per election, except that an authorized
