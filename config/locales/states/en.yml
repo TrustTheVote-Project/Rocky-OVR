@@ -73,13 +73,19 @@ en:
           Ballot Mailing Address 3: "&nbsp;"
       al:
         abr:
-          request_deadline: received no later than 7 days prior to the election.
-          status_check_instructions: You can find your Absentee Ballot status on Alabama's
-            <a href="https://myinfo.alabamavotes.gov/voterview">Registration Information</a>
-            page.
+          request_deadline: |-
+            <p>If you mail your absentee ballot request, it must be received by</p>
+            <ul><li>May 17th for the primary election, and </li>
+            <li>November 11th for the general election.</li>
+            </ul>
+          status_check_instructions: <a href="https://myinfo.alabamavotes.gov/voterview">https://myinfo.alabamavotes.gov/voterview</a>
           
-          finish_instructions_1_hint: "<p><i>A copy of your valid photo identification
-            must be submitted along with this application.</i></p>"
+          finish_instructions_1_hint: |-
+            <p>Make sure to include a copy of your valid photo identification with your application. 
+            Only submit one request per envelope.</p>
+            <p>When you receive your ballot, make sure to follow all of the instructions about the 
+            envelopes and notarization requirements.</p>
+
           requirements: '<p>To qualify to request a ballot in AL, you need to be a
             registered Alabama voter, be able to provide a copy of your valid photo
             identification and have at least one of the following reasons to apply

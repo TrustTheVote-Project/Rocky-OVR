@@ -206,7 +206,7 @@ module AbrStateMethods::MI
       {"has_mailing_address": {type: :checkbox}},
       {"November 3 Address": {visible: "has_mailing_address", required: :if_visible}},
       {"November 4 City": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
-      {"November 3 State": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"November 3 State": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
       {"November 3 Zip": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
       {"address_begindate": { type: :date, m: "address_begindate_mm", d: "address_begindate_dd", y: "address_begindate_yyyy", visible: "has_mailing_address", required: :if_visible, classes: "half"}},
       {"address_enddate": { type: :date, m: "address_enddate_mm", d: "address_enddate_dd", y: "address_enddate_yyyy",visible: "has_mailing_address", required: :if_visible, classes: "half last"}},

@@ -145,7 +145,7 @@ module AbrStateMethods::WV
         {"has_mailing_address": {type: :checkbox}},
         {"mail_address": {visible: "has_mailing_address", required: :if_visible}},
         {"mail_city": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
-        {"mail_state": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"mail_state": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
         {"mail_zip": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
       ]
     end

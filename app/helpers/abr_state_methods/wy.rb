@@ -64,7 +64,7 @@ module AbrStateMethods::WY
       {"has_mailing_address": {type: :checkbox}},
       {"MAIL MY BALLOT TO": {visible: "has_mailing_address"}},
       {"CITY_2": {visible: "has_mailing_address"}},
-      {"STATE_2": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"STATE_2": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select}},
       {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
       {"ACTIVE MILITARY Y  N": {required: true, type: :radio, options: ["Y", "N"]}},
       {"Individual's name who may pick up my ballot": {}}

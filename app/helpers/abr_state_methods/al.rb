@@ -219,13 +219,13 @@ module AbrStateMethods::AL
       {"chkReason8": {type: :checkbox}},
       {"chkReason9": {type: :checkbox}},
       {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
-      {"Drivers_License_State": {visible: "identification_dln_yes", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Drivers_License_State": {visible: "identification_dln_yes", type: :select, options: GeoState.collection_for_select}},
       {"Drivers_License_Number": {visible: "identification_dln_yes", min:1, max:16, ui_regexp:'^.*$'}},
       {"SSN_last_4": {min: 4, max: 4, visible: "identification_dln_no"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
       {"City_1": {visible: "has_mailing_address"}},
-      {"State_1": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"State_1": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select}},
       {"ZIP_1": {visible: "has_mailing_address", min: 5, max: 10}}, 
     ]
   end

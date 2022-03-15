@@ -54,7 +54,7 @@ module AbrStateMethods::TN
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing Address (if different)": {visible: "has_mailing_address", required: :if_visible}},
       {"Mailing City": {visible: "has_mailing_address", required: :if_visible}},
-      {"Mailing State": {visible: "has_mailing_address", required: :if_visible, type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Mailing State": {visible: "has_mailing_address", required: :if_visible, type: :select, options: GeoState.collection_for_select}},
       {"Mailing ZIP": {visible: "has_mailing_address", required: :if_visible}},
       {"voter_cannot_sign": {type: :checkbox}},
       {"Address of Person Assisting": {visible: "voter_cannot_sign", required: :if_visible}},

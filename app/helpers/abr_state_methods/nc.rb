@@ -302,7 +302,7 @@ module AbrStateMethods::NC
       {"has_mailing_address": {type: :checkbox}},
       {"reg_mail_street":{visible: "has_mailing_address", required: :if_visible}},
       {"reg_mail_city":{visible: "has_mailing_address", required: :if_visible, classes:"half"}},
-      {"reg_mail_state":{visible: "has_mailing_address",type: :select, options: GeoState.collection_for_select, include_blank: true, required: :if_visible, classes:"quarter"}},
+      {"reg_mail_state":{visible: "has_mailing_address",type: :select, options: GeoState.collection_for_select, required: :if_visible, classes:"quarter"}},
       {"reg_mail_zip":{visible: "has_mailing_address", required: :if_visible, classes:"quarter last"}},
 
       #{"Voter's regular mailing address": {visible: "has_mailing_address", required: :if_visible}},
@@ -312,7 +312,7 @@ module AbrStateMethods::NC
       {"ballot_address": {type: :checkbox}},
       {"MailStreet":{visible: "ballot_address", required: :if_visible}},
       {"MailCity":{visible: "ballot_address", required: :if_visible, classes:"half"}},
-      {"MailState":{visible: "ballot_address", type: :select, options: GeoState.collection_for_select, include_blank: true, required: :if_visible, classes:"quarter"}},
+      {"MailState":{visible: "ballot_address", type: :select, options: GeoState.collection_for_select, required: :if_visible, classes:"quarter"}},
       {"MailZip":{visible: "ballot_address", required: :if_visible, classes:"quarter last"}},
 
 
@@ -327,14 +327,14 @@ module AbrStateMethods::NC
       {"RelativeRelationship": {visible: "relative_request",required: :if_visible}},
       {"RelativeAddress": {visible: "relative_request", required: :if_visible}},
       {"RelativeCity": {visible: "relative_request", required: :if_visible, classes:"half"}},
-      {"RelativeState": {visible: "relative_request", type: :select, options: GeoState.collection_for_select, include_blank: true, required: :if_visible, classes:"quarter"}},
+      {"RelativeState": {visible: "relative_request", type: :select, options: GeoState.collection_for_select, required: :if_visible, classes:"quarter"}},
       {"RelativeZip": {visible: "relative_request", min: 5, max: 10, required: :if_visible, classes:"quarter last"}},
       
       {"assistant": {type: :checkbox}},
       {"AssistantFullName": {visible: "assistant", required: :if_visible}},
       {"AssistantAddress": {visible: "assistant", required: :if_visible}},
       {"assistantcity": {visible: "assistant",  required: :if_visible, classes: "half"}},
-      {"assistantstate": {visible: "assistant",  required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"assistantstate": {visible: "assistant",  required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
       {"assistantzip": {visible: "assistant",  required: :if_visible, classes: "quarter last", min: 5, max: 10}},
       
       {"patient": {type: :checkbox}}, 

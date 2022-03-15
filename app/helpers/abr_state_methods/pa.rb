@@ -143,7 +143,7 @@ module AbrStateMethods::PA
         {"Same_as_above": {type: :radio, required: true}},
         {"Address_1": {visible: "same_as_above_off", required: 'star'}},
         {"City_Town_1": {visible: "same_as_above_off", classes: "half", required:'star'}},
-        {"State": {visible: "same_as_above_off", required: 'star', classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"State": {visible: "same_as_above_off", required: 'star', classes: "quarter", type: :select, options: GeoState.collection_for_select}},
         {"Zip code_2": {visible: "same_as_above_off", required:'star', classes: "quarter last"}},
         {"Mailing_Address_Type":  {visible: "same_as_above_off", required:'star'}},
         {"annual_request": {type: :radio}},
