@@ -39,7 +39,11 @@ module AbrStateMethods::NJ
     "State_3": {},
     "Zip_3": {},
     "Election": { 
-      options: ["All", "Fire", "General", "Municipal", "Off", "Primary", "School", "Special"],     
+      options: ["All", "General", "Primary", "Municipal", "School", "Fire", "Special"],     
+    },
+    "Special_Election_Name": {},
+    "Special_Election_Date": {
+      method: "election_date_string"
     },
     "UOCAVA": { options: ["Off", "Choice1", "Choice2", "Choice3", "Choice4"], default: "Off" },
     #"voter_signature": {}
@@ -75,12 +79,17 @@ module AbrStateMethods::NJ
     #"Signed_Date": {}
     #"messenger_date": {}
   }
-  EXTRA_FIELDS = ["election_selection", "has_mailing_address", "assistant", "messenger","messenger_birth_date", "messenger_birth_dd","messenger_birth_mm","messenger_birth_yyyy"]
+  EXTRA_FIELDS = ["election_selection", "has_mailing_address", "assistant", "messenger","messenger_birth_date", "messenger_birth_dd","messenger_birth_mm","messenger_birth_yyyy",
+    "election_date", "election_date_dd","election_date_mm","election_date_yyyy"]
   
   
   def form_field_items
     [
-      {"Election": {type: :radio, options:["All", "General"], required: true}},
+      {"Election": {type: :radio, required: true}},
+      {"Special_Election_Name": {visible: "election_special", required: :if_visible}},
+      {"election_date": {visible: "election_special", type: :date, required: :if_visible}},
+      
+
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_2":{visible: "has_mailing_address"}},
       {"Mailing_Address_3":{visible: "has_mailing_address"}},
@@ -140,6 +149,15 @@ module AbrStateMethods::NJ
         return(nil)
       end 
     end 
+  end
+
+  def election_date_string
+    d = self.date_field_value(method: :election_date)
+    if d
+      return d&.strftime("%m/%d/%Y")
+    end
+  rescue
+    nil
   end
 
 

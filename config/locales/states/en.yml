@@ -1871,10 +1871,7 @@ en:
       nj:
         abr:
           request_deadline: received up to 7 days prior to the election.
-          step_3_instructions: <p>All registered voters in New Jersey are eligible
-            to vote by mail. <a href="https://voter.svrs.nj.gov/registration-check"
-            title="Voter Search" target="_blank" rel="noopener noreferrer">Make sure
-            you're registered</a>.</p>
+          step_3_instructions: <p>Good news! everyone in <state> can request an absentee ballot!</p>
           status_check_instructions: You can look up your Vote By Mail status by using
             New Jersey's <a href="https://voter.svrs.nj.gov/auth/sign-in">My Voter
             Record</a> tool.
@@ -1889,6 +1886,9 @@ en:
           Election__options:
             All: All Future Elections, until I request otherwise in writing.
             General: Only the next General (November) election
+            Primary: Primary (June)
+          Special_Election_Name: Special Election Name
+          Special_Election_Date: Special Election Date
           has_mailing_address: My mailing address differs from my residential address.
           Mailing_Address_2: Mailing address
           Mailing_Address_3: City, State, Zip
