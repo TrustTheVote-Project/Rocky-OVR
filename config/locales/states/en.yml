@@ -2168,12 +2168,14 @@ utility bill, bank statement, government check, paycheck or other government doc
 voter registration mailed by a board of elections) that shows your name and current address."
           abr_last_4_ssn: Enter the last four digits of your Social Security number
           abr_driver_license: Enter your Ohio driver license number (2 letters followed by 6 numbers)
-          abr_election_type1selections:	Select the election to request an absentee ballot for. 
-          abr_election_type1selections__hint: You must fill out a separate form for each election.
-          abr_election_type1selections__options:
+          abr_election_type_selections:	Select the election to request an absentee ballot for. 
+          abr_election_type_selections__hint: You must fill out a separate form for each election.
+          abr_election_type_selections__options:
             abr_election_type1: November General Election
             abr_election_type2: Special Election
             abr_election_type3: Primary Election
+          abr_election_date_input: Special Election Date
+          abr_election_date2_input: Primary Election Date
           abr_primary_type_selections: Which type of ballot would you like to receive?
           abr_primary_type_selections__options:
             abr_primary_type1: Democratic

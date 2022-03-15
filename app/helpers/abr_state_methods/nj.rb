@@ -152,12 +152,7 @@ module AbrStateMethods::NJ
   end
 
   def election_date_string
-    d = self.date_field_value(method: :election_date)
-    if d
-      return d&.strftime("%m/%d/%Y")
-    end
-  rescue
-    nil
+    date_field_string_mm_dd_yyyy(method: :election_date)
   end
 
 

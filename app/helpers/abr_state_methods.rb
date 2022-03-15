@@ -201,6 +201,15 @@ module AbrStateMethods
   rescue
     nil
   end
+
+  def date_field_string_mm_dd_yyyy(field_opts)
+    d = date_field_value(field_opts)
+    if d
+      return d&.strftime("%m/%d/%Y")
+    end
+  rescue
+    nil
+  end
   
   def validate_form_fields
     form_fields.each do |field_name, field_opts|
