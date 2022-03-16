@@ -73,6 +73,20 @@ en:
           Ballot Mailing Address 3: "&nbsp;"
       al:
         abr:
+          step_2_instructions: |-
+            <h3>You must have a reason to request an absentee ballot.</h3>
+            <p>
+            You can request an absentee ballot if you:
+            </p>
+            <ul>
+            <li>Expect to be absent from the county or the state on Election Day;</li>
+            <li>Are physically incapacitated and will not be able to vote in person on Election Day;</li>
+            <li>Are a registered Alabama voter living outside the county, such as a member of the armed forces, a voter employed outside the United States, a college student, or a spouse or child of such a person;</li>
+            <li>Are an appointed election officer or poll watcher at a polling place other than their regular polling place;</li>
+            <li>Expect to work a required shift, 10 hours or more, that coincides with polling hours;</li>
+            <li>Are a caregiver for a family member to the second degree of kinship by affinity or consanguinity and the family member is confined to their home; or</li>
+            <li>Are currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude. </li>
+            </ul>
           request_deadline: |-
             <p>If you mail your absentee ballot request, it must be received by </p>
             <ul>
@@ -166,7 +180,7 @@ en:
           Precinct__hint: <a target="_blank" rel="noopener" href="https://myinfo.alabamavotes.gov/VoterView/PollingPlaceSearch.do">https://myinfo.alabamavotes.gov/VoterView/PollingPlaceSearch.do</a>
           identification: 'Please select one of the following:'
           identification__options:
-            dln_yes: I have a driver's license.
+            dln_yes: I have a driver's license that is not expired (from any state).
             dln_no: I do not have a driver's license.
           SSN_last_4: Last 4 digits of your SSN
           Drivers_License_State: Driver's License State
@@ -178,6 +192,34 @@ en:
           State_1: State
           ZIP_1: Zip
           WorkPhone: Work Phone
+          abr_election_type_selections: Select the election you'd like to request a ballot for. <br> You must fill out a separate form for each election.
+          abr_election_type_selections__options:
+            abr_election_type1: Primary Election
+            abr_election_type2: Primary Runoff Election
+            abr_election_type3: General Election
+            abr_election_type4: Special Election
+          abr_primary_type_selections1: Select the type of ballot you wish to receive.
+          abr_primary_type_selections1__hint: "You may only participate in one political party's primary. <br>If you do not select a party, the absentee election manager may send only the ballot for constitutional amendments."
+          abr_primary_type_selections1__options:
+            abr_primary_type1: Democratic Party
+            abr_primary_type2: Republican Party
+            abr_primary_type3: Other
+            abr_primary_type4: Amendments Only
+          abr_primary_type4_name: Enter the name of the party
+          abr_primary_type_selections2: Select the type of ballot you wish to receive.
+          abr_primary_type_selections2__hint: "You may only participate in one political party's primary.<br> If you do not select a party, the absentee election manager may send only the ballot for constitutional amendments."
+          abr_primary_type_selections2__options:
+            abr_primary_type5: Democratic Party
+            abr_primary_type6: Republican Party
+            abr_primary_type7: Other
+            abr_primary_type8: Amendments Only
+          abr_primary_type8_name: Enter the name of the party
+          abr_election_type4_name: Specify the election
+          abr_application_type_check1: Is the election a primary or runoff?
+          abr_primary_type_selections3: Select a party for the primary or runoff
+          abr_primary_type_selections3__options:
+            abr_primary_type9: Democratic Party
+            abr_primary_type10: Republican Party
       ar:
         abr:
           request_deadline: received at least 11 days before the election

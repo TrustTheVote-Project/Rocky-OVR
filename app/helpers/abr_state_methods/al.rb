@@ -131,8 +131,41 @@ module AbrStateMethods::AL
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"
     },
+    "abr_election_type_selections": {
+      options: [
+        "abr_election_type1",
+        "abr_election_type2",
+        "abr_election_type3",
+        "abr_election_type4",
+      ]
+    },
+    "abr_primary_type_selections1": {
+      options: [
+        "abr_primary_type1",
+        "abr_primary_type2",
+        "abr_primary_type3",
+        "abr_primary_type4",
+      ]
+    },
+    "abr_primary_type4_name": {},
+    "abr_primary_type_selections2": {
+      options: [
+        "abr_primary_type5",
+        "abr_primary_type6",
+        "abr_primary_type7",
+        "abr_primary_type8",        
+      ]
+    },
+    "abr_primary_type8_name": {},
+    "abr_election_type4_name": {},
+    "abr_primary_type_selections3": {
+      options: [
+        "abr_primary_type9",
+        "abr_primary_type10"
+      ]
+    }
   }
-  EXTRA_FIELDS = ["has_mailing_address", "identification", "earlier_exp_date_dd", "earlier_exp_date_mm", "earlier_exp_date_yyyy"]
+  EXTRA_FIELDS = ["abr_application_type_check1", "has_mailing_address", "identification", "earlier_exp_date_dd", "earlier_exp_date_mm", "earlier_exp_date_yyyy"]
  
   def form_field_items
     [
@@ -227,6 +260,15 @@ module AbrStateMethods::AL
       {"City_1": {visible: "has_mailing_address"}},
       {"State_1": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select}},
       {"ZIP_1": {visible: "has_mailing_address", min: 5, max: 10}}, 
+
+      {"abr_election_type_selections": { type: :radio, required: true }},
+      {"abr_primary_type_selections1": { type: :radio, visible: "abr_election_type_selections_abr_election_type1", required: :if_visible, }},
+      {"abr_primary_type4_name": { required: :if_visible, visible: "abr_primary_type_selections1_abr_primary_type3" }},
+      {"abr_primary_type_selections2": { type: :radio, visible: "abr_election_type_selections_abr_election_type2", required: :if_visible,  }},
+      {"abr_primary_type8_name": { required: :if_visible, visible: "abr_primary_type_selections2_abr_primary_type7"}},
+      {"abr_election_type4_name": { required: :if_visible, visible: "abr_election_type_selections_abr_election_type4" }},
+      {"abr_application_type_check1": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type4"}},
+      {"abr_primary_type_selections3": { type: :radio, required: :if_visible, visible: "abr_application_type_check1" }},
     ]
   end
 
