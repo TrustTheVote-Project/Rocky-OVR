@@ -2148,6 +2148,9 @@ en:
               was not a felony
       oh:
         abr:
+          step_2_instructions: |-
+            <p>All registered voters in Ohio can request an absentee ballot.</p>
+            <p><a href="%{lookup_url}">Make sure your registration is up to date.</a>
           request_deadline: <p>Your request must be received by <ul><li>April 30th for the primary election, and </li><li>November 5th for the general election.</li></ul></p>
           
           status_check_instructions: <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a>
@@ -2167,7 +2170,7 @@ en:
 utility bill, bank statement, government check, paycheck or other government document (other than a notice of
 voter registration mailed by a board of elections) that shows your name and current address."
           abr_last_4_ssn: Enter the last four digits of your Social Security number
-          abr_driver_license: Enter your Ohio driver license number (2 letters followed by 6 numbers)
+          abr_drivers_license: Enter your Ohio driver license number (2 letters followed by 6 numbers)
           abr_election_type_selections:	Select the election to request an absentee ballot for. 
           abr_election_type_selections__hint: You must fill out a separate form for each election.
           abr_election_type_selections__options:

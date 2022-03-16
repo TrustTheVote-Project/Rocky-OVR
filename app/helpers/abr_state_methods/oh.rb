@@ -15,14 +15,14 @@ module AbrStateMethods::OH
     "abr_zip": {	method: "zip" },
     "abr_id_type": {	options: ["abr_id_type1", "abr_id_type2", "abr_no_id"] },
     "abr_last_4_ssn": {	sensitive: true },
-    "abr_driver_license": { sensitive: true },
+    "abr_drivers_license": { sensitive: true },
     "abr_election_type_selections": {	options: ["abr_election_type1", "abr_election_type2", "abr_election_type3"] },
     "abr_primary_type_selections": { 	options: ["abr_primary_type1", "abr_primary_type2", "abr_primary_type3"] },
     "abr_election_date": {
       method: "abr_election_date_string"
     },
     "abr_election_date2": {
-      method: "abr_election_date2_string"
+      method: "abr_election_date2_string"      
     },
     #"abr_check_mailing_address": { },
     "abr_mailing_address_instructions": {	 },
@@ -139,10 +139,10 @@ module AbrStateMethods::OH
 
       {"abr_id_type": {type: :radio, required: true}},
       {"abr_last_4_ssn": {visible: "abr_id_type_abr_id_type1", required: "show_star",  min: 4, max: 4, regexp: /\A\d{4}\z/ }},
-      {"abr_driver_license": {visible: "abr_id_type_abr_id_type2", required: "show_star", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}[0-9]{6}\z/, ui_regexp: "^[a-zA-Z]{2}[0-9]{6}$"}},
+      {"abr_drivers_license": {visible: "abr_id_type_abr_id_type2", required: "show_star", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}[0-9]{6}\z/, ui_regexp: "^[a-zA-Z]{2}[0-9]{6}$"}},
       {"abr_election_type_selections": {type: :radio, required: true}},
       {"abr_election_date_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type2"}},
-      {"abr_election_date2_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type3"}},
+      #{"abr_election_date2_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type3"}},
       {"abr_primary_type_selections": {type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type3"}},
 
     ]
@@ -153,7 +153,10 @@ module AbrStateMethods::OH
   end
   
   def abr_election_date2_string
-    date_field_string_mm_dd_yyyy(method: :abr_election_date2_input)
+    if abr_election_type_selections_abr_election_type3
+      return "May 3, 2022"
+    end
+    #date_field_string_mm_dd_yyyy(method: :abr_election_date2_input)
   end
 
   # def custom_form_field_validations
