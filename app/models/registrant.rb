@@ -574,6 +574,7 @@ class Registrant < ActiveRecord::Base
             sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
           end
           reg.instance_variable_set(:@existing_state_registrant, sr)
+          reg.instance_variable_set(:@existing_state_registrant_fetched, true)
         end
         if reg.finish_with_state?
           reg.status = "complete"
