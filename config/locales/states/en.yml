@@ -1932,7 +1932,7 @@ en:
             </p>
           
         abr_form_fields:
-          Election: 'I hereby apply for a Mail-In Ballot for:'
+          Election: "Select the election you'd like to request a ballot for"
           Election__options:
             All: All Future Elections, until I request otherwise in writing.
             General: Only the next General (November) election
@@ -1942,16 +1942,15 @@ en:
           has_mailing_address: My mailing address differs from my residential address.
           Mailing_Address_2: Mailing address
           Mailing_Address_3: City, State, Zip
-          assistant: A person providing assistance to the voter in completing this
-            application must check this box to continue.
-          messenger: Any voter may apply for a Mail-In Ballot by Authorized Messenger.
-          messenger__hint: Messenger shall be a family member or a registered voter of this
-            County. No Authorized Messenger can (1) be a Candidate in the election
-            for which the voter is requesting a Mail-In Ballot or (2) serve as messenger
-            for more than THREE qualified voters per election, except that an authorized
-            messenger or bearer may serve as such for up to five qualified voters
-            in an election if those voters are immediate family members residing in
-            the same household as the messenger or bearer.
+          assistant: Did someone assist you in completing this request?
+          assistant__post_hint: The person providing assistance a ballot must complete this section.
+          messenger: Are you authorizing a messenger to pick up your absentee ballot?
+          messenger__hint: Any voter may apply for a Mail-In Ballot by Authorized Messenger.
+          messenger__post_hint: A messenger must be a family member or a registered voter in your County. 
+            No authorized messenger can (1) be a Candidate in the election for which the voter is 
+            requesting a Mail-In Ballot or (2) serve as messenger for more than THREE qualified 
+            voters per election. A person can serve as a messenger for up to five voters in an 
+            election if they are immediate family members residing in the same household as the messenger.
           Apt_3: Apt/Unit
           Municipality CityTown_3: City/Town
           State_3: State
