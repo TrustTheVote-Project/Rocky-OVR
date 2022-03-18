@@ -80,10 +80,10 @@
         -#CTW To do county %ul.stacked
         = field_li(form, :res_county_code, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::WARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
     
-    %fieldset.no_border
+    -#%fieldset.no_border
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_previous_address, class_name: "registrant-form__change-of-name__line", required: false, tooltip: :previous_name}
 
-    %fieldset#previous_address_set
+    -#%fieldset#previous_address_set
       %legend
         %span= I18n.t('txt.registration.previous_address') 
         = tooltip_tag :previous_address

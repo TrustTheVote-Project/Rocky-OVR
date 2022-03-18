@@ -75,6 +75,8 @@ class WARegistrantValidator < ActiveModel::Validator
       if (date.nil?)
         reg.errors.add(:issue_date, :format)
       end
+
+      validate_issue_date(reg)
         
 
     end
@@ -119,6 +121,17 @@ class WARegistrantValidator < ActiveModel::Validator
     earliest_date = Date.today - 16.years 
     if reg.date_of_birth > earliest_date
       reg.errors.add(:date_of_birth, :too_young)
+    end
+  end
+
+  def validate_issue_date(reg)
+    return if reg.issue_date.blank?
+    latest_date = Date.today 
+    if reg.issue_date > latest_date
+      reg.errors.add(:issue_date, :future)
+    end
+    if reg.issue_date < Date.today - 50.years
+      reg.errors.add(:issue_date, :too_old)
     end
   end
   
