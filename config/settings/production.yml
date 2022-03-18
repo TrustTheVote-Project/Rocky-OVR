@@ -11,259 +11,259 @@ blocks_configuration:
   default_staging_location_id: 19000000003  
   url: https://svpa.blocks.im
   partners:
-  16027:	
-    turf_id: '19000000049'
-    canvasser_id: '19000000456'
-    location_id: '19000000727'
-    location_id: '19000000727'
-  35318:	
-    states:
-    - PA
-    bulk_submit: false
-    submit_forms: true      
-    sub_orgs:
-    - name: "Make The Road - Philadelphia"
-      turf_id: '19000000059'
-      canvasser_id: '19000000465'
-      location_id: '19000000724'
-      location_id: '19000000724'
-    - name: "Make The Road - Reading	"
-      turf_id: '19000000060'
-      canvasser_id: '19000000466'
-      location_id: '19000000725'
-      location_id: '19000000725'
-    - name: "Make The Road - Allentown	"
-      turf_id: '19000000061'
-      canvasser_id: '19000000467'
-      location_id: '19000000723'
-      location_id: '19000000723'
-  35379:
-    states:
-    - PA
-    bulk_submit: false
-    submit_forms: true      
-    sub_orgs:
-    - name: "CASA - Harrisburg	"
-      turf_id: '19000000056'
-      canvasser_id: '19000000462'
-      location_id: '19000000716'
-      location_id: '19000000716'
-    - name: "CASA - Lancaster	"
-      turf_id: '19000000057'
-      canvasser_id: '19000000463'
-      location_id: '19000000717'
-      location_id: '19000000717'
-    - name: "CASA - Philadelphia	"
-      turf_id: '19000000058'
-      canvasser_id: '19000000464'
-      location_id: '19000000718'
-      location_id: '19000000718'
-  35863:	
-    name: "Planned Parenthood Association of PA	"
-    turf_id: '19000000047'
-    canvasser_id: '19000000454'
-    location_id: '19000000482'
-    location_id: '19000000482'
-  35988:	
-    name: "POWER"
-    turf_id: '19000000028'
-    canvasser_id: '19000000441'
-    location_id: '19000000210'
-    location_id: '19000000210'
-  36063:	
-    name: "Project HOME"
-    turf_id: '19000000032'
-    canvasser_id: '19000000445'
-    location_id: '19000000353'
-    location_id: '19000000353'
-  36845:	
-    name: "VietLead"
-    turf_id: '19000000033'
-    canvasser_id: '19000000446'
-    location_id: '19000000356'
-    location_id: '19000000356'
-  36853:	
-    name: "New Voices"
-    turf_id: '19000000044'
-    canvasser_id: '19000000453'
-    location_id: '19000000733'
-    location_id: '19000000733'
-  36857:	
-    name: "SEAMAAC"
-    turf_id: '19000000029'
-    canvasser_id: '19000000442'
-    location_id: '19000000262'
-    location_id: '19000000262'
-  36862:	
-    name: "Pittsburgh United"
-    turf_id: '19000000021'
-    canvasser_id: '19000000438'
-    location_id: '19000000494'
-    location_id: '19000000494'
-  36866:	
-    name: "PICC"
-    turf_id: '19000000030'
-    canvasser_id: '19000000443'
-    location_id: '19000000496'
-    location_id: '19000000496'
-  37067:
-    states:
-    - PA
-    bulk_submit: false
-    submit_forms: true      
-    sub_orgs:
-    - name: "One PA"
-      turf_id: '19000000024'
-      canvasser_id: '19000000439'
-      location_id: '19000000164'
-      location_id: '19000000164'
-    - name: "One PA - Philadelphia"
-      turf_id: '19000000064'
-      canvasser_id: '19000000469'
-      location_id: '19000000734'
-      location_id: '19000000734'
-    - name: "One PA - Pittsburgh"
-      turf_id: '19000000065'
-      canvasser_id: '19000000470'
-      location_id: '19000000735'
-      location_id: '19000000735'
-  37279:
-    states:
-    - PA
-    bulk_submit: false
-    submit_forms: true      
-    sub_orgs:
-    - name: "ACE - Pittsburgh"
-      turf_id: '19000000054'
-      canvasser_id: '19000000460'
-      location_id: '19000000709'
-      location_id: '19000000709'
-    - name: "ACE - Philadelphia Metro"
-      turf_id: '19000000055'
-      canvasser_id: '19000000461'
-      location_id: '19000000708'
-      location_id: '19000000708'
-  37281:	
-    name: "Unidos US"
-    turf_id: '19000000027'
-    canvasser_id: '19000000440'
-    location_id: '19000000502'
-    location_id: '19000000502'
-  37302:	
-    name: "Youth United for Change"
-    turf_id: '19000000035'
-    canvasser_id: '19000000448'
-    location_id: '19000000706'
-    location_id: '19000000706'
-  37496:	
-    name: "Media Mobilizing Project"
-    turf_id: '19000000043'
-    canvasser_id: '19000000452'
-    location_id: '19000000726'
-    location_id: '19000000726'
-  37625:	
-    name: "ACLU PA"
-    turf_id: '19000000042'
-    canvasser_id: '19000000451'
-    location_id: '19000000710'
-    location_id: '19000000710'
-  37928:	
-    name: "Asian Americans United"
-    turf_id: '19000000031'
-    canvasser_id: '19000000444'
-    location_id: '19000000712'
-    location_id: '19000000712'
-  38332:	
-    name: "NAKASEC - Montgomery"
-    turf_id: '19000000038'
-    canvasser_id: '19000000449'
-    location_id: '19000000729'
-    location_id: '19000000729'
-  38368:
-    states:
-    - PA
-    bulk_submit: false
-    submit_forms: true      
-    sub_orgs:	
-    - name: "PennFuture"
-      turf_id: '19000000015'
-      canvasser_id: '19000000435'
-      location_id: '19000000517'
-      location_id: '19000000517'
-    - name: "PennFuture - Luzerne County"
-      turf_id: '19000000018'
-      canvasser_id: '19000000436'
-      location_id: '19000000738'
-      location_id: '19000000738'
-    - name: "PennFuture - Lehigh County"
-      turf_id: '19000000019'
-      canvasser_id: '19000000437'
-      location_id: '19000000737'
-      location_id: '19000000737'
-  38581:	
-    name: "CAIR Philadelphia"
-    turf_id: '19000000050'
-    canvasser_id: '19000000457'
-    location_id: '19000000715'
-    location_id: '19000000715'
-  38631:	
-    name: "Rising Sons / Ones Up"
-    turf_id: '19000000048'
-    canvasser_id: '19000000455'
-    location_id: '19000000521'
-    location_id: '19000000521'
-  38677:	
-    name: "FOF - Philadelphia"
-    turf_id: '19000000039'
-    canvasser_id: '19000000450'
-    location_id: '19000000722'
-    location_id: '19000000722'
-  38704:	
-    name: "West End Power"
-    turf_id: '19000000051'
-    canvasser_id: '19000000458'
-    location_id: '19000000528'
-    location_id: '19000000528'
-  38726:	
-    name: "Black Voters Matter"
-    turf_id: '19000000052'
-    canvasser_id: '19000000459'
-    location_id: '19000000714'
-    location_id: '19000000714'
-  38911:	
-    name: "Bhutanese Community Association of Pittsburgh"
-    turf_id: '19000000070'
-    canvasser_id: '19000000474'
-    location_id: '19000000713'
-    location_id: '19000000713'
-  39019:	
-    name: "1 Vote Counts"
-    turf_id: '19000000068'
-    canvasser_id: '19000000473'
-    location_id: '19000000707'
-    location_id: '19000000707'
-  39035:	
-    name: "Casa San Jose"
-    turf_id: '19000000071'
-    canvasser_id: '19000000475'
-    location_id: '19000000719'
-    location_id: '19000000719'
-  39036:
-    states:
-    - PA
-    bulk_submit: false
-    submit_forms: true      
-    sub_orgs:	
-    - name: "Al Bustan - Philadelphia"
-      turf_id: '19000000074'
-      canvasser_id: '19000000477'
-      location_id: '19000000765'
-      location_id: '19000000765'
-    - name: "Al Bustan - Lehigh	"
-      turf_id: '19000000075'
-      canvasser_id: '19000000478'
-      location_id: '19000000766'
-      location_id: '19000000766'
+    16027:	
+      turf_id: '19000000049'
+      canvasser_id: '19000000456'
+      location_id: '19000000727'
+      location_id: '19000000727'
+    35318:	
+      states:
+      - PA
+      bulk_submit: false
+      submit_forms: true      
+      sub_orgs:
+      - name: "Make The Road - Philadelphia"
+        turf_id: '19000000059'
+        canvasser_id: '19000000465'
+        location_id: '19000000724'
+        location_id: '19000000724'
+      - name: "Make The Road - Reading	"
+        turf_id: '19000000060'
+        canvasser_id: '19000000466'
+        location_id: '19000000725'
+        location_id: '19000000725'
+      - name: "Make The Road - Allentown	"
+        turf_id: '19000000061'
+        canvasser_id: '19000000467'
+        location_id: '19000000723'
+        location_id: '19000000723'
+    35379:
+      states:
+      - PA
+      bulk_submit: false
+      submit_forms: true      
+      sub_orgs:
+      - name: "CASA - Harrisburg	"
+        turf_id: '19000000056'
+        canvasser_id: '19000000462'
+        location_id: '19000000716'
+        location_id: '19000000716'
+      - name: "CASA - Lancaster	"
+        turf_id: '19000000057'
+        canvasser_id: '19000000463'
+        location_id: '19000000717'
+        location_id: '19000000717'
+      - name: "CASA - Philadelphia	"
+        turf_id: '19000000058'
+        canvasser_id: '19000000464'
+        location_id: '19000000718'
+        location_id: '19000000718'
+    35863:	
+      name: "Planned Parenthood Association of PA	"
+      turf_id: '19000000047'
+      canvasser_id: '19000000454'
+      location_id: '19000000482'
+      location_id: '19000000482'
+    35988:	
+      name: "POWER"
+      turf_id: '19000000028'
+      canvasser_id: '19000000441'
+      location_id: '19000000210'
+      location_id: '19000000210'
+    36063:	
+      name: "Project HOME"
+      turf_id: '19000000032'
+      canvasser_id: '19000000445'
+      location_id: '19000000353'
+      location_id: '19000000353'
+    36845:	
+      name: "VietLead"
+      turf_id: '19000000033'
+      canvasser_id: '19000000446'
+      location_id: '19000000356'
+      location_id: '19000000356'
+    36853:	
+      name: "New Voices"
+      turf_id: '19000000044'
+      canvasser_id: '19000000453'
+      location_id: '19000000733'
+      location_id: '19000000733'
+    36857:	
+      name: "SEAMAAC"
+      turf_id: '19000000029'
+      canvasser_id: '19000000442'
+      location_id: '19000000262'
+      location_id: '19000000262'
+    36862:	
+      name: "Pittsburgh United"
+      turf_id: '19000000021'
+      canvasser_id: '19000000438'
+      location_id: '19000000494'
+      location_id: '19000000494'
+    36866:	
+      name: "PICC"
+      turf_id: '19000000030'
+      canvasser_id: '19000000443'
+      location_id: '19000000496'
+      location_id: '19000000496'
+    37067:
+      states:
+      - PA
+      bulk_submit: false
+      submit_forms: true      
+      sub_orgs:
+      - name: "One PA"
+        turf_id: '19000000024'
+        canvasser_id: '19000000439'
+        location_id: '19000000164'
+        location_id: '19000000164'
+      - name: "One PA - Philadelphia"
+        turf_id: '19000000064'
+        canvasser_id: '19000000469'
+        location_id: '19000000734'
+        location_id: '19000000734'
+      - name: "One PA - Pittsburgh"
+        turf_id: '19000000065'
+        canvasser_id: '19000000470'
+        location_id: '19000000735'
+        location_id: '19000000735'
+    37279:
+      states:
+      - PA
+      bulk_submit: false
+      submit_forms: true      
+      sub_orgs:
+      - name: "ACE - Pittsburgh"
+        turf_id: '19000000054'
+        canvasser_id: '19000000460'
+        location_id: '19000000709'
+        location_id: '19000000709'
+      - name: "ACE - Philadelphia Metro"
+        turf_id: '19000000055'
+        canvasser_id: '19000000461'
+        location_id: '19000000708'
+        location_id: '19000000708'
+    37281:	
+      name: "Unidos US"
+      turf_id: '19000000027'
+      canvasser_id: '19000000440'
+      location_id: '19000000502'
+      location_id: '19000000502'
+    37302:	
+      name: "Youth United for Change"
+      turf_id: '19000000035'
+      canvasser_id: '19000000448'
+      location_id: '19000000706'
+      location_id: '19000000706'
+    37496:	
+      name: "Media Mobilizing Project"
+      turf_id: '19000000043'
+      canvasser_id: '19000000452'
+      location_id: '19000000726'
+      location_id: '19000000726'
+    37625:	
+      name: "ACLU PA"
+      turf_id: '19000000042'
+      canvasser_id: '19000000451'
+      location_id: '19000000710'
+      location_id: '19000000710'
+    37928:	
+      name: "Asian Americans United"
+      turf_id: '19000000031'
+      canvasser_id: '19000000444'
+      location_id: '19000000712'
+      location_id: '19000000712'
+    38332:	
+      name: "NAKASEC - Montgomery"
+      turf_id: '19000000038'
+      canvasser_id: '19000000449'
+      location_id: '19000000729'
+      location_id: '19000000729'
+    38368:
+      states:
+      - PA
+      bulk_submit: false
+      submit_forms: true      
+      sub_orgs:	
+      - name: "PennFuture"
+        turf_id: '19000000015'
+        canvasser_id: '19000000435'
+        location_id: '19000000517'
+        location_id: '19000000517'
+      - name: "PennFuture - Luzerne County"
+        turf_id: '19000000018'
+        canvasser_id: '19000000436'
+        location_id: '19000000738'
+        location_id: '19000000738'
+      - name: "PennFuture - Lehigh County"
+        turf_id: '19000000019'
+        canvasser_id: '19000000437'
+        location_id: '19000000737'
+        location_id: '19000000737'
+    38581:	
+      name: "CAIR Philadelphia"
+      turf_id: '19000000050'
+      canvasser_id: '19000000457'
+      location_id: '19000000715'
+      location_id: '19000000715'
+    38631:	
+      name: "Rising Sons / Ones Up"
+      turf_id: '19000000048'
+      canvasser_id: '19000000455'
+      location_id: '19000000521'
+      location_id: '19000000521'
+    38677:	
+      name: "FOF - Philadelphia"
+      turf_id: '19000000039'
+      canvasser_id: '19000000450'
+      location_id: '19000000722'
+      location_id: '19000000722'
+    38704:	
+      name: "West End Power"
+      turf_id: '19000000051'
+      canvasser_id: '19000000458'
+      location_id: '19000000528'
+      location_id: '19000000528'
+    38726:	
+      name: "Black Voters Matter"
+      turf_id: '19000000052'
+      canvasser_id: '19000000459'
+      location_id: '19000000714'
+      location_id: '19000000714'
+    38911:	
+      name: "Bhutanese Community Association of Pittsburgh"
+      turf_id: '19000000070'
+      canvasser_id: '19000000474'
+      location_id: '19000000713'
+      location_id: '19000000713'
+    39019:	
+      name: "1 Vote Counts"
+      turf_id: '19000000068'
+      canvasser_id: '19000000473'
+      location_id: '19000000707'
+      location_id: '19000000707'
+    39035:	
+      name: "Casa San Jose"
+      turf_id: '19000000071'
+      canvasser_id: '19000000475'
+      location_id: '19000000719'
+      location_id: '19000000719'
+    39036:
+      states:
+      - PA
+      bulk_submit: false
+      submit_forms: true      
+      sub_orgs:	
+      - name: "Al Bustan - Philadelphia"
+        turf_id: '19000000074'
+        canvasser_id: '19000000477'
+        location_id: '19000000765'
+        location_id: '19000000765'
+      - name: "Al Bustan - Lehigh	"
+        turf_id: '19000000075'
+        canvasser_id: '19000000478'
+        location_id: '19000000766'
+        location_id: '19000000766'
 
 
 
