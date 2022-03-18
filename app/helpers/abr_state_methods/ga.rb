@@ -104,7 +104,7 @@ module AbrStateMethods::GA
 
       {"Temporary Street Address": {visible: "has_mailing_address", required: 'star'}},
       {"Temporary City": {visible: "has_mailing_address", required: 'star'}},
-      {"Temporary State": {visible: "has_mailing_address", classes: "half",  type: :select, options: GeoState.collection_for_select, include_blank: true, required: 'star' }},
+      {"Temporary State": {visible: "has_mailing_address", classes: "half",  type: :select, options: GeoState.collection_for_select, required: 'star' }},
       {"Temporary Zip": {visible: "has_mailing_address", classes: "half", required:'star', min: 5, max: 10}},
       {"Temporary County": {visible: "has_mailing_address", required:'star'}},
 

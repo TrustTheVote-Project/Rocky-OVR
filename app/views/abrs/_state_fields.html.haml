@@ -220,6 +220,7 @@
       - ui_regexp = opts[:ui_regexp]
       - field_label = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}", default: (opts[:label] || field_name)).html_safe
       - instructions = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__hint", default: "").html_safe
+      - post_instructions = t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{field_name}__post_hint", default: "").html_safe
       - class_name = "line #{opts[:classes]} #{opts[:method]} #{required ? 'required' : ''}"
       - required_message = required ?  @abr.custom_required_message(field_name).html_safe : nil
       - ui_regexp_fail_message = ui_regexp ?  @abr.custom_format_message(field_name).html_safe : nil
@@ -258,8 +259,10 @@
               %h3
                 = form.check_box opts[:method], required ? {data: {"client-validation-require-accept".to_sym => required_message}} : {}
                 = form.label opts[:method], "#{field_label}#{required ? "<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>" : ''}".html_safe
+                - unless post_instructions.blank?
+                  %p.instructions= post_instructions
                 %span.error= form.object.errors[opts[:method]].join("\n").html_safe
-          
+              
       - elsif opts[:type] == :string
         = field_li(form, opts[:method], { li_options: {class: class_name,  data: data}, skip_tooltip: true, required: !!required, label_options: field_label, instructions: instructions})
       - elsif opts[:type] == :hidden

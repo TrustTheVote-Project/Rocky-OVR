@@ -5,16 +5,16 @@ tl:
       ak:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
           requirements: ''
         state_online_abr:
           requirements: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           us_citizen: ''
           us_citizen__required_message: ''
@@ -51,12 +51,12 @@ tl:
       al:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
           requirements: ''
         abr_form_fields:
           Return this application to: ''
@@ -93,12 +93,12 @@ tl:
       ar:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
         abr_form_fields:
           Reason: ''
           reason_covid: ''
@@ -127,12 +127,12 @@ tl:
       az:
         state_online_abr:
           requirements: ''
-          finish_instructions: ''
+          
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           confirm_email_delivery: ''
@@ -141,7 +141,7 @@ tl:
             desktop_provide_signature: ''
             continue_on_paper: ''
           requirements: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           County_of_Residence: ''
           election_selection: ''
@@ -168,9 +168,9 @@ tl:
       ca:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
@@ -186,9 +186,9 @@ tl:
       co:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
@@ -196,12 +196,12 @@ tl:
       ct:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           Mailing Address 2: ''
@@ -223,32 +223,32 @@ tl:
       dc:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
           instructions: ''
       de:
-        request_absentee_ballot_in: ''
+        
         state_online_abr:
-          finish_instructions: ''
+          
           requirements: ''
           button: ''
           confirm: ''
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           step_2_instructions: ''
           step_3_header: ''
           step_3_instructions: ''
           finish_pdf_delay: ''
-          finish_instructions: ''
+          
           email_instructions: ''
         abr_form_fields:
           Last4 Digits of SSN: ''
@@ -273,22 +273,22 @@ tl:
       fl:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
         state_online_abr:
           header: ''
           confirm: ''
           requirements: ''
-          finish_instructions: ''
+          
       ga:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           confirm_email_delivery: ''
@@ -296,7 +296,7 @@ tl:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           Permanent County: ''
@@ -334,9 +334,9 @@ tl:
       hi:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
@@ -344,12 +344,12 @@ tl:
       ia:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
         abr_form_fields:
           identification__options:
             dln: ''
@@ -374,22 +374,22 @@ tl:
           mailingCountry: ''
         state_online_abr:
           requirements: ''
-          finish_instructions: ''
+          
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           requirements: ''
-          finish_instructions: ''
+          
       il:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
         abr_form_fields:
           ElectionPrecinct: ''
           VOTERS OPTIONAL ADDRESS LINE 2: ''
@@ -447,9 +447,9 @@ tl:
           finish_page: ''
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           finish_page: ''
@@ -486,13 +486,13 @@ tl:
       ks:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           requirements: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           identification: ''
           identification__hint: ''
@@ -513,24 +513,24 @@ tl:
       ky:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
           instructions: ''
       la:
         state_online_abr:
-          finish_instructions: ''
+          
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
           requirements: ''
           finish_pdf_delay_instructions: ''
         abr_form_fields:
@@ -588,9 +588,9 @@ tl:
           assistant: ''
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           confirm_email_delivery: ''
@@ -598,29 +598,29 @@ tl:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
         state_online_abr:
-          finish_instructions: ''
+          
           requirements: ''
       me:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
         state_online_abr:
           confirm: ''
           requirements: ''
-          finish_instructions: ''
+          
       ma:
-        request_absentee_ballot_in: ''
+        
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           step_2_instructions: ''
@@ -633,7 +633,7 @@ tl:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           mailing_address_input: ''
@@ -663,14 +663,14 @@ tl:
           has_mailing_address: ''
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
         state_online_abr:
-          finish_instructions: ''
+          
         wi_zip:
           message: ''
           register_in_wi: ''
@@ -749,7 +749,7 @@ tl:
         state_online_abr:
           requirements: ''
           instructions: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           bad_date__format_message: ''
           Absentee ballot address_1: ''
@@ -767,16 +767,16 @@ tl:
           no_id_check__required_message: ''
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           signature_capture:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
         registration:
           has_state_license: ''
           has_no_state_license: ''
@@ -786,12 +786,12 @@ tl:
       mo:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
           requirements: ''
         abr_form_fields:
           has_mailing_address: ''
@@ -812,9 +812,9 @@ tl:
       ms:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
@@ -822,9 +822,9 @@ tl:
       mt:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           requirements: ''
@@ -846,12 +846,12 @@ tl:
       nc:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
         abr_form_fields:
           bad_date__format_message: ''
           has_mailing_address: ''
@@ -912,9 +912,9 @@ tl:
       nd:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           skip_state_online_abr: ''
@@ -948,18 +948,18 @@ tl:
           ID_Number_dln__format_message: ''
         state_online_abr:
           requirements: ''
-          finish_instructions: ''
+          
       ne:
-        request_absentee_ballot_in: ''
+        
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           requirements: ''
-          finish_instructions: ''
+          
           step_2_instructions: ''
           step_3_header: ''
           step_3_instructions: ''
@@ -981,16 +981,16 @@ tl:
       nh:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           signature_capture:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           assistant: ''
@@ -1015,17 +1015,17 @@ tl:
           Group_II__required_message: ''
           Party: ''
       nj:
-        request_absentee_ballot_in: ''
+        
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
           instructions: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           Mailing_Address_2: ''
@@ -1056,9 +1056,9 @@ tl:
       nm:
         abr_form_fields:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           has_mailing_address: ''
           mail_address1: ''
           mail_address2: ''
@@ -1067,15 +1067,15 @@ tl:
         abr:
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
         state_online_abr:
-          finish_instructions: ''
+          
       nv:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
@@ -1125,9 +1125,9 @@ tl:
       ny:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           confirm_email_delivery: ''
@@ -1135,7 +1135,7 @@ tl:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
           requirements: ''
         state_online_abr:
           requirements: ''
@@ -1173,12 +1173,12 @@ tl:
       oh:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
         abr_form_fields:
           County: ''
           has_mailing_address: ''
@@ -1197,21 +1197,21 @@ tl:
       ok:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
         state_online_abr:
           confirm: ''
           requirements: ''
-          finish_instructions: ''
+          
       or:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
@@ -1242,14 +1242,14 @@ tl:
           Same_as_above: ''
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
-          finish_instructions: ''
+          
         state_online_abr:
-          finish_instructions: ''
+          
           requirements: ''
         registration_deadline_text: ''
         state_flow_error: ''
@@ -1321,25 +1321,25 @@ tl:
       sc:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           requirements: ''
         state_online_abr:
           confirm: ''
-          finish_instructions: ''
+          
       ri:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           requirements: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           Text Field 11: ''
           mail_address: ''
@@ -1356,13 +1356,13 @@ tl:
       sd:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           requirements: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           ? SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your
@@ -1386,9 +1386,9 @@ tl:
       tn:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
         abr_form_fields:
@@ -1422,9 +1422,9 @@ tl:
       tx:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
         abr_form_fields:
@@ -1459,25 +1459,25 @@ tl:
       ut:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
           instructions: ''
       va:
-        request_absentee_ballot_in: ''
+        
         state_online_abr:
           requirements: ''
-          finish_instructions: ''
+          
           button: ''
           confirm: ''
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           step_2_header: ''
@@ -1490,7 +1490,7 @@ tl:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           Birth_Year: ''
           SSN_Last_4: ''
@@ -1543,20 +1543,20 @@ tl:
           requirements: ''
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
           instructions: ''
       wa:
-        request_absentee_ballot_in: ''
+        
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           header: ''
@@ -1590,19 +1590,19 @@ tl:
           request_agent: ''
         state_online_abr:
           requirements: ''
-          finish_instructions: ''
+          
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           signature_capture:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
       wv:
         abr_form_fields:
           resident_county: ''
@@ -1633,12 +1633,12 @@ tl:
         state_online_abr:
           confirm: ''
           requirements: ''
-          finish_instructions: ''
+          
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           requirements: ''
@@ -1646,9 +1646,9 @@ tl:
       wy:
         abr:
           request_deadline: ''
-          abr_status_check_intro: ''
-          state_reminder_1: ''
-          state_reminder_2: ''
+          
+          
+          
           status_check_instructions: ''
           
           confirm_email_delivery: ''
@@ -1656,7 +1656,7 @@ tl:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          finish_instructions: ''
+          
         abr_form_fields:
           has_mailing_address: ''
           MAIL MY BALLOT TO: ''

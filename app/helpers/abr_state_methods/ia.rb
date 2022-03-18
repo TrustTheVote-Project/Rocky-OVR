@@ -275,7 +275,7 @@ module AbrStateMethods::IA
       {"has_mailing_address": {type: :checkbox}},
       {"Mail Address": {visible: "has_mailing_address"}}, #TODO- the text isn't working and there was a weird duplicate thing on the txt file.... remind me to ask you about that. 
       {"Mailing Address City": {visible: "has_mailing_address"}},
-      {"Mailing Address State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Mailing Address State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select}},
       {"Mailing Address Zip Code": {visible: "has_mailing_address"}},
       {"Country (Other than US)": {visible: "has_mailing_address"}},
     ]

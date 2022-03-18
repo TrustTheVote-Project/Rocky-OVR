@@ -50,7 +50,7 @@ module AbrStateMethods::IL::Chicago
       {"Address": {visible: "has_mailing_address", classes: "three-quarter"}},
       {"Apartment Number2": {visible: "has_mailing_address", classes: "quarter last"}},
       {"City": {visible: "has_mailing_address", classes: "half"}},
-      {"State": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"State": {visible: "has_mailing_address", classes: "quarter", type: :select, options: GeoState.collection_for_select}},
       {"ZiP Code": {visible: "has_mailing_address", classes: "quarter last"}},
       {"Mailed Ballot Sent": {type: :radio, required: true}},
       {"Voter Registration Number (if known)": {classes: "half"}},

@@ -87,7 +87,7 @@ module AbrStateMethods::NY
       {"mail_street_name": {visible: "has_mailing_address",required:"star", classes: "half"}},
       {"mail_unit": {visible: "has_mailing_address", classes: "quarter last"}},
       {"mail_city": {visible: "has_mailing_address", required: "star", classes: "half"}},
-      {"mail_state": {visible: "has_mailing_address", required: "star", classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"mail_state": {visible: "has_mailing_address", required: "star", classes: "quarter", type: :select, options: GeoState.collection_for_select}},
       {"mail_zip": {visible: "has_mailing_address",required:"star", classes: "quarter last"}},
     ]
   end
