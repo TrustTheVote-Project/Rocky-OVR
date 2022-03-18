@@ -278,7 +278,7 @@ en:
         is_citizen: I am a US citizen
         confirm_will_be_18: I am at least sixteen years old and will not vote in a special or general election until I turn eighteen.
         has_previous_name: I have changed my name
-        ssn4: Last 4 Digits of Social Security Number
+        ssn4: "Optional: Please enter the last 4 digits of your social security number."
         has_ssn: I have a Social Security Number
         confirm_no_ssn: No SSN was ever issued.
         dln: Washington DMV Identifier or Customer Number
@@ -627,8 +627,11 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
-              too_young: Must be at least sixteen
-            dln:
+              too_young: You must be at least sixteen and must be at least eighteen in order to vote.
+            issue_date:
+              future: Cannot be in the future
+              too_old: Required.
+            driver_license:
               format: Should be 12 digits
               blank: Required.
               wa_invalid: Your WA DLN number is not valid. Please double-check and
@@ -638,11 +641,11 @@ en:
               blank: Required. If you do not know the last four digits of your social
                 security number, please select "I do not know the last four digits
                 of my social security number.
-            voter_signature_image:
-              blank: You must provide a valid PennDOT number, or an electronic signature,
-                or sign a paper form to complete your application.
-              too_many_retries: After two unsuccessful PennDOT submissions you must
-                provide an electronic signature.
+            # voter_signature_image:
+            #   blank: You must provide a valid WA DLN, or an electronic signature,
+            #     or sign a paper form to complete your application.
+            #   too_many_retries: After two unsuccessful WA submissions you must
+            #     provide an electronic signature.
         abr:
           blank: Required
           format: Invalid

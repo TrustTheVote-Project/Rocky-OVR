@@ -106,9 +106,9 @@
       -#= field_li(form, :mail_county_code, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-county__line"}, select_options: StateRegistrants::WARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
 
 
-  %fieldset.no_border
+  -#%fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_previous_mailing_address, class_name: "registrant-form__previous-mailing-address__line", required: false, tooltip: :previous_name}
-  %fieldset#previous_mailing_address_set
+  -#%fieldset#previous_mailing_address_set
     %legend
       %span= I18n.t('txt.registration.previous_mailing_address') 
       = tooltip_tag :prev_mailing_address

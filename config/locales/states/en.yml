@@ -3354,6 +3354,11 @@ en:
             </a></p>'
       wa:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
+        signature_capture:
+            desktop_provide_e_signature: "Optional: Provide e signature."
+            desktop_provide_signature: "Optional:  Provide digital signature."
+            continue_on_paper: I prefer to print, sign and mail or email my application
+              myself.
         abr:
           request_deadline: If you are registered to vote in Washington, you do not
             need to request a ballot. Online and mail registrations must be received
