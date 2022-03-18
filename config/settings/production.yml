@@ -9,7 +9,7 @@ blocks_configuration:
   shift_length: 24
   default_location_id: 19000000002
   default_staging_location_id: 19000000003  
-  url: https://svpa.blocks.im
+  url: https://v2.api.blocks.app
   partners:
     16027:	
       turf_id: '19000000049'
