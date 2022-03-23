@@ -32,7 +32,10 @@ class BlocksService
         email_opt_in: r.partner_opt_in_email?,
         preferred_language: r.is_grommet? ? r.grommet_preferred_language : r.locale,
         volunteer_with_partner: r.partner_volunteer?,
-        phone_type: r.phone_type
+        phone_type: r.phone_type,
+        has_state_license: (r.has_state_license? || (!r.is_grommet? && r.existing_state_registrant&.has_state_license?)),
+        has_ssn: (r.has_ssn? || (!r.is_grommet? && r.existing_state_registrant&.has_ssn?)),
+        
       }
     }
     begin
