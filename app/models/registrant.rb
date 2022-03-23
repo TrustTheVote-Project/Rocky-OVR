@@ -1793,8 +1793,8 @@ class Registrant < ActiveRecord::Base
       created_at && created_at.in_time_zone("America/New_York").to_s,
       yes_no(finish_with_state?),
       yes_no(building_via_api_call?),
-      yes_no(has_state_license? || existing_state_registrant&.has_state_license?),
-      yes_no(has_ssn? || existing_state_registrant&.has_ssn?),
+      yes_no(has_state_license? || (!is_grommet? && existing_state_registrant&.has_state_license?)),
+      yes_no(has_ssn? || (!is_grommet? && existing_state_registrant&.has_ssn?)),
       
       vr_application_submission_modifications,
       vr_application_submission_errors,
