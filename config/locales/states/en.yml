@@ -858,25 +858,39 @@ en:
             button: Finish your absentee request with Sangamon County
       in:
         state_online_abr:
+          confirm: |-
+            <p>You must have a reason to vote absentee-by-mail in Indiana and be able to mark your own ballot and sign your name. Make sure you're eligible:</p>
+            <ul>
+            <li>You have a specific, reasonable expectation that you will be absent from the county on Election Day during the entire 12 hours that the polls are open (6 am until 6 pm).</li>
+            <li>You have a disability.</li>
+            <li>You are at least 65 years of age.</li>
+            <li>You will have official election duties outside of your voting precinct.</li>
+            <li>You are scheduled to work at your regular place of employment during the entire 12 hours that the polls are open.</li>
+            <li>You will be confined due to illness or injury or you will be caring for an individual confined due to illness or injury during the entire 12 hours that the polls are open.</li>
+            <li>You are prevented from voting because of a religious discipline or religious holiday during the entire 12 hours that the polls are open.</li>
+            <li>You are a participant in the state's address confidentiality program.</li>
+            <li>You are a member of the military or a public safety officer.</li>
+            <li>You are a "serious sex offender" as defined in Indiana Code 35-42-4-14(a).</li>
+            <li>You are prevented from voting due to the unavailability of transportation to the polls.</li>
+            </ul>
+          instructions: |-
+            <p>You need to file an application before each election which you want to vote absentee-by-mail.</p>
+            <p>You do not need to provide proof of identification. However, if it is your  first time voting in Indiana and you did not provide proof of residency, you will be asked to include evidence with your absentee balloting materials. This can be a state-issued ID where the address matches your registration, but can also be a bank statement, utility bill, etc.</p>
           finish_page: '<p>Once you have your ballot, be sure to read the instructions
             carefully, fill out the ballot and send it back in. Your absentee ballot
             must be received by 12:00pm on November 3, 2020. You can check the status
             of your ballot here:  <a rel="noopener" target="blank" href="http://www.indianavoters.com/">http://www.indianavoters.com/</a></p>'
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by using
-            your state&#39;s <a target='_blank' href='http://www.indianavoters.com/'>online
-            tool</a>
-          finish_page: '<p>Make sure to read the instructions on the form carefully,
-            then complete and send this form in as soon as possible. Your request
-            must be received by 11:59 pm on October 22, 2020. Once you have your ballot,
-            again be sure to read the instructions carefully, fill out the ballot
-            and send it back in. Your absentee ballot must be received by 12:00pm
-            on November 3, 2020.</p><p>You can check the status of your ballot here:
-            <a rel="noopener" target="blank" href="http://www.indianavoters.com/">http://www.indianavoters.com/</a>
-            </p>'
+          request_deadline: |-
+            <p>Your absentee ballot request must be received by:</p>
+            <ul>
+            <li>4/21/2022 for the primary election, and</li>
+            <li>10/27/2022 for the general election.</li>
+            </ul>
+          status_check_instructions: <a target='_blank' rel="noopener noreferrer" href='https://indianavoters.in.gov/MVPHome/PrintDocuments'>https://indianavoters.in.gov/MVPHome/PrintDocuments</a>
+          finish_instructions_3_hint_state: |-
+            <h3>Don't forget to vote!</h3>
+            <p>Your voted absentee ballot must be received by the noon on Election Day in order to be counted.</p>
           requirements: |-
             <p>To qualify to request a ballot in IN, you must have one of the following reasons:  </p>
             <ul>

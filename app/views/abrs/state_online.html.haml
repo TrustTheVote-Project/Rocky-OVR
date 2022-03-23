@@ -12,7 +12,9 @@
       
     
   #abr_state_online_abr_section
-    = I18n.t('txt.abr.state_online_defaults.instructions', state: @abr.home_state_name, default: "").html_safe
+    %h2{"role"=>"heading", "aria-level"=>2}= t("states.custom.#{@abr.i18n_key}.state_online_abr.instructions_header", default: I18n.t('txt.abr.state_online_defaults.instructions_header', state: @abr.home_state_name))
+    .intro-message
+      = I18n.t('txt.abr.state_online_defaults.instructions', state: @abr.home_state_name, default: "").html_safe
     .intro-message.state-instructions
       = I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.instructions", default: "").html_safe
     = rollover_button(:state_online_registration, t("states.custom.#{@abr.i18n_key}.state_online_abr.button", default: I18n.t('txt.button.state_online_abr', :state=>@abr.home_state_name).html_safe).html_safe, {:id=>'abr_state_online_abr',:name=>'abr_state_online_abr',:value=>'abr_state_online_abr'}) 
