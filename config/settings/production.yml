@@ -6,6 +6,8 @@ ui_url_host: "register.rockthevote.com"
 
 
 blocks_configuration:
+  states:
+    - PA
   shift_length: 24
   default_location_id: 19000000002
   default_staging_location_id: 19000000003  
@@ -18,47 +20,15 @@ blocks_configuration:
       location_id: '19000000727'
       staging_location_id: '19000000727'
     35318:	
-      states:
-      - PA
-      bulk_submit: false
-      submit_forms: true      
-      sub_orgs:
-      - name: "Make The Road - Philadelphia"
-        turf_id: '19000000059'
-        canvasser_id: '19000000465'
-        location_id: '19000000724'
-        staging_location_id: '19000000724'
-      - name: "Make The Road - Reading	"
-        turf_id: '19000000060'
-        canvasser_id: '19000000466'
-        location_id: '19000000725'
-        staging_location_id: '19000000725'
-      - name: "Make The Road - Allentown	"
-        turf_id: '19000000061'
-        canvasser_id: '19000000467'
-        location_id: '19000000723'
-        staging_location_id: '19000000723'
+      turf_id: '19000000023'
+      canvasser_id: '19000000022'
+      location_id: '19000000478'
+      staging_location_id: '19000000478'
     35379:
-      states:
-      - PA
-      bulk_submit: false
-      submit_forms: true      
-      sub_orgs:
-      - name: "CASA - Harrisburg	"
-        turf_id: '19000000056'
-        canvasser_id: '19000000462'
-        location_id: '19000000716'
-        staging_location_id: '19000000716'
-      - name: "CASA - Lancaster	"
-        turf_id: '19000000057'
-        canvasser_id: '19000000463'
-        location_id: '19000000717'
-        staging_location_id: '19000000717'
-      - name: "CASA - Philadelphia	"
-        turf_id: '19000000058'
-        canvasser_id: '19000000464'
-        location_id: '19000000718'
-        staging_location_id: '19000000718'
+      turf_id: '19000000036'
+      canvasser_id: '19000000021'
+      location_id: '19000000480'
+      staging_location_id: '19000000480'
     35863:	
       name: "Planned Parenthood Association of PA	"
       turf_id: '19000000047'
@@ -108,42 +78,15 @@ blocks_configuration:
       location_id: '19000000496'
       staging_location_id: '19000000496'
     37067:
-      states:
-      - PA
-      bulk_submit: false
-      submit_forms: true      
-      sub_orgs:
-      - name: "One PA"
-        turf_id: '19000000024'
-        canvasser_id: '19000000439'
-        location_id: '19000000164'
-        staging_location_id: '19000000164'
-      - name: "One PA - Philadelphia"
-        turf_id: '19000000064'
-        canvasser_id: '19000000469'
-        location_id: '19000000734'
-        staging_location_id: '19000000734'
-      - name: "One PA - Pittsburgh"
-        turf_id: '19000000065'
-        canvasser_id: '19000000470'
-        location_id: '19000000735'
-        staging_location_id: '19000000735'
+      turf_id: '19000000024'
+      canvasser_id: '19000000439'
+      location_id: '19000000164'
+      staging_location_id: '19000000164'
     37279:
-      states:
-      - PA
-      bulk_submit: false
-      submit_forms: true      
-      sub_orgs:
-      - name: "ACE - Pittsburgh"
-        turf_id: '19000000054'
-        canvasser_id: '19000000460'
-        location_id: '19000000709'
-        staging_location_id: '19000000709'
-      - name: "ACE - Philadelphia Metro"
-        turf_id: '19000000055'
-        canvasser_id: '19000000461'
-        location_id: '19000000708'
-        staging_location_id: '19000000708'
+      turf_id: '19000000025'
+      canvasser_id: '19000000010'
+      location_id: '19000000500'
+      staging_location_id: '19000000500'
     37281:	
       name: "Unidos US"
       turf_id: '19000000027'
@@ -181,26 +124,10 @@ blocks_configuration:
       location_id: '19000000729'
       staging_location_id: '19000000729'
     38368:
-      states:
-      - PA
-      bulk_submit: false
-      submit_forms: true      
-      sub_orgs:	
-      - name: "PennFuture"
-        turf_id: '19000000015'
-        canvasser_id: '19000000435'
-        location_id: '19000000517'
-        staging_location_id: '19000000517'
-      - name: "PennFuture - Luzerne County"
-        turf_id: '19000000018'
-        canvasser_id: '19000000436'
-        location_id: '19000000738'
-        staging_location_id: '19000000738'
-      - name: "PennFuture - Lehigh County"
-        turf_id: '19000000019'
-        canvasser_id: '19000000437'
-        location_id: '19000000737'
-        staging_location_id: '19000000737'
+      turf_id: '19000000015'
+      canvasser_id: '19000000435'
+      location_id: '19000000517'
+      staging_location_id: '19000000517'
     38581:	
       name: "CAIR Philadelphia"
       turf_id: '19000000050'
@@ -250,21 +177,11 @@ blocks_configuration:
       location_id: '19000000719'
       staging_location_id: '19000000719'
     39036:
-      states:
-      - PA
-      bulk_submit: false
-      submit_forms: true      
-      sub_orgs:	
-      - name: "Al Bustan - Philadelphia"
-        turf_id: '19000000074'
-        canvasser_id: '19000000477'
-        location_id: '19000000765'
-        staging_location_id: '19000000765'
-      - name: "Al Bustan - Lehigh	"
-        turf_id: '19000000075'
-        canvasser_id: '19000000478'
-        location_id: '19000000766'
-        staging_location_id: '19000000766'
+      turf_id: '19000000069'
+      canvasser_id: '19000000487'
+      location_id: '19000000784'
+      staging_location_id: '19000000784'
+
 
 
 
