@@ -404,15 +404,16 @@ class ReportGenerator
             sr  = nil
             case r.home_state_abbrev
             when "PA"
-              sr = pa_registrants[r.uid] || StateRegistrants::PARegistrant.new
+              sr = pa_registrants[r.uid] || nil
             when "VA"
-              sr = va_registrants[r.uid] || StateRegistrants::VARegistrant.new
+              sr = va_registrants[r.uid] || nil
             when "MI"
-              sr = mi_registrants[r.uid] || StateRegistrants::MIRegistrant.new
+              sr = mi_registrants[r.uid] || nil
             when "MN"
-              sr = mn_registrants[r.uid] || StateRegistrants::MNRegistrant.new
+              sr = mn_registrants[r.uid] || nil
             end
             r.instance_variable_set(:@existing_state_registrant, sr)
+            r.instance_variable_set(:@existing_state_registrant_fetched, true)
           end
           reg_attributes = self.registrant_fields_old.collect {|fname| r.send(fname) }
           csv << reg_attributes
@@ -467,15 +468,16 @@ class ReportGenerator
             sr  = nil
             case r.home_state_abbrev
             when "PA"
-              sr = pa_registrants[r.uid] || StateRegistrants::PARegistrant.new
+              sr = pa_registrants[r.uid] || nil
             when "VA"
-              sr = va_registrants[r.uid] || StateRegistrants::VARegistrant.new
+              sr = va_registrants[r.uid] || nil
             when "MI"
-              sr = mi_registrants[r.uid] || StateRegistrants::MIRegistrant.new
+              sr = mi_registrants[r.uid] || nil
             when "MN"
-              sr = mn_registrants[r.uid] || StateRegistrants::MNRegistrant.new
+              sr = mn_registrants[r.uid] || nil
             end
             r.instance_variable_set(:@existing_state_registrant, sr)
+            r.instance_variable_set(:@existing_state_registrant_fetched, true)
           end
           reg_attributes = self.registrant_fields.collect {|fname| r.send(fname) || ""}
           csv << reg_attributes + ["", "", "", "", "", "", "", "", "vr"]          

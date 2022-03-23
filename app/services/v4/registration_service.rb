@@ -349,70 +349,7 @@ module V4
         download_url: r.status == Report::Status.complete ? (g_partner ? Rails.application.routes.url_helpers.api_v4_download_gregistrant_report_url(r, host: RockyConf.api_host_name) : Rails.application.routes.url_helpers.download_api_v4_registrant_report_url(r, host: RockyConf.api_host_name)) : nil
       }
 
-      # distribute_reads do
-      #   pa_registrants = {}
-      #   StateRegistrants::PARegistrant.joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_pa_registrants.registrant_id").where('registrants.partner_id=?',partner_id).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
-      #   va_registrants = {}
-      #   StateRegistrants::VARegistrant.joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
-      #   mapped = []
-      #   regs.includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each do |reg|
-      #     if reg.use_state_flow?
-      #       sr  = nil
-      #       case reg.home_state_abbrev
-      #       when "PA"
-      #         sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
-      #       when "VA"
-      #         sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
-      #       end
-      #       reg.instance_variable_set(:@existing_state_registrant, sr)
-      #     end
-      #
-      #     mapped << { :status               => reg.extended_status,
-      #       :will_be_18_by_election => reg.will_be_18_by_election?,
-      #       :create_time          => reg.created_at.to_s,
-      #       :complete_time        => reg.completed_at.to_s,
-      #       :lang                 => reg.locale,
-      #       :first_reg            => reg.first_registration?,
-      #       :home_zip_code        => reg.home_zip_code,
-      #       :us_citizen           => reg.us_citizen?,
-      #       :name_title           => reg.name_title,
-      #       :first_name           => reg.first_name,
-      #       :middle_name          => reg.middle_name,
-      #       :last_name            => reg.last_name,
-      #       :name_suffix          => reg.name_suffix,
-      #       :home_address         => reg.home_address,
-      #       :home_unit            => reg.home_unit,
-      #       :home_city            => reg.home_city,
-      #       :home_state_id        => reg.home_state_id,
-      #       :has_mailing_address  => reg.has_mailing_address,
-      #       :mailing_address      => reg.mailing_address,
-      #       :mailing_unit         => reg.mailing_unit,
-      #       :mailing_city         => reg.mailing_city,
-      #       :mailing_state_id     => reg.mailing_state_id,
-      #       :mailing_zip_code     => reg.mailing_zip_code,
-      #       :race                 => reg.race,
-      #       :party                => reg.party,
-      #       :phone                => reg.phone,
-      #       :phone_type           => reg.phone_type,
-      #       :email_address        => reg.email_address,
-      #       :opt_in_email         => reg.opt_in_email,
-      #       :opt_in_sms           => reg.opt_in_sms,
-      #       :opt_in_volunteer            => reg.volunteer?,
-      #       :partner_opt_in_email => reg.partner_opt_in_email,
-      #       :partner_opt_in_sms   => reg.partner_opt_in_sms,
-      #       :partner_opt_in_volunteer    => reg.partner_volunteer?,
-      #       :survey_question_1    => partner.send("survey_question_1_#{reg.locale}"),
-      #       :survey_answer_1      => reg.survey_answer_1,
-      #       :survey_question_2    => partner.send("survey_question_1_#{reg.locale}"),
-      #       :survey_answer_2      => reg.survey_answer_2,
-      #       :finish_with_state    => reg.finish_with_state?,
-      #       :created_via_api      => reg.building_via_api_call?,
-      #       :tracking_source      => reg.tracking_source,
-      #       :tracking_id         => reg.tracking_id,
-      #       :dob                  => reg.pdf_date_of_birth }
-      #   end
-      #   return mapped
-      # end
+      
       
     end
 

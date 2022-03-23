@@ -429,15 +429,16 @@ class Report < ActiveRecord::Base
             sr  = nil
             case reg.home_state_abbrev
             when "PA"
-              sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
+              sr = pa_registrants[reg.uid] || nil
             when "VA"
-              sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+              sr = va_registrants[reg.uid] || nil
             when "MI"
-              sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
+              sr = mi_registrants[reg.uid] || nil
             when "MN"
-              sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
+              sr = mn_registrants[reg.uid] || nil
             end
             reg.instance_variable_set(:@existing_state_registrant, sr)
+            reg.instance_variable_set(:@existing_state_registrant_fetched, true)
           end
           csv << reg.send(csv_method)
         end
