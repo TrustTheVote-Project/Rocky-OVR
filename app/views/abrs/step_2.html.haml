@@ -1,9 +1,11 @@
 %h2{role: "heading", "aria-level": "2"}
-  = t("states.custom.#{@abr.i18n_key}.abr.step_2_header", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip), default: t('txt.abr.step_2_header', state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip)).html_safe).html_safe
+  = t("states.custom.#{@abr.i18n_key}.abr.step_2_header", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip), default: '').html_safe
 
 .intro-message
   = t("states.custom.#{@abr.i18n_key}.abr.step_2_instructions", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip), default: t('txt.abr.step_2_instructions', state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip)).html_safe).html_safe
 
+%h2{role: "heading", "aria-level": "2"}
+  = t('txt.abr.step_2_header', state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip)).html_safe
 
 = form_for(@abr) do |form|
   = render partial: 'step', locals: { form: form }
