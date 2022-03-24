@@ -157,7 +157,7 @@ absentee_states:
       "bloomington":
         online_req_url: https://cityblm.seamlessdocs.com/f/VBMapplication1120
   IN:
-    online_req_url: https://myvote.wi.gov/en-us/Vote-Absentee-By-Mail
+    online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
     #pdf_template: in.pdf
     abr_status_check_url: "http://www.indianavoters.com/"
     abr_track_ballot_url: "https://indianavoters.in.gov/MVPHome/PrintDocuments"
