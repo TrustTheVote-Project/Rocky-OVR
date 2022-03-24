@@ -771,23 +771,48 @@ en:
             add my phone number or email address to my voter record.
       id:
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          mailingAddress: Mailing address
-          mailingZipCode: Zip
-          mailingCity: City
-          mailingState: State
-          mailingCountry: Country (if outside of USA)
+          abr_county: Registration Address County
+          abr_id_selections: You may be eligible to complete your request online
+          abr_check_mailing_address: I get my mail at a different address from the one where I am registered
+          abr_mailing_address_instructions: Mailing address<p>Your absentee ballot will be sent to this address.</p>
+          abr_mailing_address_line_1: Address
+          abr_mailling_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_mailing_country: Country (if not USA)
+          abr_election_type_selection: Select the election you'd like to request a ballot for. <br /> You may select more than one.<p>The offices and issues on the ballot may vary. Contact your County Clerk for more specific information.</p>
+          abr_election_type1: May 17, 2022 Primary
+          abr_election_type2: August 30, 2022 School district bond / levy
+          abr_election_type3: November 8, 2022 General Election
+          abr_primary_type_selections1: Select the type of ballot you wish to receive (required for the primary)
+          abr_primary_type_selections1__hint: All party ballots also include the Non-Partisan ballot
+          abr_primary_type_selections1__options:
+            abr_primary_type1: Constitution Party<br/>You MUST be affiliated with this party to select this ballot. If you are currently not affiliated with any political party, selecting this ballot will affiliate you with this party.
+            abr_primary_type2: Libertarian Party<br/>You MUST be affiliated with this party to select this ballot. If you are currently not affiliated with any political party, selecting this ballot will affiliate you with this party.
+            abr_primary_type3: Republican Party<br/>You MUST be affiliated with this party to select this ballot. If you are currently not affiliated with any political party, selecting this ballot will affiliate you with this party.
+            abr_primary_type4: Democratic Party<br/>You may select this ballot regardless of your party affiliation. Selecting this ballot will not affiliate you with this party.
+            abr_primary_type5: Non-Partisan<br/>Contains ONLY non-party elections, such as judges and ballot questions.
+
+
         state_online_abr:
+          instructions_header: "I meet these requirements:"
           requirements: |-
-            <p>If you are registered to vote and can provide a valid state ID and last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
-            <p>Check if you are registered by visiting <a href="https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx" target="_blank" rel="noopener noreferrer">the Idaho voter information search site</a></p>
-          
+            <p>You are eligible to complete your request online if you have a valid Idaho Drivers License Number and can provide the last 4 digits of my Social Security number.</p>
+            
         abr:
-          request_deadline: received by the county clerk’s office by the 11th day
-            prior to the election
-          status_check_instructions: You can look up your Absentee Ballot status on the
-            <a href='https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search'>Iowa
-            Track Your Absentee Ballot</a> page.
+          step_2_header: Eligibility to Request an Absentee Ballot
+          step_2_instructions: |-
+            <p>All registered voters in Idaho can request an absentee ballot.</p>
+            <p><a href="%{lookup_url}">Check if your registration is up to date.</a></p>
+          request_deadline: |-
+            <p>If you would like your absentee ballot mailed to you, your application must be received by the county clerk's office by:
+            </p>
+            <ul>
+            <li>May 6, 2022 for the May primary, </li>
+            <li>August 19, 2022 for the August election, and </li>
+            <li>October 28, 2022 for the November general. </li>
+            </ul>
+          status_check_instructions: <a target="_blank" rel="noopener noreferrer" href='https://voteidaho.gov/'>https://voteidaho.gov/</a>.
           requirements: "<p>To qualify to request a ballot in ID, you only need to
             be registered to vote.</p>"
           
@@ -864,8 +889,9 @@ en:
           finish_page: '<p>Once you have your ballot, be sure to read the instructions
             carefully, fill out the ballot and send it back in. Your absentee ballot
             must be received by 12:00pm on November 3, 2020. You can check the status
-            of your ballot here:  <a rel="noopener" target="blank" href="http://www.indianavoters.com/">http://www.indianavoters.com/</a></p>'
+            of your ballot here:  <a rel="noopener noreferrer" target="blank" href="http://www.indianavoters.com/">http://www.indianavoters.com/</a></p>'
         abr:
+          step_2_header: Eligibility to Request an Absentee Ballot
           step_2_instructions: |-
             <p>You must have a reason to vote absentee-by-mail in Indiana and be able to mark your own ballot and sign your name. Make sure you're eligible:</p>
             <ul>
