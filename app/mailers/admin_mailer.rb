@@ -55,8 +55,8 @@ class AdminMailer < ActionMailer::Base
     mail(
       from: RockyConf.admin.branding_from,
       to:  RockyConf.admin.branding_to,
-      subject: "[ROCKY] Branding Request Opened",
-      body: "New branding request submitted by #{branding_request && branding_request.partner && branding_request.partner.name}.\n\n #{requests_admin_whitelabel_url}"
+      subject: "[ROCKY] Branding Request Opened by #{branding_request && branding_request.partner && branding_request.partner.id}",
+      body: "New branding request submitted by #{branding_request && branding_request.partner && branding_request.partner.name} at #{branding_request && branding_request.partner && branding_request.partner.organization}.\n\n #{requests_admin_whitelabel_url}"
     )
   end
   
