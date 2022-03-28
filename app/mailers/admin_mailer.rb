@@ -122,14 +122,14 @@ class AdminMailer < ActionMailer::Base
   def va_registration_error(registrant, error_list, message='')
     
     mail(
-      subject: "[ROCKY VA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to VA",
+      subject: "[ROCKY VA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to VA. PID: #{registrant.partner_id}",
       body: "#{message}\n\nVA system returned the error:\n\n #{error_list.join("\n")}"
     )
   end
   
   def mi_registration_error(registrant, outcome, message='') 
     mail(
-      subject: "[ROCKY MI INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to MI",
+      subject: "[ROCKY MI INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to MI. PID: #{registrant.partner_id}",
       body: "#{message}\n\nMI system returned:\n\n registrant_uid: #{registrant.uid}\noutcome: #{outcome}\nstatus_id:#{registrant.mi_api_voter_status_id.to_s}\n#{(registrant.mi_api_voter_status_id || '-1').to_i < 0 ? 'MI system did not respond successfully' : ''}"
     )
   end
@@ -137,7 +137,7 @@ class AdminMailer < ActionMailer::Base
   def pa_registration_warning(registrant, mod_list)
     
     mail(
-      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Data changed submitting registration #{registrant.class} #{registrant.id} to PA",
+      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Data changed submitting registration #{registrant.class} #{registrant.id} to PA. PID: #{registrant.partner_id}",
       body: "The following modifications were made:\n\n #{mod_list.join("\n")}"
     )
   end
