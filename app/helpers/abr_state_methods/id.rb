@@ -58,7 +58,7 @@ module AbrStateMethods::ID
           "abr_primary_type2",
           "abr_primary_type3",
           "abr_primary_type4",
-          "abr_primary_type5",    
+          "NonPartisan",    
         ]
       },
       "abr_phone": {

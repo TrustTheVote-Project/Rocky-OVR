@@ -792,11 +792,11 @@ en:
             abr_primary_type2: Libertarian Party<br/>You MUST be affiliated with this party to select this ballot. If you are currently not affiliated with any political party, selecting this ballot will affiliate you with this party.
             abr_primary_type3: Republican Party<br/>You MUST be affiliated with this party to select this ballot. If you are currently not affiliated with any political party, selecting this ballot will affiliate you with this party.
             abr_primary_type4: Democratic Party<br/>You may select this ballot regardless of your party affiliation. Selecting this ballot will not affiliate you with this party.
-            abr_primary_type5: Non-Partisan<br/>Contains ONLY non-party elections, such as judges and ballot questions.
+            NonPartisan: Non-Partisan<br/>Contains ONLY non-party elections, such as judges and ballot questions.
 
 
         state_online_abr:
-          instructions_header: "I meet these requirements:"
+          instructions_header: "I have a valid Idaho Drivers License Number and can provide the last 4 digits of my Social Security number:"
           requirements: |-
             <p>You are eligible to complete your request online if you have a valid Idaho Drivers License Number and can provide the last 4 digits of my Social Security number.</p>
             
@@ -809,7 +809,7 @@ en:
             <li>August 19, 2022 for the August election, and </li>
             <li>October 28, 2022 for the November general. </li>
             </ul>
-          status_check_instructions: <a target="_blank" rel="noopener noreferrer" href='https://voteidaho.gov/'>https://voteidaho.gov/</a>.
+          status_check_instructions: <a target="_blank" rel="noopener noreferrer" href='https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx'>https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx</a>.
           requirements: "<p>To qualify to request a ballot in ID, you only need to
             be registered to vote.</p>"
           
