@@ -800,10 +800,6 @@ en:
             <p>You are eligible to complete your request online if you have a valid Idaho Drivers License Number and can provide the last 4 digits of my Social Security number.</p>
             
         abr:
-          step_2_header: Eligibility to Request an Absentee Ballot
-          step_2_instructions: |-
-            <p>All registered voters in Idaho can request an absentee ballot.</p>
-            <p><a href="%{lookup_url}">Check if your registration is up to date.</a></p>
           request_deadline: |-
             <p>If you would like your absentee ballot mailed to you, your application must be received by the county clerk's office by:
             </p>
@@ -891,7 +887,6 @@ en:
             must be received by 12:00pm on November 3, 2020. You can check the status
             of your ballot here:  <a rel="noopener noreferrer" target="blank" href="http://www.indianavoters.com/">http://www.indianavoters.com/</a></p>'
         abr:
-          step_2_header: Eligibility to Request an Absentee Ballot
           step_2_instructions: |-
             <p>You must have a reason to vote absentee-by-mail in Indiana and be able to mark your own ballot and sign your name. Make sure you're eligible:</p>
             <ul>
@@ -2702,7 +2697,9 @@ voter registration mailed by a board of elections) that shows your name and curr
             even if the ballot is emailed. Send military/overseas ballot by:'
       tx:
         abr:
-          request_deadline: Your ballot request must be received by February 18, 2022.
+          step_2_header: ''
+          step_2_instructions: ''
+          request_deadline: Your application must be received not later than the 11th day before election day or by the close of regular business or 12 noon, whichever is later.
           finish_instructions_1_hint: |
             <p>
             If you were unable to sign the application and someone witnessed your signature, that person must complete Section 11.
