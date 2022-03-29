@@ -912,7 +912,7 @@ en:
           status_check_instructions: <a target='_blank' rel="noopener noreferrer" href='https://indianavoters.in.gov/MVPHome/PrintDocuments'>https://indianavoters.in.gov/MVPHome/PrintDocuments</a>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
-            <p>Your voted absentee ballot must be received by the noon on Election Day in order to be counted.</p>
+            <p>Your voted absentee ballot must be received by noon on Election Day in order to be counted.</p>
           requirements: |-
             <p>To qualify to request a ballot in IN, you must have one of the following reasons:  </p>
             <ul>
@@ -2540,9 +2540,9 @@ voter registration mailed by a board of elections) that shows your name and curr
             <li>Persons sixty-five years of age or older.</li>
             <li>Persons who for reasons of employment will not be able to vote on election day.</li>
             <li>Persons serving as a juror in state or federal court on Election Day.</li>
-            <li>Persons admitted to the hospital as emergency patients on Election Day or within a four-day period before the election.<li>
+            <li>Persons admitted to the hospital as emergency patients on Election Day or within a four-day period before the election.</li>
             <li>Persons with a death or funeral in the family within three days before the election.</li>
-            <li>Persons confined to a jail or pre-trial facility pending disposition of arrest or trial.<li>
+            <li>Persons confined to a jail or pre-trial facility pending disposition of arrest or trial.</li>
             <li>Certified poll watchers, poll managers, and county election officials working on Election Day.</li>
             <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only).</li>
             </ul></li>
