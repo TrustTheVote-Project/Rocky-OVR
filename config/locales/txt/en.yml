@@ -96,7 +96,7 @@ en:
         address: "Registered Address:"
         date_of_birth: "Date of Birth:"
       state_online_defaults:
-        header: Eligibility to Request an Absentee Ballot
+        header: ""
         instructions_header: Requesting an Absentee Ballot in %{state}
         instructions: ""
         header_choice: How do you want to request your ballot?

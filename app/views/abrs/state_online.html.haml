@@ -4,8 +4,8 @@
     %h2{"role"=>"heading", "aria-level"=>2}= t("states.custom.#{@abr.i18n_key}.state_online_abr.header", default: I18n.t('txt.abr.state_online_defaults.header', state: @abr.home_state_name))
   - else
     %h2{"role"=>"heading", "aria-level"=>2}= t("states.custom.#{@abr.i18n_key}.state_online_abr.header_choice", default: I18n.t('txt.abr.state_online_defaults.header_choice', state: @abr.home_state_name))
-  .intro-message
-    = I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm', state_abbr: @abr.home_state_abbrev)).html_safe
+    .intro-message
+      = I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.confirm", default: I18n.t('txt.abr.state_online_defaults.confirm', state_abbr: @abr.home_state_abbrev)).html_safe
   - unless @abr.oabr_for_all?
     .intro-message.requirements
       = I18n.t("states.custom.#{@abr.i18n_key}.state_online_abr.requirements", lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), default: I18n.t('txt.abr.state_online_defaults.requirements', state: @abr.home_state_name )).html_safe
