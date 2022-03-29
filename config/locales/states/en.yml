@@ -138,13 +138,10 @@ en:
           Please note that only one application may be placed in the same envelope: County
           reason_instructions: 'I am applying for an absentee ballot because: (check
             all that apply)'
+          reason_instructions__required_message: At least one reason must be selected.
           chkReason1: I expect to be out of the county or the state on election day.
           chkReason2: I have a physical illness or infirmity which prevents my attendance
             at the polls. (ID Required)
-          chkReason2__hint: 'COVID-19 NOTE: Any qualified voter who determines it
-            is impossible or unreasonable to vote at their voting place for the General
-            Election on November 3, 2020 due to the declared states of emergency,
-            shall be eligible to check this box:'
           chkReason3: 'I have a physical illness or infirmity which prevents my attendance
             at the polls. I am unable to access my assigned polling place due to a
             neurological, musculoskeletal, respiratory (including speech organs),
@@ -154,9 +151,9 @@ en:
             b) I am a voter with a disability. (ID Not Required)'
           chkReason4: I expect to work a shift which has at least ten (10) hours that
             coincide with the polling hours at my regular polling place.
-          chkReason5: I am enrolled as a student at an educational institution located
-            outside the county of my personal residence, attendance at which prevents
-            my attendance at the polls.
+          chkReason5: I am a student at an educational institution located outside the 
+            county of my permanent residence and am therefore unable to vote at my usual 
+            polling place on election day.
           chkReason6: I am a member of, or a spouse or dependent of a member of, the
             US Armed Forces or am otherwise similarly qualified to vote absentee pursuant
             to the Uniformed and Overseas Citizens Absentee Voting Act, 52 U.S.C.
@@ -177,7 +174,11 @@ en:
           has_mailing_address: My mailing address differs from my residential address.
           Precinct: 'Precinct where you vote (name and/or location of your polling
             place):'
-          Precinct__hint: <a target="_blank" rel="noopener" href="https://myinfo.alabamavotes.gov/VoterView/PollingPlaceSearch.do">https://myinfo.alabamavotes.gov/VoterView/PollingPlaceSearch.do</a>
+          Precinct__hint: |-
+            Find your precinct by going to 
+            <a target="_blank" rel="noopener noreferrer" href="https://myinfo.alabamavotes.gov/voterview">https://myinfo.alabamavotes.gov/voterview</a>.
+            In the "Polling Place Search" box, start typing until your address comes up. Click "View Locations." At the top of the next screen, you will see your Precinct. Enter the name and number. 
+          
           identification: 'Please select one of the following:'
           identification__options:
             dln_yes: I have a driver's license that is not expired (from any state).
