@@ -1961,7 +1961,6 @@ en:
             <li>May 31st for the primary, and </li>
             <li>November 1st for the general election.</li>
             </ul>
-          step_3_instructions: <p>Good news! everyone in <state> can request an absentee ballot!</p>
           status_check_instructions: <a href="https://nj.gov/state/elections/vote.shtml">https://nj.gov/state/elections/vote.shtml</a>.
           finish_instructions_1_hint: |-
             <p>If you received help with this form, make sure that the assistor has also 
