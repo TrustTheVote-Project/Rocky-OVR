@@ -3160,96 +3160,37 @@ voter registration mailed by a board of elections) that shows your name and curr
               myself.
           
       wv:
-        abr_form_fields:
-          resident_county: County
-          has_mailing_address: My mailing address differs from my residential address.
-          has_mailing_address__required_message: A mailing address outside of your
-            county of residence is required.
-          mail_address: Mailing address
-          mail_city: City
-          mail_state: State
-          mail_zip: Zip
-          reason_meta: I am applying for a paper ballot by mail because
-          reason_meta__options:
-            A: I am not able to vote in person during Early Voting or on Election
-              Day
-            B: I require an electronic ballot due to a physical disability that prevents
-              me from voting in person and from voting a paper ballot without assistance.
-          reason_a: 'Please select one:'
-          reason_a__options:
-            address_confidentiality: "<p>I am a participant in the Address Confidentiality
-              Program (ACP) with the Office of the Secretary of State. <u>If selected,
-              send your application to the Secretary of State’s Office.</u></p>"
-            business_or_travel: "<p>Personal business or travel. <u>If selected, your
-              ballot must be mailed outside of your county of residence.</u></p>"
-            college: "<p>Attendance at college, university, or other place of education
-              or training. <u>If selected, your ballot must be mailed outside of your
-              county of residence.</u></p>"
-            disability: "<p>The county absentee voting office and my polling place
-              are inaccessible to me due to my physical disability.</p>"
-            elected_away: "<p>Temporarily living outside of the county due to serving
-              as an elected or appointed federal or state officer. <u>If selected,
-              your ballot must be mailed outside of your county of residence.</u></p>"
-            employment: "<p>Employment which because of hours worked and distance
-              from the county seat makes voting in person impossible.</p>"
-            illness: "<p>Illness, injury or other medical reason which keeps me confined.
-              <br/>NOTE: due to COVID-19, West Virginia's Secretary of State has announced
-              that all West Virginia voters can use this option as the excuse for
-              requesting a ballot.</p>"
-            immobility: "<p>Immobility due to advanced age or a physical disability.</p>"
-            incarceration: "<p>Incarceration or detention in jail or home. I am not
-              under conviction of any felony, of treason or of bribery in an election
-              (including any period of probation or parole). <u>If selected you must
-              complete the statement on page 2 after printing this form.</u></p>"
-            working_away: "<p>Temporarily living outside of the county due to a temporary
-              assignment by my employer for a specific period of four years or less.
-              <u>If selected, your ballot must be mailed outside of your county of
-              residence.</u></p>"
-          disability_want_electronic__hint: 'B. I am applying for an electronic absentee
-            ballot due to:'
-          incarceration_statement: Please complete the Statement on page 2 by hand
-            after PDF is printed.
-        state_online_abr:
-          confirm: ''
-          requirements: 'To request an absentee online, you must provide your DMV
-            ID # or Last Four of SSN (whichever is on file, or if you have both on
-            file you may choose one to enter)'
-          
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          
-          
-          status_check_instructions: You can look up your Absentee Ballot status by using
-            your state&#39;s <a target='_blank' href='https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking'>online
-            tool</a>
-          
-          requirements: |-
-            <p>Voters not able to vote in person during Early Voting or Election Day due to one of the following circumstances may vote a regular absentee ballot by mail:</p>
-             <ul>
-             <li>Illness, injury or other medical reason</li>
-             <li>Disability or advanced age</li>
-             <li>Incarceration or home detention (does not include individuals convicted of any felony, treason, or election bribery)</li>
-             <li>Work hours and distance from county seat</li>
-             <li>Inaccessible early voting site and polling place </li>
-             <li>Personal or business travel*</li>
-             <li>Attendance at college or other place of education or training*</li>
-             <li>Temporary residence outside of the county*</li>
-             <li>Service as an elected or appointed state or federal official*   </li>
-             </ul>
-             <p>“*” indicates that the voter must receive ballot at an address outside of the county.</p><p>NOTE: voters can apply for an absentee ballot using the “illness, injury or other medical reason which keeps me confined” as the excuse for completing the application</p>
-          finish_instructinos: '<p>Download the form, read the instructions carefully,
-            complete the form and send it in right away. Your application must be
-            received by October 28th, 2020.</p><p>Once you receive your ballot, make
-            sure to read it carefully and follow the instructions to fill it out and
-            return it. Absentee ballots postmarked by Election Day will be accepted
-            if RECEIVED by the start of Canvass (November 9, 2020). Absentee ballots
-            without a postmark will be accepted if RECEIVED by November 4, 2020. If
-            returning your ballot in person, you must deliver it to the county clerk''s
-            office by the day before Election Day.</p><p>You can check that status
-            of your ballot at any time here: <a rel="noopener" target="blank" href="https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking">https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking</a>
-            </p>'
+          splash:
+            instructions_1: |-
+              <h3>Eligibility to request an absentee ballot</h3>
+              <p>You may be eligible to request an absentee ballot if you are unable to vote in person during Early Voting or on Election day for the following reasons:</p>
+              <ul>
+              <li>Illness, injury or other medical reason (includes confinement due to COVID-19*)</li>
+              <li>Disability or advanced age</li>
+              <li>Incarceration or home detention (does not include individuals convicted of any felony, treason, or election bribery)</li>
+              <li>Work hours and distance from county seat</li>
+              <li>Inaccessible early voting site and polling place</li>
+              <li>Personal or business travel outside of the county</li>
+              <li>Attendance at college or other place of education or training outside of the county</li>
+              <li>Temporary residence outside of the county</li>
+              <li>Service as an elected or appointed state or federal official outside of the county</li>
+              </ul>
+              <p>For more information on eligibility, please see the <a href="https://sos.wv.gov/FormSearch/Elections/Informational/Absentee%20Voting%20Eligibility%20Summary.pdf">Eligibility Summary [PDF]</a></p>
+
+              <h3>How to request an absentee ballot</h3>
+              <p>Download and complete an absentee ballot application in your own handwriting. Mail, fax or email the application to your county clerk.</p>
+              <p><a href="https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf">Absentee Ballot Application [PDF]</a></p> 
+
+              <h3>When to request an absentee ballot</h3>
+              <p>You must request a separate absentee ballot for the primary and general elections.</p>
+
+              <p>You can request an absentee ballot until May 4th, 2022 for the Primary election and between August 16th and November 2, 2022 for the General election. Make sure your applications are received by May 4th and November 2nd.</p>
+            instructions_2: |-
+              <p>Track the status of your absentee ballot at <a href="https://apps.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking">Absentee Ballot Tracking</a>.</p>
+            instructions_3: |-
+              <p>Make sure to follow all of the instructions included with your absentee ballot.</p>
+              <p>Your voted ballot must be returned by May 7th if returned by hand and postmarked by May 10th if mailed. If mailed, they must be received by May 16th.</p>
       wy:
         abr:
           request_deadline: Check with your local election officials for your state's
