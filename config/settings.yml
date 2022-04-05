@@ -550,7 +550,7 @@ ovr_states:
     grommet_min_version: "3.5.0"
     registration_deadline: 2022-05-17 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
     api_settings:
-      api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
+      api_url: "https://paovrwebapi.beta.vote.pa.gov/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
       canvassing_session_timeout_minutes: 1440
       canvassing_validation_timeout_minutes: 2880
