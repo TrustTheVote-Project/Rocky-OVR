@@ -4,6 +4,8 @@
     $(document).ready(function() {
       $('#javascript_disabled').remove();
 
+      checkboxTogglesSet($('#state_registrants_wa_registrant_confirm_no_dln'), $('#dln_set'), null, true); 
+      checkboxTogglesSet($('#state_registrants_wa_registrant_is_homeless'), $('#homeless_address')); 
       //checkboxTogglesSet($('#state_registrants_wa_registrant_has_ssn'), $('#ssn_set')); //, $('#prev_name_rule')
 
  
@@ -31,19 +33,26 @@
           = form.text_field :issue_date_day, value: form.object.issue_date_day, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
           = form.text_field :issue_date_year, value: form.object.issue_date_year, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
         %span.error= form.object.errors[:issue_date].join("\n")
+  %fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__confirm_no_dln__line",  required: false}
+
   -#%fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_ssn, class_name: "registrant-form__has_ssn__line",  required: true}
+
 
   %fieldset#ssn_set.block-selector
     %ul.flat.ssn
       = field_li(form, :ssn4, {skip_tooltip: true, false: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 4, maxlength: 4} })
 
   %fieldset.no_border
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :military_flag, class_name: "registrant-form__military-flag__line", required: false}
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :military_flag, class_name: "registrant-form__military-flag__line", required: false, tooltip: 'military_hint_wa'}
   %br
 
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false, tooltip: 'is_homeless_hint_wa'}
+  %fieldset#homeless_address.no_border
+    %ul.flat.ssn
+      = field_li(form, :homeless_address, {skip_tooltip: false, required: false, li_options: {class: "registrant-form__homeless_address__line"} })
 
 
 

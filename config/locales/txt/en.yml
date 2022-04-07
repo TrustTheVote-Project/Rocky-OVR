@@ -432,6 +432,8 @@ en:
             p3: ''
       tooltips:
         is_homeless_hint_wa: "You can vote if you live in a place where you cannot receive mail. Register by providing a place where you spend most of your time and a place where you can receive mail."
+        military_hint_wa: "Includes National Guard and Reserves, and spouses or dependents away from home due to service."
+        homeless_address: "You can give your cross street or a short narrative."
         email_address: We will email you a copy of your voter registration form.
         home_zip_code: Enter ZIP code for the address where you live, even if you
           don't receive mail there.
