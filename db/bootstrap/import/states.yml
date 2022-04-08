@@ -32,7 +32,7 @@ record_0:
   sos_phone: "(800) 274-8683"
   sos_url: https://www.sos.alabama.gov
   sub_18: be_by_next_election
-  registration_deadline: postmarked_15_days
+  registration_deadline: alabama
   online_registration_url: https://www.alabamavotes.gov/olvr/default.aspx
 record_1:
   abbreviation: AK
@@ -90,7 +90,7 @@ record_4:
   sos_phone: "(916) 657-2166"
   sos_url: https://www.sos.ca.gov/elections
   online_registration_url: https://www.registertovote.ca.gov
-  registration_deadline: postmarked_15_days
+  registration_deadline: california
   sub_18: once_turned_16
 record_5:
   abbreviation: CO
@@ -248,7 +248,7 @@ record_15:
   sos_phone: "(515) 281-0145"
   sos_url: http://www.myiowavote.com/
   sub_18: once_turned_17_but
-  registration_deadline: postmarked_15_days
+  registration_deadline: iowa
   id_length_min: '4'
   online_registration_url: https://mymvd.iowadot.gov/Account/Login?ReturnUrl=%2fVoterRegistration
   parties:
@@ -357,7 +357,7 @@ record_22:
     MI 48901-0726
   sos_phone: "(800) 292-5973"
   sos_url: https://mvic.sos.state.mi.us/
-  registration_deadline: postmarked_15_days
+  registration_deadline: michigan
   online_registration_url: https://mvic.sos.state.mi.us/registervoter
   online_registration_system_name: Michigan Voter Information Center
   id_length_min: '4'
