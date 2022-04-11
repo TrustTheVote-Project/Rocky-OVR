@@ -26,8 +26,8 @@ class WARegistrantValidator < ActiveModel::Validator
       reg.validate_date_of_birth
       validate_age(reg)
       
-      reg.validates_presence_of   :name_title
-      reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
+      #reg.validates_presence_of   :name_title
+      #reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
       reg.validates_presence_of   :first_name
 
       
@@ -47,7 +47,12 @@ class WARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :prev_last_name
       end
 
-
+      if reg.has_previous_address?
+        reg.validates_presence_of :prev_residence_address
+        reg.validates_presence_of :prev_residence_city 
+        reg.validates_presence_of :prev_residence_state 
+        reg.validates_presence_of :prev_residence_zip 
+      end
 
   
       #if reg.requires_mailing_address?  #CTW converted to has mailing...
@@ -67,6 +72,11 @@ class WARegistrantValidator < ActiveModel::Validator
       #reg.validates_presence_of :driver_license
       
 
+    if reg.confirm_no_dln?
+      reg.skip_state_flow!
+    end
+
+    unless reg.confirm_no_dln
       validate_dln_ssn(reg)
 
       reg.validates_presence_of :issue_date
@@ -77,6 +87,7 @@ class WARegistrantValidator < ActiveModel::Validator
       end
 
       validate_issue_date(reg)
+    end
         
 
     end
@@ -121,6 +132,8 @@ class WARegistrantValidator < ActiveModel::Validator
     earliest_date = Date.today - 16.years 
     if reg.date_of_birth > earliest_date
       reg.errors.add(:date_of_birth, :too_young)
+      puts ("Redirect potentially? "+reg.registrant_ineligible_url(reg.registrant_id) )
+      #redirect_to(reg.registrant_ineligible_url(reg.registrant_id) :only_path=true) #and return
     end
   end
 

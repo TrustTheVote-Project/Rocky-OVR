@@ -587,7 +587,8 @@ ovr_states:
   WA:
     redirect_to_online_reg_url: false
     api_settings:
-      api_url: "https://fake-wa-endpoint.herokuapp.com:443"
+      #api_url: "https://fake-wa-endpoint.herokuapp.com:443"
+      api_url: "https://qa-avr.votewa.gov/VoteWAExternalAPI/api/DOLRegister"
       api_username: "RTVAVR"
     #CTW are we actually supporting all these languages?
     languages:

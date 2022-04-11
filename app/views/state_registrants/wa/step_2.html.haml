@@ -17,7 +17,7 @@
   = render partial: 'state_registrants/locale_selector', locals: {form: form }
   = render partial: 'state_registrants/wa/header'
   
-  = render partial: 'step2/name', locals: {form: form}
+  = render partial: 'state_registrants/wa/name', locals: {form: form}
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_previous_name, class_name: "registrant-form__change-of-name__line", required: false, tooltip: :previous_name}
 

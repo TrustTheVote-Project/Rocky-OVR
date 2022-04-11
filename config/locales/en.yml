@@ -281,9 +281,8 @@ en:
         ssn4: "Optional: Please enter the last 4 digits of your social security number."
         has_ssn: I have a Social Security Number
         confirm_no_ssn: No SSN was ever issued.
-        dln: Washington DMV Identifier or Customer Number
-        has_dln: I have a Washington DMV Identifier or Customer Number
-        confirm_no_dln: 'I do not have a Washington Identifier or Customer #'
+        driver_license: Washington State Driver License or ID
+        confirm_no_dln: 'I do not have a Washington State Driver License or ID'
         name_title: Title
         first_name: First Name
         middle_name: Middle
@@ -314,8 +313,9 @@ en:
         prev_residence_state_abbrev: State
         prev_residence_zip: ZIP
         prev_res_county_code: Previous Residential County
-        military_flag: I am an active-duty uniformed services member, spouse or dependent.
-        is_homeless: I am homeless
+        military_flag: Are you currently serving in the military?
+        is_homeless: Do you live somewhere with a non-standard address?
+        homeless_address: Describe your living address.
         has_mailing_address: I get my mail at a different address from the one above.
         mailing_address: Address
         mailing_unit_number: Unit number
