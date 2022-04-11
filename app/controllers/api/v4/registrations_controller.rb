@@ -76,7 +76,10 @@ class Api::V4::RegistrationsController < Api::V4::BaseController
       
       if gr.is_duplicate?
         # Send notification
-        AdminMailer.grommet_duplication(gr).deliver_now
+        begin
+          AdminMailer.grommet_duplication(gr).deliver_now
+        rescue
+        end
         return pa_success_result
       end
       
