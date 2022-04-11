@@ -34,7 +34,7 @@ class RegistrantsController < RegistrationStep
 
   def track_view
     # Record that a particular page got viewed
-    find_registrant
+    find_registrant(:track)
     TrackingEvent.track_registrant_view(@registrant, params[:rendered_step])
   end
 
