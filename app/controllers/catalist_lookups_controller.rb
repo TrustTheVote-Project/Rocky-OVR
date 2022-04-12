@@ -104,6 +104,10 @@ class CatalistLookupsController < ApplicationController
   def find_lookup(special_case = nil)
     @lookup = CatalistLookup.find_by_param!(params[:id])
     set_up_locale
+    if @lookup.partner
+      @partner    = @lookup.partner
+      @partner_id = @partner.id
+    end
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
     # raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil?
   end
