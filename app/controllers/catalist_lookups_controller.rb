@@ -57,6 +57,8 @@ class CatalistLookupsController < ApplicationController
     find_lookup
     @abr = @lookup.to_abr
     @abr.save(validate: false)
+    @lookup.abr = @abr
+    @lookup.save(validate: false)    
     if !@abr.valid?
       redirect_to step_2_abr_path(@abr)
     else
@@ -68,6 +70,9 @@ class CatalistLookupsController < ApplicationController
     find_lookup
     @registrant = @lookup.to_registrant
     @registrant.save(validate: false)
+    @lookup.registrant = @registrant
+    @lookup.save(validate: false)
+
     if !@registrant.valid?
       redirect_to registrant_step_2_path(@registrant)
     else
