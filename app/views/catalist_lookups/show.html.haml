@@ -52,7 +52,10 @@
 
   .reject{style: "display: none;"}
     = reject_content
-    
+
+  - if @lookup.partner && !@lookup.partner.external_conversion_snippet.blank?
+    = @lookup.partner.external_conversion_snippet.to_s.html_safe
+
 - else 
   .reject
     = reject_content
