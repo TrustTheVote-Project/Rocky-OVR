@@ -158,9 +158,9 @@ absentee_states:
         online_req_url: https://cityblm.seamlessdocs.com/f/VBMapplication1120
   IN:
     online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
-    pdf_template: in.pdf
+    #pdf_template: in.pdf
     abr_status_check_url: "http://www.indianavoters.com/"
-    abr_track_ballot_url: "http://www.indianavoters.com/"
+    abr_track_ballot_url: "https://indianavoters.in.gov/MVPHome/PrintDocuments"
   KS:
     pdf_url: https://www.sos.ks.gov/forms//elections/AV1.pdf
     #pdf_template: ks.pdf

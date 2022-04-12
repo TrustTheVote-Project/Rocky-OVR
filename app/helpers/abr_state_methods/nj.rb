@@ -28,7 +28,7 @@ module AbrStateMethods::NJ
     "Zip": {
       method: "zip"
     },
-    "7 EMail Address Optional": {
+    "7 EMail Address": {
       method: "email"
     },
     "Apt_2": {},

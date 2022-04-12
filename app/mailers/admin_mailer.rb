@@ -55,8 +55,8 @@ class AdminMailer < ActionMailer::Base
     mail(
       from: RockyConf.admin.branding_from,
       to:  RockyConf.admin.branding_to,
-      subject: "[ROCKY] Branding Request Opened",
-      body: "New branding request submitted by #{branding_request && branding_request.partner && branding_request.partner.name}.\n\n #{requests_admin_whitelabel_url}"
+      subject: "[ROCKY] Branding Request Opened by #{branding_request && branding_request.partner && branding_request.partner.id}",
+      body: "New branding request submitted by\n\n Name: #{branding_request && branding_request.partner && branding_request.partner.name}\n\n Org: #{branding_request && branding_request.partner && branding_request.partner.organization}\n\nPartner ID: #{branding_request && branding_request.partner && branding_request.partner.id}\n\n #{requests_admin_whitelabel_url}"
     )
   end
   
@@ -96,7 +96,7 @@ class AdminMailer < ActionMailer::Base
   
   def grommet_duplication(grommet_request)
     mail(
-      subject:"[ROCKY GROMMET#{environment_subject}] Ignoring duplicate request from grommet",
+      subject:"[ROCKY GROMMET#{environment_subject}] Ignoring duplicate request from grommet.",
       body: "Grommet Request for #{grommet_request.state} - #{grommet_request.id} - not processed due to duplicate request"
     )
   end
@@ -107,14 +107,14 @@ class AdminMailer < ActionMailer::Base
     # TODO what data to include in email of reg details
     registrant_details = "" #registrant ? "\nEvent Name: #{registrant.open_tracking_id}\nEvent Zip: #{registrant.tracking_id}\nCanvasser Namer: #{registrant.tracking_source}" : nil
     mail(
-      subject:"[ROCKY GROMMET#{environment_subject}] Error validating request from grommet",
+      subject:"[ROCKY GROMMET#{environment_subject}] Error validating request from grommet. PID: #{registrant&.partner_id}",
       body: "Registrant - #{name}#{req_id} - not registered due to validation error:#{registrant_details}\n\n#{error_list.join('\n')}"
     )
   end
   
   def pa_registration_error(registrant, error_list, message='')
     mail(
-      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} #{registrant.uid} to PA",
+      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} #{registrant.uid} to PA. PID: #{registrant.partner_id}",
       body: "#{message}\n\nPA system returned the error:\n\n #{error_list.join("\n")}"
     )
   end
@@ -122,14 +122,14 @@ class AdminMailer < ActionMailer::Base
   def va_registration_error(registrant, error_list, message='')
     
     mail(
-      subject: "[ROCKY VA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to VA",
+      subject: "[ROCKY VA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to VA. PID: #{registrant.partner_id}",
       body: "#{message}\n\nVA system returned the error:\n\n #{error_list.join("\n")}"
     )
   end
   
   def mi_registration_error(registrant, outcome, message='') 
     mail(
-      subject: "[ROCKY MI INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to MI",
+      subject: "[ROCKY MI INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to MI. PID: #{registrant.partner_id}",
       body: "#{message}\n\nMI system returned:\n\n registrant_uid: #{registrant.uid}\noutcome: #{outcome}\nstatus_id:#{registrant.mi_api_voter_status_id.to_s}\n#{(registrant.mi_api_voter_status_id || '-1').to_i < 0 ? 'MI system did not respond successfully' : ''}"
     )
   end
@@ -137,7 +137,7 @@ class AdminMailer < ActionMailer::Base
   def pa_registration_warning(registrant, mod_list)
     
     mail(
-      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Data changed submitting registration #{registrant.class} #{registrant.id} to PA",
+      subject: "[ROCKY PA INTEGRATION#{environment_subject}] Data changed submitting registration #{registrant.class} #{registrant.id} to PA. PID: #{registrant.partner_id}",
       body: "The following modifications were made:\n\n #{mod_list.join("\n")}"
     )
   end

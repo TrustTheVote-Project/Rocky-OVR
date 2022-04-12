@@ -84,24 +84,6 @@
           </div>
         </fieldset>
       <%- end %>
-      <%= form_tag grommet_shift_report_partner_path(@partner) , method: :post, :class=> 'form_downloadcsv' do %>
-        <fieldset>
-          <legend>Generate a New PA Shift Report</legend>
-          <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
-          <div class='date_input'>
-            <%= label_tag :start_date, 'Start Date' %>
-            <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
-          </div>
-          <div class='date_input'>
-            <%= label_tag :end_date, 'End Date' %>
-            <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
-          </div>
-          
-          <div class='submit_button' style="clear: both">
-            <%= rollover_button "downloadcsv", "Generate New PA Shift Report", id: "downloadshiftcsv"%>
-          </div>
-        </fieldset>
-      <%- end %>
     <%- end %>
     <%= form_tag abr_report_partner_path(@partner), method: :post, :class=> 'form_downloadcsv' do %>
       <fieldset>
@@ -160,7 +142,27 @@
         </div>
       </fieldset>
     <%- end %>
-  
+    <%- if @partner.enabled_for_grommet? %>    
+      <%= form_tag grommet_shift_report_partner_path(@partner) , method: :post, :class=> 'form_downloadcsv' do %>
+        <fieldset>
+          <legend>Generate a New PA Shift Report</legend>
+          <p><b>Important:</b> This report should only be used with versions 3.0 and below.</p>
+          <p>Leave date fields blank if you would like to download the last 1 month of registration data.</p>
+          <div class='date_input'>
+            <%= label_tag :start_date, 'Start Date' %>
+            <%= text_field_tag 'start_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+          <div class='date_input'>
+            <%= label_tag :end_date, 'End Date' %>
+            <%= text_field_tag 'end_date', nil, placeholder: "mm/dd/yyyy" %>
+          </div>
+          
+          <div class='submit_button' style="clear: both">
+            <%= rollover_button "downloadcsv", "Generate New PA Shift Report", id: "downloadshiftcsv"%>
+          </div>
+        </fieldset>
+      <%- end %>
+    <%- end %>
 
 <table id="statistics" cellspacing="0">
   <tr>
