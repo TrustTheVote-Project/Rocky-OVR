@@ -11,4 +11,8 @@
   =#= I18n.t('states.custom.mi.registration_complete_dialog_text').html_safe
   %br
 
+- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank?
+  = @registrant.partner.external_conversion_snippet.to_s.html_safe
+
+
 = render "finishes/finish_iframe"
