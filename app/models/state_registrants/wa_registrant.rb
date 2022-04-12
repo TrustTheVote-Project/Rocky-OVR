@@ -366,14 +366,14 @@ Response as:
       self.save(validate: false)
     else
       self.wa_submission_error ||= []
-      if result["return_code"]
-        self.wa_submission_error << "#{DateTime.now}: Return Code #{result["return_code"]}"
+      if result["returnCode"]
+        self.wa_submission_error << "#{DateTime.now}: Return Code #{result["returnCode"]}"
       end
-      if result["error_code"]
-        self.wa_submission_error << "#{DateTime.now}: Error Code #{result["error_code"]}"
+      if result["errorCode"]
+        self.wa_submission_error << "#{DateTime.now}: Error Code #{result["errorCode"]}"
       end
-      if result["error_message"]
-        self.wa_submission_error << "#{DateTime.now}: Error message #{result["error_message"]}"
+      if result["errorMessage"]
+        self.wa_submission_error << "#{DateTime.now}: Error message #{result["errorMessage"]}"
       end
       
 
