@@ -77,6 +77,13 @@ en:
       step_1_header: ''
       step_1_instructions: "<p>Request your absentee ballot now to vote from the ease
         and safety of your home.</p><br/><br/>"
+      step_2_eligibility_header: Eligibility to Request an Absentee Ballot
+      step_2_eligibility_instructions: |-
+        <p>
+          All registered voters in %{state_name} can request an absentee ballot.<br/>
+          <a href="%{lookup_url}">Check if your registration is up to date.</a>
+        </p>
+
       step_2_header: Where are you registered to vote?
       step_2_instructions: "<p>We'll use this information to determine how you can
         request your absentee ballot.</p>"
@@ -96,7 +103,9 @@ en:
         address: "Registered Address:"
         date_of_birth: "Date of Birth:"
       state_online_defaults:
-        header: Absentee Ballots in %{state}
+        header: ""
+        instructions_header: Requesting an Absentee Ballot in %{state}
+        instructions: ""
         header_choice: How do you want to request your ballot?
         requirements: "<p>If you are registered to vote and have a valid %{state}
           state ID, you may request your absentee ballot online directly with the

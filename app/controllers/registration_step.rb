@@ -187,7 +187,7 @@ class RegistrationStep < ApplicationController
         @partner    = @registrant.partner
         @partner_id = @partner.id
       end
-      if @registrant.finish_with_state? && special_case != :tell_friend && special_case != :finish
+      if @registrant.finish_with_state? && special_case != :tell_friend && special_case != :finish && special_case != :track
         @registrant.update_attributes(:finish_with_state=>false)
       end
 
