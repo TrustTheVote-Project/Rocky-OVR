@@ -2644,12 +2644,19 @@ en:
               I am a United States citizen who will be outside the United States.
       sd:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://vip.sdsos.gov/VIPLogin.aspx'>online
-            tool</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to include a copy of your identification or get your application notarized.</p>
+
+            <p>If you have designated an authorized messenger, make sure to sign and date box 8. The messenger should not sign and date the form until they are turning in the application. If you apply for a ballot by authorized messenger, the application must be received by 3:00 p.m. the day of the election.
+            </p>
+
+          request_deadline: |-
+            <p>Your application must be received by 5:00 p.m. the day before the election.</p>
+
+            <p>If you do not receive your ballot in time to mail it back to your election official, you can return it by hand. Your voted ballot must be received by your County Election Official on Election Day in enough time to deliver it to your voting precinct before the polls close.</p>
+
+
+          status_check_instructions:  <a target='_blank' rel="noopener noreferrer" href='https://vip.sdsos.gov/viplogin.aspx'>https://vip.sdsos.gov/viplogin.aspx</a>
           requirements: "<p>In South Dakota to submit a request to vote absentee,
             you must be a registered South Dakota voter, be able to provide a copy
             of your photo identification OR have your application notarized.Military
