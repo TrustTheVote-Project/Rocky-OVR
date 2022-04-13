@@ -2644,12 +2644,19 @@ en:
               I am a United States citizen who will be outside the United States.
       sd:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://vip.sdsos.gov/VIPLogin.aspx'>online
-            tool</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to include a copy of your identification or get your application notarized.</p>
+
+            <p>If you have designated an authorized messenger, make sure to sign and date box 8. The messenger should not sign and date the form until they are turning in the application. If you apply for a ballot by authorized messenger, the application must be received by 3:00 p.m. the day of the election.
+            </p>
+
+          request_deadline: |-
+            <p>Your application must be received by 5:00 p.m. the day before the election.</p>
+
+            <p>If you do not receive your ballot in time to mail it back to your election official, you can return it by hand. Your voted ballot must be received by your County Election Official on Election Day in enough time to deliver it to your voting precinct before the polls close.</p>
+
+
+          status_check_instructions:  <a target='_blank' rel="noopener noreferrer" href='https://vip.sdsos.gov/viplogin.aspx'>https://vip.sdsos.gov/viplogin.aspx</a>
           requirements: "<p>In South Dakota to submit a request to vote absentee,
             you must be a registered South Dakota voter, be able to provide a copy
             of your photo identification OR have your application notarized.Military
@@ -2660,30 +2667,54 @@ en:
             a tribal photo ID, or a current student photo ID issued by a South Dakota
             high school or postsecondary education institution.</p>"
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residence address
-          ? SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your
-            address changes after this is submitted you must submit a new form
-          : Mailing address
-          City State_2: City, State
-          Zip Code_2: Zip
-          Last Name_2: Messenger Last name
-          First Name_2: Messenger First name
-          Daytime telephone: Messenger's phone number
-          Apt or Lot_2: 'Apt/lot #'
-          Zip Code_3: Zip
-          to serve as my authorized messenger to pick up my absentee ballot I: Messenger's
-            address
-          As the authorized messenger I acknowledge receipt of the ballot for: City,
-            State
-          messenger: Due to my own sickness or disability, I would like to authorize
-            a messenger to pick up my absentee ballot for me.
-          uocava: I am a military and/or overseas citizen.
-          uocava_email: I would like my absentee ballot e-mailed to me.
-          uocava_1: I am a member of the Uniformed Services or Merchant Marine on
-            active duty.
-          uocava_2: I am an eligible spouse or dependent of a member of the Uniformed
-            Services or Merchant Marine on active duty.
-          uocava_3: I am a U.S. citizen residing outside the United States.
+          abr_reason_instructions: All registered voters in South Dakota can request an absentee ballot.
+          abr_reason_instructions__hint: Check if your registration is up to date.
+          abr_county: County
+          abr_check_mailing_address: I get my mail at a different address from the one above
+          abr_mailing_address_line_1: Address
+          abr_mailing_city: City
+          abr_mailing_state: State
+          abr_mailing_zip: Zip
+          abr_election_type_selections: Select the election you'd like to request a ballot for. <br> You may select more than one.	
+          abr_election_type_selections__hint: If your address changes after you request an absentee ballot, you must submit a new form.
+          abr_election_type_selections__options:
+            abr_election_type1: All elections in 2022
+            abr_election_type2: One or more specific elections	
+          abr_election_type3: General	
+          abr_election_type4: Primary	
+          abr_election_type5: Municipal	
+          abr_election_type6: School	
+          abr_election_type7: Any Other	
+          abr_application_type_check1: Are you registered as independent/no party affiliation?	
+          abr_election_type_hint: You will receive the Primary Election ballot of your party registration, if one is available, unless you are registered as an independent/no party affiliation.	
+          abr_primary_type_selection: "If you are registered as an independent/no party affiliation and are requesting a Primary Election ballot, you may have a choice of the following:"
+          abr_primary_type_selection__options:
+            abr_primary_type1: Democratic	
+            abr_primary_type2: Libertarian	
+            abr_primary_type3: Non-Political	
+          abr_residency_requirements_instructions: There are residency requirements for municipal and school elections.	
+          abr_residency_requirements_selections1: Have you lived in the jurisdiction for 30 days in the last year?	
+          abr_residency_requirements_selections1__options:
+            abr_residency_requirements_yes1: "Yes"
+            abr_residency_requirements_no1: "No"
+          abr_residency_requirements_selections2: Are you a full-time student who resided in the jurisdiction prior to leaving?	
+          abr_residency_requirements_selections2__options:
+            abr_residency_requirements_yes2: "Yes"
+            abr_residency_requirements_no2: "No"
+          abr_id_selections: You must provide a copy of your ID or your application must be notarized.	
+          abr_id_selections__options:
+            abr_id_type1: "I will provide a copy of an acceptable ID.	An acceptable ID is: A South Dakota driver's license or non-driver ID card, a passport or other picture ID issued by the United States government, a tribal photo ID, or a current student photo ID issued by a South Dakota high school or postsecondary education institution."
+            abr_id_type2: I will have my application notarized	
+          abr_request_check: If you are sick or disabled, you may authorize a messenger to pick up your ballot.	Are you authorizing a messenger to pick up your absentee ballot?
+          abr_request_instructions: Enter the information of the person picking up your ballot.	
+          abr_assistant_first_name: First	
+          abr_assistant_last_name: Last	
+          abr_assistant_phone: Assistant's phone number	
+          abr_assistant_address_line_1: Street number	
+          abr_assistant_line_2: Apt. or Lot #	
+          abr_assistant_address_city: City	
+          abr_assistant_address_state: State	
+          abr_assistant_zip: Zip	
       tn:
         abr:
           request_deadline: Check with your local election officials for your state's

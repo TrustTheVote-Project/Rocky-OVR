@@ -1,111 +1,78 @@
 module AbrStateMethods::SD
   
   PDF_FIELDS = {
-    "County": {},
-    "Last Name": {
-      method: "last_name"
-    },
-    "First Name": {
-      method: "first_name"
-    },
-    "Middle NamesInitial": {
-      method: "middle_name"
-    },
-    "Suffix": {
-      method: "name_suffix"
-    },
-    "Voter Registration Address": {
-      method: "address_line_1"
-    },
-    "Apt or Lot": {
-      method: "unit"
-    },
-    "City State": {
-      method: "address_city_state"
-    }, 
-    "Zip Code": {
-      method: "zip"
-    },
-    "SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your address changes after this is submitted you must submit a new form": {},
-    "City State_2": {},
-    "Zip Code_2": {},
-    "Daytime telephone number": {
-      method: "phone"
-    },
-    "Last Name_2": {},
-    "First Name_2": {},
-    "Daytime telephone": {},
-    "Apt or Lot_2": {},
-    "Zip Code_3": {},
-    "Box 1": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-    },
-    "Box 2": { 
-      options: ["Off", "Yes"],
-      value: "Yes"
-    },
-    "Box 3": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-    },
-    "Box 4": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-    },
-    "Box 5": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-    },
-    "Box 6": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-    },
-    "Email address": {
-      method: "email_if_military_opt_in"
-    },
-    "verification": { 
-      options: ["Off", "notarized", "photo"],
-      value: "Off"
-    },
-    "am_resident": { 
-      options: ["Off", "No", "Yes"],
-      value: "Off"
-    },
-    "am_student": { 
-      options: ["Off", "No", "Yes"],
-      value: "Off"
-    },
-    "Box 14": { options: ["Off", "Yes"] }, # uocava_1 yes
-    "Box 15": { options: ["Off", "Yes"] }, # uocava_1 no
-    "Box 16": { options: ["Off", "Yes"] }, # uocava_2 yes
-    "Box 17": { options: ["Off", "Yes"] }, # uocava_2 no
-    "Box 18": { options: ["Off", "Yes"] }, # uocava_3 yes
-    "Box 19": { options: ["Off", "Yes"] }, # uocava_3 no
-    
-    "Party": { 
-      options: ["Off", "Democratic", "Libertarian", "Non-Political"],
-      value: "Off"
-    },
-    #"messenger_signature": {},
-    #"voter_signature_2": {},
-    #"received_date": {},
-    #"received_time": {},
-    #"voter_signature": {},
-    #"sworn_month": {},
-    #"sworn_day": {},
-    #"voter_signed_date": {},
-    #"notary_signature": {},
-    #"notary_comission_expiry": {},
-    "to serve as my authorized messenger to pick up my absentee ballot I": {},
-    "As the authorized messenger I acknowledge receipt of the ballot for": {},
+    "abr_email": { method: "email" },	
+    "abr_first_name": { method: "first_name" },	
+    "abr_middle_name": { method: "middle_name"  },	
+    "abr_last_name": { method: "last_name"  },	
+    "abr_name_suffix": { method: "name_suffix" },	
+    "abr_address_line_1": { method: "address_line_1" },
+    "abr_unit": { method: "address_line_2" },	
+    "abr_address_city_state": { method: "address_city_state" },
+    "abr_county": { },	
+    "abr_zip": { method: "zip" },	
+    "abr_check_mailing_address": {  options: ["Off", "On"] },	
+    "abr_mailing_address_line_1": { },
+    "abr_mailing_city_state": { method: "get_abr_mailing_city_state" },
+    "abr_mailing_zip": { },	
+    "abr_election_type_selections": { options: [
+      "abr_election_type1",
+      "abr_election_type2",
+    ]},
+    "abr_election_type1": { method: "abr_election_type_selections_is_abr_election_type1", options: ["Off", "On"]},
+    "abr_election_type3": { options: ["Off", "On"]},	
+    "abr_election_type4": { options: ["Off", "On"]},	
+    "abr_election_type5": { options: ["Off", "On"]},	
+    "abr_election_type6": { options: ["Off", "On"]},	
+    "abr_election_type7": { options: ["Off", "On"]},	
+    "abr_application_type_check1": { options: ["Off", "On"]},	
+    "abr_primary_type_selection": { options: [
+      "abr_primary_type1",
+      "abr_primary_type2",
+      "abr_primary_type3",
+    ]},
+    "abr_residency_requirements_selections1": { options: [
+      "abr_residency_requirements_yes1",
+      "abr_residency_requirements_no1",
+    ]},
+    "abr_residency_requirements_selections2": { options: [
+      "abr_residency_requirements_yes2",
+      "abr_residency_requirements_no2",
+    ]},
+    "abr_id_selections": { options: [
+      "abr_id_type1",
+      "abr_id_type2",
+    ]},
+    "abr_request_check": { options: ["Off", "On"] },	
+    "abr_assistant_first_name": { },	
+    "abr_assistant_last_name": { },	
+    "abr_assistant_phone": { },	
+    "abr_assistant_address_line_1": { },	
+    "abr_assistant_line_2": { },	
+    "abr_assistant_address_city_state": { method: "get_abr_assistant_address_city_state" },
+    "abr_assistant_zip": { },	
+    "abr_phone": { method: "phone" },	
   }
-  EXTRA_FIELDS = ["has_mailing_address", "messenger", "uocava", "uocava_email"]
+  EXTRA_FIELDS = ["abr_mailing_state", "abr_mailing_city", "abr_assistant_address_city", "abr_assistant_address_state"]
   
+  def abr_election_type_selections_is_abr_election_type1
+    if abr_election_type_selections_abr_election_type1 
+      return "On"
+    end
+    return "Off"
+  end
+
+  def get_abr_mailing_city_state
+    [abr_mailing_state, abr_mailing_city].join(', ')
+  end
+
+  def get_abr_assistant_address_city_state
+    [abr_assistant_address_city, abr_assistant_address_state].join(', ')
+  end
   
   def form_field_items
     [
-      {"County": {type: :select, required: true, include_blank: true, options: [
+      {"abr_county": {type: :select, required: true, include_blank: true, options: [
         "Aurora",
         "Beadle",
         "Bennett",
@@ -173,99 +140,40 @@ module AbrStateMethods::SD
         "Yankton",
         "Ziebach",
       ]}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"SELECT THE ELECTIONS YOU ARE REQUESTING AN ABSENTEE BALLOT FOR If your address changes after this is submitted you must submit a new form": {visible: "has_mailing_address", required: :if_visible}},
-      {"City State_2": {classes: "three-quarter", visible: "has_mailing_address", required: :if_visible}},
-      {"Zip Code_2": {classes: "quarter last", visible: "has_mailing_address", required: :if_visible}},
-      {"messenger": {type: :checkbox}},
-      {"First Name_2": {classes: "indent half", visible: "messenger", required: :if_visible}},
-      {"Last Name_2": {classes: "indent half not-first last ", visible: "messenger", required: :if_visible}},
-      {"to serve as my authorized messenger to pick up my absentee ballot I": {classes: "indent three-quarter", visible: "messenger", required: :if_visible}},
-      {"Apt or Lot_2": {classes: "indent last quarter", visible: "messenger"}},
-      {"As the authorized messenger I acknowledge receipt of the ballot for": {classes: "indent three-quarter", visible: "messenger", required: :if_visible}},
-      {"Zip Code_3": {classes: "indent last quarter",visible: "messenger", required: :if_visible}},
-      {"Daytime telephone": {classes: "indent", visible: "messenger", required: :if_visible}},
-      {"uocava": {type: :checkbox}},
-      {"uocava_1": {classes: "indent", visible: "uocava", type: :radio, options: ["Yes", "No"], required: :if_visible}},
-      {"uocava_2": {classes: "indent", visible: "uocava", type: :radio, options: ["Yes", "No"], required: :if_visible}},
-      {"uocava_3": {classes: "indent", visible: "uocava", type: :radio, options: ["Yes", "No"], required: :if_visible}},
-      {"uocava_email": {classes: "indent", visible: "uocava", type: :radio, options: ["Yes", "No"], required: :if_visible}}
+      {"abr_check_mailing_address": { type: :checkbox }},
+      {"abr_mailing_address_line_1": { visible: "abr_check_mailing_address", required: :if_visible }},
+      {"abr_mailing_city": {classes: "half", visible: "abr_check_mailing_address", required: :if_visible }},
+      {"abr_mailing_state": {classes: "quarter", visible: "abr_check_mailing_address", required: :if_visible,
+        type: :select, options: GeoState.collection_for_select
+      }},
+      {"abr_mailing_zip": {classes: "quarter", visible: "abr_check_mailing_address", required: :if_visible }},
+      {"abr_election_type_selections": { required: true, type: :radio }},
+      {"abr_election_type3": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type2" }},
+      {"abr_election_type4": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type2" }},
+      {"abr_election_type5": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type2" }},
+      {"abr_election_type6": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type2" }},
+      {"abr_election_type7": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type2" }},
+      {"abr_election_type_hint": { type: :instructions, visible_any: "abr_election_type4 abr_election_type_selections_abr_election_type1" }},
+      {"abr_application_type_check1": { type: :checkbox, visible_any: "abr_election_type_selections_abr_election_type1 abr_election_type4" }},
+      {"abr_primary_type_selection": { type: :radio, visible: "abr_application_type_check1"  }},
+      {"abr_residency_requirements_instructions": {type: :instructions, visible_any: "abr_election_type_selections_abr_election_type1 abr_election_type5 abr_election_type6"}},
+      {"abr_residency_requirements_selections1": { type: :radio, required: :if_visible, visible_any: "abr_election_type_selections_abr_election_type1 abr_election_type6 abr_election_type5"}},
+      {"abr_residency_requirements_selections2": { type: :radio, required: :if_visible, visible_any: "abr_election_type_selections_abr_election_type1 abr_election_type6 abr_election_type5" }},
+      {"abr_id_selections": { type: :radio }},
+      {"abr_request_check": { type: :checkbox }},
+      {"abr_assistant_first_name": { classes: "half", visible: "abr_request_check", required: :if_visible }},
+      {"abr_assistant_last_name": { classes: "half", visible: "abr_request_check", required: :if_visible  }},
+      {"abr_assistant_phone": { visible: "abr_request_check", required: :if_visible }},
+      {"abr_assistant_address_line_1": {classes: "three-quarter",  visible: "abr_request_check", required: :if_visible }},
+      {"abr_assistant_line_2": { classes: "quarter", visible: "abr_request_check", }},
+      {"abr_assistant_address_city": { classes: "half", visible: "abr_request_check", required: :if_visible }},
+      {"abr_assistant_address_state": { classes: "quarter", visible: "abr_request_check", required: :if_visible,
+        type: :select, options: GeoState.collection_for_select
+      }},
+      {"abr_assistant_zip": { classes: "quarter", visible: "abr_request_check", required: :if_visible }},
     ]
   end
   
-  # "Box 14": { options: ["Off", "Yes"] }, # uocava_1 yes
-  # "Box 15": { options: ["Off", "Yes"] }, # uocava_1 no
-  def uocava_1
-    if self.box_14 == "Yes"
-      return "Yes"
-    elsif self.box_15 == "Yes"
-      return "No"
-    end
-    return nil
-  end
-  def uocava_1=(value)
-    if value == "Yes"
-      self.box_14 = "Yes"
-      self.box_15 = "Off"
-    elsif value == "No"
-      self.box_14 = "Off"
-      self.box_15 = "Yes"
-    end
-  end
-  
-  # "Box 16": { options: ["Off", "Yes"] }, # uocava_2 yes
-  # "Box 17": { options: ["Off", "Yes"] }, # uocava_2 no
-  def uocava_2
-    if self.box_16 == "Yes"
-      return "Yes"
-    elsif self.box_17 == "Yes"
-      return "No"
-    end
-    return nil
-    
-  end
-  def uocava_2=(value)
-    if value == "Yes"
-      self.box_16 = "Yes"
-      self.box_17 = "Off"
-    elsif value == "No"
-      self.box_16 = "Off"
-      self.box_17 = "Yes"
-    end
-  end
-  
-  
-  # "Box 18": { options: ["Off", "Yes"] }, # uocava_3 yes
-  # "Box 19": { options: ["Off", "Yes"] }, # uocava_3 no
-  def uocava_3
-    if self.box_18 == "Yes"
-      return "Yes"
-    elsif self.box_19 == "Yes"
-      return "No"
-    end
-    return nil
-    
-  end
-  def uocava_3=(value)
-    if value == "Yes"
-      self.box_18 = "Yes"
-      self.box_19 = "Off"
-    elsif value == "No"
-      self.box_18 = "Off"
-      self.box_19 = "Yes"
-    end
-    
-  end
-  
-  
-  
-  def email_if_military_opt_in
-    if uocava == "1" && uocava_email == "Yes"
-      email
-    else
-      nil
-    end
-  end
   
   
   def custom_form_field_validations
