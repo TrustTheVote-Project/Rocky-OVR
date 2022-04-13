@@ -69,6 +69,11 @@ en:
             mail, if different from your residence address.
           Ballot Mailing Address 2: "&nbsp;"
           Ballot Mailing Address 3: "&nbsp;"
+        registration:
+          has_state_license: I have a current AK state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current AK state identification card 
+            or driver's license, and social security number.
       al:
         abr:
           step_2_instructions: |-
@@ -578,6 +583,11 @@ en:
           confirm: ''
           requirements: "<p>If you are registered to vote, you may request your absentee
             ballot online directly with the state.</p>"
+        registration:
+          has_state_license: I have a current FL state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current FL state identification card 
+            or driver's license, and social security number.
       ga:
         abr:
           step_3_pending_header: Requesting an Absentee Ballot in Georgia
@@ -715,6 +725,11 @@ en:
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target='_blank' href='https://ballotstatus.hawaii.gov/Default'>online
             tool</a>
+        registration:
+          has_state_license: I have a current HI state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current HI state identification card 
+            or driver's license, and social security number.
       ia:
         abr:
           step_2_header: All registered voters in Iowa can vote absentee!
@@ -746,6 +761,11 @@ en:
           has_mailing_address: My mailing address differs from my residential address.
           Do not add this contact info to my voter recored check box: Please do not
             add my phone number or email address to my voter record.
+        registration:
+          has_state_license: I have a current IA state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current IA state identification card 
+            or driver's license, and social security number.
       id:
         abr_form_fields:
           abr_county: Registration Address County
@@ -869,6 +889,11 @@ en:
               County
             confirm: ''
             button: Finish your absentee request with Sangamon County
+        registration:
+          has_state_license: I have a current IL state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current IL state identification card 
+            or driver's license, and social security number.
       in:
         state_online_abr:
           instructions: |-
@@ -1768,6 +1793,11 @@ en:
             NC ID number ready. <br/>2. Click the button below to continue. <br/>3.
             On the DMV website, click "Continue to myNCDMV Services." <br/>4. Click
             "Continue as a guest" and submit your voter registration online.'
+        registration:
+          has_state_license: I have a current NC state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current NC state identification card 
+            or driver's license, and social security number.
       nd:
         abr:
           request_deadline: Check with your local election officials for your state's
@@ -2014,6 +2044,11 @@ en:
             <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
             <p>Your absentee ballot request must be received no later than 14 days before the election.</p>
             <p>To check the status of your Absentee Application, go to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
+        registration:
+          has_state_license: I have a current NM state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current NM state identification card 
+            or driver's license, and social security number.
       nv:
         abr:
           everyone_gets_ballot:
@@ -2097,6 +2132,11 @@ en:
           confirm your DMV record - don't worry - you can also <a href="%{next_url}">finish
           your registration with %{rtv_and_partner_name}</a>.  You will just have
           to print, sign, and mail in the form.</p>
+        registration:
+          has_state_license: I have a current NV state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current NV state identification card 
+            or driver's license, and social security number.
       ny:
         abr:
           request_deadline: received no later than fifteen days before the election.
@@ -2183,6 +2223,11 @@ en:
             prisoner: detention in jail/prison, awaiting trial, awaiting action by
               a grand jury, or in prison for a conviction of a crime or offense which
               was not a felony
+        registration:
+          has_state_license: I have a current NY state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current NY state identification card 
+            or driver's license, and social security number.
       oh:
         abr:
           step_2_instructions: |-
@@ -2233,6 +2278,11 @@ en:
           abr_mailing_city: City
           abr_mailing_state_abbrev: State
           abr_mailing_zip: Zip
+        registration:
+          has_state_license: I have a current OH state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current OH state identification card 
+            or driver's license, and social security number.
       ok:
         abr:
           request_deadline: received no later than 5 p.m. the Tuesday before the election.
@@ -2547,6 +2597,11 @@ en:
             <p>If you do not have a printer, you can call your <a href="https://www.scvotes.gov/how-register-absentee-voting" title="How to Register">local election official</a> and ask that an application be mailed to you.</p>
             <h3>Voting Absentee in Person</h3>
             <p>Your county may also offer absentee voting in person if that is better for you. <a href="https://www.scvotes.gov/how-register-absentee-voting" title="How to Register">Contact them directly.</a></p>
+        registration:
+          has_state_license: I have a current SC state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current SC state identification card 
+            or driver's license, and social security number.
       ri:
         abr:
           request_deadline: received by the local board no later than 4:00 P.M. on
@@ -3159,6 +3214,11 @@ en:
             instructions_3: |-
               <p>Make sure to follow all of the instructions included with your absentee ballot.</p>
               <p>Your voted ballot must be returned by May 7th if returned by hand and postmarked by May 10th if mailed. If mailed, they must be received by May 16th.</p>
+        registration:
+          has_state_license: I have a current WV state identification card 
+            or driver's license, and social security number.
+          has_no_state_license: I do not have a current WV state identification card 
+            or driver's license, and social security number.
       wy:
         abr:
           request_deadline: Check with your local election officials for your state's
