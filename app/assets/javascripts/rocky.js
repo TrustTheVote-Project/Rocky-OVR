@@ -8,7 +8,7 @@ function isFacebookApp() {
 
 function trackView(trackingUrl, controller, action) {
   if (trackingUrl) {
-    console.log(trackingUrl, controller, action)
+    //console.log(trackingUrl, controller, action)
     $.post(trackingUrl, {
       rendered_step: controller+"-"+action
     });
@@ -24,7 +24,7 @@ function revealErrors() {
 };
 
 function toggleFieldSet(checkbox, set, rule, speed, hideOnCheck) {
-  console.log(checkbox, set, rule)
+  //console.log(checkbox, set, rule)
   var show = hideOnCheck ? !$(checkbox).is(':checked') : $(checkbox).is(':checked')
 	if (show) {
     $(rule).hide(0);
@@ -32,7 +32,7 @@ function toggleFieldSet(checkbox, set, rule, speed, hideOnCheck) {
   } else {
     $(set).fadeOut(speed);
     $(set).find(".has_error input, .has_error select").each(function() {
-      console.log(this);
+      //console.log(this);
       clearErrors.bind(this)();
     })
     $(rule).show(0);
