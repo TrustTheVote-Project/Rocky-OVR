@@ -6,430 +6,182 @@ ui_url_host: "register.rockthevote.com"
 
 
 blocks_configuration:
+  states:
+    - PA
   shift_length: 24
   default_location_id: 19000000002
   default_staging_location_id: 19000000003  
-  url: https://svpa.blocks.im
+  url: https://v2.api.blocks.app
+  url_client_path: svpa
   partners:
-    38368:
-      turf_id: 19000000015
-      canvasser_id: 19000000007
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    36862:
-      turf_id: 19000000021
-      canvasser_id: 19000000008
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    35318:
-      turf_id: 19000000023
-      canvasser_id: 19000000022
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37067:
-      turf_id: 19000000024
-      canvasser_id: 19000000023
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37279:
-      turf_id: 19000000025
-      canvasser_id: 19000000010
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37281:
-      turf_id: 19000000027
-      canvasser_id: 19000000012
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    35988:
-      turf_id: 19000000028
-      canvasser_id: 19000000013
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    36857:
-      turf_id: 19000000029
-      canvasser_id: 19000000014
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    36866:
-      turf_id: 19000000030
-      canvasser_id: 19000000015
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37928:
-      turf_id: 19000000031
-      canvasser_id: 19000000016
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    36063:
-      turf_id: 19000000032
-      canvasser_id: 19000000017
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    36845:
-      turf_id: 19000000033
-      canvasser_id: 19000000018
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37302:
-      turf_id: 19000000035
-      canvasser_id: 19000000020
-      location_id: 19000000002
-      staging_location_id: 19000000003
+    16027:	
+      turf_id: '19000000049'
+      canvasser_id: '19000000456'
+      location_id: '19000000727'
+      staging_location_id: '19000000727'
+    35318:	
+      turf_id: '19000000023'
+      canvasser_id: '19000000022'
+      location_id: '19000000478'
+      staging_location_id: '19000000478'
     35379:
-      turf_id: 19000000036
-      canvasser_id: 19000000021
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    16027:
-      turf_id: 19000000049
-      canvasser_id: 19000000028
-      location_id: 19000000002
-      staging_location_id: 19000000003      
-    35863:
-      turf_id:      19000000047
-      canvasser_id: 19000000030
-      location_id: 19000000002
-      staging_location_id: 19000000003      
-    36853:
-      turf_id:      19000000044
-      canvasser_id: 19000000033
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37281:
-      turf_id:      19000000027
-      canvasser_id: 19000000012
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37496:
-      turf_id:      19000000043
-      canvasser_id: 19000000034  
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    37570:
-      turf_id:      19000000046
-      canvasser_id: 19000000031  
-      location_id: 19000000002
-      staging_location_id: 19000000003      
-    37625:
-      turf_id:      19000000042
-      canvasser_id: 19000000035  
-      location_id: 19000000002
-      staging_location_id: 19000000003      
-    38164:
-      turf_id:      19000000045
-      canvasser_id: 19000000032
-      location_id: 19000000002
-      staging_location_id: 19000000003        
-    38332:
-      turf_id:      19000000037
-      canvasser_id: 19000000036  
-      location_id: 19000000002
-      staging_location_id: 19000000003              
-    38581:
-      turf_id:      19000000050
-      canvasser_id: 19000000027  
-      location_id: 19000000002
-      staging_location_id: 19000000003              
-    38631:
-      turf_id:      19000000048
-      canvasser_id: 19000000029  
-      location_id: 19000000002
-      staging_location_id: 19000000003              
-    38677:
-      turf_id:      19000000026
-      canvasser_id: 19000000011  
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    38800:
-      turf_id:  19000000003
-      canvasser_id: 19000000002
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    38822:
-      turf_id:  19000000005
-      canvasser_id: 19000000004
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    38704:
-      turf_id:  19000000051
-      canvasser_id: 19000000082
-      location_id: 19000000002
-      staging_location_id: 19000000003
-    26354:
-      states:
-      - NV
-      url: https://svnv.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: Faith Organizing Alliance (FOA)
-        turf_id: '2000000113'
-        location_id: '2000002089'
-        staging_location_id: '2000002090'
-      - name: Asian Community Development Council (ACDC)
-        turf_id: '2000000114'
-        location_id: '2000002091'
-        staging_location_id: '2000002092'
-      - name: 'Mi Familia Vota Education Fund  (MFVEF) '
-        turf_id: '2000000115'
-        location_id: '2000002095'
-        staging_location_id: '2000002096'
-      - name: Acting in Community Together in Organizing Northern Nevada (ACTIONN)
-        turf_id: '2000000116'
-        location_id: '2000002093'
-        staging_location_id: '2000002094'
-      - name: Chispa Nevada (CHISPA)
-        turf_id: '2000000117'
-        location_id: '2000002097'
-        staging_location_id: '2000002098'
-      - name: Fieldworks
-        turf_id: '2000000121'
-        location_id: '2000002087'
-        staging_location_id: '2000002088'
-    26429:
-      states:
-      - FL
-      url: https://svfl.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: UnidosUS (Unidos)
-        turf_id: '6000000368'
-        location_id: '6000008941'
-        staging_location_id: '6000008940'
-    37885:
-      states:
-      - FL
-      url: https://svfl.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: New Florida Majority-Education Fund (NewFM-EF)
-        turf_id: '6000000371'
-        location_id: '6000008945'
-        staging_location_id: '6000008944'
-    38107:
-      states:
-      - FL
-      url: https://svfl.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: Poder Latinx Collective Fund (PLCF)
-        turf_id: '6000000369'
-        location_id: '6000008943'
-        staging_location_id: '6000008942'
-    38350:
-      states:
-      - FL
-      url: https://svfl.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: Florida Immigrant Coalition (FLIC)
-        turf_id: '6000000372'
-        location_id: '6000008947'
-        staging_location_id: '6000008946'
-    38373:
-      states:
-      - FL
-      url: https://svfl.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: Mi Familia Vota Education Fund (MFVEF)
-        turf_id: '6000000380'
-        location_id: '6000008957'
-        staging_location_id: '6000008956'
-    38400:
-      states:
-      - FL
-      url: https://svfl.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: Engage Miami Civic Fund (EMCF)
-        turf_id: '6000000373'
-        location_id: '6000008949'
-        staging_location_id: '6000008948'
-      - name: The First Coast Leadership Foundation (TFCLF)
-        turf_id: '6000000374'
-        location_id: '6000008951'
-        staging_location_id: '6000008950'
-      - name: Real Women Radio Foundation (RWR)
-        turf_id: '6000000375'
-        location_id: '6000008953'
-        staging_location_id: '6000008952'
-      - name: Hispanic Federation (HF)
-        turf_id: '6000000378'
-        location_id: '6000008955'
-        staging_location_id: '6000008954'
-      - name: hispanic Federation MH
-        turf_id: '6000000386'
-        location_id: '6000008959'
-        staging_location_id: '6000008958'
-    38403:
-      states:
-      - NC
-      url: https://svnc.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: Unifour One (Unifour)
-        turf_id: '3000000007'
-        location_id: '3000006136'
-        staging_location_id: '3000006135'
-      - name: You Can Vote (YCV)
-        turf_id: '3000000179'
-        location_id: '3000006132'
-        staging_location_id: '3000006131'
-      - name: Action Institute NC (AINC)
-        turf_id: '3000000180'
-        location_id: '3000006130'
-        staging_location_id: '3000006129'
-      - name: North Carolina A. Philip Randolph Institute (NCAPRI)*
-        turf_id: '3000000181'
-        location_id: '3000006134'
-        staging_location_id: '3000006133'
-      - name: Alliance For Climate Education (ACE)
-        turf_id: '3000000183'
-        location_id: '3000006140'
-        staging_location_id: '3000006139'
-      - name: NC Blueprint
-        turf_id: '3000000202'
-        location_id: '3000006165'
-        staging_location_id: '3000006166'
-    38406:
-      states:
-      - MI
-      url: https://svmi.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: GBI
-        turf_id: '16000000003'
-        location_id: '16000000837'
-        staging_location_id: '16000000838'
-      - name: Michigan League of Conservation Voters Education Fund
-        turf_id: '16000000015'
-        location_id: '16000000833'
-        staging_location_id: '16000000834'
-      - name: Detroit Action
-        turf_id: '16000000025'
-        location_id: '16000000827'
-        staging_location_id: '16000000828'
-      - name: Oakland Forward
-        turf_id: '16000000026'
-        location_id: '16000000831'
-        staging_location_id: '16000000832'
-      - name: Michigan United
-        turf_id: '16000000027'
-        location_id: '16000000835'
-        staging_location_id: '16000000836'
-      - name: APIA-Vote MI
-        turf_id: '16000000030'
-        location_id: '16000000839'
-        staging_location_id: '16000000840'
-      - name: ACCESS
-        turf_id: '16000000032'
-        location_id: '16000000841'
-        staging_location_id: '16000000842'
-      - name: Better Men Outreach
-        turf_id: '16000000033'
-        location_id: '16000000843'
-        staging_location_id: '16000000844'
-      - name: Detroit Change Initiative
-        turf_id: '16000000034'
-        location_id: '16000000845'
-        staging_location_id: '16000000846'
-      - name: Rising Voices
-        turf_id: '16000000035'
-        location_id: '16000000847'
-        staging_location_id: '16000000848'
-      - name: Righteous Sons
-        turf_id: '16000000036'
-        location_id: '16000000849'
-        staging_location_id: '16000000850'
-      - name: Mothers of Hope
-        turf_id: '16000000037'
-        location_id: '16000000851'
-        staging_location_id: '16000000852'
-      - name: MI Liberation
-        turf_id: '16000000038'
-        location_id: '16000000853'
-        staging_location_id: '16000000854'
-      - name: Michigan Coalition on Black Civic Participation
-        turf_id: '16000000039'
-        location_id: '16000000855'
-        staging_location_id: '16000000856'
-      - name: Michigan Faith in Action
-        turf_id: '16000000040'
-        location_id: '16000000857'
-        staging_location_id: '16000000858'
-      - name: Michigan APRI
-        turf_id: '16000000041'
-        location_id: '16000000859'
-        staging_location_id: '16000000860'
-      - name: Detroit Hispanic Development Corp
-        turf_id: '16000000042'
-        location_id: '16000000861'
-        staging_location_id: '16000000862'
-    38408:
-      states:
-      - MN
-      url: https://svmn.blocks.im
-      bulk_submit: false
-      submit_forms: false
-      sub_orgs:
-      - name: LeadMN
-        turf_id: '17000000044'
-        location_id: '17000000437'
-        staging_location_id: '17000000438'
-      - name: Minnesota Youth Collective
-        turf_id: '17000000045'
-        location_id: '17000000439'
-        staging_location_id: '17000000440'
-      - name: Outfront MN
-        turf_id: '17000000047'
-        location_id: '17000000441'
-        staging_location_id: '17000000442'
-      - name: Asian American Organizing Project
-        turf_id: '17000000048'
-        location_id: '17000000443'
-        staging_location_id: '17000000444'
-      - name: ACER
-        turf_id: '17000000049'
-        location_id: '17000000445'
-        staging_location_id: '17000000446'
-      - name: Anika Foundation
-        turf_id: '17000000050'
-        location_id: '17000000447'
-        staging_location_id: '17000000448'
-      - name: MN350
-        turf_id: '17000000051'
-        location_id: '17000000449'
-        staging_location_id: '17000000450'
-      - name: Navigate MN
-        turf_id: '17000000052'
-        location_id: '17000000451'
-        staging_location_id: '17000000452'
-      - name: Black Civic Network
-        turf_id: '17000000053'
-        location_id: '17000000453'
-        staging_location_id: '17000000454'
-      - name: Isaiah
-        turf_id: '17000000054'
-        location_id: '17000000455'
-        staging_location_id: '17000000456'
-      - name: Honor the Earth
-        turf_id: '17000000055'
-        location_id: '17000000457'
-        staging_location_id: '17000000458'
-      - name: Minnesota Voice
-        turf_id: '17000000044'
-        location_id: '17000000584'
-        staging_location_id: '17000000585'
+      turf_id: '19000000036'
+      canvasser_id: '19000000021'
+      location_id: '19000000480'
+      staging_location_id: '19000000480'
+    35863:	
+      name: "Planned Parenthood Association of PA	"
+      turf_id: '19000000047'
+      canvasser_id: '19000000454'
+      location_id: '19000000482'
+      staging_location_id: '19000000482'
+    35988:	
+      name: "POWER"
+      turf_id: '19000000028'
+      canvasser_id: '19000000441'
+      location_id: '19000000210'
+      staging_location_id: '19000000210'
+    36063:	
+      name: "Project HOME"
+      turf_id: '19000000032'
+      canvasser_id: '19000000445'
+      location_id: '19000000353'
+      staging_location_id: '19000000353'
+    36845:	
+      name: "VietLead"
+      turf_id: '19000000033'
+      canvasser_id: '19000000446'
+      location_id: '19000000356'
+      staging_location_id: '19000000356'
+    36853:	
+      name: "New Voices"
+      turf_id: '19000000044'
+      canvasser_id: '19000000453'
+      location_id: '19000000733'
+      staging_location_id: '19000000733'
+    36857:	
+      name: "SEAMAAC"
+      turf_id: '19000000029'
+      canvasser_id: '19000000442'
+      location_id: '19000000262'
+      staging_location_id: '19000000262'
+    36862:	
+      name: "Pittsburgh United"
+      turf_id: '19000000021'
+      canvasser_id: '19000000438'
+      location_id: '19000000494'
+      staging_location_id: '19000000494'
+    36866:	
+      name: "PICC"
+      turf_id: '19000000030'
+      canvasser_id: '19000000443'
+      location_id: '19000000496'
+      staging_location_id: '19000000496'
+    37067:
+      turf_id: '19000000024'
+      canvasser_id: '19000000439'
+      location_id: '19000000164'
+      staging_location_id: '19000000164'
+    37279:
+      turf_id: '19000000025'
+      canvasser_id: '19000000010'
+      location_id: '19000000500'
+      staging_location_id: '19000000500'
+    37281:	
+      name: "Unidos US"
+      turf_id: '19000000027'
+      canvasser_id: '19000000440'
+      location_id: '19000000502'
+      staging_location_id: '19000000502'
+    37302:	
+      name: "Youth United for Change"
+      turf_id: '19000000035'
+      canvasser_id: '19000000448'
+      location_id: '19000000706'
+      staging_location_id: '19000000706'
+    37496:	
+      name: "Media Mobilizing Project"
+      turf_id: '19000000043'
+      canvasser_id: '19000000452'
+      location_id: '19000000726'
+      staging_location_id: '19000000726'
+    37625:	
+      name: "ACLU PA"
+      turf_id: '19000000042'
+      canvasser_id: '19000000451'
+      location_id: '19000000710'
+      staging_location_id: '19000000710'
+    37928:	
+      name: "Asian Americans United"
+      turf_id: '19000000031'
+      canvasser_id: '19000000444'
+      location_id: '19000000712'
+      staging_location_id: '19000000712'
+    38332:	
+      name: "NAKASEC - Montgomery"
+      turf_id: '19000000038'
+      canvasser_id: '19000000449'
+      location_id: '19000000729'
+      staging_location_id: '19000000729'
+    38368:
+      turf_id: '19000000015'
+      canvasser_id: '19000000435'
+      location_id: '19000000517'
+      staging_location_id: '19000000517'
+    38581:	
+      name: "CAIR Philadelphia"
+      turf_id: '19000000050'
+      canvasser_id: '19000000457'
+      location_id: '19000000715'
+      staging_location_id: '19000000715'
+    38631:	
+      name: "Rising Sons / Ones Up"
+      turf_id: '19000000048'
+      canvasser_id: '19000000455'
+      location_id: '19000000521'
+      staging_location_id: '19000000521'
+    38677:	
+      name: "FOF - Philadelphia"
+      turf_id: '19000000039'
+      canvasser_id: '19000000450'
+      location_id: '19000000722'
+      staging_location_id: '19000000722'
+    38704:	
+      name: "West End Power"
+      turf_id: '19000000051'
+      canvasser_id: '19000000458'
+      location_id: '19000000528'
+      staging_location_id: '19000000528'
+    38726:	
+      name: "Black Voters Matter"
+      turf_id: '19000000052'
+      canvasser_id: '19000000459'
+      location_id: '19000000714'
+      staging_location_id: '19000000714'
+    38911:	
+      name: "Bhutanese Community Association of Pittsburgh"
+      turf_id: '19000000070'
+      canvasser_id: '19000000474'
+      location_id: '19000000713'
+      staging_location_id: '19000000713'
+    39019:	
+      name: "1 Vote Counts"
+      turf_id: '19000000068'
+      canvasser_id: '19000000473'
+      location_id: '19000000707'
+      staging_location_id: '19000000707'
+    39035:	
+      name: "Casa San Jose"
+      turf_id: '19000000071'
+      canvasser_id: '19000000475'
+      location_id: '19000000719'
+      staging_location_id: '19000000719'
+    39036:
+      turf_id: '19000000069'
+      canvasser_id: '19000000487'
+      location_id: '19000000784'
+      staging_location_id: '19000000784'
+
 
 
 

@@ -1,54 +1,75 @@
 module AbrStateMethods::ID
 
     PDF_FIELDS = {
-      "lastName": {
-        method: "last_name"
-      },
-      "firstName": {
-        method: "first_name"
-      },
-      "middleName": {
-        method: "middle_initial"
-      },
-      "suffixName": {
-        method: "name_suffix"
-      },
-      "residenceAddress": {
-        method: "address"
-      },
-      "cityName": {
-        method: "city"
-      },
-      "state": {
-        method: "home_state_abbrev"
-      },
-      "zipCode": {
-        method: "zip"
-      },
-      "County": {},
-      "phoneNumber": {
-        method: "phone"
-      },
-      "emailAddress": {
+      "abr_email": {
         method: "email"
       },
-      "mailingAddress": {},
-      "mailingCity": {},
-      "mailingState": {},
-      "mailingZipCode": {},
-      "mailingCountry": {},
-      "allElections2021": {
-        options: ["On", "Off"],
-        value: "On"
+      #"abr_reason_instructions"	
+      "abr_first_name": {
+        method: "first_name"
+      },
+      "abr_middle_initial": {
+        method: "middle_initial"
+      },
+      "abr_last_name": {
+        method: "last_name"
+      },
+      "abr_name_suffix": {
+        method: "name_suffix"
+      },
+      "abr_street_name": {
+        method: "address",
+      },
+      "abr_city": {
+        method: "city"
+      },
+      "abr_home_state_abbrev": {
+        method: "home_state_abbrev"
+      },
+      "abr_zip": {
+        method: "zip"
+      },
+      "abr_county": {},
+      # "abr_id_selections": {
+      #   options: [
+      #     "abr_id_type1",
+      #     "abr_id_no1",          
+      #   ]
+      # }
+      #"abr_check_mailing_address": {},
+      #"abr_mailing_address_instructions": {},
+      "abr_mailing_address_line_1": {},
+      "abr_mailling_city": {},
+      "abr_mailing_state_abbrev": {},
+      "abr_mailing_zip": {},
+      "abr_mailing_country": {},
+      "abr_election_type1": {
+        options: ["Off", "Yes"]
+      },
+      "abr_election_type2": {
+        options: ["Off", "Yes"]
+      },
+      "abr_election_type3": {
+        options: ["Off", "Yes"]
+      },
+      "abr_primary_type_selections1": {
+        options: [
+          "abr_primary_type1",
+          "abr_primary_type2",
+          "abr_primary_type3",
+          "abr_primary_type4",
+          "NonPartisan",    
+        ]
+      },
+      "abr_phone": {
+        method: "phone"
       }
 
     }
-    EXTRA_FIELDS = ["has_mailing_address"]
+    EXTRA_FIELDS = ["abr_check_mailing_address"]
   
-    
-    def form_field_items
-      [{"County": {type: :select, required: true, include_blank: true, options: [
-        "Ada County",
+    COUNTIES = [
+      "Ada County",
         "Adams County",
         "Bannock County",
         "Bear Lake County",
@@ -92,14 +113,10 @@ module AbrStateMethods::ID
         "Twin Falls County",
         "Valley County",
         "Washington County",
-      ]}},
-        {"has_mailing_address": {type: :checkbox}},
-        {"mailingAddress": {visible: "has_mailing_address", required: :if_visible}},
-        {"mailingCity": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
-        {"mailingState": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-        {"mailingZipCode": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
-        {"mailingCountry": {visible: "has_mailing_address", type: :select, include_blank: true, options: [
-          "Afghanistan",
+    ]
+    
+    COUNTRIES = [
+      "Afghanistan",
           "Albania",
           "Algeria",
           "Andorra",
@@ -292,7 +309,23 @@ module AbrStateMethods::ID
           "Yemen",
           "Zambia",
           "Zimbabwe",
-        ]}},
+    ]
+
+    def form_field_items
+      [
+        {"abr_county": {type: :select, options: COUNTIES, include_blank: true, required: true}},
+        {"abr_check_mailing_address": {type: :checkbox}},
+        {"abr_mailing_address_instructions": {type: :instructions, visible:  "abr_check_mailing_address"}},
+        {"abr_mailing_address_line_1": {visible: "abr_check_mailing_address", required: :if_visible}},        
+        {"abr_mailling_city": {visible: "abr_check_mailing_address", required: :if_visible, classes: "half"}},        
+        {"abr_mailing_state_abbrev": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},        
+        {"abr_mailing_zip": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter last"}},
+        {"abr_mailing_country": {visible: "abr_check_mailing_address", type: :select, include_blank: true, options: COUNTRIES }},
+        {"abr_election_type_selection": {type: :instructions}},
+        {"abr_election_type1": { type: :checkbox}},
+        {"abr_election_type2": { type: :checkbox}},
+        {"abr_election_type3": { type: :checkbox}},
+        {"abr_primary_type_selections1": { type: :radio, required: :if_visible, visible: "abr_election_type1"}}
       ]
     end
     #e.g.

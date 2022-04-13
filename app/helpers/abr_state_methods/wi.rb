@@ -181,7 +181,7 @@ module AbrStateMethods::WI
         {"Apt Number_2": {visible: "has_mailing_address", classes: "quarter last"}},
         {"City_2": {visible: "has_mailing_address",required: :if_visible, classes: "half"}},
         #{"State  ZIP_2": {visible: "has_mailing_address", classes: "half last"}},
-        {"state_mail": {visible: "has_mailing_address",required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"state_mail": {visible: "has_mailing_address",required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
         {"zip_mail": {visible: "has_mailing_address",required: :if_visible,min: 5, max: 10, classes: "quarter last"}},
         
         {"Care Facility Name if applicable": {visible: "has_mailing_address"}},

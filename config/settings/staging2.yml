@@ -15,31 +15,31 @@ minutes_before_abandoned: 5
 ui_timeout_minutes: 5
 
 blocks_configuration:
-  default_turf_id: 416
-  default_location_id: 266
-  default_staging_location_id: 267
-  shift_length: 1
-  url: https://svtesting.blocks.work
+  default_turf_id: 19000000053
+  default_location_id: 19000000704
+  default_staging_location_id: 19000000704
+  shift_length: 2
+  url: https://v2.api.blocks.app
+  url_client_path: svpa  
   partners:
     1:
       states:
         - NV
-      url: https://svdemo.blocks.im
       bulk_submit: false
-      submit_forms: false
+      submit_forms: true
       sub_orgs:
         - name: Org 1
-          turf_id: 171
-          staging_location_id: 758
+          turf_id: 19000000053
+          staging_location_id: 19000000053
         - name: Org 2
-          turf_id: 172
-          staging_location_id: 758
+          turf_id: 19000000053
+          staging_location_id: 19000000053
 
     991:
-      turf_id: 19000000023
-      canvasser_id: 19000000022
-      location_id: 2000002091
-      staging_location_id: 594
+      turf_id: 19000000053
+      canvasser_id: 19000000380
+      location_id: 19000000704
+      staging_location_id: 19000000704
 
 
 
@@ -93,17 +93,15 @@ states_with_online_registration:
 ovr_states:
   CA:
     api_settings:
-      api_url: https://covrapitest.sos.ca.gov/PostingEntityInterfaceService.svc
-      api_key: d2DE1Nht8I
+      api_url: https://tst-uat-ols.sos.ca.gov/PostingEntityInterfaceService.svc
       api_posting_entity_name: RTV
       debug_in_ui: false
       log_all_requests: true
       disclosures_font_size: 12px
       disclosures_box_height: 170px
-      web_url_base: https://covrtest.sos.ca.gov
+      web_url_base: https://tst-uat-pub.sos.ca.gov
       disclosures_url: https://covr.cdn.sos.ca.gov/discl/
-      
-      web_agency_key: RTV
+      web_agency_key: RTV    
   PA:
     api_settings:
       api_url: "https://fake-pa-endpoint.herokuapp.com"

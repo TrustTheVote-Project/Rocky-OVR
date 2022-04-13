@@ -17,9 +17,9 @@ pdf_assistance:
     - 1
 
 blocks_configuration:
-  default_turf_id: 416
-  default_location_id: 16000000827
-  default_staging_location_id: 16000000827
+  default_turf_id: 19000000053
+  default_location_id: 19000000704
+  default_staging_location_id: 19000000704
   shift_length: 2
   url: https://v2.api.blocks.app
   url_client_path: svpa
@@ -49,10 +49,10 @@ blocks_configuration:
       location_id: 266
       staging_location_id: 267
     7:
-      turf_id: 19000000023
-      canvasser_id: 19000000022
-      location_id: 2000002091
-      staging_location_id: 594
+      turf_id: 19000000053
+      canvasser_id: 19000000380
+      location_id: 19000000704
+      staging_location_id: 19000000704
     15:
       states:
       - NV

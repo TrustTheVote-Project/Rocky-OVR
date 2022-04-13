@@ -80,3 +80,16 @@ table#users {
     margin-right: 5px;
   }
 }
+
+li.full-width {
+  h3 {
+    label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+  width: 100%;
+  input[type=text] {
+    min-width: 300px;
+  }
+}

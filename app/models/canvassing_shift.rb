@@ -194,6 +194,10 @@ class CanvassingShift < ActiveRecord::Base
     self.completed_registrations = registrants_or_requests.count
     self.abandoned_registrations = web_abandoned_registrants.count
   end
+
+  def registrations_with_phone_count
+    
+  end
   
   def set_defaults!
     resave = false
@@ -244,23 +248,23 @@ class CanvassingShift < ActiveRecord::Base
       created_shift = service.upload_canvassing_shift(self, shift_type: blocks_shift_type)
       shift = created_shift[:shift]
       self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
-      if submit_forms?
-        forms = created_shift[:forms]
-        registrants_or_requests.each_with_index do |reg_req, i|
-          form_result = get_form_from_reg_req(reg_req, forms, i)
-          # Make sure form_result maps to reg_req
-          if form_result #form_matches_request(form_result, reg_req)
-            form_id = form_result["id"]
-            registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
-            grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
-            if !reg_req.is_a?(Registrant) || (reg_req.is_a?(Registrant) && reg_req.home_state_id = pa.id)
-              BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
-            end
-          else
-            puts "No form result for #{reg_req} #{i}"
-          end
-        end
-      end
+      # if submit_forms?
+      #   forms = created_shift[:forms]
+      #   registrants_or_requests.each_with_index do |reg_req, i|
+      #     form_result = get_form_from_reg_req(reg_req, forms, i)
+      #     # Make sure form_result maps to reg_req
+      #     if form_result #form_matches_request(form_result, reg_req)
+      #       form_id = form_result["id"]
+      #       registrant_id = reg_req.is_a?(Registrant) ? reg_req.uid : nil
+      #       grommet_request_id = reg_req.is_a?(Registrant) ? reg_req.state_ovr_data["grommet_request_id"] : reg_req.id
+      #       if !reg_req.is_a?(Registrant) || (reg_req.is_a?(Registrant) && reg_req.home_state_id = pa.id)
+      #         BlocksFormDisposition.create!(blocks_form_id: form_id, registrant_id: registrant_id, grommet_request_id: grommet_request_id)
+      #       end
+      #     else
+      #       puts "No form result for #{reg_req} #{i}"
+      #     end
+      #   end
+      # end
     end
   end
   

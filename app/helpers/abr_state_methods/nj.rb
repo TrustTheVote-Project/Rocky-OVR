@@ -28,7 +28,7 @@ module AbrStateMethods::NJ
     "Zip": {
       method: "zip"
     },
-    "7 EMail Address Optional": {
+    "7 EMail Address": {
       method: "email"
     },
     "Apt_2": {},
@@ -39,7 +39,11 @@ module AbrStateMethods::NJ
     "State_3": {},
     "Zip_3": {},
     "Election": { 
-      options: ["All", "Fire", "General", "Municipal", "Off", "Primary", "School", "Special"],     
+      options: ["All", "General", "Primary", "Municipal", "School", "Fire", "Special"],     
+    },
+    "Special_Election_Name": {},
+    "Special_Election_Date": {
+      method: "election_date_string"
     },
     "UOCAVA": { options: ["Off", "Choice1", "Choice2", "Choice3", "Choice4"], default: "Off" },
     #"voter_signature": {}
@@ -75,12 +79,17 @@ module AbrStateMethods::NJ
     #"Signed_Date": {}
     #"messenger_date": {}
   }
-  EXTRA_FIELDS = ["election_selection", "has_mailing_address", "assistant", "messenger","messenger_birth_date", "messenger_birth_dd","messenger_birth_mm","messenger_birth_yyyy"]
+  EXTRA_FIELDS = ["election_selection", "has_mailing_address", "assistant", "messenger","messenger_birth_date", "messenger_birth_dd","messenger_birth_mm","messenger_birth_yyyy",
+    "election_date", "election_date_dd","election_date_mm","election_date_yyyy"]
   
   
   def form_field_items
     [
-      {"Election": {type: :radio, options:["All", "General"], required: true}},
+      {"Election": {type: :radio, required: true}},
+      {"Special_Election_Name": {visible: "election_special", required: :if_visible}},
+      {"election_date": {visible: "election_special", type: :date, required: :if_visible}},
+      
+
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address_2":{visible: "has_mailing_address"}},
       {"Mailing_Address_3":{visible: "has_mailing_address"}},
@@ -91,14 +100,14 @@ module AbrStateMethods::NJ
       {"Address_Assistor": {visible: "assistant", classes: "three-quarter", required: :if_visible}},
       {"Apt_2": {visible: "assistant", classes: "quarter last"}},
       {"Municipality CityTown_2": {visible: "assistant", classes: "half", required: :if_visible}},
-      {"State_2": {visible: "assistant", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"State_2": {visible: "assistant", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
       {"Zip_2": {visible: "assistant", required: :if_visible, classes: "quarter last"}},
       {"messenger": {type: :checkbox}},
       {"Authorizied_Messenger_Name": {visible: "messenger", required: :if_visible}},
       {"Address of Messenger": {visible: "messenger", required: :if_visible, classes: "three-quarter"}},
       {"Apt_3": {visible: "messenger", classes: "quarter last"}},
       {"Municipality CityTown_3": {visible: "messenger", required: :if_visible, classes: "half"}},
-      {"State_3": {visible: "messenger", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"State_3": {visible: "messenger", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
       {"Zip_3": {visible: "messenger", required: :if_visible, classes: "quarter last"}},
       # TODO: change to type: :date #ToDone
       {"messenger_birth_date": {visible: "messenger", type: :date,  m: "messenger_birth_mm", d: "messenger_birth_dd", y: "messenger_birth_yyyy", required: :if_visible}},
@@ -140,6 +149,10 @@ module AbrStateMethods::NJ
         return(nil)
       end 
     end 
+  end
+
+  def election_date_string
+    date_field_string_mm_dd_yyyy(method: :election_date)
   end
 
 

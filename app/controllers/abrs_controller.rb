@@ -33,7 +33,7 @@ class AbrsController < ApplicationController
 
   def track_view
     # Record that a particular page got viewed
-    find_abr
+    find_abr(:track)
     TrackingEvent.track_abr_view(@abr, params[:rendered_step])
   end
   
@@ -194,7 +194,7 @@ class AbrsController < ApplicationController
     @partner = @abr&.partner
     @partner_id = @partner&.id
     
-    if @abr.finish_with_state? && special_case != :tell_friend && special_case != :finish
+    if @abr.finish_with_state? && special_case != :tell_friend && special_case != :finish && special_case != :track
       @abr.update_attributes(:finish_with_state=>false)
     end
     
@@ -272,6 +272,9 @@ class AbrsController < ApplicationController
         if @abr.home_state.abr_deadline_passed
           @abr.dead_end!      
           return 'step_2_abr_deadline_passed_general' 
+        elsif @abr.home_state.abr_all_ballot_by_mail
+          @abr.dead_end!      
+          return 'step_2_abr_everyone_gets_ballot'        
         elsif @abr.home_state.abr_splash_page
           @abr.dead_end!      
           return 'step_2_abr_splash_page_general'

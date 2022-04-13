@@ -117,6 +117,39 @@ HTML
     })
 </script>
 SCRIPT
+    @js_abr_script =
+<<-SCRIPT
+<script type="text/javascript">
+    RtvIframe.initAbsentee({
+      partner: #{partner_id}
+    })
+</script>
+SCRIPT
+    @js_lookup_script =
+<<-SCRIPT
+<script type="text/javascript">
+    RtvIframe.initLookup({
+      partner: #{partner_id}
+    })
+</script>
+SCRIPT
+    @js_alert_request_script =
+<<-SCRIPT
+<script type="text/javascript">
+    RtvIframe.initPledge({
+      partner: #{partner_id}
+    })
+</script>
+SCRIPT
+
+    @js_bsc_script =
+<<-SCRIPT
+<script type="text/javascript">
+    RtvIframe.initTrackBallot({
+      partner: #{partner_id}
+    })
+</script>
+SCRIPT
 
     @iframe_html = "<iframe src=\"https://register.rockthevote.com/?partner=#{partner_id}&source=iframe\" width=\"100%\" height=\"1200\" marginheight=\"0\" frameborder=\"0\"></iframe>"
     

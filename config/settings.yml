@@ -33,9 +33,9 @@ catalist:
   
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
-  branding_from: "Rock the Vote <info@rockthevote.com>"
-  branding_to: "david@rockthevote.com, melissa@rockthevote.com, lauren@rockthevote.com"
-  partner_status_to: "david@rockthevote.com, melissa@rockthevote.com, lauren@rockthevote.com, alex.mekelburg@osetfoundation.org"
+  branding_from: "Rock the Vote <info@rockthevote.org>"
+  branding_to: "david@rockthevote.com, rocky.branding@rockthevote.org"
+  partner_status_to: "david@rockthevote.org, rocky.inactive@rockthevote.org, alex.mekelburg@osetfoundation.org"
   admin_recipients: "errors@rockthevote.com, alex.mekelburg@osetfoundation.org"
   translation_recipients: "david@rockthevote.com, alex.mekelburg@osetfoundation.org"
 
@@ -158,9 +158,9 @@ absentee_states:
         online_req_url: https://cityblm.seamlessdocs.com/f/VBMapplication1120
   IN:
     online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
-    pdf_template: in.pdf
+    #pdf_template: in.pdf
     abr_status_check_url: "http://www.indianavoters.com/"
-    abr_track_ballot_url: "http://www.indianavoters.com/"
+    abr_track_ballot_url: "https://indianavoters.in.gov/MVPHome/PrintDocuments"
   KS:
     pdf_url: https://www.sos.ks.gov/forms//elections/AV1.pdf
     #pdf_template: ks.pdf

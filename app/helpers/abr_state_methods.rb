@@ -39,8 +39,6 @@ module AbrStateMethods
       unless self.respond_to?(opts[:method])
         method_name = opts[:method]
         self.define_state_value_attribute(method_name, sensitive: opts[:sensitive], checkbox_values: opts[:is_checkbox] ? opts[:options] : nil, options: opts[:options])
-        
-
       end
     end
     def define_state_value_attribute(method_name, sensitive: false, checkbox_values: nil, options: [])
@@ -67,7 +65,10 @@ module AbrStateMethods
       end
       define_singleton_method "#{method_name}=" do |value|
         # If this is a checkbox, assume 2 options are [false,true]
-        if checkbox_values && checkbox_values.length == 2
+        if checkbox_values && checkbox_values.length == 2 && (
+            checkbox_values[0].downcase == "yes" || checkbox_values[0].downcase == "no" ||
+            checkbox_values[0].downcase == "on" || checkbox_values[0].downcase == "off"
+        )
           if [false, 0, "0", "false", "f", nil].include?(value)
             value = checkbox_values[0]
           else
@@ -103,7 +104,11 @@ module AbrStateMethods
     v = {}
     pdf_fields.each do |name, opts|
       value = opts[:value] || self.send(opts[:method]) || opts[:default_value]
-      if opts[:options] && opts[:options].length == 2 && !opts[:options].include?(value) 
+      if opts[:options] && opts[:options].length == 2 && !opts[:options].include?(value) && (
+            opts[:options][0].downcase == "yes" || opts[:options][0].downcase == "no" ||
+            opts[:options][0].downcase == "on" || opts[:options][0].downcase == "off"
+        )
+        
         if value == "1"
           value = opts[:options][1]
         else
@@ -201,6 +206,15 @@ module AbrStateMethods
   rescue
     nil
   end
+
+  def date_field_string_mm_dd_yyyy(field_opts)
+    d = date_field_value(field_opts)
+    if d
+      return d&.strftime("%m/%d/%Y")
+    end
+  rescue
+    nil
+  end
   
   def validate_form_fields
     form_fields.each do |field_name, field_opts|
@@ -279,8 +293,8 @@ module AbrStateMethods
       rescue Exception=>e
         # self.singleton_class.send(:extend, AllClassMethods) # Add default methods
         # puts e.message
-        # pp e.backtrace
-        raise e if Rails.env == "development"
+        # pp e.backtrace        
+        raise e if Rails.env == "development" && e.class != TypeError && e.class != NameError
       end
     end
   end
