@@ -43,6 +43,10 @@ class AlertRequestsController < ApplicationController
 
   def show
     @alert_request = AlertRequest.find_by_param(params[:id])
+    if @alert_request.partner
+      @partner    = @alert_request.partner
+      @partner_id = @partner.id
+    end
     @alert_request_finish_iframe_url = @alert_request.finish_iframe_url
   end
 

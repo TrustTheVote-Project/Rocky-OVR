@@ -251,7 +251,7 @@ module AbrStateMethods::AL
       {"chkReason7": {type: :checkbox}},
       {"chkReason8": {type: :checkbox}},
       {"chkReason9": {type: :checkbox}},
-      {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
+      {"identification": {type: :radio, required: true, options: ["dln_yes", "dln_no"]}},
       {"Drivers_License_State": {visible: "identification_dln_yes", type: :select, options: GeoState.collection_for_select}},
       {"Drivers_License_Number": {visible: "identification_dln_yes", min:1, max:16, ui_regexp:'^.*$'}},
       {"SSN_last_4": {min: 4, max: 4, visible: "identification_dln_no"}},
@@ -283,6 +283,16 @@ module AbrStateMethods::AL
  
   
   def custom_form_field_validations
+    if ![chkreason1, chkreason2, chkreason3, chkreason4, chkreason5, chkreason6].include?("1") 
+      errors.add(self.class.make_method_name(:chkreason1), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason2), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason3), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason4), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason5), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason6), custom_required_message(:reason_instructions))
+    end
+
+    #raise errors.full_messages.to_s
     if self.identification.to_s == "dln_yes"
       custom_validates_presence_of("Drivers_License_Number")
       custom_validates_presence_of("Drivers_License_State")

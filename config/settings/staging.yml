@@ -18,8 +18,8 @@ ui_timeout_minutes: 5
 
 blocks_configuration:
   default_turf_id: 19000000053
-  default_location_id: 19000000704
-  default_staging_location_id: 19000000704
+  default_location_id: 19000000739
+  default_staging_location_id: 19000000739
   shift_length: 1
   url: https://v2.api.blocks.app
   url_client_path: svpa
@@ -27,21 +27,21 @@ blocks_configuration:
     26292:
       turf_id: 19000000053
       canvasser_id: 19000000380
-      location_id: 19000000704
-      staging_location_id: 19000000704
+      location_id: 19000000739
+      staging_location_id: 19000000739
     991:
       states:
         - NV
       url_client_path: svpa
       bulk_submit: false
-      staging_location_id: 19000000704
+      staging_location_id: 19000000739
       sub_orgs:
         - name: Org 1
           turf_id: 19000000053
-          staging_location_id: 19000000704
+          staging_location_id: 19000000739
         - name: Org 2
           turf_id: 19000000053
-          staging_location_id: 19000000704
+          staging_location_id: 19000000739
 
 mail_with_esig:
   states: 
@@ -118,7 +118,7 @@ ovr_states:
       
   PA:
     api_settings:
-      api_url: "https://fake-pa-endpoint.herokuapp.com" #"https://paovrwebapi.beta.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
+      api_url: "https://paovrwebapi.beta.vote.pa.gov/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0" #"https://fake-pa-endpoint.herokuapp.com"
 
   WA:
     languages:
