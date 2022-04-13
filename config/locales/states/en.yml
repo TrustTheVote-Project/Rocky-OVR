@@ -411,10 +411,10 @@ en:
             using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online
             tool</a>
         registration:
-          has_state_license: "I have a current %{state_name} state identification card, 
-            %{state_name} driver's license, or social security number."
-          has_no_state_license: "I do not have a current %{state_name} state identification card, 
-            %{state_name} driver's license, or social security number."
+          has_state_license: I have a current CO state identification card, 
+            CO driver's license, or social security number.
+          has_no_state_license: I do not have a current CO state identification card, 
+            CO driver's license, or social security number.
       ct:
         abr:
           request_deadline: Voters should make sure the application is sent in 7 days
@@ -446,6 +446,11 @@ en:
               place other than my own during all of the hours of voting
             '7': My physical disability
           absentee_reason__required_message: Please select one of the above reasons
+        registration:
+          has_state_license: I have a current CT state identification card 
+            or driver's license, and a signature on file with the state.
+          has_no_state_license: I do not have a current CT state identification card 
+            or driver's license, and a signature on file with the state.
       dc:
         abr:
           everyone_gets_ballot:
@@ -672,6 +677,11 @@ en:
             OST: OST- Overseas Temporary Resident
             OSP: OSP- Overseas Permanent Resident- federal offices only
           request_electronic_transmission: I request my ballot to be emailed to me.
+        registration:
+          has_state_license: I have a current GA state identification card 
+            or driver's license, and a signature on file with the state.
+          has_no_state_license: I do not have a current GA state identification card 
+            or driver's license, and a signature on file with the state.
       hi:
         abr:
           everyone_gets_ballot:
@@ -1182,6 +1192,11 @@ en:
             <li>Your date of birth</li>
             <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
             <p>Your signature at the MVA will become your official voter registration signature.</p>
+        registration:
+          has_state_license: I have a current MD state identification card 
+            or driver's license, and a signature on file with the state.
+          has_no_state_license: I do not have a current MD state identification card 
+            or driver's license, and a signature on file with the state.
       me:
         abr:
           request_deadline: until the 3rd business day prior to the election, unless
@@ -1965,10 +1980,10 @@ en:
           messenger_birth_date: Date of Birth (MM/DD/YYYY)
           messenger_birth_date__required_message: Birthdate not valid
         registration:
-          has_state_license: "I have a current %{state_name} state identification card, 
-            %{state_name} driver's license, or social security number."
-          has_no_state_license: "I do not have a current %{state_name} state identification card, 
-            %{state_name} driver's license, or social security number."
+          has_state_license: I have a current NJ state identification card, 
+            NJ driver's license, or social security number.
+          has_no_state_license: I do not have a current NJ state identification card, 
+            NJ driver's license, or social security number.
       nm:
         abr_form_fields:
           request_deadline: received no later than 5:00 pm on Thursday, October 28,
