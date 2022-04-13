@@ -236,7 +236,7 @@ record_14:
   sos_phone: "(317) 232-3939"
   sos_url: https://www.in.gov/sos/elections/
   id_length_min: '4'
-  online_registration_url: https://indianavoters.in.gov/OLVR/Registration/RegistrationEligibility
+  online_registration_url: https://indianavoters.in.gov
   registration_deadline: indiana
 record_15:
   abbreviation: IA
@@ -291,7 +291,7 @@ record_18:
   requires_race: true
   race_tooltip: requested_with_state_name
   requires_party: true
-  online_registration_url: https://voterportal.sos.la.gov/Home/VoterLogin
+  online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
   party_tooltip: required_for_presidential
   id_number_tooltip: louisiana
   sos_address: Secretary of State<br />Voter Registration<br />8585 Archives Ave.<br
