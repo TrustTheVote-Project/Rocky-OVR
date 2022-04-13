@@ -410,6 +410,11 @@ en:
           status_check_instructions: You can look up your Mail-in Ballots status by
             using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online
             tool</a>
+        registration:
+          has_state_license: I have a current %{state} state identification card, 
+            %{state} driver's license, or social security number.
+          has_no_state_license: I do not have a current %{state} state identification card, 
+            %{state} driver's license, or social security number.
       ct:
         abr:
           request_deadline: Voters should make sure the application is sent in 7 days
@@ -1959,6 +1964,11 @@ en:
               in the U.S.
           messenger_birth_date: Date of Birth (MM/DD/YYYY)
           messenger_birth_date__required_message: Birthdate not valid
+        registration:
+          has_state_license: I have a current %{state} state identification card, 
+            %{state} driver's license, or social security number.
+          has_no_state_license: I do not have a current %{state} state identification card, 
+            %{state} driver's license, or social security number.
       nm:
         abr_form_fields:
           request_deadline: received no later than 5:00 pm on Thursday, October 28,
