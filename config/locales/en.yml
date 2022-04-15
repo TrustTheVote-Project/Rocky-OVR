@@ -610,7 +610,7 @@ en:
             is_citizen:
               accepted: You must be a US citizen!
             confirm_will_be_18:
-              accepted: You must be at least sixteen and must be at least eighteen in order to vote.
+              accepted: You must be at least sixteen to register and must be at least eighteen in order to vote.
             confirm_declaration:
               accepted: You must confirm that you agree to the terms above.
             confirm_assitant_declaration:
@@ -627,10 +627,10 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
-              too_young: You must be at least sixteen and must be at least eighteen in order to vote.
+              too_young: You must be at least sixteen to register and must be at least eighteen in order to vote.
             issue_date:
               future: Cannot be in the future
-              too_old: Required.
+              too_old: Must be after 1972.
             driver_license:
               format: Should be 12 digits
               blank: Required.

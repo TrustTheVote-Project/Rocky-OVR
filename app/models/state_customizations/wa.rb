@@ -40,6 +40,7 @@ class WA < StateCustomization
 
   def use_state_flow?(registrant)
     return false if ovr_settings.blank?
+    
     lang_list = ovr_settings["languages"]
  
 

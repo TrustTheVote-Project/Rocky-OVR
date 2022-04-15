@@ -189,7 +189,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   end
 
   def wa_api_headers(method)
-    return {}
+    return {'Accept': 'application/json', 'Content-Type': 'application/json'}
   end
 
 
@@ -348,9 +348,8 @@ Response as:
     #url = File.join(server, "/register/")
     url=server
 
-    puts ("Posting to: #{url} data: #{self.to_wa_data.to_json}")
     #Switch to HTTP (ala some other model)
-    response = RestClient.post(url, self.to_wa_data.to_json, wa_api_headers("submission"))
+    response = RestClient.post(url, self.to_wa_data.to_json,  wa_api_headers("submission"))
     result = JSON.parse(response)
     
     # TODO - what is the response actually like??
@@ -361,7 +360,7 @@ Response as:
     end
 
     # IF token success otherwise error
-    if result["returnToken"] 
+    if !result["returnToken"].blank?
       self.return_token  = result["returnToken"]
       self.save(validate: false)
     else
@@ -381,7 +380,7 @@ Response as:
 
     #CTW This is post API submission
 
-    if !self.return_token.blank?  # Is this success or failure
+    if !self.return_token.blank?  # Success
       self.update_original_registrant
       self.registrant.complete_registration_with_state!  #It is complete already (so this is confirm?)
     else
@@ -545,5 +544,18 @@ end
       dst.unlink   # deletes the temp file
     end
   end
+
+  def eligible?
+      return true if self.date_of_birth.blank?
+      earliest_date = Date.today - 16.years 
+      if self.date_of_birth > earliest_date
+        self.registrant.ineligible_age=true
+        return  false
+      else
+        self.registrant.ineligible_age=false
+        return true
+      end
+  end
+
 
 end

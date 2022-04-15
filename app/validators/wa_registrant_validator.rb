@@ -131,9 +131,8 @@ class WARegistrantValidator < ActiveModel::Validator
     return if reg.date_of_birth.blank?
     earliest_date = Date.today - 16.years 
     if reg.date_of_birth > earliest_date
-      reg.errors.add(:date_of_birth, :too_young)
-      puts ("Redirect potentially? "+reg.registrant_ineligible_url(reg.registrant_id) )
-      #redirect_to(reg.registrant_ineligible_url(reg.registrant_id) :only_path=true) #and return
+      #Do nothing now
+      #reg.errors.add(:date_of_birth, :too_young)
     end
   end
 
