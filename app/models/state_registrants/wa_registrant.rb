@@ -348,7 +348,6 @@ Response as:
     #url = File.join(server, "/register/")
     url=server
 
-    puts ("Posting to: #{url} data: #{self.to_wa_data.to_json}")
     #Switch to HTTP (ala some other model)
     response = RestClient.post(url, self.to_wa_data.to_json,  wa_api_headers("submission"))
     result = JSON.parse(response)
@@ -385,8 +384,6 @@ Response as:
       self.update_original_registrant
       self.registrant.complete_registration_with_state!  #It is complete already (so this is confirm?)
     else
-      puts "Captured Error" 
-      puts result.to_json
       self.wa_submission_error ||= []
       self.wa_submission_error << "#{DateTime.now}: No WA return_token"
       self.registrant.skip_state_flow!
@@ -394,8 +391,6 @@ Response as:
     end
 
   rescue Exception=>e
-    puts "Unknown Error" 
-    puts result.to_json
     self.wa_submission_error ||= []
     self.wa_submission_error << [e.message, e.backtrace].flatten
     self.registrant.skip_state_flow!

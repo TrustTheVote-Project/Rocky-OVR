@@ -63,8 +63,4 @@ class WA < StateCustomization
     ].flatten
   end
 
-  def state_id_tooltip 
-    return "Foobaz" 
-  end
-
 end
