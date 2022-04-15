@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_06_214638) do
+ActiveRecord::Schema.define(version: 2022_04_15_151818) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -1088,7 +1088,7 @@ ActiveRecord::Schema.define(version: 2022_04_06_214638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name_title"
-    t.string "voter_signature_image"
+    t.text "voter_signature_image"
     t.string "signature_method"
     t.string "sms_number_for_continue_on_device"
     t.string "email_address_for_continue_on_device"

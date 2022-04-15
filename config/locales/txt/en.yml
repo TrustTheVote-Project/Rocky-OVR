@@ -376,6 +376,8 @@ en:
           to register to vote. If you are a citizen, please return to the previous
           page and check the citizenship box.
         attest: You must confirm that you are eligible to vote.
+        wa_too_young: "Hey, it looks like you aren't 16 yet. That's cool. In Washington,
+          you can register to vote after you turn 16."
       external:
         colorado:
           register_link: Finish Registration Online with Colorado Secretary of State
@@ -432,7 +434,7 @@ en:
             p3: ''
       tooltips:
         is_homeless_hint_wa: "You can vote if you live in a place where you cannot receive mail. Register by providing a place where you spend most of your time and a place where you can receive mail."
-        military_hint_wa: "Includes National Guard and Reserves, and spouses or dependents away from home due to service."
+        military_flag: "Includes National Guard and Reserves, and spouses or dependents away from home due to service."
         homeless_address: "You can give your cross street or a short narrative."
         email_address: We will email you a copy of your voter registration form.
         home_zip_code: Enter ZIP code for the address where you live, even if you
