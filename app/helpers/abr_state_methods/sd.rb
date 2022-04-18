@@ -161,6 +161,7 @@ module AbrStateMethods::SD
       {"abr_residency_requirements_selections2": { type: :radio, required: :if_visible, visible_any: "abr_election_type_selections_abr_election_type1 abr_election_type6 abr_election_type5" }},
       {"abr_id_selections": { type: :radio }},
       {"abr_request_check": { type: :checkbox }},
+      {"abr_request_instructions": {type: :instructions, visible: "abr_request_check"}},
       {"abr_assistant_first_name": { classes: "half", visible: "abr_request_check", required: :if_visible }},
       {"abr_assistant_last_name": { classes: "half", visible: "abr_request_check", required: :if_visible  }},
       {"abr_assistant_phone": { visible: "abr_request_check", required: :if_visible }},
