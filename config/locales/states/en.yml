@@ -453,9 +453,9 @@ en:
           absentee_reason__required_message: Please select one of the above reasons
         registration:
           has_state_license: I have a current CT state identification card 
-            or driver's license, and a signature on file with the state.
+            or driver's license, and a signature on file with the DMV.
           has_no_state_license: I do not have a current CT state identification card 
-            or driver's license, and a signature on file with the state.
+            or driver's license, and a signature on file with the DMV.
       dc:
         abr:
           everyone_gets_ballot:
@@ -689,9 +689,9 @@ en:
           request_electronic_transmission: I request my ballot to be emailed to me.
         registration:
           has_state_license: I have a current GA state identification card 
-            or driver's license, and a signature on file with the state.
+            or driver's license, and a signature on file with the DDS.
           has_no_state_license: I do not have a current GA state identification card 
-            or driver's license, and a signature on file with the state.
+            or driver's license, and a signature on file with the DDS.
       hi:
         abr:
           everyone_gets_ballot:
@@ -1219,9 +1219,9 @@ en:
             <p>Your signature at the MVA will become your official voter registration signature.</p>
         registration:
           has_state_license: I have a current MD state identification card 
-            or driver's license, and a signature on file with the state.
+            or driver's license, and a signature on file with the MVA.
           has_no_state_license: I do not have a current MD state identification card 
-            or driver's license, and a signature on file with the state.
+            or driver's license, and a signature on file with the MVA.
       me:
         abr:
           request_deadline: until the 3rd business day prior to the election, unless
