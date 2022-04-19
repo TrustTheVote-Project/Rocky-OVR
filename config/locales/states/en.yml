@@ -1019,10 +1019,40 @@ en:
           voter registration system.
       ky:
         abr:
-          request_deadline: received Tuesday before the election
+          step_2_instructions: |-
+            <h3>You must have a reason to vote absentee in South Carolina.</h3>
+            <p>See if you qualify.</p>
+            <ul>
+            <li>Students who temporarily resides outside of their county.</li>
+            <li>People incarcerated in jail and charged but not convicted of a crime.</li>
+            <li>People temporarily residing outside of the state and still eligible to vote in Kentucky.</li>
+            <li>People who cannot come to the polls on election day or any of the in-person absentee voting days because of:</li>
+            <ul>
+            <li>The location of their jobs, or</li>
+            <li>Due to age, disability or illness.</li>
+            </ul>
+            </ul>
+          request_deadline: "<p>Absentee ballot requests must be received by 11:59 pm on:</p>
+            <ul><li>May 3, 2022 for the primary election, and</li>
+            <li>October 25, 2022 for the general election.</li></ul>"
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3>
+            <p>If you mail your ballot, it must received by 6:00 pm on Election Day.</p>"
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>online
             tool</a>
+        state_online_abr:
+          instructions: |-
+            <p>You must complete your application online unless you have a disability that prevents you from doing so.</p>
+            <p>If you cannot complete your request online, contact your 
+            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank">county clerk</a>.<br /></p>
+            <p>You will need to provide valid ID with your application. Accepted forms of ID include a document with name and photo from one of these places:</p>
+            <ul>
+            <li>The state of Kentucky,</li>
+            <li>The United States Department of Defense, a branch of the uniformed services, the Merchant Marine, or the Kentucky National Guard,</li>
+            <li>A public or private college, university, or postgraduate technical or professional school located within the United States, or</li>
+            <li>Any city government, county government, urban-county government, charter county government, consolidated local government, or unified local government in Kentucky.</li>
+            </ul>
+
       la:
         state_online_abr:
           header_choice: Eligibility to Request an Absentee Ballot
@@ -1179,18 +1209,23 @@ en:
             <p>Your signature at the MVA will become your official voter registration signature.</p>
       me:
         abr:
-          request_deadline: until the 3rd business day prior to the election, unless
-            special circumstances exist
           status_check_instructions: You can look up your Absentee Ballot status by
             checking the <a href="https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_status.pl">Absentee
             Ballot Request Status</a> page.
+          step_2_instructions: |-
+            <p>All registered voters in Maine can request an absentee ballot.</p>
+            <p>To request an absentee ballot online, you will need to provide your address,
+             birthday and name and certify that you are a registered voter in Maine. 
+             You will need to request your own ballot.</p>
+             <p>You can also request an accessible ballot if using a paper ballot is difficult for you.</p>
+          request_deadline: 
+          finish_instructions_3_hint_state: |-
+            <h3>Don't forget to vote!</h3>
+            <p>Your ballot must received by 8:00pm on election day.</p>
+            <p>If you mail it, be sure to leave enough time to for it to 
+            arrive or drop it off in person or via an absentee ballot drop box at your municipal drop box if available.</p>
         state_online_abr:
-          header: All registered voters in Maine can vote absentee!
-          confirm: <p>To verify if you are are registered, contact the municipal clerk
-            in the town where you reside. <a href="https://www.maine.gov/sos/cec/elec/munic.html"
-            target="_blank" rel="noopener noreferrer">Directory of clerks</a>.</p>
-          instructions: "<h2 role=\"heading\" aria-level=\"2\">Absentee Ballots in
-            Maine</h2>\n<p>You can apply for an Absentee Ballot in Maine in any of
+          instructions: "<p>You can apply for an Absentee Ballot in Maine in any of
             these ways:\n<ul> \n<li>Click the button below to use the Maine Absentee
             Ballot Portal.</li>\n<li>Contact the municipal clerk by phone or in writing.
             <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.maine.gov/sos/cec/elec/munic.html\">Find
@@ -1620,6 +1655,24 @@ en:
           status_check_instructions: 'You can look up your Absentee Ballot status
             by calling your local election official.  Find your official&#39;s contact
             information here: <a target=''_blank'' href=''https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx''>Directory</a>'
+          splash:
+            instructions_1: |-
+              <p>In Mississippi, you must have a reason to vote absentee by mail or in-person.  
+              You can review the requirements on the Mississippi 
+              <a href="https://www.sos.ms.gov/content/documents/elections/yallvotedocs/Step-by-Step%20Voter%20Guide%20to%20Absentee%20Voting.pdf" target="_blank">Step-by-Step 
+              Absentee Guide [PDF]</a>. If you meet one of these requirements, contact your local 
+              <a href="https://www.sos.ms.gov/elections-voting/county-election-information" target="_blank">Election Clerk</a> 
+              to request an absentee ballot application.</p>
+              <p>Once you have received your application, make sure to get it notarized before returning 
+              it unless you are temporarily or permanently physically disabled. Temporary or permanently physically 
+              disabled voters may have the application witnessed by a person who is at least 18 years of age.</p>
+            instructions_2: ""
+            instructions_3: |-
+              <p>If you request a mail-in ballot, you must return it by mail- you cannot drop it off.</p>
+              <p>Make sure to postmark your ballot on or before Election Day to so that it is received by June 14th.</p>
+
+
+
       mt:
         abr:
           request_deadline: Applications must be received by the county election office
@@ -1668,17 +1721,23 @@ en:
             <p>Requests for absentee ballots in North Carolina may be made online or on paper. You will need to provide either your North Carolina driver license number or NCDMV issued identification card number or the last four digits of your Social Security number.</p>
             <p>You do not need an excuse to vote by mail in North Carolina: Any registered voter may vote an absentee ballot by mail.</p>
           instructions: |-
-            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
-            <p>Double check that you're registered to vote by going to the <a target="_blank" rel="noopener noreferrer" href="https://vt.ncsbe.gov/RegLkup/">North Carolina Voter Search</a> tool.</p>
-            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-            <p>You can also request an Absentee Ballot using a <a target="_blank" rel="noopener noreferrer"  href="https://s3.amazonaws.com/dl.ncsbe.gov/Forms/2021-NC-Absentee-Ballot-Request-Form-Fillable-English.pdf">paper request form [PDF]</a>.</p>
-            <p>The deadline to request an absentee ballot is 5:00 PM the Tuesday before Election Day.</p>
-            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-            <p>Your county may offer Early voting or have delayed their elections until 2022. Review the  <a target="_blank" rel="noopener noreferrer" href="https://www.ncsbe.gov/2021-municipal-voter-tool" title="2021 Municipal Voter Tool">2021 election dates</a> by municipality.</p>
+            <p>You will need to provide identifying information that matches your voter records.</p>
+            <p>The application will ask you to provide either the last four digits of your social security number or your North Carolina Driver License number. </p>
+            <p>You must submit a request for an absentee ballot for each election.</p>
         abr:
-          request_deadline: received by 5pm on October 26, 2021.
-          status_check_instructions: You can look up your status by using North Carolina's
-            <a href="https://vt.ncsbe.gov/RegLkup/">Voter Search</a> tool.
+          step_2_instructions: |-
+            <p>All registered voters in North Carolina can request an absentee ballot.</p>
+          request_deadline: |-
+            <p>Absentee ballot requests must be received by 5:00 pm on:</p>
+              <ul><li>May 10, 2022 for the primary election, and</li>
+              <li>November 1, 2022 for the general election.</li></ul>
+          finish_instructions_3_hint_state: |-
+            <p>When you prepare to vote, make sure that you have a notary public or two witnesses present.
+             You can return your voted ballot by mail, in person at your county board of elections or at an open
+             early voting site at your county, or by a commercial carrier like DHL, FedEx or UPS.</p>
+          status_check_instructions:  |-
+            <p>You can look up your status by using North Carolina's
+            <a href="https://northcarolina.ballottrax.net/voter/" target="_blank">Voter Search</a> tool.</p>
         abr_form_fields:
           bad_date__format_message: Invalid date
           has_mailing_address: My mailing address differs from my residential address.
@@ -1750,13 +1809,40 @@ en:
             "Continue as a guest" and submit your voter registration online.'
       nd:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
           status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://vip.sos.nd.gov/AbsenteeTracker.aspx'>online
+            using your state&#39;s <a target='_blank' href='https://vote.nd.gov/AbsenteeTracker.aspx'>online
             tool</a>
           skip_state_online_abr: I would like to create a paper request form instead.
+          step_2_instructions: |-
+            <h3>All eligible voters in North Dakota can request an absentee ballot.</h3>
+            <p>You do not need a reason to vote absentee. You are eligible if you are:</p>
+            <ul>
+            <li>A citizen of the United States;</li>
+            <li>Eighteen years or older on the day of election;</li>
+            <li>A resident of North Dakota;</li>
+            <li>A resident who has resided in the precinct at least thirty days immediately preceding any election; and</li>
+            <li>Able to provide a North Dakota driver’s license, nondriver ID, or tribal ID that includes your current residential address and date of birth. If you don't have one of those forms of ID, another qualified elector of the state may attest for you.</li> 
+            </ul>
+          request_deadline: |-
+            <h3>Deadlines for voting absentee</h3>
+            <p>Absentee ballot request must be received by</p>
+            <ul>
+            <li>June 13th for the June primary, and</li>
+            <li>November 7th for the November general election.</li>
+            </ul>
+          finish_instructions_3_hint_state: |-
+            <h3>Don't forget to vote!</h3>
+            <p>If you mail your absentee ballot, it must be postmarked the day before the election in order to be counted.</p>
+            <p>If you hand deliver it, you must return your ballot by 5:00pm the day before the election.</p>
+        state_online_abr:
+          instructions: |
+            <p>After you fill out the form:</p>
+            <ul>
+            <li>Print it out.</li>
+            <li>Sign and date it.</li>
+            <li>Send it to your County Auditor. The address will be provided to you.</li>
+            <li>Make sure to include a coy of the qualifying documentation, if requested.</li>
+            </ul>
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residential address.
           City_2: City
@@ -1791,18 +1877,6 @@ en:
             tribal_id: Tribal ID
           Military_Overseas_Voter: Select one of the following
           ID_Number_dln__format_message: Invalid ND driver's license format
-        state_online_abr:
-          requirements: |-
-            <p>To request an absentee ballot in North Datoka, you must have one of these forms of ID:</p>
-            <ul>
-              <li>Driver's License</li>
-              <li>Non-Driver's ID</li>
-              <li>Tribal ID</li>
-              <li>Passport (only for voters outside the United States)</li>
-              <li>Military ID (active duty stationed away from North Dakota residence and qualified elector with a military ID)</li>
-              <li>Long-Term Care Certificate</li>
-            </ul>
-            <p>You may also use the online system to request an absentee ballot if you are unable to obtain an ID due to disability.<p>
       ne:
         abr:
           request_deadline: Check with your local election officials for your state's
@@ -2612,6 +2686,21 @@ en:
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target='_blank' href='https://tnmap.tn.gov/voterlookup/'>online
             tool</a>
+          splash:
+            instructions_1: |-
+              <p>Tennessee voters must have a reason to vote absentee. You can view eligibility on the
+              <a href="https://sos.tn.gov/elections/guides/guide-to-absentee-voting" target="_blank">Guide to Absentee Voting</a>.</p>
+              <p>To request an absentee ballot in Tennessee, visit the 
+              <a href="https://sos.tn.gov/elections/services/absentee-voting" target="_blank">Absentee Voting</a> page.</p>
+              <p>You can request an application for a by-mail ballot no earlier than ninety (90) days before the 
+              election and no later than seven (7) days before the election. Your request must be received no later 
+              than seven (7) days before the election.</p>
+            instructions_2: |-
+              <p>You must return your ballot by mail. Hand delivery or handing it to a poll worker 
+              during early voting or on Election Day is not permitted.</p>
+              <p>Track your absentee ballot request: 
+              <a href="https://tnmap.tn.gov/voterlookup/" target="_blank">https://tnmap.tn.gov/voterlookup/</a></p>
+            instructions_3: "<br/>"
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
           Mailing Address (if different): Mailing address
@@ -3087,12 +3176,30 @@ en:
           requirements: Depending on if you have voted absentee before, you may be
             required to provide a copy of your Wisconsin state ID with your application
             online.
+          instructions: |- 
+            <p>If you have not previously provided a copy of photo ID, you will be asked to provide a copy 
+            of your ID as a part of your application. You can do so in any format.</p>
+            <p>Disabled, confined and military voters can request to receive absentee ballots automatically. 
+            Other voters must request absentee ballots each calendar year.</p>
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
+          step_2_instructions: |-
+            <p>All registered voters in Wisconsin can request an absentee ballot.</p>
+            <p>The state website will make sure that you complete your registration prior to 
+            requesting an absentee ballot. Military voters do not need to be registered to get an absentee ballot.</p>
+          request_deadline: "<h3>Deadlines to request an absentee ballot</h3>
+            <p>If you're requesting an absentee ballot for one election, your application must be received no later 
+            than 5:00 p.m. on the Thursday preceding an election.</p>
+            <p>If you're making a  calendar year request, your application must be received no  later than 5:00 p.m.
+            on the Friday preceding the election.</p>
+            <p> If you are applying within 10 days of the election, the State strongly encourages you to
+             visit an in-person absentee voting (early voting) location or request that your ballot be emailed to you.</p>"
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3>
+            <p>Your voted absentee ballot must be received by the close of polls in order to be counted.</p>
+            <p>You must return your absentee ballot in the completed absentee ballot certificate envelope that 
+            was provided to you with your ballot.</p>
+            <p> You may return your ballot either by mail or by personal delivery to your municipal clerk’s office.<p>"
           status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://myvote.wi.gov/en-us/MyVoterInfo'>online
+            using your state&#39;s <a target='_blank' href='https://myvote.wi.gov/en-us/Track-My-Ballot'>online
             tool</a>
           signature_capture:
             desktop_provide_e_signature: In the state of Wisconsin, we can email a

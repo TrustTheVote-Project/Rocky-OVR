@@ -167,6 +167,7 @@ absentee_states:
     abr_status_check_url: "https://myvoteinfo.voteks.org/voterview"
     abr_track_ballot_url: "https://myvoteinfo.voteks.org/voterview"
   KY: 
+    online_req_url:  https://vrsws.sos.ky.gov/abrweb/
     abr_status_check_url: "https://vrsws.sos.ky.gov/VIC/"
     abr_track_ballot_url: "https://vrsws.sos.ky.gov/VIC/"
   LA:
@@ -221,10 +222,10 @@ absentee_states:
     online_req_url: https://votebymail.ncsbe.gov/app/absentee/lookup
     #pdf_template: nc.pdf
     abr_status_check_url: "https://vt.ncsbe.gov/RegLkup/"
-    abr_track_ballot_url: "https://vt.ncsbe.gov/RegLkup/"
+    abr_track_ballot_url: "https://northcarolina.ballottrax.net/voter/"
   ND:
     online_req_url: https://vip.sos.nd.gov/absentee/
-    pdf_template: nd.pdf
+    #pdf_template: nd.pdf
     #pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
     abr_status_check_url: "https://vip.sos.nd.gov/AbsenteeTracker.aspx"
     abr_track_ballot_url: "https://vip.sos.nd.gov/AbsenteeTracker.aspx"
@@ -311,12 +312,14 @@ absentee_states:
     abr_status_check_url: "https://voter.votewa.gov/WhereToVote.aspx#/login"
     abr_track_ballot_url: "https://voter.votewa.gov/WhereToVote.aspx#/login"
   WI:
-    online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
-    pdf_template: wi.pdf
-    pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
+    #online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
+    online_req_url: https://myvote.wi.gov/en-us/Vote-Absentee-By-Mail
+    #pdf_template: wi.pdf
+    #pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
     email_delivery: true
     abr_status_check_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
-    abr_track_ballot_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
+    #abr_track_ballot_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
+    abr_track_ballot_url: "https://myvote.wi.gov/en-us/Track-My-Ballot"
     abr_track_ballot_use_leo: false
     leo_lookup_url: https://myvote.wi.gov/en-US/MyMunicipalClerk
   WV:
