@@ -21,7 +21,7 @@ class StateRegistrantsController < RegistrationStep
       go_to_paper and return
     end
     if !@registrant.eligible?
-      redirect_to(registrant_ineligible_url(@registrant)) and return
+      @registrant.skip_state_flow!
     end
     if @registrant.should_advance(params) && @registrant.valid?
       @registrant.status = next_step 

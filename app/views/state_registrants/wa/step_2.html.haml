@@ -30,10 +30,10 @@
     %ul.stacked
 
       -#= field_li form, title_field, {li_options: {class: 'registrant-form__prev-name-title__line'}, required: true } 
-      = field_li form, :prev_first_name, {li_options: {class: 'registrant-form__prev-first-name__line'}, required: true } 
-      = field_li form, :prev_middle_name, {li_options: {class: 'registrant-form__prev-middle-name__line'}, required: false } 
-      = field_li form, :prev_last_name, {li_options: {class: 'registrant-form__prev-last-name__line'}, required: true } 
-      = field_li form, :prev_name_suffix, {li_options: {class: 'registrant-form__prev-name-suffix__line'}, required: false } 
+      = field_li form, :prev_first_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-first-name__line'}, required: true } 
+      = field_li form, :prev_middle_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-middle-name__line'}, required: false } 
+      = field_li form, :prev_last_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-last-name__line'}, required: true } 
+      = field_li form, :prev_name_suffix, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-name-suffix__line'}, required: false } 
 
   %br
   = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
@@ -80,7 +80,7 @@
       = field_li(form, :prev_residence_unit_number, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-unit-number__line"} })
     %ul.stacked
       = field_li(form, :prev_residence_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
-      = field_li(form, :prev_residence_state, {skip_tooltip: true,required: true, field_options: {}, li_options: {class: "registrant-form__home-state-abbrev__line"}, select_options: GeoState.all.collect {|s| s.abbreviation }, field_options: {include_blank: true}})
+      = field_li(form, :prev_residence_state, {skip_tooltip: true,required: true, field_options: {disabled:true, value:"WA"}, li_options: {class: "registrant-form__home-state-abbrev__line"}})
       = field_li(form, :prev_residence_zip, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
       
       -#= field_li(form, :prev_res_county_code, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::WARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })

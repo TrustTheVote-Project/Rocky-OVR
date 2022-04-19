@@ -63,4 +63,9 @@ class WA < StateCustomization
     ].flatten
   end
 
+  def enabled_for_language?(locale, reg=nil)
+    # This is for transitions to onine state registration vs direct API calls
+    false
+  end
+
 end

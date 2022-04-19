@@ -261,7 +261,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
       "prevResidenceUnitType"	=>	self.prev_residence_unit_type,
       "prevResidenceAddress"	=>	self.prev_residence_address,
       "prevResidenceCity"	=>	self.prev_residence_city,
-      "prevResidenceState"	=>	self.prev_residence_state,
+      "prevResidenceState"	=>	self.has_previous_address ? "WA": "",
       "prevResidenceZip"	=>	self.prev_residence_zip,
       "prevResCountyCode"	=>	self.prev_res_county_code,
 
