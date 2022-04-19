@@ -1663,10 +1663,10 @@ en:
               Absentee Guide [PDF]</a>. If you meet one of these requirements, contact your local 
               <a href="https://www.sos.ms.gov/elections-voting/county-election-information" target="_blank">Election Clerk</a> 
               to request an absentee ballot application.</p>
+            instructions_2: |-
               <p>Once you have received your application, make sure to get it notarized before returning 
               it unless you are temporarily or permanently physically disabled. Temporary or permanently physically 
               disabled voters may have the application witnessed by a person who is at least 18 years of age.</p>
-            instructions_2: ""
             instructions_3: |-
               <p>If you request a mail-in ballot, you must return it by mail- you cannot drop it off.</p>
               <p>Make sure to postmark your ballot on or before Election Day to so that it is received by June 14th.</p>
