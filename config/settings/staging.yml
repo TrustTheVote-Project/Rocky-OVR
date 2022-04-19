@@ -1,11 +1,11 @@
-from_address:  "Rock the Vote <register@rockthevote.com>"
+from_address:  "Rock the Vote <register@rockthevote.org>"
 pdf_host_name: 'staging.rocky.rockthevote.com'
 default_url_host: "staging.rocky.rockthevote.com"
 api_host_name: https://staging.rocky.rockthevote.com
 ui_url_host: "staging.rocky.rockthevote.com"
 
 admin:
-  branding_to: "david@rockthevote.com, alex.mekelburg@osetfoundation.org, rocky.branding@rockthevote.org"
+  branding_to: "david@rockthevote.org, alex.mekelburg@osetfoundation.org, rocky.branding@rockthevote.org"
   
 
 hours_before_first_reminder: 0.0333

@@ -42,11 +42,11 @@ en:
           Sincerely,<br>
           %{registrant_first_name}<br><br>
         footer: ! 'Rock the Vote is committed to preserving your privacy and safe-guarding
-          your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter
+          your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter
           registration privacy policy</a></strong> for details.<br><br>
 
 
-          Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     confirmation_with_assistance:
       subject: ! "Your registration form is on the way: don't forget to mail it!"
       body:
@@ -89,11 +89,11 @@ en:
           Sincerely,<br>
           %{registrant_first_name}<br><br>
         footer: ! 'Rock the Vote is committed to preserving your privacy and safe-guarding
-          your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter
+          your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter
           registration privacy policy</a></strong> for details.<br><br>
 
 
-          Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     confirmation_with_signature:
       subject: ! 'Thanks for completing your voter registration application!'
       body:
@@ -129,10 +129,10 @@ en:
           Sincerely,<br>
           %{registrant_first_name}<br><br>'
         footer: ! 'Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see 
-          our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter 
+          our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter 
           registration privacy policy</a></strong> for details.<br><br>
 
-          Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     pa_confirmation:
       subject: Thank you for using the online voter registration tool
       body:
@@ -150,9 +150,9 @@ en:
 
           Thanks,<br> Your friends at Rock the Vote<br><br>
         footer: |-
-          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-          Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
     pa_continue_on_device:
       subject: Sign your voter registration form
       body:
@@ -205,9 +205,9 @@ en:
           Sincerely,<br>
           %{registrant_first_name}<br><br>
         footer: |-
-          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-          Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
     final_reminder:
       subject: 'Final Reminder: Mail your voter registration form'
       body:
@@ -247,9 +247,9 @@ en:
           Sincerely,<br>
           %{registrant_first_name}<br><br>
         footer: |-
-          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-          Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
     chaser:
       subject: You can still register to vote
       body:
@@ -289,9 +289,9 @@ en:
           Sincerely,<br>
           %{registrant_first_name}<br><br>
         footer: |-
-          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-          Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
     tell_friend:
       subject: I just registered to vote and you should too
       body: |-
@@ -375,9 +375,9 @@ en:
             Sincerely,<br>
             %{abr_first_name}<br><br>
           footer: |-
-            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-            Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+            Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
       deliver_to_elections_office_confirmation:
         subject: 'Thanks for requesting your absentee ballot'
         body:
@@ -398,9 +398,9 @@ en:
             P.S. Visit <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong> for more information on voting, the elections, and the issues you care about. You can also find tools to start your own voter registration and absentee request campaign in your community.<br><br>
             
           footer: |-
-            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-            Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+            Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
       reminder:
         subject: 'Reminder: Mail your absentee ballot request form'
         body:
@@ -442,9 +442,9 @@ en:
             Sincerely,<br>
             %{abr_first_name}<br><br>
           footer: |-
-            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-            Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+            Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
       final_reminder:
         subject: 'Final Reminder: Mail your absentee ballot request form'
         body:
@@ -487,9 +487,9 @@ en:
             Sincerely,<br>
             %{abr_first_name}<br><br>
           footer: |-
-            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-            Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+            Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
       chaser:
         subject: You can still request an absentee ballot
         body:
@@ -529,9 +529,9 @@ en:
             Sincerely,<br>
             %{abr_first_name}<br><br>
           footer: |-
-            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+            Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-            Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+            Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
       tell_friend:
         subject: I just requested an absentee ballot and you should too
         body: |-
