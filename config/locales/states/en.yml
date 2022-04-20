@@ -2210,19 +2210,21 @@ en:
             or driver's license, and social security number.
       ny:
         abr:
-          request_deadline: received no later than fifteen days before the election.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your New York's <a href="https://nysballot.elections.ny.gov/TrackMyBallot/Search">Track
-            My Ballot</a> site.
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to the following statement on my request form "I certify that I am a qualified
-            and a registered (and for primary, enrolled) voter; and that the information
-            in this application is true and correct and that this application will
-            be accepted for all purposes as the equivalent of an affidavit and, if
-            it contains a material false statement, shall subject me to the same penalties
-            as if I had been duly sworn."
+          request_deadline: |-
+            <p>The deadlines for your absentee ballot request are:</p>
+            <ul>
+            <li>June Primary: Postmarked by June 13th or in person by June 27th.</li>
+            <li>November General: Postmarked by October 24th or in person by November 7th.</li>
+            </ul>
+          status_check_instructions: |-
+            <p>Track your absentee ballot request by contacting your County Board of Elections:
+            <a href="https://www.elections.ny.gov/CountyBoards.html">https://www.elections.ny.gov/CountyBoards.html</a>
+            </p>
+          finish_instructions_1_hint: |-
+            <p>
+            If you are unable to sign your application, make sure sure that the witness also signs the application.
+            </p>
+          
           signature_capture:
             desktop_provide_e_signature: In the state of New York, we can email a
               digitally signed copy of your absentee request. Please select how you'd
