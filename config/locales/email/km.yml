@@ -45,7 +45,7 @@ km:
           Rock the Vote<br><br>
 
 
-          P.S. ចូរមើល<strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. ចូរមើល<strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           សម្រាប់ ព័ត័មាន បន្ថែម ស្តីពីការបោះឆ្នោត និង បញ្ហាដែលមានសារៈសំខាន់សម្រាប់អ្នក
           ព្រមទាំងរបៀបជួយការឃោសនាជាដំបូង របស់អ្នក​ក្នុង​រឿងចុះឈ្មោះបោះឆ្នោតផង ។<br><br>'
         send_to_friends: ! '<em><strong>ចូរថតចំឡង ហើយ ភ្ជាប់ជាមួយអ្វីៗចំពោះម៉ែលអតិថិជនដែលអ្នកនិយមផ្ញើជាងគេ
@@ -76,11 +76,11 @@ km:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'អង្គការ Rock the Vote បានប្តេជ្ញារក្សានូវសិទ្ទិឯកជនរបស់អ្នក និង
-          ការពារនូវព័ត៌មានដែលអាចទទួលរងនូវផលប៉ះពាល់។ សូមមើល <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">
+          ការពារនូវព័ត៌មានដែលអាចទទួលរងនូវផលប៉ះពាល់។ សូមមើល <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">
           ច្បាប់ស្តីពីសិទ្ធិឯកជននៃការចុះឈ្មោះបោះឆ្នោតរបស់យើង</a></strong> ដើម្បីជាសេចក្តីពិស្តារ។<br><br>
 
 
-          សូមផ្ញើសំណួរ ឬ មតិយោបល់ទៅ៖ <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          សូមផ្ញើសំណួរ ឬ មតិយោបល់ទៅ៖ <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     reminder:
       subject: សេចក្តីរំលឹក៖ ចូរផ្ញើទម្រង់ចុះឈ្មោះបោះឆ្នោតរបស់អ្នក
       body:
@@ -123,7 +123,7 @@ km:
           Rock the Vote<br><br>
 
 
-          P.S. ចូរមើល<strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. ចូរមើល<strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           សម្រាប់ ព័ត័មានបន្ថែម ស្តីពីការបោះឆ្នោត និង បញ្ហាដែលមានសារៈសំខាន់សម្រាប់អ្នក
           ព្រមទាំងរបៀបសម្រួលការចាប់ផ្តើមឃោសនា ចុះឈ្មោះ បោះឆ្នោតដោយខ្លួនឯងផង។<br><br>'
         send_to_friends: ! '<em><strong>ចូរថតចំឡង ហើយ ភ្ជាប់អ្វីៗក្នុងអ៊ីម៉ែលទៅមិត្តភ័ក្តិរបស់អ្នក</strong></em><br><br>
@@ -152,11 +152,11 @@ km:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'អង្គការ Rock the Vote បានប្តេជ្ញារក្សានូវសិទ្ទិឯកជនរបស់អ្នក និង
-          ការពារនូវព័ត៌មានដែលអាចទទួលរងនូវផលប៉ះពាល់។ សូមមើល <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">
+          ការពារនូវព័ត៌មានដែលអាចទទួលរងនូវផលប៉ះពាល់។ សូមមើល <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">
           ច្បាប់ស្តីពីសិទ្ធិឯកជននៃការចុះឈ្មោះអ្នកបោះឆ្នោតរបស់យើង</a></strong> ដើម្បីជាសេចក្តីពិស្តារ។<br><br>
 
 
-          សូមផ្ញើសំណួរ ឬ មតិយោបល់ទៅ៖ <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          សូមផ្ញើសំណួរ ឬ មតិយោបល់ទៅ៖ <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     final_reminder:
       subject: រំលឹកចុងក្រោយ - ម៉េលក្រដាសបំពេញការបោះឆ្នោតរបស់អ្នក។
       body:
@@ -199,7 +199,7 @@ km:
           Rock the Vote<br><br>
 
 
-          P.S. ចូរមើល<strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. ចូរមើល<strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           សម្រាប់ ព័ត័មានបន្ថែម ស្តីពីការបោះឆ្នោត និង បញ្ហាដែលមានសារៈសំខាន់សម្រាប់អ្នក
           ព្រមទាំងរបៀបសម្រួលការចាប់ផ្តើមឃោសនា ចុះឈ្មោះ បោះឆ្នោតដោយខ្លួនឯងផង។<br><br>'
         send_to_friends: ! '<em><strong>ចូរថតចំឡង ហើយ ភ្ជាប់អ្វីៗក្នុងអ៊ីម៉ែលទៅមិត្តភ័ក្តិរបស់អ្នក</strong></em><br><br>
@@ -228,11 +228,11 @@ km:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'អង្គការ Rock the Vote បានប្តេជ្ញារក្សានូវសិទ្ទិឯកជនរបស់អ្នក និង
-          ការពារនូវព័ត៌មានដែលអាចទទួលរងនូវផលប៉ះពាល់។ សូមមើល <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">
+          ការពារនូវព័ត៌មានដែលអាចទទួលរងនូវផលប៉ះពាល់។ សូមមើល <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">
           ច្បាប់ស្តីពីសិទ្ធិឯកជននៃការចុះឈ្មោះបោះឆ្នោតរបស់យើង</a></strong> ដើម្បីជាសេចក្តីពិស្តារ។<br><br>
 
 
-          សូមផ្ញើសំណួរ ឬ មតិយោបល់ទៅ៖ <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          សូមផ្ញើសំណួរ ឬ មតិយោបល់ទៅ៖ <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     chaser:
       subject: អ្នកនៅមានពេលចុះឈ្មោះបោះឈ្នោត។
       body:
@@ -289,7 +289,7 @@ km:
           Rock the Vote<br><br>
 
 
-          P.S. ចូរមើល<strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. ចូរមើល<strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           សម្រាប់ ព័ត៌មានបន្ថែម អំពី ការបោះឆ្នោត និងបញ្ហាដែលយើងមាននោះ ។ អ្នកអាចស្វែង​រករបៀប​ចាប់ផ្តើម​ការឃោសនាចុះឈ្មោះ
           បោះឆ្នោតរបស់ខ្លួនផ្ទាល់ នៅក្នុងសហគមន៍របស់អ្នក។ <br><br>'
         send_to_friends: ! '<em><strong>ចូរថតចំឡង ហើយ បិទ ដូចតទៅនេះ នៅក្នុងអតិថិជនដែលអ្នកនិយមផ្ញើជាងគេ
@@ -319,11 +319,11 @@ km:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'អង្គការ Rock the Vote បានប្តេជ្ញារក្សានូវសិទ្ទិឯកជនរបស់អ្នក និង
-          ការពារនូវព័ត៌មានដែលអាចទទួលរងនូវផលប៉ះពាល់។ សូមមើល <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">
+          ការពារនូវព័ត៌មានដែលអាចទទួលរងនូវផលប៉ះពាល់។ សូមមើល <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">
           ច្បាប់ស្តីពីសិទ្ធិឯកជននៃការចុះឈ្មោះអ្នកបោះឆ្នោតរបស់យើង</a></strong> ដើម្បីជាសេចក្តីពិស្តារ។<br><br>
 
 
-          សូមផ្ញើសំណួរ ឬ មតិយោបល់ទៅ៖ <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          សូមផ្ញើសំណួរ ឬ មតិយោបល់ទៅ៖ <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     tell_friend:
       subject: ខ្ញុំទើបតែបានចុះឈ្មោះបោះឆ្នោត ហើយអ្នកគួរធ្វើដូចខ្ញុំដែរ
       body: ! "មិត្ត, ខ្ញុំទើបតែចុះឈ្មោះបោះឆ្នោតនៅ %{rtv_url}។ អ្នកក៏អាចបោះឆ្នោតបានដែរ។
