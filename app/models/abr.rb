@@ -110,7 +110,7 @@ class Abr < ActiveRecord::Base
   end
 
   def requires_county?
-    advancing_to_step_3? && home_state&.counties&.any?
+    advancing_to_step_3? && home_state&.counties&.any? && deliver_to_elections_office_via_email?
   end
 
   def self.validate_fields(list, regex, message)

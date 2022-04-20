@@ -92,7 +92,24 @@ module AbrStateMethods
   # rescue
   #   {}
   # end
-  
+  def get_attribute(method_name)
+    value = instance_variable_get("@#{method_name}")
+    if value.nil?
+      value = self.abr_state_values.find_or_initialize_by(attribute_name: method_name).string_value
+      instance_variable_set("@#{method_name}", value)
+    end
+    return value
+  end
+  def set_attribute(method_name, value)
+    v = self.abr_state_values.find_or_initialize_by(attribute_name: method_name)
+    unless v.new_record?
+      self.association(:abr_state_values).add_to_target(v) 
+    end
+
+    v.string_value = value
+    instance_variable_set("@#{method_name}", value)
+  end
+
   def redact_sensitive_data
     self.sensitive_fields.each do |method|
       puts "set #{method}"
