@@ -376,8 +376,7 @@ en:
           to register to vote. If you are a citizen, please return to the previous
           page and check the citizenship box.
         attest: You must confirm that you are eligible to vote.
-        wa_too_young: "Hey, it looks like you aren't 16 yet. That's cool. In Washington,
-          you can register to vote after you turn 16."
+
       external:
         colorado:
           register_link: Finish Registration Online with Colorado Secretary of State

@@ -3397,8 +3397,14 @@ en:
         by_paper_header: Personal Information
         registration:
           has_state_license_eligible:  Complete your voter registration using the Washington online voter registration system.
-          xhas_no_state_license: I do not have a current MN driver’s license or ID
-            card number, and do not have the last 4 numbers of my SSN.
+          instructions:
+            under_18: |-
+              <p>Hey, it looks like you aren't 18 yet. That's cool. In Washington, you can register to vote 
+              once you have turned 16 years old (but you cannot vote until you turn 18. 
+              Voters who turn 18 between the August primary and the November General Election can vote in the Primary).</p>
+              <p>Visit our <a href="https://www.rockthevote.org/voting-information/"
+              target="_blank">Election Center</a> to find out when the next election is.</p>
+          
       wi:
         abr_form_fields:
           Municipality: Which of the following best describes the place where you

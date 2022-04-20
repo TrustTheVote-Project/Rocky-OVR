@@ -131,6 +131,7 @@ class WARegistrantValidator < ActiveModel::Validator
     return if reg.date_of_birth.blank?
     earliest_date = Date.today - 16.years 
     if reg.date_of_birth > earliest_date
+      reg.registrant.ineligible_age=true
       #Do nothing now
       #reg.errors.add(:date_of_birth, :too_young)
     end

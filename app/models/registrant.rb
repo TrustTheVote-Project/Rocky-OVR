@@ -837,9 +837,10 @@ class Registrant < ActiveRecord::Base
   end
 
   def under_18_instructions_for_home_state
-    I18n.t('txt.registration.instructions.under_18',
+     I18n.t("states.custom.#{home_state_abbrev.to_s.downcase}.registration.instructions.under_18",
+      default:  I18n.t('txt.registration.instructions.under_18',
             :state_name => home_state.name,
-            :state_rule => localization&.sub_18).html_safe
+            :state_rule => localization&.sub_18)).html_safe
   end
 
 
