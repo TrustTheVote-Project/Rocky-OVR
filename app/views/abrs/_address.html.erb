@@ -34,7 +34,7 @@
       <span class="error"><%= form.object.errors[:zip].join("\n") %></span>
     </li>
   </ul>
-  <%- if @abr.home_state&.counties&.any? %>
+  <%- if @abr.home_state&.counties&.any? && @abr.deliver_to_elections_office_via_email? %>
   <ul class="stacked">
     <li class="width_a registrant-form__registration-county__line">
       <h3><%= form.label :registration_county %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>

@@ -2255,45 +2255,60 @@ en:
             ballot online directly with the state.  You may be required to have a
             valid New York state ID</p>"
         abr_form_fields:
-          county where you live: County where you live
-          has_mailing_address: My mailing address differs from my residential address.
-          delivery_general: 'Delivery of General (or Special) Election Ballot (check
-            one):'
-          delivery_general__options:
-            in_person: Deliver to me in person at the board of elections.
-            mail: Mail ballot to me
-            authorized_recipient: I authorize the following person to pick up my ballot
-              at the board of elections.
-          apartment (General (or Special) Election Ballot Mailing Address): Apt
-          street number (General (or Special) Election Ballot Mailing Address): Street
-            number
-          street name (General (or Special) Election Ballot Mailing Address): Street
-            name
-          city (General (or Special) Election Ballot Mailing Address): City
-          state (General (or Special) Election Ballot Mailing Address): State
-          zip code (General (or Special) Election Ballot Mailing Address): Zip
-          mail_unit: Apt
-          mail_street_number: Street number
-          mail_street_name: Street name
-          mail_city: City
-          mail_state: State
-          mail_zip: Zip
-          witness: Due to an illness, disability, or inability to read, voter is unable
-            to sign and requires a witness.
-          address_mark_witness: Address of witness
-          authorized_recipient_name_general: Name of authorized recipient
-          reason: 'I am requesting, in good faith, an absentee ballot due to (check
-            one reason):'
-          reason__options:
-            absence: absence from county or New York City on election day
-            temporary_illness: temporary illness or physical disability
-            permanent_illness: permanent illness or physical disability
-            caregiver: duties related to primary care of one or more individuals who
-              are ill or physically disabled
-            patient: resident or patient of a Veterans Health !dministration Hospital
-            prisoner: detention in jail/prison, awaiting trial, awaiting action by
-              a grand jury, or in prison for a conviction of a crime or offense which
-              was not a felony
+          abr_email: Email
+          abr_county: County where you live
+          abr_reason_instructions: You must have a reason to request an absentee ballot
+          abr_reason_selections: Select your reason for voting by mail
+          abr_reason_selections__hint: If you indicate that your illness or disability is permanent, once your application is approved you will automatically receive a ballot for each election in which you are eligible to vote, without having to apply again.
+          abr_reason_selections__options:
+            abr_reason1: absence from county or New York City on election day
+            abr_reason2: temporary illness or physical disability
+            abr_reason3: permanent illness or physical disability
+            abr_reason4: duties related to primary care of one or more individuals who are ill or physically disabled
+            abr_reason5: resident or patient of a Veterans Health Administration Hospital
+            abr_reason6: detention in jail / prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony
+          abr_election_type_selections: Select the election to request an absentee ballot for.
+          abr_election_type_selections__hint: You must fill out a separate form for each election.
+          abr_election_type_selections__options:
+            abr_election_type1: Primary Election only
+            abr_election_type2: General Election only
+            abr_election_type3: Special Election only
+            abr_election_type4: Any elections while I am absent from the County or state of New York
+          abr_absence_begin_date: Enter the date absence begins
+          abr_absence_end_date: Enter the date absence ends
+          abr_address_type_selections: Select where you'd like your primary election ballot(s) delivered
+          abr_address_type_selections__options:
+            abr_address_type2: Deliver to me in person at the Board of Elections
+            abr_address_type3: Mail ballot to me
+            abr_address_type4: An authorized person will pick it up for me
+          primary_registration_address_check: Mail my primary ballot(s) to my registration address
+          abr_request_name: Enter the name of the person who will pick up your ballot for you
+          abr_mailing_address_instructions: Enter your mailing address
+          abr_mailing_street_number: Street Number
+          abr_mailing_street_name: Street Name
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_address_type_selections2: Select where you'd like your general or special ballot(s) delivered
+          abr_address_type_selections2__options:
+            abr_address_type6: Deliver to me in person at the Board of Elections
+            abr_address_type7: Mail ballot to me
+            abr_address_type8: An authorized person will pick it up for me
+          general_registration_address_check: Mail my general or special ballot(s) to my registration address
+          abr_request_name2: Enter the name of the person who will pick up your ballot for you
+          abr_mailing_address_instructions2: Enter your mailing address
+          abr_mailing_street_number1: Street Number
+          abr_mailing_street_name1: Street Name
+          abr_mailing_unit1: Unit
+          abr_mailing_city1: City 
+          abr_mailing_state_abbrev1: State 
+          abr_mailing_zip1: ZIP
+          abr_witness_check1: Check this box if you are acting as a witness to the applicant's signature or mark, or signing on the applicant's behalf.
+          abr_witness_check1__hint: The applicant and witness must review the statements on the application before signing.
+          abr_assistant_instructions: Enter the address of the assistant
+          abr_assistant_address_line1: Address Line 1
+          abr_assistant_address_line2: Address Line 2
         registration:
           has_state_license: I have a current NY state identification card 
             or driver's license, and social security number.
