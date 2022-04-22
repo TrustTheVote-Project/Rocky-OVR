@@ -224,6 +224,9 @@ en:
           abr_primary_type_selections3__options:
             abr_primary_type9: Democratic Party
             abr_primary_type10: Republican Party
+        registration:
+          has_state_license: I have a valid AL state identification card or driver's license.
+          has_no_state_license: I do not have a valid AL state identification card or driver's license.
       ar:
         abr:
           request_deadline: received at least 11 days before the election
@@ -342,6 +345,9 @@ en:
             number, please verify before continuing.
           place_of_birth: Place of birth
           last_4_ssn: 'Last 4 digits of SSN #'
+        registration:
+          has_state_license: I have a AZ state identification card or driver's license.
+          has_no_state_license: I do not have a AZ state identification card or driver's license.
       ca:
         abr:
           everyone_gets_ballot:
@@ -416,10 +422,8 @@ en:
             using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online
             tool</a>
         registration:
-          has_state_license: I have a current CO state identification card, 
-            CO driver's license, or social security number.
-          has_no_state_license: I do not have a current CO state identification card, 
-            CO driver's license, or social security number.
+          has_state_license: I have a CO state identification card or CO driver's license, or Social Security Number.
+          has_no_state_license: I do not have a CO state identification card or CO driver's license, or Social Security Number.
       ct:
         abr:
           request_deadline: Voters should make sure the application is sent in 7 days
@@ -584,10 +588,8 @@ en:
           requirements: "<p>If you are registered to vote, you may request your absentee
             ballot online directly with the state.</p>"
         registration:
-          has_state_license: I have a current FL state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current FL state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have a FL state identification card or FL driver's license, and Social Security Number.
+          has_no_state_license: I do not have a FL state identification card or FL driver's license, and Social Security Number.
       ga:
         abr:
           step_3_pending_header: Requesting an Absentee Ballot in Georgia
@@ -688,10 +690,8 @@ en:
             OSP: OSP- Overseas Permanent Resident- federal offices only
           request_electronic_transmission: I request my ballot to be emailed to me.
         registration:
-          has_state_license: I have a current GA state identification card 
-            or driver's license, and a signature on file with the DDS.
-          has_no_state_license: I do not have a current GA state identification card 
-            or driver's license, and a signature on file with the DDS.
+          has_state_license: I have a current GA state identification card or driver's license, and a signature on file with the DMV.
+          has_no_state_license: I do not have a current GA state identification card or driver's license, and a signature on file with the DMV.
       hi:
         abr:
           everyone_gets_ballot:
@@ -726,10 +726,8 @@ en:
             using your state&#39;s <a target='_blank' href='https://ballotstatus.hawaii.gov/Default'>online
             tool</a>
         registration:
-          has_state_license: I have a current HI state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current HI state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have a HI state identification card or HI driver's license, and Social Security Number.
+          has_no_state_license: I do not have have a HI state identification card or HI driver's license, and Social Security Number.
       ia:
         abr:
           step_2_header: All registered voters in Iowa can vote absentee!
@@ -762,10 +760,8 @@ en:
           Do not add this contact info to my voter recored check box: Please do not
             add my phone number or email address to my voter record.
         registration:
-          has_state_license: I have a current IA state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current IA state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have an IA state identification card or IA driver's license, and Social Security Number.
+          has_no_state_license: I do not have an IA state identification card or IA driver's license, and Social Security Number.
       id:
         abr_form_fields:
           abr_county: Registration Address County
@@ -826,6 +822,9 @@ en:
             href='https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx'>https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx</a>.
           requirements: "<p>To qualify to request a ballot in ID, you only need to
             be registered to vote.</p>"
+        registration:
+          has_state_license: I have a current and valid ID state identification card or driver's license.
+          has_no_state_license: I do not have a current and valid ID state identification card or driver's license.
       il:
         abr:
           request_deadline: Check with your local election officials for your state's
@@ -890,10 +889,8 @@ en:
             confirm: ''
             button: Finish your absentee request with Sangamon County
         registration:
-          has_state_license: I have a current IL state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current IL state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have an IL state identification card or an IL driver's license, and Social Security Number.
+          has_no_state_license: I do not have an IL state identification card or an IL driver's license, and Social Security Number.
       in:
         state_online_abr:
           instructions: |-
@@ -988,6 +985,9 @@ en:
             sex_offender: I am a “serious sex offender” (as defined in IC 35-42-4-14(a)).
             work: I am scheduled to work at my regular place of employment during
               the entire twelve (12) hours that the polls are open.
+        registration:
+          has_state_license: I have a valid IN state identification card or driver's license.
+          has_no_state_license: I do not have a valid IN state identification card or driver's license.
       ks:
         abr:
           request_deadline: received the Tuesday before the election
@@ -1057,6 +1057,9 @@ en:
           Mailing_Zip_Code: Zip
         redirect_to_online_registration: We're directing you to the VoteKS online
           voter registration system.
+        registration:
+          has_state_license: I have a valid KS state identification card or driver's license.
+          has_no_state_license: I do not have a valid KS state identification card or driver's license.
       ky:
         abr:
           step_2_instructions: |-
@@ -1092,7 +1095,9 @@ en:
             <li>A public or private college, university, or postgraduate technical or professional school located within the United States, or</li>
             <li>Any city government, county government, urban-county government, charter county government, consolidated local government, or unified local government in Kentucky.</li>
             </ul>
-
+        registration:
+          has_state_license: I have a Social Security Number.
+          has_no_state_license: I do not have a Social Security Number.
       la:
         state_online_abr:
           header_choice: Eligibility to Request an Absentee Ballot
@@ -1189,6 +1194,9 @@ en:
           License_ID: LA Driver's license or ID
           License_ID__format_message: That doesn't look like a driver's license number,
             please verify before continuing.
+        registration:
+          has_state_license: I have a LA state identification card or LA driver's license.
+          has_no_state_license: I do not have a LA state identification card or LA driver's license.
       md:
         abr_form_fields:
           mailto: 'I want my ballot mailed to:'
@@ -1248,10 +1256,8 @@ en:
             <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
             <p>Your signature at the MVA will become your official voter registration signature.</p>
         registration:
-          has_state_license: I have a current MD state identification card 
-            or driver's license, and a signature on file with the MVA.
-          has_no_state_license: I do not have a current MD state identification card 
-            or driver's license, and a signature on file with the MVA.
+          has_state_license: I have a MD state identification card or MD driver's license, and Social Security Number.
+          has_no_state_license: I do not have a MD state identification card or MD driver's license, and Social Security Number.
       me:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -1348,6 +1354,9 @@ en:
             has been admitted to a healthcare facility after noon on the fifth day
             before the election and has designated the following person to hand-deliver
             the ballot:'
+        registration:
+          has_state_license: I have a MA state identification card or MA driver's license.
+          has_no_state_license: I do not have a MA state identification card or MA driver's license.
       mi:
         abr_form_fields:
           bad_date__format_message: Invalid date
@@ -1610,6 +1619,9 @@ en:
           desktop_provide_e_signature: You must provide a signature to complete your
             registration form. You may upload a signature image, switch to a touch-enabled
             device or use your current device.
+        registration:
+          has_state_license: I have a MN state identification card or MN driver's license, or Social Security Number.
+          has_no_state_license: I do not have a MN state identification card or MN driver's license, or Social Security Number.
       mo:
         abr:
           step_3_pending_header: Requesting an Absentee Ballot in Missouri
@@ -1716,9 +1728,6 @@ en:
             instructions_3: |-
               <p>If you request a mail-in ballot, you must return it by mail- you cannot drop it off.</p>
               <p>Make sure to postmark your ballot on or before Election Day to so that it is received by June 14th.</p>
-
-
-
       mt:
         abr:
           request_deadline: Applications must be received by the county election office
@@ -1854,10 +1863,8 @@ en:
             On the DMV website, click "Continue to myNCDMV Services." <br/>4. Click
             "Continue as a guest" and submit your voter registration online.'
         registration:
-          has_state_license: I have a current NC state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current NC state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have a NC state identification card or NC driver's license, and Social Security Number.
+          has_no_state_license: I do not have a NC state identification card or NC driver's license, and Social Security Number.
       nd:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -1960,8 +1967,10 @@ en:
             abr_primary_type4: Legal Marijuana NOW	
           abr_request_check: Are you requesting a ballot on behalf of a voter?	An agent is a person who requests a ballot for another voter. <br> An agent may request ballots for up to two voters per election. 
           abr_request_name: Enter your name	
-          abr_relationship1: Enter your relationship to the voter	
-
+          abr_relationship1: Enter your relationship to the voter
+        registration:
+          has_state_license: I have a NE state identification card or NE driver's license.
+          has_no_state_license: I do not have a NE state identification card or NE driver's license.
       nh:
         abr:
           request_deadline: received by 6 p.m. on the second Friday preceding the
@@ -2081,10 +2090,8 @@ en:
           messenger_birth_date: Date of Birth (MM/DD/YYYY)
           messenger_birth_date__required_message: Birthdate not valid
         registration:
-          has_state_license: I have a current NJ state identification card, 
-            NJ driver's license, or social security number.
-          has_no_state_license: I do not have a current NJ state identification card, 
-            NJ driver's license, or social security number.
+          has_state_license: I have a current and valid NJ state identification card or driver's license, or Social Security Number.
+          has_no_state_license: I do not have a current and valid NJ state identification card or driver's license, or Social Security Number.
       nm:
         abr_form_fields:
           request_deadline: received no later than 5:00 pm on Thursday, October 28,
@@ -2116,10 +2123,8 @@ en:
             <p>Your absentee ballot request must be received no later than 14 days before the election.</p>
             <p>To check the status of your Absentee Application, go to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
         registration:
-          has_state_license: I have a current NM state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current NM state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have a NM state identification card or NM driver's license, or Social Security Number.
+          has_no_state_license: I do not have a NM state identification card or NM driver's license, or Social Security Number.
       nv:
         abr:
           everyone_gets_ballot:
@@ -2204,10 +2209,8 @@ en:
           your registration with %{rtv_and_partner_name}</a>.  You will just have
           to print, sign, and mail in the form.</p>
         registration:
-          has_state_license: I have a current NV state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current NV state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have a current and valid NV state identification card or driver's license, and Social Security Number.
+          has_no_state_license: I do not have a current and valid NV state identification card or driver's license, and Social Security Number.
       ny:
         abr:
           request_deadline: |-
@@ -2312,10 +2315,8 @@ en:
           abr_assistant_address_line1: Address Line 1
           abr_assistant_address_line2: Address Line 2
         registration:
-          has_state_license: I have a current NY state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current NY state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have a NY state identification card or NY driver's license, and Social Security Number.
+          has_no_state_license: I do not have a NY state identification card or NY driver's license, and Social Security Number.
       oh:
         abr:
           step_2_instructions: |-
@@ -2367,10 +2368,8 @@ en:
           abr_mailing_state_abbrev: State
           abr_mailing_zip: Zip
         registration:
-          has_state_license: I have a current OH state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current OH state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have an OH state identification card or OH driver's license, and Social Security Number.
+          has_no_state_license: I do not have an OH state identification card or OH driver's license, and Social Security Number.
       ok:
         abr:
           request_deadline: received no later than 5 p.m. the Tuesday before the election.
@@ -2686,10 +2685,8 @@ en:
             <h3>Voting Absentee in Person</h3>
             <p>Your county may also offer absentee voting in person if that is better for you. <a href="https://www.scvotes.gov/how-register-absentee-voting" title="How to Register">Contact them directly.</a></p>
         registration:
-          has_state_license: I have a current SC state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current SC state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have a valid SC state identification card or driver's license, and Social Security Number.
+          has_no_state_license: I do not have a valid SC state identification card or driver's license, and Social Security Number.
       ri:
         abr:
           request_deadline: received by the local board no later than 4:00 P.M. on
@@ -2730,6 +2727,9 @@ en:
             military: I am employed or in service intimately connected with military
               operations or because I am a spouse or dependent of such person, or
               I am a United States citizen who will be outside the United States.
+        registration:
+          has_state_license: I have a RI state identification card or RI driver's license.
+          has_no_state_license: I do not have a RI state identification card or RI driver's license.
       sd:
         abr:
           finish_instructions_1_hint: |-
@@ -2871,6 +2871,9 @@ en:
             even if the ballot is emailed. Send military/overseas ballot by:'
           transmission_15: 'You must include a mailing address outside the county,
             even if the ballot is emailed. Send military/overseas ballot by:'
+        registration:
+          has_state_license: I have a TN state identification card or TN driver's license.
+          has_no_state_license: I do not have a TN state identification card or TN driver's license.
       tx:
         abr:
           step_2_header: ''
@@ -3066,6 +3069,9 @@ en:
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target="_blank" rel="noopener noreferrer" href='https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot'>online
             tool</a>
+        registration:
+          has_state_license: I have a valid UT state identification card or driver's license.
+          has_no_state_license: I do not have a valid UT state identification card or driver's license.
       va:
         state_online_abr:
           header: Requesting an Absentee Ballot in Virginia
@@ -3227,6 +3233,9 @@ en:
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target='_blank' href='https://mvp.vermont.gov/'>online
             tool</a>
+        registration:
+          has_state_license: I have a VT state identification card or VT driver's license, or Social Security Number.
+          has_no_state_license: I do not have a VT state identification card or VT driver's license, or Social Security Number.
       wa:
         abr:
           everyone_gets_ballot:
@@ -3255,6 +3264,9 @@ en:
           status_check_instructions: You can look up your Vote By Mail status by using
             Washington's <a target='_blank' href='https://voter.votewa.gov/WhereToVote.aspx#/login'>online
             tool</a>
+        registration:
+          has_state_license: I have a WA state identification card or WA driver's license.
+          has_no_state_license: I do not have a WA state identification card or WA driver's license.
       wi:
         abr_form_fields:
           Municipality: Which of the following best describes the place where you
@@ -3335,6 +3347,9 @@ en:
               provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
+        registration:
+          has_state_license: I have a current and valid WI state identification card or driver's license.
+          has_no_state_license: I do not have a current and valid WI state identification card or driver's license.
       wv:
         abr:
           splash:
@@ -3367,10 +3382,8 @@ en:
               <p>Make sure to follow all of the instructions included with your absentee ballot.</p>
               <p>Your voted ballot must be returned by May 7th if returned by hand and postmarked by May 10th if mailed. If mailed, they must be received by May 16th.</p>
         registration:
-          has_state_license: I have a current WV state identification card 
-            or driver's license, and social security number.
-          has_no_state_license: I do not have a current WV state identification card 
-            or driver's license, and social security number.
+          has_state_license: I have a WV state identification card or WV driver's license, and Social Security Number.
+          has_no_state_license: I do not have a WV state identification card or WV driver's license, and Social Security Number.
       wy:
         abr:
           request_deadline: Check with your local election officials for your state's
