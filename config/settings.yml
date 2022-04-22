@@ -403,7 +403,7 @@ pdf_assistance:
     
 ovr_states:
   AZ:
-    require_id: false
+    require_id: true
     languages:
       - en
       - es    
@@ -433,6 +433,7 @@ ovr_states:
       - km
       - th
   LA:
+    require_id: true
     languages:
       - en
   MN:
@@ -440,9 +441,8 @@ ovr_states:
       - en
       - es
     require_id: true
-    languages:
-      - en
   NV:
+    require_id: true
     languages:
       - en
       - es
@@ -450,9 +450,11 @@ ovr_states:
     languages:
       - en
   AL:
+    require_id: true
     languages:
       - en
   CO:
+    require_id: true
     languages:
       - en
       - es
@@ -470,40 +472,49 @@ ovr_states:
     languages:
       - en
   FL:
+    require_id: true
     languages:
       - en
       - es
   GA:
+    require_id: true
     languages:
       - en
   HI:
+    require_id: true
     languages:
       - en
   IL:
+    require_id: true
     languages:
       - en
       - es
   IN:
+    require_id: true
     languages:
       - en
   IA:
+    require_id: true
     languages:
       - en
   ID:
+    require_id: true
     languages:
       - en
   KS:
-    require_id: false
+    require_id: true
     languages:
       - en
   KY:
-    require_id: false
+    require_id: true
     languages:
       - en
   MA:
+    require_id: true
     languages:
       - en
   MD:
+    require_id: true
     languages:
       - en
       - es
@@ -522,26 +533,32 @@ ovr_states:
     languages:
       - en
   NC:
+    require_id: true
     languages:
       - en
   NE:
+    require_id: true
     languages:
       - en
       - es
   NJ:
+    require_id: true
     languages:
       - en
       - es
       - ko
   NM:
+    require_id: true
     languages:
       - en
       - es
   NY:
+    require_id: true
     languages:
       - en
       - es
   OH:
+    require_id: true
     languages:
       - en
       - es
@@ -562,23 +579,26 @@ ovr_states:
       - en
       - es
   RI:
+    require_id: true
     languages:
       - en
       - es
   SC:
+    require_id: true
     languages:
       - en
   TN:
     require_age_confirmation: true
-    require_id: false
+    require_id: true
     languages:
       - en
   UT:
+    require_id: true
     languages:
       - en
   VT:
     require_age_confirmation: true
-    require_id: false
+    require_id: true
     languages:
       - en
   VA:
@@ -589,6 +609,7 @@ ovr_states:
         api_username: "RockTheVote"
         api_key: <%= ENV['VA_API_KEY'] %>
   WA:
+    require_id: true
     languages:
       - en
       - es
@@ -596,9 +617,11 @@ ovr_states:
       - vi
       - ko
   WV:
+    require_id: true
     languages:
       - en
   WI:
+    require_id: true
     languages:
       - en
 
