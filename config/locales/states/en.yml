@@ -346,8 +346,8 @@ en:
           place_of_birth: Place of birth
           last_4_ssn: 'Last 4 digits of SSN #'
         registration:
-          has_state_license: I have a AZ state identification card or driver's license.
-          has_no_state_license: I do not have a AZ state identification card or driver's license.
+          has_state_license: I have an AZ state identification card or driver's license.
+          has_no_state_license: I do not have an AZ state identification card or driver's license.
       ca:
         abr:
           everyone_gets_ballot:
@@ -1256,8 +1256,8 @@ en:
             <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
             <p>Your signature at the MVA will become your official voter registration signature.</p>
         registration:
-          has_state_license: I have a MD state identification card or MD driver's license, and Social Security Number.
-          has_no_state_license: I do not have a MD state identification card or MD driver's license, and Social Security Number.
+          has_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
+          has_no_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
       me:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
