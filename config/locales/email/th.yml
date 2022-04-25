@@ -43,7 +43,7 @@ th:
           Rock the Vote<br><br>
 
 
-          ปล. คุณสามารถเยี่ยมชม <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>เพื่อรับข้อมูลข่าวสารเกี่ยวกับการเลือกตั้งครั้งต่อไป
+          ปล. คุณสามารถเยี่ยมชม <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>เพื่อรับข้อมูลข่าวสารเกี่ยวกับการเลือกตั้งครั้งต่อไป
           รวมทั้งรับข่าวปัญหาด้านต่างๆในประเทศสหรัฐฯที่คุณสนใจ นอกจากนี้แล้วเราจะมีวิธีที่ช่วยให้คุณมีส่วนในการรณรงค์การลงทะเบียนเลือกตั้งอีกด้วย<br><br>'
         send_to_friends: ! '<em><strong>คุณสามารถลอกข้อความข้างล่างนี้เพื่อส่งต่อให้เพื่อนๆหรือครอบครัว</strong></em><br><br>
 
@@ -69,11 +69,11 @@ th:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'องค์กรร็อค เดอะ โหวตเคารพสิทธิส่วนบุคคลและจะไม่นำข้อมูลส่วนตัวของคุณไปเปิดเผยกับบุคคลที่สาม
-          กรุณาอ่าน<strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter
+          กรุณาอ่าน<strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter
           registration privacy policy</a></strong> ของเราถ้าต้องการข้อมูลเพิ่มเติม<br><br>
 
 
-          กรุณาส่งคำถามหรือความคิดเห็นของคุณมาที่ <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          กรุณาส่งคำถามหรือความคิดเห็นของคุณมาที่ <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     reminder:
       subject: ! 'แจ้งเตือน: ส่งแบบฟอร์มลงทะเบียนเลือกตั้งของคุณ'
       body:
@@ -110,7 +110,7 @@ th:
           Rock the Vote<br><br>
 
 
-          ปล. คุณสามารถเยี่ยมชม <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>เพื่อรับข้อมูลข่าวสารเกี่ยวกับการเลือกตั้งครั้งต่อไป
+          ปล. คุณสามารถเยี่ยมชม <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>เพื่อรับข้อมูลข่าวสารเกี่ยวกับการเลือกตั้งครั้งต่อไป
           รวมทั้งรับข่าวปัญหาด้านต่างๆในประเทศสหรัฐฯที่คุณสนใจ นอกจากนี้แล้วเราจะมีวิธีที่ช่วยให้คุณมีส่วนในการรณรงค์การลงทะเบียนเลือกตั้งอีกด้วย<br><br>'
         send_to_friends: ! '<em><strong>คุณสามารถลอกข้อความข้างล่างนี้เพื่อส่งต่อให้เพื่อนๆหรือครอบครัว</strong></em><br><br>
 
@@ -136,11 +136,11 @@ th:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'องค์กรร็อค เดอะ โหวตเคารพสิทธิส่วนบุคคลและจะไม่นำข้อมูลส่วนตัวของคุณไปเปิดเผยกับบุคคลที่สาม
-          กรุณาอ่าน<strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter
+          กรุณาอ่าน<strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter
           registration privacy policy</a></strong> ของเราถ้าต้องการข้อมูลเพิ่มเติม<br><br>
 
 
-          กรุณาส่งคำถามหรือความคิดเห็นของคุณมาที่ <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          กรุณาส่งคำถามหรือความคิดเห็นของคุณมาที่ <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     thank_you_external:
       subject: ขอบคุณที่ลงทะเบียนเลือกตั้งทางอินเตอร์เน็ต
       body:
@@ -176,7 +176,7 @@ th:
           Rock the Vote<br><br>
 
 
-          ปล. คุณสามารถเยี่ยมชม <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>เพื่อรับข้อมูลข่าวสารเกี่ยวกับการเลือกตั้งครั้งต่อไป
+          ปล. คุณสามารถเยี่ยมชม <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>เพื่อรับข้อมูลข่าวสารเกี่ยวกับการเลือกตั้งครั้งต่อไป
           รวมทั้งรับข่าวปัญหาด้านต่างๆในประเทศสหรัฐฯที่คุณสนใจ นอกจากนี้แล้วเราจะมีวิธีที่ช่วยให้คุณมีส่วนในการรณรงค์การลงทะเบียนเลือกตั้งอีกด้วย<br><br>'
         send_to_friends: ! '<em><strong>คุณสามารถลอกข้อความข้างล่างนี้เพื่อส่งต่อให้เพื่อนๆหรือครอบครัว</strong></em><br><br>
 
@@ -202,11 +202,11 @@ th:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'องค์กรร็อค เดอะ โหวตเคารพสิทธิส่วนบุคคลและจะไม่นำข้อมูลส่วนตัวของคุณไปเปิดเผยกับบุคคลที่สาม
-          กรุณาอ่าน<strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter
+          กรุณาอ่าน<strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter
           registration privacy policy</a></strong> ของเราถ้าต้องการข้อมูลเพิ่มเติม<br><br>
 
 
-          กรุณาส่งคำถามหรือความคิดเห็นของคุณมาที่ <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          กรุณาส่งคำถามหรือความคิดเห็นของคุณมาที่ <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     tell_friend:
       subject: ฉันเพิ่งลงทะเบียนเพื่อลงคะแนนเลือกตั้งและคุณควรจะลงทะเบียนด้วย
       body: ! "สวัสดี ฉันเพิ่งลงทะเบียนเพื่อเลือกตั้งที่ %{rtv_url} และคุณก็ทำได้เช่นกัน

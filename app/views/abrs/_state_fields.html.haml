@@ -36,7 +36,7 @@
       for(let i=0,ii=visibleAnyConditionalFields.length;i<ii;i++) {
         var fieldName = visibleAnyConditionalFields[i].trim();
         var field = $("#abr_"+fieldName+":enabled")
-        showFieldAny = showFieldAny || ( field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (conditionValue && field.val() ? field.val().toString() == conditionValue.toString() : field.val())))
+        showFieldAny = showFieldAny || ( field && (field.prop("type")=="checkbox" || field.prop("type")=="radio" ? field.is(":checked") : (visibleAnyConditionsValue && field.val() ? field.val().toString() == visibleAnyConditionsValue.toString() : field.val())))
       }
       
 

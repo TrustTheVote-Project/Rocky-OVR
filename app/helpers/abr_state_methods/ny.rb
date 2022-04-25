@@ -1,169 +1,272 @@
 module AbrStateMethods::NY
   
+  COUNTIES = [
+    "Albany County",
+    "Allegany County",
+    "Bronx County",
+    "Broome County",
+    "Cattaraugus County",
+    "Cayuga County",
+    "Chautauqua County",
+    "Chemung County",
+    "Chenango County",
+    "Clinton County",
+    "Columbia County",
+    "Cortland County",
+    "Delaware County",
+    "Dutchess County",
+    "Erie County",
+    "Essex County",
+    "Franklin County",
+    "Fulton County",
+    "Genesee County",
+    "Greene County",
+    "Hamilton County",
+    "Herkimer County",
+    "Jefferson County",
+    "Kings County (Brooklyn)",
+    "Lewis County",
+    "Livingston County",
+    "Madison County",
+    "Monroe County",
+    "Montgomery County",
+    "Nassau County",
+    "New York County (Manhattan)",
+    "Niagara County",
+    "Oneida County",
+    "Onondaga County",
+    "Ontario County",
+    "Orange County",
+    "Orleans County",
+    "Oswego County",
+    "Otsego County",
+    "Putnam County",
+    "Queens County",
+    "Rensselaer County",
+    "Richmond County (Staten Island)",
+    "Rockland County",
+    "Saint Lawrence County",
+    "Saratoga County",
+    "Schenectady County",
+    "Schoharie County",
+    "Schuyler County",
+    "Seneca County",
+    "Steuben County",
+    "Suffolk County",
+    "Sullivan County",
+    "Tioga County",
+    "Tompkins County",
+    "Ulster County",
+    "Warren County",
+    "Washington County",
+    "Wayne County",
+    "Westchester County",
+    "Wyoming County",
+    "Yates County",
+  ]
+
   PDF_FIELDS = {
-    "date of birth": {
-      method: "date_of_birth_mm_dd_yyyy"
+    "abr_email": { method: "email" },
+    "abr_reason_instructions": {},
+    "abr_reason_selections": { options: [
+      "abr_reason1",
+      "abr_reason2",
+      "abr_reason3",
+      "abr_reason4",
+      "abr_reason5",
+      "abr_reason6",
+    ]},
+    "abr_first_name": { method: "first_name" },	
+    "abr_middle_initial": { method: "middle_initial" },	
+    "abr_last_name": { method: "last_name" },	
+    "abr_name_suffix": { method: "name_suffix" },	
+    "abr_date_of_birth_complete": { method: "date_of_birth_mm_dd_yyyy" },	
+    "abr_address_line_1": { method: "address_line_1" },
+    "abr_unit": { method: "unit" },	
+    "abr_city": { method: "city" },	
+    "abr_county": {},	
+    "abr_home_state_abbrev": { method: "home_state_abbrev" },	
+    "abr_zip": { method: "zip" },	
+    "abr_election_type_selections": {
+      options: [
+        "abr_election_type1",
+        "abr_election_type2",
+        "abr_election_type3",
+        "abr_election_type4",
+      ]
+    },	
+    "abr_absence_begin_date": {
+      method: "absence_begin_date_string"
     },
-    "suffix": {
-      method: "name_suffix"
+    "abr_absence_end_date": {
+      method: "absence_end_date_string"
     },
-    "middle initial": {
-      method: "middle_initial"
-    },
-    "first name": {
-      method: "first_name"
-    },
-    "last name or surname": {
-      method: "last_name"
-    },
-    "phone number (optional)": {
-      method: "phone"
-    },
-    "email (optional)": {
-      method: "email"
-    },
-    "county where you live": { method: "registration_county_name" },
-    "street (Residence)": {
-      method: "address_line_1"
-    },
-    "city (Residence)": {
-      method: "city"
-    },
-    "zip code (Residence)": {
-      method: "zip"
-    },
-    "Date (Applicant Signed)": { method: "date_for_signature" },
-    # "(address of witness to mark)": {},
-    # "Name of Voter:": {
-    #   method: "full_name"
-    # },
-    #(signature of witness to mark)
-    #Date (Applicant Marked)
-    #Mark: (Applicant mark in lieu of signature)
-    "mailing_address_street_number_general":{ 
-      method:"override_street_number"
-    },
-    "street_name_general":{ 
-      method:"override_street_name"
-    },
-    "apartment_general":{ 
-      method:"override_unit"
-    },
-    "city_general":{ 
-      method:"override_city"
-    },
-    "state_general":{ 
-      method:"override_home_state_abbrev"
-    },
-    "zip_general":{ 
-      method:"override_zip"
-    },
-    "authorized_recipient_name_general": {},
-    "apartment (Residence)": {
-      method: "unit"
-    },
-    "reason": {
-      options: ["absence", "caregiver", "patient", "permanent_illness", "prisoner", "temporary_illness"]
-    },
-    "general_only": { options: ["Off", "Yes"], value: "Off" },
-    "special_only": { options: ["Off", "Yes"], value: "Yes" },
-    "primary_only": { options: ["Off", "Yes"], value: "Off" },
-    "any_election": { options: ["Off", "Yes"], value: "Off" },
-    "delivery_general": {
-      options: ["authorized_recipient", "in_person", "mail"]
-    },
-    #"voter_signature"
+    "abr_address_type_selections": {
+      options: [
+        "abr_address_type2",
+        "abr_address_type3",
+        "abr_address_type4",
+      ]
+    },	
+    "abr_request_name": {},	
+    "abr_mailing_address_instructions": {},	
+    "abr_mailing_street_number": { },	
+    "abr_mailing_street_name": {},	
+    "abr_mailing_unit": {},	
+    "abr_mailing_city": {},	
+    "abr_mailing_state_abbrev": {},	
+    "abr_mailing_zip": {},	
+    "abr_address_type_selections2": {
+      options: [
+        "abr_address_type6",
+        "abr_address_type7",
+        "abr_address_type8",
+      ]
+    },	
+    "abr_request_name2": {},	
+    "abr_mailing_address_instructions2": {},	
+    "abr_mailing_street_number1": {},	
+    "abr_mailing_street_name1": {},	
+    "abr_mailing_unit1": {},	
+    "abr_mailing_city1": {},	
+    "abr_mailing_state_abbrev1": {},	
+    "abr_mailing_zip1": {},	
+    "abr_witness_check1": {options: ["Off", "Yes"]},	
+    "abr_assistant_instructions": {},
+    "abr_assistant_address_line1": {},
+    "abr_assistant_address_line2": {},
+    "abr_phone": { method: "phone" },	
   }
-  EXTRA_FIELDS = ["has_mailing_address", "witness", "mail_street_number", "mail_street_name", "mail_unit", "mail_city", "mail_state", "mail_zip"]
+
+  EXTRA_FIELDS = ["absence_begin_date_mm", "absence_begin_date_dd", "absence_begin_date_yyyy",
+    "absence_end_date_mm", "absence_end_date_dd", "absence_end_date_yyyy",
+  "primary_registration_address_check", "general_registration_address_check"]
   
   
   def form_field_items
     [
-      {"reason": {type: :radio, required: true}},
-      {"delivery_general": {type: :radio, required: true}},
-      {"authorized_recipient_name_general": {visible: "delivery_general_authorized_recipient", required: "star"}}, # :is_visible throws err
-      {"has_mailing_address": {type: :checkbox, visible: "delivery_general_mail"}},
-      {"mail_street_number": {visible: "has_mailing_address",required: "star", classes: "quarter"}},
-      {"mail_street_name": {visible: "has_mailing_address",required:"star", classes: "half"}},
-      {"mail_unit": {visible: "has_mailing_address", classes: "quarter last"}},
-      {"mail_city": {visible: "has_mailing_address", required: "star", classes: "half"}},
-      {"mail_state": {visible: "has_mailing_address", required: "star", classes: "quarter", type: :select, options: GeoState.collection_for_select}},
-      {"mail_zip": {visible: "has_mailing_address",required:"star", classes: "quarter last"}},
+      {"abr_reason_instructions": {type: :instructions}},
+      {"abr_reason_selections": {type: :radio, required: true}},
+      {"abr_county": {type: :select,  required: true, include_blank: true, options: COUNTIES }},	
+      {"abr_election_type_selections": {type: :radio, required: true}},	
+      {"absence_begin_date": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type4"}},
+      {"absence_end_date": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type4"}},
+      {"abr_address_type_selections": {type: :radio, visible_any: "abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type4"}},
+      {"primary_registration_address_check": {type: :checkbox, visible: "abr_address_type_selections_abr_address_type3"}}, 
+      {"abr_request_name": {required: :if_visible, visible: "abr_address_type_selections_abr_address_type4"}},
+      {"abr_mailing_address_instructions": {type: :instructions, hidden: "primary_registration_address_check", visible:  "abr_address_type_selections_abr_address_type3"}},	
+      {"abr_mailing_street_number": {classes: "quarter", required: :if_visible, hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
+      {"abr_mailing_street_name": {classes: "half", required: :if_visible, hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
+      {"abr_mailing_unit": {classes: "quarter", hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
+      {"abr_mailing_city": {classes: "half", required: :if_visible, hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
+      {"abr_mailing_state_abbrev": {classes: "quarter", required: :if_visible, hidden: "primary_registration_address_check",  visible: "abr_address_type_selections_abr_address_type3", type: :select, options: GeoState.collection_for_select}},	
+      {"abr_mailing_zip": {classes: "quarter", required: :if_visible, hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
+      {"abr_address_type_selections2": {type: :radio, required: :if_visible, visible_any: "abr_election_type_selections_abr_election_type2 abr_election_type_selections_abr_election_type3 abr_election_type_selections_abr_election_type4"}},
+      
+      {"abr_request_name2": {required: :if_visible,visible: "abr_address_type_selections2_abr_address_type8"}},
+      
+      {"general_registration_address_check": {type: :checkbox, visible: "abr_address_type_selections2_abr_address_type7"}}, 
+      
+      {"abr_mailing_address_instructions2": {type: :instructions, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},
+      {"abr_mailing_street_number1": {classes: "quarter", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},
+      {"abr_mailing_street_name1": {classes: "half", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},	
+      {"abr_mailing_unit1": {classes: "quarter", hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},	
+      {"abr_mailing_city1": {classes: "half", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},	
+      {"abr_mailing_state_abbrev1": {classes: "quarter", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7", type: :select, options: GeoState.collection_for_select}},	
+      {"abr_mailing_zip1": {classes: "quarter", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},	
+      
+      {"abr_witness_check1": {type: :checkbox}},	
+      {"abr_assistant_instructions": {visible: "abr_witness_check1"}},
+      {"abr_assistant_address_line1": {visible: "abr_witness_check1", required: :if_visible}},
+      {"abr_assistant_address_line2": {visible: "abr_witness_check1", required: :if_visible}},
     ]
   end
   
-  def override_field_value(override, fieldname1, fieldname2) 
-    if (override) 
-      #return self.send("#{self.class.make_method_name(fieldname2)}") 
-      return self.send(fieldname2) 
-    else 
-      #return self.send("#{self.class.make_method_name(fieldname1)}")
-      return self.send(fieldname1)
-    end
+  def absence_begin_date_string
+    date_field_string_mm_dd_yyyy(method: :absence_begin_date)
   end
-
-  def override_mailing_address_field (fieldname1, fieldname2)
-      return override_field_value((self.has_mailing_address.to_s == "1"), fieldname1, fieldname2)
-  end
-
-  def conditional_set_and_override_mailing_address_field (fieldname1, fieldname2) 
-    if self.delivery_general == "mail"
-      return override_mailing_address_field(fieldname1, fieldname2)
-    end
-  end
-
-  def override_street_number
-    return conditional_set_and_override_mailing_address_field("street_number", "mail_street_number")
-  end 
-  
-  def override_street_name
-    return conditional_set_and_override_mailing_address_field("street_name", "mail_street_name")
-  end
-
-  def override_unit
-    return conditional_set_and_override_mailing_address_field("unit", "mail_unit")
-  end
-
-  def override_city
-    return conditional_set_and_override_mailing_address_field("city", "mail_city")
-  end
-
-  def override_home_state_abbrev
-    return conditional_set_and_override_mailing_address_field("home_state_abbrev", "mail_state")
-  end 
-
-  def override_zip
-    return conditional_set_and_override_mailing_address_field("zip", "mail_zip")
-  end
-  
-  REQUIRED_MAILING_ADDRESS_FIELDS = [
-    "mail_street_number",
-    "mail_street_name",
-    #"apartment (General (or Special) Election Ballot Mailing Address)",
-    "mail_city",
-    "mail_state",
-    "mail_zip"
-  ]
-
-  def require_mailing_fields
-    REQUIRED_MAILING_ADDRESS_FIELDS.each do |field|
-      custom_validates_presence_of(field)
-    end
+  def absence_end_date_string
+    date_field_string_mm_dd_yyyy(method: :absence_end_date)
   end
 
   def custom_form_field_validations  
-    #if mailing address different, require it
-    if self.has_mailing_address.to_s == "1"
-      require_mailing_fields
-    end
-
-    #if deliver by proxy, require proxy
-    if self.delivery_general == "authorized_recipient"
-      custom_validates_presence_of("authorized_recipient_name_general")
-    end
-    
   end
 
 
+  def abr_mailing_street_number
+    self.primary_registration_address_check == "1" ? street_number : get_attribute(:abr_mailing_street_number)
+  end
+  def abr_mailing_street_number=(value)
+    set_attribute(:abr_mailing_street_number, value)
+  end
+  def abr_mailing_street_name
+    self.primary_registration_address_check == "1" ? street_name : get_attribute(:abr_mailing_street_name)
+  end
+  def abr_mailing_street_name=(value)
+    set_attribute(:abr_mailing_street_name, value)
+  end
+  def abr_mailing_unit
+    self.primary_registration_address_check == "1" ? unit : get_attribute(:abr_mailing_unit)
+  end
+  def abr_mailing_unit=(value)
+    set_attribute(:abr_mailing_unit, value)
+  end
+  def abr_mailing_city
+    self.primary_registration_address_check == "1" ? city : get_attribute(:abr_mailing_city)
+  end
+  def abr_mailing_city=(value)
+    set_attribute(:abr_mailing_city, value)
+  end
+  def abr_mailing_state_abbrev
+    self.primary_registration_address_check == "1" ? home_state_abbrev : get_attribute(:abr_mailing_state_abbrev)
+  end
+  def abr_mailing_state_abbrev=(value)
+    set_attribute(:abr_mailing_state_abbrev, value)
+  end
+  def abr_mailing_zip
+    self.primary_registration_address_check == "1" ? zip : get_attribute(:abr_mailing_zip)
+  end
+  def abr_mailing_zip=(value)
+    set_attribute(:abr_mailing_zip, value)
+  end
+
+  def abr_mailing_street_number1
+    self.general_registration_address_check == "1" ? street_number : get_attribute(:abr_mailing_street_number1)
+  end
+  def abr_mailing_street_number1=(value)
+    set_attribute(:abr_mailing_street_number1, value)
+  end
+  def abr_mailing_street_name1
+    self.general_registration_address_check == "1" ? street_name : get_attribute(:abr_mailing_street_name1)
+  end
+  def abr_mailing_street_name1=(value)
+    set_attribute(:abr_mailing_street_name1, value)
+  end
+  def abr_mailing_unit1
+    self.general_registration_address_check == "1" ? unit : get_attribute(:abr_mailing_unit1)
+  end
+  def abr_mailing_unit1=(value)
+    set_attribute(:abr_mailing_unit1, value)
+  end
+  def abr_mailing_city1
+    self.general_registration_address_check == "1" ? city : get_attribute(:abr_mailing_city1)
+  end
+  def abr_mailing_city1=(value)
+    set_attribute(:abr_mailing_city1, value)
+  end
+  def abr_mailing_state_abbrev1
+    self.general_registration_address_check == "1" ? home_state_abbrev : get_attribute(:abr_mailing_state_abbrev1)
+  end
+  def abr_mailing_state_abbrev1=(value)
+    set_attribute(:abr_mailing_state_abbrev1, value)
+  end
+  def abr_mailing_zip1
+    self.general_registration_address_check == "1" ? zip : get_attribute(:abr_mailing_zip1)
+  end
+  def abr_mailing_zip1=(value)
+    set_attribute(:abr_mailing_zip1, value)
+  end
+  
+  
  
 end

@@ -352,7 +352,7 @@ class Report < ActiveRecord::Base
   def generate_lookup_report(start=0, csv_method=:to_csv_array)
     distribute_reads(failover: false) do
       return CSV.generate do |csv|
-        selector.includes(abrs_catalist_lookup: [:abr], catalist_lookups_registrant: []).order(:id).offset(start).limit(THRESHOLD).each do |lookup|
+        selector.includes(abrs_catalist_lookup: [:abr], catalist_lookups_registrant: [], state: []).order(:id).offset(start).limit(THRESHOLD).each do |lookup|
           csv << lookup.send(csv_method)
         end
       end

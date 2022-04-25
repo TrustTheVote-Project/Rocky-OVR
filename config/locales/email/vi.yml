@@ -26,7 +26,7 @@ vi:
           đến họ mẫu tin bên dưới. <br><br> \n\nVà sau cùng, đừng quên đi bầu khi
           ngày bầu cử đến. Có 45 triệu cử tri trẻ tuổi đủ điều kiện, và nếu chúng
           ta muốn các chính trị gia phải chú ý đến những vấn đề chúng ta quan tâm,
-          chúng ta phải đi bầu.<br><br>\n\nXin cảm ơn,<br>\nRock the Vote<br><br>\n\nT.B. Hãy đến thăm trang mạng <strong><a href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong>
+          chúng ta phải đi bầu.<br><br>\n\nXin cảm ơn,<br>\nRock the Vote<br><br>\n\nT.B. Hãy đến thăm trang mạng <strong><a href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong>
           để biết thêm chi tiết về bầu cử, những cuộc đầu phiếu, và những vấn đề bạn
           quan tâm, cũng như những công cụ có sẵn cho việc khởi đầu chiến dịch đăng
           ký cử tri cho chính bạn.<br><br>"
@@ -57,11 +57,11 @@ vi:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'Rock the Vote cam kết bảo vệ sự riêng tư và bảo hộ các thông tin
-          nhạy cảm của bạn. Xin vui lòng xem<strong<a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">
+          nhạy cảm của bạn. Xin vui lòng xem<strong<a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">
           chính sách bảo mật đăng ký cử tri </a></strong> để biết thêm chi tiết. <br><br>
 
 
-          Xin gửi câu hỏi hoặc ý kiến đóng góp đến: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Xin gửi câu hỏi hoặc ý kiến đóng góp đến: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     reminder:
       subject: ! 'Nhắc nhở: Hãy gởi mẫu đăng ký cử tri của bạn'
       body:
@@ -101,7 +101,7 @@ vi:
           Rock the Vote<br><br>
 
 
-          T.B. Hãy ghé thăm trang mạng <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          T.B. Hãy ghé thăm trang mạng <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           để biết thêm chi tiết về bầu cử, những cuộc đầu phiếu, và những vấn đề bạn
           quan tâm, cũng như cho những công cụ hỗ trợ việc khởi đầu chiến dịch đăng
           ký cử tri cho chính bạn.<br><br>'
@@ -118,11 +118,11 @@ vi:
           dịch đăng ký cử tri cho chính mình trên trang web hoặc blog. <br><br>\n\nThân
           mến, <br>\n%{registrant_first_name}<br><br>"
         footer: ! 'Rock the Vote cam kết bảo vệ sự riêng tư và bản hộ thông tin nhạy
-          cảm của bạn. Xin vui lòng xem <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">chính
+          cảm của bạn. Xin vui lòng xem <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">chính
           sách bảo mật đăng ký cử tri</a></strong> để biết chi tiết. <br><br>
 
 
-          Xin gửi câu hỏi hoặc ý kiến đóng góp ​​đến: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Xin gửi câu hỏi hoặc ý kiến đóng góp ​​đến: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     thank_you_external:
       subject: Cảm ơn bạn đã xử dụng phương thức đăng ký cử tri trực tuyến
       body:
@@ -144,7 +144,7 @@ vi:
           nay sau đây.\n\nVà cuối cùng, đừng quên đi bầu khi ngày bầu cử đến vơí chúng
           ta . Nếu chúng ta muốn các chính trị gia phải chú ý đến những vấn đề chúng
           ta quan tâm , chúng ta phải đi bầu . <br><br>\n\nXin cảm ơn, <br>\nRock Vote <br><br>\n\nT.B.: Xin ghé thăm <strong><a
-          href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong> để
+          href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong> để
           biết thêm thông tin về bầu cử, các cuộc bầu cử, và những vấn đề bạn quan
           tâm. Bạn cũng có thể tìm thấy những công cụ để bắt đầu chiến dịch đăng ký
           cử tri của mình trong cộng đồng của bạn . <br><br>"
@@ -161,12 +161,12 @@ vi:
           dịch đăng ký cử tri của chính mình trên trang web hoặc blog của bạn. <br><br>\n\nThân
           mến, <br>\n%{registrant_first_name}<br><br>"
         footer: ! 'Rock the Vote cam kết bảo vệ sự riêng tư và bảo mật thông tin nhạy
-          cảm của bạn. Xin vui lòng xem <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">chính
+          cảm của bạn. Xin vui lòng xem <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">chính
           sách bảo mật đăng ký cử tri</a></strong> để biết chi tiết . <br><br> cuả
           chúng tôi.
 
 
-          Xin vui lòng gửi câu hỏi hoặc ý kiến đóng góp: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Xin vui lòng gửi câu hỏi hoặc ý kiến đóng góp: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     tell_friend:
       subject: Tôi vừa đăng ký đi bầu, và bạn cũng nên đăng ký đi
       body: ! 'Chào bạn, tôi vừa đăng ký đi bầu tại %{rtv_url} và bạn cũng có thể

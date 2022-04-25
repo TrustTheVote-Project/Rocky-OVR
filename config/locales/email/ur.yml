@@ -29,7 +29,7 @@ ur:
           ڈالیں تو ہم سیاست دانوں کی توجہ اپنے مسائل کی جانب مبذول کروا سکتے ہیں۔
           لہٰذا ہم پر لازم ہے کہ ووٹ ڈالیں۔ شکریہ\n<br><br>\nہیتھر سمتھ\nصدر راک دا
           ووٹ\nپس نوشت: ووٹنگ، انتخابات اور مزید معلومات کے لیے نیچے دی گئی ویب سائٹ
-          کا مطالعہ کیجئے\n<strong><a href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong>"
+          کا مطالعہ کیجئے\n<strong><a href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong>"
         send_to_friends: ! 'ذیل میں دی گئی عبارت کو اپنے فیورٹ میل کلائنٹ میں کاپی
           کریں اور اپنے دوستوں کو بھجوائیں۔
 
@@ -57,11 +57,11 @@ ur:
           فرما کر ووٹر رجسٹریشن پالیسی کو جاننے کے لیے درج ذیل ویب سائٹ کا مطالعہ
           کریں
 
-          <a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">www.rockthevote.com/voter-registration/online-application-system/privacy.html</a>
+          <a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">www.rockthevote.org/voter-registration/online-application-system/privacy.html</a>
 
           براہ مہربانی تجاویز یا رائے زنی کے لیے درج ذیل ویب سائٹ کا مطالعہ کریں
 
-          <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     reminder:
       subject: ! 'یاددہانی : اپنا ووٹر رجسٹریشن فارم بھجوائیں'
       body:
@@ -83,7 +83,7 @@ ur:
           ہمارے ہاں چار کروڑ پچاس لاکھ نوجوان ووٹرز ایسے ہیں جو چاہیں تو سیاست دانوں
           کو مسائل کی طرف متوجہ کر سکتے ہیں لیکن اس کے لیے ہمیں ووٹ ڈالنا ہو گا۔ شکریہ\nہیتھر
           سمتھ\nصدر راک دا ووٹ\nووٹنگ، انتخابات یا اس سے متعلق کسی بھی قسم کی مزید
-          معلومات کے لیے نیچے دی گئی ویب سائٹ استعمال کریں\n\n<strong><a href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong>"
+          معلومات کے لیے نیچے دی گئی ویب سائٹ استعمال کریں\n\n<strong><a href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong>"
         send_to_friends: ! 'ذیل میں دیئے گئے مواد کو کاپی کر کے اپنے ای میل میں پیسٹ
           کریں اور اپنے دوستوں اور رشتہ داروں کو بھجوائیں
 
@@ -114,11 +114,11 @@ ur:
           ووٹر رجسٹریشن کے حوالے سے ذاتی معلومات یعنی پرائیویسی پالیسی کے لیے براہ
           مہربانی ہماری ویب سائٹ کا مطالعہ کیجئے۔
 
-          <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">www.rockthevote.com/voter-registration/online-application-system/privacy.html</a></strong><br><br>
+          <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">www.rockthevote.org/voter-registration/online-application-system/privacy.html</a></strong><br><br>
 
           آپ اپنی رائے زنی یا معلومات کے لیے درج ذیل ویب سائٹ کا مطالعہ کریں
 
-          <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     thank_you_external:
       subject: آن لائن ووٹر رجسٹریشن ٹول استعمال کرنے کا شکریہ
       body:
@@ -141,7 +141,7 @@ ur:
           ووٹ ڈالیں۔\nآپ کا شکریہ\nہیتھر سمتھ\nصدر راک دا ووٹ \nنوٹ: ووٹنگ، انتخابات
           اور دیگر متعلقہ معلومات کے لیے ہماری درج ذیل ویب سائٹ دیکھیں۔\nآپ اپنے ملنے
           جلنے والوں میں انتخابات کا شعور اجاگر کرنے کے لیے خود انتخابی مہم چلا سکتے
-          ہیں۔\n<strong><a href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong>"
+          ہیں۔\n<strong><a href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong>"
         send_to_friends: ! "ذیل میں دیئے گئے مواد کو کاپی کر کے اپنے فیورٹ کلائنٹ
           بکس میں پیسٹ کریں اور اپنے دوستوں کو بھجوائیں\nالسلام علیکم\nاگر آپ کی رجسٹریشن
           نہیں ہوئی تو آپ ووٹ دینے کے اہل نہیں ہیں۔ یہی وجہ ہے کہ راک دا ووٹ نے آن
@@ -162,12 +162,12 @@ ur:
           عہد کیے ہوئے ہے۔ ووٹر رجسٹریشن پرائیویسی پالیسی کے لیے درج ذیل ویب سائٹ
           دیکھیں۔
 
-          <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">ww.rockthevote.com/voter-registration/online-application-system/privacy.html</a></strong>
+          <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">ww.rockthevote.com/voter-registration/online-application-system/privacy.html</a></strong>
 
           اگر آپ مزید کچھ جاننا چاہیں تو اپنے سوالات یا اپنی رائے اس پتہ پر ارسال
           کریں
 
-          <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     tell_friend:
       subject: میں ابھی ووٹ کے لیے رجسٹر ہوا ہوں۔ آپ بھی۔۔۔۔
       body: ! 'السلام علیکم! میں ووٹ دینے کے لیے ابھی آر ٹی وی کے ساتھ رجسٹر ہوا ہوں

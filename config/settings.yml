@@ -167,6 +167,7 @@ absentee_states:
     abr_status_check_url: "https://myvoteinfo.voteks.org/voterview"
     abr_track_ballot_url: "https://myvoteinfo.voteks.org/voterview"
   KY: 
+    online_req_url:  https://vrsws.sos.ky.gov/abrweb/
     abr_status_check_url: "https://vrsws.sos.ky.gov/VIC/"
     abr_track_ballot_url: "https://vrsws.sos.ky.gov/VIC/"
   LA:
@@ -221,10 +222,10 @@ absentee_states:
     online_req_url: https://votebymail.ncsbe.gov/app/absentee/lookup
     #pdf_template: nc.pdf
     abr_status_check_url: "https://vt.ncsbe.gov/RegLkup/"
-    abr_track_ballot_url: "https://vt.ncsbe.gov/RegLkup/"
+    abr_track_ballot_url: "https://northcarolina.ballottrax.net/voter/"
   ND:
     online_req_url: https://vip.sos.nd.gov/absentee/
-    pdf_template: nd.pdf
+    #pdf_template: nd.pdf
     #pdf_url: https://www.nd.gov/eforms/Doc/sfn51468.pdf 
     abr_status_check_url: "https://vip.sos.nd.gov/AbsenteeTracker.aspx"
     abr_track_ballot_url: "https://vip.sos.nd.gov/AbsenteeTracker.aspx"
@@ -252,8 +253,8 @@ absentee_states:
     abr_status_check_url: "https://www.nvsos.gov/votersearch/"
     abr_track_ballot_url: "https://nevada.ballottrax.net/voter/"
   NY:
-    online_req_url: https://absenteeballot.elections.ny.gov
-    #pdf_template: ny.pdf
+    #online_req_url: https://absenteeballot.elections.ny.gov
+    pdf_template: ny.pdf
     #email_delivery: true
     #abr_status_check_url: "https://nysballot.elections.ny.gov/TrackMyBallot/Search"
     #leo_lookup_url: https://www.elections.ny.gov/NYSBOE/Counties/CountyBoardRoster10052020.pdf
@@ -311,12 +312,14 @@ absentee_states:
     abr_status_check_url: "https://voter.votewa.gov/WhereToVote.aspx#/login"
     abr_track_ballot_url: "https://voter.votewa.gov/WhereToVote.aspx#/login"
   WI:
-    online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
-    pdf_template: wi.pdf
-    pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
+    #online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
+    online_req_url: https://myvote.wi.gov/en-us/Vote-Absentee-By-Mail
+    #pdf_template: wi.pdf
+    #pdf_url: https://elections.wi.gov/sites/elections.wi.gov/files/2020-06/EL-121%20Application%20for%20Absentee%20Ballot%20%28rev.%202020-06%29.pdf
     email_delivery: true
     abr_status_check_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
-    abr_track_ballot_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
+    #abr_track_ballot_url: "https://myvote.wi.gov/en-us/MyVoterInfo"
+    abr_track_ballot_url: "https://myvote.wi.gov/en-us/Track-My-Ballot"
     abr_track_ballot_use_leo: false
     leo_lookup_url: https://myvote.wi.gov/en-US/MyMunicipalClerk
   WV:
@@ -400,7 +403,7 @@ pdf_assistance:
     
 ovr_states:
   AZ:
-    require_id: false
+    require_id: true
     languages:
       - en
       - es    
@@ -430,6 +433,7 @@ ovr_states:
       - km
       - th
   LA:
+    require_id: true
     languages:
       - en
   MN:
@@ -437,9 +441,8 @@ ovr_states:
       - en
       - es
     require_id: true
-    languages:
-      - en
   NV:
+    require_id: true
     languages:
       - en
       - es
@@ -447,9 +450,11 @@ ovr_states:
     languages:
       - en
   AL:
+    require_id: true
     languages:
       - en
   CO:
+    require_id: true
     languages:
       - en
       - es
@@ -458,6 +463,7 @@ ovr_states:
       - en
       - es
   DC:
+    require_id: false
     languages:
       - en
   DE:
@@ -466,40 +472,49 @@ ovr_states:
     languages:
       - en
   FL:
+    require_id: true
     languages:
       - en
       - es
   GA:
+    require_id: true
     languages:
       - en
   HI:
+    require_id: true
     languages:
       - en
   IL:
+    require_id: true
     languages:
       - en
       - es
   IN:
+    require_id: true
     languages:
       - en
   IA:
+    require_id: true
     languages:
       - en
   ID:
+    require_id: true
     languages:
       - en
   KS:
-    require_id: false
+    require_id: true
     languages:
       - en
   KY:
-    require_id: false
+    require_id: true
     languages:
       - en
   MA:
+    require_id: true
     languages:
       - en
   MD:
+    require_id: true
     languages:
       - en
       - es
@@ -518,26 +533,32 @@ ovr_states:
     languages:
       - en
   NC:
+    require_id: true
     languages:
       - en
   NE:
+    require_id: true
     languages:
       - en
       - es
   NJ:
+    require_id: true
     languages:
       - en
       - es
       - ko
   NM:
+    require_id: true
     languages:
       - en
       - es
   NY:
+    require_id: true
     languages:
       - en
       - es
   OH:
+    require_id: true
     languages:
       - en
       - es
@@ -558,23 +579,26 @@ ovr_states:
       - en
       - es
   RI:
+    require_id: true
     languages:
       - en
       - es
   SC:
+    require_id: true
     languages:
       - en
   TN:
     require_age_confirmation: true
-    require_id: false
+    require_id: true
     languages:
       - en
   UT:
+    require_id: true
     languages:
       - en
   VT:
     require_age_confirmation: true
-    require_id: false
+    require_id: true
     languages:
       - en
   VA:
@@ -585,6 +609,7 @@ ovr_states:
         api_username: "RockTheVote"
         api_key: <%= ENV['VA_API_KEY'] %>
   WA:
+    require_id: true
     languages:
       - en
       - es
@@ -592,9 +617,11 @@ ovr_states:
       - vi
       - ko
   WV:
+    require_id: true
     languages:
       - en
   WI:
+    require_id: true
     languages:
       - en
 
