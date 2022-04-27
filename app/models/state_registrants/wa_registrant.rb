@@ -288,7 +288,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   
       
       "issueDate" =>self.issue_date.strftime("%m/%d/%Y"), #.iso8601, #CTW check foramt
-      "SSN4"	=>	self.ssn4.blank? ? nil:self.ssn4, #CTW Check
+      "SSN4"	=>	self.ssn4.blank? ? nil : self.ssn4, #CTW Check
     
       "MilitaryFlag"	=>	self.military_flag, 
       "isHomeless"	=> self.is_homeless,
