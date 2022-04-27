@@ -451,8 +451,6 @@ end
       "residence_address" => "home_address",# do we have?
       "residence_unit_number" => "home_unit",
       #"residence_state" => "home_state",# hard code?
-      residence_state => "WA",
-
 
       "residence_zip" => "home_zip_code",
       
