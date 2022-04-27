@@ -210,6 +210,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   
   def to_wa_data
 
+    attributes =
     {
 
       "isResident"	=>	1, #hard coded as such (from zip in this context)
@@ -236,7 +237,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
       "residenceUnitType"	=>	self.residence_unit_type,
       "residenceAddress"	=>	self.residence_address,
       "residenceCity"	=>	self.residence_city,
-      "residenceState"	=>	self.residence_state,
+      "residenceState"	=>	"WA", # hardcoded in this context self.residence_state,
       "residenceZip"	=>	self.residence_zip,
       "resCountyCode"	=>	self.res_county_code,
 
@@ -286,13 +287,9 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
       "driverLicense"	=>	self.driver_license.to_s.gsub(/\s-/, ''),
   
       
-      "issue_date" =>self.issue_date.iso8601, #CTW check foramt
-      "SSN4"	=>	self.ssn4, #CTW Check
-      
-      #"DLE"	=>	self.unknown,  Ask Alex
-      #"oldDLN"	=>	self.unknown,  Ask Alex
-
-  
+      "issueDate" =>self.issue_date.strftime("%m/%d/%Y"), #.iso8601, #CTW check foramt
+      "SSN4"	=>	self.ssn4.blank? ? nil : self.ssn4, #CTW Check
+    
       "MilitaryFlag"	=>	self.military_flag, 
       "isHomeless"	=> self.is_homeless,
       
@@ -304,6 +301,13 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
       "customerID"	=>	'RTVAVR',
 
     }
+
+   #Null value attributes are breaking WA API
+   #Specifically SSN4
+   
+   attributes = attributes.compact
+  
+    return(attributes)
 
   end
 
@@ -447,7 +451,6 @@ end
       "residence_address" => "home_address",# do we have?
       "residence_unit_number" => "home_unit",
       #"residence_state" => "home_state",# hard code?
-
 
       "residence_zip" => "home_zip_code",
       
