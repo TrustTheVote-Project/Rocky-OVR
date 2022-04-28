@@ -12,8 +12,6 @@ class WARegistrantValidator < ActiveModel::Validator
     reg.validates_presence_of :phone_type if reg.has_phone?
 
 
-
-#CTW
     if reg.at_least_step_1? 
       #CTW 2022 reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
       reg.validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
@@ -54,6 +52,8 @@ class WARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :prev_residence_zip 
       end
 
+
+
   
       #if reg.requires_mailing_address?  #CTW converted to has mailing...
       if reg.has_mailing_address? 
@@ -64,6 +64,24 @@ class WARegistrantValidator < ActiveModel::Validator
       end
       
       validate_phone_present_if_opt_in_sms(reg)
+
+      unless reg.confirm_no_dln
+        validate_dln_ssn(reg)
+  
+        reg.validates_presence_of :issue_date
+        date=nil
+        date = Date.civil(reg.issue_date_year.to_i, reg.issue_date_month.to_i, reg.issue_date_day.to_i) rescue nil
+        if (date.nil?)
+          reg.errors.add(:issue_date, :format)
+        end
+  
+        validate_issue_date(reg)
+      end
+
+      if reg.confirm_no_dln?
+        reg.skip_state_flow!
+      end
+
     end
   
 
@@ -71,25 +89,6 @@ class WARegistrantValidator < ActiveModel::Validator
       #reg.validates_acceptance_of  :has_dln, :accept=>true,:allow_nil=>false
       #reg.validates_presence_of :driver_license
       
-
-    if reg.confirm_no_dln?
-      reg.skip_state_flow!
-    end
-
-    unless reg.confirm_no_dln
-      validate_dln_ssn(reg)
-
-      reg.validates_presence_of :issue_date
-      date=nil
-      date = Date.civil(reg.issue_date_year.to_i, reg.issue_date_month.to_i, reg.issue_date_day.to_i) rescue nil
-      if (date.nil?)
-        reg.errors.add(:issue_date, :format)
-      end
-
-      validate_issue_date(reg)
-    end
-        
-
     end
     
   end

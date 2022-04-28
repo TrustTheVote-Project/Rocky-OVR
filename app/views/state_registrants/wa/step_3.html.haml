@@ -4,7 +4,6 @@
     $(document).ready(function() {
       $('#javascript_disabled').remove();
 
-      checkboxTogglesSet($('#state_registrants_wa_registrant_confirm_no_dln'), $('#dln_set'), null, true); 
       checkboxTogglesSet($('#state_registrants_wa_registrant_is_homeless'), $('#homeless_address')); 
       //checkboxTogglesSet($('#state_registrants_wa_registrant_has_ssn'), $('#ssn_set')); //, $('#prev_name_rule')
 
@@ -17,24 +16,6 @@
   = render partial: 'state_registrants/wa/header'
   
   
-  %fieldset#dln_set.block-selector
-
-    %ul.flat.ssn
-      = field_li(form, :driver_license, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 12} })
-      -#= field_li(form, :issue_date, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__issue-date__line"}})
-      %li.registrant-form__issue-date__line
-        %h3
-          = form.label :issue_date
-          %span.required 
-            *
-            %span.required--text{style: 'display:none;'}= I18n.t('required')
-        %div{class: form.object.errors[:issue_date].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, :issue_date)}}
-          = form.text_field :issue_date_month, value: form.object.issue_date_month, placeholder: 'MM', type: 'tel', size: 2, class: 'issue_date_mm'
-          = form.text_field :issue_date_day, value: form.object.issue_date_day, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
-          = form.text_field :issue_date_year, value: form.object.issue_date_year, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
-        %span.error= form.object.errors[:issue_date].join("\n")
-  %fieldset.no_border
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__confirm_no_dln__line",  required: false}
 
   -#%fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_ssn, class_name: "registrant-form__has_ssn__line",  required: true}
