@@ -3423,20 +3423,41 @@ en:
     parties:
       democratic: Democratic
       independent: Independent
+      republican: Republican
       green: Green
       libertarian: Libertarian
-      republican: Republican
+      other: Other
+      sam: SAM
       working_families: Working Families
       unenrolled: Unenrolled
-      other: Other
+      mountain: Mountain
+      constitution: Constitution
+      united_utah: United Utah
+      american_independent: American Independent
+      peace_and_freedom: Peace and Freedom
+      approval_voting: Approval Voting
+      unity: Unity
+      dc_statehood_green_party: D.C. Statehood Green Party
+      aloha_aina: Aloha Aina
+      green_independent: Green Independent
+      working_class_party: Working Class Party
+      legal_marijuana_now: Legal Marijuana NOW
+      conservative: Conservative
+      pacific_green: Pacific Green
+      progressive: Progressive
+      independent_american: Independent American
       independence: Independence
-      sam: SAM
+      american_constitution: American Constitution
     no_party_label:
       none: None
       none_no_affiliation: None (No Affiliation)
       decline_to_state: Decline to State
       blank: ''
       no_party_preference: No Party Preference
+      nonpartisan: Nonpartisan
+      undeclared: Undeclared
+      unaffiliated: Unaffiliated
+      state_does_not_have_party_affiliation: State does not have party affiliation
     tooltips:
       not_participating:
         blank: ''
