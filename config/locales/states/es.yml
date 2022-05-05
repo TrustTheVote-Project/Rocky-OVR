@@ -1784,11 +1784,33 @@ es:
       other: Otros
       independence: Independence
       sam: SAM
+      mountain: Mountain
+      constitution: Constitution
+      united_utah: United Utah
+      american_independent: American Independent
+      peace_and_freedom: Peace and Freedom
+      approval_voting: Approval Voting
+      unity: Unity
+      dc_statehood_green_party: D.C. Statehood Green Party
+      aloha_aina: Aloha Aina
+      green_independent: Green Independent
+      working_class_party: Working Class Party
+      legal_marijuana_now: Legal Marijuana NOW
+      conservative: Conservative
+      pacific_green: Pacific Green
+      progressive: Progressive
+      independent_american: Independent American
+      american_constitution: American Constitution
     no_party_label:
       none: Ninguno
       none_no_affiliation: Ninguno (Sin afiliación)
       decline_to_state: Se niega a declarar
       blank: ''
+      no_party_preference: No Party Preference
+      nonpartisan: Nonpartisan
+      undeclared: Undeclared
+      unaffiliated: Unaffiliated
+      state_does_not_have_party_affiliation: State does not have party affiliation
     tooltips:
       not_participating:
         blank: ''
