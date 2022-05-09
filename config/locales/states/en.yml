@@ -619,11 +619,15 @@ en:
           abr_mailing_city: City
           abr_mailing_state_name: State
           abr_mailing_zip: ZIP
-          abr_id_type1: I have a GA Driver's License or State ID card	
+          abr_id_type: GA Driver's License or State ID card
+          abr_id_type__options:
+            abr_id_type1: I have a GA Driver's License or State ID card
+            abr_id_type2: I do not have a GA Driver's License or State ID card	 
           abr_drivers_license: Enter your GA Driver's License or Identification Card number.	
-          abr_id_type2: I do not have a GA Driver's License or State ID card	
+          abr_drivers_license__required_message: Invalid Georgia Driver's License or ID Card Number format. Please enter 9 digits.
+          abr_drivers_license__format_message: Invalid Georgia Driver's License or ID Card Number format. Please enter 9 digits.
           abr_id_instructions: You must provide a copy of acceptable identification with your application.	Make sure to review the list of acceptable identification on the form. Your ID must either contain your photograph or your name and address.
-          abr_election_type_selections_options: Select the election you'd like to request a ballot for	You must fill out a separate form for each election.
+          abr_election_type_selections_options: Select the election you'd like to request a ballot for.<br/>You must fill out a separate form for each election.
           abr_election_type_selections_options__options:
             abr_election_type1: Primary Election (May 24, 2022)	
             abr_election_type3: Primary Runoff (June 21, 2022)	
