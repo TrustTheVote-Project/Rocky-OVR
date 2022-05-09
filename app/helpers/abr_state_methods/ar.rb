@@ -61,7 +61,6 @@ module AbrStateMethods::AR
   def form_field_items
     [
 
-      {"abr_reason_instructions": {type: :instructions}},
       {"abr_reason_selections": { type: :radio }},
 
       {"abr_address_type_selections": {type: :radio, required: true}},
@@ -80,6 +79,8 @@ module AbrStateMethods::AR
       
       {"abr_election_type1": { type: :checkbox, visible_any: "abr_reason_selections_abr_reason2 abr_reason_selections_abr_reason3 abr_address_type_selections_abr_address_type2" }},
       {"abr_election_type_selections": { type: :radio, hidden: "abr_election_type1" }},
+      {"abr_election_type1_instructions": {type: :instructions, visible: "abr_election_type1"}},
+      {"abr_election_type2_instructions": {type: :instructions, visible: "abr_election_type_selections_abr_election_type2"}},
       {"abr_election_date_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type5"}},
       
       

@@ -192,7 +192,7 @@ en:
           ZIP_1: Zip
           WorkPhone: Work Phone
           abr_election_type_selections: Select the election you'd like to request
-            a ballot for. <br> You must fill out a separate form for each election.
+            a ballot for. 
           abr_election_type_selections__options:
             abr_election_type1: Primary Election
             abr_election_type2: Primary Runoff Election
@@ -229,6 +229,14 @@ en:
           has_no_state_license: I do not have a valid AL state identification card or driver's license.
       ar:
         abr:
+          step_2_instructions: |-
+            <h3>You must have a reason to request an absentee ballot</h3>
+            <p>You will need to provide a reason to vote absentee:</p>
+            <ul>
+            <li>You will be absentee from your polling place on Election day,</li>
+            <li>You will be unable to attend the polls due to an illness or physical disability, or</li>
+            <li>You are a resident of a long-term care facility licensed by the state.</li>
+            </ul>
           request_deadline: |-
             <p>If you return your application in person or by designated person, it must be delivered to the county clerk by close of business the Friday before the election.</p>
             <p>If you return your ballot by mail, it must be received by:</p>
@@ -244,7 +252,6 @@ en:
             <p>If you've designated an authorized agent to pick up your ballot, they should wait to sign the application until they are in the presence of the county clerk.</p>
 
         abr_form_fields:
-          abr_reason_instructions: You must have a reason to request an absentee ballot
           abr_address_type_selections: Select from one of the following
           abr_address_type_selections__options:
             abr_address_type1: I currently reside within the county in which I am registered to vote.
@@ -268,13 +275,16 @@ en:
             abr_reason2: I will be unable to attend the polls on Election Day because of an illness or physical disability
             abr_reason3: I am a resident of a long-term care or residential facility licensed by the state.
           abr_election_type1: Would you like to receive a ballot for all elections in this calendar year?
+          abr_election_type1_instructions: If there is primary in this calendar year, make sure to circle your party preference on the form.
+          abr_election_type2_instructions: Make sure to circle your party preference on the form.
           abr_election_type_selections: Select the election you'd like to request a ballot for
+          abr_election_type_selections__hint: You must fill out a separate form for each election.
           abr_election_type_selections__options:
             abr_election_type2: Preferential Primary/Nonpartisan Judicial General (held in the spring of even-numbered years).
             abr_election_type3: November General Election/Nonpartisan Judicial Runoff.
             abr_election_type4: Annual School Election
             abr_election_type5: Special Election
-          abr_election_date: Enter the date of the election
+          abr_election_date_input: Enter the date of the election
           delivery_ballot_address_1: Mailing Address Line 1
           delivery_ballot_address_2: Mailing Address Line 2
           delivery_ballot_address_3: Mailing Address Line 3
