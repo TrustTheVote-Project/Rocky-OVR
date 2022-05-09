@@ -1225,10 +1225,9 @@ en:
             Ballot Request Status</a> page.
           step_2_instructions: |-
             <p>All registered voters in Maine can request an absentee ballot.</p>
-            <p>To request an absentee ballot online, you will need to provide your address,
-             birthday and name and certify that you are a registered voter in Maine. 
-             You will need to request your own ballot.</p>
-             <p>You can also request an accessible ballot if using a paper ballot is difficult for you.</p>
+            <p>To request an absentee ballot online, you will need to provide your address, 
+            birthday and name and certify that you are a registered voter in Maine. You must request your own ballot.</p>
+            <p>You can also request an accessible ballot if using a paper ballot is difficult for you.</p>
           request_deadline: |-
             <p>Absentee ballot requests must be received by 5:00 pm on June 9th for the primary election.</p>
           finish_instructions_3_hint_state: |-
@@ -1237,13 +1236,7 @@ en:
             <p>If you mail it, be sure to leave enough time to for it to 
             arrive or drop it off in person or via an absentee ballot drop box at your municipal drop box if available.</p>
         state_online_abr:
-          instructions: "<p>You can apply for an Absentee Ballot in Maine in any of
-            these ways:\n<ul> \n<li>Click the button below to use the Maine Absentee
-            Ballot Portal.</li>\n<li>Contact the municipal clerk by phone or in writing.
-            <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.maine.gov/sos/cec/elec/munic.html\">Find
-            your Municipal Clerk</a>.</li>\n<li>Download and submit an <a target=\"_blank\"
-            rel=\"noopener noreferrer\" href=\"https://apps.web.maine.gov/online/AbsenteeBallot/ABS-2021-11-02.pdf\">Application
-            for Absentee Ballot [PDF]</a> to your Municipal Clerk.</li>\n</ul>\n</p>"
+          
           requirements: "<p>If you are registered to vote and have a valid state ID,
             you may request your absentee ballot online directly with the state.</p>"
       ma:
@@ -1682,12 +1675,15 @@ en:
               <a href="https://www.sos.ms.gov/elections-voting/county-election-information" target="_blank">Election Clerk</a> 
               to request an absentee ballot application.</p>
             instructions_2: |-
-              <p>Once you have received your application, make sure to get it notarized before returning 
-              it unless you are temporarily or permanently physically disabled. Temporary or permanently physically 
-              disabled voters may have the application witnessed by a person who is at least 18 years of age.</p>
+              <p>Once you have received your application, make sure to get it notarized before returning it. 
+              Temporary or permanently physically disabled voters may have the application witnessed by a 
+              person who is at least 18 years of age.</p>
+              <p>Your absentee ballot request must be received in time for your ballot to be mailed to you and returned to your election official by election day.</p>
+
+
             instructions_3: |-
-              <p>If you request a mail-in ballot, you must return it by mail- you cannot drop it off.</p>
-              <p>Make sure to postmark your ballot on or before Election Day to so that it is received by June 14th.</p>
+              <p>If you request a mail-in ballot, you must return it by mail - you cannot drop it off.</p>
+              <p>Your absentee ballot must be postmarked on or before Election Day and received by June 14th.</p>
       mt:
         abr:
           request_deadline: Applications must be received by the county election office
@@ -1842,8 +1838,8 @@ en:
             <li>Able to provide a North Dakota driver’s license, nondriver ID, or tribal ID that includes your current residential address and date of birth. If you don't have one of those forms of ID, another qualified elector of the state may attest for you.</li> 
             </ul>
           request_deadline: |-
-            <h3>Deadlines for voting absentee</h3>
-            <p>Absentee ballot request must be received by</p>
+            <h3>Deadlines for requesting an absentee ballot:</h3>
+            <p>Your absentee ballot request must be received by:</p>
             <ul>
             <li>June 13th for the June primary, and</li>
             <li>November 7th for the November general election.</li>
@@ -2785,7 +2781,8 @@ en:
               during early voting or on Election Day is not permitted.</p>
               <p>Track your absentee ballot request: 
               <a href="https://tnmap.tn.gov/voterlookup/" target="_blank">https://tnmap.tn.gov/voterlookup/</a></p>
-            instructions_3: "<br/>"
+            instructions_3: |-
+              <p>Your ballot must be received by Election Day to be counted.</p>
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
           Mailing Address (if different): Mailing address
@@ -3275,23 +3272,22 @@ en:
             online.
           instructions: |- 
             <p>If you have not previously provided a copy of photo ID, you will be asked to provide a copy 
-            of your ID as a part of your application. You can do so in any format.</p>
+            of your ID as a part of your application.</p>
             <p>Disabled, confined and military voters can request to receive absentee ballots automatically. 
             Other voters must request absentee ballots each calendar year.</p>
         abr:
           step_2_instructions: |-
             <p>All registered voters in Wisconsin can request an absentee ballot.</p>
-            <p>The state website will make sure that you complete your registration prior to 
-            requesting an absentee ballot. Military voters do not need to be registered to get an absentee ballot.</p>
+            <p>Before you request your ballot online, you will need to confirm or complete a registration. Military voters do not need to be registered to get an absentee ballot.</p>
           request_deadline: "<h3>Deadlines to request an absentee ballot</h3>
             <p>If you're requesting an absentee ballot for one election, your application must be received no later 
-            than 5:00 p.m. on the Thursday preceding an election.</p>
+            than 5:00 p.m. on the Thursday preceding that election.</p>
             <p>If you're making a  calendar year request, your application must be received no  later than 5:00 p.m.
             on the Friday preceding the election.</p>
             <p> If you are applying within 10 days of the election, the State strongly encourages you to
              visit an in-person absentee voting (early voting) location or request that your ballot be emailed to you.</p>"
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3>
-            <p>Your voted absentee ballot must be received by the close of polls in order to be counted.</p>
+            <p>Your voted absentee ballot must be received by the close of polls on Election Day in order to be counted.</p>
             <p>You must return your absentee ballot in the completed absentee ballot certificate envelope that 
             was provided to you with your ballot.</p>
             <p> You may return your ballot either by mail or by personal delivery to your municipal clerk’s office.<p>"
