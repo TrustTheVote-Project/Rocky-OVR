@@ -16,7 +16,10 @@
 
 .fulltext
   %p= I18n.t('txt.registration.finish_mail_with_esig', state: @registrant.home_state_name, state_voter_check_url: @registrant.state_voter_check_url).html_safe
-  
+
+- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank?
+  = @registrant.partner.external_conversion_snippet.to_s.html_safe
+
 = render "finishes/finish_iframe"
 
 = render :partial => 'finishes/adwords'

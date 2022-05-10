@@ -328,7 +328,6 @@ class CatalistLookup < ActiveRecord::Base
 
     })
     abr.current_step = "2"
-    self.abr = abr
     abr
   end
   

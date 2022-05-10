@@ -47,7 +47,7 @@ record_1:
   sos_phone: "(907) 465-4611"
   sos_url: https://www.elections.alaska.gov
   sub_18: 90_days_before
-  registration_deadline: received_30_days
+  registration_deadline: alaska
   id_length_min: '4'
   online_registration_url: https://voterregistration.alaska.gov
 record_2:
@@ -63,7 +63,7 @@ record_2:
   sub_18: turn_by_next_general_election_november
   online_registration_url: https://servicearizona.com/VoterRegistration?id=RTV
   status_check_url: https://my.arizona.vote/PortalList.aspx
-  registration_deadline: received_29_days
+  registration_deadline: arizona
   pdf_instructions: arizona
   email_instructions: arizona
 record_3:
@@ -76,7 +76,7 @@ record_3:
     AR 72201-8111
   sos_phone: "(501) 682-5070"
   sos_url: https://www.sos.arkansas.gov/elections/
-  registration_deadline: postmarked_30_days
+  registration_deadline: arkansas
   id_length_min: '4'
 record_4:
   abbreviation: CA
@@ -144,7 +144,7 @@ record_8:
   sos_url: https://www.dcboe.org/
   sub_18: when_at_least_16
   registration_deadline: district_of_columbia
-  online_registration_url: https://www.dcboe.org/Voters/Register-To-Vote/Register-to-Votehttps://forms.dc.gov/f/DC_Voter_Registration_Form
+  online_registration_url: https://vr.dcboe.org/213324797239968?agency_code=12
 record_9:
   abbreviation: FL
   name: Florida
@@ -190,7 +190,7 @@ record_11:
   sos_phone: "(808) 453-8683"
   sos_url: http://www.hawaii.gov/elections/
   sub_18: once_turned_16
-  registration_deadline: received_at_least_30_days
+  registration_deadline: hawaii
   online_registration_url: https://olvr.hawaii.gov/register.aspx
 record_12:
   abbreviation: ID
@@ -236,7 +236,8 @@ record_14:
   sos_phone: "(317) 232-3939"
   sos_url: https://www.in.gov/sos/elections/
   id_length_min: '4'
-  online_registration_url: https://indianavoters.in.gov/OLVR/Registration/RegistrationEligibility
+  online_registration_url: https://indianavoters.in.gov
+  registration_deadline: indiana
 record_15:
   abbreviation: IA
   name: Iowa
@@ -283,13 +284,14 @@ record_17:
   sos_url: http://elect.ky.gov/
   sub_18: when_will_be_18
   online_registration_url: https://vrsws.sos.ky.gov/ovrweb/
+  registration_deadline: kentucky
 record_18:
   abbreviation: LA
   name: Louisiana
   requires_race: true
   race_tooltip: requested_with_state_name
   requires_party: true
-  online_registration_url: https://voterportal.sos.la.gov/Home/VoterLogin
+  online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
   party_tooltip: required_for_presidential
   id_number_tooltip: louisiana
   sos_address: Secretary of State<br />Voter Registration<br />8585 Archives Ave.<br
@@ -297,7 +299,7 @@ record_18:
   sos_phone: "(225) 922-0900"
   sos_url: https://www.sos.la.gov/ElectionsAndVoting/Pages/default.aspx
   sub_18: once_turned_17
-  registration_deadline: received_30_days
+  registration_deadline: louisiana
   id_length_min: '4'
 record_19:
   abbreviation: ME
@@ -322,7 +324,7 @@ record_20:
     MD 21401
   sos_phone: "(800) 222-8683"
   sos_url: https://elections.maryland.gov/index.html
-  registration_deadline: postmarked_21_days
+  registration_deadline: maryland
   id_length_min: '4'
   online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1
 record_21:
@@ -554,7 +556,7 @@ record_35:
   sub_18: turn_by_next_general_election_november_2
   registration_deadline: ohio
   id_length_min: '4'
-  online_registration_url: https://olvr.ohiosos.gov/AffirmEligibility
+  online_registration_url: https://olvr.ohiosos.gov/
 record_36:
   abbreviation: OK
   name: Oklahoma
@@ -580,7 +582,7 @@ record_37:
   sos_phone: "(503) 986-1518"
   sos_url: https://sos.oregon.gov/voting-elections/Pages/default.aspx
   sub_18: once_turned_16
-  registration_deadline: postmarked_21_days
+  registration_deadline: oregon
   id_length_min: '4'
   online_registration_url: https://sos.oregon.gov/voting/Pages/registration.aspx?lang=en
 record_38:
@@ -630,7 +632,7 @@ record_40:
     SC 29201<br />
   sos_phone: "(803) 734-9060"
   sos_url: https://www.scvotes.gov/
-  registration_deadline: postmarked_30_days
+  registration_deadline: south_carolina
   id_length_min: '4'
   online_registration_url: https://info.scvotes.sc.gov/eng/ovr/start.aspx
 record_41:
@@ -651,7 +653,7 @@ record_41:
     Ste 204 <br /> Pierre, SD 57501-5070
   sos_phone: "(605) 773-3537"
   sos_url: https://sdsos.gov/elections-voting/default.aspx
-  registration_deadline: received_15_days
+  registration_deadline: south_dakota
 record_42:
   abbreviation: TN
   name: Tennessee
@@ -664,7 +666,7 @@ record_42:
     Tower<br /> Nashville , TN 37243-1102
   sos_phone: "(615) 741-7956"
   sos_url: https://sos.tn.gov/elections
-  registration_deadline: postmarked_30_days
+  registration_deadline: tennessee
   id_length_min: '4'
   online_registration_url: https://ovr.govote.tn.gov/
 record_43:
@@ -743,7 +745,7 @@ record_48:
     Charleston, WV 25305<br />
   sos_phone: "(304) 558-6000"
   sos_url: https://sos.wv.gov/elections/Pages/GoVoteWV.aspx
-  registration_deadline: postmarked_21_days
+  registration_deadline: west_virginia
   id_length_min: '4'
   online_registration_url: https://ovr.sos.wv.gov/Register/Landing#Landing
 record_49:
@@ -779,4 +781,4 @@ record_50:
   sos_phone: "(307) 777-5860"
   sos_url: https://sos.wyo.gov/Elections/Default.aspx
   sub_18: turn_by_next_election
-  registration_deadline: received_14_days
+  registration_deadline: wyoming

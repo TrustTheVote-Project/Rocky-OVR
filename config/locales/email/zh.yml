@@ -38,7 +38,7 @@ zh:
           Rock the Vote<br><br>
 
 
-          附言：请访问<strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>来获取更多有关投票，选举和您所关心的问题的信息以及帮助您鼓励他人进行选民登记活动的工具。<br><br>'
+          附言：请访问<strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>来获取更多有关投票，选举和您所关心的问题的信息以及帮助您鼓励他人进行选民登记活动的工具。<br><br>'
         send_to_friends: ! '<em><strong>请将您的常用收信人名单复制并粘贴在此处，然后发送给您的朋友们。</strong></em><br><br>
 
 
@@ -57,10 +57,10 @@ zh:
           你忠诚的,<br>
 
           %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Vote 致力于保护您的隐私及敏感信息。请查阅我们的<strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">选民登记的隐私保护政策</a></strong>获取详细信息.<br><br>
+        footer: ! 'Rock the Vote 致力于保护您的隐私及敏感信息。请查阅我们的<strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">选民登记的隐私保护政策</a></strong>获取详细信息.<br><br>
 
 
-          如有疑问或评论请发送电子邮件至: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          如有疑问或评论请发送电子邮件至: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     reminder:
       subject: 提醒：请邮寄您的选民登记申请表
       body:
@@ -92,7 +92,7 @@ zh:
           Rock the Vote<br><br>
 
 
-          附言：请访问<strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>来获取更多有关投票，选举和您所关心的问题的信息以及帮助您鼓励他人进行选民登记活动的工具。<br><br>'
+          附言：请访问<strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>来获取更多有关投票，选举和您所关心的问题的信息以及帮助您鼓励他人进行选民登记活动的工具。<br><br>'
         send_to_friends: ! '<em><strong>复制并粘贴以下内容作为您的电子邮件信息发送给您的朋友们。</strong></em><br><br>
 
 
@@ -111,10 +111,10 @@ zh:
           你忠诚的,<br>
 
           %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Vote 致力于保护您的隐私及敏感信息。请查阅我们的<strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">选民登记的隐私保护政策</a></strong>获取详细信息.<br><br>
+        footer: ! 'Rock the Vote 致力于保护您的隐私及敏感信息。请查阅我们的<strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">选民登记的隐私保护政策</a></strong>获取详细信息.<br><br>
 
 
-          如有疑问或评论请发送电子邮件至: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          如有疑问或评论请发送电子邮件至: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     final_reminder:
       subject: ! '最後提示: 郵寄你的選民登記表格'
       body:
@@ -146,7 +146,7 @@ zh:
           Rock the Vote<br><br>
 
 
-          附言：请访问<strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>来获取更多有关投票，选举和您所关心的问题的信息以及帮助您鼓励他人进行选民登记活动的工具。<br><br>'
+          附言：请访问<strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>来获取更多有关投票，选举和您所关心的问题的信息以及帮助您鼓励他人进行选民登记活动的工具。<br><br>'
         send_to_friends: ! '<em><strong>复制并粘贴以下内容作为您的电子邮件信息发送给您的朋友们。</strong></em><br><br>
 
 
@@ -165,10 +165,10 @@ zh:
           你忠诚的,<br>
 
           %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Vote 致力于保护您的隐私及敏感信息。请查阅我们的<strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">选民登记的隐私保护政策</a></strong>获取详细信息.<br><br>
+        footer: ! 'Rock the Vote 致力于保护您的隐私及敏感信息。请查阅我们的<strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">选民登记的隐私保护政策</a></strong>获取详细信息.<br><br>
 
 
-          如有疑问或评论请发送电子邮件至: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          如有疑问或评论请发送电子邮件至: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     chaser:
       subject: 你仍然可以登記投票
       body:
@@ -199,7 +199,7 @@ zh:
           Rock the Vote<br><br>
 
 
-          附言：请访问<strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>来获取更多有关投票，选举和您所关心的问题的信息以及帮助您鼓励他人进行选民登记活动的工具。<br><br>'
+          附言：请访问<strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>来获取更多有关投票，选举和您所关心的问题的信息以及帮助您鼓励他人进行选民登记活动的工具。<br><br>'
         send_to_friends: ! '<em><strong>复制并粘贴以下内容发送给您的常用收信人以及您的朋友们。</strong></em><br><br>
 
 
@@ -218,10 +218,10 @@ zh:
           你忠诚的,<br>
 
           %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Vote 致力于保护您的隐私及敏感信息。请查阅我们的<strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">选民登记的隐私保护政策</a></strong>获取详细信息.<br><br>
+        footer: ! 'Rock the Vote 致力于保护您的隐私及敏感信息。请查阅我们的<strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">选民登记的隐私保护政策</a></strong>获取详细信息.<br><br>
 
 
-          如有疑问或评论请发送电子邮件至: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          如有疑问或评论请发送电子邮件至: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     tell_friend:
       subject: 我刚刚完成了选民登记，你也应该进行登记！
       body: ! '嘿，我刚刚在%{rtv_url}完成登记投票！你也可以。过程非常简单。

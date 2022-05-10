@@ -4,6 +4,9 @@
     %p= t('txt.abr.finish_reminder', :first_name => @abr.first_name, :last_name=>@abr.last_name).html_safe 
     %p= t('txt.abr.finish_reminder_2').html_safe
 - elsif !@share_only && @abr.deliver_to_elections_office_via_email? # Email Delivery option
+  - if @abr.partner && !@abr.partner.external_conversion_snippet.blank?
+    = @abr.partner.external_conversion_snippet.to_s.html_safe
+
   %h2= t('txt.abr.finish_via_email_header', state_name: @abr.home_state_name)
 
   .finish_instructions
@@ -23,6 +26,9 @@
   = t("states.custom.#{@abr.i18n_key}.abr.finish_pdf_delay_instructions", default: "").html_safe
 
 - elsif !@share_only  #PDF Download 
+  - if @abr.partner && !@abr.partner.external_conversion_snippet.blank?
+    = @abr.partner.external_conversion_snippet.to_s.html_safe
+
   %h2= t('txt.abr.finish_header', state_name: @abr.home_state_name)
 
   .finish_instructions
@@ -40,6 +46,9 @@
 
 
 - else #share only # Finish with State
+  - if @abr.partner && !@abr.partner.external_conversion_snippet.blank?
+    = @abr.partner.external_conversion_snippet.to_s.html_safe
+
   %h2= t('txt.abr.finish_header', state_name: @abr.home_state_name)
   .finish_instructions
     %ol
@@ -60,4 +69,5 @@
   %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
   
   
+
 = render :partial => 'abrs/finish_adwords'

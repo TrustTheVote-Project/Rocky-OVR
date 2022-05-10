@@ -48,6 +48,9 @@ es:
           Ballot Mailing Address 1__hint: ''
           Ballot Mailing Address 2: ''
           Ballot Mailing Address 3: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       al:
         abr:
           request_deadline: ''
@@ -193,6 +196,9 @@ es:
           
           header: ''
           instructions: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       ct:
         abr:
           request_deadline: ''
@@ -220,6 +226,9 @@ es:
             '6': ''
             '7': ''
           absentee_reason__required_message: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       dc:
         abr:
           request_deadline: ''
@@ -281,7 +290,9 @@ es:
         state_online_abr:
           header: ''
           confirm: ''
-          requirements: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
           
       ga:
         abr:
@@ -331,6 +342,9 @@ es:
             OST: ''
             OSP: ''
           request_electronic_transmission: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       hi:
         abr:
           request_deadline: ''
@@ -341,6 +355,9 @@ es:
           
           header: ''
           instructions: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       ia:
         abr:
           request_deadline: ''
@@ -364,6 +381,9 @@ es:
           Mailing Address Zip Code: ''
           has_mailing_address: ''
           Do not add this contact info to my voter recored check box: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       id:
         abr_form_fields:
           has_mailing_address: ''
@@ -442,6 +462,9 @@ es:
             header: ''
             confirm: ''
             button: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       in:
         state_online_abr:
           finish_page: ''
@@ -602,6 +625,9 @@ es:
         state_online_abr:
           
           requirements: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       me:
         abr:
           request_deadline: ''
@@ -909,6 +935,9 @@ es:
         state_online_registration:
           header: ''
           instructions: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       nd:
         abr:
           request_deadline: ''
@@ -1053,6 +1082,9 @@ es:
             Choice4: ''
           messenger_birth_date: ''
           messenger_birth_date__required_message: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       nm:
         abr_form_fields:
           request_deadline: ''
@@ -1069,7 +1101,9 @@ es:
           
           
         state_online_abr:
-          
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       nv:
         abr:
           request_deadline: ''
@@ -1120,6 +1154,9 @@ es:
           encontrar or confirmar su documento de DMV - no se preocupe - se puede <a
           href="%{next_url}">cumplir su inscripción con %{rtv_and_partner_name}</a>.  Tiene
           que imprimir, firmar, y mandar la forma por correo.</p>
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       ny:
         abr:
           request_deadline: ''
@@ -1168,6 +1205,9 @@ es:
             caregiver: ''
             patient: ''
             prisoner: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       oh:
         abr:
           request_deadline: ''
@@ -1192,6 +1232,9 @@ es:
           Ohio_driver_license: ''
           Ohio_driver_license__format_message: ''
           SSN4: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       ok:
         abr:
           request_deadline: ''
@@ -1384,6 +1427,9 @@ es:
           requirements: ''
         state_online_abr:
           confirm: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
           
       ri:
         abr:
@@ -1698,6 +1744,9 @@ es:
           
           requirements: ''
           finish_instructinos: ''
+        registration:
+          has_state_license: ''
+          has_no_state_license: ''
       wy:
         abr:
           request_deadline: ''
@@ -1735,11 +1784,33 @@ es:
       other: Otros
       independence: Independence
       sam: SAM
+      mountain: Mountain
+      constitution: Constitution
+      united_utah: United Utah
+      american_independent: American Independent
+      peace_and_freedom: Peace and Freedom
+      approval_voting: Approval Voting
+      unity: Unity
+      dc_statehood_green_party: D.C. Statehood Green Party
+      aloha_aina: Aloha Aina
+      green_independent: Green Independent
+      working_class_party: Working Class Party
+      legal_marijuana_now: Legal Marijuana NOW
+      conservative: Conservative
+      pacific_green: Pacific Green
+      progressive: Progressive
+      independent_american: Independent American
+      american_constitution: American Constitution
     no_party_label:
       none: Ninguno
       none_no_affiliation: Ninguno (Sin afiliación)
       decline_to_state: Se niega a declarar
       blank: ''
+      no_party_preference: No Party Preference
+      nonpartisan: Nonpartisan
+      undeclared: Undeclared
+      unaffiliated: Unaffiliated
+      state_does_not_have_party_affiliation: State does not have party affiliation
     tooltips:
       not_participating:
         blank: ''
