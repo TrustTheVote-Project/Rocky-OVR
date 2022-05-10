@@ -61,7 +61,7 @@ module AbrStateMethods::AR
   def form_field_items
     [
 
-      {"abr_reason_selections": { type: :radio }},
+      {"abr_reason_selections": { required: true, type: :radio }},
 
       {"abr_address_type_selections": {type: :radio, required: true}},
       {"abr_delivery_address_selections": {type: :radio, required: true}},
@@ -69,8 +69,8 @@ module AbrStateMethods::AR
       {"abr_delivery_address_selections_abr_delivery_address_type3_instructions": {type: :instructions, visible: "abr_delivery_address_selections_abr_delivery_address_type3"}},
       {"abr_check_mailing_address": {type: :checkbox, visible: "abr_delivery_address_selections_abr_delivery_address_type1" }},      
       {"delivery_ballot_address_1": {required: :if_visible, visible: "abr_check_mailing_address"}},
-      {"delivery_ballot_address_2": {required: :if_visible, visible: "abr_check_mailing_address"}},
-      {"delivery_ballot_address_3": {visible: "abr_check_mailing_address"}},
+      {"delivery_ballot_address_2": {visible: "abr_check_mailing_address"}},
+      {"delivery_ballot_address_3": {required: :if_visible, visible: "abr_check_mailing_address"}},
       
       {"abr_request_name": { required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type3" }},
 

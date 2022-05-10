@@ -285,9 +285,9 @@ en:
             abr_election_type4: Annual School Election
             abr_election_type5: Special Election
           abr_election_date_input: Enter the date of the election
-          delivery_ballot_address_1: Mailing Address Line 1
-          delivery_ballot_address_2: Mailing Address Line 2
-          delivery_ballot_address_3: Mailing Address Line 3
+          delivery_ballot_address_1: Street Address (Mailing)
+          delivery_ballot_address_2: Unit (Mailing)
+          delivery_ballot_address_3: City, State, Zip (Mailing)
       az:
         state_online_abr:
           header_choice: All Registered Voters in Arizona Can Vote by Mail
