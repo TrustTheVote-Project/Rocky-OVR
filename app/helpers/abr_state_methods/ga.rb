@@ -1,196 +1,289 @@
 module AbrStateMethods::GA
   
   PDF_FIELDS = {
-    "First": {
-      method: "first_name"
+    "abr_email": {method: "email"},	
+    "abr_first_name": {method: "first_name"},	
+    "abr_middle_name": {method: "middle_name"},	
+    "abr_last_name": {method: "last_name"},	
+    "abr_name_suffix": {method: "name_suffix"},	
+    "abr_first_name2": {method: "first_name"},	
+    "abr_middle_name2": {method: "middle_name"},	
+    "abr_last_name2": {method: "last_name"},	
+    "abr_name_suffix2": {method: "name_suffix"},	
+    "abr_address_line_1": {method: "address"},
+    "abr_city": {method: "city"},	
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
+    "abr_zip": {method: "zip"},	
+    "abr_county": {},	
+    "abr_check_mailing_address": {options: ["Off", "Yes"]},	
+    "abr_mailing_address_line_1": {},
+    "abr_mailing_city": {},	
+    "abr_mailing_state_name": {},	
+    "abr_mailing_zip": {},
+    "abr_id_type": {options: ["abr_id_type1", "abr_id_type2"]},	
+    "abr_drivers_license": {sensitive: true},	
+    "abr_date_of_birth_mm_dd_yyyy": {
+      pdf_name: "date_of_birth_mm_dd_yyyy",
+      method: "date_of_birth_mm_dd_yyyy"
+    },	
+    "abr_id_instructions": {},	
+    "abr_election_type_selections": {method: "abr_election_date"},
+    "abr_election_type_selections_options": {
+      options: [
+        "abr_election_type1",
+        "abr_election_type3",
+        "abr_election_type2",
+        "abr_election_type4",
+      ]
+    },	
+    "abr_primary_type_selections1": {
+      options: [
+        "abr_primary_type1",
+        "abr_primary_type2",
+        "abr_primary_type3",        
+      ]
+    },	
+    "abr_assistant_check1": {options: ["Off", "Yes"]},
+    "abr_assistant_instructions": {},
+    "abr_assistant_name": {},
+    "abr_request_instructions": {},	
+    "abr_request_check": {options: ["Off", "Yes"]},	
+    "abr_request_selections": {
+      options: [
+        "abr_request_type1",
+        "abr_request_type2",
+      ]
     },
-     "Middle": {
-      method: "middle_name"
-    },
-    "Last": {
-      method: "last_name"
-    },
-    "Suffix": {
-      method: "name_suffix"
-    },
-    "Permanent Street Address": {
-      method: "address"
-    },
-    "Permanent City": {
-      method: "city"
-    },
-    "Permanent Zip": {
-      method: "zip"
-    },
-    "Permanent County": { method: "registration_county_name" }, #residence county
-    #"Text13": {}, #mailing street
-    "Temporary Street Address": {},
-    #"Text14": {}, #mailing city
-    "Temporary City": {}, 
-    #"Text15": {}, #mailing zip
-    "Temporary Zip": {},
-    "Temporary State": {}, #New?
-    #"Text16": {}, #mailing county
-    "Temporary County": {},
-    
-    #"Text17": {
-    "Date of Birth": {
-        method: "date_of_birth_mm_dd_yyyy"
-    },
-      #"Text18": {
-    "Phone number": {
-        method: "phone"
-    },
-      #"Text19": {
-    "Email": {
-        method: "email"
-    },
-  
-    "Name of assistant": {},
-
-    #"Text25": {}, #requestor's relationship to voter
-    "Relationship to voter": {},
-
-    #"Text26": {
-    "Email required for UOCAVA voters requesting electronic transmission": {
-      method: "email_if_uocava" #only required if "Elegibility_U" is checked
-    },
-
-    "Date of P/E/R": {
-      value: "01/05/2021"
-    },
-    #"type_of_ballot": {
-    "Group1": {
-      options: ["Democratic", "Republican", "Non_Partisan"]
-    },
-    #"reason_other": {
-    "Group2": {
-      #options:  [ "physically disabled", "temporarily residing out of the country"],
-      value: "Off" # Not sure why it needs to be "On"
-    },
-    "D  Disabled  I have a physical disability": { 
-      options: ["Off", "On"],
-      method: "check_Elegibility_D",
-     },
-    "E  Elderly  I am 65 years of age or older": { 
-      options: ["Off", "On"],  
-      method: "check_Elegibility_E", },
-    "U  UOCAVA Voter    I am a uniformed service member spouse or dependent of a uniformed": { 
-      options: ["Off", "On"],
-      method: "check_Elegibility_U",
-     },
-
-    #"UOCAVA_Status": {
-    "Group3": {
-      options: ["MOS", "MST", "OSP", "OST"]
-    },
-    "Today's date": { method: "date_for_signature" }, #today's date
-    #"Text23": {}, #today's date assistant
-    #voter_signature
-    
+    "abr_relationship1": {},	
+    "abr_application_type_check1": {options: ["Off", "Yes"]},	
+    "abr_application_type_selections": {
+      options: [
+        "abr_application_type1",
+        "abr_application_type2",        
+      ]
+    },	
+    "abr_phone": {method: "phone"},	    
   }
 
-  
 
- 
-  EXTRA_FIELDS = ["has_mailing_address", "assisted_voter", "requestor", "request_electronic_transmission", "Elegibility"] 
+  def abr_election_date
+    if self.abr_election_type_selections_options == "abr_election_type1"
+      return "05/24/2022"
+    elsif self.abr_election_type_selections_options == "abr_election_type3"
+      return "06/21/2022"
+    elsif self.abr_election_type_selections_options == "abr_election_type2"
+      return "11/08/2022"
+    elsif  self.abr_election_type_selections_options == "abr_election_type4"
+      return "12/06/2022"
+    end
+    return ""
+  end
+  
+  EXTRA_FIELDS = [""] 
   
   def form_field_items
     [
-
-      # {"Group1": {type: :radio, required: false }}, 
-      {"has_mailing_address": {type: :checkbox}},
-
-
-      {"Temporary Street Address": {visible: "has_mailing_address", required: 'star'}},
-      {"Temporary City": {visible: "has_mailing_address", required: 'star'}},
-      {"Temporary State": {visible: "has_mailing_address", classes: "half",  type: :select, options: GeoState.collection_for_select, required: 'star' }},
-      {"Temporary Zip": {visible: "has_mailing_address", classes: "half", required:'star', min: 5, max: 10}},
-      {"Temporary County": {visible: "has_mailing_address", required:'star'}},
-
-    
-      # {"assisted_voter": {type: :checkbox}},
-      # {"Name of assistant": {visible: "assisted_voter", required: "star"}},
-
-      # {"requestor": {type: :checkbox}},
-
-      # {"Relationship to voter": {visible: "requestor", required: 'star'}},
-      
-      # {"Group2": {visible: "requestor", type: :radio, required: 'star'}},
-     
-     
-      # {"Elegibility": {
-      #   type: :radio,
-      #   options: ["D", "E", "U"]
-      # }},
-      #{"UOCAVA_Status": {visible: "Elegibility_u", type: :radio, }},
-      {"Group3": {visible: "Elegibility_u", type: :radio, }},
-      {"request_electronic_transmission": {visible: "Elegibility_u", type: :checkbox, }},
-
+      {"abr_county": {type: :select, include_blank: true, options: [
+        "Appling County",
+        "Atkinson County",
+        "Bacon County",
+        "Baker County",
+        "Baldwin County",
+        "Banks County",
+        "Barrow County",
+        "Bartow County",
+        "Ben Hill County",
+        "Berrien County",
+        "Bibb County",
+        "Bleckley County",
+        "Brantley County",
+        "Brooks County",
+        "Bryan County",
+        "Bulloch County",
+        "Burke County",
+        "Butts County",
+        "Calhoun County",
+        "Camden County",
+        "Candler County",
+        "Carroll County",
+        "Catoosa County",
+        "Charlton County",
+        "Chatham County",
+        "Chattahoochee",
+        "Chattooga",
+        "Cherokee County",
+        "Clarke County",
+        "Clay County",
+        "Clayton County",
+        "Clinch County",
+        "Cobb County",
+        "Coffee County",
+        "Colquitt County",
+        "Columbia County",
+        "Cook County",
+        "Coweta County",
+        "Crawford County",
+        "Crisp County",
+        "Dade County",
+        "Dawson County",
+        "Decatur County",
+        "Dekalb County",
+        "Dodge County",
+        "Dooly County",
+        "Dougherty County",
+        "Douglas County",
+        "Early County",
+        "Echols County",
+        "Effingham County",
+        "Elbert County",
+        "Emanuel County",
+        "Evans County",
+        "Fannin County",
+        "Fayette County",
+        "Floyd County",
+        "Forsyth County",
+        "Franklin County",
+        "Fulton County",
+        "Gilmer County",
+        "Glascock County",
+        "Glynn County",
+        "Gordon County",
+        "Grady County",
+        "Greene County",
+        "Gwinnett County",
+        "Habersham County",
+        "Hall County",
+        "Hancock County",
+        "Haralson County",
+        "Harris County",
+        "Hart County",
+        "Heard County",
+        "Henry County",
+        "Houston County",
+        "Irwin County",
+        "Jackson County",
+        "Jasper County",
+        "Jeff Davis",
+        "Jefferson County",
+        "Jenkins County",
+        "Johnson County",
+        "Jones County",
+        "Lamar County",
+        "Lanier County",
+        "Laurens County",
+        "Lee County",
+        "Liberty County",
+        "Lincoln County",
+        "Long County",
+        "Lowndes County",
+        "Lumpkin County",
+        "Macon County",
+        "Madison County",
+        "Marion County",
+        "McDuffie County",
+        "Mcintosh County",
+        "Meriwether County",
+        "Miller County",
+        "Mitchell County",
+        "Monroe County",
+        "Montgomery County",
+        "Morgan County",
+        "Murray County",
+        "Muscogee",
+        "Newton County",
+        "Oconee County",
+        "Oglethorpe County",
+        "Paulding County",
+        "Peach County",
+        "Pickens County",
+        "Pierce County",
+        "Pike County",
+        "Polk County",
+        "Pulaski County",
+        "Putnam County",
+        "Quitman County",
+        "Rabun County",
+        "Randolph County",
+        "Richmond County",
+        "Rockdale County",
+        "Schley County",
+        "Screven County",
+        "Seminole County",
+        "Spalding County",
+        "Stephens County",
+        "Stewart County",
+        "Sumter County",
+        "Talbot County",
+        "Taliaferro County",
+        "Tattnall County",
+        "Taylor County",
+        "Telfair County",
+        "Terrell County",
+        "Thomas County",
+        "Tift County",
+        "Toombs County",
+        "Towns County",
+        "Treutlen County",
+        "Troup County",
+        "Turner County",
+        "Twiggs County",
+        "Union County",
+        "Upson County",
+        "Walker County",
+        "Walton County",
+        "Ware County",
+        "Warren County",
+        "Washington County",
+        "Wayne County",
+        "Webster County",
+        "Wheeler County",
+        "White County",
+        "Whitfield County",
+        "Wilcox County",
+        "Wilkes County",
+        "Wilkinson County",
+        "Worth County",
+      ]}},	
+      {"abr_check_mailing_address": {type: :checkbox}},	
+      {"abr_mailing_address_line_1": {required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_city": {required: :if_visible, visible: "abr_check_mailing_address", classes: "half"}},	
+      {"abr_mailing_state_name": {type: :select, required: :if_visible, visible: "abr_check_mailing_address", classes: "quarter", options: GeoState.collection_for_select}},
+      {"abr_mailing_zip": {required: :if_visible, visible: "abr_check_mailing_address", classes: "quarter"}},
+      {"abr_id_type": {type: :radio, required: :true}},
+      {"abr_drivers_license": {required: :if_visible, visible: "abr_id_type_abr_id_type1", regexp: /\A\d{9}\z/}},	
+      {"abr_id_instructions": {type: :instructions, visible: "abr_id_type_abr_id_type2"}},
+      {"abr_election_type_selections_options": {type: :radio, required: true}},
+      {"abr_primary_type_selections1": {type: :radio, required: :if_visilbe, visible_any: "abr_election_type_selections_options_abr_election_type1 abr_election_type_selections_options_abr_election_type3"}},
+      {"abr_assistant_check1": {type: :checkbox}},
+      {"abr_assistant_instructions": {type: :instructions, visible: "abr_assistant_check1"}},
+      {"abr_assistant_name": {visible: "abr_assistant_check1", required: :if_visible}},
+      {"abr_request_instructions": {type: :instructions}},	
+      {"abr_request_check": {type: :checkbox}},	
+      {"abr_request_selections": {type: :radio, visible: "abr_request_check"}},
+      {"abr_relationship1": {required: :if_visible, visible: "abr_request_check"}},
+      {"abr_application_type_check1": {type: :checkbox}},	
+      {"abr_application_type_selections":  {type: :radio, required: :if_visible, visible: "abr_application_type_check1"}},	
     ]
   end
-  #e.g.
-  # [
-  #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
-  #   {"identification": {
-  #     type: :radio,
-  #     required: true,
-  #     options: ["dln", "ssn4", "photoid"]}},
-  #   {"OR": {visible: "identification_dln", min: 8, max: 8, regexp: /\A[a-zA-Z]{2}\d{6}\z/}},
-  #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-  # ]
   
-    MAIL_FIELDS=[    
-      "Temporary Street Address",
-      "Temporary City", 
-      "Temporary Zip",
-      "Temporary State",
-      "Temporary County",
-    ]
   
-  def custom_form_field_validations
-    if self.has_mailing_address.to_s == "1"
-      MAIL_FIELDS.each do |f|
-        custom_validates_presence_of(f)
-       end
-    end
-    if self.requestor.to_s == "1"
-      custom_validates_presence_of("Relationship to voter")
-      custom_validates_presence_of("Group2")
-    end
-    if self.assisted_voter.to_s == "1"
-      custom_validates_presence_of("Name of assistant")
-    end
-    if self.Elegibility == "U"
-      custom_validates_presence_of("Group3")
-    end
-  end
-  
-
-
-
-  def email_if_uocava
-    self.Elegibility == "U" && self.request_electronic_transmission == "1" ? email : nil
-  end
-
-
-  def check_Elegibility(x)
-    return (self.Elegibility==x ? "On" : "Off")
-  end
-
-  #These should be closures
-
-  def check_Elegibility_D
-    check_Elegibility("D")
-  end
-  def check_Elegibility_E
-    check_Elegibility("E")
-  end
-  def check_Elegibility_U
-    check_Elegibility("U")
-  end 
+  # def custom_form_field_validations
+  #   if self.has_mailing_address.to_s == "1"
+  #     MAIL_FIELDS.each do |f|
+  #       custom_validates_presence_of(f)
+  #      end
+  #   end
+  #   if self.requestor.to_s == "1"
+  #     custom_validates_presence_of("Relationship to voter")
+  #     custom_validates_presence_of("Group2")
+  #   end
+  #   if self.assisted_voter.to_s == "1"
+  #     custom_validates_presence_of("Name of assistant")
+  #   end
+  #   if self.Elegibility == "U"
+  #     custom_validates_presence_of("Group3")
+  #   end
+  # end
 
 
 end
