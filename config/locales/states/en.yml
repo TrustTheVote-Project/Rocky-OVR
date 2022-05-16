@@ -708,7 +708,7 @@ en:
           step_2_instructions: |-
             <p>Voters who will be 18 years old by the date of an upcoming election may request an 
             absentee ballot if they are pre-registered to vote.</p>
-            <p>If you have moved within the county, this information will be used to update your registration.</p>
+            <p>If you have moved within the county, the address you provide will be used to update your voter registration.</p>
           request_deadline: |-
             <h3>Requesting your ballot
             </h3>
@@ -747,9 +747,9 @@ en:
           abr_election_type_selections: Select the election you'd like to request a ballot for
           abr_election_type_selections__hint: You must fill out a separate form for each election.<br>Applications will only be accepted for elections within the next 70 days.
           abr_election_type_selections__options:
-            abr_election_type1: Primary	
+            abr_election_type1: Primary (Election 6/7/2022)	
             abr_election_type2: City/School	
-            abr_election_type3: General	
+            abr_election_type3: General (Election 11/8/2022)	
             abr_election_type4: Special	
           abr_primary_type_selections1: Select the type of ballot you wish to receive.	
           abr_primary_type_selections1__options:
