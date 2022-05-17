@@ -72,6 +72,7 @@ server.csr
 server.key
 server.pass.key
 wa-example-requests
+certs/
 
 #Ignore files to be generated on deploy
 /data/abr_pdfs/*/*_with_cover.pdf

@@ -704,35 +704,60 @@ en:
           has_no_state_license: I do not have have a HI state identification card or HI driver's license, and Social Security Number.
       ia:
         abr:
-          step_2_header: All registered voters in Iowa can vote absentee!
-          step_2_instructions: "<p>If you are registered to vote, you can request
-            an absentee ballot. Look up your \nvoter registration on the <a href=\"https://sos.iowa.gov/elections/voterreg/regtovote/search.aspx\">Iowa
-            \"Am I Registered to Vote?\"</a> \npage.</p><p>&nbsp;</p>\n<h2 role=\"heading\"
-            aria-level=\"2\">Where are you registered to vote?</h2>\n<p>We'll use
-            this information to determine how you can request your absentee ballot.</p>"
-          request_deadline: received by your County Auditor no later than 5:00 p.m.
-            15 days before the election
-          status_check_instructions: You can look up your Absentee Ballot status on
-            the <a href="https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search">Iowa
-            Track Your Absentee Ballot</a> page.
+          step_2_header: All registered voters in Iowa can request an absentee ballot.
+          step_2_instructions: |-
+            <p>Voters who will be 18 years old by the date of an upcoming election may request an 
+            absentee ballot if they are pre-registered to vote.</p>
+            <p>If you have moved within the county, the address you provide will be used to update your voter registration.</p>
+          request_deadline: |-
+            <h3>Requesting your ballot
+            </h3>
+            <p>Your application must be received by your county auditor by 5pm on:</p>
+            <ul><li>5/23/2022 for the primary, and</li>
+            <li>10/24/2022 for the general.</li>
+            </ul>
+            <h3>Returning your ballot</h3>
+            <p>Mail your ballot so that is received before 8 PM CT on Election Day.</p>
+            <p>You can also hand deliver your ballot to your county auditor during business hours or any time up until 8 PM CST on Election Day.
+            </p>
+            <p>Election day is:</p><ul>
+            <li>Primary: June 7.</li>
+            <li>General: November 8.</li>
+            </ul>
+          status_check_instructions: <a href="https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a>
         abr_form_fields:
-          identification__options:
-            dln: Iowa Driver's License or Non-Operator ID
-            vic: Voter Identification Card
-          license: Iowa Driver's License or Non-Operator ID Number
-          voter_pin: Four-Digit Voter PIN
-          voter_pin__hint: Voters who do not appear in the Iowa Dept. of Transportation's
-            Driver's License or Non-Operator ID files are mailed an Iowa Voter Identification
-            Card at the time of registration. Any voter may request a Voter Identification
-            Card.
-          identification: Please choose one of the following forms of identification
-          Mail Address: Mailing Address
-          Mailing Address City: City
-          Mailing Address State: State
-          Mailing Address Zip Code: ZIP
-          has_mailing_address: My mailing address differs from my residential address.
-          Do not add this contact info to my voter recored check box: Please do not
-            add my phone number or email address to my voter record.
+          abr_county: Registration Address County
+          abr_check_mailing_address: I get my mail at a different address from the one above	
+          abr_mailing_street_number: Street Number 	
+          abr_mailing_street_name: Street Name
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_mailing_country: Country (other than US)	
+          abr_id_selections: Select which form of ID you'll provide	
+          abr_id_selections__options:
+            abr_id_type1: Iowa Driver's License or Non-Operator ID Number
+            abr_id_type2: Four-digit Voter PIN<br/>Found on your Iowa Voter Identification Card
+          abr_drivers_license: Enter your Iowa Driver's License or Non-Operator ID Number	
+          abr_drivers_license__hint: Voters who do not appear in the Iowa Dept. of Transportation files were mailed a Voter Identification Card at the time of registration.
+          abr_id_type2_name: Enter your Four-digit Voter PIN
+          abr_id_type2_name__hint: Found on your Iowa Voter Identification Card
+          abr_id_type2_name__format_message: Must be 4 numbers
+          abr_election_type_selections: Select the election you'd like to request a ballot for
+          abr_election_type_selections__hint: You must fill out a separate form for each election.<br>Applications will only be accepted for elections within the next 70 days.
+          abr_election_type_selections__options:
+            abr_election_type1: Primary (Election 6/7/2022)	
+            abr_election_type2: City/School	
+            abr_election_type3: General (Election 11/8/2022)	
+            abr_election_type4: Special	
+          abr_primary_type_selections1: Select the type of ballot you wish to receive.	
+          abr_primary_type_selections1__options:
+            abr_primary_type1: Democratic	
+            abr_primary_type2: Republican	
+          abr_election_type4_name: Enter the name of the special election	
+
+
         registration:
           has_state_license: I have an IA state identification card or IA driver's license, and Social Security Number.
           has_no_state_license: I do not have an IA state identification card or IA driver's license, and Social Security Number.
