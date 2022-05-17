@@ -1,42 +1,57 @@
 module AbrStateMethods::MT
   
   PDF_FIELDS = {
-    "Last Name": {
+    "abr_last_name": {
       method: "last_name"
     },
-    "First Name": {
+    "abr_first_name": {
       method: "first_name"
     },
-    "Middle Name Optional": {
+    "abr_middle_name": {
       method: "middle_name"
     },
-    "Birthdate MMDDYYYY": {
+    "abr_date_of_birth_mmddyyy": {
       method: "date_of_birth_mm_dd_yyyy"
     },
-    "Phone Number Optional": {
+    "phone": {
       method: "phone"
     },
-    "Email Address Optional": {
+    "email": {
       method: "email"
     },
-    "County where you reside and are registered to vote": {},
-    "Montana Residence Address": {
-      method: "address"
-    },
-    "City": {
-      method: "city"
-    },
-    "Zip Code": {
-      method: "zip"
-    },
-    "Mailing Address required if differs from residence address": {},
-    "City and State": {},
-    "Zip Code_2": {},
+    "abr_county": {},
+                "abr_street_number": {},
+                "abr_street_name": {},
+                "abr_city": {
+                              method: "city"
+                            },
+                "abr_zip": {
+                             method: "zip"
+                           },
+
+                "abr_mailing_street_number": {},
+                "abr_mailing_street_name": {},
+                "abr_mailing_city": {
+                              method: "city"
+                            },
+                "abr_mailing_state_abbrev" {},
+                "abr_mailing_zip": {
+                             method: "zip"
+                           },
+
+
     "Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only": { 
       options: ["Off", "On"] },
-    "Seasonal Mailing Address Optional": {},
-    "City and State_2": {},
-    "Zip Code_3": {},
+                "abr_mailing_street_number1": {},
+                "abr_mailing_street_name1": {},
+                "abr_mailing_city1": {
+                                      method: "city"
+                                    },
+                "abr_mailing_state_abbrev1" {},
+                "abr_mailing_zip1": {
+                                     method: "zip"
+                                   },
+
     "Period mmddyyyymmddyyyy": {
       method: "period_from_to"
     },
