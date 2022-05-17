@@ -2610,33 +2610,23 @@ en:
             copy_link: Copy Link
       sc:
         abr:
-          step_2_instructions: "<h3>You must have a reason to vote absentee in South
-            Carolina.</h3>\n<p>See if you qualify.</p>\n<ul>\n<li>Certain people outside
-            of the area on election day.\n<ul>            \n<li>Members of the Armed
-            Forces, members of the Merchant Marine, persons serving with the American
-            Red Cross or with the United Service Organizations (USO) outside of the
-            county, and any spouses and dependents residing with these people. (https://www.scvotes.gov/military-overseas-citizens),
-            </li>\n<li>Citizens residing overseas (https://www.scvotes.gov/military-overseas-citizens)</li>\n<li>Students
-            attending school outside their county of residence and their spouses and
-            dependents residing with them.</li>\n<li>Government employees serving
-            outside their county of residence on Election Day and their spouses and
-            dependents residing with them.\n<li>Persons who plan to be on vacation
-            outside their county of residence on Election Day.</li>\n</ul></li>\n<li>Certain
-            people who may have trouble making it to the polls.\n<ul>\n<li>Persons
-            who are physically disabled (includes illnesses and injuries), and people
-            caring for them.</li>\n<li>Persons sixty-five years of age or older.</li>\n<li>Persons
-            who for reasons of employment will not be able to vote on election day.</li>\n<li>Persons
-            serving as a juror in state or federal court on Election Day.</li>\n<li>Persons
-            admitted to the hospital as emergency patients on Election Day or within
-            a four-day period before the election.</li>\n<li>Persons with a death
-            or funeral in the family within three days before the election.</li>\n<li>Persons
-            confined to a jail or pre-trial facility pending disposition of arrest
-            or trial.</li>\n<li>Certified poll watchers, poll managers, and county
-            election officials working on Election Day.</li>\n<li>Persons who for
-            religious reasons do not want to vote on a Saturday (Presidential Primaries
-            Only).</li>\n</ul></li>\n</ul>\n<p>For more information, visit South Carolina's
-            <a href=\"https://www.scvotes.gov/absentee-voting\">Absentee Voting</a>
-            page.</p>"
+          step_2_instructions: |-
+            <h3>You must have a reason to vote absentee in South Carolina.</h3>
+            <p>Qualified voters include:</p>
+            <ul>
+            <li>Voters with disabilities.</li>
+            <li>Voters sixty-five years of age or older.</li>
+            <li>Members of the Armed Forces and Merchant Marines of the United States, their spouses, and dependents residing with them.</li>
+            <li>Voters admitted to hospitals as emergency patients on the day of an election or within a four-day period before the election.</li>
+            <li>Voters who, for one of the following reasons, are unable to vote in person on any day of the early-voting period or on Election Day.
+              <ul>
+              <li>Employment obligations.</li>
+              <li>Attending sick or physically disabled persons.</li>
+              <li>Confined to a jail or pretrial facility pending disposition of arrest or trial.</li>
+              <li>Absent from their county for any reason.</li>
+              </ul>
+            </li>
+            </ul>
           request_deadline: |-
             <h3>Deadlines for voting absentee</h3>
             <p>Your absentee ballot request must be received by</p>
@@ -2678,7 +2668,7 @@ en:
             You will need the last four digits of your SSN and a printer. You will fill out the form online and then print it out to mail to your local election official.</p>
             <p>If you do not have a printer, you can call your <a href="https://www.scvotes.gov/how-register-absentee-voting" title="How to Register">local election official</a> and ask that an application be mailed to you.</p>
             <h3>Voting Absentee in Person</h3>
-            <p>Your county may also offer absentee voting in person if that is better for you. <a href="https://www.scvotes.gov/how-register-absentee-voting" title="How to Register">Contact them directly.</a></p>
+            <p>In-person absentee voting has now been replaced with a two-week early voting period. Any voter can visit an early-voting location in their county and vote like they would at their polling place on Election Day.</p>
         registration:
           has_state_license: I have a valid SC state identification card or driver's license, and Social Security Number.
           has_no_state_license: I do not have a valid SC state identification card or driver's license, and Social Security Number.
