@@ -2089,34 +2089,30 @@ en:
           has_no_state_license: I do not have a current and valid NJ state identification card or driver's license, or Social Security Number.
       nm:
         abr_form_fields:
-          request_deadline: received no later than 5:00 pm on Thursday, October 28,
-            2021.
-          has_mailing_address: My mailing address differs from my residence address.
-          mail_address1: Mailing address line 1
-          mail_address2: Mailing address line 2
-          mail_address3: Mailing address line 3
-          county: County
+          abr_county: Registration Address County	
+          abr_check_mailing_address: I get my mail at a different address from my registration address
+          abr_mailing_address_line_1: Mailing address	
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
         abr:
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker'>online
-            tool</a>
+          request_deadline: Your absentee ballot request must be received by Thursday, June 2, 2022 at 5:00 pm for the primary election.
+          status_check_instructions: |-
+            <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker">
+            https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker
+            </a>
+          skip_state_online_abr: I do not have one or all of those items and would like to request an absentee ballot on paper.
         state_online_abr:
-          header: Requesting an Absentee Ballot in New Mexico
+          header_choice: ''
           confirm: ''
+          requirements: ''
           instructions: |-
-            <p>Any registered voter in New Mexico can request an absentee ballot.</p>
-            <p>You can request an absentee ballot in New Mexico by:</p>
-            <ul>
-            <li>Filling out an application online (requires a New Mexico driver’s license or state identification), 
-            </li>
-            <li>Contacting your <a href="https://www.sos.state.nm.us/voting-and-elections/voter-information-portal/county-clerk-information/" target="_blank" rel="noopener noreferrer">County Clerk’s Office</a> in person, by phone, mail or email, or</li>
-            <li>Downloading an absentee ballot request online and returning it to your County Clerk.</li>
-            </ul>
-            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
-            <p>Double check that you're registered to vote by going to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
-            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-            <p>Your absentee ballot request must be received no later than 14 days before the election.</p>
-            <p>To check the status of your Absentee Application, go to the <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?AspxAutoDetectCookieSupport=1" target="_blank" rel="noopener noreferrer">New Mexico Voter Services</a> tool.</p>
+            <p>You may be eligible to complete your request online.</p>
+            <p>If you have a NM Drivers License (current or expired) or NM State ID and the last four numbers of your SSN, 
+            click the button below to request an absentee ballot online.</p>
+          
+
         registration:
           has_state_license: I have a NM state identification card or NM driver's license, or Social Security Number.
           has_no_state_license: I do not have a NM state identification card or NM driver's license, or Social Security Number.
