@@ -1,98 +1,56 @@
 module AbrStateMethods::VA
-  
-  PDF_FIELDS = {
-    "Last Name": {
-      method: "last_name"
-    },
-    "First Name": {
-      method: "first_name"
-    },
-    "Middle Name": {
-      method: "middle_name"
-    },
-    "Suffix": {
-      method: "name_suffix"
-    },
-    "in the citycounty of": {
-      method: "registration_county_name" # Available via ABR
-    },
-    "Birth_Year": { method: "date_of_birth_yyyy" },
-    "SSN_Last_4": {sensitive: true},
-    "Election": {
-      options: ["Democratic_Primary", "General", "Republican_Primary", "Off"],
-      value: "General"
-    },
-    "VBM_for_all": {
-      options: ["No", "Off", "Yes"],
-      value: "No"
-    },
-    "Primary_Ballot": {
-      options: ["Democratic_Party", "None", "Off", "Republican_Party"],
-      value: "None"
-    },
-    "Address_1": {
-      method: "address_line_1"
-    },
-    "Mailing_Address_1": {},
-    "Address_2": {
-      method: "unit"
-    },
-    "Mailing_Address_2": {},
-    "Zip_Code": {
-      method: "zip"
-    },
-    "Address_3": {
-      method: "city"
-    },
-    "Mailing_Address_3": {},
-    "Mailing_Zip_Code": {},
-    "Mailing_State": {},
-    "Mailing_Country": {},
-    "Telephone": {
-      method: "phone"
-    },
-    "Email_Fax": {
-      method: "email"
-    },
-    "Last_Date_of_Residency": {
-      #method: "collect_residency_last_date", #date field not in use
-    },
-    "Category_Code": {
-      method: "collect_codes",
-    }, #TODO - this is a text field, but really should be a series of checkboxes...
-    "Deliver_to": {
-      options: ["Residence", "ballot_mailing_address", "email_address"]
-    },
-    "need_assistance": {
-      options: ["Off", "On"]
-    },
-    "Assistant_Name": {},
-    "Assistant_City": {},
-    "Assistant_Address": {},
-    "Assistant_State": {},
-    "Assistant_Phone": {},
-    "Assistant_Apt": {},
-    "Asistant_Zip": {},
-    #assistant_signature
-    #voter_signature
-    #Asistant_Sign_Date
-    "Voter_Sign_Date": {
-      method: "date_for_signature"
-    },
 
-    "election_mm": {
-      value:'11'
-    },
-    "election_dd": {
-      value:'03'
-    },
-    "election_yyyy": {
-      value:'2020'
-    },
-   
+  PDF_FIELDS = {'Residence address from Section 4': {},
+                'Ballot mailing address from Section 5': {},
+                'Email address from Section 6': {},
+                'Fax number from Section 6': {},
+                'abr_last_name': {:method=>"last_name"},
+                'abr_first_name': {:method=>"first_name"},
+                'abr_middle_name': {},
+                'abr_name_suffix': {:method=>"name_suffix"},
+                'abr_last_4_ssn': {},
+                'abr_election_type_selections': {},
+                'abr_primary_type_selections1': {},
+                'abr_election_type_selections2': {},
+                'abr_election_date': {},
+                'abr_county': {:method=>"county"},
+                'abr_unit': {:method=>"unit"},
+                'abr_city': {:method=>"city"},
+                'abr_zip': {:method=>"zip"},
+                'abr_mailing_unit': {:method=>"unit"},
+                'abr_mailing_city': {:method=>"city"},
+                'abr_mailing_state_abbrev': {:method=>"home_state_abbrev"},
+                'abr_mailing_zip': {:method=>"zip"},
+                'abr_phone': {},
+                'abr_email': {:method=>"email"},
+                'abr_mailing_country': {},
+                'abr_assistant_check1': {},
+                'abr_assistant_check2': {},
+                'abr_assistant_phone': {},
+                'abr_assistant_unit': {},
+                'abr_assistant_zip': {},
+                'abr_assistant_state_abbrev': {},
+                'abr_assistant_city': {},
+                'abr_street_number': {},
+                'abr_assistant_street_number': {},
+                'abr_assistant_street_name': {},
+                'abr_assistant_first_name': {},
+                'abr_assistant_middle_initial': {},
+                'abr_assistant_last_name': {},
+                'abr_assistant_suffix': {},
+                'abr_street_name': {},
+                'abr_mailing_street_number': {},
+                'abr_mailing_street_name': {},
+                'former_name': {},
+                'former_address': {},
+                'former_city': {},
+                'former_state': {},
+                'If applicable last date of residency': {},
+                'date_moved': {},
+                'former_zip': {},
+                'mil_and_overseas_category': {}
+               }
 
-   
-  }
   EXTRA_FIELDS = ["has_mailing_address", "UOCAVA", "moved_permanently", "A", "B", "C", "D", "last_residency_date", "residency_mm","residency_dd", "residency_yyyy"]
   
   def form_field_items
