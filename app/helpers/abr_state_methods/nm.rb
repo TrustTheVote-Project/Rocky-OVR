@@ -10,7 +10,7 @@ module AbrStateMethods::NM
     },
     "abr_full_name": {method: "full_name"},
     "abr_address_line_1": {method: "address_line_1"},
-    "abr_unit": {method: "address_line_2"},
+    "abr_address_line_2": {method: "address_line_2"},
     "abr_address_city_state_zip": {method: "address_city_state_zip"},
     "abr_county": {},
     "abr_mailing_address_line_1": {},
