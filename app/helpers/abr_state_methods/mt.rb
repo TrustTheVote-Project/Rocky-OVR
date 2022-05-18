@@ -1,97 +1,43 @@
 module AbrStateMethods::MT
   
-  PDF_FIELDS = {
-    "abr_last_name": {
-      method: "last_name"
-    },
-    "abr_first_name": {
-      method: "first_name"
-    },
-    "abr_middle_name": {
-      method: "middle_name"
-    },
-    "abr_date_of_birth_mmddyyy": {
-      method: "date_of_birth_mm_dd_yyyy"
-    },
-    "phone": {
-      method: "phone"
-    },
-    "email": {
-      method: "email"
-    },
-    "abr_county": {},
-                "abr_street_number": {},
-                "abr_street_name": {},
-                "abr_city": {
-                              method: "city"
-                            },
-                "abr_zip": {
-                             method: "zip"
-                           },
+  PDF_FIELDS = {'Period mmddyyyymmddyyyy': {},
+                'Signature of Elector': {},
+                'Date Signed': {},
+                'Date ballot received': {},
+                'Signature of Designee': {},
+                'Signature of Elector_2': {},
+                'Date Signed_2': {},
+                'abr_last_name': {:method=>"last_name"},
+                'abr_first_name': {:method=>"first_name"},
+                'abr_middle_name': {},
+                'phone': {},
+                'abr_county': {:method=>"county"},
+                'abr_city': {:method=>"city"},
+                'abr_mailing_zip': {:method=>"zip"},
+                'abr_mailing_street_number': {},
+                'abr_mailing_city': {:method=>"city"},
+                'abr_mailing_state_abbrev': {:method=>"home_state_abbrev"},
+                'abr_zip': {:method=>"zip"},
+                'abr_mailing_street_name': {},
+                'abr_mailing_unit': {:method=>"unit"},
+                'seasonal_zip': {},
+                'seasonal_Mailing_Address': {},
+                'seasonal_City_State': {},
+                'abr_election_type_selections': {},
+                'abr_election_type_selections2': {},
+                'abr_election_type6_name': {},
+                'abr_election_date': {},
+                'abr_request_name': {},
+                'send_pamphlet': {},
+                'dont_want_ab': {},
+                'abr.email': {},
+                'date_of_birth_mm_dd_yyyy': {},
+                'abr_street_number': {},
+                'abr_street_name': {},
+                'abr_unit': {:method=>"unit"},
+                'is_mailing_addr_seasonal': {}
+               }
 
-                "abr_mailing_street_number": {},
-                "abr_mailing_street_name": {},
-                "abr_mailing_city": {
-                              method: "city"
-                            },
-                "abr_mailing_state_abbrev" {},
-                "abr_mailing_zip": {
-                             method: "zip"
-                           },
-
-
-    "Check if the mailing address listed above is for part of the year only and if so complete the information below for absentee ballot list only": { 
-      options: ["Off", "On"] },
-                "abr_mailing_street_number1": {},
-                "abr_mailing_street_name1": {},
-                "abr_mailing_city1": {
-                                      method: "city"
-                                    },
-                "abr_mailing_state_abbrev1" {},
-                "abr_mailing_zip1": {
-                                     method: "zip"
-                                   },
-
-    "Period mmddyyyymmddyyyy": {
-      method: "period_from_to"
-    },
-    "Yes I request an absentee ballot to be mailed to me for ALL elections in which I am eligible to vote as long as I reside at the address": { 
-      options: ["Off", "On"],
-      value: "Off" 
-    },
-    "I hereby request an absentee ballot for the upcoming election check only one": { 
-      options: ["Off", "On"],
-      value: "On"
-    },
-    "Primary": { 
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    "General": { 
-      options: ["Off", "On"],
-      value: "On"
-    },
-    "Municipal": { 
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    "Other": { 
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    #"Signature of Elector": { options: [] }
-    #"Date Signed": {}
-    "Please send current Voter Information Pamphlet if applicable to this election": { options: ["Off", "On"] },
-    "Receipt of absentee ballot by designee I received the absentee ballot for the applicant on": {},
-    #"Date ballot received": {}
-    #"Signature of Designee": { options: [] }
-    #"Signature of Elector_2": { options: [] }
-    #"Date Signed_2": {}
-    "Please check this box to affirm that you do NOT want to receive an absentee ballot and instead want to vote at your local polling": { 
-      options: ["Off", "On"],
-      value: "Off"
-    },
-  }
   EXTRA_FIELDS = ["has_mailing_address", "designee",  "period_from_mm", "period_from_dd", "period_from_yyyy", "period_to_mm", "period_to_dd", "period_to_yyyy"]
   
   
