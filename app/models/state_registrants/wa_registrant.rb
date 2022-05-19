@@ -294,7 +294,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
       "isHomeless"	=> self.is_homeless,
       
       #"Signature"	=>	self.foo, # Need to know format and then ask Alex how to collect
-      "Signature" =>self.class.resize_signature_url(voter_signature_image),
+      "Signature" =>self.class.resize_signature_url(voter_signature_image).delete_prefix('data:image/jpeg;base64,'),
 
       "transactionID" => self.uid,
       "registrationDate"	=>	self.updated_at.iso8601, # CTW ask Alex *now*, check format
@@ -549,6 +549,7 @@ end
   end
 
   def eligible?
+      return false if self.locale!="en"
       return true if self.date_of_birth.blank?
       earliest_date = Date.today - 16.years 
       if self.date_of_birth > earliest_date

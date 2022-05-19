@@ -492,10 +492,6 @@ ovr_states:
   WA:
     languages:
       - en
-      - es
-      - zh
-      - vi
-      - ko
 
 enabled_locales:
   - en
