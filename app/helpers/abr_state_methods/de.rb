@@ -1,77 +1,27 @@
 module AbrStateMethods::DE
   
-  PDF_FIELDS = {
-
-    "BirthDate": {
-      method: "date_of_birth_mm_dd_yyyy",
-    },
-
-    "Ballot Address Line 1": {},
-    "Ballot Address Line 2": {},
-    "Ballot Address Line 3": {},
-
- 
-    "First Name": {
-      method: 'first_name'
-    },
-    "Suffix": {
-      method: 'name_suffix'
-    },
-    "Middle Name or Initial":{
-      method: 'middle_initial'
-    },
-    "Last Name": {
-      method: 'last_name'
-    },
-    "House Number and Street Name": {
-      method: 'address'
-    },
-    "City": {
-      method: 'city'
-    },
-    "ZipCode":{
-      method: 'zip'
-    },
-
-    "Political Party Affiliation": {},
-
-    "Last4 Digits of SSN": {sensitive: true},
-    "Email Address": {
-      method: "email"
-    },
-
-    "Check box if you are Sick or Physically Disabled": {
-      options: ["Off", "Yes"],
-      method: "check_sick_or_disabled_yes"},
-    "GroupSickDisabled": { options: ["ChoiceEmail", "ChoiceFax", "ChoiceMail"] },
-    
-    "Email Address_disabled": { # This is actually for disabled email delivery
-      method: "email_if_choice_email"
-    },
-    "Fax": {},
-    "Phone": {
-      method: "phone"
-    },
-
-    "General Election": { 
-      options: ["Off", "Yes"],
-      value: "Yes" 
-    },
-
-    "All Elections": { options: ["Off", "Yes"],
-      value: 'Off' 
-    },
-    "Any Election before 1/21/2020": { 
-      options: ["Off", "Yes"],
-      value: 'Off'
-     },
-     "Primary Election": {
-       options: ["Off", "Yes"],
-       value: 'Off'
-    },
-     #"Application Date": {}
-    #"voter_signature": {}
-
+  PDF_FIELDS = {'6 I am temporarily residing outside of the U S': {},
+                'abr_full_name': {},
+                'abr_party': {},
+                'abr_address_line_1': {:method=>"address_line_1"},
+                'abr_city': {:method=>"city"},
+                'abr_zip': {:method=>"zip"},
+                'date_of_birth_mm_dd_yyyy': {},
+                'abr_ssn_number': {},
+                'abr_email': {:method=>"email"},
+                'abr_mailing_address': {},
+                'address_line_2': {},
+                'abr_phone': {},
+                'abr_reason_selections': {},
+                'abr_delivery_address_selections': {},
+                'abr_fax_number': {},
+                'make_pav': {},
+                'signature_date': {},
+                'abr_election_presidential_primary': {},
+                'abr_election_primary': {},
+                'abr_election_general': {},
+                'abr_election_special': {},
+                'abr_election_all': {}
   }
   
   EXTRA_FIELDS = ["has_mailing_address", "check_sick_or_disabled"]
