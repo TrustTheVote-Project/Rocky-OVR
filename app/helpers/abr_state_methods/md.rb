@@ -1,164 +1,35 @@
 module AbrStateMethods::MD
   
-    PDF_FIELDS = {
-
-      "Last_Name": {},
-      "First_Name": {},
-      "Middle_Name": {},
-      "suffix": { 
-       #options: ["Off", "Yes", "Yes2", "Yes3", "Yes4", "Yes5"],
-        method: "md_suffix_mapper"
-      },
-
-      "Birth_Month": {
-        method: "date_of_birth_mm"
-      },
-      "Birth_Day": {
-        method: "date_of_birth_dd"
-      },
-
-      "Birth_Year": {
-        method: "date_of_birth_yyyy"
-      },
-
-      "Email": {
-        method: "email"
-      },
-
-      "Area_Code": {
-        method: "phone_area"
-      },
-      "Phone_1": {
-        method: "phone_prefix"
-      },
-      "Phone_2": {
-        method: "phone_last4"
-      },
-    
-      "Move_Month": {
-        method: "movedate_mm"
-      },
-      "Move_Day": {
-        method: "movedate_dd"
-      },
-      "Move_Year": {
-        method: "movedate_yyyy"
-      },
-
-      #"Maryland Drivers License or ID Card Number": {sensitive:true},
-      "Lic_1": {
-        method: "dln_lic_1",
-        sensitive:true
-      },
-      "Lic_2": {
-        method: "dln_lic_2",
-        sensitive:true
-      },
-
-      "Lic_3":  {
-        method: "dln_lic_3",
-        sensitive:true
-      },
-
-      "Lic_4":  {
-        method: "dln_lic_4",
-        sensitive:true
-      },
-
-      "Lic_5":  {
-        method: "dln_lic_5",
-        sensitive:true
-      },
-
-
-      "Birthdate": {
-        method: "date_of_birth_mm_dd_yyyy"
-      },
-      "Phone": {
-        method: "phone"
-      },
-      "Del_Email": {
-        method: "delivery_conditional_email"
-      },
-
-      "Gen_Address": {},
-      "Gen_Apt": {},
-      "Gen_City": {},
-      "Gen_State": {},
-      "Gen_ZipCode": {},
-      "Email_address": {
-        method: "email"
-      },
-      #"Issue_Date": {},
-      "Issue_Month":{
-        method: 'issue_date_mm'
-      },
-      "Issue_Day": {
-        method: 'issue_date_dd'
-      },
-      "Issue_Year": {
-        method: 'issue_date_yyyy'
-      },
-
-      "SSN_Last_4": {sensitive:true},
-
-      "Fax_Area_Code": {
-        method: 'fax_1'
-      },
-      "Fax_Phone": {
-        method: 'fax_2'
-      },
-      "Fax_Phone_2": {
-        method: 'fax_3'
-      },
-      "Today_Month": {method: "month_for_signature" },
-      "Today_Day": {method: "day_for_signature" },
-      "Today_Year": {method: "year_for_signature" },
-      # "Todays_Date": { method: "date_for_signature" },
-      #"assistant_sign": {},
-      #"assistant_print": {},
-      'Assistance_Print_Name': {},
-      "Address": {
-        method: "address_line_1"
-      },
-      "Apt": {
-        method: "unit"
-      },
-      "City": {
-        method: "city"
-      },
-      "State": {
-        method: "home_state_abbrev"
-      },
-      "ZipCode": {
-        method: "zip"
-      },
-    #"When_Moved_Here": {},
-      "Special_Primary": { 
-        options: ["Off", "Yes"],
-        value: "Off"
-      },
-      "Presidential_Primary": { 
-        options: ["Off", "Yes"],
-        value: "Off"
-      },
-      "Presidential_General": { 
-        options: ["Off", "Yes"],
-        value: "Yes"
-      },
-      "All_Elections": { 
-        options: ["Off", "Yes"],
-        value: "Off"
-      },
-      #"voter_signature": {},
-      "print_name": {
-        method: "full_name"
-      },
-      "Delivery": { options: ["mail", "internet", "fax"] },
-
-      "mailto": { options: ["Off","same_as_above", "address_below"] },
-
-    }
+  PDF_FIELDS = {'Middle name or initial': {},
+                'Party affiliation': {},
+                'contact method': {},
+                'Phone contact': {},
+                'Email for contact': {},
+                'abr_last_name': {:method=>"last_name"},
+                'abr_first_name': {:method=>"first_name"},
+                'abr_name_suffix': {:method=>"name_suffix"},
+                'date_of_birth_mm_dd_yyyy': {},
+                'abr_address_line_1': {:method=>"address_line_1"},
+                'abr_unit': {:method=>"unit"},
+                'abr_city': {:method=>"city"},
+                'abr_zip': {:method=>"zip"},
+                'abr_election_type_selections': {},
+                'abr_primary_type_selections1': {},
+                'abr_primary_type7_name': {},
+                'abr_address_type_selections': {},
+                'abr_address_type5': {},
+                'abr_mailing_address_line_1': {:method=>"address_line_1"},
+                'abr_mailing_unit': {:method=>"unit"},
+                'abr_mailing_city': {:method=>"city"},
+                'abr_mailing_state_abbrev': {:method=>"home_state_abbrev"},
+                'abr_mailing_zip': {:method=>"zip"},
+                'abr_drivers_license': {},
+                'abr_id_date': {},
+                'abr_last_4_ssn': {},
+                'abr_fax_number': {},
+                'abr_contact_method_selections': {},
+                'abr_delivery_email': {}
+}
     EXTRA_FIELDS = ["no_dln", "assistant", 'dln','issue_date','issue_date_mm','issue_date_dd','issue_date_yyyy','issue_date', "internet_delivery_identification",'movedate','movedate_mm','movedate_dd','movedate_yyyy','fax_number']
     
     # def whatever_it_is_you_came_up_with
