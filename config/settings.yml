@@ -254,7 +254,7 @@ absentee_states:
     abr_status_check_url: "https://www.nvsos.gov/votersearch/"
     abr_track_ballot_url: "https://nevada.ballottrax.net/voter/"
   NY:
-    #online_req_url: https://absenteeballot.elections.ny.gov
+    online_req_url: https://absenteeballot.elections.ny.gov
     abr_status_check_url: "https://absenteeballot.elections.ny.gov"
     abr_track_ballot_url: "https://absenteeballot.elections.ny.gov"
   OH:

@@ -2235,8 +2235,6 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         state_online_abr:
-          header: Requesting an Absentee Ballot in New York
-          confirm: ''
           instructions: "<p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>"
         abr_form_fields:
           abr_email: Email
