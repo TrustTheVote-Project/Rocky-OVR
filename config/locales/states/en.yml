@@ -1725,46 +1725,43 @@ en:
               <p>Your absentee ballot must be postmarked on or before Election Day and received by June 14th.</p>
       mt:
         abr:
-          request_deadline: Applications must be received by the county election office
-            by noon the day before the election. We recommend sending in your application
-            and ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using Montana's <a href="https://app.mt.gov/voterinfo/">My Voter Page</a>
+          request_deadline: |-
+            <p>Applications must be <b>received by the county election office by noon the day before the election</b>. 
+            If you want your ballot mailed to you, make sure to leave time for the application to be delivered at the election office and the ballot to be sent to you.
+            </p>
+            <p>If you drop off the application you will be able to pick up the absentee ballot at the same time.
+            </p>
+          status_check_instructions: <a href="https://app.mt.gov/voterinfo/">https://app.mt.gov/voterinfo/</a>
           requirements: Any registered voter who has been a resident of Montana for
             at least 30 days may request an absentee ballot.
-          step_3_header: Any registered voter in Montana may vote by absentee ballot.
-          step_3_instructions: |-
-            <p>All registered voters in Montana are eligible to vote by absentee ballot. <a href="https://app.mt.gov/voterinfo/" title="My Voter Page" target="_blank" rel="noopener noreferrer">Make sure you're registered</a>.</p>
-            <h2 role="heading" aria-level="2">Prepare your registration form</h2>
-            <p>Please fill out the fields below so we can prepare
-            your PDF early vote request form.</p>
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>If
-            you have designated another person to pick up your absentee ballot, make
-            sure that they have also signed the form and you have signed and dated
-            on the appropriate lines.</i></p>"
+          finish_instructions_1_hint: |-
+            <p>If someone will be picking up your ballot, make sure you sign and date that portion of the application. The designated person should not sign and date until they have received the ballot.
+            </p>
+
         abr_form_fields:
-          address_instructions: 'Please choose one or both of the following options,
-            if applicable:'
-          has_mailing_address: I have a permanent mailing address that differs from
-            my residential address.
-          ? Check if the mailing address listed above is for part of the year only
-            and if so complete the information below for absentee ballot list only
-          : I have a mailing address that differs from my residential address for
-            only part of the year.
-          Mailing Address required if differs from residence address: Mailing address
-          Zip Code_2: Zip
-          City and State_2: City and State
-          Zip Code_3: Zip
-          period_from: From (MM/DD/YYYY)
-          period_to: To (MM/DD/YYYY)
-          Seasonal Mailing Address Optional: Part-time Mailing Address
-          designee_instructions: Optional – Designate another person to pick up your
-            absentee ballot
-          designee: I would like to designate someone else to pick up my absentee
-            ballot.
-          Receipt of absentee ballot by designee I received the absentee ballot for the applicant on: 'Name
-            of designee who will pick up my absentee ballot:'
+          abr_county: Registration Address County
+          abr_mailing_street_number: Street Number
+          abr_mailing_street_name: Street Name
+          abr_mailing_city: City
+          abr_mailing_unit: Unit
+          abr_mailing_zip: ZIP
+          abr_mailing_state_abbrev: State
+          abr_check_mailing_address: I get my mail at a different address from my registration address.
+          abr_election_type_selections: Select the election you'd like to request a ballot for
+          abr_election_type_selections__options:
+            abr_election_type1: All elections for which I'm eligible to vote
+            abr_election_type2: A specific upcoming election
+          abr_election_type_selections2: "Select which election you're requesting an absentee ballot for:"
+          abr_election_type_selections2__options:
+            abr_election_type3: Primary
+            abr_election_type4: General
+            abr_election_type5: Municipal
+            abr_election_type6: Other
+          abr_election_type6_name: Enter the type of election
+          abr_election_date_input: Enter the date of the election
+          abr_request_check: Will someone be picking up your ballot for you?
+          abr_request_name: "Enter the name of the person you have designated to pick up your ballot:"
+                   
       nc:
         state_online_abr:
           confirm: |-
@@ -2363,32 +2360,20 @@ en:
           has_no_state_license: I do not have an OH state identification card or OH driver's license, and Social Security Number.
       ok:
         abr:
-          request_deadline: received no later than 5 p.m. the Tuesday before the election.
-          status_check_instructions: You can find your Absentee Ballot status on the
-            <a href="https://oklahoma.gov/elections/ovp.html">OK Voter Portal</a>
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>Your
-            absentee ballot request must be notarized. Read more on \nthe <a href=\"https://oklahoma.gov/elections/voters/absentee-voting/standard-absentee-voters.html\">Standard
-            Absentee Voters</a> page</i></p>"
-          finish_instructions_1_hint_state: "<p><i>Be sure to check if you need to
-            send in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>Your
-            absentee ballot request must be notarized. Read more on \nthe <a href=\"https://oklahoma.gov/elections/voters/absentee-voting/standard-absentee-voters.html\">Standard
-            Absentee Voters</a> page</i></p>"
+          status_check_instructions: <a href="https://okvoterportal.okelections.us/">https://okvoterportal.okelections.us/</a>
+          
+          finish_instructions_3_hint_state: |-
+            <p>All absentee ballots must be notarized prior to return.</p>
+            <p>If you return your ballot by hand, it must be delivered no later than the end of business hours the day before the election. You must show the same
+            <a href="https://oklahoma.gov/elections/voters/proof-of-identity.html">proof of identity</a> required for in-person voting.</p>
+            <p>Absentee ballots returned by mail must be received by the County Election Board by 7 p.m. (CST) on Election Day.</p>
         state_online_abr:
-          confirm: "<p>All registered voters in Oklahoma can vote absentee!</p>"
-          instructions: "<h2 role=\"heading\" aria-level=\"2\">Voter Registration
-            in Oklahoma</h2>\n<p>Not sure if you're registered to vote? Check your
-            voter registration \nstatus on the <a href=\"https://oklahoma.gov/elections/ovp.html\">OK
-            Voter Portal</a>.</p>\n<h2 role=\"heading\" aria-level=\"2\">Request an
-            Absentee Ballot</h2>\n<p>You can request an Absentee Ballot online on
-            the OK Voter Portal or by downloading an Oklahoma Application for Absentee
-            Ballot form mailing, e-mailing or faxing it to your County Election Board
-            office.</p>\n<p>You will need to find your voter information before requesting
-            an absentee ballot.</>"
-          button: Visit the Oklahoma <br/> Absentee Voting page to <br/> Request an
-            Absentee Ballot
-          requirements: "<p>If you are registered to vote and have a valid state ID,
-            you may request your absentee ballot online directly with the state.</p>"
+          instructions: |
+            <p>You can request an absentee ballot any time starting January 1st for that calendar year. You may apply for absentee ballots for one election, for several elections or for all elections during the calendar year, in which the application is submitted.<p>
+            <p>In 2022, you must request an absentee ballot by 5pm on 6/13/2022 for the June 28th Primary and 10/24/2022 for the November 8th General.<br>
+            For more elections, see the <a href="https://oklahoma.gov/elections/elections-results/2022-election-calendar.html">2022 Oklahoma Election Calendar</a>.</p>
+
+          
       or:
         abr:
           everyone_gets_ballot:
@@ -4023,7 +4008,7 @@ en:
       georgia: Postmarked by 4/25/2022
       hawaii: Postmarked by 8/3/2022
       idaho: Postmarked by 4/22/2022
-      indiana: Postmarked by 4/4/2022
+      indiana: Postmarked by 10/11/2022
       illinois: received 27 days prior to an election
       iowa: Postmarked by 5/23/2022
       kansas: Postmarked by 7/12/2022
@@ -4043,9 +4028,9 @@ en:
       new_york: Postmarked by 6/3/2022
       north_carolina: Postmarked by 4/22/2022
       north_dakota: North Dakota does not have voter registration.
-      nebraska: Postmarked by 4/22/2022
+      nebraska: Postmarked by 10/21/2022
       nevada: Postmarked by 5/17/2022
-      ohio: Postmarked by 4/4/2022
+      ohio: Postmarked by 10/11/2022
       oklahoma: Postmarked by 6/3/2022
       oregon: Postmarked by 4/26/2022
       pennsylvania: Received by 5/2/2022
@@ -4058,7 +4043,7 @@ en:
       vermont: Received by 8/9/2022
       virginia: Postmarked by 5/31/2022
       washington: Received by 7/25/2022
-      west_virginia: Postmarked by 4/19/2022
+      west_virginia: Postmarked by 10/18/2022
       wisconsin: Postmarked by 7/20/2022
       wyoming: Received by 8/1/2022
       postmarked_11_days: postmarked 11 days before the election
