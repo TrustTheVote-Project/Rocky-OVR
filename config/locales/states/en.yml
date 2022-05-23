@@ -1734,12 +1734,6 @@ en:
           status_check_instructions: <a href="https://app.mt.gov/voterinfo/">https://app.mt.gov/voterinfo/</a>
           requirements: Any registered voter who has been a resident of Montana for
             at least 30 days may request an absentee ballot.
-          step_3_header: Any registered voter in Montana may vote by absentee ballot.
-          step_3_instructions: |-
-            <p>All registered voters in Montana are eligible to vote by absentee ballot. <a href="https://app.mt.gov/voterinfo/" title="My Voter Page" target="_blank" rel="noopener noreferrer">Make sure you're registered</a>.</p>
-            <h2 role="heading" aria-level="2">Prepare your registration form</h2>
-            <p>Please fill out the fields below so we can prepare
-            your PDF early vote request form.</p>
           finish_instructions_1_hint: |-
             <p>If someone will be picking up your ballot, make sure you sign and date that portion of the application. The designated person should not sign and date until they have received the ballot.
             </p>
@@ -2370,7 +2364,8 @@ en:
           
           finish_instructions_3_hint_state: |-
             <p>All absentee ballots must be notarized prior to return.</p>
-            <p>If you return your ballot by hand, it must be delivered no later than the end of business hours the day before the election. You must show the same proof of identity required for in-person voting.</p>
+            <p>If you return your ballot by hand, it must be delivered no later than the end of business hours the day before the election. You must show the same
+            <a href="https://oklahoma.gov/elections/voters/proof-of-identity.html">proof of identity</a> required for in-person voting.</p>
             <p>Absentee ballots returned by mail must be received by the County Election Board by 7 p.m. (CST) on Election Day.</p>
         state_online_abr:
           instructions: |
