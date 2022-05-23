@@ -3040,52 +3040,29 @@ en:
           has_state_license: I have a valid UT state identification card or driver's license.
           has_no_state_license: I do not have a valid UT state identification card or driver's license.
       va:
-        state_online_abr:
-          header: Requesting an Absentee Ballot in Virginia
-          confirm: ''
-          instructions: "<p>You can apply for an Absentee Ballot in Virginia either:</p>\n<ul>
-            \n<li>On the Virginia Voter Portal, or</li>\n<li>By submitting a \"Vote
-            by Mail\" Application form by mail, fax or email. The form is available
-            on Virginia's <a href=\"https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/\"
-            target=\"_blank\" ref=\"noopener noreferrer\">Absentee and Early Voting</a>
-            page.</ul>"
-          button: Finish your<br/>vote by mail request<br/> online with Virginia.
         abr:
-          request_deadline: received by 5:00 pm on the eleventh (11th) day before
-            the election.
-          status_check_instructions: You can look up your Absentee Ballot application
-            by using the <a href="https://vote.elections.virginia.gov/VoterInformation">Virginia
-            Citizen Portal</a>.
-          step_2_header: Where are you registered to vote?
-          step_2_instructions: "<p>We'll use this information to determine how you
-            can request your vote by mail ballot.</p>"
-          step_3_header: Prepare your Virginia PDF Vote By Mail Request Form
-          step_3_instructions: "<p>Please fill out the fields below so we can prepare
-            your PDF vote by mail request form.</p>"
-          finish_pdf_delay: It's taking a while to create your vote by mail request
-            form to download, but don't worry. We'll send you an email when it's ready.
-            In the mean time, you can let your friends know how they can request a
-            vote by mail ballot too.
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to the following statement on my request form.<br/><br/>I swear/affirm,
-            subject to felony penalties for making false statements pursuant to VA
-            Code § 24.2-1016, that (1) the information provided in this form is true,
-            (2) I am not requesting a ballot or voting in any other jurisdictions
-            in the US, (3) I am registered to vote in the city/county where I am applying
-            to vote, and (4) if I checked the box (in Section 3) to vote by mail for
-            the calendar year, I will likely remain eligible to vote throughout the
-            calendar year.
-          signature_capture:
-            desktop_provide_e_signature: In the state of Virginia, we can email a
-              digitally signed copy of your vote by mail request. Please select how
-              you'd like to provide a signature.
-            desktop_provide_signature: In the state of Virginia, we can email a digitally
-              signed copy of your vote by mail request. Please select how you'd like
-              to provide a signature.
-            continue_on_paper: I prefer to print, sign and mail or email my application
-              myself.
+          finish_instructions_1_hint_state: |-
+            <p>If you are a first time voter, you may need to include a copy of your ID with your voted ballot. 
+            See more information here: <a href="https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/">https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/</a>
+            </p>
+            <p>If someone has helped you complete this form, make sure they sign and date in Box 7.</p>
+          request_deadline: |-
+            <p>
+            The deadline for a voter to request an absentee ballot is:
+            </p>
+            <ul>
+              <li>June 10 at 5:00 pm for the primary election, and</li>
+              <li>October 28 at 5:00 pm for the general election</li>
+            </ul>
+          status_check_instructions: <a href="https://www.elections.virginia.gov/citizen-portal/">https://www.elections.virginia.gov/citizen-portal/</a>
+        state_online_abr:
+          instructions: |-
+            <p>You need to provide your social security number to request an absentee ballot.</p>
+            <p>You can also cast an emergency absentee ballot due to emergency situations or unexpected obligations. 
+            If you think this applies to you, see 
+            <a href="https://www.elections.virginia.gov/casting-a-ballot/early-absentee/">Absentee and Early Voting</a>.</p>
+
+          
         abr_form_fields:
           Birth_Year: 'Year I was born:'
           SSN_Last_4: Last 4 digits of my social security number
