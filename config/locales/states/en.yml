@@ -2370,32 +2370,19 @@ en:
           has_no_state_license: I do not have an OH state identification card or OH driver's license, and Social Security Number.
       ok:
         abr:
-          request_deadline: received no later than 5 p.m. the Tuesday before the election.
-          status_check_instructions: You can find your Absentee Ballot status on the
-            <a href="https://oklahoma.gov/elections/ovp.html">OK Voter Portal</a>
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>Your
-            absentee ballot request must be notarized. Read more on \nthe <a href=\"https://oklahoma.gov/elections/voters/absentee-voting/standard-absentee-voters.html\">Standard
-            Absentee Voters</a> page</i></p>"
-          finish_instructions_1_hint_state: "<p><i>Be sure to check if you need to
-            send in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>Your
-            absentee ballot request must be notarized. Read more on \nthe <a href=\"https://oklahoma.gov/elections/voters/absentee-voting/standard-absentee-voters.html\">Standard
-            Absentee Voters</a> page</i></p>"
+          status_check_instructions: <a href="https://okvoterportal.okelections.us/">https://okvoterportal.okelections.us/</a>
+          
+          finish_instructions_3_hint_state: |-
+            <p>All absentee ballots must be notarized prior to return.</p>
+            <p>If you return your ballot by hand, it must be delivered no later than the end of business hours the day before the election. You must show the same proof of identity required for in-person voting.</p>
+            <p>Absentee ballots returned by mail must be received by the County Election Board by 7 p.m. (CST) on Election Day.</p>
         state_online_abr:
-          confirm: "<p>All registered voters in Oklahoma can vote absentee!</p>"
-          instructions: "<h2 role=\"heading\" aria-level=\"2\">Voter Registration
-            in Oklahoma</h2>\n<p>Not sure if you're registered to vote? Check your
-            voter registration \nstatus on the <a href=\"https://oklahoma.gov/elections/ovp.html\">OK
-            Voter Portal</a>.</p>\n<h2 role=\"heading\" aria-level=\"2\">Request an
-            Absentee Ballot</h2>\n<p>You can request an Absentee Ballot online on
-            the OK Voter Portal or by downloading an Oklahoma Application for Absentee
-            Ballot form mailing, e-mailing or faxing it to your County Election Board
-            office.</p>\n<p>You will need to find your voter information before requesting
-            an absentee ballot.</>"
-          button: Visit the Oklahoma <br/> Absentee Voting page to <br/> Request an
-            Absentee Ballot
-          requirements: "<p>If you are registered to vote and have a valid state ID,
-            you may request your absentee ballot online directly with the state.</p>"
+          instructions: |
+            <p>You can request an absentee ballot any time starting January 1st for that calendar year. You may apply for absentee ballots for one election, for several elections or for all elections during the calendar year, in which the application is submitted.<p>
+            <p>In 2022, you must request an absentee ballot by 5pm on 6/13/2022 for the June 28th Primary and 10/24/2022 for the November 8th General.<br>
+            For more elections, see the <a href="https://oklahoma.gov/elections/elections-results/2022-election-calendar.html">2022 Oklahoma Election Calendar</a>.</p>
+
+          
       or:
         abr:
           everyone_gets_ballot:
