@@ -112,39 +112,6 @@ module AbrStateMethods::NY
   def form_field_items
     [
       {"abr_reason_instructions": {type: :instructions}},
-      {"abr_reason_selections": {type: :radio, required: true}},
-      {"abr_county": {type: :select,  required: true, include_blank: true, options: COUNTIES }},	
-      {"abr_election_type_selections": {type: :radio, required: true}},	
-      {"absence_begin_date": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type4"}},
-      {"absence_end_date": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type4"}},
-      {"abr_address_type_selections": {type: :radio, visible_any: "abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type4"}},
-      {"primary_registration_address_check": {type: :checkbox, visible: "abr_address_type_selections_abr_address_type3"}}, 
-      {"abr_request_name": {required: :if_visible, visible: "abr_address_type_selections_abr_address_type4"}},
-      {"abr_mailing_address_instructions": {type: :instructions, hidden: "primary_registration_address_check", visible:  "abr_address_type_selections_abr_address_type3"}},	
-      {"abr_mailing_street_number": {classes: "quarter", required: :if_visible, hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
-      {"abr_mailing_street_name": {classes: "half", required: :if_visible, hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
-      {"abr_mailing_unit": {classes: "quarter", hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
-      {"abr_mailing_city": {classes: "half", required: :if_visible, hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
-      {"abr_mailing_state_abbrev": {classes: "quarter", required: :if_visible, hidden: "primary_registration_address_check",  visible: "abr_address_type_selections_abr_address_type3", type: :select, options: GeoState.collection_for_select}},	
-      {"abr_mailing_zip": {classes: "quarter", required: :if_visible, hidden: "primary_registration_address_check", visible: "abr_address_type_selections_abr_address_type3"}},	
-      {"abr_address_type_selections2": {type: :radio, required: :if_visible, visible_any: "abr_election_type_selections_abr_election_type2 abr_election_type_selections_abr_election_type3 abr_election_type_selections_abr_election_type4"}},
-      
-      {"abr_request_name2": {required: :if_visible,visible: "abr_address_type_selections2_abr_address_type8"}},
-      
-      {"general_registration_address_check": {type: :checkbox, visible: "abr_address_type_selections2_abr_address_type7"}}, 
-      
-      {"abr_mailing_address_instructions2": {type: :instructions, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},
-      {"abr_mailing_street_number1": {classes: "quarter", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},
-      {"abr_mailing_street_name1": {classes: "half", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},	
-      {"abr_mailing_unit1": {classes: "quarter", hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},	
-      {"abr_mailing_city1": {classes: "half", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},	
-      {"abr_mailing_state_abbrev1": {classes: "quarter", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7", type: :select, options: GeoState.collection_for_select}},	
-      {"abr_mailing_zip1": {classes: "quarter", required: :if_visible, hidden: "general_registration_address_check", visible: "abr_address_type_selections2_abr_address_type7"}},	
-      
-      {"abr_witness_check1": {type: :checkbox}},	
-      {"abr_assistant_instructions": {visible: "abr_witness_check1"}},
-      {"abr_assistant_address_line1": {visible: "abr_witness_check1", required: :if_visible}},
-      {"abr_assistant_address_line2": {visible: "abr_witness_check1", required: :if_visible}},
     ]
   end
   

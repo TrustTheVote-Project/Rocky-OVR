@@ -2211,19 +2211,14 @@ en:
              <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
              </ul>
           request_deadline: |-
-            <p>The deadlines for your absentee ballot request are:</p>
-            <ul>
-            <li>June Primary: Postmarked by June 13th or in person by June 27th.</li>
-            <li>November General: Postmarked by October 24th or in person by November 7th.</li>
-            </ul>
-          status_check_instructions: |-
-            <p>Track your absentee ballot request by contacting your County Board of Elections:
-            <a href="https://www.elections.ny.gov/CountyBoards.html">https://www.elections.ny.gov/CountyBoards.html</a>
-            </p>
-          finish_instructions_1_hint: |-
-            <p>
-            If you are unable to sign your application, make sure sure that the witness also signs the application.
-            </p>
+            <p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>
+            <p>You can request an absentee ballot in person until the day before the election. See the <a href="https://www.elections.ny.gov/VotingAbsentee.html">New York page on absentee voting</a> for more information on requesting a ballot in person.</p>
+
+          finish_instructions_3: "<p>Once you have received your ballot, read through the instructions
+        carefully, fill out your ballot and return your ballot as soon as possible.
+        Be sure to check if you need to send in a copy of your ID or have your ballot notarized
+        or witnessed. </p>"
+
 
           signature_capture:
             desktop_provide_e_signature: In the state of New York, we can email a
