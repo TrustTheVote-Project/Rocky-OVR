@@ -350,12 +350,12 @@ ovr_states:
     #redirect_to_online_url: true
     redirect_to_online_url: false
     api_settings:
+      #api_url: "https://gnaritas.com"
       #api_url: "https://fake-wa-endpoint.herokuapp.com:443"
       api_url: "https://qa-avr.votewa.gov/VoteWAExternalAPI/api/DOLRegister"
       api_username: "RTVAVR"
     languages:
       - en
-      - es
   MA:
     languages:
       - en

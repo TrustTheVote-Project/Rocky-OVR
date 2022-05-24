@@ -294,7 +294,7 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
       "isHomeless"	=> self.is_homeless,
       
       #"Signature"	=>	self.foo, # Need to know format and then ask Alex how to collect
-      "Signature" =>self.class.resize_signature_url(voter_signature_image),
+      "Signature" =>self.class.resize_signature_url(voter_signature_image).delete_prefix('data:image/jpeg;base64,'),
 
       "transactionID" => self.uid,
       "registrationDate"	=>	self.updated_at.iso8601, # CTW ask Alex *now*, check format
@@ -347,58 +347,101 @@ Response as:
 
 =end
 
+class NetworkingError < StandardError; end
+class InvalidResponseError < NetworkingError; end
+
   def submit_to_online_reg_url
-    server = RockyConf.ovr_states.WA.api_settings.api_url
-    #url = File.join(server, "/register/")
-    url=server
+    url = RockyConf.ovr_states.WA.api_settings.api_url
 
-    #Switch to HTTP (ala some other model)
-    response = RestClient.post(url, self.to_wa_data.to_json,  wa_api_headers("submission"))
-    result = JSON.parse(response)
-    
-    # TODO - what is the response actually like??
-    # Should always get a transactionID
-    if result["transactionID"] 
-      self.wa_transaction_id  = result["transactionID"]
-      self.save(validate: false)
-    end
+    RequestLogSession.make_call_with_logging(registrant: self, client_id: 'WARegistrationRequest::Rocky', censor: WACensor) do 
+    begin
 
-    # IF token success otherwise error
-    if !result["returnToken"].blank?
-      self.return_token  = result["returnToken"]
-      self.save(validate: false)
-    else
-      self.wa_submission_error ||= []
-      if result["returnCode"]
-        self.wa_submission_error << "#{DateTime.now}: Return Code #{result["returnCode"]}"
-      end
-      if result["errorCode"]
-        self.wa_submission_error << "#{DateTime.now}: Error Code #{result["errorCode"]}"
-      end
-      if result["errorMessage"]
-        self.wa_submission_error << "#{DateTime.now}: Error message #{result["errorMessage"]}"
-      end
+      #New model
+
+      uri = URI(url)
+      RequestLogSession.request_log_instance&.log_uri(uri.host)
+
+      Rails.logger.debug "WA:REQUEST>> #{uri.inspect}"
+
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.read_timeout = 125
       
+      request = Net::HTTP::Post.new("/#{uri.path}")
+      
+      request.add_field('Content-Type', 'application/json')
+      request.add_field('Accept', 'application/json')
+      request.add_field('Cache-Control', 'no-cache')
+  
+      request.body =self.to_wa_data.to_json
 
+      response = begin
+        RequestLogSession.send_and_log(http, request)
+      rescue StandardError => e
+        raise NetworkingError, e
+      end
+
+      Rails.logger.debug 'WA:RESPONSE>> ' + response.to_s
+      Rails.logger.debug 'WA:RESPONSE>> ' + response.body.to_s
+
+      result = JSON.parse(response.body.to_s)
+      #End new model
+
+      # #Old model
+      # response = RestClient.post(url, self.to_wa_data.to_json,  wa_api_headers("submission"))
+      # result = JSON.parse(response)
+      # #Old Model
+
+      # Should always get a transactionID
+      if result["transactionID"] 
+        self.wa_transaction_id  = result["transactionID"]
+        self.save(validate: false)
+      end
+
+      # IF token success otherwise error
+      if !result["returnToken"].blank?
+        self.return_token  = result["returnToken"]
+        self.save(validate: false)
+      else
+        self.wa_submission_error ||= []
+        if result["returnCode"]
+          self.wa_submission_error << "#{DateTime.now}: Return Code #{result["returnCode"]}"
+          RequestLogSession.request_log_instance.log_error("returnCode:" + result["returnCode"].to_s)
+        end
+        if result["errorCode"]
+          self.wa_submission_error << "#{DateTime.now}: Error Code #{result["errorCode"]}"
+          RequestLogSession.request_log_instance.log_error("errorCode:" + result["errorCode"].to_s)
+        end
+        if result["errorMessage"]
+          self.wa_submission_error << "#{DateTime.now}: Error message #{result["errorMessage"]}"
+          RequestLogSession.request_log_instance.log_error("errorMessage:" + result["errorMessage"].to_s)
+        end       
+      end
+
+      #CTW This is post API submission
+      if !self.return_token.blank?  # Success
+        self.update_original_registrant
+        self.registrant.complete_registration_with_state!  #It is complete already (so this is confirm?)
+      else
+        self.wa_submission_error ||= []
+        self.wa_submission_error << "#{DateTime.now}: No WA return_token"
+        self.registrant.skip_state_flow!
+        RequestLogSession.request_log_instance.log_error("Registrant Switched to paper.")
+        AdminMailer.wa_registration_error(self, self.wa_submission_error, "Registrant Switched to paper").deliver_now
+      end
     end
-
-    #CTW This is post API submission
-
-    if !self.return_token.blank?  # Success
-      self.update_original_registrant
-      self.registrant.complete_registration_with_state!  #It is complete already (so this is confirm?)
-    else
+    rescue Exception=>e
       self.wa_submission_error ||= []
-      self.wa_submission_error << "#{DateTime.now}: No WA return_token"
+      self.wa_submission_error << [e.message, e.backtrace].flatten
       self.registrant.skip_state_flow!
-      AdminMailer.wa_registration_error(self, self.wa_submission_error, "Registrant Switched to paper").deliver_now
-    end
-
-  rescue Exception=>e
-    self.wa_submission_error ||= []
-    self.wa_submission_error << [e.message, e.backtrace].flatten
-    self.registrant.skip_state_flow!
-    AdminMailer.wa_registration_error(self, self.wa_submission_error, "Registrant Switched to paper").deliver_now
+      RequestLogSession.request_log_instance.log_error(e)
+      RequestLogSession.request_log_instance.log_error("Registrant Switched to paper.")
+      begin
+        AdminMailer.wa_registration_error(self, self.wa_submission_error, "Registrant Switched to paper").deliver_now
+      rescue 
+      end 
+  end
   ensure
     self.wa_submission_complete = true
     self.save(validate: false)
@@ -549,6 +592,7 @@ end
   end
 
   def eligible?
+      return false if self.locale!="en"
       return true if self.date_of_birth.blank?
       earliest_date = Date.today - 16.years 
       if self.date_of_birth > earliest_date

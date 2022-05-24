@@ -591,12 +591,9 @@ ovr_states:
       api_url: "https://qa-avr.votewa.gov/VoteWAExternalAPI/api/DOLRegister"
       api_username: "RTVAVR"
     #CTW are we actually supporting all these languages?
+    #Removing all but en
     languages:
       - en
-      - es
-      - zh
-      - vi
-      - ko
   WV:
     languages:
       - en
