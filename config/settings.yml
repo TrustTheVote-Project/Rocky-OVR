@@ -298,7 +298,7 @@ absentee_states:
   UT: 
     abr_status_check_url: "https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot"
   VA:
-    online_req_url: https://vote.elections.virginia.gov/VoterInformation
+    online_req_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/absentee
     pdf_template: va.pdf
     abr_status_check_url: "https://www.elections.virginia.gov/citizen-portal/"
   VT: 
