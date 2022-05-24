@@ -3040,52 +3040,28 @@ en:
           has_state_license: I have a valid UT state identification card or driver's license.
           has_no_state_license: I do not have a valid UT state identification card or driver's license.
       va:
-        state_online_abr:
-          header: Requesting an Absentee Ballot in Virginia
-          confirm: ''
-          instructions: "<p>You can apply for an Absentee Ballot in Virginia either:</p>\n<ul>
-            \n<li>On the Virginia Voter Portal, or</li>\n<li>By submitting a \"Vote
-            by Mail\" Application form by mail, fax or email. The form is available
-            on Virginia's <a href=\"https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/\"
-            target=\"_blank\" ref=\"noopener noreferrer\">Absentee and Early Voting</a>
-            page.</ul>"
-          button: Finish your<br/>vote by mail request<br/> online with Virginia.
         abr:
-          request_deadline: received by 5:00 pm on the eleventh (11th) day before
-            the election.
-          status_check_instructions: You can look up your Absentee Ballot application
-            by using the <a href="https://vote.elections.virginia.gov/VoterInformation">Virginia
-            Citizen Portal</a>.
-          step_2_header: Where are you registered to vote?
-          step_2_instructions: "<p>We'll use this information to determine how you
-            can request your vote by mail ballot.</p>"
-          step_3_header: Prepare your Virginia PDF Vote By Mail Request Form
-          step_3_instructions: "<p>Please fill out the fields below so we can prepare
-            your PDF vote by mail request form.</p>"
-          finish_pdf_delay: It's taking a while to create your vote by mail request
-            form to download, but don't worry. We'll send you an email when it's ready.
-            In the mean time, you can let your friends know how they can request a
-            vote by mail ballot too.
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to the following statement on my request form.<br/><br/>I swear/affirm,
-            subject to felony penalties for making false statements pursuant to VA
-            Code § 24.2-1016, that (1) the information provided in this form is true,
-            (2) I am not requesting a ballot or voting in any other jurisdictions
-            in the US, (3) I am registered to vote in the city/county where I am applying
-            to vote, and (4) if I checked the box (in Section 3) to vote by mail for
-            the calendar year, I will likely remain eligible to vote throughout the
-            calendar year.
-          signature_capture:
-            desktop_provide_e_signature: In the state of Virginia, we can email a
-              digitally signed copy of your vote by mail request. Please select how
-              you'd like to provide a signature.
-            desktop_provide_signature: In the state of Virginia, we can email a digitally
-              signed copy of your vote by mail request. Please select how you'd like
-              to provide a signature.
-            continue_on_paper: I prefer to print, sign and mail or email my application
-              myself.
+          finish_instructions_1_hint_state: |-
+            <p>If you are a first time voter, you may need to include a copy of your ID with your voted ballot. 
+            See more information here: <a href="https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/">https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/</a>
+            </p>
+          request_deadline: |-
+            <p>
+            The deadline for a voter to request an absentee ballot is:
+            </p>
+            <ul>
+              <li>June 10 at 5:00 pm for the primary election, and</li>
+              <li>October 28 at 5:00 pm for the general election</li>
+            </ul>
+          status_check_instructions: <a href="https://www.elections.virginia.gov/citizen-portal/">https://www.elections.virginia.gov/citizen-portal/</a>
+        state_online_abr:
+          instructions: |-
+            <p>You need to provide your social security number to request an absentee ballot.</p>
+            <p>You can also cast an emergency absentee ballot due to emergency situations or unexpected obligations. 
+            If you think this applies to you, see 
+            <a href="https://www.elections.virginia.gov/casting-a-ballot/early-absentee/">Absentee and Early Voting</a>.</p>
+
+          
         abr_form_fields:
           Birth_Year: 'Year I was born:'
           SSN_Last_4: Last 4 digits of my social security number
@@ -4008,7 +3984,7 @@ en:
       georgia: Postmarked by 4/25/2022
       hawaii: Postmarked by 8/3/2022
       idaho: Postmarked by 4/22/2022
-      indiana: Postmarked by 4/4/2022
+      indiana: Postmarked by 10/11/2022
       illinois: received 27 days prior to an election
       iowa: Postmarked by 5/23/2022
       kansas: Postmarked by 7/12/2022
@@ -4028,9 +4004,9 @@ en:
       new_york: Postmarked by 6/3/2022
       north_carolina: Postmarked by 4/22/2022
       north_dakota: North Dakota does not have voter registration.
-      nebraska: Postmarked by 4/22/2022
+      nebraska: Postmarked by 10/21/2022
       nevada: Postmarked by 5/17/2022
-      ohio: Postmarked by 4/4/2022
+      ohio: Postmarked by 10/11/2022
       oklahoma: Postmarked by 6/3/2022
       oregon: Postmarked by 4/26/2022
       pennsylvania: Received by 5/2/2022
@@ -4043,7 +4019,7 @@ en:
       vermont: Received by 8/9/2022
       virginia: Postmarked by 5/31/2022
       washington: Received by 7/25/2022
-      west_virginia: Postmarked by 4/19/2022
+      west_virginia: Postmarked by 10/18/2022
       wisconsin: Postmarked by 7/20/2022
       wyoming: Received by 8/1/2022
       postmarked_11_days: postmarked 11 days before the election
