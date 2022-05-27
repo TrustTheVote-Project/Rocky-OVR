@@ -1,39 +1,41 @@
 module AbrStateMethods::IL
   
-  PDF_FIELDS = {
-    "Applicants Name": {
-      method: "full_name"
-    },
-    "Street Address": {
-      method: "address"
-    },
-    "City State Zip": {
-      method: "address_city_state_zip"
-    },
-    "County": {},
-    "Date of Birth": {
-      method: "date_of_birth_mm_dd_yyyy"
-    },
-    "Phone Number": {
-      method: "phone"
-    },
-    "Email": {
-      method: "email"
-    },
-    "ElectionPrecinct": {},
-    "VOTERS OPTIONAL ADDRESS LINE 1": {
-      method: "full_name_if_has_mailing_address"
-    },
-    "VOTERS OPTIONAL ADDRESS LINE 2": {},
-    "VOTERS OPTIONAL ADDRESS LINE 3": {},
-    "VOTERS OPTIONAL ADDRESS LINE 4": {},
-    "delivery_address": { method: "delivery_full_address" },
+  PDF_FIELDS = {'abr_email': {:method=>"email"},
+                'abr_first_name': {:method=>"first_name"},
+                'abr_last_name': {:method=>"last_name"},
+                'abr_street_number': {method: "street_number"},
+                'abr_street_name': {method: "street_name"},
+                'abr_unit': {:method=>"unit"},
+                'abr_city': {:method=>"city"},
+                'abr_home_state_abbrev': {:method=>"home_state_abbrev"},
+                'abr_zip': {:method=>"zip"},
+                'abr_phone': { method: "phone"},
+                
+                'abr_county': {},
+                'abr_precinct': {},
+
+                'abr_mailing_street_number': {},
+                'abr_mailing_street_name': {},
+                'abr_mailing_unit': {},
+                'abr_mailing_city': {},
+                'abr_mailing_state_abbrev': {},
+                'abr_mailing_zip': {},
+                'abr_date_of_birth_mm_dd_yyyy': {
+                  method: "date_of_birth_mm_dd_yyyy"
+                },
+
+                'abr_election_type1': { value: "Primary" },
+                'abr_election_date': { value: "06/28/2022" },
+
+                'abr_party': {},
+                'abr_want_nonpartisan_ballot': { options: ["Off", "Yes"]}
   }
+
   EXTRA_FIELDS = ["has_mailing_address"]
   
   def form_field_items
     [
-      {"County": {type: :select, required: true, include_blank: true, options: [
+      {"abr_county": {type: :select, required: true, include_blank: true, options: [
         "Adams",
         "Alexander",
         "Bond",
@@ -137,11 +139,18 @@ module AbrStateMethods::IL
         "Winnebago",
         "Woodford",
       ]}},
-      {"ElectionPrecinct": {required: true}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"VOTERS OPTIONAL ADDRESS LINE 2": {visible: "has_mailing_address"}},
-      {"VOTERS OPTIONAL ADDRESS LINE 3": {visible: "has_mailing_address", required: :if_visible}},
-      {"VOTERS OPTIONAL ADDRESS LINE 4": {visible: "has_mailing_address", required: :if_visible}},
+      {'abr_precinct': {required: false}},
+      {'has_mailing_address': {type: :checkbox}},
+      {'abr_mailing_street_number': {required: :if_visible, visible: "has_mailing_address", classes: "quarter"}},
+      {'abr_mailing_street_name': {required: :if_visible, visible: "has_mailing_address", classes: "half"}},
+      {'abr_mailing_unit': {visible: "has_mailing_address", classes: "quarter"}},
+      {'abr_mailing_city': {required: :if_visible, visible: "has_mailing_address", classes: "half"}},
+      {'abr_mailing_state_abbrev': {type: :select, required: :if_visible, visible: "has_mailing_address", classes: "quarter", options: GeoState.collection_for_select}},
+      {'abr_mailing_zip': {required: :if_visible, visible: "has_mailing_address", classes: "quarter"}},
+      {'abr_party_instructions': {type: :instructions}},
+      {'abr_party': {required: :if_visible, hidden: "abr_want_nonpartisan_ballot"}},
+      {'abr_want_nonpartisan_ballot': { type: :checkbox}},
+      
     ]
   end
    
