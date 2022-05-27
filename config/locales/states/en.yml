@@ -2201,6 +2201,15 @@ en:
           has_no_state_license: I do not have a current and valid NV state identification card or driver's license, and Social Security Number.
       ny:
         abr:
+          step_2_header: Eligibility
+          step_2_instructions: |-
+            <p>You must have a reason to request an absentee ballot in New York. You can vote absentee if:</p>
+             <ul><li>You will be absent from the relevant county or New York City on election day,</li>
+             <li>You are experiencing temporary or permanent illness or physical disability,</li>
+             <li>You have duties related to primary care of one or more individuals who are ill or physically disabled,</li>
+             <li>You are a resident or patient of a Veterans Health Administration Hospital, or</li>
+             <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
+             </ul>
           request_deadline: |-
             <p>The deadlines for your absentee ballot request are:</p>
             <ul>
@@ -2216,6 +2225,7 @@ en:
             If you are unable to sign your application, make sure sure that the witness also signs the application.
             </p>
 
+
           signature_capture:
             desktop_provide_e_signature: In the state of New York, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -2225,28 +2235,8 @@ en:
               provide a signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
-          requirements: |-
-            <p>Registered voters are eligible to request and absentee ballot for one of the following reasons:</p>
-             <ul><li>You will be absent from the relevant county or New York City on Election Day;</li>
-             <li>You have a temporary illness or physical disability;</li>
-             <li>You have a permanent illness or disability;</li>
-             <li>You have duties related to primary care of one or more individuals who are ill or physically disabled;</li>
-             <li>You are a resident or patient of a Veterans Administration hospital; or</li>
-             <li>You are detained in jail/prison, awaiting trial, awaiting action by grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li></ul>
         state_online_abr:
-          header: Requesting an Absentee Ballot in New York
-          confirm: ''
-          instructions: "<p>You can apply for an Absentee Ballot in New York in any
-            of these ways:</p>\n<ul> \n<li>Click the button below to use the Absentee
-            Application Portal</a></li>\n<li>In person at the <a target=\"_blank\"
-            rel=\"noopener noreferrer\" href=\"https://www.elections.ny.gov/CountyBoards.html\">county
-            board of elections</a></li>\n<li>By designating another person to deliver
-            your application in-person to your local <a target=\"_blank\" rel=\"noopener
-            noreferrer\"  href=\"https://www.elections.ny.gov/CountyBoards.html\">county
-            board of elections</a></li>\n</ul>"
-          requirements: "<p>If you are registered to vote, you may request your absentee
-            ballot online directly with the state.  You may be required to have a
-            valid New York state ID</p>"
+          instructions: "<p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>"
         abr_form_fields:
           abr_email: Email
           abr_county: County where you live
