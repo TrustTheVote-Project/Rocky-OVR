@@ -2236,7 +2236,11 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         state_online_abr:
-          instructions: "<p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>"
+          instructions: |-
+            <p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>
+            <p>You can request an absentee ballot in person until the day before the election. 
+            See the <a href="https://www.elections.ny.gov/VotingAbsentee.html">New York page on absentee voting</a> for more information on requesting a ballot in person.</p>
+
         abr_form_fields:
           abr_email: Email
           abr_county: County where you live
