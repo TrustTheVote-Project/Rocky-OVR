@@ -1,33 +1,33 @@
 module AbrStateMethods::IL
   
-  PDF_FIELDS = {
-    "Applicants Name": {
-      method: "full_name"
-    },
-    "Street Address": {
-      method: "address"
-    },
-    "City State Zip": {
-      method: "address_city_state_zip"
-    },
-    "County": {},
-    "Date of Birth": {
-      method: "date_of_birth_mm_dd_yyyy"
-    },
-    "Phone Number": {
-      method: "phone"
-    },
-    "Email": {
-      method: "email"
-    },
-    "ElectionPrecinct": {},
-    "VOTERS OPTIONAL ADDRESS LINE 1": {
-      method: "full_name_if_has_mailing_address"
-    },
-    "VOTERS OPTIONAL ADDRESS LINE 2": {},
-    "VOTERS OPTIONAL ADDRESS LINE 3": {},
-    "VOTERS OPTIONAL ADDRESS LINE 4": {},
-    "delivery_address": { method: "delivery_full_address" },
+  PDF_FIELDS = {'abr_email': {:method=>"email"},
+                'abr_first_name': {:method=>"first_name"},
+                'abr_last_name': {:method=>"last_name"},
+                'abr_street_number': {}
+                 'abr_street_name': {},
+                'abr_unit': {:method=>"unit"},
+                'abr_city': {:method=>"city"},
+                'abr_home_state_abbrev': {:method=>"home_state_abbrev"},
+                'abr_zip': {:method=>"zip"},
+                'abr_county': {:method=>"county"},
+                'abr_precinct': {},
+
+                'abr_mailing_street_number': {},
+
+
+                'abr_mailing_unit': {:method=>"unit"},
+                'abr_mailing_city': {:method=>"city"},
+                'abr_mailing_state_abbrev': {:method=>"home_state_abbrev"},
+                'abr_mailing_zip': {:method=>"zip"},
+                'abr_date_of_birth_mm_dd_yyyy': {},
+                'abr_election_type1': {},
+
+
+                'abr_election_date': {},
+
+                'abr_party': {},
+                'abr_phone': {},
+                'abr_want_nonpartisan_ballot': {}
   }
   EXTRA_FIELDS = ["has_mailing_address"]
   
