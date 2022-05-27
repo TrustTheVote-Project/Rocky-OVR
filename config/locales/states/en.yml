@@ -1726,7 +1726,7 @@ en:
       mt:
         abr:
           request_deadline: |-
-            <p>Applications must be <b>received by the county election office by noon the day before the election</b>. 
+            <p>Applications must be <b>received by the county election office by noon the day before the election</b>.
             If you want your ballot mailed to you, make sure to leave time for the application to be delivered at the election office and the ballot to be sent to you.
             </p>
             <p>If you drop off the application you will be able to pick up the absentee ballot at the same time.
@@ -1761,7 +1761,7 @@ en:
           abr_election_date_input: Enter the date of the election
           abr_request_check: Will someone be picking up your ballot for you?
           abr_request_name: "Enter the name of the person you have designated to pick up your ballot:"
-                   
+
       nc:
         state_online_abr:
           confirm: |-
@@ -2211,13 +2211,19 @@ en:
              <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
              </ul>
           request_deadline: |-
-            <p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>
-            <p>You can request an absentee ballot in person until the day before the election. See the <a href="https://www.elections.ny.gov/VotingAbsentee.html">New York page on absentee voting</a> for more information on requesting a ballot in person.</p>
-
-          finish_instructions_3: "<p>Once you have received your ballot, read through the instructions
-        carefully, fill out your ballot and return your ballot as soon as possible.
-        Be sure to check if you need to send in a copy of your ID or have your ballot notarized
-        or witnessed. </p>"
+            <p>The deadlines for your absentee ballot request are:</p>
+            <ul>
+            <li>June Primary: Postmarked by June 13th or in person by June 27th.</li>
+            <li>November General: Postmarked by October 24th or in person by November 7th.</li>
+            </ul>
+          status_check_instructions: |-
+            <p>Track your absentee ballot request by contacting your County Board of Elections:
+            <a href="https://www.elections.ny.gov/CountyBoards.html">https://www.elections.ny.gov/CountyBoards.html</a>
+            </p>
+          finish_instructions_1_hint: |-
+            <p>
+            If you are unable to sign your application, make sure sure that the witness also signs the application.
+            </p>
 
 
           signature_capture:
@@ -2345,7 +2351,15 @@ en:
       ok:
         abr:
           status_check_instructions: <a href="https://okvoterportal.okelections.us/">https://okvoterportal.okelections.us/</a>
-          
+
+          finish_instructions_1_hint_state: |-
+            <p>You can request an absentee ballot any time starting January 1st for that calendar year. You may apply for absentee ballots for one election, for several elections or for all elections during the calendar year, in which the application is submitted.</p>
+            <p>In 2022, you must request an absentee ballot by 5pm on 6/13/2022 for the June 28th Primary and 10/24/2022 for the November 8th General.</p>
+            <p>For more elections, see the <a href="https://oklahoma.gov/elections/elections-results/2022-election-calendar.html">2022 Oklahoma Election Calendar</a>.</p>
+            <p>You may qualify for an exception to this deadline if you become physically incapacitated after the deadline, or are deployed as a first responder to assist with a declared natural disaster or state of emergency after the deadline has passed. Voters in those categories may make a written request for an emergency absentee ballot. Please contact your <a href="https://oklahoma.gov/elections/about-us/county-election-boards.html>County Election Board</a> if you believe this applies to you.</p>
+
+            <p>fluff</p>
+
           finish_instructions_3_hint_state: |-
             <p>All absentee ballots must be notarized prior to return.</p>
             <p>If you return your ballot by hand, it must be delivered no later than the end of business hours the day before the election. You must show the same
@@ -2353,11 +2367,12 @@ en:
             <p>Absentee ballots returned by mail must be received by the County Election Board by 7 p.m. (CST) on Election Day.</p>
         state_online_abr:
           instructions: |
-            <p>You can request an absentee ballot any time starting January 1st for that calendar year. You may apply for absentee ballots for one election, for several elections or for all elections during the calendar year, in which the application is submitted.<p>
-            <p>In 2022, you must request an absentee ballot by 5pm on 6/13/2022 for the June 28th Primary and 10/24/2022 for the November 8th General.<br>
-            For more elections, see the <a href="https://oklahoma.gov/elections/elections-results/2022-election-calendar.html">2022 Oklahoma Election Calendar</a>.</p>
+            <p>You can request an absentee ballot any time starting January 1st for that calendar year. You may apply for absentee ballots for one election, for several elections or for all elections during the calendar year, in which the application is submitted.</p>
+            <p>When submitting your request, make sure that your name, date of birth and ID numbers match the information on your voter registration record.</p>
+            <p>You can use your Oklahoma Drivers License or state ID, or if you don't have one of those, the last 4 digits of your Social Security Number.</p>
+            <p>If you don't remember your ID number, you can provide multiple numbers. If none of them match, you will be contacted by your County Election Board.</p>
+            <p>If you do not provide a date of birth or ID number, you are not eligible to request online, and must apply in person.</p>
 
-          
       or:
         abr:
           everyone_gets_ballot:
@@ -3026,7 +3041,7 @@ en:
       va:
         abr:
           finish_instructions_1_hint_state: |-
-            <p>If you are a first time voter, you may need to include a copy of your ID with your voted ballot. 
+            <p>If you are a first time voter, you may need to include a copy of your ID with your voted ballot.
             See more information here: <a href="https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/">https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/</a>
             </p>
           request_deadline: |-
@@ -3041,11 +3056,11 @@ en:
         state_online_abr:
           instructions: |-
             <p>You need to provide your social security number to request an absentee ballot.</p>
-            <p>You can also cast an emergency absentee ballot due to emergency situations or unexpected obligations. 
-            If you think this applies to you, see 
+            <p>You can also cast an emergency absentee ballot due to emergency situations or unexpected obligations.
+            If you think this applies to you, see
             <a href="https://www.elections.virginia.gov/casting-a-ballot/early-absentee/">Absentee and Early Voting</a>.</p>
 
-          
+
         abr_form_fields:
           Birth_Year: 'Year I was born:'
           SSN_Last_4: Last 4 digits of my social security number
