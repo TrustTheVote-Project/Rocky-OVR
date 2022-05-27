@@ -2360,9 +2360,11 @@ en:
             <p>You can request an absentee ballot any time starting January 1st for that calendar year. You may apply for absentee ballots for one election, for several elections or for all elections during the calendar year, in which the application is submitted.</p>
             <p>In 2022, you must request an absentee ballot by 5pm on 6/13/2022 for the June 28th Primary and 10/24/2022 for the November 8th General.</p>
             <p>For more elections, see the <a href="https://oklahoma.gov/elections/elections-results/2022-election-calendar.html">2022 Oklahoma Election Calendar</a>.</p>
-            <p>You may qualify for an exception to this deadline if you become physically incapacitated after the deadline, or are deployed as a first responder to assist with a declared natural disaster or state of emergency after the deadline has passed. Voters in those categories may make a written request for an emergency absentee ballot. Please contact your <a href="https://oklahoma.gov/elections/about-us/county-election-boards.html>County Election Board</a> if you believe this applies to you.</p>
-
-            <p>fluff</p>
+            <p>You may qualify for an exception to this deadline if you become physically incapacitated after the deadline, 
+            or are deployed as a first responder to assist with a declared natural disaster or state of emergency 
+            after the deadline has passed. Voters in those categories may make a written request for an emergency absentee 
+            ballot. Please contact your <a href="https://oklahoma.gov/elections/about-us/county-election-boards.html">County Election Board</a> 
+            if you believe this applies to you.</p>
 
           finish_instructions_3_hint_state: |-
             <p>All absentee ballots must be notarized prior to return.</p>
