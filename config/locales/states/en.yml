@@ -2204,18 +2204,19 @@ en:
           step_2_header: Eligibility
           step_2_instructions: |-
             <p>You must have a reason to request an absentee ballot in New York. You can vote absentee if:</p>
-             <ul><li>You will be absent from the relevant county or New York City on election day,</li>
-             <li>You are experiencing temporary or permanent illness or physical disability,</li>
-             <li>You have duties related to primary care of one or more individuals who are ill or physically disabled,</li>
-             <li>You are a resident or patient of a Veterans Health Administration Hospital, or</li>
-             <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
-             </ul>
+            <ul><li>You will be absent from the relevant county or New York City on election day,</li>
+            <li>You are experiencing temporary or permanent illness or physical disability,</li>
+            <li>You have duties related to primary care of one or more individuals who are ill or physically disabled,</li>
+            <li>You are a resident or patient of a Veterans Health Administration Hospital, or</li>
+            <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
+            </ul>
           request_deadline: |-
             <p>The deadlines for your absentee ballot request are:</p>
             <ul>
             <li>June Primary: Postmarked by June 13th or in person by June 27th.</li>
             <li>November General: Postmarked by October 24th or in person by November 7th.</li>
             </ul>
+            <p>If you cannot pick up your ballot, you can designate someone to pick it up for you. Only that person designated on your application may pick up and deliver your ballot.</p>
           status_check_instructions: |-
             <p>Track your absentee ballot request by contacting your County Board of Elections:
             <a href="https://www.elections.ny.gov/CountyBoards.html">https://www.elections.ny.gov/CountyBoards.html</a>
@@ -2224,8 +2225,11 @@ en:
             <p>
             If you are unable to sign your application, make sure sure that the witness also signs the application.
             </p>
-
-
+          finish_instructions_3_hint_state: |-
+            <ul>
+            <li>If you mail your completed ballot, it must be postmarked by Election Day.</li>
+            <li>If you return your completed ballot in person, you can bring it to your County Board of Elections Office no later than Election Day at 9pm or bring it to a poll site in your county on Election Day at 9pm.</li>
+            </ul>
           signature_capture:
             desktop_provide_e_signature: In the state of New York, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -2237,10 +2241,14 @@ en:
               myself.
         state_online_abr:
           instructions: |-
+            <p>You can request an absentee ballot in person until the day before the election. 
+            See the <a href="https://www.elections.ny.gov/VotingAbsentee.html">New York page on absentee voting</a> for more information on requesting a ballot in person.</p>
+            <p>If you are permanently ill or disabled, you can choose to have an Absentee Ballot mailed to you for each subsequent election without applying again. While filling out your request, indicate that you have a permanent illness or physical disability.</p>
+            <h3>Deadlines to request an absentee ballot</h3>
             <p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>
             <p>You can request an absentee ballot in person until the day before the election. 
             See the <a href="https://www.elections.ny.gov/VotingAbsentee.html">New York page on absentee voting</a> for more information on requesting a ballot in person.</p>
-
+            
         abr_form_fields:
           abr_email: Email
           abr_county: County where you live
