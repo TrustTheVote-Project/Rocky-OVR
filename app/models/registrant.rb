@@ -546,6 +546,7 @@ class Registrant < ActiveRecord::Base
     va_registrants = {}
     mi_registrants = {}
     mn_registrants = {}
+    wa_registrants = {}
     distribute_reads do 
       both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
       both_ids.each do |id, uid|
@@ -557,6 +558,7 @@ class Registrant < ActiveRecord::Base
         StateRegistrants::VARegistrant.where(registrant_id: id_list_group).find_each {|sr| va_registrants[sr.registrant_id] = sr}
         StateRegistrants::MIRegistrant.where(registrant_id: id_list_group).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
         StateRegistrants::MNRegistrant.where(registrant_id: id_list_group).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
+        StateRegistrants::WARegistrant.where(registrant_id: id_list_group).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
       end
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
@@ -572,6 +574,8 @@ class Registrant < ActiveRecord::Base
             sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
           when "MN"
             sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
+          when "WA"
+            sr = wa_registrants[reg.uid] || StateRegistrants::WARegistrant.new
           end
           reg.instance_variable_set(:@existing_state_registrant, sr)
           reg.instance_variable_set(:@existing_state_registrant_fetched, true)
@@ -834,9 +838,10 @@ class Registrant < ActiveRecord::Base
   end
 
   def under_18_instructions_for_home_state
-    I18n.t('txt.registration.instructions.under_18',
+     I18n.t("states.custom.#{home_state_abbrev.to_s.downcase}.registration.instructions.under_18",
+      default:  I18n.t('txt.registration.instructions.under_18',
             :state_name => home_state.name,
-            :state_rule => localization&.sub_18).html_safe
+            :state_rule => localization&.sub_18)).html_safe
   end
 
 

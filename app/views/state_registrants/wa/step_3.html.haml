@@ -1,0 +1,50 @@
+= render 'shared/signature_capture/scripts'
+- content_for :head do
+  :javascript
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+
+      checkboxTogglesSet($('#state_registrants_wa_registrant_is_homeless'), $('#homeless_address')); 
+      //checkboxTogglesSet($('#state_registrants_wa_registrant_has_ssn'), $('#ssn_set')); //, $('#prev_name_rule')
+
+ 
+    });
+
+
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/wa/header'
+  
+  
+
+  -#%fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_ssn, class_name: "registrant-form__has_ssn__line",  required: true}
+
+
+  %fieldset#ssn_set.block-selector
+    %ul.flat.ssn
+      = field_li(form, :ssn4, {skip_tooltip: true, false: true, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 4, maxlength: 4} })
+
+  %fieldset.military-flag
+    %ul.stacked.radio
+      = field_li(form, :military_flag, {skip_tooltip: false,  required: true, required_message: I18n.t('states.custom.wa.custom_errors.military_flag_required'), radio_options: [[t("yes"), false], [t("no"), false]], tooltip_tag: 'military_hint_wa'})
+
+  -#%fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :military_flag, class_name: "registrant-form__military-flag__line", required: false, tooltip: 'military_hint_wa'}
+  %br
+
+  %fieldset.no_border
+    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false, tooltip: 'is_homeless_hint_wa'}
+  %fieldset#homeless_address.no_border
+    %ul.flat.ssn
+      = field_li(form, :homeless_address, {skip_tooltip: false, required: false, li_options: {class: "registrant-form__homeless_address__line"} })
+
+
+
+  = render partial: 'shared/signature_capture/form', locals: {form: form, allow_desktop_signature: @registrant.allow_desktop_signature?}
+
+
+
+  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)    
+  .back    
+    = link_to t('txt.button.back').html_safe, update_state_registrant_path(@registrant.to_param, controller.prev_step)
