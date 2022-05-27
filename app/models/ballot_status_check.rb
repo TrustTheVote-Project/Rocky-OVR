@@ -52,28 +52,19 @@ class BallotStatusCheck < ActiveRecord::Base
   end
 
   def use_leo_contact?
-    if state_abbrev
-      return RockyConf.absentee_states[state_abbrev]&.abr_track_ballot_use_leo != false
-    end
-    return true
+    return state&.state_customization&.abr_settings&.abr_track_ballot_use_leo != false    
   end
 
   def abr_status_check_url
-    if state_abbrev
-        RockyConf.absentee_states[state_abbrev]&.abr_status_check_url
-    end
+    state&.state_customization&.abr_settings&.abr_status_check_url
   end
   
   def abr_track_ballot_url
-    if state_abbrev
-        RockyConf.absentee_states[state_abbrev]&.abr_track_ballot_url
-    end
+    state&.state_customization&.abr_settings&.abr_track_ballot_url
   end
 
   def leo_lookup_url
-    if state_abbrev
-      RockyConf.absentee_states[state_abbrev]&.leo_lookup_url
-    end
+    state&.state_customization&.abr_settings&.leo_lookup_url
   end
 
 end

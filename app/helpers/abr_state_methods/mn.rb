@@ -260,7 +260,7 @@ module AbrStateMethods::MN
 
         {"Absentee ballot address_1": {visible: "has_mailing_address", required: :if_visible}},
         {"Absentee ballot address - City": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
-        {"Absentee ballot address - State": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"Absentee ballot address - State": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
         {"Absentee ballot address - Zip Code": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last", min:5}},
   
 

@@ -1,30 +1,27 @@
 module AbrStateMethods::NM
   
   PDF_FIELDS = {
-    "county": {},
-    "Election": { 
-      options: ["General", "Local", "Municipal", "Off", "Primary"],
-      value: "General"
+    "abr_email": {method: "email"},
+    "abr_id_selections": {
+      options: [
+        "abr_id_type1",
+        "abr_id_no1",
+      ]
     },
-    "street_address": {
-      method: "address"
-    },
-    "city_state_zip": {
-      method: "address_city_state_zip"
-    },
-    "birth_year": {
-      method: "date_of_birth_yyyy"
-    },
-    "voter_name": {
-      method: "full_name"
-    },
-    "mail_address1": {},
-    "mail_address2": {},
-    "mail_address3": {},
-    #"date": {},
-    #"voter_signature": {}
+    "abr_full_name": {method: "full_name"},
+    "abr_address_line_1": {method: "address_line_1"},
+    "abr_address_line_2": {method: "address_line_2"},
+    "abr_address_city_state_zip": {method: "address_city_state_zip"},
+    "abr_county": {},
+    "abr_mailing_address_line_1": {},
+    "abr_mailing_unit": {},
+    "abr_mailing_city": {},
+    "abr_mailing_state_abbrev": {},
+    "abr_mailing_zip": {},
+    "abr_date_of_birth_YYYY": {method: "date_of_birth_yyyy"},
+    "abr_phone": {method: "phone"},
   }
-  EXTRA_FIELDS = ["has_mailing_address"]
+  EXTRA_FIELDS = ["abr_check_mailing_address"]
   
   # def whatever_it_is_you_came_up_with
   #   # TODO when blah is selected it should be "abc" and otherwise left blank
@@ -33,7 +30,7 @@ module AbrStateMethods::NM
   
   def form_field_items
     [
-      {"county": {type: :select, required: true, include_blank: true, options: [
+      {"abr_county": {type: :select, required: true, include_blank: true, options: [
         "Bernalillo",
         "Catron",
         "Chaves",
@@ -68,10 +65,12 @@ module AbrStateMethods::NM
         "Union",
         "Valencia",
       ]}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"mail_address1": {visible: "has_mailing_address", required: :if_visible}},
-      {"mail_address2": {visible: "has_mailing_address", required: :if_visible}},
-      {"mail_address3": {visible: "has_mailing_address"}},
+      {"abr_check_mailing_address": {type: :checkbox}},
+      {"abr_mailing_address_line_1": {visible: "abr_check_mailing_address", required: :if_visible, classes: "three-quarter"}},
+      {"abr_mailing_unit": {visible: "abr_check_mailing_address", classes: "quarter"}},
+      {"abr_mailing_city": {visible: "abr_check_mailing_address", required: :if_visible, classes: "half"}},
+      {"abr_mailing_state_abbrev": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter", options: GeoState.collection_for_select}},
+      {"abr_mailing_zip": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter"}},      
     ]
   end
   #e.g.

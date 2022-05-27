@@ -131,8 +131,41 @@ module AbrStateMethods::AL
     "Date_of_Birth": {
       method: "date_of_birth_mm_dd_yyyy"
     },
+    "abr_election_type_selections": {
+      options: [
+        "abr_election_type1",
+        "abr_election_type2",
+        "abr_election_type3",
+        "abr_election_type4",
+      ]
+    },
+    "abr_primary_type_selections1": {
+      options: [
+        "abr_primary_type1",
+        "abr_primary_type2",
+        "abr_primary_type3",
+        "abr_primary_type4",
+      ]
+    },
+    "abr_primary_type4_name": {},
+    "abr_primary_type_selections2": {
+      options: [
+        "abr_primary_type5",
+        "abr_primary_type6",
+        "abr_primary_type7",
+        "abr_primary_type8",        
+      ]
+    },
+    "abr_primary_type8_name": {},
+    "abr_election_type4_name": {},
+    "abr_primary_type_selections3": {
+      options: [
+        "abr_primary_type9",
+        "abr_primary_type10"
+      ]
+    }
   }
-  EXTRA_FIELDS = ["has_mailing_address", "identification", "earlier_exp_date_dd", "earlier_exp_date_mm", "earlier_exp_date_yyyy"]
+  EXTRA_FIELDS = ["abr_application_type_check1", "has_mailing_address", "identification", "earlier_exp_date_dd", "earlier_exp_date_mm", "earlier_exp_date_yyyy"]
  
   def form_field_items
     [
@@ -218,15 +251,24 @@ module AbrStateMethods::AL
       {"chkReason7": {type: :checkbox}},
       {"chkReason8": {type: :checkbox}},
       {"chkReason9": {type: :checkbox}},
-      {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
-      {"Drivers_License_State": {visible: "identification_dln_yes", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"identification": {type: :radio, required: true, options: ["dln_yes", "dln_no"]}},
+      {"Drivers_License_State": {visible: "identification_dln_yes", type: :select, options: GeoState.collection_for_select}},
       {"Drivers_License_Number": {visible: "identification_dln_yes", min:1, max:16, ui_regexp:'^.*$'}},
       {"SSN_last_4": {min: 4, max: 4, visible: "identification_dln_no"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
       {"City_1": {visible: "has_mailing_address"}},
-      {"State_1": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"State_1": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select}},
       {"ZIP_1": {visible: "has_mailing_address", min: 5, max: 10}}, 
+
+      {"abr_election_type_selections": { type: :radio, required: true }},
+      {"abr_primary_type_selections1": { type: :radio, visible: "abr_election_type_selections_abr_election_type1", required: :if_visible, }},
+      {"abr_primary_type4_name": { required: :if_visible, visible: "abr_primary_type_selections1_abr_primary_type3" }},
+      {"abr_primary_type_selections2": { type: :radio, visible: "abr_election_type_selections_abr_election_type2", required: :if_visible,  }},
+      {"abr_primary_type8_name": { required: :if_visible, visible: "abr_primary_type_selections2_abr_primary_type7"}},
+      {"abr_election_type4_name": { required: :if_visible, visible: "abr_election_type_selections_abr_election_type4" }},
+      {"abr_application_type_check1": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type4"}},
+      {"abr_primary_type_selections3": { type: :radio, required: :if_visible, visible: "abr_application_type_check1" }},
     ]
   end
 
@@ -241,6 +283,16 @@ module AbrStateMethods::AL
  
   
   def custom_form_field_validations
+    if ![chkreason1, chkreason2, chkreason3, chkreason4, chkreason5, chkreason6].include?("1") 
+      errors.add(self.class.make_method_name(:chkreason1), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason2), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason3), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason4), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason5), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason6), custom_required_message(:reason_instructions))
+    end
+
+    #raise errors.full_messages.to_s
     if self.identification.to_s == "dln_yes"
       custom_validates_presence_of("Drivers_License_Number")
       custom_validates_presence_of("Drivers_License_State")

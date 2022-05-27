@@ -80,7 +80,7 @@ module AbrStateMethods::ND
         {"has_mailing_address": {type: :checkbox}},
         {"Ballot_Delivery_Address": {visible: "has_mailing_address", required: :if_visible}},
         {"City_2": {visible: "has_mailing_address", classes: "half", required: :if_visible}},
-        {"State_2": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"State_2": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
         {"ZIP Code_2": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
 
         {"uocava": {type: :checkbox}},

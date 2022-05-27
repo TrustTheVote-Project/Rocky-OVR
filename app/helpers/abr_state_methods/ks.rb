@@ -157,14 +157,14 @@ module AbrStateMethods::KS
         "Woodson",
         "Wyandotte",
       ]}},
-      {"state_2": {type: :select, options: GeoState.collection_for_select, include_blank: true, required: true}},
+      {"state_2": {type: :select, options: GeoState.collection_for_select, required: true}},
       {"county_2": {required: true}},
       {"identification": {type: :radio, options: ["dln_yes", "dln_no"]}},
       {"identification_number": {visible: "identification_dln_yes", required: "show_star", min: 9, max: 9, ui_regexp:"^[kK][0-9]{8}$"}},
       {"has_mailing_address": {type: :checkbox}},
       {"Mailing_Address": {visible: "has_mailing_address"}},
       {"Mailing_City": {visible: "has_mailing_address"}},
-      {"Mailing_State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+      {"Mailing_State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select}},
       {"Mailing_Zip_Code": {visible: "has_mailing_address"}},
       {"dln_soft_validation": {type: :hidden}}
     ]

@@ -70,7 +70,7 @@ module AbrStateMethods::NV
       {"MailingAddress": {visible: "has_mailing_address", required: :if_visible}},
       {"MailApt": {visible: "has_mailing_address"}},
       {"MailingCity": {visible: "has_mailing_address", required: :if_visible}},
-      {"MailingState": {visible: "has_mailing_address", required: :if_visible,  type: :select, options: GeoState.collection_for_select, include_blank: true, }},
+      {"MailingState": {visible: "has_mailing_address", required: :if_visible,  type: :select, options: GeoState.collection_for_select }},
       {"MailingZip": {visible: "has_mailing_address", required: :if_visible, min: 5, max: 10}},
     ]
   end

@@ -45,7 +45,7 @@ module AbrStateMethods::PA
       "Mailing_Address_Type": {},
       "SSN_last_4": {sensitive:true, method: 'ssn_if_not_no_id'},
       "no_id": {
-        options: ["On", "Off"],
+        options: ["Yes", "Off"],
         method: "check_assert_no_id"
       },
       "Same_as_above": { options: ["On", "Off"] },
@@ -143,7 +143,7 @@ module AbrStateMethods::PA
         {"Same_as_above": {type: :radio, required: true}},
         {"Address_1": {visible: "same_as_above_off", required: 'star'}},
         {"City_Town_1": {visible: "same_as_above_off", classes: "half", required:'star'}},
-        {"State": {visible: "same_as_above_off", required: 'star', classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"State": {visible: "same_as_above_off", required: 'star', classes: "quarter", type: :select, options: GeoState.collection_for_select}},
         {"Zip code_2": {visible: "same_as_above_off", required:'star', classes: "quarter last"}},
         {"Mailing_Address_Type":  {visible: "same_as_above_off", required:'star'}},
         {"annual_request": {type: :radio}},
@@ -169,7 +169,8 @@ module AbrStateMethods::PA
     # ]
     
     def check_assert_no_id
-        return ("On") if self.assert_no_id.to_s=='1'
+        return ("Yes") if self.assert_no_id.to_s=='1'
+        return "Off"
     end
 
     def ssn_if_not_no_id

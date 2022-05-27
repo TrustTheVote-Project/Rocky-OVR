@@ -54,9 +54,21 @@ en:
       last_update: <p>If you registered to vote or updated your registration recently, we might not have the most up-to-date
         information. <b>Our last update from %{state} was on %{date}.</b> <a href="%{url}" target="_blank" rel="noopener">Check directly with your state</a> for the most recent and accurate results</p>
     abr:
+      splash: 
+        header_1: Requesting a ballot in %{state_name}
+        header_2: Questions about your ballot
+        header_3: Don't forget to vote!
+      everyone_gets_ballot:
+        header_1: "%{state_name} Automatically Mails All Registered Voters a Ballot"
+        instructions_1: |-
+          <p>If you are registered to vote in %{state_name} you do not need to request an absentee ballot.</p>
+          <p><a href="%{url}">Make sure you are registered to vote!</a></p>
+        header_2: Questions About Your Absentee Ballot
+        header_3: Don't Forget To Vote!
+          
       deadline_passed_header: "Requesting an Absentee Ballot in %{state}"
       deadline_passed_instructions: |-
-        <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. When there's an election in your area, we'll email you with information on how to request an absentee ballot.</p>
+        <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. <a href="https://register.rockthevote.com/pledge" title="pledge to vote">Sign up for our election reminders</a> to receive an email with information about requesting an absentee ballot when there's an election in your area.</p>
         <p>Right now, make sure that you're a <a href="%{registration_url}">registered voter</a> so that you're able to vote by mail in future elections.</p>
       deadline_passed_state_instructions:
         url: you can look up your status by using your state's <a href="%{url}">online tool</a>.
@@ -65,6 +77,13 @@ en:
       step_1_header: ''
       step_1_instructions: "<p>Request your absentee ballot now to vote from the ease
         and safety of your home.</p><br/><br/>"
+      step_2_eligibility_header: Eligibility to Request an Absentee Ballot
+      step_2_eligibility_instructions: |-
+        <p>
+          All registered voters in %{state_name} can request an absentee ballot.<br/>
+          <a href="%{lookup_url}">Check if your registration is up to date.</a>
+        </p>
+
       step_2_header: Where are you registered to vote?
       step_2_instructions: "<p>We'll use this information to determine how you can
         request your absentee ballot.</p>"
@@ -84,7 +103,9 @@ en:
         address: "Registered Address:"
         date_of_birth: "Date of Birth:"
       state_online_defaults:
-        header: Absentee Ballots in %{state}
+        header: ""
+        instructions_header: Requesting an Absentee Ballot in %{state}
+        instructions: ""
         header_choice: How do you want to request your ballot?
         requirements: "<p>If you are registered to vote and have a valid %{state}
           state ID, you may request your absentee ballot online directly with the

@@ -183,7 +183,7 @@ module AbrStateMethods::MD
         {"Gen_Address": {visible: "mailto_address_below",required: 'star', classes: "three-quarter"}},
         {"Gen_Apt": {visible: "mailto_address_below", classes: "quarter last"}},
         {"Gen_City": {visible: "mailto_address_below",required: 'star', classes: "half"}},
-        {"Gen_State": {visible: "mailto_address_below",required: 'star', classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}},
+        {"Gen_State": {visible: "mailto_address_below",required: 'star', classes: "quarter", type: :select, options: GeoState.collection_for_select}},
         {"Gen_ZipCode": {visible: "mailto_address_below",required: 'star', classes: "quarter last"}},
         #{"assistant": {type: :checkbox}}, # Removing until we can make esign conditional
         #{"Assistance_Print_Name": {visible: "assistant", required: :if_visible}},

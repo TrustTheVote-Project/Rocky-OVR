@@ -1,8 +1,8 @@
 class VA < StateCustomization
-  #def enabled_for_language?(locale, reg=nil)
-    # This is for transitions to onine state registration vs direct API calls
-  #  false
-  #end
+  # def enabled_for_language?(locale, reg=nil)
+  #   # This is for transitions to onine state registration vs direct API calls
+  #   false
+  # end
   
   def use_state_flow?(registrant)
     return false

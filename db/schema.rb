@@ -381,6 +381,12 @@ ActiveRecord::Schema.define(version: 2022_04_15_151818) do
     t.string "state_voter_check_url"
     t.boolean "abr_deadline_passed"
     t.boolean "abr_splash_page"
+    t.boolean "abr_all_ballot_by_mail"
+    t.string "abr_online_req_url"
+    t.string "leo_lookup_url"
+    t.string "abr_status_check_url"
+    t.string "abr_track_ballot_url"
+    t.boolean "abr_pdf_enabled"
   end
 
   create_table "grommet_requests", force: :cascade do |t|

@@ -1,176 +1,59 @@
 module AbrStateMethods::IA
   
-  def dob_m1
-    self.date_of_birth_mm_dd_yyyy[0]
-  end
-  def dob_m2
-    self.date_of_birth_mm_dd_yyyy[1]
-  end
-  # /
-  def dob_d1
-    self.date_of_birth_mm_dd_yyyy[3]
-  end
-  def dob_d2
-    self.date_of_birth_mm_dd_yyyy[4]
-  end
-  # /
-
-  def dob_y1
-    self.date_of_birth_mm_dd_yyyy[6]
-  end
-  def dob_y2
-    self.date_of_birth_mm_dd_yyyy[7]
-  end
-  def dob_y3
-    self.date_of_birth_mm_dd_yyyy[8]
-  end
-  def dob_y4
-    self.date_of_birth_mm_dd_yyyy[9]
-  end
-  
-  def dln_1
-    self.license && self.license[0]
-  end
-  def dln_2
-    self.license && self.license[1]
-  end
-  def dln_3
-    self.license && self.license[2]
-  end
-  def dln_4
-    self.license && self.license[3]
-  end
-  def dln_5
-    self.license && self.license[4]
-  end
-  def dln_6
-    self.license && self.license[5]
-  end
-  def dln_7
-    self.license && self.license[6]
-  end
-  def dln_8
-    self.license && self.license[7]
-  end
-  def dln_9
-    self.license && self.license[8]
-  end
-
-  def voter_pin_1
-    self.voter_pin && self.voter_pin[0]
-  end
-  def voter_pin_2
-    self.voter_pin && self.voter_pin[1]
-  end
-  def voter_pin_3
-    self.voter_pin && self.voter_pin[2]
-  end
-  def voter_pin_4
-    self.voter_pin && self.voter_pin[3]
-  end
-  
   
   PDF_FIELDS = {
-    "Last Name": {
-      method: "last_name"
+    "Email Address": { method: "email" },	
+    "Phone Number": {method: "phone"},
+    "abr_first_name": { method: "first_name" },	
+    "abr_middle_name": { method: "middle_name"},	
+    "abr_last_name": { method: "last_name"},	
+    "abr_name_suffix": { method: "name_suffix" },	
+    "abr_date_of_birth_mm_dd_yyyy": {
+      pdf_name: "date_of_birth_mm_dd_yyyy",
+      method: "date_of_birth_mm_dd_yyyy"
+    },	
+    "abr_address_line_1": { method: "address" },
+    "abr_city": { method: "city"},	
+    "abr_home_state_abbrev": { method: "home_state_abbrev"},	
+    "abr_zip": { method: "zip" },	
+    "abr_county": {},	
+    "abr_mailing_street_number": {},
+    "abr_mailing_street_name": {},
+    "abr_mailing_unit": {},
+    "abr_mailing_city": {},	
+    "abr_mailing_state_abbrev": {},	
+    "abr_mailing_zip": {},	
+    "abr_mailing_country": {},	
+    "abr_id_selections": {
+      options: [
+        "abr_id_type1",
+        "abr_id_type2"
+      ]
+    },	
+    "abr_drivers_license": { sensitive: true },	
+    "abr_id_type2_name": {},	
+    "abr_election_type_selections": {	
+      options: [
+       "abr_election_type1",
+      "abr_election_type2",
+      "abr_election_type3",
+      "abr_election_type4",
+    ]
     },
-    "Last Name Suffix": {
-      method: "name_suffix"
+    "abr_primary_type_selections1": {
+      options: [
+        "abr_primary_type1",
+        "abr_primary_type2",
+      ]
     },
-    "First Name": {
-      method: "first_name"
-    },
-    "Middle Name": {
-      method: "middle_name"
-    },
-    "Date of Birth - Month Digit 1": { method: "dob_m1" },
-    "Date of Birth - Month Digit 2": { method: "dob_m2" },
-    "Date of Birth - Day Digit 1": { method: "dob_d1" },
-    "Date of Birth - Day Digit 2": { method: "dob_d2" },
-    "Date of Birth - Year Digit 1": { method: "dob_y1" },
-    "Date of Birth - Year Digit 2": { method: "dob_y2" },
-    "Date of Birth - Year Digit 3": { method: "dob_y3" },
-    "Date of Birth - Year Digit 4": { method: "dob_y4" },
-    "Driver's LIcenese 1": { method: "dln_1" ,sensitive: true }, 
-    "Driver's LIcenese 2": { method: "dln_2" ,sensitive: true},
-    "Driver's LIcenese 3": { method: "dln_3" ,sensitive: true},
-    "Driver's LIcenese 4": { method: "dln_4" ,sensitive: true},
-    "Driver's LIcenese 5": { method: "dln_5" ,sensitive: true},
-    "Driver's LIcenese 6": { method: "dln_6" ,sensitive: true},
-    "Driver's LIcenese 7": { method: "dln_7" ,sensitive: true},
-    "Driver's LIcenese 8": { method: "dln_8" ,sensitive: true},
-    "Driver's LIcenese 9": { method: "dln_9" ,sensitive: true},
-    "Four-Digit Voter PIN 1": { method: "voter_pin_1" },
-    "Four-Digit Voter PIN 2": { method: "voter_pin_2" },
-    "Four-Digit Voter PIN 3": { method: "voter_pin_3" },
-    "Four-Digit Voter PIN 4": { method: "voter_pin_4" },
-    "Home Street Address (include apt, lot, etc. if applicable)": {
-      method: "address"
-    },
-    "Home Address City": {
-      method: "city"
-    },
-    "Home Address Zip Code": {
-      method: "zip"
-    },
-    "County": {},
-    "Mail Address": {
-      pdf_name: "Mail Address/P.O. Box"
-    },
-    "Mailing Address City": {},
-    "Mailing Address State": {},
-    "Mailing Address Zip Code": {},
-    "Country (Other than US)": {},
-    "Phone Number": {
-      method: "phone"
-    },
-    "Email Address": {
-      method: "email"
-    },
-    "Do not add this contact info to my voter recored check box": { 
-      options: ["Off", "Yes"] 
-    },
-    "Election Date - Month Digit 1": {
-      value: "1"
-    },
-    "Election Date - Month Digit 2": {
-      value: "1"
-    },
-    "Election Date - Day Digit 1": {
-      value: "0"
-    },
-    "Election Date - Day Digit 2": {
-      value: "3"
-    },
-    "Election Date - Year Digit 1": {
-      value: "2"
-    },
-    "Election Date - Year Digit 2": {
-      value: "0"
-    },
-    "Election Date - Year Digit 3": {
-      value: "2"
-    },
-    "Election Date - Year Digit 4": {
-      value: "0"
-    },
-    "Election Type": { 
-      options: ["City/School Election Type", "General Election Type", "Off", "Primary Election Type", "Special Election Type"],
-      value:  "General Election Type"
-    },
-    "Political Party - Primary Election": { 
-      options: ["Democratic Party", "Off", "Republican Party"],
-      value: "Off"
-    }
+    "abr_election_type4_name": {},	
   }
-  EXTRA_FIELDS = ["identification", {name:"license", sensitive:true}, "voter_pin", "has_mailing_address"]
+  
+  EXTRA_FIELDS = ["abr_check_mailing_address"]
    
   def form_field_items
     [
-      {"identification": {type: :radio, required: true, options: ["dln", "vic"]}},
-      {"license": {required: "custom", visible: "identification_dln", min: 9, max: 9, regexp: /\A(\d{9}|\d{3}[[:alpha:]]{2}\d{4})\z/}}, #Leaving hard constraints; form requires it
-      {"voter_pin": {required: "custom", visible: "identification_vic", min: 4, max: 4, regexp: /\A\d{4}\z/}},
-      {"County": {type: :select, required: true, include_blank: true, options: [
+      {"abr_county": {type: :select, required: true, include_blank: true, options: [
         "Adair",
         "Adams",
         "Allamakee",
@@ -271,34 +154,28 @@ module AbrStateMethods::IA
         "Worth",
         "Wright",
       ]}},
-      {"Do not add this contact info to my voter recored check box": {type: :checkbox}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"Mail Address": {visible: "has_mailing_address"}}, #TODO- the text isn't working and there was a weird duplicate thing on the txt file.... remind me to ask you about that. 
-      {"Mailing Address City": {visible: "has_mailing_address"}},
-      {"Mailing Address State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true}},
-      {"Mailing Address Zip Code": {visible: "has_mailing_address"}},
-      {"Country (Other than US)": {visible: "has_mailing_address"}},
+    {"abr_check_mailing_address": {type: :checkbox}},
+    {"abr_mailing_street_number": {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address"}},
+    {"abr_mailing_street_name": {classes: "half", required: :if_visible, visible: "abr_check_mailing_address"}},
+    {"abr_mailing_unit": {classes: "quarter", visible: "abr_check_mailing_address"}},
+    {"abr_mailing_city": {classes: "half", required: :if_visible, visible: "abr_check_mailing_address"}},	
+    {"abr_mailing_state_abbrev": {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address", type: :select, options: GeoState.collection_for_select}},	
+    {"abr_mailing_zip": {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address"}},	
+    {"abr_mailing_country": {visible: "abr_check_mailing_address"}},	
+    
+    {"abr_id_selections": { required: true, type: :radio }},
+
+    {"abr_drivers_license": { required: :if_visible, sensitive: true, visible: "abr_id_selections_abr_id_type1", regexp: /\A[\da-zA-Z]{9}\z/ }},	
+    {"abr_id_type2_name": {required: :if_visible, visible: "abr_id_selections_abr_id_type2", regexp: /\A\d{4}\z/ }},
+    {"abr_election_type_selections": { type: :radio, required: true}},
+    {"abr_primary_type_selections1": { type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type1"}},
+    {"abr_election_type4_name": {required: :if_visible, visible: "abr_election_type_selections_abr_election_type4"}},	
+    
     ]
   end
 
   
   def custom_form_field_validations
-    if self.has_mailing_address == "1"
-      [
-        "Mailing Address State",
-        "Mailing Address City",
-        "Mail Address",
-        "Mailing Address Zip Code",        
-      ].each do |f|
-        custom_validates_presence_of(f)
-      end
-    end    
-    if self.identification == "dln"
-      custom_validates_presence_of("license")
-    end  
-    if self.identification == "vic"
-      custom_validates_presence_of("voter_pin")
-    end  
   end
   
  

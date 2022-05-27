@@ -30,7 +30,7 @@ tl:
           bumoto kapag dumating ang Araw ng Halalan. Mayroong 45 milyon na eligible
           na batang botante at kung gusto nating magbigay-pansin ang mga pulitiko
           sa mga isyu na mahalaga sa atin, kailangan nating bumoto.<br><br>\n\nSalamat,<br>\nRock the Vote<br><br>\n\nP.S. Bumisita sa <strong><a
-          href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong> para
+          href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong> para
           sa karagdagang impormasyon sa pagboto, eleksyon, at mga isyung mahalaga
           sa iyo, pati mga pantulong para makapagsimula ka nga sarili mong voter registration
           campaign.<br><br>"
@@ -64,11 +64,11 @@ tl:
           %{registrant_first_name}<br><br>'
         footer: ! 'Ang "Rock the Vote" ay nangangako na pananatilihin at pangangalagaan
           ang iyong pribado at sensitibong impormasyon. Mangyaring tingnan ang aming
-          <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">patakaran
+          <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">patakaran
           sa pribadong pagrerehistro ng botante</a></strong> para sa mga detalye.<br><br>
 
 
-          Mangyaring ipadala ang mga katanungan o komentaryo sa: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Mangyaring ipadala ang mga katanungan o komentaryo sa: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     reminder:
       subject: ! 'Paalaala: Ipadala sa koreo ang iyong porma ng pagrerehistro ng botante.'
       body:
@@ -112,7 +112,7 @@ tl:
           Rock the Vote<br><br>
 
 
-          P.S. Bisitahin ang <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Bisitahin ang <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           para sa karagdagang impormasyon sa pagboto, sa mga halalan, at sa mga isyung
           mahalaga sa iyo, pati na ang pantulong para masimulan ang iyong sariling
           kampanya sa pagrerehistro ng botante.<br><br>'
@@ -148,11 +148,11 @@ tl:
           %{registrant_first_name}<br><br>'
         footer: ! 'Ang "Rock the Vote" ay  nangangako na pananatilihin at pangangalagaan
           ang iyong pribado at sensitibong impormasyon. Mangyaring tingnan ang aming
-          <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">patakaran
+          <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">patakaran
           sa pribadong pagrerehistro ng botante</a></strong> para sa mga detalya.<br><br>
 
 
-          Mangyaring ipadala ang katanungan o mga komentaryo sa: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Mangyaring ipadala ang katanungan o mga komentaryo sa: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     thank_you_external:
       subject: Salamat sa paggamit ng online na pantulong para sa pagrerehistro ng
         botante
@@ -177,7 +177,7 @@ tl:
           sa nasa ibaba ngayon.<br><br>\n \nAt panghuli, huwag kalimutang bumoto pagdating
           ng Araw ng Halalan. Kung nais nating magbigay-pansin ang mga pulitiko sa
           mga isyung mahalaga sa atin, kailangan nating bumoto.<br><br>\n\nSalamat,<br>\nRock the Vote.<br><br>\n\nP.S. Bisitahin ang <strong><a
-          href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong> para
+          href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong> para
           sa karagdagang impormasyon sa pagboto, sa halalan at sa mga isyung mahalaga
           sa iyo. Maaari mo ring makita ang mga pantulong para masimulan ang iyong
           sariling kampanya para sa pagrerehistro ng botante sa iyong komunidad.<br><br>"
@@ -212,11 +212,11 @@ tl:
           %{registrant_first_name}<br><br>'
         footer: ! 'Ang "Rock the Vote" ay  nangangako na pananatilihin at pangangalagaan
           ang iyong pribado at sensitibong impormasyon. Mangyaring tingnan ang aming
-          <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">patakaran
+          <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">patakaran
           sa pribadong pagrerehistro ng botante </a></strong>para sa mga detalye.<br><br>
 
 
-          Mangyaring ipadala ang katanungan o nga Kumentaryo sa:  <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Mangyaring ipadala ang katanungan o nga Kumentaryo sa:  <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     tell_friend:
       subject: Karerehistro ko lang na bumoto at dapat ka rin.
       body: ! 'Hey, karerehistro ko lang na bumoto sa ''%{rtv_url}'' at maaari ka

@@ -58,7 +58,7 @@ module AbrStateMethods::RI
       {"Text Field 11": {visible: "has_mailing_address"}},
       {"mail_address": {visible: "has_mailing_address", required: :if_visible }},
       {"mail_city": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
-      {"mail_state": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select, include_blank: true}}, #TODO -- this should just be abbreviations
+      {"mail_state": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}}, #TODO -- this should just be abbreviations
       {"mail_zip": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
       
     ]
