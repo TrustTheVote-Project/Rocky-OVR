@@ -1,6 +1,8 @@
 module AbrStateMethods::IL
   
-  PDF_FIELDS = {'abr_email': {:method=>"email"},
+  PDF_FIELDS = {
+                'abr_delivery_address': {method: "delivery_full_address"},
+                'abr_email': {:method=>"email"},
                 'abr_first_name': {:method=>"first_name"},
                 'abr_last_name': {:method=>"last_name"},
                 'abr_street_number': {method: "street_number"},

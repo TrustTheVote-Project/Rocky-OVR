@@ -845,7 +845,7 @@ en:
           abr_precinct: Enter your precinct	
           abr_precinct__hint: |-
             Entering your precinct is not required, but will help your Election Authority know which ballot to send you.<br>
-            Find your precinct on your voter card or by going to the <a href=""https://ova.elections.il.gov/RegistrationLookup.aspx"">Am I registered to vote</a> tool."
+            Find your precinct on your voter card or by going to the <a href="https://ova.elections.il.gov/RegistrationLookup.aspx">Am I registered to vote</a> tool.
           has_mailing_address: I get my mail at a different address from my registration address.	
           abr_mailing_street_number: Street Number
           abr_mailing_street_name: Street Name
@@ -856,6 +856,7 @@ en:
           abr_party_instructions: Indicate which party you'd like to receive a ballot for, or select a nonpartisan ballot. Nonpartisan ballots only contain referenda.
           abr_want_nonpartisan_ballot: I'd like a nonpartisan ballot (referenda only).	
           abr_party: Which party's ballot would you like to receive?	
+          abr_party__required_message: Please enter a political party or check the box for a nonpartisan ballot
         registration:
           has_state_license: I have an IL state identification card or an IL driver's license, and Social Security Number.
           has_no_state_license: I do not have an IL state identification card or an IL driver's license, and Social Security Number.
