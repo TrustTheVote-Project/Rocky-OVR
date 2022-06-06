@@ -1,49 +1,27 @@
 module AbrStateMethods::KS
   
-  PDF_FIELDS = {
-    "state_2": {},
-    "county_1": {},
-    "county_2": {},
-    "identification_number": {sensitive: true},
-    "First_Name": {
-      method: "first_name"
-    },
-    "MI": {
-      method: "middle_initial"
-    },
-    "Birthdate": {
-      method: "date_of_birth_mm_dd_yyyy"
-    },
-    "Last_Name": {
-      method: "last_name"
-    },
-    "party": {
-      options: ["Democratic", "Republican", "Off"], 
-      value: "Off"
-    },
-    "Residential_Address": {
-      method: "address"
-    },
-    "Mailing_Address": {},
-    "City": {
-      method: "city"
-    },
-    "Mailing_City": {},
-    "State": {
-      method: "home_state_abbrev"
-    },
-    "Mailing_State": {},
-    "Zip_Code": {
-      method: "zip"
-    },
-    "Mailing_Zip_Code": {},
-    "Election_Date": {
-      value: "11/03/2020"
-    },
-    "Phone_Number": {
-      method: "phone"
-    },
-  }
+  PDF_FIELDS = {'step5_date': {},
+                'step5_sign_date': {},
+                'step5_phone': {},
+                'step3_party-1': {},
+                'step3_party-2': {},
+                'abr_county': {:method=>"county"},
+                'abr_home_state_name': {},
+                'abr_county2': {},
+                'abr_drivers_license': {},
+                'abr_last_name': {:method=>"last_name"},
+                'abr_first_name': {:method=>"first_name"},
+                'middle_initial': {},
+                'date_of_birth_mm_dd_yyyy': {:method => "date_of_birth_mm_dd_yyyy"},
+                'abr_city': {:method=>"city"},
+                'abr_address_line_1': {:method=>"address_line_1"},
+                'abr_home_state_abbrev': {:method=>"home_state_abbrev"},
+                'abr_zip': {:method=>"zip"},
+                'abr_mailing_address_line_1': {},
+                'abr_mailing_city': {},
+                'abr_mailing_state_abbrev': {},
+                'abr_mailing_zip': {}
+               }
   EXTRA_FIELDS = ["identification", "has_mailing_address","dln_soft_validation"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
