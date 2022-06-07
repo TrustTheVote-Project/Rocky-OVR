@@ -1168,62 +1168,91 @@ en:
           has_no_state_license: I do not have a LA state identification card or LA driver's license.
       md:
         abr_form_fields:
-          mailto: 'I want my ballot mailed to:'
-          mailto__options:
-            address_below: A different mailing address.
-            same_as_above: My residential address.
-          movedate: 'I moved to my residential address on (MM/DD/YYYY or MM/YYYY):'
-          Delivery: 'I would like to receive my ballot by:'
-          Delivery__options:
-            mail: U.S. Mail
-            internet: Internet Delivery (Ballot emailed to the email you provided)
-          internet_delivery_identification: Identification for internet delivery
-          internet_delivery_identification__options:
-            dln: Maryland Driver's License or ID Card Number
-            ssn: I do not have a MD driver's license or ID card
-          Gen_Address: Mailing address
-          Gen_Apt: Apt/Unit
-          Gen_City: City/Town
-          Gen_State: State
-          Gen_ZipCode: Zip
-          SSN_Last_4: 'Last 4 digits of my SSN:'
-          dln: Maryland Driver's License or ID Card Number
-          dln__format_message: Invalid Maryland Driver's License or ID Card Number
-            format. Please enter 1 letter, followed by 12 numbers
-          Issue_Date: Issue Date
-          fax_number: Fax Number (xxx-xxx-xxxx)
-          Assistance_Print_Name: Name of Assistant
-          assistant: I had help completing this application
+          abr_address_type_selections: Select where you'd like your ballot delivered	
+          abr_address_type_selections__hint: You can have your ballot mailed to you at your registration address or mailing address.<br>You can also have your address emailed to you or faxed to you.
+          abr_address_type_selections__options: 
+            abr_address_type1: My home address	
+            abr_address_type2: My mailing address	
+            abr_address_type3: "Email me a link to print my ballot(s)<br>(You must provide your MD Driver's License or ID Card # or the last four digits of your SSN)<br> A link will be emailed to you about 3 weeks before the election."
+            abr_address_type4: Fax me my ballot(s)	
+          abr_fax_number: Enter the number your ballot should be faxed to	
+          abr_id_selections: Select which form of ID you'll provide	
+          abr_id_selections__options:
+            abr_id_type1: I'll provide my MD Driver’s License or ID Card	
+            abr_id_type2: "I'll provide the last four digits of my Social Security #"
+          abr_drivers_license: "Enter your MD Driver's License or ID Card #"
+          abr_drivers_license__format_message: Must be 1 letter followed by 12 numbers
+          abr_id_date_input: Enter the date your license or ID was issued	
+          abr_last_4_ssn: Enter the last four digits of your SSN	
+          abr_address_type5: 	
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit 	
+          abr_mailing_city: City 	
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP 	
+          abr_election_type_selections: Select the election you'd like to request a ballot for
+          abr_election_type_selections__hint: You can sign up for a mail-in ballot for a specific 2022 election(s) or for all future elections.
+          abr_election_type_selections__options:
+            abr_election_type1: I would like to receive a mail-in ballot for all future federal and state elections.	
+            abr_election_type2: Both the 2022 Primary and General Elections	
+            abr_election_type3: July 19, 2022 Primary Election only	
+            abr_election_type4: November 8, 2022 General Election only	
+          abr_primary_type_selections: Select the type of ballot you wish to receive (required for the primary)
+          abr_primary_type_selections__hint: To vote in a party's primary, you must choose that political party.
+          abr_primary_type_selections__options:
+            abr_primary_type1: Democratic	
+            abr_primary_type2: Republican	
+            abr_primary_type3: Unaffiliated (independent of any party)	
+            abr_primary_type4: Libertarian	
+            abr_primary_type5: Green	
+            abr_primary_type6: Working Class	
+            abr_primary_type7: Other	
+          abr_primary_type7_name: Enter the party affiliation	
+          abr_contact_method_selections: Enter your preferred method of contact if your election official needs to reach you.	
+          abr_contact_method_selections__options:
+            abr_contact_method1: Text message	
+            abr_contact_method2: Email	
+            abr_contact_method3: Mail	
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Mail-in Voting status by
-            using your state&#39;s <a target='_blank' href='https://voterservices.elections.maryland.gov/VoterSearch'>online
-            tool</a>
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to email my request form, certifying that all information is accurate.
-          signature_capture:
-            desktop_provide_e_signature: In the state of Maryland, we can email a
-              digitally signed copy of your absentee request. Please select how you'd
-              like to provide a signature.
-            desktop_provide_signature: In the state of Maryland, we can email a digitally
-              signed copy of your absentee request. Please select how you'd like to
-              provide a signature.
-            continue_on_paper: I prefer to print, sign and mail or email my application
-              myself.
+          step_2_header: Any registered voter may vote by mail-in ballot
+          step_2_instructions: |-
+            <p><a href="%{lookup_url}">Check if your registration is up to date.</a></p>
+            <h3>You may be eligible to complete your application online</h3>
+            <p>To complete your request online, you will need:</p>
+            <ul>
+            <li>A driver's license number, ID number, or Learner's Permit number, and</li>
+            <li>The last four digits of your Social Security Number.</li>
+            </ul>
+            <p>If you do not have one or both of those items, you can continue to fill out, print, sign and mail a paper request form.</p>
+
+          request_deadline: |-
+            <p>
+            Your application deadline depends on how you return your form and on how you want to receive your ballot.
+            </p><ul>
+            <li>For the primary, your application must be received by July 12th if you wish to receive your ballot by mail or fax and June 15th if you wish to receive your ballot by email.
+            </li>
+            <li>For the general election, your application must be received by November 1st if you wish to receive your ballot by mail or fax and November 4th if you wish to receive your ballot by email.</li>
+            </ul>
+          status_check_instructions: <a href="https://vote.md.gov/search">https://vote.md.gov/search</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to use a pen to sign your application. No electronic signatures are allowed.
+            </p>
+            <p>If you received help with this form, make sure that the assistant has also signed the form.
+            </p>
+          finish_instructions_3_hint_state: You must mail or hand deliver your mail-in ballot to a voting location, a ballot drop off box, or your local board of elections. You cannot email or fax your voted mail-in ballot.
+          
         state_online_abr:
           header_choice: All Registered Voters in Maryland Can Vote by Mail
+          confirm: ''
           requirements: |-
-            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state. If you do not have a valid Maryland ID, you can also print, sign and mail a paper request form by clicking the link below the button.</p>
-            <p>To request a ballot, the following personal information has to match the information about you that is on file with the Maryland MVA:</p>
+            <h3>You may be eligible to complete your application online</h3>
+            <p>To complete your request online, you will need:</p>
             <ul>
-            <li>Your name</li>
-            <li>Your date of birth</li>
-            <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
-            <p>Your signature at the MVA will become your official voter registration signature.</p>
+            <li>A driver’s license number, ID number, or Learner's Permit number, and</li>
+            <li>The last four digits of your Social Security Number.</li>
+            </ul>
+            <p>If you do not have one or both of those items, you can continue to fill out, print, sign and mail a paper request form.</p>
         registration:
           has_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
           has_no_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
