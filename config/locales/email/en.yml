@@ -160,6 +160,27 @@ en:
           on a touchscreen device:<br><br> %{registration_url}<br><br> This link will
           expire in 30 minutes.<br><br> If you have any questions or run into any
           issues, please contact us at <a href="mailto:info@rockthevote.org">info@rockthevote.org</a><br>
+    wa_confirmation:
+      subject: Thank you for using the online voter registration tool
+      body:
+        greeting: Dear %{registrant_first_name},
+        main: |-
+          Thank you for using Rock the Vote's online voter registration tool.<br><br>
+
+          Your voter registration application was submitted to your local election official for processing. Once approved, you'll receive a confirmation from them.<br><br>
+
+          If you have questions or concerns, you can check the status of your voter registration by <a href="https://voter.votewa.gov/WhereToVote.aspx?ref=voteusa_en">visiting VoteWA.</a> Please contact us directly if you encountered any issues with the registration process.<br><br>
+
+          Now, we need your help getting others registered to vote too. There are big elections all over the country this year and 45 million eligible young voters - we need to make sure everybody has their say. So, send an email to your family and friends or pass on the message below today.<br><br>
+
+          And, finally, don't forget to vote when Election Day rolls around. If we want politicians to pay attention to the issues we care about, we have to vote.<br><br>
+
+          Thanks,<br> Your friends at Rock the Vote<br><br>
+        footer: |-
+          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+
+          Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
+
     continue_on_device:
       subject: Sign your voter registration form
       body:

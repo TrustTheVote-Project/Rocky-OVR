@@ -423,6 +423,7 @@ class InvalidResponseError < NetworkingError; end
       if !self.return_token.blank?  # Success
         self.update_original_registrant
         self.registrant.complete_registration_with_state!  #It is complete already (so this is confirm?)
+        deliver_confirmation_email
       else
         self.wa_submission_error ||= []
         self.wa_submission_error << "#{DateTime.now}: No WA return_token"
@@ -464,6 +465,18 @@ end
 
   def home_state_abbrev
     "WA"
+  end
+
+  # TODO do we allow no-collect-email for WA?
+  def send_emails?
+    !self.email.blank?
+  end
+  
+  def deliver_confirmation_email
+    if send_emails?
+      # TODO, depending on partner customizations, just use main Notifier class - or refactor to StateRegistrantNotifier for all states
+      WANotifier.wa_confirmation(self).deliver_now
+    end
   end
 
   def mappings
