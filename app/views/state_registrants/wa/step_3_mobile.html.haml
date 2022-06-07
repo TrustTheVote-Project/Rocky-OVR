@@ -31,7 +31,7 @@
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false, tooltip: 'is_homeless_hint_wa'}
   %fieldset#homeless_address.no_border
-     %ul.flat.ssn
+    %ul.flat.ssn
       = field_li(form, :homeless_address, {skip_tooltip: false, required: false, li_options: {class: "registrant-form__homeless_address__line"} })
   
 
