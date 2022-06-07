@@ -169,10 +169,8 @@ absentee_states:
   MD:
     online_req_url: https://voterservices.elections.maryland.gov/onlinemailinrequest/InstructionsStep1
     pdf_template: md.pdf
-    #pdf_url: https://elections.maryland.gov/voting/documents/Absentee_Ballot_Application_English.pdf
-    email_delivery: true
-    abr_status_check_url: "https://voterservices.elections.maryland.gov/VoterSearch"
-    abr_track_ballot_url: "https://voterservices.elections.maryland.gov/VoterSearch"
+    abr_status_check_url: "https://vote.md.gov/search"
+    abr_track_ballot_url: "https://vote.md.gov/search"
   ME:
     online_req_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/index.pl
     abr_status_check_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_status.pl
