@@ -826,67 +826,37 @@ en:
           has_no_state_license: I do not have a current and valid ID state identification card or driver's license.
       il:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
+          request_deadline: |-
+            <p>Absentee ballot requests must be received by the Election Authority by June 23 
+            for the primary election. For all elections, absentee ballot requests can be made 
+            through 5 days prior to the election.</p>
+          finish_instructions_1_hint: |-
+            <p>
+            Make sure to sign and date your application.
+            </p>
+
+          status_check_instructions: |-
+            <p>
+            Contact your local election official to track your absentee ballot.
+            </p>
+
         abr_form_fields:
-          ElectionPrecinct: Precinct
-          VOTERS OPTIONAL ADDRESS LINE 2: Name of institution, company, or facility
-            (if applicable)
-          VOTERS OPTIONAL ADDRESS LINE 3: Mailing address
-          VOTERS OPTIONAL ADDRESS LINE 4: City, State, Zip
-          has_mailing_address: My mailing address differs from my residential address.
-        chicago:
-          state_online_abr:
-            header: You can request an Absentee Ballot online directly with the city
-              of Chicago
-            confirm: ''
-            requirements: ''
-            button: Finish your absentee request with Chicago
-          abr_form_fields:
-            '0': registration address
-            '1': mailing address
-            has_mailing_address: My mailing address differs from my residential address.
-            Mailed Ballot Sent: I want my ballot mailed to my
-            Address: Mailing address
-            Apartment Number2: Apt/Unit
-            ZiP Code: Zip
-            Precinct: Precinct (if known)
-            Ward: Ward (if known)
-        bloomington:
-          state_online_abr:
-            header: You can request an Absentee Ballot online directly with the city
-              of Bloomington
-            confirm: ''
-            button: Finish your absentee request with Bloomington
-        kane county:
-          state_online_abr:
-            header: You can request an Absentee Ballot online directly with Kane County
-            confirm: ''
-            button: Finish your absentee request with Kane County
-        lake county:
-          state_online_abr:
-            header: You can request an Absentee Ballot online directly with Lake County
-            confirm: ''
-            button: Finish your absentee request with Lake County
-        madison county:
-          state_online_abr:
-            header: You can request an Absentee Ballot online directly with Madison
-              County
-            confirm: ''
-            button: Finish your absentee request with Madison County
-        mchenry county:
-          state_online_abr:
-            header: You can request an Absentee Ballot online directly with McHenry
-              County
-            confirm: ''
-            button: Finish your absentee request with McHenry County
-        sangamon county:
-          state_online_abr:
-            header: You can request an Absentee Ballot online directly with Sangamon
-              County
-            confirm: ''
-            button: Finish your absentee request with Sangamon County
+          abr_county: Registration address county
+          abr_precinct: Enter your precinct	
+          abr_precinct__hint: |-
+            Entering your precinct is not required, but will help your Election Authority know which ballot to send you.<br>
+            Find your precinct on your voter card or by going to the <a href="https://ova.elections.il.gov/RegistrationLookup.aspx">Am I registered to vote</a> tool.
+          has_mailing_address: I get my mail at a different address from my registration address.	
+          abr_mailing_street_number: Street Number
+          abr_mailing_street_name: Street Name
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_party_instructions: Indicate which party you'd like to receive a ballot for, or select a nonpartisan ballot. Nonpartisan ballots only contain referenda.
+          abr_want_nonpartisan_ballot: I'd like a nonpartisan ballot (referenda only).	
+          abr_party: Which party's ballot would you like to receive?	
+          abr_party__required_message: Please enter a political party or check the box for a nonpartisan ballot
         registration:
           has_state_license: I have an IL state identification card or an IL driver's license, and Social Security Number.
           has_no_state_license: I do not have an IL state identification card or an IL driver's license, and Social Security Number.
@@ -2241,8 +2211,13 @@ en:
               myself.
         state_online_abr:
           instructions: |-
-            <p>You can request an absentee ballot in person until the day before the election. 
-            See the <a href="https://www.elections.ny.gov/VotingAbsentee.html">New York page on absentee voting</a> for more information on requesting a ballot in person.</p>
+            <p>You must have a reason to request an absentee ballot in New York. You can vote absentee if:</p>
+            <ul><li>You will be absent from the relevant county or New York City on election day,</li>
+            <li>You are experiencing temporary or permanent illness or physical disability,</li>
+            <li>You have duties related to primary care of one or more individuals who are ill or physically disabled,</li>
+            <li>You are a resident or patient of a Veterans Health Administration Hospital, or</li>
+            <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
+            </ul>
             <p>If you are permanently ill or disabled, you can choose to have an Absentee Ballot mailed to you for each subsequent election without applying again. While filling out your request, indicate that you have a permanent illness or physical disability.</p>
             <h3>Deadlines to request an absentee ballot</h3>
             <p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>

@@ -138,24 +138,8 @@ absentee_states:
     abr_status_check_url: "https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx"
     abr_track_ballot_url: "https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx"
   IL:
-    pdf_template: common.pdf
+    pdf_template: il.pdf
     leo_lookup_url: https://www.elections.il.gov/ElectionOperations/DistrictLocator/AddressFinder.aspx?T=637389017562160156
-    counties:
-      "kane county":
-        online_req_url: https://www.kanecountyclerk.org/Elections/Pages/Request-Ballot-By-Mail.aspx
-      "lake county":
-        online_req_url: https://www.lakecountyil.gov/351/Voter-Power-for-Registered-Voters
-      "madison county":
-        online_req_url: https://apps.co.madison.il.us/CountyClerk/Elections/VoteByMail/
-      "mchenry county":
-        online_req_url: https://www.mchenrycountyil.gov/county-government/departments-a-i/county-clerk/elections/vote-by-mail
-      "sangamon county":
-        online_req_url: https://www.sangamoncountyclerk.com/Elections/Vote/AbsenteeApplicationForm.aspx
-    cities:
-      "chicago":
-        online_req_url: https://www.chicagoelections.gov/en/vote-by-mail-application.html
-      "bloomington":
-        online_req_url: https://cityblm.seamlessdocs.com/f/VBMapplication1120
   IN:
     online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
     #pdf_template: in.pdf
