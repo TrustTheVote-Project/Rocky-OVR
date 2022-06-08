@@ -1615,45 +1615,32 @@ en:
           has_no_state_license: I do not have a MN state identification card or MN driver's license, or Social Security Number.
       mo:
         abr:
-          step_3_pending_header: Requesting an Absentee Ballot in Missouri
-          step_3_pending_instructions: |-
-            <p>You must have a reason to request an absentee ballot in Missouri. </p>
-            <ul>
-            <li>Absence on Election Day from the jurisdiction of the election authority in which such voter is registered to vote;</li>
-            <li>Incapacity or confinement due to illness or physical disability, including a person who is primarily responsible for the physical care of a person who is incapacitated or confined due to illness or disability;</li>
-            <li>Religious belief or practice;</li>
-            <li>Employment as an election authority, as a member of an election authority, or by an election authority at a location other than such voter's polling place;</li>
-            <li>Incarceration, provided all qualifications for voting are retained.</li>
-            <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681 because of safety concerns.</li>
-            </ul>
-            <p>Voters can request absentee ballots from their local election authority in person, by mail, by fax or by e-mail.</p>
-            <p>You must return your request to your local election authority. Find your <a href="https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority" target="_blank" rel="noopener noreferrer">local election authority</a>.
+          step_2_header: You must have a reason to request an absentee ballot.
+          step_2_instructions: |-
+            <ol>
+            <li>1. You will be absent on election day.</li>
+            <li>2. You are confined or care for a person who is confined due to illness or physical disability.</li>
+            <li>3. You can not make it to the polls due to religious belief or practice.</li>
+            <li>4. You are working at a polling place that is not your own.</li>
+            <li>5. You are incarcerated and still maintain the right to vote.</li>
+            <li>6. You are in the address confidentiality program.</li>
+            </ol>          
+          request_deadline: |-
+            <p>Absentee ballot requests must be received by your election authority no later than the 5:00 p.m. on the second Wednesday prior to any election.
+            For the primary deadline, your request must be received by 5pm 7/20/2022.</p>
 
-            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application.
+            </p>
+            <p>If you registered to vote by mail and this is your first time voting, you must provide a 
+            copy of your identification unless you provided a copy with your registration application. 
+            Acceptable forms of ID are listed here: 
+            <a href="https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee" title="Absentee voting information">https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee</a>.
+            </p>
 
-            <p>Double check that you're registered to vote by going to the <a href="https://www.sos.mo.gov/elections/goVoteMissouri/register" target="_blank" rel="noopener noreferrer">Missouri voter registration page</a>.</p>
-
-            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-
-            <p>You can apply for a ballot any time during the year, except the day of the election. Leave time for election officials to mail your ballot.</p>
-
-            <p>Make sure to review the identification requirements for voters who have not voted in person.</p>
-
-            <p>You may be able to track the status of your absentee ballot request. Contact your local election authority.</p>
-
-            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-
-            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
-            <p>All absentee ballots must be received at your county election office by 7pm on Election Day.</p>
-          request_deadline: You can apply for a ballot any time during the year, except
-            the day of the election. Leave time for election officials to mail your
-            ballot.
-          finish_instructions_1_hint_state: |-
-            <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
-            <p><i>Your absentee ballot request must be received no later than the 5:00 p.m. on the second Wednesday prior to any election.</i></p>
-          status_check_instructions: 'You may be able to track the status of your
-            absentee ballot request. Contact your local election authority.  Find
-            your official&#39;s contact information here: <a target=''_blank'' href=''https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority''>Directory</a>'
+          status_check_instructions: |-
+            Missouri does not have an absentee ballot tracking system available to voters. 
+            For more information on your ballot, contact your local election official <a href="https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority">https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority</a>
           requirements: |-
             <p>To qualify to request a ballot in MO, you must have one of the following reasons:</p>
             <ul><li>Absence on Election Day from the jurisdiction of the election authority in which I am registered </li>
@@ -1662,40 +1649,43 @@ en:
             <li>Incarceration, although I have retained all the necessary qualifitications for voting </li>
             <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681, RSMo., because of safety concerns. </li></ul>
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          mailing_address_1: Mailing address
-          mailing_address_1__hint: "(Street address or PO Box)"
-          mailing_address_2: City, State, Zip
-          Reason: 'Reason for requesting an absentee ballot:'
-          Reason__options:
-            absence: Absence on Election Day from the jurisdiction of the election
-              authority in which I am registered
-            incapacity: Incapacity or confinement due to illness or physical disability,
-              including caring for a person who is capacitated or confined due to
-              illness or disability (No Notary Required)
-            religious: Religious belief or practice
-            employment: Employment as an election authority or by an election authority
-              at a location other than my polling place
-            incarceration: Incarceration although I have retained all the necessary
-              qualifications for voting
-            confidentiality: Certified participation in the address confidentiality
-              program established under sections 589.660 to 589.681, RSMo., because
-              of safety concerns
-            COVID: I have contracted or am in an at-risk category for contracting
-              or transmitting severe acute respiratory syndrome coronavirus 2(COVID-19),
-              pursuant to Section 115.277.6,RSMo. (No Notary Required)
-          covid_instructions_formatted: "<p>At-risk voters are individuals who:</p>
-            <ul> <li>Are 65 years of age or older</li> <li>Live in a long-term care
-            facility licensed under Chapter 198, RSMo.</li> <li>Have serious heart
-            conditions</li> <li>Have chronic lung disease or moderate to severe asthma</li>
-            <li>Are immunocompromised</li> <li>Have chronic kidney disease and are
-            undergoing dialysis</li> <li>Have liver disease</li> <li>Have diabetes</li>
-            </ul>"
-          covid_instructions: 'At-risk voters are individuals who: Are 65 years of
-            age or older, Live in a long-term care facility licensed under Chapter
-            198, RSMo., Have serious heart conditions, Have chronic lung disease or
-            moderate to severe asthma, Are immunocompromised, Have chronic kidney
-            disease and are undergoing dialysis, Have liver disease, or Have diabetes'
+          abr_last_4_ssn: Enter the last four digits of your SSN
+          abr_last_4_ssn__format_message: Must be 4 numbers
+          abr_check_mailing_address: I want to receive my ballot at an address other than my registration address.
+          abr_mailing_address_instructions: Enter your address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_reason_selections: Select your reason for voting by mail
+          abr_reason_selections__options:
+            abr_reason1: Absence on Election Day from the jurisdiction of the election authority in which I am registered 	
+            abr_reason2:  Incapacity or confinement due to illness or physical disability, including caring for a person who is incapacitated or confined due to illness or disability	
+            abr_reason3: Religious belief or practice	
+            abr_reason4:  Employment as an election authority or by an election authority at a location other than my polling place	
+            abr_reason5: Incarceration, although I have retained all the necessary qualifications for voting 	If you are on supervision solely for a Suspended Impositions of Sentence (SIS) are allowed to vote as these are not considered convictions. More information may be obtained by contacting the Board of Elections at (800) 669-8683.
+            abr_reason6: Certified participation in the address confidentiality program established under sections 589.660 to 589.681 because of safety concerns.	
+          abr_election_type_selections_instructions: You must request an absentee ballot for each election.<br/>Absentee ballots can only be requested 6 weeks prior to an election.
+
+          abr_election_type_selections: Select the election to request an absentee ballot for.	
+          abr_election_type_selections__options:
+            abr_election_type1: The 8/2/2022 Primary election	
+            abr_election_type2: The 11/8/2022 General Election	
+            abr_election_type3: A different election	
+          abr_election_date_input: Enter the date of the election
+          abr_election_date_input__hint: The election must be within 60 days. 
+          abr_primary_type_selections: Select the type of ballot you wish to receive.
+          abr_primary_type_selections__hint: |-
+            By selecting a party, you will indicate which ballot you will receive. You will not register with this party.
+            <br/><br/>
+            If you do not wish to select a party, you may request a ballot containing other issues, if your jurisdiction's ballot contains issues.
+          abr_primary_type_selections__options:
+            abr_primary_type1: Republican	
+            abr_primary_type2: Democrat	
+            abr_primary_type3: Libertarian	
+            abr_primary_type4: Constitution	
+            abr_primary_type5: Issues only          	
       ms:
         abr:
           request_deadline: The deadline to apply for an absentee ballot is election
