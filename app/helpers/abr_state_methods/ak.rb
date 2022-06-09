@@ -1,99 +1,58 @@
 module AbrStateMethods::AK
   
-  PDF_FIELDS = {
-    "All in Calendar Year" => {
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    "Primary August" => {
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    "General November" => {
-      options: ["Off", "On"],
-      value: "On"
-    },
-    "REAA October" => {
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    "Last" => {
-      method: "last_name"
-    },
-    "First" => {
-      method: "first_name"
-    },
-    "Middle" => {
-      method: "middle_name"
-    },
-    "Suffix" => {
-      method: "name_suffix"
-    },    
-    "House Number" => {
-      method: "street_number"
-    },
-
-    "Street Name" => {
-      method: "street_name"
-    },  
-    "Apt" => {
-      method: "unit"
-    },     
-    "City" => {
-      method: "city"
-    },     
-    "SSN or Last 4" => {sensitive: true},     
-    "Birthdate" => {
-      method: "date_of_birth_mm_dd_yyyy"
-    }, 
-    "US Citizen Yes" => {
-      options: ["Off", "Yes"]
-    },
-    "US Citizen No" => {
-      options: ["Off", "No"]
-    },
-    "18 Years Yes" => {
-      options: ["Off", "Yes_2"]
-    },
-    "18 Years No" => {
-      options: ["Off", "No_2"]
-    },
-    "Perm Mailing 1"=>{},
-    "Perm Mailing 2"=>{},
-    "Perm Mailing 3"=>{},
-    "ADL"=>{sensitive: true},
-    "No SSN or ADL"=> {
-      options: ["Off", "On"]
-    },
-    "Male"=> {
-      options: ["Male", "Off"]
-    },
-    "Female"=> {
-      options: ["Female", "Off"]
-    },
-    "AD Ballot" => {
-      options: ["Off", "On"]
-    },
-    "Rep Ballot" => {
-      options: ["Off", "On"]
-    },
-    "Remote AK and Overseas" => {
-      options: ["Off", "On"]
-    },
-    "Ballot Mailing Address 1"=>{},
-    "Ballot Mailing Address 2"=>{},
-    "Ballot Mailing Address 3"=>{},
-    "Former Name"=>{},
-    "Voter No"=>{},
-    "Party"=>{},
-    "Day Phone"=>{},
-    "Evening Phone"=>{
-      method: "phone"
-    },
-    "Email"=>{
-      method: "email"
-    }
-  }
+  PDF_FIELDS = {'abr_email': {:method=>"email"},
+                'abr_first_name': {:method=>"first_name"},
+                'abr_last_name': {:method=>"last_name"},
+                'abr_middle_name': {},
+                'abr_name_suffix': {:method=>"name_suffix"},
+                'abr_previous_full_name': {},
+                'abr_citizen_selections': {
+                                            options:['abr_citizen_yes',
+                                                     'abr_citizen_no']
+                                          },
+                'abr_id_type_3': {},
+                'abr_street_number': {},
+                'abr_street_name': {},
+                'abr_city': {:method=>"city"},
+                'abr_18years_selections': {
+                                            options: ['abr_18_yes',
+                                                      'abr_18_no']
+                                          },
+                'abr_id_no2': {},
+                'abr_id_type1': {},
+                'abr_id_type2': {},
+                'date_of_birth_mm_dd_yyyy': {},
+                'abr_delivery_address_type1': {},
+                'abr_party_selections': {},
+                'abr_mailing_address_line_1': {},
+                'abr_unit': {:method=>"unit"},
+                'abr_mailing_city': {},
+                'abr_mailing_state_abbrev': {},
+                'abr_mailing_zip': {},
+                'abr_election': { options: ['abr_election_REAA',
+                                            'abr_election_all',
+                                            'abr_election_general',
+                                            'abr_election_primary',
+                                            'abr_election_special'
+                                           ]
+                                },
+                'abr_uocava_status': { options: ['active',
+                                                 'overseas'
+                                       ]
+},
+                'ab_uocava_send_options': { options: [ 'fax',
+                                                      'mail',
+                                                      'overseas'
+                                                    ]
+                                          },
+                'abr_phone_day': {},
+                'abr_phone_evening': {},
+                'abr_fax': {},
+                'abr_gender': { options: ['male', 'female']},
+                'PRA': {},
+                'Date': {}
+                 
+               }
   
   EXTRA_FIELDS = ["has_ballot_mailing_address", "has_mailing_address", "dln_soft_validation"]
 
