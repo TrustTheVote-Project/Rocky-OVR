@@ -1168,62 +1168,91 @@ en:
           has_no_state_license: I do not have a LA state identification card or LA driver's license.
       md:
         abr_form_fields:
-          mailto: 'I want my ballot mailed to:'
-          mailto__options:
-            address_below: A different mailing address.
-            same_as_above: My residential address.
-          movedate: 'I moved to my residential address on (MM/DD/YYYY or MM/YYYY):'
-          Delivery: 'I would like to receive my ballot by:'
-          Delivery__options:
-            mail: U.S. Mail
-            internet: Internet Delivery (Ballot emailed to the email you provided)
-          internet_delivery_identification: Identification for internet delivery
-          internet_delivery_identification__options:
-            dln: Maryland Driver's License or ID Card Number
-            ssn: I do not have a MD driver's license or ID card
-          Gen_Address: Mailing address
-          Gen_Apt: Apt/Unit
-          Gen_City: City/Town
-          Gen_State: State
-          Gen_ZipCode: Zip
-          SSN_Last_4: 'Last 4 digits of my SSN:'
-          dln: Maryland Driver's License or ID Card Number
-          dln__format_message: Invalid Maryland Driver's License or ID Card Number
-            format. Please enter 1 letter, followed by 12 numbers
-          Issue_Date: Issue Date
-          fax_number: Fax Number (xxx-xxx-xxxx)
-          Assistance_Print_Name: Name of Assistant
-          assistant: I had help completing this application
+          abr_address_type_selections: Select where you'd like your ballot delivered	
+          abr_address_type_selections__hint: You can have your ballot mailed to you at your registration address or mailing address.<br>You can also have your address emailed to you or faxed to you.
+          abr_address_type_selections__options: 
+            abr_address_type1: My home address	
+            abr_address_type2: My mailing address	
+            abr_address_type3: "Email me a link to print my ballot(s)<br>(You must provide your MD Driver's License or ID Card # or the last four digits of your SSN)<br> A link will be emailed to you about 3 weeks before the election."
+            abr_address_type4: Fax me my ballot(s)	
+          abr_fax_number: Enter the number your ballot should be faxed to	
+          abr_id_selections: Select which form of ID you'll provide	
+          abr_id_selections__options:
+            abr_id_type1: I'll provide my MD Driver’s License or ID Card	
+            abr_id_type2: "I'll provide the last four digits of my Social Security #"
+          abr_drivers_license: "Enter your MD Driver's License or ID Card #"
+          abr_drivers_license__format_message: Must be 1 letter followed by 12 numbers
+          abr_id_date_input: Enter the date your license or ID was issued	
+          abr_last_4_ssn: Enter the last four digits of your SSN	
+          abr_address_type5: 	
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit 	
+          abr_mailing_city: City 	
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP 	
+          abr_election_type_selections: Select the election you'd like to request a ballot for
+          abr_election_type_selections__hint: You can sign up for a mail-in ballot for a specific 2022 election(s) or for all future elections.
+          abr_election_type_selections__options:
+            abr_election_type1: I would like to receive a mail-in ballot for all future federal and state elections.	
+            abr_election_type2: Both the 2022 Primary and General Elections	
+            abr_election_type3: July 19, 2022 Primary Election only	
+            abr_election_type4: November 8, 2022 General Election only	
+          abr_primary_type_selections: Select the type of ballot you wish to receive (required for the primary)
+          abr_primary_type_selections__hint: To vote in a party's primary, you must choose that political party.
+          abr_primary_type_selections__options:
+            abr_primary_type1: Democratic	
+            abr_primary_type2: Republican	
+            abr_primary_type3: Unaffiliated (independent of any party)	
+            abr_primary_type4: Libertarian	
+            abr_primary_type5: Green	
+            abr_primary_type6: Working Class	
+            abr_primary_type7: Other	
+          abr_primary_type7_name: Enter the party affiliation	
+          abr_contact_method_selections: Enter your preferred method of contact if your election official needs to reach you.	
+          abr_contact_method_selections__options:
+            abr_contact_method1: Text message	
+            abr_contact_method2: Email	
+            abr_contact_method3: Mail	
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Mail-in Voting status by
-            using your state&#39;s <a target='_blank' href='https://voterservices.elections.maryland.gov/VoterSearch'>online
-            tool</a>
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to email my request form, certifying that all information is accurate.
-          signature_capture:
-            desktop_provide_e_signature: In the state of Maryland, we can email a
-              digitally signed copy of your absentee request. Please select how you'd
-              like to provide a signature.
-            desktop_provide_signature: In the state of Maryland, we can email a digitally
-              signed copy of your absentee request. Please select how you'd like to
-              provide a signature.
-            continue_on_paper: I prefer to print, sign and mail or email my application
-              myself.
+          step_2_header: Any registered voter may vote by mail-in ballot
+          step_2_instructions: |-
+            <p><a href="%{lookup_url}">Check if your registration is up to date.</a></p>
+            <h3>You may be eligible to complete your application online</h3>
+            <p>To complete your request online, you will need:</p>
+            <ul>
+            <li>A driver's license number, ID number, or Learner's Permit number, and</li>
+            <li>The last four digits of your Social Security Number.</li>
+            </ul>
+            <p>If you do not have one or both of those items, you can continue to fill out, print, sign and mail a paper request form.</p>
+
+          request_deadline: |-
+            <p>
+            Your application deadline depends on how you return your form and on how you want to receive your ballot.
+            </p><ul>
+            <li>For the primary, your application must be received by July 12th if you wish to receive your ballot by mail or fax and June 15th if you wish to receive your ballot by email.
+            </li>
+            <li>For the general election, your application must be received by November 1st if you wish to receive your ballot by mail or fax and November 4th if you wish to receive your ballot by email.</li>
+            </ul>
+          status_check_instructions: <a href="https://vote.md.gov/search">https://vote.md.gov/search</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to use a pen to sign your application. No electronic signatures are allowed.
+            </p>
+            <p>If you received help with this form, make sure that the assistant has also signed the form.
+            </p>
+          finish_instructions_3_hint_state: You must mail or hand deliver your mail-in ballot to a voting location, a ballot drop off box, or your local board of elections. You cannot email or fax your voted mail-in ballot.
+          
         state_online_abr:
           header_choice: All Registered Voters in Maryland Can Vote by Mail
+          confirm: ''
           requirements: |-
-            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state. If you do not have a valid Maryland ID, you can also print, sign and mail a paper request form by clicking the link below the button.</p>
-            <p>To request a ballot, the following personal information has to match the information about you that is on file with the Maryland MVA:</p>
+            <h3>You may be eligible to complete your application online</h3>
+            <p>To complete your request online, you will need:</p>
             <ul>
-            <li>Your name</li>
-            <li>Your date of birth</li>
-            <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
-            <p>Your signature at the MVA will become your official voter registration signature.</p>
+            <li>A driver’s license number, ID number, or Learner's Permit number, and</li>
+            <li>The last four digits of your Social Security Number.</li>
+            </ul>
+            <p>If you do not have one or both of those items, you can continue to fill out, print, sign and mail a paper request form.</p>
         registration:
           has_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
           has_no_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
@@ -1586,45 +1615,32 @@ en:
           has_no_state_license: I do not have a MN state identification card or MN driver's license, or Social Security Number.
       mo:
         abr:
-          step_3_pending_header: Requesting an Absentee Ballot in Missouri
-          step_3_pending_instructions: |-
-            <p>You must have a reason to request an absentee ballot in Missouri. </p>
-            <ul>
-            <li>Absence on Election Day from the jurisdiction of the election authority in which such voter is registered to vote;</li>
-            <li>Incapacity or confinement due to illness or physical disability, including a person who is primarily responsible for the physical care of a person who is incapacitated or confined due to illness or disability;</li>
-            <li>Religious belief or practice;</li>
-            <li>Employment as an election authority, as a member of an election authority, or by an election authority at a location other than such voter's polling place;</li>
-            <li>Incarceration, provided all qualifications for voting are retained.</li>
-            <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681 because of safety concerns.</li>
-            </ul>
-            <p>Voters can request absentee ballots from their local election authority in person, by mail, by fax or by e-mail.</p>
-            <p>You must return your request to your local election authority. Find your <a href="https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority" target="_blank" rel="noopener noreferrer">local election authority</a>.
+          step_2_header: You must have a reason to request an absentee ballot.
+          step_2_instructions: |-
+            <ol>
+            <li>1. You will be absent on election day.</li>
+            <li>2. You are confined or care for a person who is confined due to illness or physical disability.</li>
+            <li>3. You can not make it to the polls due to religious belief or practice.</li>
+            <li>4. You are working at a polling place that is not your own.</li>
+            <li>5. You are incarcerated and still maintain the right to vote.</li>
+            <li>6. You are in the address confidentiality program.</li>
+            </ol>          
+          request_deadline: |-
+            <p>Absentee ballot requests must be received by your election authority no later than the 5:00 p.m. on the second Wednesday prior to any election.
+            For the primary deadline, your request must be received by 5pm 7/20/2022.</p>
 
-            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application.
+            </p>
+            <p>If you registered to vote by mail and this is your first time voting, you must provide a 
+            copy of your identification unless you provided a copy with your registration application. 
+            Acceptable forms of ID are listed here: 
+            <a href="https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee" title="Absentee voting information">https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee</a>.
+            </p>
 
-            <p>Double check that you're registered to vote by going to the <a href="https://www.sos.mo.gov/elections/goVoteMissouri/register" target="_blank" rel="noopener noreferrer">Missouri voter registration page</a>.</p>
-
-            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-
-            <p>You can apply for a ballot any time during the year, except the day of the election. Leave time for election officials to mail your ballot.</p>
-
-            <p>Make sure to review the identification requirements for voters who have not voted in person.</p>
-
-            <p>You may be able to track the status of your absentee ballot request. Contact your local election authority.</p>
-
-            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-
-            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
-            <p>All absentee ballots must be received at your county election office by 7pm on Election Day.</p>
-          request_deadline: You can apply for a ballot any time during the year, except
-            the day of the election. Leave time for election officials to mail your
-            ballot.
-          finish_instructions_1_hint_state: |-
-            <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
-            <p><i>Your absentee ballot request must be received no later than the 5:00 p.m. on the second Wednesday prior to any election.</i></p>
-          status_check_instructions: 'You may be able to track the status of your
-            absentee ballot request. Contact your local election authority.  Find
-            your official&#39;s contact information here: <a target=''_blank'' href=''https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority''>Directory</a>'
+          status_check_instructions: |-
+            Missouri does not have an absentee ballot tracking system available to voters. 
+            For more information on your ballot, contact your local election official <a href="https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority">https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority</a>
           requirements: |-
             <p>To qualify to request a ballot in MO, you must have one of the following reasons:</p>
             <ul><li>Absence on Election Day from the jurisdiction of the election authority in which I am registered </li>
@@ -1633,40 +1649,43 @@ en:
             <li>Incarceration, although I have retained all the necessary qualifitications for voting </li>
             <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681, RSMo., because of safety concerns. </li></ul>
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          mailing_address_1: Mailing address
-          mailing_address_1__hint: "(Street address or PO Box)"
-          mailing_address_2: City, State, Zip
-          Reason: 'Reason for requesting an absentee ballot:'
-          Reason__options:
-            absence: Absence on Election Day from the jurisdiction of the election
-              authority in which I am registered
-            incapacity: Incapacity or confinement due to illness or physical disability,
-              including caring for a person who is capacitated or confined due to
-              illness or disability (No Notary Required)
-            religious: Religious belief or practice
-            employment: Employment as an election authority or by an election authority
-              at a location other than my polling place
-            incarceration: Incarceration although I have retained all the necessary
-              qualifications for voting
-            confidentiality: Certified participation in the address confidentiality
-              program established under sections 589.660 to 589.681, RSMo., because
-              of safety concerns
-            COVID: I have contracted or am in an at-risk category for contracting
-              or transmitting severe acute respiratory syndrome coronavirus 2(COVID-19),
-              pursuant to Section 115.277.6,RSMo. (No Notary Required)
-          covid_instructions_formatted: "<p>At-risk voters are individuals who:</p>
-            <ul> <li>Are 65 years of age or older</li> <li>Live in a long-term care
-            facility licensed under Chapter 198, RSMo.</li> <li>Have serious heart
-            conditions</li> <li>Have chronic lung disease or moderate to severe asthma</li>
-            <li>Are immunocompromised</li> <li>Have chronic kidney disease and are
-            undergoing dialysis</li> <li>Have liver disease</li> <li>Have diabetes</li>
-            </ul>"
-          covid_instructions: 'At-risk voters are individuals who: Are 65 years of
-            age or older, Live in a long-term care facility licensed under Chapter
-            198, RSMo., Have serious heart conditions, Have chronic lung disease or
-            moderate to severe asthma, Are immunocompromised, Have chronic kidney
-            disease and are undergoing dialysis, Have liver disease, or Have diabetes'
+          abr_last_4_ssn: Enter the last four digits of your SSN
+          abr_last_4_ssn__format_message: Must be 4 numbers
+          abr_check_mailing_address: I want to receive my ballot at an address other than my registration address.
+          abr_mailing_address_instructions: Enter your address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_reason_selections: Select your reason for voting by mail
+          abr_reason_selections__options:
+            abr_reason1: Absence on Election Day from the jurisdiction of the election authority in which I am registered 	
+            abr_reason2:  Incapacity or confinement due to illness or physical disability, including caring for a person who is incapacitated or confined due to illness or disability	
+            abr_reason3: Religious belief or practice	
+            abr_reason4:  Employment as an election authority or by an election authority at a location other than my polling place	
+            abr_reason5: Incarceration, although I have retained all the necessary qualifications for voting 	If you are on supervision solely for a Suspended Impositions of Sentence (SIS) are allowed to vote as these are not considered convictions. More information may be obtained by contacting the Board of Elections at (800) 669-8683.
+            abr_reason6: Certified participation in the address confidentiality program established under sections 589.660 to 589.681 because of safety concerns.	
+          abr_election_type_selections_instructions: You must request an absentee ballot for each election.<br/>Absentee ballots can only be requested 6 weeks prior to an election.
+
+          abr_election_type_selections: Select the election to request an absentee ballot for.	
+          abr_election_type_selections__options:
+            abr_election_type1: The 8/2/2022 Primary election	
+            abr_election_type2: The 11/8/2022 General Election	
+            abr_election_type3: A different election	
+          abr_election_date_input: Enter the date of the election
+          abr_election_date_input__hint: The election must be within 60 days. 
+          abr_primary_type_selections: Select the type of ballot you wish to receive.
+          abr_primary_type_selections__hint: |-
+            By selecting a party, you will indicate which ballot you will receive. You will not register with this party.
+            <br/><br/>
+            If you do not wish to select a party, you may request a ballot containing other issues, if your jurisdiction's ballot contains issues.
+          abr_primary_type_selections__options:
+            abr_primary_type1: Republican	
+            abr_primary_type2: Democrat	
+            abr_primary_type3: Libertarian	
+            abr_primary_type4: Constitution	
+            abr_primary_type5: Issues only          	
       ms:
         abr:
           request_deadline: The deadline to apply for an absentee ballot is election
