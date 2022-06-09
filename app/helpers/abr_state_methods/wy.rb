@@ -1,56 +1,29 @@
 module AbrStateMethods::WY
   
-  PDF_FIELDS = {
-      "LAST NAME": {
-        method: "last_name"
-      },
-      "FIRST NAME": {
-        method: "first_name"
-      },
-      "MIDDLE": {
-        method: "middle_name"
-      },      
-      "COUNTY RESIDENTIAL ADDRESS": {
-        method: "address"
-      },
-      "CITY": {
-        method: "city"
-      },
-      "STATE": {
-        method: "home_state_abbrev"
-      },
-      "ZIP": {
-        method: "zip"
-      },
-      "DATE OF BIRTH": {
-        method: "date_of_birth_mm_dd_yyyy"
-      },
-      "CONTACT PHONE NUMBER": {
-        method: "phone"
-      },
-      "ACTIVE MILITARY Y  N": {
-      },
-      "EMAIL optional": {
-        method: "email"
-      },
-      "MAIL MY BALLOT TO": {},
-      "CITY_2": {},
-      "STATE_2": {},
-      "ZIP_2": {},
-      "2020 PRIMARY": {	
-        options: ["Off", "On"],	
-        value: "Off"	
-      },	
-      "2020 GENERAL": {	
-        options: ["Off", "On"],	
-        value: "On"	
-      },	
-      "Individual's name who may pick up my ballot": {},	
-      "Date": {
-        method: "date_for_signature"
-      }
-      #voter_signature	      #voter_signature      
-  
+  PDF_FIELDS = {'Date': {},
+                'abr_last_name': {:method=>"last_name"},
+                'abr_first_name': {:method=>"first_name"},
+                'abr_middle_name': {},
+                'abr_street_name': {method: "street_name"},
+                'abr_street_number': {method: "street_number"},
+                'abr_unit': {:method=>"unit"},
+                'abr_city': {:method=>"city"},
+                'abr_home_state_abbrev': {:method=>"home_state_abbrev"},
+                'abr_zip': {:method=>"zip"},
+                'date_of_birth_mm_dd_yyyy': {:method => "date_of_birth_mm_dd_yyyy"},
+                'abr_phone': {:method=>"phone"},
+                'abr_email': {:method=>"email"},
+                'abr_mailing_unit': {},
+                'abr_mailing_city': {},
+                'abr_mailing_state_abbrev': {},
+                'abr_mailing_zip': {},
+                'abr_election_type1': {},
+                'abr_election_type2': {},
+                'abr_party': {},
+                'abr_mailing_address_line_1': {},
+                'abr_request_name': {},
+                'abr_active_military': {options: ['active_military_yes',
+                                                  'active_military_no']}
   }
 
   def signature_pdf_field_name
