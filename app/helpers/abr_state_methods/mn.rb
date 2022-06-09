@@ -1,129 +1,40 @@
 module AbrStateMethods::MN
   
-    PDF_FIELDS = {
-
-        # Last name or surname
-        "Last name or surname": {
-            method: 'last_name',
-        },
-        # First name
-        "First name": {
-            method: 'first_name',
-        },
-        # Middle name
-        "Middle name": {
-            method: 'middle_name',
-        },
-        # Suffix
-        "Suffix": {
-            method: 'name_suffix',
-        },
-
-        # Date of Birth
-        "Date of Birth":{
-            method: 'date_of_birth_mm_dd_yyyy',
-        },
-
-        # County where you live
-        "County where you live": {},
-        # Phone Number
-        "Phone Number":{
-            method: 'phone',
-        },
-        # Email Address
-        "Email Address": {
-            method: 'email',
-        },
-
-
-        # I have a Minnesota-issued driver's license or ID Card
-        "I have a Minnesota-issued driver's license or ID Card": { options: ["Off", "On"],
-        method: "check_dln_check_on" },
-
-        # Minnesota Driver's License or ID Card Number
-        "Minnesota Driver's License or ID Card Number": { sensitive: true},
-
-
-        # I have a Social Security Number
-        "I have a Social Security Number": { options: ["Off", "On"],
-        method: "check_ss_check_on" },
-
-        # Last four digits of Social Security Number
-        "Last four digits of Social Security Number": {sensitive: true},
-
-
-        # Do not have a Minnesota-issued driver's license or identification card, or a Social Security Number
-        "Do not have a Minnesota-issued driver's license or identification card, or a Social Security Number": { options: ["Off", "On"],
-        method: "check_no_id_check_on" },
-
-        # Residential address - House number, Street &amp; Apartment
-        "Residential address_1": {
-            method: 'address'
-        },
-        # Residential address - City
-        "Residential address - City": {
-            method: 'city'
-        },
-        # Residential address - Zip Code
-        "Residential address - Zip Code": {
-            method: 'zip'
-        },
-        
-        # Absentee ballot address - House number, Street &amp; Apartment
-        "Absentee ballot address_1": {},
-        # Absentee ballot address - City
-        "Absentee ballot address - City": {},
-        # Absentee ballot address - State
-        "Absentee ballot address - State": {},
-        # Absentee ballot address - Zip Code
-        "Absentee ballot address - Zip Code": {},
-
-
-        # Absentee ballot requested for other election, specify date
-        "Absentee ballot requested for other election, specify date": { options: ["Off", "On"], value: 'Off' },
-
-        # Absentee ballot requested for 2/11 special election
-        "Absentee ballot requested for 2/11 special election": { options: ["Off", "On"], value: 'Off' },
-
-        # Absentee ballot requested for 3/10 township election
-        "Absentee ballot requested for 3/10 township election": { options: ["Off", "On"], value: 'Off' },
-
-        # Absentee ballot requested for 4/14 special election
-        "Absentee ballot requested for 4/14 special election": { options: ["Off", "On"], value: 'Off' },
-
-        # Absentee ballot requested for 5/12 special election
-        "Absentee ballot requested for 5/12 special election": { options: ["Off", "On"], value: 'Off' },
-
-
-        # Absentee ballot requested for 8/11 primary only
-        "Absentee ballot requested for 8/11 primary only": { options: ["Off", "On"], value: 'Off' },
-
-
-        # Absentee ballot requested for 11/3 general election only
-        "Absentee ballot requested for 11/3 general election only": { 
-            options: ["Off", "On"],
-            value: "On"
-        },
-
-
-        # Absentee ballot requested for both 8/11 primary and 11/3 general elections
-        "Absentee ballot requested for both 8/11 primary and 11/3 general elections": { options: ["Off", "On"], value: 'Off' },
-
-        # Special Election Date
-        "Special Election Date": {},
-
-
-
-
-
-
-        # 
-       # "voter_signature": {}
-
-        # 
-        #"date_signed": {}
-
+    PDF_FIELDS = {'abr_last_name': {:method=>"last_name"},
+                  'abr_first_name': {:method=>"first_name"},
+                  'abr_middle_name': {},
+                  'abr_name_suffix': {:method=>"name_suffix"},
+                  'abr_county': {:method=>"county"},
+                  'abr_phone': {:method=>"phone"},
+                  'abr_email': {:method=>"email"},
+                  'abr_no_id': {},
+                  'abr_city': {:method=>"city"},
+                  'abr_zip': {:method=>"zip"},
+                  'abr_mailing_city': {},
+                  'abr_mailing_state_abbrev': {},
+                  'abr_mailing_zip': {},
+                  'abr_street_number': {},
+                  'abr_street_name': {},
+                  'abr_unit': {:method=>"unit"},
+                  'abr_mailing_address_line_1': {},
+                  'abr_mailing_unit': {},
+                  'abr_id_type1': {},
+                  'abr_drivers_license': {},
+                  'abr_ssn_number': {},
+                  'abr_election_type4': {},
+                  'request_ballot-2-8': {},
+                  'request-ballot-3-8': {},
+                  'request-ballot-4-12': {},
+                  'request-ballot-5-10': {},
+                  'request-ballot-8-9': {},
+                  'request-ballot-11-8': {},
+                  'request-ballot-both': {},
+                  'request-ballot-other': {},
+                  'abr_date_of_birth_mm_dd_yyyy': {},
+                  'abr_id': {},
+                  'abr_ssn4': {}
     }
+
     #EXTRA_FIELDS = []
     # e.g.
     EXTRA_FIELDS = ["has_mailing_address", "dln_check", 'ss_check', 'no_id_check','id_instruction']
