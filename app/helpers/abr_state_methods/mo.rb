@@ -17,11 +17,21 @@ module AbrStateMethods::MO
     
     "abr_last_4_ssn": {sensitive: true},	
     "abr_check_mailing_address": {},	
-    "abr_mailing_address_line_1": {},	
-    "abr_mailing_unit": {},	
-    "abr_mailing_city": {},	
-    "abr_mailing_state_abbrev": {},	
-    "abr_mailing_zip": {},	
+    "abr_mailing_address_line_1": {
+      method: "mailing_address_line_1"
+    },	
+    "abr_mailing_unit": {
+      method: "mailing_unit"
+    },	
+    "abr_mailing_city": {
+      method: "mailing_city"
+    },	
+    "abr_mailing_state_abbrev": {
+      method: "mailing_state_abbrev"
+    },	
+    "abr_mailing_zip": {
+      method: "mailing_zip"
+    },	
     "abr_reason_selections": {
       options: [
         "abr_reason1",
@@ -58,18 +68,24 @@ module AbrStateMethods::MO
     },	
   }
 
-  EXTRA_FIELDS = ["abr_election_date_input_dd", "abr_election_date_input_mm", "abr_election_date_input_yyyy"]
+  EXTRA_FIELDS = ["abr_election_date_input_dd", "abr_election_date_input_mm", "abr_election_date_input_yyyy",
+    "abr_mailing_address_line_1_input",
+    "abr_mailing_unit_input",
+    "abr_mailing_city_input",
+    "abr_mailing_state_abbrev_input",
+    "abr_mailing_zip_input",
+  ]
   
   def form_field_items
     [
       {"abr_last_4_ssn": {required: true, regexp: /\A\d{4}\z/}},	
       {"abr_check_mailing_address": {type: :checkbox}},	
       {"abr_mailing_address_instructions": {type: :instructions}},
-      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_address_line_1_input": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_state_abbrev_input": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_zip_input": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
       
       {"abr_reason_selections": { type: :radio, required: true }},
       {"abr_election_type_selections_instructions": {type: :instructions}},
@@ -99,8 +115,27 @@ module AbrStateMethods::MO
   end
   
   def custom_form_field_validations
-
+    if self.phone.blank?
+      errors.add(:phone, :blank)
+    end
   end
   
+
+  def mailing_address_line_1
+    self.abr_check_mailing_address.to_s == "1" ? self.abr_mailing_address_line_1_input : self.address_line_1
+  end
+  def mailing_unit
+    self.abr_check_mailing_address.to_s == "1" ? self.abr_mailing_unit_input : self.unit
+  end
+  def mailing_city
+    self.abr_check_mailing_address.to_s == "1" ? self.abr_mailing_city_input : self.city
+  end
+
+  def mailing_state_abbrev
+    self.abr_check_mailing_address.to_s == "1" ? self.abr_mailing_state_abbrev_input : self.home_state_abbrev
+  end
+  def mailing_zip
+    self.abr_check_mailing_address.to_s == "1" ? self.abr_mailing_zip_input : self.zip
+  end
  
 end

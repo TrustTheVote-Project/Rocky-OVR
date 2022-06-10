@@ -1627,12 +1627,14 @@ en:
             </ol>          
           request_deadline: |-
             <p>Absentee ballot requests must be received by your election authority no later than the 5:00 p.m. on the second Wednesday prior to any election.
-            For the primary deadline, your request must be received by 5pm 7/20/2022.</p>
+            </p><p>
+            For the primary election, your request must be received by 5pm 7/20/2022.
+            </p>
 
           finish_instructions_1_hint: |-
             <p>Make sure to sign your printed absentee ballot application.
             </p>
-            <p>If you registered to vote by mail and this is your first time voting, you must provide a 
+            <p>If this is your first time voting, you must provide a 
             copy of your identification unless you provided a copy with your registration application. 
             Acceptable forms of ID are listed here: 
             <a href="https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee" title="Absentee voting information">https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee</a>.
@@ -1652,12 +1654,12 @@ en:
           abr_last_4_ssn: Enter the last four digits of your SSN
           abr_last_4_ssn__format_message: Must be 4 numbers
           abr_check_mailing_address: I want to receive my ballot at an address other than my registration address.
-          abr_mailing_address_instructions: Enter your address	
-          abr_mailing_address_line_1: Street Address
-          abr_mailing_unit: Unit
-          abr_mailing_city: City
-          abr_mailing_state_abbrev: State
-          abr_mailing_zip: ZIP
+          abr_mailing_address_instructions_input: Enter your mailing address	
+          abr_mailing_address_line_1_input: Street Address
+          abr_mailing_unit_input: Unit
+          abr_mailing_city_input: City
+          abr_mailing_state_abbrev_input: State
+          abr_mailing_zip_input: ZIP
           abr_reason_selections: Select your reason for voting by mail
           abr_reason_selections__options:
             abr_reason1: Absence on Election Day from the jurisdiction of the election authority in which I am registered 	
