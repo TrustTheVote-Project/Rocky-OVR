@@ -1627,12 +1627,14 @@ en:
             </ol>          
           request_deadline: |-
             <p>Absentee ballot requests must be received by your election authority no later than the 5:00 p.m. on the second Wednesday prior to any election.
-            For the primary deadline, your request must be received by 5pm 7/20/2022.</p>
+            </p><p>
+            For the primary election, your request must be received by 5pm 7/20/2022.
+            </p>
 
           finish_instructions_1_hint: |-
             <p>Make sure to sign your printed absentee ballot application.
             </p>
-            <p>If you registered to vote by mail and this is your first time voting, you must provide a 
+            <p>If this is your first time voting, you must provide a 
             copy of your identification unless you provided a copy with your registration application. 
             Acceptable forms of ID are listed here: 
             <a href="https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee" title="Absentee voting information">https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee</a>.
