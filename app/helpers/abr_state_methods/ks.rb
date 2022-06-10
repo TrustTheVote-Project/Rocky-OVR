@@ -45,7 +45,7 @@ module AbrStateMethods::KS
 
         }
 
-  EXTRA_FIELDS = ["abr_street_number", "abr_street_name", "abr_unit","abr_mailing_address_line_1","abr_mailing_unit", "abr_election", "abr_check_mailing_address", "abr_election_type_selections"]
+  EXTRA_FIELDS = ["abr_mailing_address_line_1","abr_mailing_unit", "abr_election", "abr_check_mailing_address", "abr_election_type_selections"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
