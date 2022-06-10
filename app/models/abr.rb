@@ -71,7 +71,13 @@ class Abr < ActiveRecord::Base
   validates_presence_of :registration_county, if: :requires_county?
   validate :validates_zip
   validate :validates_signature
-  
+  validate :validate_phone_present_if_opt_in_sms
+
+  def validate_phone_present_if_opt_in_sms
+    if (opt_in_sms? || partner_opt_in_sms?) && phone.blank?
+      errors.add(:phone, :required_if_opt_in)
+    end
+  end
 
   def self.generate_abr_for_zip(zip)
     if Rails.env != "development"

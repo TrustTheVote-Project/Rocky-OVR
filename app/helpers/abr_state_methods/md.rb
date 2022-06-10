@@ -124,7 +124,9 @@ module AbrStateMethods::MD
     end
     
     def custom_form_field_validations
-
+      if self.abr_contact_method_selections == "abr_contact_method1" && self.phone.blank?
+        errors.add(:phone, :required_if_opt_in)
+      end
 
     end
    
