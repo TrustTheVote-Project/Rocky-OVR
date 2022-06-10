@@ -3212,6 +3212,7 @@ en:
         state_flow_error: There was a problem submitting your registration to Washington.
           Please try again later or continue here to create a paper form.
         by_paper_header: Personal Information
+        wa_dln_instructions: If issued after 2018, your driver's license number should begin with WDL.
         registration:
           has_state_license_eligible:  Complete your voter registration using the Washington online voter registration system.
           instructions:
