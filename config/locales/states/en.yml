@@ -959,71 +959,60 @@ en:
           has_no_state_license: I do not have a valid IN state identification card or driver's license.
       ks:
         abr:
-          request_deadline: received the Tuesday before the election
-          step_3_pending_header: Requesting an Absentee Ballot in Kansas
-          step_3_pending_instructions: |-
-            <p>Any registered voter can request an advance ballot in Kansas.</p>
-
-            <p>You must request an advanced by mail ballot mailed to you for each election as ballots are sent at the request of the voter.</p>
-
-            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
-
-            <p>Double check that you're registered to vote by going to the <a href="https://myvoteinfo.voteks.org/voterview" target="_blank" rel="noopener noreferrer">Kansas VoterView page</a>.</p>
-
-            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-
-            <p>Your absentee ballot request must be received Tuesday [one week] before the election, although in many situations the applications need to be submitted earlier to allow sufficient time for mailing the ballots and returning them..</p>
-
-            <p>Make sure to include your driver’s license number or a copy of your photo identification with your request.</p>
-
-            <p>To check the status of your advance ballot application, you can call your local election office or go to the <a href="https://myvoteinfo.voteks.org/voterview" target="_blank" rel="noopener noreferrer">Kansas VoterView page</a>.</p>
-
-            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-
-            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
-            <p>All ballots must be postmarked on or before election day and received in the county election office by the close of business on the Friday following the election.</p>
-          status_check_instructions: You can look up your Advance Ballot by Mail status
-            by using the Kansas <a href='https://myvoteinfo.voteks.org/voterview'>VoterView</a>.
-          requirements: "<p>To qualify to request a ballot in KS, you only need to
-            be registered to vote and be able to provide your Kansas driver's license
-            number or non driver's identification card number.</p><p>Examples of acceptable
-            nondriver's identification cards: Driver's license issued by Kansas or
-            another state, Nondriver's ID card issued by Kansas or another state,
-            U.S. Passport, Concealed carry of handgun license issued by Kansas or
-            another state, Employee badge or ID document issued by a government office,
-            U.S. Military ID, Student ID card by an accredited Kansas postsecondary
-            educational institution, Public assistance ID card issued by a government
-            office, ID card issued by an Indian tribe</p>"
+          request_deadline: |-
+            <p>Your application must be received by:<br/><br/>
+            July 26, 2022 for the primary election, and:<br/>
+            November 1, 2022 for the general election.:<br/></p>
+          status_check_instructions: |-
+               <p><a href="https://myvoteinfo.voteks.org/voterview" target="_blank">https://myvoteinfo.voteks.org/voterview</a></p>       
           finish_instructions_1_hint_state: |-
-            <p><i>Follow the directions on your state's absentee ballot request form (this opened in another tab).</i></p>
-            <p><i>If you do not provide a current and valid Kansas driver’s license number or Kansas nondriver’s identification card number, make sure to provide a copy of one of the forms of photo identification listed in the application.</i></p>
+            <p>If you do not have not provided your state driver's license or id number, remember to provide a copy of another accepted photo ID. Accepted forms of photo ID are listed on the application.</p>
+            <p>Additionally, make sure to sign your printed application.</p>
         abr_form_fields:
-          identification: 'Please select one of the following:'
-          identification__hint: "<p style='font-size: 13px; margin-left: 20px'>Examples
-            of acceptable nondriver's identification cards: Driver's license issued
-            by Kansas or another state, Nondriver's ID card issued by Kansas or another
-            state, U.S. Passport, Concealed carry of handgun license issued by Kansas
-            or another state, Employee badge or ID document issued by a government
-            office, U.S. Military ID, Student ID card by an accredited Kansas postsecondary
-            educational institution, Public assistance ID card issued by a government
-            office, ID card issued by an Indian tribe</p>"
-          identification__options:
-            dln_yes: I have a Kansas Driver's License or Kansas nondriver's identification
-              card
-            dln_no: I do not have a Kansas Driver's license or Kansas nondriver's
-              identification card.
-          has_mailing_address: My mailing address differs from my residential address.
-          identification_number: "Current Kansas driver's license number or nondriver's
-            identification card number:\U0010FC0B\U0010FC24"
-          identification_number__format_message: That doesn't look like a driver's
-            license number, please verify before continuing.
-          county_1: Residential county
-          state_2: State where you will be when signing this form
-          county_2: County where you will be when signing this form
-          Mailing_Address: Mailing Address
-          Mailing_City: City
-          Mailing_State: State
-          Mailing_Zip_Code: Zip
+          abr_county: Select your county
+          date_of_birth_mm_dd_yyyy: Enter your Birthdate
+          abr_check_mailing_address: I get my mail at a different address from the one above
+          abr_mailing_address_instructions: |-
+            <p>Your ballot may be mailed only to:</p>
+             <ul style="font-size: 14px; list-style: disc;  margin-left: 30px; margin-bottom: 20px;">
+            <li>The residential or mailing address as they appear on the county voter registration list,</li>
+            <li>To your temporary residential address, or </li>
+            <li>To a medical care facility where you reside.</li>
+            </ul>
+          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_id_selections: <p>You must provide either a Kansas driver's license number nondriver's identification card number, or another form of acceptable ID.</p>
+          abr_id_selections__options:
+            abr_id_type1: I will provide my current Kansas driver's license number or nondriver's identification card number
+            abr_id_type2: I do not have a current and valid Kansas driver's license number or Kansas nondriver's identification card number. <br> I will provide a copy of an acceptable photo id with my application.
+          abr_drivers_license: Enter your Kansas driver's license number or nondriver's identification card number
+          abr_drivers_license__format_message: Must be a K followed by 8 digits
+          abr_id_type2_instructions: |-
+            <p>Make sure to provide a copy of one of the following. Acceptable ID includes: </p>
+            <p>
+            <ul style="font-size: 14px; list-style: disc;  margin-left: 30px; margin-bottom: 20px;">
+            <li>Driver's license issued by Kansas or another state</li>
+            <li>Nondriver's ID card issued by Kansas or another state</li>
+            <li>U.S. passport</li>
+            <li>Concealed carry of handgun license issued by Kansas or another state</li>
+            <li>Employee badge or ID document issued by a government office</li>
+            <li>U.S. military ID</li>
+            <li>Student ID card issued by an accredited Kansas postsecondary educational institution</li>
+            <li>Public assistance ID card issued by a government office</li>
+            <li>ID card issued by an Indian tribe</li>
+            </ul>
+            </p>
+          abr_election_type_selections: Select the election to request an absentee ballot for.	
+          abr_election_type_selections__options:
+            abr_election_type1: The July 26, 2022 Primary election	
+            abr_election_type2: The November 1, 2022 General Election	
+          abr_party_selections: Select your political party for the primary election
+          abr_party_selections__options:
+              abr_party1: Democratic
+              abr_party2: Republican
         redirect_to_online_registration: We're directing you to the VoteKS online
           voter registration system.
         registration:
