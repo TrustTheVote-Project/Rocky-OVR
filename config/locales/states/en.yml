@@ -1654,7 +1654,7 @@ en:
           abr_last_4_ssn: Enter the last four digits of your SSN
           abr_last_4_ssn__format_message: Must be 4 numbers
           abr_check_mailing_address: I want to receive my ballot at an address other than my registration address.
-          abr_mailing_address_instructions_input: Enter your mailing address	
+          abr_mailing_address_instructions: Enter your mailing address	
           abr_mailing_address_line_1_input: Street Address
           abr_mailing_unit_input: Unit
           abr_mailing_city_input: City
