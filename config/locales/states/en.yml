@@ -962,11 +962,11 @@ en:
           request_deadline: |-
             <p>Your application must be received by:<br/><br/>
             July 26, 2022 for the primary election, and:<br/>
-            November 1, 2022 for the general election.:<br/></p>
+            November 1, 2022 for the general election.<br/><br/></p>
           status_check_instructions: |-
                <p><a href="https://myvoteinfo.voteks.org/voterview" target="_blank">https://myvoteinfo.voteks.org/voterview</a></p>       
-          finish_instructions_1_hint_state: |-
-            <p>If you do not have not provided your state driver's license or id number, remember to provide a copy of another accepted photo ID. Accepted forms of photo ID are listed on the application.</p>
+          finish_instructions_1_hint: |-
+            <p>If you have not provided your state driver's license or ID number, remember to provide a copy of another accepted photo ID. Accepted forms of photo ID are listed on the application.</p>
             <p>Additionally, make sure to sign your printed application.</p>
         abr_form_fields:
           abr_county: Select your county
@@ -1007,8 +1007,8 @@ en:
             </p>
           abr_election_type_selections: Select the election to request an absentee ballot for.	
           abr_election_type_selections__options:
-            abr_election_type1: The July 26, 2022 Primary election	
-            abr_election_type2: The November 1, 2022 General Election	
+            abr_election_type1: The August 2, 2022 Primary election	
+            abr_election_type2: The November 8, 2022 General Election	
           abr_party_selections: Select your political party for the primary election
           abr_party_selections__options:
               abr_party1: Democratic
