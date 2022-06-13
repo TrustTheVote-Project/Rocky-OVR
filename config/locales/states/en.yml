@@ -293,19 +293,25 @@ en:
           header_choice: All Registered Voters in Arizona Can Vote by Mail
           confirm: ''
           instructions: |-
-            <p>Arizona voters have two choices when requesting a ballot:</p>
-            <ul>
-            <li>Join the Permanent Early Voting list, or</li>
-            <li>Request a one-time ballot-by-mail.</li>
-            </ul>
+            <p>To request a ballot online, you need to provide an AZ Driver's License or Non-Operating ID number.</p>
+            <p>To get on the Active Early Voting List (AEVL) and automatically receive a ballot-by-mail for all elections in which 
+            you are eligible to vote, you will be directed to the portal to register or update your registration. From there, you can join the 
+            AEVL.</p>
           button: Request a one-time ballot-by-mail
           requirements: ''
         abr:
           skip_state_online_abr: I'd like to become a Permanent Early Voter
-          request_deadline: received by October 22, 2021 at 5:00 PM
-          status_check_instructions: You can look up your Ballot-by-Mail/Early Ballot
-            status by using <a href="https://my.arizona.vote/AbsenteeTracker.aspx">Arizona's
-            Voter Information Portal</a>.
+          request_deadline: |-
+            <p>Your absentee ballot request must be received by:
+            <ul style="font-size: 14px; list-style: disc; margin-left: 30px; margin-bottom: 20px;">
+            <li>July 22 at 5:00 pm for the primary election, and</li>
+            <li>October 28 at 5:00 pm for the general electiion</li>
+            </ul>
+            </p>
+          status_check_instructions: |-
+            <p><a href="https://my.arizona.vote/PortalList.aspx" target="_blank">
+            https://my.arizona.vote/PortalList.aspx</a>
+            </p>
           confirm_email_delivery: I have reviewed the above information and wish to
             email my request to my local elections office.<br/><br/> By clicking the
             button below, I authorize Rock the Vote to apply my signature, agreeing
@@ -323,39 +329,49 @@ en:
               myself.
           requirements: "<p>To qualify to request a ballot in AZ, you only need to
             be registered to vote.</p>"
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID or anything else with your request.</i></p> <p><i>Mail,
-            fax, or email a scanned copy or photo of the completed form to your County
-            Recorder’s Office.</i></p>"
+          finish_instructions_1_hint: |-
+            <p>You can return your signed form by mail, fax, or email to your 
+            <a href="https://azsos.gov/county-election-info" target="_blank">County Recorder</a>.</p>
         abr_form_fields:
-          County_of_Residence: County of Residence
-          election_selection: 'I am requesting a ballot for:'
-          election_selection__options:
-            general: "<strong>General Election Only</strong>"
-            all: "<span><strong>Every Election</strong>. I authorize the County Recorder
-              to include my name on the PEVL and automatically send me a ballot-by-mail
-              for each election I am eligible for.</span>"
-          has_mailing_address: My mailing address differs from my residential address.
-          Mailing_Address: Mailing Address
-          Place_of_Birth_or_Drivers_licence_or_last_4_ssn: 'Place of birth, driver''s
-            license #, or last 4 digits of social security number:'
-          primary_ballot_selection: Primary Election Ballot Selection
-          primary_ballot_selection__hint: Select a party or nonpartisan ballot for
-            the Primary Election. This will not change your voter registration to
-            this political party affiliation.
-          primary_ballot_selection__options:
-            green_pima_county_voters_only: Green (Pima County Voters Only)
-            municipalonly_nonpartisan: 'Municipal-Only: Nonpartisan'
-          identification_selection: 'Identification type:'
-          identification_selection__options:
-            drivers_license_id: Arizona driver's license or ID
-            place_of_birth: Place of birth
-            last_4_ssn: 'Last 4 digits of SSN #'
-          drivers_license_id: Arizona driver's license or ID
-          drivers_license_id__format_message: That doesn't look like a driver's license
-            number, please verify before continuing.
-          place_of_birth: Place of birth
-          last_4_ssn: 'Last 4 digits of SSN #'
+          abr_county: Select your county
+          date_of_birth_mm_dd_yyyy: Enter your Birthdate
+          abr_check_mailing_address: I get my mail at a different address from the one above
+          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_id_selections: "You must provide one of the following forms of identification:"
+          abr_id_selections__options:
+            abr_id_type1: I will provide my driver's license #
+            abr_id_type2: I will provide the last 4 digits of my SSN #
+            abr_id_type3: I will provide my place of birth
+          abr_drivers_license: Enter your driver's license number
+          abr_last_4_ssn: Enter the last four digits of your SSN
+          abr_place_of_birth: Enter your place of birth
+          abr_election_type_selections: "Select the election you'd like to request a ballot for:"
+          abr_election_type_selections__options:
+            abr_election_type1: I would like to receive a mail-in ballot for all future elections.
+            abr_election_type2: Primary and General elections
+            abr_election_type3: Primary election only
+            abr_election_type4: General election only
+          abr_independent_instructions: |-
+            <p>If you are registered to vote with a political party, you will receive a ballot from that party.</p>
+            <p>If you are not registered with a party, you must select which ballot you would like to receive. 
+            This will not affiliate you with that party.</p>
+          abr_independent_selections: "I am registered to vote as:"
+          abr_independent_selections__options:
+            abr_independent_yes: An independent
+            abr_independent_no: A member of a political party
+          abr_party_selections: Select the type of ballot you wish to receive.
+          abr_party_selections__options:
+            abr_party1: "Democratic"
+            abr_party2: "Republican"
+            abr_party3: "Green (Pima County Voters Only)"
+            abr_party4: "Municipal-Only: Nonpartisan"
+
+          abr_check_change_address: Check this box if you request the County Recorder change your residence and mailing address on your registration record to the ones listed above
+          abr_check_change_name: Check this box if you request the County Recorder change your name on your registration record to the one listed above.
         registration:
           has_state_license: I have an AZ state identification card or driver's license.
           has_no_state_license: I do not have an AZ state identification card or driver's license.
