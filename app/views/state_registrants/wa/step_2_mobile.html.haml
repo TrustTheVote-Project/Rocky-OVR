@@ -55,7 +55,7 @@
         = field_li form, :prev_middle_name, {li_options: {class: 'registrant-form__prev-middle-name__line'}, required: false } 
         = field_li form, :prev_last_name, {li_options: {class: 'registrant-form__prev-last-name__line'}, required: true } 
         = field_li form, :prev_name_suffix, {li_options: {class: 'registrant-form__prev-name-suffix__line'}, required: false } 
-
+  .dynamic-step#step-3
     %br
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
     %br
@@ -64,7 +64,7 @@
     %br
     %ul.flat
       = render :partial=> "registrants/date_of_birth", :locals=>{:form=>form}
-
+  .dynamic-step#step-4
     %fieldset
       %legend
         %span= I18n.t('txt.registration.home_address') 
@@ -124,27 +124,28 @@
 
         = field_li(form, :mail_county_code, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__mailing-county__line"}, select_options: StateRegistrants::VARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
  
-  %fieldset#dln_set.block-selector
+  .dynamic-step#step-5
+    %fieldset#dln_set.block-selector
 
-    %ul.flat.ssn
-      = field_li(form, :driver_license, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 12} })
-      -#= field_li(form, :issue_date, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__issue-date__line"}})
-      %li.registrant-form__dln_instructions__line
-        %p.instructions
-          = I18n.t('states.custom.wa.wa_dln_instructions')
-      %li.registrant-form__issue-date__line
-        %h3
-          = form.label :issue_date
-          %span.required 
-            *
-            %span.required--text{style: 'display:none;'}= I18n.t('required')
-        %div{class: form.object.errors[:issue_date].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, :issue_date)}}
-          = form.text_field :issue_date_month, value: form.object.issue_date_month, placeholder: 'MM', type: 'tel', size: 2, class: 'issue_date_mm'
-          = form.text_field :issue_date_day, value: form.object.issue_date_day, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
-          = form.text_field :issue_date_year, value: form.object.issue_date_year, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
-        %span.error= form.object.errors[:issue_date].join("\n")
-  %fieldset.no_border
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__confirm_no_dln__line",  required: false}
+      %ul.flat.ssn
+        = field_li(form, :driver_license, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 12} })
+        -#= field_li(form, :issue_date, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__issue-date__line"}})
+        %li.registrant-form__dln_instructions__line
+          %p.instructions
+            = I18n.t('states.custom.wa.wa_dln_instructions')
+        %li.registrant-form__issue-date__line
+          %h3
+            = form.label :issue_date
+            %span.required 
+              *
+              %span.required--text{style: 'display:none;'}= I18n.t('required')
+          %div{class: form.object.errors[:issue_date].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, :issue_date)}}
+            = form.text_field :issue_date_month, value: form.object.issue_date_month, placeholder: 'MM', type: 'tel', size: 2, class: 'issue_date_mm'
+            = form.text_field :issue_date_day, value: form.object.issue_date_day, placeholder: 'DD', type: 'tel', size: 2, class: 'issue_date_dd'
+            = form.text_field :issue_date_year, value: form.object.issue_date_year, placeholder: 'YYYY', type: 'tel', size: 4, class: 'issue_date_yyyy'
+          %span.error= form.object.errors[:issue_date].join("\n")
+    %fieldset.no_border
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_no_dln, class_name: "registrant-form__confirm_no_dln__line",  required: false}
 
 
  
@@ -202,22 +203,22 @@
 
   
 
-.dynamic-navigation
-  -# .back only shown when first step, .prepare only shown when last step
-  .back.back--link
-    .button.rollover_button
-      = link_to registrant_path(@registrant.registrant) do
-        %button{type: "button"}
-          %span <
-  .back.back--virtual 
-    .button.rollover_button
-      %a 
-        %button{type: "button"}
-          %span <
-  .next.next--virtual
-    .button.rollover_button
-      %a 
-        %button
-          %span=t 'txt.button.submit'
-  .next.next--link.prepare
-    = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
+  .dynamic-navigation
+    -# .back only shown when first step, .prepare only shown when last step
+    .back.back--link
+      .button.rollover_button
+        = link_to registrant_path(@registrant.registrant) do
+          %button{type: "button"}
+            %span <
+    .back.back--virtual 
+      .button.rollover_button
+        %a 
+          %button{type: "button"}
+            %span <
+    .next.next--virtual
+      .button.rollover_button
+        %a 
+          %button
+            %span=t 'txt.button.submit'
+    .next.next--link.prepare
+      = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
