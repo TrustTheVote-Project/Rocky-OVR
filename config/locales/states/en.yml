@@ -1013,6 +1013,11 @@ en:
           abr_party_selections__options:
               abr_party1: Democratic
               abr_party2: Republican
+        redirect_to_online_registration: We're directing you to the VoteKS online
+          voter registration system.
+        registration:
+          has_state_license: I have a valid KS state identification card or driver's license.
+          has_no_state_license: I do not have a valid KS state identification card or driver's license.
       ky:
         abr:
           step_2_instructions: |-
