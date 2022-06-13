@@ -80,7 +80,7 @@ module AbrStateMethods::MO
     [
       {"abr_last_4_ssn": {required: true, regexp: /\A\d{4}\z/}},	
       {"abr_check_mailing_address": {type: :checkbox}},	
-      {"abr_mailing_address_instructions": {type: :instructions}},
+      {"abr_mailing_address_instructions": {type: :instructions, visible: "abr_check_mailing_address"}},
       {"abr_mailing_address_line_1_input": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
       {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
       {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
