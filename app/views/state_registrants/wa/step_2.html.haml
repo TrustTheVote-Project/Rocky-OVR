@@ -113,8 +113,9 @@
     %ul.flat.ssn
       = field_li(form, :driver_license, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 12} })
       -#= field_li(form, :issue_date, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__issue-date__line"}})
-      %p.instructions
-        = I18n.t('states.custom.wa.wa_dln_instructions')
+      %li.registrant-form__dln_instructions__line
+        %p.instructions
+          = I18n.t('states.custom.wa.wa_dln_instructions')
       %li.registrant-form__issue-date__line
         %h3
           = form.label :issue_date
