@@ -49,8 +49,6 @@ module AbrStateMethods::AZ
       options: ["abr_independent_yes", "abr_independent_no"]
     },
 
-    "abr_change_name":{method: "abr_check_change_name_formatter"},
-    "abr_change_address":{method: "abr_check_change_address_formatter"},
 
 
     #voter_signature
@@ -100,13 +98,11 @@ module AbrStateMethods::AZ
       {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
       {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
 
-      {"abr_id_selections": {type: :radio, options: ["abr_id_type1", "abr_id_type2", "abr_id_type3"]}},
+      {"abr_id_selections": {type: :radio, required: true, options: ["abr_id_type1", "abr_id_type2", "abr_id_type3"]}},
       {"abr_drivers_license": {visible: "abr_id_selections_abr_id_type1", required: :if_visible, ui_regexp:"^[a-zA-Z][0-9]{8}$|^[0-9]{9}$", min:8, max:9}},
       {"abr_last_4_ssn": {required:  :if_visible,  min:4, max:4, visible:"abr_id_selections_abr_id_type2"}},
       {"abr_place_of_birth": {required: :if_visible, min:1, visible: "abr_id_selections_abr_id_type3"}},
 
-      {"abr_check_change_address": {type: :checkbox}},	
-      {"abr_check_change_name": {type: :checkbox}},	
 
 
 
@@ -132,12 +128,5 @@ module AbrStateMethods::AZ
     "#{abr_mailing_address_line_1}" + (abr_mailing_unit.blank? ? '' : ", #{abr_mailing_unit}")
   end
    
-  def abr_check_change_address_formatter
-    return abr_check_change_address ? "On": "Off"
-  end
-
-  def abr_check_change_name_formatter
-    return abr_check_change_name ? "On": "Off"
-  end
    
 end
