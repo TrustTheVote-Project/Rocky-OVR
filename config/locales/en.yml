@@ -314,7 +314,11 @@ en:
         prev_residence_zip: ZIP
         prev_res_county_code: Previous Residential County
         military_flag: Are you currently serving in the military?
+        military_flag_true: "Yes"
+        mulitary_flag_false: "No"
         is_homeless: Do you live somewhere with a non-standard address?
+        is_homeless_true: "Yes"
+        is_homeless_false: "No"
         homeless_address: Describe your living address.
         has_mailing_address: I get my mail at a different address from the one above.
         mailing_address: Address
