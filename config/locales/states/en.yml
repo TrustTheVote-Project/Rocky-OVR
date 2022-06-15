@@ -372,12 +372,12 @@ en:
           abr_independent_selections__options:
             abr_independent_yes: An independent
             abr_independent_no: A member of a political party
-          abr_party_selections: Select the type of ballot you wish to receive.
-          abr_party_selections__options:
-            abr_party1: "Democratic"
-            abr_party2: "Republican"
-            abr_party3: "Green (Pima County Voters Only)"
-            abr_party4: "Municipal-Only: Nonpartisan"
+          abr_primary_type_selections1: Select the type of ballot you wish to receive.
+          abr_primary_type_selections1__options:
+            abr_primary_type1: "Democratic"
+            abr_primary_type2: "Republican"
+            abr_primary_type3: "Green (Pima County Voters Only)"
+            abr_primary_type4: "Municipal-Only: Nonpartisan"
 
           abr_check_change_address: Check this box if you request the County Recorder change your residence and mailing address on your registration record to the ones listed above
           abr_check_change_name: Check this box if you request the County Recorder change your name on your registration record to the one listed above.
