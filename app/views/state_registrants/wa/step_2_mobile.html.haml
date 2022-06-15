@@ -38,7 +38,7 @@
   
   .dynamic-step#step-2
 
-    = render partial: 'step2/name', locals: {form: form}
+    = render partial: 'state_registrants/wa/name', locals: {form: form}
     %fieldset.no_border
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_previous_name, class_name: "registrant-form__change-of-name__line", required: false, tooltip: :previous_name}
 
@@ -79,7 +79,7 @@
         = field_li(form, :home_state_abbrev, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-state-abbrev__line"} })
         = field_li(form, :residence_zip, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
         -#CTW To do county %ul.stacked
-        = field_li(form, :res_county_code, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::WARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
+        -# = field_li(form, :res_county_code, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::WARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
     
     %fieldset.no_border
       = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :has_previous_address, class_name: "registrant-form__change-of-name__line", required: false, tooltip: :previous_name}
