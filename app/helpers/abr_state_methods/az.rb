@@ -20,11 +20,11 @@ module AbrStateMethods::AZ
     "abr_county": {},
 
     "abr_election_type_selections": {},
-    "abr_party_selections": {options:[
-      'abr_party1',
-      'abr_party2',
-      'abr_party3',
-      'abr_party4',
+    "abr_primary_type_selections1": {options:[
+      'abr_primary_type1',
+      'abr_primary_type2',
+      'abr_primary_type3',
+      'abr_primary_type4',
     ]},
 
     'abr_check_mailing_address':{},
@@ -71,7 +71,7 @@ module AbrStateMethods::AZ
       {"abr_independent_instructions": {type: :instructions, hidden: 'abr_election_type_selections_abr_election_type4'}},
       {"abr_independent_selections": {type: :radio, hidden: 'abr_election_type_selections_abr_election_type4' , options: ["abr_independent_yes", "abr_independent_no"]}},
 
-      {"abr_party_selections": {visible: "abr_independent_selections_abr_independent_yes", required: :if_visible, type: :radio, options: ["abr_party1", "abr_party2", "abr_party3", "abr_party4"]}},
+      {"abr_primary_type_selections1": {visible: "abr_independent_selections_abr_independent_yes", required: :if_visible, type: :radio, options: ["abr_primary_type1", "abr_primary_type2", "abr_primary_type3", "abr_primary_type4"]}},
 
       {"abr_county": {type: :select, required: true, include_blank: true, options: [
         "Apache",
