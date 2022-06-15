@@ -4,7 +4,7 @@ module AbrStateMethods::KS
     "abr_email": {method: "email"},	
     "abr_phone": {method: "phone"},	
     "abr_first_name": {method: "first_name"},	
-    "middle_initial": {method: "middle_initial"},	
+    "abr_middle_initial": {method: "middle_initial"},	
     "abr_last_name": {method: "last_name"},	
     "abr_name_suffix": {method: "name_suffix"},	
     "abr_address_line_1":{method: "address"},
@@ -182,8 +182,8 @@ module AbrStateMethods::KS
   
   def abr_election_date
     v = self.abr_election_type_selections
-    return "July 26, 2022" if v == "abr_election_type1"
-    return "November 1, 2022" if v == "abr_election_type2"
+    return "August 2, 2022" if v == "abr_election_type1"
+    return "November 8, 2022" if v == "abr_election_type2"
 
   end
 
