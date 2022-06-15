@@ -290,17 +290,26 @@ en:
           delivery_ballot_address_3: City, State, Zip (Mailing)
       az:
         state_online_abr:
-          header_choice: All Registered Voters in Arizona Can Vote by Mail
-          confirm: ''
-          instructions: |-
-            <p>To request a ballot online, you need to provide an AZ Driver's License or Non-Operating ID number.</p>
-            <p>To get on the Active Early Voting List (AEVL) and automatically receive a ballot-by-mail for all elections in which 
-            you are eligible to vote, you will be directed to the portal to register or update your registration. From there, you can join the 
-            AEVL.</p>
-          button: Request a one-time ballot-by-mail
-          requirements: ''
+          #header_choice: All Registered Voters in Arizona Can Vote by Mail
+          #confirm: ''
+          instructions_header: "I have an AZ Driver's License or Non-Operating ID number:"
+          requirements: |-
+            <p>To request a ballot online, you need to provide an AZ Driver's 
+            License or Non-Operating ID number. You can complete a paper registration by 
+            providing your place of birth, Driver's License number, or last 4 digits of
+            your Social Security number.</p>
+            <p>You can use either the online portal or the paper request form to get on 
+            the Active Early Voting List (AEVL) and automatically receive a ballot-by-mail
+            for all elections in which you are eligible to vote.</p>
+          # instructions: |-
+          #   <p>To request a ballot online, you need to provide an AZ Driver's License or Non-Operating ID number.</p>
+          #   <p>To get on the Active Early Voting List (AEVL) and automatically receive a ballot-by-mail for all elections in which 
+          #   you are eligible to vote, you will be directed to the portal to register or update your registration. From there, you can join the 
+          #   AEVL.</p>
+          button: Finish your absentee request online with Arizona.
+
         abr:
-          skip_state_online_abr: I'd like to become a Permanent Early Voter
+          skip_state_online_abr: I do not meet the requirements, and I would like to complete a paper request form.
           request_deadline: |-
             <p>Your absentee ballot request must be received by:
             <ul style="font-size: 14px; list-style: disc; margin-left: 30px; margin-bottom: 20px;">
@@ -352,7 +361,7 @@ en:
           abr_election_type_selections: "Select the election you'd like to request a ballot for:"
           abr_election_type_selections__options:
             abr_election_type1: I would like to receive a mail-in ballot for all future elections.
-            abr_election_type2: Primary and General elections
+            abr_election_type2: Primary and General election
             abr_election_type3: Primary election only
             abr_election_type4: General election only
           abr_independent_instructions: |-
