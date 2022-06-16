@@ -17,7 +17,7 @@
     .election_official_address
       = @registrant.state_registrar_address.html_safe
       
-- if @esign && false
+- if @esign
   %div.page#page_1.esign_cover_letter
     .logo= wicked_pdf_image_tag("pdf/esign/#{@registrant.home_state_name.downcase}.png")
     .letter
