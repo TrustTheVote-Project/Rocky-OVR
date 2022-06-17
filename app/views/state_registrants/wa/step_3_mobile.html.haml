@@ -25,8 +25,9 @@
     %ul.flat.ssn
       = field_li(form, :ssn4, {skip_tooltip: true, required: false, li_options: {class: "registrant-form__ssn__line"}, field_options: {type: :password, size: 4, maxlength: 4} })
 
-  %fieldset.no_border
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :military_flag, class_name: "registrant-form__military-flag__line", required: false, tooltip: 'military_hint_wa'}
+  %fieldset.military-flag
+    %ul.stacked.radio
+      = field_li(form, :military_flag, {skip_tooltip: false, required:true, required_message: I18n.t('states.custom.wa.custom_errors.military_flag_required'), radio_options: [[t("yes"), true], [t("no"), false]], tooltip_tag: 'military_hint_wa'})
 
   %fieldset.no_border
     = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_homeless, class_name: "registrant-form__is-homeless__line", required: false, tooltip: 'is_homeless_hint_wa'}
