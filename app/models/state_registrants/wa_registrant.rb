@@ -112,14 +112,14 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   end
   
   
-  def gender
-    male_titles = RockyConf.enabled_locales.collect { |loc|
-     I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
-    }.flatten.uniq
-    return 'M' if male_titles.include?(self.name_title)
-    return 'F' if !self.name_title.blank?
-    return ''   
-  end
+  # def gender
+  #   male_titles = RockyConf.enabled_locales.collect { |loc|
+  #    I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
+  #   }.flatten.uniq
+  #   return 'M' if male_titles.include?(self.name_title)
+  #   return 'F' if !self.name_title.blank?
+  #   return ''   
+  # end
   
   def complete?
     status == step_list.last && valid? 
@@ -218,11 +218,11 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
 
 
       "nameSuffix"	=>	self.name_suffix,
-      "firstName"	=>	self.first_name,
-      "middleName"	=>	self.middle_name,
-      "lastName"	=>	self.last_name,
+      "firstName"	=>	self.first_name ? self.first_name.strip : nil,
+      "middleName"	=>	self.middle_name ? self.middle_name.strip : nil,
+      "lastName"	=>	self.last_name ? self.last_name.strip : nil,
 
-      "Gender"	=>	self.gender,
+      #"Gender"	=>	self.gender,
 
 
       "prevNameSuffix"	=>	self.prev_name_suffix,
