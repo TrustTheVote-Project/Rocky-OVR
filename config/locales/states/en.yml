@@ -3387,10 +3387,11 @@ en:
         step_2_header: New Registrant
         step_3_header: Additional Registration information
         step_4_header: Review &amp; Confirm
-        registration_complete_title: Registration is not complete until processed and accepted.
-        registration_complete_message: If accepted, you will receive notices and voting materials by mail.
+        registration_complete_title: Your application has been sent to your county voter registration office.
+
+        registration_complete_message: Registration is not complete until processed and accepted. If accepted, you will receive notices and voting materials by mail.
         instructions:
-          registration_complete_dialog_text: '<p>If you have not received your ballot by 15 days before an election, contact your local elections office.</p><p>Confirm your registration by entering your name and date of birth at <a target="_blank" rel="noreferrer noopener" href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA.gov</a>.</p>'
+          registration_complete_dialog_text: '<p>Elections in Washington are conducted by mail. If you have not received your ballot by 15 days before an election, contact your local elections office.</p><p>Confirm your registration by entering your name and date of birth at <a target="_blank" rel="noreferrer noopener" href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA.gov</a>.</p>'
           registration_complete_whats_next_text: '<p></p>'
         state_flow_error: There was a problem submitting your registration to Washington.
           Please try again later or continue here to create a paper form.
