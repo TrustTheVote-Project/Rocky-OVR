@@ -310,7 +310,7 @@ absentee_states:
     abr_track_ballot_url: "https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking"
   WY:
     pdf_template: wy.pdf
-    email_delivery: true
+    #email_delivery: true
     leo_lookup_url: "https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf"
 
 # Only configured for staging2 right now.

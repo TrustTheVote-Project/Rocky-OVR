@@ -3351,12 +3351,20 @@ en:
           has_no_state_license: I do not have a WV state identification card or WV driver's license, and Social Security Number.
       wy:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf'>online
-            tool</a>
+
+          request_deadline: |-
+            <p>Your absentee ballot request must be received county clerk's office by the day before the election.</p>
+            <p>Your completed ballot must be received no later than 7:00 p.m. on Election Day. 
+            If you do not receive your ballot in time to mail it back to your election official, you can return
+            it by hand. Ballots arriving after the deadline will not be counted.</p>
+          status_check_instructions: |-
+               <p>For more information on the status of your ballot,
+               contact your <a target="_blank" href="https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf">county clerk.</a></p>       
+          finish_instructions_1_hint: |-
+            <p>If you are requesting a ballot for the Primary Election, your political party is required and it must be 
+            the same political party in which you are currently registered. To change your political party, please contact your 
+            <a target="_blank" href="https://sos.wyo.gov/Elections/Docs/WYCountyClerks.pdf">county clerk.</a></p>
+            <p>Additionally, make sure to sign your printed application.</p>
           confirm_email_delivery: I have reviewed the above information and wish to
             email my request to my local elections office.<br/><br/> By clicking the
             button below, I authorize Rock the Vote to apply my signature, agreeing
@@ -3373,18 +3381,23 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         abr_form_fields:
-          has_mailing_address: Mail my ballot to a different address
-          MAIL MY BALLOT TO: Mailing Address
-          CITY_2: City
-          STATE_2: State
-          ZIP_2: ZIP
-          ACTIVE MILITARY Y  N: Are you active military?
-          ACTIVE MILITARY Y  N__options:
-            Y: 'Yes'
-            N: 'No'
-          Individual's name who may pick up my ballot: Authorized Ballot Pick-up
-          Individual's name who may pick up my ballot__hint: 'To authorize another
-            individual to pick up your ballot for you, add their name here:'
+          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_uocava_check:	Are you an active member of the military?
+          abr_check_mailing_address:	I get my mail at a different address from the one above
+          abr_election_type_selections:	Select the election(s) you'd like to request a ballot for
+          abr_election_type_selections__options:	
+          abr_election_type1_check:	2022 Primary
+          abr_election_type1_check__required_message: At least one election must be selected
+          abr_election_type2_check:	2022 General
+          abr_election_type2_check__required_message: At least one election must be selected
+          abr_party:	Your political party is required for a Primary Election.
+          abr_request_check:	Will someone else be picking up your absentee ballot?
+          abr_request_name:	Enter the name of the person you are designating to pick up your absentee ballot.
+          no_election_type__required_message: At least one election type must be selected.
     parties:
       democratic: Democratic
       independent: Independent
