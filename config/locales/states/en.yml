@@ -3193,12 +3193,75 @@ en:
             state ID or your SSN, you may request your absentee ballot online directly
             with the state.</p>"
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://mvp.vermont.gov/'>online
-            tool</a>
+          request_deadline: |-
+            <p>All early voter absentee ballot requests must be submitted by 5 p.m. or by the close of the town clerk’s office on the day before the election.
+            </p>
+            <p>If you mail your form, make sure it is received by that time.
+            </p> 
+          status_check_instructions: |-
+            <p>
+            <a target='_blank' href='https://mvp.vermont.gov/'>https://mvp.vermont.gov/</a></p>
+          finish_instructions_1_hint_state: |-
+            <p>Absentee ballots for the August 9, 2022, statewide primary will be available not later than June 25, 2022. 
+            </p>
+            <p>Absentee ballots for the November 8, 2022, general election will be automatically mailed to all active registered voters, not later than October 1, 2022. 
+            </p>
+            <p>Ballots for local elections—town meeting elections by Australian ballot—are available 20 days prior to the election
+            </p>
+          finish_instructions_1_hint: |-
+            <p>If someone filled out the absentee request form for you, they must sign where indicated.
+            </p>
+            <p>Absentee ballots for the August 9, 2022, statewide primary will be available not later than June 25, 2022. 
+            </p>
+            <p>Absentee ballots for the November 8, 2022, general election will be automatically mailed to all active registered voters, not later than October 1, 2022. 
+            </p>
+            <p>Ballots for local elections—town meeting elections by Australian ballot—are available 20 days prior to the election
+            </p>
+
+
+        abr_form_fields:
+          abr_previous_name_check: My name has changed since I registered to vote.
+          abr_previous_full_name: Enter your previous name
+          abr_delivery_address_selections: I get my mail at a different address from the one above.
+          abr_delivery_address_selections__options: 
+            abr_delivery_address_type1: "Yes"
+            abr_delivery_address_type2: "No"
+          abr_mailing_address_instructions: Enter your mailing address
+          abr_mailing_address_line_1: Mailing address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_election_type_selections: Select the elections you would like to request a ballot for.
+          abr_election_type_selections__options: 
+            abr_election_type1: I want to select the elections
+            abr_election_type2: I want to select a time period (within 1 calendar year)
+          abr_election_type_instructions: I want to vote by mail in the following elections
+          abr_election_type3: Annual Town Meeting
+          abr_election_type4: All local elections
+          abr_election_type5: General Election
+          abr_election_type6: Primary Election
+          abr_election_type7: Presidential Primary Election
+          abr_primary_type_selections: Select a party
+          abr_primary_type_selections__options: 
+            abr_primary_type1: Democratic
+            abr_primary_type2: Republican
+          abr_absence_begin_date_input: Enter the date you'd like to begin receiving absentee ballots
+          abr_absence_end_date_input: Enter the date you'd like to stop receiving absentee ballots.
+          abr_request_check: Are you requesting a ballot on behalf of a voter?
+          abr_request_instructions: The person requesting a ballot must complete this section.
+          abr_request_name: Enter your name
+          abr_request_name2: If you represent an organization, enter that here
+          abr_assistant_address_line_1: Enter your address
+          abr_assistant_address_line2: City, State, Zip
+          abr_assistant_phone: Enter your phone number
+          abr_request_selections: Provide your relationship to the voter
+          abr_request_selections__options: 
+            abr_request_type1: Family Member
+            abr_request_type2: Health care provider
+            abr_request_type3: Person authorized by voter
+          abr_no_election_checked__required_message: At least one of the election options is required
+
         registration:
           has_state_license: I have a VT state identification card or VT driver's license, or Social Security Number.
           has_no_state_license: I do not have a VT state identification card or VT driver's license, or Social Security Number.

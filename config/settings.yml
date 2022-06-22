@@ -284,6 +284,8 @@ absentee_states:
     # email_delivery: true
     abr_status_check_url: "https://vote.elections.virginia.gov/VoterInformation"
   VT:
+    online_req_url: https://mvp.vermont.gov/
+    pdf_template: vt.pdf
     abr_status_check_url: "https://mvp.vermont.gov/" #All vote-by-mail this year
     abr_track_ballot_url: "https://mvp.vermont.gov/" #All vote-by-mail this year
     leo_lookup_url: "https://sos.vermont.gov/media/vh1jv3oj/2019townclerkguide.pdf"
