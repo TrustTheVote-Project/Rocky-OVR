@@ -4,71 +4,84 @@ en:
     custom:
       ak:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://myvoterinformation.alaska.gov/'>online
-            tool</a>
-          requirements: "<p>To qualify to request a ballot in AK, you must meet the
-            following requirments: Be a US Citizen, be 18 years of age or request
-            the ballot within 90 days of your birthday, and be able to submit a copy
-            of your current driver’s license, state ID, passport, birth certifiate,
-            hunting and fishing license or current and valid photo ID with your application.</p>"
+          step_2_instructions: |-
+            <p>
+            All registered voters in %{state_name} can request an absentee ballot.<br/>
+            <a href="%{lookup_url}">Check if your registration is up to date.</a>
+            </p>
+            <p>You can use this form to register to vote and request an absentee ballot.</p>
+          request_deadline: |-
+            <p>Your application must be received by:</p>
+            </p><ul>
+            <li>August 6th for the primary, and </li>
+            <l>September 24th for the general election.</li>
+            </ul>
+
+          status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your application - do not type your signature.
+            </p>
+            <p>If you are using this form to register to vote, make sure to include a copy of your identification.
+            </p>
+            <p>If you are using this form to request an absentee ballot and you did not provide your Social Security Number or AK Drivers' License/ID, make sure to include a copy of your identification.</p>
+
+            
         state_online_abr:
           confirm: ''
           requirements: |-
-            <p>Every registered voter in Alaska can request an absentee ballot.</p>
-            <p>Check if you are registered by visiting <a href="https://myvoterinformation.alaska.gov/">the Alaska voter information site</a></p>
-            <p>If you are registered to vote and have a valid Alaska driver's license or state ID, you can request an absentee ballot online.</p>
+            <p>
+            If you have a valid Alaska driver's license or state ID card, you can complete your absentee 
+            ballot request and/or voter registration online.
+            </p>
+
         abr_form_fields:
-          us_citizen: I am a U.S. Citizen
-          us_citizen__required_message: You must be a U.S. Citizen
-          attest_is_18: I am 18 years of age or within 90 days of my 18th birthday
-          attest_is_18__required_message: You must be with 90 days of your 18th birthday
-            or older.
-          Former Name: Former Name (if changed)
-          Voter No: Voter Number (if known)
-          has_mailing_address: My mailing address is different than my residential
-            address
-          Perm Mailing 1: Permanent address where you receive mail
-          Perm Mailing 2: Line 2
-          Perm Mailing 3: Line 3
-          SSN or Last 4: SSN or Last 4
-          ADL: Alaska driver's license or State ID No.
-          ADL__required_message: Either Driver's license or SSN is required
-          ADL__format_message: That doesn't look like a driver's license number, please
-            verify before continuing.
-          attest_no_ssn_or_dln: I do not have an SSN or AK driver's license or State
-            ID
-          gender: Gender
-          gender__options:
-            male: Male
-            female: Female
-          gender__hint: Select One
-          Party: Political party affiliation
-          Party__hint: Recognized Political Parties are parties who have gained recognized
-            political party status under Alaska statutes:<br/>Alaska Democratic Party,
-            Alaska Republican Party and Alaskan Independence Party.<br/><br/>Political
-            Groups are parties who have applied for party status but have not met
-            the qualifications required in Alaska statutes:<br/>Alaska Libertarian
-            Party, Alliance Party of Alaska, Green Party of Alaska, Moderate Party
-            of Alaska, OWL Party, Patriot’s Party of Alaska, Progressive Party of
-            Alaska, UCES’ Clowns Party, Veterans Party of Alaska<br/><br/>Other Political
-            Affiliations:<br/>Nonpartisan (not affiliated with a political party or
-            group) or Undeclared (do not wish to declare a political party or group)
-          ballot_selection: Primary ballot option
-          ballot_selection__options:
-            dem: Alaska Democratic Party and Alaskan Independence Pary candidates.
-            rep: Alaska Republican Party candidates
-          attest_remote: Yes, I will be in remote Alaska or overseas where mail service
-            is limited. If yes, a 45-day advance ballot will be mailed to you.
-          has_ballot_mailing_address: I want my ballot sent to a separate address
-          Ballot Mailing Address 1: Ballot mailing address
-          Ballot Mailing Address 1__hint: Provide an address where you will receive
-            mail, if different from your residence address.
-          Ballot Mailing Address 2: "&nbsp;"
-          Ballot Mailing Address 3: "&nbsp;"
+          abr_previous_name_check: "My name has changed since I registered to vote."
+          abr_previous_full_name: Enter your former name
+          abr_citizen_selections: Are you a citizen of the United States
+          abr_citizen_selections__options:
+            abr_citizen_yes: "Yes"
+            abr_citizen_no: "No"
+          abr_18years_selections: Are you at least 18 years of age or within 90 days of your 18th birthday? 
+          abr_18years_selections__options:
+            abr_18_yes: "Yes"
+            abr_18_no: "No"
+          abr_check_mailing_address: I get my mail at a different address from the one above.	
+          abr_check_mailing_address__post_hint: Ballots will not be forwarded. If you receive mail at a different address than you provided as your street address, check this box.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1_input: Address	
+          abr_mailing_unit_input: Unit	
+          abr_mailing_city_input: City	
+          abr_mailing_state_abbrev_input: State	
+          abr_mailing_zip_input: Zip	
+          abr_delivery_address_type1: I will be in remote Alaska or overseas where mail service is limited.	
+          abr_delivery_address_type1__post_hint: If yes, a 45-day advance ballot will be mailed to you.
+          abr_id_selections: "You must provide one of the following forms of identification:"
+          abr_id_selections__hint: If you are also using this form to register, you must provide a copy of your ID.
+          abr_id_selections__options:
+            abr_ssn_number: I will provide my Social Security Number or the last four digits of my Social Security Number.	
+            abr_drivers_license: I will provide my Alaska driver's license or State ID No. 	
+            abr_id_no2: I do not have an SSN or AK driver's license or State ID.<br/>If you do not have a Social Security number or an Alaska driver's license or state ID, you can also submit a copy of your passport, birth certifciate, hunting and fishing license or current and valid photo ID with your application.
+          abr_id_type1: Enter your SSN or last 4 digits	
+          abr_id_type2: Enter your Alaska driver's license or State ID No. 	
+          abr_id_type_3: Enter your Voter Number
+          abr_id_type_3__hint: This field is optional. If you do not know your voter number, you can skip this field.
+          abr_election_type_selections1: Select the elections you would like to request a ballot for.	
+          abr_election_type_selections2: You can select all elections in a calendar year or an individual election.
+          abr_election_type1: All elections in the calendar year
+          abr_election_type1__required_message: You must select at least one election	
+          abr_election_type2: Primary (August)	
+          abr_election_type3: General (November)	
+          abr_election_type4: REAA (October)	
+          abr_election_type5: Special	
+          abr_party_selections_input: Select your Political Party affiliation
+          abr_party_selections_input__hint: You can also select nonpartisan (not affiliated with a political party or group). If you do not wish to affiliate with a party, select undeclared.
+          abr_party_selections_input__options:
+            abr_party1: Alaska Democratic Party	
+            abr_party2: Alaska Republican Party	
+            abr_party3: Alaskan Independence Party	
+            abr_party4: Nonpartisan	
+            abr_party5: Undeclared	
+          
         registration:
           has_state_license: I have a current AK state identification card
             or driver's license, and social security number.
