@@ -2039,12 +2039,12 @@ en:
           abr_party_selections__options:
             abr_party1:  Democratic Party
             abr_party2:  Republican Party
-          abr_election_date:  Enter the date of the Special Primary Election
+          abr_election_date_input:  Enter the date of the Special Primary Election
           abr_party_selections2:  Select with ballot you would like to receive.
           abr_party_selections2__options:
             abr_party3:  Democratic Party
             abr_party4:  Republican Party
-          abr_election_date2:  Enter the date of the Special General Election
+          abr_election_date2_input:  Enter the date of the Special General Election
           abr_assistant_check1:  Did someone assist you in filling out this form?
           abr_assistant_name:  Enter the name of the assistant
 
