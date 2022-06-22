@@ -1535,11 +1535,12 @@ en:
           confirm_eligibility: You must meet all the above requirements to register
             to vote in Minnesota.
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide an identification
-            number: MN-issued driver's license, Minnesota ID card or last 4 digits
-            of Social Security Number, you may request your absentee ballot online
-            directly with the state.</p>"
-          instructions: |-
+          requirements: "<p>You can request an absentee ballot online if you have a MN-issued driver's license, 
+            MN-issued ID card or a social security number. Otherwise, you can complete a paper application.</p>
+            <p>You do not need to be registered to request an absentee ballot. If you are not registered at the 
+            legal residence address provided, you will be sent a voter registration application with your ballot materials.</p>"
+          instructions_header: I have a MN-issued driver's license, MN-issued ID card or a social security number
+          _instructions: |-
             <p>To request an absentee ballot in MN, you must certify that:</p>
             <ul>
               <li>I am completing this application on my own behalf; </li>
@@ -1552,20 +1553,26 @@ en:
               <li>have the right to vote because, if I have been convicted of a felony, my felony sentence has expired (been completed) or Ihave been discharged from my sentence.</li>
             </ul>
         abr_form_fields:
-          bad_date__format_message: Invalid date
-          Absentee ballot address_1: Ballot delivery address
-          Absentee ballot address - City: City
-          Absentee ballot address - State: State
-          Absentee ballot address - Zip Code: Zip
-          has_mailing_address: I would like my ballot sent to an address other than
-            my residential address.
-          id_instruction: Your identification number  (mark all that apply)
-          dln_check: I have a Minnesota-issued driver's license or ID Card
-          Minnesota Driver's License or ID Card Number: MN-issued driver’s license
-            or MN ID card
-          Minnesota Driver's License or ID Card Number__format_message: Not a valid
-            MN-issued driver’s license or MN ID card
-          ss_check: I have a Social Security Number
+          abr_county: Select your county
+          abr_id_instructions: You must provide a MN-issued driver's license, MN-issued ID card or a social security number if you have one.
+          abr_id_type1: I have a MN-issued driver’s license or MN ID card
+          abr_id_type2: I have a Social Security Number
+          abr_no_id: I do not have a MN-issued driver’s license, MN-issued ID card or a social security number.
+          abr_drivers_license: Enter the number of your MN-issued driver's license or MN ID card.
+          abr_ssn_number: Enter the last four digits of your social security number.
+          abr_election_type_selections: Select the election you'd like to request a ballot for.
+          abr_election_type1: 8/9 Primary Election
+          abr_election_type2: 11/8 General Election
+          abr_election_type3: Both 8/9 Primary and 11/8 General Elections
+          abr_election_type4: Other
+          abr_election_date_input: Enter the date of the election
+          abr_check_mailing_address: I get my mail at a different address from the one above.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1_input: Street Address
+          abr_mailing_unit_input: Unit
+          abr_mailing_city_input: City
+          abr_mailing_state_abbrev_input: State
+          abr_mailing_zip_input: ZIP
           no_id_check: I do not have a Minnesota-issued driver's license or identification
             card, or a Social Security Number
           no_id_check__format_message: You cannot select no id if you have a Minnesota-issued
@@ -1573,6 +1580,9 @@ en:
           no_id_check__required_message: You must either provide an ID above or assert
             you have no identification
         abr:
+          step_2_instructions: |-
+            <p>All eligible voters in Minnesota can request an absentee ballot.</p>
+
           step_3_pending_header: Requesting an Absentee Ballot in Minnesota
           step_3_pending_instructions: |-
             <p>All eligible voters can apply to vote by mail in Minnesota. You do not need to be registered to apply.</p>
@@ -1593,16 +1603,24 @@ en:
             <p>You will need a witness when you vote and complete your ballot. The witness can be either a registered Minnesota voter or a notary. Your witness must sign the signature envelope and list their address. Notaries should write their name and title, sign the signature envelope, and affix their notary stamp.</p>
 
             <p>Your ballot must be received by Election Day or it will not be counted.</p>
-          request_deadline: You can apply for a ballot any time during the year, except
-            the day of the election. Leave time for election officials to mail your
-            ballot.
+          request_deadline: |-
+            <p>You can apply for a ballot any time during the year, except the day of the election, but make sure to 
+            leave time for election officials to mail your ballot.
+            </p>
+            <p>If you do not receive your ballot in time to mail it back to your election official, you can return it by hand. Ballots returned by hand must be received by 3 pm on election day to be counted.</p>
+          finish_instructions_1_hint: |-
+            <p>You can return your completed application to your county election office by mail, fax, or email.
+            </p>
+            <p>If you are not registered at the legal residence address provided, you will be sent a voter registration 
+            application with your ballot materials. If you receive those materials, make sure to return them with your application.
+            </p>
           finish_instructions_1_hint_state: "<p><i>Be sure to check if you need to
             send in a copy of your ID \nor anything else with your request.</i></p>\n<p>You
             can return this application by mail, fax or as a scanned attachment to
             an email.</p>"
-          status_check_instructions: You can look up your absentee ballot status on
-            the <a href='https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx'>Minnesota
-            Elections & Voting</a> page.
+          status_check_instructions: |-
+            <p><a href='https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx'>
+            https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx</a></p>
           signature_capture:
             desktop_provide_e_signature: In the state of Minnesota, we can email a
               digitally signed copy of your absentee request. Please select how you'd
