@@ -3,178 +3,177 @@ module AbrStateMethods::AK
   PDF_FIELDS = {'abr_email': {:method=>"email"},
                 'abr_first_name': {:method=>"first_name"},
                 'abr_last_name': {:method=>"last_name"},
-                'abr_middle_name': {},
+                'abr_middle_name': {method: "middle_name"},
                 'abr_name_suffix': {:method=>"name_suffix"},
+                'abr_street_number': {method: "street_number"},
+                'abr_street_name': {method: "street_name"},
+                'abr_city': {:method=>"city"},
+                'abr_unit': {:method=>"unit"},
+                'abr_phone': {method: "phone"},
+                
+                
                 'abr_previous_full_name': {},
                 'abr_citizen_selections': {
                                             options:['abr_citizen_yes',
                                                      'abr_citizen_no']
                                           },
-                'abr_id_type_3': {},
-                'abr_street_number': {},
-                'abr_street_name': {},
-                'abr_city': {:method=>"city"},
                 'abr_18years_selections': {
-                                            options: ['abr_18_yes',
-                                                      'abr_18_no']
-                                          },
-                'abr_id_no2': {},
+                  options: ['abr_18_yes',
+                            'abr_18_no']
+                },
+                'abr_mailing_address_line_1': {method: "abr_ballot_address"},
+                'abr_mailing_unit': {method: "abr_ballot_unit"},
+                'abr_mailing_city': {method: "abr_ballot_city"},
+                'abr_mailing_state_abbrev': {method: "abr_ballot_state_abbrev"},
+                'abr_mailing_zip': {method: "abr_ballot_zip"},
+                
+                'abr_delivery_address_type1': {},
+                "abr_id_selections": {
+                  options: [
+                    "abr_ssn_number",
+                    "abr_drivers_license",
+                    "abr_id_no2",
+                  ]
+                },
                 'abr_id_type1': {},
                 'abr_id_type2': {},
-                'date_of_birth_mm_dd_yyyy': {},
-                'abr_delivery_address_type1': {},
-                'abr_party_selections': {},
-                'abr_mailing_address_line_1': {},
-                'abr_unit': {:method=>"unit"},
-                'abr_mailing_city': {},
-                'abr_mailing_state_abbrev': {},
-                'abr_mailing_zip': {},
-                'abr_election': { options: ['abr_election_REAA',
-                                            'abr_election_all',
-                                            'abr_election_general',
-                                            'abr_election_primary',
-                                            'abr_election_special'
-                                           ]
-                                },
-                'abr_uocava_status': { options: ['active',
-                                                 'overseas'
-                                       ]
-},
-                'ab_uocava_send_options': { options: [ 'fax',
-                                                      'mail',
-                                                      'overseas'
-                                                    ]
-                                          },
-                'abr_phone_day': {},
-                'abr_phone_evening': {},
-                'abr_fax': {},
-                'abr_gender': { options: ['male', 'female']},
-                'PRA': {},
-                'Date': {}
+                'abr_id_no2': {options: ["Off", "Yes"], method: "abr_id_selections_is_no2"},                
+                'abr_date_of_birth_mm_dd_yyyy': {
+                  method: "date_of_birth_mm_dd_yyyy",
+                  pdf_name: "date_of_birth_mm_dd_yyyy"
+                },
+                
+                'abr_id_type_3': {},
+                
+                "abr_election_type1": {options: ["Off", "On"]},
+                "abr_election_type2": {options: ["Off", "On"]},
+                "abr_election_type3": {options: ["Off", "On"]},
+                "abr_election_type4": {options: ["Off", "On"]},
+                "abr_election_type5": {options: ["Off", "On"]},
+
+                'abr_party_selections_input': {
+                  options: [
+                    "abr_party1",
+                    "abr_party2",
+                    "abr_party3",
+                    "abr_party4",
+                    "abr_party5",
+                  ],
+                },
+                'abr_party_selections': {
+                  method: "abr_party_selections_string"
+                },
                  
                }
   
-  EXTRA_FIELDS = ["has_ballot_mailing_address", "has_mailing_address", "dln_soft_validation"]
+  EXTRA_FIELDS = ["abr_previous_name_check", "abr_party_selections_input", "abr_check_mailing_address", "abr_id_selections",
+    "abr_mailing_address_line_1_input",
+    "abr_mailing_unit_input",
+    "abr_mailing_city_input",
+    "abr_mailing_state_abbrev_input",
+    "abr_mailing_zip_input",
+  ]
 
   def form_field_items
     [
-      {"us_citizen": {type: :checkbox, required: true}},
-      {"attest_is_18": {type: :checkbox, required: true}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"Perm Mailing 1": {visible: "has_mailing_address", min: 3, max: 50}},
-      {"Perm Mailing 2": {visible: "has_mailing_address"}},
-      {"Perm Mailing 3": {visible: "has_mailing_address"}},
-      {"ADL": {length: 7, ui_regexp: "^[0-9]{7}$", hidden: "attest_no_ssn_or_dln"}},
-      {"SSN or Last 4": {hidden: "attest_no_ssn_or_dln"}},
-      {"attest_no_ssn_or_dln": { type: :checkbox}}, # Must either provide ssn, alaska state ID or check "attest_no..."
-      {"gender": {type: :radio, options: ["male", "female"]}},
-      "Party",
-      {"attest_remote": {type: :checkbox}},
-      {"has_ballot_mailing_address": {type: :checkbox}},
-      {"Ballot Mailing Address 1": {visible: "has_ballot_mailing_address"}},
-      {"Ballot Mailing Address 2": {visible: "has_ballot_mailing_address"}},
-      {"Ballot Mailing Address 3": {visible: "has_ballot_mailing_address"}},
-      "Former Name",
-      "Voter No",
-      {"dln_soft_validation": {type: :hidden}}
+      {'abr_previous_name_check': {type: :checkbox}},
+      {'abr_previous_full_name': {required: :if_visible, visible: "abr_previous_name_check"}},
+      {'abr_citizen_selections': {type: :radio, required: true}},
+      {'abr_18years_selections': {type: :radio, required: true}},
+      {'abr_check_mailing_address': {type: :checkbox}},
+      {'abr_mailing_address_instructions': {type: :instructions, visible: "abr_check_mailing_address"}},
+      {'abr_mailing_address_line_1_input': {classes: "three-quarter", required: :if_visible, visible: "abr_check_mailing_address"}},
+      {'abr_mailing_unit_input': {classes: "quarter", required: false, visible: "abr_check_mailing_address"}},
+      {'abr_mailing_city_input': {classes: "half", required: :if_visible, visible: "abr_check_mailing_address"}},
+      {'abr_mailing_state_abbrev_input': {type: :select, options: GeoState.collection_for_select, classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address"}},
+      {'abr_mailing_zip_input': {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address"}},
+      
+      {'abr_delivery_address_type1': {type: :checkbox}},
+      {"abr_id_selections": {type: :radio, required: true}},
+      {'abr_id_type1': {visible: "abr_id_selections_abr_ssn_number", required: :if_visible}},
+      {'abr_id_type2': {visible: "abr_id_selections_abr_drivers_license", required: :if_visible}},
+      
+      {'abr_id_type_3': {}},
+      {"abr_election_type_selections1": {type: :instructions}},
+      {"abr_election_type_selections2": {type: :instructions}},
+      {"abr_election_type1": {type: :checkbox}},
+      {"abr_election_type2": {type: :checkbox}},
+      {"abr_election_type3": {type: :checkbox}},
+      {"abr_election_type4": {type: :checkbox}},
+      {"abr_election_type5": {type: :checkbox}},
+
+      {'abr_party_selections_input': {type: :radio, required: true}},
     ]
   end
   
   def custom_form_field_validations
-    if !self.attest_no_ssn_or_dln && self.ssn_or_last_4.blank? && self.adl.blank?
-      errors.add(:ssn_or_last_4, custom_required_message("SSN or Last 4"))
-      errors.add(:adl, custom_required_message("ADL"))
+    if self.abr_election_type1 != "1" &&
+       self.abr_election_type2 != "1" &&
+       self.abr_election_type3 != "1" &&
+       self.abr_election_type4 != "1" &&
+       self.abr_election_type5 != "1"
+       errors.add(:abr_election_type1, :required)
     end
   end
-  
-  # Methods below map from UI attributes to PDF fields
-  def attest_remote
-    self.remote_ak_and_overseas == "On"
+
+  def abr_id_selections_is_no2
+    self.abr_id_selections == "abr_id_no2" ? "Yes" : "Off"
   end
-  def attest_remote=(value)
-    if !!value && !["0", "off", "false", ""].include?(value.to_s.downcase)
-      self.remote_ak_and_overseas = "On"
-    else
-      self.remote_ak_and_overseas = "Off"
+
+  def abr_party_selections_string
+    if self.abr_party_selections_input == "abr_party1"
+      return "Alaska Democratic Party"
     end
-  end
-  
-  def us_citizen
-    self.us_citizen_yes == "Yes"
-  end
-  
-  def us_citizen=(value)
-    if !!value && !["0", "off", "false", ""].include?(value.to_s.downcase)
-      self.us_citizen_yes = "Yes"
-      self.us_citizen_no = "Off"
-    else 
-      self.us_citizen_yes = "Off"
-      self.us_citizen_no = "No"
+    if self.abr_party_selections_input == "abr_party2"
+      return "Alaska Republican Party"      
     end
-  end
-  
-  def attest_is_18
-    self.n_18_years_yes == "Yes_2"
-  end
-  
-  def attest_is_18=(value)
-    if !!value && !["0", "off", "false", ""].include?(value.to_s.downcase)
-      self.n_18_years_yes = "Yes_2"
-      self.n_18_years_no = "Off"
-    else 
-      self.n_18_years_yes = "Off"
-      self.n_18_years_no = "No_2"
+    if self.abr_party_selections_input == "abr_party3"
+      return "Alaskan Independence Party"      
     end
-  end
-  
-  def attest_no_ssn_or_dln
-    self.no_ssn_or_adl == "On"
-  end
-  
-  def attest_no_ssn_or_dln=(value)
-    if !!value && !["0", "off", "false", ""].include?(value.to_s.downcase)
-      self.no_ssn_or_adl = "On"
-    else 
-      self.no_ssn_or_adl = "Off"
+    if self.abr_party_selections_input == "abr_party4"
+      return "Nonpartisan"      
     end
-  end
-  
-  def gender
-    return "female" if self.female == "Female"
-    return "male" if self.male == "Male"
-    return nil
-  end
-  
-  def ballot_selection
-    return "dem" if self.ad_ballot == "On"
-    return "rep" if self.rep_ballot == "On"
+    if self.abr_party_selections_input == "abr_party5"
+      return "Undeclared"      
+    end
     return ""
   end
-  def ballot_selection=(value)
-    if value.to_s.downcase == "dem"
-      self.ad_ballot = "On"
-      self.rep_ballot = "Off"
-    elsif value.to_s.downcase == "rep"
-      self.ad_ballot = "Off"
-      self.rep_ballot = "On"
+  
+  def abr_ballot_address
+    if self.abr_check_mailing_address == "1"
+      return self.abr_mailing_address_line_1_input
     else
-      self.ad_ballot = "Off"
-      self.rep_ballot = "Off"      
+      return self.address_line_1
     end
   end
-  
-  def gender=(value)
-    if value.to_s.downcase == "male"
-      self.male = "Male"
-      self.female = "Off"
-    elsif value.to_s.downcase == "female"
-      self.male = "Off"
-      self.female = "Female"
+  def abr_ballot_unit
+    if self.abr_check_mailing_address == "1"
+      return self.abr_mailing_unit_input
     else
-      self.male == "Off"
-      self.female == "Off"
+      return self.unit
     end
-      
   end
-  
+  def abr_ballot_city
+    if self.abr_check_mailing_address == "1"
+      return self.abr_mailing_city_input
+    else
+      return self.city
+    end
+  end
+  def abr_ballot_state_abbrev
+    if self.abr_check_mailing_address == "1"
+      return self.abr_mailing_state_abbrev_input
+    else
+      return "AK"
+    end
+  end
+  def abr_ballot_zip
+    if self.abr_check_mailing_address == "1"
+      return self.abr_mailing_zip_input
+    else
+      return self.zip
+    end
+  end
+
+
 end
