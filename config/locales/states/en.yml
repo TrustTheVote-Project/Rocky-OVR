@@ -1988,11 +1988,26 @@ en:
           has_no_state_license: I do not have a NE state identification card or NE driver's license.
       nh:
         abr:
-          request_deadline: received by 6 p.m. on the second Friday preceding the
-            election.
-          status_check_instructions: You can look up your  status by using your state&#39;s
-            <a target='_blank' href='https://app.sos.nh.gov/Public/AbsenteeBallot.aspx'>online
-            tool</a>
+          request_deadline: |-
+            <p>Your application for an absentee ballot must be received by your City or Town Clerk by 5:00 pm 
+            on the day before the election.
+            </p>
+            <p>If you do not receive your ballot in time to mail it back to your election official, you can return it by hand.
+            Your voted ballot must be received by your City or Town Clerk by 5:00 pm on Election Day.
+            </p>
+          status_check_instructions: |-
+               <p>
+               <a href="https://app.sos.nh.gov/viphome" target="_blank">https://app.sos.nh.gov/viphome</a></p>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application. If you are a voter with a disability and anyone witnessed and assisted you in completing your application, make sure the witness or assistant signs the printed application as well.
+            </p>
+
+          step_2_header: You must have a reason to request an absentee ballot.
+          step_2_instructions: |-
+              <p>You can vote absentee if you are unable to vote in person because of disability, 
+              religious beliefs, military service, or because of temporary absence, you may vote by using an absentee ballot. </p>
+
+              <p>Military voters should request absentee ballots using the FVAP form.</p>
           signature_capture:
             desktop_provide_e_signature: In the state of New Hampshire, we can email
               a digitally signed copy of your absentee request. Please select how
@@ -2003,43 +2018,54 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          assistant: I assisted voter in completing this form because he/she has a
-            disability.
-          Asisstant Name: Assistant Name
-          Street or PO Box: Street number
-          mail_street_name: Street name or PO Box
-          AptUnit_2: Apt/Unit
-          CityTown_2: City/Town
-          mail_state: State
-          mail_zip: Zip
-          Group_I: 'I herby declare that (check one):'
-          Group_I__options:
-            Choice2: I am a duly qualified voter who is currently registered to vote
-              in this town/ward.
-            Choice1: I am absent from the town/city where I am domiciled and will
-              be until after the next election, or I am unable to register in person
-              due to a disability or concern for the novel coronavirus (COVID-19),
-              and request that the forms necessary for absentee voter registration
-              be sent to me with the absentee ballot.
-          Group_II: 'I will be entitled to vote by absentee ballot because (check
-            one):'
-          Group_II__options:
-            Choice1: I plan to be absent on the day of the election from the city,
-              town, or unincorporated place where I live.
-            Choice2: I cannot appear in public on election day because of observance
-              of a religious commitment.
-            Choice3: I am unable to vote in person due to a disability.
-            Choice4: I am unable to vote in person due to concern for the novel coronavirus
-              (COVID-19).
-            Choice5: I cannot appear at any time during polling hours at my polling
-              place because of an employment obligation. For the purposes of this
-              application, the term “employment” shall include the care of children
-              and infirm adults, with or without compensation.
-          Group_II__required_message: Please select one of the above reasons
-          Party: 'Required for Primary Elections: I am a member of, or I am now declaring
-            my affiliation with a party and I am requesting a ballot for that party’s
-            primary (check only one):'
+          abr_county:  Enter your ward
+          abr_county__hint: |-
+            If you live in a city, enter your ward. Your ward is available from your local clerk. 
+            Find your clerk here: <a target="_blank" href="https://app.sos.nh.gov/statelistclerkandpolling">https://app.sos.nh.gov/statelistclerkandpolling</a> 
+
+          abr_check_mailing_address:  I get my mail at a different address from the one above
+          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_form_instructions:  In certain cases, you can use this form to register to vote and request an absentee ballot.
+          abr_form_instructions2:  If you are absent from the town/city where you live and will be until after the next election or are unable to register in person due to a disability, you can have the forms for absentee voter registration be sent to you along with your absentee ballot.
+          abr_application_type_selections:  Select which of the following apply to you.
+          abr_application_type_selections__options:
+            abr_application_type1:  I am a duly qualified voter who is currently registered to vote in this town/ward.
+            abr_application_type2:  I qualify for and would like the forms for absentee voter registration to be sent to me along with my absentee ballot.
+          abr_reason_selections:  Select your reason for voting by mail
+          abr_reason_selections__options:
+            abr_reason1:  I will be absent from my home on the day of the election.
+            abr_reason2:  I am confined in jail for a misdemeanor or while awaiting trial.
+            abr_reason3:  I cannot vote on election day due to religious belief or practice.
+            abr_reason4:  I am unable to vote in person due to a disability.
+            abr_reason5:  I cannot vote during polling hours because of an employment obligations, including the care of children and infirm adults, with or without compensation.
+            abr_reason6:  I am requesting a ballot the day before the election due to inclement weather
+          abr_reason_6_selections:  Select your reason for eligibility for emergency absentee voting.
+          abr_reason_6_selections__options:
+            abr_reason6_type1:  I am elderly, infirm or have a physical disability, and am concerned about my safety traveling in the storm. I would otherwise vote in person.
+            abr_reason6_type2:  I anticipate that school, child care or adult care will be canceled and will need to care for children or infirm adults. I would otherwise vote in person.
+          abr_election_type_selections:  Select the election you'd like to request a ballot for.
+          abr_election_type_selections__options:
+            abr_election_type1:  Primary Election (September 13, 2022)
+            abr_election_type3:  Special Primary Election
+            abr_election_type2:  General Election (November 8, 2022)
+            abr_election_type4:  Special General Election
+          abr_party_selections:  Select with ballot you would like to receive.
+          abr_party_selections__options:
+            abr_party1:  Democratic Party
+            abr_party2:  Republican Party
+          abr_election_date_input:  Enter the date of the Special Primary Election
+          abr_party_selections2:  Select with ballot you would like to receive.
+          abr_party_selections2__options:
+            abr_party3:  Democratic Party
+            abr_party4:  Republican Party
+          abr_election_date2_input:  Enter the date of the Special General Election
+          abr_assistant_check1:  Did someone assist you in filling out this form?
+          abr_assistant_name:  Enter the name of the assistant
+
       nj:
         abr:
           request_deadline: |-
