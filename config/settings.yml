@@ -185,9 +185,9 @@ absentee_states:
     abr_track_ballot_url: "https://mvic.sos.state.mi.us/Voter/Index"
     leo_lookup_url: https://mvic.sos.state.mi.us/Clerk
   MN:
-    #online_req_url: https://mnvotes.sos.state.mn.us/ABRegistration/ABRegistrationStep1.aspx
+    online_req_url: https://mnvotes.sos.state.mn.us/ABRegistration/ABRegistrationStep1.aspx
     pdf_url: https://www.sos.state.mn.us/media/2444/english-regular-absentee-ballot-application.pdf
-    #pdf_template: mn.pdf
+    pdf_template: mn.pdf
     abr_status_check_url: "https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx"
     abr_track_ballot_url: "https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx"
   MO:
