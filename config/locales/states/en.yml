@@ -1540,18 +1540,7 @@ en:
             <p>You do not need to be registered to request an absentee ballot. If you are not registered at the 
             legal residence address provided, you will be sent a voter registration application with your ballot materials.</p>"
           instructions_header: I have a MN-issued driver's license, MN-issued ID card or a social security number
-          _instructions: |-
-            <p>To request an absentee ballot in MN, you must certify that:</p>
-            <ul>
-              <li>I am completing this application on my own behalf; </li>
-              <li>will be at least 18 years old on election day; </li>
-              <li>am a citizen of the United States;</li>
-              <li>will have resided in Minnesota for 20 days immediately preceding election day;</li>
-              <li>maintain residence at the address given on this application form;</li>
-              <li>am not under court-ordered guardianship in which the court order revokes my right to vote;</li>
-              <li>have not been found by a court to be legally incompetent to vote;</li>
-              <li>have the right to vote because, if I have been convicted of a felony, my felony sentence has expired (been completed) or Ihave been discharged from my sentence.</li>
-            </ul>
+
         abr_form_fields:
           abr_county: Select your county
           abr_id_instructions: You must provide a MN-issued driver's license, MN-issued ID card or a social security number if you have one.
@@ -1612,7 +1601,7 @@ en:
             <p>You can return your completed application to your county election office by mail, fax, or email.
             </p>
             <p>If you are not registered at the legal residence address provided, you will be sent a voter registration 
-            application with your ballot materials. If you receive those materials, make sure to return them with your application.
+            application with your ballot materials. If you receive those materials, make sure to return them with your ballot materials.
             </p>
           finish_instructions_1_hint_state: "<p><i>Be sure to check if you need to
             send in a copy of your ID \nor anything else with your request.</i></p>\n<p>You
