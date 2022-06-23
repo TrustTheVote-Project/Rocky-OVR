@@ -2368,8 +2368,12 @@ en:
           step_2_instructions: |-
             <p>All registered voters in Ohio can request an absentee ballot.</p>
             <p><a href="%{lookup_url}">Make sure your registration is up to date.</a>
-          request_deadline: "<p>Your request must be received by <ul><li>April 30th
-            for the primary election, and </li><li>November 5th for the general election.</li></ul></p>"
+          request_deadline: |-
+            <p>Your request must be received by
+            </p>
+            <ul><li>July 30th for the primary election, and </li>
+            <li>November 5th for the general election.</li>
+            </ul>
           status_check_instructions: <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a>
           finish_instructions_1_hint: "<p>If you did not provide your Ohio driver's
             license number or the last four digits of your \nSocial Security number,
@@ -2398,7 +2402,7 @@ en:
           abr_election_type_selections__options:
             abr_election_type1: November General Election
             abr_election_type2: Special Election
-            abr_election_type3: Primary Election
+            abr_election_type3: Primary Election (special August 2 primary)
           abr_election_date_input: Special Election Date
           abr_election_date2_input: Primary Election Date
           abr_primary_type_selections: Which type of ballot would you like to receive?
