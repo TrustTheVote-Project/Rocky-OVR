@@ -66,7 +66,7 @@ en:
           abr_id_type_3: Enter your Voter Number
           abr_id_type_3__hint: This field is optional. If you do not know your voter number, you can skip this field.
           abr_election_type_selections1: Select the elections you would like to request a ballot for.	
-          abr_election_type_selections2: You can select all elections in a calendar year or an individual election.
+          abr_election_type_selections2: You can select all elections in a calendar year or an individual election. *
           abr_election_type1: All elections in the calendar year
           abr_election_type1__required_message: You must select at least one election	
           abr_election_type2: Primary (August)	

@@ -27,7 +27,7 @@ module AbrStateMethods::AK
                 'abr_mailing_state_abbrev': {method: "abr_ballot_state_abbrev"},
                 'abr_mailing_zip': {method: "abr_ballot_zip"},
                 
-                'abr_delivery_address_type1': {},
+                'abr_delivery_address_type1': {options: ["Off", "On"]},
                 "abr_id_selections": {
                   options: [
                     "abr_ssn_number",
@@ -37,7 +37,7 @@ module AbrStateMethods::AK
                 },
                 'abr_id_type1': {},
                 'abr_id_type2': {},
-                'abr_id_no2': {options: ["Off", "Yes"], method: "abr_id_selections_is_no2"},                
+                'abr_id_no2': {options: ["Off", "On"], method: "abr_id_selections_is_no2"},                
                 'abr_date_of_birth_mm_dd_yyyy': {
                   method: "date_of_birth_mm_dd_yyyy",
                   pdf_name: "date_of_birth_mm_dd_yyyy"
@@ -112,12 +112,16 @@ module AbrStateMethods::AK
        self.abr_election_type3 != "1" &&
        self.abr_election_type4 != "1" &&
        self.abr_election_type5 != "1"
-       errors.add(:abr_election_type1, :required)
+       errors.add(:abr_election_type1, custom_required_message(:abr_election_type1))
+       errors.add(:abr_election_type2, custom_required_message(:abr_election_type1))
+       errors.add(:abr_election_type3, custom_required_message(:abr_election_type1))
+       errors.add(:abr_election_type4, custom_required_message(:abr_election_type1))
+       errors.add(:abr_election_type5, custom_required_message(:abr_election_type1))
     end
   end
 
   def abr_id_selections_is_no2
-    self.abr_id_selections == "abr_id_no2" ? "Yes" : "Off"
+    self.abr_id_selections == "abr_id_no2" ? "On" : "Off"
   end
 
   def abr_party_selections_string
