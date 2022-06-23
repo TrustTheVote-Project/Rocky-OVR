@@ -421,6 +421,8 @@ class Report < ActiveRecord::Base
       StateRegistrants::MIRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
       mn_registrants = {}
       StateRegistrants::MNRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mn_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
+      wa_registrants = {}
+      StateRegistrants::WARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_was_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
 
       
       return CSV.generate do |csv|
@@ -436,6 +438,8 @@ class Report < ActiveRecord::Base
               sr = mi_registrants[reg.uid] || nil
             when "MN"
               sr = mn_registrants[reg.uid] || nil
+            when "WA"
+              sr= wa_registrants[reg.uid] || nil
             end
             reg.instance_variable_set(:@existing_state_registrant, sr)
             reg.instance_variable_set(:@existing_state_registrant_fetched, true)
