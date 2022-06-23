@@ -332,6 +332,8 @@ module V3
         StateRegistrants::MIRegistrant.joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',partner_id).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
         mn_registrants = {}
         StateRegistrants::MNRegistrant.joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mn_registrants.registrant_id").where('registrants.partner_id=?',partner_id).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
+        wa_registrants = {}
+        StateRegistrants::WARegistrant.joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_wa_registrants.registrant_id").where('registrants.partner_id=?',partner_id).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
         mapped = []
         regs.includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each do |reg|
           if reg.use_state_flow?
@@ -345,6 +347,8 @@ module V3
               sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
             when "MI"
               sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
+            when "WA"
+              sr = wa_registrants[reg.uid] || StateRegistrants::WARegistrant.new
             end
             reg.instance_variable_set(:@existing_state_registrant, sr)
           end
