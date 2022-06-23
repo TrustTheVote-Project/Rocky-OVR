@@ -2017,8 +2017,8 @@ en:
 
           step_2_header: You must have a reason to request an absentee ballot.
           step_2_instructions: |-
-              <p>You can vote absentee if you are unable to vote in person because of disability, 
-              religious beliefs, military service, or because of temporary absence, you may vote by using an absentee ballot. </p>
+              <p> You can vote absentee if you are unable to vote in person because of disability, religious beliefs, military service, 
+              or because of temporary absence.</p>
 
               <p>Military voters should request absentee ballots using the FVAP form.</p>
           signature_capture:
@@ -2076,7 +2076,7 @@ en:
             abr_party3:  Democratic Party
             abr_party4:  Republican Party
           abr_election_date2_input:  Enter the date of the Special General Election
-          abr_assistant_check1:  Did someone assist you in filling out this form?
+          abr_assistant_check1:  Check this box if someone assisted you in filling out this form.
           abr_assistant_name:  Enter the name of the assistant
 
       nj:
