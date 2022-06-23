@@ -1,7 +1,6 @@
 module AbrStateMethods::NH
   
 PDF_FIELDS = {
-  "abr_email": {method: "email"},	
   #"abr_phone": {method: "phone"},	
   "abr_first_name": {method: "first_name"},	
   "abr_middle_name":{method: "middle_name"},
@@ -124,7 +123,7 @@ EXTRA_FIELDS = ["abr_election_date_input_dd", "abr_election_date_input_mm", "abr
   def date_field_string_mm_dd_yy(field_opts)
     d = date_field_value(field_opts)
     if d
-      return d&.strftime("%m/%d/%y")
+      return d&.strftime("%m %d %y")
     end
   rescue
     nil
