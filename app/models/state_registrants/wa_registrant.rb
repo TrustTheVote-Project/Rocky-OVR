@@ -454,6 +454,10 @@ def allow_desktop_signature?
   return false
 end
 
+def has_state_license?
+  self.has_dln?
+end
+
 
   def home_state
     "Washington"
