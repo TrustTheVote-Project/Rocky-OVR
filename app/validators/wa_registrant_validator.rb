@@ -13,6 +13,12 @@ class WARegistrantValidator < ActiveModel::Validator
 
 
     if reg.at_least_step_1? 
+
+      if reg.confirm_no_dln?
+        reg.skip_state_flow!
+        return
+      end
+
       #CTW 2022 reg.validates_format_of :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
       reg.validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
 
@@ -50,6 +56,9 @@ class WARegistrantValidator < ActiveModel::Validator
         reg.validates_presence_of :prev_residence_city 
         reg.validates_presence_of :prev_residence_state 
         reg.validates_presence_of :prev_residence_zip 
+
+        validates_zip_code(reg, :prev_residence_zip)
+        validates_wa_zip_code(reg, :prev_residence_zip)
       end
 
 
@@ -78,9 +87,7 @@ class WARegistrantValidator < ActiveModel::Validator
         validate_issue_date(reg)
       end
 
-      if reg.confirm_no_dln?
-        reg.skip_state_flow!
-      end
+
 
     end
   
@@ -88,6 +95,10 @@ class WARegistrantValidator < ActiveModel::Validator
     if reg.at_least_step_2?
       #reg.validates_acceptance_of  :has_dln, :accept=>true,:allow_nil=>false
       #reg.validates_presence_of :driver_license
+
+      if !reg.signature_method.blank? &&  reg.signature_method == VoterSignature::PRINT_METHOD
+        reg.skip_state_flow!
+      end
       
     end
     
@@ -100,6 +111,18 @@ class WARegistrantValidator < ActiveModel::Validator
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
     end
+  end
+
+  def validates_wa_zip_code(reg,attr_name)
+    reg.validates_presence_of(attr_name)
+    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
+
+    if reg.errors[attr_name].empty? && (GeoState.for_zip_code(reg.send(attr_name)) != GeoState["WA"] )
+      reg.errors.add(attr_name, :wrongstate, :default => nil, :value => reg.send(attr_name))
+    end
+
+
+
   end
   
   def validate_phone_present_if_opt_in_sms(reg)
