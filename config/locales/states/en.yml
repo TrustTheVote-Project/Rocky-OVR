@@ -475,35 +475,26 @@ en:
           has_no_state_license: I do not have a CO state identification card or CO driver's license, or Social Security Number.
       ct:
         abr:
-          request_deadline: Voters should make sure the application is sent in 7 days
-            prior to election day.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://portaldir.ct.gov/sots/LookUp.aspx'>online
-            tool</a>
-        abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          Mailing Address 2: Mailing address
-          Mailing Address 3: City, State, Zip
-          assistant: I assisted the voter in completing this application.
-          Printed Name: Name of assistant
-          Tel No: Phone number
-          absentee_reason: 'I expect to be unable to appear at the polling place during
-            the hours of voting and hereby apply for an absentee ballot: (check only
-            one)'
-          absentee_reason__hint: Please note, if you have a permanent disability,
-            please contact your town clerk for a permanent absentee ballot instead
-          absentee_reason__options:
-            '1': COVID19  All voters are able to check this box pursuant to Public
-              Act 20-3 July Spec. Sess.
-            '2': My active service in the Armed Forces of the United States
-            '3': My absence from the town during all of the hours of voting
-            '4': My illness
-            '5': My religious tenets forbid secular activity on the day of the election
-              primary or referendum
-            '6': My duties as a primary election or referendum official at a polling
-              place other than my own during all of the hours of voting
-            '7': My physical disability
-          absentee_reason__required_message: Please select one of the above reasons
+          step_2_instructions: |-
+            <p>In Connecticut, you must have a reason to vote absentee vote or be a military or overseas voter.
+            You can review the requirements on the Connecticut 
+            <a href="https://portal.ct.gov/SOTS/Election-Services/Voter-Information/Absentee-Voting">Absentee Voting Information</a> page.</p>
+            <p>Voters are permitted to vote by absentee ballot if exposure to a pandemic disease like 
+            COVID-19 presents a risk to them or someone they care for.</p>
+          finish_instructions_1_hint_state: |-
+            <p>Make sure to sign your printed application. If you received assistance in completing your request, make sure the person providing assistance completes Section VII of the form.</p>
+
+          request_deadline: |-
+            <p>Your application must be received by:</p>
+            <ul>
+            <li>July 26, 2022 for the primary election, and </li>
+            <li>November 1, 2022 for the general election.</li>
+            </ul>
+            <p>
+            If you do not receive your ballot in time to mail it back to your election official, you can return it by hand. Your voted ballot must be received by the close of polls on Election Day in order to be counted.
+            </p>
+
+          status_check_instructions: <a target='_blank' href='https://portaldir.ct.gov/sots/LookUp.aspx'>https://portaldir.ct.gov/sots/LookUp.aspx</a>
         registration:
           has_state_license: I have a current CT state identification card
             or driver's license, and a signature on file with the DMV.
