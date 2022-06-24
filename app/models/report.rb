@@ -422,7 +422,7 @@ class Report < ActiveRecord::Base
       mn_registrants = {}
       StateRegistrants::MNRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mn_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
       wa_registrants = {}
-      StateRegistrants::WARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_was_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
+      StateRegistrants::WARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_wa_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
 
       
       return CSV.generate do |csv|
