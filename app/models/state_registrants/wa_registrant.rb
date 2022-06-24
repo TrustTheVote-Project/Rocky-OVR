@@ -492,6 +492,8 @@ end
       #"confirm_will_be_18"  => "will_be_18_by_election",
       
       "date_of_birth" => "date_of_birth",
+
+     "driver_license" => "state_id_number",
       
       
       "name_title"  => "name_title",
