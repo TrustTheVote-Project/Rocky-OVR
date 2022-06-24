@@ -185,9 +185,9 @@ absentee_states:
     abr_track_ballot_url: "https://mvic.sos.state.mi.us/Voter/Index"
     leo_lookup_url: https://mvic.sos.state.mi.us/Clerk
   MN:
-    #online_req_url: https://mnvotes.sos.state.mn.us/ABRegistration/ABRegistrationStep1.aspx
+    online_req_url: https://mnvotes.sos.state.mn.us/ABRegistration/ABRegistrationStep1.aspx
     pdf_url: https://www.sos.state.mn.us/media/2444/english-regular-absentee-ballot-application.pdf
-    #pdf_template: mn.pdf
+    pdf_template: mn.pdf
     abr_status_check_url: "https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx"
     abr_track_ballot_url: "https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx"
   MO:
@@ -284,6 +284,8 @@ absentee_states:
     # email_delivery: true
     abr_status_check_url: "https://vote.elections.virginia.gov/VoterInformation"
   VT:
+    online_req_url: https://mvp.vermont.gov/
+    pdf_template: vt.pdf
     abr_status_check_url: "https://mvp.vermont.gov/" #All vote-by-mail this year
     abr_track_ballot_url: "https://mvp.vermont.gov/" #All vote-by-mail this year
     leo_lookup_url: "https://sos.vermont.gov/media/vh1jv3oj/2019townclerkguide.pdf"
@@ -310,7 +312,7 @@ absentee_states:
     abr_track_ballot_url: "https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking"
   WY:
     pdf_template: wy.pdf
-    email_delivery: true
+    #email_delivery: true
     leo_lookup_url: "https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf"
 
 # Only configured for staging2 right now.

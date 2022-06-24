@@ -326,7 +326,7 @@ record_20:
   sos_url: https://elections.maryland.gov/index.html
   registration_deadline: maryland
   id_length_min: '4'
-  online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1
+  online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1?val=rock
 record_21:
   abbreviation: MA
   name: Massachusetts
