@@ -39,32 +39,8 @@ module AbrStateMethods::MI
   }
   EXTRA_FIELDS = ['assist_birthdate', 'assist_birthdate_mm','assist_birthdate_dd','assist_birthdate_yyyy','abr_absence_begin_date_input','abr_absence_begin_date_input_mm','abr_absence_begin_date_input_dd','abr_absence_begin_date_input_yyyy','abr_absence_end_date_input', 'abr_absence_end_date_input_mm','abr_absence_end_date_input_dd','abr_absence_end_date_input_yyyy']
 
-  # def jurisdiction_town
-  #   return ("X") if self.jurisdiction_type.to_s=='town'
-
-  # end
-
-  # def jurisdiction_city
-  #   return ("X") if self.jurisdiction_type.to_s=='city'
-  # end
-
-  # def assist_birthdate_mm_dd_yyyy
-  #   dates = [assist_birthdate_mm, assist_birthdate_dd, assist_birthdate_yyyy].collect {|d| d.blank? ? nil : d}.compact
-  #   dates && dates.length == 3 ? dates.join("/") : nil
-  # end
-
-  # def address_begindate_mm_dd_yyyy
-  #   dates = [address_begindate_mm, address_begindate_dd, address_begindate_yyyy].collect {|d| d.blank? ? nil : d}.compact
-  #   dates && dates.length == 3 ? dates.join("/") : nil
-  # end
-
-  # def address_enddate_mm_dd_yyyy
-  #   dates = [address_enddate_mm, address_enddate_dd, address_enddate_yyyy].collect {|d| d.blank? ? nil : d}.compact
-  #   dates && dates.length == 3 ? dates.join("/") : nil
-  # end
 
   def test_date(datestring)
-    puts "Test date:"+ datestring
     begin
       @mydate = Date.strptime(datestring, "%m %d  %y")
       return true
