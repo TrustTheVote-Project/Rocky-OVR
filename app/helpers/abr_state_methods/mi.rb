@@ -1,110 +1,72 @@
 module AbrStateMethods::MI
 
   PDF_FIELDS = {
-      "Year of Birth": {
-      method: "date_of_birth_yyyy"
-      },
-      "Email Address": {
-      method: "email"
-      },
-      "Phone": {
-      method: "phone"
-      },
-      "M.I": {
-      method: "middle_initial"
-      },
-      "First Name": {
-      method: "first_name"
-      },
-      "Last Name": {
-      method: "last_name"
-      },
-      "Township Jurisdiction": {
-        method: "jurisdiction_town"
-      }, #TODO - if checked below, value: "X"
-      "City Jurisdiction": {
-        method: "jurisdiction_city"
-      }, #TODO - if checked below, value: "X"
-      "Street Address applicant": {
-      method: "address"
-      },
-      "City address applicant": {
-      method: "city"
-      },
-      "Zip Code address applicant": {
-      method: "zip"
-      },
-      "County where applying": {},
-      "Jurisdiction Name": {}, #TODO - is there a way to automatically fill this in according to address?
-                               #Have not done TBD
-      "Add my name to permanent absentee list": { 
-      options: ["Off", "On"],
-      value: "Off"
-      },
-      "November 3 Address": {},
-      "November 4 City": {},
-      "November 3 State": {},
-      "November 3 Zip": {},
-      "Nov 3 Address End Date_es_:date": {
-        method: "address_enddate_mm_dd_yyyy"
-      },
-      "Nov 3 Address Begin Date_es_:date": {
-        method: "address_begindate_mm_dd_yyyy"
-      },
-      "Name of person appling for ballot": {
-      method: "full_name"
-      },
-      "Name of Person assisting the voter": {},
-      "Date of Birth of person assisting_es_:date": {
-        method: "assist_birthdate_mm_dd_yyyy"
-      },
-      "Adress of person assisting": {},
-      "Both_2020_Elections": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-      },
-      "August_4_2020_Primary": { 
-      options: ["Off", "Yes"],
-      value: "Off"
-      },
-      "November_3_2020_General_Election": { 
-      options: ["Off", "Yes"],
-      value: "Yes"
-      },
-      #"voter_signature": {},
-      #"date": {},
-      #"assistant_signature": {},
-      #"assistant_signed_date": {},
+
+    "abr_email": {method: "email"},	
+    "abr_phone": {method: "phone"},	
+    "abr_first_name": {method: "first_name"},	
+    'abr_middle_initial': {:method=>"middle_initial"},
+    "abr_last_name": {method: "last_name"},	
+    "abr_name_suffix": {method: "name_suffix"},	
+    "abr_street_number": {method: "street_number"},	
+    "abr_street_name": {method: "street_name"},
+    "abr_unit": {method: "unit"},	
+    "abr_city": {method: "city"},	
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
+    'abr_zip': {method: "zip"},
+    "abr_full_name": {method:"full_name"},
+    'abr_date_of_birth_yyyy':{ method: "date_of_birth_yyyy" },     
+
+    'abr_check_mailing_address':{options: ["Off", "On"]},
+    "abr_absence_begin_date":{method:"absence_begin_date_string"},
+    "abr_absence_end_date":{method:"absence_end_date_string"},
+    'abr_mailing_address_line_1': {xmethod: "mailing_address_line_1"},
+    'abr_mailing_unit': {xmethod: "mailing_unit"},
+    'abr_mailing_city':{xmethod: "mailing_city"},
+    'abr_mailing_state_abbrev':{xmethod: "mailing_state_abbrev"},
+    'abr_mailing_zip':{xmethod: "mailing_zip"},  
+    
+    "abr_county": {},
+    "abr_address_type_selections": {options:["abr_address_type1","abr_address_type2"]},
+    "abr_address_type3": {},
+    "abr_election_type_selections": {options:["abr_election_type1","abr_election_type2","abr_election_type3"]},
+    "abr_election_type4": {options: ["Off", "On"]},
+    "abr_request_check":{options: ["Off", "On"]},
+    "abr_request_name": {},
+    "abr_assistant_info1": {method:"assist_birthdate_string"},
+    "abr_assistant_address_line_1": {},
+
   }
-  EXTRA_FIELDS = ["has_mailing_address", "assistant", 'jurisdiction_type', 'assist_birthdate', 'assist_birthdate_mm','assist_birthdate_dd','assist_birthdate_yyyy','address_begindate','address_begindate_mm','address_begindate_dd','address_begindate_yyyy','address_enddate', 'address_enddate_mm','address_enddate_dd','address_enddate_yyyy']
+  EXTRA_FIELDS = ['assist_birthdate', 'assist_birthdate_mm','assist_birthdate_dd','assist_birthdate_yyyy','abr_absence_begin_date_input','abr_absence_begin_date_input_mm','abr_absence_begin_date_input_dd','abr_absence_begin_date_input_yyyy','abr_absence_end_date_input', 'abr_absence_end_date_input_mm','abr_absence_end_date_input_dd','abr_absence_end_date_input_yyyy']
 
-  def jurisdiction_town
-    return ("X") if self.jurisdiction_type.to_s=='town'
+  # def jurisdiction_town
+  #   return ("X") if self.jurisdiction_type.to_s=='town'
 
-  end
+  # end
 
-  def jurisdiction_city
-    return ("X") if self.jurisdiction_type.to_s=='city'
-  end
+  # def jurisdiction_city
+  #   return ("X") if self.jurisdiction_type.to_s=='city'
+  # end
 
-  def assist_birthdate_mm_dd_yyyy
-    dates = [assist_birthdate_mm, assist_birthdate_dd, assist_birthdate_yyyy].collect {|d| d.blank? ? nil : d}.compact
-    dates && dates.length == 3 ? dates.join("/") : nil
-  end
+  # def assist_birthdate_mm_dd_yyyy
+  #   dates = [assist_birthdate_mm, assist_birthdate_dd, assist_birthdate_yyyy].collect {|d| d.blank? ? nil : d}.compact
+  #   dates && dates.length == 3 ? dates.join("/") : nil
+  # end
 
-  def address_begindate_mm_dd_yyyy
-    dates = [address_begindate_mm, address_begindate_dd, address_begindate_yyyy].collect {|d| d.blank? ? nil : d}.compact
-    dates && dates.length == 3 ? dates.join("/") : nil
-  end
+  # def address_begindate_mm_dd_yyyy
+  #   dates = [address_begindate_mm, address_begindate_dd, address_begindate_yyyy].collect {|d| d.blank? ? nil : d}.compact
+  #   dates && dates.length == 3 ? dates.join("/") : nil
+  # end
 
-  def address_enddate_mm_dd_yyyy
-    dates = [address_enddate_mm, address_enddate_dd, address_enddate_yyyy].collect {|d| d.blank? ? nil : d}.compact
-    dates && dates.length == 3 ? dates.join("/") : nil
-  end
+  # def address_enddate_mm_dd_yyyy
+  #   dates = [address_enddate_mm, address_enddate_dd, address_enddate_yyyy].collect {|d| d.blank? ? nil : d}.compact
+  #   dates && dates.length == 3 ? dates.join("/") : nil
+  # end
 
   def test_date(datestring)
+    puts "Test date:"+ datestring
     begin
-      @mydate = Date.strptime(datestring, "%m/%d/%Y")
+      @mydate = Date.strptime(datestring, "%m %d  %y")
       return true
     rescue ArgumentError
       return false
@@ -113,7 +75,7 @@ module AbrStateMethods::MI
 
   def form_field_items
       [
-      {"County where applying": {type: :select, required: true, include_blank: true, options: [
+      {"abr_county": {type: :select, required: true, include_blank: true, options: [
           "Alcona",
           "Alger",
           "Allegan",
@@ -198,23 +160,27 @@ module AbrStateMethods::MI
           "Wayne",
           "Wexford",
       ]}},
-      #{"city_instructions": {type: :instructions}},
-      {"jurisdiction_type": {type: :radio, options: ['town','city'], required: true}},
-      #{"Township Jurisdiction": {type: :checkbox, classes: "indent"}},
-      #{"City Jurisdiction": {type: :checkbox, classes: "indent"}},
-      {"Jurisdiction Name": { required: true}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"November 3 Address": {visible: "has_mailing_address", required: :if_visible}},
-      {"November 4 City": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
-      {"November 3 State": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}},
-      {"November 3 Zip": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
-      {"address_begindate": { type: :date, m: "address_begindate_mm", d: "address_begindate_dd", y: "address_begindate_yyyy", visible: "has_mailing_address", required: :if_visible, classes: "half"}},
-      {"address_enddate": { type: :date, m: "address_enddate_mm", d: "address_enddate_dd", y: "address_enddate_yyyy",visible: "has_mailing_address", required: :if_visible, classes: "half last"}},
-      {"assistant": {type: :checkbox}},
-      {"Name of Person assisting the voter": {visible: "assistant", required: :if_visible, classes: "half"}},
-      #{"Date of Birth of person assisting_es_:date": {type: :date, visible: "assistant", required: :if_visible, classes: "half last", regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
-      {"assist_birthdate": {visible: "assistant", required: :if_visible, type: :date, m: "assist_birthdate_mm", d: "assist_birthdate_dd", y: "assist_birthdate_yyyy"}},
-      {"Adress of person assisting": {visible: "assistant", required: :if_visible}},
+      {"abr_address_type_selections": {type: :radio, options:["abr_address_type1","abr_address_type2"], required: true}},
+      {"abr_address_type3": { required: true}},
+
+      {"abr_check_mailing_address": {type: :checkbox, options: ["Off", "On"]}},	
+      {"abr_absence_begin_date_input": {type: :date , required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_absence_end_date_input": {type: :date, required: :if_visible, visible: "abr_check_mailing_address"}},
+
+      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+
+
+      {"abr_election_type_selections": {type: :radio, options:["abr_election_type1","abr_election_type2","abr_election_type3"] , required: true}},
+      {"abr_election_type4": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_request_check": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_request_name": { required: :if_visible, visible: "abr_request_check"}},
+      {"assist_birthdate": {type: :date, required: :if_visible, visible: "abr_request_check"}},
+      {"abr_assistant_address_line_1": {required: :if_visible, visible: "abr_request_check"}},
+
       ]
   end
 
@@ -225,21 +191,54 @@ module AbrStateMethods::MI
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
 
-      if self.assistant.to_s=="1" && !self.test_date(self.assist_birthdate_mm_dd_yyyy.to_s)
+
+
+      if self.abr_request_check.to_s=="1" && !self.test_date(self.assist_birthdate_string.to_s)
        errors.add("assist_birthdate", custom_format_message("bad_date") )
       end
 
-      if self.has_mailing_address.to_s == "1" && !self.test_date(self.address_begindate_mm_dd_yyyy.to_s)
-        errors.add("address_begindate", custom_format_message("bad_date") )
-        errors.add('address_begindate', self.address_begindate_mm_dd_yyyy.to_s)
+      if self.abr_check_mailing_address.to_s == "1" && !self.test_date(self.absence_begin_date_string.to_s)
+        errors.add("abr_absence_begin_date_input", custom_format_message("bad_date") )
+        #errors.add('absence_begin_date_input', self.address_begindate_mm_dd_yyyy.to_s)
       end
 
-      if self.has_mailing_address.to_s == "1" && !self.test_date(self.address_enddate_mm_dd_yyyy.to_s)
-        errors.add("address_enddate", custom_format_message("bad_date") )
-        errors.add('address_enddate', self.address_enddate_mm_dd_yyyy.to_s)
+      if self.abr_check_mailing_address.to_s == "1" && !self.test_date(self.absence_end_date_string.to_s)
+        errors.add("abr_absence_end_date_input", custom_format_message("bad_date") )
+        #errors.add('absence_end_date_input', self.address_enddate_mm_dd_yyyy.to_s)
       end
 
   end
+
+  def date_field_string_mm_dd_yy_l(field_opts)
+    d = date_field_value(field_opts)
+    if d
+      return d&.strftime("%m  %d  %y")
+    end
+  rescue
+    nil
+  end
+
+  def date_field_string_mm_dd_yy(field_opts)
+    d = date_field_value(field_opts)
+    if d
+      return d&.strftime("%m %d %y")
+    end
+  rescue
+    nil
+  end
+
+  def absence_begin_date_string
+      date_field_string_mm_dd_yy_l(method: :abr_absence_begin_date_input)
+  end
+
+  def absence_end_date_string
+    date_field_string_mm_dd_yy_l(method: :abr_absence_end_date_input)
+  end
+
+  def assist_birthdate_string
+    date_field_string_mm_dd_yy(method: :assist_birthdate)
+  end
+
 
 
 end

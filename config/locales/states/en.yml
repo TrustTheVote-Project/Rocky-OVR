@@ -1368,52 +1368,61 @@ en:
           has_no_state_license: I do not have a MA state identification card or MA driver's license.
       mi:
         abr_form_fields:
-          bad_date__format_message: Invalid date
-          November 3 Address: Mailing address
-          November 4 City: City
-          November 3 State: State
-          November 3 Zip: Zip
-          address_begindate: 'Date leaving for this address:'
-          address_enddate: 'Date returning from this address:'
-          jurisdiction_type: 'Please select one of the following:'
-          jurisdiction_type__options:
-            town: I live in a township.
-            city: I live in a city.
-          Name of Person assisting the voter: Assistant Name
-          assist_birthdate: Assistant Date of birth (MM/DD/YYYY)
-          Adress of person assisting: Assistant Address
-          assistant: I am an authorized registered elector assisting in returning
-            this application for the voter.
-          has_mailing_address: My mailing address differs from my residential address.
+          abr_check_mailing_address: I get my mail at a different address from the one above.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_absence_begin_date_input:		If this is not your permanent mailing address, enter the date you are leaving for this address
+          abr_absence_end_date_input:		Enter the date you are returning from this address
+
+          abr_check_mailing_address__hint: Ballots cannot be forwarded.<br>Your clerk can mail your mail ballot to where you are. If your plans change, contact your city/township clerk.
+          abr_county:		Select your county
+          abr_address_type_selections:		Do you live in a City or in a Township?
+          abr_address_type_selections__options:
+            abr_address_type1: City
+            abr_address_type2: Township              
+          abr_address_type_selections__hint: For villages, select township.
+
+          abr_address_type3:		Enter the jursidction
+          abr_election_type_selections:		Which election(s) would you like to receive ballots for?
+          abr_election_type_selections__options:
+            abr_election_type1: The August 2, 2022 Primary and the Nov 8, 2022 General elections
+            abr_election_type2: The August 2, 2022 Primary only
+            abr_election_type3: The Nov 8, 2022 General only
+          abr_election_type4:		Would you like to join the permanent absent voter application list?
+          abr_election_type4__hint: Check this box if you'd like to vote absentee in all elections. <br> An application for an absent voter ballot will be sent to you, for every election going forward, including other elections in 2022.
+          abr_request_check:		Will someone be delivering your absentee ballot application?
+          abr_request_check__hint:  A member of your family or person residing in your household may mail or deliver your application to the clerk. Family members include your in-laws, grandparents and grandchildren.<br>You may also select any registered elector to return your application.<br> The person returning your application must sign and date at the bottom of the form.
+          abr_request_name:		"Enter the name of the person you have who will be delivering your absentee ballot application:"
+          assist_birthdate:		Enter the person's date of birth
+          abr_assistant_address_line_1:		Enter the person's address
         abr:
-          step_2_header: All registered voters in Michigan can vote absentee!
-          step_2_instructions: |-
-            <p>All registered voters in Michigan can now vote using an absentee ballot. Make sure you're registered to vote on the <a href="https://mvic.sos.state.mi.us/Voter/Index" target="_blank" rel="noopener noreferrer">Your voter information</a> page.</p>
-            <p>&nbsp;</p>
-            <h2 role="heading" aria-level="2">Where are you registered to vote?</h2>
-            <p>We'll use this information to determine how you can request your absentee ballot.</p>
-          request_deadline: received by your clerk no later than 5 p.m. the Friday
-            before the election
-          status_check_instructions: You can look up your absent voter status by using
-            Michigan's <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>Your
-            voter information</a> tool
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>If
-            you receive help with returning the application, make sure that the person
-            returning your ballot also signs and dates the application.</i></p>\n<p><i>Your
-            application must be received by your local clerk by received by your clerk
-            no later than 5 p.m. the Friday before the election.</i></p>"
+          request_deadline: |-
+            <p>If you are requesting an absentee ballot by mail or online, your request must be received by:</p>
+            <ul>
+            <li>July 29, 2022 for the primary election, and by</li>
+            <li>November 4, 2022 for the general election</li>
+            </ul>
+            <p>If you are submitting your request for an absentee ballot in person, you must do so by 4 pm the day before the election.</p>
+
+          status_check_instructions: <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>https://mvic.sos.state.mi.us/Voter/Index</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application. If someone assisted 
+            you in completing your application, make sure they complete section 5 of the application.
+            </p>
         state_online_abr:
-          confirm: "<p>You can apply for an Absentee Ballot in Michigan in any of
-            these ways:</p>\n<ul> \n<li>Online – Registered voters can request an
-            absentee ballot online</li>\n<li>Call your city or township clerk and
-            ask that an application be mailed to you</li>\n<li>Download an application
-            to return by mail or in person to your local city or township clerk</li>\n<li>In
-            person at your local city or township clerk’s office.</li>\n</ul>"
-          requirements: <h2 role="heading" aria-level="2">Requirements to apply for
-            an absentee ballot online</h2> <p>If you are registered to vote and have
-            a valid Michigan state ID, you may request your absentee ballot online
-            directly with the state.</p>
+          confirm: |-
+            <p>If you are registered to vote in Michigan and have a valid Michigan driver’s 
+            license or state ID, you can complete your request your request for an Absent Voter Ballot online. 
+            You can request your ballot online until 5pm the Friday before the election. If you do not have one of these forms of ID,
+            go to "Absentee Voting" for more information on how you can apply for an absent voter ballot. You can fill out a form, 
+            download, print and sign, and return it by mail or in person.</p>
+            <p>Within two weeks of election day, the state recommends making your request in person at your local city 
+            or township clerk office. You’ll be able to fill out and submit your ballot while there. 
+            Find <a href="https://mvic.sos.state.mi.us/Voter/Index/#yourclerk" target="_blank">your local city or clerk township clerk office</a>.</p>
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin
             and Michigan. In which state would you like to register to vote?
