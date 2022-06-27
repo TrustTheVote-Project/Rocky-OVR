@@ -541,14 +541,26 @@ en:
           confirm: Check if you meet your state's requirements, then click the button
             below to request your vote by mail ballot through the state's site.
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Vote-By-Mail status by using
-            your state&#39;s <a target='_blank' href='https://ivote.de.gov/VoterView'>online
-            tool</a>
-          step_2_instructions: "<p>We'll use this information to determine how you
-            can request your vote by mail ballot.</p>"
+          request_deadline: |-
+            <p>Your application for an absentee ballot must be received by</p>
+            <ul>
+            <li>Noon on September 12th if mailed or delivered by hand.</li>
+            </ul>
+          status_check_instructions:  |-
+            <p>
+            <a target='_blank' href='https://ivote.de.gov/VoterView'>https://ivote.de.gov/VoterView</a></p>
+          step_2_header: You must have a reason to request an absentee ballot
+          step_2_instructions: |-
+            <p>You can request an absentee ballot for the following reasons:</p>
+            <ul>
+            <li>You are in the public service of the United States or the State of Delaware and are unable to come to the polls, or are the spouse or dependent of such person.</li>
+            <li>Your business or occupation prevents you from coming to the polls.</li>
+            <li>You are providing care to a parent, spouse or child who is living at home and requires constant care, students.</li>
+            <li>You are incarcerated. </li>
+            <li>You are sick, or temporarily or permanently physically disabled.</li>
+            <li>You are on vacation.</li>
+            <li>The tenets or teachings of your religion prevent you from coming to the polls.</li>
+            </ul>
           step_3_header: Prepare your Deleware PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
@@ -558,42 +570,45 @@ en:
             vote by mail ballot too.
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
-          Last4 Digits of SSN: Last 4 Digits of Social Security Number (OPTIONAL)
-          has_mailing_address: I would like my ballot sent to a different address
-            than my home address
-          check_sick_or_disabled: Check here if you are a voter who is sick or physically
-            disabled
-          check_sick_or_disabled__hint: If you are a voter who is sick or physically
-            disabled, Delaware law permits you to receive and return an absentee ballot
-            electronically. If you choose to receive your ballot by email, you will
-            be able to mark and submit it electronically.
-          GroupSickDisabled: 'Indicate below how you would like your absentee ballot
-            sent to you by the Department of Elections:'
-          GroupSickDisabled__options:
-            ChoiceEmail: Email
-            ChoiceMail: Mail
-            ChoiceFax: Fax
-          absentee_reason__options:
-            '1': "(1) I am in public service of the U.S. or the State of Delaware,
-              or I am a spouse or dependent residing with or accompanying him or her.
-              Reason 1 also applies to members of the Uniformed Services."
-            '2': "(2) Due to the nature of my business or occupation. Reason 2 also
-              applies to persons providing care to a parent, spouse or child who is
-              living at home and requires constant care,students, and otherwise eligible
-              persons who are incarcerated."
-            '3': "(3) I am sick, or temporarily or permanently physically disabled."
-            '4': "(4) I am absent from the district while on vacation"
-            '5': "(5) Due to the tenets or teachings of my religion"
-            '6': "(6) I am temporarily residing outside of the U.S. and the District
-              of Columbia, or I am a spouse or dependent residing with or accompanying
-              him or her."
-          absentee_delivery: Special Qualification regarding electronic delivery of
-            absentee ballots.
-          Fax or: Fax Number
-          Make me a permanent absentee voter__hint: "<p>NOTE: You can only be a permanent
-            absentee voter if you are voting by absentee ballot due to reason 1, 3,
-            or 6.  Or, your business or occupation is providing care to your parents,
-            spouse or child who is living at home and requires constant care."
+          abr_ssn_number:		Enter your Social Security Number (optional)         
+          abr_check_mailing_address:		I get my mail at a different address from the one above
+          abr_mailing_address_line_1:		Mailing address
+          abr_mailing_unit:		Unit
+          abr_mailing_city:		City
+          abr_mailing_state_abbrev:		State
+          abr_mailing_zip:		Zip
+              
+          abr_address_line_2:		Where do you plan to be on election day?
+          address_line_2_hint:		Enter the city, state and country
+          abr_reason_selections:		Select your reason for voting by mail
+          abr_reason_selections__options:		
+            abr_reason1:	I am in public service of the U.S. or the State of Delaware, or I am a spouse or dependent residing with that person, in the residing outside of Delaware. This also applies to members of the Uniformed Services.
+            abr_reason2:	"I am unable to make it to the polls due to:
+              The nature of my business or occupation, providing care to a parent, spouse or child who is living at home and requires constant care, being a student, or because I am otherwise eligible and am incarcerated."
+            abr_reason3:	I am sick, or temporarily or permanently physically disabled.
+            abr_reason4:	I am absent from the district while on vacation.
+            abr_reason5: Due to the tenets or teachings of my religion.
+          abr_application_type_check1:		I would like to become a permanent absentee voter.
+          abr_application_type_check1__hint:	"Because of the reason you selected for requesting an absentee ballot, you
+            can become a permanent absentee voter and automatically receive an absentee ballot for all elections for which you are eligible to vote."
+          abr_election_type_instructions:		You can use this form for Primary, General and Special elections. <br> See https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf for School District elections, and contact your local election official for an application for Municipal elections.
+          abr_election_type_selections:		Select the election(s) you'd like to request a ballot for.
+          abr_election_type1:	All Elections in 2022
+          abr_election_type2:	|-
+            Primary<br/><br/>
+            (You will receive the ballot for the party you are registered with.)<br><br/>
+            Only Democrats can vote in the Democratic Primary and only Republicans can vote in the Republican Primary.
+          abr_election_type3:	General
+          abr_election_type4:		Special
+          abr_party:		What political party are you affiliated with?
+          abr_party__hint:		You may have picked a political party when you registered. To update your registration, submit a new voter registration.
+          abr_delivery_address_selections:		How would you like your ballot delivered?
+          abr_delivery_address_selections__hint:		Because you selected being sick or temporarily or permanently disabled, you can elect how to have your ballot delivered to you.
+          abr_delivery_address_selections__options:		
+            abr_delivery_address_type1:	Send my ballot via postal mail
+            abr_delivery_address_type2:	Send my ballot via postal email
+            abr_delivery_address_type3:	Send my ballot via postal fax
+          abr_fax_number:		Enter your fax number
       fl:
         abr:
           splash:
