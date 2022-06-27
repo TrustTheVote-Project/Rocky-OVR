@@ -253,7 +253,7 @@ module AbrStateMethods::GA
       {"abr_drivers_license": {required: :if_visible, visible: "abr_id_type_abr_id_type1", regexp: /\A\d{9}\z/}},	
       {"abr_id_instructions": {type: :instructions, visible: "abr_id_type_abr_id_type2"}},
       {"abr_election_type_selections_options": {type: :radio, required: true}},
-      {"abr_primary_type_selections1": {type: :radio, required: :if_visilbe, visible_any: "abr_election_type_selections_options_abr_election_type1 abr_election_type_selections_options_abr_election_type3"}},
+      {"abr_primary_type_selections1": {type: :radio, required: :if_visible, visible_any: "abr_election_type_selections_options_abr_election_type1 abr_election_type_selections_options_abr_election_type3"}},
       {"abr_assistant_check1": {type: :checkbox}},
       {"abr_assistant_instructions": {type: :instructions, visible: "abr_assistant_check1"}},
       {"abr_assistant_name": {visible: "abr_assistant_check1", required: :if_visible}},
