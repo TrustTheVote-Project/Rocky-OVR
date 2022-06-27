@@ -2719,12 +2719,29 @@ en:
           has_no_state_license: I do not have a valid SC state identification card or driver's license, and Social Security Number.
       ri:
         abr:
-          request_deadline: received by the local board no later than 4:00 P.M. on
-            the 21st day before the election.
-          status_check_instructions: You can look up your Mail Ballot status by using
-            your state&#39;s <a target='_blank' href='https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=3'>online
-            tool</a>
-          requirements: |-
+          step_2_instructions: |-
+            <p>Voters in Rhode Island do not need a specific reason to request an absentee ballot, although
+            you will be asked to select a reason in order to complete your form.</p>
+            <p>You will be asked to provide one of the following reasons:</p>
+            <ul>
+            <li>You are a voter and are incapacitated and cannot make it to the polls.</li>
+            <li>You are a voter and are confined to a hospital, convalescent home or similar.</li>
+            <li>You are a voter and are temporarily absent from the state because of your job or military service. </li>
+            <li>You may not be able to get to the polls on Election Day (no specific reason).</li>
+            </ul>
+            <h2>Requesting an absentee ballot in Rhode Island</h2>
+            <p>You must request an absentee ballot for each election.</p>
+          request_deadline: |-
+            <p>Your absentee ballot application must be received by August 23, 2022 at 4:00 p.m. 
+            in order for you to receive a ballot for the primary election
+            </p>
+          status_check_instructions: |-
+            <p><a target='_blank' href='https://ballottrax.sos.ri.gov/voter/'>https://ballottrax.sos.ri.gov/voter/</a>
+            </p>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application.
+            </p>
+          _requirements: |-
             <p>Any registered voter can request an absentee ballot in Rhode Island, and must identify one of the following reasons for requesting the absentee ballot:</p>
             <ul>
             <li>I am incapacitated to such an extent that it would be an undue hardship to vote at the polls because of illness, mental or physical disability, blindness or a serious impairment of mobility.</li>
@@ -2733,30 +2750,34 @@ en:
             <li>I may not be able to vote at my polling place in my city/town on the day of the election.</li>
             </ul>
         abr_form_fields:
-          Text Field 11: Name of Institution (if applicable)
-          mail_address: Mailing address
-          mail_city: City/Town
-          mail_state: State
-          mail_zip: Zip
-          has_mailing_address: My ballot should be delivered to a different address
-            from my registration address
-          eligibility: 'I certify that I am eligible for a mail ballot on the following
-            basis:'
-          eligibility__options:
-            absent: I may not be able to vote at my polling place in my city/town
-              on the day of the election. I want my mail ballot to be sent to my residential
-              or mailing address.
-            confined: I am confined to a hospital, convalescent home, nursing home,
-              rest home, or similar institution with the State of Rhode Island. I
-              understand that my ballot will be brought to me by a bipartisan pair
-              of election officials from the State Board of Elections before Election
-              Day.
-            incapacitated: I am incapacitated to such an extent that it would be an
-              undue hardship to vote at the polls because of illness, mental or physical
-              disability, blindness or a serious impairment of mobility.
-            military: I am employed or in service intimately connected with military
-              operations or because I am a spouse or dependent of such person, or
-              I am a United States citizen who will be outside the United States.
+          abr_delivery_address_selections:		Please select whether you would like your ballot mailed to your home address, a mailing address or your local board of canvassers.
+          abr_delivery_address_selections__hint: If you are residing in a hospital, nursing home or similar, select "mailing address."    
+          abr_delivery_address_selections__options:
+            abr_delivery_address_type1:	I would like my ballot sent to my street address provided above.
+            abr_delivery_address_type2:	I would like my ballot sent to a mailing address.
+            abr_delivery_address_type3:	I would like my ballot delivered to my local election office
+          abr_mailing_address_line_1:		Enter your mailing address                    
+          abr_mailing_city: City
+          abr_mailing_unit: Unit
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_reason_selections:		Select your reason for voting by mail
+          abr_reason_selections__hint: If you are residing in a hospital, nursing home or similar, select "mailing address."
+          abr_reason_selections__options:
+            abr_reason1:	It would be a hardship to vote at the polls because of illness, mental or physical disability, blindness or a serious impairment of mobility.
+            abr_reason2:	I am confined in a hospital, convalescent home, nursing home, rest home, or similar institution within the State of Rhode Island.
+            abr_reason3:	I am employed, in service intimately connected with military operations or a spouse or dependent of such person.
+            abr_reason4:	I choose to vote by mail. (No specific reason needed.)
+          abr_mailing_address_line_2:		Enter the name of the facility.
+          abr_mailing_address_line_2__hint: Your ballot will be brought to this facility before Election Day by a bipartisan pair of election officials.
+          abr_reason_instructions:		If you are a United States citizen who will be outside the United States, use a FVAP application. <a href="https://www.fvap.gov/rhode-island" target="_blank">https://www.fvap.gov/rhode-island</a>
+          abr_application_type_check1:		Check this box if you are an unaffiliated voter (not registered with a party).
+          abr_application_type_check1__hint: Affiliated voters will receive a ballot for the party they are registered with.
+          abr_party_selections:		Select which ballot you would like to receive. <br> You will become affiliated with a party.
+          abr_party_selections__options:
+            abr_party1:	Democrat Ballot
+            abr_party2:	Republican Ballot
+          abr_request_check:		Blind, visually impaired and disabled voters may request accessible ballots. <br> Check this box to receive an accessible ballot.
         registration:
           has_state_license: I have a RI state identification card or RI driver's license.
           has_no_state_license: I do not have a RI state identification card or RI driver's license.
