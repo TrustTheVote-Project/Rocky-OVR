@@ -1,54 +1,83 @@
 module AbrStateMethods::MA
   
+
   PDF_FIELDS = {
-    "Name": {
-      method: "full_name"
-    },
-     "voter_address1":{
-      method: "address"
-    },
+  
+    "abr_email": {method: "email"},	
+    "abr_phone": {method: "phone"},	
+    "abr_first_name": {method: "first_name"},	
+    'abr_middle_initial': {:method=>"middle_initial"},
+    "abr_last_name": {method: "last_name"},	
+    "abr_name_suffix": {method: "name_suffix"},	
+    "abr_street_number": {method: "street_number"},	
+    "abr_street_name": {method: "street_name"},
+    "abr_unit": {method: "unit"},	
+    "abr_city": {method: "city"},	
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
+    'abr_zip': {method: "zip"},
+   # "abr_full_name": {method:"full_name"},
+    'date_of_birth_mm_dd_yyyy':{},     
+    
+    'abr_check_mailing_address':{options: ["Off", "On"]},
 
-     "voter_address2": {
-      method: "address_city_state_zip"
-    },
+    'abr_mailing_address_line_1': {},
+    'abr_mailing_unit': {},
+    'abr_mailing_city':{},
+    'abr_mailing_state_abbrev':{},
+    'abr_mailing_zip': {},  
 
-    "Date of Birth": {
-      method: "date_of_birth_mm_dd_yyyy"
-    },
-    "Telephone Number": {
-      method: "phone"
-    },
-    "Email Address": {
-      method: "email"
-    },
-    "mailing_address1": {
-      method: "override_mailing_address1",
-    },
-    "mailing_address2": {
-      method: "override_mailing_address2",
-    },
+    'abr_election_type_selections': {options: ['abr_election_type1','abr_election_type2','abr_election_type3']},
+    'abr_election_date': {method: "election_date_string"},
+    "abr_primary_type1": {},
+    "abr_primary_type2": {},
+    "abr_request_check": {options: ["Off", "On"]},
+    "abr_relationship1": {},
+    "abr_reason1": {options: ["Off", "On"]},
+    "abr_reason2": {options: ["Off", "On"]},
+    "abr_reason3": {options: ["Off", "On"]},
+    "abr_reason4": {options: ["Off", "On"]},
+    "abr_assistant_check1": {options: ["Off", "On"]},
+    "abr_request_name": {},
+    "abr_assistant_name": {},
+    "abr_assistant_address_line_1": {},
+    "abr_assistant_address_line2": {},
 
-    "assistance_required": { options: ["Off", "On"] },
 
-    #"Assisting persons name": {},
-    "assisting_person": {},
-    "Assisting persons address 1": {},
-    "Assisting persons address 2": {},
-    # "Date": { method: "date_for_signature" }
-    #"voter_signature": {}
+
   }
-  EXTRA_FIELDS = ["has_mailing_address", "mailing_address_input", "mailing_address_input2"]
+
+ 
+  EXTRA_FIELDS = ["election_date_input","election_date_input_mm","election_date_input_dd","election_date_input_yyyy", ]
 
   def form_field_items
     [
-      {"has_mailing_address": {type: :checkbox}},
-      {"mailing_address_input": {visible: "has_mailing_address", required: :if_visible}},
-      {"mailing_address_input2": {visible: "has_mailing_address", required: :if_visible}},
-      {"assistance_required": {type: :checkbox}},
-      {"assisting_person": {visible: "assistance_required", required: :if_visible}},
-      {"Assisting persons address 1": {visible: "assistance_required", required: :if_visible}},
-      {"Assisting persons address 2": {visible: "assistance_required", required: :if_visible}},
-    ]
+      {"abr_check_mailing_address": {type: :checkbox}},	
+      
+      {"abr_mailing_address_instructions": {type: :instructions,  visible: "abr_check_mailing_address"}},
+      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+
+      {'abr_election_type_selections': {type: :radio, options: ['abr_election_type1','abr_election_type2','abr_election_type3'], required: true}},
+      {'election_date_input': {type: :date, visible: "abr_election_type_selections_abr_election_type3", required: :if_visible}},
+      {'abr_primary_type_instructions': {type: :instructions, visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3" }},
+      {"abr_primary_type1": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3", required: :if_visible}},
+      {"abr_primary_type2": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3", required: :if_visible}},
+      {"abr_request_check": {type: :checkbox}},
+      {"abr_relationship1": {visible: "abr_request_check", required: :if_visible }},
+      {"abr_reason1": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_reason2": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_reason3": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_reason4": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_request_name": {visible: "abr_reason4", required: :if_visible}},
+      {"abr_assistant_check1": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_assistant_name": {visible: "abr_assistant_check1", required: :if_visible}},
+      {"abr_assistant_address_line_1": {visible: "abr_assistant_check1", required: :if_visible}},
+      {"abr_assistant_address_line2": {visible: "abr_assistant_check1"}},
+
+     ]
   end
   #e.g.
   # [
@@ -64,30 +93,14 @@ module AbrStateMethods::MA
   # ]
   
 
-  def override_field_value(override, fieldname1, fieldname2) 
-    if (override) 
-        return self.send(fieldname2) 
-    else 
-      return self.send(fieldname1)
-    end
-  end
-
-  def override_mailing_address_field (fieldname1, fieldname2)
-      return override_field_value((self.has_mailing_address.to_s == "1"), fieldname1, fieldname2)
-  end
-
-  def override_mailing_address1
-    return override_mailing_address_field("address", "mailing_address_input")
-  end
-  def override_mailing_address2
-    return override_mailing_address_field("address_city_state_zip", "mailing_address_input2")
-  end
-
   
   def custom_form_field_validations
     # make sure delivery is selected if reason ==3
     # make sure fax is provided if faxtype is selected for delivery
   end
   
+  def election_date_string
+    date_field_string_mm_dd_yyyy(method: :election_date_input)
+  end
  
 end
