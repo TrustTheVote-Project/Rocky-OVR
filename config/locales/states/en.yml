@@ -600,6 +600,7 @@ en:
             Only Democrats can vote in the Democratic Primary and only Republicans can vote in the Republican Primary.
           abr_election_type3:	General
           abr_election_type4:		Special
+          abr_election_type4__required_message: At least one election choice is required
           abr_party:		What political party are you affiliated with?
           abr_party__hint:		You may have picked a political party when you registered. To update your registration, submit a new voter registration.
           abr_delivery_address_selections:		How would you like your ballot delivered?
