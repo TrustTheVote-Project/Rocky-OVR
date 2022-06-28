@@ -1427,7 +1427,7 @@ en:
             abr_address_type2: Township              
           abr_address_type_selections__hint: For villages, select township.
 
-          abr_address_type3:		Enter the jursidction
+          abr_address_type3: Enter your City, Township, or Village.
           abr_election_type_selections:		Which election(s) would you like to receive ballots for?
           abr_election_type_selections__options:
             abr_election_type1: The August 2, 2022 Primary and the Nov 8, 2022 General elections
