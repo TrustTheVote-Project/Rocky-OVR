@@ -109,7 +109,7 @@ absentee_states:
     abr_status_check_url: "https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot"
     abr_track_ballot_url: "https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot"
   DE:
-    online_req_url: https://ivote.de.gov/voterlogin.aspx
+    online_req_url: https://ivote.de.gov/VoterView
     #pdf_template: absentee_ballot_application.pdf
     pdf_template: de.pdf
     abr_status_check_url: "https://ivote.de.gov/VoterView"
