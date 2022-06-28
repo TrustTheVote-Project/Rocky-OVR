@@ -1299,24 +1299,27 @@ en:
             you may request your absentee ballot online directly with the state.</p>"
       ma:
         abr:
-          step_2_header: All registered voters in Massachusetts can vote absentee
-            for all local and state elections through December, 2021.
+          step_2_header: You must have a reason to request an absentee ballot.
           step_2_instructions: |-
-            <p>If you are registered to vote, you can request a vote by mail ballot. Look up your voter registration on the Massachusetts <a target="_blank" rel="noopener noreferrer" href="https://www.sec.state.ma.us/VoterRegistrationSearch/MyVoterRegStatus.aspx">Find my voter registration status</a> page.</p>
-            <p>&nbsp;</p>
-            <h2 role="heading" aria-level="2">Where are you registered to vote?</h2>
-            <p>We'll use this information to determine how you can request your absentee ballot.</p>
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>Applications
-            can be submitted by mail, email, or fax. If you are emailing your application,
-            you may either scan or take a photo of your signed application and email
-            it to your local election office, or you may sign your application using
-            a mouse, finger, or stylus and email the completed and signed attachment.
-            Typed signatures are not acceptable.</i></p>"
-          request_deadline: received at least 4 business days before Election Day.
-          status_check_instructions: You can look up your Absentee Ballot request
-            status by using the <a href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">Track
-            My Ballot</a> tool.
+            <p>A registered voter in Massachusetts can vote absentee if they will be unable
+            to vote at the polls on Election Day due to absence from the voter’s city or town 
+            during polling hours, disability, or religious beliefs.
+            </p>
+          finish_instructions_1_hint: |-
+            <p>Applications can be submitted by mail, email, or fax. If you are emailing
+            your application, you may either scan or take a photo of your signed application
+            and email it to your local election office. Typed signatures are not acceptable.
+            </p>
+          request_deadline: |-
+            <p>Your application must be received by:</p>
+            <ul>
+            <li>8/30/22 for the Primary, and</li>
+            <li>11/2/2022 for the General.</li>
+            </ul>
+          status_check_instructions: |-
+            <p>
+            <a href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
+            </p>
           step_3_header: Prepare your Massachusetts PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
@@ -1349,22 +1352,42 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          mailing_address_input: Mailing address
-          mailing_address_input2: City, State, ZIP
-          assistance_required: Check this box if you received assistance in completing
-            this application due to a physical disability.
-          assisting_person: Assisting person's name
-          Assisting persons address 1: Assisting person's address
-          Assisting persons address 2: City, State, ZIP
-          the ballot: Name of messenger
-          Voter is a member of military on active duty or dependent family member of: Voter
-            is a member of military on active duty or dependent family member of active
-            duty personnel.
-          Voter has been admitted to a healthcare facility after noon on the fifth day: 'Voter
-            has been admitted to a healthcare facility after noon on the fifth day
-            before the election and has designated the following person to hand-deliver
-            the ballot:'
+          abr_check_mailing_address: I get my mail at a different address from the one above.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_election_type_selections: Select the elections you would like to request a ballot for.
+          abr_election_type_selections__hint: You can select all elections in a calendar year or an individual election.
+          abr_election_type_selections__options:		
+            abr_election_type1:	All elections in the calendar year
+            abr_election_type2:	All general elections (No primaries)
+            abr_election_type3:	A specific upcoming election
+          election_date_input: Enter the date of the election
+          abr_primary_type_instructions: |-
+            <p>Enter the type of ballot you'd like to receive for each primary.</p>
+            <p>Independent voters (unenrolled) may vote in a primary without registering with a party.
+            Selecting a party will not enroll you in a party.
+            <br>For more information on parties and designations, see 
+            <a href="https://www.sec.state.ma.us/ele/elepar/paridx.htm" target="_blank">https://www.sec.state.ma.us/ele/elepar/paridx.htm</a></p>
+              
+          abr_primary_type1: State Primaries
+          abr_primary_type2: Presidential Primary
+          abr_request_check: Are you requesting a ballot on behalf of a voter?
+          abr_request_check__hint: You may request an absentee ballot on behalf of a family member.
+          abr_relationship1: Enter your relationship to the voter
+          abr_special_circumstances_instructions:		Do any of the following apply to you?
+          abr_reason1: I am a member of military on active duty or dependent family member of active duty personnel.
+          abr_reason2: I am a Massachusetts citizen residing overseas.
+          abr_reason3: I am incarcerated, but not for a felony conviction.
+          abr_reason4: I have been admitted to a healthcare facility within 7 days of the election and have designated someone to hand-deliver my ballot.
+          abr_request_name: Enter the name of the person you designate to pick up your ballot
+          abr_assistant_check1: Did someone assist you in completing this request due to a disability?
+          abr_assistant_name: Enter the assistant's name
+          abr_assistant_address_line_1: Enter the assistant's address
+          abr_assistant_address_line2: Line 2
         registration:
           has_state_license: I have a MA state identification card or MA driver's license.
           has_no_state_license: I do not have a MA state identification card or MA driver's license.
