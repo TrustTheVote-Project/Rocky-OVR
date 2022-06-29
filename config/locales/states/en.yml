@@ -571,7 +571,7 @@ en:
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
           abr_ssn_number:		Enter your Social Security Number (optional)         
-          abr_check_mailing_address:		I get my mail at a different address from the one above
+          abr_check_mailing_address:		I get my mail at a different address from the one on the previous page
           abr_mailing_address_line_1:		Mailing address
           abr_mailing_unit:		Unit
           abr_mailing_city:		City

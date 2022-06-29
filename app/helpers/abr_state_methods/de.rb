@@ -47,7 +47,7 @@ module AbrStateMethods::DE
   
   def form_field_items
     [
-      {'abr_ssn_number':{min:10, max:10}},
+      {'abr_ssn_number':{min:9, max:9}},
 
       {"abr_check_mailing_address": {type: :checkbox, options: ["Off", "On"]}},	
 
@@ -76,7 +76,7 @@ module AbrStateMethods::DE
   end
   
   def custom_form_field_validations
-    unless self.abr_election_type1.to_s == "On" || self.abr_election_type2.to_s =="On" || self.abr_election_type3.to_s =="On" || self.abr_election_type4.to_s =="On"
+    unless self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type3.to_s =="1" || self.abr_election_type4.to_s =="1"
         errors.add "abr_election_type4", custom_required_message(:abr_election_type4)
     end
   end
