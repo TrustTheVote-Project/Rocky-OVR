@@ -579,7 +579,7 @@ en:
           abr_mailing_zip:		Zip
               
           abr_address_line_2:		Where do you plan to be on election day?
-          address_line_2_hint:		Enter the city, state and country
+          abr_address_line_2__hint: Enter the city and state or city and country.
           abr_reason_selections:		Select your reason for voting by mail
           abr_reason_selections__options:		
             abr_reason1:	I am in public service of the U.S. or the State of Delaware, or I am a spouse or dependent residing with that person, in the residing outside of Delaware. This also applies to members of the Uniformed Services.
