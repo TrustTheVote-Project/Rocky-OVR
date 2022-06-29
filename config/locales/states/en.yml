@@ -1382,8 +1382,9 @@ en:
             abr_election_type2:	All general elections (No primaries)
             abr_election_type3:	A specific upcoming election
           election_date_input: Enter the date of the election
+          election_date_input__format_message: Election date cannot be in the past
           abr_primary_type_instructions: |-
-            <p>Enter the type of ballot you'd like to receive for each primary.</p>
+            <p>Enter the type of ballot you would like to receive for the primary.</p>
             <p>Independent voters (unenrolled) may vote in a primary without registering with a party.
             Selecting a party will not enroll you in a party.
             <br>For more information on parties and designations, see 
@@ -1391,7 +1392,7 @@ en:
               
           abr_primary_type1: State Primaries
           abr_primary_type2: Presidential Primary
-          abr_request_check: Are you requesting a ballot on behalf of a voter?
+          abr_request_check: Check this box if you are requesting a ballot on behalf of a voter.
           abr_request_check__hint: You may request an absentee ballot on behalf of a family member.
           abr_relationship1: Enter your relationship to the voter
           abr_special_circumstances_instructions:		Do any of the following apply to you?
@@ -1400,7 +1401,7 @@ en:
           abr_reason3: I am incarcerated, but not for a felony conviction.
           abr_reason4: I have been admitted to a healthcare facility within 7 days of the election and have designated someone to hand-deliver my ballot.
           abr_request_name: Enter the name of the person you designate to pick up your ballot
-          abr_assistant_check1: Did someone assist you in completing this request due to a disability?
+          abr_assistant_check1: Check this box if someone assisted you in completing this request due to a disability.
           abr_assistant_name: Enter the assistant's name
           abr_assistant_address_line_1: Enter the assistant's address
           abr_assistant_address_line2: Line 2

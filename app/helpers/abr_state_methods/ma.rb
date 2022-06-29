@@ -29,7 +29,7 @@ module AbrStateMethods::MA
     'abr_election_type_selections': {options: ['abr_election_type1','abr_election_type2','abr_election_type3']},
     'abr_election_date': {method: "election_date_string"},
     "abr_primary_type1": {},
-    "abr_primary_type2": {},
+    #"abr_primary_type2": {},
     "abr_request_check": {options: ["Off", "On"]},
     "abr_relationship1": {},
     "abr_reason1": {options: ["Off", "On"]},
@@ -62,9 +62,9 @@ module AbrStateMethods::MA
 
       {'abr_election_type_selections': {type: :radio, options: ['abr_election_type1','abr_election_type2','abr_election_type3'], required: true}},
       {'election_date_input': {type: :date, visible: "abr_election_type_selections_abr_election_type3", required: :if_visible}},
-      {'abr_primary_type_instructions': {type: :instructions, visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3" }},
-      {"abr_primary_type1": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3", required: :if_visible}},
-      {"abr_primary_type2": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3", required: :if_visible}},
+      {'abr_primary_type_instructions': {type: :instructions, visible_any:"abr_election_type_selections_abr_election_type1" }},
+      {"abr_primary_type1": { visible_any:"abr_election_type_selections_abr_election_type1 "}},
+      #{"abr_primary_type2": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3", required: :if_visible}},
       {"abr_request_check": {type: :checkbox}},
       {"abr_relationship1": {visible: "abr_request_check", required: :if_visible }},
       {"abr_reason1": {type: :checkbox, options: ["Off", "On"]}},
@@ -97,6 +97,11 @@ module AbrStateMethods::MA
   def custom_form_field_validations
     # make sure delivery is selected if reason ==3
     # make sure fax is provided if faxtype is selected for delivery
+    election_date =  self.date_field_value(method: :election_date_input)
+    if  election_date &&  election_date < Date.today
+      errors.add(:election_date_input, custom_format_message("election_date_input") )
+    end
+
   end
   
   def election_date_string
