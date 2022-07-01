@@ -2544,7 +2544,7 @@ en:
           identification__options:
             dln: I have a PA driver’s license or a PennDOT ID card
             no_dln: I do not have a PA driver’s license or a PennDOT ID card
-          identification2: Social Security Number Identification
+          identification2: Social Security Number Identification*
           identification2__options:
             ssn: I have a SSN
             no_ssn: I do not have a SSN
@@ -2554,7 +2554,7 @@ en:
             a Social Security number.<br><br>(You will be required to enclose a photocopy
             of an acceptable ID with your application.  Your pdf form will have more
             instructions.)
-          ssn_last_4_input: 'Last 4 digits of your SSN:'
+          ssn_last_4_input: 'Last 4 digits of your SSN:*'
           ssn_last_4_input__format_message: Invalid format. Please enter 4 digits
           Municipality: Municipality (City, Town, or Village), if known
           Same_as_above: 'Select one:'
@@ -2575,8 +2575,7 @@ en:
             in making my mark in lieu of my signature.
           Address of witness: Address of witness or assistant
         abr:
-          request_deadline: 'Your application must be received by: <ul><li>May 17th
-            for the primary, and </li><li>November 1st for the general election.</li></ul>'
+          request_deadline: 'Your application must be received by November 1st for the general election.'
           status_check_instructions: <p><a href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>
           finish_instructions_1_hint: "<p><i>If you received help with this form,
             make sure that the witness has also signed the form and included their

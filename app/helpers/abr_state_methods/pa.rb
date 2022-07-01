@@ -56,6 +56,7 @@ module AbrStateMethods::PA
 
 
     }
+    #{name: 'identification', options: ['dln', 'no_dln']}
     EXTRA_FIELDS = ["has_assistance", "no_PennDOT", "assert_no_id", 'ssn_last_4_input', 'identification', 'identification2','address_date','address_date_mm', 'address_date_dd','address_date_yyyy']
     
     
@@ -134,7 +135,7 @@ module AbrStateMethods::PA
         {"address_date": {required: true,type: :date, m: "address_date_mm", d: "address_date_dd", y: "address_date_yyyy", }}, #regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
         {"identification": {required: true, type: :radio, options: ['dln', 'no_dln']}},
         {"PA drivers license or PennDOT ID card number": {regexp: /\A\d{8}\z/, length:8, visible: "identification_dln"}},
-        {"identification2": {visible: "identification_no_dln", required: 'star', type: :radio, options: ['ssn', 'no_ssn']}},
+        {"identification2": {visible: "identification_no_dln", required: "star", type: :radio, options: ['ssn', 'no_ssn']}},
         #{"no_PennDOT": {type: :checkbox}},
 
         {"ssn_last_4_input": {visible: "identification2_ssn", classes:"half", length:4,regexp: /\A[0-9]{4}\z/}},
@@ -213,7 +214,11 @@ module AbrStateMethods::PA
       # make sure fax is provided if faxtype is selected for delivery
       if (self.identification.to_s=='dln')
         custom_validates_presence_of('PA drivers license or PennDOT ID card number')  
-      elsif (self.identification2.to_s=='ssn')
+      elsif (self.identification.to_s=='no_dln')
+        custom_validates_presence_of('identification2')  
+      end
+      
+      if (self.identification2.to_s=='ssn')
         custom_validates_presence_of('ssn_last_4_input')
       else
         custom_validates_presence_of('assert_no_id') #this doesn't work
