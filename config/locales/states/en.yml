@@ -534,17 +534,18 @@ en:
             tool</a>
       de:
         state_online_abr:
-          requirements: "<p>If you are registered to vote and have a valid Deleware
+          requirements: "<p>If you are registered to vote and have a valid Delaware
             state ID, you may request your vote by mail ballot online directly with
             the state.</p>"
-          button: Finish your<br/>vote by mail request<br/> online with Deleware.
+          button: Finish your<br/>vote by mail request<br/> online with Delaware.
           confirm: Check if you meet your state's requirements, then click the button
             below to request your vote by mail ballot through the state's site.
         abr:
           request_deadline: |-
             <p>Your application for an absentee ballot must be received by</p>
             <ul>
-            <li>Noon on September 12th if mailed or delivered by hand.</li>
+            <li>Noon on September 12th for the Primary Election, and</li>
+            <li>Noon on November 4th for the General Election.</li>
             </ul>
           status_check_instructions:  |-
             <p>
@@ -561,7 +562,7 @@ en:
             <li>You are on vacation.</li>
             <li>The tenets or teachings of your religion prevent you from coming to the polls.</li>
             </ul>
-          step_3_header: Prepare your Deleware PDF Vote By Mail Request Form
+          step_3_header: Prepare your Delaware PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
           finish_pdf_delay: It's taking a while to create your vote by mail request
@@ -591,7 +592,7 @@ en:
           abr_application_type_check1:		I would like to become a permanent absentee voter.
           abr_application_type_check1__hint:	"Because of the reason you selected for requesting an absentee ballot, you
             can become a permanent absentee voter and automatically receive an absentee ballot for all elections for which you are eligible to vote."
-          abr_election_type_instructions:		You can use this form for Primary, General and Special elections. <br> See https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf for School District elections, and contact your local election official for an application for Municipal elections.
+          abr_election_type_instructions:		You can use this form for Primary, General and Special elections. <br> See <a href="https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf" target="_blank">https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf</a> for School District elections, and contact your local election official for an application for Municipal elections.
           abr_election_type_selections:		Select the election(s) you'd like to request a ballot for.
           abr_election_type1:	All Elections in 2022
           abr_election_type2:	|-
@@ -602,7 +603,7 @@ en:
           abr_election_type4:		Special
           abr_election_type4__required_message: At least one election choice is required
           abr_party:		What political party are you affiliated with?
-          abr_party__hint:		You may have picked a political party when you registered. To update your registration, submit a new voter registration.
+          abr_party__hint:	'You may have picked a political party when you registered. To update your registration, submit a new voter registration.'
           abr_delivery_address_selections:		How would you like your ballot delivered?
           abr_delivery_address_selections__hint:		Because you selected being sick or temporarily or permanently disabled, you can elect how to have your ballot delivered to you.
           abr_delivery_address_selections__options:		
