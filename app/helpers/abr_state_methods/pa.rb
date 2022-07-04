@@ -52,12 +52,16 @@ module AbrStateMethods::PA
       "annual_request": {
         options: ["Yes", "Off"]
       },
-      "Address of witness": {}
+      "Address of witness": {},
+
+      "identification": {options:['dln', 'no_dln'] },
+
+      "identification2": {options: ['ssn', 'no_ssn']}
 
 
     }
     #{name: 'identification', options: ['dln', 'no_dln']}
-    EXTRA_FIELDS = ["has_assistance", "no_PennDOT", "assert_no_id", 'ssn_last_4_input', 'identification', 'identification2','address_date','address_date_mm', 'address_date_dd','address_date_yyyy']
+    EXTRA_FIELDS = ["has_assistance", "no_PennDOT", "assert_no_id", 'ssn_last_4_input', 'address_date','address_date_mm', 'address_date_dd','address_date_yyyy']
     
     
     def form_field_items
@@ -134,12 +138,12 @@ module AbrStateMethods::PA
         {"Municipality": {}},
         {"address_date": {required: true,type: :date, m: "address_date_mm", d: "address_date_dd", y: "address_date_yyyy", }}, #regexp: /\A[0-9]{2}\/[0-9]{2}\/[0-9]{4}\z/}},
         {"identification": {required: true, type: :radio, options: ['dln', 'no_dln']}},
-        {"PA drivers license or PennDOT ID card number": {regexp: /\A\d{8}\z/, length:8, visible: "identification_dln"}},
-        {"identification2": {visible: "identification_no_dln", required: "star", type: :radio, options: ['ssn', 'no_ssn']}},
+        {"PA drivers license or PennDOT ID card number": {regexp: /\A\d{8}\z/, length:8, visible: "identification_dln", required: :if_visible}},
+        {"identification2": {visible: "identification_no_dln", required: :if_visible, type: :radio, options: ['ssn', 'no_ssn']}},
         #{"no_PennDOT": {type: :checkbox}},
 
-        {"ssn_last_4_input": {visible: "identification2_ssn", classes:"half", length:4,regexp: /\A[0-9]{4}\z/}},
-        {"assert_no_id": {type: :checkbox, visible: "identification2_no_ssn", required: 'star'}},
+        {"ssn_last_4_input": {visible: "identification2_ssn", required: :if_visible, classes:"half", length:4,regexp: /\A[0-9]{4}\z/}},
+        {"assert_no_id": {type: :checkbox, visible: "identification2_no_ssn", required: :if_visible}},
         
         {"Same_as_above": {type: :radio, required: true}},
         {"Address_1": {visible: "same_as_above_off", required: 'star'}},
@@ -212,15 +216,22 @@ module AbrStateMethods::PA
       # make sure delivery is selected if reason ==3
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
-      if (self.identification.to_s=='dln')
-        custom_validates_presence_of('PA drivers license or PennDOT ID card number')  
-      elsif (self.identification.to_s=='no_dln')
-        custom_validates_presence_of('identification2')  
-      end
+      # if (self.identification.to_s=='dln')
+      #   custom_validates_presence_of('PA drivers license or PennDOT ID card number')  
+      # elsif (self.identification.to_s=='no_dln')
+      #   custom_validates_presence_of('identification2')  
+      # end
       
-      if (self.identification2.to_s=='ssn')
-        custom_validates_presence_of('ssn_last_4_input')
-      else
+      # if (self.identification2.to_s=='ssn')
+      #   custom_validates_presence_of('ssn_last_4_input')
+      # else
+      #   custom_validates_presence_of('assert_no_id') #this doesn't work
+      #   if (self.assert_no_id.to_s!='1')
+      #     errors.add("assert_no_id", custom_required_message("assert_no_id") )
+      #   end
+      # end
+
+      if (self.identification2.to_s!='ssn')
         custom_validates_presence_of('assert_no_id') #this doesn't work
         if (self.assert_no_id.to_s!='1')
           errors.add("assert_no_id", custom_required_message("assert_no_id") )
