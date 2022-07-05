@@ -66,7 +66,7 @@ module AbrStateMethods::DE
       {'abr_election_type2': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type3': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type4': {type: :checkbox, options: ['Off', 'On']}},
-      {'abr_party': {required: :if_visible, visible_any:"abr_election_type1 abr_election_type2 abr_election_type4"}},
+      {'abr_party': {}},
       {'abr_delivery_address_selections': {type: :radio, required: :if_visible, visible: "abr_election_type3", options:['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3']}},
       {'abr_fax_number': {min:10, required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type3" }},
       
