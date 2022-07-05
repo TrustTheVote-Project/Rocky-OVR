@@ -116,6 +116,10 @@
     height: auto;
     line-height: 1.4em;
   }
+  .checkbox h3 {
+    display:flex;
+    align-items: flex-start;
+  }
   @media(max-width: $main-width) {
     li {
       ul.checkbox {
