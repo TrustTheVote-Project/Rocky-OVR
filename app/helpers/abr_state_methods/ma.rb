@@ -62,8 +62,8 @@ module AbrStateMethods::MA
 
       {'abr_election_type_selections': {type: :radio, options: ['abr_election_type1','abr_election_type2','abr_election_type3'], required: true}},
       {'election_date_input': {type: :date, visible: "abr_election_type_selections_abr_election_type3", required: :if_visible}},
-      {'abr_primary_type_instructions': {type: :instructions, visible_any:"abr_election_type_selections_abr_election_type1" }},
-      {"abr_primary_type1": { visible_any:"abr_election_type_selections_abr_election_type1 "}},
+      {'abr_primary_type_instructions': {type: :instructions, visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3" }},
+      {"abr_primary_type1": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3"}},
       #{"abr_primary_type2": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3", required: :if_visible}},
       {"abr_request_check": {type: :checkbox}},
       {"abr_relationship1": {visible: "abr_request_check", required: :if_visible }},
