@@ -544,8 +544,8 @@ en:
           request_deadline: |-
             <p>Your application for an absentee ballot must be received by</p>
             <ul>
-            <li>Noon on September 12th for the Primary Election, and</li>
-            <li>Noon on November 4th for the General Election.</li>
+            <li>September 9th for the Primary Election, and</li>
+            <li>November 4th for the General Election.</li>
             </ul>
           status_check_instructions:  |-
             <p>
