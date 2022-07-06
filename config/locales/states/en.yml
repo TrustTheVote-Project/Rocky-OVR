@@ -1390,7 +1390,7 @@ en:
             <br>For more information on parties and designations, see 
             <a href="https://www.sec.state.ma.us/ele/elepar/paridx.htm" target="_blank">https://www.sec.state.ma.us/ele/elepar/paridx.htm</a></p>
               
-          abr_primary_type1: State Primaries
+          abr_primary_type1: "<span/>"
           abr_primary_type2: Presidential Primary
           abr_request_check: Check this box if you are requesting a ballot on behalf of a voter.
           abr_request_check__hint: You may request an absentee ballot on behalf of a family member.
