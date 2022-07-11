@@ -104,11 +104,7 @@ en:
             <li>Are currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude. </li>
             </ul>
           request_deadline: |-
-            <p>If you mail your absentee ballot request, it must be received by </p>
-            <ul>
-            <li>May 17th for the primary election, and </li>
-            <li>November 11th for the general election.</li>
-            </ul>
+            <p>If you mail your absentee ballot request, it must be received by November 1st for the general election. </p>
           status_check_instructions: <a href="https://myinfo.alabamavotes.gov/voterview">https://myinfo.alabamavotes.gov/voterview</a>
           finish_instructions_1_hint: "<p>Make sure to include a copy of your valid
             photo identification with your application. \nOnly submit one request
@@ -1843,9 +1839,7 @@ en:
           step_2_instructions: |-
             <p>All registered voters in North Carolina can request an absentee ballot.</p>
           request_deadline: |-
-            <p>Absentee ballot requests must be received by 5:00 pm on:</p>
-              <ul><li>May 10, 2022 for the primary election, and</li>
-              <li>November 1, 2022 for the general election.</li></ul>
+            <p>Absentee ballot requests must be received by 5:00 pm on November 1, 2022 for the general election.</p>
           finish_instructions_3_hint_state: |-
             <p>When you prepare to vote, make sure that you have a notary public or two witnesses present.
              You can return your voted ballot by mail, in person at your county board of elections or at an open
@@ -1942,12 +1936,7 @@ en:
             <li>Able to provide a North Dakota driver’s license, nondriver ID, or tribal ID that includes your current residential address and date of birth. If you don't have one of those forms of ID, another qualified elector of the state may attest for you.</li>
             </ul>
           request_deadline: |-
-            <h3>Deadlines for requesting an absentee ballot:</h3>
-            <p>Your absentee ballot request must be received by:</p>
-            <ul>
-            <li>June 13th for the June primary, and</li>
-            <li>November 7th for the November general election.</li>
-            </ul>
+            <p>Your absentee ballot request must be received by November 7th for the November general election.</p>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
             <p>If you mail your absentee ballot, it must be postmarked the day before the election in order to be counted.</p>
@@ -2114,11 +2103,7 @@ en:
       nj:
         abr:
           request_deadline: |-
-            <p>Your application must be received by: </p>
-            <ul>
-            <li>May 31st for the primary, and </li>
-            <li>November 1st for the general election.</li>
-            </ul>
+            <p>Your application must be received by November 1st for the general election.</p>
           status_check_instructions: <a href="https://nj.gov/state/elections/vote.shtml">https://nj.gov/state/elections/vote.shtml</a>.
           finish_instructions_1_hint: "<p>If you received help with this form, make
             sure that the assistor has also \nsigned the form and included their address.\n</p>\n<p>If
@@ -2305,12 +2290,7 @@ en:
             <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
             </ul>
           request_deadline: |-
-            <p>The deadlines for your absentee ballot request are:</p>
-            <ul>
-            <li>June Primary: Postmarked by June 13th or in person by June 27th.</li>
-            <li>November General: Postmarked by October 24th or in person by November 7th.</li>
-            </ul>
-            <p>If you cannot pick up your ballot, you can designate someone to pick it up for you. Only that person designated on your application may pick up and deliver your ballot.</p>
+            <p>You can request your ballot online until August 8th for the Second Primary Election and October 24th for the General Election.</p>
           status_check_instructions: |-
             <p>Track your absentee ballot request by contacting your County Board of Elections:
             <a href="https://www.elections.ny.gov/CountyBoards.html">https://www.elections.ny.gov/CountyBoards.html</a>
@@ -2725,11 +2705,7 @@ en:
             </ul>
           request_deadline: |-
             <h3>Deadlines for voting absentee</h3>
-            <p>Your absentee ballot request must be received by</p>
-            <ul>
-            <li>June 10th for the June primary, and</li>
-            <li>November 4th for the November general election.</li>
-            </ul>
+            <p>Your absentee ballot request must be received by November 4th for the November general election. </p>
             <p>We recommend applying at least one week prior to election to allow adequate mail time.</p>
             <h3>Don't forget to vote!</h3>
             <p>Your voted absentee ballot must be received by the close of polls in order to be counted.</p>
@@ -2979,11 +2955,17 @@ en:
           has_no_state_license: I do not have a TN state identification card or TN driver's license.
       tx:
         abr:
-          step_2_header: ''
-          step_2_instructions: ''
-          request_deadline: Your application must be received not later than the 11th
-            day before election day or by the close of regular business or 12 noon,
-            whichever is later.
+          step_2_header: 'You must have a reason to request an absentee ballot in Texas'
+          step_2_instructions: |-
+            <p>To vote absentee in Texas you must:</p>
+            <ul>
+            <li>be 65 years or older;</li>
+            <li>be sick or disabled;</li>
+            <li>be out of the county on election day and during the period for early voting by personal appearance; or</li>
+            <li>be expected to give birth within three weeks before or after Election Day; or</li>
+            <li>be confined in jail, but otherwise eligible.</li>
+            </ul
+          request_deadline: Your absentee ballot request must be received by 10/28/2022.
           finish_instructions_1_hint: |-
             <p>
             If you were unable to sign the application and someone witnessed your signature, that person must complete Section 11.
@@ -3014,16 +2996,18 @@ en:
           abr_no_drivers_license: I have not been issued a Texas Driver's License/Texas
             Personal Identification Number/Texas Election Identification Certificate
           abr_last_4_ssn: Last 4 digits of your SSN
-          abr_last_4_ssn__hint: If you do not have a Texas Driver'’'s License, Texas
-            Personal Identification Number or a Texas Election Identification Certificate
-            Number, give the last 4 digits of your Social Security Number
+          abr_last_4_ssn__hint: If you do not have a Texas Driver's License, Texas Personal
+            Identification Number or a Texas Election Identification Certificate Number,
+            enter the last 4 digits of your Social Security Number.
           abr_no_id: I have not been issued a Social Security Number
           abr_delivery_address: 'Mail my Ballot to:'
           abr_delivery_address__options:
             abr_residence_address: My Residence Address (as listed on my Voter Registration
               Certificate)
-            abr_mailing_address: Other Address- You may use the Other Address line
-              only if the other address fits one of the categories below.
+            abr_mailing_address: Other Address- You may use the Other Address line only if
+             it is your mailing address as listed on your Voter Registration certificate,
+             an address outside the county, a hospital, nursing home or other facility,
+             the address of a jail/civil commitment facility, or the address of a relative.
           abr_mailing_street_address: Address
           abr_mailing_unit: Apt.
           abr_mailing_city: City
@@ -3048,11 +3032,10 @@ en:
             site.
           abr_reason_selections__options:
             abr_reason1: 65 Years of Age or Older
-            abr_reason2: Disability (as defined in Texas Election Code 82.002(a),
-              see instructions on reverse) By checking this box, “I affirm that I
-              have a sickness or physical condition that prevents me from appearing
-              at the polling place on Election Day without a likelihood of needing
-              personal assistance or of injuring my health.”
+            abr_reason2: Disability. Selecting this option means that you affirm you
+              have a sickness or physical condition that prevents you from appearing
+              at the polling place on Election Day without a likelihood of needing personal
+              assistance or of injuring my health.
             abr_reason3: Expected to give birth within three weeks before or after
               Election Day
             abr_reason4: Expected Absence from the County (You may apply for a ballot

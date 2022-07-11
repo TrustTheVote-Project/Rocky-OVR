@@ -133,8 +133,8 @@ module AbrStateMethods::AL
     },
     "abr_election_type_selections": {
       options: [
-        "abr_election_type1",
-        "abr_election_type2",
+       # "abr_election_type1",
+       # "abr_election_type2",
         "abr_election_type3",
         "abr_election_type4",
       ]
