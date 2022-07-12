@@ -2324,10 +2324,12 @@ en:
             </ul>
             <p>If you are permanently ill or disabled, you can choose to have an Absentee Ballot mailed to you for each subsequent election without applying again. While filling out your request, indicate that you have a permanent illness or physical disability.</p>
             <h3>Deadlines to request an absentee ballot</h3>
-            <p>You can request your ballot online until October 24th for the General Election.</p>
+            <p>You can request your ballot online until August 8th for the Second Primary Election and October 24th for the General Election.</p>
             <p>You can request an absentee ballot in person until the day before the election. 
             See the <a href="https://www.elections.ny.gov/VotingAbsentee.html">New York page on absentee voting</a> for more information on requesting a ballot in person.</p>
             
+
+
         abr_form_fields:
           abr_email: Email
           abr_county: County where you live
