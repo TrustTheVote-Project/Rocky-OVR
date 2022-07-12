@@ -26,7 +26,8 @@ module AbrStateMethods::MA
     'abr_mailing_state_abbrev':{},
     'abr_mailing_zip': {},  
 
-    'abr_election_type_selections': {options: ['abr_election_type1','abr_election_type2','abr_election_type3']},
+    'abr_election_type_selections': {method: 'abr_election_type_selections_value', options: ['abr_election_type1','abr_election_type2','abr_election_type3']},
+    'abr_election_type_selections_input': {options: ['abr_election_type1','abr_election_typeprimary','abr_election_type2','abr_election_type3']},
     'abr_election_date': {method: "election_date_string"},
     "abr_primary_type1": {},
     #"abr_primary_type2": {},
@@ -60,10 +61,10 @@ module AbrStateMethods::MA
       {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
       {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
 
-      {'abr_election_type_selections': {type: :radio, options: ['abr_election_type1','abr_election_type2','abr_election_type3'], required: true}},
-      {'election_date_input': {type: :date, visible: "abr_election_type_selections_abr_election_type3", required: :if_visible}},
-      {'abr_primary_type_instructions': {type: :instructions, visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3" }},
-      {"abr_primary_type1": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3"}},
+      {'abr_election_type_selections_input': {type: :radio, required: true}},
+      {'election_date_input': {type: :date, visible: "abr_election_type_selections_input_abr_election_type3", required: :if_visible}},
+      {'abr_primary_type_instructions': {type: :instructions, visible_any:"abr_election_type_selections_input_abr_election_type1 abr_election_type_selections_input_abr_election_typeprimary" }},
+      {"abr_primary_type1": { visible_any:"abr_election_type_selections_input_abr_election_type1 abr_election_type_selections_input_abr_election_typeprimary"}},
       #{"abr_primary_type2": { visible_any:"abr_election_type_selections_abr_election_type1 abr_election_type_selections_abr_election_type3", required: :if_visible}},
       {"abr_request_check": {type: :checkbox}},
       {"abr_relationship1": {visible: "abr_request_check", required: :if_visible }},
@@ -103,8 +104,15 @@ module AbrStateMethods::MA
     end
 
   end
+
+  def abr_election_type_selections_value
+    abr_election_type_selections_input == 'abr_election_typeprimary' ? 'abr_election_type3' : abr_election_type_selections_input
+  end
   
   def election_date_string
+    if abr_election_type_selections_input == 'abr_election_typeprimary'
+      return "09/06/2022"
+    end
     date_field_string_mm_dd_yyyy(method: :election_date_input)
   end
  

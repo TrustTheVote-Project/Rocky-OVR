@@ -1372,12 +1372,13 @@ en:
           abr_mailing_city: City
           abr_mailing_state_abbrev: State
           abr_mailing_zip: ZIP
-          abr_election_type_selections: Select the elections you would like to request a ballot for.
-          abr_election_type_selections__hint: You can select all elections in a calendar year or an individual election.
-          abr_election_type_selections__options:		
+          abr_election_type_selections_input: Select the elections you would like to request a ballot for.
+          abr_election_type_selections_input__hint: You can select all elections in a calendar year or an individual election.
+          abr_election_type_selections_input__options:		
             abr_election_type1:	All elections in the calendar year
+            abr_election_typeprimary: The September 6, 2022 primary election
             abr_election_type2:	All general elections (No primaries)
-            abr_election_type3:	A specific upcoming election
+            abr_election_type3: A specific upcoming election (not generals or primaries)
           election_date_input: Enter the date of the election
           election_date_input__format_message: Election date cannot be in the past
           abr_primary_type_instructions: |-
@@ -2966,7 +2967,7 @@ en:
             <li>be out of the county on election day and during the period for early voting by personal appearance; or</li>
             <li>be expected to give birth within three weeks before or after Election Day; or</li>
             <li>be confined in jail, but otherwise eligible.</li>
-            </ul
+            </ul>
           request_deadline: Your absentee ballot request must be received by 10/28/2022.
           finish_instructions_1_hint: |-
             <p>
