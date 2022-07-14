@@ -10,6 +10,11 @@ class YamlExport
         locale, key = k.match(/([^\.]+)\.(.+)/)[1..2]
         translations[key][locale] = v
       end
+      #Add states.yml
+      iterate_file('./db/bootstrap/import/states.yml') do |k, v|
+        translations[k]['en'] = v
+      end
+      #
     
       locales = ['en'] + (translations.values.flat_map(&:keys).uniq.sort - ['en'])
     
