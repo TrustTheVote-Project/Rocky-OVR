@@ -118,7 +118,7 @@ module RegistrantMethods
   end
   
   def state_parties
-    if requires_party?
+    if requires_party? || optional_party?
       localization ? localization.parties + [ localization.no_party ] : []
     else
       []
@@ -155,7 +155,7 @@ module RegistrantMethods
   end
   
   def english_state_parties
-    if requires_party?
+    if requires_party? || optional_party?
       en_localization ? en_localization.parties + [ en_localization.no_party ] : []
     else
       []

@@ -638,10 +638,11 @@ record_40:
 record_41:
   abbreviation: SD
   name: South Dakota
-  requires_party: true
+  requires_party: false
+  optional_party: true
   party_tooltip: south_dakota
   parties:
-  - democratic
+  - democraticf
   - independent
   - green
   - libertarian
