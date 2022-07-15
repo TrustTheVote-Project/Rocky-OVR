@@ -251,4 +251,8 @@ class StateRegistrants::Base < ActiveRecord::Base
   def send_chase_email?
     true
   end
+
+  def eligible?
+    true
+  end
 end

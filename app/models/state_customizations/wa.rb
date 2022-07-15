@@ -23,6 +23,8 @@
 #
 #***** END LICENSE BLOCK *****
 
+#CTW:  Not sure how online url and using the API will work together
+
 class WA < StateCustomization
   ROOT_URL = "https://olvr.votewa.gov/default.aspx"
   
@@ -35,4 +37,35 @@ class WA < StateCustomization
     lang= registrant.locale
     "#{root_url}?language=#{lang}&Org=RocktheVote&firstname=#{fn}&lastname=#{ln}&DOB=#{dob}"
   end
+
+  def use_state_flow?(registrant)
+    return false if ovr_settings.blank?
+    
+    lang_list = ovr_settings["languages"]
+ 
+
+    return true if lang_list.blank? || lang_list.empty?
+    return lang_list.include?(registrant.locale)    
+
+  end
+
+  def self.permitted_attributes
+    attrs = self.column_names - self.protected_attributes
+    return [attrs, 
+      :issue_date_mm,
+      :issue_date_dd,
+      :issue_date_yyyy,
+      :covr_token,
+      :covr_success,
+      :ca_disclosures,
+      :query_parameters,
+      VOTER_SIGNATURE_ATTRIBUTES
+    ].flatten
+  end
+
+  def enabled_for_language?(locale, reg=nil)
+    # This is for transitions to onine state registration vs direct API calls
+    false
+  end
+
 end

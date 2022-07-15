@@ -278,6 +278,81 @@ en:
         sms_number_for_continue_on_device: 'Text me the link:'
         email_address_for_continue_on_device: 'Email me the link:'
         voter_signature_image: Voter Signature Image
+      state_registrants/wa_registrant:
+        is_citizen: I am a US citizen
+        confirm_will_be_18: I am at least sixteen years old and will not vote in a special or general election until I turn eighteen.
+        has_previous_name: I have changed my name
+        ssn4: "Optional: Please enter the last 4 digits of your social security number."
+        has_ssn: I have a Social Security Number
+        confirm_no_ssn: No SSN was ever issued.
+        driver_license: Washington State Driver License or ID
+        confirm_no_dln: 'I do not have a Washington State Driver License or ID'
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        prev_name_title: Title
+        prev_first_name: First Name
+        prev_middle_name: Middle
+        prev_last_name: Last Name
+        prev_name_suffix: Suffix
+        residence_address: Address
+        residence_unit_number: Unit number
+        residence_unit_type: Unit type
+        residence_city: City
+        residence_state: State
+        residence_state_abbrev: State
+        home_state_abbrev: State
+        residence_zip: ZIP
+        res_county_code: Residential County
+
+        res_address_change_made_date: The date I changed my residential address
+        has_previous_address: I have a previous Washington State residential address
+        prev_residence_address: Address
+        prev_residence_unit_number: Unit number
+        prev_residence_unit_type: Unit type
+        prev_residence_city: City
+        prev_residence_state: State
+        prev_residence_state_abbrev: State
+        prev_residence_zip: ZIP
+        prev_res_county_code: Previous Residential County
+        military_flag: Are you currently serving in the military?
+        military_flag_true: "Yes"
+        military_flag_false: "No"
+        is_homeless: Do you live somewhere with a non-standard address?
+        is_homeless_true: "Yes"
+        is_homeless_false: "No"
+        homeless_address: Describe your living address.
+        has_mailing_address: I get my mail at a different address from the one above.
+        mailing_address: Address
+        mailing_unit_number: Unit number
+        mailing_unit_type: Unit type
+        mailing_city: City
+        mailing_state: State
+        mailing_zip_: ZIP
+        mail_county_code: Mailing Address County
+        has_previous_mailing_address: I have a previous mailing address
+        mail_address_change_made_date: The date I changed my mailing address
+        prev_mailing_address: Address
+        prev_mailing_unit_number: Unit number
+        prev_mailing_unit_type: Unit type
+        prev_mailing_city: City
+        prev_mailing_state: State
+        prev_mailing_state_abbrev: State
+        prev_mailing_zip: ZIP
+        prev_mail_county_code: Previous Mailing Address County
+
+        registered_in_other_state: I am currently registered to vote in another state.
+        other_registration_state_abbrev: Other Registration State
+        interested_in_being_poll_worker: I am interested in being an Officer of Election
+          (poll worker) on Election Day.
+        confirm_affirm_privacy_notice: I have read the terms of the Privacy Act Notice.
+        confirm_voter_fraud_warning: I acknowledge that I have read the above voter
+          fraud warning.
+        confirm_register_to_vote: I swear/affirm, under felony penalty for making
+          willfully false material statements or entries, that the information provided
+          on this form is true. I authorize the cancellation of my current registration.
       abr:
         date_of_birth: Date of Birth
         email: Email Address
@@ -536,6 +611,50 @@ en:
                 or sign a paper form to complete your application.
               too_many_retries: After two unsuccessful PennDOT submissions you must
                 provide an electronic signature.
+        state_registrants/wa_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          attributes:
+            is_citizen:
+              accepted: You must be a US citizen!
+            confirm_will_be_18:
+              accepted: You must be at least sixteen to register and must be at least eighteen in order to vote.
+            confirm_declaration:
+              accepted: You must confirm that you agree to the terms above.
+            confirm_assitant_declaration:
+              accepted: You must confirm that you agree to the terms above.
+            sms_number_for_continue_on_device:
+              format: 'Please provide a valid number'
+            email_address_for_continue_on_device:
+              format: Please provide a valid email              
+            phone:
+              invalid: 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+            assistant_phone:
+              invalid: 'Should be ###-###-####'
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+              too_young: You must be at least sixteen to register and must be at least eighteen in order to vote.
+            issue_date:
+              future: Cannot be in the future
+              too_old: Must be after 1972.
+              blank: Issue date is required.
+            driver_license:
+              format: Should be 12 digits
+              blank: Required.
+              wa_invalid: Your WA DLN number is not valid. Please double-check and
+                try again.
+            ssn4:
+              format: Should be 4 digits
+              blank: Required. If you do not know the last four digits of your social
+                security number, please select "I do not know the last four digits
+                of my social security number.
+            # voter_signature_image:
+            #   blank: You must provide a valid WA DLN, or an electronic signature,
+            #     or sign a paper form to complete your application.
+            #   too_many_retries: After two unsuccessful WA submissions you must
+            #     provide an electronic signature.
         abr:
           blank: Required
           format: Invalid
