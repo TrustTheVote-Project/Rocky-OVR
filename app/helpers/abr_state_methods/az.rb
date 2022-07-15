@@ -1,63 +1,56 @@
 module AbrStateMethods::AZ
   
   PDF_FIELDS = {
-    "Primary  General Election": {
-      options: ["Off", "On"],
-      value: "Off"
+    "abr_email": {method: "email"},	
+    "abr_phone": {method: "phone"},	
+    "abr_first_name": {method: "first_name"},	
+    "abr_middle_initial": {method: "middle_initial"},	
+    "abr_last_name": {method: "last_name"},	
+    "abr_name_suffix": {method: "name_suffix"},	
+    "abr_street_number": {method: "street_number"},	
+    "abr_street_name": {method: "street_name"},	
+    "abr_unit": {method: "unit"},	
+    "abr_address": {method:"address"},
+    "abr_city": {method: "city"},	
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
+    "abr_zip": {method: "zip"},
+    'date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },
+
+    
+    "abr_county": {},
+
+    "abr_election_type_selections": {},
+    "abr_primary_type_selections1": {options:[
+      'abr_primary_type1',
+      'abr_primary_type2',
+      'abr_primary_type3',
+      'abr_primary_type4',
+    ]},
+
+    'abr_check_mailing_address':{},
+    'abr_mailing_address':{method: "mailing_address"},
+    'abr_mailing_city':{},
+    'abr_mailing_state_abbrev':{},
+    'abr_mailing_zip':{},
+    'abr_id_selections':{
+      options:[
+        'abr_id_type1',
+        'abr_id_type2',
+        'abr_id_type3',
+      ]
     },
-    "Primary Election Only": {
-      options: ["Off", "On"],
-      value: "Off"
+    'abr_drivers_license': {sensitive:true},
+    "abr_last_4_ssn": {sensitive:true},
+    "abr_place_of_birth":{},
+
+    'abr_id_selections_value':{method: 'identification_data'},
+
+    "abr_independent_selections":{
+      options: ["abr_independent_yes", "abr_independent_no"]
     },
-    "General Election Only": {
-      options: ["Off", "On"],
-      value: "Off" # TODO remove this once we can figure out AZ email handling
-    },
-    "Every Election I authorize the County Recorder to include my name on the PEVL and automatically send": {
-      options: ["Off", "On"],
-      value: "On" # TODO remove this once we can figure out AZ email handling
-    },
-    "Democratic": {
-      options: ["Off", "On"],
-    },
-    "Republican": {
-      options: ["Off", "On"],
-    },
-    "Green Pima County Voters Only": {
-      options: ["Off", "On"],
-    },
-    "MunicipalOnly Nonpartisan": {
-      options: ["Off", "On"],
-    },
-    "Check this box if you request the County Recorder change your residence and mailing address on your registration": {
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    "Check this box if you request the County Recorder change your name on your registration record to the one listed": {
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    "Phone_Number": {
-      method: "phone"
-    },
-    "First_and_Last_Name": {
-      method: "full_name"
-    },
-    "Residence_Address": {
-      method: "full_address_1_line"
-    },
-    "County_of_Residence": { method: "registration_county_name" },
-    "Mailing_Address": {},
-    "Date_of_Birth": {
-      method: "date_of_birth_mm_dd_yyyy"
-    },
-    "Email_Address": {
-      method: "email"
-    },
-    "Place_of_Birth_or_Drivers_licence_or_last_4_ssn": {sensitive: true, method: "identification_data"},
-    "Date": {
-      method: "date_for_signature"
-    }
+
+
+
     #voter_signature
 
   }
@@ -66,103 +59,74 @@ module AbrStateMethods::AZ
     "voter_signature"
   end
 
-  EXTRA_FIELDS = ["has_mailing_address", "identification_selection",  {name:"drivers_license_id", sensitive:true}, "place_of_birth", {name:"last_4_ssn", sensitive:true}, "dln_soft_validation"]
+  EXTRA_FIELDS = [  "abr_mailing_address_line_1", "abr_mailing_unit",  {name:"abr_drivers_license", sensitive:true}, "abr_place_of_birth", {name:"abr_last_4_ssn", sensitive:true}, "abr_check_change_address", "abr_check_change_name"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
   def form_field_items
     [
-      #{"election_selection": {type: :radio, options: ["general", "all"], required: true}},
-      #{"primary_ballot_selection": {visible: "election_selection_all", required: "custom", type: :radio, options: PARTY_SELECTIONS}},
-      {"identification_selection": {required:true, type: :radio, options: ["place_of_birth", "drivers_license_id","last_4_ssn"]}},
-      {"drivers_license_id": {required: "star", ui_regexp:"^[a-zA-Z][0-9]{8}$|^[0-9]{9}$", min:8, max:9, visible: "identification_selection_drivers_license_id"}},
-      {"last_4_ssn": {required: "star",  min:4, max:4, visible:"identification_selection_last_4_ssn"}},
-      {"place_of_birth": {required: "star", min:1, visible: "identification_selection_place_of_birth"}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"Mailing_Address": {visible: "has_mailing_address"}},
-      {"dln_soft_validation": {type: :hidden}}
+
+
+      {"abr_election_type_selections": {type: :radio, options: ["abr_election_type1", "abr_election_type2", "abr_election_type3", "abr_election_type4"]}},
+      {"abr_independent_instructions": {type: :instructions, hidden: 'abr_election_type_selections_abr_election_type4'}},
+      {"abr_independent_selections": {type: :radio, hidden: 'abr_election_type_selections_abr_election_type4' , options: ["abr_independent_yes", "abr_independent_no"]}},
+
+      {"abr_primary_type_selections1": {visible: "abr_independent_selections_abr_independent_yes", required: :if_visible, type: :radio, options: ["abr_primary_type1", "abr_primary_type2", "abr_primary_type3", "abr_primary_type4"]}},
+
+      {"abr_county": {type: :select, required: true, include_blank: true, options: [
+        "Apache",
+        "Cochise",
+        "Coconino",
+        "Gila",
+        "Graham",
+        "Greenlee",
+        "La Paz",
+        "Maricopa",
+        "Mohave",
+        "Navajo",
+        "Pima",
+        "Pinal",
+        "Santa Cruz",
+        "Yavapai",
+        "Yuma"]}},
+
+      {"abr_check_mailing_address": {type: :checkbox}},	
+
+      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+
+      {"abr_id_selections": {type: :radio, required: true, options: ["abr_id_type1", "abr_id_type2", "abr_id_type3"]}},
+      {"abr_drivers_license": {visible: "abr_id_selections_abr_id_type1", required: :if_visible, ui_regexp:"^[a-zA-Z][0-9]{8}$|^[0-9]{9}$", min:8, max:9}},
+      {"abr_last_4_ssn": {required:  :if_visible,  min:4, max:4, visible:"abr_id_selections_abr_id_type2"}},
+      {"abr_place_of_birth": {required: :if_visible, min:1, visible: "abr_id_selections_abr_id_type3"}},
+
+
+
+
+
     ]
-  end
-  
-  def election_selection
-    if self.send(self.class.make_method_name("General Election Only")) == "On"
-      return "general"
-    elsif self.send(self.class.make_method_name("Every Election I authorize the County Recorder to include my name on the PEVL and automatically send")) == "On"
-      return "all"
-    else
-      return nil
-    end
-  end
-  
-  def election_selection=(val)
-    self.send("#{self.class.make_method_name("General Election Only")}=", "Off")
-    self.send("#{self.class.make_method_name("Every Election I authorize the County Recorder to include my name on the PEVL and automatically send")}=", "Off")
-    if val == "general"
-      self.send("#{self.class.make_method_name("General Election Only")}=", "On")      
-    elsif val == "all"
-      self.send("#{self.class.make_method_name("Every Election I authorize the County Recorder to include my name on the PEVL and automatically send")}=", "On")
-    end
   end
 
   def identification_data
-    case self.identification_selection
-    when "drivers_license_id"
-     return (self.drivers_license_id())
-    when "last_4_ssn"
-      return (self.last_4_ssn())
-    when "place_of_birth"
-      return (self.place_of_birth())
+    case self.abr_id_selections
+    when "abr_id_type1"
+     return (self.abr_drivers_license)
+    when "abr_id_type2"
+      return (self.abr_last_4_ssn)
+    when "abr_id_type3"
+      return (self.abr_place_of_birth)
     else
       return "Missing identification"
     end
   end
 
 
-  PARTY_SELECTIONS = [
-     "democratic", "republican", "green_pima_county_voters_only", "municipalonly_nonpartisan"
-  ]
-
-
-  def primary_ballot_selection
-    PARTY_SELECTIONS.each do |p|
-      if self.send(p) == "On"
-        return p
-      end
-    end
+  def mailing_address
+    "#{abr_mailing_address_line_1}" + (abr_mailing_unit.blank? ? '' : ", #{abr_mailing_unit}")
   end
-  
-  def primary_ballot_selection=(value)
-    self.democratic = "Off"
-    self.republican = "Off"
-    self.green_pima_county_voters_only = "Off"
-    self.municipalonly_nonpartisan = "Off"
-    if self.respond_to?("#{value}=")
-      self.send("#{value}=", "On")
-    end
-  end
-
-
-    
-  
-  def custom_form_field_validations
-    if self.has_mailing_address.to_s == "1"
-      custom_validates_presence_of("Mailing_Address")
-    end
-
-    if !self.identification_selection.blank?
-      custom_validates_presence_of(self.identification_selection)
-    end
-    
-    if self.election_selection == "all"
-      custom_validates_presence_of("primary_ballot_selection")
-    end
-    
-    if self.primary_ballot_selection == "green_pima_county_voters_only"
-      if self.registration_county != "pima county"
-        errors.add(:primary_ballot_selection, "Green party is for Pima county voters only")
-      end
-    end
-
-  end    
+   
    
 end

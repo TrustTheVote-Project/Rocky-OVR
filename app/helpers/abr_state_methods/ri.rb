@@ -1,46 +1,36 @@
 module AbrStateMethods::RI
   
   PDF_FIELDS = {
-    "Text Field 4": {
-      method: "full_name"
-    },
-    "Text Field 11": {},
-    "Text Field 5": {
-      method: "address"
-    },
-    "Text Field 12": {
-      method: 'override_address'
-    },
-    "Text Field 6": {
-      method: "city"
-    },
-    "Text Field 7": {
-      method: "zip"
-    },
-    "Text Field 8": {
-      method: "date_of_birth_mm_dd_yyyy"
-    },
-    "Text Field 9": {
-      method: "phone"
-    },
-    "Text Field 14":{
-      method: 'override_city'
-    },
-    "Text Field 15": {
-      method: 'override_state'
-    },
-    "Text Field 16": {
-      method: 'override_zip'
-    },
-    "Text Field 10": {
-      method: "email"
-    },
-    "Text Field 18": {
-      method: "email_conditional"
-    }, #TODO - if "eligibility_military" is selected, autofill with email, #ToDone
-    "eligibility": { options: ["absent", "confined", "incapacitated", "military"] },
+
+    "abr_email": {method: "email"},	
+    "abr_phone": {method: "phone"},	
+    "abr_first_name": {method: "first_name"},	
+    'abr_middle_initial': {:method=>"middle_initial"},
+    "abr_last_name": {method: "last_name"},	
+    "abr_name_suffix": {method: "name_suffix"},	
+    "abr_street_number": {method: "street_number"},	
+    "abr_street_name": {method: "street_name"},
+    "abr_unit": {method: "unit"},	
+    "abr_city": {method: "city"},	
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
+    'abr_zip': {method: "zip"},
+    'abr_date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },     
+    'abr_delivery_address_selections': {options: ['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3']},
+    'abr_mailing_address_line_1': {},
+    'abr_mailing_unit': {},
+    'abr_mailing_city':{},
+    'abr_mailing_state_abbrev':{},
+    'abr_mailing_zip': {},  
+
+    'abr_reason_selections': {options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4']},
+    'abr_mailing_address_line_2': {method: "abr_mailing_address_line_2"},
+
+    'abr_application_type_check1': {options: ['Off','On']},
+    'abr_party_selections': {options: ['abr_party1','abr_party2',]},
+    'abr_request_check': {options: ['Off','On']},
+
   }
-  EXTRA_FIELDS = ["has_mailing_address", "mail_address", "mail_city", "mail_state", "mail_zip"]
+  EXTRA_FIELDS = []
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
@@ -51,63 +41,63 @@ module AbrStateMethods::RI
   
   def form_field_items
     [
-      {"eligibility": {type: :radio, required: true}},
-      # TODO when "confined" is selected, make sure field 11,12,13,14,15,16 get populated by either the residence address or a user-entered mailing address
-      # TODONE fields 11, 13 are N/A
-      {"has_mailing_address": {type: :checkbox}},
-      {"Text Field 11": {visible: "has_mailing_address"}},
-      {"mail_address": {visible: "has_mailing_address", required: :if_visible }},
-      {"mail_city": {visible: "has_mailing_address", required: :if_visible, classes: "half"}},
-      {"mail_state": {visible: "has_mailing_address", required: :if_visible, classes: "quarter", type: :select, options: GeoState.collection_for_select}}, #TODO -- this should just be abbreviations
-      {"mail_zip": {visible: "has_mailing_address", required: :if_visible, classes: "quarter last"}},
+
+
+      {'abr_delivery_address_selections': {type: :radio, options: ['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3'], required: true}},
+
+      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type2"}},	
+      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_delivery_address_selections_abr_delivery_address_type2"}},	
+      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type2"}},	
+      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type2"}},	
+      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type2"}},	
+
+      {'abr_reason_selections':{type: :radio, options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4'], required: true}},
+    
+      {'abr_mailing_address_line_2': {visible: 'abr_reason_selections_abr_reason2' }},
+      {'abr_reason_instructions': {type: :instructions, visible: 'abr_reason_selections_abr_reason3' }},
       
+      {'abr_application_type_check1':{type: :checkbox, options: ['Off','On']}},
+
+      {"abr_party_selections": {type: :radio, options:["abr_party1","abr_party2"], visible: "abr_application_type_check1", required: :if_visible}},
+      {'abr_request_check':{type: :checkbox, options: ['Off','On']}},
     ]
   end
   
-  def email_conditional
-    if(self.eligibility == "military")
-      return self.email
-    end
-  end
+# CTW: don't need these anymore because 1 step means there is no way for user to go back and change the check
+# reveal of these fields
+# Keeping this here for conversation w/Alex on potential multistep stuff elsewhere.
 
-  def override_field_value(override, fieldname1, fieldname2) 
-    if (override) 
-      #return self.send("#{self.class.make_method_name(fieldname2)}") 
-      return self.send(fieldname2) 
-    else 
-      #return self.send("#{self.class.make_method_name(fieldname1)}")
-      return self.send(fieldname1)
-    end
-  end
+# def conditional_value(condition, value) 
+#   return (condition ? value : "")
+# end
 
-  def override_mailing_address_field (fieldname1, fieldname2)
-      return override_field_value((self.has_mailing_address.to_s == "1"), fieldname1, fieldname2)
-  end
+# def conditional_field_value(condition_field, value_field)
+#   return conditional_value(self.send(condition_field), self.send(value_field))
+# end
 
-  def conditional_set_and_override_mailing_address_field (fieldname1, fieldname2) 
-    if eligibility.to_s=="confined" 
-      return override_mailing_address_field(fieldname1, fieldname2)
-    end
-  end
+# def conditional_mailing_address_line_1
+#   return conditional_field_value(abr_delivery_address_selections_abr_delivery_address_type2, 'mailing_address_line_1')
+# end
 
+# def conditional_mailing_unit
+#   return conditional_field_value(abr_delivery_address_selections_abr_delivery_address_type2, 'mailing_unit')
+# end
 
-  
-  def override_address
-    return conditional_set_and_override_mailing_address_field("address", "mail_address")
-  end
+# def conditional_mailing_city
+#   return conditional_field_value(abr_delivery_address_selections_abr_delivery_address_type2, 'mailing_city')
+# end
 
+# def conditional_mailing_state_abbrev
+#   return conditional_field_value(abr_delivery_address_selections_abr_delivery_address_type2, 'mailing_state_abbrev')
+# end
 
-  def override_city
-    return conditional_set_and_override_mailing_address_field("city", "mail_city")
-  end
+# def conditional_mailing_zip
+#   return conditional_field_value(abr_delivery_address_selections_abr_delivery_address_type2, 'mailing_zip')
+# end 
 
-  def override_state
-    return conditional_set_and_override_mailing_address_field("home_state_abbrev", "mail_state")
-  end 
-
-  def override_zip
-    return conditional_set_and_override_mailing_address_field("zip", "mail_zip")
-  end
+# def conditional_abr_mailing_address_line_2
+#   return conditional_value(self.send('abr_delivery_address_selections_abr_delivery_address_type2') && self.send('abr_reason_selections_abr_reason2'), self.send('abr_mailing_address_line_2'))
+# end
 
   
   def custom_form_field_validations

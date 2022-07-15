@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_15_151818) do
+ActiveRecord::Schema.define(version: 2022_07_15_154327) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -387,6 +387,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_151818) do
     t.string "abr_status_check_url"
     t.string "abr_track_ballot_url"
     t.boolean "abr_pdf_enabled"
+    t.boolean "optional_party"
   end
 
   create_table "grommet_requests", force: :cascade do |t|
@@ -919,15 +920,6 @@ ActiveRecord::Schema.define(version: 2022_04_15_151818) do
     t.boolean "partner_opt_in_email"
     t.boolean "partner_volunteer"
     t.integer "penndot_retries", default: 0
-    t.boolean "request_abr"
-    t.string "abr_address_type"
-    t.string "abr_ballot_address"
-    t.string "abr_ballot_city"
-    t.string "abr_ballot_state"
-    t.string "abr_ballot_zip"
-    t.string "abr_ballot_address_start_year"
-    t.string "abr_ward"
-    t.boolean "abr_declaration"
     t.boolean "volunteer", default: false
     t.string "original_survey_question_1"
     t.string "original_survey_question_2"

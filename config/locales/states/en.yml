@@ -4,71 +4,84 @@ en:
     custom:
       ak:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://myvoterinformation.alaska.gov/'>online
-            tool</a>
-          requirements: "<p>To qualify to request a ballot in AK, you must meet the
-            following requirments: Be a US Citizen, be 18 years of age or request
-            the ballot within 90 days of your birthday, and be able to submit a copy
-            of your current driver’s license, state ID, passport, birth certifiate,
-            hunting and fishing license or current and valid photo ID with your application.</p>"
+          step_2_instructions: |-
+            <p>
+            All registered voters in %{state_name} can request an absentee ballot.<br/>
+            <a href="%{lookup_url}">Check if your registration is up to date.</a>
+            </p>
+            <p>You can use this form to register to vote and request an absentee ballot.</p>
+          request_deadline: |-
+            <p>Your application must be received by:</p>
+            </p><ul>
+            <li>August 6th for the primary, and </li>
+            <l>September 24th for the general election.</li>
+            </ul>
+
+          status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your application - do not type your signature.
+            </p>
+            <p>If you are using this form to register to vote, make sure to include a copy of your identification.
+            </p>
+            <p>If you are using this form to request an absentee ballot and you did not provide your Social Security Number or AK Drivers' License/ID, make sure to include a copy of your identification.</p>
+
+            
         state_online_abr:
           confirm: ''
           requirements: |-
-            <p>Every registered voter in Alaska can request an absentee ballot.</p>
-            <p>Check if you are registered by visiting <a href="https://myvoterinformation.alaska.gov/">the Alaska voter information site</a></p>
-            <p>If you are registered to vote and have a valid Alaska driver's license or state ID, you can request an absentee ballot online.</p>
+            <p>
+            If you have a valid Alaska driver's license or state ID card, you can complete your absentee 
+            ballot request and/or voter registration online.
+            </p>
+
         abr_form_fields:
-          us_citizen: I am a U.S. Citizen
-          us_citizen__required_message: You must be a U.S. Citizen
-          attest_is_18: I am 18 years of age or within 90 days of my 18th birthday
-          attest_is_18__required_message: You must be with 90 days of your 18th birthday
-            or older.
-          Former Name: Former Name (if changed)
-          Voter No: Voter Number (if known)
-          has_mailing_address: My mailing address is different than my residential
-            address
-          Perm Mailing 1: Permanent address where you receive mail
-          Perm Mailing 2: Line 2
-          Perm Mailing 3: Line 3
-          SSN or Last 4: SSN or Last 4
-          ADL: Alaska driver's license or State ID No.
-          ADL__required_message: Either Driver's license or SSN is required
-          ADL__format_message: That doesn't look like a driver's license number, please
-            verify before continuing.
-          attest_no_ssn_or_dln: I do not have an SSN or AK driver's license or State
-            ID
-          gender: Gender
-          gender__options:
-            male: Male
-            female: Female
-          gender__hint: Select One
-          Party: Political party affiliation
-          Party__hint: Recognized Political Parties are parties who have gained recognized
-            political party status under Alaska statutes:<br/>Alaska Democratic Party,
-            Alaska Republican Party and Alaskan Independence Party.<br/><br/>Political
-            Groups are parties who have applied for party status but have not met
-            the qualifications required in Alaska statutes:<br/>Alaska Libertarian
-            Party, Alliance Party of Alaska, Green Party of Alaska, Moderate Party
-            of Alaska, OWL Party, Patriot’s Party of Alaska, Progressive Party of
-            Alaska, UCES’ Clowns Party, Veterans Party of Alaska<br/><br/>Other Political
-            Affiliations:<br/>Nonpartisan (not affiliated with a political party or
-            group) or Undeclared (do not wish to declare a political party or group)
-          ballot_selection: Primary ballot option
-          ballot_selection__options:
-            dem: Alaska Democratic Party and Alaskan Independence Pary candidates.
-            rep: Alaska Republican Party candidates
-          attest_remote: Yes, I will be in remote Alaska or overseas where mail service
-            is limited. If yes, a 45-day advance ballot will be mailed to you.
-          has_ballot_mailing_address: I want my ballot sent to a separate address
-          Ballot Mailing Address 1: Ballot mailing address
-          Ballot Mailing Address 1__hint: Provide an address where you will receive
-            mail, if different from your residence address.
-          Ballot Mailing Address 2: "&nbsp;"
-          Ballot Mailing Address 3: "&nbsp;"
+          abr_previous_name_check: "My name has changed since I registered to vote."
+          abr_previous_full_name: Enter your former name
+          abr_citizen_selections: Are you a citizen of the United States
+          abr_citizen_selections__options:
+            abr_citizen_yes: "Yes"
+            abr_citizen_no: "No"
+          abr_18years_selections: Are you at least 18 years of age or within 90 days of your 18th birthday? 
+          abr_18years_selections__options:
+            abr_18_yes: "Yes"
+            abr_18_no: "No"
+          abr_check_mailing_address: I get my mail at a different address from the one above.	
+          abr_check_mailing_address__post_hint: Ballots will not be forwarded. If you receive mail at a different address than you provided as your street address, check this box.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1_input: Address	
+          abr_mailing_unit_input: Unit	
+          abr_mailing_city_input: City	
+          abr_mailing_state_abbrev_input: State	
+          abr_mailing_zip_input: Zip	
+          abr_delivery_address_type1: I will be in remote Alaska or overseas where mail service is limited.	
+          abr_delivery_address_type1__post_hint: If yes, a 45-day advance ballot will be mailed to you.
+          abr_id_selections: "You must provide one of the following forms of identification:"
+          abr_id_selections__hint: If you are also using this form to register, you must provide a copy of your ID.
+          abr_id_selections__options:
+            abr_ssn_number: I will provide my Social Security Number or the last four digits of my Social Security Number.	
+            abr_drivers_license: I will provide my Alaska driver's license or State ID No. 	
+            abr_id_no2: I do not have an SSN or AK driver's license or State ID.<br/>If you do not have a Social Security number or an Alaska driver's license or state ID, you can also submit a copy of your passport, birth certifciate, hunting and fishing license or current and valid photo ID with your application.
+          abr_id_type1: Enter your SSN or last 4 digits	
+          abr_id_type2: Enter your Alaska driver's license or State ID No. 	
+          abr_id_type_3: Enter your Voter Number
+          abr_id_type_3__hint: This field is optional. If you do not know your voter number, you can skip this field.
+          abr_election_type_selections1: Select the elections you would like to request a ballot for.	
+          abr_election_type_selections2: You can select all elections in a calendar year or an individual election. *
+          abr_election_type1: All elections in the calendar year
+          abr_election_type1__required_message: You must select at least one election	
+          abr_election_type2: Primary (August)	
+          abr_election_type3: General (November)	
+          abr_election_type4: REAA (October)	
+          abr_election_type5: Special	
+          abr_party_selections_input: Select your Political Party affiliation
+          abr_party_selections_input__hint: You can also select nonpartisan (not affiliated with a political party or group). If you do not wish to affiliate with a party, select undeclared.
+          abr_party_selections_input__options:
+            abr_party1: Alaska Democratic Party	
+            abr_party2: Alaska Republican Party	
+            abr_party3: Alaskan Independence Party	
+            abr_party4: Nonpartisan	
+            abr_party5: Undeclared	
+          
         registration:
           has_state_license: I have a current AK state identification card
             or driver's license, and social security number.
@@ -91,11 +104,7 @@ en:
             <li>Are currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude. </li>
             </ul>
           request_deadline: |-
-            <p>If you mail your absentee ballot request, it must be received by </p>
-            <ul>
-            <li>May 17th for the primary election, and </li>
-            <li>November 11th for the general election.</li>
-            </ul>
+            <p>If you mail your absentee ballot request, it must be received by November 1st for the general election. </p>
           status_check_instructions: <a href="https://myinfo.alabamavotes.gov/voterview">https://myinfo.alabamavotes.gov/voterview</a>
           finish_instructions_1_hint: "<p>Make sure to include a copy of your valid
             photo identification with your application. \nOnly submit one request
@@ -290,22 +299,37 @@ en:
           delivery_ballot_address_3: City, State, Zip (Mailing)
       az:
         state_online_abr:
-          header_choice: All Registered Voters in Arizona Can Vote by Mail
-          confirm: ''
-          instructions: |-
-            <p>Arizona voters have two choices when requesting a ballot:</p>
-            <ul>
-            <li>Join the Permanent Early Voting list, or</li>
-            <li>Request a one-time ballot-by-mail.</li>
-            </ul>
-          button: Request a one-time ballot-by-mail
-          requirements: ''
+          #header_choice: All Registered Voters in Arizona Can Vote by Mail
+          #confirm: ''
+          instructions_header: "I have an AZ Driver's License or Non-Operating ID number:"
+          requirements: |-
+            <p>To request a ballot online, you need to provide an AZ Driver's 
+            License or Non-Operating ID number. You can complete a paper registration by 
+            providing your place of birth, Driver's License number, or last 4 digits of
+            your Social Security number.</p>
+            <p>You can use either the online portal or the paper request form to get on 
+            the Active Early Voting List (AEVL) and automatically receive a ballot-by-mail
+            for all elections in which you are eligible to vote.</p>
+          # instructions: |-
+          #   <p>To request a ballot online, you need to provide an AZ Driver's License or Non-Operating ID number.</p>
+          #   <p>To get on the Active Early Voting List (AEVL) and automatically receive a ballot-by-mail for all elections in which 
+          #   you are eligible to vote, you will be directed to the portal to register or update your registration. From there, you can join the 
+          #   AEVL.</p>
+          button: Finish your absentee request online with Arizona.
+
         abr:
-          skip_state_online_abr: I'd like to become a Permanent Early Voter
-          request_deadline: received by October 22, 2021 at 5:00 PM
-          status_check_instructions: You can look up your Ballot-by-Mail/Early Ballot
-            status by using <a href="https://my.arizona.vote/AbsenteeTracker.aspx">Arizona's
-            Voter Information Portal</a>.
+          skip_state_online_abr: I do not meet the requirements, and I would like to complete a paper request form.
+          request_deadline: |-
+            <p>Your absentee ballot request must be received by:
+            <ul style="font-size: 14px; list-style: disc; margin-left: 30px; margin-bottom: 20px;">
+            <li>July 22 at 5:00 pm for the primary election, and</li>
+            <li>October 28 at 5:00 pm for the general electiion</li>
+            </ul>
+            </p>
+          status_check_instructions: |-
+            <p><a href="https://my.arizona.vote/PortalList.aspx" target="_blank">
+            https://my.arizona.vote/PortalList.aspx</a>
+            </p>
           confirm_email_delivery: I have reviewed the above information and wish to
             email my request to my local elections office.<br/><br/> By clicking the
             button below, I authorize Rock the Vote to apply my signature, agreeing
@@ -323,39 +347,49 @@ en:
               myself.
           requirements: "<p>To qualify to request a ballot in AZ, you only need to
             be registered to vote.</p>"
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID or anything else with your request.</i></p> <p><i>Mail,
-            fax, or email a scanned copy or photo of the completed form to your County
-            Recorder’s Office.</i></p>"
+          finish_instructions_1_hint: |-
+            <p>You can return your signed form by mail, fax, or email to your 
+            <a href="https://azsos.gov/county-election-info" target="_blank">County Recorder</a>.</p>
         abr_form_fields:
-          County_of_Residence: County of Residence
-          election_selection: 'I am requesting a ballot for:'
-          election_selection__options:
-            general: "<strong>General Election Only</strong>"
-            all: "<span><strong>Every Election</strong>. I authorize the County Recorder
-              to include my name on the PEVL and automatically send me a ballot-by-mail
-              for each election I am eligible for.</span>"
-          has_mailing_address: My mailing address differs from my residential address.
-          Mailing_Address: Mailing Address
-          Place_of_Birth_or_Drivers_licence_or_last_4_ssn: 'Place of birth, driver''s
-            license #, or last 4 digits of social security number:'
-          primary_ballot_selection: Primary Election Ballot Selection
-          primary_ballot_selection__hint: Select a party or nonpartisan ballot for
-            the Primary Election. This will not change your voter registration to
-            this political party affiliation.
-          primary_ballot_selection__options:
-            green_pima_county_voters_only: Green (Pima County Voters Only)
-            municipalonly_nonpartisan: 'Municipal-Only: Nonpartisan'
-          identification_selection: 'Identification type:'
-          identification_selection__options:
-            drivers_license_id: Arizona driver's license or ID
-            place_of_birth: Place of birth
-            last_4_ssn: 'Last 4 digits of SSN #'
-          drivers_license_id: Arizona driver's license or ID
-          drivers_license_id__format_message: That doesn't look like a driver's license
-            number, please verify before continuing.
-          place_of_birth: Place of birth
-          last_4_ssn: 'Last 4 digits of SSN #'
+          abr_county: Select your county
+          date_of_birth_mm_dd_yyyy: Enter your Birthdate
+          abr_check_mailing_address: I get my mail at a different address from the one above
+          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_id_selections: "You must provide one of the following forms of identification:"
+          abr_id_selections__options:
+            abr_id_type1: I will provide my driver's license #
+            abr_id_type2: I will provide the last 4 digits of my SSN #
+            abr_id_type3: I will provide my place of birth
+          abr_drivers_license: Enter your driver's license number
+          abr_last_4_ssn: Enter the last four digits of your SSN
+          abr_place_of_birth: Enter your place of birth
+          abr_election_type_selections: "Select the election you'd like to request a ballot for:"
+          abr_election_type_selections__options:
+            abr_election_type1: I would like to receive a mail-in ballot for all future elections.
+            abr_election_type2: Primary and General election
+            abr_election_type3: Primary election only
+            abr_election_type4: General election only
+          abr_independent_instructions: |-
+            <p>If you are registered to vote with a political party, you will receive a ballot from that party.</p>
+            <p>If you are not registered with a party, you must select which ballot you would like to receive. 
+            This will not affiliate you with that party.</p>
+          abr_independent_selections: "I am registered to vote as:"
+          abr_independent_selections__options:
+            abr_independent_yes: An independent
+            abr_independent_no: A member of a political party
+          abr_primary_type_selections1: Select the type of ballot you wish to receive.
+          abr_primary_type_selections1__options:
+            abr_primary_type1: "Democratic"
+            abr_primary_type2: "Republican"
+            abr_primary_type3: "Green (Pima County Voters Only)"
+            abr_primary_type4: "Municipal-Only: Nonpartisan"
+
+          abr_check_change_address: Check this box if you request the County Recorder change your residence and mailing address on your registration record to the ones listed above
+          abr_check_change_name: Check this box if you request the County Recorder change your name on your registration record to the one listed above.
         registration:
           has_state_license: I have an AZ state identification card or driver's license.
           has_no_state_license: I do not have an AZ state identification card or driver's license.
@@ -437,35 +471,28 @@ en:
           has_no_state_license: I do not have a CO state identification card or CO driver's license, or Social Security Number.
       ct:
         abr:
-          request_deadline: Voters should make sure the application is sent in 7 days
-            prior to election day.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://portaldir.ct.gov/sots/LookUp.aspx'>online
-            tool</a>
-        abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          Mailing Address 2: Mailing address
-          Mailing Address 3: City, State, Zip
-          assistant: I assisted the voter in completing this application.
-          Printed Name: Name of assistant
-          Tel No: Phone number
-          absentee_reason: 'I expect to be unable to appear at the polling place during
-            the hours of voting and hereby apply for an absentee ballot: (check only
-            one)'
-          absentee_reason__hint: Please note, if you have a permanent disability,
-            please contact your town clerk for a permanent absentee ballot instead
-          absentee_reason__options:
-            '1': COVID19  All voters are able to check this box pursuant to Public
-              Act 20-3 July Spec. Sess.
-            '2': My active service in the Armed Forces of the United States
-            '3': My absence from the town during all of the hours of voting
-            '4': My illness
-            '5': My religious tenets forbid secular activity on the day of the election
-              primary or referendum
-            '6': My duties as a primary election or referendum official at a polling
-              place other than my own during all of the hours of voting
-            '7': My physical disability
-          absentee_reason__required_message: Please select one of the above reasons
+          step_2_instructions: |-
+            <p>In Connecticut, you must have a reason to vote absentee vote or be a military or overseas voter.
+            You can review the requirements on the Connecticut 
+            <a href="https://portal.ct.gov/SOTS/Election-Services/Voter-Information/Absentee-Voting">Absentee Voting Information</a> page.</p>
+            <p>Voters are permitted to vote by absentee ballot if exposure to a pandemic disease like 
+            COVID-19 presents a risk to them or someone they care for.</p>
+          finish_instructions_1_hint_state: |-
+            <p>Make sure to sign your printed application. If you received assistance in completing your request, make sure the person providing assistance completes Section VII of the form.</p>
+
+          request_deadline: |-
+            <p>Your application must be received by:</p>
+            <ul>
+            <li>July 26, 2022 for the primary election, and </li>
+            <li>November 1, 2022 for the general election.</li>
+            </ul>
+            <p>
+            If you do not receive your ballot in time to mail it back to your election official, you can return it by hand. Your voted ballot must be received by the close of polls on Election Day in order to be counted.
+            </p>
+
+          status_check_instructions: <a target='_blank' href='https://portaldir.ct.gov/sots/LookUp.aspx'>https://portaldir.ct.gov/sots/LookUp.aspx</a>
+        state_online_abr:
+          button: Complete your absentee request with<br/> the Connecticut Secretary of State.
         registration:
           has_state_license: I have a current CT state identification card
             or driver's license, and a signature on file with the DMV.
@@ -503,22 +530,35 @@ en:
             tool</a>
       de:
         state_online_abr:
-          requirements: "<p>If you are registered to vote and have a valid Deleware
+          requirements: "<p>If you are registered to vote and have a valid Delaware
             state ID, you may request your vote by mail ballot online directly with
             the state.</p>"
-          button: Finish your<br/>vote by mail request<br/> online with Deleware.
+          button: Finish your<br/>vote by mail request<br/> online with Delaware.
           confirm: Check if you meet your state's requirements, then click the button
             below to request your vote by mail ballot through the state's site.
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Vote-By-Mail status by using
-            your state&#39;s <a target='_blank' href='https://ivote.de.gov/VoterView'>online
-            tool</a>
-          step_2_instructions: "<p>We'll use this information to determine how you
-            can request your vote by mail ballot.</p>"
-          step_3_header: Prepare your Deleware PDF Vote By Mail Request Form
+          request_deadline: |-
+            <p>Your application for an absentee ballot must be received by</p>
+            <ul>
+            <li>September 9th for the Primary Election, and</li>
+            <li>November 4th for the General Election.</li>
+            </ul>
+          status_check_instructions:  |-
+            <p>
+            <a target='_blank' href='https://ivote.de.gov/VoterView'>https://ivote.de.gov/VoterView</a></p>
+          step_2_header: You must have a reason to request an absentee ballot
+          step_2_instructions: |-
+            <p>You can request an absentee ballot for the following reasons:</p>
+            <ul>
+            <li>You are in the public service of the United States or the State of Delaware and are unable to come to the polls, or are the spouse or dependent of such person.</li>
+            <li>Your business or occupation prevents you from coming to the polls.</li>
+            <li>You are providing care to a parent, spouse or child who is living at home and requires constant care, students.</li>
+            <li>You are incarcerated. </li>
+            <li>You are sick, or temporarily or permanently physically disabled.</li>
+            <li>You are on vacation.</li>
+            <li>The tenets or teachings of your religion prevent you from coming to the polls.</li>
+            </ul>
+          step_3_header: Prepare your Delaware PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
           finish_pdf_delay: It's taking a while to create your vote by mail request
@@ -527,42 +567,46 @@ en:
             vote by mail ballot too.
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
-          Last4 Digits of SSN: Last 4 Digits of Social Security Number (OPTIONAL)
-          has_mailing_address: I would like my ballot sent to a different address
-            than my home address
-          check_sick_or_disabled: Check here if you are a voter who is sick or physically
-            disabled
-          check_sick_or_disabled__hint: If you are a voter who is sick or physically
-            disabled, Delaware law permits you to receive and return an absentee ballot
-            electronically. If you choose to receive your ballot by email, you will
-            be able to mark and submit it electronically.
-          GroupSickDisabled: 'Indicate below how you would like your absentee ballot
-            sent to you by the Department of Elections:'
-          GroupSickDisabled__options:
-            ChoiceEmail: Email
-            ChoiceMail: Mail
-            ChoiceFax: Fax
-          absentee_reason__options:
-            '1': "(1) I am in public service of the U.S. or the State of Delaware,
-              or I am a spouse or dependent residing with or accompanying him or her.
-              Reason 1 also applies to members of the Uniformed Services."
-            '2': "(2) Due to the nature of my business or occupation. Reason 2 also
-              applies to persons providing care to a parent, spouse or child who is
-              living at home and requires constant care,students, and otherwise eligible
-              persons who are incarcerated."
-            '3': "(3) I am sick, or temporarily or permanently physically disabled."
-            '4': "(4) I am absent from the district while on vacation"
-            '5': "(5) Due to the tenets or teachings of my religion"
-            '6': "(6) I am temporarily residing outside of the U.S. and the District
-              of Columbia, or I am a spouse or dependent residing with or accompanying
-              him or her."
-          absentee_delivery: Special Qualification regarding electronic delivery of
-            absentee ballots.
-          Fax or: Fax Number
-          Make me a permanent absentee voter__hint: "<p>NOTE: You can only be a permanent
-            absentee voter if you are voting by absentee ballot due to reason 1, 3,
-            or 6.  Or, your business or occupation is providing care to your parents,
-            spouse or child who is living at home and requires constant care."
+          abr_ssn_number:		Enter your Social Security Number (optional)         
+          abr_check_mailing_address:		I get my mail at a different address from the one on the previous page
+          abr_mailing_address_line_1:		Mailing address
+          abr_mailing_unit:		Unit
+          abr_mailing_city:		City
+          abr_mailing_state_abbrev:		State
+          abr_mailing_zip:		Zip
+              
+          abr_address_line_2:		Where do you plan to be on election day?
+          abr_address_line_2__hint: Enter the city and state or city and country.
+          abr_reason_selections:		Select your reason for voting by mail
+          abr_reason_selections__options:		
+            abr_reason1:	I am in public service of the U.S. or the State of Delaware, or I am a spouse or dependent residing with that person, in the residing outside of Delaware. This also applies to members of the Uniformed Services.
+            abr_reason2:	"I am unable to make it to the polls due to:
+              The nature of my business or occupation, providing care to a parent, spouse or child who is living at home and requires constant care, being a student, or because I am otherwise eligible and am incarcerated."
+            abr_reason3:	I am sick, or temporarily or permanently physically disabled.
+            abr_reason4:	I am absent from the district while on vacation.
+            abr_reason5: Due to the tenets or teachings of my religion.
+          abr_application_type_check1:		I would like to become a permanent absentee voter.
+          abr_application_type_check1__hint:	"Because of the reason you selected for requesting an absentee ballot, you
+            can become a permanent absentee voter and automatically receive an absentee ballot for all elections for which you are eligible to vote."
+          abr_election_type_instructions:		You can use this form for Primary, General and Special elections. <br> See <a href="https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf" target="_blank">https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf</a> for School District elections, and contact your local election official for an application for Municipal elections.
+          abr_election_type_selections:		Select the election(s) you'd like to request a ballot for.
+          abr_election_type1:	All Elections in 2022
+          abr_election_type2:	|-
+            Primary<br/><br/>
+            (You will receive the ballot for the party you are registered with.)<br><br/>
+            Only Democrats can vote in the Democratic Primary and only Republicans can vote in the Republican Primary.
+          abr_election_type3:	General
+          abr_election_type4:		Special
+          abr_election_type4__required_message: At least one election choice is required
+          abr_party:		What political party are you affiliated with?
+          abr_party__hint:	'You may have picked a political party when you registered. To update your registration, submit a new voter registration.'
+          abr_delivery_address_selections:		How would you like your ballot delivered?
+          abr_delivery_address_selections__hint:		Because you selected being sick or temporarily or permanently disabled, you can elect how to have your ballot delivered to you.
+          abr_delivery_address_selections__options:		
+            abr_delivery_address_type1:	Send my ballot via postal mail
+            abr_delivery_address_type2:	Send my ballot via postal email
+            abr_delivery_address_type3:	Send my ballot via postal fax
+          abr_fax_number:		Enter your fax number
       fl:
         abr:
           splash:
@@ -959,71 +1003,60 @@ en:
           has_no_state_license: I do not have a valid IN state identification card or driver's license.
       ks:
         abr:
-          request_deadline: received the Tuesday before the election
-          step_3_pending_header: Requesting an Absentee Ballot in Kansas
-          step_3_pending_instructions: |-
-            <p>Any registered voter can request an advance ballot in Kansas.</p>
-
-            <p>You must request an advanced by mail ballot mailed to you for each election as ballots are sent at the request of the voter.</p>
-
-            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
-
-            <p>Double check that you're registered to vote by going to the <a href="https://myvoteinfo.voteks.org/voterview" target="_blank" rel="noopener noreferrer">Kansas VoterView page</a>.</p>
-
-            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-
-            <p>Your absentee ballot request must be received Tuesday [one week] before the election, although in many situations the applications need to be submitted earlier to allow sufficient time for mailing the ballots and returning them..</p>
-
-            <p>Make sure to include your driver’s license number or a copy of your photo identification with your request.</p>
-
-            <p>To check the status of your advance ballot application, you can call your local election office or go to the <a href="https://myvoteinfo.voteks.org/voterview" target="_blank" rel="noopener noreferrer">Kansas VoterView page</a>.</p>
-
-            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-
-            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
-            <p>All ballots must be postmarked on or before election day and received in the county election office by the close of business on the Friday following the election.</p>
-          status_check_instructions: You can look up your Advance Ballot by Mail status
-            by using the Kansas <a href='https://myvoteinfo.voteks.org/voterview'>VoterView</a>.
-          requirements: "<p>To qualify to request a ballot in KS, you only need to
-            be registered to vote and be able to provide your Kansas driver's license
-            number or non driver's identification card number.</p><p>Examples of acceptable
-            nondriver's identification cards: Driver's license issued by Kansas or
-            another state, Nondriver's ID card issued by Kansas or another state,
-            U.S. Passport, Concealed carry of handgun license issued by Kansas or
-            another state, Employee badge or ID document issued by a government office,
-            U.S. Military ID, Student ID card by an accredited Kansas postsecondary
-            educational institution, Public assistance ID card issued by a government
-            office, ID card issued by an Indian tribe</p>"
-          finish_instructions_1_hint_state: |-
-            <p><i>Follow the directions on your state's absentee ballot request form (this opened in another tab).</i></p>
-            <p><i>If you do not provide a current and valid Kansas driver’s license number or Kansas nondriver’s identification card number, make sure to provide a copy of one of the forms of photo identification listed in the application.</i></p>
+          request_deadline: |-
+            <p>Your application must be received by:<br/><br/>
+            July 26, 2022 for the primary election, and:<br/>
+            November 1, 2022 for the general election.<br/><br/></p>
+          status_check_instructions: |-
+               <p><a href="https://myvoteinfo.voteks.org/voterview" target="_blank">https://myvoteinfo.voteks.org/voterview</a></p>       
+          finish_instructions_1_hint: |-
+            <p>If you have not provided your state driver's license or ID number, remember to provide a copy of another accepted photo ID. Accepted forms of photo ID are listed on the application.</p>
+            <p>Additionally, make sure to sign your printed application.</p>
         abr_form_fields:
-          identification: 'Please select one of the following:'
-          identification__hint: "<p style='font-size: 13px; margin-left: 20px'>Examples
-            of acceptable nondriver's identification cards: Driver's license issued
-            by Kansas or another state, Nondriver's ID card issued by Kansas or another
-            state, U.S. Passport, Concealed carry of handgun license issued by Kansas
-            or another state, Employee badge or ID document issued by a government
-            office, U.S. Military ID, Student ID card by an accredited Kansas postsecondary
-            educational institution, Public assistance ID card issued by a government
-            office, ID card issued by an Indian tribe</p>"
-          identification__options:
-            dln_yes: I have a Kansas Driver's License or Kansas nondriver's identification
-              card
-            dln_no: I do not have a Kansas Driver's license or Kansas nondriver's
-              identification card.
-          has_mailing_address: My mailing address differs from my residential address.
-          identification_number: "Current Kansas driver's license number or nondriver's
-            identification card number:\U0010FC0B\U0010FC24"
-          identification_number__format_message: That doesn't look like a driver's
-            license number, please verify before continuing.
-          county_1: Residential county
-          state_2: State where you will be when signing this form
-          county_2: County where you will be when signing this form
-          Mailing_Address: Mailing Address
-          Mailing_City: City
-          Mailing_State: State
-          Mailing_Zip_Code: Zip
+          abr_county: Select your county
+          date_of_birth_mm_dd_yyyy: Enter your Birthdate
+          abr_check_mailing_address: I get my mail at a different address from the one above
+          abr_mailing_address_instructions: |-
+            <p>Your ballot may be mailed only to:</p>
+             <ul style="font-size: 14px; list-style: disc;  margin-left: 30px; margin-bottom: 20px;">
+            <li>The residential or mailing address as they appear on the county voter registration list,</li>
+            <li>To your temporary residential address, or </li>
+            <li>To a medical care facility where you reside.</li>
+            </ul>
+          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_id_selections: <p>You must provide either a Kansas driver's license number nondriver's identification card number, or another form of acceptable ID.</p>
+          abr_id_selections__options:
+            abr_id_type1: I will provide my current Kansas driver's license number or nondriver's identification card number
+            abr_id_type2: I do not have a current and valid Kansas driver's license number or Kansas nondriver's identification card number. <br> I will provide a copy of an acceptable photo id with my application.
+          abr_drivers_license: Enter your Kansas driver's license number or nondriver's identification card number
+          abr_drivers_license__format_message: Must be a K followed by 8 digits
+          abr_id_type2_instructions: |-
+            <p>Make sure to provide a copy of one of the following. Acceptable ID includes: </p>
+            <p>
+            <ul style="font-size: 14px; list-style: disc;  margin-left: 30px; margin-bottom: 20px;">
+            <li>Driver's license issued by Kansas or another state</li>
+            <li>Nondriver's ID card issued by Kansas or another state</li>
+            <li>U.S. passport</li>
+            <li>Concealed carry of handgun license issued by Kansas or another state</li>
+            <li>Employee badge or ID document issued by a government office</li>
+            <li>U.S. military ID</li>
+            <li>Student ID card issued by an accredited Kansas postsecondary educational institution</li>
+            <li>Public assistance ID card issued by a government office</li>
+            <li>ID card issued by an Indian tribe</li>
+            </ul>
+            </p>
+          abr_election_type_selections: Select the election to request an absentee ballot for.	
+          abr_election_type_selections__options:
+            abr_election_type1: The August 2, 2022 Primary election	
+            abr_election_type2: The November 8, 2022 General Election	
+          abr_party_selections: Select your political party for the primary election
+          abr_party_selections__options:
+              abr_party1: Democratic
+              abr_party2: Republican
         redirect_to_online_registration: We're directing you to the VoteKS online
           voter registration system.
         registration:
@@ -1168,62 +1201,91 @@ en:
           has_no_state_license: I do not have a LA state identification card or LA driver's license.
       md:
         abr_form_fields:
-          mailto: 'I want my ballot mailed to:'
-          mailto__options:
-            address_below: A different mailing address.
-            same_as_above: My residential address.
-          movedate: 'I moved to my residential address on (MM/DD/YYYY or MM/YYYY):'
-          Delivery: 'I would like to receive my ballot by:'
-          Delivery__options:
-            mail: U.S. Mail
-            internet: Internet Delivery (Ballot emailed to the email you provided)
-          internet_delivery_identification: Identification for internet delivery
-          internet_delivery_identification__options:
-            dln: Maryland Driver's License or ID Card Number
-            ssn: I do not have a MD driver's license or ID card
-          Gen_Address: Mailing address
-          Gen_Apt: Apt/Unit
-          Gen_City: City/Town
-          Gen_State: State
-          Gen_ZipCode: Zip
-          SSN_Last_4: 'Last 4 digits of my SSN:'
-          dln: Maryland Driver's License or ID Card Number
-          dln__format_message: Invalid Maryland Driver's License or ID Card Number
-            format. Please enter 1 letter, followed by 12 numbers
-          Issue_Date: Issue Date
-          fax_number: Fax Number (xxx-xxx-xxxx)
-          Assistance_Print_Name: Name of Assistant
-          assistant: I had help completing this application
+          abr_address_type_selections: Select where you'd like your ballot delivered	
+          abr_address_type_selections__hint: You can have your ballot mailed to you at your registration address or mailing address.<br>You can also have your address emailed to you or faxed to you.
+          abr_address_type_selections__options: 
+            abr_address_type1: My home address	
+            abr_address_type2: My mailing address	
+            abr_address_type3: "Email me a link to print my ballot(s)<br>(You must provide your MD Driver's License or ID Card # or the last four digits of your SSN)<br> A link will be emailed to you about 3 weeks before the election."
+            abr_address_type4: Fax me my ballot(s)	
+          abr_fax_number: Enter the number your ballot should be faxed to	
+          abr_id_selections: Select which form of ID you'll provide	
+          abr_id_selections__options:
+            abr_id_type1: I'll provide my MD Driver’s License or ID Card	
+            abr_id_type2: "I'll provide the last four digits of my Social Security #"
+          abr_drivers_license: "Enter your MD Driver's License or ID Card #"
+          abr_drivers_license__format_message: Must be 1 letter followed by 12 numbers
+          abr_id_date_input: Enter the date your license or ID was issued	
+          abr_last_4_ssn: Enter the last four digits of your SSN	
+          abr_address_type5: 	
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit 	
+          abr_mailing_city: City 	
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP 	
+          abr_election_type_selections: Select the election you'd like to request a ballot for
+          abr_election_type_selections__hint: You can sign up for a mail-in ballot for a specific 2022 election(s) or for all future elections.
+          abr_election_type_selections__options:
+            abr_election_type1: I would like to receive a mail-in ballot for all future federal and state elections.	
+            abr_election_type2: Both the 2022 Primary and General Elections	
+            abr_election_type3: July 19, 2022 Primary Election only	
+            abr_election_type4: November 8, 2022 General Election only	
+          abr_primary_type_selections: Select the type of ballot you wish to receive (required for the primary)
+          abr_primary_type_selections__hint: To vote in a party's primary, you must choose that political party.
+          abr_primary_type_selections__options:
+            abr_primary_type1: Democratic	
+            abr_primary_type2: Republican	
+            abr_primary_type3: Unaffiliated (independent of any party)	
+            abr_primary_type4: Libertarian	
+            abr_primary_type5: Green	
+            abr_primary_type6: Working Class	
+            abr_primary_type7: Other	
+          abr_primary_type7_name: Enter the party affiliation	
+          abr_contact_method_selections: Enter your preferred method of contact if your election official needs to reach you.	
+          abr_contact_method_selections__options:
+            abr_contact_method1: Text message	
+            abr_contact_method2: Email	
+            abr_contact_method3: Mail	
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Mail-in Voting status by
-            using your state&#39;s <a target='_blank' href='https://voterservices.elections.maryland.gov/VoterSearch'>online
-            tool</a>
-          confirm_email_delivery: I have reviewed the above information and wish to
-            email my request to my local elections office.<br/><br/> By clicking the
-            button below, I authorize Rock the Vote to apply my signature, agreeing
-            to email my request form, certifying that all information is accurate.
-          signature_capture:
-            desktop_provide_e_signature: In the state of Maryland, we can email a
-              digitally signed copy of your absentee request. Please select how you'd
-              like to provide a signature.
-            desktop_provide_signature: In the state of Maryland, we can email a digitally
-              signed copy of your absentee request. Please select how you'd like to
-              provide a signature.
-            continue_on_paper: I prefer to print, sign and mail or email my application
-              myself.
+          step_2_header: Any registered voter may vote by mail-in ballot
+          step_2_instructions: |-
+            <p><a href="%{lookup_url}">Check if your registration is up to date.</a></p>
+            <h3>You may be eligible to complete your application online</h3>
+            <p>To complete your request online, you will need:</p>
+            <ul>
+            <li>A driver's license number, ID number, or Learner's Permit number, and</li>
+            <li>The last four digits of your Social Security Number.</li>
+            </ul>
+            <p>If you do not have one or both of those items, you can continue to fill out, print, sign and mail a paper request form.</p>
+
+          request_deadline: |-
+            <p>
+            Your application deadline depends on how you return your form and on how you want to receive your ballot.
+            </p><ul>
+            <li>For the primary, your application must be received by July 12th if you wish to receive your ballot by mail or fax and June 15th if you wish to receive your ballot by email.
+            </li>
+            <li>For the general election, your application must be received by November 1st if you wish to receive your ballot by mail or fax and November 4th if you wish to receive your ballot by email.</li>
+            </ul>
+          status_check_instructions: <a href="https://vote.md.gov/search">https://vote.md.gov/search</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to use a pen to sign your application. No electronic signatures are allowed.
+            </p>
+            <p>If you received help with this form, make sure that the assistant has also signed the form.
+            </p>
+          finish_instructions_3_hint_state: You must mail or hand deliver your mail-in ballot to a voting location, a ballot drop off box, or your local board of elections. You cannot email or fax your voted mail-in ballot.
+          
         state_online_abr:
           header_choice: All Registered Voters in Maryland Can Vote by Mail
+          confirm: ''
           requirements: |-
-            <p>If you are registered to vote and have a valid Maryland state ID, you may request your absentee ballot online directly with the state. If you do not have a valid Maryland ID, you can also print, sign and mail a paper request form by clicking the link below the button.</p>
-            <p>To request a ballot, the following personal information has to match the information about you that is on file with the Maryland MVA:</p>
+            <h3>You may be eligible to complete your application online</h3>
+            <p>To complete your request online, you will need:</p>
             <ul>
-            <li>Your name</li>
-            <li>Your date of birth</li>
-            <li>Your driver’s license number, ID number, or Learner's Permit number</li></ul>
-            <p>Your signature at the MVA will become your official voter registration signature.</p>
+            <li>A driver’s license number, ID number, or Learner's Permit number, and</li>
+            <li>The last four digits of your Social Security Number.</li>
+            </ul>
+            <p>If you do not have one or both of those items, you can continue to fill out, print, sign and mail a paper request form.</p>
         registration:
           has_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
           has_no_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
@@ -1250,24 +1312,27 @@ en:
             you may request your absentee ballot online directly with the state.</p>"
       ma:
         abr:
-          step_2_header: All registered voters in Massachusetts can vote absentee
-            for all local and state elections through December, 2021.
+          step_2_header: You must have a reason to request an absentee ballot.
           step_2_instructions: |-
-            <p>If you are registered to vote, you can request a vote by mail ballot. Look up your voter registration on the Massachusetts <a target="_blank" rel="noopener noreferrer" href="https://www.sec.state.ma.us/VoterRegistrationSearch/MyVoterRegStatus.aspx">Find my voter registration status</a> page.</p>
-            <p>&nbsp;</p>
-            <h2 role="heading" aria-level="2">Where are you registered to vote?</h2>
-            <p>We'll use this information to determine how you can request your absentee ballot.</p>
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>Applications
-            can be submitted by mail, email, or fax. If you are emailing your application,
-            you may either scan or take a photo of your signed application and email
-            it to your local election office, or you may sign your application using
-            a mouse, finger, or stylus and email the completed and signed attachment.
-            Typed signatures are not acceptable.</i></p>"
-          request_deadline: received at least 4 business days before Election Day.
-          status_check_instructions: You can look up your Absentee Ballot request
-            status by using the <a href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">Track
-            My Ballot</a> tool.
+            <p>A registered voter in Massachusetts can vote absentee if they will be unable
+            to vote at the polls on Election Day due to absence from the voter’s city or town 
+            during polling hours, disability, or religious beliefs.
+            </p>
+          finish_instructions_1_hint: |-
+            <p>Applications can be submitted by mail, email, or fax. If you are emailing
+            your application, you may either scan or take a photo of your signed application
+            and email it to your local election office. Typed signatures are not acceptable.
+            </p>
+          request_deadline: |-
+            <p>Your application must be received by:</p>
+            <ul>
+            <li>8/30/22 for the Primary, and</li>
+            <li>11/2/2022 for the General.</li>
+            </ul>
+          status_check_instructions: |-
+            <p>
+            <a href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
+            </p>
           step_3_header: Prepare your Massachusetts PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
@@ -1300,73 +1365,104 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          mailing_address_input: Mailing address
-          mailing_address_input2: City, State, ZIP
-          assistance_required: Check this box if you received assistance in completing
-            this application due to a physical disability.
-          assisting_person: Assisting person's name
-          Assisting persons address 1: Assisting person's address
-          Assisting persons address 2: City, State, ZIP
-          the ballot: Name of messenger
-          Voter is a member of military on active duty or dependent family member of: Voter
-            is a member of military on active duty or dependent family member of active
-            duty personnel.
-          Voter has been admitted to a healthcare facility after noon on the fifth day: 'Voter
-            has been admitted to a healthcare facility after noon on the fifth day
-            before the election and has designated the following person to hand-deliver
-            the ballot:'
+          abr_check_mailing_address: I get my mail at a different address from the one above.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_election_type_selections_input: Select the elections you would like to request a ballot for.
+          abr_election_type_selections_input__hint: You can select all elections in a calendar year or an individual election.
+          abr_election_type_selections_input__options:		
+            abr_election_type1:	All elections in the calendar year
+            abr_election_typeprimary: The September 6, 2022 primary election
+            abr_election_type2:	All general elections (No primaries)
+            abr_election_type3: A specific upcoming election (not generals or primaries)
+          election_date_input: Enter the date of the election
+          election_date_input__format_message: Election date cannot be in the past
+          abr_primary_type_instructions: |-
+            <p>Enter the type of ballot you would like to receive for the primary.</p>
+            <p>Independent voters (unenrolled) may vote in a primary without registering with a party.
+            Selecting a party will not enroll you in a party.
+            <br>For more information on parties and designations, see 
+            <a href="https://www.sec.state.ma.us/ele/elepar/paridx.htm" target="_blank">https://www.sec.state.ma.us/ele/elepar/paridx.htm</a></p>
+              
+          abr_primary_type1: "<span/>"
+          abr_primary_type2: Presidential Primary
+          abr_request_check: Check this box if you are requesting a ballot on behalf of a voter.
+          abr_request_check__hint: You may request an absentee ballot on behalf of a family member.
+          abr_relationship1: Enter your relationship to the voter
+          abr_special_circumstances_instructions:		Do any of the following apply to you?
+          abr_reason1: I am a member of military on active duty or dependent family member of active duty personnel.
+          abr_reason2: I am a Massachusetts citizen residing overseas.
+          abr_reason3: I am incarcerated, but not for a felony conviction.
+          abr_reason4: I have been admitted to a healthcare facility within 7 days of the election and have designated someone to hand-deliver my ballot.
+          abr_request_name: Enter the name of the person you designate to pick up your ballot
+          abr_assistant_check1: Check this box if someone assisted you in completing this request due to a disability.
+          abr_assistant_name: Enter the assistant's name
+          abr_assistant_address_line_1: Enter the assistant's address
+          abr_assistant_address_line2: Line 2
         registration:
           has_state_license: I have a MA state identification card or MA driver's license.
           has_no_state_license: I do not have a MA state identification card or MA driver's license.
       mi:
         abr_form_fields:
-          bad_date__format_message: Invalid date
-          November 3 Address: Mailing address
-          November 4 City: City
-          November 3 State: State
-          November 3 Zip: Zip
-          address_begindate: 'Date leaving for this address:'
-          address_enddate: 'Date returning from this address:'
-          jurisdiction_type: 'Please select one of the following:'
-          jurisdiction_type__options:
-            town: I live in a township.
-            city: I live in a city.
-          Name of Person assisting the voter: Assistant Name
-          assist_birthdate: Assistant Date of birth (MM/DD/YYYY)
-          Adress of person assisting: Assistant Address
-          assistant: I am an authorized registered elector assisting in returning
-            this application for the voter.
-          has_mailing_address: My mailing address differs from my residential address.
+          abr_check_mailing_address: I get my mail at a different address from the one above.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1: Street Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_absence_begin_date_input:		If this is not your permanent mailing address, enter the date you are leaving for this address
+          abr_absence_end_date_input:		Enter the date you are returning from this address
+
+          abr_check_mailing_address__hint: Ballots cannot be forwarded.<br>Your clerk can mail your mail ballot to where you are. If your plans change, contact your city/township clerk.
+          abr_county:		Select your county
+          abr_address_type_selections:		Do you live in a City or in a Township?
+          abr_address_type_selections__options:
+            abr_address_type1: City
+            abr_address_type2: Township              
+          abr_address_type_selections__hint: For villages, select township.
+
+          abr_address_type3: Enter your City, Township, or Village.
+          abr_election_type_selections:		Which election(s) would you like to receive ballots for?
+          abr_election_type_selections__options:
+            abr_election_type1: The August 2, 2022 Primary and the Nov 8, 2022 General elections
+            abr_election_type2: The August 2, 2022 Primary only
+            abr_election_type3: The Nov 8, 2022 General only
+          abr_election_type4:		Would you like to join the permanent absent voter application list?
+          abr_election_type4__hint: Check this box if you'd like to vote absentee in all elections. <br> An application for an absent voter ballot will be sent to you, for every election going forward, including other elections in 2022.
+          abr_request_check:		Will someone be delivering your absentee ballot application?
+          abr_request_check__hint:  A member of your family or person residing in your household may mail or deliver your application to the clerk. Family members include your in-laws, grandparents and grandchildren.<br>You may also select any registered elector to return your application.<br> The person returning your application must sign and date at the bottom of the form.
+          abr_request_name:		"Enter the name of the person you have who will be delivering your absentee ballot application:"
+          assist_birthdate:		Enter the person's date of birth
+          abr_assistant_address_line_1:		Enter the person's address
         abr:
-          step_2_header: All registered voters in Michigan can vote absentee!
-          step_2_instructions: |-
-            <p>All registered voters in Michigan can now vote using an absentee ballot. Make sure you're registered to vote on the <a href="https://mvic.sos.state.mi.us/Voter/Index" target="_blank" rel="noopener noreferrer">Your voter information</a> page.</p>
-            <p>&nbsp;</p>
-            <h2 role="heading" aria-level="2">Where are you registered to vote?</h2>
-            <p>We'll use this information to determine how you can request your absentee ballot.</p>
-          request_deadline: received by your clerk no later than 5 p.m. the Friday
-            before the election
-          status_check_instructions: You can look up your absent voter status by using
-            Michigan's <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>Your
-            voter information</a> tool
-          finish_instructions_1_hint: "<p><i>Be sure to check if you need to send
-            in a copy of your ID \nor anything else with your request.</i></p>\n<p><i>If
-            you receive help with returning the application, make sure that the person
-            returning your ballot also signs and dates the application.</i></p>\n<p><i>Your
-            application must be received by your local clerk by received by your clerk
-            no later than 5 p.m. the Friday before the election.</i></p>"
+          request_deadline: |-
+            <p>If you are requesting an absentee ballot by mail or online, your request must be received by:</p>
+            <ul>
+            <li>July 29, 2022 for the primary election, and by</li>
+            <li>November 4, 2022 for the general election</li>
+            </ul>
+            <p>If you are submitting your request for an absentee ballot in person, you must do so by 4 pm the day before the election.</p>
+
+          status_check_instructions: <a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>https://mvic.sos.state.mi.us/Voter/Index</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application. If someone assisted 
+            you in completing your application, make sure they complete section 5 of the application.
+            </p>
         state_online_abr:
-          confirm: "<p>You can apply for an Absentee Ballot in Michigan in any of
-            these ways:</p>\n<ul> \n<li>Online – Registered voters can request an
-            absentee ballot online</li>\n<li>Call your city or township clerk and
-            ask that an application be mailed to you</li>\n<li>Download an application
-            to return by mail or in person to your local city or township clerk</li>\n<li>In
-            person at your local city or township clerk’s office.</li>\n</ul>"
-          requirements: <h2 role="heading" aria-level="2">Requirements to apply for
-            an absentee ballot online</h2> <p>If you are registered to vote and have
-            a valid Michigan state ID, you may request your absentee ballot online
-            directly with the state.</p>
+          confirm: |-
+            <p>If you are registered to vote in Michigan and have a valid Michigan driver’s 
+            license or state ID, you can complete your request your request for an Absent Voter Ballot online. 
+            You can request your ballot online until 5pm the Friday before the election. If you do not have one of these forms of ID,
+            go to "Absentee Voting" for more information on how you can apply for an absent voter ballot. You can fill out a form, 
+            download, print and sign, and return it by mail or in person.</p>
+            <p>Within two weeks of election day, the state recommends making your request in person at your local city 
+            or township clerk office. You’ll be able to fill out and submit your ballot while there. 
+            Find <a href="https://mvic.sos.state.mi.us/Voter/Index/#yourclerk" target="_blank">your local city or clerk township clerk office</a>.</p>
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin
             and Michigan. In which state would you like to register to vote?
@@ -1492,37 +1588,33 @@ en:
           confirm_eligibility: You must meet all the above requirements to register
             to vote in Minnesota.
         state_online_abr:
-          requirements: "<p>If you are registered to vote and can provide an identification
-            number: MN-issued driver's license, Minnesota ID card or last 4 digits
-            of Social Security Number, you may request your absentee ballot online
-            directly with the state.</p>"
-          instructions: |-
-            <p>To request an absentee ballot in MN, you must certify that:</p>
-            <ul>
-              <li>I am completing this application on my own behalf; </li>
-              <li>will be at least 18 years old on election day; </li>
-              <li>am a citizen of the United States;</li>
-              <li>will have resided in Minnesota for 20 days immediately preceding election day;</li>
-              <li>maintain residence at the address given on this application form;</li>
-              <li>am not under court-ordered guardianship in which the court order revokes my right to vote;</li>
-              <li>have not been found by a court to be legally incompetent to vote;</li>
-              <li>have the right to vote because, if I have been convicted of a felony, my felony sentence has expired (been completed) or Ihave been discharged from my sentence.</li>
-            </ul>
+          requirements: "<p>You can request an absentee ballot online if you have a MN-issued driver's license, 
+            MN-issued ID card or a social security number. Otherwise, you can complete a paper application.</p>
+            <p>You do not need to be registered to request an absentee ballot. If you are not registered at the 
+            legal residence address provided, you will be sent a voter registration application with your ballot materials.</p>"
+          instructions_header: I have a MN-issued driver's license, MN-issued ID card or a social security number
+
         abr_form_fields:
-          bad_date__format_message: Invalid date
-          Absentee ballot address_1: Ballot delivery address
-          Absentee ballot address - City: City
-          Absentee ballot address - State: State
-          Absentee ballot address - Zip Code: Zip
-          has_mailing_address: I would like my ballot sent to an address other than
-            my residential address.
-          id_instruction: Your identification number  (mark all that apply)
-          dln_check: I have a Minnesota-issued driver's license or ID Card
-          Minnesota Driver's License or ID Card Number: MN-issued driver’s license
-            or MN ID card
-          Minnesota Driver's License or ID Card Number__format_message: Not a valid
-            MN-issued driver’s license or MN ID card
-          ss_check: I have a Social Security Number
+          abr_county: Select your county
+          abr_id_instructions: You must provide a MN-issued driver's license, MN-issued ID card or a social security number if you have one.
+          abr_id_type1: I have a MN-issued driver’s license or MN ID card
+          abr_id_type2: I have a Social Security Number
+          abr_no_id: I do not have a MN-issued driver’s license, MN-issued ID card or a social security number.
+          abr_drivers_license: Enter the number of your MN-issued driver's license or MN ID card.
+          abr_ssn_number: Enter the last four digits of your social security number.
+          abr_election_type_selections: Select the election you'd like to request a ballot for.
+          abr_election_type1: 8/9 Primary Election
+          abr_election_type2: 11/8 General Election
+          abr_election_type3: Both 8/9 Primary and 11/8 General Elections
+          abr_election_type4: Other
+          abr_election_date_input: Enter the date of the election
+          abr_check_mailing_address: I get my mail at a different address from the one above.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1_input: Street Address
+          abr_mailing_unit_input: Unit
+          abr_mailing_city_input: City
+          abr_mailing_state_abbrev_input: State
+          abr_mailing_zip_input: ZIP
           no_id_check: I do not have a Minnesota-issued driver's license or identification
             card, or a Social Security Number
           no_id_check__format_message: You cannot select no id if you have a Minnesota-issued
@@ -1530,6 +1622,9 @@ en:
           no_id_check__required_message: You must either provide an ID above or assert
             you have no identification
         abr:
+          step_2_instructions: |-
+            <p>All eligible voters in Minnesota can request an absentee ballot.</p>
+
           step_3_pending_header: Requesting an Absentee Ballot in Minnesota
           step_3_pending_instructions: |-
             <p>All eligible voters can apply to vote by mail in Minnesota. You do not need to be registered to apply.</p>
@@ -1550,16 +1645,24 @@ en:
             <p>You will need a witness when you vote and complete your ballot. The witness can be either a registered Minnesota voter or a notary. Your witness must sign the signature envelope and list their address. Notaries should write their name and title, sign the signature envelope, and affix their notary stamp.</p>
 
             <p>Your ballot must be received by Election Day or it will not be counted.</p>
-          request_deadline: You can apply for a ballot any time during the year, except
-            the day of the election. Leave time for election officials to mail your
-            ballot.
+          request_deadline: |-
+            <p>You can apply for a ballot any time during the year, except the day of the election, but make sure to 
+            leave time for election officials to mail your ballot.
+            </p>
+            <p>If you do not receive your ballot in time to mail it back to your election official, you can return it by hand. Ballots returned by hand must be received by 3 pm on election day to be counted.</p>
+          finish_instructions_1_hint: |-
+            <p>You can return your completed application to your county election office by mail, fax, or email.
+            </p>
+            <p>If you are not registered at the legal residence address provided, you will be sent a voter registration 
+            application with your ballot materials. If you receive those materials, make sure to return them with your ballot materials.
+            </p>
           finish_instructions_1_hint_state: "<p><i>Be sure to check if you need to
             send in a copy of your ID \nor anything else with your request.</i></p>\n<p>You
             can return this application by mail, fax or as a scanned attachment to
             an email.</p>"
-          status_check_instructions: You can look up your absentee ballot status on
-            the <a href='https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx'>Minnesota
-            Elections & Voting</a> page.
+          status_check_instructions: |-
+            <p><a href='https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx'>
+            https://mnvotes.sos.state.mn.us/AbsenteeBallotStatus.aspx</a></p>
           signature_capture:
             desktop_provide_e_signature: In the state of Minnesota, we can email a
               digitally signed copy of your absentee request. Please select how you'd
@@ -1586,45 +1689,34 @@ en:
           has_no_state_license: I do not have a MN state identification card or MN driver's license, or Social Security Number.
       mo:
         abr:
-          step_3_pending_header: Requesting an Absentee Ballot in Missouri
-          step_3_pending_instructions: |-
-            <p>You must have a reason to request an absentee ballot in Missouri. </p>
-            <ul>
-            <li>Absence on Election Day from the jurisdiction of the election authority in which such voter is registered to vote;</li>
-            <li>Incapacity or confinement due to illness or physical disability, including a person who is primarily responsible for the physical care of a person who is incapacitated or confined due to illness or disability;</li>
-            <li>Religious belief or practice;</li>
-            <li>Employment as an election authority, as a member of an election authority, or by an election authority at a location other than such voter's polling place;</li>
-            <li>Incarceration, provided all qualifications for voting are retained.</li>
-            <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681 because of safety concerns.</li>
-            </ul>
-            <p>Voters can request absentee ballots from their local election authority in person, by mail, by fax or by e-mail.</p>
-            <p>You must return your request to your local election authority. Find your <a href="https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority" target="_blank" rel="noopener noreferrer">local election authority</a>.
+          step_2_header: You must have a reason to request an absentee ballot.
+          step_2_instructions: |-
+            <ol>
+            <li>1. You will be absent on election day.</li>
+            <li>2. You are confined or care for a person who is confined due to illness or physical disability.</li>
+            <li>3. You can not make it to the polls due to religious belief or practice.</li>
+            <li>4. You are working at a polling place that is not your own.</li>
+            <li>5. You are incarcerated and still maintain the right to vote.</li>
+            <li>6. You are in the address confidentiality program.</li>
+            </ol>          
+          request_deadline: |-
+            <p>Absentee ballot requests must be received by your election authority no later than the 5:00 p.m. on the second Wednesday prior to any election.
+            </p><p>
+            For the primary election, your request must be received by 5pm 7/20/2022.
+            </p>
 
-            <h2 role=heading" aria-level="2">Make sure you're registered!</h2>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application.
+            </p>
+            <p>If this is your first time voting, you must provide a 
+            copy of your identification unless you provided a copy with your registration application. 
+            Acceptable forms of ID are listed here: 
+            <a href="https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee" title="Absentee voting information">https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#absentee</a>.
+            </p>
 
-            <p>Double check that you're registered to vote by going to the <a href="https://www.sos.mo.gov/elections/goVoteMissouri/register" target="_blank" rel="noopener noreferrer">Missouri voter registration page</a>.</p>
-
-            <h2 role="heading" aria-level="2">Questions About Your Absentee Ballot</h2>
-
-            <p>You can apply for a ballot any time during the year, except the day of the election. Leave time for election officials to mail your ballot.</p>
-
-            <p>Make sure to review the identification requirements for voters who have not voted in person.</p>
-
-            <p>You may be able to track the status of your absentee ballot request. Contact your local election authority.</p>
-
-            <h2 role="heading" aria-level="2">Don't Forget to Vote!</h2>
-
-            <p>Once you get your ballot, fill out and sign your absentee ballot according to the instructions provided.</p>
-            <p>All absentee ballots must be received at your county election office by 7pm on Election Day.</p>
-          request_deadline: You can apply for a ballot any time during the year, except
-            the day of the election. Leave time for election officials to mail your
-            ballot.
-          finish_instructions_1_hint_state: |-
-            <p><i>Be sure to check if you need to send in a copy of your ID or anything else with your request.</i></p>
-            <p><i>Your absentee ballot request must be received no later than the 5:00 p.m. on the second Wednesday prior to any election.</i></p>
-          status_check_instructions: 'You may be able to track the status of your
-            absentee ballot request. Contact your local election authority.  Find
-            your official&#39;s contact information here: <a target=''_blank'' href=''https://www.sos.mo.gov/elections/goVoteMissouri/localelectionauthority''>Directory</a>'
+          status_check_instructions: |-
+            Missouri does not have an absentee ballot tracking system available to voters. 
+            For more information on your ballot, contact your local election official <a href="https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority">https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority</a>
           requirements: |-
             <p>To qualify to request a ballot in MO, you must have one of the following reasons:</p>
             <ul><li>Absence on Election Day from the jurisdiction of the election authority in which I am registered </li>
@@ -1633,40 +1725,43 @@ en:
             <li>Incarceration, although I have retained all the necessary qualifitications for voting </li>
             <li>Certified participation in the address confidentiality program established under sections 589.660 to 589.681, RSMo., because of safety concerns. </li></ul>
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          mailing_address_1: Mailing address
-          mailing_address_1__hint: "(Street address or PO Box)"
-          mailing_address_2: City, State, Zip
-          Reason: 'Reason for requesting an absentee ballot:'
-          Reason__options:
-            absence: Absence on Election Day from the jurisdiction of the election
-              authority in which I am registered
-            incapacity: Incapacity or confinement due to illness or physical disability,
-              including caring for a person who is capacitated or confined due to
-              illness or disability (No Notary Required)
-            religious: Religious belief or practice
-            employment: Employment as an election authority or by an election authority
-              at a location other than my polling place
-            incarceration: Incarceration although I have retained all the necessary
-              qualifications for voting
-            confidentiality: Certified participation in the address confidentiality
-              program established under sections 589.660 to 589.681, RSMo., because
-              of safety concerns
-            COVID: I have contracted or am in an at-risk category for contracting
-              or transmitting severe acute respiratory syndrome coronavirus 2(COVID-19),
-              pursuant to Section 115.277.6,RSMo. (No Notary Required)
-          covid_instructions_formatted: "<p>At-risk voters are individuals who:</p>
-            <ul> <li>Are 65 years of age or older</li> <li>Live in a long-term care
-            facility licensed under Chapter 198, RSMo.</li> <li>Have serious heart
-            conditions</li> <li>Have chronic lung disease or moderate to severe asthma</li>
-            <li>Are immunocompromised</li> <li>Have chronic kidney disease and are
-            undergoing dialysis</li> <li>Have liver disease</li> <li>Have diabetes</li>
-            </ul>"
-          covid_instructions: 'At-risk voters are individuals who: Are 65 years of
-            age or older, Live in a long-term care facility licensed under Chapter
-            198, RSMo., Have serious heart conditions, Have chronic lung disease or
-            moderate to severe asthma, Are immunocompromised, Have chronic kidney
-            disease and are undergoing dialysis, Have liver disease, or Have diabetes'
+          abr_last_4_ssn: Enter the last four digits of your SSN
+          abr_last_4_ssn__format_message: Must be 4 numbers
+          abr_check_mailing_address: I want to receive my ballot at an address other than my registration address.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1_input: Street Address
+          abr_mailing_unit_input: Unit
+          abr_mailing_city_input: City
+          abr_mailing_state_abbrev_input: State
+          abr_mailing_zip_input: ZIP
+          abr_reason_selections: Select your reason for voting by mail
+          abr_reason_selections__options:
+            abr_reason1: Absence on Election Day from the jurisdiction of the election authority in which I am registered 	
+            abr_reason2:  Incapacity or confinement due to illness or physical disability, including caring for a person who is incapacitated or confined due to illness or disability	
+            abr_reason3: Religious belief or practice	
+            abr_reason4:  Employment as an election authority or by an election authority at a location other than my polling place	
+            abr_reason5: Incarceration, although I have retained all the necessary qualifications for voting 	If you are on supervision solely for a Suspended Impositions of Sentence (SIS) are allowed to vote as these are not considered convictions. More information may be obtained by contacting the Board of Elections at (800) 669-8683.
+            abr_reason6: Certified participation in the address confidentiality program established under sections 589.660 to 589.681 because of safety concerns.	
+          abr_election_type_selections_instructions: You must request an absentee ballot for each election.<br/>Absentee ballots can only be requested 6 weeks prior to an election.
+
+          abr_election_type_selections: Select the election to request an absentee ballot for.	
+          abr_election_type_selections__options:
+            abr_election_type1: The 8/2/2022 Primary election	
+            abr_election_type2: The 11/8/2022 General Election	
+            abr_election_type3: A different election	
+          abr_election_date_input: Enter the date of the election
+          abr_election_date_input__hint: The election must be within 60 days. 
+          abr_primary_type_selections: Select the type of ballot you wish to receive.
+          abr_primary_type_selections__hint: |-
+            By selecting a party, you will indicate which ballot you will receive. You will not register with this party.
+            <br/><br/>
+            If you do not wish to select a party, you may request a ballot containing other issues, if your jurisdiction's ballot contains issues.
+          abr_primary_type_selections__options:
+            abr_primary_type1: Republican	
+            abr_primary_type2: Democrat	
+            abr_primary_type3: Libertarian	
+            abr_primary_type4: Constitution	
+            abr_primary_type5: Issues only          	
       ms:
         abr:
           request_deadline: The deadline to apply for an absentee ballot is election
@@ -1745,9 +1840,7 @@ en:
           step_2_instructions: |-
             <p>All registered voters in North Carolina can request an absentee ballot.</p>
           request_deadline: |-
-            <p>Absentee ballot requests must be received by 5:00 pm on:</p>
-              <ul><li>May 10, 2022 for the primary election, and</li>
-              <li>November 1, 2022 for the general election.</li></ul>
+            <p>Absentee ballot requests must be received by 5:00 pm on November 1, 2022 for the general election.</p>
           finish_instructions_3_hint_state: |-
             <p>When you prepare to vote, make sure that you have a notary public or two witnesses present.
              You can return your voted ballot by mail, in person at your county board of elections or at an open
@@ -1844,12 +1937,7 @@ en:
             <li>Able to provide a North Dakota driver’s license, nondriver ID, or tribal ID that includes your current residential address and date of birth. If you don't have one of those forms of ID, another qualified elector of the state may attest for you.</li>
             </ul>
           request_deadline: |-
-            <h3>Deadlines for requesting an absentee ballot:</h3>
-            <p>Your absentee ballot request must be received by:</p>
-            <ul>
-            <li>June 13th for the June primary, and</li>
-            <li>November 7th for the November general election.</li>
-            </ul>
+            <p>Your absentee ballot request must be received by November 7th for the November general election.</p>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
             <p>If you mail your absentee ballot, it must be postmarked the day before the election in order to be counted.</p>
@@ -1935,11 +2023,26 @@ en:
           has_no_state_license: I do not have a NE state identification card or NE driver's license.
       nh:
         abr:
-          request_deadline: received by 6 p.m. on the second Friday preceding the
-            election.
-          status_check_instructions: You can look up your  status by using your state&#39;s
-            <a target='_blank' href='https://app.sos.nh.gov/Public/AbsenteeBallot.aspx'>online
-            tool</a>
+          request_deadline: |-
+            <p>Your application for an absentee ballot must be received by your City or Town Clerk by 5:00 pm 
+            on the day before the election.
+            </p>
+            <p>If you do not receive your ballot in time to mail it back to your election official, you can return it by hand.
+            Your voted ballot must be received by your City or Town Clerk by 5:00 pm on Election Day.
+            </p>
+          status_check_instructions: |-
+               <p>
+               <a href="https://app.sos.nh.gov/viphome" target="_blank">https://app.sos.nh.gov/viphome</a></p>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application. If you are a voter with a disability and anyone witnessed and assisted you in completing your application, make sure the witness or assistant signs the printed application as well.
+            </p>
+
+          step_2_header: You must have a reason to request an absentee ballot.
+          step_2_instructions: |-
+              <p> You can vote absentee if you are unable to vote in person because of disability, religious beliefs, military service, 
+              or because of temporary absence.</p>
+
+              <p>Military voters should request absentee ballots using the FVAP form.</p>
           signature_capture:
             desktop_provide_e_signature: In the state of New Hampshire, we can email
               a digitally signed copy of your absentee request. Please select how
@@ -1950,51 +2053,58 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         abr_form_fields:
-          has_mailing_address: My mailing address differs from my residential address.
-          assistant: I assisted voter in completing this form because he/she has a
-            disability.
-          Asisstant Name: Assistant Name
-          Street or PO Box: Street number
-          mail_street_name: Street name or PO Box
-          AptUnit_2: Apt/Unit
-          CityTown_2: City/Town
-          mail_state: State
-          mail_zip: Zip
-          Group_I: 'I herby declare that (check one):'
-          Group_I__options:
-            Choice2: I am a duly qualified voter who is currently registered to vote
-              in this town/ward.
-            Choice1: I am absent from the town/city where I am domiciled and will
-              be until after the next election, or I am unable to register in person
-              due to a disability or concern for the novel coronavirus (COVID-19),
-              and request that the forms necessary for absentee voter registration
-              be sent to me with the absentee ballot.
-          Group_II: 'I will be entitled to vote by absentee ballot because (check
-            one):'
-          Group_II__options:
-            Choice1: I plan to be absent on the day of the election from the city,
-              town, or unincorporated place where I live.
-            Choice2: I cannot appear in public on election day because of observance
-              of a religious commitment.
-            Choice3: I am unable to vote in person due to a disability.
-            Choice4: I am unable to vote in person due to concern for the novel coronavirus
-              (COVID-19).
-            Choice5: I cannot appear at any time during polling hours at my polling
-              place because of an employment obligation. For the purposes of this
-              application, the term “employment” shall include the care of children
-              and infirm adults, with or without compensation.
-          Group_II__required_message: Please select one of the above reasons
-          Party: 'Required for Primary Elections: I am a member of, or I am now declaring
-            my affiliation with a party and I am requesting a ballot for that party’s
-            primary (check only one):'
+          abr_county:  Enter your ward
+          abr_county__hint: |-
+            If you live in a city, enter your ward. Your ward is available from your local clerk. 
+            Find your clerk here: <a target="_blank" href="https://app.sos.nh.gov/statelistclerkandpolling">https://app.sos.nh.gov/statelistclerkandpolling</a> 
+
+          abr_check_mailing_address:  I get my mail at a different address from the one above
+          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
+          abr_form_instructions:  In certain cases, you can use this form to register to vote and request an absentee ballot.
+          abr_form_instructions2:  If you are absent from the town/city where you live and will be until after the next election or are unable to register in person due to a disability, you can have the forms for absentee voter registration be sent to you along with your absentee ballot.
+          abr_application_type_selections:  Select which of the following apply to you.
+          abr_application_type_selections__options:
+            abr_application_type1:  I am a duly qualified voter who is currently registered to vote in this town/ward.
+            abr_application_type2:  I qualify for and would like the forms for absentee voter registration to be sent to me along with my absentee ballot.
+          abr_reason_selections:  Select your reason for voting by mail
+          abr_reason_selections__options:
+            abr_reason1:  I will be absent from my home on the day of the election.
+            abr_reason2:  I am confined in jail for a misdemeanor or while awaiting trial.
+            abr_reason3:  I cannot vote on election day due to religious belief or practice.
+            abr_reason4:  I am unable to vote in person due to a disability.
+            abr_reason5:  I cannot vote during polling hours because of an employment obligations, including the care of children and infirm adults, with or without compensation.
+            abr_reason6:  I am requesting a ballot the day before the election due to inclement weather
+          abr_reason_6_selections:  Select your reason for eligibility for emergency absentee voting.
+          abr_reason_6_selections__options:
+            abr_reason6_type1:  I am elderly, infirm or have a physical disability, and am concerned about my safety traveling in the storm. I would otherwise vote in person.
+            abr_reason6_type2:  I anticipate that school, child care or adult care will be canceled and will need to care for children or infirm adults. I would otherwise vote in person.
+          abr_election_type_selections:  Select the election you'd like to request a ballot for.
+          abr_election_type_selections__options:
+            abr_election_type1:  Primary Election (September 13, 2022)
+            abr_election_type3:  Special Primary Election
+            abr_election_type2:  General Election (November 8, 2022)
+            abr_election_type4:  Special General Election
+          abr_party_selections:  Select with ballot you would like to receive.
+          abr_party_selections__options:
+            abr_party1:  Democratic Party
+            abr_party2:  Republican Party
+          abr_election_date_input:  Enter the date of the Special Primary Election
+          abr_party_selections2:  Select with ballot you would like to receive.
+          abr_party_selections2__options:
+            abr_party3:  Democratic Party
+            abr_party4:  Republican Party
+          abr_election_date2_input:  Enter the date of the Special General Election
+          abr_assistant_check1:  Check this box if someone assisted you in filling out this form.
+          abr_assistant_name:  Enter the name of the assistant
+
       nj:
         abr:
           request_deadline: |-
-            <p>Your application must be received by: </p>
-            <ul>
-            <li>May 31st for the primary, and </li>
-            <li>November 1st for the general election.</li>
-            </ul>
+            <p>Your application must be received by November 1st for the general election.</p>
           status_check_instructions: <a href="https://nj.gov/state/elections/vote.shtml">https://nj.gov/state/elections/vote.shtml</a>.
           finish_instructions_1_hint: "<p>If you received help with this form, make
             sure that the assistor has also \nsigned the form and included their address.\n</p>\n<p>If
@@ -2181,12 +2291,7 @@ en:
             <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
             </ul>
           request_deadline: |-
-            <p>The deadlines for your absentee ballot request are:</p>
-            <ul>
-            <li>June Primary: Postmarked by June 13th or in person by June 27th.</li>
-            <li>November General: Postmarked by October 24th or in person by November 7th.</li>
-            </ul>
-            <p>If you cannot pick up your ballot, you can designate someone to pick it up for you. Only that person designated on your application may pick up and deliver your ballot.</p>
+            <p>You can request your ballot online until August 8th for the Second Primary Election and October 24th for the General Election.</p>
           status_check_instructions: |-
             <p>Track your absentee ballot request by contacting your County Board of Elections:
             <a href="https://www.elections.ny.gov/CountyBoards.html">https://www.elections.ny.gov/CountyBoards.html</a>
@@ -2220,10 +2325,12 @@ en:
             </ul>
             <p>If you are permanently ill or disabled, you can choose to have an Absentee Ballot mailed to you for each subsequent election without applying again. While filling out your request, indicate that you have a permanent illness or physical disability.</p>
             <h3>Deadlines to request an absentee ballot</h3>
-            <p>You can request your ballot online until June 13th for the Primary Election and October 24th for the General Election.</p>
+            <p>You can request your ballot online until August 8th for the Second Primary Election and October 24th for the General Election.</p>
             <p>You can request an absentee ballot in person until the day before the election. 
             See the <a href="https://www.elections.ny.gov/VotingAbsentee.html">New York page on absentee voting</a> for more information on requesting a ballot in person.</p>
             
+
+
         abr_form_fields:
           abr_email: Email
           abr_county: County where you live
@@ -2287,8 +2394,12 @@ en:
           step_2_instructions: |-
             <p>All registered voters in Ohio can request an absentee ballot.</p>
             <p><a href="%{lookup_url}">Make sure your registration is up to date.</a>
-          request_deadline: "<p>Your request must be received by <ul><li>April 30th
-            for the primary election, and </li><li>November 5th for the general election.</li></ul></p>"
+          request_deadline: |-
+            <p>Your request must be received by
+            </p>
+            <ul><li>July 30th for the primary election, and </li>
+            <li>November 5th for the general election.</li>
+            </ul>
           status_check_instructions: <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a>
           finish_instructions_1_hint: "<p>If you did not provide your Ohio driver's
             license number or the last four digits of your \nSocial Security number,
@@ -2317,7 +2428,7 @@ en:
           abr_election_type_selections__options:
             abr_election_type1: November General Election
             abr_election_type2: Special Election
-            abr_election_type3: Primary Election
+            abr_election_type3: Primary Election (special August 2 primary)
           abr_election_date_input: Special Election Date
           abr_election_date2_input: Primary Election Date
           abr_primary_type_selections: Which type of ballot would you like to receive?
@@ -2417,7 +2528,7 @@ en:
           identification__options:
             dln: I have a PA driver’s license or a PennDOT ID card
             no_dln: I do not have a PA driver’s license or a PennDOT ID card
-          identification2: Social Security Number Identification
+          identification2: Social Security Number Identification*
           identification2__options:
             ssn: I have a SSN
             no_ssn: I do not have a SSN
@@ -2448,8 +2559,7 @@ en:
             in making my mark in lieu of my signature.
           Address of witness: Address of witness or assistant
         abr:
-          request_deadline: 'Your application must be received by: <ul><li>May 17th
-            for the primary, and </li><li>November 1st for the general election.</li></ul>'
+          request_deadline: 'Your application must be received by November 1st for the general election.'
           status_check_instructions: <p><a href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>
           finish_instructions_1_hint: "<p><i>If you received help with this form,
             make sure that the witness has also signed the form and included their
@@ -2598,11 +2708,7 @@ en:
             </ul>
           request_deadline: |-
             <h3>Deadlines for voting absentee</h3>
-            <p>Your absentee ballot request must be received by</p>
-            <ul>
-            <li>June 10th for the June primary, and</li>
-            <li>November 4th for the November general election.</li>
-            </ul>
+            <p>Your absentee ballot request must be received by November 4th for the November general election. </p>
             <p>We recommend applying at least one week prior to election to allow adequate mail time.</p>
             <h3>Don't forget to vote!</h3>
             <p>Your voted absentee ballot must be received by the close of polls in order to be counted.</p>
@@ -2643,12 +2749,29 @@ en:
           has_no_state_license: I do not have a valid SC state identification card or driver's license, and Social Security Number.
       ri:
         abr:
-          request_deadline: received by the local board no later than 4:00 P.M. on
-            the 21st day before the election.
-          status_check_instructions: You can look up your Mail Ballot status by using
-            your state&#39;s <a target='_blank' href='https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=3'>online
-            tool</a>
-          requirements: |-
+          step_2_instructions: |-
+            <p>Voters in Rhode Island do not need a specific reason to request an absentee ballot, although
+            you will be asked to select a reason in order to complete your form.</p>
+            <p>You will be asked to provide one of the following reasons:</p>
+            <ul>
+            <li>You are a voter and are incapacitated and cannot make it to the polls.</li>
+            <li>You are a voter and are confined to a hospital, convalescent home or similar.</li>
+            <li>You are a voter and are temporarily absent from the state because of your job or military service. </li>
+            <li>You may not be able to get to the polls on Election Day (no specific reason).</li>
+            </ul>
+            <h2>Requesting an absentee ballot in Rhode Island</h2>
+            <p>You must request an absentee ballot for each election.</p>
+          request_deadline: |-
+            <p>Your absentee ballot application must be received by August 23, 2022 at 4:00 p.m. 
+            in order for you to receive a ballot for the primary election
+            </p>
+          status_check_instructions: |-
+            <p><a target='_blank' href='https://ballottrax.sos.ri.gov/voter/'>https://ballottrax.sos.ri.gov/voter/</a>
+            </p>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed absentee ballot application.
+            </p>
+          _requirements: |-
             <p>Any registered voter can request an absentee ballot in Rhode Island, and must identify one of the following reasons for requesting the absentee ballot:</p>
             <ul>
             <li>I am incapacitated to such an extent that it would be an undue hardship to vote at the polls because of illness, mental or physical disability, blindness or a serious impairment of mobility.</li>
@@ -2657,30 +2780,34 @@ en:
             <li>I may not be able to vote at my polling place in my city/town on the day of the election.</li>
             </ul>
         abr_form_fields:
-          Text Field 11: Name of Institution (if applicable)
-          mail_address: Mailing address
-          mail_city: City/Town
-          mail_state: State
-          mail_zip: Zip
-          has_mailing_address: My ballot should be delivered to a different address
-            from my registration address
-          eligibility: 'I certify that I am eligible for a mail ballot on the following
-            basis:'
-          eligibility__options:
-            absent: I may not be able to vote at my polling place in my city/town
-              on the day of the election. I want my mail ballot to be sent to my residential
-              or mailing address.
-            confined: I am confined to a hospital, convalescent home, nursing home,
-              rest home, or similar institution with the State of Rhode Island. I
-              understand that my ballot will be brought to me by a bipartisan pair
-              of election officials from the State Board of Elections before Election
-              Day.
-            incapacitated: I am incapacitated to such an extent that it would be an
-              undue hardship to vote at the polls because of illness, mental or physical
-              disability, blindness or a serious impairment of mobility.
-            military: I am employed or in service intimately connected with military
-              operations or because I am a spouse or dependent of such person, or
-              I am a United States citizen who will be outside the United States.
+          abr_delivery_address_selections:		Please select whether you would like your ballot mailed to your home address, a mailing address or your local board of canvassers.
+          abr_delivery_address_selections__hint: If you are residing in a hospital, nursing home or similar, select "mailing address."    
+          abr_delivery_address_selections__options:
+            abr_delivery_address_type1:	I would like my ballot sent to my street address provided above.
+            abr_delivery_address_type2:	I would like my ballot sent to a mailing address.
+            abr_delivery_address_type3:	I would like my ballot delivered to my local election office
+          abr_mailing_address_line_1:		Enter your mailing address                    
+          abr_mailing_city: City
+          abr_mailing_unit: Unit
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_reason_selections:		Select your reason for voting by mail
+          abr_reason_selections__hint: If you are residing in a hospital, nursing home or similar, select "mailing address."
+          abr_reason_selections__options:
+            abr_reason1:	It would be a hardship to vote at the polls because of illness, mental or physical disability, blindness or a serious impairment of mobility.
+            abr_reason2:	I am confined in a hospital, convalescent home, nursing home, rest home, or similar institution within the State of Rhode Island.
+            abr_reason3:	I am employed, in service intimately connected with military operations or a spouse or dependent of such person.
+            abr_reason4:	I choose to vote by mail. (No specific reason needed.)
+          abr_mailing_address_line_2:		Enter the name of the facility.
+          abr_mailing_address_line_2__hint: Your ballot will be brought to this facility before Election Day by a bipartisan pair of election officials.
+          abr_reason_instructions:		If you are a United States citizen who will be outside the United States, use a FVAP application. <a href="https://www.fvap.gov/rhode-island" target="_blank">https://www.fvap.gov/rhode-island</a>
+          abr_application_type_check1:		Check this box if you are an unaffiliated voter (not registered with a party).
+          abr_application_type_check1__hint: Affiliated voters will receive a ballot for the party they are registered with.
+          abr_party_selections:		Select which ballot you would like to receive. <br> You will become affiliated with a party.
+          abr_party_selections__options:
+            abr_party1:	Democrat Ballot
+            abr_party2:	Republican Ballot
+          abr_request_check:		Blind, visually impaired and disabled voters may request accessible ballots. <br> Check this box to receive an accessible ballot.
         registration:
           has_state_license: I have a RI state identification card or RI driver's license.
           has_no_state_license: I do not have a RI state identification card or RI driver's license.
@@ -2831,11 +2958,17 @@ en:
           has_no_state_license: I do not have a TN state identification card or TN driver's license.
       tx:
         abr:
-          step_2_header: ''
-          step_2_instructions: ''
-          request_deadline: Your application must be received not later than the 11th
-            day before election day or by the close of regular business or 12 noon,
-            whichever is later.
+          step_2_header: 'You must have a reason to request an absentee ballot in Texas'
+          step_2_instructions: |-
+            <p>To vote absentee in Texas you must:</p>
+            <ul>
+            <li>be 65 years or older;</li>
+            <li>be sick or disabled;</li>
+            <li>be out of the county on election day and during the period for early voting by personal appearance; or</li>
+            <li>be expected to give birth within three weeks before or after Election Day; or</li>
+            <li>be confined in jail, but otherwise eligible.</li>
+            </ul>
+          request_deadline: Your absentee ballot request must be received by 10/28/2022.
           finish_instructions_1_hint: |-
             <p>
             If you were unable to sign the application and someone witnessed your signature, that person must complete Section 11.
@@ -2866,16 +2999,18 @@ en:
           abr_no_drivers_license: I have not been issued a Texas Driver's License/Texas
             Personal Identification Number/Texas Election Identification Certificate
           abr_last_4_ssn: Last 4 digits of your SSN
-          abr_last_4_ssn__hint: If you do not have a Texas Driver'’'s License, Texas
-            Personal Identification Number or a Texas Election Identification Certificate
-            Number, give the last 4 digits of your Social Security Number
+          abr_last_4_ssn__hint: If you do not have a Texas Driver's License, Texas Personal
+            Identification Number or a Texas Election Identification Certificate Number,
+            enter the last 4 digits of your Social Security Number.
           abr_no_id: I have not been issued a Social Security Number
           abr_delivery_address: 'Mail my Ballot to:'
           abr_delivery_address__options:
             abr_residence_address: My Residence Address (as listed on my Voter Registration
               Certificate)
-            abr_mailing_address: Other Address- You may use the Other Address line
-              only if the other address fits one of the categories below.
+            abr_mailing_address: Other Address- You may use the Other Address line only if
+             it is your mailing address as listed on your Voter Registration certificate,
+             an address outside the county, a hospital, nursing home or other facility,
+             the address of a jail/civil commitment facility, or the address of a relative.
           abr_mailing_street_address: Address
           abr_mailing_unit: Apt.
           abr_mailing_city: City
@@ -2900,11 +3035,10 @@ en:
             site.
           abr_reason_selections__options:
             abr_reason1: 65 Years of Age or Older
-            abr_reason2: Disability (as defined in Texas Election Code 82.002(a),
-              see instructions on reverse) By checking this box, “I affirm that I
-              have a sickness or physical condition that prevents me from appearing
-              at the polling place on Election Day without a likelihood of needing
-              personal assistance or of injuring my health.”
+            abr_reason2: Disability. Selecting this option means that you affirm you
+              have a sickness or physical condition that prevents you from appearing
+              at the polling place on Election Day without a likelihood of needing personal
+              assistance or of injuring my health.
             abr_reason3: Expected to give birth within three weeks before or after
               Election Day
             abr_reason4: Expected Absence from the County (You may apply for a ballot
@@ -3158,12 +3292,75 @@ en:
             state ID or your SSN, you may request your absentee ballot online directly
             with the state.</p>"
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://mvp.vermont.gov/'>online
-            tool</a>
+          request_deadline: |-
+            <p>All early voter absentee ballot requests must be submitted by 5 p.m. or by the close of the town clerk’s office on the day before the election.
+            </p>
+            <p>If you mail your form, make sure it is received by that time.
+            </p> 
+          status_check_instructions: |-
+            <p>
+            <a target='_blank' href='https://mvp.vermont.gov/'>https://mvp.vermont.gov/</a></p>
+          finish_instructions_1_hint_state: |-
+            <p>Absentee ballots for the August 9, 2022, statewide primary will be available not later than June 25, 2022. 
+            </p>
+            <p>Absentee ballots for the November 8, 2022, general election will be automatically mailed to all active registered voters, not later than October 1, 2022. 
+            </p>
+            <p>Ballots for local elections—town meeting elections by Australian ballot—are available 20 days prior to the election
+            </p>
+          finish_instructions_1_hint: |-
+            <p>If someone filled out the absentee request form for you, they must sign where indicated.
+            </p>
+            <p>Absentee ballots for the August 9, 2022, statewide primary will be available not later than June 25, 2022. 
+            </p>
+            <p>Absentee ballots for the November 8, 2022, general election will be automatically mailed to all active registered voters, not later than October 1, 2022. 
+            </p>
+            <p>Ballots for local elections—town meeting elections by Australian ballot—are available 20 days prior to the election
+            </p>
+
+
+        abr_form_fields:
+          abr_previous_name_check: My name has changed since I registered to vote.
+          abr_previous_full_name: Enter your previous name
+          abr_delivery_address_selections: I get my mail at a different address from the one above.
+          abr_delivery_address_selections__options: 
+            abr_delivery_address_type1: "Yes"
+            abr_delivery_address_type2: "No"
+          abr_mailing_address_instructions: Enter your mailing address
+          abr_mailing_address_line_1: Mailing address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_election_type_selections: Select the elections you would like to request a ballot for.
+          abr_election_type_selections__options: 
+            abr_election_type1: I want to select the elections
+            abr_election_type2: I want to select a time period (within 1 calendar year)
+          abr_election_type_instructions: I want to vote by mail in the following elections
+          abr_election_type3: Annual Town Meeting
+          abr_election_type4: All local elections
+          abr_election_type5: General Election
+          abr_election_type6: Primary Election
+          abr_election_type7: Presidential Primary Election
+          abr_primary_type_selections: Select a party
+          abr_primary_type_selections__options: 
+            abr_primary_type1: Democratic
+            abr_primary_type2: Republican
+          abr_absence_begin_date_input: Enter the date you'd like to begin receiving absentee ballots
+          abr_absence_end_date_input: Enter the date you'd like to stop receiving absentee ballots.
+          abr_request_check: Are you requesting a ballot on behalf of a voter?
+          abr_request_instructions: The person requesting a ballot must complete this section.
+          abr_request_name: Enter your name
+          abr_request_name2: If you represent an organization, enter that here
+          abr_assistant_address_line_1: Enter your address
+          abr_assistant_address_line2: City, State, Zip
+          abr_assistant_phone: Enter your phone number
+          abr_request_selections: Provide your relationship to the voter
+          abr_request_selections__options: 
+            abr_request_type1: Family Member
+            abr_request_type2: Health care provider
+            abr_request_type3: Person authorized by voter
+          abr_no_election_checked__required_message: At least one of the election options is required
+
         registration:
           has_state_license: I have a VT state identification card or VT driver's license, or Social Security Number.
           has_no_state_license: I do not have a VT state identification card or VT driver's license, or Social Security Number.
@@ -3343,12 +3540,20 @@ en:
           has_no_state_license: I do not have a WV state identification card or WV driver's license, and Social Security Number.
       wy:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf'>online
-            tool</a>
+
+          request_deadline: |-
+            <p>Your absentee ballot request must be received county clerk's office by the day before the election.</p>
+            <p>Your completed ballot must be received no later than 7:00 p.m. on Election Day. 
+            If you do not receive your ballot in time to mail it back to your election official, you can return
+            it by hand. Ballots arriving after the deadline will not be counted.</p>
+          status_check_instructions: |-
+               <p>For more information on the status of your ballot,
+               contact your <a target="_blank" href="https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf">county clerk.</a></p>       
+          finish_instructions_1_hint: |-
+            <p>If you are requesting a ballot for the Primary Election, your political party is required and it must be 
+            the same political party in which you are currently registered. To change your political party, please contact your 
+            <a target="_blank" href="https://sos.wyo.gov/Elections/Docs/WYCountyClerks.pdf">county clerk.</a></p>
+            <p>Additionally, make sure to sign your printed application.</p>
           confirm_email_delivery: I have reviewed the above information and wish to
             email my request to my local elections office.<br/><br/> By clicking the
             button below, I authorize Rock the Vote to apply my signature, agreeing
@@ -3365,18 +3570,23 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         abr_form_fields:
-          has_mailing_address: Mail my ballot to a different address
-          MAIL MY BALLOT TO: Mailing Address
-          CITY_2: City
-          STATE_2: State
-          ZIP_2: ZIP
-          ACTIVE MILITARY Y  N: Are you active military?
-          ACTIVE MILITARY Y  N__options:
-            Y: 'Yes'
-            N: 'No'
-          Individual's name who may pick up my ballot: Authorized Ballot Pick-up
-          Individual's name who may pick up my ballot__hint: 'To authorize another
-            individual to pick up your ballot for you, add their name here:'
+          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_unit: Unit
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: Zip
+          abr_uocava_check:	Are you an active member of the military?
+          abr_check_mailing_address:	I get my mail at a different address from the one above
+          abr_election_type_selections:	Select the election(s) you'd like to request a ballot for
+          abr_election_type_selections__options:	
+          abr_election_type1_check:	2022 Primary
+          abr_election_type1_check__required_message: At least one election must be selected
+          abr_election_type2_check:	2022 General
+          abr_election_type2_check__required_message: At least one election must be selected
+          abr_party:	Your political party is required for a Primary Election.
+          abr_request_check:	Will someone else be picking up your absentee ballot?
+          abr_request_name:	Enter the name of the person you are designating to pick up your absentee ballot.
+          no_election_type__required_message: At least one election type must be selected.
     parties:
       democratic: Democratic
       independent: Independent
@@ -3984,56 +4194,57 @@ en:
       2_months_before: two months before your 18th birthday
       17_turn_18: if you are 17 and will turn 18 before the next election
     registration_deadline:
-      alabama: Postmarked by 5/9/2022
+      alabama: The deadline to register to vote for the November general election is 10/24/2022.
       alaska: Postmarked by 7/17/2022
       arizona: postmarked by 7/5/2022
-      arkansas: Postmarked by 4/24/2022
-      california: Postmarked by 5/23/2022
-      colorado: Postmarked by 6/20/2022
+      arkansas: The deadline to register to vote for the November general election is 10/11/2022.
+      california: The deadline to register to vote for the November general election is 10/24/2022.
+      colorado: Voter registrations submitted by mail must be received by 10/31/2022 for the November general election.
       connecticut: Postmarked the 5th day before a Primary Election. Postmarked or
         Received by the 7th day before a General Election.
-      district_of_columbia: Postmarked by 5/31/2022
+      district_of_columbia: Voter registrations submitted by mail must be received by 10/18/2022 for the November general election.
       delaware: Postmarked by 8/20/2022
       florida: Postmarked by 7/25/2022
-      georgia: Postmarked by 4/25/2022
+      georgia: The deadline to register to vote for the November general election is 10/11/2022.
       hawaii: Postmarked by 8/3/2022
-      idaho: Postmarked by 4/22/2022
-      indiana: Postmarked by 10/11/2022
-      illinois: received 27 days prior to an election
-      iowa: Postmarked by 5/23/2022
+      idaho: The deadline to register to vote for the November general election is 10/14/2022.
+      indiana: The deadline to register to vote for the November general election is 10/11/2022.
+      illinois: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
+      iowa: The deadline to register to vote for the November general election is 10/24/2022.
       kansas: Postmarked by 7/12/2022
-      kentucky: Postmarked by 4/18/2022
+      kentucky: The deadline to register to vote for the November general election is 10/11/2022.
       louisiana: Postmarked by 10/11/2022
-      maine: Received by 5/24/2022
+      maine: Voter registrations submitted by mail must be received by 10/18/2022 for the November general election.
       maryland: Postmarked by 6/7/2022
       massachusetts: Postmarked by 8/17/2022
       michigan: Postmarked by 7/18/2022
       minnesota: Received by 7/19/2022
-      mississippi: Postmarked by 5/9/2022
+      mississippi: The deadline to register to vote for the November general election is 10/10/2022.
       missouri: Postmarked by 7/6/2022
-      montana: Postmarked by 6/6/2022
+      montana: The deadline to register to vote for the November general election is 10/11/2022.
+      nebraska: The deadline to register to vote for the November general election is 10/21/2022.
       new_hampshire: Received by 8/24/2022
-      new_jersey: Received by 5/17/2022
-      new_mexico: Postmarked by 5/10/2022
-      new_york: Postmarked by 6/3/2022
-      north_carolina: Postmarked by 4/22/2022
+      new_jersey: The deadline to register to vote for the November general election is 10/18/2022.
+      new_mexico: The deadline to register to vote for the November general election is 10/11/2022.
+      new_york: Voter registrations submitted by mail must be postmarked by 7/29/2022 for the second primary election and 10/14/2022 for the November general election.
+      north_carolina: The deadline to register to vote for the November general election is 10/14/2022.
       north_dakota: North Dakota does not have voter registration.
       nebraska: Postmarked by 10/21/2022
-      nevada: Postmarked by 5/17/2022
-      ohio: Postmarked by 10/11/2022
-      oklahoma: Postmarked by 6/3/2022
+      nevada: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
+      ohio: The deadline to register to vote for the August election is 7/5/2022. The deadline to register to vote for the November general election is 10/11/2022.
+      oklahoma: Voter registrations submitted by mail must be postmarked by 7/29/2022 for the primary runoff election and 10/14/2022 for the November general election.
       oregon: Postmarked by 4/26/2022
-      pennsylvania: Received by 5/2/2022
+      pennsylvania: The deadline to register to vote for the November general election is 10/24/2022.
       rhode_island: Postmarked by 8/14/2022
-      south_carolina: Postmarked by 5/16/2022
-      south_dakota: Received by 5/23/2022
+      south_carolina: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
+      south_dakota: The deadline to register to vote for the November general election is 10/24/2022.
       tennessee: Postmarked by 7/5/2022
-      texas: Received by 10/11/2022
-      utah: Received by 6/17/2022
+      texas: The deadline to register to vote for the November general election is 10/11/2022.
+      utah: Voter registrations submitted by mail must be received by 10/28/2022 for the November general election.
       vermont: Received by 8/9/2022
-      virginia: Postmarked by 5/31/2022
+      virginia: Voter registrations submitted by mail must be postmarked by 10/17/2022 for the November general election.
       washington: Received by 7/25/2022
-      west_virginia: Postmarked by 10/18/2022
+      west_virginia: The deadline to register to vote for the November general election is 10/18/2022.
       wisconsin: Postmarked by 7/20/2022
       wyoming: Received by 8/1/2022
       postmarked_11_days: postmarked 11 days before the election
