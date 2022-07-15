@@ -642,7 +642,7 @@ record_41:
   optional_party: true
   party_tooltip: south_dakota
   parties:
-  - democraticf
+  - democratic
   - independent
   - green
   - libertarian
