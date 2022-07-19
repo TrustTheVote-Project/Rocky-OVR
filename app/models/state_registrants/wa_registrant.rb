@@ -9,9 +9,18 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   def self.permitted_attributes
     attrs = super
     return ([attrs,
+            :prev_name_title,
             :issue_date_day,
             :issue_date_month,
             :issue_date_year].flatten)
+  end
+
+  def prev_name_title
+    self.registrant.prev_name_title 
+  end
+
+  def prev_name_title= (v)
+    self.registrant.prev_name_title = v
   end
 
   def sms_number_for_continue_on_device
@@ -125,10 +134,15 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
     status == step_list.last && valid? 
   end
   
+  # NOTE: This "submitted?", "api_submission_error" and "state_transaction_id" methods must be implemented by all state registrants
+
   def submitted?
-    wa_submission_complete? || (wa_check_complete? && wa_check_error?)
+    wa_submission_complete?  #|| (wa_check_complete? && wa_check_error?)
   end
   
+   def api_submission_error
+     self.wa_submission_error.to_s
+   end
   def state_transaction_id
     wa_transaction_id
   end
@@ -402,6 +416,7 @@ class InvalidResponseError < NetworkingError; end
       # IF token success otherwise error
       if !result["returnToken"].blank?
         self.return_token  = result["returnToken"]
+        self.wa_submission_complete = true
         self.save(validate: false)
       else
         self.wa_submission_error ||= []
@@ -421,6 +436,7 @@ class InvalidResponseError < NetworkingError; end
 
       #CTW This is post API submission
       if !self.return_token.blank?  # Success
+        wa_submission_complete = true
         self.update_original_registrant
         self.registrant.complete_registration_with_state!  #It is complete already (so this is confirm?)
         deliver_confirmation_email
@@ -520,10 +536,14 @@ end
       
       "mailing_city"  => "mailing_city",
       "mailing_zip"  => "mailing_zip_code",
+
+      "mailing_address" => "mailing_address",
+      "mailing_unit_number" => "mailing_unit",
       
       "opt_in_email"  => "opt_in_email",
       "opt_in_sms"  => "opt_in_sms",
       "phone" => "phone",
+      "phone_type" => "phone_type",
       
 
        "partner_opt_in_email"=>"partner_opt_in_email", #query Alex 
@@ -554,6 +574,15 @@ end
       val = self.send(k)
       r.send("#{v}=", val)
     end
+
+    if !self.mailing_state.blank? #always an abbrev
+      r.mailing_state = GeoState[self.mailing_state]
+    else
+      r.mailing_state = nil
+    end
+
+    r.has_ssn = !! self.ssn4
+    r.has_state_license = !self.confirm_no_dln?
 
     r.save(validate: false)
   end    

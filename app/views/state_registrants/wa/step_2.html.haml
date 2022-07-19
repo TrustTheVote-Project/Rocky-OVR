@@ -32,7 +32,7 @@
       %span= I18n.t('txt.registration.previous_name')
     %ul.stacked
 
-      -#= field_li form, title_field, {li_options: {class: 'registrant-form__prev-name-title__line'}, required: true } 
+      = field_li form, :prev_name_title, {li_options: {class: 'registrant-form__prev-name-title__line'}, select_options:  @registrant.titles, field_options: {include_blank: true}, required: true } 
       = field_li form, :prev_first_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-first-name__line'}, required: true } 
       = field_li form, :prev_middle_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-middle-name__line'}, required: false } 
       = field_li form, :prev_last_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-last-name__line'}, required: true } 
