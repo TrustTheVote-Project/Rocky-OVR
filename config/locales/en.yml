@@ -650,6 +650,8 @@ en:
               blank: Required. If you do not know the last four digits of your social
                 security number, please select "I do not know the last four digits
                 of my social security number.
+            prev_residence_zip:
+              wrongstate: Not a valid WA ZIP code.
             # voter_signature_image:
             #   blank: You must provide a valid WA DLN, or an electronic signature,
             #     or sign a paper form to complete your application.
