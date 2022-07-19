@@ -30,12 +30,13 @@ class WARegistrantValidator < ActiveModel::Validator
       reg.validate_date_of_birth
       validate_age(reg)
       
-      #reg.validates_presence_of   :name_title
+      reg.validates_presence_of   :name_title
       #reg.validates_inclusion_of  :name_title, :in => Registrant::TITLES, :allow_blank => true
       reg.validates_presence_of   :first_name
 
       
       reg.validates_presence_of   :last_name
+      #reg.validates_presence_of   :name_title
       reg.validates_inclusion_of  :name_suffix, :in => Registrant::SUFFIXES, :allow_blank => true
       
 
@@ -49,6 +50,7 @@ class WARegistrantValidator < ActiveModel::Validator
       if reg.has_previous_name?
         reg.validates_presence_of :prev_first_name
         reg.validates_presence_of :prev_last_name
+        reg.validates_presence_of :prev_name_title
       end
 
       if reg.has_previous_address?
