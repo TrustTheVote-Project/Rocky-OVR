@@ -3,6 +3,7 @@ defaults:
   participating: true
   not_participating_tooltip: blank
   requires_race: false
+  optional_party: false
   race_tooltip: not_required_but_appreciated_with_state_name
   parties:
   - democratic
