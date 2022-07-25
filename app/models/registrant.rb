@@ -386,7 +386,7 @@ class Registrant < ActiveRecord::Base
   has_one :registrant_status
   has_one :pdf_delivery, -> { order("pdf_ready DESC") } # If multiple, prefer the one that's ready
 
-  delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
+  delegate :requires_race?, :requires_party?, :optional_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
   #has_one :registrant_shift
   # TODO make this create relation
@@ -645,7 +645,7 @@ class Registrant < ActiveRecord::Base
       self.prev_zip_code = nil
     end
     # self.race = nil unless requires_race?
-    self.party = nil unless requires_party?
+    self.party = nil unless requires_party? or optional_party?
   end
 
   def reformat_state_id_number
