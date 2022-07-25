@@ -32,7 +32,7 @@
       %span= I18n.t('txt.registration.previous_name')
     %ul.stacked
 
-      -#= field_li form, title_field, {li_options: {class: 'registrant-form__prev-name-title__line'}, required: true } 
+      = field_li form, :prev_name_title, {li_options: {class: 'registrant-form__prev-name-title__line'}, select_options:  @registrant.titles, field_options: {include_blank: true}, required: true } 
       = field_li form, :prev_first_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-first-name__line'}, required: true } 
       = field_li form, :prev_middle_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-middle-name__line'}, required: false } 
       = field_li form, :prev_last_name, {skip_tooltip: true, li_options: {class: 'registrant-form__prev-last-name__line'}, required: true } 
@@ -61,7 +61,7 @@
       = field_li(form, :residence_unit_number, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-unit-number__line"} })
     %ul.stacked
       = field_li(form, :residence_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
-      = field_li(form, :home_state_abbrev, {skip_tooltip: true,required: true, field_options: {disabled: true}, li_options: {class: "registrant-form__home-state-abbrev__line"} })
+      = field_li(form, :home_state_abbrev, {skip_tooltip: true,required: true, field_options: {readonly: true}, li_options: {class: "registrant-form__home-state-abbrev__line"} })
       = field_li(form, :residence_zip, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
       
       -#= field_li(form, :res_county_code, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::WARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
@@ -83,7 +83,7 @@
       = field_li(form, :prev_residence_unit_number, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__home-unit-number__line"} })
     %ul.stacked
       = field_li(form, :prev_residence_city, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-city__line"} })
-      = field_li(form, :prev_residence_state, {skip_tooltip: true,required: true, field_options: {disabled:true, value:"WA"}, li_options: {class: "registrant-form__home-state-abbrev__line"}})
+      = field_li(form, :prev_residence_state, {skip_tooltip: true,required: true, field_options: {readonly:true, value:"WA"}, li_options: {class: "registrant-form__home-state-abbrev__line"}})
       = field_li(form, :prev_residence_zip, {skip_tooltip: true,required: true, li_options: {class: "registrant-form__home-zip-code__line"} })
       
       -#= field_li(form, :prev_res_county_code, {skip_tooltip: true,required: false, li_options: {class: "registrant-form__county__line"}, select_options: StateRegistrants::WARegistrant.localities.collect {|l| [l["Name"], l["Code"]]}, field_options: {include_blank: true} })
@@ -113,6 +113,9 @@
     %ul.flat.ssn
       = field_li(form, :driver_license, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__dln__line"}, field_options: {size: 12, maxlength: 12} })
       -#= field_li(form, :issue_date, {skip_tooltip: true, required: true, li_options: {class: "registrant-form__issue-date__line"}})
+      %li.registrant-form__dln_instructions__line
+        %p.instructions
+          = I18n.t('states.custom.wa.wa_dln_instructions')
       %li.registrant-form__issue-date__line
         %h3
           = form.label :issue_date

@@ -12,8 +12,8 @@
   <legend><span><%= I18n.t('txt.registration.name') %></span><%= tooltip_tag :registrant_name %></legend>
   <ul class="stacked">
     <li class="width_d registrant-form__name-title__line">
-      <h3><%= form.label title_field %></h3>
-      <%= select_div form, title_field, title_options, {:include_blank => true, required: false} %>
+      <h3><%= form.label title_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
+      <%= select_div form, title_field, title_options,  {:include_blank => true, :required => true} %>
       <span class="error"><%= form.object.errors[title_field].join("\n") %></span>
     </li>
     <li class="width_d registrant-form__name-suffix__line">

@@ -6,6 +6,7 @@ class WACensor
       values = JSON.parse(params[:request_body])
       values["driverLicense"] = "*redacted*"
       values["ssn4"] ="*redacted*"
+      values["email"] = registrant.email
       params[:request_body] = values.to_json
       return params
     rescue

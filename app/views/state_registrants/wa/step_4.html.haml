@@ -95,20 +95,20 @@
           = @registrant.issue_date.strftime('%m/%d/%Y') 
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
 
-    - if true || !@registrant.military_flag.blank?
+    - if !@registrant.military_flag.nil?
       .review__section
         .review__section__label
           = t('activerecord.attributes.state_registrants/wa_registrant.military_flag')
         .review__section__content
-          = @registrant.military_flag
+          = t('activerecord.attributes.state_registrants/wa_registrant.military_flag_'+(@registrant.military_flag ? "true" : "false"))
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
 
-    - if true || !@registrant.is_homeless.blank?
+    - if !@registrant.is_homeless.nil?
       .review__section
         .review__section__label
           = t('activerecord.attributes.state_registrants/wa_registrant.is_homeless')
         .review__section__content
-          = @registrant.is_homeless
+          = t('activerecord.attributes.state_registrants/wa_registrant.is_homeless_' + (@registrant.is_homeless ? "true" : "false")) 
           = rollover_image_link(:edit, I18n.t('txt.button.edit'), update_state_registrant_path(@registrant.to_param, 'step_3'))
 
 

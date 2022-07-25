@@ -1604,7 +1604,8 @@ class Registrant < ActiveRecord::Base
     if send_emails?
       # Make sure user has at least viewed step 2
       rendered_step2 = begin
-        self.render_view_events.collect {|te| te.tracking_data[:rendered_step] }.include?("step2-show")
+        rendered_steps = self.render_view_events.collect {|te| te.tracking_data[:rendered_step] }
+        rendered_steps.include?("step2-show") || rendered_steps.include?("state_registrants-edit")
       rescue
         false
       end

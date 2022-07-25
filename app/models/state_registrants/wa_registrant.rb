@@ -9,9 +9,18 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   def self.permitted_attributes
     attrs = super
     return ([attrs,
+            :prev_name_title,
             :issue_date_day,
             :issue_date_month,
             :issue_date_year].flatten)
+  end
+
+  def prev_name_title
+    self.registrant.prev_name_title 
+  end
+
+  def prev_name_title= (v)
+    self.registrant.prev_name_title = v
   end
 
   def sms_number_for_continue_on_device
@@ -112,23 +121,28 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   end
   
   
-  def gender
-    male_titles = RockyConf.enabled_locales.collect { |loc|
-     I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
-    }.flatten.uniq
-    return 'M' if male_titles.include?(self.name_title)
-    return 'F' if !self.name_title.blank?
-    return ''   
-  end
+  # def gender
+  #   male_titles = RockyConf.enabled_locales.collect { |loc|
+  #    I18n.backend.send(:lookup, loc, "txt.registration.titles.#{Registrant::TITLE_KEYS[0]}") 
+  #   }.flatten.uniq
+  #   return 'M' if male_titles.include?(self.name_title)
+  #   return 'F' if !self.name_title.blank?
+  #   return ''   
+  # end
   
   def complete?
     status == step_list.last && valid? 
   end
   
+  # NOTE: This "submitted?", "api_submission_error" and "state_transaction_id" methods must be implemented by all state registrants
+
   def submitted?
-    wa_submission_complete? || (wa_check_complete? && wa_check_error?)
+    wa_submission_complete?  #|| (wa_check_complete? && wa_check_error?)
   end
   
+   def api_submission_error
+     self.wa_submission_error.to_s
+   end
   def state_transaction_id
     wa_transaction_id
   end
@@ -218,11 +232,11 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
 
 
       "nameSuffix"	=>	self.name_suffix,
-      "firstName"	=>	self.first_name,
-      "middleName"	=>	self.middle_name,
-      "lastName"	=>	self.last_name,
+      "firstName"	=>	self.first_name ? self.first_name.strip : nil,
+      "middleName"	=>	self.middle_name ? self.middle_name.strip : nil,
+      "lastName"	=>	self.last_name ? self.last_name.strip : nil,
 
-      "Gender"	=>	self.gender,
+      #"Gender"	=>	self.gender,
 
 
       "prevNameSuffix"	=>	self.prev_name_suffix,
@@ -402,6 +416,7 @@ class InvalidResponseError < NetworkingError; end
       # IF token success otherwise error
       if !result["returnToken"].blank?
         self.return_token  = result["returnToken"]
+        self.wa_submission_complete = true
         self.save(validate: false)
       else
         self.wa_submission_error ||= []
@@ -421,8 +436,10 @@ class InvalidResponseError < NetworkingError; end
 
       #CTW This is post API submission
       if !self.return_token.blank?  # Success
+        wa_submission_complete = true
         self.update_original_registrant
         self.registrant.complete_registration_with_state!  #It is complete already (so this is confirm?)
+        deliver_confirmation_email
       else
         self.wa_submission_error ||= []
         self.wa_submission_error << "#{DateTime.now}: No WA return_token"
@@ -453,6 +470,10 @@ def allow_desktop_signature?
   return false
 end
 
+def has_state_license?
+  self.has_dln?
+end
+
 
   def home_state
     "Washington"
@@ -466,6 +487,18 @@ end
     "WA"
   end
 
+  # TODO do we allow no-collect-email for WA?
+  def send_emails?
+    !self.email.blank?
+  end
+  
+  def deliver_confirmation_email
+    if send_emails?
+      # TODO, depending on partner customizations, just use main Notifier class - or refactor to StateRegistrantNotifier for all states
+      WANotifier.wa_confirmation(self).deliver_now
+    end
+  end
+
   def mappings
     {
 
@@ -475,6 +508,8 @@ end
       #"confirm_will_be_18"  => "will_be_18_by_election",
       
       "date_of_birth" => "date_of_birth",
+
+     "driver_license" => "state_id_number",
       
       
       "name_title"  => "name_title",
@@ -501,10 +536,14 @@ end
       
       "mailing_city"  => "mailing_city",
       "mailing_zip"  => "mailing_zip_code",
+
+      "mailing_address" => "mailing_address",
+      "mailing_unit_number" => "mailing_unit",
       
       "opt_in_email"  => "opt_in_email",
       "opt_in_sms"  => "opt_in_sms",
       "phone" => "phone",
+      "phone_type" => "phone_type",
       
 
        "partner_opt_in_email"=>"partner_opt_in_email", #query Alex 
@@ -535,6 +574,15 @@ end
       val = self.send(k)
       r.send("#{v}=", val)
     end
+
+    if !self.mailing_state.blank? #always an abbrev
+      r.mailing_state = GeoState[self.mailing_state]
+    else
+      r.mailing_state = nil
+    end
+
+    r.has_ssn = !! self.ssn4
+    r.has_state_license = !self.confirm_no_dln?
 
     r.save(validate: false)
   end    

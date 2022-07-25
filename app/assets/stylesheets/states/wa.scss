@@ -55,6 +55,13 @@ span.error, .flat span.error, .stacked span.error {
         &.registrant-form__home-address-box-group-id__line {
           width: 50%;
         }
+        @media(max-width: 600px) {
+          &.registrant-form__name-suffix__line {
+            margin-left:0px !important;
+            margin-bottom: 12px;
+          }
+        }
+        
 
 
 
