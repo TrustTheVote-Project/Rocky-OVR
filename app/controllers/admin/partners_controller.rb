@@ -32,12 +32,18 @@ class Admin::PartnersController < Admin::BaseController
         flash[:warning] = "Partner ID #{params[:partner_id]} not found"
       end
     end
-    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 1000)
+
+    @partners = Partner.standard
+    @partner_name_search = params[:partner_name_search]
+    if @partner_name_search
+      @partners = @partners.where("name like ?", "%#{@partner_name_search}%")
+    end
+    @partners =  @partners.paginate(:page => params[:page], :per_page => 100)
     @partner_zip = PartnerZip.new(nil)
   end
 
   def upload_registrant_statuses
-    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 1000)
+    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 100)
     @partner_zip = PartnerZip.new(nil)
     
     state = GeoState.find(params[:geo_state])
