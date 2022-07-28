@@ -2,8 +2,8 @@ class TranslationsController < ApplicationController
   layout 'state_configuration'
   
   before_action :disallow_production
-  before_action :get_translations
-  before_action :get_locale_and_translation, :except=>[:index, :all_languages, :preview_pdf]
+  before_action :get_translations, except: :export
+  before_action :get_locale_and_translation, :except=>[:index, :all_languages, :preview_pdf, :export]
   
 
   def index
@@ -12,6 +12,12 @@ class TranslationsController < ApplicationController
   def show
   end
   
+  def export
+    @csv = YamlExport.ymls_to_csv
+    send_data @csv, filename: 'rocky_export.csv'
+    #redirect_to action: :index
+  end
+
   def preview_pdf
     @locale = params[:id]
     @state = (params[:state] ? GeoState[params[:state]]  : GeoState.first ) || GeoState.first
