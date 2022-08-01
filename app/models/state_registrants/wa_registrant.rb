@@ -487,6 +487,10 @@ end
     "WA"
   end
 
+  def first_registration?
+    false
+  end
+
   # TODO do we allow no-collect-email for WA?
   def send_emails?
     !self.email.blank?
