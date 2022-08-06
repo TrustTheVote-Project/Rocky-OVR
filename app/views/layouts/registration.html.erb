@@ -24,10 +24,10 @@
   <%- end %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
   <%= javascript_include_tag "iframeResizer.contentWindow.min.js" %>
-  
+
   <script>
     WebFont.load({
       google: {
@@ -35,7 +35,7 @@
       }
     });
   </script>
-  
+
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
@@ -51,8 +51,8 @@
       <%- if @registrant && @registrant.persisted? %>
         trackView("<%= track_view_registrant_path(@registrant) %>", "<%= params["controller"] %>", "<%= params["action"] %>");
       <%- end %>
-      hideErrors(); 
-      setTimeout('revealErrors();', 400); 
+      hideErrors();
+      setTimeout('revealErrors();', 400);
     });
   </script>
   <% if Rails.env.production? %>
@@ -84,15 +84,17 @@ setTimeout(ldinsp, 0);
   <% if @partner && @partner.custom_logo? -%>
     <%- if !@registrant || @registrant.short_form? %>
       <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
+     <span class="background-image" role="img" aria-label="Partner Logo"> </span>
     <%- else %>
       <div id="header" class="partner">
         <div id="partner-logo">
-          <%= image_tag "#{@partner.header_logo_url}" %>
+          <%= image_tag "#{@partner.header_logo_url}" alt="Partner Logo" %>
         </div>
     <%- end %>
   <% else -%>
     <div id="header">
-      
+     <span class="background-image" role="img" aria-label="Rock the Vote logo"> </span>
+
   <% end -%>
       <div class='header-text'>
         <%- if !@registrant || @registrant.short_form? %>
@@ -125,7 +127,7 @@ setTimeout(ldinsp, 0);
 
 <%= render :partial => 'layouts/urchin' %>
 <%- if !@registrant || @registrant.short_form? %>
-  <%= javascript_include_tag "iframeResizer.contentWindow.min" %> 
+  <%= javascript_include_tag "iframeResizer.contentWindow.min" %>
 <%- end %>
 <script>
   var ls = window.localStorage
@@ -144,7 +146,7 @@ setTimeout(ldinsp, 0);
       // we only need to know once that a human touched the screen, so we can stop listening now
       window.removeEventListener('touchstart', onFirstTouch, false);
     }, false);
-  } 
+  }
 </script>
 
 </body>

@@ -64,6 +64,7 @@
   <div id="container">
     <% if @partner && @partner.custom_logo? -%>
     <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
+     <span class="background-image" role="img" aria-label="Partner Logo"> </span>
       <% else -%>
       <div id="header">
         <% end -%>

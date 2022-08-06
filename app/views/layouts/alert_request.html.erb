@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -77,6 +76,7 @@ setTimeout(ldinsp, 0);
   <div id="container">
     <% if @partner && @partner.custom_logo? -%>
     <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
+     <span class="background-image" role="img" aria-label="Partner Logo"> </span>
       <% else -%>
       <div id="header">
         <% end -%>
