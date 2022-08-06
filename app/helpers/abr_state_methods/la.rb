@@ -1,89 +1,65 @@
 module AbrStateMethods::LA
   
   PDF_FIELDS = {
-    "Name": {
-      method: "full_name"
-    },
-    "Mothers Maiden Name": { sensitive: true },
-    "Residential Address": {
-      method: "full_address_1_line"
-    },
-    "NumberStreetCityStateZip Code": {}, #mailing address
-    "submitted_by": {},
-    "relationship_to_applicant": {},
-    "Parish": {},
-    "Ward_or_Precinct": {}, #this is optional - maybe we could delete it?
-    "Day_Phone": {
-      method: "phone"
-    },
-    "SSN_Last_4": { sensitive: true },
-    "Date_of_Birth": {
+
+    #changing date_of_birth_mm_dd_yyyy
+    'abr_date_of_birth_mm_dd_yyyy': {
       method: "date_of_birth_mm_dd_yyyy"
     },
-    "License_ID": { sensitive: true },
-    "on on": { #Primary election date
-      value: "11/13/2021"
-    },
-    "General_Election_Date": {
-      value: "12/10/2021"
-    },
-    "absent_from": { method: "absent_from_date" },
-    "absent_to": { method: "absent_to_date" },
-    "receive_for_one_elections": {
-      options: ["Off", "On"],
-      value: "Off"
-    },
-    "receive_for_all_elections": {
-      options: ["Off", "On"],
-      value: "On"
-    },
 
-    "already_approved": {
-      options: ["Off", "On"],
-      method: "reason_already"
-    },
-    "submitting_proof": {
-      options: ["Off", "On"],
-      method: "reason_submitting"
-    },
-    "homebound_submitting_proof": {
-      options: ["Off", "On"],
-      method: "reason_homebound_submitting"
-    },
+    "abr_email": {method: "email"},	
+    "abr_phone": {method: "phone"},	
+    "abr_first_name": {method: "first_name"},	
+    'abr_middle_initial': {:method=>"middle_initial"},
+    "abr_last_name": {method: "last_name"},	
+    "abr_name_suffix": {method: "name_suffix"},	
+    "abr_street_number": {method: "street_number"},	
+    "abr_street_name": {method: "street_name"},
+    "abr_unit": {method: "unit"},	
+    "abr_city": {method: "city"},	
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
+    'abr_zip': {method: "zip"},
+    
+    #"abr_full_name": {method:"full_name"},
+    #'abr_date_of_birth_yyyy':{ method: "date_of_birth_yyyy" },     
 
-    "receipt_type_email": {
-      options: ["Off", "On"],
-      method: "receipt_type_email"
-    },
-    "receipt_type_mail": {
-      options: ["Off", "On"],
-      method: "receipt_type_mail"
-    },
-    "receipt_type_fax": {
-      options: ["Off", "On"],
-      method: "receipt_type_fax"
-    },
+    "abr_county": {},
+    'abr_check_mailing_address':{options: ["Off", "On"]},
+    #"abr_absence_begin_date":{method:"absence_begin_date_string"},
+    #"abr_absence_end_date":{method:"absence_end_date_string"},
+    'abr_mailing_address_line_1': {method: 'insure_abr_mailing_address_line_1'},
+    'abr_mailing_unit': {method: 'insure_abr_mailing_unit'},
+    'abr_mailing_city':{method: 'insure_abr_mailing_city'},
+    'abr_mailing_state_abbrev':{method: 'insure_abr_mailing_state_abbrev'},
+    'abr_mailing_zip':{method: 'insure_abr_mailing_zip'},
 
 
-    "email": {
-      method: :email_if_email_receipt
+    #changing abr_middle_name2
+    'abr_mother_maiden': {
+      method: "abr_mother_maiden_or_na",
+      sensitive:true,
     },
-    "mailing_1": {
-      method: :mailing_1_if_mail_receipt
-    },
-    "mailing_2": {
-      method: :mailing_2_if_mail_receipt
-    },
-    "fax": {
-      method: :fax_if_fax_receipt
-    },
-    #voter_signature
-    #signature_date
+    'abr_last_4_ssn':{sensitive: true},
+    'abr_reason_selections':{options:["abr_reason_type1", "abr_reason_type2", "abr_reason_type3", "abr_reason_type4", "abr_reason_type5","abr_reason_type6","abr_reason_type7","abr_reason_type8","abr_reason_type9","abr_reason_type10","abr_reason_type11", "abr_reason_type12"]},
+    'abr_application_type_selections':{options:["abr_application_type1", "abr_application_type2"]},
+     'abr_absence_date_instructions':{},
+    "abr_absence_begin_date":{method:"absence_begin_date_string", sensitive:true},
+    "abr_absence_end_date":{method:"absence_end_date_string", sensitive:true},
+    'abr_election_type_selections':{},
+    'abr_election_type1':{method: "abr_election_type1_string"},
+    'abr_election_type2':{method: "abr_election_type2_string"},
+    'abr_assistant_check1':{},
+    'abr_assistant_name':{},
+    'abr_relationship1':{},
+    
     
   }
   
-  EXTRA_FIELDS = ["hand_delivered_or_faxed", "has_mailing_address","dln_soft_validation","reason","receipt_type", "mailing_address_1", "mailing_address_2", "fax_number"] 
-  
+  #EXTRA_FIELDS = ["hand_delivered_or_faxed", "abr_check_mailing_address","dln_soft_validation","reason","receipt_type", "mailing_address_1", "mailing_address_2", "fax_number"] 
+  EXTRA_FIELDS = ['abr_absence_begin_date_input','abr_absence_begin_date_input_mm','abr_absence_begin_date_input_dd','abr_absence_begin_date_input_yyyy','abr_absence_end_date_input', 'abr_absence_end_date_input_mm','abr_absence_end_date_input_dd','abr_absence_end_date_input_yyyy',
+  'abr_mailing_address_line_1_input',  'abr_mailing_city_input', 'abr_mailing_state_abbrev_input', 'abr_mailing_zip_input', 'abr_mailing_unit_input', 'abr_mother_maiden_input',
+'abr_election_type1_input', 'abr_election_type2_input']
+
   def reason_already
     if self.reason === "already"
       return "On"
@@ -111,13 +87,13 @@ module AbrStateMethods::LA
   end
   def mailing_1_if_mail_receipt
     if self.receipt_type.to_s === "mail"
-      return self.has_mailing_address == "1"  ? self.mailing_address_1 : self.address
+      return self.abr_check_mailing_address == "1"  ? self.mailing_address_1 : self.address
     end
     return ''
   end
   def mailing_2_if_mail_receipt
     if self.receipt_type.to_s === "mail"
-      return self.has_mailing_address == "1" ? self.mailing_address_2 : self.address_city_state_zip
+      return self.abr_check_mailing_address == "1" ? self.mailing_address_2 : self.address_city_state_zip
     end
     return ''
   end
@@ -150,7 +126,7 @@ module AbrStateMethods::LA
   
   def form_field_items
     [
-      {"Parish": {type: :select, required: true, include_blank: true, options: [
+      {"abr_county": {type: :select, required: true, include_blank: true, options: [
         "Acadia",
         "Allen",
         "Ascension",
@@ -216,25 +192,43 @@ module AbrStateMethods::LA
         "West Feliciana",
         "Winn",
       ]}},
-      {"Mothers Maiden Name": {required: true}},
-      {"id_instructions": {type: :instructions}},
-      {"SSN_Last_4": {min:4, max: 4}},
-      {"License_ID": {ui_regexp:"^0[0-9]{7}$"}},
-      {"reason": {type: :radio, options: ["already", "submitting", "homebound_submitting"]}},
 
-      {"receipt_type": {type: :radio, options: ["email", "mail", "fax"]}},
-      {"fax_number": {visible: "receipt_type_fax"}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"mailing_address_1": {visible: "has_mailing_address", required: :if_visible}},
-      {"mailing_address_2": {visible: "has_mailing_address", required: :if_visible}},
-      {"dln_soft_validation": {type: :hidden}},
+      {"abr_check_mailing_address": {type: :checkbox, options: ["Off", "On"]}},	
+
+
+      {"abr_mailing_address_line_1_input": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_state_abbrev_input": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_zip_input": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+
+    #changing abr_middle_name2
+    {'abr_mother_maiden_input': {}},
+    {'abr_last_4_ssn':{}},
+    {'abr_reason_selections':{type: :radio, required:true, options:["abr_reason_type1", "abr_reason_type2", "abr_reason_type3", "abr_reason_type4", "abr_reason_type5","abr_reason_type6","abr_reason_type7","abr_reason_type8","abr_reason_type9","abr_reason_type10","abr_reason_type11", "abr_reason_type12"]}},
+    {'abr_absence_date_instructions':{type: :instructions, visible: "abr_reason_selections_abr_reason_type2"}},
+    {"abr_absence_begin_date_input": {type: :date , required: :if_visible, visible: "abr_reason_selections_abr_reason_type2"}},
+    {"abr_absence_end_date_input": {type: :date, required: :if_visible, visible: "abr_reason_selections_abr_reason_type2"}},
+
+    {'abr_application_type_selections':{type: :radio, options:["abr_application_type1", "abr_application_type2"], visible: "abr_reason_selections_abr_reason_type1", required: :if_visible }},
+ 
+    {'abr_election_type_selections':{type: :instructions}},
+    {'abr_election_type1_input':{type: :checkbox, options: ["Off", "On"]}},
+    {'abr_election_type2_input':{type: :checkbox, options: ["Off", "On"]}},
+    {'abr_assistant_check1':{type: :checkbox, options: ["Off", "On"]}},	
+    {'abr_assistant_name':{required: :if_visible, visible: "abr_assistant_check1"}},
+    {'abr_relationship1':{required: :if_visible, visible: "abr_assistant_check1"}},
+
+
+
+
     ]
   end
   #e.g.
   # [
   #   {"Security Number": {required: true}},
-  #   {"State": {visible: "has_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
-  #   {"ZIP_2": {visible: "has_mailing_address", min: 5, max: 10}},
+  #   {"State": {visible: "abr_check_mailing_address", type: :select, options: GeoState.collection_for_select, include_blank: true, }},
+  #   {"ZIP_2": {visible: "abr_check_mailing_address", min: 5, max: 10}},
   #   {"identification": {
   #     type: :radio,
   #     required: true,
@@ -243,9 +237,89 @@ module AbrStateMethods::LA
   #   {"OR_2": {visible: "identification_ssn4", min: 4, max: 4, regexp: /\A\d{4}\z/}},
   # ]
   
+ #CTW new
 
-  
-  
-  
- 
+ def custom_form_field_validations
+
+
+  if self.abr_election_type1_input.to_s=="0" && self.abr_election_type2_input.to_s=="0"
+   errors.add("abr_election_type2_input",  custom_required_message(:abr_election_type2_input))
+  end
+
+  if self.abr_reason_selections.to_s == "abr_reason_type2" && !self.test_date(self.absence_begin_date_string.to_s)
+    errors.add("abr_absence_begin_date_input", custom_format_message("bad_date") )
+    #errors.add('absence_begin_date_input', self.address_begindate_mm_dd_yyyy.to_s)
+  end
+
+  if self.abr_reason_selections.to_s == "abr_reason_type2" && !self.test_date(self.absence_end_date_string.to_s)
+    errors.add("abr_absence_end_date_input", custom_format_message("bad_date") )
+    #errors.add('absence_end_date_input', self.address_enddate_mm_dd_yyyy.to_s)
+  end
+
+ end
+
+ def test_date(datestring)
+  begin
+    @mydate = Date.strptime(datestring, "%m/%d/%y")
+    return true
+  rescue ArgumentError
+    return false
+  end
 end
+
+
+  def date_field_string_mm_dd_yy(field_opts)
+    d = date_field_value(field_opts)
+    if d
+      return d&.strftime("%m/%d/%y")
+    end
+    rescue
+    nil
+  end
+
+  def absence_begin_date_string
+    date_field_string_mm_dd_yy(method: :abr_absence_begin_date_input)
+  end
+
+  def absence_end_date_string
+    date_field_string_mm_dd_yy(method: :abr_absence_end_date_input)
+  end
+  
+  def abr_mother_maiden_or_na
+    return  !self.abr_mother_maiden_input.blank? ? self.abr_mother_maiden_input.to_s : "N/A"
+  end
+
+  def abr_election_type1_string
+    return "11/8/2022" if self.abr_election_type1_input.to_s == "1"
+  end
+  
+  def abr_election_type2_string
+    return "12/10/2022" if self.abr_election_type2_input.to_s == "1"
+  end
+
+  def  insure_abr_mailing_address_line_1
+    return self.abr_check_mailing_address.to_s =="1" ? self.abr_mailing_address_line_1_input : self.address_line_1
+
+  end
+
+  def  insure_abr_mailing_unit
+    return self.abr_check_mailing_address.to_s =="1" ? self.abr_mailing_unit_input : self.unit
+
+  end
+
+  def  insure_abr_mailing_city
+    return self.abr_check_mailing_address.to_s =="1" ? self.abr_mailing_city_input : self.city
+  end
+
+  def  insure_abr_mailing_state_abbrev
+    return self.abr_check_mailing_address.to_s =="1" ? self.abr_mailing_state_abbrev_input : self.home_state_abbrev
+  end
+
+  def  insure_abr_mailing_zip 
+    return self.abr_check_mailing_address.to_s =="1" ? self.abr_mailing_zip_input : self.zip
+  end
+end
+
+
+ 
+
