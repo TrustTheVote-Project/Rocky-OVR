@@ -19,7 +19,8 @@ class PARegistrationRequest
     url = "/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=#{api_key}&sysparm_action=SETAPPLICATION&sysparm_Language=#{sysparm_language}"
 
     uri = URI.parse(server)
-    RequestLogSession.request_log_instance&.log_uri(uri)
+    uri_to_log = begin; URI.join(uri, url); rescue; uri; end;
+    RequestLogSession.request_log_instance&.log_uri(uri_to_log)
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
