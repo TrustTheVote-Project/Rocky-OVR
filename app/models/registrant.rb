@@ -934,6 +934,10 @@ class Registrant < ActiveRecord::Base
   def submitted_via_state_api?
      (!skip_state_flow? && existing_state_registrant && existing_state_registrant.submitted?) || is_grommet?
   end
+
+  def submitted_via_state_api_with_default_key?
+    submitted_via_state_api? && existing_state_registrant && existing_state_registrant.respond_to?(:missing_partner_api_key?) && existing_state_registrant.missing_partner_api_key?
+  end
   
   def first_registration?
     if is_grommet? && has_grommet_submission?
