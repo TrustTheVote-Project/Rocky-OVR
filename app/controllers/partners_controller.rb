@@ -152,17 +152,17 @@ SCRIPT
 SCRIPT
 
     @iframe_html = "<iframe src=\"https://register.rockthevote.com/?partner=#{partner_id}&source=iframe\" width=\"100%\" height=\"1200\" marginheight=\"0\" frameborder=\"0\"></iframe>"
-    
+
     @iframe_html_b = "<iframe src=\"https://register2.rockthevote.com/registrants/map/?source=iframe&partner=#{partner_id}\" width=\"100%\" height=\"1200\" marginheight=\"0\" frameborder=\"0\"></iframe>"
 
     @share_link_facebook = "https://www.facebook.com/sharer/sharer.php?u=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=fb-share"
-    
+
     @share_link_facebook_b = "https://www.facebook.com/sharer/sharer.php?u=https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=fb-share"
     @share_link_twitter = "https://twitter.com/intent/tweet?text=Register%20to%20Vote%20today%20https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
     @share_link_twitter_b = "https://twitter.com/intent/tweet?text=Register%20to%20Vote%20today%20https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
     @share_link_google = "https://plus.google.com/share?url=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=G%2B-share"
     @share_link_google_b = "https://plus.google.com/share?url=https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=G%2B-share"
-        
+
 
 
   end
@@ -176,7 +176,7 @@ SCRIPT
     #@stats_by_age = @partner.registration_stats_age
     #@stats_by_party = @partner.registration_stats_party
   end
-  
+
   def reports
     @reports = Report.where(partner_id: @partner.id).order("created_at DESC")
   end
@@ -189,29 +189,29 @@ SCRIPT
     else
       @partner.generate_registrants_csv(start_date, end_date)
     end
-    redirect_to reports_partner_path(@partner) #download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})    
+    redirect_to reports_partner_path(@partner) #download_csv_partner_url({"generate_grommet"=>params[:generate_grommet]})
   end
-  
+
   def canvassing_shift_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
-    
+
     @partner.generate_canvassing_shift_csv(start_date, end_date)
     redirect_to reports_partner_path(@partner)
   end
-  
+
   def grommet_registrant_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
-        
+
     @partner.generate_grommet_registrants_csv(start_date, end_date)
     redirect_to reports_partner_path(@partner)
   end
-  
+
   def grommet_shift_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
-    
+
     @partner.generate_grommet_shift_report(start_date, end_date)
     redirect_to reports_partner_path(@partner)
   end
@@ -219,15 +219,15 @@ SCRIPT
   def abr_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
-    
+
     @partner.generate_abr_report(start_date, end_date)
     redirect_to reports_partner_path(@partner)
   end
-  
+
   def lookup_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
-    
+
     @partner.generate_lookup_report(start_date, end_date)
     redirect_to reports_partner_path(@partner)
   end
@@ -235,7 +235,7 @@ SCRIPT
   def alert_request_report
     start_date = params[:start_date].blank? ? nil : Date.strptime(params[:start_date], '%m/%d/%Y')
     end_date = params[:end_date].blank? ? nil : Date.strptime(params[:end_date], '%m/%d/%Y')
-    
+
     @partner.generate_alert_request_report(start_date, end_date)
     redirect_to reports_partner_path(@partner)
   end
@@ -267,7 +267,7 @@ SCRIPT
   helper_method :partner_widget_url
 
   def partner_params
-    params[:partner] && !params[:partner].empty? ? 
+    params[:partner] && !params[:partner].empty? ?
       params.require(:partner).permit(Partner.permitted_attributes)
       :
       nil
