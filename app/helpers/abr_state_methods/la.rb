@@ -40,7 +40,7 @@ module AbrStateMethods::LA
       sensitive:true,
     },
     'abr_last_4_ssn':{sensitive: true},
-    'abr_reason_selections':{options:["abr_reason_type1", "abr_reason_type2", "abr_reason_type3", "abr_reason_type4", "abr_reason_type5","abr_reason_type6","abr_reason_type7","abr_reason_type8","abr_reason_type9","abr_reason_type10","abr_reason_type11", "abr_reason_type12"]},
+    'abr_reason_selections':{options:["abr_reason1", "abr_reason2", "abr_reason3", "abr_reason4", "abr_reason5","abr_reason6","abr_reason7","abr_reason8","abr_reason9","abr_reason10","abr_reason11", "abr_reason12"]},
     'abr_application_type_selections':{options:["abr_application_type1", "abr_application_type2"]},
      'abr_absence_date_instructions':{},
     "abr_absence_begin_date":{method:"absence_begin_date_string", sensitive:true},
@@ -205,12 +205,12 @@ module AbrStateMethods::LA
     #changing abr_middle_name2
     {'abr_mother_maiden_input': {}},
     {'abr_last_4_ssn':{}},
-    {'abr_reason_selections':{type: :radio, required:true, options:["abr_reason_type1", "abr_reason_type2", "abr_reason_type3", "abr_reason_type4", "abr_reason_type5","abr_reason_type6","abr_reason_type7","abr_reason_type8","abr_reason_type9","abr_reason_type10","abr_reason_type11", "abr_reason_type12"]}},
-    {'abr_absence_date_instructions':{type: :instructions, visible: "abr_reason_selections_abr_reason_type2"}},
-    {"abr_absence_begin_date_input": {type: :date , required: :if_visible, visible: "abr_reason_selections_abr_reason_type2"}},
-    {"abr_absence_end_date_input": {type: :date, required: :if_visible, visible: "abr_reason_selections_abr_reason_type2"}},
+    {'abr_reason_selections':{type: :radio, required:true, options:["abr_reason1", "abr_reason2", "abr_reason3", "abr_reason4", "abr_reason5","abr_reason6","abr_reason7","abr_reason8","abr_reason9","abr_reason10","abr_reason11", "abr_reason12"]}},
+    {'abr_absence_date_instructions':{type: :instructions, visible: "abr_reason_selections_abr_reason2"}},
+    {"abr_absence_begin_date_input": {type: :date , required: :if_visible, visible: "abr_reason_selections_abr_reason2"}},
+    {"abr_absence_end_date_input": {type: :date, required: :if_visible, visible: "abr_reason_selections_abr_reason2"}},
 
-    {'abr_application_type_selections':{type: :radio, options:["abr_application_type1", "abr_application_type2"], visible: "abr_reason_selections_abr_reason_type1", required: :if_visible }},
+    {'abr_application_type_selections':{type: :radio, options:["abr_application_type1", "abr_application_type2"], visible: "abr_reason_selections_abr_reason1", required: :if_visible }},
  
     {'abr_election_type_selections':{type: :instructions}},
     {'abr_election_type1_input':{type: :checkbox, options: ["Off", "On"]}},
@@ -246,12 +246,12 @@ module AbrStateMethods::LA
    errors.add("abr_election_type2_input",  custom_required_message(:abr_election_type2_input))
   end
 
-  if self.abr_reason_selections.to_s == "abr_reason_type2" && !self.test_date(self.absence_begin_date_string.to_s)
+  if self.abr_reason_selections.to_s == "abr_reason2" && !self.test_date(self.absence_begin_date_string.to_s)
     errors.add("abr_absence_begin_date_input", custom_format_message("bad_date") )
     #errors.add('absence_begin_date_input', self.address_begindate_mm_dd_yyyy.to_s)
   end
 
-  if self.abr_reason_selections.to_s == "abr_reason_type2" && !self.test_date(self.absence_end_date_string.to_s)
+  if self.abr_reason_selections.to_s == "abr_reason2" && !self.test_date(self.absence_end_date_string.to_s)
     errors.add("abr_absence_end_date_input", custom_format_message("bad_date") )
     #errors.add('absence_end_date_input', self.address_enddate_mm_dd_yyyy.to_s)
   end

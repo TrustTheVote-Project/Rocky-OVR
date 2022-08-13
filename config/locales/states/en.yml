@@ -1186,18 +1186,18 @@ en:
           abr_last_4_ssn:	Enter the last four digits of your social security number
           abr_reason_selections:	Select your reason for voting by mail
           abr_reason_selections__options:	
-            abr_reason_type1:	I am a senior citizen (65 years of age or older).
-            abr_reason_type2:	I will be temporarily absent or expect to be temporarily outside my state or parish during the early voting period and on election day.
-            abr_reason_type3:	I will be working offshore during the early voting period and on election day.
-            abr_reason_type4:	I am a resident of a nursing home, or a veterans’ home or an extended hospital stay for physical disability.
-            abr_reason_type5:	"I am a student, instructor, or professor (or spouse/dependent) located and living outside my parish. <br> Note: Students voting for the first time must enclose a copy of student ID or a bill."
-            abr_reason_type6:	I am a member of the clergy (or spouse/dependent) assigned outside of my parish.
-            abr_reason_type7:	I moved more than 100 miles from the parish seat of my former residence after the voter registration deadline (30 days before the election).
-            abr_reason_type8:	I am involuntarily confined in an institution for mental treatment outside my parish and I am not interdicted and not judicially declared incompetent.
-            abr_reason_type9:	"I expect to be hospitalized on election day and I did not know about my hospitalization until after early voting had expired; or I was hospitalized during early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day. <br> You must enclose proof of hospitalization."
-            abr_reason_type10:	"I am incarcerated and am not under imprisonment for conviction of a felony. <br>You must enclose a certification by sheriff."
-            abr_reason_type11:	I am a participant in the Address Confidentiality Program.
-            abr_reason_type12:	I am a juror and will be sequestered during early voting and election day.
+            abr_reason1:	I am a senior citizen (65 years of age or older).
+            abr_reason2:	I will be temporarily absent or expect to be temporarily outside my state or parish during the early voting period and on election day.
+            abr_reason3:	I will be working offshore during the early voting period and on election day.
+            abr_reason4:	I am a resident of a nursing home, or a veterans’ home or an extended hospital stay for physical disability.
+            abr_reason5:	"I am a student, instructor, or professor (or spouse/dependent) located and living outside my parish. <br> Note: Students voting for the first time must enclose a copy of student ID or a bill."
+            abr_reason6:	I am a member of the clergy (or spouse/dependent) assigned outside of my parish.
+            abr_reason7:	I moved more than 100 miles from the parish seat of my former residence after the voter registration deadline (30 days before the election).
+            abr_reason8:	I am involuntarily confined in an institution for mental treatment outside my parish and I am not interdicted and not judicially declared incompetent.
+            abr_reason9:	"I expect to be hospitalized on election day and I did not know about my hospitalization until after early voting had expired; or I was hospitalized during early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day. <br> You must enclose proof of hospitalization."
+            abr_reason10:	"I am incarcerated and am not under imprisonment for conviction of a felony. <br>You must enclose a certification by sheriff."
+            abr_reason11:	I am a participant in the Address Confidentiality Program.
+            abr_reason12:	I am a juror and will be sequestered during early voting and election day.
           abr_application_type_selections:	Would you like to receive an absentee by mail ballot automatically for the election date(s) on this application AND all future elections?
           abr_application_type_selections__options:
             abr_application_type1:	Send me an absentee ballot for the election dates I choose and all future elections.
