@@ -548,9 +548,10 @@ en:
             <a target='_blank' href='https://ivote.de.gov/VoterView'>https://ivote.de.gov/VoterView</a></p>
           step_2_header: All registered voters in Delaware can request a vote by mail ballot
           step_2_instructions: |-
-            <p>If you are sick or disabled, you can request an absentee ballot, which will allow you to receive and return your absentee ballot electronically if necessary.</p>
-
-            <p>To request an absentee ballot, go to <a href='https://ivote.de.gov/VoterView' target="_blank">https://ivote.de.gov/VoterView</a> and lookup your record, then click on "Request an Absentee Ballot."</p>
+            <p>All registered voters in Delaware can request a vote by mail ballot using this tool.</p>
+            <p>If you are sick or disabled, you may want to request an absentee ballot using the Delaware portal. This will allow you to receive and return your absentee ballot electronically if necessary.</p>
+            <p>To do this, go to <a href='https://ivote.de.gov/VoterView' target="_blank">https://ivote.de.gov/VoterView</a> and lookup your record, then click on "Request an Absentee Ballot."</p>
+            <p>Continue below to request a vote by mail ballot.</p>
           step_3_header: Prepare your Delaware PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
