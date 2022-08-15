@@ -1288,7 +1288,7 @@ en:
             <p>If you do not have one or both of those items, you can continue to fill out, print, sign and mail a paper request form.</p>
         registration:
           has_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
-          has_no_state_license: I have a current MD state identification card or driver's license, and a signature on file with the DMV.
+          has_no_state_license: I do not have a current MD state identification card or driver's license, and a signature on file with the DMV.
       me:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
