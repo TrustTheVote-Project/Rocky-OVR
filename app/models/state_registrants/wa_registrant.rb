@@ -79,8 +79,6 @@ class StateRegistrants::WARegistrant < StateRegistrants::Base
   end
 
   validates_with WARegistrantValidator
-  @use_newui2020  = true # CTW Not correct -- 
-
   
   serialize :wa_submission_error, Array
 
