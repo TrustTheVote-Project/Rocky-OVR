@@ -562,8 +562,8 @@ class ReportGenerator
   def self.save_csv_to_s3(contents, file_name, voteready: false)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
-      :aws_access_key_id        => ENV['AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key    => ENV['AWS_SECRET_ACCESS_KEY'],
+      :aws_access_key_id        => voteready ? ENV['PDF_AWS_ACCESS_KEY_ID'] : ENV['AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => voteready ? ENV['PDF_AWS_SECRET_ACCESS_KEY'] : ENV['AWS_SECRET_ACCESS_KEY'],
       :region                   => 'us-west-2'
     })
     bucket_name = voteready ? "rtv-to-voteready" : "rtv-reports-from-rocky"
