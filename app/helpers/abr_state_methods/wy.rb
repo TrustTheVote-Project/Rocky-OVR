@@ -15,8 +15,7 @@ module AbrStateMethods::WY
   "abr_home_state_abbrev": {method: "home_state_abbrev"},	
   "abr_zip": {method: "zip"},	
   'date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },
-  "abr_phone":{mehtod:"phone"},
-
+  
 
 
   "abr_check_mailing_address":{},

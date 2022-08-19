@@ -142,6 +142,7 @@ Rails.application.routes.draw do
   resources "translations", :only=>[:index, :show] do
     collection do
       get :all_languages
+      get :export
     end
     member do
       post :submit

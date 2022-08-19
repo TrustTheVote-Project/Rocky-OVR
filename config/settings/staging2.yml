@@ -110,12 +110,11 @@ ovr_states:
     languages:
       - en
   WA:
+    api_settings:
+      api_url: "https://fake-wa-endpoint.herokuapp.com:443"
+      api_username: "RTVAVR"
     languages:
       - en
-      - es
-      - zh
-      - vi
-      - ko
   VA:
     languages:
       - en
