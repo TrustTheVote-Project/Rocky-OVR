@@ -546,18 +546,12 @@ en:
           status_check_instructions:  |-
             <p>
             <a target='_blank' href='https://ivote.de.gov/VoterView'>https://ivote.de.gov/VoterView</a></p>
-          step_2_header: You must have a reason to request an absentee ballot
+          step_2_header: All registered voters in Delaware can request a vote by mail ballot
           step_2_instructions: |-
-            <p>You can request an absentee ballot for the following reasons:</p>
-            <ul>
-            <li>You are in the public service of the United States or the State of Delaware and are unable to come to the polls, or are the spouse or dependent of such person.</li>
-            <li>Your business or occupation prevents you from coming to the polls.</li>
-            <li>You are providing care to a parent, spouse or child who is living at home and requires constant care, students.</li>
-            <li>You are incarcerated. </li>
-            <li>You are sick, or temporarily or permanently physically disabled.</li>
-            <li>You are on vacation.</li>
-            <li>The tenets or teachings of your religion prevent you from coming to the polls.</li>
-            </ul>
+            <p>All registered voters in Delaware can request a vote by mail ballot using this tool.</p>
+            <p>If you are sick or disabled, you may want to request an absentee ballot using the Delaware portal. This will allow you to receive and return your absentee ballot electronically if necessary.</p>
+            <p>To do this, go to <a href='https://ivote.de.gov/VoterView' target="_blank">https://ivote.de.gov/VoterView</a> and lookup your record, then click on "Request an Absentee Ballot."</p>
+            <p>Continue below to request a vote by mail ballot.</p>
           step_3_header: Prepare your Delaware PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
@@ -567,7 +561,7 @@ en:
             vote by mail ballot too.
           email_instructions: You may also sign, scan and email your form.
         abr_form_fields:
-          abr_ssn_number:		Enter your Social Security Number (optional)         
+          abr_last_4_ssn:		Enter the last four digits of your social security number         
           abr_check_mailing_address:		I get my mail at a different address from the one on the previous page
           abr_mailing_address_line_1:		Mailing address
           abr_mailing_unit:		Unit
@@ -577,36 +571,15 @@ en:
               
           abr_address_line_2:		Where do you plan to be on election day?
           abr_address_line_2__hint: Enter the city and state or city and country.
-          abr_reason_selections:		Select your reason for voting by mail
-          abr_reason_selections__options:		
-            abr_reason1:	I am in public service of the U.S. or the State of Delaware, or I am a spouse or dependent residing with that person, in the residing outside of Delaware. This also applies to members of the Uniformed Services.
-            abr_reason2:	"I am unable to make it to the polls due to:
-              The nature of my business or occupation, providing care to a parent, spouse or child who is living at home and requires constant care, being a student, or because I am otherwise eligible and am incarcerated."
-            abr_reason3:	I am sick, or temporarily or permanently physically disabled.
-            abr_reason4:	I am absent from the district while on vacation.
-            abr_reason5: Due to the tenets or teachings of my religion.
-          abr_application_type_check1:		I would like to become a permanent absentee voter.
-          abr_application_type_check1__hint:	"Because of the reason you selected for requesting an absentee ballot, you
-            can become a permanent absentee voter and automatically receive an absentee ballot for all elections for which you are eligible to vote."
           abr_election_type_instructions:		You can use this form for Primary, General and Special elections. <br> See <a href="https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf" target="_blank">https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf</a> for School District elections, and contact your local election official for an application for Municipal elections.
           abr_election_type_selections:		Select the election(s) you'd like to request a ballot for.
           abr_election_type1:	All Elections in 2022
-          abr_election_type2:	|-
-            Primary<br/><br/>
-            (You will receive the ballot for the party you are registered with.)<br><br/>
-            Only Democrats can vote in the Democratic Primary and only Republicans can vote in the Republican Primary.
-          abr_election_type3:	General
-          abr_election_type4:		Special
+          abr_election_type2:	Primary (9/13/2022)
+          abr_election_type3:	General Election (11/8/2022)
+          abr_election_type4:		Special Election occurring on or before 12/31/22
           abr_election_type4__required_message: At least one election choice is required
           abr_party:		What political party are you affiliated with?
           abr_party__hint:	'You may have picked a political party when you registered. To update your registration, submit a new voter registration.'
-          abr_delivery_address_selections:		How would you like your ballot delivered?
-          abr_delivery_address_selections__hint:		Because you selected being sick or temporarily or permanently disabled, you can elect how to have your ballot delivered to you.
-          abr_delivery_address_selections__options:		
-            abr_delivery_address_type1:	Send my ballot via postal mail
-            abr_delivery_address_type2:	Send my ballot via postal email
-            abr_delivery_address_type3:	Send my ballot via postal fax
-          abr_fax_number:		Enter your fax number
       fl:
         abr:
           splash:
