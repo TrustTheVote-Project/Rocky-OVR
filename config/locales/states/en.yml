@@ -536,6 +536,7 @@ en:
           button: Finish your<br/>vote by mail request<br/> online with Delaware.
           confirm: Check if you meet your state's requirements, then click the button
             below to request your vote by mail ballot through the state's site.
+          instructions_header: Requesting a Vote by Mail Ballot in Delaware
         abr:
           request_deadline: |-
             <p>Your application for an absentee ballot must be received by</p>
