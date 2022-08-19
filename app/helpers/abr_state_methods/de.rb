@@ -61,7 +61,7 @@ module AbrStateMethods::DE
       {'abr_election_type2': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type3': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type4': {type: :checkbox, options: ['Off', 'On']}},
-      {'abr_party': {visible_any: "abr_election_type1,abr_election_type2,abr_election_type4", required: :if_visible}},
+      {'abr_party': {visible_any: "abr_election_type1 abr_election_type2 abr_election_type4", required: :if_visible}},
       
 
     
