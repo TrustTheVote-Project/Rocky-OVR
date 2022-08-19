@@ -242,6 +242,9 @@ ovr_states:
       api_url: https://mvicapi.sos.state.mi.us
     
   WA:
+    api_settings:
+      api_url: "https://avr.votewa.gov/VoteWAExternalAPI/api/DOLRegister"
+      api_username: "RTVAVR"    
     languages:
       - en
 
