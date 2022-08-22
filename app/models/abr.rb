@@ -391,7 +391,8 @@ class Abr < ActiveRecord::Base
   end
   
   def should_check_registration?
-    self.votercheck.to_s.strip.downcase == 'yes' && partner_enabled_for_votercheck?
+    # self.votercheck.to_s.strip.downcase == 'yes' && 
+    partner_enabled_for_votercheck?
   end
   
   def partner_enabled_for_votercheck?

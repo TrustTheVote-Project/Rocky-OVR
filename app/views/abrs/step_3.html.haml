@@ -15,18 +15,6 @@
   
   
 - else 
-  :javascript
-    $(document).ready(function() {
-      var section = $(".step_3_form_fields");
-      $("#confirm_match").click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        section.show();
-        $(".reject").hide();
-      })
-    
-    })
-  
   %h2{role: "heading", "aria-level": "2"}= t("states.custom.#{@abr.i18n_key}.abr.step_3_header", default: t('txt.abr.step_3_header', {state: @abr.home_state_name}))
   .intro-message
     = t("states.custom.#{@abr.i18n_key}.abr.step_3_instructions", default:t('txt.abr.step_3_instructions')).html_safe
@@ -35,15 +23,8 @@
   = form_for(@abr) do |form|
     = render partial: 'step', locals: { form: form }
 
-    - if @abr.should_check_registration? && @abr.last_check.is_match?
-      %p= t('txt.abr.match.confirm')
-      = render partial: 'catalist_lookup', locals: { catalist_lookup: @abr.last_check}
-      .confirm#confirm_match
-        = t('txt.abr.match.confirm_yes').html_safe      
-      .reject
-        = t('txt.abr.match.confirm_no', registration_url: registration_abr_path(@abr), back_url: step_2_abr_path(@abr)).html_safe
-  
-    .step_3_form_fields{style: @abr.should_check_registration? && @abr.last_check.is_match? ? "display: none" : ''}
+    
+    .step_3_form_fields
       = render partial: "state_fields", locals: {form: form}
   
       - if @abr.collect_signature?

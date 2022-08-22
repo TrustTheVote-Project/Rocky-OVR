@@ -318,7 +318,7 @@ class Report < ActiveRecord::Base
   def generate_abr_report(start=0, csv_method=:to_csv_array)
     distribute_reads(failover: false) do
       return CSV.generate do |csv|
-        selector.order(:id).offset(start).limit(THRESHOLD).each do |abr|
+        selector.includes(abrs_catalist_lookups: [:catalist_lookup]).order(:id).offset(start).limit(THRESHOLD).each do |abr|
           csv << abr.send(csv_method)
         end
       end

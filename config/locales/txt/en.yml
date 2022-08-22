@@ -35,16 +35,31 @@ en:
       
       register: Register to Vote
       go_back: Try again with different information
-      check_again: |-
+      no_match_intro:  |-
         <p>%{first_name}, our records did not show that you're registered to vote at 
         %{address}. If this doesn't seem right, please check directly 
         with your state.</p>
-        <p>There are several possible reasons we couldn't find your registration, which include:</p>
+        
+      check_again: |-
+        <p>There are several possible reasons we couldn't find your registration.</p>
         <ol>
         <li>You registered to vote or updated your registration recently. 
         We use national voter records that are updated less frequently than your 
         state's records. Our last update from 
-        %{state} was on %{state_date}.</li>
+        %{state} was on %{state_date}. If you registered more recently than this, you can check on your registration
+        <a href="%{state_url}">directly with %{state}</a></li>
+        <li>You used a nickname or entered your information incorrectly. Try again with 
+        your full legal name and no abbreviations.</li>
+        <li>You are not registered to vote.</li>
+        </ol>
+      check_again_no_link: |-
+        <p>There are several possible reasons we couldn't find your registration.</p>
+        <ol>
+        <li>You registered to vote or updated your registration recently. 
+        We use national voter records that are updated less frequently than your 
+        state's records. Our last update from 
+        %{state} was on %{state_date}. If you registered more recently than this, you can check on your registration
+        directly with %{state}</li>
         <li>You used a nickname or entered your information incorrectly. Try again with 
         your full legal name and no abbreviations.</li>
         <li>You are not registered to vote.</li>
@@ -87,6 +102,10 @@ en:
       step_2_header: Where are you registered to vote?
       step_2_instructions: "<p>We'll use this information to determine how you can
         request your absentee ballot.</p>"
+      step_2_lookup: |-
+        <p>
+        We'll use this information to verify your voter registration and determine how you can request your absentee ballot.
+        </p>
       step_3_header: Prepare your %{state} PDF Absentee Request Form
       step_3_instructions: "<p>Please fill out the fields below so we can prepare
         your PDF absentee request form.</p>"
@@ -164,13 +183,13 @@ en:
       match:
         confirm: It looks like you are registered to vote. Please confirm that this
           is you.
-        confirm_yes: "<p><a>Yes, this is me. I want to continue requesting an absentee
-          ballot.</a></p>"
-        confirm_no: <p>No, this is not me.</p><ul><li>I want to <a href="%{registration_url}">start
-          a new registration</a>.</li><li>I want to change my information and <a href="%{back_url}">try
-          again</a>.</li><li>I know I am registered to vote at my current address
-          and would like to continue.</li></ul>
+        confirm_yes: "Yes, this is me. I want to continue requesting an absentee
+          ballot."
+        confirm_no: <h3>No, this is not me.</h3>
         address: 'Address:'
+      no_match_intro: <p>It's important that you are properly registered before you request an absentee ballot in %{state}.</p>
+      no_match_options: <p>Select the best option to continue. If you're sure that your information is correct or you've checked with your state, continue to request an absentee ballot.</p>
+      continue_no_match: Continue with my absentee ballot request
       not_registered_header: Voter Registration Not Found
       not_registered_instructions: "<p>It looks like you don't have an active voter
         registration record in %{state_name}.</p>"

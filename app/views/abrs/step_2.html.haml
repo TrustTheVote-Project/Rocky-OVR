@@ -7,8 +7,13 @@
 %h2{role: "heading", "aria-level": "2"}
   = t('txt.abr.step_2_header', state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip)).html_safe
 
-.intro-message 
-  = t('txt.abr.step_2_instructions', state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip)).html_safe
+- if @abr.should_check_registration? 
+  .intro-message 
+    = t('txt.abr.step_2_lookup').html_safe
+- else
+  .intro-message 
+    = t('txt.abr.step_2_instructions', state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip)).html_safe
+
 
 = form_for(@abr) do |form|
   = render partial: 'step', locals: { form: form }

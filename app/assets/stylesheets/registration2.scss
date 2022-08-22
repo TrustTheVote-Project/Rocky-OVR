@@ -705,6 +705,7 @@ body {
   }
   
   &.lookup span.rollover_button a,
+  &.abr span.rollover_button a,
   .continue_shift .rollover_button a,
   .download .rollover_button a {
     background-color: #fff;
@@ -867,7 +868,7 @@ body {
       }
     }
   }
-  &.lookup, &.ballot-status-check, &.alert_request {
+  &.lookup, &.ballot-status-check, &.alert_request, &.abr {
     span.rollover_button {
       display: block;
       text-align: center;
@@ -971,7 +972,7 @@ body {
       }
     }
   }
-  &.lookup, &.alert_request {    
+  &.lookup, &.alert_request, &.abr {    
     #confirm_match {
       padding-top: 1em;
       p {
