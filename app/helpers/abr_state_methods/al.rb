@@ -133,8 +133,8 @@ module AbrStateMethods::AL
     },
     "abr_election_type_selections": {
       options: [
-        "abr_election_type1",
-        "abr_election_type2",
+       # "abr_election_type1",
+       # "abr_election_type2",
         "abr_election_type3",
         "abr_election_type4",
       ]
@@ -262,9 +262,9 @@ module AbrStateMethods::AL
       {"ZIP_1": {visible: "has_mailing_address", min: 5, max: 10}}, 
 
       {"abr_election_type_selections": { type: :radio, required: true }},
-      {"abr_primary_type_selections1": { type: :radio, visible: "abr_election_type_selections_abr_election_type1", required: :if_visible, }},
+      #{"abr_primary_type_selections1": { type: :radio, visible: "abr_election_type_selections_abr_election_type1", required: :if_visible, }},
       {"abr_primary_type4_name": { required: :if_visible, visible: "abr_primary_type_selections1_abr_primary_type3" }},
-      {"abr_primary_type_selections2": { type: :radio, visible: "abr_election_type_selections_abr_election_type2", required: :if_visible,  }},
+      #{"abr_primary_type_selections2": { type: :radio, visible: "abr_election_type_selections_abr_election_type2", required: :if_visible,  }},
       {"abr_primary_type8_name": { required: :if_visible, visible: "abr_primary_type_selections2_abr_primary_type7"}},
       {"abr_election_type4_name": { required: :if_visible, visible: "abr_election_type_selections_abr_election_type4" }},
       {"abr_application_type_check1": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type4"}},

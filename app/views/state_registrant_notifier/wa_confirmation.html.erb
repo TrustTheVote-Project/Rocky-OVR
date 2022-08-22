@@ -1,0 +1,29 @@
+<style type="text/css">
+<!--
+.boxtext {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  line-height: 1.5em;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+-->
+</style>
+
+<%= I18n.t('email.wa_confirmation.body.greeting', :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %> <br><br>
+
+
+<%= I18n.t('email.wa_confirmation.body.main', 
+  :home_state_email_instructions => @home_state_email_instructions,
+  :registrant_home_state_name => @registrant_home_state_name,
+  :registrar_address=>@registrar_address,
+  #:registrar_phone=>@registrar_phone,
+  :state_abbr=>@state_abbr,
+  #:registrar_url=>@registrar_url, 
+  :locale => @locale).html_safe %>
+
+<hr style="margin: 20px 0;" />
+
+
+<%= I18n.t('email.wa_confirmation.body.footer', :locale => @locale).html_safe %>

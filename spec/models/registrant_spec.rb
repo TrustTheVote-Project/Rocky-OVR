@@ -90,13 +90,13 @@ describe Registrant do
   end
   
   describe "finish_iframe_url" do
-    it "should be the default url with email address and partner ID passed in" do
+    it "should be the default url" do
       r = FactoryGirl.create(:step_5_registrant)
-      r.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en&email=#{r.email_address}&partner_id=#{r.partner.id}"
+      r.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en"
     end
     it "should specify the locale and include tracking and source when present" do
       r = FactoryGirl.create(:step_5_registrant, :locale=>'es', :tracking_source=>'sourceval', :tracking_id=>'trackingval')
-      r.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=es&email=#{r.email_address}&partner_id=#{r.partner.id}&source=sourceval&tracking=trackingval"
+      r.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=es&source=sourceval&tracking=trackingval"
     end
     it "uses a partner's iframe url as base for whitelabeled partners with non-blank values" do
       p1 = FactoryGirl.create(:partner, :whitelabeled=>false, :finish_iframe_url=>"https://www.google.com")
@@ -110,11 +110,11 @@ describe Registrant do
       r3 = FactoryGirl.create(:step_5_registrant, :partner=>p3)
       r4 = FactoryGirl.create(:step_5_registrant, :partner=>p4)
       
-      r1.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en&email=#{r1.email_address}&partner_id=#{r1.partner.id}"
-      r2.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en&email=#{r2.email_address}&partner_id=#{r2.partner.id}"
-      r3.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en&email=#{r3.email_address}&partner_id=#{r3.partner.id}"
+      r1.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en"
+      r2.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en"
+      r3.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en"
       
-      r4.finish_iframe_url.should == "#{r4.partner.finish_iframe_url}?locale=en&email=#{r4.email_address}&partner_id=#{r4.partner.id}"
+      r4.finish_iframe_url.should == "#{r4.partner.finish_iframe_url}?locale=en"
       
     end
   end

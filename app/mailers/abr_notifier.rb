@@ -126,7 +126,7 @@ class AbrNotifier < Notifier
     @abr_home_state_name = abr.home_state_name.to_s.html_safe
     @abr_home_state_system_name = abr.home_state_system_name.to_s.html_safe
     @abr_home_state_abbrev = abr.home_state_abbrev.to_s.html_safe
-    @rtv_link = "<strong><a href=\"https://register.rockthevote.com/?partner=#{abr.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
+    @rtv_link = "<strong><a href=\"https://register.rockthevote.com/absentee?partner=#{abr.partner_id}&source=email-#{kind}\">register.rockthevote.com/absentee</a></strong>".html_safe
     @home_state_email_instructions = abr.home_state_email_instructions.blank? ? '' : (abr.home_state_email_instructions + "<br/><br/>").to_s.html_safe
 
     partner = abr.partner
