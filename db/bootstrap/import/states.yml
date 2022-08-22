@@ -3,6 +3,7 @@ defaults:
   participating: true
   not_participating_tooltip: blank
   requires_race: false
+  optional_party: false
   race_tooltip: not_required_but_appreciated_with_state_name
   parties:
   - democratic
@@ -442,7 +443,7 @@ record_28:
   sos_url: https://www.nvsos.gov/sos/elections
   registration_deadline: nevada
   id_length_min: '4'
-  online_registration_url: https://www.registertovotenv.gov/?source=rtv&utm_source=rtv&utm_medium=rtv&utm_campaign=rtv
+  online_registration_url: https://registertovote.nv.gov/?source=rtv&utm_source=rtv&utm_medium=rtv&utm_campaign=rtv
   sub_18: once_turned_17
 record_29:
   abbreviation: NH
@@ -638,7 +639,8 @@ record_40:
 record_41:
   abbreviation: SD
   name: South Dakota
-  requires_party: true
+  requires_party: false
+  optional_party: true
   party_tooltip: south_dakota
   parties:
   - democratic

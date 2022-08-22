@@ -387,6 +387,7 @@ ActiveRecord::Schema.define(version: 2022_08_08_141540) do
     t.string "abr_status_check_url"
     t.string "abr_track_ballot_url"
     t.boolean "abr_pdf_enabled"
+    t.boolean "optional_party"
   end
 
   create_table "grommet_requests", force: :cascade do |t|

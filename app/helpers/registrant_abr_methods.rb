@@ -19,8 +19,7 @@ module RegistrantAbrMethods
     if self.partner && !self.partner.primary? && self.partner.whitelabeled? && !self.partner.finish_iframe_url.blank?
       base_url = self.partner.finish_iframe_url
     end
-    url = "#{base_url}?locale=#{self.locale}&email=#{self.email_address}"
-    url += "&partner_id=#{self.partner.id}" if !self.partner.nil?
+    url = "#{base_url}?locale=#{self.locale}"
     url += "&source=#{self.tracking_source}" if !self.tracking_source.blank?
     url += "&tracking=#{self.tracking_id}" if !self.tracking_id.blank?
     url

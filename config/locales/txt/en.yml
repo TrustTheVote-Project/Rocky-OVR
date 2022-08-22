@@ -287,6 +287,7 @@ en:
       mailing_address: Mailing Address
       previous_name: Previous Name
       previous_address: Previous Address
+      previous_mailing_address: Previous Mailing Address
       contact_information: Contact Information
       opt_in_sms: Send me text messages from %{organization}.
       opt_in_sms_compliance: By signing up, you consent to receive periodic text messages
@@ -396,6 +397,7 @@ en:
           to register to vote. If you are a citizen, please return to the previous
           page and check the citizenship box.
         attest: You must confirm that you are eligible to vote.
+
       external:
         colorado:
           register_link: Finish Registration Online with Colorado Secretary of State
@@ -451,6 +453,9 @@ en:
               to re-enter the correct information.
             p3: ''
       tooltips:
+        is_homeless_hint_wa: "You can vote if you live in a place where you cannot receive mail. Register by providing a place where you spend most of your time and a place where you can receive mail."
+        military_flag: "Includes National Guard and Reserves, and spouses or dependents away from home due to service."
+        homeless_address: "You can give your cross street or a short narrative."
         email_address: We will email you a copy of your voter registration form.
         home_zip_code: Enter ZIP code for the address where you live, even if you
           don't receive mail there.

@@ -551,7 +551,7 @@ ovr_states:
   PA:
     require_age_confirmation: true
     grommet_min_version: "3.5.0"
-    registration_deadline: 2022-05-17 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
+    registration_deadline: 2022-11-08 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
     api_settings:
       api_url: "https://paovrwebapi.votespa.com/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
@@ -591,13 +591,15 @@ ovr_states:
         api_username: "RockTheVote"
         api_key: <%= ENV['VA_API_KEY'] %>
   WA:
-    require_id: true
+    redirect_to_online_reg_url: false
+    api_settings:
+      #api_url: "https://fake-wa-endpoint.herokuapp.com:443"
+      api_url: "https://qa-avr.votewa.gov/VoteWAExternalAPI/api/DOLRegister"
+      api_username: "RTVAVR"
+    #CTW are we actually supporting all these languages?
+    #Removing all but en
     languages:
       - en
-      - es
-      - zh
-      - vi
-      - ko
   WV:
     require_id: true
     languages:
