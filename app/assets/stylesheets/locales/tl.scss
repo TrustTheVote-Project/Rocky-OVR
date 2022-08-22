@@ -5,7 +5,7 @@
 /* end review buttons */
 
 @media (max-width: 600px) {
-button#registrant_submit {
+button#registrant_submit, button.registrant_submit {
 font-size: 10px !important;
 }
 }
