@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_15_154327) do
+ActiveRecord::Schema.define(version: 2022_08_08_141540) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -920,11 +920,21 @@ ActiveRecord::Schema.define(version: 2022_07_15_154327) do
     t.boolean "partner_opt_in_email"
     t.boolean "partner_volunteer"
     t.integer "penndot_retries", default: 0
+    t.boolean "request_abr"
+    t.string "abr_address_type"
+    t.string "abr_ballot_address"
+    t.string "abr_ballot_city"
+    t.string "abr_ballot_state"
+    t.string "abr_ballot_zip"
+    t.string "abr_ballot_address_start_year"
+    t.string "abr_ward"
+    t.boolean "abr_declaration"
     t.boolean "volunteer", default: false
     t.string "original_survey_question_1"
     t.string "original_survey_question_2"
     t.string "survey_answer_1"
     t.string "survey_answer_2"
+    t.boolean "missing_partner_api_key"
     t.index ["original_partner_id"], name: "pa_registrants_original_partner_id"
     t.index ["registrant_id"], name: "pa_registrants_registrant_id"
   end

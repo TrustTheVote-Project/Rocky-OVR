@@ -2,8 +2,7 @@ class WARegistrantValidator < ActiveModel::Validator
   VALIDATABLE_ATTRS = StateRegistrants::WARegistrant.attribute_names
   
   def validate(reg)
-    @use_newui2020 = true # reg.ab_tests.detect { |t| t.name==AbTest::NEW_UI_2020 }&.assignment == AbTest::NEW
-
+    
     reg.validates_format_of VALIDATABLE_ATTRS, with: Registrant::DB_REGEX
     
     if !reg.phone.blank?

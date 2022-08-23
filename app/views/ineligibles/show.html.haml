@@ -6,7 +6,7 @@
 - elsif @registrant.ineligible_non_citizen?
   %p.reason= I18n.t('txt.registration.ineligible.non_citizen')
 
-- elsif @registrant.home_state_id==48
+- elsif @registrant.home_state_id==GeoState['WA']&.id
   %p.reason= I18n.t('txt.registration.ineligible.wa_too_young')
   
 

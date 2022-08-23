@@ -317,7 +317,7 @@ class ReportGenerator
   end
 
   def self.partner_fields
-    %w(id username email name organization url address city state_abbrev zip_code phone survey_question_1_en survey_question_1_es survey_question_2_en survey_question_2_es created_at updated_at active)
+    %w(id username email name organization url address city state_abbrev zip_code phone survey_question_1_en survey_question_1_es survey_question_2_en survey_question_2_es created_at updated_at active whitelabeled)
   end
   # p.id, p.username, p.email, p.name, p.organization, p.url, p.address, p.city, l.abbreviation, p.zip_code, p.phone, p.survey_question_1_en, p.survey_question_1_es, p.survey_question_2_en, p.survey_question_2_es, p.created_at, p.updated_at from partners p join geo_states l on (p.state_id = l.id);
 
@@ -562,11 +562,11 @@ class ReportGenerator
   def self.save_csv_to_s3(contents, file_name, voteready: false)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
-      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :aws_access_key_id        => voteready ? ENV['PDF_AWS_ACCESS_KEY_ID'] : ENV['AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => voteready ? ENV['PDF_AWS_SECRET_ACCESS_KEY'] : ENV['AWS_SECRET_ACCESS_KEY'],
       :region                   => 'us-west-2'
     })
-    bucket_name = voteready ? "rtv-to-voteready" : "rtv-reports"
+    bucket_name = voteready ? "rtv-to-voteready" : "rtv-reports-from-rocky"
     directory = connection.directories.get(bucket_name)
     file = directory.files.create(
       :key    => "#{Rails.env}/#{file_name}",

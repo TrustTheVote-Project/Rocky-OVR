@@ -36,7 +36,7 @@ class Admin::PartnersController < Admin::BaseController
     @partners = Partner.standard
     @partner_name_search = params[:partner_name_search]
     if @partner_name_search
-      @partners = @partners.where("name like ?", "%#{@partner_name_search}%")
+      @partners = @partners.where("name like ? or organization like ?", "%#{@partner_name_search}%", "%#{@partner_name_search}%")
     end
     @partners =  @partners.paginate(:page => params[:page], :per_page => 100)
     @partner_zip = PartnerZip.new(nil)

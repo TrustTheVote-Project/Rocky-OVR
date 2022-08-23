@@ -121,6 +121,9 @@ ovr_states:
       api_url: "https://paovrwebapi.beta.vote.pa.gov/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0" #"https://fake-pa-endpoint.herokuapp.com"
 
   WA:
+    api_settings:
+      api_url: "https://qa-avr.votewa.gov/VoteWAExternalAPI/api/DOLRegister"
+      api_username: "RTVAVR"
     languages:
       - en
       
