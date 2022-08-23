@@ -1080,7 +1080,7 @@ en:
           confirm: ''
           requirements: |-
             <ul>
-              <li>If are disabled, a senior or in a nursing home, use the <a href="https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf">form available from the state</a> to join the automatic absentee ballot program or request an absentee ballot for a single election.</li>
+              <li>If you are disabled, use the <a target='_blank' href="https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf">form available from the state</a> to join the automatic absentee ballot program or request an absentee ballot for a single election.</li>
               <li>If you are requesting an absentee ballot for any other reason and have a valid Louisiana state ID, request your absentee ballot online by clicking the button below. Click "Search by voter" to log into the portal then click the "Request Absentee Ballot" link found under the Quick Links heading.</li>
               <li>If you are requesting an absentee ballot for any other reason and do not have a valid Louisiana state ID, click the link below the button to complete a paper application. </li>
         abr:
@@ -1088,7 +1088,7 @@ en:
           step_2_instructions: |-
             <p>You may request an absentee ballot if one of these applies to you:</p>
             <ul>
-            <li><strong>You are 65 years or older, in a nursing home or disabled.</strong> In this case,  you should apply through a <a>General Application</a> so that you may automatically receive an absentee ballot for all upcoming  elections.</li>
+            <li><strong>You are 65 years or older, in a nursing home or disabled.</strong>  If you are disabled, you should apply through a <a target='_blank' href='https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf'>Disabled Application</a> so that you may automatically receive an absentee ballot for all upcoming elections.</li>
             <li><strong>You will be temporarily absent</strong> from Louisiana or your parish during the early voting period and on election.</li>
             <li><strong>You will be offshore</strong> during the early voting period and on election day,</li>
             <li>You are a student, instructor or professor at a college/university</strong> located and living outside of your parish of registration. You can  also apply if you are a spouse or dependent of the above and live outside of your parish.</li>
