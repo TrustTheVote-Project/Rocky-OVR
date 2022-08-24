@@ -1076,55 +1076,67 @@ en:
           has_no_state_license: I do not have a Social Security Number.
       la:
         state_online_abr:
-          header_choice: Eligibility to Request an Absentee Ballot
+          header_choice: Requesting an absentee ballot
           confirm: ''
-          requirements: "<p>In Louisiana, you must have a reason to vote absentee
-            vote or be a military or \noverseas voter. If you meet one of these requirements
-            and have have a valid \nLouisiana state ID, you can request an absentee
-            ballot \ndirectly <a href=\"https://voterportal.sos.la.gov/\" title=\"GeauxVote\">from
-            the state</a>. \nIf you are requesting an absentee ballot due to physical
-            disability, you will need to fill out and mail a \n<a href=\"https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf\">paper
-            form</a>. \nYou can fill out this paper form by clicking the link at the
-            bottom of the page.</p>\n<p> If you are:</p>\n<ul>\n<li>Senior citizen
-            (65 or older); </li>\n<li>Temporarily outside LA or parish during early
-            voting period and on Election Day, or expect to be (must include the dates
-            you will be outside territorial limits on application); </li>\n<li>Working
-            offshore or expect to be during early voting period and on Election Day; </li>\n<li>
-            Live in nursing home/veteran’s home or hospital for extended stay due
-            to physical disability and are unable to vote in person; </li>\n<li>Living
-            outside parish of registration due to higher education (students, instructors
-            and professors); </li>\n<li>Clergy member assigned outside parish of registration
-            or spouse/dependent of one; </li>\n<li>Moved more than 100 miles from
-            parish seat of former residence after voter registration books closed
-            (30 days prior to election); </li>\n<li>Involuntarily confined in mental
-            treatment institution outside parish of registration and are not interdicted
-            and not judicially declared incompetent; </li>\n<li>Hospitalized; </li>\n<li>Incarcerated
-            outside parish of registration (except for orders of imprisonment and
-            felonies); </li>\n<li>Address Confidentiality Program participant; or\n<li>Juror
-            sequestered on Election Day,</li>\n</ul>"
-        abr:
-          request_deadline: Received by 4:30 p.m. on the 4th day before election day.
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state's online tool:<br /> <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
-          finish_instructions_1_hint: "<p><i>Be sure to review what you must submit
-            as proof of disability, as well as identification.</i></p>"
-          skip_state_online_abr: I am physically disabled and need to complete a paper
-            Disabled Application.
           requirements: |-
-            <p>To qualify to request a ballot in LA, you must meet one of the following criteria:</p>
             <ul>
-            <li>SENIOR CITIZEN-I am 65 years of age or older. </li>
-            <li>TEMPORARILY ABSENT -I am or expect to be temporarily outside the territorial limits of mystate/parish of registration during the early voting period and on election day. You must indicate the dates you will be temporarily absent if the ballot is being mailed within your parish.</li>
-            <li>OFFSHORE -I expect to be out of my precinct of registration and upon the waters of the state during early voting and on election day because of my employment or occupation. </li>
-            <li>NURSING HOME** -I am a resident of a nursing home (includes veterans’ home and extended hospital stay for a physical disability).</li>
-            <li>HIGHER EDUCATION - I am a student (you must enclose a copy of student ID or fee bill if voting for 1st time), instructor, or professor located and living outside my parish of registration, or a spouse/dependent.</li>
-            <li>CLERGY -I am a minister, priest, rabbi, or other member of the clergy assigned outside my parish of registration, or a spouse/dependent.</li>
-            <li>MOVED OUT OF PARISH less than 30 days before election-I moved my residence to another parish more than 100 miles from the parish seat of my former residence after the voter registration books closed.</li>
-            <li>INVOLUNTARY CONFINEMENT - I am involuntarily confined in an institution for mental treatment outside my parish of registration and I am not interdicted and not judicially declared incompetent.</li>
-            <li>HOSPITALIZED - I expect to be hospitalized on election day and I did not have knowledge until after the time for early voting had expired; or I was hospitalized during the time for early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day (you must enclose proof of hospitalization);</li>
-            <li>INCARCERATED - I am incarcerated in an institution inside/outside my parish of registration and I am not under an order of imprisonment for conviction of a felony.(You must enclose a certification by sheriff.)</li>
-            <li>ACP-I am a program participant in the Department of State Address Confidentiality Program.</li>
-            <li>JUROR-I will be sequestered on the day of the election and during early voting. (You must enclose acertified copy of court order).</li>
+              <li>If you are disabled, use the <a target='_blank' href="https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf">form available from the state</a> to join the automatic absentee ballot program or request an absentee ballot for a single election.</li>
+              <li>If you are requesting an absentee ballot for any other reason and have a valid Louisiana state ID, request your absentee ballot online by clicking the button below. Click "Search by voter" to log into the portal then click the "Request Absentee Ballot" link found under the Quick Links heading.</li>
+              <li>If you are requesting an absentee ballot for any other reason and do not have a valid Louisiana state ID, click the link below the button to complete a paper application. </li>
+        abr:
+          step_2_header: You must have a reason to vote absentee in Louisiana. 
+          step_2_instructions: |-
+            <p>You may request an absentee ballot if one of these applies to you:</p>
+            <ul>
+            <li><strong>You are 65 years or older, in a nursing home or disabled.</strong>  If you are disabled, you should apply through a <a target='_blank' href='https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf'>Disabled Application</a> so that you may automatically receive an absentee ballot for all upcoming elections.</li>
+            <li><strong>You will be temporarily absent</strong> from Louisiana or your parish during the early voting period and on election.</li>
+            <li><strong>You will be offshore</strong> during the early voting period and on election day,</li>
+            <li>You are a student, instructor or professor at a college/university</strong> located and living outside of your parish of registration. You can  also apply if you are a spouse or dependent of the above and live outside of your parish.</li>
+            <li><strong>You are a member of the clergy</strong> and are assigned outside of your parish  of registration.</li>
+            <li><strong>You have moved more than 100 miles from your parish seat</strong> and it is  after the voter registration deadline (30 days before the election).</li>
+            <li><strong>You are involuntarily confined in an institution for mental treatment</strong> outside your parish and are not interdicted and not judicially declared incompetent.</li>
+            <li><strong>You are hospitalized or expect to be hospitalized on election day</strong> and cannot participate in early voting. </li>
+            <li><strong>You are incarcerated</strong> or expect to be incarcerated but not convicted for a felony. </li>
+            <li><strong>You are part of the Address Confidentiality Program.</strong></li>
+            <li><strong>You are a juror</strong> and will be sequestered on the day of the election.</li>
+            </ul>
+          request_deadline: |-
+            <p>Your absentee ballot request must be received by 4:30 pm on:
+            </p>
+            <ul>
+            <li>November 4, 2022 for the primary election, and</li>
+            <li>December 6, 2022 for the general election.</li>
+            </ul>
+
+            <p>Request your absentee ballot as soon as possible, as Louisiana recommends being aware of standard delivery times and the ballot return deadline when applying for an absentee ballot to ensure your voted ballot is received before the deadline.
+            </p>
+            <p>Your voted absentee ballot must be received by 4:30 pm on the day before the election.
+            </p>
+          status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
+          finish_instructions_1_hint: |-
+            <p>Make sure to sign your printed application. If your signature is a mark, you will also need two witnesses to sign.
+            </p>
+            <p>If you are requesting an absentee ballot because you are a student and this is your first time voting, make sure to enclose a copy of your student ID or fee bill.
+            </p>
+            <p>If you are requesting an absentee ballot because of a hospitalization, you must enclose proof of hospitalization.
+            </p>
+            <p>If you are requesting an absentee ballot because you are incarcerated, you must enclose a certification from the sheriff.
+            </p>
+          # requirements: |-
+          #   <p>To qualify to request a ballot in LA, you must meet one of the following criteria:</p>
+          #   <ul>
+          #   <li>SENIOR CITIZEN-I am 65 years of age or older. </li>
+          #   <li>TEMPORARILY ABSENT -I am or expect to be temporarily outside the territorial limits of mystate/parish of registration during the early voting period and on election day. You must indicate the dates you will be temporarily absent if the ballot is being mailed within your parish.</li>
+          #   <li>OFFSHORE -I expect to be out of my precinct of registration and upon the waters of the state during early voting and on election day because of my employment or occupation. </li>
+          #   <li>NURSING HOME** -I am a resident of a nursing home (includes veterans’ home and extended hospital stay for a physical disability).</li>
+          #   <li>HIGHER EDUCATION - I am a student (you must enclose a copy of student ID or fee bill if voting for 1st time), instructor, or professor located and living outside my parish of registration, or a spouse/dependent.</li>
+          #   <li>CLERGY -I am a minister, priest, rabbi, or other member of the clergy assigned outside my parish of registration, or a spouse/dependent.</li>
+          #   <li>MOVED OUT OF PARISH less than 30 days before election-I moved my residence to another parish more than 100 miles from the parish seat of my former residence after the voter registration books closed.</li>
+          #   <li>INVOLUNTARY CONFINEMENT - I am involuntarily confined in an institution for mental treatment outside my parish of registration and I am not interdicted and not judicially declared incompetent.</li>
+          #   <li>HOSPITALIZED - I expect to be hospitalized on election day and I did not have knowledge until after the time for early voting had expired; or I was hospitalized during the time for early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day (you must enclose proof of hospitalization);</li>
+          #   <li>INCARCERATED - I am incarcerated in an institution inside/outside my parish of registration and I am not under an order of imprisonment for conviction of a felony.(You must enclose a certification by sheriff.)</li>
+          #   <li>ACP-I am a program participant in the Department of State Address Confidentiality Program.</li>
+          #   <li>JUROR-I will be sequestered on the day of the election and during early voting. (You must enclose acertified copy of court order).</li>
           finish_pdf_delay_instructions: <p>You must request your ballot by 4:30pm
             CST on the 4th day before election day.  Your ballot (unless you are Military,
             Overseas, or Hospitalized) must be received by your parish registrar of
@@ -1132,6 +1144,49 @@ en:
             your registrar of voters is? <a target="_blank" rel="noopener" href="https://voterportal.sos.la.gov/registrar">Check
             the Registrar of voters</a></p>
         abr_form_fields:
+          bad_date__format_message: Invalid date
+          abr_election_type2_input__required_message: You must select one type of election
+          abr_check_mailing_address: I get my mail at a different address from the one above.
+          abr_check_mailing_address__hint: Your mailing address must be on file with the registrar of voters or the address where you regularly receive mail.
+          abr_mailing_address_instructions: Enter your mailing address	
+          abr_mailing_address_line_1_input: Street Address
+          abr_mailing_unit_input: Unit
+          abr_mailing_city_input: City
+          abr_mailing_state_abbrev_input: State
+          abr_mailing_zip_input: ZIP
+
+          abr_county: Select your Parish
+          abr_mother_maiden_input:	Enter your mother's maiden name
+          abr_last_4_ssn:	Enter the last four digits of your social security number
+          abr_reason_selections:	Select your reason for voting by mail
+          abr_reason_selections__options:	
+            abr_reason1:	I am a senior citizen (65 years of age or older).
+            abr_reason2:	I will be temporarily absent or expect to be temporarily outside my state or parish during the early voting period and on election day.
+            abr_reason3:	I will be working offshore during the early voting period and on election day.
+            abr_reason4:	I am a resident of a nursing home, or a veterans’ home or an extended hospital stay for physical disability.
+            abr_reason5:	"I am a student, instructor, or professor (or spouse/dependent) located and living outside my parish. <br> Note: Students voting for the first time must enclose a copy of student ID or a bill."
+            abr_reason6:	I am a member of the clergy (or spouse/dependent) assigned outside of my parish.
+            abr_reason7:	I moved more than 100 miles from the parish seat of my former residence after the voter registration deadline (30 days before the election).
+            abr_reason8:	I am involuntarily confined in an institution for mental treatment outside my parish and I am not interdicted and not judicially declared incompetent.
+            abr_reason9:	"I expect to be hospitalized on election day and I did not know about my hospitalization until after early voting had expired; or I was hospitalized during early voting and I expect to be hospitalized on election day; or I was either hospitalized or restricted to my bed by my physician during early voting and on election day. <br> You must enclose proof of hospitalization."
+            abr_reason10:	"I am incarcerated and am not under imprisonment for conviction of a felony. <br>You must enclose a certification by sheriff."
+            abr_reason11:	I am a participant in the Address Confidentiality Program.
+            abr_reason12:	I am a juror and will be sequestered during early voting and election day.
+          abr_application_type_selections:	Would you like to receive an absentee by mail ballot automatically for the election date(s) on this application AND all future elections?
+          abr_application_type_selections__options:
+            abr_application_type1:	Send me an absentee ballot for the election dates I choose and all future elections.
+            abr_application_type2:	Only send me an absentee ballot for the election dates I choose on this application.
+          abr_absence_date_instructions:	Enter the dates you will be absent.
+          abr_absence_begin_date_input:	Absence begins
+          abr_absence_end_date_input:	Absence ends
+          abr_election_type_selections:	Select the election(s) you would like to request an absentee ballot for. You must select at least one.
+          abr_election_type1_input:	The 11/8/2022 Primary Election
+          abr_election_type2_input:	The 12/10/2022 General Election
+          abr_assistant_check1:	Check this box if someone else will be delivering your request either by hand or by fax.
+          abr_assistant_name:	Enter the name of the person who will be submitting the application.
+          abr_relationship1:	Enter the relationship of the person who will be submitting the application. 
+
+
           reason: I have been previously approved in the Disability Program, or I
             am disabled or homebound.
           reason__options:
