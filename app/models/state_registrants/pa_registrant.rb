@@ -339,7 +339,7 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
   
   
   def pa_api_key
-    self.partner ? self.partner.pa_api_key : nil
+    self.partner&.pa_api_key&.blank? ? Partner.primary_partner&.pa_api_key : self.partner&.pa_api_key
   end
   
   def state_api_error   
@@ -479,19 +479,11 @@ class StateRegistrants::PARegistrant < StateRegistrants::Base
     }
   end
   
-  
+
   def self.from_registrant(reg)
-    # Swap out partner if no API-key is present
-    original_partner_id = nil
-    if !reg.partner.primary? && reg.partner.pa_api_key.blank?
-      # Make it an RTV partner
-      original_partner_id = reg.partner_id
-      reg.partner = Partner.primary_partner
-      reg.save(validate: false)
-    end
     sr = super(reg)
-    if original_partner_id
-      sr.original_partner_id = original_partner_id
+    if !reg.partner&.primary? && reg.partner&.pa_api_key.blank?
+      sr.missing_partner_api_key = true  
       sr.save(validate: false)
     end
     return sr

@@ -134,7 +134,7 @@
 
     - if  @registrant.home_state_allows_ovr_ignoring_license? && !@registrant.mail_with_esig?
       .use_state_registration
-        = rollover_button(:prepare, I18n.t('txt.button.submit'))
+        = rollover_button(:prepare, I18n.t('txt.button.submit'), {id: "submit_state_online"} )
     .skip_state_registration
       - if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
         .checkbox{style: "font-size: 150%; text-align: center;"}
