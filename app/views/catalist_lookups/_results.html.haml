@@ -1,17 +1,18 @@
 - as_abr = as_abr || false
 
 - abr_continue_buttons = capture_haml do
-  = t('txt.abr.no_match_options').html_safe
-  - continue_url = @abr.eligible_for_oabr? ? state_online_abr_path(@abr) : step_3_abr_path(@abr)        
-  
-  %span.rollover_button.button{role: "button"}
-    = link_to t('txt.lookup.register'), registration_abr_path(@abr)
+  - if as_abr && @abr
+    = t('txt.abr.no_match_options').html_safe
+    - continue_url = @abr.eligible_for_oabr? ? state_online_abr_path(@abr) : step_3_abr_path(@abr)        
+    
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.lookup.register'), registration_abr_path(@abr)
 
-  %span.rollover_button.button{role: "button"}
-    = link_to t('txt.lookup.go_back'), step_2_abr_path(@abr)
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.lookup.go_back'), step_2_abr_path(@abr)
 
-  %span.rollover_button.button{role: "button"}
-    = link_to t('txt.abr.continue_no_match'), continue_url
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.abr.continue_no_match'), continue_url
 
 - reject_content = capture_haml do
   - state_url = @lookup.state&.registrar_url
@@ -65,6 +66,10 @@
       #confirm_match
         = link_to continue_url do
           = t('txt.abr.match.confirm_yes').html_safe
+        %br
+        %br
+        = link_to registration_abr_path(@abr) do
+          = t('txt.abr.match.confirm_yes_but').html_safe
       %br  
       .reject
         = t('txt.abr.match.confirm_no').html_safe

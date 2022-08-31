@@ -185,6 +185,7 @@ en:
           is you.
         confirm_yes: "Yes, this is me. I want to continue requesting an absentee
           ballot."
+        confirm_yes_but: This is me but something is wrong. I want to update my registration.
         confirm_no: <h3>No, this is not me.</h3>
         address: 'Address:'
       no_match_intro: <p>It's important that you are properly registered before you request an absentee ballot in %{state}.</p>
