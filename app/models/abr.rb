@@ -132,7 +132,7 @@ class Abr < ActiveRecord::Base
     registration_county
   end
   
-  MAX_DATE_OF_BIRTH = Date.parse("2002-11-03")
+  MAX_DATE_OF_BIRTH = Date.parse("2004-11-08")
   
   def will_be_18
     if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 
