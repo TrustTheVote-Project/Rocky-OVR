@@ -26,7 +26,6 @@ module PdfQueueBase
       self.delay.queue_registrant(registrant_id, trynum + 1)
     else
       msg = "Registraint #{registrant_id} not queued for PDF generation!:\n#{e.message}\n#{e.backtrace.join("\n")}"
-      puts msg
       Rails.logger.error "Registraint #{:registrant_id} not queued for PDF generation!:\n#{e.message}\n#{e.backtrace.join("\n")}"
       AdminMailer.general_error(msg).deliver
       return false
