@@ -256,6 +256,9 @@ module ApplicationHelper
 
   def rollover_button(name, text, button_options={})
     button_options[:id] ||= "registrant_submit"
+    button_options[:class] ||= ""
+    button_options[:class] += " registrant_submit"
+    
     html =<<-HTML
       <div class="button rollover_button">
         <a class="button_#{name}_#{I18n.locale} button_#{name}" href="#">
