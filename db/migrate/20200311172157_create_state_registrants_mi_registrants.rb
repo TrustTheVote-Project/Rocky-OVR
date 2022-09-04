@@ -1,4 +1,4 @@
-class CreateStateRegistrantsMiRegistrants < ActiveRecord::Migration
+class CreateStateRegistrantsMiRegistrants < ActiveRecord::Migration[4.2]
   def change
     create_table :state_registrants_mi_registrants do |t|
       t.string  :registrant_id

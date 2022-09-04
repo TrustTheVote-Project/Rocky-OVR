@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class RemovePartnerLogoImageUrl < ActiveRecord::Migration
+class RemovePartnerLogoImageUrl < ActiveRecord::Migration[4.2]
   def self.up
     remove_column "partners", "logo_image_url"
   end

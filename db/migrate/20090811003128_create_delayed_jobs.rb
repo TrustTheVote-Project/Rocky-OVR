@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class CreateDelayedJobs < ActiveRecord::Migration
+class CreateDelayedJobs < ActiveRecord::Migration[4.2]
   def self.up
     create_table "delayed_jobs", :force => true do |t|
       t.integer  "priority", :default => 0

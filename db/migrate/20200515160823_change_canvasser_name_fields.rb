@@ -1,4 +1,4 @@
-class ChangeCanvasserNameFields < ActiveRecord::Migration
+class ChangeCanvasserNameFields < ActiveRecord::Migration[4.2]
   def change
     remove_column :canvassing_shifts, :canvasser_name
     add_column :canvassing_shifts, :canvasser_first_name, :string
