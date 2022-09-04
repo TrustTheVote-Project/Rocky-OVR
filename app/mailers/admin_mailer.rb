@@ -142,6 +142,14 @@ class AdminMailer < ActionMailer::Base
     )
   end
 
+  def wa_registration_error(registrant, error_list, message='')
+    
+    mail(
+      subject: "[ROCKY WA INTEGRATION#{environment_subject}] Error submitting registration #{registrant.class} #{registrant.id} to WA",
+      body: "#{message}\n\nWA system returned the error:\n\n #{error_list.join("\n")}"
+    )
+  end
+
   def general_error(body_text)
     mail(
       subject: "[ROCKY NOTIFICATION#{environment_subject}]",

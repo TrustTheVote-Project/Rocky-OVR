@@ -1,0 +1,17 @@
+- if @use_mobile_ui
+  = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
+
+%h2
+  = I18n.t 'states.custom.wa.registration_complete_title'
+%br
+%h2
+  = I18n.t 'states.custom.wa.registration_complete_message'
+
+.complete-text
+  = I18n.t('states.custom.wa.instructions.registration_complete_dialog_text').html_safe
+%hr
+.whats-next
+  = I18n.t('states.custom.wa.instructions.registration_complete_whats_next_text').html_safe
+
+
+= render "finishes/finish_iframe"

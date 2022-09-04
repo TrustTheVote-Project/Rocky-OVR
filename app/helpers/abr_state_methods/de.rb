@@ -2,109 +2,84 @@ module AbrStateMethods::DE
   
   PDF_FIELDS = {
 
-    "BirthDate": {
-      method: "date_of_birth_mm_dd_yyyy",
-    },
-
-    "Ballot Address Line 1": {},
-    "Ballot Address Line 2": {},
-    "Ballot Address Line 3": {},
-
+    "abr_email": {method: "email"},	
+    "abr_phone": {method: "phone"},	
+    "abr_first_name": {method: "first_name"},	
+    'abr_middle_initial': {:method=>"middle_initial"},
+    "abr_last_name": {method: "last_name"},	
  
-    "First Name": {
-      method: 'first_name'
-    },
-    "Suffix": {
-      method: 'name_suffix'
-    },
-    "Middle Name or Initial":{
-      method: 'middle_initial'
-    },
-    "Last Name": {
-      method: 'last_name'
-    },
-    "House Number and Street Name": {
-      method: 'address'
-    },
-    "City": {
-      method: 'city'
-    },
-    "ZipCode":{
-      method: 'zip'
-    },
+    "abr_street_number": {method: "street_number"},	
+    "abr_street_name": {method: "street_name"},
+    "abr_unit": {method: "unit"},	
+    "abr_city": {method: "city"},	
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
+    'abr_zip': {method: "zip"},
+    'date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },     
 
-    "Political Party Affiliation": {},
+    'abr_last_4_ssn': {sensitive:true},
 
-    "Last4 Digits of SSN": {sensitive: true},
-    "Email Address": {
-      method: "email"
-    },
+    'abr_check_mailing_address':{},
+    'abr_mailing_address_line_1': {},
+    'abr_mailing_unit': {},
+    'abr_mailing_city':{},
+    'abr_mailing_state_abbrev':{},
+    'abr_mailing_zip':{},   
 
-    "Check box if you are Sick or Physically Disabled": {
-      options: ["Off", "Yes"],
-      method: "check_sick_or_disabled_yes"},
-    "GroupSickDisabled": { options: ["ChoiceEmail", "ChoiceFax", "ChoiceMail"] },
-    
-    "Email Address_disabled": { # This is actually for disabled email delivery
-      method: "email_if_choice_email"
-    },
-    "Fax": {},
-    "Phone": {
-      method: "phone"
-    },
+    'abr_address_line_2':{},
 
-    "General Election": { 
-      options: ["Off", "Yes"],
-      value: "Yes" 
-    },
+    'abr_election_type_instructions': {},
+    'abr_election_type_selections': {},
+    'abr_election_type1': {options: ['Off', 'On']},
+    'abr_election_type2': {options: ['Off', 'On']},
+    'abr_election_type3': {options: ['Off', 'On']},
+    'abr_election_type4': {options: ['Off', 'On']},
+    'abr_party': {},
+    'abr_delivery_address_selections': {options:['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3']},
+    'abr_fax_number': {},
 
-    "All Elections": { options: ["Off", "Yes"],
-      value: 'Off' 
-    },
-    "Any Election before 1/21/2020": { 
-      options: ["Off", "Yes"],
-      value: 'Off'
-     },
-     "Primary Election": {
-       options: ["Off", "Yes"],
-       value: 'Off'
-    },
-     #"Application Date": {}
-    #"voter_signature": {}
+   
 
   }
   
-  EXTRA_FIELDS = ["has_mailing_address", "check_sick_or_disabled"]
+  EXTRA_FIELDS = []
   
   def form_field_items
     [
-      {"Last4 Digits of SSN": {required: false, regexp: /\A\d{4}\z/}},
-      {"has_mailing_address": {type: :checkbox}},
-      {"Ballot Address Line 1": {visible: "has_mailing_address", required: :if_visible}},
-      {"Ballot Address Line 2": {visible: "has_mailing_address", }},
-      {"Ballot Address Line 3": {visible: "has_mailing_address",}},
-      {"check_sick_or_disabled":{type: :checkbox}},
-      {"GroupSickDisabled": {visible: "check_sick_or_disabled", type: :radio, required: :if_visible}},
+      {'abr_last_4_ssn':{min:4, max:4, required:true}},
+
+      {"abr_check_mailing_address": {type: :checkbox, options: ["Off", "On"]}},	
+
+      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+
+      {'abr_election_type_instructions': {type: :instructions}},
+      {'abr_election_type_selections': {type: :instructions}},
+      {'abr_election_type1': {type: :checkbox, options: ['Off', 'On']}},
+      {'abr_election_type2': {type: :checkbox, options: ['Off', 'On']}},
+      {'abr_election_type3': {type: :checkbox, options: ['Off', 'On']}},
+      {'abr_election_type4': {type: :checkbox, options: ['Off', 'On']}},
+      {'abr_party': {visible_any: "abr_election_type1 abr_election_type2 abr_election_type4", required: :if_visible}},
       
-      {"Fax": {visible: "groupsickdisabled_choicefax"}},
+
     
     ]
   end
   
   def custom_form_field_validations
-    # make sure delivery is selected if reason ==3
-    # make sure fax is provided if faxtype is selected for delivery
-    if self.check_sick_or_disabled.to_s=='1' && self.groupsickdisabled.to_s=='ChoiceFax'
-      custom_validates_presence_of("Fax")
+    unless self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type3.to_s =="1" || self.abr_election_type4.to_s =="1"
+        errors.add "abr_election_type4", custom_required_message(:abr_election_type4)
     end
-  end
-  
-  def check_sick_or_disabled_yes
-    return "Yes" if self.check_sick_or_disabled.to_s=='1'
+
+    if (self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type4.to_s =="1")
+      custom_validates_presence_of("abr_party")
+    end
+
   end
 
-  def email_if_choice_email
-    return self.email if self.groupsickdisabled.to_s=='ChoiceEmail'
-  end
+
+  
 
 end

@@ -71,7 +71,13 @@ class Abr < ActiveRecord::Base
   validates_presence_of :registration_county, if: :requires_county?
   validate :validates_zip
   validate :validates_signature
-  
+  validate :validate_phone_present_if_opt_in_sms
+
+  def validate_phone_present_if_opt_in_sms
+    if (opt_in_sms? || partner_opt_in_sms?) && phone.blank?
+      errors.add(:phone, :required_if_opt_in)
+    end
+  end
 
   def self.generate_abr_for_zip(zip)
     if Rails.env != "development"
@@ -126,7 +132,7 @@ class Abr < ActiveRecord::Base
     registration_county
   end
   
-  MAX_DATE_OF_BIRTH = Date.parse("2002-11-03")
+  MAX_DATE_OF_BIRTH = Date.parse("2004-11-08")
   
   def will_be_18
     if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 

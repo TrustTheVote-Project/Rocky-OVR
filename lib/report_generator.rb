@@ -8,6 +8,8 @@ class ReportGenerator
   # r.id, r.status, r.locale, r.partner_id, r.uid, r.reminders_left, r.date_of_birth, r.email_address, r.first_registration, r.home_zip_code, r.us_citizen, r.name_title, r.first_name, r.middle_name, r.last_name, r.name_suffix, r.home_address, r.home_unit, r.home_city, l.abbreviation, r.has_mailing_address, r.mailing_address, r.mailing_unit, r.mailing_city, r.mailing_state_id, r.mailing_zip_code, r.party, r.race, r.state_id_number, r.phone, r.phone_type, r.change_of_name, r.prev_name_title, r.prev_first_name, r.prev_middle_name, r.prev_last_name, r.prev_name_suffix, r.change_of_address, r.prev_address, r.prev_unit, r.prev_city, r.prev_state_id, r.prev_zip_code, r.opt_in_email, r.opt_in_sms, r.survey_answer_1, r.survey_answer_2, r.ineligible_non_participating_state, r.ineligible_age, r.ineligible_non_citizen, r.created_at, r.updated_at, r.abandoned, r.volunteer, r.tracking_source, r.finish_with_state, r.send_confirmation_reminder_emails, r.building_via_api_call 
   # from registrants r join geo_states l on (r.home_state_id = l.id) where date(r.created_at) >= date_sub(curdate(), interval 6 hour)
   def self.registrant_fields
+    # Switch to this commented out line once david is able to update the CSV processing tools
+    #%w(id status locale partner_id uid reminders_left date_of_birth email_address first_registration? home_zip_code us_citizen name_title first_name middle_name last_name name_suffix home_address home_unit home_city home_state_abbrev has_mailing_address mailing_address mailing_unit mailing_city mailing_state_id mailing_zip_code party race state_id_number phone phone_type change_of_name prev_name_title prev_first_name prev_middle_name prev_last_name prev_name_suffix change_of_address prev_address prev_unit prev_city prev_state_id prev_zip_code opt_in_email opt_in_sms survey_answer_1 survey_answer_2 ineligible_non_participating_state ineligible_age ineligible_non_citizen created_at updated_at abandoned volunteer tracking_source tracking_id open_tracking_id finish_with_state send_confirmation_reminder_emails building_via_api_call submitted_via_state_api? submitted_via_state_api_with_default_key?)
     %w(id status locale partner_id uid reminders_left date_of_birth email_address first_registration? home_zip_code us_citizen name_title first_name middle_name last_name name_suffix home_address home_unit home_city home_state_abbrev has_mailing_address mailing_address mailing_unit mailing_city mailing_state_id mailing_zip_code party race state_id_number phone phone_type change_of_name prev_name_title prev_first_name prev_middle_name prev_last_name prev_name_suffix change_of_address prev_address prev_unit prev_city prev_state_id prev_zip_code opt_in_email opt_in_sms survey_answer_1 survey_answer_2 ineligible_non_participating_state ineligible_age ineligible_non_citizen created_at updated_at abandoned volunteer tracking_source tracking_id open_tracking_id finish_with_state send_confirmation_reminder_emails building_via_api_call)
   end
   def self.registrant_fields_old
@@ -317,7 +319,7 @@ class ReportGenerator
   end
 
   def self.partner_fields
-    %w(id username email name organization url address city state_abbrev zip_code phone survey_question_1_en survey_question_1_es survey_question_2_en survey_question_2_es created_at updated_at active)
+    %w(id username email name organization url address city state_abbrev zip_code phone survey_question_1_en survey_question_1_es survey_question_2_en survey_question_2_es created_at updated_at active whitelabeled)
   end
   # p.id, p.username, p.email, p.name, p.organization, p.url, p.address, p.city, l.abbreviation, p.zip_code, p.phone, p.survey_question_1_en, p.survey_question_1_es, p.survey_question_2_en, p.survey_question_2_es, p.created_at, p.updated_at from partners p join geo_states l on (p.state_id = l.id);
 
@@ -389,10 +391,12 @@ class ReportGenerator
       va_registrants = {}
       mi_registrants = {}
       mn_registrants = {}
+      wa_registrants = {}
       StateRegistrants::PARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       StateRegistrants::MIRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
       StateRegistrants::MNRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
+      StateRegistrants::WARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
       csv_str = CsvFormatter.wrap do |csv|
         csv << headers = self.registrant_fields_old.dup
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
@@ -411,6 +415,8 @@ class ReportGenerator
               sr = mi_registrants[r.uid] || nil
             when "MN"
               sr = mn_registrants[r.uid] || nil
+            when "WA"
+              sr = wa_registrants[r.uid] || nil
             end
             r.instance_variable_set(:@existing_state_registrant, sr)
             r.instance_variable_set(:@existing_state_registrant_fetched, true)
@@ -440,10 +446,12 @@ class ReportGenerator
       va_registrants = {}
       mi_registrants = {}
       mn_registrants = {}
+      wa_registrants = {}
       StateRegistrants::PARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
       StateRegistrants::VARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       StateRegistrants::MIRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
       StateRegistrants::MNRegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
+      StateRegistrants::WARegistrant.where("created_at > ?", t-time_span.hours).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
 
       headers = self.registrant_fields.dup
       headers += [
@@ -475,6 +483,8 @@ class ReportGenerator
               sr = mi_registrants[r.uid] || nil
             when "MN"
               sr = mn_registrants[r.uid] || nil
+            when "WA"
+              sr = wa_registrants[r.uid] || nil
             end
             r.instance_variable_set(:@existing_state_registrant, sr)
             r.instance_variable_set(:@existing_state_registrant_fetched, true)
@@ -554,11 +564,11 @@ class ReportGenerator
   def self.save_csv_to_s3(contents, file_name, voteready: false)
     connection = Fog::Storage.new({
       :provider                 => 'AWS',
-      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :aws_access_key_id        => voteready ? ENV['PDF_AWS_ACCESS_KEY_ID'] : ENV['AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => voteready ? ENV['PDF_AWS_SECRET_ACCESS_KEY'] : ENV['AWS_SECRET_ACCESS_KEY'],
       :region                   => 'us-west-2'
     })
-    bucket_name = voteready ? "rtv-to-voteready" : "rtv-reports"
+    bucket_name = voteready ? "rtv-to-voteready" : "rtv-reports-from-rocky"
     directory = connection.directories.get(bucket_name)
     file = directory.files.create(
       :key    => "#{Rails.env}/#{file_name}",

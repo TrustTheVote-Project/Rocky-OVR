@@ -18,11 +18,22 @@
 
 <h1>Partners</h1>
 
-<h2>Go to partner</h2>
-<%= form_tag admin_partners_path, method: :get do %>
-  <%= text_field_tag :partner_id %>
-  <%= submit_tag "Go" %>
-<%- end %>
+<div style="display: flex;">
+  <div style="padding: 0 4em 0 0">
+    <h2>Go to partner by ID</h2>
+    <%= form_tag admin_partners_path, method: :get do %>
+      <%= text_field_tag :partner_id %>
+      <%= submit_tag "Go" %>
+    <%- end %>
+  </div>
+  <div style="padding: 0 4em 0 0">
+    <h2>Search by partner name</h2>
+    <%= form_tag admin_partners_path, method: :get do %>
+      <%= text_field_tag :partner_name_search, @partner_name_search %>
+      <%= submit_tag "Search" %>
+    <%- end %>
+  </div>
+</div>
 
 <br/><br/>
 

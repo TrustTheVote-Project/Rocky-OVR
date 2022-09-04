@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<%= @lookup&.locale || "en" %>">
 
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -53,19 +53,6 @@
       setTimeout('revealErrors();', 400);
     });
   </script>
-  <% if Rails.env.production? %>
-<!-- Begin Inspectlet Asynchronous Code -->
-<script type="text/javascript">
-(function() {
-window.__insp = window.__insp || [];
-__insp.push(['wid', 1505231353]);
-var ldinsp = function(){
-if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1505231353&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
-setTimeout(ldinsp, 0);
-})();
-</script>
-<!-- End Inspectlet Asynchronous Code -->
-<% end %>
   <%= yield :head %>
 </head>
 
@@ -77,8 +64,10 @@ setTimeout(ldinsp, 0);
   <div id="container">
     <% if @partner && @partner.custom_logo? -%>
     <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
-      <% else -%>
+      <span role="img" aria-label="<%="#{@partner.organization} logo" %>"> </span>
+    <% else -%>
       <div id="header">
+        <span role="img" aria-label="Rock The Vote logo"> </span>
         <% end -%>
         <div class='header-text'>
           <%- if @bsc && @bsc.state_abbrev %>

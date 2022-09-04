@@ -245,8 +245,8 @@ class Partner < ActiveRecord::Base
   
   include PartnerAssets
   
-  scope :government, -> { where(:is_government_partner=>true) }
-  scope :standard, -> { where(:is_government_partner=>false) }
+  scope :government, -> { where(is_government_partner: true) }
+  scope :standard, -> { where(is_government_partner: false) }
 
   def self.deactivate_stale_partners!
     partners = Partner.inactive.where("active != ?", false).each do |p|
