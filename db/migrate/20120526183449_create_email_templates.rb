@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class CreateEmailTemplates < ActiveRecord::Migration
+class CreateEmailTemplates < ActiveRecord::Migration[4.2]
   def self.up
     create_table :email_templates do |t|
       t.integer :partner_id, :null => false

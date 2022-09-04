@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddPartnerOptInsToRegistrant < ActiveRecord::Migration
+class AddPartnerOptInsToRegistrant < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrants, :partner_opt_in_email, :boolean, :default=>false
     add_column :registrants, :partner_opt_in_sms, :boolean, :default=>false

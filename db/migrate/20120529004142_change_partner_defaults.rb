@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class ChangePartnerDefaults < ActiveRecord::Migration
+class ChangePartnerDefaults < ActiveRecord::Migration[4.2]
   def self.up
     change_column_default :partners, :ask_for_volunteers, true
     change_column_default :partners, :whitelabeled, false

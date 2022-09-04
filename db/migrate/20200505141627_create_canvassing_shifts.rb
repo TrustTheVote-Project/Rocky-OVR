@@ -1,4 +1,4 @@
-class CreateCanvassingShifts < ActiveRecord::Migration
+class CreateCanvassingShifts < ActiveRecord::Migration[4.2]
   def change
     create_table :canvassing_shifts do |t|
       t.integer :partner_id

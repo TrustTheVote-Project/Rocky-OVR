@@ -1,4 +1,4 @@
-class AddSpecificFieldsToZipCodeCounties < ActiveRecord::Migration
+class AddSpecificFieldsToZipCodeCounties < ActiveRecord::Migration[4.2]
   def change
     add_column :zip_code_county_addresses, :vr_address_to, :string
     add_column :zip_code_county_addresses, :vr_street1, :string
