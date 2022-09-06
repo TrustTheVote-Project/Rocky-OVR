@@ -41,40 +41,39 @@ en:
 
           Sincerely,<br>
           %{registrant_first_name}<br><br>
-        footer: ! 'Rock the Vote is committed to preserving your privacy and safe-guarding
-          your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter
-          registration privacy policy</a></strong> for details.<br><br>
+        footer: |-
+          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-
-          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
     confirmation_with_assistance:
-      subject: ! "Your registration form is on the way: don't forget to mail it!"
+      subject: 'Your registration form is on the way: don''t forget to mail it!'
       body:
         greeting: Dear %{registrant_first_name},
         reminder: |-
           Don't forget!<br>
           When your registration form arrives, you must sign &amp; mail your form.
-        main: |-
-          Thanks for completing your voter registration application. You should receive it in the mail in about a week. 
-          You can also <a href="%{pdf_url}">download your application here</a>.<br><br>
-
-          <strong>Your registration is not yet complete. You are not registered until you have turned in your form to your state election officials.</strong><br><br>
-
-          %{home_state_email_instructions}
-
-          When you receive your voter registration form in the mail, <strong>please make sure to SIGN, STAMP and MAIL your form using the enclosed envelope.</strong><br><br>
-
-          %{registrar_address}<br><br>
-          If you have already mailed in your form, you can <a href="%{cancel_reminders_url}">click here</a> to stop receiving reminders about sending it in.  You should receive confirmation of your registration from your state's election officials.  Sometimes processing can take several weeks.  If you want to check on the status of your voter registration application, call your Secretary of State at %{registrar_phone}, or check online at %{registrar_url}.<br><br>
-
-          We also need your help getting others registered to vote. There are big elections all over the country.  Make sure everybody has their say: send an email to your family and friends, or pass on the message below.<br><br>
-
-          And, finally, don't forget to vote when Election Day rolls around. There are 45 million eligible young voters and if we want politicians to pay attention to the issues we care about, we have to vote.<br><br>
-
-          Thanks,<br>
-          Your friends at Rock the Vote<br><br>
-
-          P.S. Visit <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong> for more information on voting, the elections, and the issues you care about, as well as for tools to start your own voter registration campaign.<br><br>
+        main: "Thanks for completing your voter registration application. You should
+          receive it in the mail in about a week. \nYou can also <a href=\"%{pdf_url}\">download
+          your application here</a>.<br><br>\n\n<strong>Your registration is not yet
+          complete. You are not registered until you have turned in your form to your
+          state election officials.</strong><br><br>\n\n%{home_state_email_instructions}\n\nWhen
+          you receive your voter registration form in the mail, <strong>please make
+          sure to SIGN, STAMP and MAIL your form using the enclosed envelope.</strong><br><br>\n\n%{registrar_address}<br><br>\nIf
+          you have already mailed in your form, you can <a href=\"%{cancel_reminders_url}\">click
+          here</a> to stop receiving reminders about sending it in.  You should receive
+          confirmation of your registration from your state's election officials.
+          \ Sometimes processing can take several weeks.  If you want to check on
+          the status of your voter registration application, call your Secretary of
+          State at %{registrar_phone}, or check online at %{registrar_url}.<br><br>\n\nWe
+          also need your help getting others registered to vote. There are big elections
+          all over the country.  Make sure everybody has their say: send an email
+          to your family and friends, or pass on the message below.<br><br>\n\nAnd,
+          finally, don't forget to vote when Election Day rolls around. There are
+          45 million eligible young voters and if we want politicians to pay attention
+          to the issues we care about, we have to vote.<br><br>\n\nThanks,<br>\nYour
+          friends at Rock the Vote<br><br>\n\nP.S. Visit <strong><a href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong>
+          for more information on voting, the elections, and the issues you care about,
+          as well as for tools to start your own voter registration campaign.<br><br>"
         send_to_friends: |-
           <em><strong>Copy and paste the following in your favorite mail client, and send to your friends.</strong></em><br><br>
 
@@ -88,51 +87,29 @@ en:
 
           Sincerely,<br>
           %{registrant_first_name}<br><br>
-        footer: ! 'Rock the Vote is committed to preserving your privacy and safe-guarding
-          your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter
-          registration privacy policy</a></strong> for details.<br><br>
+        footer: |-
+          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
-
-          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
     confirmation_with_signature:
-      subject: ! 'Thanks for completing your voter registration application!'
+      subject: Thanks for completing your voter registration application!
       body:
         greeting: Dear %{registrant_first_name},
-        main: ! 'Thanks for completing your voter registration application. %{registrant_rtv_and_partner_name} will submit your voter registration application to the %{registrant_home_state_name} Secretary of State.
-
-          If you''d like a copy of your voter registration form, you can download and save <a href="%{pdf_url}">your application</a>.<br><br>
-
-          You should receive confirmation of your registration from your state election officials. Sometimes processing can take several weeks. 
-          If you want to check on the status of your voter registration application, call the %{registrant_home_state_name} 
-          Secretary of State at %{registrar_phone}, or <a href="%{registrar_url}">check online</a>.
-          <br><br>
-          Thanks,<br>
-          Your friends at %{registrant_rtv_and_partner_name}<br><br>
-
-          P.S. We also need your help getting others registered to vote. There are important elections all over the country. 
-          Make sure everybody has their say: send an email to your family and friends, or pass on the message below.<br><br>'
-          
-        send_to_friends: ! '<em><strong>Copy and paste the following in your favorite mail client, and send to your friends.</strong></em><br><br>
-
+        main: |-
+          Thanks for completing your voter registration application. %{registrant_rtv_and_partner_name} will submit your voter registration application to the %{registrant_home_state_name} Secretary of State.
+          If you'd like a copy of your voter registration form, you can download and save <a href="%{pdf_url}">your application</a>.<br><br>
+          You should receive confirmation of your registration from your state election officials. Sometimes processing can take several weeks. If you want to check on the status of your voter registration application, call the %{registrant_home_state_name} Secretary of State at %{registrar_phone}, or <a href="%{registrar_url}">check online</a>. <br><br> Thanks,<br> Your friends at %{registrant_rtv_and_partner_name}<br><br>
+          P.S. We also need your help getting others registered to vote. There are important elections all over the country. Make sure everybody has their say: send an email to your family and friends, or pass on the message below.<br><br>
+        send_to_friends: |-
+          <em><strong>Copy and paste the following in your favorite mail client, and send to your friends.</strong></em><br><br>
           Hey,<br><br>
-
-          You can''t vote if you''re not registered. That''s why Rock the Vote makes it easy to fill out a voter registration 
-          form online at %{rtv_link}. Whether you need to register to vote for the first time or just need to update your 
-          address or change your name, it only takes a few minutes.<br><br>
-
+          You can't vote if you're not registered. That's why Rock the Vote makes it easy to fill out a voter registration form online at %{rtv_link}. Whether you need to register to vote for the first time or just need to update your address or change your name, it only takes a few minutes.<br><br>
           To learn more, go to: %{rtv_link}.<br><br>
-
-          Already registered to vote? Rock the Vote needs your help getting others registered to vote. Send an email to your 
-          friends and family asking them to register to vote at %{rtv_link}. They even have a tool that lets you start your 
-          own voter registration campaign on your website or blog.<br><br>
-
-          Sincerely,<br>
-          %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see 
-          our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter 
-          registration privacy policy</a></strong> for details.<br><br>
-
-          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
+          Already registered to vote? Rock the Vote needs your help getting others registered to vote. Send an email to your friends and family asking them to register to vote at %{rtv_link}. They even have a tool that lets you start your own voter registration campaign on your website or blog.<br><br>
+          Sincerely,<br> %{registrant_first_name}<br><br>
+        footer: |-
+          Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
+          Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
     pa_confirmation:
       subject: Thank you for using the online voter registration tool
       body:
@@ -180,7 +157,6 @@ en:
           Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
           Please send questions or comments to: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>
-
     continue_on_device:
       subject: Sign your voter registration form
       body:
@@ -286,7 +262,7 @@ en:
         main: |-
           Dear %{registrant_first_name},<br><br>
 
-          Thank you for using %{registrant_rtv_and_partner_name}'s online voter registration tool to begin the voter registration process. You should have been able to complete the process on the %{system_name}'s website.<br><br>
+          Thank you for using %{registrant_rtv_and_partner_name}'s online voter registration tool to begin the voter registration process. You should have been able to complete the process on the state's website.<br><br>
 
           If you have questions or concerns, you can check the status of your voter registration by calling the %{state_abbr} Secretary of State's Office at %{registrar_phone}, or checking online at %{registrar_url}. Please contact %{registrant_rtv_and_partner_name} directly if you encountered any issues with the registration process.<br><br>
 
@@ -343,18 +319,11 @@ en:
             issues, please contact us at <a href="mailto:info@rockthevote.org">info@rockthevote.org</a><br>
       deliver_to_elections_office:
         subject: Absentee / Vote-By-Mail Request
-        body: |-
-          Dear %{election_office_name},<br/><br/>
-
-          Attached is the absentee ballot request from %{abr_first_name} %{abr_last_name}.
-          This request was completed using Rock The Vote’s absentee request assistance 
-          tool, using the %{state_name} absentee ballot request form.<br/><br/>
-          
-        footer: |-
-          If you have any questions or concerns, please reach out to 
-          <a href="mailto:info@rockthevote.org">info@rockthevote.org</a>.<br/><br/>
-
-
+        body: "Dear %{election_office_name},<br/><br/>\n\nAttached is the absentee
+          ballot request from %{abr_first_name} %{abr_last_name}.\nThis request was
+          completed using Rock The Vote’s absentee request assistance \ntool, using
+          the %{state_name} absentee ballot request form.<br/><br/>"
+        footer: "If you have any questions or concerns, please reach out to \n<a href=\"mailto:info@rockthevote.org\">info@rockthevote.org</a>.<br/><br/>"
       confirmation:
         subject: 'Reminder: Mail your absentee request form'
         body:
@@ -400,7 +369,7 @@ en:
 
             Please send questions or comments to: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>
       deliver_to_elections_office_confirmation:
-        subject: 'Thanks for requesting your absentee ballot'
+        subject: Thanks for requesting your absentee ballot
         body:
           greeting: Dear %{abr_first_name},
           main: |-
@@ -417,7 +386,6 @@ en:
             Your friends at Rock the Vote<br><br>
 
             P.S. Visit <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong> for more information on voting, the elections, and the issues you care about. You can also find tools to start your own voter registration and absentee request campaign in your community.<br><br>
-            
           footer: |-
             Rock the Vote is committed to preserving your privacy and safe-guarding your sensitive information. Please see our <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">voter registration privacy policy</a></strong> for details.<br><br>
 
@@ -526,7 +494,7 @@ en:
           main: |-
             Dear %{abr_first_name},<br><br>
 
-            Thank you for using %{abr_rtv_and_partner_name}'s online absentee ballot request tool to begin the absentee ballot request process. You should have been able to complete the process on the %{system_name}'s website.<br><br>
+            Thank you for using %{abr_rtv_and_partner_name}'s online absentee ballot request tool to begin the absentee ballot request process. You should have been able to complete the process on the state's website.<br><br>
 
             If you have questions or concerns, you can check the status of your absentee ballot request by calling the %{state_abbr} elections office at %{registrar_phone}, or checking online at %{registrar_url}. Please contact %{abr_rtv_and_partner_name} directly if you encountered any issues with the ballot request process.<br><br>
 
@@ -564,7 +532,7 @@ en:
 
           Happy voting!
 
-          <em><strong>Copy and paste the following in your favorite mail client, and send to your friends.</strong></em><br><be>
+          <em><strong>Copy and paste the following in your favorite mail client, and send to your friends.</strong></em><br><br>
 
           P.S. Need to register to vote? Register now at %{rtv_url}.
       tell_friend_under_18:
