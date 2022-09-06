@@ -3,14 +3,13 @@ defaults:
   participating: true
   not_participating_tooltip: blank
   requires_race: false
-  optional_party: false
   race_tooltip: not_required_but_appreciated_with_state_name
   parties:
   - democratic
   - independent
+  - republican
   - green
   - libertarian
-  - republican
   - other
   no_party: none
   id_length_min: '6'
@@ -25,7 +24,7 @@ record_0:
   name: Alabama
   requires_race: true
   race_tooltip: required_with_state_name
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_can_choose_any
   id_number_tooltip: ssn_or_none_5
   sos_address: 'Office of the Secretary of State<br />Elections Division<br />P.O.
@@ -51,6 +50,12 @@ record_1:
   registration_deadline: alaska
   id_length_min: '4'
   online_registration_url: https://voterregistration.alaska.gov
+  parties:
+  - democratic
+  - independent
+  - republican
+  - other
+  no_party: nonpartisan
 record_2:
   abbreviation: AZ
   name: Arizona
@@ -67,6 +72,11 @@ record_2:
   registration_deadline: arizona
   pdf_instructions: arizona
   email_instructions: arizona
+  parties:
+  - democratic
+  - republican
+  - other
+  no_party: none_no_affiliation
 record_3:
   abbreviation: AR
   name: Arkansas
@@ -79,12 +89,17 @@ record_3:
   sos_url: https://www.sos.arkansas.gov/elections/
   registration_deadline: arkansas
   id_length_min: '4'
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  no_party: blank
 record_4:
   abbreviation: CA
   name: California
   requires_party: true
   party_tooltip: california
-  no_party: no_party_preference
+  no_party: none_no_affiliation
   id_number_tooltip: drivers_license_required_at_voting_with_state_name
   sos_address: Secretary of State<br>Elections Division<br>1500 11th Street, 5th FL<br>Sacramento,
     CA 95814
@@ -93,10 +108,18 @@ record_4:
   online_registration_url: https://www.registertovote.ca.gov
   registration_deadline: california
   sub_18: once_turned_16
+  parties:
+  - democratic
+  - republican
+  - green
+  - libertarian
+  - other
+  - american_independent
+  - peace_and_freedom
 record_5:
   abbreviation: CO
   name: Colorado
-  requires_party: false
+  requires_party: true
   party_tooltip: colorado
   id_number_tooltip: colorado
   sos_address: Secretary of State<br />1700 Broadway, Suite 550<br />Denver, CO 80290
@@ -106,6 +129,15 @@ record_5:
   id_length_min: '4'
   registration_deadline: colorado
   sub_18: once_turned_16
+  parties:
+  - democratic
+  - republican
+  - green
+  - libertarian
+  - approval_voting
+  - unity
+  - american_constitution
+  no_party: unaffiliated
 record_6:
   abbreviation: CT
   name: Connecticut
@@ -119,6 +151,11 @@ record_6:
   sub_18: 17_turn_18
   registration_deadline: connecticut
   online_registration_url: https://voterregistration.ct.gov/OLVR/
+  parties:
+  - democratic
+  - republican
+  - other
+  no_party: none_no_affiliation
 record_7:
   abbreviation: DE
   name: Delaware
@@ -132,6 +169,10 @@ record_7:
   registration_deadline: delaware
   id_length_min: '4'
   online_registration_url: https://ivote.de.gov/VoterView/registrant/newregistrant
+  parties:
+  - democratic
+  - republican
+  no_party: blank
 record_8:
   abbreviation: DC
   name: District of Columbia
@@ -146,6 +187,13 @@ record_8:
   sub_18: when_at_least_16
   registration_deadline: district_of_columbia
   online_registration_url: https://vr.dcboe.org/213324797239968?agency_code=12
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  - other
+  - dc_statehood_green_party
+  no_party: none_no_affiliation
 record_9:
   abbreviation: FL
   name: Florida
@@ -162,6 +210,10 @@ record_9:
   id_length_min: '4'
   registration_deadline: florida
   online_registration_url: https://registertovoteflorida.gov/eligibilityreactive
+  parties:
+  - democratic
+  - republican
+  no_party: none_no_affiliation
 record_10:
   abbreviation: GA
   name: Georgia
@@ -207,15 +259,15 @@ record_12:
   online_registration_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/ApplicationInstructions.aspx
   parties:
   - democratic
-  - libertarian
   - republican
-  - other
-  no_party: none_no_affiliation
+  - libertarian
+  - constitution
+  no_party: unaffiliated
   registration_deadline: idaho
 record_13:
   abbreviation: IL
   name: Illinois
-  requires_party: true
+  requires_party: false
   party_tooltip: illinois
   id_number_tooltip: illinois
   sos_address: State Board of Elections<br>2329 S. MacArthur Boulevard<br>Springfield,
@@ -256,7 +308,8 @@ record_15:
   parties:
   - democratic
   - republican
-  - other
+  - green
+  - libertarian
   no_party: none_no_affiliation
 record_16:
   abbreviation: KS
@@ -273,6 +326,11 @@ record_16:
   id_length_min: '4'
   online_registration_url: https://www.kdor.ks.gov/Apps/VoterReg/Default.aspx
   online_registration_system_name: VoteKS.org
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  no_party: unaffiliated
 record_17:
   abbreviation: KY
   name: Kentucky
@@ -286,6 +344,11 @@ record_17:
   sub_18: when_will_be_18
   online_registration_url: https://vrsws.sos.ky.gov/ovrweb/
   registration_deadline: kentucky
+  parties:
+  - democratic
+  - republican
+  - other
+  no_party: blank
 record_18:
   abbreviation: LA
   name: Louisiana
@@ -302,6 +365,7 @@ record_18:
   sub_18: once_turned_17
   registration_deadline: louisiana
   id_length_min: '4'
+  no_party: none_no_affiliation
 record_19:
   abbreviation: ME
   name: Maine
@@ -315,6 +379,13 @@ record_19:
   sub_18: once_turned_17_but
   registration_deadline: maine
   id_length_min: '4'
+  parties:
+  - democratic
+  - republican
+  - other
+  - unenrolled
+  - green_independent
+  no_party: blank
 record_20:
   abbreviation: MD
   name: Maryland
@@ -327,7 +398,15 @@ record_20:
   sos_url: https://elections.maryland.gov/index.html
   registration_deadline: maryland
   id_length_min: '4'
-  online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1?val=rock
+  online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1
+  parties:
+  - democratic
+  - republican
+  - green
+  - libertarian
+  - other
+  - working_class_party
+  no_party: unaffiliated
 record_21:
   abbreviation: MA
   name: Massachusetts
@@ -335,12 +414,9 @@ record_21:
   party_tooltip: massachusetts
   parties:
   - democratic
-  - independent
-  - green
-  - libertarian
   - republican
-  - unenrolled
   - other
+  - unenrolled
   id_number_tooltip: massachusetts
   sos_address: Secretary of the Commonwealth<br /> Elections Division<br /> McCormack
     Building<br /> One Ashburton Place, Room 1705<br /> Boston, MA 02108
@@ -350,6 +426,7 @@ record_21:
   id_length_min: '4'
   online_registration_url: https://www.sec.state.ma.us/OVR/
   sub_18: once_turned_16
+  no_party: blank
 record_22:
   abbreviation: MI
   name: Michigan
@@ -380,7 +457,7 @@ record_23:
 record_24:
   abbreviation: MS
   name: Mississippi
-  requires_party: true
+  requires_party: false
   party_tooltip: mississippi
   id_number_tooltip: drivers_license_current_and_valid
   sos_address: Secretary of State<br /> Elections & Voting <br /> Heber Ladner Building<br
@@ -393,7 +470,7 @@ record_24:
 record_25:
   abbreviation: MO
   name: Missouri
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required
   id_number_tooltip: driver_license_state_issues_and_ssn
   sos_address: Elections<br /> James C. Kirkpatrick State Information Center<br />
@@ -407,7 +484,7 @@ record_25:
 record_26:
   abbreviation: MT
   name: Montana
-  requires_party: true
+  requires_party: false
   party_tooltip: party_not_required_2
   id_number_tooltip: drivers_license_or_other_with_state_name_2
   sos_address: Montana Secretary of State<br /> Montana Capitol Building, Rm 260<br
@@ -431,6 +508,13 @@ record_27:
   registration_deadline: nebraska
   id_length_min: '4'
   online_registration_url: https://www.nebraska.gov/apps-sos-voter-registration/
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  - other
+  - legal_marijuana_now
+  no_party: nonpartisan
 record_28:
   abbreviation: NV
   name: Nevada
@@ -443,17 +527,24 @@ record_28:
   sos_url: https://www.nvsos.gov/sos/elections
   registration_deadline: nevada
   id_length_min: '4'
-  online_registration_url: https://registertovote.nv.gov/?source=rtv&utm_source=rtv&utm_medium=rtv&utm_campaign=rtv
+  online_registration_url: https://registertovote.nv.gov
   sub_18: once_turned_17
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  - other
+  - independent_american
+  no_party: nonpartisan
 record_29:
   abbreviation: NH
   name: New Hampshire
   participating: false
   not_participating_tooltip: new_hampshire
   race_tooltip: blank
-  requires_party: false
+  requires_party: true
   party_tooltip: blank
-  no_party: blank
+  no_party: undeclared
   id_length_min: ''
   id_length_max: ''
   id_number_tooltip: blank
@@ -463,6 +554,9 @@ record_29:
   sos_url: https://sos.nh.gov/elections/voters/elections-voting-division/
   sub_18: blank
   registration_deadline: new_hampshire
+  parties:
+  - democratic
+  - republican
 record_30:
   abbreviation: NJ
   name: New Jersey
@@ -476,6 +570,10 @@ record_30:
   registration_deadline: new_jersey
   id_length_min: '4'
   online_registration_url: https://voter.svrs.nj.gov/register
+  parties:
+  - democratic
+  - republican
+  no_party: unaffiliated
 record_31:
   abbreviation: NM
   name: New Mexico
@@ -489,6 +587,12 @@ record_31:
   registration_deadline: new_mexico
   online_registration_url: https://portal.sos.state.nm.us/OVR/WebPages/InstructionsStep1.aspx
   sub_18: turn_by_next_general_election_november
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  - working_families
+  no_party: none_no_affiliation
 record_32:
   abbreviation: NY
   name: New York
@@ -496,13 +600,10 @@ record_32:
   party_tooltip: required_for_primary
   parties:
   - democratic
-  - green
-  - libertarian
   - republican
-  - working_families
   - other
-  - independence
-  - sam
+  - working_families
+  - conservative
   id_number_tooltip: drivers_license_or_other_with_state_name_4
   sos_address: NYS Board of Elections<br />40 North Pearl Street, Suite 5<br />Albany,
     NY 12207-2729
@@ -526,6 +627,12 @@ record_33:
   registration_deadline: north_carolina
   id_length_min: '4'
   online_registration_url: https://payments.ncdot.gov/service/nc_voter_registration/workflow/nc_voter_reg_standalone_entry/1?initialTalkObject=%7B%22dashboard%22%3A%7B%22serviceOfferingId%22%3A%22nc_voter_registration%22%2C%22licenses%22%3A%5B%5D%7D%7D
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  - other
+  no_party: unaffiliated
 record_34:
   abbreviation: ND
   name: North Dakota
@@ -572,6 +679,12 @@ record_36:
   registration_deadline: oklahoma
   online_registration_url: https://okvoterportal.okelections.us/Home/RegWizard
   id_length_min: '4'
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  - other
+  no_party: none_no_affiliation
 record_37:
   abbreviation: OR
   name: Oregon
@@ -586,6 +699,18 @@ record_37:
   registration_deadline: oregon
   id_length_min: '4'
   online_registration_url: https://sos.oregon.gov/voting/Pages/registration.aspx?lang=en
+  parties:
+  - democratic
+  - independent
+  - republican
+  - green
+  - libertarian
+  - other
+  - working_families
+  - constitution
+  - pacific_green
+  - progressive
+  no_party: none
 record_38:
   abbreviation: PA
   name: Pennsylvania
@@ -594,9 +719,9 @@ record_38:
   requires_party: true
   parties:
   - democratic
+  - republican
   - green
   - libertarian
-  - republican
   - other
   no_party: none_no_affiliation
   party_tooltip: required_for_primary_2
@@ -621,12 +746,13 @@ record_39:
   registration_deadline: rhode_island
   id_length_min: '4'
   online_registration_url: https://vote.sos.ri.gov/Home/RegistertoVote?ActiveFlag=1
+  no_party: unaffiliated
 record_40:
   abbreviation: SC
   name: South Carolina
   requires_race: true
   race_tooltip: required_no_conditions_with_state_name
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required
   id_number_tooltip: south_carolina
   sos_address: State Election Commission<br /> 1122 Lady Street, Suite 500<br /> Columbia,
@@ -639,17 +765,14 @@ record_40:
 record_41:
   abbreviation: SD
   name: South Dakota
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: south_dakota
   parties:
   - democratic
   - independent
-  - green
-  - libertarian
   - republican
-  - other
-  no_party: blank
+  - libertarian
+  no_party: none_no_affiliation
   id_number_tooltip: south_dakota
   sos_address: Secretary of State<br /> Capitol Building<br />  500 East Capitol Avenue
     Ste 204 <br /> Pierre, SD 57501-5070
@@ -661,7 +784,7 @@ record_42:
   name: Tennessee
   requires_race: true
   race_tooltip: requested_not_required_with_state_name
-  requires_party: true
+  requires_party: false
   party_tooltip: tennessee
   id_number_tooltip: ssn_or_none_4
   sos_address: Elections <br /> 312 Rosa L. Parks Avenue<br /> 7th Floor, Snodgrass
@@ -699,6 +822,15 @@ record_44:
   registration_deadline: utah
   id_length_min: '4'
   online_registration_url: https://secure.utah.gov/voterreg/index.html
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  - other
+  - constitution
+  - united_utah
+  - independent_american
+  no_party: none_no_affiliation
 record_45:
   abbreviation: VT
   name: Vermont
@@ -715,7 +847,7 @@ record_46:
   abbreviation: VA
   name: Virginia
   race_tooltip: virginia
-  requires_party: true
+  requires_party: false
   party_tooltip: virginia
   id_number_tooltip: ssn_or_none_3
   sos_address: Virginia Department of Elections<br /> Washington Building, First Floor<br
@@ -750,6 +882,13 @@ record_48:
   registration_deadline: west_virginia
   id_length_min: '4'
   online_registration_url: https://ovr.sos.wv.gov/Register/Landing#Landing
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  - other
+  - mountain
+  no_party: none_no_affiliation
 record_49:
   abbreviation: WI
   name: Wisconsin
