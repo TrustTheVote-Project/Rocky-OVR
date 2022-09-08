@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   resources "trackballot", only: [:new, :create], controller: "ballot_status_checks", as: :ballot_status_checks
   
+  resources "election-official", only: [:new, :create], controller: "ballot_status_checks", as: :ballot_status_checks
+  
   match "/absentee/timeout", :to => "abr_timeouts#index", :as=>'abr_timeout', via: :get
   
   resources "lookup", :only => [:new, :create, :show, :update], :controller=>"catalist_lookups", as: :catalist_lookups do
