@@ -1816,7 +1816,7 @@ en:
 
             instructions_3: |-
               <p>If you request a mail-in ballot, you must return it by mail - you cannot drop it off.</p>
-              <p>Your absentee ballot must be postmarked on or before Election Day and received by June 14th.</p>
+              <p>Your voted absentee ballot must be postmarked by November 7th and received by November 15th in order to be counted.</p>
       mt:
         abr:
           request_deadline: |-
