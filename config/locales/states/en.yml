@@ -1344,7 +1344,7 @@ en:
             birthday and name and certify that you are a registered voter in Maine. You must request your own ballot.</p>
             <p>You can also request an accessible ballot if using a paper ballot is difficult for you.</p>
           request_deadline: |-
-            <p>Absentee ballot requests must be received by 5:00 pm on June 9th for the primary election.</p>
+            <p>Absentee ballot requests must be received by close of business on November 3rd for the November 8th election.</p>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
             <p>Your ballot must received by 8:00pm on election day.</p>
