@@ -858,6 +858,19 @@ en:
             Contact your local election official to track your absentee ballot.
             </p>
 
+          splash:
+            instructions_1: |-
+                <p>All registered voters in Illinois can vote by mail. Request a vote by mail ballot from your local jurisdiction by going to the 
+                <a href='#' target='_blank'>State Board of Elections website</a>.</p>
+            instructions_2: |-
+                <p>Depending on where you live, you may request a vote by mail ballot online or with a paper application. The application must be sent to the election authority for the jurisdiction in which you are registered to vote. 
+                </p>
+                <p>Vote by mail ballot requests submitted by mail or online must be received by 11/3/2022 for the November General Election.
+                </p>
+            instructions_3: |-
+                <p>If you're returning your completed ballot by mail, it must be postmarked by Election Day, 11/8/2022, 
+                and received by 11/22/2022. If you're returning your completed ballot by hand, it must be received by close of
+                polls on Election Day, 11/8/2022.</p>
         abr_form_fields:
           abr_county: Registration address county
           abr_precinct: Enter your precinct	
