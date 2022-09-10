@@ -2433,6 +2433,24 @@ en:
           has_no_state_license: I do not have a NY state identification card or NY driver's license, and Social Security Number.
       oh:
         abr:
+          everyone_gets_ballot:
+            header_1: "%{state_name} Automatically Mails all Registered Voters a Ballot Application"
+            instructions_1: |-
+              <p>If you are registered to vote in %{state_name}an absentee ballot application will
+              be automatically mailed to you for the November General Election. </p>
+              <p><a href="%{url}">Make sure you are registered to vote!</a></p>
+            header_2: Questions About Your Absentee Ballot
+            instructions_2: |-
+              <p>Don't forget to complete all fields on your absentee ballot application. Then, sign & date the form.</p>
+              <p>Your absentee ballot application must be received by your county's board of elections by noon on November
+              5th for the November 8th General Election. For your county’s board of elections address, please visit
+              <a href="https://VoteOhio.gov/boards" target="_blank">https://VoteOhio.gov/boards</a>
+
+
+            header_3: Don't Forget To Vote!
+            instructions_3: |-
+              <p>In order to be counted, your voted absentee ballot must be postmarked by November 7th if being returned by mail.
+              If you are returning your voted absentee ballot by hand, it must be received by the close of polls on Election Day, November 8th.</p>
           step_2_instructions: |-
             <p>All registered voters in Ohio can request an absentee ballot.</p>
             <p><a href="%{lookup_url}">Make sure your registration is up to date.</a>
