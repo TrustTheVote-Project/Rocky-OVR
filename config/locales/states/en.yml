@@ -1356,11 +1356,16 @@ en:
             you may request your absentee ballot online directly with the state.</p>"
       ma:
         abr:
-          step_2_header: You must have a reason to request an absentee ballot.
+          step_2_header: MA Automatically Mails all Registered Voters a Ballot Application
           step_2_instructions: |-
-            <p>A registered voter in Massachusetts can vote absentee if they will be unable
-            to vote at the polls on Election Day due to absence from the voter’s city or town 
-            during polling hours, disability, or religious beliefs.
+            <p>If you registered to vote in MA prior to September, 2022 and your voter registration
+            is active, you will automatically receive a vote by mail ballot application in the mail
+            for the 2022 November General Election. Applications will be mailed out in September if 
+            you have not previously requested a ballot for November.
+            </p>
+
+            <p>If you registered after September or have not yet received an application in the mail,
+            you may apply for a vote by mail ballot online through the state.
             </p>
           finish_instructions_1_hint: |-
             <p>Applications can be submitted by mail, email, or fax. If you are emailing
@@ -1368,15 +1373,14 @@ en:
             and email it to your local election office. Typed signatures are not acceptable.
             </p>
           request_deadline: |-
-            <p>Your application must be received by:</p>
-            <ul>
-            <li>8/30/22 for the Primary, and</li>
-            <li>11/2/2022 for the General.</li>
-            </ul>
+            <p>Your absentee ballot application must be received by November 2nd for the November 8th General Election. </p>
+
           status_check_instructions: |-
-            <p>
+            <p>You can track the status of your absentee ballot here:
             <a href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
             </p>
+          finish_instructions_3_hint_state: |-
+            <p>In order to be counted, your voted absentee ballot must be received by the close of polls on Election Day, November 8th.</p>
           step_3_header: Prepare your Massachusetts PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
@@ -1408,6 +1412,8 @@ en:
               signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
+        state_online_abr:
+          instructions: You can apply for a vote by mail ballot online through the state.
         abr_form_fields:
           abr_check_mailing_address: I get my mail at a different address from the one above.
           abr_mailing_address_instructions: Enter your mailing address	
