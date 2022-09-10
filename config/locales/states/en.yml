@@ -1055,18 +1055,20 @@ en:
             <h3>You must have a reason to vote absentee in Kentucky.</h3>
             <p>See if you qualify.</p>
             <ul>
-            <li>Students who temporarily resides outside of their county.</li>
+            <li>Students who temporarily reside outside of their county.</li>
             <li>People incarcerated in jail and charged but not convicted of a crime.</li>
             <li>People temporarily residing outside of the state and still eligible to vote in Kentucky.</li>
             <li>People who cannot come to the polls on election day or any of the in-person absentee voting days because of:</li>
+            
             <ul>
             <li>The location of their jobs, or</li>
-            <li>Due to age, disability or illness.</li>
+            <li>Age, disability or illness.</li>
             </ul>
+            
+            <li>People who participate in the Secretary of State’s crime victim address confidentiality protection program</li>
             </ul>
-          request_deadline: "<p>Absentee ballot requests must be received by 11:59 pm on:</p>
-            <ul><li>May 3, 2022 for the primary election, and</li>
-            <li>October 25, 2022 for the general election.</li></ul>"
+
+          request_deadline: "<p>Absentee ballot requests must be received by 11:59 pm on October 25, 2022 for the November General Election.</p>"
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3>
             <p>If you mail your ballot, it must received by 6:00 pm on Election Day.</p>"
           status_check_instructions: You can look up your Absentee Ballot status by
