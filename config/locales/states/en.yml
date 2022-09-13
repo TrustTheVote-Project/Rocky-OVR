@@ -1358,14 +1358,12 @@ en:
         abr:
           step_2_header: MA Automatically Mails all Registered Voters a Ballot Application
           step_2_instructions: |-
-            <p>If you registered to vote in MA prior to September, 2022 and your voter registration
-            is active, you will automatically receive a vote by mail ballot application in the mail
-            for the 2022 November General Election. Applications will be mailed out in September if 
-            you have not previously requested a ballot for November.
+            <p>You only need to continue and request an absentee ballot If you registered after September
+            or have not yet received an application in the mail. Applications will be mailed out in September.
             </p>
-
-            <p>If you registered after September or have not yet received an application in the mail,
-            you may apply for a vote by mail ballot online through the state.
+            <p>You do not need to request an absentee ballot to vote if you registered to vote in MA prior
+            to September, 2022 and your voter registration is active: you will automatically receive a vote
+            by mail ballot application in the mail for the 2022 November General Election.
             </p>
           finish_instructions_1_hint: |-
             <p>Applications can be submitted by mail, email, or fax. If you are emailing
