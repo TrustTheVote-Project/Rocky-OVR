@@ -503,7 +503,7 @@ record_27:
   sos_address: Elections Division<br /> 1221 N Street<br /> Suite 103<br /> Lincoln,
     NE 68508
   sos_phone: "(402) 471-2555"
-  sos_url: https://sos.nebraska.gov/elections/elections-division
+  sos_url: https://www.votercheck.necvr.ne.gov/voterview/
   sub_18: turn_by_next_general_election_november_2
   registration_deadline: nebraska
   id_length_min: '4'
@@ -524,7 +524,7 @@ record_28:
   sos_address: 'Secretary of State Elections Office<br />  101 North Carson Street,
     Suite 3<br />  Carson City, NV 89701-3714 '
   sos_phone: "(775) 684-5705"
-  sos_url: https://www.nvsos.gov/sos/elections
+  sos_url: https://www.nvsos.gov/votersearch/
   registration_deadline: nevada
   id_length_min: '4'
   online_registration_url: https://registertovote.nv.gov
@@ -551,7 +551,7 @@ record_29:
   sos_address: 'Elections Office<br>State House, Room 204<br>107 North Main Street<br>Concord,
     N.H. 03301 '
   sos_phone: 603-271-3242
-  sos_url: https://sos.nh.gov/elections/voters/elections-voting-division/
+  sos_url: https://app.sos.nh.gov/voterinformation
   sub_18: blank
   registration_deadline: new_hampshire
   parties:
@@ -566,7 +566,7 @@ record_30:
   sos_address: New Jersey Department of State<br>Division of Elections<br>PO BOX 304<br>Trenton,
     NJ 08628-0304
   sos_phone: '877-NJ-VOTER '
-  sos_url: https://www.nj.gov/state/elections/
+  sos_url: https://voter.svrs.nj.gov/registration-check
   registration_deadline: new_jersey
   id_length_min: '4'
   online_registration_url: https://voter.svrs.nj.gov/register
@@ -583,7 +583,7 @@ record_31:
   sos_address: Bureau of Elections<br />New Mexico Capitol Annex North<br /> 325 Don
     Gaspar, Suite 300<br /> Santa Fe, NM 87501
   sos_phone: 505-827-3600 (Option 2)
-  sos_url: https://www.sos.state.nm.us/voting-and-elections/
+  sos_url: https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx
   registration_deadline: new_mexico
   online_registration_url: https://portal.sos.state.nm.us/OVR/WebPages/InstructionsStep1.aspx
   sub_18: turn_by_next_general_election_november
@@ -608,7 +608,7 @@ record_32:
   sos_address: NYS Board of Elections<br />40 North Pearl Street, Suite 5<br />Albany,
     NY 12207-2729
   sos_phone: "(518) 474-6220"
-  sos_url: https://www.elections.ny.gov/
+  sos_url: https://voterlookup.elections.ny.gov/
   status_check_url: https://absenteeballot.elections.ny.gov/
   registration_deadline: new_york
   id_length_min: '4'
@@ -623,7 +623,7 @@ record_33:
   id_number_tooltip: drivers_license_or_dmv_with_state_name
   sos_address: State Board of Elections<br>P.O. Box 27255<br>Raleigh, NC 27611-7255
   sos_phone: "(919) 814-0700"
-  sos_url: http://www.ncsbe.gov/
+  sos_url: https://vt.ncsbe.gov/RegLkup/
   registration_deadline: north_carolina
   id_length_min: '4'
   online_registration_url: https://payments.ncdot.gov/service/nc_voter_registration/workflow/nc_voter_reg_standalone_entry/1?initialTalkObject=%7B%22dashboard%22%3A%7B%22serviceOfferingId%22%3A%22nc_voter_registration%22%2C%22licenses%22%3A%5B%5D%7D%7D
@@ -660,7 +660,7 @@ record_35:
   sos_address: Secretary of State of Ohio<br /> 22 North Fourth Street, 16th Floor<br
     /> Columbus, Ohio 43215
   sos_phone: "(614) 466-2655"
-  sos_url: https://www.sos.state.oh.us/elections/
+  sos_url: https://voterlookup.ohiosos.gov/voterlookup.aspx
   sub_18: turn_by_next_general_election_november_2
   registration_deadline: ohio
   id_length_min: '4'
@@ -674,7 +674,7 @@ record_36:
   sos_address: Oklahoma State Election Board<br /> 2300 N Lincoln Blvd, Room G28<br
     /> State Capitol Building<br /> Oklahoma City, OK 73105<br />
   sos_phone: "(405) 521-2391"
-  sos_url: https://oklahoma.gov/elections.html
+  sos_url: https://okvoterportal.okelections.us/
   sub_18: 60_days_before_election_novemeber
   registration_deadline: oklahoma
   online_registration_url: https://okvoterportal.okelections.us/Home/RegWizard
@@ -694,7 +694,7 @@ record_37:
   sos_address: Oregon Secretary of State Elections Division <br /> Public Service
     Building Suite 501<br /> 255 Capitol St. NE <br /> Salem OR 97310
   sos_phone: "(503) 986-1518"
-  sos_url: https://sos.oregon.gov/voting-elections/Pages/default.aspx
+  sos_url: https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS
   sub_18: once_turned_16
   registration_deadline: oregon
   id_length_min: '4'
@@ -703,14 +703,13 @@ record_37:
   - democratic
   - independent
   - republican
-  - green
   - libertarian
   - other
   - working_families
   - constitution
   - pacific_green
   - progressive
-  no_party: none
+  no_party: blank
 record_38:
   abbreviation: PA
   name: Pennsylvania
@@ -729,7 +728,7 @@ record_38:
   sos_address: 'Office of the Secretary, Bureau of Elections and Notaries<br /> 210
     North Office Building<br />  401 North Street<br /> Harrisburg, PA 17120 '
   sos_phone: "(877) 868-3772"
-  sos_url: https://www.vote.pa.gov/Pages/default.aspx
+  sos_url: https://www.vote.pa.gov/Register-to-Vote/Pages/Check-Your-Voter-Registration-Status.aspx
   registration_deadline: pennsylvania
   online_registration_url: https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx
 record_39:
@@ -742,11 +741,15 @@ record_39:
   sos_address: Rhode Island Board of Elections<br /> 148 West River St.<br /> Providence,
     RI 02904
   sos_phone: "(401) 222-2340"
-  sos_url: https://vote.sos.ri.gov/
+  sos_url: https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=0
   registration_deadline: rhode_island
   id_length_min: '4'
   online_registration_url: https://vote.sos.ri.gov/Home/RegistertoVote?ActiveFlag=1
   no_party: unaffiliated
+  parties:
+  - democratic
+  - republican
+  - other
 record_40:
   abbreviation: SC
   name: South Carolina
@@ -758,7 +761,7 @@ record_40:
   sos_address: State Election Commission<br /> 1122 Lady Street, Suite 500<br /> Columbia,
     SC 29201<br />
   sos_phone: "(803) 734-9060"
-  sos_url: https://www.scvotes.gov/
+  sos_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=VoterInfo
   registration_deadline: south_carolina
   id_length_min: '4'
   online_registration_url: https://info.scvotes.sc.gov/eng/ovr/start.aspx
@@ -777,7 +780,7 @@ record_41:
   sos_address: Secretary of State<br /> Capitol Building<br />  500 East Capitol Avenue
     Ste 204 <br /> Pierre, SD 57501-5070
   sos_phone: "(605) 773-3537"
-  sos_url: https://sdsos.gov/elections-voting/default.aspx
+  sos_url: https://vip.sdsos.gov/VIPLogin.aspx
   registration_deadline: south_dakota
 record_42:
   abbreviation: TN
@@ -790,7 +793,7 @@ record_42:
   sos_address: Elections <br /> 312 Rosa L. Parks Avenue<br /> 7th Floor, Snodgrass
     Tower<br /> Nashville , TN 37243-1102
   sos_phone: "(615) 741-7956"
-  sos_url: https://sos.tn.gov/elections
+  sos_url: https://tnmap.tn.gov/voterlookup/
   registration_deadline: tennessee
   id_length_min: '4'
   online_registration_url: https://ovr.govote.tn.gov/
@@ -803,7 +806,7 @@ record_43:
   sos_address: Elections Division<br /> Secretary of State<br />  P.O. Box 12060<br
     /> Austin, TX 78711-2060
   sos_phone: "(800) 252-8683"
-  sos_url: https://www.votetexas.gov/
+  sos_url: https://teamrv-mvp.sos.texas.gov/MVP/mvp.do
   sub_18: 2_months_before
   registration_deadline: texas
   online_registration_url: https://vrapp.sos.state.tx.us/index.asp
@@ -817,7 +820,7 @@ record_44:
   sos_address: Office of the Lieutenant Governor<br /> 350 North State Street, Suite
     220<br /> P.O. Box 142325<br /> Salt Lake City, Utah 84114-2325
   sos_phone: "(801) 538-1041"
-  sos_url: https://vote.utah.gov/
+  sos_url: https://votesearch.utah.gov/voter-search/search/search-by-voter/voter-info
   sub_18: once_turned_16
   registration_deadline: utah
   id_length_min: '4'
@@ -839,7 +842,7 @@ record_45:
   id_number_tooltip: drivers_license_or_ssn_or_none_4
   sos_address: Elections Division<br /> 128 State Street<br /> Montpelier, VT 05633-1101
   sos_phone: "(802) 828-2464"
-  sos_url: https://sos.vermont.gov/elections/
+  sos_url: https://mvp.vermont.gov/
   registration_deadline: vermont
   id_length_min: '4'
   online_registration_url: https://olvr.vermont.gov/
@@ -853,7 +856,7 @@ record_46:
   sos_address: Virginia Department of Elections<br /> Washington Building, First Floor<br
     /> 1100 Bank Street, Richmond 23219
   sos_phone: "(804) 864-8901"
-  sos_url: https://www.elections.virginia.gov/
+  sos_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/status
   registration_deadline: virginia
   online_registration_url: https://www.elections.virginia.gov/citizen-portal/
 record_47:
@@ -865,7 +868,7 @@ record_47:
   sos_address: State Elections Division<br>520 Union Ave SE<br>P.O. Box 40229<br>Olympia,
     WA 98504-0230
   sos_phone: "(360) 902-4180"
-  sos_url: http://www.secstate.wa.gov/elections/
+  sos_url: https://voter.votewa.gov/WhereToVote.aspx
   sub_18: turn_by_next_election_2
   registration_deadline: washington
   id_length_min: '4'
@@ -878,7 +881,7 @@ record_48:
   sos_address: Office of the Secretary of State<br /> State Capitol Building<br />
     Charleston, WV 25305<br />
   sos_phone: "(304) 558-6000"
-  sos_url: https://sos.wv.gov/elections/Pages/GoVoteWV.aspx
+  sos_url: https://apps.sos.wv.gov/Elections/Voter/FindMyPollingPlace
   registration_deadline: west_virginia
   id_length_min: '4'
   online_registration_url: https://ovr.sos.wv.gov/Register/Landing#Landing
@@ -898,7 +901,7 @@ record_49:
   sos_address: State of Wisconsin Elections Commission<br /> 212 East Washington Ave<br
     /> 3rd Floor<br /> Madison, WI 53703
   sos_phone: "(608) 266-8005"
-  sos_url: https://myvote.wi.gov/en-us/
+  sos_url: https://myvote.wi.gov/en-us/Register-To-Vote
   sub_18: 17_turn_18
   registration_deadline: wisconsin
   pdf_other_instructions: wisconsin
@@ -923,4 +926,3 @@ record_50:
   sos_url: https://sos.wyo.gov/Elections/Default.aspx
   sub_18: turn_by_next_election
   registration_deadline: wyoming
-  
