@@ -861,7 +861,7 @@ en:
           splash:
             instructions_1: |-
                 <p>All registered voters in Illinois can vote by mail. Request a vote by mail ballot from your local jurisdiction by going to the 
-                <a href='#' target='_blank'>State Board of Elections website</a>.</p>
+                <a href='https://www.elections.il.gov/ElectionOperations/VotingByMail.aspx?MID=oYoa3FYF460%3d&T=637982369687629559' target='_blank'>State Board of Elections website</a>.</p>
             instructions_2: |-
                 <p>Depending on where you live, you may request a vote by mail ballot online or with a paper application. The application must be sent to the election authority for the jurisdiction in which you are registered to vote. 
                 </p>
@@ -1358,7 +1358,7 @@ en:
         abr:
           step_2_header: MA Automatically Mails all Registered Voters a Ballot Application
           step_2_instructions: |-
-            <p>You only need to continue and request an absentee ballot If you registered after September
+            <p>You only need to continue and request an absentee ballot if you registered after September
             or have not yet received an application in the mail. Applications will be mailed out in September.
             </p>
             <p>You do not need to request an absentee ballot to vote if you registered to vote in MA prior
@@ -1411,7 +1411,7 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         state_online_abr:
-          instructions: You can apply for a vote by mail ballot online through the state.
+          instructions: <center>You can apply for a vote by mail ballot online through the state.</center>
         abr_form_fields:
           abr_check_mailing_address: I get my mail at a different address from the one above.
           abr_mailing_address_instructions: Enter your mailing address	
