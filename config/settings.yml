@@ -160,7 +160,8 @@ absentee_states:
     abr_status_check_url: "http://voterportal.sos.la.gov/"
     abr_track_ballot_url: "http://voterportal.sos.la.gov/"
   MA:
-    pdf_template: ma.pdf
+    #pdf_template: ma.pdf
+    online_req_url: https://www.sec.state.ma.us/MailInRequestWeb/MailInBallot.aspx
     #email_delivery: true
     abr_status_check_url: "https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx"
     abr_track_ballot_url: "https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx"
