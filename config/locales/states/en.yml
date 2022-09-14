@@ -2442,7 +2442,7 @@ en:
           everyone_gets_ballot:
             header_1: "%{state_name} Automatically Mails all Registered Voters a Ballot Application"
             instructions_1: |-
-              <p>If you are registered to vote in %{state_name}an absentee ballot application will
+              <p>If you are registered to vote in %{state_name} an absentee ballot application will
               be automatically mailed to you for the November General Election. </p>
               <p><a href="%{url}">Make sure you are registered to vote!</a></p>
             header_2: Questions About Your Absentee Ballot
