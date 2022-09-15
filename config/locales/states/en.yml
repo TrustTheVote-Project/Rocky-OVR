@@ -11,11 +11,8 @@ en:
             </p>
             <p>You can use this form to register to vote and request an absentee ballot.</p>
           request_deadline: |-
-            <p>Your application must be received by:</p>
-            </p><ul>
-            <li>August 6th for the primary, and </li>
-            <l>September 24th for the general election.</li>
-            </ul>
+            <p>Your application must be received by October 29th for the November General Election.</p>
+            </p>
 
           status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
           finish_instructions_1_hint: |-
@@ -620,13 +617,17 @@ en:
           has_state_license: I have a FL state identification card or FL driver's license, and Social Security Number.
           has_no_state_license: I do not have a FL state identification card or FL driver's license, and Social Security Number.
       ga:
+        state_online_abr:
+          confirm: ''
+          requirements: |-
+            <p>
+            If you have a Georgia Driver's License or ID number on file with the state, you can complete your absentee ballot request online.
+            If you do not have a an ID on file, you can submit a paper application.
+            </p>
         abr:
           request_deadline: |-
-            <p>Your absentee ballot request must be received by:</p>
-            <ul>
-            <li>May 13, 2022 for the primary election, and </li>
-            <li>October 28, 2022 for the general election.</li>
-            </ul>
+            <p>Your absentee ballot request must be received by October 28, 2022 for the general election.</p>
+
           status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
             <p>You can submit your absentee ballot request to your it to your
@@ -861,7 +862,7 @@ en:
           splash:
             instructions_1: |-
                 <p>All registered voters in Illinois can vote by mail. Request a vote by mail ballot from your local jurisdiction by going to the 
-                <a href='#' target='_blank'>State Board of Elections website</a>.</p>
+                <a href='https://www.elections.il.gov/ElectionOperations/VotingByMail.aspx?MID=oYoa3FYF460%3d&T=637982369687629559' target='_blank'>State Board of Elections website</a>.</p>
             instructions_2: |-
                 <p>Depending on where you live, you may request a vote by mail ballot online or with a paper application. The application must be sent to the election authority for the jurisdiction in which you are registered to vote. 
                 </p>
@@ -1358,7 +1359,7 @@ en:
         abr:
           step_2_header: MA Automatically Mails all Registered Voters a Ballot Application
           step_2_instructions: |-
-            <p>You only need to continue and request an absentee ballot If you registered after September
+            <p>You only need to continue and request an absentee ballot if you registered after September
             or have not yet received an application in the mail. Applications will be mailed out in September.
             </p>
             <p>You do not need to request an absentee ballot to vote if you registered to vote in MA prior
@@ -1411,7 +1412,7 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         state_online_abr:
-          instructions: You can apply for a vote by mail ballot online through the state.
+          instructions: <center>You can apply for a vote by mail ballot online through the state.</center>
         abr_form_fields:
           abr_check_mailing_address: I get my mail at a different address from the one above.
           abr_mailing_address_instructions: Enter your mailing address	
@@ -2442,7 +2443,7 @@ en:
           everyone_gets_ballot:
             header_1: "%{state_name} Automatically Mails all Registered Voters a Ballot Application"
             instructions_1: |-
-              <p>If you are registered to vote in %{state_name}an absentee ballot application will
+              <p>If you are registered to vote in %{state_name} an absentee ballot application will
               be automatically mailed to you for the November General Election. </p>
               <p><a href="%{url}">Make sure you are registered to vote!</a></p>
             header_2: Questions About Your Absentee Ballot

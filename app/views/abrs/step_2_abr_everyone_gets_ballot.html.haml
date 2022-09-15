@@ -1,8 +1,8 @@
 - abbrev = @abr.i18n_key
-%h2{role: "heading", "aria-level": 2}= t("txt.abr.everyone_gets_ballot.header_1", state_name: @abr.home_state_name).html_safe
+%h2{role: "heading", "aria-level": 2}= t("states.custom.#{abbrev}.abr.everyone_gets_ballot.header_1", state_name: @abr.home_state_name, default:t("txt.abr.everyone_gets_ballot.header_1", state_name: @abr.home_state_name)).html_safe
 
 .state-instructions
-  = t("txt.abr.everyone_gets_ballot.instructions_1", state_name: @abr.home_state_name, url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip)).html_safe
+  = t("states.custom.#{abbrev}.abr.everyone_gets_ballot.instructions_1", state_name: @abr.home_state_name, url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), default: t("txt.abr.everyone_gets_ballot.instructions_1", state_name: @abr.home_state_name, url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip))).html_safe
 
 %h2{role: "heading", "aria-level": 2}= t("txt.abr.everyone_gets_ballot.header_2").html_safe
 
