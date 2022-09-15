@@ -11,11 +11,8 @@ en:
             </p>
             <p>You can use this form to register to vote and request an absentee ballot.</p>
           request_deadline: |-
-            <p>Your application must be received by:</p>
-            </p><ul>
-            <li>August 6th for the primary, and </li>
-            <l>September 24th for the general election.</li>
-            </ul>
+            <p>Your application must be received by October 29th for the November General Election.</p>
+            </p>
 
           status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
           finish_instructions_1_hint: |-
@@ -620,13 +617,17 @@ en:
           has_state_license: I have a FL state identification card or FL driver's license, and Social Security Number.
           has_no_state_license: I do not have a FL state identification card or FL driver's license, and Social Security Number.
       ga:
+        state_online_abr:
+          confirm: ''
+          requirements: |-
+            <p>
+            If you have a Georgia Driver's License or ID number on file with the state, you can complete your absentee ballot request online.
+            If you do not have a an ID on file, you can submit a paper application.
+            </p>
         abr:
           request_deadline: |-
-            <p>Your absentee ballot request must be received by:</p>
-            <ul>
-            <li>May 13, 2022 for the primary election, and </li>
-            <li>October 28, 2022 for the general election.</li>
-            </ul>
+            <p>Your absentee ballot request must be received by October 28, 2022 for the general election.</p>
+
           status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
             <p>You can submit your absentee ballot request to your it to your
