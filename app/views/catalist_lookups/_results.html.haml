@@ -1,18 +1,6 @@
 - as_abr = as_abr || false
 
-- abr_continue_buttons = capture_haml do
-  - if as_abr && @abr
-    = t('txt.abr.no_match_options').html_safe
-    - continue_url = @abr.eligible_for_oabr? ? state_online_abr_path(@abr) : step_3_abr_path(@abr)        
-    
-    %span.rollover_button.button{role: "button"}
-      = link_to t('txt.lookup.register'), registration_abr_path(@abr)
 
-    %span.rollover_button.button{role: "button"}
-      = link_to t('txt.lookup.go_back'), step_2_abr_path(@abr)
-
-    %span.rollover_button.button{role: "button"}
-      = link_to t('txt.abr.continue_no_match'), continue_url
 
 - reject_content = capture_haml do
   - state_url = @lookup.state&.registrar_url
@@ -25,15 +13,27 @@
   - else
     = t('txt.lookup.check_again_no_link', state: @lookup.state.name, state_date: l(@lookup.state_last_updated_at.to_date, format: :long)).html_safe
 
-  - if as_abr && @abr
-    = abr_continue_buttons
-
   
+  - if as_abr && @abr
+    - continue_url = @abr.eligible_for_oabr? ? state_online_abr_path(@abr) : step_3_abr_path(@abr)   
+    %br
+    %h2= t('txt.abr.no_match_options_header')
+    = t('txt.abr.no_match_options').html_safe
     
-  - else   
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.abr.register'), registration_abr_path(@abr)
+
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.lookup.go_back'), step_2_abr_path(@abr)
+
+
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.abr.continue_no_match'), continue_url
+    
+  - else
     %span.rollover_button.button{role: "button"}
       = link_to t('txt.lookup.register'), registration_catalist_lookup_path(@lookup)
-    
+      
     %span.rollover_button.button{role: "button"}
       = link_to t('txt.lookup.go_back'), new_catalist_lookup_path(partner: @lookup.partner, zip: @lookup.zip, source: @lookup.tracking_source, tracking: @lookup.tracking_id, email: @lookup.email, first_name: @lookup.first, last_name: @lookup.last, state: @lookup.state_abbrev)
 
@@ -55,44 +55,66 @@
     %p= t('txt.lookup.check.matched', first_name: @lookup.first)
     = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
     %p{style: "text-transform: capitalize" }
-      = t('txt.lookup.check.gender', gender: @lookup.matched_data["gender"])
-      %br
       = t('txt.lookup.check.birth_date', birth_date: @lookup.matched_data["birthdate"])
       %br
       = t('txt.lookup.check.voter_status', voter_status: @lookup.matched_data["voterstatus"])
 
-    - if as_abr && @abr
-      - continue_url = @abr.eligible_for_oabr? ? state_online_abr_path(@abr) : step_3_abr_path(@abr)        
-      #confirm_match
-        = link_to continue_url do
-          = t('txt.abr.match.confirm_yes').html_safe
-        %br
-        %br
-        = link_to registration_abr_path(@abr) do
-          = t('txt.abr.match.confirm_yes_but').html_safe
-      %br  
-      .reject
-        = t('txt.abr.match.confirm_no').html_safe
-        = abr_continue_buttons
-
-    - else 
-      %div{style: "display: flex"}
-        %span.rollover_button.button{style: "margin-right: 20px", role: "button", "aria-label": t('txt.lookup.accept')}
-          %a{href: "#", onclick:"$('.accept').show(); $('.check').hide();" }= t('txt.lookup.accept')    
-        %span.rollover_button.button{role: "button", "aria-label": t('txt.lookup.accept')}
-          %a{href: "#", onclick:"$('.reject').show(); $('.check').hide();" }= t('txt.lookup.reject')    
     
+  - state_url = @lookup.state&.registrar_url
+  
+  - if as_abr && @abr
+    - continue_url = @abr.eligible_for_oabr? ? state_online_abr_path(@abr) : step_3_abr_path(@abr)        
+    - state_url = @lookup.state&.registrar_url
+  
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.abr.continue_match'), continue_url
 
-  .accept{style: "display: none;"}
-    %p= t('txt.lookup.matched', first_name: @lookup.first)
-    = render partial: 'abrs/catalist_lookup', locals: { catalist_lookup: @lookup}
+    %h3= t('txt.lookup.matched_error_header')
+    
+    %p= as_abr && @abr ? t('txt.abr.matched_error_intro') : t('txt.lookup.matched_error_intro')
+    
+    .reject
+    
+      - if state_url
+        = t('txt.lookup.check_again', state: @lookup.state.name, state_url: state_url, state_date: l(@lookup.state_last_updated_at.to_date, format: :long)).html_safe
+      - else
+        = t('txt.lookup.check_again_no_link', state: @lookup.state.name, state_date: l(@lookup.state_last_updated_at.to_date, format: :long)).html_safe
+
+      = t('txt.abr.no_match_intro', state: @lookup.state.name).html_safe
+
+      = t('txt.abr.no_match_options').html_safe
+      
+
+
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.abr.register'), registration_abr_path(@abr)
+
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.abr.continue_no_match'), continue_url
+    
+    %span.rollover_button.button{role: "button"}
+      = link_to t('txt.lookup.go_back'), step_2_abr_path(@abr)
+  - else
+
     #confirm_match
+      %h1{"aria-level": "3"}= t('txt.lookup.matched')
       .intro-message
         %p= t('txt.lookup.how_to_vote', url: "https://www.rockthevote.org/how-to-vote/#{@lookup.state.name.downcase.gsub(/\s+/,'-')}").html_safe
     
+      %h3= t('txt.lookup.matched_error_header')
 
-  .reject{style: "display: none;"}
-    = reject_content
+      .reject
+        - if state_url
+          = t('txt.lookup.check_again', state: @lookup.state.name, state_url: state_url, state_date: l(@lookup.state_last_updated_at.to_date, format: :long)).html_safe
+        - else
+          = t('txt.lookup.check_again_no_link', state: @lookup.state.name, state_date: l(@lookup.state_last_updated_at.to_date, format: :long)).html_safe
+
+        %span.rollover_button.button{role: "button"}
+          = link_to t('txt.lookup.register'), registration_catalist_lookup_path(@lookup)
+    
+        %span.rollover_button.button{role: "button"}
+          = link_to t('txt.lookup.go_back'), new_catalist_lookup_path(partner: @lookup.partner, zip: @lookup.zip, source: @lookup.tracking_source, tracking: @lookup.tracking_id, email: @lookup.email, first_name: @lookup.first, last_name: @lookup.last, state: @lookup.state_abbrev)
+
 
   - if @lookup.partner && !@lookup.partner.external_conversion_snippet.blank?
     = @lookup.partner.external_conversion_snippet.to_s.html_safe
