@@ -30,8 +30,8 @@ module AbrStateMethods::GA
     "abr_election_type_selections": {method: "abr_election_date"},
     "abr_election_type_selections_options": {
       options: [
-        "abr_election_type1",
-        "abr_election_type3",
+        #"abr_election_type1",
+        #"abr_election_type3",
         "abr_election_type2",
         "abr_election_type4",
       ]
