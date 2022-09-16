@@ -43,30 +43,32 @@ module AbrStateMethods::AK
                   pdf_name: "date_of_birth_mm_dd_yyyy"
                 },
                 
-                'abr_id_type_3': {},
+                #'abr_id_type_3': {},
                 
                 "abr_election_type1": {options: ["Off", "On"]},
-                "abr_election_type2": {options: ["Off", "On"]},
+                #"abr_election_type2": {options: ["Off", "On"]},
                 "abr_election_type3": {options: ["Off", "On"]},
                 "abr_election_type4": {options: ["Off", "On"]},
                 "abr_election_type5": {options: ["Off", "On"]},
 
-                'abr_party_selections_input': {
-                  options: [
-                    "abr_party1",
-                    "abr_party2",
-                    "abr_party3",
-                    "abr_party4",
-                    "abr_party5",
-                  ],
-                },
-                'abr_party_selections': {
-                  method: "abr_party_selections_string"
-                },
+                # 'abr_party_selections_input': {
+                #   options: [
+                #     "abr_party1",
+                #     "abr_party2",
+                #     "abr_party3",
+                #     "abr_party4",
+                #     "abr_party5",
+                #   ],
+                # },
+                # 'abr_party_selections': {
+                #   method: "abr_party_selections_string"
+                # },
                  
                }
   
-  EXTRA_FIELDS = ["abr_previous_name_check", "abr_party_selections_input", "abr_check_mailing_address", "abr_id_selections",
+  EXTRA_FIELDS = ["abr_previous_name_check", 
+    # "abr_party_selections_input", 
+    "abr_check_mailing_address", "abr_id_selections",
     "abr_mailing_address_line_1_input",
     "abr_mailing_unit_input",
     "abr_mailing_city_input",
@@ -93,27 +95,27 @@ module AbrStateMethods::AK
       {'abr_id_type1': {visible: "abr_id_selections_abr_ssn_number", required: :if_visible}},
       {'abr_id_type2': {visible: "abr_id_selections_abr_drivers_license", required: :if_visible}},
       
-      {'abr_id_type_3': {}},
+      #{'abr_id_type_3': {}},
       {"abr_election_type_selections1": {type: :instructions}},
       {"abr_election_type_selections2": {type: :instructions}},
       {"abr_election_type1": {type: :checkbox}},
-      {"abr_election_type2": {type: :checkbox}},
+      #{"abr_election_type2": {type: :checkbox}},
       {"abr_election_type3": {type: :checkbox}},
       {"abr_election_type4": {type: :checkbox}},
       {"abr_election_type5": {type: :checkbox}},
 
-      {'abr_party_selections_input': {type: :radio, required: true}},
+      # {'abr_party_selections_input': {type: :radio, required: true}},
     ]
   end
   
   def custom_form_field_validations
     if self.abr_election_type1 != "1" &&
-       self.abr_election_type2 != "1" &&
+      #  self.abr_election_type2 != "1" &&
        self.abr_election_type3 != "1" &&
        self.abr_election_type4 != "1" &&
        self.abr_election_type5 != "1"
        errors.add(:abr_election_type1, custom_required_message(:abr_election_type1))
-       errors.add(:abr_election_type2, custom_required_message(:abr_election_type1))
+      #  errors.add(:abr_election_type2, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type3, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type4, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type5, custom_required_message(:abr_election_type1))
@@ -124,24 +126,24 @@ module AbrStateMethods::AK
     self.abr_id_selections == "abr_id_no2" ? "On" : "Off"
   end
 
-  def abr_party_selections_string
-    if self.abr_party_selections_input == "abr_party1"
-      return "Alaska Democratic Party"
-    end
-    if self.abr_party_selections_input == "abr_party2"
-      return "Alaska Republican Party"      
-    end
-    if self.abr_party_selections_input == "abr_party3"
-      return "Alaskan Independence Party"      
-    end
-    if self.abr_party_selections_input == "abr_party4"
-      return "Nonpartisan"      
-    end
-    if self.abr_party_selections_input == "abr_party5"
-      return "Undeclared"      
-    end
-    return ""
-  end
+  # def abr_party_selections_string
+  #   if self.abr_party_selections_input == "abr_party1"
+  #     return "Alaska Democratic Party"
+  #   end
+  #   if self.abr_party_selections_input == "abr_party2"
+  #     return "Alaska Republican Party"      
+  #   end
+  #   if self.abr_party_selections_input == "abr_party3"
+  #     return "Alaskan Independence Party"      
+  #   end
+  #   if self.abr_party_selections_input == "abr_party4"
+  #     return "Nonpartisan"      
+  #   end
+  #   if self.abr_party_selections_input == "abr_party5"
+  #     return "Undeclared"      
+  #   end
+  #   return ""
+  # end
   
   def abr_ballot_address
     if self.abr_check_mailing_address == "1"

@@ -120,6 +120,7 @@ absentee_states:
     abr_track_ballot_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
   GA:
     pdf_template: ga.pdf
+    online_req_url: https://securemyabsenteeballot.sos.ga.gov/s/
     #pdf_url: https://sos.ga.gov/admin/uploads/2021_Absentee_App.9721_2.pdf
     email_delivery: false
     abr_status_check_url: "https://www.mvp.sos.ga.gov/MVP/mvp.do"
@@ -160,7 +161,8 @@ absentee_states:
     abr_status_check_url: "http://voterportal.sos.la.gov/"
     abr_track_ballot_url: "http://voterportal.sos.la.gov/"
   MA:
-    pdf_template: ma.pdf
+    #pdf_template: ma.pdf
+    online_req_url: https://www.sec.state.ma.us/MailInRequestWeb/MailInBallot.aspx
     #email_delivery: true
     abr_status_check_url: "https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx"
     abr_track_ballot_url: "https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx"

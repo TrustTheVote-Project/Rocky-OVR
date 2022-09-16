@@ -11,11 +11,8 @@ en:
             </p>
             <p>You can use this form to register to vote and request an absentee ballot.</p>
           request_deadline: |-
-            <p>Your application must be received by:</p>
-            </p><ul>
-            <li>August 6th for the primary, and </li>
-            <l>September 24th for the general election.</li>
-            </ul>
+            <p>Your application must be received by October 29th for the November General Election.</p>
+            </p>
 
           status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
           finish_instructions_1_hint: |-
@@ -620,13 +617,17 @@ en:
           has_state_license: I have a FL state identification card or FL driver's license, and Social Security Number.
           has_no_state_license: I do not have a FL state identification card or FL driver's license, and Social Security Number.
       ga:
+        state_online_abr:
+          confirm: ''
+          requirements: |-
+            <p>
+            If you have a Georgia Driver's License or ID number on file with the state, you can complete your absentee ballot request online.
+            If you do not have a an ID on file, you can submit a paper application.
+            </p>
         abr:
           request_deadline: |-
-            <p>Your absentee ballot request must be received by:</p>
-            <ul>
-            <li>May 13, 2022 for the primary election, and </li>
-            <li>October 28, 2022 for the general election.</li>
-            </ul>
+            <p>Your absentee ballot request must be received by October 28, 2022 for the general election.</p>
+
           status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
             <p>You can submit your absentee ballot request to your it to your
@@ -858,6 +859,19 @@ en:
             Contact your local election official to track your absentee ballot.
             </p>
 
+          splash:
+            instructions_1: |-
+                <p>All registered voters in Illinois can vote by mail. Request a vote by mail ballot from your local jurisdiction by going to the 
+                <a href='https://www.elections.il.gov/ElectionOperations/VotingByMail.aspx?MID=oYoa3FYF460%3d&T=637982369687629559' target='_blank'>State Board of Elections website</a>.</p>
+            instructions_2: |-
+                <p>Depending on where you live, you may request a vote by mail ballot online or with a paper application. The application must be sent to the election authority for the jurisdiction in which you are registered to vote. 
+                </p>
+                <p>Vote by mail ballot requests submitted by mail or online must be received by 11/3/2022 for the November General Election.
+                </p>
+            instructions_3: |-
+                <p>If you're returning your completed ballot by mail, it must be postmarked by Election Day, 11/8/2022, 
+                and received by 11/22/2022. If you're returning your completed ballot by hand, it must be received by close of
+                polls on Election Day, 11/8/2022.</p>
         abr_form_fields:
           abr_county: Registration address county
           abr_precinct: Enter your precinct	
@@ -1042,18 +1056,20 @@ en:
             <h3>You must have a reason to vote absentee in Kentucky.</h3>
             <p>See if you qualify.</p>
             <ul>
-            <li>Students who temporarily resides outside of their county.</li>
+            <li>Students who temporarily reside outside of their county.</li>
             <li>People incarcerated in jail and charged but not convicted of a crime.</li>
             <li>People temporarily residing outside of the state and still eligible to vote in Kentucky.</li>
             <li>People who cannot come to the polls on election day or any of the in-person absentee voting days because of:</li>
+            
             <ul>
             <li>The location of their jobs, or</li>
-            <li>Due to age, disability or illness.</li>
+            <li>Age, disability or illness.</li>
             </ul>
+            
+            <li>People who participate in the Secretary of State’s crime victim address confidentiality protection program</li>
             </ul>
-          request_deadline: "<p>Absentee ballot requests must be received by 11:59 pm on:</p>
-            <ul><li>May 3, 2022 for the primary election, and</li>
-            <li>October 25, 2022 for the general election.</li></ul>"
+
+          request_deadline: "<p>Absentee ballot requests must be received by 11:59 pm on October 25, 2022 for the November General Election.</p>"
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3>
             <p>If you mail your ballot, it must received by 6:00 pm on Election Day.</p>"
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -1329,7 +1345,7 @@ en:
             birthday and name and certify that you are a registered voter in Maine. You must request your own ballot.</p>
             <p>You can also request an accessible ballot if using a paper ballot is difficult for you.</p>
           request_deadline: |-
-            <p>Absentee ballot requests must be received by 5:00 pm on June 9th for the primary election.</p>
+            <p>Absentee ballot requests must be received by close of business on November 3rd for the November 8th election.</p>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
             <p>Your ballot must received by 8:00pm on election day.</p>
@@ -1341,11 +1357,14 @@ en:
             you may request your absentee ballot online directly with the state.</p>"
       ma:
         abr:
-          step_2_header: You must have a reason to request an absentee ballot.
+          step_2_header: MA Automatically Mails all Registered Voters a Ballot Application
           step_2_instructions: |-
-            <p>A registered voter in Massachusetts can vote absentee if they will be unable
-            to vote at the polls on Election Day due to absence from the voter’s city or town 
-            during polling hours, disability, or religious beliefs.
+            <p>You only need to continue and request an absentee ballot if you registered after September
+            or have not yet received an application in the mail. Applications will be mailed out in September.
+            </p>
+            <p>You do not need to request an absentee ballot to vote if you registered to vote in MA prior
+            to September, 2022 and your voter registration is active: you will automatically receive a vote
+            by mail ballot application in the mail for the 2022 November General Election.
             </p>
           finish_instructions_1_hint: |-
             <p>Applications can be submitted by mail, email, or fax. If you are emailing
@@ -1353,15 +1372,14 @@ en:
             and email it to your local election office. Typed signatures are not acceptable.
             </p>
           request_deadline: |-
-            <p>Your application must be received by:</p>
-            <ul>
-            <li>8/30/22 for the Primary, and</li>
-            <li>11/2/2022 for the General.</li>
-            </ul>
+            <p>Your absentee ballot application must be received by November 2nd for the November 8th General Election. </p>
+
           status_check_instructions: |-
-            <p>
+            <p>You can track the status of your absentee ballot here:
             <a href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
             </p>
+          finish_instructions_3_hint_state: |-
+            <p>In order to be counted, your voted absentee ballot must be received by the close of polls on Election Day, November 8th.</p>
           step_3_header: Prepare your Massachusetts PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
@@ -1393,6 +1411,8 @@ en:
               signature.
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
+        state_online_abr:
+          instructions: <center>You can apply for a vote by mail ballot online through the state.</center>
         abr_form_fields:
           abr_check_mailing_address: I get my mail at a different address from the one above.
           abr_mailing_address_instructions: Enter your mailing address	
@@ -1816,7 +1836,7 @@ en:
 
             instructions_3: |-
               <p>If you request a mail-in ballot, you must return it by mail - you cannot drop it off.</p>
-              <p>Your absentee ballot must be postmarked on or before Election Day and received by June 14th.</p>
+              <p>Your voted absentee ballot must be postmarked by November 7th and received by November 15th in order to be counted.</p>
       mt:
         abr:
           request_deadline: |-
@@ -2420,6 +2440,24 @@ en:
           has_no_state_license: I do not have a NY state identification card or NY driver's license, and Social Security Number.
       oh:
         abr:
+          everyone_gets_ballot:
+            header_1: "%{state_name} Automatically Mails all Registered Voters a Ballot Application"
+            instructions_1: |-
+              <p>If you are registered to vote in %{state_name} an absentee ballot application will
+              be automatically mailed to you for the November General Election. </p>
+              <p><a href="%{url}">Make sure you are registered to vote!</a></p>
+            header_2: Questions About Your Absentee Ballot
+            instructions_2: |-
+              <p>Don't forget to complete all fields on your absentee ballot application. Then, sign & date the form.</p>
+              <p>Your absentee ballot application must be received by your county's board of elections by noon on November
+              5th for the November 8th General Election. For your county’s board of elections address, please visit
+              <a href="https://VoteOhio.gov/boards" target="_blank">https://VoteOhio.gov/boards</a>
+
+
+            header_3: Don't Forget To Vote!
+            instructions_3: |-
+              <p>In order to be counted, your voted absentee ballot must be postmarked by November 7th if being returned by mail.
+              If you are returning your voted absentee ballot by hand, it must be received by the close of polls on Election Day, November 8th.</p>
           step_2_instructions: |-
             <p>All registered voters in Ohio can request an absentee ballot.</p>
             <p><a href="%{lookup_url}">Make sure your registration is up to date.</a>
@@ -4231,7 +4269,7 @@ en:
       colorado: Voter registrations submitted by mail must be received by 10/31/2022 for the November general election.
       connecticut: Postmarked the 5th day before a Primary Election. Postmarked or Received by the 7th day before a General Election.
       district_of_columbia: Voter registrations submitted by mail must be received by 10/18/2022 for the November general election.
-      delaware: Delaware does not have a deadline to register to vote. You may register to vote any day up to and including Election Day.
+      delaware: Delaware law now allows voters to register to vote up to and including Election Day.
       florida: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
       georgia: The deadline to register to vote for the November general election is 10/11/2022.
       hawaii: Voter registrations submitted by mail must be postmarked by 10/31/2022 for the November general election.
@@ -4244,14 +4282,14 @@ en:
       louisiana: Postmarked by 10/11/2022
       maine: Voter registrations submitted by mail must be received by 10/18/2022 for the November general election.
       maryland: Voter registrations submitted by mail must be postmarked by 10/18/2022 for the November general election.
-      massachusetts: Voter registrations submitted by mail must be postmarked by 8/27/2022 for the September primary election.
+      massachusetts: Voter registrations submitted by mail must be postmarked by 10/29/2022 for the November general election.
       michigan: Voter registrations submitted by mail must be postmarked by 10/24/2022 for the November general election.
       minnesota: Voter registrations submitted by mail must be postmarked by 10/18/2022 for the November general election.
       mississippi: The deadline to register to vote for the November general election is 10/10/2022.
       missouri: Voter registrations submitted by mail must be postmarked by 10/12/2022 for the November general election.
       montana: The deadline to register to vote for the November general election is 10/11/2022.
       nebraska: The deadline to register to vote for the November general election is 10/21/2022.
-      new_hampshire: Received by 8/24/2022
+      new_hampshire: Voter registrations submitted by mail must be received by 10/19/2022 for the November general election.
       new_jersey: The deadline to register to vote for the November general election is 10/18/2022.
       new_mexico: The deadline to register to vote for the November general election is 10/11/2022.
       new_york: Voter registrations submitted by mail must be postmarked by 10/14/2022 for the November general election.
@@ -4263,7 +4301,7 @@ en:
       oklahoma: Voter registrations submitted by mail must be postmarked by 10/14/2022 for the November general election.
       oregon: Postmarked by 4/26/2022
       pennsylvania: The deadline to register to vote for the November general election is 10/24/2022.
-      rhode_island: Postmarked by 8/14/2022
+      rhode_island: Voter registrations submitted by mail must be received by 10/9/2022 for the November general election.
       south_carolina: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
       south_dakota: The deadline to register to vote for the November general election is 10/24/2022.
       tennessee: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
