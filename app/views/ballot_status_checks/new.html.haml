@@ -24,10 +24,8 @@
     = field_li form, :email, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__email-address__line'}
     = field_li form, :phone, skip_tooltip: true, li_options: {class: 'registrant-form__phone__line'}
   
- = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
+  = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
+  = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
   
   
   = rollover_button(:next_step, I18n.t('txt.button.next').html_safe)
-
-
-
