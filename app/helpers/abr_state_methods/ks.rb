@@ -48,7 +48,7 @@ module AbrStateMethods::KS
 
         }
 
-  EXTRA_FIELDS = ["abr_check_mailing_address", "abr_mailing_address_line","abr_mailing_unit",  "abr_election_type_selections"]
+  EXTRA_FIELDS = ["abr_check_mailing_address", "abr_mailing_address_line","abr_mailing_unit"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
@@ -176,8 +176,8 @@ module AbrStateMethods::KS
       {"abr_id_selections": {type: :radio, options: ["abr_id_type1", "abr_id_type2"]}},
       {"abr_drivers_license": {visible: "abr_id_selections_abr_id_type1", required: "show_star", min: 9, max: 9, ui_regexp:"^[kK][0-9]{8}$"}},
       {"abr_id_type2_instructions": {type: :instructions, visible:"abr_id_selections_abr_id_type2" }},
-     {"abr_election_type_selections": {type: :radio, options: ["abr_election_type2"]}},
-      # {"abr_party_selections": {visible: "abr_election_type_selections_abr_election_type1", type: :radio, options: ["abr_party1", "abr_party2"]}},
+      #{"abr_election_type_selections": {type: :radio, options: ["abr_election_type2"]}},
+      #{"abr_party_selections": {visible: "abr_election_type_selections_abr_election_type1", type: :radio, options: ["abr_party1", "abr_party2"]}},
       
 
     ]
