@@ -17,7 +17,7 @@
   - if as_abr && @abr
     - continue_url = @abr.eligible_for_oabr? ? state_online_abr_path(@abr) : step_3_abr_path(@abr)   
     %br
-    %h2= t('txt.abr.no_match_options_header')
+    %h1{role: "heading", "aria-level": 2}= t('txt.abr.no_match_options_header')
     = t('txt.abr.no_match_options').html_safe
     
     %span.rollover_button.button{role: "button"}
@@ -69,7 +69,7 @@
     %span.rollover_button.button{role: "button"}
       = link_to t('txt.abr.continue_match'), continue_url
 
-    %h3= t('txt.lookup.matched_error_header')
+    %h1{role: "heading", "aria-level": 3}= t('txt.lookup.matched_error_header')
     
     %p= as_abr && @abr ? t('txt.abr.matched_error_intro') : t('txt.lookup.matched_error_intro')
     
@@ -101,7 +101,7 @@
       .intro-message
         %p= t('txt.lookup.how_to_vote', url: "https://www.rockthevote.org/how-to-vote/#{@lookup.state.name.downcase.gsub(/\s+/,'-')}").html_safe
     
-      %h3= t('txt.lookup.matched_error_header')
+      %h1{role: "heading", "aria-level": 3}= t('txt.lookup.matched_error_header')
 
       .reject
         - if state_url

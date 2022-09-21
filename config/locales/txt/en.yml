@@ -27,7 +27,7 @@ en:
         gender: "Gender: %{gender}"
         birth_date: "Birth Date: %{birth_date}"
         voter_status: "Voter Status: %{voter_status}"
-      matched: "Looks good"
+      matched: "Look good?"
       matched_error_header: Something wrong?
       matched_error_intro:  "If something is wrong, we recommend updating your registration."          
       confirm: Yes, this is me.
