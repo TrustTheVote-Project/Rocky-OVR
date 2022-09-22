@@ -2044,9 +2044,9 @@ en:
           abr_check_mailing_address: I get my mail at a different address from the one above
           abr_mailing_address_line_1: Mailing Address
           abr_mailing_unit: Unit
-          abr_mailing_address_city: City
-          abr_mailing_address_state: State
-          abr_mailing_address_zip: ZIP
+          abr_mailing_city: City
+          abr_mailing_state_abbrev: State
+          abr_mailing_zip: ZIP
           abr_election_type_selections: Select the election you'd like to request a ballot for.
           abr_election_type_selections__options:
             abr_election_type1: Statewide General Election
