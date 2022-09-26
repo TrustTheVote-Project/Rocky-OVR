@@ -405,13 +405,13 @@ en:
             instructions_3: |-
               <h3>Deadlines for delivering your ballot</h3>
               <ul>
-              <li>If you mail your vote-by-mail ballot, it must mailed postmarked on or before Election Day and received by your <a href="https://www.sos.ca.gov/elections/voting-resources/county-elections-offices/">county elections office</a> no later than 7 days after Election Day. </li>
+              <li>If you mail your vote-by-mail ballot, it must mailed postmarked on or before Election Day and received by your <a href="https://www.sos.ca.gov/elections/voting-resources/county-elections-offices/" target="_blank">county elections office</a> no later than 7 days after Election Day. </li>
               <li>If you are not sure your vote-by-mail ballot will arrive in time if mailed, bring it to any polling place or ballot box in the state between 7:00 a.m. and 8:00 p.m. on Election Day.</li>
               </ul>
               <h3>Voting for the first time</h3>
-              <p>If you are voting for the first time and did not provide your driver license number, California identification number, or the last four digits of your Social Security number when you registered, send a photocopy of some personal identification to your county elections official before the election. Read about what <a href="https://www.sos.ca.gov/elections/voter-registration/vote-mail#vote-by-mail" title="Voting for the first time">qualifies as identification</a>.</p>
+              <p>If you are voting for the first time and did not provide your driver license number, California identification number, or the last four digits of your Social Security number when you registered, send a photocopy of some personal identification to your county elections official before the election. Read about what <a href="https://www.sos.ca.gov/elections/voter-registration/vote-mail#vote-by-mail" title="Voting for the first time" target="_blank">qualifies as identification</a>.</p>
               <h3>Check the status of your ballot</h3>
-              <p>Sign up for <a href="https://california.ballottrax.net/voter/">Where's My Ballot?</a> to track and receive notifications on the status of your vote-by-mail ballot.
+              <p>Sign up for <a href="https://california.ballottrax.net/voter/" target="_blank">Where's My Ballot?</a> to track and receive notifications on the status of your vote-by-mail ballot.
               </p>
           request_deadline: All registered voters receive a mail ballot. You must
             register to vote 29 days before the election.
