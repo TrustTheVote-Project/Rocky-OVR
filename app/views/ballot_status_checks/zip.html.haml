@@ -42,7 +42,7 @@
     %br
   - if leo_contact_info[:website]
     %strong{style: "font-weight: bold"} Website:
-    = leo_contact_info[:website]
+    = "<a href=\"#{@bsc.state&.registrar_url}\" target=\"_blank\" rel=\"noopener\">leo_contact_info[:website]</a>"
     %br
   - if leo_contact_info[:address]
     %strong{style: "font-weight: bold"} Address:
