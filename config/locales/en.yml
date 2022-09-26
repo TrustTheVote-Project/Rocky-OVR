@@ -423,6 +423,8 @@ en:
         state_name: State
         state_abbrev: State
         phone: Phone
+        find_election_official: Fill out the form below to learn how to get in touch with your local election official.
+        find_election_official_thank_you:
       registrant:
         date_of_birth: Date of Birth
         email_address: Email Address
