@@ -14,6 +14,8 @@ en:
       check_with_state_leo: <p>To check if your ballot has been accepted, reach out to your election 
         official. Here's their contact information:</p><p>%{leo_contact_info}</p>
       find_election_official: Fill out the form below to learn how to get in touch with your local election official.
+      find_election_official_thank_you: Get in touch with your local election official.
+      find_election_official_contact: Contact information
     lookup:
       step_1_header: "Check Your Voter Registration Status"
       step_1_instructions: <p>Not sure if you're registered to vote? Take one minute and verify your voter registration status today.</p>
