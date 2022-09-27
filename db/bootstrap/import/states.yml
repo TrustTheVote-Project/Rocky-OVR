@@ -736,7 +736,7 @@ record_39:
   name: Rhode Island
   race_tooltip: not_required_but_appreciated_with_state_name
   requires_party: true
-  party_tooltip: rhode_island
+  party_tooltip: required_for_primary
   id_number_tooltip: rhode_island
   sos_address: Rhode Island Board of Elections<br /> 148 West River St.<br /> Providence,
     RI 02904
@@ -769,7 +769,7 @@ record_41:
   abbreviation: SD
   name: South Dakota
   requires_party: true
-  party_tooltip: south_dakota
+  party_tooltip: not_required_to_vote
   parties:
   - democratic
   - independent
@@ -815,7 +815,7 @@ record_44:
   abbreviation: UT
   name: Utah
   requires_party: true
-  party_tooltip: utah
+  party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_not_operating
   sos_address: Office of the Lieutenant Governor<br /> 350 North State Street, Suite
     220<br /> P.O. Box 142325<br /> Salt Lake City, Utah 84114-2325
@@ -876,7 +876,7 @@ record_48:
   abbreviation: WV
   name: West Virginia
   requires_party: true
-  party_tooltip: west_virginia
+  party_tooltip: required_for_primary_unless
   id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Office of the Secretary of State<br /> State Capitol Building<br />
     Charleston, WV 25305<br />
