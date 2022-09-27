@@ -10,9 +10,12 @@ en:
       check_with_state_url: <p>First, check your ballot status on 
         your <a href="%{url}" target="_blank" rel="noopener">state's website</a>.</p><p>If your ballot was rejected, you should immediately reach out to your election official to resolve any issues. You can find their contact information below.</p>
       no_state_url: <p>To check if your ballot has been accepted or rejected, reach out to your election official immediately. You can find their contact information below.</p>
-      contact_info: "Your election official's contact information:"
+      contact_info: "Contact information for your election official's office:"
       check_with_state_leo: <p>To check if your ballot has been accepted, reach out to your election 
         official. Here's their contact information:</p><p>%{leo_contact_info}</p>
+      find_election_official: Fill out the form below to learn how to get in touch with your local election official.
+      find_election_official_thank_you: Get in touch with your local election official.
+      find_election_official_contact: "Contact Information:"
     lookup:
       step_1_header: "Check Your Voter Registration Status"
       step_1_instructions: <p>Not sure if you're registered to vote? Take one minute and verify your voter registration status today.</p>

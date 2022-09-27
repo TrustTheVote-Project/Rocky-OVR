@@ -1,5 +1,9 @@
 %h2= t('txt.ballot_status_check.step_1_header')
 
+<div style="display: none;" class="find-election-official">
+%p= t('txt.ballot_status_check.find_election_official')
+</div>
+
 .intro-message
   = t('txt.ballot_status_check.step_1_instructions').html_safe
 
@@ -24,10 +28,8 @@
     = field_li form, :email, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__email-address__line'}
     = field_li form, :phone, skip_tooltip: true, li_options: {class: 'registrant-form__phone__line'}
   
+  = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
   = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
   
   
   = rollover_button(:next_step, I18n.t('txt.button.next').html_safe)
-
-
-
