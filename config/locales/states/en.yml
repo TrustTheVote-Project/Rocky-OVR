@@ -546,9 +546,11 @@ en:
             <a target='_blank' href='https://ivote.de.gov/VoterView'>https://ivote.de.gov/VoterView</a></p>
           step_2_header: All registered voters in Delaware can request a vote by mail ballot
           step_2_instructions: |-
-            <p>A recent ruling has made vote-by-mail unconstitutional in Delaware. While this rule is being challenged,
-            voters can continue to request absentee ballots for clerks to process, though no ballots will be mailed until
-            the DE Supreme Court rules on the issue. If vote-by-mail is re-instated, a ballot will be mailed to you.  </p>
+            <p>Vote-by-mail is under legal review in Delaware. While this rule is being challenged, 
+            you can request an absentee ballot and your county clerk will process the application. However, 
+            a decision will not be made on the availability of vote-by-mail until early October, and you may 
+            need to vote in person. If vote-by-mail is not available, Rock the Vote will follow up with you to 
+            let you know how you can vote. </p>
           step_3_header: Prepare your Delaware PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
