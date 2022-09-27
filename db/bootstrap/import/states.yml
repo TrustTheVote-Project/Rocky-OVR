@@ -38,7 +38,7 @@ record_1:
   abbreviation: AK
   name: Alaska
   requires_party: true
-  party_tooltip: closed_caucus_with_state_name
+  party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_with_state_name
   sos_address: State of Alaska<br />Division of Elections<br />PO Box 110017<br />Juneau,
     AK 99811-0017
@@ -60,7 +60,7 @@ record_2:
   abbreviation: AZ
   name: Arizona
   requires_party: true
-  party_tooltip: arizona
+  party_tooltip: not_required_to_vote
   id_number_tooltip: arizona
   sos_address: Secretary of State<br />Elections Department<br />1700 W. Washington,
     7th Floor<br />Phoenix, AZ 85007-2808
@@ -81,7 +81,7 @@ record_3:
   abbreviation: AR
   name: Arkansas
   requires_party: true
-  party_tooltip: not_required
+  party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_non_operating_with_state_name
   sos_address: Secretary of State<br>500 Woodlane Street, Suite 256<br>Little Rock,
     AR 72201-8111
@@ -98,7 +98,7 @@ record_4:
   abbreviation: CA
   name: California
   requires_party: true
-  party_tooltip: california
+  party_tooltip: not_required_to_vote
   no_party: none_no_affiliation
   id_number_tooltip: drivers_license_required_at_voting_with_state_name
   sos_address: Secretary of State<br>Elections Division<br>1500 11th Street, 5th FL<br>Sacramento,
@@ -120,7 +120,7 @@ record_5:
   abbreviation: CO
   name: Colorado
   requires_party: true
-  party_tooltip: colorado
+  party_tooltip: not_required_to_vote
   id_number_tooltip: colorado
   sos_address: Secretary of State<br />1700 Broadway, Suite 550<br />Denver, CO 80290
   sos_phone: "(303) 894-2200"
@@ -142,7 +142,7 @@ record_6:
   abbreviation: CT
   name: Connecticut
   requires_party: true
-  party_tooltip: connecticut
+  party_tooltip: required_for_primary
   id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: Legislation and Elections Administration Division <br> 165 Capitol
     Avenue<br />Hartford, CT 06106
@@ -249,7 +249,7 @@ record_12:
   abbreviation: ID
   name: Idaho
   requires_party: true
-  party_tooltip: idaho
+  party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_or_other_with_state_name
   sos_address: Secretary of State Elections Division <br />700 W. Jefferson St., Room
     E205<br /> Boise, ID 83702
@@ -295,7 +295,7 @@ record_15:
   abbreviation: IA
   name: Iowa
   requires_party: true
-  party_tooltip: you_may_but_not_required
+  party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_or_ssn_or_none_4
   sos_address: Secretary of State<br /> First Floor, Lucas Building<br /> 321 E. 12th
     St.<br /> Des Moines, IA 50319<br />
@@ -356,7 +356,7 @@ record_18:
   race_tooltip: requested_with_state_name
   requires_party: true
   online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
-  party_tooltip: required_for_presidential
+  party_tooltip: not_required_to_vote
   id_number_tooltip: louisiana
   sos_address: Secretary of State<br />Voter Registration<br />8585 Archives Ave.<br
     /> Baton Rouge, LA 70809
@@ -390,7 +390,7 @@ record_20:
   abbreviation: MD
   name: Maryland
   requires_party: true
-  party_tooltip: required_for_primary_2
+  party_tooltip: required_for_primary
   id_number_tooltip: maryland
   sos_address: State Board of Elections<br />151 West Street, Suite 200<br />Annapolis,
     MD 21401
@@ -411,7 +411,7 @@ record_21:
   abbreviation: MA
   name: Massachusetts
   requires_party: true
-  party_tooltip: massachusetts
+  party_tooltip: not_required_to_vote
   parties:
   - democratic
   - republican
@@ -561,7 +561,7 @@ record_30:
   abbreviation: NJ
   name: New Jersey
   requires_party: true
-  party_tooltip: required_for_primary_dem_rep_only
+  party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_or_mvc
   sos_address: New Jersey Department of State<br>Division of Elections<br>PO BOX 304<br>Trenton,
     NJ 08628-0304
@@ -619,7 +619,7 @@ record_33:
   requires_race: true
   race_tooltip: not_required_with_state_name
   requires_party: true
-  party_tooltip: north_carolina
+  party_tooltip: required_for_primary_unless
   id_number_tooltip: drivers_license_or_dmv_with_state_name
   sos_address: State Board of Elections<br>P.O. Box 27255<br>Raleigh, NC 27611-7255
   sos_phone: "(919) 814-0700"

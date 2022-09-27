@@ -13,7 +13,13 @@
 %br
 </div>
 
-%h1= t('txt.ballot_status_check.contact_info')
+<div style="display: none;" class="find-election-official">
+%h1= t('txt.ballot_status_check.find_election_official_thank_you')
+%p= t('txt.ballot_status_check.find_election_official_contact')
+</div>
+
+.election-office
+  %h1= t('txt.ballot_status_check.contact_info')
 
 .intro-message
   - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info_hash : nil
