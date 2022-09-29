@@ -1747,8 +1747,8 @@ en:
             </ol>          
           request_deadline: |-
             <p>Absentee ballot requests must be received by your election authority no later than the 5:00 p.m. on the second Wednesday prior to any election.
-            </p><p>
-            For the primary election, your request must be received by 5pm 7/20/2022.
+            </p>
+            <p>For the November General Election, your request must be received by 5 pm on 10/26/2022.
             </p>
 
           finish_instructions_1_hint: |-
@@ -2221,7 +2221,7 @@ en:
           abr_mailing_state_abbrev: State
           abr_mailing_zip: ZIP
         abr:
-          request_deadline: Your absentee ballot request must be received by Thursday, June 2, 2022 at 5:00 pm for the primary election.
+          request_deadline: Your absentee ballot request must be received by November 3, 2022 at 5:00pm for the general election.
           status_check_instructions: |-
             <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker">
             https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker

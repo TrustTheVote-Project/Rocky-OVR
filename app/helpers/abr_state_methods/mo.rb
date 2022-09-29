@@ -44,7 +44,7 @@ module AbrStateMethods::MO
     },
     "abr_election_type_selections": {
       options: [
-        "abr_election_type1",
+        #"abr_election_type1",
         "abr_election_type2",
         "abr_election_type3",
       ]
@@ -91,7 +91,7 @@ module AbrStateMethods::MO
       {"abr_election_type_selections_instructions": {type: :instructions}},
       {"abr_election_type_selections": { type: :radio, required: true}},
       {"abr_election_date_input": { type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type3" }},
-      {"abr_primary_type_selections": { type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type1" }},
+      #{"abr_primary_type_selections": { type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type1" }},
     ]
   end
   
