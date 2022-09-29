@@ -6,8 +6,7 @@ en:
         abr:
           step_2_instructions: |-
             <p>
-            All registered voters in %{state_name} can request an absentee ballot.<br/>
-            <a href="%{lookup_url}">Check if your registration is up to date.</a>
+            All registered voters in %{state_name} can request an absentee ballot.
             </p>
             <p>You can use this form to register to vote and request an absentee ballot.</p>
           request_deadline: |-
@@ -1294,7 +1293,6 @@ en:
         abr:
           step_2_header: Any registered voter may vote by mail-in ballot
           step_2_instructions: |-
-            <p><a href="%{lookup_url}">Check if your registration is up to date.</a></p>
             <h3>You may be eligible to complete your application online</h3>
             <p>To complete your request online, you will need:</p>
             <ul>
@@ -2460,7 +2458,6 @@ en:
               If you are returning your voted absentee ballot by hand, it must be received by the close of polls on Election Day, November 8th.</p>
           step_2_instructions: |-
             <p>All registered voters in Ohio can request an absentee ballot.</p>
-            <p><a href="%{lookup_url}">Make sure your registration is up to date.</a>
           request_deadline: |-
             <p>Your request must be received by
             </p>
