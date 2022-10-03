@@ -22,16 +22,32 @@ class CatalistService
   
   def initialize
     # call this immediately and outside of another RequestLogSession call
-    get_token
+    insure_token
   end
   
   def token
-    @token ||= get_token
+    @token ||= insure_token
   end
   
+  def insure_token
+    token = Settings.catalist_auth_token
+    begin 
+      if token 
+        decoded_token = JWT.decode(token, algorithms="HS256", verify=false)[0]
+        token_exp = decoded_token["exp"]
+        if Time.now.to_i < token_exp          
+          return token
+        end
+      end
+    rescue
+    end
+    return get_token
+  end
+
   def get_token
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'catalist', censor: CatalistCensor) do
       @token = CatalistClient.get_token["access_token"]
+      Settings.catalist_auth_token = @token
       return @token
     end
   end
@@ -68,7 +84,11 @@ class CatalistService
   # {"count"=>0, "mrPersons"=>[], "matchMethod"=>"STANDARD", "status"=>"OK"} 
   def retrieve(params:, registrant: nil, abr: nil)
     RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'catalist', censor: CatalistCensor, abr: abr) do
-      return CatalistClient.retrieve(params: params, token: self.token)
+      begin
+        return CatalistClient.retrieve(params: params, token: "a") #self.token)
+      rescue Exception => e
+        puts e
+      end
     end
   end
 
