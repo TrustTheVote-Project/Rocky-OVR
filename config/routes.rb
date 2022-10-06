@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources "absentee", :only => [:new, :create, :show, :update], :controller=>"abrs", as: :abrs do
     member do
       get "step_2"
+      get "registered"
       get "step_3"
       get "not_registered"
       get "registration"

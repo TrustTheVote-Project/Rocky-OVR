@@ -105,17 +105,22 @@ class AbrsController < ApplicationController
     render step_2_view(@abr)
   end
   
+  def registered
+    find_abr
+    @abr.check_registration_if_updated    
+    @lookup = @abr.last_check
+  end
+
   def step_3
     @current_step = 3
     find_abr
-    if @abr.can_continue?
-      unless @abr.has_pdf_template?
-        @abr.dead_end!
-      end
-      render step_3_view(@abr)      
-    else
-      redirect_to not_registered_abr_path(@abr)
+    unless @abr.has_pdf_template?
+      @abr.dead_end!
     end
+    render step_3_view(@abr)      
+    # else
+    #   redirect_to not_registered_abr_path(@abr)
+    # end
   end
   
   def preparing
@@ -164,6 +169,8 @@ class AbrsController < ApplicationController
     find_abr
     @registrant = @abr.to_registrant
     @registrant.save!
+    @abr.registrant_uid = @registrant.uid
+    @abr.save(validate: false)
     redirect_to registrant_step_2_path(@registrant)
   end
   
@@ -250,7 +257,9 @@ class AbrsController < ApplicationController
     if @current_step == 1
       redirect_to step_2_abr_path(@abr)
     elsif @current_step == 2
-      if @abr.eligible_for_oabr?
+      if @abr.should_check_registration?
+        redirect_to registered_abr_path(@abr)
+      elsif @abr.eligible_for_oabr?
         redirect_to state_online_abr_path(@abr)
       else
         redirect_to step_3_abr_path(@abr)        
