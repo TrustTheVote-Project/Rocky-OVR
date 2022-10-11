@@ -16,7 +16,7 @@ module AbrStateMethods::DE
     'abr_zip': {method: "zip"},
     'date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },     
 
-    'abr_last_4_ssn': {sensitive:true},
+    #'abr_last_4_ssn': {sensitive:true},
 
     'abr_check_mailing_address':{},
     'abr_mailing_address_line_1': {},
@@ -29,13 +29,16 @@ module AbrStateMethods::DE
 
     'abr_election_type_instructions': {},
     'abr_election_type_selections': {},
-    'abr_election_type1': {options: ['Off', 'On']},
-    'abr_election_type2': {options: ['Off', 'On']},
+    #'abr_election_type1': {options: ['Off', 'On']},
+    #'abr_election_type2': {options: ['Off', 'On']},
     'abr_election_type3': {options: ['Off', 'On']},
     'abr_election_type4': {options: ['Off', 'On']},
-    'abr_party': {},
+    #'abr_party': {},
+    'abr_reason_selections': {options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4','abr_reason5']},
     'abr_delivery_address_selections': {options:['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3']},
     'abr_fax_number': {},
+    'abr_email2': {},
+    'abr_application_type_check1':{ options: ['Off', 'On']},
 
    
 
@@ -45,7 +48,7 @@ module AbrStateMethods::DE
   
   def form_field_items
     [
-      {'abr_last_4_ssn':{min:4, max:4, required:true}},
+      #{'abr_last_4_ssn':{min:4, max:4, required:true}},
 
       {"abr_check_mailing_address": {type: :checkbox, options: ["Off", "On"]}},	
 
@@ -57,11 +60,18 @@ module AbrStateMethods::DE
 
       {'abr_election_type_instructions': {type: :instructions}},
       {'abr_election_type_selections': {type: :instructions}},
-      {'abr_election_type1': {type: :checkbox, options: ['Off', 'On']}},
-      {'abr_election_type2': {type: :checkbox, options: ['Off', 'On']}},
+      #{'abr_election_type1': {type: :checkbox, options: ['Off', 'On']}},
+      #{'abr_election_type2': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type3': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type4': {type: :checkbox, options: ['Off', 'On']}},
-      {'abr_party': {visible_any: "abr_election_type1 abr_election_type2 abr_election_type4", required: :if_visible}},
+
+      {'abr_reason_selections': {type: :radio, options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4','abr_reason5']}},
+
+      {'abr_application_type_check1': {type: :checkbox, options: ['Off', 'On'], visible_any: 'abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2 abr_reason_selections_abr_reason5'}},
+      #{'abr_party': {visible_any: "abr_election_type1 abr_election_type2 abr_election_type4", required: :if_visible}},
+      {'abr_delivery_address_selections': {type: :radio, options:['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3']}},
+      {'abr_fax_number': { required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type2"}},
+      {'abr_email2': { required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type3"}},
       
 
     
@@ -69,13 +79,14 @@ module AbrStateMethods::DE
   end
   
   def custom_form_field_validations
-    unless self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type3.to_s =="1" || self.abr_election_type4.to_s =="1"
+    #unless self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type3.to_s =="1" || self.abr_election_type4.to_s =="1"
+    unless  self.abr_election_type3.to_s =="1" || self.abr_election_type4.to_s =="1"
         errors.add "abr_election_type4", custom_required_message(:abr_election_type4)
     end
 
-    if (self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type4.to_s =="1")
-      custom_validates_presence_of("abr_party")
-    end
+    # if (self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type4.to_s =="1")
+    #   custom_validates_presence_of("abr_party")
+    # end
 
   end
 

@@ -535,21 +535,21 @@ en:
           instructions_header: Requesting a Vote by Mail Ballot in Delaware
         abr:
           request_deadline: |-
-            <p>Your application for an absentee ballot must be received by</p>
-            <ul>
-            <li>September 9th for the Primary Election, and</li>
-            <li>November 4th for the General Election.</li>
-            </ul>
+            <p>Your application for an absentee ballot must be received by noon on November 4th for the General Election.</p>
           status_check_instructions:  |-
             <p>
             <a target='_blank' href='https://ivote.de.gov/VoterView'>https://ivote.de.gov/VoterView</a></p>
-          step_2_header: All registered voters in Delaware can request a vote by mail ballot
+          step_2_header: Eligibility to Request an Absentee Ballot
           step_2_instructions: |-
-            <p>Vote-by-mail is under legal review in Delaware. While this rule is being challenged, 
-            you can request an absentee ballot and your county clerk will process the application. However, 
-            a decision will not be made on the availability of vote-by-mail until early October, and you may 
-            need to vote in person. If vote-by-mail is not available, Rock the Vote will follow up with you to 
-            let you know how you can vote. </p>
+            <p>You must have a reason to request an absentee ballot. You can request an absentee ballot for the following reasons:</p>
+            <ul>
+            <li>Your business or occupation prevents you from coming to the polls.</li>
+            <li>You are providing care to a parent, spouse or child who is living at home and requires constant care, students.</li>
+            <li>You are incarcerated. </li>
+            <li>You are sick, or temporarily or permanently physically disabled.</li>
+            <li>You are on vacation.</li>
+            <li>The tenets or teachings of your religion prevent you from coming to the polls.</li>
+            </ul>
           step_3_header: Prepare your Delaware PDF Vote By Mail Request Form
           step_3_instructions: "<p>Please fill out the fields below so we can prepare
             your PDF vote by mail request form.</p>"
@@ -578,6 +578,28 @@ en:
           abr_election_type4__required_message: At least one election choice is required
           abr_party:		What political party are you affiliated with?
           abr_party__hint:	'You may have picked a political party when you registered. To update your registration, submit a new voter registration.'
+          abr_reason_selections: 	Select the reason for voting by absentee ballot
+          abr_reason_selections__options:
+            abr_reason1: 	|-
+              Due to the nature of my business or occupation.
+              <br/>This reason includes:
+               <br/>* the business or occupation of providing care to my parent, spouse, or child who is living at home and requires constant care due to illness, disability, or injury;
+               <br/>* students; and
+               <br/>* otherwise eligible persons who are incarcerated.
+               
+            abr_reason2: 	I am sick or physically disabled (temporarily or permanently).
+            abr_reason3: 	I am absent from the district while on vacation.
+            abr_reason4: 	I am unable to vote at a certain time or on a certain day due to the tenets or teachings of my religion.
+            abr_reason5: 	I am otherwise authorized by federal law to vote by absentee ballot.
+          abr_application_type_check1: 	I would like to become a permanent absentee voter.
+          abr_delivery_address_selections: 	Voters with disabilities are eligible for electronic delivery of their ballots.
+          abr_delivery_address_selections__options:
+            abr_delivery_address_type1: 	Send me my ballot by mail.
+            abr_delivery_address_type2: 	Fax me my ballot.
+            abr_delivery_address_type3: 	Email me my ballot.
+          abr_fax_number: 	Enter your fax number.
+          abr_email2: 	Enter your email.
+
       fl:
         abr:
           splash:
