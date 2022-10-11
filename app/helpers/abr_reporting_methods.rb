@@ -26,11 +26,13 @@ module AbrReportingMethods
     :opt_in_sms,
     :partner_opt_in_email,
     :partner_opt_in_sms,
-    :votercheck,
+    :voter_lookup_performed,
+    :voter_lookup_found_match,
     :pdf_ready,
     :finish_with_state,
     :confirm_email_delivery, #whether a user confirms to have their ABR delivered via email
     :viewed_steps,
+    :registrant_uid,
     "utm_source",
     "utm_medium",
     "utm_campaign",
@@ -38,6 +40,15 @@ module AbrReportingMethods
     "utm_content",
     "other_parameters",
   ]
+
+  def voter_lookup_performed
+    self.catalist_lookups.any?
+  end
+
+  def voter_lookup_found_match
+    self.catalist_lookups.last ? self.catalist_lookups.last.is_match? : ''
+  end
+
 
   def viewed_steps
     render_view_events.collect{|te| te.tracking_data[:rendered_step] }.join(",")

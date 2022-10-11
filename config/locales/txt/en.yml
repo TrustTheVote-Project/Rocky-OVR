@@ -15,7 +15,7 @@ en:
         official. Here's their contact information:</p><p>%{leo_contact_info}</p>
       find_election_official: Fill out the form below to learn how to get in touch with your local election official.
       find_election_official_thank_you: Get in touch with your local election official.
-      find_election_official_contact: Contact information
+      find_election_official_contact: "Contact Information:"
     lookup:
       step_1_header: "Check Your Voter Registration Status"
       step_1_instructions: <p>Not sure if you're registered to vote? Take one minute and verify your voter registration status today.</p>
@@ -23,34 +23,52 @@ en:
       step_2_header_found: "%{first_name}, we found your voter registration."
       step_2_header_not_found: "%{first_name}, we couldn't confirm that you're registered to vote."
       step_2_instructions: ""
-      accept: "Yes"
-      reject: "No"
+      accept: "Yes, this is me."
+      reject: "No, this is not me."
       check:
         matched: Is this your registration information, %{first_name}?
         gender: "Gender: %{gender}"
         birth_date: "Birth Date: %{birth_date}"
         voter_status: "Voter Status: %{voter_status}"
-      matched: "Our records show you're registered to vote at:"
+      matched: "Look good?"
+      matched_error_header: Something wrong?
+      matched_error_intro:  "If something is wrong, we recommend updating your registration."          
       confirm: Yes, this is me.
       abr: "Now that you've confirmed your voter registration, make sure your voice is heard on Election Day: request a Vote-by-Mail Ballot!"
       abr_link: Request a Vote-by-Mail Ballot
       how_to_vote: "Now that you've confirmed your voter registration, <a href=\"%{url}\">get ready to vote in your next election</a>!"
       
       register: Register to Vote
-      go_back: Try again with different information
-      check_again: |-
+      go_back: I want to try again with new information
+      no_match_intro:  |-
         <p>%{first_name}, our records did not show that you're registered to vote at 
         %{address}. If this doesn't seem right, please check directly 
         with your state.</p>
-        <p>There are several possible reasons we couldn't find your registration, which include:</p>
+        
+      check_again: |-
+        <p>There are several possible reasons we couldn't match your registration.</p>
         <ol>
         <li>You registered to vote or updated your registration recently. 
         We use national voter records that are updated less frequently than your 
         state's records. Our last update from 
-        %{state} was on %{state_date}.</li>
+        %{state} was on %{state_date}. If you registered more recently than this, you can check on your registration
+        <a rel="noopener noreferrer" target="_blank" href="%{state_url}" >directly with %{state} (opens in new tab)</a></li>
         <li>You used a nickname or entered your information incorrectly. Try again with 
         your full legal name and no abbreviations.</li>
-        <li>You are not registered to vote.</li>
+        <li>You are not registered to vote or need to update your registration information.</li>
+
+        </ol>
+      check_again_no_link: |-
+        <p>There are several possible reasons we couldn't match your registration.</p>
+        <ol>
+        <li>You registered to vote or updated your registration recently. 
+        We use national voter records that are updated less frequently than your 
+        state's records. Our last update from 
+        %{state} was on %{state_date}. If you registered more recently than this, you can check on your registration
+        directly with %{state}</li>
+        <li>You used a nickname or entered your information incorrectly. Try again with 
+        your full legal name and no abbreviations.</li>
+        <li>You are not registered to vote need to update your registration information.</li>
         </ol>
       check_with_state: Check directly with your state
       not_matched: "<p>%{first_name}, our records did not find that you're registered to vote. You can re-register to vote at your current address.</p>"
@@ -83,13 +101,18 @@ en:
       step_2_eligibility_header: Eligibility to Request an Absentee Ballot
       step_2_eligibility_instructions: |-
         <p>
-          All registered voters in %{state_name} can request an absentee ballot.<br/>
-          <a href="%{lookup_url}">Check if your registration is up to date.</a>
+          All registered voters in %{state_name} can request an absentee ballot.
         </p>
 
+      step_2_check_registration: |-
+        <p><a href="%{lookup_url}">Check if your registration is up to date.</a></p>
       step_2_header: Where are you registered to vote?
       step_2_instructions: "<p>We'll use this information to determine how you can
         request your absentee ballot.</p>"
+      step_2_lookup: |-
+        <p>
+        We'll use this information to verify your voter registration and determine how you can request your absentee ballot.
+        </p>
       step_3_header: Prepare your %{state} PDF Absentee Request Form
       step_3_instructions: "<p>Please fill out the fields below so we can prepare
         your PDF absentee request form.</p>"
@@ -167,13 +190,18 @@ en:
       match:
         confirm: It looks like you are registered to vote. Please confirm that this
           is you.
-        confirm_yes: "<p><a>Yes, this is me. I want to continue requesting an absentee
-          ballot.</a></p>"
-        confirm_no: <p>No, this is not me.</p><ul><li>I want to <a href="%{registration_url}">start
-          a new registration</a>.</li><li>I want to change my information and <a href="%{back_url}">try
-          again</a>.</li><li>I know I am registered to vote at my current address
-          and would like to continue.</li></ul>
+        confirm_yes: "Yes, this is me. I want to continue requesting an absentee
+          ballot."
+        confirm_yes_but: This is me but something is wrong. I want to update my registration.
+        confirm_no: <h3>No, this is not me.</h3>
         address: 'Address:'
+      matched_error_intro:  "If something is wrong, we recommend updating your registration prior to requesting an absentee ballot to ensure that you can vote in the upcoming election."          
+      no_match_intro: <p>It's important that you are properly registered before you request an absentee ballot in %{state}.</p>
+      no_match_options_header: Select the best option to continue
+      no_match_options: <p> If you're sure the information you entered is correct or you've verified your registration with the state, continue requesting an absentee ballot. Otherwise, we recommend updating your registration prior to requesting an absentee ballot to ensure that you can vote in the upcoming election.</p>
+      continue_match: "Everything looks good: Continue with my request"
+      continue_no_match: I'm sure I'm registered correctly and want to continue my absentee ballot request
+      register: "I want to register to vote or update my information"
       not_registered_header: Voter Registration Not Found
       not_registered_instructions: "<p>It looks like you don't have an active voter
         registration record in %{state_name}.</p>"
