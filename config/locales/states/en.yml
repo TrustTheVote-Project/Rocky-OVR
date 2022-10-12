@@ -569,7 +569,7 @@ en:
               
           abr_address_line_2:		Where do you plan to be on election day?
           abr_address_line_2__hint: Enter the city and state or city and country.
-          abr_election_type_instructions:		You can use this form for Primary, General and Special elections. <br> See <a href="https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf" target="_blank">https://elections.delaware.gov/pubs/pdfs/absentee_ballot_application_school_elections.pdf</a> for School District elections, and contact your local election official for an application for Municipal elections.
+          abr_election_type_instructions:		You can use this form for General and Special elections. Contact your local election official for an application for Municipal elections.
           abr_election_type_selections:		Select the election(s) you'd like to request a ballot for.
           abr_election_type1:	All Elections in 2022
           abr_election_type2:	Primary (9/13/2022)
