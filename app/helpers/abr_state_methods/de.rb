@@ -65,7 +65,7 @@ module AbrStateMethods::DE
       {'abr_election_type3': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type4': {type: :checkbox, options: ['Off', 'On']}},
 
-      {'abr_reason_selections': {type: :radio, options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4','abr_reason5']}},
+      {'abr_reason_selections': {type: :radio, options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4','abr_reason5'], required:true}},
 
       {'abr_application_type_check1': {type: :checkbox, options: ['Off', 'On'], visible_any: 'abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2 abr_reason_selections_abr_reason5'}},
       #{'abr_party': {visible_any: "abr_election_type1 abr_election_type2 abr_election_type4", required: :if_visible}},
