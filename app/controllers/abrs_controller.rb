@@ -80,6 +80,8 @@ class AbrsController < ApplicationController
   def update
     @abr = Abr.find_by_uid(params[:id])
     set_up_locale
+    @partner = @abr&.partner
+    @partner_id = @partner&.id    
     @current_step = begin params[:current_step].to_i rescue 1 end
     if !params[:abr_state_online_abr].nil? && @abr.eligible_for_oabr?
       redirect_to state_online_redirect_abr_path(@abr)
