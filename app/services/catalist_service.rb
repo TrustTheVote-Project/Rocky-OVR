@@ -84,11 +84,11 @@ class CatalistService
   # {"count"=>0, "mrPersons"=>[], "matchMethod"=>"STANDARD", "status"=>"OK"} 
   def retrieve(params:, registrant: nil, abr: nil)
     RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'catalist', censor: CatalistCensor, abr: abr) do
-      begin
-        return CatalistClient.retrieve(params: params, token: "a") #self.token)
-      rescue Exception => e
-        puts e
-      end
+      #begin
+        return CatalistClient.retrieve(params: params, token: self.token) #self.token)
+      #rescue Exception => e
+      #  puts e
+      #end
     end
   end
 
