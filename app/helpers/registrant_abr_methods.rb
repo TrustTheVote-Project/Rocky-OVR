@@ -148,7 +148,11 @@ module RegistrantAbrMethods
   def validate_date_of_birth_age
     if date_of_birth < Date.parse("1900-01-01")
       errors.add(:date_of_birth, :too_old)
-    end    
+    end
+    if date_of_birth > Date.today
+      errors.add(:date_of_birth, :future)      
+    end
+
   end
   
   def validate_date_of_birth
