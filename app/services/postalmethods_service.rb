@@ -60,7 +60,7 @@ class PostalmethodsService
       response = PostalmethodsClient.send_letter_with_address(url: nil, 
         delivery_id: "#{Rails.env}-#{pdf_delivery.id}::#{pdf_delivery.delivery_attempts}",
         pdf_url: registrant.pdf_url.strip,
-        description: "#{registrant.first_name} #{registrant.last_name}, UID: #{registrant.uid}, Partner: #{registrant.partner_id}",
+        description: "#{registrant.first_name} #{registrant.last_name} #{registrant.email_address}, UID: #{registrant.uid}, Partner: #{registrant.partner_id}",
         #send_to: registrant.full_name.strip,
         send_address1: send_address1.strip,
         send_address2: "", #send_address2.strip,
