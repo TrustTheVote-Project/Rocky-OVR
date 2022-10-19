@@ -83,8 +83,8 @@ record_3:
   requires_party: true
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_non_operating_with_state_name
-  sos_address: Secretary of State<br />500 Woodlane Street, Suite 256<br />Little Rock,
-    AR 72201-8111
+  sos_address: Secretary of State<br />500 Woodlane Street, Suite 256<br />Little
+    Rock, AR 72201-8111
   sos_phone: "(501) 682-5070"
   sos_url: https://www.voterview.ar-nova.org/voterview
   registration_deadline: arkansas
@@ -101,8 +101,8 @@ record_4:
   party_tooltip: not_required_to_vote
   no_party: none_no_affiliation
   id_number_tooltip: drivers_license_required_at_voting_with_state_name
-  sos_address: Secretary of State<br />Elections Division<br />1500 11th Street, 5th FL<br />Sacramento,
-    CA 95814
+  sos_address: Secretary of State<br />Elections Division<br />1500 11th Street, 5th
+    FL<br />Sacramento, CA 95814
   sos_phone: "(916) 657-2166"
   sos_url: https://voterstatus.sos.ca.gov/
   online_registration_url: https://www.registertovote.ca.gov
@@ -249,7 +249,7 @@ record_12:
   abbreviation: ID
   name: Idaho
   requires_party: true
-  party_tooltip: not_required_to_vote
+  party_tooltip: required_for_primary
   id_number_tooltip: drivers_license_or_other_with_state_name
   sos_address: Secretary of State Elections Division <br />700 W. Jefferson St., Room
     E205<br /> Boise, ID 83702
