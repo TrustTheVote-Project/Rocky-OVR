@@ -398,7 +398,9 @@ class ReportGenerator
       csv_str = CsvFormatter.wrap do |csv|
         csv << headers = self.registrant_fields_old.dup
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
-        CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
+        CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')        
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api?', 'submitted_via_state_api')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api_with_default_key?', 'submitted_via_state_api_with_default_key')
 
         registrants.find_each do |r|
           # Set the @existing_state_registrant value
@@ -467,6 +469,8 @@ class ReportGenerator
         csv << headers
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
         CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api?', 'submitted_via_state_api')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api_with_default_key?', 'submitted_via_state_api_with_default_key')
 
         registrants.find_each do |r|
           # Set the @existing_state_registrant value
@@ -495,6 +499,8 @@ class ReportGenerator
         csv << headers
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
         CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api?', 'submitted_via_state_api')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api_with_default_key?', 'submitted_via_state_api_with_default_key')
         abrs.find_each do |abr|
           abr_attributes = headers.collect {|fname| abr_field_mapping(fname, abr) || ""}
           csv << abr_attributes
@@ -505,6 +511,8 @@ class ReportGenerator
         csv << headers
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
         CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api?', 'submitted_via_state_api')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api_with_default_key?', 'submitted_via_state_api_with_default_key')
         lookups.find_each do |lookup|
           lookup_attributes = headers.collect {|fname| lookup_field_mapping(fname, lookup) || ""}
           csv << lookup_attributes
@@ -515,6 +523,8 @@ class ReportGenerator
         csv << headers
         CsvFormatter.rename_array_item(headers, 'home_state_abbrev', 'abbreviation')
         CsvFormatter.rename_array_item(headers, 'first_registration?', 'first_registration')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api?', 'submitted_via_state_api')
+        CsvFormatter.rename_array_item(headers, 'submitted_via_state_api_with_default_key?', 'submitted_via_state_api_with_default_key')
         bscs.find_each do |bsc|
           bsc_attributes = headers.collect {|fname| bsc_field_mapping(fname, bsc) || ""}
           csv << bsc_attributes
