@@ -679,6 +679,9 @@ module V5
       attrs = data.clone
       attrs.symbolize_keys! if attrs.respond_to?(:symbolize_keys!)
 
+      attrs.delete(:created_at)
+      attrs.delete(:updated_at)
+
       if l = attrs.delete(:lang)
         attrs[:locale] = l
       end
