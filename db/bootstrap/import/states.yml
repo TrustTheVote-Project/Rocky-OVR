@@ -358,10 +358,10 @@ record_17:
 record_18:
   abbreviation: LA
   name: Louisiana
+  requires_race: true
+  race_tooltip: requested_with_state_name
   requires_party: false
   optional_party: true
-  race_tooltip: requested_with_state_name
-  requires_party: true
   online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
   party_tooltip: not_required_to_vote
   id_number_tooltip: louisiana
