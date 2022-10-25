@@ -638,6 +638,28 @@ module V4
       attrs = data.clone
       attrs.symbolize_keys! if attrs.respond_to?(:symbolize_keys!)
 
+      if attrs[:created_at]
+        begin
+          timestamp = DateTime.parse(attrs[:created_at])
+          if timestamp > DateTime.now
+            attrs.delete(:created_at)
+          end
+        rescue
+          attrs.delete(:created_at)
+        end
+      end
+
+      if attrs[:updated_at]
+        begin
+          timestamp = DateTime.parse(attrs[:updated_at])
+          if timestamp > DateTime.now
+            attrs.delete(:updated_at)
+          end
+        rescue
+          attrs.delete(:updated_at)
+        end
+      end
+      
       if l = attrs.delete(:lang)
         attrs[:locale] = l
       end

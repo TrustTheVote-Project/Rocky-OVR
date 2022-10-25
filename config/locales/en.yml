@@ -527,6 +527,7 @@ en:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
               too_young: You must be at least 17.5 years old to register to vote
+              future: Must be in the past
         state_registrants/mn_registrant:
           blank: Required
           invalid_zip: Invalid ZIP
@@ -561,6 +562,7 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Must be in the past
             ssn:
               format: Should be 9 digits
             dln:
@@ -595,6 +597,7 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Must be in the past
             penndot_number:
               format: Should be 8 digits
               blank: Required. If you do not have a PA driver's license or PennDOT
@@ -638,6 +641,7 @@ en:
               too_old: Must be after 1900
               too_young: You must be at least sixteen to register and must be at least
                 eighteen in order to vote.
+              future: Must be in the past
             issue_date:
               future: Cannot be in the future
               too_old: Must be after 1972.
@@ -664,6 +668,7 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Date must be in the past
             phone:
               invalid: 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT
@@ -674,6 +679,7 @@ en:
           attributes:
             date_of_birth:
               too_old: Must be after 1900
+              future: Must be in the past
             phone:
               required_if_opt_in: Required if receiving TXT
         catalist_lookup:
@@ -681,6 +687,9 @@ en:
           format: Invalid
           invalid: "%{attribute} is invalid."
           attributes:
+            date_of_birth:
+              too_old: Must be after 1900
+              future: Must be in the past
             phone:
               required_if_opt_in: Required if receiving TXT
         ballot_status_check:
@@ -693,6 +702,7 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Must be in the past
         registrant:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
@@ -711,6 +721,7 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Must be in the past
             phone:
               invalid: 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT

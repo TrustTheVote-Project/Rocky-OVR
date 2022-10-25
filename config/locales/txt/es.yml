@@ -1,8 +1,15 @@
 ---
 es:
   txt:
+    lookup:
+      step_1_header: "Verifica el estado de tu registro de votante"
+      step_1_instructions: <p>¿No está seguro si está registrado para votar? Verifica tu estado de registro de votante hoy -- solo toma un minuto.</p>
+      
     register_to_vote: Registrarse para votar
     register_to_vote_in: Registrarse en %{state_abbrev}
+    check_voter_status: Verifica el estado de tu registro de votante
+    check_voter_status_in: Verifica el estado de tu registro de votante en %{state_abbrev}
+    
     unknown_error: ! 'Error desconocido: los administradores de red han sido contactados.'
     error: Algo salió mal.
     try_again: Regresar y volver a intentarlo.
@@ -11,6 +18,7 @@ es:
       text_me: SMS el enlace
       email_me: Envíame un correo electrónico
       submit: Siguientes pasos
+      lookup: Verifica el estado de tu registro de votante
       edit: Editar
       back: ! '&lt; Paso Anterior'
       download: Imprimir su<br/>formulario de<br/>registro ahora

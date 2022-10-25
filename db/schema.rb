@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_08_141540) do
+ActiveRecord::Schema.define(version: 2022_08_22_154853) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2022_08_08_141540) do
     t.string "tracking_id"
     t.string "registration_county"
     t.boolean "confirm_email_delivery"
+    t.string "registrant_uid"
     t.index ["abandoned", "dead_end", "current_step"], name: "index_abrs_for_abandonment"
     t.index ["abandoned"], name: "index_abrs_on_abandoned"
     t.index ["current_step"], name: "index_abrs_on_current_step"

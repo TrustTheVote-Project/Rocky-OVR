@@ -1,18 +1,25 @@
+<div class="voted-absentee-or-by-mail">
 %h1= t('txt.ballot_status_check.voted_by_mail')
 - if @bsc.abr_track_ballot_url.present?
   = t('txt.ballot_status_check.check_with_state_url', url: @bsc.abr_track_ballot_url ).html_safe
 - else
   = t('txt.ballot_status_check.no_state_url').html_safe
-
 %br
+</div>
 
+<div class="provisional-ballot">
 %h1= t('txt.ballot_status_check.voted_provisionally')
 %p= t('txt.ballot_status_check.voted_provisionally_text')
-
 %br
+</div>
 
+<div style="display: none;" class="find-election-official">
+%h1= t('txt.ballot_status_check.find_election_official_thank_you')
+%p= t('txt.ballot_status_check.find_election_official_contact')
+</div>
 
-%h1= t('txt.ballot_status_check.contact_info')
+.election-office
+  %h1= t('txt.ballot_status_check.contact_info')
 
 .intro-message
   - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info_hash : nil

@@ -54,6 +54,9 @@ class CatalistLookup < ActiveRecord::Base
     if birthdate < Date.parse("1900-01-01")
       errors.add(:date_of_birth, :too_old)
     end    
+    if birthdate > Date.today
+      errors.add(:date_of_birth, :future)      
+    end
   end
   
   def validate_date_of_birth
