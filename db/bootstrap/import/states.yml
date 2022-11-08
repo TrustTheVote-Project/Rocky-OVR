@@ -188,7 +188,7 @@ record_8:
   sos_address: DC Board of Elections<br /> 1015 Half Street, SE, Suite 750<br /> Washington,
     DC 20003
   sos_phone: "(202) 727-2525"
-  sos_url: https://www.dcboe.org/Voters/Register-To-Vote/Check-Voter-Registration-Status
+  sos_url: https://votedc.ballottrax.net/voter/
   sub_18: when_at_least_16
   registration_deadline: district_of_columbia
   online_registration_url: https://vr.dcboe.org/213324797239968?agency_code=12
