@@ -516,13 +516,13 @@ en:
               to vote by mail or online, you are\n required to provide ID documents
               with your ballot. Read about what <a target=\"_blank\" href=\"https://dcboe.org/Voters/How-to-Vote/Mail-Ballot-Instructions\"
               title=\"Mail Ballot Instructions\">qualifies as identification</a>.</p>\n<h3>Check
-              the status of your ballot</h3>\n<p>You can <a target=\"_blank\" href=\"https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot\">track
+              the status of your ballot</h3>\n<p>You can <a target=\"_blank\" href=\"https://votedc.ballottrax.net/voter/">track
               the status of your ballot</a> online with the Board of Elections.\n</p>"
           request_deadline: Check with your local election officials for your state's
             voting deadlines.  We recommend sending in your application/request and
             ballot as soon as possible.
           status_check_instructions: You can look up your Absentee (Mail-in Ballot)
-            status by using your state&#39;s <a target='_blank' href='https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot'>online
+            status by using your state&#39;s <a target='_blank' href='https://votedc.ballottrax.net/voter/'>online
             tool</a>
       de:
         state_online_abr:
