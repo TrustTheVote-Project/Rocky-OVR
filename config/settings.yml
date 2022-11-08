@@ -106,8 +106,8 @@ absentee_states:
     online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
     # pdf_template: dc.pdf
     pdf_url: https://dcboe.org/Data-Resources-Forms/Forms-and-Resources/AbsenteeBallotRequestForm.aspx
-    abr_status_check_url: "https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot"
-    abr_track_ballot_url: "https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot"
+    abr_status_check_url: "https://votedc.ballottrax.net/voter"
+    abr_track_ballot_url: "https://votedc.ballottrax.net/voter"
   DE:
     online_req_url: https://ivote.de.gov/VoterView
     #pdf_template: absentee_ballot_application.pdf
