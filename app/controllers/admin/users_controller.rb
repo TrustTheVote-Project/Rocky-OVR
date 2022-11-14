@@ -49,6 +49,12 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def resetmfa
+    @user = User.find(params[:id])
+    @user.clear_google_secret!
+    redirect_back_or_default admin_users_path
+  end
+
   def deactivate
     @user = User.find(params[:id])
     @user.active = false

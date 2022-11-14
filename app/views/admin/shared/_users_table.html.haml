@@ -8,6 +8,7 @@
       %th Phone
       %th Email
       %th Status
+      %th MFA Status
       %th Impersonate
       %th Organizations
       
@@ -26,6 +27,13 @@
           - else
             inactive
             = link_to 're-activate', reactivate_admin_user_path(user), method: :get, data: {:confirm => "Are you sure you want to re-activate #{user.email}?"}
+        %td
+          - if user.google_secret.nil?
+            not set
+          - else
+            set
+            %br
+            = link_to 'reset MFA', resetmfa_admin_user_path(user), method: :get, data: {:confirm => "Are you sure you want to reset the MFA token for #{user.email}?"}
 
             
         %td

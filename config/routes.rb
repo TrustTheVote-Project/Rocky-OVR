@@ -322,6 +322,7 @@ Rails.application.routes.draw do
         get :impersonate
         get :deactivate
         get :reactivate
+        get :resetmfa
       end
     end
     resources :emails, except: [:new, :edit, :show ]
