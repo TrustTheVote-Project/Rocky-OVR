@@ -546,7 +546,7 @@ class ReportGenerator
       self.save_csv_to_s3(csv_str_regs, file_name)
       
       file_name = time_span == 24 ? "rocky-daily-abrs.csv" : "rocky-hourly-abrs.csv"
-      filename = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-abrs.csv"
+      file_name = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-abrs.csv"
       self.save_csv_to_s3(csv_str_abrs, file_name)
 
       file_name = time_span == 24 ? "rocky-daily-lookups.csv" : "rocky-hourly-lookups.csv"
@@ -554,7 +554,7 @@ class ReportGenerator
       self.save_csv_to_s3(csv_str_lookups, file_name)
 
       file_name = time_span == 24 ? "rocky-daily-ballot-status-checks.csv" : "rocky-hourly-ballot-status-checks.csv"
-      filen_ame = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-ballot-status-checks.csv"
+      file_name = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-ballot-status-checks.csv"
       self.save_csv_to_s3(csv_str_bscs, file_name)
 
       file_name = time_span == 24 ? "rocky-daily-election-alerts.csv" : "rocky-hourly-election-alerts.csv"
