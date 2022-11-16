@@ -541,19 +541,24 @@ class ReportGenerator
 
       t = DateTime.now
       
-      file_name = time_span == 24 ? "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-registrants.csv" : "rocky-daily-registrants.csv" : "rocky-hourly-registrants.csv"
+      file_name = time_span == 24 ? "rocky-daily-registrants.csv" : "rocky-hourly-registrants.csv"
+      file_name = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-registrants.csv"
       self.save_csv_to_s3(csv_str_regs, file_name)
       
-      file_name = time_span == 24 ? "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-abrs.csv" : "rocky-daily-abrs.csv" : "rocky-hourly-abrs.csv"
+      file_name = time_span == 24 ? "rocky-daily-abrs.csv" : "rocky-hourly-abrs.csv"
+      filename = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-abrs.csv"
       self.save_csv_to_s3(csv_str_abrs, file_name)
 
-      file_name = time_span == 24 ? "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-lookups.csv" : "rocky-daily-lookups.csv" : "rocky-hourly-lookups.csv"
+      file_name = time_span == 24 ? "rocky-daily-lookups.csv" : "rocky-hourly-lookups.csv"
+      file_name = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-lookups.csv"
       self.save_csv_to_s3(csv_str_lookups, file_name)
 
-      file_name = time_span == 24 ? "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-ballot-status-checks.csv" : "rocky-daily-ballot-status-checks.csv" : "rocky-hourly-ballot-status-checks.csv"
+      file_name = time_span == 24 ? "rocky-daily-ballot-status-checks.csv" : "rocky-hourly-ballot-status-checks.csv"
+      filen_ame = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-ballot-status-checks.csv"
       self.save_csv_to_s3(csv_str_bscs, file_name)
 
-      file_name = time_span == 24 ? "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-election-alerts.csv" : "rocky-daily-election-alerts.csv" : "rocky-hourly-election-alerts.csv"
+      file_name = time_span == 24 ? "rocky-daily-election-alerts.csv" : "rocky-hourly-election-alerts.csv"
+      file_name = "daily/#{t.strftime("%Y-%m-%d")}-rocky-daily-election-alerts.csv"
       self.save_csv_to_s3(csv_str_alerts, file_name)
     end
     ENV['GENERATING_REPORTS'] = nil    
