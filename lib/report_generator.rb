@@ -544,32 +544,42 @@ class ReportGenerator
       file_name = time_span == 24 ? "rocky-daily-registrants.csv" : "rocky-hourly-registrants.csv"
       self.save_csv_to_s3(csv_str_regs, file_name)
       
-      file_name = "daily/registrants/#{t.strftime("%Y-%m-%d")}-rocky-daily-registrants.csv"
-      self.save_csv_to_s3(csv_str_regs, file_name)
+      if time_span == 24
+        file_name = "daily/registrants/#{t.strftime("%Y-%m-%d")}-rocky-daily-registrants.csv"
+        self.save_csv_to_s3(csv_str_regs, file_name)
+      end
       
       file_name = time_span == 24 ? "rocky-daily-abrs.csv" : "rocky-hourly-abrs.csv"
       self.save_csv_to_s3(csv_str_abrs, file_name)
       
-      file_name = "daily/abrs/#{t.strftime("%Y-%m-%d")}-rocky-daily-abrs.csv"
-      self.save_csv_to_s3(csv_str_abrs, file_name)
+      if time_span == 24
+        file_name = "daily/abrs/#{t.strftime("%Y-%m-%d")}-rocky-daily-abrs.csv"
+        self.save_csv_to_s3(csv_str_abrs, file_name)
+      end
 
       file_name = time_span == 24 ? "rocky-daily-lookups.csv" : "rocky-hourly-lookups.csv"
       self.save_csv_to_s3(csv_str_lookups, file_name)
       
-      file_name = "daily/lookups/#{t.strftime("%Y-%m-%d")}-rocky-daily-lookups.csv"
-      self.save_csv_to_s3(csv_str_lookups, file_name)
+      if time_span == 24
+        file_name = "daily/lookups/#{t.strftime("%Y-%m-%d")}-rocky-daily-lookups.csv"
+        self.save_csv_to_s3(csv_str_lookups, file_name)
+      end
 
       file_name = time_span == 24 ? "rocky-daily-ballot-status-checks.csv" : "rocky-hourly-ballot-status-checks.csv"
       self.save_csv_to_s3(csv_str_bscs, file_name)
       
-      file_name = "daily/ballot-status/#{t.strftime("%Y-%m-%d")}-rocky-daily-ballot-status-checks.csv"
-      self.save_csv_to_s3(csv_str_bscs, file_name)
+      if time_span == 24
+        file_name = "daily/ballot-status/#{t.strftime("%Y-%m-%d")}-rocky-daily-ballot-status-checks.csv"
+        self.save_csv_to_s3(csv_str_bscs, file_name)
+      end
 
       file_name = time_span == 24 ? "rocky-daily-election-alerts.csv" : "rocky-hourly-election-alerts.csv"
       self.save_csv_to_s3(csv_str_alerts, file_name)
       
-      file_name = "daily/alerts/#{t.strftime("%Y-%m-%d")}-rocky-daily-election-alerts.csv"
-      self.save_csv_to_s3(csv_str_alerts, file_name)
+      if time_span == 24
+        file_name = "daily/alerts/#{t.strftime("%Y-%m-%d")}-rocky-daily-election-alerts.csv"
+        self.save_csv_to_s3(csv_str_alerts, file_name)
+      end
     end
     ENV['GENERATING_REPORTS'] = nil    
   end
