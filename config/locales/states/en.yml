@@ -648,7 +648,7 @@ en:
             </p>
         abr:
           request_deadline: |-
-            <p>Your absentee ballot request must be received by October 28, 2022 for the general election.</p>
+            <p>Your absentee ballot request must be received by November 28, 2022 for the general runoff.</p>
 
           status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
