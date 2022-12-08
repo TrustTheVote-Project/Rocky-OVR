@@ -1377,7 +1377,7 @@ GEM
       connection_pool (~> 2.2)
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.13.9)
+    nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     paperclip (6.1.0)
@@ -1395,7 +1395,7 @@ GEM
       thor
       thread_safe
     public_suffix (4.0.7)
-    racc (1.6.0)
+    racc (1.6.1)
     rack (2.2.3.1)
     rack-mini-profiler (2.3.1)
       rack (>= 1.2.0)
