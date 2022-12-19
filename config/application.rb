@@ -107,7 +107,7 @@ module Rocky
       email: {
         email_prefix: "[ROCKY Exception - #{Rails.env}] ",
         sender_address: %{"Exception Notifier" <no-reply@rockthevote.com>},
-        exception_recipients: %w{alex.mekelburg@osetfoundation.org}
+        exception_recipients: %w{alex.mekelburg@osetinstitute.org}
     }
     
     config.action_dispatch.default_headers = {

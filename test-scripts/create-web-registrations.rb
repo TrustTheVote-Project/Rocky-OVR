@@ -31,11 +31,11 @@ class CreateWebRegistration
   end
   
   def self.create_partial_pa(partner_id)    
-    r = Registrant.new(partner_id: partner_id, email_address: "alex+test@osetfoundation.org", home_zip_code: "19000")
+    r = Registrant.new(partner_id: partner_id, email_address: "alex+test@osetinstitute.org", home_zip_code: "19000")
     r.save!
   end
   def self.create_partial_ma(partner_id)    
-    r = Registrant.new(partner_id: partner_id, email_address: "alex+test@osetfoundation.org", home_zip_code: "02113")
+    r = Registrant.new(partner_id: partner_id, email_address: "alex+test@osetinstitute.org", home_zip_code: "02113")
     r.save!
   end
   
@@ -43,7 +43,7 @@ class CreateWebRegistration
     r = Registrant.new(partner_id: pid)
     r.locale = "en"
     r.date_of_birth = Date.parse("1979-06-16") 
-    r.email_address = "alex.mekelburg@osetfoundation.org"
+    r.email_address = "alex.mekelburg@osetinstitute.org"
     r.first_name = "Name"
     r.home_address = "Address"
     r.home_city = "Carrum"
@@ -70,7 +70,7 @@ class CreateWebRegistration
     r = Registrant.new(partner_id: pid)
     r.locale = "en"
     r.date_of_birth = Date.parse("1979-06-16") 
-    r.email_address = "alex.mekelburg@osetfoundation.org"
+    r.email_address = "alex.mekelburg@osetinstitute.org"
     r.first_name = "ERROR"
     r.home_address = "Address"
     r.home_city = "Carrum"
@@ -98,7 +98,7 @@ class CreateWebRegistration
     r = Registrant.new(partner_id: pid)
     r.locale = "en"
     r.date_of_birth = Date.parse("1979-06-16") 
-    r.email_address = "alex.mekelburg@osetfoundation.org"
+    r.email_address = "alex.mekelburg@osetinstitute.org"
     r.first_name = "ERROR"
     r.home_address = "Address"
     r.home_city = "Carrum"

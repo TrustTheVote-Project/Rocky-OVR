@@ -213,7 +213,7 @@ def grommet_json(first_name: "Test", session_id: "Test Canvasser::123457689", pa
             },
             {
               "type": "email",
-              "value": "alex+test@osetfoundation.com",
+              "value": "alex+test@osetinstitute.com",
               "capabilities": []
             }
           ],

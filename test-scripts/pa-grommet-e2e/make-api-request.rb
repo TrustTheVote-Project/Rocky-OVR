@@ -15,7 +15,7 @@ def api_json(first_name: "Test", partner_id: 1, address: "5501 Walnut St." )
     "registration": {
       "lang": "#{rand(2)==1 ? 'en' : 'es' }",
       "date_of_birth": "1979-06-16",      
-      "email_address": "alex.mekelburg@osetfoundation.org",
+      "email_address": "alex.mekelburg@osetinstitute.org",
       "first_name": "#{first_name}",
       "home_address": "#{address}",
       "home_city": "Carrum",

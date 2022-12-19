@@ -25,9 +25,24 @@
 class Admin < ActiveRecord::Base
   acts_as_google_authenticated method: :email_with_label
 
+  before_validation :update_password_updated_at, :if => :password_changed?
+
   acts_as_authentic do |c|
     c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
     c.crypto_provider = Authlogic::CryptoProviders::SCrypt
+  end
+
+  def self.reset_old_passwords!
+    # Find admins with password updated before confg'd days ago
+    Admin.where("password_updated_at < ? or password_updated_at IS NULL", (RockyConf.admin.max_password_age_days || 90).days.ago).each do |a|
+      a.password = a.password_confirmation = 'aBc123!@' + SecureRandom.hex(10) + 'a'
+      a.save!
+      Notifier.admin_password_reset_required(a).deliver_now
+    end
+  end
+
+  def update_password_updated_at
+    self.password_updated_at = DateTime.now
   end
 
   def email_with_label

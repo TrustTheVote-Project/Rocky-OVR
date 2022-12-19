@@ -32,8 +32,8 @@ namespace :utility do
   end
   
   desc "Deactivate stale users and partners"
-  task :deactivate_stale_partners => :environment do
-    Partner.deactivate_stale_partners!
+  task :deactivate_stale_users => :environment do
+    Admin.reset_old_passwords!
     User.deactivate_stale_users!
   end
   

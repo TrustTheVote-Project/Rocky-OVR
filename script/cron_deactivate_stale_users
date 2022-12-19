@@ -7,4 +7,4 @@ CURRENT_DIR=/var/www/rocky
 ENV_NAME=$1
 #source $RVM_ENV_DIR/$RUBY_VERSION@$GEMSET && 
 export PATH=$PATH:/usr/local/bin:/usr/local/lib/ruby/gems/2.7.0/bin
-cd $CURRENT_DIR && RUBYOPT="-W0" bundle exec rake -s utility:deactivate_stale_partners RAILS_ENV=$ENV_NAME
+cd $CURRENT_DIR && RUBYOPT="-W0" bundle exec rake -s utility:deactivate_stale_users RAILS_ENV=$ENV_NAME
