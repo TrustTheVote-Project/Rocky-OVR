@@ -23,7 +23,8 @@ class AbrsCatalistLookup < ActiveRecord::Base
       zip: abr.zip,
       #county: abr.county,
       phone: abr.phone,
-      email: abr.email      
+      email: abr.email,
+      partner_id: abr.partner_id
     }
   end
   

@@ -32,7 +32,7 @@ module AbrStateMethods::GA
       options: [
         #"abr_election_type1",
         #"abr_election_type3",
-        "abr_election_type2",
+        #"abr_election_type2",
         "abr_election_type4",
       ]
     },	

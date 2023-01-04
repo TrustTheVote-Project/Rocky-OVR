@@ -648,7 +648,7 @@ en:
             </p>
         abr:
           request_deadline: |-
-            <p>Your absentee ballot request must be received by October 28, 2022 for the general election.</p>
+            <p>Your absentee ballot request must be received by November 28, 2022 for the general runoff.</p>
 
           status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
@@ -2657,8 +2657,8 @@ en:
             <p>If you are registered to vote and can provide a valid state ID or the last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
             <p><a href="%{lookup_url}">Check if you are registered to vote</a></p>
             <p>You do not need an excuse to vote by mail. When prompted, you will be allowed to request a mail-in ballot even if you select "no" to the questions regarding being absent from the municipality or having an illness or disability. </p>
-        registration_deadline_text: 10/24/2022 is the last day to register before
-          the 11/08/2022 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 05/01/2023 is the last day to register before
+          the 05/16/2023 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2742,8 +2742,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 10/24/2022 is the last day to register before
-          the 11/08/2022 election.</p>"
+          </ul> <p> Deadline Alert: 05/01/2023 is the last day to register before
+          the 05/16/2023 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
@@ -4262,58 +4262,52 @@ en:
       2_months_before: two months before your 18th birthday
       17_turn_18: if you are 17 and will turn 18 before the next election
     registration_deadline:
-      alabama: The deadline to register to vote for the November general election is 10/24/2022.
-      alaska: Voter registrations submitted by mail must be postmarked by 10/9/2022 for the November general election.
-      arizona: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      arkansas: The deadline to register to vote for the November general election is 10/11/2022.
-      california: The deadline to register to vote for the November general election is 10/24/2022.
-      colorado: Voter registrations submitted by mail must be received by 10/31/2022 for the November general election.
-      connecticut: Voter registrations submitted by mail must be postmarked by 11/1/2022 for the November general election.
-      district_of_columbia: Voter registrations submitted by mail must be received by 10/18/2022 for the November general election.
-      delaware: Delaware law now allows voters to register to vote up to and including Election Day.
-      florida: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      georgia: Voter registrations submitted by mail must be received by 11/7/2022 for the Federal Runoff Election.
-      hawaii: Voter registrations submitted by mail must be postmarked by 10/31/2022 for the November general election.
-      idaho: The deadline to register to vote for the November general election is 10/14/2022.
-      indiana: The deadline to register to vote for the November general election is 10/11/2022.
-      illinois: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      iowa: The deadline to register to vote for the November general election is 10/24/2022.
-      kansas: Voter registrations submitted by mail must be postmarked by 10/18/2022 for the November general election.
-      kentucky: The deadline to register to vote for the November general election is 10/11/2022.
-      louisiana: Voter registrations submitted by mail must be postmarked by 11/9/2022 for the December General Election.
-      maine: Voter registrations submitted by mail must be received by 10/18/2022 for the November general election.
-      maryland: Voter registrations submitted by mail must be postmarked by 10/18/2022 for the November general election.
-      massachusetts: Voter registrations submitted by mail must be postmarked by 10/29/2022 for the November general election.
-      michigan: Voter registrations submitted by mail must be postmarked by 10/24/2022 for the November general election.
-      minnesota: Voter registrations submitted by mail must be received by 10/18/2022 for the November general election.
-      mississippi: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      missouri: Voter registrations submitted by mail must be postmarked by 10/12/2022 for the November general election.
-      montana: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      nebraska: The deadline to register to vote for the November general election is 10/21/2022.
-      new_hampshire: Voter registrations submitted by mail must be received by 10/19/2022 for the November general election.
-      new_jersey: The deadline to register to vote for the November general election is 10/18/2022.
-      new_mexico: The deadline to register to vote for the November general election is 10/11/2022.
-      new_york: Voter registrations submitted by mail must be postmarked by 10/14/2022 for the November general election.
-      north_carolina: The deadline to register to vote for the November general election is 10/14/2022.
-      north_dakota: North Dakota does not have voter registration.
-      nebraska: Postmarked by 10/21/2022
-      nevada: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      ohio: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      oklahoma: Voter registrations submitted by mail must be postmarked by 10/14/2022 for the November general election.
-      oregon: Voter registrations submitted by mail must be postmarked by 10/18/2022 for the November general election.
-      pennsylvania: The deadline to register to vote for the November general election is 10/24/2022.
-      rhode_island: Voter registrations submitted by mail must be received by 10/9/2022 for the November general election.
-      south_carolina: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      south_dakota: The deadline to register to vote for the November general election is 10/24/2022.
-      tennessee: Voter registrations submitted by mail must be postmarked by 10/11/2022 for the November general election.
-      texas: The deadline to register to vote for the November general election is 10/11/2022.
-      utah: Voter registrations submitted by mail must be received by 10/28/2022 for the November general election.
-      vermont: Voters in Vermont can register to vote on any day up to and including Election Day.
-      virginia: Voter registrations submitted by mail must be postmarked by 10/17/2022 for the November general election.
-      washington: Voter registrations submitted by mail must be received by 10/31/2022 for the November general election.
-      west_virginia: The deadline to register to vote for the November general election is 10/18/2022.
-      wisconsin: Voter registrations submitted by mail must be postmarked by 10/19/2022 for the November general election.
-      wyoming: Voter registrations submitted by mail must be received by 10/24/2022 for the November general election.
+      alabama: postmarked by the 15th day prior to the election
+      alaska: postmarked at least 30 days before the next election
+      arizona: postmarked at least 29 days before the next election
+      arkansas: postmarked no later than 30 days prior to the election
+      california: postmarked no later than 15 days before Election Day
+      colorado: postmarked by the 8th day before Election Day
+      connecticut: postmarked by the 5th day before a primary and the 7th day before any other election
+      district_of_columbia: received at least 21 days prior to Election Day
+      florida: postmarked by 29 days before the election
+      georgia: postmarked by the 4th Friday prior to an election
+      hawaii: postmarked before or on the 10th day before the election
+      idaho: postmarked 24 days before any election
+      indiana: postmarked no later than 29 days before the next election
+      illinois: postmarked before the 27th day before an election
+      iowa: postmarked no later than the 15th day before the election
+      kansas: postmarked 21 days before any election
+      kentucky: postmarked at least 29 days prior to the election
+      louisiana: postmarked 30 days prior to the election
+      maine: received by the close of business on the 21st day before election day
+      maryland: postmarked no later than 21 days before an election
+      massachusetts: postmarked on or before 10 days before the election
+      michigan: postmarked at least 15 days before the election
+      minnesota: received by 5 p.m., 21 days before Election Day
+      mississippi: postmarked on or before 30 days prior to the election
+      missouri: postmarked by the 4th Wednesday before the election
+      montana: postmarked 30 days before election day
+      new_mexico: postmarked by 28 days prior to the election
+      new_york: postmarked 25 days before the election
+      north_carolina: postmarked by 25 days before the election
+      nebraska: postmarked on or before the third Friday preceding an election
+      nevada: postmarked by the fourth Tuesday preceding an election
+      ohio: postmarked by the 30th day before an election
+      oklahoma: postmarked 25 days prior to the date of an election
+      oregon: postmarked 21 days before Election Day
+      pennsylvania: postmarked at least 15 days before the next election
+      rhode_island: postmarked by the 30th day preceding an election
+      south_carolina: postmarked at least 30 days before the election
+      south_dakota: received by 15 days prior to the election or postmarked 30 days prior to the election
+      tennessee: postmarked 30 days before the election
+      texas: postmarked at least 30 days before the election
+      utah: received no later than 5:00 pm 11 calendar days before the election
+      vermont: received any day up to and including the day of the election
+      virginia: postmarked 22 days before a general or primary election, 14 days before a special election, and 7 days before a special election called by the Governor
+      washington: received by the elections office no later than eight days before election day
+      west_virginia: postmarked 21 days before the election
+      wisconsin: postmarked by the third Wednesday preceding the election
       postmarked_11_days: postmarked 11 days before the election
       postmarked_14_days: postmarked 14 days before the election
       postmarked_15_days: postmarked 15 days before the election
