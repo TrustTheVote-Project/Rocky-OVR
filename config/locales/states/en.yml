@@ -4269,6 +4269,7 @@ en:
       california: postmarked no later than 15 days before Election Day
       colorado: postmarked by the 8th day before Election Day
       connecticut: postmarked by the 5th day before a primary and the 7th day before any other election
+      delaware: postmarked by the 4th Saturday before an election
       district_of_columbia: received at least 21 days prior to Election Day
       florida: postmarked by 29 days before the election
       georgia: postmarked by the 4th Friday prior to an election
@@ -4288,6 +4289,7 @@ en:
       mississippi: postmarked on or before 30 days prior to the election
       missouri: postmarked by the 4th Wednesday before the election
       montana: postmarked 30 days before election day
+      new_jersey: received by 21 days before an election
       new_mexico: postmarked by 28 days prior to the election
       new_york: postmarked 25 days before the election
       north_carolina: postmarked by 25 days before the election
