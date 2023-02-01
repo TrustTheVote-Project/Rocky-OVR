@@ -37,7 +37,7 @@ record_0:
 record_1:
   abbreviation: AK
   name: Alaska
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_with_state_name
   sos_address: State of Alaska<br />Division of Elections<br />PO Box 110017<br />Juneau,
@@ -59,7 +59,7 @@ record_1:
 record_2:
   abbreviation: AZ
   name: Arizona
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: arizona
   sos_address: Secretary of State<br />Elections Department<br />1700 W. Washington,
@@ -80,7 +80,7 @@ record_2:
 record_3:
   abbreviation: AR
   name: Arkansas
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_non_operating_with_state_name
   sos_address: Secretary of State<br />500 Woodlane Street, Suite 256<br />Little
@@ -97,10 +97,10 @@ record_3:
 record_4:
   abbreviation: CA
   name: California
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   no_party: none_no_affiliation
-  id_number_tooltip: drivers_license_required_at_voting_with_state_name
+  id_number_tooltip: california
   sos_address: Secretary of State<br />Elections Division<br />1500 11th Street, 5th
     FL<br />Sacramento, CA 95814
   sos_phone: "(916) 657-2166"
@@ -119,7 +119,7 @@ record_4:
 record_5:
   abbreviation: CO
   name: Colorado
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: colorado
   sos_address: Secretary of State<br />1700 Broadway, Suite 550<br />Denver, CO 80290
@@ -172,7 +172,6 @@ record_7:
   - democratic
   - republican
   no_party: none
-  registration_deadline: delaware
 record_8:
   abbreviation: DC
   name: District of Columbia
@@ -248,7 +247,7 @@ record_11:
 record_12:
   abbreviation: ID
   name: Idaho
-  requires_party: true
+  requires_party: false
   party_tooltip: required_for_primary
   id_number_tooltip: drivers_license_or_other_with_state_name
   sos_address: Secretary of State Elections Division <br />700 W. Jefferson St., Room
@@ -294,7 +293,7 @@ record_14:
 record_15:
   abbreviation: IA
   name: Iowa
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_or_ssn_or_none_4
   sos_address: Secretary of State<br /> First Floor, Lucas Building<br /> 321 E. 12th
@@ -352,7 +351,7 @@ record_17:
 record_18:
   abbreviation: LA
   name: Louisiana
-  requires_race: true
+  requires_race: false
   race_tooltip: requested_with_state_name
   requires_party: true
   online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
@@ -410,7 +409,7 @@ record_20:
 record_21:
   abbreviation: MA
   name: Massachusetts
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   parties:
   - democratic
@@ -470,7 +469,7 @@ record_24:
 record_25:
   abbreviation: MO
   name: Missouri
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: driver_license_state_issues_and_ssn
   sos_address: Elections<br /> James C. Kirkpatrick State Information Center<br />
@@ -491,7 +490,7 @@ record_26:
   name: Montana
   requires_party: false
   party_tooltip: party_not_required_2
-  id_number_tooltip: drivers_license_or_other_with_state_name_2
+  id_number_tooltip: montana
   sos_address: Montana Secretary of State<br /> Montana Capitol Building, Rm 260<br
     /> P.O. Box 202801<br /> Helena, MT 59620-2801<br />
   sos_phone: "(406) 444-9608"
@@ -564,12 +563,12 @@ record_29:
 record_30:
   abbreviation: NJ
   name: New Jersey
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_or_mvc
   sos_address: New Jersey Department of State<br>Division of Elections<br>PO BOX 304<br>Trenton,
     NJ 08628-0304
-  sos_phone: '877-NJ-VOTER'
+  sos_phone: '877-NJ-VOTER '
   sos_url: https://voter.svrs.nj.gov/registration-check
   id_length_min: '4'
   online_registration_url: https://voter.svrs.nj.gov/register
@@ -577,7 +576,6 @@ record_30:
   - democratic
   - republican
   no_party: unaffiliated
-  registration_deadline: new_jersey
 record_31:
   abbreviation: NM
   name: New Mexico
@@ -771,7 +769,7 @@ record_40:
 record_41:
   abbreviation: SD
   name: South Dakota
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   parties:
   - democratic
@@ -817,7 +815,7 @@ record_43:
 record_44:
   abbreviation: UT
   name: Utah
-  requires_party: true
+  requires_party: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_not_operating
   sos_address: Office of the Lieutenant Governor<br /> 350 North State Street, Suite
