@@ -4186,6 +4186,12 @@ en:
           This will serve as proof of citizenship and no additional documents are
           needed. If not, you must attach proof of citizenship to the form. Only one
           acceptable form of proof is needed to register to vote.
+        california: |-
+          You must provide your California driver's license number or identification 
+          card number. If you do not have either number, you must provide the last four 
+          digits of your Social Security number. If you do not include this information, 
+          you will be required to provide identification when you vote if it is your 
+          first time voting in a federal election.
         colorado: Your completed voter registration form must contain your state issued
           driver's license number or identification number. If you do not have a driver's
           license or state issued identification, you must include the last four digits
@@ -4240,6 +4246,15 @@ en:
           then you must provide the last four (4) digits of your social security number.
           If you have neither, you must write "NONE" in the box and a unique identifying
           number will be assigned to you.
+        montana: |-
+          You must provide your Montana Driver's License or ID number, or the last 4 digits 
+          of your Social Security number. If you do not have any of those forms of ID, you 
+          can provide a United States passport, Montana tribal ID card, military ID card, 
+          or Montana concealed carry permit when you register; or submit a photo 
+          identification, including a school district or postsecondary education photo 
+          identification with your name on it, and a current utility bill, bank statement, 
+          paycheck, government check, or other government document that shows your name 
+          and current address.
         oklahoma: You must provide your valid %{state_name} driver's license number.
           If you don't have a valid %{state_name} driver's license, then you must
           provide the last four digits of your Social Security number. If you do not
@@ -4458,6 +4473,11 @@ en:
           license number and the last four digits of your Social Security Number.
           If you do not have a driver's license or a Social Security Number, please
           write "NONE" and a unique identifier will be assigned by the state.
+        dl_or_last_4_or_provided: |-
+          If you have one, you must provide your %{state_name} driver's license number. 
+          If you do not have a driver's license, provide the last four digits of your 
+          Social Security number. If you do not have a driver's license or a Social 
+          Security number, an identification number will be assigned to you.
     sub_18:
       blank: ''
       be_by_next_election: if you will be 18 by the next election
