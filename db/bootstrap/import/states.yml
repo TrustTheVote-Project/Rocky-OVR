@@ -26,7 +26,7 @@ record_0:
   race_tooltip: required_with_state_name
   requires_party: false
   party_tooltip: not_required_can_choose_any
-  id_number_tooltip: ssn_or_none_5
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: 'Office of the Secretary of State<br />Elections Division<br />P.O.
     Box 5616<br />Montgomery, AL 36103-5616 '
   sos_phone: "(800) 274-8683"
@@ -37,10 +37,9 @@ record_0:
 record_1:
   abbreviation: AK
   name: Alaska
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
-  id_number_tooltip: drivers_license_with_state_name
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: State of Alaska<br />Division of Elections<br />PO Box 110017<br />Juneau,
     AK 99811-0017
   sos_abr_address: Division of Elections Absentee and Petition Office<br>2525 Gambell
@@ -60,10 +59,9 @@ record_1:
 record_2:
   abbreviation: AZ
   name: Arizona
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
-  id_number_tooltip: arizona
+  id_number_tooltip: drivers_license_current_and_valid
   sos_address: Secretary of State<br />Elections Department<br />1700 W. Washington,
     7th Floor<br />Phoenix, AZ 85007-2808
   sos_phone: "(602) 542-8683"
@@ -82,10 +80,9 @@ record_2:
 record_3:
   abbreviation: AR
   name: Arkansas
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
-  id_number_tooltip: drivers_license_non_operating_with_state_name
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Secretary of State<br />500 Woodlane Street, Suite 256<br />Little
     Rock, AR 72201-8111
   sos_phone: "(501) 682-5070"
@@ -100,11 +97,10 @@ record_3:
 record_4:
   abbreviation: CA
   name: California
-  requires_party: false
-  optional_party: true
-  party_tooltip: not_required_to_vote
+  requires_party: true
+  party_tooltip: california
   no_party: none_no_affiliation
-  id_number_tooltip: drivers_license_required_at_voting_with_state_name
+  id_number_tooltip: california
   sos_address: Secretary of State<br />Elections Division<br />1500 11th Street, 5th
     FL<br />Sacramento, CA 95814
   sos_phone: "(916) 657-2166"
@@ -123,10 +119,9 @@ record_4:
 record_5:
   abbreviation: CO
   name: Colorado
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
-  id_number_tooltip: colorado
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Secretary of State<br />1700 Broadway, Suite 550<br />Denver, CO 80290
   sos_phone: "(303) 894-2200"
   sos_url: https://www.coloradosos.gov/voter/pages/pub/olvr/findVoterReg.xhtml
@@ -148,7 +143,7 @@ record_6:
   name: Connecticut
   requires_party: true
   party_tooltip: required_for_primary
-  id_number_tooltip: drivers_license_or_other_with_state_name_3
+  id_number_tooltip: drivers_license_or_ssn_no_none
   sos_address: Legislation and Elections Administration Division<br />165 Capitol
     Avenue<br />Hartford, CT 06106
   sos_phone: "(800) 540-3764"
@@ -166,12 +161,11 @@ record_7:
   name: Delaware
   requires_party: true
   party_tooltip: required_for_primary
-  id_number_tooltip: drivers_license_non_operating_with_state_name
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Office of the State Election Commissioner<br />905 South Governors
     Ave, Suite 170<br />Dover, DE 19904
   sos_phone: "(302) 739-4277"
   sos_url: https://ivote.de.gov/VoterView
-  registration_deadline: delaware
   id_length_min: '4'
   online_registration_url: https://ivote.de.gov/VoterView/registrant/newregistrant
   parties:
@@ -206,7 +200,7 @@ record_9:
   race_tooltip: requested_with_state_name
   requires_party: true
   party_tooltip: required_for_primary
-  id_number_tooltip: drivers_license_non_operating_with_state_name
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Florida Division of Elections <br /> R.A. Gray Building, Room 316 <br
     /> 500 South Bronough Street <br /> Tallahassee, Florida 32399-0250
   sos_phone: "(850) 245-6200"
@@ -242,7 +236,7 @@ record_11:
   race_tooltip: not_required_but_appreciated_with_state_name_2
   requires_party: false
   party_tooltip: not_required_to_vote
-  id_number_tooltip: ssn_full
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: State of Hawaii<br>Office of Elections<br>802 Lehua Avenue<br>Pearl
     City, HI 96782
   sos_phone: "(808) 453-8683"
@@ -255,7 +249,7 @@ record_12:
   name: Idaho
   requires_party: true
   party_tooltip: required_for_primary
-  id_number_tooltip: drivers_license_or_other_with_state_name
+  id_number_tooltip: drivers_license_or_dmv_with_state_name
   sos_address: Secretary of State Elections Division <br />700 W. Jefferson St., Room
     E205<br /> Boise, ID 83702
   sos_phone: "(208) 334-2852"
@@ -288,7 +282,7 @@ record_14:
   name: Indiana
   requires_party: false
   party_tooltip: indiana
-  id_number_tooltip: drivers_license_or_ssn_or_none_4
+  id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: Office of the Secretary of State<br>Election Division<br>302 West Washington
     Street, Room E-204<br>Indianapolis, IN 46204-2743
   sos_phone: "(317) 232-3939"
@@ -299,10 +293,9 @@ record_14:
 record_15:
   abbreviation: IA
   name: Iowa
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
-  id_number_tooltip: drivers_license_or_ssn_or_none_4
+  id_number_tooltip: drivers_license_or_ssn_no_none
   sos_address: Secretary of State<br /> First Floor, Lucas Building<br /> 321 E. 12th
     St.<br /> Des Moines, IA 50319<br />
   sos_phone: "(515) 281-0145"
@@ -322,7 +315,7 @@ record_16:
   name: Kansas
   requires_party: true
   party_tooltip: required_for_primary
-  id_number_tooltip: drivers_license_non_driver_2
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Memorial Hall, 1st Floor<br /> 120 SW 10th Avenue<br /> Topeka, KS
     66612-1594<br />
   sos_phone: "(785) 296-4564"
@@ -360,8 +353,7 @@ record_18:
   name: Louisiana
   requires_race: true
   race_tooltip: requested_with_state_name
-  requires_party: false
-  optional_party: true
+  requires_party: true
   online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
   party_tooltip: not_required_to_vote
   id_number_tooltip: louisiana
@@ -378,7 +370,7 @@ record_19:
   name: Maine
   requires_party: true
   party_tooltip: required_for_primary_unless
-  id_number_tooltip: drivers_license_or_other_with_state_name_2
+  id_number_tooltip: oklahoma
   sos_address: Office of the Secretary of State<br /> Division of Elections<br />
     101 State House Station<br /> Augusta, ME 04333-0101<br />
   sos_phone: "(207) 624-7650"
@@ -398,7 +390,7 @@ record_20:
   name: Maryland
   requires_party: true
   party_tooltip: required_for_primary
-  id_number_tooltip: maryland
+  id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: State Board of Elections<br />151 West Street, Suite 200<br />Annapolis,
     MD 21401
   sos_phone: "(800) 222-8683"
@@ -417,15 +409,14 @@ record_20:
 record_21:
   abbreviation: MA
   name: Massachusetts
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
   parties:
   - democratic
   - republican
   - other
   - unenrolled
-  id_number_tooltip: massachusetts
+  id_number_tooltip: drivers_license_or_ssn_or_none
   sos_address: Secretary of the Commonwealth<br /> Elections Division<br /> McCormack
     Building<br /> One Ashburton Place, Room 1705<br /> Boston, MA 02108
   sos_phone: "(617) 727-2828"
@@ -440,7 +431,7 @@ record_22:
   name: Michigan
   requires_party: false
   party_tooltip: not_required_to_vote
-  id_number_tooltip: drivers_license_personal_identification_with_state_name
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Michigan Department of State<br>Bureau of Elections<br>P.O. Box 20126<br>Lansing,
     MI 48901-0726
   sos_phone: "(800) 292-5973"
@@ -455,7 +446,7 @@ record_23:
   requires_party: false
   online_registration_url: https://mnvotes.sos.state.mn.us/VoterRegistration/VoterRegistrationMain.aspx
   party_tooltip: blank
-  id_number_tooltip: drivers_license_state_id_with_state_name
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: 180 State Office Building<br /> 100 Rev. Dr. Martin Luther King Jr.
     Blvd.<br /> Saint Paul, MN 55155<br />
   sos_phone: "(877) 600-8683"
@@ -467,7 +458,7 @@ record_24:
   name: Mississippi
   requires_party: false
   party_tooltip: mississippi
-  id_number_tooltip: drivers_license_current_and_valid
+  id_number_tooltip: drivers_license_or_other_with_state_name_3
   sos_address: Secretary of State<br /> Elections & Voting <br /> Heber Ladner Building<br
     /> 401 Mississippi Street<br /> Jackson, MS 39205<br />
   sos_phone: "(800) 829-6786"
@@ -478,8 +469,8 @@ record_24:
 record_25:
   abbreviation: MO
   name: Missouri
-  requires_party: false
-  party_tooltip: not_required
+  requires_party: true
+  party_tooltip: not_required_to_vote
   id_number_tooltip: driver_license_state_issues_and_ssn
   sos_address: Elections<br /> James C. Kirkpatrick State Information Center<br />
     PO Box 1767<br /> Jefferson City, MO 65102-1767
@@ -489,12 +480,17 @@ record_25:
   registration_deadline: missouri
   id_length_min: '4'
   online_registration_url: https://s1.sos.mo.gov/elections/voterregistration/
+  parties:
+  - democratic
+  - republican
+  - libertarian
+  no_party: unaffiliated
 record_26:
   abbreviation: MT
   name: Montana
   requires_party: false
   party_tooltip: party_not_required_2
-  id_number_tooltip: drivers_license_or_other_with_state_name_2
+  id_number_tooltip: montana
   sos_address: Montana Secretary of State<br /> Montana Capitol Building, Rm 260<br
     /> P.O. Box 202801<br /> Helena, MT 59620-2801<br />
   sos_phone: "(406) 444-9608"
@@ -550,8 +546,7 @@ record_29:
   participating: false
   not_participating_tooltip: new_hampshire
   race_tooltip: blank
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: blank
   no_party: undeclared
   id_length_min: ''
@@ -562,22 +557,19 @@ record_29:
   sos_phone: 603-271-3242
   sos_url: https://app.sos.nh.gov/voterinformation
   sub_18: blank
-  registration_deadline: new_hampshire
   parties:
   - democratic
   - republican
 record_30:
   abbreviation: NJ
   name: New Jersey
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
-  id_number_tooltip: drivers_license_or_mvc
+  id_number_tooltip: drivers_license_or_ssn_or_none
   sos_address: New Jersey Department of State<br>Division of Elections<br>PO BOX 304<br>Trenton,
     NJ 08628-0304
   sos_phone: '877-NJ-VOTER '
   sos_url: https://voter.svrs.nj.gov/registration-check
-  registration_deadline: new_jersey
   id_length_min: '4'
   online_registration_url: https://voter.svrs.nj.gov/register
   parties:
@@ -614,7 +606,7 @@ record_32:
   - other
   - working_families
   - conservative
-  id_number_tooltip: drivers_license_or_other_with_state_name_4
+  id_number_tooltip: drivers_license_or_ssn_or_none
   sos_address: NYS Board of Elections<br />40 North Pearl Street, Suite 5<br />Albany,
     NY 12207-2729
   sos_phone: "(518) 474-6220"
@@ -660,13 +652,12 @@ record_34:
   sos_phone: 800-352-0867 ext. 328-4146
   sos_url: https://vip.sos.nd.gov/PortalList.aspx
   sub_18: blank
-  registration_deadline: north_dakota
 record_35:
   abbreviation: OH
   name: Ohio
   requires_party: false
   party_tooltip: not_part_of_registration
-  id_number_tooltip: ssn_requested
+  id_number_tooltip: drivers_license_or_ssn_or_none
   sos_address: Secretary of State of Ohio<br /> 22 North Fourth Street, 16th Floor<br
     /> Columbus, Ohio 43215
   sos_phone: "(614) 466-2655"
@@ -700,7 +691,7 @@ record_37:
   name: Oregon
   requires_party: true
   party_tooltip: oregon
-  id_number_tooltip: drivers_license_non_driver_with_state_name
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Oregon Secretary of State Elections Division <br /> Public Service
     Building Suite 501<br /> 255 Capitol St. NE <br /> Salem OR 97310
   sos_phone: "(503) 986-1518"
@@ -734,7 +725,7 @@ record_38:
   - other
   no_party: none_no_affiliation
   party_tooltip: required_for_primary_2
-  id_number_tooltip: drivers_license_or_ssn_or_none_3
+  id_number_tooltip: drivers_license_or_other_with_state_name
   sos_address: 'Office of the Secretary, Bureau of Elections and Notaries<br /> 210
     North Office Building<br />  401 North Street<br /> Harrisburg, PA 17120 '
   sos_phone: "(877) 868-3772"
@@ -747,7 +738,7 @@ record_39:
   race_tooltip: not_required_but_appreciated_with_state_name
   requires_party: true
   party_tooltip: required_for_primary
-  id_number_tooltip: rhode_island
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Rhode Island Board of Elections<br /> 148 West River St.<br /> Providence,
     RI 02904
   sos_phone: "(401) 222-2340"
@@ -778,8 +769,7 @@ record_40:
 record_41:
   abbreviation: SD
   name: South Dakota
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
   parties:
   - democratic
@@ -800,7 +790,7 @@ record_42:
   race_tooltip: requested_not_required_with_state_name
   requires_party: false
   party_tooltip: tennessee
-  id_number_tooltip: ssn_or_none_4
+  id_number_tooltip: ssn_full_2
   sos_address: Elections <br /> 312 Rosa L. Parks Avenue<br /> 7th Floor, Snodgrass
     Tower<br /> Nashville , TN 37243-1102
   sos_phone: "(615) 741-7956"
@@ -813,7 +803,7 @@ record_43:
   name: Texas
   requires_party: false
   party_tooltip: not_required
-  id_number_tooltip: texas
+  id_number_tooltip: drivers_license_or_ssn_or_none
   sos_address: Elections Division<br /> Secretary of State<br />  P.O. Box 12060<br
     /> Austin, TX 78711-2060
   sos_phone: "(800) 252-8683"
@@ -825,10 +815,9 @@ record_43:
 record_44:
   abbreviation: UT
   name: Utah
-  requires_party: false
-  optional_party: true
+  requires_party: true
   party_tooltip: not_required_to_vote
-  id_number_tooltip: drivers_license_not_operating
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Office of the Lieutenant Governor<br /> 350 North State Street, Suite
     220<br /> P.O. Box 142325<br /> Salt Lake City, Utah 84114-2325
   sos_phone: "(801) 538-1041"
@@ -851,7 +840,7 @@ record_45:
   name: Vermont
   requires_party: false
   party_tooltip: vermont
-  id_number_tooltip: drivers_license_or_ssn_or_none_4
+  id_number_tooltip: drivers_license_or_other_with_state_name
   sos_address: Elections Division<br /> 128 State Street<br /> Montpelier, VT 05633-1101
   sos_phone: "(802) 828-2464"
   sos_url: https://mvp.vermont.gov/
@@ -864,7 +853,7 @@ record_46:
   race_tooltip: virginia
   requires_party: false
   party_tooltip: virginia
-  id_number_tooltip: ssn_or_none_3
+  id_number_tooltip: ssn_full_2
   sos_address: Virginia Department of Elections<br /> Washington Building, First Floor<br
     /> 1100 Bank Street, Richmond 23219
   sos_phone: "(804) 864-8901"
@@ -876,7 +865,7 @@ record_47:
   name: Washington
   requires_party: false
   party_tooltip: washington
-  id_number_tooltip: washington
+  id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: State Elections Division<br>520 Union Ave SE<br>P.O. Box 40229<br>Olympia,
     WA 98504-0230
   sos_phone: "(360) 902-4180"
@@ -889,7 +878,7 @@ record_48:
   name: West Virginia
   requires_party: true
   party_tooltip: required_for_primary_unless
-  id_number_tooltip: drivers_license_or_non_driver_id
+  id_number_tooltip: dl_or_last_4_or_provided
   sos_address: Office of the Secretary of State<br /> State Capitol Building<br />
     Charleston, WV 25305<br />
   sos_phone: "(304) 558-6000"
@@ -937,4 +926,3 @@ record_50:
   sos_phone: "(307) 777-5860"
   sos_url: https://sos.wyo.gov/Elections/Default.aspx
   sub_18: turn_by_next_election
-  registration_deadline: wyoming
