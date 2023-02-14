@@ -24,7 +24,7 @@ blocks_configuration:
 
 
 # this URL (if present) is shown as a WIKI nav menu item in the Partner portal
-partner_wiki_url: "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/"
+partner_wiki_url: "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/?source=ovrtool"
 
 catalist:
   audience: catalist_api_mr_prod
