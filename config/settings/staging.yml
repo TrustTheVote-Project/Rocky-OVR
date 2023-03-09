@@ -111,8 +111,8 @@ ovr_states:
       
   MI:
     api_settings:
-      api_url: https://mi-testing-endpoint.herokuapp.com 
-      #api_url: https://test-mvicapi.sos.state.mi.us      
+      #api_url: https://mi-testing-endpoint.herokuapp.com 
+      api_url: https://test-mvicapi.sos.state.mi.us      
     languages:
       - en
       
