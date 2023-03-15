@@ -43,13 +43,13 @@ class AdminMailer < ActionMailer::Base
     )
   end
 
-#  def deactivate_users(users)
-#    @users = users
-#    mail(
-#      to: RockyConf.admin.partner_status_to,
-#      subject: "[ROCKY#{environment_subject}] Inactive Users Login Disabled"
-#    )
-#  end
+  def deactivate_users(users)
+    @users = users
+    mail(
+      to: RockyConf.admin.partner_status_to,
+      subject: "[ROCKY#{environment_subject}] Inactive Users Login Disabled"
+    )
+  end
   
   def open_branding_request(branding_request)
     mail(
