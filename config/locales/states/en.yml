@@ -4520,7 +4520,7 @@ en:
       delaware: Delaware law now allows voters to register to vote up to and including
         Election Day.
       florida: postmarked by 29 days before the election
-      georgia: postmarked by the 4th Friday prior to an election
+      georgia: postmarked 30 days before Election Day
       hawaii: postmarked before or on the 10th day before the election
       idaho: postmarked 24 days before any election
       indiana: postmarked no later than 29 days before the next election
@@ -4538,10 +4538,8 @@ en:
       missouri: postmarked by the 4th Wednesday before the election
       montana: postmarked 30 days before election day
       nebraska: postmarked on or before the third Friday preceding an election
-      new_hampshire: postmarked by 6 to 13 days prior to the election, depending on
-        your town or city
-      new_jersey: The deadline to register to vote for the November general election
-        is 10/18/2022.
+      new_hampshire: postmarked by 6 to 13 days prior to the election, depending on your town or city
+      new_jersey: Voter registrations submitted by mail must be received by May 16th for the June Primary Election.
       new_mexico: postmarked by 28 days prior to the election
       new_york: received no later than 10 days before the election
       north_carolina: postmarked by 25 days before the election
@@ -4564,8 +4562,7 @@ en:
         election day
       west_virginia: postmarked 21 days before the election
       wisconsin: Voter registrations submitted by mail must be postmarked by the third Wednesday before an election.
-      wyoming: Voter registrations submitted by mail must be received by 10/24/2022
-        for the November general election.
+      wyoming: received by two weeks prior to Election Day.
       postmarked_11_days: postmarked 11 days before the election
       postmarked_14_days: postmarked 14 days before the election
       postmarked_15_days: postmarked 15 days before the election
