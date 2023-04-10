@@ -576,6 +576,7 @@ record_30:
   - democratic
   - republican
   no_party: unaffiliated
+  registration_deadline: new_jersey
 record_31:
   abbreviation: NM
   name: New Mexico
