@@ -486,6 +486,7 @@ ovr_states:
     languages:
       - en
   KS:
+    redirect_to_online_reg_url: true
     require_id: true
     languages:
       - en

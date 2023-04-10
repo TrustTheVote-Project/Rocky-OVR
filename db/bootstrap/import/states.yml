@@ -323,7 +323,7 @@ record_16:
   sub_18: be_by_next_general_election_november
   registration_deadline: kansas
   id_length_min: '4'
-  online_registration_url: https://www.kdor.ks.gov/Apps/VoterReg/Default.aspx
+  online_registration_url: https://www.ksvotes.org/ref?ref=rockthevote
   online_registration_system_name: VoteKS.org
   parties:
   - democratic
@@ -576,7 +576,6 @@ record_30:
   - democratic
   - republican
   no_party: unaffiliated
-  registration_deadline: new_jersey
 record_31:
   abbreviation: NM
   name: New Mexico
