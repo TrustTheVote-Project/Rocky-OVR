@@ -167,6 +167,7 @@ record_7:
   sos_phone: "(302) 739-4277"
   sos_url: https://ivote.de.gov/VoterView
   id_length_min: '4'
+  sub_18: once_turned_16
   online_registration_url: https://ivote.de.gov/VoterView/registrant/newregistrant
   parties:
   - democratic
@@ -183,7 +184,7 @@ record_8:
     DC 20003
   sos_phone: "(202) 727-2525"
   sos_url: https://votedc.ballottrax.net/voter/
-  sub_18: when_at_least_16
+  sub_18: once_turned_16
   registration_deadline: district_of_columbia
   online_registration_url: https://vr.dcboe.org/213324797239968?agency_code=12
   parties:
@@ -287,6 +288,7 @@ record_14:
     Street, Room E-204<br>Indianapolis, IN 46204-2743
   sos_phone: "(317) 232-3939"
   sos_url: https://indianavoters.in.gov/
+  sub_18: be_by_next_general_election_november
   id_length_min: '4'
   online_registration_url: https://indianavoters.in.gov
   registration_deadline: indiana
@@ -300,7 +302,7 @@ record_15:
     St.<br /> Des Moines, IA 50319<br />
   sos_phone: "(515) 281-0145"
   sos_url: https://sos.iowa.gov/elections/voterreg/regtovote/search.aspx
-  sub_18: once_turned_17_but
+  sub_18: once_turned_17
   registration_deadline: iowa
   id_length_min: '4'
   online_registration_url: https://mymvd.iowadot.gov/Account/Login?ReturnUrl=%2fVoterRegistration
@@ -320,7 +322,7 @@ record_16:
     66612-1594<br />
   sos_phone: "(785) 296-4564"
   sos_url: https://myvoteinfo.voteks.org/voterview/
-  sub_18: be_by_next_general_election_november
+  sub_18: 17_turn_18
   registration_deadline: kansas
   id_length_min: '4'
   online_registration_url: https://www.ksvotes.org/ref?ref=rockthevote
@@ -340,7 +342,7 @@ record_17:
     40601-3240
   sos_phone: "(502) 573-7100"
   sos_url: https://vrsws.sos.ky.gov/VIC/
-  sub_18: when_will_be_18
+  sub_18: 17_turn_18
   online_registration_url: https://vrsws.sos.ky.gov/ovrweb/
   registration_deadline: kentucky
   parties:
@@ -361,7 +363,7 @@ record_18:
     /> Baton Rouge, LA 70809
   sos_phone: "(225) 922-0900"
   sos_url: https://voterportal.sos.la.gov/Home/VoterLogin
-  sub_18: once_turned_17
+  sub_18: once_turned_17_but
   registration_deadline: louisiana
   id_length_min: '4'
   no_party: none_no_affiliation
@@ -375,7 +377,7 @@ record_19:
     101 State House Station<br /> Augusta, ME 04333-0101<br />
   sos_phone: "(207) 624-7650"
   sos_url: https://www.maine.gov/sos/cec/elec/index.html
-  sub_18: once_turned_17_but
+  sub_18: once_turned_16
   registration_deadline: maine
   id_length_min: '4'
   parties:
@@ -397,6 +399,7 @@ record_20:
   sos_url: https://voterservices.elections.maryland.gov/VoterSearch
   registration_deadline: maryland
   id_length_min: '4'
+  sub_18: once_turned_16
   online_registration_url: https://voterservices.elections.maryland.gov/OnlineVoterRegistration/InstructionsStep1
   parties:
   - democratic
@@ -436,6 +439,7 @@ record_22:
     MI 48901-0726
   sos_phone: "(800) 292-5973"
   sos_url: https://mvic.sos.state.mi.us/Voter/Index
+  sub_18: 6_months_before
   registration_deadline: michigan
   online_registration_url: https://mvic.sos.state.mi.us/registervoter
   online_registration_system_name: Michigan Voter Information Center
@@ -451,6 +455,7 @@ record_23:
     Blvd.<br /> Saint Paul, MN 55155<br />
   sos_phone: "(877) 600-8683"
   sos_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
+  sub_18: once_turned_17_but
   registration_deadline: minnesota
   id_length_min: '4'
 record_24:
@@ -570,12 +575,14 @@ record_30:
     NJ 08628-0304
   sos_phone: '877-NJ-VOTER '
   sos_url: https://voter.svrs.nj.gov/registration-check
+  sub_18: once_turned_17_but
   id_length_min: '4'
   online_registration_url: https://voter.svrs.nj.gov/register
   parties:
   - democratic
   - republican
   no_party: unaffiliated
+  registration_deadline: new_jersey
 record_31:
   abbreviation: NM
   name: New Mexico
@@ -611,6 +618,7 @@ record_32:
     NY 12207-2729
   sos_phone: "(518) 474-6220"
   sos_url: https://voterlookup.elections.ny.gov/
+  sub_18: once_turned_16
   status_check_url: https://absenteeballot.elections.ny.gov/
   registration_deadline: new_york
   id_length_min: '4'
@@ -628,6 +636,7 @@ record_33:
   sos_url: https://vt.ncsbe.gov/RegLkup/
   registration_deadline: north_carolina
   id_length_min: '4'
+  sub_18: once_turned_16
   online_registration_url: https://payments.ncdot.gov/service/nc_voter_registration/workflow/nc_voter_reg_standalone_entry/1?initialTalkObject=%7B%22dashboard%22%3A%7B%22serviceOfferingId%22%3A%22nc_voter_registration%22%2C%22licenses%22%3A%5B%5D%7D%7D
   parties:
   - democratic
@@ -676,7 +685,7 @@ record_36:
     /> State Capitol Building<br /> Oklahoma City, OK 73105<br />
   sos_phone: "(405) 521-2391"
   sos_url: https://okvoterportal.okelections.us/
-  sub_18: 60_days_before_election_novemeber
+  sub_18: 6_months_before
   registration_deadline: oklahoma
   online_registration_url: https://okvoterportal.okelections.us/Home/RegWizard
   id_length_min: '4'
@@ -745,6 +754,7 @@ record_39:
   sos_url: https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=0
   registration_deadline: rhode_island
   id_length_min: '4'
+  sub_18: once_turned_16
   online_registration_url: https://vote.sos.ri.gov/Home/RegistertoVote?ActiveFlag=1
   no_party: unaffiliated
   parties:
@@ -860,6 +870,7 @@ record_46:
   sos_url: https://vote.elections.virginia.gov/VoterInformation/Lookup/status
   registration_deadline: virginia
   online_registration_url: https://www.elections.virginia.gov/citizen-portal/
+  sub_18: 17_turn_18
 record_47:
   abbreviation: WA
   name: Washington
@@ -870,7 +881,7 @@ record_47:
     WA 98504-0230
   sos_phone: "(360) 902-4180"
   sos_url: https://voter.votewa.gov/WhereToVote.aspx
-  sub_18: turn_by_next_election_2
+  sub_18: once_turned_16
   registration_deadline: washington
   id_length_min: '4'
 record_48:
@@ -885,6 +896,7 @@ record_48:
   sos_url: https://apps.sos.wv.gov/Elections/Voter/FindMyPollingPlace
   registration_deadline: west_virginia
   id_length_min: '4'
+  sub_18: 17_turn_18
   online_registration_url: https://ovr.sos.wv.gov/Register/Landing#Landing
   parties:
   - democratic
@@ -903,7 +915,7 @@ record_49:
     /> 3rd Floor<br /> Madison, WI 53703
   sos_phone: "(608) 266-8005"
   sos_url: https://myvote.wi.gov/en-us/Register-To-Vote
-  sub_18: 17_turn_18
+  sub_18: turn_by_next_election
   registration_deadline: wisconsin
   pdf_other_instructions: wisconsin
   id_length_min: '4'
@@ -925,4 +937,4 @@ record_50:
     <br /> Suites 100 and 101<br /> Cheyenne, WY 82002-0020
   sos_phone: "(307) 777-5860"
   sos_url: https://sos.wyo.gov/Elections/Default.aspx
-  sub_18: turn_by_next_election
+  sub_18: be_by_next_election
