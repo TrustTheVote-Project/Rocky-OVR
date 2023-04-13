@@ -212,7 +212,7 @@ es:
         previous_last_name: Apellido
         registration_address_1: Dirección Casa
         registration_address_2: Dirección 2
-        registration_unit_type: Unidad Número
+        registration_unit_type: Tipo de vivienda
         registration_unit_number: No.
         registration_city: Ciudad
         registration_state: Estado

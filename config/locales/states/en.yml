@@ -4488,7 +4488,7 @@ en:
         once you have turned 16 years old (but you cannot vote until
         you turn 18)
       once_turned_17: once you have turned 17 years old
-      once_turned_17_but: once you turned 17 years old (but you have to be 18 to vote)
+      once_turned_17_but: once you have turned 17 years old (but you have to be 18 to vote)
       turn_by_next_election: if you will turn 18 before the next election
       turn_by_next_election_2: if you will turn 18 by the next election
       turn_by_next_general_election_november: |-
@@ -4514,13 +4514,11 @@ en:
       arkansas: postmarked no later than 30 days prior to the election
       california: postmarked no later than 15 days before Election Day
       colorado: postmarked by the 8th day before Election Day
-      connecticut: postmarked by the 5th day before a primary and the 7th day before
-        any other election
+      connecticut: postmarked by the 5th day before a primary and the 7th day before any other election
       district_of_columbia: received at least 21 days prior to Election Day
-      delaware: Delaware law now allows voters to register to vote up to and including
-        Election Day.
+      delaware: Delaware law now allows voters to register to vote up to and including Election Day.
       florida: postmarked by 29 days before the election
-      georgia: postmarked by the 4th Friday prior to an election
+      georgia: postmarked 30 days before Election Day
       hawaii: postmarked before or on the 10th day before the election
       idaho: postmarked 24 days before any election
       indiana: postmarked no later than 29 days before the next election
@@ -4538,10 +4536,8 @@ en:
       missouri: postmarked by the 4th Wednesday before the election
       montana: postmarked 30 days before election day
       nebraska: postmarked on or before the third Friday preceding an election
-      new_hampshire: postmarked by 6 to 13 days prior to the election, depending on
-        your town or city
-      new_jersey: The deadline to register to vote for the November general election
-        is 10/18/2022.
+      new_hampshire: postmarked by 6 to 13 days prior to the election, depending on your town or city
+      new_jersey: Voter registrations submitted by mail must be received by May 16th for the June Primary Election.
       new_mexico: postmarked by 28 days prior to the election
       new_york: received no later than 10 days before the election
       north_carolina: postmarked by 25 days before the election
@@ -4553,20 +4549,16 @@ en:
       pennsylvania: postmarked at least 15 days before the next election
       rhode_island: postmarked by the 30th day preceding an election
       south_carolina: postmarked at least 30 days before the election
-      south_dakota: received by 15 days prior to the election or postmarked 30 days
-        prior to the election
+      south_dakota: received by 15 days prior to the election or postmarked 30 days prior to the election
       tennessee: postmarked 30 days before the election
       texas: postmarked at least 30 days before the election
       utah: received no later than 5:00 pm 11 calendar days before the election
       vermont: received any day up to and including the day of the election
-      virginia: postmarked 22 days before a general or primary election, 14 days before
-        a special election, and 7 days before a special election called by the Governor
-      washington: received by the elections office no later than eight days before
-        election day
+      virginia: Voter registrations submitted by mail must be postmarked by May 30th for the June Primary Election.
+      washington: received by the elections office no later than eight days before election day
       west_virginia: postmarked 21 days before the election
-      wisconsin: Voter registrations submitted by mail must be postmarked by March 15th for the April General Election.
-      wyoming: Voter registrations submitted by mail must be received by 10/24/2022
-        for the November general election.
+      wisconsin: Voter registrations submitted by mail must be postmarked by the third Wednesday before an election.
+      wyoming: received by two weeks prior to Election Day.
       postmarked_11_days: postmarked 11 days before the election
       postmarked_14_days: postmarked 14 days before the election
       postmarked_15_days: postmarked 15 days before the election
