@@ -2858,8 +2858,8 @@ en:
             <p>If you are registered to vote and can provide a valid state ID or the last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
             <p><a href="%{lookup_url}">Check if you are registered to vote</a></p>
             <p>You do not need an excuse to vote by mail. When prompted, you will be allowed to request a mail-in ballot even if you select "no" to the questions regarding being absent from the municipality or having an illness or disability. </p>
-        registration_deadline_text: 05/01/2023 is the last day to register before
-          the 05/16/2023 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 10/23/2023 is the last day to register before
+          the 11/07/2023 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2943,8 +2943,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 5/1/2023 is the last day to register before
-          the 5/16/2023 election.</p>"
+          </ul> <p> Deadline Alert: 10/23/2023 is the last day to register before
+          the 11/07/2023 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
