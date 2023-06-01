@@ -1292,11 +1292,11 @@ es:
         state_online_abr:
           
           requirements: ''
-        registration_deadline_text: 'Atención: La fecha límite para inscribirse y
-          poder votar en las próximas elecciones d 11/07/2023, es 10/23/2023. Si usted
-          NO es un ciudadano de los Estados Unidos y un residente de Pennsylvania
-          por lo menos 30 días antes de la próxima elección, usted NO puede registrarse
-          para votar. Si tiene preguntas, llame al 1.877.VOTESPA (1.877.868.3772).'
+        registration_deadline_text: 'Atención: La fecha límite para inscribirse y poder votar 
+        en las próximas elecciones del 7 de noviembre de 2023, es el 23 de octubre de 2023. 
+        Si usted NO es un ciudadano de los Estados Unidos y un residente de Pennsylvania por 
+        lo menos 30 días antes de la próxima elección, usted NO puede registrarse para votar. 
+        Si tiene preguntas, llame al 1.877.VOTESPA (1.877.868.3772).'
         state_flow_error: Hubo un problema al enviar su registro a Pennsylvania. Completa
           registro mediante formulario en papel.
         step_2_header: Información Básica
