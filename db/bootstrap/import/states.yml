@@ -30,7 +30,7 @@ record_0:
   sos_address: 'Office of the Secretary of State<br />Elections Division<br />P.O.
     Box 5616<br />Montgomery, AL 36103-5616 '
   sos_phone: 334-242-7210
-  sos_url: https://www.sos.alabama.gov/alabama-votes
+  sos_url: https://myinfo.alabamavotes.gov/voterview
   sub_18: be_by_next_election
   registration_deadline: alabama
   online_registration_url: https://www.alabamavotes.gov/olvr/default.aspx
