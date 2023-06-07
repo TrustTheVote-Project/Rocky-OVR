@@ -29,7 +29,7 @@ record_0:
   id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: 'Office of the Secretary of State<br />Elections Division<br />P.O.
     Box 5616<br />Montgomery, AL 36103-5616 '
-  sos_phone: "(800) 274-8683"
+  sos_phone: 334-242-7210
   sos_url: https://myinfo.alabamavotes.gov/voterview
   sub_18: be_by_next_election
   registration_deadline: alabama
@@ -44,7 +44,7 @@ record_1:
     AK 99811-0017
   sos_abr_address: Division of Elections Absentee and Petition Office<br>2525 Gambell
     Street, Suite 105<br>Anchorage, AK 99503-2838
-  sos_phone: "(907) 465-4611"
+  sos_phone: "(866) 952-8683"
   sos_url: https://myvoterinformation.alaska.gov/
   sub_18: 90_days_before
   registration_deadline: alaska
@@ -85,7 +85,7 @@ record_3:
   id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Secretary of State<br />500 Woodlane Street, Suite 256<br />Little
     Rock, AR 72201-8111
-  sos_phone: "(501) 682-5070"
+  sos_phone: "(800) 482-1127"
   sos_url: https://www.voterview.ar-nova.org/voterview
   registration_deadline: arkansas
   id_length_min: '4'
@@ -144,9 +144,9 @@ record_6:
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: drivers_license_or_ssn_no_none
-  sos_address: Legislation and Elections Administration Division<br />165 Capitol
-    Avenue<br />Hartford, CT 06106
-  sos_phone: "(800) 540-3764"
+  sos_address: Connecticut Secretary of the State<br />Legislation and Elections Administration
+    Division<br />PO Box 150470<br />Hartford, CT 06115-0470
+  sos_phone: 860-509-6100
   sos_url: https://portaldir.ct.gov/sots/LookUp.aspx
   sub_18: 17_turn_18
   registration_deadline: connecticut
@@ -251,8 +251,8 @@ record_12:
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: drivers_license_or_dmv_with_state_name
-  sos_address: Secretary of State Elections Division <br />700 W. Jefferson St., Room
-    E205<br /> Boise, ID 83702
+  sos_address: Secretary of State Elections Division<br />P.O. Box 83720<br />Boise,
+    ID 83720-0080
   sos_phone: "(208) 334-2852"
   sos_url: https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx
   id_length_min: '4'
@@ -300,7 +300,7 @@ record_15:
   id_number_tooltip: drivers_license_or_ssn_no_none
   sos_address: Secretary of State<br /> First Floor, Lucas Building<br /> 321 E. 12th
     St.<br /> Des Moines, IA 50319<br />
-  sos_phone: "(515) 281-0145"
+  sos_phone: "(888) 767-8683"
   sos_url: https://sos.iowa.gov/elections/voterreg/regtovote/search.aspx
   sub_18: once_turned_17
   registration_deadline: iowa
@@ -320,7 +320,7 @@ record_16:
   id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Memorial Hall, 1st Floor<br /> 120 SW 10th Avenue<br /> Topeka, KS
     66612-1594<br />
-  sos_phone: "(785) 296-4564"
+  sos_phone: 800-262-8683
   sos_url: https://myvoteinfo.voteks.org/voterview/
   sub_18: 17_turn_18
   registration_deadline: kansas
@@ -359,8 +359,7 @@ record_18:
   online_registration_url: https://voterportal.sos.la.gov/VoterRegistration
   party_tooltip: not_required_to_vote
   id_number_tooltip: louisiana
-  sos_address: Secretary of State<br />Voter Registration<br />8585 Archives Ave.<br
-    /> Baton Rouge, LA 70809
+  sos_address: Secretary of State<br />P.O. Box 94125<br />Baton Rouge, LA 70804-9125
   sos_phone: "(225) 922-0900"
   sos_url: https://voterportal.sos.la.gov/Home/VoterLogin
   sub_18: once_turned_17_but
@@ -393,8 +392,8 @@ record_20:
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: drivers_license_or_other_with_state_name_3
-  sos_address: State Board of Elections<br />151 West Street, Suite 200<br />Annapolis,
-    MD 21401
+  sos_address: Maryland State Board of Elections<br />P.O. Box 6486<br />Annapolis,
+    MD 21401-0486
   sos_phone: "(800) 222-8683"
   sos_url: https://voterservices.elections.maryland.gov/VoterSearch
   registration_deadline: maryland
@@ -455,7 +454,7 @@ record_23:
     Blvd.<br /> Saint Paul, MN 55155<br />
   sos_phone: "(877) 600-8683"
   sos_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
-  sub_18: once_turned_17_but
+  sub_18: once_turned_16
   registration_deadline: minnesota
   id_length_min: '4'
 record_24:
@@ -464,8 +463,8 @@ record_24:
   requires_party: false
   party_tooltip: mississippi
   id_number_tooltip: drivers_license_or_other_with_state_name_3
-  sos_address: Secretary of State<br /> Elections & Voting <br /> Heber Ladner Building<br
-    /> 401 Mississippi Street<br /> Jackson, MS 39205<br />
+  sos_address: Mississippi Secretary of State<br />P. O. Box 136<br /> Jackson, MS
+    39205-0136
   sos_phone: "(800) 829-6786"
   sos_url: https://www.msegov.com/sos/voter_registration/amiregistered/Search
   sub_18: be_by_next_general_election_november
@@ -681,8 +680,8 @@ record_36:
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: oklahoma
-  sos_address: Oklahoma State Election Board<br /> 2300 N Lincoln Blvd, Room G28<br
-    /> State Capitol Building<br /> Oklahoma City, OK 73105<br />
+  sos_address: Oklahoma State Election Board<br /> PO Box 53156<br /> Oklahoma City,
+    OK 73152-3156
   sos_phone: "(405) 521-2391"
   sos_url: https://okvoterportal.okelections.us/
   sub_18: 6_months_before
@@ -701,8 +700,8 @@ record_37:
   requires_party: true
   party_tooltip: oregon
   id_number_tooltip: drivers_license_or_non_driver_id
-  sos_address: Oregon Secretary of State Elections Division <br /> Public Service
-    Building Suite 501<br /> 255 Capitol St. NE <br /> Salem OR 97310
+  sos_address: Oregon Secretary of State Elections Division<br />Public Service Building
+    Suite 126<br /> 255 Capitol St. NE  Salem OR 97310
   sos_phone: "(503) 986-1518"
   sos_url: https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS
   sub_18: once_turned_16
@@ -769,8 +768,7 @@ record_40:
   requires_party: false
   party_tooltip: not_required
   id_number_tooltip: south_carolina
-  sos_address: State Election Commission<br /> 1122 Lady Street, Suite 500<br /> Columbia,
-    SC 29201<br />
+  sos_address: State Election Commission<br /> P.O. Box 5987<br /> Columbia, SC 29250-5987
   sos_phone: "(803) 734-9060"
   sos_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=VoterInfo
   registration_deadline: south_carolina
@@ -911,8 +909,8 @@ record_49:
   requires_party: false
   party_tooltip: wisconsin
   id_number_tooltip: wisconsin
-  sos_address: State of Wisconsin Elections Commission<br /> 212 East Washington Ave<br
-    /> 3rd Floor<br /> Madison, WI 53703
+  sos_address: Wisconsin Elections Commission<br /> P.O. Box 7984<br /> Madison, Wisconsin
+    53707-7984
   sos_phone: "(608) 266-8005"
   sos_url: https://myvote.wi.gov/en-us/Register-To-Vote
   sub_18: turn_by_next_election

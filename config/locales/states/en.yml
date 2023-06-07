@@ -2858,8 +2858,8 @@ en:
             <p>If you are registered to vote and can provide a valid state ID or the last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
             <p><a href="%{lookup_url}">Check if you are registered to vote</a></p>
             <p>You do not need an excuse to vote by mail. When prompted, you will be allowed to request a mail-in ballot even if you select "no" to the questions regarding being absent from the municipality or having an illness or disability. </p>
-        registration_deadline_text: 05/01/2023 is the last day to register before
-          the 05/16/2023 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 10/23/2023 is the last day to register before
+          the 11/07/2023 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2943,8 +2943,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 5/1/2023 is the last day to register before
-          the 5/16/2023 election.</p>"
+          </ul> <p> Deadline Alert: 10/23/2023 is the last day to register before
+          the 11/07/2023 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
@@ -4525,25 +4525,25 @@ en:
       illinois: postmarked before the 27th day before an election
       iowa: postmarked no later than the 15th day before the election
       kansas: postmarked 21 days before any election
-      kentucky: Voter registrations submitted by mail must be postmarked by April 17th for the May Primary Election.
+      kentucky: Voter registrations submitted by mail must be postmarked by 29 days before the election in which you intend to vote.
       louisiana: postmarked 30 days prior to the election
       maine: received by the close of business on the 21st day before election day
       maryland: postmarked no later than 21 days before an election
-      massachusetts: Voter registrations submitted by mail must be postmarked by April 22nd for the May 2nd Special State Primary Elections.
+      massachusetts: Voter registrations submitted by mail must be postmarked by 10 days before the election in which you intend to vote.
       michigan: postmarked at least 15 days before the election
-      minnesota: received by 5 p.m., 21 days before Election Day
-      mississippi: postmarked on or before 30 days prior to the election
+      minnesota: Voter registrations submitted by mail must be received by July 18, 2023 for the August Primary Election.
+      mississippi: Voter registrations submitted by mail must be received by 5:00 pm on July 10, 2023 for the August Primary Election.
       missouri: postmarked by the 4th Wednesday before the election
       montana: postmarked 30 days before election day
       nebraska: postmarked on or before the third Friday preceding an election
       new_hampshire: postmarked by 6 to 13 days prior to the election, depending on your town or city
       new_jersey: Voter registrations submitted by mail must be received by May 16th for the June Primary Election.
       new_mexico: postmarked by 28 days prior to the election
-      new_york: received no later than 10 days before the election
+      new_york: Voter registrations submitted by mail must be received by June 17, 2023 for the June Primary Election.
       north_carolina: postmarked by 25 days before the election
       north_dakota: North Dakota does not have voter registration.
       nevada: postmarked by the fourth Tuesday preceding an election
-      ohio: Voter registrations submitted by mail must be postmarked by April 4th for the May Election.
+      ohio: Voter registrations submitted by mail must be postmarked by 30 days before the election in which you intend to vote.
       oklahoma: Voter registrations submitted by mail must be postmarked 25 days prior to the date of an election.
       oregon: postmarked 21 days before Election Day
       pennsylvania: postmarked at least 15 days before the next election

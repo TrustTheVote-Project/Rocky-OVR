@@ -25,7 +25,7 @@ ur:
       skip_state_online_registration: جی نہیں شکریہ! میں اپنے پارٹنر کے ہمراہ اپنافارم
         بعد میں بھجواﺅں گا / گی %{rtv_and_partner_name}
     registration:
-      in_language_name: انگریزی میں
+      in_language_name: اردو میں
       powered_by: تیار کردہ
       progress_indicator: قدم
       step_1_header: نیا رجسٹر کنندہ
