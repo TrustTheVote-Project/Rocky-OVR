@@ -2650,6 +2650,15 @@ en:
           abr_assistant_instructions: Enter the address of the assistant
           abr_assistant_address_line1: Address Line 1
           abr_assistant_address_line2: Address Line 2
+        state_online_registration:
+          header: You are eligible to complete your registration online with NY.Gov.
+          instructions: 'First, you''ll need to log into your NY.Gov account. Then, you''ll 
+            be directed to the Online Voter Registration portal, where you can finish your voter 
+            registration.<br/><br/>If you haven''t used NY.Gov before, you''ll need to create an 
+            account. If you''ve previously used NY.Gov with another agency, you can use the same 
+            login to access the Online Voter Registration portal.<br/><br/><strong>You won''t be 
+            registered until you log into NY.Gov and submit your voter registration application 
+            with your state.</strong>'
         registration:
           has_state_license: I have a NY state identification card or NY driver's
             license, and Social Security Number.
