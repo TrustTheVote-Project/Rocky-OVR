@@ -538,7 +538,7 @@ ovr_states:
       - en
       - es
   NY:
-    require_id: true
+    require_id: false
     languages:
       - en
       - es
