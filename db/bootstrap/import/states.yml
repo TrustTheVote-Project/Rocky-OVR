@@ -621,7 +621,7 @@ record_32:
   status_check_url: https://absenteeballot.elections.ny.gov/
   registration_deadline: new_york
   id_length_min: '4'
-  online_registration_url: https://voterreg.dmv.ny.gov/MotorVoter/
+  online_registration_url: https://my.ny.gov/LoginV4/login.xhtml
 record_33:
   abbreviation: NC
   name: North Carolina
