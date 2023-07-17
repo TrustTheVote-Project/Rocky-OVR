@@ -547,6 +547,10 @@ ovr_states:
     languages:
       - en
       - es
+  OK:
+    require_id: true
+    languages:
+      - en
   OR:
     languages:
       - en
