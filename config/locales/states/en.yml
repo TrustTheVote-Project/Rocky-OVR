@@ -1228,17 +1228,7 @@ en:
             <li><strong>You are a juror</strong> and will be sequestered on the day of the election.</li>
             </ul>
           request_deadline: |-
-            <p>Your absentee ballot request must be received by 4:30 pm on:
-            </p>
-            <ul>
-            <li>November 4, 2022 for the primary election, and</li>
-            <li>December 6, 2022 for the general election.</li>
-            </ul>
-
-            <p>Request your absentee ballot as soon as possible, as Louisiana recommends being aware of standard delivery times and the ballot return deadline when applying for an absentee ballot to ensure your voted ballot is received before the deadline.
-            </p>
-            <p>Your voted absentee ballot must be received by 4:30 pm on the day before the election.
-            </p>
+            <p>Your absentee ballot application must be received by 4:30 pm on the 4th day before Election Day.</p>
           status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
           finish_instructions_1_hint: |-
             <p>Make sure to sign your printed application. If your signature is a mark, you will also need two witnesses to sign.
@@ -2340,8 +2330,9 @@ en:
           abr_assistant_name: Enter the name of the assistant
       nj:
         abr:
-          request_deadline: "<p>Your application must be received by November 1st
-            for the general election.</p>"
+          request_deadline: "<p>If mailed in, your absentee ballot application must be 
+            received 7 days before Election Day. Otherwise, you must get your vote-by-mail 
+            ballot in-person from your county clerk, by 3:00 pm the day before Election Day.</p>"
           status_check_instructions: <a href="https://nj.gov/state/elections/vote.shtml">https://nj.gov/state/elections/vote.shtml</a>.
           finish_instructions_1_hint: "<p>If you received help with this form, make
             sure that the assistor has also \nsigned the form and included their address.\n</p>\n<p>If
@@ -2854,8 +2845,8 @@ en:
             in making my mark in lieu of my signature.
           Address of witness: Address of witness or assistant
         abr:
-          request_deadline: Your application must be received by November 1st for
-            the general election.
+          request_deadline: <p>Your absentee ballot application must be received by 5:00 pm 
+            7 days before Election Day.</p>
           status_check_instructions: <p><a href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>
           finish_instructions_1_hint: "<p><i>If you received help with this form,
             make sure that the witness has also signed the form and included their
