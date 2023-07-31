@@ -1179,10 +1179,6 @@ en:
 
             <li>People who participate in the Secretary of State’s crime victim address confidentiality protection program</li>
             </ul>
-          request_deadline: "<p>Absentee ballot requests must be received by 11:59
-            pm on October 25, 2022 for the November General Election.</p>"
-          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>If
-            you mail your ballot, it must received by 6:00 pm on Election Day.</p>"
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>online
             tool</a>
