@@ -1984,20 +1984,22 @@ en:
             information here: <a target=''_blank'' href=''https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx''>Directory</a>'
           splash:
             instructions_1: |-
-              <p>In Mississippi, you must have a reason to vote absentee by mail or in-person.
-              You can review the requirements on the Mississippi
-              <a href="https://www.sos.ms.gov/content/documents/elections/yallvotedocs/Step-by-Step%20Voter%20Guide%20to%20Absentee%20Voting.pdf" target="_blank">Step-by-Step
-              Absentee Guide [PDF]</a>. If you meet one of these requirements, contact your local
-              <a href="https://www.sos.ms.gov/elections-voting/county-election-information" target="_blank">Election Clerk</a>
-              to request an absentee ballot application.</p>
+              <p>In Mississippi, you must request an absentee ballot application directly 
+              from your county’s Circuit Clerk.</p>              
+              <p>You must have a qualifying reason to vote absentee. You can review the 
+              requirements on the Mississippi <a href="https://www.sos.ms.gov/content/documents/elections/yallvotedocs/Step-by-Step%20Voter%20Guide%20to%20Absentee%20Voting.pdf" target="_blank">Step-by-Step Absentee Guide.</a>.</p>
             instructions_2: |-
-              <p>Once you have received your application, make sure to get it notarized before returning it.
-              Temporary or permanently physically disabled voters may have the application witnessed by a
-              person who is at least 18 years of age.</p>
-              <p>Your absentee ballot request must be received in time for your ballot to be mailed to you and returned to your election official by election day.</p>
+              <p>All absentee ballot applications must be notarized, unless the voter is 
+              temporarily or permanently physically disabled. Temporary or permanently 
+              physically disabled voters may have the application witnessed by a person 
+              who is at least 18 years of age.</p>
+              <p>You must request your absentee ballot with enough time to be mailed to 
+              you and returned to your election official by Election Day.</p>
             instructions_3: |-
-              <p>If you request a mail-in ballot, you must return it by mail - you cannot drop it off.</p>
-              <p>Your voted absentee ballot must be postmarked by November 7th and received by November 15th in order to be counted.</p>
+              <p>If you request a mail-in absentee ballot, you must return it by mail; 
+              you can’t drop it off. Your voted mail-in ballot must be postmarked by 
+              Election Day and received within 5 business days of Election Day for it to 
+              count.</p>
       mt:
         abr:
           request_deadline: |-
