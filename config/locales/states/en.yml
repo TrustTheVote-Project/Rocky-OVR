@@ -3466,10 +3466,8 @@ en:
           status_check_instructions: <a href="https://www.elections.virginia.gov/citizen-portal/">https://www.elections.virginia.gov/citizen-portal/</a>
         state_online_abr:
           instructions: |-
-            <p>You need to provide your social security number to request an absentee ballot.</p>
-            <p>You can also cast an emergency absentee ballot due to emergency situations or unexpected obligations.
-            If you think this applies to you, see
-            <a href="https://www.elections.virginia.gov/casting-a-ballot/early-absentee/">Absentee and Early Voting</a>.</p>
+            <p>You can request an absentee ballot with your state’s online portal. You’ll 
+            need to provide the last 4 digits of your SSN.</p>
         abr_form_fields:
           Birth_Year: 'Year I was born:'
           SSN_Last_4: Last 4 digits of my social security number
