@@ -1983,11 +1983,14 @@ en:
             by calling your local election official.  Find your official&#39;s contact
             information here: <a target=''_blank'' href=''https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx''>Directory</a>'
           splash:
+            header_1: How to Request an Absentee Ballot in Mississippi
+            header_2: Questions & Next Steps
+            header_3: Don't Forget to Vote!
             instructions_1: |-
               <p>In Mississippi, you must request an absentee ballot application directly 
-              from your county’s Circuit Clerk.</p>              
+              from your county’s Circuit Clerk.</p>
               <p>You must have a qualifying reason to vote absentee. You can review the 
-              requirements on the Mississippi <a href="https://www.sos.ms.gov/content/documents/elections/yallvotedocs/Step-by-Step%20Voter%20Guide%20to%20Absentee%20Voting.pdf" target="_blank">Step-by-Step Absentee Guide.</a>.</p>
+              requirements on the Mississippi <a href="https://www.sos.ms.gov/content/documents/elections/yallvotedocs/Step-by-Step%20Voter%20Guide%20to%20Absentee%20Voting.pdf" target="_blank">Step-by-Step Absentee Guide</a>.</p>
             instructions_2: |-
               <p>All absentee ballot applications must be notarized, unless the voter is 
               temporarily or permanently physically disabled. Temporary or permanently 
