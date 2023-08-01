@@ -3427,6 +3427,7 @@ en:
       ut:
         abr:
           everyone_gets_ballot:
+            instructions_1: "<p>If you are an active registered voter in Utah, you will automatically receive a ballot in the mail.</p>"
             instructions_2: "<p>Make sure you're <a href=\"https://register.rockthevote.com/\">registered to vote</a> at your current address!</p>
               <p>If you need your ballot sent somewhere other than your usual address, 
               you can submit an <a target=\"_blank\" href=\"https://voteinfo.utah.gov/wp-content/uploads/sites/42/2020/05/Alternate-Address-Form5-20.pdf\">Absentee Application</a> 
