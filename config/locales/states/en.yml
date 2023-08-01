@@ -1199,13 +1199,15 @@ en:
           has_no_state_license: I do not have a Social Security Number.
       la:
         state_online_abr:
-          header_choice: Requesting an absentee ballot
+          header_choice: How do you want to request your ballot?
           confirm: ''
           requirements: |-
-            <ul>
-              <li>If you are disabled, use the <a target='_blank' href="https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf">form available from the state</a> to join the automatic absentee ballot program or request an absentee ballot for a single election.</li>
-              <li>If you are requesting an absentee ballot for any other reason and have a valid Louisiana state ID, request your absentee ballot online by clicking the button below. Click "Search by voter" to log into the portal then click the "Request Absentee Ballot" link found under the Quick Links heading.</li>
-              <li>If you are requesting an absentee ballot for any other reason and do not have a valid Louisiana state ID, click the link below the button to complete a paper application. </li>
+            <p>You can request an absentee ballot with your state’s online portal. You’ll 
+            need to provide a Louisiana state ID number.</p>
+            <p>If you don’t have a state ID, you will need to create a paper request form.</p>
+            <p>If you’re disabled, use the <a target='_blank' href='https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf'>form available from the state</a>
+            to join the automatic absentee ballot program or request an absentee ballot for a 
+            single election.</p>
         abr:
           step_2_header: You must have a reason to vote absentee in Louisiana.
           step_2_instructions: |-
@@ -1303,8 +1305,8 @@ en:
           abr_absence_end_date_input: Absence ends
           abr_election_type_selections: Select the election(s) you would like to request
             an absentee ballot for. You must select at least one.
-          abr_election_type1_input: The 11/8/2022 Primary Election
-          abr_election_type2_input: The 12/10/2022 General Election
+          abr_election_type1_input: The 10/14/2023 Primary Election
+          abr_election_type2_input: The 11/18/2023 General Election
           abr_assistant_check1: Check this box if someone else will be delivering
             your request either by hand or by fax.
           abr_assistant_name: Enter the name of the person who will be submitting
@@ -2340,8 +2342,8 @@ en:
         abr_form_fields:
           Election: Select the election you'd like to request a ballot for
           Election__options:
-            All: All Future Elections, until I request otherwise in writing.
-            General: Only the next General (November) election
+            All: All future elections, until I request otherwise in writing
+            General: General (November)
             Primary: Primary (June)
           Special_Election_Name: Special Election Name
           Special_Election_Date: Special Election Date
@@ -2850,12 +2852,14 @@ en:
             make sure that the witness has also signed the form and included their
             address.</i></p>"
         state_online_abr:
-          confirm: "<p>Any registered Pennsylvania voter may vote by mail. Review
-            the requirements below to decide how to request your ballot.</p>"
+          confirm: "<p>You can request an absentee ballot with your state’s online portal. 
+          You’ll need to provide a Pennsylvania state ID number or the last 4 digits of 
+          your SSN. You do not need an excuse to vote by mail, and you'll be allowed to 
+          request a mail-in ballot even if you select \"no\" to the questions about being 
+          absent from the municipality or having an illness or disability.</p>"
           requirements: |-
-            <p>If you are registered to vote and can provide a valid state ID or the last four digits of your SSN, you may request your absentee ballot online directly with the state.</p>
-            <p><a href="%{lookup_url}">Check if you are registered to vote</a></p>
-            <p>You do not need an excuse to vote by mail. When prompted, you will be allowed to request a mail-in ballot even if you select "no" to the questions regarding being absent from the municipality or having an illness or disability. </p>
+            <p>If you don’t have a state ID or an SSN, you will need to create a paper 
+            request form.</p>
         registration_deadline_text: 10/23/2023 is the last day to register before
           the 11/07/2023 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
