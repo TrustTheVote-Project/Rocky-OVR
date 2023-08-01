@@ -3070,8 +3070,7 @@ en:
           abr_mailing_unit: Unit
           abr_mailing_state_abbrev: State
           abr_mailing_zip: Zip
-          abr_reason_instructions: You do not need a reason to vote by mail in Rhode
-            Island.<br><br> If you are confined in a hospital, convalescent home or
+          abr_reason_instructions: If you are confined in a hospital, convalescent home or
             other facility, you can have your ballot brought to you.
           abr_reason1: I am confined to a facility and would like my mail ballot delivered
             to me.
@@ -3427,6 +3426,7 @@ en:
       ut:
         abr:
           everyone_gets_ballot:
+            header_2: Questions & Next Steps
             instructions_1: "<p>If you are an active registered voter in Utah, you will automatically receive a ballot in the mail.</p>"
             instructions_2: "<p>Make sure you're <a href=\"https://register.rockthevote.com/\">registered to vote</a> at your current address!</p>
               <p>If you need your ballot sent somewhere other than your usual address, 
