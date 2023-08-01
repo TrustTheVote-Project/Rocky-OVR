@@ -3427,22 +3427,16 @@ en:
       ut:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>Every active registered voter will automatically receive
-              a ballot in the mail.</p>\n<p>To update your name or address, submit
-              a new \n<a href=\"https://register.rockthevote.com/\">voter registration</a>.</p>\n<h3>\nCollege
-              students and other voters away from Utah\n</h3>\n<p>Utah voters who
-              are away from their Utah residence during the election\nmay submit an
-              <a target=\"_blank\" href=\"https://voteinfo.utah.gov/wp-content/uploads/sites/42/2020/05/Alternate-Address-Form5-20.pdf\">Absentee
-              Application [PDF]</a>\nto have their ballot mailed to an alternate address.</p>"
+            instructions_2: "<p>Make sure you're <a href=\"https://register.rockthevote.com/\">registered to vote</a> at your current address!</p>
+              <p>If you need your ballot sent somewhere other than your usual address, 
+              you can submit an <a target=\"_blank\" href=\"https://voteinfo.utah.gov/wp-content/uploads/sites/42/2020/05/Alternate-Address-Form5-20.pdf\">Absentee Application</a> 
+              to have your ballot mailed to an alternate address.</p>
+              <p>You can <a target=\"_blank\" href=\"https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot\">track your mail ballot</a> with your state's online tool.</p>"
             instructions_3: |-
-              <h3>Deadlines for delivering your ballot</h3>
-              <ul>
-              <li>If you mail your ballot, it must be postmarked on or before Election Day. </li>
-              <li>You can also drop your ballot off at a <a target="_blank" href="https://votesearch.utah.gov/voter-search/search/search-by-address/how-and-where-can-i-vote" title="How Can I Vote">drop box location</a> before 8:00 pm on Election Day.</li>
-              </ul>
-              <h3>Check the status of your ballot</h3>
-              <p>You can <a target="_blank" href="https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot">track your mail ballot</a> online with the state.
-              </p>
+              <p>If you return your completed ballot in person, it must be received by 
+              Election Day. If you mail your ballot, it must be postmarked 1 day before 
+              Election Day and received by 12:00 pm on the day of the county canvass for 
+              it to count.</p>
           request_deadline: If you are an active registered voter then you will automatically
             receive a ballot in the mail.
           status_check_instructions: You can look up your Absentee Ballot status by
