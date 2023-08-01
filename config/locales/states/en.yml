@@ -3426,7 +3426,6 @@ en:
       ut:
         abr:
           everyone_gets_ballot:
-            header_2: Questions & Next Steps
             instructions_1: "<p>If you are an active registered voter in Utah, you will automatically receive a ballot in the mail.</p>"
             instructions_2: "<p>Make sure you're <a href=\"https://register.rockthevote.com/\">registered to vote</a> at your current address!</p>
               <p>If you need your ballot sent somewhere other than your usual address, 
