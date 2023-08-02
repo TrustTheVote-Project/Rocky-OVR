@@ -3041,13 +3041,13 @@ en:
       ri:
         abr:
           step_2_instructions: |-
-            <p>Voters in Rhode Island do not need a specific reason to request an absentee ballot.</p>
+            <p>Voters in Rhode Island do not need a specific reason to request an absentee 
+            ballot.</p>
             <h2>Requesting an absentee ballot in Rhode Island</h2>
             <p>You must request an absentee ballot for each election.</p>
           request_deadline: |-
-            <p>Your absentee ballot application must be received by October 18, 2022 at 4:00 p.m.
-            in order for you to receive a ballot for the November General Election.
-            </p>
+            <p>Your absentee ballot application must be received by 4:00 pm 21 days before 
+            Election Day.</p>
           status_check_instructions: |-
             <p><a target='_blank' href='https://ballottrax.sos.ri.gov/voter/'>https://ballottrax.sos.ri.gov/voter/</a>
             </p>
