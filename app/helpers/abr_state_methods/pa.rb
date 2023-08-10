@@ -231,7 +231,7 @@ module AbrStateMethods::PA
       #   end
       # end
 
-      if (self.identification2.to_s!='ssn')
+      if (self.identification2.to_s!='ssn' && self.identification != 'dln')
         custom_validates_presence_of('assert_no_id') #this doesn't work
         if (self.assert_no_id.to_s!='1')
           errors.add("assert_no_id", custom_required_message("assert_no_id") )

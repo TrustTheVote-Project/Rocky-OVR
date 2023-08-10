@@ -79,15 +79,15 @@ en:
         directly with your state</a> for the most recent and accurate results</p>
     abr:
       splash:
-        header_1: Requesting a ballot in %{state_name}
-        header_2: Questions about your ballot
-        header_3: Don't forget to vote!
+        header_1: How to Request an Absentee Ballot in %{state_name}
+        header_2: Questions & Next Steps
+        header_3: Don't Forget to Vote!
       everyone_gets_ballot:
         header_1: "%{state_name} Automatically Mails All Registered Voters a Ballot"
         instructions_1: |-
           <p>If you are registered to vote in %{state_name} you do not need to request an absentee ballot.</p>
           <p><a href="%{url}">Make sure you are registered to vote!</a></p>
-        header_2: Questions About Your Absentee Ballot
+        header_2: Questions & Next Steps
         header_3: Don't Forget To Vote!
       deadline_passed_header: Requesting an Absentee Ballot in %{state}
       deadline_passed_instructions: |-
