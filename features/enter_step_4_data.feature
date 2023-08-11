@@ -8,7 +8,7 @@ Feature: Step 4
       Given I have completed step 3
       And my phone number is not blank
       When I go to the step 4 page
-      And I check "Receive emails"
+      And I check "Receive action alerts and other email updates"
       And I fill in "registrant_survey_answer_1" with "o hai"
       And I fill in "registrant_survey_answer_2" with "kthxbye"
       And I press "registrant_submit"
@@ -25,7 +25,7 @@ Feature: Step 4
       And I have completed step 3 from that partner
       And my phone number is not blank
       When I go to the step 4 page
-      And I check "Receive emails"
+      And I check "Receive action alerts and other email updates"
       And I fill in "registrant_survey_answer_1" with "me"
       And I fill in "registrant_survey_answer_2" with "register"
       And I press "registrant_submit"
@@ -79,9 +79,9 @@ Feature: Step 4
       Given I have completed step 3
       And my phone number is not blank
       When I go to the step 4 page
-      Then I should see a checkbox for "Receive emails from Rock the Vote"
+      Then I should see a checkbox for "Receive action alerts and other email updates from Rock the Vote"
       And I should see a checkbox for "Send me txt messages from Rock the Vote"
-      When I check "Receive emails from Rock the Vote"
+      When I check "Receive action alerts and other email updates from Rock the Vote"
       And I check "Send me txt messages from Rock the Vote"
       And I press "registrant_submit"
       Then I should be signed up for "opt_in_sms"
@@ -95,7 +95,7 @@ Feature: Step 4
       Given I have completed step 3 without an email address
       And the setting for allowing ask-for-volunteer is true        
       When I go to the step 4 page
-      Then I should not see a checkbox for "Receive emails from Rock the Vote"
+      Then I should not see a checkbox for "Receive action alerts and other email updates from Rock the Vote"
       And I press "registrant_submit"
       Then I should not be signed up for "opt_in_email" 
 
@@ -166,8 +166,8 @@ Feature: Step 4
       And the setting for allowing ask-for-volunteer is true        
       And I have completed step 3 from that partner
       When I go to the step 4 page
-      Then I <see_rtv_email_checkbox> see a checkbox for "Receive emails from Rock the Vote"
-      And I <see_partner_email_checkbox> see a checkbox for "Receive emails from Opt-in Partner"
+      Then I <see_rtv_email_checkbox> see a checkbox for "Receive action alerts and other email updates from Rock the Vote"
+      And I <see_partner_email_checkbox> see a checkbox for "Receive action alerts and other email updates from Opt-in Partner"
       And I <see_rtv_sms_checkbox> see a checkbox for "Send me txt messages from Rock the Vote"
       And I <see_partner_sms_checkbox> see a checkbox for "Send me txt messages from Opt-in Partner"
       And I <see_rtv_volunteer_checkbox> see a checkbox for "I would like to volunteer with Rock the Vote"
@@ -197,9 +197,9 @@ Feature: Step 4
       And I have completed step 3 from that partner
       And my phone number is not blank
       When I go to the step 4 page
-      And I check "Receive emails from Opt-in Partner"
+      And I check "Receive action alerts and other email updates from Opt-in Partner"
       And I check "I would like to volunteer with Opt-in Partner"
-      And I check "Receive emails from Rock the Vote"
+      And I check "Receive action alerts and other email updates from Rock the Vote"
       And I check "I would like to volunteer with Rock the Vote"
       And I check "Send me txt messages from Rock the Vote"
       And I check "Send me txt messages from Opt-in Partner"
@@ -218,9 +218,9 @@ Feature: Step 4
         | Opt-in Partner | true             | true               | true                 | true                       |  true           | true               |        
       And I have completed step 3 from that partner
       When I go to the step 4 page
-      And I uncheck "Receive emails from Opt-in Partner"
+      And I uncheck "Receive action alerts and other email updates from Opt-in Partner"
       And I uncheck "I would like to volunteer with Opt-in Partner"
-      And I uncheck "Receive emails from Rock the Vote"
+      And I uncheck "Receive action alerts and other email updates from Rock the Vote"
       And I uncheck "I would like to volunteer with Rock the Vote"
       And I uncheck "Send me txt messages from Rock the Vote"
       And I uncheck "Send me txt messages from Opt-in Partner"

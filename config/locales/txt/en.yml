@@ -232,6 +232,14 @@ en:
       success_header: Thank you for joining us.
       success_message: "<p>Encourage your friends and family to do the same.</p>"
       sign_up: Sign me up!
+    privacy_policy_acceptance: |-
+      By continuing, you accept Rock the Vote's 
+      <a href="https://www.rockthevote.org/about-rock-the-vote/privacy-policy/" target="_blank" rel="noopener">
+      Privacy Policy
+      </a>
+      and agree to receive occasional election reminder emails from 
+      Rock the Vote. You can opt out from emails at any time.
+
     register_to_vote: Register To Vote
     register_to_vote_in: Register in %{state_abbrev}
     request_absentee_ballot_in: Request an Absentee Ballot In %{state_abbrev}
@@ -337,7 +345,7 @@ en:
         HELP for info or STOP to stop receiving messages. No purchase necessary. See
         <a href="%{terms_url}" target="_blank" rel="noopener">terms and conditions</a>
         and <a href="%{privacy_url}"  target="_blank" rel="noopener">privacy policy</a>.
-      opt_in_email: Receive emails from %{organization}.
+      opt_in_email: Receive action alerts and other email updates from %{organization}.
       remind_when_18: Send me a reminder on my 18th birthday.
       get_updates: Get updates from Rock the Vote
       volunteer: I would like to volunteer with %{organization}.

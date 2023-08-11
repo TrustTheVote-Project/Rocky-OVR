@@ -25,7 +25,7 @@ Feature: Step 3
       And I have a state license
       When I go to the step 3 page
       Then I should see a checkbox for "Send me txt messages from Rock the Vote"
-      And I should see a checkbox for "Receive emails from Rock the Vote"
+      And I should see a checkbox for "Receive action alerts and other email updates from Rock the Vote"
       And I press "registrant_submit"
       Then I should see "<message>"
 

@@ -4,3 +4,5 @@
 
 = form_for(@alert_request) do |form|
   = render partial: 'form', :object => form
+
+  %p= I18n.t('txt.privacy_policy_acceptance').html_safe
