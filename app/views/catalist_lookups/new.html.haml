@@ -5,3 +5,5 @@
 
 = form_for(@lookup) do |form|
   = render partial: 'form', :object => form
+
+  %p= I18n.t('txt.privacy_policy_acceptance').html_safe

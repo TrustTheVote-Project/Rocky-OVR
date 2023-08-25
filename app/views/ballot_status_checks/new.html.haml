@@ -31,5 +31,7 @@
   = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
   = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
   
-  
   = rollover_button(:next_step, I18n.t('txt.button.next').html_safe)
+
+  %p= I18n.t('txt.privacy_policy_acceptance').html_safe
+  

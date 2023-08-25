@@ -159,7 +159,7 @@ en:
         prev_city: City
         prev_state_abbrev: State
         prev_zip_code: Zip
-        opt_in_email: Receive emails
+        opt_in_email: Receive action alerts and other email updates
         opt_in_sms: Receive txt messages
         attest_true: I have reviewed the above information, and it is true and accurate
           to the best of my knowledge.
@@ -381,7 +381,7 @@ en:
         state_id_number: ID Number
         phone: Phone
         phone_type: Type
-        opt_in_email: Receive emails
+        opt_in_email: Receive action alerts and other email updates
         opt_in_sms: Receive text messages
         attest_true: I have reviewed the above information, and it is true and accurate
           to the best of my knowledge.
@@ -411,7 +411,7 @@ en:
         state_abbrev: State
         phone: Phone
         phone_type: Type
-        opt_in_email: Receive emails
+        opt_in_email: Receive action alerts and other email updates
         opt_in_sms: Receive text messages
       ballot_status_check:
         email: Email Address
@@ -465,7 +465,7 @@ en:
         prev_city: City
         prev_state_abbrev: State
         prev_zip_code: Zip
-        opt_in_email: Receive emails
+        opt_in_email: Receive action alerts and other email updates
         opt_in_sms: Receive txt messages
         attest_true: I have reviewed the above information, and it is true and accurate
           to the best of my knowledge.
