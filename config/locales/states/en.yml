@@ -1211,20 +1211,9 @@ en:
         abr:
           step_2_header: You must have a reason to vote absentee in Louisiana.
           step_2_instructions: |-
-            <p>You may request an absentee ballot if one of these applies to you:</p>
-            <ul>
-            <li><strong>You are 65 years or older, in a nursing home or disabled.</strong>  If you are disabled, you should apply through a <a target='_blank' href='https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/DisabledApplicationForAbsenteeByMailBallot.pdf'>Disabled Application</a> so that you may automatically receive an absentee ballot for all upcoming elections.</li>
-            <li><strong>You will be temporarily absent</strong> from Louisiana or your parish during the early voting period and on election.</li>
-            <li><strong>You will be offshore</strong> during the early voting period and on election day,</li>
-            <li>You are a student, instructor or professor at a college/university</strong> located and living outside of your parish of registration. You can  also apply if you are a spouse or dependent of the above and live outside of your parish.</li>
-            <li><strong>You are a member of the clergy</strong> and are assigned outside of your parish  of registration.</li>
-            <li><strong>You have moved more than 100 miles from your parish seat</strong> and it is  after the voter registration deadline (30 days before the election).</li>
-            <li><strong>You are involuntarily confined in an institution for mental treatment</strong> outside your parish and are not interdicted and not judicially declared incompetent.</li>
-            <li><strong>You are hospitalized or expect to be hospitalized on election day</strong> and cannot participate in early voting. </li>
-            <li><strong>You are incarcerated</strong> or expect to be incarcerated but not convicted for a felony. </li>
-            <li><strong>You are part of the Address Confidentiality Program.</strong></li>
-            <li><strong>You are a juror</strong> and will be sequestered on the day of the election.</li>
-            </ul>
+            <p>In Louisiana, you must have a reason to vote by mail. You can request an 
+            absentee ballot if you’re unable to vote in-person during early voting or on 
+            Election Day.</p>
           request_deadline: |-
             <p>Your absentee ballot application must be received by 4:30 pm on the 4th day before Election Day.</p>
           status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
