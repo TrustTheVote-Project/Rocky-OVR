@@ -612,9 +612,10 @@ ovr_states:
     languages:
       - en
   WI:
-    require_id: true
+    require_id: false
     languages:
       - en
+      - es
 
 enabled_locales:
   - en
