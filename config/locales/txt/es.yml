@@ -286,6 +286,14 @@ es:
           nombre anterior.
         previous_address: Si te has cambiado de dirección desde tu ultimo registro,
           favor de proveer la dirección anterior.
+      mobile_ui:
+        step_2:
+          title: Elegibilidad
+          instructions: Los campos requeridos están marcados con un asterisco (*)
+        step_8:
+          title: Identificación
+        step_9:
+          title: Información personal
       
     status_text:
       message: Acabo de inscribirme para votar y tú también puedes!
