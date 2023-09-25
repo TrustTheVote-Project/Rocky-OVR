@@ -3,7 +3,60 @@ es:
   txt:
     lookup:
       step_1_header: "Verifica el estado de tu registro de votante"
-      step_1_instructions: <p>¿No está seguro si está registrado para votar? Verifica tu estado de registro de votante hoy -- solo toma un minuto.</p>
+      step_1_instructions: <p>¿No está seguro si está registrado para votar? Verifica tu 
+        estado de registro de votante hoy -- solo toma un minuto.</p>
+      step_2_header_check: Encontramos una coincidencia.
+      step_2_header_found: "%{first_name}, we found your voter registration."
+      step_2_header_not_found: "%{first_name}, no pudimos confirmar que está registrado 
+        para votar."
+      step_2_instructions: ''
+      accept: Sí, este soy yo.
+      reject: No, este no soy yo.
+      check:
+        matched: ¿Esta es su información, %{first_name}?
+        gender: 'Gender: %{gender}'
+        birth_date: 'Birth Date: %{birth_date}'
+        voter_status: 'Voter Status: %{voter_status}'
+      matched: Le parece correcta?
+      matched_error_header: Algo incorrecto?
+      matched_error_intro: If something is wrong, we recommend updating your registration.
+      confirm: Sí, este soy yo.
+      abr: 'Ahora que ha verificado el estado de su registro de votante, asegúrese de votar 
+        en las próximas elecciones!'
+      abr_link: Solicite una boleta de voto por correo
+      how_to_vote: Ahora que ha verificado el estado de su registro de votante, asegúrese 
+        de votar en las próximas elecciones!
+      register: Registrarse para votar
+      go_back: Quiero volver a intentarlo con información diferente
+      no_match_intro: "<p>%{first_name}, nuestros registros no muestran que usted está 
+        registrado para votar en \n%{address}. Si no le parece correcto, por favor 
+        consultar directamente con su estado.</p>"
+      check_again: "<p>Existen varias razones posibles por no pudimos confirmar que está 
+        registrado para votar.</p>\n<ol>\n<li>Se registraste para votar recientemente. 
+        Usamos registros de votantes nacionales que se actualizan con menos frecuencia que 
+        los registros de su estado. La actualización más reciente de %{state} es en 
+        %{state_date}. Si se registró mas recientemente, puede consultar directamente con
+        <a rel=\"noopener
+        noreferrer\" target=\"_blank\" href=\"%{state_url}\" >%{state}</a>.</li>\n<li>Usó 
+        un apodo o proporcionó información incorrecta. Volver a intentar con su nombre 
+        legal completo sin abreviatura.</li>\n<li>No está registrado o debe actualizar su 
+        registro de votante.</li>\n\n</ol>"
+      check_again_no_link: "<p>Existen varias razones posibles por no pudimos confirmar que está 
+        registrado para votar.</p>\n<ol>\n<li>Se registraste para votar recientemente. 
+        Usamos registros de votantes nacionales que se actualizan con menos frecuencia que 
+        los registros de su estado. La actualización más reciente de %{state} es en 
+        %{state_date}. Si se registró mas recientemente, puede consultar directamente con
+        %{state}.</li>\n<li>Usó 
+        un apodo o proporcionó información incorrecta. Volver a intentar con su nombre 
+        legal completo sin abreviatura.</li>\n<li>No está registrado o debe actualizar su 
+        registro de votante.</li>\n\n</ol>"
+      check_with_state: Consulte directamente con su estado
+      not_matched: "<p>%{first_name}, our records did not find that you're registered
+        to vote. You can re-register to vote at your current address.</p>"
+      last_update: <p>If you registered to vote or updated your registration recently,
+        we might not have the most up-to-date information. <b>Our last update from
+        %{state} was on %{date}.</b> <a href="%{url}" target="_blank" rel="noopener">Check
+        directly with your state</a> for the most recent and accurate results</p>
       
     privacy_policy_acceptance: |-
       Al hacer clic en "Siguentes pasos", acepta la 
