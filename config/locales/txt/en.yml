@@ -301,6 +301,8 @@ en:
       survey_title: Questions For You
       preparing_header: Preparing Registration Form...
       download_header: Print Your Form
+      after_you_download: After you have downloaded your registration form, you can 
+        continue on and let your friends know they can register to vote too.
       pdf_assistance_header: You should receive your voter registration form in the
         mail in about a week.
       finish_mail_with_esig_header: Thanks for beginning the voter registration process!

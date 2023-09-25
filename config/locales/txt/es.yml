@@ -62,6 +62,8 @@ es:
       survey_title: Preguntas para ti
       preparing_header: Preparando el Formulario...
       download_header: Imprimir Formato
+      after_you_download: Después de descargar su formulario, dígale a sus amigos que 
+        ellos también pueden registrarse para voter.
       finish_header: Pasen la voz!
       finish_pdf_delay_header: Revise su correo electrónico
       finish_pdf_delay: Se trata de tomar un tiempo para crear su formulario de inscripción
