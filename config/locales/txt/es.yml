@@ -5,6 +5,13 @@ es:
       step_1_header: "Verifica el estado de tu registro de votante"
       step_1_instructions: <p>¿No está seguro si está registrado para votar? Verifica tu estado de registro de votante hoy -- solo toma un minuto.</p>
       
+    privacy_policy_acceptance: |-
+      Al hacer clic en "Siguentes pasos", acepta la 
+      <a href="https://www.rockthevote.org/about-rock-the-vote/privacy-policy/" target="_blank" rel="noopener">
+      póliza de privacidad</a> de Rock the Vote 
+      y acepta recibir recordatorios de elección de correos electrónicos de Rock the Vote. 
+      Puede cancelar la suscripción en cualquier momento.
+      
     register_to_vote: Registrarse para votar
     register_to_vote_in: Registrarse en %{state_abbrev}
     check_voter_status: Verifica el estado de tu registro de votante
@@ -81,6 +88,12 @@ es:
       previous_name: Nombre Anterior
       previous_address: Dirección Anterior
       opt_in_sms: Deseo recibir mensajes de texto de %{organization}.
+      opt_in_sms_compliance: Al registrarse, acepta recibir de manera periódica mensajes de 
+        texto de %{organization} (%{short_code}). Pueden aplicarse tarifas de mensajes y 
+        datos. Envíe un mensaje de texto HELP para información o STOP para no recibir 
+        mensajes. No es necesario comprar. Consulte <a href="%{terms_url}" target="_blank" 
+        rel="noopener">términos y condiciones</a> y <a href="%{privacy_url}" target="_blank" 
+        rel="noopener">póliza de privacidad</a>.
       opt_in_email: Recibir emails de %{organization}
       remind_when_18: Envíenme un recordatorio cuando cumpla 18 años.
       get_updates: Mantente actualizado con Rock the Vote.
@@ -123,6 +136,8 @@ es:
         work: Trabajo
         other: Otro
       instructions:
+        online: "<b>Nota</b>: Algunos estados tienen sistemas de registro de votante en línea. 
+          <a href='https://www.rockthevote.org/online/' target='_blank'>Aprenda más.</a>"
         overseas: Si Usted es un ciudadano americano viviendo afuera el país o Usted
           es un miembro de servicio, haga <a href='https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote'
           target='_blank'> clic aquí</a>  para registrarse a votar.
@@ -142,9 +157,17 @@ es:
           en tu forma.
         download_2: No serás registrado si no imprimes, firmas y mandas tu forma vía
           correo!
-        finish: ! 'No se olviden de avisar a amigos y parientes lo facil que es registrarse!  Aqui
-          se incluyen algunos instrumentos para pasar la voz sobre como registrar
-          el voto:'
+        download_3: "<p>No tiene acceso a impresora ahora mismo? Enviamos su formulario por 
+          correo electrónico para imprimir más tarde.</p>"
+        state_not_enabled_download: Porque %{state} no tiene una sistemas de registro de 
+          votante en línea en español, debe imprimir y enviar por correo su formulario de 
+          inscripción a su oficina electoral local.
+        no_id_download: Porque no tiene una identificación emitida por el estado, debe 
+          imprimir y enviar por correo su formulario de inscripción a su oficina electoral 
+          local.
+        finish: ! 'No se olviden de avisar a amigos y parientes lo facil que es 
+          registrarse! Aqui se incluyen algunos instrumentos para pasar la voz sobre como 
+          registrar el voto:'
         finish_2: Consiga esta harramienta para inscriber a votantes por su pagína
           web. Alista te gratís en
         finish_under_18: Te enviaremos un recordatorio para que te registres en tu
