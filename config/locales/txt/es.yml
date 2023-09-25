@@ -182,6 +182,9 @@ es:
         finish_update_status: No se olviden actualizar su estatus por Facebook y Twitter.
         state_online_registration: Usted puede ser elegible para terminar su registro
           de votante usando el sistema de registro de votante en línea de %{state}.
+        state_online_registration_id_not_required: Usted puede ser elegible para terminar 
+          su registro de votante usando el sistema de registro de votante en línea de 
+          %{state}.
         state_online_registration_sub_header: Haga clic a continuación para finalizar
           el proceso de inscripción en su estado.
         leave_state_online_registration: Tú puedes completar su registración de votantes
