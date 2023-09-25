@@ -1034,6 +1034,11 @@ es:
             mail_ballot: ''
             take_ballot: ''
             vote_here: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       nh:
         abr:
           request_deadline: ''
@@ -1283,7 +1288,11 @@ es:
         state_online_abr:
           confirm: ''
           requirements: ''
-          
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       or:
         abr:
           request_deadline: ''
@@ -1294,6 +1303,11 @@ es:
           
           header: ''
           instructions: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       pa:
         abr_form_fields:
           bad_date__format_message: ''
@@ -1469,7 +1483,6 @@ es:
             por el estado.'
           has_no_state_license: 'No tengo una licencia de conducir o una identificación 
             emitida por el estado.'
-          
       ri:
         abr:
           request_deadline: ''
@@ -1493,6 +1506,11 @@ es:
             confined: ''
             incapacitated: ''
             military: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       sd:
         abr:
           request_deadline: ''
@@ -1559,6 +1577,11 @@ es:
           transmission_13: ''
           transmission_14: ''
           transmission_15: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       tx:
         abr:
           request_deadline: ''
@@ -1596,6 +1619,11 @@ es:
           City of witness: ''
           State of witness: ''
           Zip code of witness: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ut:
         abr:
           request_deadline: ''
@@ -1606,6 +1634,11 @@ es:
           
           header: ''
           instructions: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       va:
         
         state_online_abr:
@@ -1690,6 +1723,11 @@ es:
           
           header: ''
           instructions: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       wa:
         
         abr:
@@ -1742,7 +1780,11 @@ es:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       wv:
         abr_form_fields:
           resident_county: ''
