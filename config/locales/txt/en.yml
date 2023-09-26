@@ -158,10 +158,10 @@ en:
         make sure that your request was received by calling your local elections office
         at %{status_check_phone}."
       finish_header: 'Almost done!  Next you need to:'
-      finish_instructions_1: "<p>Download and print your form.  Review the information
-        on your form carefully. Make sure that all necessary fields are completed
-        and accurate. <b>Sign and date</b>, then immediately send your request to
-        your election official:</p><center><p class='status_check'>%{registrar_address}</p></center>"
+      finish_instructions_1: "<p><b>Print, sign, and mail your form.</b> Review the 
+        information on your form, and make sure that all necessary fields are completed 
+        and accurate. Sign and date your form, then immediately send it to your election 
+        official:</p><center><p class='status_check'>%{registrar_address}</p></center>"
       finish_instructions_1_hint: "<p><i>Be sure to check if you need to send in a
         copy of your ID or anything else with your request.</i></p>"
       finish_instructions_2: "<p>Track your ballot request status with your state's online 
