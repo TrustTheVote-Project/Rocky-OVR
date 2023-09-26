@@ -1196,18 +1196,11 @@ en:
             <p>In Louisiana, you must have a reason to vote by mail. You can request an 
             absentee ballot if you’re unable to vote in-person during early voting or on 
             Election Day.</p>
-          request_deadline: |-
-            <p>Your absentee ballot application must be received by 4:30 pm on the 4th day before Election Day.</p>
+          request_deadline: ''
           status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
-          finish_instructions_1_hint: |-
-            <p>Make sure to sign your printed application. If your signature is a mark, you will also need two witnesses to sign.
-            </p>
-            <p>If you are requesting an absentee ballot because you are a student and this is your first time voting, make sure to enclose a copy of your student ID or fee bill.
-            </p>
-            <p>If you are requesting an absentee ballot because of a hospitalization, you must enclose proof of hospitalization.
-            </p>
-            <p>If you are requesting an absentee ballot because you are incarcerated, you must enclose a certification from the sheriff.
-            </p>
+          finish_instructions_1_hint: ''
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
+            must be received by 4:30 pm on the day before the election.</p>"
           finish_pdf_delay_instructions: <p>You must request your ballot by 4:30pm
             CST on the 4th day before election day.  Your ballot (unless you are Military,
             Overseas, or Hospitalized) must be received by your parish registrar of
@@ -3421,17 +3414,15 @@ en:
       va:
         abr:
           finish_instructions_1_hint_state: |-
-            <p>If you are a first time voter, you may need to include a copy of your ID with your voted ballot.
-            See more information here: <a href="https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/">https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/</a>
+            <p>If you are a first time voter, you may need to include a copy of your ID 
+            with your voted ballot. See more information here: 
+            <a href="https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/">https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/</a>
             </p>
-          request_deadline: |-
-            <p>
-            The deadline for a voter to request an absentee ballot is:
-            </p>
-            <ul>
-              <li>June 10 at 5:00 pm for the primary election, and</li>
-              <li>October 28 at 5:00 pm for the general election</li>
-            </ul>
+          request_deadline: ''
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
+            must be returned by 7:00 pm on Election Day. If you mail in your ballot, it 
+            must be postmarked by Election Day and received by 12:00 pm on the third day 
+            after the election.</p>"
           status_check_instructions: <a href="https://www.elections.virginia.gov/citizen-portal/">https://www.elections.virginia.gov/citizen-portal/</a>
         state_online_abr:
           instructions: |-
