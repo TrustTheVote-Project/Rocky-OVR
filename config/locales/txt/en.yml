@@ -162,8 +162,7 @@ en:
         information on your form, and make sure that all necessary fields are completed 
         and accurate. Sign and date your form, then immediately send it to your election 
         official:</p><center><p class='status_check'>%{registrar_address}</p></center>"
-      finish_instructions_1_hint: "<p><i>Be sure to check if you need to send in a
-        copy of your ID or anything else with your request.</i></p>"
+      finish_instructions_1_hint: ""
       finish_instructions_2: "<p>Track your ballot request status with your state's online 
         tool: </p>"
       finish_instructions_3: "<p>Once you’ve received your ballot, read through the 
@@ -203,8 +202,8 @@ en:
       matched_error_intro: If something is wrong, we recommend updating your registration
         prior to requesting an absentee ballot to ensure that you can vote in the
         upcoming election.
-      no_match_intro: "<p>It's important that you are properly registered before you
-        request an absentee ballot in %{state}.</p>"
+      no_match_intro: "<p>You must be registered to vote before you can request an absentee 
+        ballot.</p>"
       no_match_options_header: Select the best option to continue
       no_match_options: "<p> If you're sure the information you entered is correct
         or you've verified your registration with the state, continue requesting an

@@ -1163,37 +1163,19 @@ en:
             or driver's license.
       ky:
         abr:
+          request_deadline: ''
           step_2_instructions: |-
             <h3>You must have a reason to vote absentee in Kentucky.</h3>
-            <p>See if you qualify.</p>
-            <ul>
-            <li>Students who temporarily reside outside of their county.</li>
-            <li>People incarcerated in jail and charged but not convicted of a crime.</li>
-            <li>People temporarily residing outside of the state and still eligible to vote in Kentucky.</li>
-            <li>People who cannot come to the polls on election day or any of the in-person absentee voting days because of:</li>
-
-            <ul>
-            <li>The location of their jobs, or</li>
-            <li>Age, disability or illness.</li>
-            </ul>
-
-            <li>People who participate in the Secretary of State’s crime victim address confidentiality protection program</li>
-            </ul>
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>online
-            tool</a>
+            <p>In Kentucky, you must have a reason to vote by mail. You can request a 
+            mail-in absentee ballot if you’re unable to vote absentee in person or at the 
+            polls on Election Day.</p>
+          status_check_instructions: <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>https://vrsws.sos.ky.gov/VIC/</a>
         state_online_abr:
           instructions: |-
-            <p>You must complete your application online unless you have a disability that prevents you from doing so.</p>
-            <p>If you cannot complete your request online, contact your
-            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank">county clerk</a>.<br /></p>
-            <p>You will need to provide valid ID with your application. Accepted forms of ID include a document with name and photo from one of these places:</p>
-            <ul>
-            <li>The state of Kentucky,</li>
-            <li>The United States Department of Defense, a branch of the uniformed services, the Merchant Marine, or the Kentucky National Guard,</li>
-            <li>A public or private college, university, or postgraduate technical or professional school located within the United States, or</li>
-            <li>Any city government, county government, urban-county government, charter county government, consolidated local government, or unified local government in Kentucky.</li>
-            </ul>
+            <p>You must complete your application online unless you have a disability that 
+            prevents you from doing so. If you cannot complete your request online, 
+            contact your 
+            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank">county clerk</a>.</p>
         registration:
           has_state_license: I have a Social Security Number.
           has_no_state_license: I do not have a Social Security Number.
