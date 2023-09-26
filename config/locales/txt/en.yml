@@ -164,18 +164,19 @@ en:
         your election official:</p><center><p class='status_check'>%{registrar_address}</p></center>"
       finish_instructions_1_hint: "<p><i>Be sure to check if you need to send in a
         copy of your ID or anything else with your request.</i></p>"
-      finish_instructions_2: "<p>Track your ballot request status by: </p>"
-      finish_instructions_3: "<p>Once you have received your ballot, read through
-        the instructions carefully, fill out your ballot and return your ballot as
-        soon as possible. Be sure to check if you need to send in a copy of your ID
-        or have your ballot notarized or witnessed. </p>"
-      finish_instructions_4: "<p>Spread the word using our tools below!</p>"
+      finish_instructions_2: "<p>Track your ballot request status with your state's online 
+        tool: </p>"
+      finish_instructions_3: "<p>Once you’ve received your ballot, read through the 
+        instructions carefully, fill out your ballot, and return your ballot as soon as 
+        possible. Be sure to check if you need to send in a copy of your ID or have your 
+        ballot notarized or witnessed.</p>"
+      finish_instructions_4: ""
       finish_instructions_1_email: "<p>Check your email.  You were included on the
         email we sent to your local election official with your application/request.
         \ Your request is attached to that email. Your application was submitted to:
         </p><center><p>%{elections_office_name}</p></center>"
-      finish_instructions_1_state: "<p>Follow the directions on your state’s online
-        request tool (this opened in another tab).</p>"
+      finish_instructions_1_state: "<p>Submit your absentee request on your state’s online 
+        request tool (opened in another tab)</p>"
       finish_instructions_old: "<p>Make sure to download, print, sign and send your
         request to:</p><p>%{registrar_address}</p>"
       finish_pdf_delay_header: Check Your Email

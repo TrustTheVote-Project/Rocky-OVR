@@ -6,7 +6,8 @@ class CatalistLookupsController < ApplicationController
   
   def new
     @lookup = CatalistLookup.new(
-      partner_id: @partner_id, 
+      partner_id: @partner_id,
+      locale: @locale,
       tracking_source: @source,
       tracking_id: @tracking,
       email: @email,
