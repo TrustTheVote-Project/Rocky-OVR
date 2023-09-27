@@ -43,8 +43,7 @@ en:
       matched_error_header: Something wrong?
       matched_error_intro: If something is wrong, we recommend updating your registration.
       confirm: Yes, this is me.
-      abr: 'Now that you''ve confirmed your voter registration, make sure your voice
-        is heard on Election Day: <a href="%{url}">request a Vote-by-Mail Ballot</a>!'
+      abr: ''
       abr_link: Request a Vote-by-Mail Ballot
       how_to_vote: Now that you've confirmed your voter registration, <a href="%{url}">learn 
         more about voting in your next election</a>!
