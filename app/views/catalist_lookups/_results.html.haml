@@ -99,7 +99,7 @@
     #confirm_match
       %h1{"aria-level": "3"}= t('txt.lookup.matched')
       .intro-message
-        %p= t('txt.lookup.abr', url: abr_catalist_lookup_path(@lookup)).html_safe
+       -# %p= t('txt.lookup.abr', url: abr_catalist_lookup_path(@lookup)).html_safe
         %p= t('txt.lookup.how_to_vote', url: "https://www.rockthevote.org/how-to-vote/#{@lookup.state.name.downcase.gsub(/\s+/,'-')}?source=lookup").html_safe
     
       %h1{role: "heading", "aria-level": 3}= t('txt.lookup.matched_error_header')
