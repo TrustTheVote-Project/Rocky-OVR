@@ -3005,10 +3005,8 @@ en:
       ri:
         abr:
           step_2_instructions: |-
-            <p>All registered voters in New Jersey can request an absentee ballot.</p>
-          request_deadline: |-
-            <p>Your absentee ballot application must be received by 4:00 pm 21 days before 
-            Election Day.</p>
+            <p>All registered voters in Rhode Island can request an absentee ballot.</p>
+          request_deadline: ''
           status_check_instructions: |-
             <p><a target='_blank' href='https://ballottrax.sos.ri.gov/voter/'>https://ballottrax.sos.ri.gov/voter/</a>
             </p>
