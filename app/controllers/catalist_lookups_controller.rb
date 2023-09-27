@@ -124,8 +124,7 @@ class CatalistLookupsController < ApplicationController
   end
   
   def set_params
-    #@locale = 'en'
-    @locale = params[:locale]
+    @locale = 'en'
     @source = params[:source]
     @tracking = params[:tracking]
     @email = params[:email]
