@@ -41,7 +41,9 @@
         = t('txt.abr.finish_instructions_2').html_safe
         .status_check
           %p= t("states.custom.#{@abr.i18n_key}.abr.status_check_instructions", default: "").html_safe
-      %li= t('txt.abr.finish_instructions_3').html_safe
+      %li
+        = t('txt.abr.finish_instructions_3').html_safe
+        = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_3_hint_state", default: '').html_safe
       -# %li= t('txt.abr.finish_instructions_4').html_safe
 
 
