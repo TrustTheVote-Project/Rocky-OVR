@@ -43,8 +43,7 @@ en:
       matched_error_header: Something wrong?
       matched_error_intro: If something is wrong, we recommend updating your registration.
       confirm: Yes, this is me.
-      abr: 'Now that you''ve confirmed your voter registration, make sure your voice
-        is heard on Election Day: <a href="%{url}">request a Vote-by-Mail Ballot</a>!'
+      abr: ''
       abr_link: Request a Vote-by-Mail Ballot
       how_to_vote: Now that you've confirmed your voter registration, <a href="%{url}">learn 
         more about voting in your next election</a>!
@@ -158,24 +157,24 @@ en:
         make sure that your request was received by calling your local elections office
         at %{status_check_phone}."
       finish_header: 'Almost done!  Next you need to:'
-      finish_instructions_1: "<p>Download and print your form.  Review the information
-        on your form carefully. Make sure that all necessary fields are completed
-        and accurate. <b>Sign and date</b>, then immediately send your request to
-        your election official:</p><center><p class='status_check'>%{registrar_address}</p></center>"
-      finish_instructions_1_hint: "<p><i>Be sure to check if you need to send in a
-        copy of your ID or anything else with your request.</i></p>"
-      finish_instructions_2: "<p>Track your ballot request status by: </p>"
-      finish_instructions_3: "<p>Once you have received your ballot, read through
-        the instructions carefully, fill out your ballot and return your ballot as
-        soon as possible. Be sure to check if you need to send in a copy of your ID
-        or have your ballot notarized or witnessed. </p>"
-      finish_instructions_4: "<p>Spread the word using our tools below!</p>"
+      finish_instructions_1: "<p><b>Print, sign, and mail your form.</b> Review the 
+        information on your form, and make sure that all necessary fields are completed 
+        and accurate. Sign and date your form, then immediately send it to your election 
+        official:</p><center><p class='status_check'>%{registrar_address}</p></center>"
+      finish_instructions_1_hint: ""
+      finish_instructions_2: "<p>Track your ballot request status with your state's online 
+        tool: </p>"
+      finish_instructions_3: "<p>Once you’ve received your ballot, read through the 
+        instructions carefully, fill out your ballot, and return your ballot as soon as 
+        possible. Be sure to check if you need to send in a copy of your ID or have your 
+        ballot notarized or witnessed.</p>"
+      finish_instructions_4: ""
       finish_instructions_1_email: "<p>Check your email.  You were included on the
         email we sent to your local election official with your application/request.
         \ Your request is attached to that email. Your application was submitted to:
         </p><center><p>%{elections_office_name}</p></center>"
-      finish_instructions_1_state: "<p>Follow the directions on your state’s online
-        request tool (this opened in another tab).</p>"
+      finish_instructions_1_state: "<p>Submit your absentee request on your state’s online 
+        request tool (opened in another tab)</p>"
       finish_instructions_old: "<p>Make sure to download, print, sign and send your
         request to:</p><p>%{registrar_address}</p>"
       finish_pdf_delay_header: Check Your Email
@@ -202,8 +201,8 @@ en:
       matched_error_intro: If something is wrong, we recommend updating your registration
         prior to requesting an absentee ballot to ensure that you can vote in the
         upcoming election.
-      no_match_intro: "<p>It's important that you are properly registered before you
-        request an absentee ballot in %{state}.</p>"
+      no_match_intro: "<p>You must be registered to vote before you can request an absentee 
+        ballot.</p>"
       no_match_options_header: Select the best option to continue
       no_match_options: "<p> If you're sure the information you entered is correct
         or you've verified your registration with the state, continue requesting an
@@ -301,6 +300,8 @@ en:
       survey_title: Questions For You
       preparing_header: Preparing Registration Form...
       download_header: Print Your Form
+      after_you_download: After you have downloaded your registration form, you can 
+        continue on and let your friends know they can register to vote too.
       pdf_assistance_header: You should receive your voter registration form in the
         mail in about a week.
       finish_mail_with_esig_header: Thanks for beginning the voter registration process!

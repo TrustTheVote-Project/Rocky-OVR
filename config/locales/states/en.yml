@@ -1163,37 +1163,19 @@ en:
             or driver's license.
       ky:
         abr:
+          request_deadline: ''
           step_2_instructions: |-
             <h3>You must have a reason to vote absentee in Kentucky.</h3>
-            <p>See if you qualify.</p>
-            <ul>
-            <li>Students who temporarily reside outside of their county.</li>
-            <li>People incarcerated in jail and charged but not convicted of a crime.</li>
-            <li>People temporarily residing outside of the state and still eligible to vote in Kentucky.</li>
-            <li>People who cannot come to the polls on election day or any of the in-person absentee voting days because of:</li>
-
-            <ul>
-            <li>The location of their jobs, or</li>
-            <li>Age, disability or illness.</li>
-            </ul>
-
-            <li>People who participate in the Secretary of State’s crime victim address confidentiality protection program</li>
-            </ul>
-          status_check_instructions: You can look up your Absentee Ballot status by
-            using your state&#39;s <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>online
-            tool</a>
+            <p>In Kentucky, you must have a reason to vote by mail. You can request a 
+            mail-in absentee ballot if you’re unable to vote absentee in person or at the 
+            polls on Election Day.</p>
+          status_check_instructions: <a target='_blank' href='https://vrsws.sos.ky.gov/VIC/'>https://vrsws.sos.ky.gov/VIC/</a>
         state_online_abr:
           instructions: |-
-            <p>You must complete your application online unless you have a disability that prevents you from doing so.</p>
-            <p>If you cannot complete your request online, contact your
-            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank">county clerk</a>.<br /></p>
-            <p>You will need to provide valid ID with your application. Accepted forms of ID include a document with name and photo from one of these places:</p>
-            <ul>
-            <li>The state of Kentucky,</li>
-            <li>The United States Department of Defense, a branch of the uniformed services, the Merchant Marine, or the Kentucky National Guard,</li>
-            <li>A public or private college, university, or postgraduate technical or professional school located within the United States, or</li>
-            <li>Any city government, county government, urban-county government, charter county government, consolidated local government, or unified local government in Kentucky.</li>
-            </ul>
+            <p>You must complete your application online unless you have a disability that 
+            prevents you from doing so. If you cannot complete your request online, 
+            contact your 
+            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank">county clerk</a>.</p>
         registration:
           has_state_license: I have a Social Security Number.
           has_no_state_license: I do not have a Social Security Number.
@@ -1214,18 +1196,11 @@ en:
             <p>In Louisiana, you must have a reason to vote by mail. You can request an 
             absentee ballot if you’re unable to vote in-person during early voting or on 
             Election Day.</p>
-          request_deadline: |-
-            <p>Your absentee ballot application must be received by 4:30 pm on the 4th day before Election Day.</p>
+          request_deadline: ''
           status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
-          finish_instructions_1_hint: |-
-            <p>Make sure to sign your printed application. If your signature is a mark, you will also need two witnesses to sign.
-            </p>
-            <p>If you are requesting an absentee ballot because you are a student and this is your first time voting, make sure to enclose a copy of your student ID or fee bill.
-            </p>
-            <p>If you are requesting an absentee ballot because of a hospitalization, you must enclose proof of hospitalization.
-            </p>
-            <p>If you are requesting an absentee ballot because you are incarcerated, you must enclose a certification from the sheriff.
-            </p>
+          finish_instructions_1_hint: ''
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
+            must be received by 4:30 pm on the day before the election.</p>"
           finish_pdf_delay_instructions: <p>You must request your ballot by 4:30pm
             CST on the 4th day before election day.  Your ballot (unless you are Military,
             Overseas, or Hospitalized) must be received by your parish registrar of
@@ -2319,15 +2294,16 @@ en:
           abr_assistant_name: Enter the name of the assistant
       nj:
         abr:
-          request_deadline: "<p>If mailed in, your absentee ballot application must be 
-            received 7 days before Election Day. Otherwise, you must get your vote-by-mail 
-            ballot in-person from your county clerk, by 3:00 pm the day before Election Day.</p>"
-          status_check_instructions: <a href="https://nj.gov/state/elections/vote.shtml">https://nj.gov/state/elections/vote.shtml</a>.
-          finish_instructions_1_hint: "<p>If you received help with this form, make
-            sure that the assistor has also \nsigned the form and included their address.\n</p>\n<p>If
-            you have designated an authorized messenger, make sure to sign and date
-            box 11. \nThe messenger should not sign and date the form until they are
-            turning in the form.\n</p>"
+          request_deadline: ""
+          status_check_instructions: <a href="https://nj.gov/state/elections/vote.shtml">
+            https://nj.gov/state/elections/vote.shtml</a>.
+          finish_instructions_1_hint: ""
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
+            must be returned by 8:00 pm on Election Day. You can mail it, place it in one 
+            of your county’s secure ballot drop boxes, or deliver it in person to your 
+            county’s Board of Elections Office. If you mail in your ballot, it must be 
+            postmarked on or before 8:00 pm on Election Day and received within 6 days 
+            after Election Day.</p>"
         abr_form_fields:
           Election: Select the election you'd like to request a ballot for
           Election__options:
@@ -2834,12 +2810,11 @@ en:
             in making my mark in lieu of my signature.
           Address of witness: Address of witness or assistant
         abr:
-          request_deadline: <p>Your absentee ballot application must be received by 5:00 pm 
-            7 days before Election Day.</p>
+          request_deadline: ""
           status_check_instructions: <p><a href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>
-          finish_instructions_1_hint: "<p><i>If you received help with this form,
-            make sure that the witness has also signed the form and included their
-            address.</i></p>"
+          finish_instructions_1_hint: ""
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
+            must be received by 8:00 pm on Election Day.</p>"
         state_online_abr:
           confirm: "<p>You can request an absentee ballot with your state’s online portal. 
           You’ll need to provide a Pennsylvania state ID number or the last 4 digits of 
@@ -3030,26 +3005,31 @@ en:
       ri:
         abr:
           step_2_instructions: |-
-            <p>Voters in Rhode Island do not need a specific reason to request an absentee 
-            ballot.</p>
-            <h2>Requesting an absentee ballot in Rhode Island</h2>
-            <p>You must request an absentee ballot for each election.</p>
-          request_deadline: |-
-            <p>Your absentee ballot application must be received by 4:00 pm 21 days before 
-            Election Day.</p>
+            <p>All registered voters in Rhode Island can request an absentee ballot.</p>
+          request_deadline: ''
           status_check_instructions: |-
             <p><a target='_blank' href='https://ballottrax.sos.ri.gov/voter/'>https://ballottrax.sos.ri.gov/voter/</a>
             </p>
-          finish_instructions_1_hint: |-
-            <p>Make sure to sign your printed absentee ballot application.
-            </p>
+          finish_instructions_1_hint: ""
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
+            must be received by 8:00 pm on Election Day.</p>"
           _requirements: |-
-            <p>Any registered voter can request an absentee ballot in Rhode Island, and must identify one of the following reasons for requesting the absentee ballot:</p>
+            <p>Any registered voter can request an absentee ballot in Rhode Island, and 
+            must identify one of the following reasons for requesting the absentee 
+            ballot:</p>
             <ul>
-            <li>I am incapacitated to such an extent that it would be an undue hardship to vote at the polls because of illness, mental or physical disability, blindness or a serious impairment of mobility.</li>
-            <li>I am confined to a hospital, convalescent home, nursing home, rest home, or similar institution with the State of Rhode Island. I understand that my ballot will be brought to me by a bipartisan pair of election officials from the State Board of Elections before Election Day.</li>
-            <li>I am employed or in service intimately connected with military operations or because I am a spouse or dependent of such person, or I am a United States citizen who will be outside the United States.</li>
-            <li>I may not be able to vote at my polling place in my city/town on the day of the election.</li>
+            <li>I am incapacitated to such an extent that it would be an undue hardship to 
+            vote at the polls because of illness, mental or physical disability, blindness 
+            or a serious impairment of mobility.</li>
+            <li>I am confined to a hospital, convalescent home, nursing home, rest home, 
+            or similar institution with the State of Rhode Island. I understand that my 
+            ballot will be brought to me by a bipartisan pair of election officials from 
+            the State Board of Elections before Election Day.</li>
+            <li>I am employed or in service intimately connected with military operations 
+            or because I am a spouse or dependent of such person, or I am a United States 
+            citizen who will be outside the United States.</li>
+            <li>I may not be able to vote at my polling place in my city/town on the day 
+            of the election.</li>
             </ul>
         abr_form_fields:
           abr_check_mailing_address: I would like my ballot sent to a mailing address
@@ -3439,17 +3419,15 @@ en:
       va:
         abr:
           finish_instructions_1_hint_state: |-
-            <p>If you are a first time voter, you may need to include a copy of your ID with your voted ballot.
-            See more information here: <a href="https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/">https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/</a>
+            <p>If you are a first time voter, you may need to include a copy of your ID 
+            with your voted ballot. See more information here: 
+            <a href="https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/">https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/</a>
             </p>
-          request_deadline: |-
-            <p>
-            The deadline for a voter to request an absentee ballot is:
-            </p>
-            <ul>
-              <li>June 10 at 5:00 pm for the primary election, and</li>
-              <li>October 28 at 5:00 pm for the general election</li>
-            </ul>
+          request_deadline: ''
+          finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
+            must be returned by 7:00 pm on Election Day. If you mail in your ballot, it 
+            must be postmarked by Election Day and received by 12:00 pm on the third day 
+            after the election.</p>"
           status_check_instructions: <a href="https://www.elections.virginia.gov/citizen-portal/">https://www.elections.virginia.gov/citizen-portal/</a>
         state_online_abr:
           instructions: |-

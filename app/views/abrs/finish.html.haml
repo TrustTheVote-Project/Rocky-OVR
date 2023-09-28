@@ -16,7 +16,7 @@
       .status_check
         %p= t("states.custom.#{@abr.i18n_key}.abr.status_check_instructions", default: "").html_safe
       %li= t('txt.abr.finish_instructions_3').html_safe
-      %li= t('txt.abr.finish_instructions_4').html_safe
+      -# %li= t('txt.abr.finish_instructions_4').html_safe
 
 - elsif !@share_only && !@pdf_ready # Preparing
   %h2= t('txt.abr.finish_pdf_delay_header', state_name: @abr.home_state_name)
@@ -41,8 +41,10 @@
         = t('txt.abr.finish_instructions_2').html_safe
         .status_check
           %p= t("states.custom.#{@abr.i18n_key}.abr.status_check_instructions", default: "").html_safe
-      %li= t('txt.abr.finish_instructions_3').html_safe
-      %li= t('txt.abr.finish_instructions_4').html_safe
+      %li
+        = t('txt.abr.finish_instructions_3').html_safe
+        = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_3_hint_state", default: '').html_safe
+      -# %li= t('txt.abr.finish_instructions_4').html_safe
 
 
 - else #share only # Finish with State
@@ -63,7 +65,7 @@
       %li
         = t('txt.abr.finish_instructions_3').html_safe
         = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_3_hint_state", default: '').html_safe
-      %li= t('txt.abr.finish_instructions_4').html_safe
+      -# %li= t('txt.abr.finish_instructions_4').html_safe
 
 #finish_page_iframe
   %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
