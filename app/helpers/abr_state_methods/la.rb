@@ -249,7 +249,7 @@ module AbrStateMethods::LA
   # errors.add("abr_election_type2_input",  custom_required_message(:abr_election_type2_input))
   #end
   
-  if self.abr_election_type1_input.to_s=="0" && self.abr_election_type2_input.to_s=="0"
+  if self.abr_election_type1_input.to_s=="0"
    errors.add("abr_election_type1_input",  custom_required_message(:abr_election_type1_input))
   end
 
