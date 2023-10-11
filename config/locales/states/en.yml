@@ -1269,7 +1269,7 @@ en:
           abr_absence_end_date_input: Absence ends
           abr_election_type_selections: Select the election(s) you would like to request
             an absentee ballot for. You must select at least one.
-          abr_election_type1_input: The 10/14/2023 Primary Election
+          abr_election_type1_input:
           abr_election_type2_input: The 11/18/2023 General Election
           abr_assistant_check1: Check this box if someone else will be delivering
             your request either by hand or by fax.
