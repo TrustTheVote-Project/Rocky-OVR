@@ -1196,7 +1196,7 @@ en:
             <p>In Louisiana, you must have a reason to vote by mail. You can request an 
             absentee ballot if you’re unable to vote in-person during early voting or on 
             Election Day.</p>
-          request_deadline: ''
+          request_deadline: 'Applicants must request a ballot by 4:30 p.m. CST on the 4th day before election day.'
           status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
           finish_instructions_1_hint: ''
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
@@ -1269,7 +1269,6 @@ en:
           abr_absence_end_date_input: Absence ends
           abr_election_type_selections: Select the election(s) you would like to request
             an absentee ballot for. You must select at least one.
-          abr_election_type1_input: The 10/14/2023 Primary Election
           abr_election_type2_input: The 11/18/2023 General Election
           abr_assistant_check1: Check this box if someone else will be delivering
             your request either by hand or by fax.
