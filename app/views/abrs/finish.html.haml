@@ -36,7 +36,7 @@
       %li
         = t('txt.abr.finish_instructions_1', registrar_address: @abr.state_registrar_address).html_safe
         = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint", default: t('txt.abr.finish_instructions_1_hint')).html_safe
-        = t("states.custom.#{@abr.i18n_key}.abr.request_deadline", default: '').html_safe
+      -# = t("states.custom.#{@abr.i18n_key}.abr.request_deadline", default: '').html_safe
       %li
         = t('txt.abr.finish_instructions_2').html_safe
         .status_check
@@ -57,7 +57,7 @@
       %li
         = t('txt.abr.finish_instructions_1_state').html_safe
         = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint_state", default: t('txt.abr.finish_instructions_1_hint')).html_safe
-        = t("states.custom.#{@abr.i18n_key}.abr.request_deadline", default: '').html_safe
+      -# = t("states.custom.#{@abr.i18n_key}.abr.request_deadline", default: '').html_safe
       %li
         = t('txt.abr.finish_instructions_2').html_safe
         .status_check
