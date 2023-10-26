@@ -2640,7 +2640,7 @@ en:
               If you are returning your voted absentee ballot by hand, it must be received by the close of polls on Election Day, November 8th.</p>
           step_2_instructions: "<p>All registered voters in Ohio can request an absentee
             ballot.</p>"
-          request_deadline: 'Your absentee ballot request be received 7 days before Election Day.'
+          request_deadline: 'Your absentee ballot request must be received 7 days before Election Day.'
           status_check_instructions: <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a>
           finish_instructions_1_hint: "<p>If you did not provide your Ohio driver's
             license number or the last four digits of your \nSocial Security number,
