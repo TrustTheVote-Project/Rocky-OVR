@@ -310,8 +310,8 @@ absentee_states:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
     #pdf_template: wv.pdf
-    abr_status_check_url: "https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking"
-    abr_track_ballot_url: "https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking"
+    abr_status_check_url: "https://apps.sos.wv.gov/Elections/voter/absenteeballottracking"
+    abr_track_ballot_url: "https://apps.sos.wv.gov/Elections/voter/absenteeballottracking"
   WY:
     pdf_template: wy.pdf
     #email_delivery: true

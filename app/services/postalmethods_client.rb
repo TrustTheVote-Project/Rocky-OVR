@@ -29,10 +29,10 @@ class PostalmethodsClient
       refId: delivery_id,
       fileUrl: pdf_url,
       'returnAddress.Company': "Rock the Vote",
-      'returnAddress.AddressLine1': "80 M Street SE, Suite 100",
+      'returnAddress.AddressLine1': "200 Massachusetts Ave NW, Suite 700",
       'returnAddress.City': 'Washington',
       'returnAddress.State': 'DC',
-      'returnAddress.Zipcode': '20003',    
+      'returnAddress.Zipcode': '20001',    
     }
     
     send(:post, path, body: body, url: url)    
@@ -78,10 +78,10 @@ class PostalmethodsClient
       'sendToAddress.State': send_state,
       'sendToAddress.Zipcode': send_zipcode,
       'returnAddress.Company': "Rock the Vote",
-      'returnAddress.AddressLine1': "80 M Street SE, Suite 100",
+      'returnAddress.AddressLine1': "200 Massachusetts Ave NW, Suite 700",
       'returnAddress.City': 'Washington',
       'returnAddress.State': 'DC',
-      'returnAddress.Zipcode': '20003',
+      'returnAddress.Zipcode': '20001',
       'replyonEvelopeAddress.Name': reply_address_name,
       'replyonEvelopeAddress.AddressLine1': reply_address1,
       'replyonEvelopeAddress.AddressLine2': reply_address2,
