@@ -306,7 +306,6 @@ es:
             por el estado.'
           has_no_state_license: 'No tengo una licencia de conducir o una identificación 
             emitida por el estado.'
-          
       ga:
         abr:
           request_deadline: ''
@@ -422,7 +421,6 @@ es:
           status_check_instructions: ''
           
           requirements: ''
-          
       il:
         abr:
           request_deadline: ''
@@ -662,7 +660,6 @@ es:
         state_online_abr:
           confirm: ''
           requirements: ''
-          
       ma:
         
         abr:
@@ -1004,7 +1001,6 @@ es:
           ID_Number_dln__format_message: ''
         state_online_abr:
           requirements: ''
-          
       ne:
         
         abr:
@@ -1344,7 +1340,7 @@ es:
           
           requirements: ''
         registration_deadline_text: 'Atención: La fecha límite para inscribirse y poder votar 
-        en las próximas elecciones del 7 de noviembre de 2023, es el 23 de octubre de 2023. 
+        en las próximas elecciones del 23 de abril de 2024, es el 8 de abril de 2024.
         Si usted NO es un ciudadano de los Estados Unidos y un residente de Pennsylvania por 
         lo menos 30 días antes de la próxima elección, usted NO puede registrarse para votar. 
         Si tiene preguntas, llame al 1.877.VOTESPA (1.877.868.3772).'
@@ -1434,7 +1430,7 @@ es:
           Votante por correo.</li><li>Si en 14 días no ha recibido su Tarjeta de Inscripción
           de Votante, llame a su oficina de inscripción de votantes.</li><p>Atención:
           La fecha límite para inscribirse y poder votar en las próximas elecciones
-          11/07/2023, es 10/23/2023</p>"
+          04/23/2024, es 04/08/2024.</p>"
         signature_capture:
           rotation_instructions: Debe girar la pantalla para capturar correctamente
             su firma. Asegúrese de que la rotación de su pantalla esté habilitada.
@@ -2311,7 +2307,7 @@ es:
       17_turn_18: Si tienes 17 anos y vas a cumplir 18 años antes de las próximas
         elecciones.
     registration_deadline:      
-      pennsylvania: recibido antes del 05/02/2022
+      pennsylvania: Las inscripciones de votantes enviadas por correo deben recibirse 15 días antes del día de las elecciones.
       postmarked_11_days: Tiene que tener el cello del correo 11 días antes de la
         elección.
       postmarked_14_days: Tiene que tener el cello del correo 14 días antes de la
