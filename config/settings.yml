@@ -558,7 +558,7 @@ ovr_states:
   PA:
     require_age_confirmation: true
     grommet_min_version: "3.5.0"
-    registration_deadline: 2023-11-07 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
+    registration_deadline: 2024-04-23 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
     api_settings:
       api_url: "https://paovrwebapi.vote.pa.gov/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
