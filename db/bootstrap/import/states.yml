@@ -120,7 +120,6 @@ record_5:
   abbreviation: CO
   name: Colorado
   requires_party: true
-  requires_race: false
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_or_non_driver_id
   sos_address: Secretary of State<br />1700 Broadway, Suite 550<br />Denver, CO 80290
