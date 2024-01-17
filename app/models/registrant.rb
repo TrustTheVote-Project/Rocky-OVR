@@ -2134,10 +2134,20 @@ class Registrant < ActiveRecord::Base
   end
   
   def limit_zip_codes
+    zip_code_regex = /\A\d{0,5}-?\d{0,4}\z/  # Regex allowing numbers and one dash
+    
     [:home_zip_code, :mailing_zip_code, :prev_zip_code].each do |attr_name|
       value = self.send(attr_name)
-      if value && value.length > 10
-        self.send("#{attr_name}=", value.to_s[0...10])
+      
+      if value
+        # Remove non-numeric characters and allow only one dash
+        cleaned_value = value.to_s.gsub(/[^0-9-]/, '').gsub(/-{2,}/, '-')
+        
+        # Truncate to the first 10 characters
+        cleaned_value = cleaned_value[0...10]
+        
+        # Validate against the regex and update the attribute
+        self.send("#{attr_name}=", cleaned_value.match(zip_code_regex) ? cleaned_value : nil)
       end
     end
   end
