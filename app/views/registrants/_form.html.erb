@@ -19,7 +19,7 @@
         $('#registrant_javascript_disabled').remove();
 
         // Zip code validation
-        $('form[name="new_registrant"]').submit(function() {
+        $('#new_registrant').submit(function() {
             var zipCode = $('input[name="registrant[home_zip_code]"]').val();
             var zipCodeRegex = /^\d{5}(?:-\d{4})?$/;
             var errorSpan = $('.registrant-form__home-zip__line__error');
