@@ -1,4 +1,4 @@
-<% if @state_abbrev != "CO" %>
+<% if @home_state_abbrev != "CO" %>
   <ul class="flat race-dropdown">
     <li class='registrant-form__race__line'>
       <h3><%= form.label :race %><%- if @registrant.requires_race? %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end %></h3>
