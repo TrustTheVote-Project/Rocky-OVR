@@ -49,8 +49,10 @@ es:
           Ballot Mailing Address 2: ''
           Ballot Mailing Address 3: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       al:
         abr:
           request_deadline: ''
@@ -168,6 +170,11 @@ es:
           drivers_license_id__format_message: ''
           place_of_birth: ''
           last_4_ssn: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ca:
         abr:
           request_deadline: ''
@@ -197,8 +204,10 @@ es:
           header: ''
           instructions: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ct:
         abr:
           request_deadline: ''
@@ -227,8 +236,10 @@ es:
             '7': ''
           absentee_reason__required_message: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       dc:
         abr:
           request_deadline: ''
@@ -291,9 +302,10 @@ es:
           header: ''
           confirm: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
-          
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ga:
         abr:
           request_deadline: ''
@@ -343,8 +355,10 @@ es:
             OSP: ''
           request_electronic_transmission: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       hi:
         abr:
           request_deadline: ''
@@ -356,8 +370,10 @@ es:
           header: ''
           instructions: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ia:
         abr:
           request_deadline: ''
@@ -382,8 +398,10 @@ es:
           has_mailing_address: ''
           Do not add this contact info to my voter recored check box: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       id:
         abr_form_fields:
           has_mailing_address: ''
@@ -403,7 +421,6 @@ es:
           status_check_instructions: ''
           
           requirements: ''
-          
       il:
         abr:
           request_deadline: ''
@@ -463,8 +480,10 @@ es:
             confirm: ''
             button: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       in:
         state_online_abr:
           finish_page: ''
@@ -626,8 +645,10 @@ es:
           
           requirements: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       me:
         abr:
           request_deadline: ''
@@ -639,7 +660,6 @@ es:
         state_online_abr:
           confirm: ''
           requirements: ''
-          
       ma:
         
         abr:
@@ -804,8 +824,10 @@ es:
             continue_on_paper: ''
           
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
         signature_capture:
           desktop_provide_signature: ''
           desktop_provide_e_signature: ''
@@ -936,8 +958,10 @@ es:
           header: ''
           instructions: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       nd:
         abr:
           request_deadline: ''
@@ -977,7 +1001,6 @@ es:
           ID_Number_dln__format_message: ''
         state_online_abr:
           requirements: ''
-          
       ne:
         
         abr:
@@ -1007,6 +1030,11 @@ es:
             mail_ballot: ''
             take_ballot: ''
             vote_here: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       nh:
         abr:
           request_deadline: ''
@@ -1083,8 +1111,10 @@ es:
           messenger_birth_date: ''
           messenger_birth_date__required_message: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       nm:
         abr_form_fields:
           request_deadline: ''
@@ -1102,8 +1132,10 @@ es:
           
         state_online_abr:
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       nv:
         abr:
           request_deadline: ''
@@ -1155,8 +1187,10 @@ es:
           href="%{next_url}">cumplir su inscripción con %{rtv_and_partner_name}</a>.  Tiene
           que imprimir, firmar, y mandar la forma por correo.</p>
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ny:
         abr:
           request_deadline: ''
@@ -1206,8 +1240,10 @@ es:
             patient: ''
             prisoner: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       oh:
         abr:
           request_deadline: ''
@@ -1233,8 +1269,10 @@ es:
           Ohio_driver_license__format_message: ''
           SSN4: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ok:
         abr:
           request_deadline: ''
@@ -1246,7 +1284,11 @@ es:
         state_online_abr:
           confirm: ''
           requirements: ''
-          
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       or:
         abr:
           request_deadline: ''
@@ -1257,6 +1299,11 @@ es:
           
           header: ''
           instructions: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       pa:
         abr_form_fields:
           bad_date__format_message: ''
@@ -1292,11 +1339,11 @@ es:
         state_online_abr:
           
           requirements: ''
-        registration_deadline_text: 'Atención: La fecha límite para inscribirse y
-          poder votar en las próximas elecciones d 11/08/2022, es 10/24/2022. Si usted
-          NO es un ciudadano de los Estados Unidos y un residente de Pennsylvania
-          por lo menos 30 días antes de la próxima elección, usted NO puede registrarse
-          para votar. Si tiene preguntas, llame al 1.877.VOTESPA (1.877.868.3772).'
+        registration_deadline_text: 'Atención: La fecha límite para inscribirse y poder votar 
+        en las próximas elecciones del 23 de abril de 2024, es el 8 de abril de 2024.
+        Si usted NO es un ciudadano de los Estados Unidos y un residente de Pennsylvania por 
+        lo menos 30 días antes de la próxima elección, usted NO puede registrarse para votar. 
+        Si tiene preguntas, llame al 1.877.VOTESPA (1.877.868.3772).'
         state_flow_error: Hubo un problema al enviar su registro a Pennsylvania. Completa
           registro mediante formulario en papel.
         step_2_header: Información Básica
@@ -1383,7 +1430,7 @@ es:
           Votante por correo.</li><li>Si en 14 días no ha recibido su Tarjeta de Inscripción
           de Votante, llame a su oficina de inscripción de votantes.</li><p>Atención:
           La fecha límite para inscribirse y poder votar en las próximas elecciones
-          11/08/2022, es 10/24/2022</p>"
+          04/23/2024, es 04/08/2024.</p>"
         signature_capture:
           rotation_instructions: Debe girar la pantalla para capturar correctamente
             su firma. Asegúrese de que la rotación de su pantalla esté habilitada.
@@ -1428,9 +1475,10 @@ es:
         state_online_abr:
           confirm: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
-          
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ri:
         abr:
           request_deadline: ''
@@ -1454,6 +1502,11 @@ es:
             confined: ''
             incapacitated: ''
             military: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       sd:
         abr:
           request_deadline: ''
@@ -1520,6 +1573,11 @@ es:
           transmission_13: ''
           transmission_14: ''
           transmission_15: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       tx:
         abr:
           request_deadline: ''
@@ -1557,6 +1615,11 @@ es:
           City of witness: ''
           State of witness: ''
           Zip code of witness: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       ut:
         abr:
           request_deadline: ''
@@ -1567,6 +1630,11 @@ es:
           
           header: ''
           instructions: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       va:
         
         state_online_abr:
@@ -1651,6 +1719,11 @@ es:
           
           header: ''
           instructions: ''
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       wa:
         
         abr:
@@ -1703,7 +1776,11 @@ es:
             desktop_provide_e_signature: ''
             desktop_provide_signature: ''
             continue_on_paper: ''
-          
+        registration:
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       wv:
         abr_form_fields:
           resident_county: ''
@@ -1745,8 +1822,10 @@ es:
           requirements: ''
           finish_instructinos: ''
         registration:
-          has_state_license: ''
-          has_no_state_license: ''
+          has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
+            por el estado.'
+          has_no_state_license: 'No tengo una licencia de conducir o una identificación 
+            emitida por el estado.'
       wy:
         abr:
           request_deadline: ''
@@ -2228,7 +2307,7 @@ es:
       17_turn_18: Si tienes 17 anos y vas a cumplir 18 años antes de las próximas
         elecciones.
     registration_deadline:      
-      pennsylvania: recibido antes del 05/02/2022
+      pennsylvania: Las inscripciones de votantes enviadas por correo deben recibirse 15 días antes del día de las elecciones.
       postmarked_11_days: Tiene que tener el cello del correo 11 días antes de la
         elección.
       postmarked_14_days: Tiene que tener el cello del correo 14 días antes de la

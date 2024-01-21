@@ -212,7 +212,7 @@ es:
         previous_last_name: Apellido
         registration_address_1: Dirección Casa
         registration_address_2: Dirección 2
-        registration_unit_type: Unidad Número
+        registration_unit_type: Tipo de vivienda
         registration_unit_number: No.
         registration_city: Ciudad
         registration_state: Estado
@@ -257,7 +257,7 @@ es:
         middle_name: Segundo Nombre
         last_name: Apellido
         name_suffix: Sufijo
-        address: ''
+        address: Dirección
         street_name: ''
         unit: No.
         city: Ciudad
@@ -288,7 +288,7 @@ es:
         middle: Nombre Segundo
         last: Apellido
         date_of_birth: Fecha de Nac
-        address: ''
+        address: Dirección
         address_2: ''
         city: Ciudad
         zip: Código postal
@@ -300,7 +300,7 @@ es:
         zip: Codigo postal
         first: Nombre
         last: Apellido
-        address: ''
+        address: Dirección
         city: Ciudad
         state_name: Estado
         state_abbrev: Estado
@@ -313,7 +313,7 @@ es:
         zip: Código postal
         first_name: Nombre
         last_name: Apellido
-        address: ''
+        address: Dirección
         city: Ciudad
         state_name: Estado
         state_abbrev: Estado

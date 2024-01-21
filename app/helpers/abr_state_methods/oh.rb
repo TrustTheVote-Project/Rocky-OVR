@@ -154,7 +154,8 @@ module AbrStateMethods::OH
   
   def abr_election_date2_string
     if abr_election_type_selections_abr_election_type3
-      return "August 2, 2022"
+      #return "August 2, 2022"
+      return ""
     end
     #date_field_string_mm_dd_yyyy(method: :abr_election_date2_input)
   end

@@ -189,6 +189,7 @@ states_with_online_registration:
   - AZ
   - CA
   - DE
+  - DC
   - FL
   - LA
   - MN
@@ -215,6 +216,7 @@ states_with_online_registration:
   - NM
   - NY
   - OH
+  - OK
   - OR
   - PA
   - RI

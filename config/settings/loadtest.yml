@@ -1,7 +1,7 @@
 from_address:  "register@rockthevote.org"
 pdf_host_name: 'staging.rocky.rockthevote.com'
 default_url_host: "staging.rocky.rockthevote.com"
-api_host_name: https://rtvdemo:bullwinkle@staging.rocky.rockthevote.com
+api_host_name: https://rtvdemo:moose@staging.rocky.rockthevote.com
 ui_url_host: "staging.rocky.rockthevote.com"
 
 

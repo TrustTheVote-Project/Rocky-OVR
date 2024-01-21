@@ -24,7 +24,7 @@ blocks_configuration:
 
 
 # this URL (if present) is shown as a WIKI nav menu item in the Partner portal
-partner_wiki_url: "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/"
+partner_wiki_url: "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/?source=ovrtool"
 
 catalist:
   audience: catalist_api_mr_prod
@@ -34,10 +34,10 @@ catalist:
 admin:
   from_address: "alex.mekelburg@osetfoundation.org"
   branding_from: "Rock the Vote <info@rockthevote.org>"
-  branding_to: "david@rockthevote.com, rocky.branding@rockthevote.org"
+  branding_to: "david@rockthevote.org, rocky.branding@rockthevote.org"
   partner_status_to: "david@rockthevote.org, rocky.inactive@rockthevote.org, alex.mekelburg@osetfoundation.org"
-  admin_recipients: "errors@rockthevote.com, alex.mekelburg@osetfoundation.org"
-  translation_recipients: "david@rockthevote.com, alex.mekelburg@osetfoundation.org"
+  admin_recipients: "errors@rockthevote.org, alex.mekelburg@osetfoundation.org"
+  translation_recipients: "david@rockthevote.org, alex.mekelburg@osetfoundation.org"
 
 admin_username: 'admin'
 widget_js_url:  'https://s3.amazonaws.com/ovr/widget_loader.js'
@@ -106,8 +106,8 @@ absentee_states:
     online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
     # pdf_template: dc.pdf
     pdf_url: https://dcboe.org/Data-Resources-Forms/Forms-and-Resources/AbsenteeBallotRequestForm.aspx
-    abr_status_check_url: "https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot"
-    abr_track_ballot_url: "https://www.dcboe.org/Voters/Absentee-Voting/Track-Absentee-Ballot"
+    abr_status_check_url: "https://votedc.ballottrax.net/voter"
+    abr_track_ballot_url: "https://votedc.ballottrax.net/voter"
   DE:
     online_req_url: https://ivote.de.gov/VoterView
     #pdf_template: absentee_ballot_application.pdf
@@ -310,8 +310,8 @@ absentee_states:
     online_req_url: https://sites.omniballot.us/54/absentee/app/home
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
     #pdf_template: wv.pdf
-    abr_status_check_url: "https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking"
-    abr_track_ballot_url: "https://services.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking"
+    abr_status_check_url: "https://apps.sos.wv.gov/Elections/voter/absenteeballottracking"
+    abr_track_ballot_url: "https://apps.sos.wv.gov/Elections/voter/absenteeballottracking"
   WY:
     pdf_template: wy.pdf
     #email_delivery: true
@@ -486,6 +486,7 @@ ovr_states:
     languages:
       - en
   KS:
+    redirect_to_online_reg_url: true
     require_id: true
     languages:
       - en
@@ -537,7 +538,7 @@ ovr_states:
       - en
       - es
   NY:
-    require_id: true
+    require_id: false
     languages:
       - en
       - es
@@ -546,6 +547,10 @@ ovr_states:
     languages:
       - en
       - es
+  OK:
+    require_id: true
+    languages:
+      - en
   OR:
     languages:
       - en
@@ -553,7 +558,7 @@ ovr_states:
   PA:
     require_age_confirmation: true
     grommet_min_version: "3.5.0"
-    registration_deadline: 2022-11-08 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
+    registration_deadline: 2024-04-23 # Must be YYYY-MM-DD format and use election date not reg deadline date for this one!
     api_settings:
       api_url: "https://paovrwebapi.vote.pa.gov/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0"
       api_key: <%= ENV['PA_API_KEY'] %>
@@ -607,9 +612,10 @@ ovr_states:
     languages:
       - en
   WI:
-    require_id: true
+    require_id: false
     languages:
       - en
+      - es
 
 enabled_locales:
   - en

@@ -1,11 +1,13 @@
-<ul class="flat race-dropdown">
-  <li class='registrant-form__race__line'>
-    <h3><%= form.label :race %><%- if @registrant.requires_race? %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end %></h3>
-    <div><%= form.select :race, @registrant.races, :include_blank => true %></div>
-    <div class="tooltip"><%= tooltip_tag :race, @race_tooltip %></div>
-    <span class="error"><%= form.object.errors[:race].join("\n") %></span>
-  </li>
-</ul>
+<% if @registrant.home_state_abbrev != "CO" %>
+  <ul class="flat race-dropdown">
+    <li class='registrant-form__race__line'>
+      <h3><%= form.label :race %><%- if @registrant.requires_race? %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end %></h3>
+      <div><%= form.select :race, @registrant.races, :include_blank => true %></div>
+      <div class="tooltip"><%= tooltip_tag :race, @race_tooltip %></div>
+      <span class="error"><%= form.object.errors[:race].join("\n") %></span>
+    </li>
+  </ul>
+<% end %>
 <% if @state_parties && @state_parties.any? %>
   <ul class="flat party-dropdown">
     <li class='registrant-form__party__line'>

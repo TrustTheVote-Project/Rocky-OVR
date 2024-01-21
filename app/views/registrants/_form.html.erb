@@ -15,10 +15,28 @@
 
 <% content_for :head do %>
 <script>
-$(document).ready(function() {
-  $('#registrant_javascript_disabled').remove();
-});
+    $(document).ready(function() {
+        $('#registrant_javascript_disabled').remove();
+
+        // Zip code validation
+        $('#new_registrant').submit(function() {
+            var zipCode = $('input[name="registrant[home_zip_code]"]').val();
+            var zipCodeRegex = /^\d{5}(?:-\d{4})?$/;
+            var errorSpan = $('.registrant-form__home-zip__line__error');
+
+            if (!zipCodeRegex.test(zipCode)) {
+                errorSpan.html('(12345 or 12345-6789)');
+                errorSpan.show(); // Show the error span
+                return false; // Prevent form submission
+            } else {
+                errorSpan.hide(); // Hide the error span if the zip code is valid
+            }
+
+            return true; // Allow form submission
+        });
+    });
 </script>
+
 <% end %>
 <%= form.hidden_field :javascript_disabled %>
 <%= form.hidden_field :is_fake %>
@@ -96,7 +114,3 @@ $(document).ready(function() {
     </li>
   </ul>
 <%- end %>
-
-
-
-

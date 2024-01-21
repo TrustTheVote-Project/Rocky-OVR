@@ -7,6 +7,7 @@
   = render partial: 'step', locals: { form: form }
   = render partial: 'form', :object => form
     
+  %p= I18n.t('txt.privacy_policy_acceptance').html_safe
   %p.overseas-instructions
     %br
     = I18n.t('txt.registration.instructions.overseas').html_safe
