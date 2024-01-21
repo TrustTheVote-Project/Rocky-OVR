@@ -1,4 +1,4 @@
-class CreatePdfAbrGenerations < ActiveRecord::Migration
+class CreatePdfAbrGenerations < ActiveRecord::Migration[4.2]
   def change
     create_table :pdf_abr_generations do |t|
       t.integer :abr_id
