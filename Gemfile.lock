@@ -1396,7 +1396,7 @@ GEM
       thread_safe
     public_suffix (4.0.7)
     racc (1.6.0)
-    rack (2.2.3.1)
+    rack (2.2.6.2)
     rack-mini-profiler (2.3.1)
       rack (>= 1.2.0)
     rack-robustness (1.1.0)
