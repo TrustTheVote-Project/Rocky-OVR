@@ -1203,7 +1203,7 @@ GEM
       cucumber-cucumber-expressions (~> 10.3, >= 10.3.0)
       cucumber-messages (~> 13.0, >= 13.0.1)
     daemons (1.1.9)
-    dalli (2.7.11)
+    dalli (3.2.3)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.0)
