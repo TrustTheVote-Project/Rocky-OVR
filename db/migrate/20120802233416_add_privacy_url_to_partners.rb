@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddPrivacyUrlToPartners < ActiveRecord::Migration
+class AddPrivacyUrlToPartners < ActiveRecord::Migration[4.2]
   def self.up
     add_column :partners, :privacy_url, :string
   end

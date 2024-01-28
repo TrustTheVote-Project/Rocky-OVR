@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddJavascriptDisabledToRegistrants < ActiveRecord::Migration
+class AddJavascriptDisabledToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrants, :javascript_disabled, :boolean, :default=>false
   end

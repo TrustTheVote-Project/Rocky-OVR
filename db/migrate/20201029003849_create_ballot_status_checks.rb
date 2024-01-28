@@ -1,4 +1,4 @@
-class CreateBallotStatusChecks < ActiveRecord::Migration
+class CreateBallotStatusChecks < ActiveRecord::Migration[4.2]
   def change
     create_table :ballot_status_checks do |t|
       t.string :first_name

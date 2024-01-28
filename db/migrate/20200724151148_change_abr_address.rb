@@ -1,4 +1,4 @@
-class ChangeAbrAddress < ActiveRecord::Migration
+class ChangeAbrAddress < ActiveRecord::Migration[4.2]
   def change
     remove_column :abrs, :address
     add_column :abrs, :street_number, :string

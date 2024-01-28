@@ -1,4 +1,4 @@
-class CreateBlocksServiceBulkSubmissions < ActiveRecord::Migration
+class CreateBlocksServiceBulkSubmissions < ActiveRecord::Migration[4.2]
   def change
     create_table :blocks_service_bulk_submissions do |t|
       t.datetime :shift_start

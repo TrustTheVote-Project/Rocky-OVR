@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddPdfReadyToRegistrants < ActiveRecord::Migration
+class AddPdfReadyToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column "registrants", "pdf_ready", :boolean
   end

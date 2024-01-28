@@ -1,4 +1,4 @@
-class CreateAbrStateValues < ActiveRecord::Migration
+class CreateAbrStateValues < ActiveRecord::Migration[4.2]
   def change
     create_table :abr_state_values do |t|
       t.integer :abr_id, index: true

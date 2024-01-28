@@ -1,4 +1,4 @@
-class CreatePdfGenerations < ActiveRecord::Migration
+class CreatePdfGenerations < ActiveRecord::Migration[4.2]
   def change
     create_table :pdf_generations do |t|
       t.integer :registrant_id
