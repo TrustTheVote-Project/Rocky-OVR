@@ -64,7 +64,7 @@ class Abr < ActiveRecord::Base
   validate :validate_form_fields, if: :advancing_to_step_4?
   validate :validate_date_of_birth, if: :advancing_to_step_3?
 
-  validates_format_of :phone, with: /\A(?!([\d])\1{2}-\1{3}-\1{4})\(*[1-9]\d{2}\)*[-\s]*[1-9]\d{2}[-\s]*[1-9]\d{3}\z/, allow_blank: true
+  validates_format_of :phone, with: /\A(?!([0-9])\1{9})\(*[1-9]\d{2}\)*[-\s]*[1-9]\d{2}[-\s]*[1-9]\d{3}\z/, allow_blank: true
 
   validates_presence_of :email
   validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
