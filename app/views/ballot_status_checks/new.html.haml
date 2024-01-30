@@ -20,17 +20,18 @@
     %ul.stacked
       = field_li form, :first_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__first-name__line'}
       = field_li form, :last_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__last-name__line'}
+      = field_li form, :zip, required: true, skip_tooltip: true
 
   %ul.stacked
     - form.object.errors.add(:zip, "must be a valid ZIP code") if form.object.errors[:zip].any?
-  
+
   %ul.stacked
     = field_li form, :email, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__email-address__line'}
     = field_li form, :phone, skip_tooltip: true, li_options: {class: 'registrant-form__phone__line'}
-  
+
   = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
   = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
-  
+
   = rollover_button(:next_step, I18n.t('txt.button.next').html_safe)
 
   %p= I18n.t('txt.privacy_policy_acceptance').html_safe
