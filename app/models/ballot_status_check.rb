@@ -7,7 +7,7 @@ class BallotStatusCheck < ActiveRecord::Base
   validates_presence_of :zip
   validates_presence_of :partner_id
   
-  validates_format_of :phone, with: /\A(?!([0-9])\1{9})\(*[1-9]\d{2}\)*[-\s]*[1-9]\d{2}[-\s]*\d{4}\z/, allow_blank: true
+  validates_format_of :phone, with: /\A(?!(\d)\1{9})\(*[1-9]\d{2}\)*[-\s]*[1-9]\d{2}[-\s]*\d{4}\z/, allow_blank: true
   validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
     
   belongs_to :partner, optional: true
