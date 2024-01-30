@@ -27,7 +27,7 @@ class AlertRequest < ApplicationRecord
   validates_presence_of :email
   validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   validates_presence_of :phone_type, if: -> { !phone.blank? }
-  validates_format_of :phone, with: /\A\(*[1-9]\d{2}\)*[-\s]*[1-9]\d{2}[-\s]*[1-9]\d{3}\z/, allow_blank: true
+  validates_format_of :phone, with: /\A(?!([\d])\1{2}-\1{3}-\1{4})\(*[1-9]\d{2}\)*[-\s]*[1-9]\d{2}[-\s]*[1-9]\d{3}\z/, allow_blank: true
   validate :validate_date_of_birth
   validate :validates_zip
   validate :validate_phone_present_if_opt_in_partner_sms
