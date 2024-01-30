@@ -13,6 +13,7 @@
   = form.hidden_field :tracking_source
   - (@query_parameters || {}).keys.each do |qpk|
     = hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk]
+  <%= hidden_field_tag "partner", @partner_id %>
 
 
 
