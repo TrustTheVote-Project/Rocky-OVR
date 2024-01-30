@@ -7,13 +7,12 @@
 .intro-message
   = t('txt.ballot_status_check.step_1_instructions').html_safe
 
-= form_for(@bsc) do |form|
+= form_for(@bsc, url: { action: "create", partner: @partner_id }) do |form|
   = form.hidden_field :partner_id
   = form.hidden_field :tracking_id
   = form.hidden_field :tracking_source
   - (@query_parameters || {}).keys.each do |qpk|
     = hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk]
-  <%= hidden_field_tag "partner", @partner_id %>
 
 
 
