@@ -22,7 +22,7 @@
       = field_li form, :last_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__last-name__line'}
 
   %ul.stacked
-    = field_li form, :zip, required: true, skip_tooltip: true
+    - form.object.errors.add(:zip, "must be a valid ZIP code") if form.object.errors[:zip].any?
   
   %ul.stacked
     = field_li form, :email, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__email-address__line'}

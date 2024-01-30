@@ -7,6 +7,7 @@ class BallotStatusCheck < ActiveRecord::Base
   validates_presence_of :zip
   validates_presence_of :partner_id
   
+  validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "must be a valid ZIP code"
   validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
   validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
     
