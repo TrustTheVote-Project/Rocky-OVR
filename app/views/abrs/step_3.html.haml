@@ -29,39 +29,36 @@
       :javascript
         // Zip code validation for #abr_zip_1
         $("#abr_zip_1").on("blur", function() {
-          var zipCode = $(this).val();
-          var errorSpan = $("#abr_zip_1 .error");
-
-          if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
-            errorSpan.text("Please enter a valid ZIP code.");
-          } else {
-            errorSpan.text("");
-          }
+          validateZipCode($(this), $("#abr_zip_1 .error"));
         });
 
         // Zip code validation for #abr_zip_2
         $("#abr_zip_2").on("blur", function() {
-          var zipCode = $(this).val();
-          var errorSpan = $("#abr_zip_2 .error");
-
-          if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
-            errorSpan.text("Please enter a valid ZIP code.");
-          } else {
-            errorSpan.text("");
-          }
+          validateZipCode($(this), $("#abr_zip_2 .error"));
         });
 
         // Zip code validation for #abr_zip_3
         $("#abr_zip_3").on("blur", function() {
-          var zipCode = $(this).val();
-          var errorSpan = $("#abr_zip_3 .error");
+          validateZipCode($(this), $("#abr_zip_3 .error"));
+        });
+        
+        // Form submission event
+        $("form").on("submit", function() {
+          // Validate zip codes on form submission
+          validateZipCode($("#abr_zip_1"), $("#abr_zip_1 .error"));
+          validateZipCode($("#abr_zip_2"), $("#abr_zip_2 .error"));
+          validateZipCode($("#abr_zip_3"), $("#abr_zip_3 .error"));
+        });
+
+        function validateZipCode(zipInput, errorSpan) {
+          var zipCode = zipInput.val();
 
           if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
             errorSpan.text("Please enter a valid ZIP code.");
           } else {
             errorSpan.text("");
           }
-        });
+        }
 
       - if @abr.collect_signature?
         - @registrant = @abr
