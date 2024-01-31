@@ -26,7 +26,43 @@
     
     .step_3_form_fields
       = render partial: "state_fields", locals: {form: form}
-  
+      :javascript
+        // Zip code validation for #abr_zip_1
+        $("#abr_zip_1").on("blur", function() {
+          var zipCode = $(this).val();
+          var errorSpan = $("#abr_zip_1 .error");
+
+          if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
+            errorSpan.text("Please enter a valid ZIP code.");
+          } else {
+            errorSpan.text("");
+          }
+        });
+
+        // Zip code validation for #abr_zip_2
+        $("#abr_zip_2").on("blur", function() {
+          var zipCode = $(this).val();
+          var errorSpan = $("#abr_zip_2 .error");
+
+          if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
+            errorSpan.text("Please enter a valid ZIP code.");
+          } else {
+            errorSpan.text("");
+          }
+        });
+
+        // Zip code validation for #abr_zip_3
+        $("#abr_zip_3").on("blur", function() {
+          var zipCode = $(this).val();
+          var errorSpan = $("#abr_zip_3 .error");
+
+          if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
+            errorSpan.text("Please enter a valid ZIP code.");
+          } else {
+            errorSpan.text("");
+          }
+        });
+
       - if @abr.collect_signature?
         - @registrant = @abr
         = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @abr.allow_desktop_signature? }
@@ -39,36 +75,10 @@
               $("#prepare_form").hide();
               $("#deliver_by_email").show();
             }
-
           }
-          
-          // Zip code validation for #abr_zip_2
-          $("#abr_zip_2").on("blur", function() {
-            var zipCode = $(this).val();
-            var errorSpan = $("#abr_zip_2 .error");
-
-            if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
-              errorSpan.text("Please enter a valid ZIP code.");
-            } else {
-              errorSpan.text("");
-            }
-          });
-
-          // Zip code validation for #abr_zip_3
-          $("#abr_zip_3").on("blur", function() {
-            var zipCode = $(this).val();
-            var errorSpan = $("#abr_zip_3 .error");
-
-            if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
-              errorSpan.text("Please enter a valid ZIP code.");
-            } else {
-              errorSpan.text("");
-            }
-          });
 
         = render partial: 'shared/signature_capture/form', locals: {form: form, home_state_key: "#{@abr.home_state_abbrev.downcase}.abr", allow_desktop_signature: @abr.allow_desktop_signature?, allow_print_and_sign: true}
-      
-      
+
       %ul.flat
         = render :partial=> "registrants/phone", :locals=>{:form=>form, skip_tooltip: true}
 
