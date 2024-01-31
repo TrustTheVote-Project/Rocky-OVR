@@ -35,7 +35,7 @@
         = form.phone_field :phone, class: 'registrant-form__phone__input', placeholder: '###-###-####'
       - if form.object.errors[:phone].present?
         %span.error
-          = form.object.errors.full_messages_for(:phone).first
+          = form.object.errors.full_messages_for(:phone).first.start_with?("Phone ") ? form.object.errors.full_messages_for(:phone).first.split("Phone ").last : form.object.errors.full_messages_for(:phone).first
 
   = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
   = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
