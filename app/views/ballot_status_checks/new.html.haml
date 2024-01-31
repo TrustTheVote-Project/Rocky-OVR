@@ -26,14 +26,14 @@
     - form.object.errors.add(:zip, "Must be a valid ZIP code") if form.object.errors[:zip].any?
 
   %ul.stacked
-  = field_li form, :email, required: true, skip_tooltip: true, li_options: { class: 'registrant-form__email-address__line' }
-  %li.registrant-form__phone__line
-    = form.label :phone, class: 'registrant-form__label' do
-      = t('label.phone')
-      %span.registrant-form__optional-label
-        = t('label.optional')
-    %span.registrant-form__phone__input-wrapper
-      = form.phone_field :phone, class: 'registrant-form__phone__input', placeholder: '###-###-####'
+    = field_li form, :email, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__email-address__line'}
+    %li.registrant-form__phone__line
+      = form.label :phone, class: 'registrant-form__label' do
+        = t('label.phone')
+        %span.registrant-form__optional-label
+          = t('label.optional')
+      %span.registrant-form__phone__input-wrapper
+        = form.phone_field :phone, class: 'registrant-form__phone__input', placeholder: '###-###-####'
 
   = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
   = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
