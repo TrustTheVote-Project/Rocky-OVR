@@ -49,15 +49,16 @@
           }
         });
 
-      function validateZipCode(zipInput, errorSpan) {
-        var zipCode = zipInput.value;
+        function validateZipCode(zipInput, errorSpan) {
+          var zipCode = zipInput.value;
 
-        if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
-          errorSpan.textContent = 'Please enter a valid ZIP code.';
-        } else {
-          errorSpan.textContent = '';
+          if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
+            errorSpan.textContent = 'Please enter a valid ZIP code.';
+          } else {
+            errorSpan.textContent = '';
+          }
         }
-      }
+
       - if @abr.collect_signature?
         - @registrant = @abr
         = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @abr.allow_desktop_signature? }
