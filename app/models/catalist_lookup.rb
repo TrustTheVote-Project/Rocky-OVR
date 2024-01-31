@@ -64,7 +64,7 @@ class CatalistLookup < ActiveRecord::Base
       errors.add(:date_of_birth, :too_old)
     end    
     if birthdate > Date.today
-      errors.add(:date_of_birth, :future)      
+      errors.add(:date_of_birth, :future)
     end
   end
   

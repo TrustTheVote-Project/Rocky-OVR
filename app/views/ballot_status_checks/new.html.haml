@@ -27,7 +27,8 @@
 
   %ul.stacked
     = field_li form, :email, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__email-address__line'}
-    = field_li form, :phone, skip_tooltip: true, li_options: {class: 'registrant-form__phone__line'}
+    = field_li form, :phone, skip_tooltip: true, li_options: {class: 'registrant-form__phone__line'} do
+      = form.phone_field :phone, placeholder: '###-###-####'
 
   = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
   = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
