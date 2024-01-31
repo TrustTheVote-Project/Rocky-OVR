@@ -40,10 +40,12 @@
           function validateZipCode(zipInput, errorSpan) {
             var zipCode = zipInput.value;
 
-            if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
-              errorSpan.textContent = 'Please enter a valid ZIP code.';
-            } else {
-              errorSpan.textContent = '';
+            if (errorSpan) {
+              if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
+                errorSpan.textContent = 'Please enter a valid ZIP code.';
+              } else {
+                errorSpan.textContent = '';
+              }
             }
           }
 
