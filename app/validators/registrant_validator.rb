@@ -4,9 +4,16 @@ class RegistrantValidator < ActiveModel::Validator
     
     #regexp = /\A(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))\z/i
     
+    #reg.validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
     
+    before_validation :clean_phone_number
+
     reg.validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
-    
+
+    def clean_phone_number
+        self.phone = phone.gsub(/[^\d]/, '') if phone.present?
+    end
+
     reg.validates_format_of :email_address, :with => Registrant::EMAIL_REGEX, :allow_blank => true
     validate_email(reg)
     reg.validates_presence_of :phone_type if reg.has_phone?
