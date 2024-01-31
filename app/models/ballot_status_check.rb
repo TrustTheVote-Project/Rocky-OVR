@@ -11,7 +11,7 @@ class BallotStatusCheck < ActiveRecord::Base
   
   before_validation :clean_phone_number
 
-  validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
+  validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true, message: "is invalid"
 
   def clean_phone_number
     self.phone = phone.gsub(/[^\d]/, '') if phone.present?
