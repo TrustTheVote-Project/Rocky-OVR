@@ -29,7 +29,7 @@
     = field_li form, :email, required: true, skip_tooltip: true, li_options: { class: 'registrant-form__email-address__line' }
     %li.registrant-form__phone__line
       %h3.registrant-form__label
-        = form.label :phone, class: 'registrant-form__label' do
+        = form.label :phone, class: 'registrant-form__label', skip_tooltip: true do
           = t('label.phone')
       %div.registrant-form__phone__input-wrapper
         = form.phone_field :phone, class: 'registrant-form__phone__input', placeholder: '###-###-####', skip_tooltip: true
