@@ -27,39 +27,37 @@
     .step_3_form_fields
       = render partial: "state_fields", locals: {form: form}
       :javascript
-        // Zip code validation for #abr_zip_1
-        $("#abr_zip_1").on("blur", function() {
-          validateZipCode($(this), $("#abr_zip_1 .error"));
+        document.getElementById('abr_zip_1').addEventListener('blur', function () {
+          validateZipCode(this, this.querySelector('.error'));
         });
 
-        // Zip code validation for #abr_zip_2
-        $("#abr_zip_2").on("blur", function() {
-          validateZipCode($(this), $("#abr_zip_2 .error"));
+        document.getElementById('abr_zip_2').addEventListener('blur', function () {
+          validateZipCode(this, document.getElementById('abr_zip_2').querySelector('.error'));
         });
 
-        // Zip code validation for #abr_zip_3
-        $("#abr_zip_3").on("blur", function() {
-          validateZipCode($(this), $("#abr_zip_3 .error"));
-        });
-        
-        // Form submission event
-        $("form").on("submit", function() {
-          // Validate zip codes on form submission
-          validateZipCode($("#abr_zip_1"), $("#abr_zip_1 .error"));
-          validateZipCode($("#abr_zip_2"), $("#abr_zip_2 .error"));
-          validateZipCode($("#abr_zip_3"), $("#abr_zip_3 .error"));
+        document.getElementById('abr_zip_3').addEventListener('blur', function () {
+          validateZipCode(this, document.getElementById('abr_zip_3').querySelector('.error'));
         });
 
-        function validateZipCode(zipInput, errorSpan) {
-          var zipCode = zipInput.val();
+        document.querySelector('form').addEventListener('submit', function (event) {
+          validateZipCode(document.getElementById('abr_zip_1'), document.getElementById('abr_zip_1').querySelector('.error'));
+          validateZipCode(document.getElementById('abr_zip_2'), document.getElementById('abr_zip_2').querySelector('.error'));
+          validateZipCode(document.getElementById('abr_zip_3'), document.getElementById('abr_zip_3').querySelector('.error'));
 
-          if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
-            errorSpan.text("Please enter a valid ZIP code.");
-          } else {
-            errorSpan.text("");
+          if (document.querySelectorAll('.error').length > 0) {
+            event.preventDefault();
           }
-        }
+        });
 
+      function validateZipCode(zipInput, errorSpan) {
+        var zipCode = zipInput.value;
+
+        if (!/^\d{5}(-\d{4})?$/.test(zipCode)) {
+          errorSpan.textContent = 'Please enter a valid ZIP code.';
+        } else {
+          errorSpan.textContent = '';
+        }
+      }
       - if @abr.collect_signature?
         - @registrant = @abr
         = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @abr.allow_desktop_signature? }
