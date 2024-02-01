@@ -158,8 +158,8 @@ SCRIPT
     @share_link_facebook = "https://www.facebook.com/sharer/sharer.php?u=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=fb-share"
     
     @share_link_facebook_b = "https://www.facebook.com/sharer/sharer.php?u=https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=fb-share"
-    @share_link_twitter = "https://twitter.com/intent/tweet?text=Register%20to%20Vote%20today%20https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
-    @share_link_twitter_b = "https://twitter.com/intent/tweet?text=Register%20to%20Vote%20today%20https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share"
+    @share_link_twitter = "https://twitter.com/intent/tweet?text=Register%20to%20Vote%20today%20&url=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share&hashtags=RockTheVote"
+    @share_link_twitter_b = "https://twitter.com/intent/tweet?text=Register%20to%20Vote%20today%20&url=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=tw-share&hashtags=RockTheVote"
     @share_link_google = "https://plus.google.com/share?url=https%3A//register.rockthevote.com/?partner=#{partner_id}%26source=G%2B-share"
     @share_link_google_b = "https://plus.google.com/share?url=https%3A//register2.rockthevote.com/?partner=#{partner_id}%26source=G%2B-share"
         
