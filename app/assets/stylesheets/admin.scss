@@ -6,7 +6,9 @@ th { font-weight: bold; }
 
 .properties .label { font-weight: bold; text-align: right; }
 
-
+#partners tbody tr:nth-child(even) {
+  background-color: #eeeeee;
+}
 
 .actions {
   margin: 20px 0;
