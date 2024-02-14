@@ -369,34 +369,36 @@ class ReportGenerator
     # Define the CSV file path
     csv_file_path = 'partner_pdf_delivery_report.csv'
 
-    # Query the database to retrieve relevant data for delivery attempts
-    pdf_deliveries = PdfDelivery.joins(registrant: :partner).where("pdf_deliveries.delivery_attempts > ?", 0)
-    partner_registrants_count_by_year_and_state = pdf_deliveries.group("YEAR(pdf_deliveries.created_at)").group(:partner_id).group("registrants.home_state_id").count
-
-    # Query the database to retrieve relevant data for successful deliveries
-    pdf_deliveries_successful = PdfDelivery.joins(registrant: :partner).where(deliverd_to_printer: true)
-    partner_registrants_count_successful_by_year_and_state = pdf_deliveries_successful.group("YEAR(pdf_deliveries.created_at)").group(:partner_id).group("registrants.home_state_id").count
+    # Fetch necessary data beforehand to minimize database queries
+    pdf_deliveries = PdfDelivery.includes(registrant: :partner).where("pdf_deliveries.delivery_attempts > ?", 0)
+    pdf_deliveries_successful = PdfDelivery.includes(registrant: :partner).where(deliverd_to_printer: true)
 
     # Prepare CSV data
-    csv_data = CSV.generate do |csv|
+    CSV.open(csv_file_path, 'w') do |csv|
       # Write header row
       csv << ["Year", "Partner ID", "State", "PDF Delivery Attempts", "Successful PDF Deliveries To Printer"]
-    
-      # Write data rows
-      partner_registrants_count_by_year_and_state.each do |(year, partner_id, home_state_id), count|
-        partner = Partner.find_by(id: partner_id)
-        successful_count = partner_registrants_count_successful_by_year_and_state[[year, partner_id, home_state_id]] || 0
-        state_abbreviation = GeoState.find_by(id: home_state_id)&.abbreviation
-        delivery_attempts = count # As we are filtering only successful deliveries, the count represents delivery attempts
+
+      # Process data in batches of 1000 records
+      pdf_deliveries.find_each(batch_size: 1000) do |delivery|
+        year = delivery.created_at.year
+        partner_id = delivery.registrant.partner_id
+        home_state_id = delivery.registrant.home_state_id
+        count = pdf_deliveries.where(partner_id: partner_id, created_at: delivery.created_at.beginning_of_year..delivery.created_at.end_of_year).count
+        successful_count = pdf_deliveries_successful.where(partner_id: partner_id, created_at: delivery.created_at.beginning_of_year..delivery.created_at.end_of_year).count
+        partner = delivery.registrant.partner
+        state_abbreviation = delivery.registrant.home_state&.abbreviation
         csv << [year, partner_id, state_abbreviation, count, successful_count] if partner
       end
     end
 
     # Save CSV data to S3
     if time_period == 24
-      ReportGenerator.save_csv_to_s3(csv_data, csv_file_path)
+      ReportGenerator.save_csv_to_s3(csv_file_path)
     else
-      ReportGenerator.save_csv_to_s3(csv_data, csv_file_path.gsub('partner_pdf_delivery_report', "partner_pdf_delivery_report_#{time_period}hrs"))
+      # in case we want to run different files
+      # Construct new filename with time period
+      new_filename = "#{csv_file_path.gsub('.csv', "_#{time_period}hrs.csv")}"
+      ReportGenerator.save_csv_to_s3(csv_file_path, new_filename)
     end
   end
 
