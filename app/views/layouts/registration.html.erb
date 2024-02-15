@@ -1,141 +1,139 @@
-<% cache ['page', @registrant&.locale, @partner&.id] do %>
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml" lang="<%= @registrant&.locale || "en" %>">
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Online Voter Registration</title>
-    <meta name="description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Rock the Vote" />
-    <meta property="og:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
-    <meta property="og:site_name" content="Rock the Vote" />
-    <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
-    <meta property="og:image:secure_url" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
-    <meta property="og:image:width" content="1024" />
-    <meta property="og:image:height" content="576" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
-    <meta name="twitter:title" content="Online Voter Registration" />
-    <meta name="twitter:site" content="@rockthevote" />
-    <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
-    <meta name="twitter:creator" content="@rockthevote" />
-    <%- unless controller.action_name == "new" %>
-      <meta name="robots" content="noindex" />
-    <%- end %>
-  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-    <%= javascript_include_tag "iframeResizer.contentWindow.min.js" %>
-    
-    <script>
-      WebFont.load({
-        google: {
-          families: ['Caveat:400', 'Fira Sans:400,700,700i']
-        }
-      });
-    </script>
-    
-    <%= stylesheet_link_tag 'jquery.qtip.min' %>
-    <%= stylesheet_link_tag 'qtip-custom' %>
-    <%= stylesheet_link_tag *partner_css %>
-    <!--[if !IE 7]>
-      <style type="text/css">
-        #container { display:table; height:100% }
-      </style>
-    <![endif]-->
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
-    <script type="text/javascript" charset="utf-8">
-      $(document).ready(function() {
-        <%- if @registrant && @registrant.persisted? %>
-          trackView("<%= track_view_registrant_path(@registrant) %>", "<%= params["controller"] %>", "<%= params["action"] %>");
-        <%- end %>
-        hideErrors(); 
-        setTimeout('revealErrors();', 400); 
-      });
-    </script>
-    <%= yield :head %>
-  </head>
-  <body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
-    <%- if @registrant %>
-      <script type="text/javascript">
-        window._registrantUID = "<%= j @registrant.uid %>";
-      </script>
-    <%- end %>
-    <%- if @partner && !@partner.external_tracking_snippet.blank? %>
-      <%= @partner.external_tracking_snippet.to_s.html_safe %>
-    <%- end %>
-    <%= render 'shared/canvasser_notice' %>
-    <div id="container">
-    <% if @partner && @partner.custom_logo? -%>
-      <%- if !@registrant || @registrant.short_form? %>
-        <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
-          <span role="img" aria-label="<%="#{@partner.organization} logo" %>"> </span>
-      <%- else %>
-        <div id="header" class="partner">
-          <div id="partner-logo">
-            <%= image_tag "#{@partner.header_logo_url}", alt: "#{@partner.organization} logo" %>
-          </div>
-      <%- end %>
-    <% else -%>
-      <div id="header">
-        <span role="img" aria-label="<%="Rock The Vote logo" %>"> </span>
-    <% end -%>
-        <div class='header-text'>
-          <%- if !@registrant || @registrant.short_form? %>
-            <%- if @registrant && @registrant.home_state_abbrev %>
-              <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_name %>
-            <%- else%>
-              <%= t 'txt.register_to_vote' %>
-            <%- end %>
-          <%- end %>
-        </div>
-        <div id="progress-bar">
-          <ol>
-            <li class="progress-title"><%= t('txt.registration.progress_indicator').html_safe %></li>
-            <%= progress_indicator(@num_steps).html_safe %>
-          </ol>
-        </div>
-      </div>
-  
-      <div id="main">
-        <div id="main_inner" class="step_<%= controller.current_step %>">
-          <%= yield %>
-        </div>
-      </div>
-  
-    </div>
-    <div id="sticky_footer">
-      <%= render :partial => 'layouts/footer' %>
-    </div>
-  
-  
-  <%= render :partial => 'layouts/urchin' %>
-  <%- if !@registrant || @registrant.short_form? %>
-    <%= javascript_include_tag "iframeResizer.contentWindow.min" %> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<%= @registrant&.locale || "en" %>">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>Online Voter Registration</title>
+  <meta name="description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rock the Vote" />
+  <meta property="og:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
+  <meta property="og:site_name" content="Rock the Vote" />
+  <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
+  <meta property="og:image:secure_url" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="576" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
+  <meta name="twitter:title" content="Online Voter Registration" />
+  <meta name="twitter:site" content="@rockthevote" />
+  <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
+  <meta name="twitter:creator" content="@rockthevote" />
+  <%- unless controller.action_name == "new" %>
+    <meta name="robots" content="noindex" />
   <%- end %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <%= javascript_include_tag "iframeResizer.contentWindow.min.js" %>
+  
   <script>
-    var ls = window.localStorage
-    window.IS_TOUCH_ENABLED = false;
-    if (ls && ls.getItem('IS_TOUCH_ENABLED')) {
-      window.IS_TOUCH_ENABLED = true;
-      window.registerTouch();
-    } else {
-      window.addEventListener('touchstart', function onFirstTouch() {
-        // or set some global variable
-        window.IS_TOUCH_ENABLED = true;
-        if (ls) {
-          ls.setItem('IS_TOUCH_ENABLED', true);
-        }
-        window.registerTouch();
-        // we only need to know once that a human touched the screen, so we can stop listening now
-        window.removeEventListener('touchstart', onFirstTouch, false);
-      }, false);
-    } 
+    WebFont.load({
+      google: {
+        families: ['Caveat:400', 'Fira Sans:400,700,700i']
+      }
+    });
   </script>
   
-  </body>
-  </html>
-<% end %>
+  <%= stylesheet_link_tag 'jquery.qtip.min' %>
+  <%= stylesheet_link_tag 'qtip-custom' %>
+  <%= stylesheet_link_tag *partner_css %>
+  <!--[if !IE 7]>
+    <style type="text/css">
+      #container { display:table; height:100% }
+    </style>
+  <![endif]-->
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      <%- if @registrant && @registrant.persisted? %>
+        trackView("<%= track_view_registrant_path(@registrant) %>", "<%= params["controller"] %>", "<%= params["action"] %>");
+      <%- end %>
+      hideErrors(); 
+      setTimeout('revealErrors();', 400); 
+    });
+  </script>
+  <%= yield :head %>
+</head>
+<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+  <%- if @registrant %>
+    <script type="text/javascript">
+      window._registrantUID = "<%= j @registrant.uid %>";
+    </script>
+  <%- end %>
+  <%- if @partner && !@partner.external_tracking_snippet.blank? %>
+    <%= @partner.external_tracking_snippet.to_s.html_safe %>
+  <%- end %>
+  <%= render 'shared/canvasser_notice' %>
+  <div id="container">
+  <% if @partner && @partner.custom_logo? -%>
+    <%- if !@registrant || @registrant.short_form? %>
+      <div id="header" class="partner" style="background-image: url('<%= @partner.header_logo_url %>')">
+        <span role="img" aria-label="<%="#{@partner.organization} logo" %>"> </span>
+    <%- else %>
+      <div id="header" class="partner">
+        <div id="partner-logo">
+          <%= image_tag "#{@partner.header_logo_url}", alt: "#{@partner.organization} logo" %>
+        </div>
+    <%- end %>
+  <% else -%>
+    <div id="header">
+      <span role="img" aria-label="<%="Rock The Vote logo" %>"> </span>
+  <% end -%>
+      <div class='header-text'>
+        <%- if !@registrant || @registrant.short_form? %>
+          <%- if @registrant && @registrant.home_state_abbrev %>
+            <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_name %>
+          <%- else%>
+            <%= t 'txt.register_to_vote' %>
+          <%- end %>
+        <%- end %>
+      </div>
+      <div id="progress-bar">
+        <ol>
+          <li class="progress-title"><%= t('txt.registration.progress_indicator').html_safe %></li>
+          <%= progress_indicator(@num_steps).html_safe %>
+        </ol>
+      </div>
+    </div>
+
+    <div id="main">
+      <div id="main_inner" class="step_<%= controller.current_step %>">
+        <%= yield %>
+      </div>
+    </div>
+
+  </div>
+  <div id="sticky_footer">
+    <%= render :partial => 'layouts/footer' %>
+  </div>
+
+
+<%= render :partial => 'layouts/urchin' %>
+<%- if !@registrant || @registrant.short_form? %>
+  <%= javascript_include_tag "iframeResizer.contentWindow.min" %> 
+<%- end %>
+<script>
+  var ls = window.localStorage
+  window.IS_TOUCH_ENABLED = false;
+  if (ls && ls.getItem('IS_TOUCH_ENABLED')) {
+    window.IS_TOUCH_ENABLED = true;
+    window.registerTouch();
+  } else {
+    window.addEventListener('touchstart', function onFirstTouch() {
+      // or set some global variable
+      window.IS_TOUCH_ENABLED = true;
+      if (ls) {
+        ls.setItem('IS_TOUCH_ENABLED', true);
+      }
+      window.registerTouch();
+      // we only need to know once that a human touched the screen, so we can stop listening now
+      window.removeEventListener('touchstart', onFirstTouch, false);
+    }, false);
+  } 
+</script>
+
+</body>
+</html>
