@@ -10,7 +10,7 @@
       function followOtherLanguageLink() {
         window.location = $("#other_language_link select").val()
       }
-    %select{:onchange=>"followOtherLanguageLink();"}
+    %select{:name=>"language_select", :onchange=>"followOtherLanguageLink();"}
       %option Select Language
       - RockyConf.enabled_locales.each do |loc|
         - unless loc.to_s == I18n.locale.to_s
