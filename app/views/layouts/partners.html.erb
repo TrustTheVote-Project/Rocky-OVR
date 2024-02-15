@@ -1,78 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Online Voter Registration Partner Portal</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag 'jquery.qtip.min' %>
-  <%= stylesheet_link_tag 'qtip-custom' %>
-  
-  <%= stylesheet_link_tag "application", "partner" %>
-  <!--[if !IE 7]>
-    <style type="text/css">
-      #container { display:table; height:100% }
-    </style>
-  <![endif]-->
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= yield :head %>
-</head>
-<body>
-  <div id="bg"><div></div></div>
-  <div id="container">
-    <% if current_user %>
-      <div id="header">
-        <span>
-          <%= link_to "Log out", logout_path %>
-          <br/><br/>
-          <%= link_to edit_user_path do %>
-            Edit user profile
-          <%- end %>
+<% cache ['page'] do %>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Online Voter Registration Partner Portal</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag 'jquery.qtip.min' %>
+    <%= stylesheet_link_tag 'qtip-custom' %>
+    
+    <%= stylesheet_link_tag "application", "partner" %>
+    <!--[if !IE 7]>
+      <style type="text/css">
+        #container { display:table; height:100% }
+      </style>
+    <![endif]-->
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="bg"><div></div></div>
+    <div id="container">
+      <% if current_user %>
+        <div id="header">
+          <span>
+            <%= link_to "Log out", logout_path %>
+            <br/><br/>
+            <%= link_to edit_user_path do %>
+              Edit user profile
+            <%- end %>
+            <br/>
+            <%- if current_user.partners.length > 1 %>
+              <%= link_to "Change partner", partners_path %>
+            <%- end %>
           <br/>
-          <%- if current_user.partners.length > 1 %>
-            <%= link_to "Change partner", partners_path %>
-          <%- end %>
-        <br/>
-        </span>
-        <%- if @partner %>
-          <p>
-            <%= link_to "Dashboard", partner_path(@partner), :class => @nav_class[:dashboard] %> |
-            <%= link_to "Reports", statistics_partner_path(@partner), :class => @nav_class[:statistics] %> |
-            <%= link_to "Customize", partner_logo_path(@partner), :class => @nav_class[:customize] %> |
-            <%= link_to "Embed Codes", embed_codes_partner_path(@partner), :class => @nav_class[:embed] %> |
-            <%= link_to "Users", partner_partner_users_path(@partner), :class => @nav_class[:users] %>
-            <%= "|".html_safe + link_to("FAQs", RockyConf.partner_wiki_url, target: "_blank") if RockyConf.partner_wiki_url.present? %>
-          </p>
-          <p class='partner-name'>
-            <%= @partner.organization %>
-            <%= link_to "(edit partner)", edit_partner_path(@partner) %>
-          </p>
-        <%- else %>
-          <%- if current_user && current_user.partners.length == 1 %>
-            <p class='partner-name'>
-              <%= link_to "#{current_user.partners.first.organization} dashboard", partner_path(current_user.partners.first) %>
+          </span>
+          <%- if @partner %>
             <p>
-          <%- end %> 
-        <%- end %>
-    <% else %>
-      <div id="header" class="not_logged_in">
-        <span><%= link_to "Log in", login_path %></span>
-    <% end %>
-    </div>
-
-    <div id="main">
-      <div id="main_inner">
-
-        <%= yield :subnav %>
-        <%= flash_messages.html_safe %>
-        <%= yield %>
+              <%= link_to "Dashboard", partner_path(@partner), :class => @nav_class[:dashboard] %> |
+              <%= link_to "Reports", statistics_partner_path(@partner), :class => @nav_class[:statistics] %> |
+              <%= link_to "Customize", partner_logo_path(@partner), :class => @nav_class[:customize] %> |
+              <%= link_to "Embed Codes", embed_codes_partner_path(@partner), :class => @nav_class[:embed] %> |
+              <%= link_to "Users", partner_partner_users_path(@partner), :class => @nav_class[:users] %>
+              <%= "|".html_safe + link_to("FAQs", RockyConf.partner_wiki_url, target: "_blank") if RockyConf.partner_wiki_url.present? %>
+            </p>
+            <p class='partner-name'>
+              <%= @partner.organization %>
+              <%= link_to "(edit partner)", edit_partner_path(@partner) %>
+            </p>
+          <%- else %>
+            <%- if current_user && current_user.partners.length == 1 %>
+              <p class='partner-name'>
+                <%= link_to "#{current_user.partners.first.organization} dashboard", partner_path(current_user.partners.first) %>
+              <p>
+            <%- end %> 
+          <%- end %>
+      <% else %>
+        <div id="header" class="not_logged_in">
+          <span><%= link_to "Log in", login_path %></span>
+      <% end %>
+      </div>
+  
+      <div id="main">
+        <div id="main_inner">
+  
+          <%= yield :subnav %>
+          <%= flash_messages.html_safe %>
+          <%= yield %>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="sticky_footer">
-    <%= render :partial => 'layouts/footer' %>
-  </div>
-  <%= javascript_include_tag 'partner' %>
-  <%= render :partial => 'layouts/urchin' %>
-</body>
-</html>
+    <div id="sticky_footer">
+      <%= render :partial => 'layouts/footer' %>
+    </div>
+    <%= javascript_include_tag 'partner' %>
+    <%= render :partial => 'layouts/urchin' %>
+  </body>
+  </html>
+<% end %>
