@@ -1,4 +1,4 @@
-class CreateVoterSignatures < ActiveRecord::Migration
+class CreateVoterSignatures < ActiveRecord::Migration[4.2]
   def change
     create_table :voter_signatures do |t|
       t.string :registrant_id, index: true

@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddShortFormToRegistrants < ActiveRecord::Migration
+class AddShortFormToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrants, :short_form, :boolean, :default=>false
   end

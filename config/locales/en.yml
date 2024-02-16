@@ -781,7 +781,7 @@ en:
         general: This section allows partners with some knowledge of CSS and HTML
           to fully customized their registration tool. You have the option to overwrite
           the default CSS and modify the autoresponder emails. Simply upload new resources
-          through the portal, review changes, and submit for approval. <a href="http://wiki.rockthevote.com/index.php/Examples"
+          through the portal, review changes, and submit for approval. <a href="https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/#faq-examples"
           target="_BLANK">Here are some great examples</a>.
         assets:
         - Upload your graphics (background images, special icons, etc that will be
@@ -794,8 +794,8 @@ en:
         - 'Create a file called partner.css that overwrites the default styles with
           your own. Reference the fonts and images already uploaded. (ie: body {background-image:
           url(‘mybackground.jpg’); color: #cc0000;} This file will load after the
-          default styles so anything you define should change. Go to <a href="https://wiki.rockthevote.com"
-          target="_blank">wiki.rockthevote.com</a> for some examples.'
+          default styles so anything you define should change. Go to <a href="https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/"
+          target="_blank">FAQs</a> for some examples.'
         email_templates:
         - The registration platform will automatically send emails to new registrants
           to ensure they complete the process.

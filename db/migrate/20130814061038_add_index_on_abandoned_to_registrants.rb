@@ -1,4 +1,4 @@
-class AddIndexOnAbandonedToRegistrants < ActiveRecord::Migration
+class AddIndexOnAbandonedToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_index :registrants, :abandoned
   end

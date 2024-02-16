@@ -1,4 +1,4 @@
-class AddAuthlogicColumnsToPartnersAdmins < ActiveRecord::Migration
+class AddAuthlogicColumnsToPartnersAdmins < ActiveRecord::Migration[4.2]
   def change
     add_index :admins, :persistence_token, unique: true
 

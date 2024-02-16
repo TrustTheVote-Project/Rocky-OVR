@@ -7,7 +7,7 @@
 .intro-message
   = t('txt.ballot_status_check.step_1_instructions').html_safe
 
-= form_for(@bsc) do |form|
+= form_for(@bsc, url: { action: "create", partner: @partner_id }) do |form|
   = form.hidden_field :partner_id
   = form.hidden_field :tracking_id
   = form.hidden_field :tracking_source
@@ -20,17 +20,26 @@
     %ul.stacked
       = field_li form, :first_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__first-name__line'}
       = field_li form, :last_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__last-name__line'}
+      = field_li form, :zip, required: true, skip_tooltip: true
 
   %ul.stacked
-    = field_li form, :zip, required: true, skip_tooltip: true
-  
+    - form.object.errors.add(:zip, "Must be a valid ZIP code") if form.object.errors[:zip].any?
+
   %ul.stacked
-    = field_li form, :email, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__email-address__line'}
-    = field_li form, :phone, skip_tooltip: true, li_options: {class: 'registrant-form__phone__line'}
-  
+    = field_li form, :email, required: true, skip_tooltip: true, li_options: { class: 'registrant-form__email-address__line' }
+    %li.registrant-form__phone__line
+      %h3.registrant-form__label
+        = form.label :phone, class: 'registrant-form__label', skip_tooltip: true do
+          = t('label.phone')
+      %div.registrant-form__phone__input-wrapper
+        = form.phone_field :phone, class: 'registrant-form__phone__input', placeholder: '###-###-####', skip_tooltip: true
+      - if form.object.errors[:phone].present?
+        %span.error
+          = form.object.errors.full_messages_for(:phone).join(", ")
+
   = render :partial=> "registrants/email_opt_ins", :locals=>{:form=>form}
   = render :partial=> "registrants/phone_opt_ins", :locals=>{:form=>form}
-  
+
   = rollover_button(:next_step, I18n.t('txt.button.next').html_safe)
 
   %p= I18n.t('txt.privacy_policy_acceptance').html_safe

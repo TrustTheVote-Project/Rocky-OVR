@@ -1,4 +1,4 @@
-class CreateZipCodeCountyAddresses < ActiveRecord::Migration
+class CreateZipCodeCountyAddresses < ActiveRecord::Migration[4.2]
   def change
     create_table :zip_code_county_addresses do |t|
       t.integer :geo_state_id

@@ -36,15 +36,15 @@
 %p
   - if leo_contact_info[:phone]
     %strong{style: "font-weight: bold"} Phone:
-    = leo_contact_info[:phone]
+    = link_to leo_contact_info[:phone], "tel:#{leo_contact_info[:phone]}"
     %br
   - if leo_contact_info[:email]
     %strong{style: "font-weight: bold"} Email:
-    = leo_contact_info[:email]
+    = link_to leo_contact_info[:email], "mailto:#{leo_contact_info[:email]}"
     %br
   - if leo_contact_info[:website]
     %strong{style: "font-weight: bold"} Website:
-    = leo_contact_info[:website]
+    = link_to leo_contact_info[:website], leo_contact_info[:website], target: "_blank"
     %br
   - if leo_contact_info[:address]
     %strong{style: "font-weight: bold"} Address:

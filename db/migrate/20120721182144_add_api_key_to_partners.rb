@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddApiKeyToPartners < ActiveRecord::Migration
+class AddApiKeyToPartners < ActiveRecord::Migration[4.2]
   def self.up
     add_column :partners, :api_key, :string, :limit=>40, :default=>""
   end

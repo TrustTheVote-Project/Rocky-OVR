@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class RenameSosPhoneToSosUrl < ActiveRecord::Migration
+class RenameSosPhoneToSosUrl < ActiveRecord::Migration[4.2]
   def self.up
     add_column "geo_states", "registrar_url", :string
   end

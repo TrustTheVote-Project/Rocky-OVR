@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddAbandonedToRegistrant < ActiveRecord::Migration
+class AddAbandonedToRegistrant < ActiveRecord::Migration[4.2]
   def self.up
     add_column "registrants", "abandoned", :boolean, :default => false, :null => false
   end

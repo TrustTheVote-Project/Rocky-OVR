@@ -1,4 +1,4 @@
-class CreateCanvassingShiftRegistrants < ActiveRecord::Migration
+class CreateCanvassingShiftRegistrants < ActiveRecord::Migration[4.2]
   def change
     create_table :canvassing_shift_registrants do |t|
       t.string :registrant_id

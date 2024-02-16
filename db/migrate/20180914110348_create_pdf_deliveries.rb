@@ -1,4 +1,4 @@
-class CreatePdfDeliveries < ActiveRecord::Migration
+class CreatePdfDeliveries < ActiveRecord::Migration[4.2]
   def change
     create_table :pdf_deliveries do |t|
       t.integer :registrant_id

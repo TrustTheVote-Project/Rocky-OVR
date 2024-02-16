@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddFinishIframeUrlToPartners < ActiveRecord::Migration
+class AddFinishIframeUrlToPartners < ActiveRecord::Migration[4.2]
   def self.up
     add_column :partners, :finish_iframe_url, :string
   end

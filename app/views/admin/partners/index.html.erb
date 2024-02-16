@@ -37,12 +37,14 @@
 
 <br/><br/>
 
+<div style="display: none;">
 <%= form_for [ :admin, @partner_zip], :url=>admin_partner_zips_path, :html => { :multipart => true }  do |f| %>
   <%= f.file_field :zip_file %>
   <%= f.label :zip_file, 'Upload partner-creation zip file' %>
   <%= f.submit 'Upload' %>
 <%- end %>
-  
+</div>
+
 <br/>
 <br/>
 <p>
@@ -72,9 +74,9 @@
         <td><%= h p.organization %></td>
         <td><%= h p.api_key %></td>
         <td><%= p.whitelabeled? ? 'Yes' : 'No' %></td>
-        <td><%= link_to "Show", admin_partner_path(p) %></td>
-        <td><%= link_to "Preview", p.preview_custom_assets_link, target: '_blank' %></td>
-        <td><%= link_to "Publish", publish_admin_partner_path(p), method: 'post', confirm: publish_confirmation %></td>
+        <td><%= link_to "Show", admin_partner_path(p), title: "ID: #{p.id}" %></td>
+        <td><%= link_to "Preview", p.preview_custom_assets_link, target: '_blank', title: "ID: #{p.id}" %></td>
+        <td><%= link_to "Publish", publish_admin_partner_path(p), method: 'post', confirm: publish_confirmation, title: "ID: #{p.id}" %></td>
       </tr>
     <%- end %>
   </tbody>
