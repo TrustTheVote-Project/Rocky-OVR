@@ -369,26 +369,28 @@ class ReportGenerator
     # Define the CSV file path
     csv_file_path = 'partner_pdf_delivery_report.csv'
 
-    # Query the database to retrieve relevant data for delivery attempts
-    pdf_deliveries = PdfDelivery.joins(registrant: :partner).where("pdf_deliveries.delivery_attempts > ?", 0)
-    partner_registrants_count_by_year_and_state = pdf_deliveries.group("YEAR(pdf_deliveries.created_at)").group(:partner_id).group("registrants.home_state_id").count
-
-    # Query the database to retrieve relevant data for successful deliveries
-    pdf_deliveries_successful = PdfDelivery.joins(registrant: :partner).where(deliverd_to_printer: true)
-    partner_registrants_count_successful_by_year_and_state = pdf_deliveries_successful.group("YEAR(pdf_deliveries.created_at)").group(:partner_id).group("registrants.home_state_id").count
-
-    # Prepare CSV data
     csv_data = CSV.generate do |csv|
       # Write header row
       csv << ["Year", "Partner ID", "State", "PDF Delivery Attempts", "Successful PDF Deliveries To Printer"]
 
-      # Process data in batches of 1000 records
-      partner_registrants_count_by_year_and_state.each do |(year, partner_id, home_state_id), count|
-        partner = Partner.find_by(id: partner_id)
-        successful_count = partner_registrants_count_successful_by_year_and_state[[year, partner_id, home_state_id]] || 0
-        state_abbreviation = GeoState.find_by(id: home_state_id)&.abbreviation
-        delivery_attempts = count # As we are filtering only successful deliveries, the count represents delivery attempts
-        csv << [year, partner_id, state_abbreviation, count, successful_count] if partner
+      # Use distribute_reads for database queries
+      ApplicationRecord.distribute_reads(failover: false) do
+        # Query the database to retrieve relevant data for delivery attempts
+        pdf_deliveries = PdfDelivery.joins(registrant: :partner).where("pdf_deliveries.delivery_attempts > ?", 0)
+        partner_registrants_count_by_year_and_state = pdf_deliveries.group("YEAR(pdf_deliveries.created_at)").group(:partner_id).group("registrants.home_state_id").count
+
+        # Query the database to retrieve relevant data for successful deliveries
+        pdf_deliveries_successful = PdfDelivery.joins(registrant: :partner).where(deliverd_to_printer: true)
+        partner_registrants_count_successful_by_year_and_state = pdf_deliveries_successful.group("YEAR(pdf_deliveries.created_at)").group(:partner_id).group("registrants.home_state_id").count
+
+        # Process data in batches of 1000 records
+        partner_registrants_count_by_year_and_state.each do |(year, partner_id, home_state_id), count|
+          partner = Partner.find_by(id: partner_id)
+          successful_count = partner_registrants_count_successful_by_year_and_state[[year, partner_id, home_state_id]] || 0
+          state_abbreviation = GeoState.find_by(id: home_state_id)&.abbreviation
+          delivery_attempts = count # As we are filtering only successful deliveries, the count represents delivery attempts
+          csv << [year, partner_id, state_abbreviation, count, successful_count] if partner
+        end
       end
     end
 
@@ -401,6 +403,8 @@ class ReportGenerator
       ReportGenerator.save_csv_to_s3(csv_data, new_filename)
     end
   end
+
+
 
   
   def self.generate_voteready_registrants(start_time = nil, end_time = nil)
