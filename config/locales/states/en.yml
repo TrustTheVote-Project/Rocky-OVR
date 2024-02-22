@@ -10,8 +10,7 @@ en:
             </p>
             <p>You can use this form to register to vote and request an absentee ballot.</p>
           request_deadline: |-
-            <p>Your application must be received by October 29th for the November General Election.</p>
-            </p>
+            <p>Received by election officials 10 days before the election.</p>
           status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
           finish_instructions_1_hint: |-
             <p>Make sure to sign your application - do not type your signature.
@@ -110,8 +109,7 @@ en:
             <li>Are a caregiver for a family member to the second degree of kinship by affinity or consanguinity and the family member is confined to their home; or</li>
             <li>Are currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude. </li>
             </ul>
-          request_deadline: "<p>If you mail your absentee ballot request, it must
-            be received by November 1st for the general election. </p>"
+          request_deadline: "<p>Received by election officials no later than 7 days before the election.</p>"
           status_check_instructions: <a href="https://myinfo.alabamavotes.gov/voterview">https://myinfo.alabamavotes.gov/voterview</a>
           finish_instructions_1_hint: "<p>Make sure to include a copy of your valid
             photo identification with your application. \nOnly submit one request
@@ -256,13 +254,7 @@ en:
             <li>You are a resident of a long-term care facility licensed by the state.</li>
             </ul>
           request_deadline: |-
-            <p>If you return your application in person or by designated person, it must be delivered to the county clerk by close of business the Friday before the election.</p>
-            <p>If you return your ballot by mail, it must be received by:</p>
-            <ul>
-            <li>May 17th for the Primary Election,</li>
-            <li>June 14th for the General Primary Election, and</li>
-            <li>November 1st for the General Election.</li>
-            </ul>
+            <p>Received by election officials 7 days before the election.</p>
           status_check_instructions: <p>Contact your County Clerk (<a href="https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf">https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf</a>)
             with any questions about the status of your absentee ballot.</p>
           finish_instructions_1_hint: |-
@@ -340,12 +332,7 @@ en:
           skip_state_online_abr: I do not meet the requirements, and I would like
             to complete a paper request form.
           request_deadline: |-
-            <p>Your absentee ballot request must be received by:
-            <ul style="font-size: 14px; list-style: disc; margin-left: 30px; margin-bottom: 20px;">
-            <li>July 22 at 5:00 pm for the primary election, and</li>
-            <li>October 28 at 5:00 pm for the general electiion</li>
-            </ul>
-            </p>
+            <p>Received by election officials by 5 p.m. on the 11th day before the election.</p>
           status_check_instructions: |-
             <p><a href="https://my.arizona.vote/PortalList.aspx" target="_blank">
             https://my.arizona.vote/PortalList.aspx</a>
@@ -442,8 +429,8 @@ en:
               <h3>Check the status of your ballot</h3>
               <p>Sign up for <a href="https://california.ballottrax.net/voter/" target="_blank">Where's My Ballot?</a> to track and receive notifications on the status of your vote-by-mail ballot.
               </p>
-          request_deadline: All registered voters receive a mail ballot. You must
-            register to vote 29 days before the election.
+          request_deadline: |-
+            <p>California automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote-By-Mail status by using
             your state&#39;s <a target='_blank' href='https://voterstatus.sos.ca.gov/'>online
             tool</a>
