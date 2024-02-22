@@ -44,6 +44,7 @@ module AbrStateMethods::IA
       options: [
         "abr_primary_type1",
         "abr_primary_type2",
+        "abr_primary_type3"
       ]
     },
     "abr_election_type4_name": {},	

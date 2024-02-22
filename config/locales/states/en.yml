@@ -835,6 +835,7 @@ en:
           abr_primary_type_selections1__options:
             abr_primary_type1: Democratic
             abr_primary_type2: Republican
+            abr_primary_type3: Libertarian
           abr_election_type4_name: Enter the name of the special election
         registration:
           has_state_license: I have an IA state identification card or IA driver's
