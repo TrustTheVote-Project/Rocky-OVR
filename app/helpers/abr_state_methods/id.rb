@@ -20,7 +20,9 @@ module AbrStateMethods::ID
       "abr_date_of_birth_mm_dd_yyyy": {
         method: "date_of_birth_mm_dd_yyyy"
       },	
-      "abr_street_name": ["street_number", "street_name"],
+      "abr_street_name": {
+        method: ["street_number", "street_name"]
+      },
       "abr_unit": {
         method: "unit"
       },
