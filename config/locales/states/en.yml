@@ -2945,7 +2945,7 @@ en:
           finish_instructions_1_hint: ""
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
             must be received by 8:00 pm on Election Day.</p>"
-          _requirements: |-
+          requirements: |-
             <p>Any registered voter can request an absentee ballot in Rhode Island, and 
             must identify one of the following reasons for requesting the absentee 
             ballot:</p>
