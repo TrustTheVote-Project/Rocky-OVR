@@ -17,8 +17,14 @@ module AbrStateMethods::ID
       "abr_name_suffix": {
         method: "name_suffix"
       },
+      "abr_date_of_birth_mm_dd_yyyy": {
+        method: "date_of_birth_mm_dd_yyyy"
+      },	
       "abr_street_name": {
         method: "address",
+      },
+      "abr_unit": {
+        method: "unit"
       },
       "abr_city": {
         method: "city"
