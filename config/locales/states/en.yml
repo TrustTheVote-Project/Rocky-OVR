@@ -2976,6 +2976,10 @@ en:
           abr_reason1: I am confined to a facility and would like my mail ballot delivered
             to me.
           abr_mailing_address_line_2: Enter the name of the facility.
+          abr_party_selections: Select which ballot you would like to receive.
+          abr_party_selections__options:
+            abr_party1: Democratic Ballot
+            abr_party2: Republican Ballot
         registration:
           has_state_license: I have a RI state identification card or RI driver's
             license.

@@ -29,7 +29,7 @@ module AbrStateMethods::RI
     'abr_mailing_address_line_2': {method: "abr_mailing_address_line_2"}
 
     # 'abr_application_type_check1': {options: ['Off','On']},
-    # 'abr_party_selections': {options: ['abr_party1','abr_party2',]},
+    'abr_party_selections': {options: ['abr_party1','abr_party2',]},
     # 'abr_request_check': {options: ['Off','On']},
 
   }
@@ -62,7 +62,7 @@ module AbrStateMethods::RI
       
       # {'abr_application_type_check1':{type: :checkbox, options: ['Off','On']}},
 
-      # {"abr_party_selections": {type: :radio, options:["abr_party1","abr_party2"], visible: "abr_application_type_check1", required: :if_visible}},
+      {"abr_party_selections": {type: :radio, options:["abr_party1","abr_party2"], visible: "abr_application_type_check1", required: :if_visible}},
       # {'abr_request_check':{type: :checkbox, options: ['Off','On']}},
     ]
   end
