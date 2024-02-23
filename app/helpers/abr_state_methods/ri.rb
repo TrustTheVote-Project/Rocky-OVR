@@ -29,9 +29,8 @@ module AbrStateMethods::RI
     'abr_mailing_address_line_2': {method: "abr_mailing_address_line_2"}
 
     # 'abr_application_type_check1': {options: ['Off','On']},
-    'abr_party_selections': {options: ['abr_party1','abr_party2',]},
+    "abr_party_selections":{options:['abr_party1','abr_party2']},
     # 'abr_request_check': {options: ['Off','On']},
-
   }
   EXTRA_FIELDS = []
   # e.g.
@@ -44,7 +43,6 @@ module AbrStateMethods::RI
   
   def form_field_items
     [
-
 
       #{'abr_delivery_address_selections': {type: :radio, options: ['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3'], required: true}},
       {"abr_check_mailing_address": {type: :checkbox}},
@@ -62,7 +60,7 @@ module AbrStateMethods::RI
       
       # {'abr_application_type_check1':{type: :checkbox, options: ['Off','On']}},
 
-      {"abr_party_selections": {type: :radio, options:["abr_party1","abr_party2"], visible: "abr_application_type_check1", required: :if_visible}},
+      {"abr_party_selections":{type: :radio, options:['abr_party1','abr_party2'], visible: "abr_election_type_selections_abr_election_type1",  required: :if_visible}},
       # {'abr_request_check':{type: :checkbox, options: ['Off','On']}},
     ]
   end
