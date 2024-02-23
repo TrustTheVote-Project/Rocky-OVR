@@ -8,6 +8,11 @@ module AbrStateMethods::NM
         "abr_id_no1",
       ]
     },
+    "abr_election_type1": {
+      options: [
+        "abr_election_type1"
+      ]
+    },
     "abr_full_name": {method: "full_name"},
     "abr_address_line_1": {method: "address_line_1"},
     "abr_address_line_2": {method: "address_line_2"},
@@ -21,7 +26,7 @@ module AbrStateMethods::NM
     "abr_date_of_birth_YYYY": {method: "date_of_birth_yyyy"},
     "abr_phone": {method: "phone"},
   }
-  EXTRA_FIELDS = ["abr_check_mailing_address"]
+  EXTRA_FIELDS = ["abr_check_mailing_address", "abr_election_type1"]
   
   # def whatever_it_is_you_came_up_with
   #   # TODO when blah is selected it should be "abc" and otherwise left blank
