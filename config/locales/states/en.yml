@@ -297,6 +297,8 @@ en:
               of an illness or physical disability
             abr_reason3: I am a resident of a long-term care or residential facility
               licensed by the state.
+            abr_reason4: I will be unable to attend the polls on Election Day due to 
+              an observance of a religious discipline or religious holiday.
           abr_election_type1: Would you like to receive a ballot for all elections
             in this calendar year?
           abr_election_type1_instructions: If there is primary in this calendar year,
