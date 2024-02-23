@@ -66,13 +66,13 @@ module AbrStateMethods::NM
         "Union",
         "Valencia",
       ]}},
-      {"abr_election_type1": {type: :checkbox}},
       {"abr_check_mailing_address": {type: :checkbox}},
       {"abr_mailing_address_line_1": {visible: "abr_check_mailing_address", required: :if_visible, classes: "three-quarter"}},
       {"abr_mailing_unit": {visible: "abr_check_mailing_address", classes: "quarter"}},
       {"abr_mailing_city": {visible: "abr_check_mailing_address", required: :if_visible, classes: "half"}},
       {"abr_mailing_state_abbrev": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter", options: GeoState.collection_for_select}},
-      {"abr_mailing_zip": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter"}},      
+      {"abr_mailing_zip": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter"}},
+      {"abr_election_type1": {type: :checkbox}},   
     ]
   end
   #e.g.

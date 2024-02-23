@@ -2298,7 +2298,10 @@ en:
           abr_county: Registration Address County
           abr_check_mailing_address: I get my mail at a different address from my
             registration address
-          abr_election_type1: Join New Mexico's permanent absentee voter list
+          abr_election_type1: I want to be added to my county's Permanent Absentee List. 
+            This means that the county clerk will automatically send a mailed ballot to my 
+            voter registration's mailing address each time there is a statewide election 
+            that includes my precinct.
           abr_mailing_address_line_1: Mailing address
           abr_mailing_unit: Unit
           abr_mailing_city: City
