@@ -26,10 +26,10 @@ module AbrStateMethods::RI
     'abr_reason2': {options:['Off','On'], method: 'not_reason1'},
 
     #'abr_reason_selections': {options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4']},
-    'abr_mailing_address_line_2': {method: "abr_mailing_address_line_2"}
+    'abr_mailing_address_line_2': {method: "abr_mailing_address_line_2"},
 
     # 'abr_application_type_check1': {options: ['Off','On']},
-    #"abr_party_selections":{options:['abr_party1','abr_party2']},
+    "abr_party_selections":{options:['abr_party1','abr_party2']},
     # 'abr_request_check': {options: ['Off','On']},
   }
   EXTRA_FIELDS = []
@@ -60,7 +60,7 @@ module AbrStateMethods::RI
       
       # {'abr_application_type_check1':{type: :checkbox, options: ['Off','On']}},
 
-      #{"abr_party_selections":{type: :radio, options:['abr_party1','abr_party2'], visible: "abr_election_type_selections_abr_election_type1",  required: :if_visible}},
+      {"abr_party_selections":{type: :radio, options:['abr_party1','abr_party2'], visible: "abr_election_type_selections_abr_election_type1",  required: :if_visible}}
       # {'abr_request_check':{type: :checkbox, options: ['Off','On']}},
     ]
   end
