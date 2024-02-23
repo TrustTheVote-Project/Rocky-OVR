@@ -1,9 +1,5 @@
 module AbrStateMethods::ID
 
-    def combined_street_number_and_name(street_number, street_name)
-      "#{street_number} #{street_name}".strip
-    end
-
     
     PDF_FIELDS = {
       "abr_email": {
@@ -26,7 +22,7 @@ module AbrStateMethods::ID
         method: "date_of_birth_mm_dd_yyyy"
       },
       'abr_street_name': { 
-        method: 'combined_street_number_and_name', args: ['street_number', 'street_name']
+        method: "address_line_1"
       },
       "abr_unit": {
         method: "unit"
