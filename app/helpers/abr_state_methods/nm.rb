@@ -70,6 +70,7 @@ module AbrStateMethods::NM
         "Union",
         "Valencia",
       ]}},
+      {"abr_election_type1": {type: :checkbox}},
       {"abr_check_mailing_address": {type: :checkbox}},
       {"abr_mailing_address_line_1": {visible: "abr_check_mailing_address", required: :if_visible, classes: "three-quarter"}},
       {"abr_mailing_unit": {visible: "abr_check_mailing_address", classes: "quarter"}},
