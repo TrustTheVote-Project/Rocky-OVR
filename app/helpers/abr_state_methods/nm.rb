@@ -8,11 +8,7 @@ module AbrStateMethods::NM
         "abr_id_no1",
       ]
     },
-    "abr_election_type1": {
-      options: [
-        "abr_election_type1"
-      ]
-    },
+    "abr_election_type1": {options: ["Off", "On"]},
     "abr_full_name": {method: "full_name"},
     "abr_address_line_1": {method: "address_line_1"},
     "abr_address_line_2": {method: "address_line_2"},
