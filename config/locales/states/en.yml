@@ -2977,7 +2977,7 @@ en:
             to me.
           abr_mailing_address_line_2: Enter the name of the facility.
           abr_party_selections: |-
-            "<p>You will receive a mail ballot for the party you are registered with. If you are an unaffiliated voter, please select one party:</p>"
+            <p class="instructions">You will receive a mail ballot for the party you are registered with. If you are an unaffiliated voter, please select one party:</p>
           abr_party_selections__options:
             abr_party1: Democratic Ballot
             abr_party2: Republican Ballot
