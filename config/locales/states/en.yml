@@ -1539,7 +1539,7 @@ en:
             abr_election_type2: May
             abr_election_type3: August
             abr_election_type4: November
-          abr_primary_type_selections1__options:
+          abr_primary_type_selections__options:
             abr_primary_type1: Democractic Party Presidential Primary Ballot
             abr_primary_type2: Republican Party Presidential Primary Ballot
             abr_primary_type3: Ballot without Presidential Primary
@@ -1547,8 +1547,7 @@ en:
             list?
           abr_election_type4__hint: Check this box if you'd like to vote absentee
             in all elections. <br> An application for an absent voter ballot will
-            be sent to you, for every election going forward, including other elections
-            in 2022.
+            be sent to you, for every election going forward, including other elections.
           abr_request_check: Will someone be delivering your absentee ballot application?
           abr_request_check__hint: A member of your family or person residing in your
             household may mail or deliver your application to the clerk. Family members
