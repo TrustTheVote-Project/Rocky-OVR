@@ -29,8 +29,11 @@ module AbrStateMethods::MI
     "abr_county": {},
     "abr_address_type_selections": {options:["abr_address_type1","abr_address_type2"]},
     "abr_address_type3": {},
-    "abr_election_type_selections": {options:["abr_election_type1","abr_election_type2","abr_election_type3"]},
-    "abr_election_type4": {options: ["Off", "On"]},
+    "abr_election_type_selections": {options:["abr_election_type1","abr_election_type2","abr_election_type3","abr_election_type4"]},
+    
+    "abr_primary_type_selections": {options:["abr_primary_type1","abr_primary_type2","abr_primary_type3"]},
+    
+    "abr_election_type5": {options: ["Off", "On"]},
     "abr_request_check":{options: ["Off", "On"]},
     "abr_request_name": {},
     "abr_assistant_info1": {method:"assist_birthdate_string"},
@@ -150,8 +153,12 @@ module AbrStateMethods::MI
       {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
 
 
-      {"abr_election_type_selections": {type: :radio, options:["abr_election_type1","abr_election_type2","abr_election_type3"] , required: true}},
-      {"abr_election_type4": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_election_type_selections": {type: :radio, options:["abr_election_type1","abr_election_type2","abr_election_type3","abr_election_type4"] , required: true}},
+      
+      {"abr_primary_type_selections": {type: :radio, options:["abr_primary_type1","abr_primary_type2","abr_primary_type3"] , required: :if_visible, visible: "abr_election_type1"}},
+      
+      
+      {"abr_election_type5": {type: :checkbox, options: ["Off", "On"]}},
       {"abr_request_check": {type: :checkbox, options: ["Off", "On"]}},
       {"abr_request_name": { required: :if_visible, visible: "abr_request_check"}},
       {"assist_birthdate": {type: :date, required: :if_visible, visible: "abr_request_check"}},

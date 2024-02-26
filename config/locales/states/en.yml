@@ -1535,11 +1535,15 @@ en:
           abr_election_type_selections: Which election(s) would you like to receive
             ballots for?
           abr_election_type_selections__options:
-            abr_election_type1: The August 2, 2022 Primary and the Nov 8, 2022 General
-              elections
-            abr_election_type2: The August 2, 2022 Primary only
-            abr_election_type3: The Nov 8, 2022 General only
-          abr_election_type4: Would you like to join the permanent absent voter application
+            abr_election_type1: Presidential Primary
+            abr_election_type2: May
+            abr_election_type3: August
+            abr_election_type4: November
+          abr_primary_type_selections__options:
+            abr_primary_type1: Democractic Party Presidential Primary Ballot
+            abr_primary_type2: Republican Party Presidential Primary Ballot
+            abr_primary_type3: Ballot without Presidential Primary
+          abr_election_type5: Would you like to join the permanent absent voter application
             list?
           abr_election_type4__hint: Check this box if you'd like to vote absentee
             in all elections. <br> An application for an absent voter ballot will
