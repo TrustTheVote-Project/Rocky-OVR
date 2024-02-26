@@ -146,14 +146,14 @@ module AbrStateMethods::MI
       {"abr_absence_begin_date_input": {type: :date , required: :if_visible, visible: "abr_check_mailing_address"}},
       {"abr_absence_end_date_input": {type: :date, required: :if_visible, visible: "abr_check_mailing_address"}},
 
-      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
 
 
-      {"abr_election_type_selections": {type: :radio, options:["abr_election_type1","abr_election_type2","abr_election_type3","abr_election_type4"] , required: true}},
+      {"abr_election_type_selections": {type: :checkbox, options:["abr_election_type1","abr_election_type2","abr_election_type3","abr_election_type4"] , required: true}},
       
       {"abr_primary_type_selections": {type: :radio, options:["abr_primary_type1","abr_primary_type2","abr_primary_type3"] , required: :if_visible, visible: "abr_election_type1"}},
 

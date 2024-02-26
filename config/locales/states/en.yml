@@ -1539,6 +1539,7 @@ en:
             abr_election_type2: May
             abr_election_type3: August
             abr_election_type4: November
+          abr_primary_type_selections: Select your Presidential Primary Ballot Type.
           abr_primary_type_selections__options:
             abr_primary_type1: Democractic Party Presidential Primary Ballot
             abr_primary_type2: Republican Party Presidential Primary Ballot
