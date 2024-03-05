@@ -1,6 +1,9 @@
 ---
 en:
   email:
+    special:
+      az: |-
+        You are in AZ so it might be good to submit proof of citizenship.
     confirmation:
       subject: 'Reminder: Mail your voter registration form'
       body:

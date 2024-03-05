@@ -29,6 +29,11 @@
   :rtv_link=>@rtv_link, :locale => @locale
 ).html_safe %>
 
+<% if @registrant.home_state_abbrev == "AZ" %>
+  <hr size="3" align="left" width="100%" color="black"><br><br>
+  <%= I18n.t('email.special.az', :locale => @locale).html_safe %>
+<% end %>
+
 <hr size="3" align="left" width="100%" color="black"><br><br>
 
 <%= I18n.t('email.reminder.body.send_to_friends',
