@@ -10,8 +10,7 @@ en:
             </p>
             <p>You can use this form to register to vote and request an absentee ballot.</p>
           request_deadline: |-
-            <p>Your application must be received by October 29th for the November General Election.</p>
-            </p>
+            <p>Received by election officials 10 days before the election.</p>
           status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
           finish_instructions_1_hint: |-
             <p>Make sure to sign your application - do not type your signature.
@@ -110,8 +109,8 @@ en:
             <li>Are a caregiver for a family member to the second degree of kinship by affinity or consanguinity and the family member is confined to their home; or</li>
             <li>Are currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude. </li>
             </ul>
-          request_deadline: "<p>If you mail your absentee ballot request, it must
-            be received by November 1st for the general election. </p>"
+          request_deadline: |-
+            <p>Received by election officials no later than 7 days before the election.</p>
           status_check_instructions: <a href="https://myinfo.alabamavotes.gov/voterview">https://myinfo.alabamavotes.gov/voterview</a>
           finish_instructions_1_hint: "<p>Make sure to include a copy of your valid
             photo identification with your application. \nOnly submit one request
@@ -256,13 +255,7 @@ en:
             <li>You are a resident of a long-term care facility licensed by the state.</li>
             </ul>
           request_deadline: |-
-            <p>If you return your application in person or by designated person, it must be delivered to the county clerk by close of business the Friday before the election.</p>
-            <p>If you return your ballot by mail, it must be received by:</p>
-            <ul>
-            <li>May 17th for the Primary Election,</li>
-            <li>June 14th for the General Primary Election, and</li>
-            <li>November 1st for the General Election.</li>
-            </ul>
+            <p>Received by election officials 7 days before the election.</p>
           status_check_instructions: <p>Contact your County Clerk (<a href="https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf">https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf</a>)
             with any questions about the status of your absentee ballot.</p>
           finish_instructions_1_hint: |-
@@ -304,6 +297,8 @@ en:
               of an illness or physical disability
             abr_reason3: I am a resident of a long-term care or residential facility
               licensed by the state.
+            abr_reason4: I will be unable to attend the polls on Election Day due to 
+              an observance of a religious discipline or religious holiday.
           abr_election_type1: Would you like to receive a ballot for all elections
             in this calendar year?
           abr_election_type1_instructions: If there is primary in this calendar year,
@@ -340,12 +335,7 @@ en:
           skip_state_online_abr: I do not meet the requirements, and I would like
             to complete a paper request form.
           request_deadline: |-
-            <p>Your absentee ballot request must be received by:
-            <ul style="font-size: 14px; list-style: disc; margin-left: 30px; margin-bottom: 20px;">
-            <li>July 22 at 5:00 pm for the primary election, and</li>
-            <li>October 28 at 5:00 pm for the general electiion</li>
-            </ul>
-            </p>
+            <p>Received by election officials by 5 p.m. on the 11th day before the election.</p>
           status_check_instructions: |-
             <p><a href="https://my.arizona.vote/PortalList.aspx" target="_blank">
             https://my.arizona.vote/PortalList.aspx</a>
@@ -442,8 +432,8 @@ en:
               <h3>Check the status of your ballot</h3>
               <p>Sign up for <a href="https://california.ballottrax.net/voter/" target="_blank">Where's My Ballot?</a> to track and receive notifications on the status of your vote-by-mail ballot.
               </p>
-          request_deadline: All registered voters receive a mail ballot. You must
-            register to vote 29 days before the election.
+          request_deadline: |-
+            <p>California automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote-By-Mail status by using
             your state&#39;s <a target='_blank' href='https://voterstatus.sos.ca.gov/'>online
             tool</a>
@@ -488,7 +478,8 @@ en:
               href=\"https://www.coloradosos.gov/pubs/elections/Resources/CountyElectionOffices.html\">local
               county\n clerk and recorder's office</a> or sign up for <a target=\"_blank\"
               href=\"https://colorado.ballottrax.net/\">BallotTrax.</a>\n</p>"
-          request_deadline: through the 8th day before Election Day
+          request_deadline: |-
+            <p>Colorado automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Mail-in Ballots status by
             using your state&#39;s <a target='_blank' href='https://www.sos.state.co.us/pubs/elections/Resources/CountyElectionOffices.html'>online
             tool</a>
@@ -508,15 +499,7 @@ en:
           finish_instructions_1_hint_state: "<p>Make sure to sign your printed application.
             If you received assistance in completing your request, make sure the person
             providing assistance completes Section VII of the form.</p>"
-          request_deadline: |-
-            <p>Your application must be received by:</p>
-            <ul>
-            <li>July 26, 2022 for the primary election, and </li>
-            <li>November 1, 2022 for the general election.</li>
-            </ul>
-            <p>
-            If you do not receive your ballot in time to mail it back to your election official, you can return it by hand. Your voted ballot must be received by the close of polls on Election Day in order to be counted.
-            </p>
+          request_deadline: ''
           status_check_instructions: "<a target='_blank' href='https://portaldir.ct.gov/sots/LookUp.aspx'>https://portaldir.ct.gov/sots/LookUp.aspx</a>"
         state_online_abr:
           button: Complete your absentee request with<br/> the Connecticut Secretary
@@ -550,9 +533,8 @@ en:
               title=\"Mail Ballot Instructions\">qualifies as identification</a>.</p>\n<h3>Check
               the status of your ballot</h3>\n<p>You can <a target=\"_blank\" href=\"https://votedc.ballottrax.net/voter\">track
               the status of your ballot</a> online with the Board of Elections.\n</p>"
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
+          request_deadline: |-
+            <p>District of Columbia automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee (Mail-in Ballot)
             status by using your state&#39;s <a target='_blank' href='https://votedc.ballottrax.net/voter'>online
             tool</a>
@@ -566,8 +548,8 @@ en:
             below to request your vote by mail ballot through the state's site.
           instructions_header: Requesting a Vote by Mail Ballot in Delaware
         abr:
-          request_deadline: "<p>Your application for an absentee ballot must be received
-            by noon on November 4th for the General Election.</p>"
+          request_deadline: |-
+            <p>Received by election officials by 12 noon the fourth day before the election.</p>
           status_check_instructions: |-
             <p>
             <a target='_blank' href='https://ivote.de.gov/VoterView'>https://ivote.de.gov/VoterView</a></p>
@@ -662,7 +644,8 @@ en:
               county.</p>\n<h3>Check the status of your ballot</h3>\n<p>You may check
               on the status of your ballot at the \n<a href=\"https://dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/\">Ballot
               Status and Lookup</a> page for your county.\n</p>"
-          request_deadline: no later than 5 p.m. on the 10th day before the election
+          request_deadline: |-
+            <p>Received by election officials no later than 5 p.m. on the 10th day before the election.</p>
           status_check_instructions: You can look up your Vote-By-Mail status by using
             your state&#39;s <a target='_blank' href='https://registration.elections.myflorida.com/CheckVoterStatus'>online
             tool</a>
@@ -687,8 +670,8 @@ en:
             If you do not have a an ID on file, you can submit a paper application.
             </p>
         abr:
-          request_deadline: "<p>Your absentee ballot request must be received by November
-            28, 2022 for the general runoff.</p>"
+          request_deadline: |-
+            <p>Received by election officials 11 days before the election.</p>
           status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
             <p>You can submit your absentee ballot request to your it to your
@@ -796,9 +779,8 @@ en:
               </p>
               <p>You may check on the status of your ballot, whether it has been mailed and/or received, by contacting your <a href="https://elections.hawaii.gov/resources/county-election-divisions/">County Elections Division</a>.
               </p>
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
+          request_deadline: |-
+            <p>Hawaii automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target='_blank' href='https://ballotstatus.hawaii.gov/Default'>online
             tool</a>
@@ -815,20 +797,7 @@ en:
             absentee ballot if they are pre-registered to vote.</p>
             <p>If you have moved within the county, the address you provide will be used to update your voter registration.</p>
           request_deadline: |-
-            <h3>Requesting your ballot
-            </h3>
-            <p>Your application must be received by your county auditor by 5pm on:</p>
-            <ul><li>5/23/2022 for the primary, and</li>
-            <li>10/24/2022 for the general.</li>
-            </ul>
-            <h3>Returning your ballot</h3>
-            <p>Mail your ballot so that is received before 8 PM CT on Election Day.</p>
-            <p>You can also hand deliver your ballot to your county auditor during business hours or any time up until 8 PM CST on Election Day.
-            </p>
-            <p>Election day is:</p><ul>
-            <li>Primary: June 7.</li>
-            <li>General: November 8.</li>
-            </ul>
+            <p>Received by election officials by 5 p.m. 15 days before the election.</p>
           status_check_instructions: <a href="https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a>
         abr_form_fields:
           abr_county: Registration Address County
@@ -860,14 +829,15 @@ en:
             each election.<br>Applications will only be accepted for elections within
             the next 70 days.
           abr_election_type_selections__options:
-            abr_election_type1: Primary (Election 6/7/2022)
+            abr_election_type1: Primary
             abr_election_type2: City/School
-            abr_election_type3: General (Election 11/8/2022)
+            abr_election_type3: General
             abr_election_type4: Special
           abr_primary_type_selections1: Select the type of ballot you wish to receive.
           abr_primary_type_selections1__options:
             abr_primary_type1: Democratic
             abr_primary_type2: Republican
+            abr_primary_type3: Libertarian
           abr_election_type4_name: Enter the name of the special election
         registration:
           has_state_license: I have an IA state identification card or IA driver's
@@ -923,13 +893,7 @@ en:
             of my Social Security number.</p>"
         abr:
           request_deadline: |-
-            <p>If you would like your absentee ballot mailed to you, your application must be received by the county clerk's office by:
-            </p>
-            <ul>
-            <li>May 6, 2022 for the May primary, </li>
-            <li>August 19, 2022 for the August election, and </li>
-            <li>October 28, 2022 for the November general. </li>
-            </ul>
+            <p>Received by election officials 11 days before the election.</p>
           status_check_instructions: <a target="_blank" rel="noopener noreferrer"
             href='https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx'>https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx</a>.
           requirements: "<p>To qualify to request a ballot in ID, you only need to
@@ -941,9 +905,8 @@ en:
             card or driver's license.
       il:
         abr:
-          request_deadline: "<p>Absentee ballot requests must be received by the Election
-            Authority by June 23 \nfor the primary election. For all elections, absentee
-            ballot requests can be made \nthrough 5 days prior to the election.</p>"
+          request_deadline: |-
+            <p>Received by election officials 5 days before the election.</p>
           finish_instructions_1_hint: |-
             <p>
             Make sure to sign and date your application.
@@ -1019,11 +982,7 @@ en:
             <li>You are prevented from voting due to the unavailability of transportation to the polls.</li>
             </ul>
           request_deadline: |-
-            <p>Your absentee ballot request must be received by:</p>
-            <ul>
-            <li>4/21/2022 for the primary election, and</li>
-            <li>10/27/2022 for the general election.</li>
-            </ul>
+            <p>Received by election officials by 11:59 p.m. 12 days before the election.</p>
           status_check_instructions: <a target='_blank' rel="noopener noreferrer"
             href='https://indianavoters.in.gov/MVPHome/PrintDocuments'>https://indianavoters.in.gov/MVPHome/PrintDocuments</a>
           finish_instructions_3_hint_state: |-
@@ -1094,8 +1053,8 @@ en:
             or driver's license.
       ks:
         abr:
-          request_deadline: "<p>Your application must be received by November 1, 2022
-            for the general election.</p>"
+          request_deadline: |-
+            <p>Received by election officials by the Tuesday of the week before the election.</p>
           status_check_instructions: <p><a href="https://myvoteinfo.voteks.org/voterview"
             target="_blank">https://myvoteinfo.voteks.org/voterview</a></p>
           finish_instructions_1_hint: |-
@@ -1163,7 +1122,8 @@ en:
             or driver's license.
       ky:
         abr:
-          request_deadline: ''
+          request_deadline: |-
+            <p>Absentee ballot applications cannot be submitted by mail.</p>
           step_2_instructions: |-
             <h3>You must have a reason to vote absentee in Kentucky.</h3>
             <p>In Kentucky, you must have a reason to vote by mail. You can request a 
@@ -1196,7 +1156,8 @@ en:
             <p>In Louisiana, you must have a reason to vote by mail. You can request an 
             absentee ballot if you’re unable to vote in-person during early voting or on 
             Election Day.</p>
-          request_deadline: 'Applicants must request a ballot by 4:30 p.m. CST on the 4th day before election day.'
+          request_deadline: |-
+            <p>Received by election officials by 4:30 p.m. on the 4th day  before the election.</p>
           status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
           finish_instructions_1_hint: ''
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
@@ -1390,13 +1351,7 @@ en:
             </ul>
             <p>If you do not have one or both of those items, you can continue to fill out, print, sign and mail a paper request form.</p>
           request_deadline: |-
-            <p>
-            Your application deadline depends on how you return your form and on how you want to receive your ballot.
-            </p><ul>
-            <li>For the primary, your application must be received by July 12th if you wish to receive your ballot by mail or fax and June 15th if you wish to receive your ballot by email.
-            </li>
-            <li>For the general election, your application must be received by November 1st if you wish to receive your ballot by mail or fax and November 4th if you wish to receive your ballot by email.</li>
-            </ul>
+            <p>The deadline to request a ballot depends on how you'd like it delivered.If you want your ballot sent by mail or fax, no later than the Tuesday preceding the election.</p>
           status_check_instructions: <a href="https://vote.md.gov/search">https://vote.md.gov/search</a>
           finish_instructions_1_hint: |-
             <p>Make sure to use a pen to sign your application. No electronic signatures are allowed.
@@ -1432,8 +1387,8 @@ en:
             <p>To request an absentee ballot online, you will need to provide your address,
             birthday and name and certify that you are a registered voter in Maine. You must request your own ballot.</p>
             <p>You can also request an accessible ballot if using a paper ballot is difficult for you.</p>
-          request_deadline: "<p>Absentee ballot requests must be received by close
-            of business on November 3rd for the November 8th election.</p>"
+          request_deadline: |-
+            <p>Received by election officials by 5 p.m. on the Thursday before the election.</p>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
             <p>Your ballot must received by 8:00pm on election day.</p>
@@ -1442,6 +1397,9 @@ en:
         state_online_abr:
           requirements: "<p>If you are registered to vote and have a valid state ID,
             you may request your absentee ballot online directly with the state.</p>"
+        registration:
+          has_state_license: I have a ME driver's license, ME State ID, and/or Social Security Number.
+          has_no_state_license: I don't have a ME driver's license, ME State ID, or Social Security Number.
       ma:
         abr:
           step_2_header: MA Automatically Mails all Registered Voters a Ballot Application
@@ -1458,8 +1416,8 @@ en:
             your application, you may either scan or take a photo of your signed application
             and email it to your local election office. Typed signatures are not acceptable.
             </p>
-          request_deadline: "<p>Your absentee ballot application must be received
-            by November 2nd for the November 8th General Election. </p>"
+          request_deadline: |-
+            <p>Received by election officials by 5 p.m. on the 5th business day before the election.</p>
           status_check_instructions: |-
             <p>You can track the status of your absentee ballot here:
             <a href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
@@ -1580,16 +1538,20 @@ en:
           abr_election_type_selections: Which election(s) would you like to receive
             ballots for?
           abr_election_type_selections__options:
-            abr_election_type1: The August 2, 2022 Primary and the Nov 8, 2022 General
-              elections
-            abr_election_type2: The August 2, 2022 Primary only
-            abr_election_type3: The Nov 8, 2022 General only
-          abr_election_type4: Would you like to join the permanent absent voter application
+            abr_election_type1: Presidential Primary
+            abr_election_type2: May
+            abr_election_type3: August
+            abr_election_type4: November
+          abr_primary_type_selections: Select your Presidential Primary Ballot Type.
+          abr_primary_type_selections__options:
+            abr_primary_type1: Democractic Party Presidential Primary Ballot
+            abr_primary_type2: Republican Party Presidential Primary Ballot
+            abr_primary_type3: Ballot without Presidential Primary
+          abr_election_type5: Would you like to join the permanent absent voter application
             list?
           abr_election_type4__hint: Check this box if you'd like to vote absentee
             in all elections. <br> An application for an absent voter ballot will
-            be sent to you, for every election going forward, including other elections
-            in 2022.
+            be sent to you, for every election going forward, including other elections.
           abr_request_check: Will someone be delivering your absentee ballot application?
           abr_request_check__hint: A member of your family or person residing in your
             household may mail or deliver your application to the clerk. Family members
@@ -1602,12 +1564,7 @@ en:
           abr_assistant_address_line_1: Enter the person's address
         abr:
           request_deadline: |-
-            <p>If you are requesting an absentee ballot by mail or online, your request must be received by:</p>
-            <ul>
-            <li>July 29, 2022 for the primary election, and by</li>
-            <li>November 4, 2022 for the general election</li>
-            </ul>
-            <p>If you are submitting your request for an absentee ballot in person, you must do so by 4 pm the day before the election.</p>
+            <p>Received by election officials by 5 p.m. the Friday before the election.</p>
           status_check_instructions: "<a target='_blank' href='https://mvic.sos.state.mi.us/Voter/Index'>https://mvic.sos.state.mi.us/Voter/Index</a>"
           finish_instructions_1_hint: "<p>Make sure to sign your printed absentee
             ballot application. If someone assisted \nyou in completing your application,
@@ -1812,12 +1769,8 @@ en:
             <p>You will need a witness when you vote and complete your ballot. The witness can be either a registered Minnesota voter or a notary. Your witness must sign the signature envelope and list their address. Notaries should write their name and title, sign the signature envelope, and affix their notary stamp.</p>
 
             <p>Your ballot must be received by Election Day or it will not be counted.</p>
-          request_deadline: "<p>You can apply for a ballot any time during the year,
-            except the day of the election, but make sure to \nleave time for election
-            officials to mail your ballot.\n</p>\n<p>If you do not receive your ballot
-            in time to mail it back to your election official, you can return it by
-            hand. Ballots returned by hand must be received by 3 pm on election day
-            to be counted.</p>"
+          request_deadline: |-
+            <p>Received by election officials the day before the election.</p>
           finish_instructions_1_hint: "<p>You can return your completed application
             to your county election office by mail, fax, or email.\n</p>\n<p>If you
             are not registered at the legal residence address provided, you will be
@@ -1865,10 +1818,7 @@ en:
             <li>6. You are in the address confidentiality program.</li>
             </ol>
           request_deadline: |-
-            <p>Absentee ballot requests must be received by your election authority no later than the 5:00 p.m. on the second Wednesday prior to any election.
-            </p>
-            <p>For the November General Election, your request must be received by 5 pm on 10/26/2022.
-            </p>
+            <p>Received by election officials no later than 5 p.m. on the second Wednesday before the election.</p>
           finish_instructions_1_hint: "<p>Make sure to sign your printed absentee
             ballot application.\n</p>\n<p>If this is your first time voting, you must
             provide a \ncopy of your identification unless you provided a copy with
@@ -1937,9 +1887,8 @@ en:
             abr_primary_type5: Issues only
       ms:
         abr:
-          request_deadline: The deadline to apply for an absentee ballot is election
-            day since ballots can technically be sent on election day, and will be
-            counted if returned by 7 days after the election.
+          request_deadline: |-
+            <p>Absentee ballot applications cannot be submitted by mail.</p>
           status_check_instructions: 'You can look up your Absentee Ballot status
             by calling your local election official.  Find your official&#39;s contact
             information here: <a target=''_blank'' href=''https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx''>Directory</a>'
@@ -1964,11 +1913,7 @@ en:
       mt:
         abr:
           request_deadline: |-
-            <p>Applications must be <b>received by the county election office by noon the day before the election</b>.
-            If you want your ballot mailed to you, make sure to leave time for the application to be delivered at the election office and the ballot to be sent to you.
-            </p>
-            <p>If you drop off the application you will be able to pick up the absentee ballot at the same time.
-            </p>
+            <p>Received by election officials by noon the day before the election.</p>
           status_check_instructions: <a href="https://app.mt.gov/voterinfo/">https://app.mt.gov/voterinfo/</a>
           requirements: Any registered voter who has been a resident of Montana for
             at least 30 days may request an absentee ballot.
@@ -2014,8 +1959,8 @@ en:
         abr:
           step_2_instructions: "<p>All registered voters in North Carolina can request
             an absentee ballot.</p>"
-          request_deadline: "<p>Absentee ballot requests must be received by 5:00
-            pm on November 1, 2022 for the general election.</p>"
+          request_deadline: |-
+            <p>Received by election officials by 5 p.m. the Tuesday before the election.</p>
           finish_instructions_3_hint_state: |-
             <p>When you prepare to vote, make sure that you have a notary public or two witnesses present.
              You can return your voted ballot by mail, in person at your county board of elections or at an open
@@ -2113,8 +2058,8 @@ en:
             <li>A resident who has resided in the precinct at least thirty days immediately preceding any election; and</li>
             <li>Able to provide a North Dakota driver’s license, nondriver ID, or tribal ID that includes your current residential address and date of birth. If you don't have one of those forms of ID, another qualified elector of the state may attest for you.</li>
             </ul>
-          request_deadline: "<p>Your absentee ballot request must be received by November
-            7th for the November general election.</p>"
+          request_deadline: |-
+            <p>There is no deadline to request an absentee ballot. Applications be submitted to your election official in a timely manner so that you can receive, complete, and mail the absent voter's ballot before the day of the election.</p>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
             <p>If you mail your absentee ballot, it must be postmarked the day before the election in order to be counted.</p>
@@ -2164,8 +2109,8 @@ en:
           ID_Number_dln__format_message: Invalid ND driver's license format
       ne:
         abr:
-          request_deadline: Your application must be received by 11/5/2022 for the
-            November General Election.
+          request_deadline: |-
+            <p>Received by election officials by 6 p.m. on the second Friday before the election.</p>
           status_check_instructions: <a href="https://www.votercheck.necvr.ne.gov/voterview/">https://www.votercheck.necvr.ne.gov/voterview/</a>
           finish_instructions_1_hint: |-
             <p>If an agent is requesting a ballot for you, make sure that agent also signs your request form.
@@ -2199,11 +2144,7 @@ en:
             driver's license.
       nh:
         abr:
-          request_deadline: "<p>Your application for an absentee ballot must be received
-            by your City or Town Clerk by 5:00 pm \non the day before the election.\n</p>\n<p>If
-            you do not receive your ballot in time to mail it back to your election
-            official, you can return it by hand.\nYour voted ballot must be received
-            by your City or Town Clerk by 5:00 pm on Election Day.\n</p>"
+          request_deadline: ''
           status_check_instructions: |-
             <p>
             <a href="https://app.sos.nh.gov/viphome" target="_blank">https://app.sos.nh.gov/viphome</a></p>
@@ -2293,7 +2234,8 @@ en:
           abr_assistant_name: Enter the name of the assistant
       nj:
         abr:
-          request_deadline: ""
+          request_deadline: |-
+            <p>Received by election officials 7 days before the election.</p>
           status_check_instructions: <a href="https://nj.gov/state/elections/vote.shtml">
             https://nj.gov/state/elections/vote.shtml</a>.
           finish_instructions_1_hint: ""
@@ -2363,14 +2305,18 @@ en:
           abr_county: Registration Address County
           abr_check_mailing_address: I get my mail at a different address from my
             registration address
+          abr_election_type1: I want to be added to my county's Permanent Absentee List. 
+            This means that the county clerk will automatically send a mailed ballot to my 
+            voter registration's mailing address each time there is a statewide election 
+            that includes my precinct.
           abr_mailing_address_line_1: Mailing address
           abr_mailing_unit: Unit
           abr_mailing_city: City
           abr_mailing_state_abbrev: State
           abr_mailing_zip: ZIP
         abr:
-          request_deadline: Your absentee ballot request must be received by November
-            3, 2022 at 5:00pm for the general election.
+          request_deadline: |-
+            <p>Received by election officials the Thursday immediately before the election.</p>
           status_check_instructions: |-
             <a href="https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker">
             https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker
@@ -2418,8 +2364,8 @@ en:
               </p>
               <p>You may check on the status of your ballot by clicking "Voter History" at Nevada's <a href="https://www.nvsos.gov/votersearch/">Registered Voter Services</a>.
               </p>
-          request_deadline: All registered voters receive a ballot by mail. Registrations
-            must be postmarked the fourth Tuesday before any primary or general election.
+          request_deadline: |-
+            <p>Nevada automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target='_blank' href='https://www.nvsos.gov/votersearch/'>online
             tool</a>
@@ -2489,8 +2435,7 @@ en:
             <li>You are a resident or patient of a Veterans Health Administration Hospital, or</li>
             <li>You are detained in jail/prison, awaiting trial, awaiting action by a grand jury, or in prison for a conviction of a crime or offense which was not a felony.</li>
             </ul>
-          request_deadline: "<p>You can request your ballot online until August 8th
-            for the Second Primary Election and October 24th for the General Election.</p>"
+          request_deadline: ''
           status_check_instructions: |-
             <p>Track your absentee ballot request by contacting your County Board of Elections:
             <a href="https://www.elections.ny.gov/CountyBoards.html">https://www.elections.ny.gov/CountyBoards.html</a>
@@ -2640,7 +2585,8 @@ en:
               If you are returning your voted absentee ballot by hand, it must be received by the close of polls on Election Day, November 8th.</p>
           step_2_instructions: "<p>All registered voters in Ohio can request an absentee
             ballot.</p>"
-          request_deadline: 'Your absentee ballot request must be received 7 days before Election Day.'
+          request_deadline: |-
+            <p>Received by election officials by the close of business seven days before the election.</p>
           status_check_instructions: <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/">https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/</a>
           finish_instructions_1_hint: "<p>If you did not provide your Ohio driver's
             license number or the last four digits of your \nSocial Security number,
@@ -2692,6 +2638,8 @@ en:
       ok:
         abr:
           status_check_instructions: <a href="https://okvoterportal.okelections.us/">https://okvoterportal.okelections.us/</a>
+          request_deadline: |-
+            <p>Received by election officials by 5 p.m. the third Monday (15 days) before the election.</p>
           finish_instructions_1_hint_state: "<p>You can request an absentee ballot
             any time starting January 1st for that calendar year. You may apply for
             absentee ballots for one election, for several elections or for all elections
@@ -2751,9 +2699,8 @@ en:
               Day.\n</p>\n\n<h3>Check the status of your ballot</h3>\n<p>You can check
               the status of your ballot at <a href=\"https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS\">My
               Vote</a>.</p>"
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
+          request_deadline: |-
+            <p>Oregon automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote By Mail status by using
             your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online
             tool</a>
@@ -2804,7 +2751,8 @@ en:
             in making my mark in lieu of my signature.
           Address of witness: Address of witness or assistant
         abr:
-          request_deadline: ""
+          request_deadline: |-
+            <p>Received by election officials by 5 p.m. on the Tuesday before the election.</p>
           status_check_instructions: <p><a href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">https://www.pavoterservices.pa.gov/pages/ballottracking.aspx</a></p>
           finish_instructions_1_hint: ""
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
@@ -2954,11 +2902,7 @@ en:
             </li>
             </ul>
           request_deadline: |-
-            <h3>Deadlines for voting absentee</h3>
-            <p>Your absentee ballot request must be received by November 4th for the November general election. </p>
-            <p>We recommend applying at least one week prior to election to allow adequate mail time.</p>
-            <h3>Don't forget to vote!</h3>
-            <p>Your voted absentee ballot must be received by the close of polls in order to be counted.</p>
+            <p>Received by election officials by 5:00 p.m. on the 11th day before the election.</p>
           status_check_instructions: "<a target='_blank' rel='noreferrer noopener'
             href='https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo'>https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a>"
           requirements: |-
@@ -3000,14 +2944,15 @@ en:
         abr:
           step_2_instructions: |-
             <p>All registered voters in Rhode Island can request an absentee ballot.</p>
-          request_deadline: ''
+          request_deadline: |-
+            <p>Received by election officials by 4:00 p.m. on the 21st day before the election.</p>
           status_check_instructions: |-
             <p><a target='_blank' href='https://ballottrax.sos.ri.gov/voter/'>https://ballottrax.sos.ri.gov/voter/</a>
             </p>
           finish_instructions_1_hint: ""
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
             must be received by 8:00 pm on Election Day.</p>"
-          _requirements: |-
+          requirements: |-
             <p>Any registered voter can request an absentee ballot in Rhode Island, and 
             must identify one of the following reasons for requesting the absentee 
             ballot:</p>
@@ -3038,6 +2983,11 @@ en:
           abr_reason1: I am confined to a facility and would like my mail ballot delivered
             to me.
           abr_mailing_address_line_2: Enter the name of the facility.
+          abr_party_selections: |-
+            <p class="instructions">You will receive a mail ballot for the party you are registered with. If you are an unaffiliated voter, please select one party:</p>
+          abr_party_selections__options:
+            abr_party1: Democratic Ballot
+            abr_party2: Republican Ballot
         registration:
           has_state_license: I have a RI state identification card or RI driver's
             license.
@@ -3047,13 +2997,9 @@ en:
         abr:
           finish_instructions_1_hint: |-
             <p>Make sure to include a copy of your identification or get your application notarized.</p>
-
-            <p>If you have designated an authorized messenger, make sure to sign and date box 8. The messenger should not sign and date the form until they are turning in the application. If you apply for a ballot by authorized messenger, the application must be received by 3:00 p.m. the day of the election.
-            </p>
+            <p>If you have designated an authorized messenger, make sure to sign and date box 8. The messenger should not sign and date the form until they are turning in the application. If you apply for a ballot by authorized messenger, the application must be received by 3:00 p.m. the day of the election.</p>
           request_deadline: |-
-            <p>Your application must be received by 5:00 p.m. the day before the election.</p>
-
-            <p>If you do not receive your ballot in time to mail it back to your election official, you can return it by hand. Your voted ballot must be received by your County Election Official on Election Day in enough time to deliver it to your voting precinct before the polls close.</p>
+            <p>Received by election officials by 5 p.m. the day before the election.</p>
           status_check_instructions: <a target='_blank' rel="noopener noreferrer"
             href='https://vip.sdsos.gov/viplogin.aspx'>https://vip.sdsos.gov/viplogin.aspx</a>
           requirements: "<p>In South Dakota to submit a request to vote absentee,
@@ -3135,9 +3081,8 @@ en:
           abr_assistant_zip: Zip
       tn:
         abr:
-          request_deadline: Check with your local election officials for your state's
-            voting deadlines.  We recommend sending in your application/request and
-            ballot as soon as possible.
+          request_deadline: |-
+            <p>Received by election officials seven days before the election.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target='_blank' href='https://tnmap.tn.gov/voterlookup/'>online
             tool</a>
@@ -3219,7 +3164,8 @@ en:
             <li>be expected to give birth within three weeks before or after Election Day; or</li>
             <li>be confined in jail, but otherwise eligible.</li>
             </ul>
-          request_deadline: Your absentee ballot request must be received by 10/28/2022.
+          request_deadline: |-
+            <p>Received by election officials Applications must be received (not postmarked) by last day of the application period. All applications to vote by mail must be received by the early voting clerk before the close of regular business or 12 noon, whichever is later. before the election.</p>
           finish_instructions_1_hint: |-
             <p>
             If you were unable to sign the application and someone witnessed your signature, that person must complete Section 11.
@@ -3400,8 +3346,8 @@ en:
               Election Day. If you mail your ballot, it must be postmarked 1 day before 
               Election Day and received by 12:00 pm on the day of the county canvass for 
               it to count.</p>
-          request_deadline: If you are an active registered voter then you will automatically
-            receive a ballot in the mail.
+          request_deadline: |-
+            <p>Utah automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
             using your state&#39;s <a target="_blank" rel="noopener noreferrer" href='https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot'>online
             tool</a>
@@ -3417,7 +3363,8 @@ en:
             with your voted ballot. See more information here: 
             <a href="https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/">https://www.elections.virginia.gov/casting-a-ballot/absentee-voting/</a>
             </p>
-          request_deadline: ''
+          request_deadline: |-
+            <p>Received by election officials 5:00 pm on the eleventh day before the election.</p>
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
             must be returned by 7:00 pm on Election Day. If you mail in your ballot, it 
             must be postmarked by Election Day and received by 12:00 pm on the third day 
@@ -3547,10 +3494,7 @@ en:
               the close of business on November 7th, or to the polling place before 7 pm on Election Day,
               November 8th. Ballots may be returned by mail or in person.</p>
           request_deadline: |-
-            <p>All early voter absentee ballot requests must be submitted by 5 p.m. or by the close of the town clerk’s office on the day before the election.
-            </p>
-            <p>If you mail your form, make sure it is received by that time.
-            </p>
+            <p>Received by election officials by 5 p.m. or by the close of the town clerk’s office on the day before the election.</p>
           status_check_instructions: |-
             <p>
             <a target='_blank' href='https://mvp.vermont.gov/'>https://mvp.vermont.gov/</a></p>
@@ -3652,9 +3596,8 @@ en:
               <h3>Check the status of your ballot</h3>
               <p>You may check on the status of your ballot at <a href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA.gov</a>.
               </p>
-          request_deadline: If you are registered to vote in Washington, you do not
-            need to request a ballot. Online and mail registrations must be received
-            8 days before Election Day.
+          request_deadline: |-
+            <p>Washington automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote By Mail status by using
             Washington's <a target='_blank' href='https://voter.votewa.gov/WhereToVote.aspx#/login'>online
             tool</a>
@@ -3747,14 +3690,8 @@ en:
           step_2_instructions: |-
             <p>All registered voters in Wisconsin can request an absentee ballot.</p>
             <p>Before you request your ballot online, you will need to confirm or complete a registration. Military voters do not need to be registered to get an absentee ballot.</p>
-          request_deadline: "<h3>Deadlines to request an absentee ballot</h3> <p>If
-            you're requesting an absentee ballot for one election, your application
-            must be received no later than 5:00 p.m. on the Thursday preceding that
-            election.</p> <p>If you're making a  calendar year request, your application
-            must be received no  later than 5:00 p.m. on the Friday preceding the
-            election.</p> <p> If you are applying within 10 days of the election,
-            the State strongly encourages you to visit an in-person absentee voting
-            (early voting) location or request that your ballot be emailed to you.</p>"
+          request_deadline: |-
+            <p>Received by election officials 5:00 p.m. on the 5th day before the election.</p>
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your
             voted absentee ballot must be received by the close of polls on Election
             Day in order to be counted.</p> <p>You must return your absentee ballot
@@ -3780,6 +3717,8 @@ en:
             card or driver's license.
       wv:
         abr:
+          request_deadline: |-
+            <p>Received by election officials by the 6th day before the election.</p>
           splash:
             instructions_1: "<h3>Eligibility to request an absentee ballot</h3>\n<p>You
               may be eligible to request an absentee ballot if you are unable to vote
@@ -3814,12 +3753,8 @@ en:
             driver's license, and Social Security Number.
       wy:
         abr:
-          request_deadline: "<p>Your absentee ballot request must be received county
-            clerk's office by the day before the election.</p>\n<p>Your completed
-            ballot must be received no later than 7:00 p.m. on Election Day. \nIf
-            you do not receive your ballot in time to mail it back to your election
-            official, you can return\nit by hand. Ballots arriving after the deadline
-            will not be counted.</p>"
+          request_deadline: |-
+            <p>Received by election officials the day before the election.</p>
           status_check_instructions: |-
             <p>For more information on the status of your ballot,
             contact your <a target="_blank" href="https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf">county clerk.</a></p>

@@ -38,6 +38,7 @@ module AbrStateMethods::AR
         "abr_reason1",
         "abr_reason2",
         "abr_reason3",
+        "abr_reason4"
       ]
     },
 

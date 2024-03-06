@@ -33,6 +33,8 @@
   = render partial: 'name', locals: {form: form}
 
   - if @registrant.use_short_form?
+    = render partial: 'previous_name', locals: { form: form }
+
     %ul.checkbox.checkbox-step-1
       %li.spacer= "&nbsp;"
       %li.registrant-form__us-citizen__line
@@ -50,8 +52,6 @@
             = form.label :will_be_18_by_election
             %span.error= form.object.errors[:will_be_18_by_election].join("\n")
 
-    = render partial: 'previous_name', locals: { form: form }
-    
   = render :partial=> "registrants/home_address", :locals=>{:form=>form}
   
   - if @registrant.use_short_form?

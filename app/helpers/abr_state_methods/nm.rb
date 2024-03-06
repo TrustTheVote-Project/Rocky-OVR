@@ -8,6 +8,7 @@ module AbrStateMethods::NM
         "abr_id_no1",
       ]
     },
+    "abr_election_type1": {options: ["Off", "On"]},
     "abr_full_name": {method: "full_name"},
     "abr_address_line_1": {method: "address_line_1"},
     "abr_address_line_2": {method: "address_line_2"},
@@ -21,7 +22,7 @@ module AbrStateMethods::NM
     "abr_date_of_birth_YYYY": {method: "date_of_birth_yyyy"},
     "abr_phone": {method: "phone"},
   }
-  EXTRA_FIELDS = ["abr_check_mailing_address"]
+  EXTRA_FIELDS = ["abr_check_mailing_address", "abr_election_type1"]
   
   # def whatever_it_is_you_came_up_with
   #   # TODO when blah is selected it should be "abc" and otherwise left blank
@@ -70,7 +71,8 @@ module AbrStateMethods::NM
       {"abr_mailing_unit": {visible: "abr_check_mailing_address", classes: "quarter"}},
       {"abr_mailing_city": {visible: "abr_check_mailing_address", required: :if_visible, classes: "half"}},
       {"abr_mailing_state_abbrev": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter", options: GeoState.collection_for_select}},
-      {"abr_mailing_zip": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter"}},      
+      {"abr_mailing_zip": {visible: "abr_check_mailing_address", required: :if_visible, classes: "quarter"}},
+      {"abr_election_type1": {type: :checkbox}},   
     ]
   end
   #e.g.

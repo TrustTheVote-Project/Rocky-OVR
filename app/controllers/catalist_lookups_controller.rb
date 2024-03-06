@@ -12,8 +12,11 @@ class CatalistLookupsController < ApplicationController
       email: @email,
       first: @first_name,
       last: @last_name,
+      address: @address,
+      city: @city,
       state: @home_state,
       zip: @zip,
+      phone: @phone,
       phone_type: "mobile",
     )
     if @lookup.partner.primary?
@@ -130,10 +133,13 @@ class CatalistLookupsController < ApplicationController
     @email = params[:email]
     @first_name = params[:first_name]
     @last_name = params[:last_name]
+    @address = params[:address]
+    @city = params[:city]
     @state_abbrev = params[:state_abbrev] || params[:state]
     @zip = params[:zip]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     @home_state ||= @zip ? GeoState.for_zip_code(@zip.strip) : nil
+    @phone = params[:phone]
 
     @query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
       "locale",
@@ -142,9 +148,12 @@ class CatalistLookupsController < ApplicationController
       "email",
       "first_name",
       "last_name",
+      "address",
+      "city",
       "state_abbrev",
       "state",
       "zip",
+      "phone",
       "partner",
     ] ))) || {}
   end
