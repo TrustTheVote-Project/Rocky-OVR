@@ -829,9 +829,9 @@ en:
             each election.<br>Applications will only be accepted for elections within
             the next 70 days.
           abr_election_type_selections__options:
-            abr_election_type1: Primary (Election 6/7/2022)
+            abr_election_type1: Primary
             abr_election_type2: City/School
-            abr_election_type3: General (Election 11/8/2022)
+            abr_election_type3: General
             abr_election_type4: Special
           abr_primary_type_selections1: Select the type of ballot you wish to receive.
           abr_primary_type_selections1__options:
