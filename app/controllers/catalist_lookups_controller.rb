@@ -12,6 +12,7 @@ class CatalistLookupsController < ApplicationController
       email: @email,
       first: @first_name,
       last: @last_name,
+      city: @city,
       state: @home_state,
       zip: @zip,
       phone_type: "mobile",
@@ -130,7 +131,7 @@ class CatalistLookupsController < ApplicationController
     @email = params[:email]
     @first_name = params[:first_name]
     @last_name = params[:last_name]
-    @city = params.dig(:catalist_lookup, :city)
+    @city = params[:city]
     @state_abbrev = params[:state_abbrev] || params[:state]
     @zip = params[:zip]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
