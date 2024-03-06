@@ -130,6 +130,7 @@ class CatalistLookupsController < ApplicationController
     @email = params[:email]
     @first_name = params[:first_name]
     @last_name = params[:last_name]
+    @city = params[:city]
     @state_abbrev = params[:state_abbrev] || params[:state]
     @zip = params[:zip]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
@@ -142,6 +143,7 @@ class CatalistLookupsController < ApplicationController
       "email",
       "first_name",
       "last_name",
+      "city"
       "state_abbrev",
       "state",
       "zip",
