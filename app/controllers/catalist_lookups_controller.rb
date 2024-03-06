@@ -143,7 +143,7 @@ class CatalistLookupsController < ApplicationController
       "email",
       "first_name",
       "last_name",
-      "city"
+      "city",
       "state_abbrev",
       "state",
       "zip",
