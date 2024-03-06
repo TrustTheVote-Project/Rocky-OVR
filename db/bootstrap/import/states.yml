@@ -377,6 +377,7 @@ record_19:
   sos_phone: "(207) 624-7650"
   sos_url: https://www.maine.gov/sos/cec/elec/index.html
   sub_18: once_turned_16
+  online_registration_url: https://registertovote.sos.maine.gov/OnlineVoterRegistration/Registration
   registration_deadline: maine
   id_length_min: '4'
   parties:

@@ -166,16 +166,16 @@ zip: "string" // 5-digit zip code
 
   <h3 arial-level="3" role="heading">Share links directly to your tools:</h3>
   <p>
-  Use this URL to promote your Voter Registration tool: <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}" %>
+  Use this URL to promote your Voter Registration tool: <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}", target: "_blank" %>
   </p>
   <p>
-  Use this URL to promote your Absentee Ballot Request tool: <%= link_to "https://#{RockyConf.ui_url_host}/absentee/?partner=#{@partner.id}", "https://#{request.host}/absentee/?partner=#{@partner.id}" %>
+  Use this URL to promote your Absentee Ballot Request tool: <%= link_to "https://#{RockyConf.ui_url_host}/absentee/?partner=#{@partner.id}", "https://#{request.host}/absentee/?partner=#{@partner.id}", target: "_blank" %>
   </p>
   <p>
-  Use this URL to promote your Voter Status Lookup tool: <%= link_to "https://#{RockyConf.ui_url_host}/lookup/?partner=#{@partner.id}", "https://#{request.host}/lookup/?partner=#{@partner.id}" %>
+  Use this URL to promote your Voter Status Lookup tool: <%= link_to "https://#{RockyConf.ui_url_host}/lookup/?partner=#{@partner.id}", "https://#{request.host}/lookup/?partner=#{@partner.id}", target: "_blank" %>
   </p>
   <p>
-  Use this URL to promote your Pledge to Vote tool: <%= link_to "https://#{RockyConf.ui_url_host}/pledge/?partner=#{@partner.id}", "https://#{request.host}/pledge/?partner=#{@partner.id}" %>
+  Use this URL to promote your Pledge to Vote tool: <%= link_to "https://#{RockyConf.ui_url_host}/pledge/?partner=#{@partner.id}", "https://#{request.host}/pledge/?partner=#{@partner.id}", target: "_blank" %>
   </p>
 
 
