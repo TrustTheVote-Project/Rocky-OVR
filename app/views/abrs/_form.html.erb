@@ -13,6 +13,7 @@ $(document).ready(function() {
 <%= form.hidden_field :last_name %>
 <%= form.hidden_field :tracking_source %>
 <%= form.hidden_field :tracking_id %>
+<%= form.hidden_field :city %>
 <%= form.hidden_field :home_state %>
 <%- (@query_parameters || {}).keys.each do |qpk| %>
   <%= hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk] %>
