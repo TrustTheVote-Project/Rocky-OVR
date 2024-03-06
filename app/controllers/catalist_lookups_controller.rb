@@ -16,6 +16,7 @@ class CatalistLookupsController < ApplicationController
       city: @city,
       state: @home_state,
       zip: @zip,
+      phone: @phone,
       phone_type: "mobile",
     )
     if @lookup.partner.primary?
@@ -138,6 +139,7 @@ class CatalistLookupsController < ApplicationController
     @zip = params[:zip]
     @home_state = @state_abbrev.blank? ? nil : GeoState[@state_abbrev.to_s.upcase]
     @home_state ||= @zip ? GeoState.for_zip_code(@zip.strip) : nil
+    @phone = params[:phone]
 
     @query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
       "locale",
@@ -151,6 +153,7 @@ class CatalistLookupsController < ApplicationController
       "state_abbrev",
       "state",
       "zip",
+      "phone",
       "partner",
     ] ))) || {}
   end
