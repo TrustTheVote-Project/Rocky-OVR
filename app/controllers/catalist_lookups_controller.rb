@@ -12,6 +12,7 @@ class CatalistLookupsController < ApplicationController
       email: @email,
       first: @first_name,
       last: @last_name,
+      address: @address,
       city: @city,
       state: @home_state,
       zip: @zip,
@@ -131,6 +132,7 @@ class CatalistLookupsController < ApplicationController
     @email = params[:email]
     @first_name = params[:first_name]
     @last_name = params[:last_name]
+    @address = params[:address]
     @city = params[:city]
     @state_abbrev = params[:state_abbrev] || params[:state]
     @zip = params[:zip]
@@ -144,6 +146,7 @@ class CatalistLookupsController < ApplicationController
       "email",
       "first_name",
       "last_name",
+      "address",
       "city",
       "state_abbrev",
       "state",
