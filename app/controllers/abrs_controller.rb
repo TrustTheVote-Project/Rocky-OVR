@@ -24,7 +24,6 @@ class AbrsController < ApplicationController
         email: @email,
         first_name: @first_name,
         last_name: @last_name,
-        city: @city,
         home_state: @home_state,
         zip: @zip,
     )
