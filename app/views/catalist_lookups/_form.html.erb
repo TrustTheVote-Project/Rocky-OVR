@@ -14,8 +14,6 @@ $(document).ready(function() {
   <%= hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk] %>
 <%- end %>
 
-<!-- DEBUG: <%= debug @query_parameters %> -->
-
 <fieldset>
   <legend><span><%= I18n.t('txt.registration.name') %></span></legend>
   <ul class="stacked">
