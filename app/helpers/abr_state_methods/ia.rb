@@ -2,37 +2,45 @@ module AbrStateMethods::IA
   
   
   PDF_FIELDS = {
-    "Email Address": { method: "email" },	
+    "Email Address": { method: "email" },
     "Phone Number": {method: "phone"},
-    "abr_first_name": { method: "first_name" },	
-    "abr_middle_name": { method: "middle_name"},	
-    "abr_last_name": { method: "last_name"},	
-    "abr_name_suffix": { method: "name_suffix" },	
-    "abr_date_of_birth_mm_dd_yyyy": {
-      pdf_name: "date_of_birth_mm_dd_yyyy",
-      method: "date_of_birth_mm_dd_yyyy"
-    },	
+    "abr_first_name": { method: "first_name" },
+    "abr_middle_name": { method: "middle_name"},
+    "abr_last_name": { method: "last_name"},
+    "abr_name_suffix": { method: "name_suffix" },
+    "abr_date_of_birth_month": {
+      pdf_name: "date_of_birth_mm",
+      method: "date_of_birth_mm"
+    },
+    "abr_date_of_birth_day": {
+      pdf_name: "date_of_birth_dd",
+      method: "date_of_birth_dd"
+    },
+    "abr_date_of_birth_year": {
+      pdf_name: "date_of_birth_yyyy",
+      method: "date_of_birth_yyyy"
+    },
     "abr_address_line_1": { method: "address" },
-    "abr_city": { method: "city"},	
-    "abr_home_state_abbrev": { method: "home_state_abbrev"},	
-    "abr_zip": { method: "zip" },	
-    "abr_county": {},	
+    "abr_city": { method: "city"},
+    "abr_home_state_abbrev": { method: "home_state_abbrev"},
+    "abr_zip": { method: "zip" },
+    "abr_county": {},
     "abr_mailing_street_number": {},
     "abr_mailing_street_name": {},
     "abr_mailing_unit": {},
-    "abr_mailing_city": {},	
-    "abr_mailing_state_abbrev": {},	
-    "abr_mailing_zip": {},	
-    "abr_mailing_country": {},	
+    "abr_mailing_city": {},
+    "abr_mailing_state_abbrev": {},
+    "abr_mailing_zip": {},
+    "abr_mailing_country": {},
     "abr_id_selections": {
       options: [
         "abr_id_type1",
         "abr_id_type2"
       ]
-    },	
-    "abr_drivers_license": { sensitive: true },	
-    "abr_id_type2_name": {},	
-    "abr_election_type_selections": {	
+    },
+    "abr_drivers_license": { sensitive: true },
+    "abr_id_type2_name": {},
+    "abr_election_type_selections": {
       options: [
        "abr_election_type1",
       "abr_election_type2",
@@ -47,7 +55,7 @@ module AbrStateMethods::IA
         "abr_primary_type3"
       ]
     },
-    "abr_election_type4_name": {},	
+    "abr_election_type4_name": {},
   }
   
   EXTRA_FIELDS = ["abr_check_mailing_address"]
@@ -159,18 +167,18 @@ module AbrStateMethods::IA
     {"abr_mailing_street_number": {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address"}},
     {"abr_mailing_street_name": {classes: "half", required: :if_visible, visible: "abr_check_mailing_address"}},
     {"abr_mailing_unit": {classes: "quarter", visible: "abr_check_mailing_address"}},
-    {"abr_mailing_city": {classes: "half", required: :if_visible, visible: "abr_check_mailing_address"}},	
-    {"abr_mailing_state_abbrev": {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address", type: :select, options: GeoState.collection_for_select}},	
-    {"abr_mailing_zip": {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address"}},	
-    {"abr_mailing_country": {visible: "abr_check_mailing_address"}},	
+    {"abr_mailing_city": {classes: "half", required: :if_visible, visible: "abr_check_mailing_address"}},
+    {"abr_mailing_state_abbrev": {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address", type: :select, options: GeoState.collection_for_select}},
+    {"abr_mailing_zip": {classes: "quarter", required: :if_visible, visible: "abr_check_mailing_address"}},
+    {"abr_mailing_country": {visible: "abr_check_mailing_address"}},
     
     {"abr_id_selections": { required: true, type: :radio }},
 
-    {"abr_drivers_license": { required: :if_visible, sensitive: true, visible: "abr_id_selections_abr_id_type1", regexp: /\A[\da-zA-Z]{9}\z/ }},	
+    {"abr_drivers_license": { required: :if_visible, sensitive: true, visible: "abr_id_selections_abr_id_type1", regexp: /\A[\da-zA-Z]{9}\z/ }},
     {"abr_id_type2_name": {required: :if_visible, visible: "abr_id_selections_abr_id_type2", regexp: /\A\d{4}\z/ }},
     {"abr_election_type_selections": { type: :radio, required: true}},
     {"abr_primary_type_selections1": { type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type1"}},
-    {"abr_election_type4_name": {required: :if_visible, visible: "abr_election_type_selections_abr_election_type4"}},	
+    {"abr_election_type4_name": {required: :if_visible, visible: "abr_election_type_selections_abr_election_type4"}},
     
     ]
   end
