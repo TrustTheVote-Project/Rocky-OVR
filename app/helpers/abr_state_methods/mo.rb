@@ -45,6 +45,7 @@ module AbrStateMethods::MO
       options: [
         "abr_election_type1",
         "abr_election_type2",
+        "abr_election_type3",
       ]
     },
     "abr_election_date": {
@@ -76,14 +77,14 @@ module AbrStateMethods::MO
   
   def form_field_items
     [
-      {"abr_last_4_ssn": {required: true, regexp: /\A\d{4}\z/}},	
-      {"abr_check_mailing_address": {type: :checkbox}},	
+      {"abr_last_4_ssn": {required: true, regexp: /\A\d{4}\z/}},
+      {"abr_check_mailing_address": {type: :checkbox}},
       {"abr_mailing_address_instructions": {type: :instructions, visible: "abr_check_mailing_address"}},
-      {"abr_mailing_address_line_1_input": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_state_abbrev_input": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_zip_input": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_address_line_1_input": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_state_abbrev_input": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_zip_input": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
       
       {"abr_reason_selections": { type: :radio, required: true }},
       {"abr_election_type_selections_instructions": {type: :instructions}},

@@ -1828,8 +1828,9 @@ en:
           abr_election_type_selections: Select the election to request an absentee
             ballot for.
           abr_election_type_selections__options:
-            abr_election_type1: 3/23/24 Democratic Party Presidential Primary
-            abr_election_type2: 4/2/24 General Municipal Election
+            abr_election_type1: "3/23/24 Democratic Party Presidential Primary"
+            abr_election_type2: "4/2/24 General Municipal Election"
+            abr_election_type2: "Other"
           abr_election_date_input: Enter the date of the election
           abr_election_date_input__hint: The election must be within 60 days.
           abr_primary_type_selections: Select the type of ballot you wish to receive.
