@@ -97,21 +97,10 @@ en:
         abr:
           step_2_instructions: |-
             <h3>You must have a reason to request an absentee ballot.</h3>
-            <p>
-            You can request an absentee ballot if you:
-            </p>
-            <ul>
-            <li>Expect to be absent from the county or the state on Election Day;</li>
-            <li>Are physically incapacitated and will not be able to vote in person on Election Day;</li>
-            <li>Are a registered Alabama voter living outside the county, such as a member of the armed forces, a voter employed outside the United States, a college student, or a spouse or child of such a person;</li>
-            <li>Are an appointed election officer or poll watcher at a polling place other than their regular polling place;</li>
-            <li>Expect to work a required shift, 10 hours or more, that coincides with polling hours;</li>
-            <li>Are a caregiver for a family member to the second degree of kinship by affinity or consanguinity and the family member is confined to their home; or</li>
-            <li>Are currently incarcerated in prison or jail and have not been convicted of a felony involving moral turpitude. </li>
-            </ul>
+            <p>In Alabama, you must have an <a rel="noopener noreferrer" href="https://www.sos.alabama.gov/alabama-votes/voter/absentee-voting" target="_blank">eligible excuse</a> to vote by mail.</p>
           request_deadline: |-
             <p>Received by election officials no later than 7 days before the election.</p>
-          status_check_instructions: <a href="https://myinfo.alabamavotes.gov/voterview">https://myinfo.alabamavotes.gov/voterview</a>
+          status_check_instructions: <a rel="noopener noreferrer" href="https://myinfo.alabamavotes.gov/voterview" target="_blank">https://myinfo.alabamavotes.gov/voterview</a>
           finish_instructions_1_hint: "<p>Make sure to include a copy of your valid
             photo identification with your application. \nOnly submit one request
             per envelope.\n</p>\n<p>When you receive your ballot, make sure to follow
@@ -1556,17 +1545,7 @@ en:
             ballot application. If someone assisted \nyou in completing your application,
             make sure they complete section 5 of the application.\n</p>"
         state_online_abr:
-          confirm: "<p>If you are registered to vote in Michigan and have a valid
-            Michigan driver’s \nlicense or state ID, you can complete your request
-            your request for an Absent Voter Ballot online. \nYou can request your
-            ballot online until 5pm the Friday before the election. If you do not
-            have one of these forms of ID,\ngo to \"Absentee Voting\" for more information
-            on how you can apply for an absent voter ballot. You can fill out a form,
-            \ndownload, print and sign, and return it by mail or in person.</p>\n<p>Within
-            two weeks of election day, the state recommends making your request in
-            person at your local city \nor township clerk office. You’ll be able to
-            fill out and submit your ballot while there. \nFind <a href=\"https://mvic.sos.state.mi.us/Voter/Index/#yourclerk\"
-            target=\"_blank\">your local city or clerk township clerk office</a>.</p>"
+          confirm: "<p>If you have a valid Michigan state ID, you may request your absentee ballot online directly with the state.</p>"
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin
             and Michigan. In which state would you like to register to vote?
