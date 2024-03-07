@@ -1830,8 +1830,6 @@ en:
           abr_election_type_selections__options:
             abr_election_type1: 3/23/24 Democratic Party Presidential Primary
             abr_election_type2: 4/2/24 General Municipal Election
-            abr_election_type3: 8/6/24 Primary Election
-            abr_election_type4: 11/5/24 General Election
           abr_election_date_input: Enter the date of the election
           abr_election_date_input__hint: The election must be within 60 days.
           abr_primary_type_selections: Select the type of ballot you wish to receive.
@@ -2108,9 +2106,7 @@ en:
           status_check_instructions: |-
             <p>
             <a href="https://app.sos.nh.gov/viphome" target="_blank">https://app.sos.nh.gov/viphome</a></p>
-          finish_instructions_1_hint: |-
-            <p>Make sure to sign your printed absentee ballot application. If you are a voter with a disability and anyone witnessed and assisted you in completing your application, make sure the witness or assistant signs the printed application as well.
-            </p>
+          finish_instructions_1_hint: ''
           step_2_header: You must have a reason to request an absentee ballot.
           step_2_instructions: "<p> You can vote absentee if you are unable to vote
             in person because of disability, religious beliefs, military service,
@@ -2175,10 +2171,10 @@ en:
           abr_election_type_selections: Select the election you'd like to request
             a ballot for.
           abr_election_type_selections__options:
-            abr_election_type1: Primary Election (September 13, 2022)
-            abr_election_type3: Special Primary Election
-            abr_election_type2: General Election (November 8, 2022)
-            abr_election_type4: Special General Election
+            abr_election_type1: State Primary Election
+            abr_election_type3: General Election
+            abr_election_type2: State Special Primary Election
+            abr_election_type4: State Special General Election
           abr_party_selections: Select with ballot you would like to receive.
           abr_party_selections__options:
             abr_party1: Democratic Party
