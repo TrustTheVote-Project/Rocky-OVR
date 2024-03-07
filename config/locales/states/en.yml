@@ -959,28 +959,13 @@ en:
       in:
         state_online_abr:
           instructions: |-
-            <p>You need to file an application before each election which you want to vote absentee-by-mail.</p>
-            <p>You do not need to provide proof of identification. However, if it is your  first time voting in Indiana and you did not provide proof of residency, you will be asked to include evidence with your absentee balloting materials. This can be a state-issued ID where the address matches your registration, but can also be a bank statement, utility bill, etc.</p>
+            <p>You will be asked to provide one of the following ID numbers when submitting your absentee ballot application: the last four digits of your SSN, Indiana driver’s license number, state ID number, or voter identification number.</p>
           finish_page: '<p>Once you have your ballot, be sure to read the instructions
-            carefully, fill out the ballot and send it back in. Your absentee ballot
-            must be received by 12:00pm on November 3, 2020. You can check the status
+            carefully, fill out the ballot and send it back in. You can check the status
             of your ballot here:  <a rel="noopener noreferrer" target="blank" href="http://www.indianavoters.com/">http://www.indianavoters.com/</a></p>'
         abr:
           step_2_instructions: |-
-            <p>You must have a reason to vote absentee-by-mail in Indiana and be able to mark your own ballot and sign your name. Make sure you're eligible:</p>
-            <ul>
-            <li>You have a specific, reasonable expectation that you will be absent from the county on Election Day during the entire 12 hours that the polls are open (6 am until 6 pm).</li>
-            <li>You have a disability.</li>
-            <li>You are at least 65 years of age.</li>
-            <li>You will have official election duties outside of your voting precinct.</li>
-            <li>You are scheduled to work at your regular place of employment during the entire 12 hours that the polls are open.</li>
-            <li>You will be confined due to illness or injury or you will be caring for an individual confined due to illness or injury during the entire 12 hours that the polls are open.</li>
-            <li>You are prevented from voting because of a religious discipline or religious holiday during the entire 12 hours that the polls are open.</li>
-            <li>You are a participant in the state's address confidentiality program.</li>
-            <li>You are a member of the military or a public safety officer.</li>
-            <li>You are a "serious sex offender" as defined in Indiana Code 35-42-4-14(a).</li>
-            <li>You are prevented from voting due to the unavailability of transportation to the polls.</li>
-            </ul>
+            <p>You must have a <a rel="noopener noreferrer" href="https://www.in.gov/sos/elections/voter-information/ways-to-vote/absentee-voting/#ABSENTEE_VOTING_BY_MAIL" target="_blank">reason to vote absentee-by-mail</a> in Indiana and be able to mark your own ballot and sign your name.</p>
           request_deadline: |-
             <p>Received by election officials by 11:59 p.m. 12 days before the election.</p>
           status_check_instructions: <a target='_blank' rel="noopener noreferrer"
