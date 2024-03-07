@@ -2173,8 +2173,8 @@ en:
             a ballot for.
           abr_election_type_selections__options:
             abr_election_type1: State Primary Election
-            abr_election_type3: General Election
-            abr_election_type2: State Special Primary Election
+            abr_election_type2: General Election
+            abr_election_type3: State Special Primary Election
             abr_election_type4: State Special General Election
           abr_party_selections: Select with ballot you would like to receive.
           abr_party_selections__options:
