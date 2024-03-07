@@ -44,9 +44,10 @@ module AbrStateMethods::MO
     },
     "abr_election_type_selections": {
       options: [
-        #"abr_election_type1",
+        "abr_election_type1",
         "abr_election_type2",
         "abr_election_type3",
+        "abr_election_type4",
       ]
     },	
     "abr_election_date": {
@@ -97,9 +98,13 @@ module AbrStateMethods::MO
   
   def abr_election_date_input_string
     if self.abr_election_type_selections == "abr_election_type1"
-      "08/02/2022"
+      "03/23/2024"
     elsif self.abr_election_type_selections == "abr_election_type2"
-      "11/08/2022"
+      "04/02/2024"
+    elsif self.abr_election_type_selections == "abr_election_type3"
+      "08/06/2024"
+    elsif self.abr_election_type_selections == "abr_election_type4"
+      "11/05/2024"
     else
       date_field_string_mm_dd_yyyy(method: :abr_election_date_input)
     end

@@ -1546,6 +1546,7 @@ en:
             make sure they complete section 5 of the application.\n</p>"
         state_online_abr:
           confirm: "<p>If you have a valid Michigan state ID, you may request your absentee ballot online directly with the state.</p>"
+          requirements: ''
         wi_zip:
           message: You have entered a zip code that is on the border of Wisconsin
             and Michigan. In which state would you like to register to vote?
@@ -1774,14 +1775,7 @@ en:
         abr:
           step_2_header: You must have a reason to request an absentee ballot.
           step_2_instructions: |-
-            <ol>
-            <li>1. You will be absent on election day.</li>
-            <li>2. You are confined or care for a person who is confined due to illness or physical disability.</li>
-            <li>3. You can not make it to the polls due to religious belief or practice.</li>
-            <li>4. You are working at a polling place that is not your own.</li>
-            <li>5. You are incarcerated and still maintain the right to vote.</li>
-            <li>6. You are in the address confidentiality program.</li>
-            </ol>
+            <p>In Missouri, you must have an <a rel="noopener noreferrer" href="https://www.sos.mo.gov/elections/goVoteMissouri/howtovote#Absentee" target="_blank">eligible excuse</a> to vote by mail.</p>
           request_deadline: |-
             <p>Received by election officials no later than 5 p.m. on the second Wednesday before the election.</p>
           finish_instructions_1_hint: "<p>Make sure to sign your printed absentee
@@ -1834,9 +1828,10 @@ en:
           abr_election_type_selections: Select the election to request an absentee
             ballot for.
           abr_election_type_selections__options:
-            abr_election_type1: The 8/2/2022 Primary election
-            abr_election_type2: The 11/8/2022 General Election
-            abr_election_type3: A different election
+            abr_election_type1: 3/23/24 Democratic Party Presidential Primary
+            abr_election_type2: 4/2/24 General Municipal Election
+            abr_election_type3: 8/6/24 Primary Election
+            abr_election_type4: 11/5/24 General Election
           abr_election_date_input: Enter the date of the election
           abr_election_date_input__hint: The election must be within 60 days.
           abr_primary_type_selections: Select the type of ballot you wish to receive.
