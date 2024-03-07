@@ -713,10 +713,11 @@ en:
           abr_election_type_selections_options: Select the election you'd like to
             request a ballot for.<br/>You must fill out a separate form for each election.
           abr_election_type_selections_options__options:
-            abr_election_type1: Primary Election (May 24, 2022)
-            abr_election_type3: Primary Runoff (June 21, 2022)
-            abr_election_type2: General Election (November 8, 2022)
-            abr_election_type4: General Runoff (December 6, 2022)
+            abr_election_type1: 4/29/24 Special Election Runoff For Local Offices
+            abr_election_type3: 5/21/24 General Primary/Nonpartisan Election
+            abr_election_type2: 6/18/24 General Primary/Nonpartisan Runoff and General Runoff for Federal Offices
+            abr_election_type4: 11/5/24 General Election
+            abr_election_type5: 12/3/24 General Runoff
           abr_primary_type_selections1: Select the type of ballot you wish to receive.
           abr_primary_type_selections1__options:
             abr_primary_type1: Democratic
