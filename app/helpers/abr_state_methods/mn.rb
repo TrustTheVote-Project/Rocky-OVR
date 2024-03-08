@@ -1,18 +1,18 @@
 module AbrStateMethods::MN
   
     PDF_FIELDS = {
-      "abr_email": {method: "email"},	
-      "abr_phone": {method: "phone"},	
-      "abr_first_name": {method: "first_name"},	
+      "abr_email": {method: "email"},
+      "abr_phone": {method: "phone"},
+      "abr_first_name": {method: "first_name"},
       'abr_middle_name': {:method=>"middle_name"},
-      "abr_last_name": {method: "last_name"},	
-      "abr_name_suffix": {method: "name_suffix"},	
-      "abr_street_number": {method: "street_number"},	
+      "abr_last_name": {method: "last_name"},
+      "abr_name_suffix": {method: "name_suffix"},
+      "abr_street_number": {method: "street_number"},
       "abr_street_name": {method: "street_name"},
-      "abr_unit": {method: "unit"},	
-      "abr_city": {method: "city"},	
+      "abr_unit": {method: "unit"},
+      "abr_city": {method: "city"},
       'abr_zip': {method: "zip"},
-      'date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },     
+      'date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },
 
       'abr_check_mailing_address':{},
       'abr_mailing_address_line_1': {method: "mailing_address_line_1"},
@@ -34,6 +34,7 @@ module AbrStateMethods::MN
       'abr_election_type4': {options:["Off","On" ]},
       'abr_election_type5': {options:["Off","On" ]},
       'abr_election_type6': {options:["Off","On" ]},
+      
       'abr_election_date': {method: "abr_election_date_string"},
 
     }
@@ -252,7 +253,7 @@ module AbrStateMethods::MN
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
 
-      if self.abr_election_type6 && self.abr_election_date_input.blank?
+      if self.abr_election_type6 && self.abr_election_date_string.blank?
         errors.add(:abr_election_date_input, custom_required_message('abr_other_election'))
       end
 
