@@ -1705,6 +1705,7 @@ en:
           abr_mailing_city_input: City
           abr_mailing_state_abbrev_input: State
           abr_mailing_zip_input: ZIP
+          abr_other_election: Put in an election date if you chose other.
           no_id_check: I do not have a Minnesota-issued driver's license or identification
             card, or a Social Security Number
           no_id_check__format_message: You cannot select no id if you have a Minnesota-issued
