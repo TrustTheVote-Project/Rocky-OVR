@@ -32,6 +32,8 @@ module AbrStateMethods::MN
                   'abr_election_type2':{options:["Off","On" ]},
                   'abr_election_type3': {options:["Off","On" ]},
                   'abr_election_type4': {options:["Off","On" ]},
+                  'abr_election_type5': {options:["Off","On" ]},
+                  'abr_election_type6': {options:["Off","On" ]},
                   'abr_election_date': {method: "abr_election_date_string"},
 
     }
@@ -59,8 +61,9 @@ module AbrStateMethods::MN
         {"abr_election_type2": {type: :checkbox, options:["Off","On" ],}},	
         {"abr_election_type3": {type: :checkbox, options:["Off","On" ],}},	
         {"abr_election_type4": {type: :checkbox, options:["Off","On" ],}},
-        
-        {"abr_election_date_input": {type: :date, visible: "abr_election_type4", required: :if_visible}},
+        {"abr_election_type5": {type: :checkbox, options:["Off","On" ],}},
+        {"abr_election_type6": {type: :checkbox, options:["Off","On" ],}},        
+        {"abr_election_date_input": {type: :date, visible: "abr_election_type6", required: :if_visible}},
 
         {"abr_id_instructions": {type: :instructions}},
         {"abr_id_type1": {type: :checkbox, options:["Off","On" ],}},	

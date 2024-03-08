@@ -1672,14 +1672,10 @@ en:
           confirm_eligibility: You must meet all the above requirements to register
             to vote in Minnesota.
         state_online_abr:
-          requirements: "<p>You can request an absentee ballot online if you have
-            a MN-issued driver's license, MN-issued ID card or a social security number.
-            Otherwise, you can complete a paper application.</p> <p>You do not need
-            to be registered to request an absentee ballot. If you are not registered
-            at the legal residence address provided, you will be sent a voter registration
-            application with your ballot materials.</p>"
-          instructions_header: I have a MN-issued driver's license, MN-issued ID card
-            or a social security number
+          requirements: "<p>You can request an absentee ballot online if you have a 
+            MN-issued driver's license, MN-issued ID card or a social security number. 
+            Otherwise, you can complete a paper application.</p>"
+          instructions_header: ''
         abr_form_fields:
           abr_county: Select your county
           abr_id_instructions: You must provide a MN-issued driver's license, MN-issued
@@ -1693,10 +1689,12 @@ en:
           abr_ssn_number: Enter the last four digits of your social security number.
           abr_election_type_selections: Select the election you'd like to request
             a ballot for.
-          abr_election_type1: 8/9 Primary Election
-          abr_election_type2: 11/8 General Election
-          abr_election_type3: Both 8/9 Primary and 11/8 General Elections
-          abr_election_type4: Other
+          abr_election_type1: 4/9 Special Election
+          abr_election_type2: 5/14 Special Election
+          abr_election_type3: 8/13 Primary Election
+          abr_election_type4: 11/5 General Election
+          abr_election_type5: Both 8/13 Primary and 11/5 General Elections
+          abr_election_type6: Other
           abr_election_date_input: Enter the date of the election
           abr_check_mailing_address: I get my mail at a different address from the
             one above.
