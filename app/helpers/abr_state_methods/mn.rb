@@ -63,7 +63,7 @@ module AbrStateMethods::MN
         {"abr_election_type4": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type5": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type6": {type: :checkbox, options:["Off","On" ],}},
-        {"abr_election_date_input": {type: :date, visible: "abr_election_type6", required: "abr_election_type6"}},
+        {"abr_election_date_input": {type: :date, visible: "abr_election_type6", required: :if_visible}},
 
         {"abr_id_instructions": {type: :instructions}},
         {"abr_id_type1": {type: :checkbox, options:["Off","On" ],}},
@@ -252,7 +252,7 @@ module AbrStateMethods::MN
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
 
-      if self.abr_election_type6 == '1' && self.abr_election_date_input.blank?
+      if self.abr_election_type6 && self.abr_election_date_input.blank?
         errors.add(:abr_election_date_input, custom_required_message('abr_election_date_input'))
       end
 
