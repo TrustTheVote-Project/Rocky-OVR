@@ -7,17 +7,40 @@
   line-height: 1.5em;
   font-weight: bolder;
   text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+}
+.reminder-box {
+  float: right;
+  margin: 0 0 15px 15px; 
+  width: 275px;
+  border: 8px solid #cc0000;
+  color:black;
+  padding: 15px;
+  display: block;
+  box-sizing: border-box;
+}
+.hr-line {
+  border: none;
+  height: 3px;
+  background-color: black;
+  margin: 20px 0;
+}
+@media screen and (max-width: 468px) {
+  .reminder-box {
+    margin: 0 0 20px 0;
+    float: none;
+    width: 100%;
+  }
 }
 -->
 </style>
 
+<div style="max-width: 700px; margin: 0 auto;">
+<div class="reminder-box">
+  <p class="boxtext"><%= I18n.t('email.abr.reminder.body.reminder', :locale => @locale).html_safe %></p>
+</div>
 <%= I18n.t('email.abr.reminder.body.greeting', :abr_first_name=>@abr_first_name, :abr_last_name=>@abr_last_name, :locale => @locale).html_safe %><br><br>
-
-<table style="float: right; margin: 0 0 15px 15px; width: 275px; border: 8px solid #cc0000;color:black" width="275" cellspacing="0" cellpadding="10">
-  <tr>
-    <td align="center" valign="middle" class="boxtext"><%= I18n.t('email.abr.reminder.body.reminder', :locale => @locale).html_safe %></td>
-  </tr>
-</table>
 
 <%= I18n.t('email.abr.reminder.body.main', 
   :pdf_url=>@pdf_url, 
@@ -29,15 +52,14 @@
   :rtv_link=>@rtv_link, :locale => @locale
 ).html_safe %>
 
-<hr size="3" align="left" width="100%" color="black"><br><br>
+<hr class="hr-line" size="3" align="left" width="100%" color="black">
 
 <%= I18n.t('email.abr.reminder.body.send_to_friends',
   :rtv_link=>@rtv_link,
   :abr_first_name=>@abr_first_name, :abr_last_name=>@abr_last_name, :locale => @locale).html_safe %>
 
 
-<hr size="3" align="left" width="100%" color="black"><br><br>
+<hr class="hr-line" size="3" align="left" width="100%" color="black">
 
 <%= I18n.t('email.abr.reminder.body.footer', :locale => @locale).html_safe %>
-
-
+</div>
