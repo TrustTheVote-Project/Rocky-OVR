@@ -23,18 +23,18 @@ module AbrStateMethods::MN
      
 
       'abr_county': {},
-                  'abr_id_type1': {options:["Off","On" ]},
-                  'abr_id_type2': {options:["Off","On" ]},
-                  'abr_no_id': {options:["Off","On" ]},
-                  'abr_drivers_license': {},
-                  'abr_ssn_number': {},
-                  'abr_election_type1': {options:["Off","On" ]},
-                  'abr_election_type2':{options:["Off","On" ]},
-                  'abr_election_type3': {options:["Off","On" ]},
-                  'abr_election_type4': {options:["Off","On" ]},
-                  'abr_election_type5': {options:["Off","On" ]},
-                  'abr_election_type6': {options:["Off","On" ]},
-                  'abr_election_date': {method: "abr_election_date_string"},
+      'abr_id_type1': {options:["Off","On" ]},
+      'abr_id_type2': {options:["Off","On" ]},
+      'abr_no_id': {options:["Off","On" ]},
+      'abr_drivers_license': {},
+      'abr_ssn_number': {},
+      'abr_election_type1': {options:["Off","On" ]},
+      'abr_election_type2': {options:["Off","On" ]},
+      'abr_election_type3': {options:["Off","On" ]},
+      'abr_election_type4': {options:["Off","On" ]},
+      'abr_election_type5': {options:["Off","On" ]},
+      'abr_election_type6': {options:["Off","On" ]},
+      'abr_election_date': {method: "abr_election_date_string"},
 
     }
 
@@ -165,10 +165,10 @@ module AbrStateMethods::MN
             {"abr_check_mailing_address": {type: :checkbox}},	
             {"abr_mailing_address_instructions": {type: :instructions, visible: "abr_check_mailing_address"}},
             {"abr_mailing_address_line_1_input": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-            {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
-            {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
-            {"abr_mailing_state_abbrev_input": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-            {"abr_mailing_zip_input": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+            {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},
+            {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},
+            {"abr_mailing_state_abbrev_input": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+            {"abr_mailing_zip_input": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
 
         #     {'id_instruction': {type: :instructions}},
         #     {"dln_check": {
@@ -252,8 +252,8 @@ module AbrStateMethods::MN
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
 
-      if self.abr_election_type6 == "1" && self.abr_election_date_input.blank?
-        errors.add(:abr_election_date_input, "is required when abr_election_type6 is checked")
+      if self.abr_election_type6 == '1' && self.abr_election_date_input.blank?
+        errors.add(:abr_election_date_input, custom_required_message('abr_election_date_input'))
       end
 
       if ((self.abr_id_type1.to_s!='1' && self.abr_id_type2.to_s!='1') && (self.abr_no_id.to_s!='1'))
