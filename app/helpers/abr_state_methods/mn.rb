@@ -65,7 +65,7 @@ module AbrStateMethods::MN
         {"abr_election_type6": {type: :checkbox, options:["Off","On" ],}},
       ]
 
-      if self.abr_election_type6 == "On"
+      if self.abr_election_type6 == "1"
         items << {"abr_election_date_input": {type: :date, visible: "abr_election_type6", required: :if_visible}}
       end
 
