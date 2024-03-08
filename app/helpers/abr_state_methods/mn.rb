@@ -253,7 +253,7 @@ module AbrStateMethods::MN
       # e.g:
       # make sure fax is provided if faxtype is selected for delivery
 
-      if self.abr_election_type6 && self.abr_election_date_string.blank?
+      if self.abr_election_type6.to_s == "1" && self.abr_election_date_string.blank?
         errors.add(:abr_election_date_input, custom_required_message('abr_other_election'))
       end
 
