@@ -4449,19 +4449,31 @@ en:
     email_instructions:
       blank: ''
       arizona: |-
-        <b>*Note for First Time Voter Registration Applicants And Recent
-        Movers: You must ALSO submit proof of citizenship to vote in state elections!</b><br/><i>If
-        this is your first time registering in Arizona or you have moved to another
-        county, your voter registration form must also include proof of citizenship
-        to vote in state elections (ie. Governor, Secretary of State, &amp; state
-        legislature). Otherwise you will ONLY be eleigible to vote in federal elections.
-        If you have an AZ driver license or state ID card issued after 10/1/1996,
-        that is suffient "proof of citizenship" and no other documentation is needed.
-        If not, you must submit "proof of citizenship" along with your voter registration
-        application. The most common "proof" is a photocopy of your birth certificate
-        or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>
-      wisconsin: '<strong>*Note: Applicants must always provide a Proof of Residence
-        document when registering in Wisconsin.</strong><br /> If you are registering
-        by mail, you can use any of the Proof of Residence listed <a href="http://www.gab.wi.gov/publications/voter-guides/proof-of-residence"  target="_blank">here</a>
-        that must include the voter’s name and current address.'
+        <p><b>*Note: You must ALSO submit proof of citizenship to vote in state, county, and 
+        local elections!</b><br/><i>If you have an Arizona drivers license or non-operating 
+        identification card issued after October 1, 1996, you will only need to list the 
+        license number on the voter registration form – that is sufficient "proof of 
+        citizenship" and no other documentation is needed. If you do not have an Arizona 
+        license, submit one of the following documents along with your voter registration 
+        application:</p>
+        <ol>
+        <li>Supporting legal documentation (i.e. marriage certificate) if the name on the birth 
+        certificate is not the same as your current legal name</li>
+        <li>A legible photocopy of the pertinent pages of your passport</li>
+        <li>U.S. naturalization documents or fill in your Alien Registration Number in box 11 
+        on the voter registration form</li>
+        <li>Your Indian Census Number, Bureau of Indian Affairs Card Number, Tribal Treaty 
+        Card Number, or fill in your Tribal Enrollment Number in box 10 on the voter 
+        registration form</li>
+        <li>A legible photocopy of your Tribal Certificate of Indian Blood or Tribal or Bureau 
+        of Indian Affairs Affidavit of Birth</li>
+        </ol>
+        <p>A full list of acceptable documentation can be found on the 
+        <a href="https://azsos.gov/elections/voters/registering-vote/registration-requirements/proof-citizenship-requirements">Secretary of State's website</a>.</p>
+      wisconsin: |-
+        <strong>*Note: All voters MUST provide a Proof of Residence Document in 
+        Wisconsin.</strong><br /> If you register to vote by mail, in-person in your clerk’s 
+        office, with a Election Registration Official, or at your polling place on Election 
+        Day, you need to provide a <a href="https://myvote.wi.gov/DesktopModules/GabMyVoteModules/api/document/getproofofresidencedoc" target="_blank">Proof of Residence document</a> 
+        that must include your name and current residential address.
     online_registration_system_name: "%{state_name} Secretary of State"
