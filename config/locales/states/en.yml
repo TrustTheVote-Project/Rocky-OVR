@@ -1675,7 +1675,9 @@ en:
           requirements: "<p>You can request an absentee ballot online if you have a 
             MN-issued driver's license, MN-issued ID card or a social security number. 
             Otherwise, you can complete a paper application.</p>"
-          instructions_header: ''
+          instructions_header: 'instructions header'
+          instructions: 'instructions here'
+          header_choice: 'header choice here'
         abr_form_fields:
           abr_county: Select your county
           abr_id_instructions: You must provide a MN-issued driver's license, MN-issued

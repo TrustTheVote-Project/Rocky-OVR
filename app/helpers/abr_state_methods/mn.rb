@@ -57,20 +57,20 @@ module AbrStateMethods::MN
     def form_field_items
       [
         {"abr_election_type_selections": {type: :instructions}},
-        {"abr_election_type1": {type: :checkbox, options:["Off","On" ],}},	
-        {"abr_election_type2": {type: :checkbox, options:["Off","On" ],}},	
-        {"abr_election_type3": {type: :checkbox, options:["Off","On" ],}},	
+        {"abr_election_type1": {type: :checkbox, options:["Off","On" ],}},
+        {"abr_election_type2": {type: :checkbox, options:["Off","On" ],}},
+        {"abr_election_type3": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type4": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type5": {type: :checkbox, options:["Off","On" ],}},
-        {"abr_election_type6": {type: :checkbox, options:["Off","On" ],}},        
-        {"abr_election_date_input": {type: :date, visible: "abr_election_type6", required: :if_visible}},
+        {"abr_election_type6": {type: :checkbox, options:["Off","On" ],}},
+        {"abr_election_date_input": {type: :date, visible: "abr_election_type6", required: :if_visible} if self.abr_election_type6 == "1"},
 
         {"abr_id_instructions": {type: :instructions}},
-        {"abr_id_type1": {type: :checkbox, options:["Off","On" ],}},	
-        {"abr_drivers_license":{ visible: "abr_id_type1", required: :if_visible}},	
-        {"abr_id_type2": {type: :checkbox, options:["Off","On" ],}},	
-        {"abr_ssn_number": {length:4, min: 4, max: 4, visible: "abr_id_type2", required: :if_visible}},	
-        {"abr_no_id": {hidden_any: ["abr_id_type1", "abr_type_2"], type: :checkbox, options:["Off","On" ],}},	
+        {"abr_id_type1": {type: :checkbox, options:["Off","On" ],}},
+        {"abr_drivers_license":{ visible: "abr_id_type1", required: :if_visible}},
+        {"abr_id_type2": {type: :checkbox, options:["Off","On" ],}},
+        {"abr_ssn_number": {length:4, min: 4, max: 4, visible: "abr_id_type2", required: :if_visible}},
+        {"abr_no_id": {hidden_any: ["abr_id_type1", "abr_type_2"], type: :checkbox, options:["Off","On" ],}},
 
 
         {"abr_county": {type: :select, required: true, include_blank: true, options: [
