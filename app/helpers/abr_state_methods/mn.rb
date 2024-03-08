@@ -55,7 +55,7 @@ module AbrStateMethods::MN
     
     
     def form_field_items
-      [
+      items = [
         {"abr_election_type_selections": {type: :instructions}},
         {"abr_election_type1": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type2": {type: :checkbox, options:["Off","On" ],}},
@@ -63,8 +63,13 @@ module AbrStateMethods::MN
         {"abr_election_type4": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type5": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type6": {type: :checkbox, options:["Off","On" ],}},
-        {"abr_election_date_input": {type: :date, visible: "abr_election_type6", required: :if_visible} if self.abr_election_type6 == "1"},
+      ]
 
+      if self.abr_election_type6 == "On"
+        items << {"abr_election_date_input": {type: :date, visible: "abr_election_type6", required: :if_visible}}
+      end
+
+      items += [
         {"abr_id_instructions": {type: :instructions}},
         {"abr_id_type1": {type: :checkbox, options:["Off","On" ],}},
         {"abr_drivers_license":{ visible: "abr_id_type1", required: :if_visible}},
