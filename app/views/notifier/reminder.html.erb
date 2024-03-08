@@ -1,43 +1,80 @@
-<style type="text/css">
-<!--
-.boxtext {
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 22px;
-  font-style: normal;
-  line-height: 1.5em;
-  font-weight: bolder;
-  text-transform: uppercase;
-}
--->
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Reminder</title>
+  <style type="text/css">
+    .boxtext {
+      font-family: "Arial Black", Gadget, sans-serif;
+      font-size: 22px;
+      font-style: normal;
+      line-height: 1.5em;
+      font-weight: bolder;
+      text-transform: uppercase;
+    }
+    .reminder-box {
+      width: 275px;
+      border: 8px solid #cc0000;
+      color: black;
+      float: right;
+      margin: 20px;
+    }
+    .main-content {
+      margin-bottom: 20px;
+    }
+    .hr-line {
+      border: none;
+      height: 3px;
+      background-color: black;
+      margin: 20px 0;
+    }
+    @media screen and (max-width: 468px) {
+      .reminder-box {
+      width: 100%;
+      margin: 20px 0;
+      float: none;
+      }
+    }
+  </style>
+</head>
+<body style="max-width: 700px; margin: 0 auto 0 auto; font-family: Arial, sans-serif; font-size: 16px; color: #000000; padding: 20px;">
 
-<%= I18n.t('email.reminder.body.greeting', :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %><br><br>
+  <div class="reminder-box">
+    <div class="boxtext">
+      <%= I18n.t('email.reminder.body.reminder', :locale => @locale).html_safe %>
+    </div>
+  </div>
 
-<table style="float: right; margin: 0 0 15px 15px; width: 275px; border: 8px solid #cc0000;color:black" width="275" cellspacing="0" cellpadding="10">
-  <tr>
-    <td align="center" valign="middle" class="boxtext"><%= I18n.t('email.reminder.body.reminder', :locale => @locale).html_safe %></td>
-  </tr>
-</table>
+  <div>
+    <%= I18n.t('email.reminder.body.greeting', :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %>
+  </div>  
 
-<%= I18n.t('email.reminder.body.main', 
-  :pdf_url=>@pdf_url, 
-  :home_state_email_instructions => @home_state_email_instructions,
-  :registrar_address=>@registrar_address,
-  :cancel_reminders_url =>@cancel_reminders_url,
-  :registrar_phone=> @registrar_phone,
-  :registrar_url=>@registrar_url,
-  :rtv_link=>@rtv_link, :locale => @locale
-).html_safe %>
+  <div class="main-content">
+    <%= I18n.t('email.reminder.body.main', 
+      :pdf_url=>@pdf_url, 
+      :home_state_email_instructions => @home_state_email_instructions,
+      :registrar_address=>@registrar_address,
+      :cancel_reminders_url =>@cancel_reminders_url,
+      :registrar_phone=> @registrar_phone,
+      :registrar_url=>@registrar_url,
+      :rtv_link=>@rtv_link, :locale => @locale
+    ).html_safe %>
+  </div>
 
-<hr size="3" align="left" width="100%" color="black"><br><br>
+  <hr class="hr-line" size="3" align="left" width="100%" color="black">
 
-<%= I18n.t('email.reminder.body.send_to_friends',
-  :rtv_link=>@rtv_link,
-  :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %>
+  <div>
+    <%= I18n.t('email.reminder.body.send_to_friends',
+      :rtv_link=>@rtv_link,
+      :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %>
+  </div>
 
+  <hr class="hr-line" size="3" align="left" width="100%" color="black">
 
-<hr size="3" align="left" width="100%" color="black"><br><br>
+  <div>
+    <%= I18n.t('email.reminder.body.footer', :locale => @locale).html_safe %>
+  </div>
 
-<%= I18n.t('email.reminder.body.footer', :locale => @locale).html_safe %>
-
-
+</body>
+</html>
