@@ -35,11 +35,13 @@
     %ol
       %li
         = t('txt.abr.finish_instructions_1', registrar_address: @abr.state_registrar_address).html_safe
-        - custom_instructions = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_custom")
-        - if I18n.exists?(custom_instructions_key)
+      - custom_instructions_key = "states.custom.#{@abr.i18n_key}.abr.finish_instructions_custom"
+      - if I18n.exists?(custom_instructions_key)
+        %li
           = t(custom_instructions_key).html_safe
-        - else
-        = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint").html_safe
+      %li
+        - unless I18n.exists?(custom_instructions_key)
+          = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint").html_safe
       -# = t("states.custom.#{@abr.i18n_key}.abr.request_deadline", default: '').html_safe
       %li
         = t('txt.abr.finish_instructions_2').html_safe
