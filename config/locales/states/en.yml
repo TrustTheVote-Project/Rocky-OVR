@@ -3123,9 +3123,8 @@ en:
             If someone helped you complete the application or mailed the application for you, that person must complete Section 6.
             </p>
           status_check_instructions: |-
-            <p>Track your ballot request status with your state's online tool: You can 
-            track the status of your absentee ballot request by going to the Ballot by Mail 
-            Tracker (<a rel="noopener noreferrer" href="https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login" target="_blank">https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login</a>)
+            <p>You can track the status of your absentee ballot request by going to the 
+            Ballot by Mail Tracker (<a rel="noopener noreferrer" href="https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login" target="_blank">https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login</a>)
             website.</p>"
         abr_form_errors:
           must_select_one_witness_type: You must select the box either for Witness,
