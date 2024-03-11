@@ -3713,7 +3713,6 @@ en:
             button below, I authorize Rock the Vote to apply my signature, agreeing
             to the following statement on my request form "I hereby state that I am
             a registered voter and entitled to vote in the election indicated above".
-            The election indicated is the Nov 3rd, 2020 General Election.
           signature_capture:
             desktop_provide_e_signature: In the state of Wyoming, we can email a digitally
               signed copy of your absentee request. Please select how you'd like to
