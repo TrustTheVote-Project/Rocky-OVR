@@ -56,9 +56,8 @@ module AbrStateMethods::TX
        options: [
         "abr_election_selection_type1",
         "abr_election_selection_type2",
-        "abr_election_selection3",
-        "abr_election_selection_type4",
-        "abr_election_selection_type5"
+        "abr_election_selection_type3",
+        "abr_election_selection_type4"
        ]
      },
 

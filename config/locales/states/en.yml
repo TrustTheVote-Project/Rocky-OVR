@@ -3115,17 +3115,18 @@ en:
           step_2_instructions: |-
             <p>In Texas, you must have an <a rel="noopener noreferrer" href="https://www.sos.texas.gov/elections/voter/reqabbm.shtml" target="_blank">eligible excuse</a> to vote by mail.</p>
           request_deadline: |-
-            <p>Received by election officials Applications must be received (not postmarked) by last day of the application period. All applications to vote by mail must be received by the early voting clerk before the close of regular business or 12 noon, whichever is later. before the election.</p>
+            <p>Received 11 days before Election Day.</p>
           finish_instructions_1_hint: |-
             <p>
-            If you were unable to sign the application and someone witnessed your signature, that person must complete Section 11.
+            If you were unable to sign the application and someone witnessed your signature, that person must complete Section 6.
             </p><p>
-            If someone helped you complete the application or mailed the application for you, that person must complete Section 11.
+            If someone helped you complete the application or mailed the application for you, that person must complete Section 6.
             </p>
-          status_check_instructions: "<p>\nYou can track the status of your absentee
-            ballot request by going to the \n<a target=\"_blank\" rel=\"noopener noreferrer\"
-            href=\"https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login\">Ballot
-            by Mail Tracker (https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login)</a>\nwebsite.\n</p>"
+          status_check_instructions: |-
+            <p>Track your ballot request status with your state's online tool: You can 
+            track the status of your absentee ballot request by going to the Ballot by Mail 
+            Tracker (<a rel="noopener noreferrer" href="https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login" target="_blank">https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login</a>)
+            website.</p>"
         abr_form_errors:
           must_select_one_witness_type: You must select the box either for Witness,
             Assistant or both.
@@ -3212,9 +3213,8 @@ en:
           abr_election_selection__options:
             abr_election_selection_type1: November Election
             abr_election_selection_type2: May Election (not a primary runoff)
-            abr_election_selection3: Other Special Election
-            abr_election_selection_type4: Democratic Primary
-            abr_election_selection_type5: Republican Primary
+            abr_election_selection_type3: Other Special Election
+            abr_election_selection_type4: Any Resulting Runoff
           abr_assistant_instructions: Information about Witnesses and Assistants
           abr_has_assistant: 'Check this box if someone helped you complete this form
             or delivers it by mail, fax or email.<br/><span style="font-weight: normal">That
