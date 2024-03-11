@@ -850,9 +850,9 @@ en:
           abr_election_type_selection: Select the election you'd like to request a
             ballot for. <br /> You may select more than one.<p>The offices and issues
             on the ballot may vary. Contact your County Clerk for more specific information.</p>
-          abr_election_type1: May 17, 2022 Primary
-          abr_election_type2: August 30, 2022 School district bond / levy
-          abr_election_type3: November 8, 2022 General Election
+          abr_election_type1: May 21, 2024 Primary Election
+          abr_election_type2: August 27, 2024 School District Bond/Levy Election
+          abr_election_type3: November 5, 2024 General Election
           abr_primary_type_selections1: Select the type of ballot you wish to receive
             (required for the primary)
           abr_primary_type_selections1__hint: All party ballots also include the Non-Partisan
@@ -876,11 +876,11 @@ en:
             NonPartisan: Non-Partisan<br/>Contains ONLY non-party elections, such
               as judges and ballot questions.
         state_online_abr:
-          instructions_header: 'I have a valid Idaho Drivers License Number and can
-            provide the last 4 digits of my Social Security number:'
-          requirements: "<p>You are eligible to complete your request online if you
-            have a valid Idaho Drivers License Number and can provide the last 4 digits
-            of my Social Security number.</p>"
+          instructions_header: ''
+          requirements: "<p>If you have an Idaho state-issued ID and can provide the last 
+            4 digits of your Social Security Number, continue online:</p>"
+          confirm: ''
+          intro_message: ''
         abr:
           request_deadline: |-
             <p>Received by election officials 11 days before the election.</p>
