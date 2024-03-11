@@ -55,10 +55,10 @@ module AbrStateMethods::TX
      "abr_election_selection": {
        options: [
         "abr_election_selection_type1",
-        #"abr_election_selection_type2",
+        "abr_election_selection_type2",
         "abr_election_selection3",
-        #"abr_election_selection_type4",
-        #"abr_election_selection_type5"
+        "abr_election_selection_type4",
+        "abr_election_selection_type5"
        ]
      },
 
@@ -179,7 +179,7 @@ module AbrStateMethods::TX
 
       #{"abr_application_type1": {type: :checkbox, visible_any: "abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2"}},
 
-      #{"abr_primary_type_selections1": {type: :radio, visible_any: "abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2", required: :if_visible}},
+      {"abr_primary_type_selections1": {type: :radio, visible_any: "abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2", required: :if_visible}},
 
       
       {"abr_election_selection": {type: :radio, visible_any: "abr_reason_selections_abr_reason3 abr_reason_selections_abr_reason4 abr_reason_selections_abr_reason5", required: :if_visible}},      

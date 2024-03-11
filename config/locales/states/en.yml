@@ -3111,16 +3111,9 @@ en:
             driver's license.
       tx:
         abr:
-          step_2_header: You must have a reason to request an absentee ballot in Texas
+          step_2_header: You must have a reason to request an absentee ballot.
           step_2_instructions: |-
-            <p>To vote absentee in Texas you must:</p>
-            <ul>
-            <li>be 65 years or older;</li>
-            <li>be sick or disabled;</li>
-            <li>be out of the county on election day and during the period for early voting by personal appearance; or</li>
-            <li>be expected to give birth within three weeks before or after Election Day; or</li>
-            <li>be confined in jail, but otherwise eligible.</li>
-            </ul>
+            <p>In Texas, you must have an <a rel="noopener noreferrer" href="https://www.sos.texas.gov/elections/voter/reqabbm.shtml" target="_blank">eligible excuse</a> to vote by mail.</p>
           request_deadline: |-
             <p>Received by election officials Applications must be received (not postmarked) by last day of the application period. All applications to vote by mail must be received by the early voting clerk before the close of regular business or 12 noon, whichever is later. before the election.</p>
           finish_instructions_1_hint: |-
