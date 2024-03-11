@@ -36,8 +36,8 @@
       %li
         = t('txt.abr.finish_instructions_1', registrar_address: @abr.state_registrar_address).html_safe
         - custom_instructions = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_custom")
-        - if custom_instructions.present?
-          = custom_instructions.html_safe
+        - if I18n.exists?(custom_instructions_key)
+          = t(custom_instructions_key).html_safe
         - else
         = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint").html_safe
       -# = t("states.custom.#{@abr.i18n_key}.abr.request_deadline", default: '').html_safe
