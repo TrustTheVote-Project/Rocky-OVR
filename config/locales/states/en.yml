@@ -3715,11 +3715,7 @@ en:
           status_check_instructions: |-
             <p>For more information on the status of your ballot,
             contact your <a target="_blank" href="https://sos.wyo.gov/Elections/Docs/WYCountyClerks_AbsRequest_VRChange.pdf">county clerk.</a></p>
-          finish_instructions_1_hint: "<p>If you are requesting a ballot for the Primary
-            Election, your political party is required and it must be \nthe same political
-            party in which you are currently registered. To change your political
-            party, please contact your \n<a target=\"_blank\" href=\"https://sos.wyo.gov/Elections/Docs/WYCountyClerks.pdf\">county
-            clerk.</a></p>\n<p>Additionally, make sure to sign your printed application.</p>"
+          finish_instructions_1_hint: ''
           confirm_email_delivery: I have reviewed the above information and wish to
             email my request to my local elections office.<br/><br/> By clicking the
             button below, I authorize Rock the Vote to apply my signature, agreeing
@@ -3742,15 +3738,15 @@ en:
           abr_mailing_state_abbrev: State
           abr_mailing_zip: Zip
           abr_uocava_check: Are you an active member of the military?
-          abr_check_mailing_address: I get my mail at a different address from the
-            one above
+          abr_check_mailing_address: I get my mail at a different address than my voter 
+            registration address.
           abr_election_type_selections: Select the election(s) you'd like to request
             a ballot for
           abr_election_type_selections__options: "."
-          abr_election_type1_check: 2022 Primary
+          abr_election_type1_check: 2024 Primary
           abr_election_type1_check__required_message: At least one election must be
             selected
-          abr_election_type2_check: 2022 General
+          abr_election_type2_check: 2024 General
           abr_election_type2_check__required_message: At least one election must be
             selected
           abr_party: Your political party is required for a Primary Election.
