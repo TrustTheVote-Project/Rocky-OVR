@@ -35,7 +35,7 @@
     %ol
       %li
         = t('txt.abr.finish_instructions_1', registrar_address: @abr.state_registrar_address).html_safe
-        - if @abr.i18n_key == 'tx'  # Check if state is Texas
+        - if @abr.i18n_key.downcase == 'tx'  # Check if state is Texas
           / Omit instructions 1 hint for Texas
         - else
         = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint", default: t('txt.abr.finish_instructions_1_hint')).html_safe
