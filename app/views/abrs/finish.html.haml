@@ -38,7 +38,7 @@
         - if t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_custom")
           = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_custom").html_safe
         - else
-        = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint", default: t('txt.abr.finish_instructions_1_hint')).html_safe
+        = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint").html_safe
       -# = t("states.custom.#{@abr.i18n_key}.abr.request_deadline", default: '').html_safe
       %li
         = t('txt.abr.finish_instructions_2').html_safe
@@ -59,9 +59,6 @@
     %ol
       %li
         = t('txt.abr.finish_instructions_1_state').html_safe
-        - if t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_custom")
-          = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_custom").html_safe
-        - else
         = t("states.custom.#{@abr.i18n_key}.abr.finish_instructions_1_hint_state", default: t('txt.abr.finish_instructions_1_hint')).html_safe
       -# = t("states.custom.#{@abr.i18n_key}.abr.request_deadline", default: '').html_safe
       %li
