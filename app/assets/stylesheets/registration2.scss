@@ -1448,14 +1448,14 @@ ul > li.registrant-form__change-of-name__line > h3 > label {
 	text-transform: initial;
 }
 a:link, #main.abr .requirements a, #main.abr .state-instructions a, #main.abr .intro-message a, #main.abr .finish_instructions a, #main.lookup .requirements a, #main.lookup .state-instructions a, #main.lookup .intro-message a, #main.lookup .finish_instructions a, #main.alert_request .requirements a, #main.alert_request .state-instructions a, #main.alert_request .intro-message a, #main.alert_request .finish_instructions a, #main.ballot-status-check .requirements a, #main.ballot-status-check .state-instructions a, #main.ballot-status-check .intro-message a, #main.ballot-status-check .finish_instructions a {
+	/*color: #B32426;*/	
+}
+a:link, a:visited, a:active {
 	color: #B32426;
 	font-weight: 500;
 	text-decoration: underline;
 }
-a:visited, a:active {
-	color: #B32426;
-}
-#footer a:link {
+body #footer p a, body #footer p a:visited, body #footer p a:link {
     color: #B32426;
 }
 a:hover {
