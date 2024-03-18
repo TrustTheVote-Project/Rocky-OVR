@@ -1260,7 +1260,7 @@ ul.checkbox label {
 	border-radius: 4px;
 	padding: 10px;
 	text-align: left !important;
-	margin: 24px 0;
+	margin: 12px 0;
 }
 /* Hide the default checkboxes */
 input[type="checkbox"] {
@@ -1454,6 +1454,9 @@ a:link, #main.abr .requirements a, #main.abr .state-instructions a, #main.abr .i
 }
 a:visited, a:active {
 	color: #B32426;
+}
+#footer a:link {
+    color: #B32426;
 }
 a:hover {
 	color: #000000;
@@ -1737,6 +1740,9 @@ form#new_abr {
 #main.alert_request .consent_copy {
 	margin-top: 8px;
 }
+.powered-by-logo img {
+	content: image-url('powered-by-aws-logo.png');
+}
 /*media*/
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line,#main.lookup form ul li.registrant-form__name-suffix__line,#main.lookup form ul li.registrant-form__prev-name-suffix__line,#main.lookup form ul li.width_f.registrant-form__name-title__line,#main.lookup form ul li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
@@ -1985,4 +1991,24 @@ form#new_abr {
 		margin: 2em 0;
 	}
 }
+/*new mobile ui overrides */
+body.new-mobile-ui #main #dynamic-progress-bar {
+    background: transparent;
+    border-radius: 4px;
+    border: 1px solid #000000;
+}
+body.new-mobile-ui #main #dynamic-progress-bar .filler {
+    background: #BED9EC;
+    border-right: 1px solid #000;
+    background-blend-mode: screen;
+}
+body.new-mobile-ui #main #dynamic-progress-bar .content {
+    visibility: hidden;
+}
+body.new-mobile-ui #main form ul li.registrant-form__name-suffix__line, body.new-mobile-ui #main form ul li.registrant-form__prev-name-suffix__line {
+    width: 45%;
+    margin-left: 0;
+}
+/*new mobile ui overrides */
+
 /*registration 2024 edits*/
