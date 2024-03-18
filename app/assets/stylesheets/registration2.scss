@@ -1076,9 +1076,173 @@ body {
 	font-family: 'Inter', sans-serif;
 	font-size: 12px
 }
-body #sticky_footer {
-	position: relative;
+body #footer p {
+	font-family: 'Inter', sans-serif;
+	width: 330px;
+}
+#main #other_language_link select {
+	text-shadow: none;
+	color: #000;
+}
+#main.abr form ul li h3, #main form ul li.width_f h3, #main.abr form ul.flat li h3, #main.abr form ul.flat li.width_f h3 {
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+#main.abr .state-abr-form-fields li ul.checkbox h3, #main.lookup .state-abr-form-fields li ul.checkbox h3, #main.alert_request .state-abr-form-fields li ul.checkbox h3, #main.ballot-status-check .state-abr-form-fields li ul.checkbox h3 {
 	display: inline;
+}
+.abr-page li.registrant-form__date-of-birth__line {
+	top: 16px;
+}
+input[type='radio'] {
+	accent-color: #0f75bd;
+}
+input[type='checkbox'] {
+	display: none !important;
+}
+#header {
+	text-align: center;
+	background-image: url('300px-rtv-logo.png');
+	background-repeat: no-repeat;
+	background-position: 0 15px;
+	background-size: auto 50px;
+}
+#main #other_language_link select {
+	margin-right: -10px;
+}
+body #footer p span, body #footer p span.copyright {
+	color: #373D42;
+}
+body #footer .powered-by-logo .powered-by-text {
+	color: #373D42;
+	font-family: "Times New Roman", Times, serif;
+	font-style: oblique;
+}
+body #sticky_footer {
+	background-image: none;
+	border-top: 0px solid #999;
+	background-color: #fff;
+}
+body #footer p a, body #footer p a:visited, body #footer p a:link {
+	color: rgb(8,59,95);
+}
+body #footer p a:hover {
+	color: #000;
+}
+p.privacy_policy_acceptance {
+	display: block;
+}
+#main {
+	width: 100%;
+	padding-top: 0px;
+	max-width: 600px;
+	padding: 0;
+}
+#header .header-text {
+	display: block;
+	color: #000;
+	font-size: 28px;
+	text-transform: capitalize;
+	padding-top: 20px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+	height: 80px;
+}
+body.abr-page #header .header-text {
+	font-size: 28px;
+}
+label {
+	line-height: 1.6em;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 600;
+}
+#main form fieldset legend img.tooltip {
+	top: 5px;
+	position: relative;
+	text-align: left;
+	right: 0;
+	left: 0;
+	float: none;
+}
+#main .step_1 form ul li>div.tooltip {
+	padding: 2px 0;
+	float: none;
+	display: inlineposition: relative;
+	left: 0;
+	text-align: left;
+}
+#main form ul li>div.tooltip {
+	padding: 2px 0;
+	float: none;
+	display: inline;
+	position: relative;
+	left: 0;
+	text-align: left;
+	right: 0;
+}
+#main form ul.flat li h3 {
+	float: left;
+}
+#main .step_1 form ul li h3, #main form ul li.width_f h3, #main .step_1 form ul.flat li h3, #main .step_1 form ul.flat li.width_f h3 {
+	float: left;
+}
+#main form ul li.registrant-form__date-of-birth__line input, #main form ul li.width_f.registrant-form__date-of-birth__line input, #main form ul.flat li.registrant-form__date-of-birth__line input, #main form ul.flat li.width_f.registrant-form__date-of-birth__line input {
+	margin-right: 4px;
+}
+#main form ul.flat li.registrant-form__date-of-birth__line input:last-child {
+	margin-right: 0;
+	width: 83px;
+}
+span.required {
+	color: rgb(179,36,38);
+	font-size: 12px;
+	top: -2px;
+	margin-left: 5px;
+}
+h1 .sub-header {
+	font-size: 14px;
+	line-height: 18px;
+	margin: 20px 0 0 0;
+	width: auto;
+	font-weight: 600;
+}
+h1 {
+	font-size: 16px;
+}
+#main form ul li.registrant-form__has-state-license__line label {
+	font-size: 15px
+}
+#main form ul li div select, #main form ul li.width_f div select, #main form ul.flat li div select, #main form ul.flat li.width_f div select {
+	padding-left: 10px;
+	color: rgb(165,165,165);
+}
+h1, h2, h3, h4, h5, h6, legend, #header .header-text {
+	font-family: 'Inter', sans-serif;
+	color: #000000;
+}
+legend {
+	font-size: 12px;
+	font-weight: 600;
+}
+#main form ul li.registrant-form__us-citizen__line h3 input, #main form ul li.registrant-form__us-citizen__line h3 label, #main form ul li.registrant-form__will-be-18-by-election__line h3 input, #main form ul li.registrant-form__will-be-18-by-election__line h3 label, #main form ul li.registrant-form__required-checkbox h3 input, #main form ul li.registrant-form__required-checkbox h3 label, #main form ul li.width_f.registrant-form__us-citizen__line h3 input, #main form ul li.width_f.registrant-form__us-citizen__line h3 label, #main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 input, #main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 label, #main form ul li.width_f.registrant-form__required-checkbox h3 input, #main form ul li.width_f.registrant-form__required-checkbox h3 label, #main form ul.flat li.registrant-form__us-citizen__line h3 input, #main form ul.flat li.registrant-form__us-citizen__line h3 label, #main form ul.flat li.registrant-form__will-be-18-by-election__line h3 input, #main form ul.flat li.registrant-form__will-be-18-by-election__line h3 label, #main form ul.flat li.registrant-form__required-checkbox h3 input, #main form ul.flat li.registrant-form__required-checkbox h3 label, #main form ul.flat li.width_f.registrant-form__us-citizen__line h3 input, #main form ul.flat li.width_f.registrant-form__us-citizen__line h3 label, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 input, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 label, #main form ul.flat li.width_f.registrant-form__required-checkbox h3 input, #main form ul.flat li.width_f.registrant-form__required-checkbox h3 label {
+	font-size: 14px;
+}
+#main form ul li.registrant-form__us-citizen__line, #main form ul li.registrant-form__will-be-18-by-election__line, #main form ul li.registrant-form__required-checkbox, #main form ul li.width_f.registrant-form__us-citizen__line, #main form ul li.width_f.registrant-form__will-be-18-by-election__line, #main form ul li.width_f.registrant-form__required-checkbox, #main form ul.flat li.registrant-form__us-citizen__line, #main form ul.flat li.registrant-form__will-be-18-by-election__line, #main form ul.flat li.registrant-form__required-checkbox, #main form ul.flat li.width_f.registrant-form__us-citizen__line, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line, #main form ul.flat li.width_f.registrant-form__required-checkbox {
+	margin: 0;
+	padding: 0;
+	border: 0px solid #000000;
+	width: 100%;
+	margin-right: 0;
+}
+ul.checkbox label {
+	text-transform: inherit;
+}
+#main form ul li.registrant-form__us-citizen__line,#main form ul li.registrant-form__will-be-18-by-election__line,#main form ul li.registrant-form__confirm_will_be_18__line {
+	border: 1px solid #000000;
+	border-radius: 4px;
+	padding: 10px;
 }
 
 /*registration3*/
