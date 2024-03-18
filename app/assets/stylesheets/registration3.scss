@@ -1,3 +1,5 @@
+/*registration3*/
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 body {
 	color: #000000;
@@ -551,8 +553,6 @@ input[type=text], input[type=tel], input, select, textarea {
 	color: #000 !important;
 }
 input:focus, select:focus, textarea:focus {
-	/*outline: 1px solid rgb(15,117,189);
-	*/
 	border: 1px solid rgb(15,117,189) !important;
 	background-color: #ffffff;
 }
@@ -631,19 +631,9 @@ body #sticky_footer {
 input[type="checkbox"] {
 	margin-left: 0;
 }
-/* maybe we need but comment out for now */
-/*#main fieldset:first-of-type {
-	top: -4px;
-}
-*/
 #main form ul li.registrant-form__has-state-license__line {
 	margin: 1em 10% 0;
 }
-/*.stacked span.error, .stacked span.example {
-	height: 16px;
-	margin-bottom: 10px;
-}
-*/
 #main.lookup li.registrant-form__opt-in-email__line {
 	margin-top: 16px !important;
 }
@@ -905,11 +895,6 @@ form#new_abr {
 	#main.abr ul li, #main.lookup ul li, #main.alert_request ul li, #main.ballot-status-check ul li {
 		margin: 0;
 	}
-	/*#main form .rollover_button button:hover, #main form .rollover_button span.button-style:hover, #main.lookup span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover {
-		line-height: 20px;
-		font-size: 14px;
-	}
-	*/
 	#main.abr .requirements, #main.abr .state-instructions, #main.abr .intro-message, #main.abr .finish_instructions, #main.lookup .requirements, #main.lookup .state-instructions, #main.lookup .intro-message, #main.lookup .finish_instructions, #main.alert_request .requirements, #main.alert_request .state-instructions, #main.alert_request .intro-message, #main.alert_request .finish_instructions, #main.ballot-status-check .requirements, #main.ballot-status-check .state-instructions, #main.ballot-status-check .intro-message, #main.ballot-status-check .finish_instructions {
 		margin: 0 0 15px 0;
 	}
@@ -924,3 +909,4 @@ form#new_abr {
 		margin: 2em 0;
 	}
 }
+/*registration3*/
