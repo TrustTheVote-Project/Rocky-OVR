@@ -1066,9 +1066,18 @@ body {
   }
 }
 
+@import 'registration2-mobile';
+@import 'registration2-new-mobile-ui';
+@import 'registration2-signature-capture';
+
+body.abr-page {
+  @import 'abr-page';
+}
 
 
-/*registration3*/
+
+/*registration 2024 edits*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 body {
 	color: #000000;
@@ -1728,15 +1737,252 @@ form#new_abr {
 #main.alert_request .consent_copy {
 	margin-top: 8px;
 }
-/*registration3*/
-
-
-
-
-@import 'registration2-mobile';
-@import 'registration2-new-mobile-ui';
-@import 'registration2-signature-capture';
-
-body.abr-page {
-  @import 'abr-page';
+/*media*/
+@media screen and (min-width: 600px) {
+	#main.lookup form ul li.registrant-form__prev-name-title__line,#main.lookup form ul li.registrant-form__name-suffix__line,#main.lookup form ul li.registrant-form__prev-name-suffix__line,#main.lookup form ul li.width_f.registrant-form__name-title__line,#main.lookup form ul li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
+		width: 20%;
+	}
+	#main.abr form ul li.registrant-form__first-name__line, #main.abr form ul li.registrant-form__prev-first-name__line,#main.abr form ul li.registrant-form__last-name__line, #main.abr form ul li.registrant-form__prev-last-name__line, #main.abr form ul li.width_f.registrant-form__first-name__line,#main.abr form ul li.width_f.registrant-form__prev-first-name__line, #main.abr form ul li.width_f.registrant-form__last-name__line,#main.abr form ul li.width_f.registrant-form__prev-last-name__line, #main.abr form ul.flat li.registrant-form__first-name__line,#main.abr form ul.flat li.registrant-form__prev-first-name__line, #main.abr form ul.flat li.registrant-form__last-name__line,#main.abr form ul.flat li.registrant-form__prev-last-name__line, #main.abr form ul.flat li.width_f.registrant-form__first-name__line,#main.abr form ul.flat li.width_f.registrant-form__prev-first-name__line, #main.abr form ul.flat li.width_f.registrant-form__last-name__line,#main.abr form ul.flat li.width_f.registrant-form__prev-last-name__line {
+		width: 30%;
+	}
+	#main.abr form ul li.registrant-form__middle-name__line {
+		width: 18%;
+	}
+	li.registrant-form__us-citizen__line {
+		top: 12px;
+		margin-bottom: 18px !important;
+	}
+	form#new_alert_request {
+		top: 4px;
+	}
 }
+@media screen and (max-width: 600px) {
+	body #header {
+		width: calc(100% - 30px);
+		min-width: 270px;
+		background-image: image-url('300px-rtv-logo.png');
+		background-position: 10px 14px;
+		background-size: auto 40px;
+		height: auto;
+	}
+	#header .header-text {
+		font-size: 14px;
+	}
+	body #header .header-text {
+		font-size: 24px;
+		padding-top: 24px;
+		padding-bottom: 12px;
+		margin-left: 60px;
+		margin-right: 60px;
+		display: inline-table;
+	}
+	#header {
+		text-align: center;
+		background-repeat: no-repeat;
+		background-position: 0 15px;
+		background-size: auto 50px;
+		position: relative;
+		width: 100%;
+	}
+	#main .intro-message p, #main p, #main.abr .intro-message p, #main.alert_request .intro-message, #main.alert_request .intro-message, #main.lookup .intro-message p, #main.lookup .reject p, #main.lookup .reject li, #main.alert_request .reject p, #main.alert_request .reject li, #main.abr p, #main.lookup p, #main.alert_request p, #main.ballot-status-check p, #main .declaration-text p, .fulltext p {
+		font-size: 14px;
+		line-height: 21px;
+	}
+	.qtip {
+		left: 0px !important;
+	}
+	.qtip .qtip-tip {
+		right: auto;
+		left: 8px;
+	}
+	.flat span.error, .flat span.example {
+		height: auto;
+		min-height: 8px;
+	}
+	.stacked span.error, .stacked span.example {
+		height: auto;
+	}
+	body #main form ul.stacked li {
+		padding-bottom: 16px;
+	}
+	#main.lookup form ul.stacked li {
+		padding-bottom: 8px;
+	}
+	body #main form ul li.registrant-form__will-be-18-by-election__line {
+		margin-top: 4px;
+	}
+	body #main form ul li.registrant-form__change-of-name__line {
+		margin-top: 8px;
+	}
+	#main #other_language_link {
+		margin: 0;
+	}
+	.abr-page li.registrant-form__date-of-birth__line {
+		top: 16px;
+		margin-bottom: 16px !important;
+	}
+	body.abr-page #header .header-text {
+		font-size: 23px;
+	}
+	body #main form ul li.registrant-form__us-citizen__line, body #main form ul li.registrant-form__will-be-18-by-election__line, body #main form ul li.registrant-form__change-of-name__line, body #main form ul li.registrant-form__required-checkbox, body #main form ul li.width_f.registrant-form__us-citizen__line, body #main form ul li.width_f.registrant-form__will-be-18-by-election__line, body #main form ul li.width_f.registrant-form__change-of-name__line, body #main form ul li.width_f.registrant-form__required-checkbox, body #main form ul.flat li.registrant-form__us-citizen__line, body #main form ul.flat li.registrant-form__will-be-18-by-election__line, body #main form ul.flat li.registrant-form__change-of-name__line, body #main form ul.flat li.registrant-form__required-checkbox, body #main form ul.flat li.width_f.registrant-form__us-citizen__line, body #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line, body #main form ul.flat li.width_f.registrant-form__change-of-name__line, body #main form ul.flat li.width_f.registrant-form__required-checkbox {
+		margin-top: 8px;
+	}
+	li.registrant-form__volunteer__line {
+		top: 8px;
+	}
+	/* shift checkboxes back to left margin on smaller screens */
+	input[type="checkbox"] + label::before {
+		margin-left: 0px;
+	}
+	.opt-ins input[type="checkbox"] + label::before {
+		margin-left: 0px;
+	}
+	.opt-ins input[type="checkbox"] + label::after {
+		left: 0px;
+	}
+	:not(.opt-ins) input[type="checkbox"] + label::after {
+		left: 0px;
+	}
+	#main form span.compliance {
+		padding: 0 0 8px 0px;
+	}
+	select {
+		font-size: 14px;
+	}
+	#main form ul.radio li label, #main form ul.checkbox li label, #main form ul.flat.radio li label, #main form ul.flat.checkbox li label {
+		font-size: 12px;
+		width: 100%;
+	}
+	body #footer p {
+		margin-right: auto;
+		margin-left: auto;
+	}
+	/* shift state id fields back to left margin on smaller screens */
+	#main form ul li.registrant-form__has-state-license__line {
+		margin: 1em 0% 0;
+	}
+	#main form ul li.registrant-form__has-no-state-license__line,#main form ul li.registrant-form__has-state-license__line,#main form ul li.width_f.registrant-form__has-no-state-license__line,#main form ul li.width_f.registrant-form__has-state-license__line,#main form ul.flat li.registrant-form__has-no-state-license__line,#main form ul.flat li.registrant-form__has-state-license__line,#main form ul.flat li.width_f.registrant-form__has-no-state-license__line,#main form ul.flat li.width_f.registrant-form__has-state-license__line {
+		margin-left: 0;
+		width: 100%;
+	}
+	h1 .sub-header {
+		margin: 16px 0 0 0;
+	}
+	#form_header {
+		margin-bottom: 0px;
+	}
+	#main form ul li.registrant-form__survey-answer-1__line, #main form ul li.registrant-form__survey-answer-2__line, #main form ul li.width_f.registrant-form__survey-answer-1__line, #main form ul li.width_f.registrant-form__survey-answer-2__line, #main form ul.flat li.registrant-form__survey-answer-1__line, #main form ul.flat li.registrant-form__survey-answer-2__line, #main form ul.flat li.width_f.registrant-form__survey-answer-1__line, #main form ul.flat li.width_f.registrant-form__survey-answer-2__line {
+		margin-bottom: 10px;
+	}
+	#main.using_state_registration .step_2 li.registrant-form__date-of-birth__line {
+		margin-bottom: 8px !important;
+	}
+	#main .step_1 ul.flat.registrant-form__home-zip {
+		margin-top: 12px !important;
+	}
+	.abr-page #main.abr .step_1 ul.flat.registrant-form__home-zip {
+		margin-top: 8px !important;
+	}
+	#main.abr .step_2 form ul.stacked li {
+		padding-bottom: 0px;
+	}
+	#main.abr .step_3 form ul.stacked li {
+		padding-bottom: 0px;
+	}
+	#main .step_1 #other_language_link select {
+		margin-bottom: 16px;
+	}
+	#main .privacy_policy_acceptance {
+		margin-top: 16px;
+	}
+	#main .edit_state_registrants_mi_registrant span.error {
+		min-height: auto;
+	}
+	#main .edit_state_registrants_mi_registrant ul.stacked li {
+		padding-bottom: 0px;
+	}
+	#main .edit_state_registrants_mi_registrant ul.stacked li {
+		padding-bottom: 0px;
+	}
+	#main .step_3 .edit_state_registrants_mi_registrant ul.stacked li {
+		padding-bottom: 12px;
+	}
+	.step_3 .edit_state_registrants_mi_registrant li.registrant-form__date-of-birth__line {
+		margin-top: 12px !important;
+	}
+	.step_3 .edit_state_registrants_mi_registrant ul.flat.eye-color-dropdown {
+		margin-top: 12px !important;
+	}
+	.step_3 .edit_state_registrants_mi_registrant ul.flat.ssn {
+		margin-top: 12px !important;
+	}
+	#main .edit_state_registrants_mi_registrant label {
+		display: inline;
+	}
+}
+@media (min-width: 468px) and (max-width: 600px) {
+	#main.lookup form ul li.registrant-form__first-name__line, #main.lookup form ul li.registrant-form__last-name__line {
+		width: 49%;
+	}
+	#main.lookup form li.width_b.registrant-form__last-name__line {
+		margin-right: 0 !important;
+	}
+	#main.lookup form li.width_d.registrant-form__name-suffix__line {
+		top: -20px !important;
+	}
+	#main.lookup form ul li.registrant-form__home-city__line {
+		width: 100%;
+	}
+	#main {
+		padding: 0 10px;
+	}
+}
+@media (max-width: 468px) {
+	#main {
+		padding: 0 10px;
+	}
+	#main.lookup form ul li.registrant-form__first-name__line, #main.lookup form ul li.registrant-form__last-name__line {
+		width: 100%;
+	}
+	#main.lookup form li.width_b.registrant-form__last-name__line {
+		margin-right: 0 !important;
+	}
+	#main.lookup form li.width_d.registrant-form__name-suffix__line {
+		top: 0px !important;
+	}
+	#main.lookup form li.registrant-form__date-of-birth__line {
+		top: 16px;
+		margin-bottom: 20px !important;
+	}
+	#main.lookup form ul li.registrant-form__home-city__line {
+		width: 100%;
+	}
+	body #header .header-text {
+		font-size: 22px;
+		width: 80%;
+	}
+	#main.alert_request li.width_c.registrant-form__middle-name__line {
+		display: none;
+	}
+	#main.alert_request form ul li.registrant-form__first-name__line,#main.alert_request form ul li.registrant-form__last-name__line,#main.alert_request form ul li.registrant-form__home-address__line,#main.alert_request form ul li.registrant-form__home-city__line,#main.alert_request form ul li.registrant-form__email__line,#main.alert_request form ul li.registrant-form__phone__line {
+		width: 100% !important;
+		margin-right: 0 !important;
+	}
+	#main.abr ul li, #main.lookup ul li, #main.alert_request ul li, #main.ballot-status-check ul li {
+		margin: 0;
+	}
+	#main.abr .requirements, #main.abr .state-instructions, #main.abr .intro-message, #main.abr .finish_instructions, #main.lookup .requirements, #main.lookup .state-instructions, #main.lookup .intro-message, #main.lookup .finish_instructions, #main.alert_request .requirements, #main.alert_request .state-instructions, #main.alert_request .intro-message, #main.alert_request .finish_instructions, #main.ballot-status-check .requirements, #main.ballot-status-check .state-instructions, #main.ballot-status-check .intro-message, #main.ballot-status-check .finish_instructions {
+		margin: 0 0 15px 0;
+	}
+	#container2 .share div {
+		width: 100%;
+	}
+	.qtip {
+		left: 0px !important;
+		max-width: 100%;
+	}
+	#main p.overseas-instructions {
+		margin: 2em 0;
+	}
+}
+/*registration 2024 edits*/
