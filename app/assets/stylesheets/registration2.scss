@@ -1562,6 +1562,172 @@ input[type=text], input[type=tel], input, select, textarea {
 	clear: both;
 	width: 100%;
 }
+/*share page*/
+#container2 div.rollover_button a, #container2 div.rollover_button:active a, #container2 span.rollover_button a, #container2 span.rollover_button:active a {
+	display: inline-block;
+	width: auto;
+	white-space: normal;
+	border: 0px solid #c64d4f;
+	background: none;
+	background-color: rgb(15,117,189);
+	padding: 4px 0;
+	border-radius: 4px;
+	text-align: left;
+}
+#container2 div.rollover_button a span, #container2 div.rollover_button:active a span, #container2 span.rollover_button a span, #container2 span.rollover_button:active a span {
+	background: none;
+	padding: 4px 12px;
+	width: auto;
+	display: inline-block;
+	color: white;
+	font-size: 14px;
+	text-transform: none;
+	font-family: 'Inter', sans-serif;
+	text-align: center;
+}
+#container2 div.rollover_button:hover a, #container2 span.rollover_button:hover a {
+	display: inline-block;
+	width: auto;
+	white-space: normal;
+	border: 0px solid #c64d4f;
+	background: none;
+	background-color: rgb(8,59,95);
+	padding: 4px 0;
+	border-radius: 4px;
+	text-align: center;
+	text-transform: none;
+}
+#container2 div.rollover_button:hover a span, #container2 span.rollover_button:hover a span {
+	display: inline-block;
+	background-image: none;
+	text-align: center;
+	text-transform: none;
+	width: auto;
+}
+/*share page*/
+#main form span.compliance {
+	font-size: 12px;
+	color: #000;
+}
+#main .step_4 .rollover_button button {
+	line-height: 20px;
+}
+.button_keep_going_en.button_keep_going, .button_keep_going_en.button_keep_going:hover {
+	background-color: transparent;
+	text-align: center;
+	color: #B32426;
+}
+.button_keep_going_en.button_keep_going:hover {
+	background-color: transparent;
+	text-align: center;
+	color: #000000;
+}
+input:focus, select:focus, textarea:focus {
+	border: 1px solid rgb(15,117,189);
+	background-color: #ffffff;
+}
+#other_language_link select:focus {
+	border: none !important;
+}
+input[type='radio']:focus, input[type='checkbox']:focus {
+	border: none !important;
+	outline: none !important;
+}
+select:focus {
+	outline: none;
+}
+.has_error input, .has_error select {
+	border: 1px solid rgb(179,36,38)!important;
+}
+#main p {
+	margin: 0 0 14px 0;
+}
+#main form ul li.registrant-form__will-be-18-by-election__line h3 {
+	margin-top: 0;
+}
+span#link-to-copy {
+	overflow-wrap: anywhere;
+}
+#progress-bar li.progress-done {
+	background-color: #BED9EC;
+	border-radius: 4px;
+}
+#progress-bar li.progress-current {
+	background-color: #BED9EC;
+	border-radius: 4px;
+}
+#progress-bar li.progress-todo {
+	background-color: #fff;
+	border-radius: 4px;
+}
+#main.lookup form ul li.registrant-form__phone__line {
+	margin-top: 0;
+}
+.registrant-form__state-id-number__line {
+	margin-top: 8px !important;
+}
+.qtip-blue {
+	color: #000;
+	border: 1px solid #000;
+	background-color: #fff;
+}
+.qtip-content {
+	position: relative;
+	padding: 12px 12px;
+	overflow: hidden;
+	text-align: left;
+	word-wrap: break-word;
+}
+.qtip {
+	font-size: 12px;
+	line-height: 16px;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+body #sticky_footer {
+	position: relative;
+	display: inline;
+}
+#footer {
+	margin: 60px auto 0 auto;
+	font-family: 'Inter', sans-serif;
+}
+#main form ul li div select, #main form ul li.width_f div select, #main form ul.flat li div select, #main form ul.flat li.width_f div select {
+	color: #000;
+}
+input[type="checkbox"] {
+	margin-left: 0;
+}
+#main form ul li.registrant-form__has-state-license__line {
+	margin: 1em 10% 0;
+}
+#main.lookup li.registrant-form__opt-in-email__line {
+	margin-top: 16px !important;
+}
+#main.abr h2, #main.lookup h2, #main.alert_request h2, #main.ballot-status-check h2 {
+	text-align: left;
+}
+#main.abr .requirements, #main.abr .state-instructions, #main.abr .intro-message, #main.abr .finish_instructions, #main.lookup .requirements, #main.lookup .state-instructions, #main.lookup .intro-message, #main.lookup .finish_instructions, #main.alert_request .requirements, #main.alert_request .state-instructions, #main.alert_request .intro-message, #main.alert_request .finish_instructions, #main.ballot-status-check .requirements, #main.ballot-status-check .state-instructions, #main.ballot-status-check .intro-message, #main.ballot-status-check .finish_instructions {
+	margin: 16px 0 0 0;
+}
+form#new_abr {
+	top: 16px;
+}
+#main form span.compliance {
+	font-size: 12px;
+	color: #000;
+	line-height: 1.4em;
+	padding: 0 0 8px 5px;
+	margin: 0 0 8px 0;
+}
+#main.lookup form span.compliance {
+	line-height: 1.4em;
+	padding: 0 0 8px 0;
+	margin: 0 0 0 0;
+}
+#main.alert_request .consent_copy {
+	margin-top: 8px;
+}
 /*registration3*/
 
 
