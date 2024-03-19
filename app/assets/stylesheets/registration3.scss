@@ -452,13 +452,13 @@ input[type=text], input[type=tel], input, select, textarea {
 	background: none;
 	background-color: rgb(15,117,189);
 	border: none;
-	color: #fff;
+	color: #fff !important;
 	font-family: 'Inter', sans-serif;
 	font-weight: 600;
 	font-size: 16px;
 	border-radius: 4px;
 	transition: all .3s;
-	padding: 11px 24px;
+	padding: 11px 24px !important;
 }
 #main.abr span.rollover_button a:hover, #main form .rollover_button button:hover, #main form .rollover_button span.button-style:hover, #main.lookup span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover, span.rollover_button a:hover, span.rollover_button:hover a {
 	text-decoration: none !important;
@@ -967,15 +967,16 @@ body.new-mobile-ui #main .step_4 form fieldset legend {
     padding: 0;
 }
 body.new-mobile-ui #main .step_2 form ul li.registrant-form__will-be-18-by-election__line {
-margin-top: 16px;
+   margin-top: 16px;
 }
 body.new-mobile-ui #main .step_4  a.button_edit_en.button_edit {
     width: fit-content;
     float: left;
-    padding: 5px 10px;
+    padding: 5px 10px !important;
     font-size: 12px;
     text-decoration: inherit;
     margin-top: 8px;
+    display: block;
 }
 /*new mobile ui overrides */
 
