@@ -668,15 +668,13 @@ form#new_abr {
 #main.alert_request .consent_copy {
 	margin-top: 8px;
 }
-.powered-by-logo img {
+#powered_by_aws_logo.powered-by-logo img {
 	content: image-url('powered-by-aws-logo.png');
 }
 body #footer .powered-by-logo img {
     height: 20px;
 }
-#powered_by_logo.footer-rtv-logo img {
-    content: "";
-}
+
 /*media*/
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line,#main.lookup form ul li.registrant-form__name-suffix__line,#main.lookup form ul li.registrant-form__prev-name-suffix__line,#main.lookup form ul li.width_f.registrant-form__name-title__line,#main.lookup form ul li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
