@@ -1475,6 +1475,9 @@ body #footer p a:hover, a:hover {
 	font-weight: 600;
 	border-radius: 4px;
 }
+#main form ul li div select, #main form ul li.width_f div select, #main form ul.flat li div select, #main form ul.flat li.width_f div select {
+    border-radius: 4px;
+}
 #main.abr .requirements, #main.abr .state-instructions, #main.abr .intro-message, #main.abr .finish_instructions, #main.lookup .requirements, #main.lookup .state-instructions, #main.lookup .intro-message, #main.lookup .finish_instructions, #main.alert_request .requirements, #main.alert_request .state-instructions, #main.alert_request .intro-message, #main.alert_request .finish_instructions, #main.ballot-status-check .requirements, #main.ballot-status-check .state-instructions, #main.ballot-status-check .intro-message, #main.ballot-status-check .finish_instructions {
 	margin-top: 0;
 }
@@ -1566,8 +1569,11 @@ input[type=text], input[type=tel], input, select, textarea {
 #main.lookup .stacked span.error,#main.lookup .stacked span.example {
 	height: 8px;
 }
-#main.abr .stacked span.error,#main.abr .stacked span.example,#main.abr .flat span.error,#main.abr .flat span.example {
-	height: 16px;
+#main.abr .stacked span.error, #main.abr .stacked span.example, #main.abr .flat span.error, #main.abr .flat span.example {
+    height: 16px;
+    top: -32px;
+    right: 10px;
+    float: right;
 }
 #main.abr .instructions {
 	display: inline-block;
