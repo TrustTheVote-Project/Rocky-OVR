@@ -947,10 +947,21 @@ body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line, body.new-
 body.new-mobile-ui #main #download_no_js {
     padding: 0px;
 }
-body.new-mobile-ui #main form ul li.registrant-form__name-suffix__line,
-body.new-mobile-ui #main form ul li.registrant-form__prev-name-suffix__line {
-    /*width: 45%;
-    margin-left: 0;*/
+body.new-mobile-ui #sticky_footer {
+    display: inherit;
+}
+body.new-mobile-ui #main .step_4 form ul li.registrant-form__name-suffix__line, 
+body.new-mobile-ui #main .step_4 form ul li.registrant-form__prev-name-suffix__line {
+    margin-left: 0;
+}
+body.new-mobile-ui #main .step_4 ul li.registrant-form__state-id-number__line {
+    margin-top: 8px;
+}
+body.new-mobile-ui #main .step_4 form ul li.registrant-form__change-of-name__line {
+    margin-top: 0px;
+}
+body.new-mobile-ui #main .step_4 form fieldset legend {
+    padding: 0;
 }
 /*new mobile ui overrides */
 
