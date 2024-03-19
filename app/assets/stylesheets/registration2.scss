@@ -1458,7 +1458,7 @@ a:link, a:visited, a:active {
 body #footer p a, body #footer p a:visited, body #footer p a:link {
     color: #B32426;
 }
-a:hover {
+body #footer p a:hover, a:hover {
 	color: #000000;
 }
 #main .intro-message p, #main p, #main.abr .intro-message p, #main.alert_request .intro-message, #main.alert_request .intro-message, #main.lookup .intro-message p, #main.lookup .reject p, #main.lookup .reject li, #main.alert_request .reject p, #main.alert_request .reject li, #main.abr p, #main.lookup p, #main.alert_request p, #main.ballot-status-check p, #main .declaration-text p, .fulltext p {
@@ -1516,7 +1516,7 @@ a:hover {
 input[type=text], input[type=tel], input, select, textarea {
 	font-family: 'Inter', sans-serif;
 	font-size: 14px;
-	border-radius: 4px !important;
+	border-radius: 4px;
 	font-weight: 400;
 }
 #main form ul li div input, #main form ul li.width_f div input, #main form ul.flat li div input, #main form ul.flat li.width_f div input, #main form ul li div select, #main form ul li.width_f div select, #main form ul.flat li div select, #main form ul.flat li.width_f div select {
@@ -1551,7 +1551,7 @@ input[type=text], input[type=tel], input, select, textarea {
 }
 #main.lookup span.rollover_button a:hover, #main.abr span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover {
 	background-color: rgb(8,59,95);
-	color: #fff !important;
+	color: #fff;
 }
 #main form ul li.registrant-form__has-no-state-license__line, #main form ul li.width_f.registrant-form__has-no-state-license__line, #main form ul.flat li.registrant-form__has-no-state-license__line, #main form ul.flat li.width_f.registrant-form__has-no-state-license__line {
 	margin-bottom: 4px;
@@ -1742,6 +1742,9 @@ form#new_abr {
 }
 .powered-by-logo img {
 	content: image-url('powered-by-aws-logo.png');
+}
+body #footer .powered-by-logo img {
+    height: 20px;
 }
 /*media*/
 @media screen and (min-width: 600px) {
@@ -2000,14 +2003,15 @@ body.new-mobile-ui #main #dynamic-progress-bar {
 body.new-mobile-ui #main #dynamic-progress-bar .filler {
     background: #BED9EC;
     border-right: 1px solid #000;
-    background-blend-mode: screen;
+    z-index: -1;
 }
 body.new-mobile-ui #main #dynamic-progress-bar .content {
     visibility: hidden;
 }
-body.new-mobile-ui #main form ul li.registrant-form__name-suffix__line, body.new-mobile-ui #main form ul li.registrant-form__prev-name-suffix__line {
-    width: 45%;
-    margin-left: 0;
+body.new-mobile-ui #main form ul li.registrant-form__name-suffix__line,
+body.new-mobile-ui #main form ul li.registrant-form__prev-name-suffix__line {
+    /*width: 45%;
+    margin-left: 0;*/
 }
 /*new mobile ui overrides */
 
