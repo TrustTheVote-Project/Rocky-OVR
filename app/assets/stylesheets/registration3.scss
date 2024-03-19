@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 body {
-	color: #000000;
+	color: #000;
 	background-image: none;
 	font-family: 'Inter', sans-serif;
 	font-size: 12px
@@ -152,7 +152,7 @@ h1 {
 }
 h1, h2, h3, h4, h5, h6, legend, #header .header-text {
 	font-family: 'Inter', sans-serif;
-	color: #000000;
+	color: #000;
 }
 legend {
 	font-size: 12px;
@@ -164,7 +164,7 @@ legend {
 #main form ul li.registrant-form__us-citizen__line, #main form ul li.registrant-form__will-be-18-by-election__line, #main form ul li.registrant-form__required-checkbox, #main form ul li.width_f.registrant-form__us-citizen__line, #main form ul li.width_f.registrant-form__will-be-18-by-election__line, #main form ul li.width_f.registrant-form__required-checkbox, #main form ul.flat li.registrant-form__us-citizen__line, #main form ul.flat li.registrant-form__will-be-18-by-election__line, #main form ul.flat li.registrant-form__required-checkbox, #main form ul.flat li.width_f.registrant-form__us-citizen__line, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line, #main form ul.flat li.width_f.registrant-form__required-checkbox {
 	margin: 0;
 	padding: 0;
-	border: 0px solid #000000;
+	border: 0px solid #000;
 	width: 100%;
 	margin-right: 0;
 }
@@ -172,7 +172,7 @@ ul.checkbox label {
 	text-transform: inherit;
 }
 #main form ul li.registrant-form__us-citizen__line,#main form ul li.registrant-form__will-be-18-by-election__line,#main form ul li.registrant-form__confirm_will_be_18__line {
-	border: 1px solid #000000;
+	border: 1px solid #000;
 	border-radius: 4px;
 	padding: 10px;
 }
@@ -366,7 +366,7 @@ ul > li.registrant-form__change-of-name__line > h3 > label {
 	width: 100%;
 }
 #main form ul.radio li label, #main form ul.checkbox li label, #main form ul.flat.radio li label, #main form ul.flat.checkbox li label {
-	color: #000000;
+	color: #000;
 	text-transform: initial;
 }
 a:link, #main.abr .requirements a, #main.abr .state-instructions a, #main.abr .intro-message a, #main.abr .finish_instructions a, #main.lookup .requirements a, #main.lookup .state-instructions a, #main.lookup .intro-message a, #main.lookup .finish_instructions a, #main.alert_request .requirements a, #main.alert_request .state-instructions a, #main.alert_request .intro-message a, #main.alert_request .finish_instructions a, #main.ballot-status-check .requirements a, #main.ballot-status-check .state-instructions a, #main.ballot-status-check .intro-message a, #main.ballot-status-check .finish_instructions a {
@@ -381,14 +381,14 @@ body #footer p a, body #footer p a:visited, body #footer p a:link {
     color: #B32426;
 }
 body #footer p a:hover, a:hover {
-	color: #000000;
+	color: #000;
 }
 #main .intro-message p, #main p, #main.abr .intro-message p, #main.alert_request .intro-message, #main.alert_request .intro-message, #main.lookup .intro-message p, #main.lookup .reject p, #main.lookup .reject li, #main.alert_request .reject p, #main.alert_request .reject li, #main.abr p, #main.lookup p, #main.alert_request p, #main.ballot-status-check p, #main .declaration-text p, .fulltext p {
 	font-family: 'Inter', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 24px;
-	color: #000000;
+	color: #000;
 }
 #main form ul .has_license .checkbox-explanation p, #main form ul.flat .has_license .checkbox-explanation p {
 	color: #DD2834;
@@ -434,7 +434,7 @@ body #footer p a:hover, a:hover {
 	font-size: 14px;
 }
 #main form ul li h3, #main form ul li.width_f h3, #main form ul.flat li h3, #main form ul.flat li.width_f h3 {
-	color: #000000;
+	color: #000;
 	font-family: 'Inter', sans-serif;
 	font-size: 17px;
 }
@@ -560,11 +560,11 @@ input[type=text], input[type=tel], input, select, textarea {
 .button_keep_going_en.button_keep_going:hover {
 	background-color: transparent;
 	text-align: center;
-	color: #000000;
+	color: #000;
 }
 input:focus, select:focus, textarea:focus {
 	border: 1px solid rgb(15,117,189);
-	background-color: #ffffff;
+	background-color: #fff;
 }
 #other_language_link select:focus {
 	border: none !important;
@@ -577,7 +577,7 @@ select:focus {
 	outline: none;
 }
 .has_error input, .has_error select {
-	border: 1px solid rgb(179,36,38)!important;
+	border: 1px solid rgb(179,36,38);
 }
 #main p {
 	margin: 0 0 14px 0;
@@ -604,7 +604,7 @@ span#link-to-copy {
 	margin-top: 0;
 }
 .registrant-form__state-id-number__line {
-	margin-top: 8px !important;
+	margin-top: 8px;
 }
 .qtip-blue {
 	color: #000;
@@ -642,7 +642,7 @@ input[type="checkbox"] {
 	margin: 1em 10% 0;
 }
 #main.lookup li.registrant-form__opt-in-email__line {
-	margin-top: 16px !important;
+	margin-top: 16px;
 }
 #main.abr h2, #main.lookup h2, #main.alert_request h2, #main.ballot-status-check h2 {
 	text-align: left;
@@ -668,12 +668,16 @@ form#new_abr {
 #main.alert_request .consent_copy {
 	margin-top: 8px;
 }
+
+/* swap footer logos */
 #powered_by_aws_logo.powered-by-logo img {
 	content: image-url('powered-by-aws-logo.png');
-}
-body #footer .powered-by-logo img {
     height: 20px;
 }
+#powered_by_logo.powered-by-logo img {
+	content: image-url('rock-the-vote-horizontal-logo.png');
+}
+
 
 /*media*/
 @media screen and (min-width: 600px) {
@@ -927,7 +931,7 @@ body #footer .powered-by-logo img {
 body.new-mobile-ui #main #dynamic-progress-bar {
     background: transparent;
     border-radius: 4px;
-    border: 1px solid #000000;
+    border: 1px solid #000;
 }
 body.new-mobile-ui #main #dynamic-progress-bar .filler {
     background: #BED9EC;
@@ -936,6 +940,12 @@ body.new-mobile-ui #main #dynamic-progress-bar .filler {
 }
 body.new-mobile-ui #main #dynamic-progress-bar .content {
     visibility: hidden;
+}
+body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line, body.new-mobile-ui #main form ul li.registrant-form__change-of-name__line {
+    margin-top: 16px;
+}
+body.new-mobile-ui #main #download_no_js {
+    padding: 0px;
 }
 body.new-mobile-ui #main form ul li.registrant-form__name-suffix__line,
 body.new-mobile-ui #main form ul li.registrant-form__prev-name-suffix__line {
