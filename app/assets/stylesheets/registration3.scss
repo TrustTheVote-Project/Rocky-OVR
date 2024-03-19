@@ -728,7 +728,7 @@ form#new_abr {
 		line-height: 21px;
 	}
 	#main.abr span.rollover_button a, #main form .rollover_button button, #main form .rollover_button span.button-style, #main.lookup span.rollover_button a, #main .continue_shift .rollover_button a, #main .download .rollover_button a, #main .download h2.preparing, span.rollover_button a, span.rollover_button a {
-		font-size: 14px;
+		font-size: 14px !important;
 	}
 	.qtip {
 		left: 0px !important;
@@ -977,6 +977,12 @@ body.new-mobile-ui #main .step_4  a.button_edit_en.button_edit {
     text-decoration: inherit;
     margin-top: 8px;
     display: block;
+}
+body.new-mobile-ui #main .step_4 span.button.rollover_button {
+    display: block;
+}
+body.new-mobile-ui #main .step_2 .skip_state_registration .checkbox {
+    margin: 24px 0;
 }
 /*new mobile ui overrides */
 
