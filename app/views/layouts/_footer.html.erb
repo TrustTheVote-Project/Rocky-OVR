@@ -1,13 +1,13 @@
 <% cache ['footer', params[:partner], I18n.locale] do %>
   <div id="footer">
     <%- if !@registrant || @registrant.use_short_form? %>
-      <div id="powered_by_logo" class="powered-by-logo">
+      <div id="powered_by_logo" class="powered-by-logo <%= 'footer-rtv-logo' unless !@partner || (!@partner.partner2_css_present? && !@partner.whitelabeled) %>">
         <span class='powered-by-text'>Powered By</span>
         <a href="<%= RockyConf.sponsor.url %>" target="_blank">
           <%= image_tag 'rock-the-vote-horz-logo-rev.png', alt: 'Rock the Vote', class: 'rtv-logo' %>
         </a>
       </div>
-      <div id="powered_by_aws_logo" class="powered-by-logo">
+      <div id="powered_by_aws_logo" class="powered-by-logo <%= 'footer-aws-logo' unless !@partner || (!@partner.partner2_css_present? && !@partner.whitelabeled) %>">
         <%= image_tag 'powered-by-aws-logo-v3.png', alt: 'Powered by Amazon Web Services' %>
       </div>
     <%- end %>
