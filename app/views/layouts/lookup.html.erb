@@ -42,8 +42,6 @@
   <%= stylesheet_link_tag *partner_css %>
   <%= stylesheet_link_tag 'registration3' unless @partner && @partner.partner2_css_present? %>
 
-<%= @partner.inspect %> <!-- This will output the value of @partner -->
-<%= @partner.partner_css_present? %> <!-- This will output the result of @partner.partner_css_present? -->
 <%= @partner.partner2_css_present? %> <!-- This will output the result of @partner.partner2_css_present? -->
 <%= @partner.whitelabeled? %> <!-- This will output the result of @partner.whitelabeled? -->
 
