@@ -1,5 +1,3 @@
-/*
-
 /*registration 2024 edits*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
@@ -669,11 +667,11 @@ form#new_abr {
 }
 
 /* swap footer logos */
-#powered_by_aws_logo.powered-by-logo img {
+body #footer #powered_by_aws_logo.powered-by-logo img {
 	content: image-url('powered-by-aws-logo.png');
     height: 20px;
 }
-#powered_by_logo.powered-by-logo img {
+body #footer #powered_by_logo.powered-by-logo img {
 	content: image-url('rock-the-vote-horizontal-logo.png');
 }
 
@@ -867,9 +865,6 @@ form#new_abr {
 	#main .edit_state_registrants_mi_registrant label {
 		display: inline;
 	}
-	body #footer .powered-by-logo img {
-		height: 20px;
-	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
 	#main.lookup form ul li.registrant-form__first-name__line, #main.lookup form ul li.registrant-form__last-name__line {
@@ -990,8 +985,11 @@ body.new-mobile-ui #main .step_4 span.button.rollover_button {
 body.new-mobile-ui #main .step_2 .skip_state_registration .checkbox {
     margin: 24px 0;
 }
+body.primary-partner #footer #powered_by_aws_logo {
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+}
 /* new mobile ui overrides */
 
 /*registration 2024 edits*/
-
-*/
