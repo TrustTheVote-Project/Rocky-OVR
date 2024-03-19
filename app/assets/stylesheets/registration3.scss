@@ -1,6 +1,6 @@
-/*registration3*/
-
+/*registration 2024 edits*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 body {
 	color: #000000;
 	background-image: none;
@@ -34,7 +34,7 @@ input[type='checkbox'] {
 }
 #header {
 	text-align: center;
-	background-image: url('https://rtv-com.s3.us-east-1.amazonaws.com/images/logos/300px-rtv-logo.png');
+	background-image: image-url('300px-rtv-logo.png');
 	background-repeat: no-repeat;
 	background-position: 0 15px;
 	background-size: auto 50px;
@@ -100,7 +100,8 @@ label {
 #main .step_1 form ul li>div.tooltip {
 	padding: 2px 0;
 	float: none;
-	display: inlineposition: relative;
+	display: inline;
+    position: relative;
 	left: 0;
 	text-align: left;
 }
@@ -181,7 +182,7 @@ ul.checkbox label {
 	border-radius: 4px;
 	padding: 10px;
 	text-align: left !important;
-	margin: 24px 0;
+	margin: 12px 0;
 }
 /* Hide the default checkboxes */
 input[type="checkbox"] {
@@ -369,15 +370,18 @@ ul > li.registrant-form__change-of-name__line > h3 > label {
 	text-transform: initial;
 }
 a:link, #main.abr .requirements a, #main.abr .state-instructions a, #main.abr .intro-message a, #main.abr .finish_instructions a, #main.lookup .requirements a, #main.lookup .state-instructions a, #main.lookup .intro-message a, #main.lookup .finish_instructions a, #main.alert_request .requirements a, #main.alert_request .state-instructions a, #main.alert_request .intro-message a, #main.alert_request .finish_instructions a, #main.ballot-status-check .requirements a, #main.ballot-status-check .state-instructions a, #main.ballot-status-check .intro-message a, #main.ballot-status-check .finish_instructions a {
-	color #B32426 !important;
+	/*color: #B32426;*/	
+}
+a:link, a:visited, a:active {
+	color: #B32426;
 	font-weight: 500;
 	text-decoration: underline;
 }
-a:visited, a:active {
-	color: #B32426;
+body #footer p a, body #footer p a:visited, body #footer p a:link {
+    color: #B32426;
 }
-a:hover {
-	color: #000 !important;
+body #footer p a:hover, a:hover {
+	color: #000000;
 }
 #main .intro-message p, #main p, #main.abr .intro-message p, #main.alert_request .intro-message, #main.alert_request .intro-message, #main.lookup .intro-message p, #main.lookup .reject p, #main.lookup .reject li, #main.alert_request .reject p, #main.alert_request .reject li, #main.abr p, #main.lookup p, #main.alert_request p, #main.ballot-status-check p, #main .declaration-text p, .fulltext p {
 	font-family: 'Inter', sans-serif;
@@ -392,6 +396,9 @@ a:hover {
 	font-size: 14px;
 	font-weight: 600;
 	border-radius: 4px;
+}
+#main form ul li div select, #main form ul li.width_f div select, #main form ul.flat li div select, #main form ul.flat li.width_f div select {
+    border-radius: 4px;
 }
 #main.abr .requirements, #main.abr .state-instructions, #main.abr .intro-message, #main.abr .finish_instructions, #main.lookup .requirements, #main.lookup .state-instructions, #main.lookup .intro-message, #main.lookup .finish_instructions, #main.alert_request .requirements, #main.alert_request .state-instructions, #main.alert_request .intro-message, #main.alert_request .finish_instructions, #main.ballot-status-check .requirements, #main.ballot-status-check .state-instructions, #main.ballot-status-check .intro-message, #main.ballot-status-check .finish_instructions {
 	margin-top: 0;
@@ -434,7 +441,7 @@ a:hover {
 input[type=text], input[type=tel], input, select, textarea {
 	font-family: 'Inter', sans-serif;
 	font-size: 14px;
-	border-radius: 4px !important;
+	border-radius: 4px;
 	font-weight: 400;
 }
 #main form ul li div input, #main form ul li.width_f div input, #main form ul.flat li div input, #main form ul.flat li.width_f div input, #main form ul li div select, #main form ul li.width_f div select, #main form ul.flat li div select, #main form ul.flat li.width_f div select {
@@ -469,7 +476,7 @@ input[type=text], input[type=tel], input, select, textarea {
 }
 #main.lookup span.rollover_button a:hover, #main.abr span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover {
 	background-color: rgb(8,59,95);
-	color: #fff !important;
+	color: #fff;
 }
 #main form ul li.registrant-form__has-no-state-license__line, #main form ul li.width_f.registrant-form__has-no-state-license__line, #main form ul.flat li.registrant-form__has-no-state-license__line, #main form ul.flat li.width_f.registrant-form__has-no-state-license__line {
 	margin-bottom: 4px;
@@ -484,8 +491,11 @@ input[type=text], input[type=tel], input, select, textarea {
 #main.lookup .stacked span.error,#main.lookup .stacked span.example {
 	height: 8px;
 }
-#main.abr .stacked span.error,#main.abr .stacked span.example,#main.abr .flat span.error,#main.abr .flat span.example {
-	height: 16px;
+#main.abr .stacked span.error, #main.abr .stacked span.example, #main.abr .flat span.error, #main.abr .flat span.example {
+    height: 16px;
+    top: -32px;
+    right: 10px;
+    float: right;
 }
 #main.abr .instructions {
 	display: inline-block;
@@ -545,15 +555,15 @@ input[type=text], input[type=tel], input, select, textarea {
 .button_keep_going_en.button_keep_going, .button_keep_going_en.button_keep_going:hover {
 	background-color: transparent;
 	text-align: center;
-	color: #B32426 !important;
+	color: #B32426;
 }
 .button_keep_going_en.button_keep_going:hover {
 	background-color: transparent;
 	text-align: center;
-	color: #000 !important;
+	color: #000000;
 }
 input:focus, select:focus, textarea:focus {
-	border: 1px solid rgb(15,117,189) !important;
+	border: 1px solid rgb(15,117,189);
 	background-color: #ffffff;
 }
 #other_language_link select:focus {
@@ -622,9 +632,6 @@ body #sticky_footer {
 	margin: 60px auto 0 auto;
 	font-family: 'Inter', sans-serif;
 }
-.powered-by-logo img {
-	content: url('https://rtv-com.s3.us-east-1.amazonaws.com/images/logos/rock-the-vote-horizontal-logo.png');
-}
 #main form ul li div select, #main form ul li.width_f div select, #main form ul.flat li div select, #main form ul.flat li.width_f div select {
 	color: #000;
 }
@@ -661,6 +668,12 @@ form#new_abr {
 #main.alert_request .consent_copy {
 	margin-top: 8px;
 }
+.powered-by-logo img {
+	content: image-url('powered-by-aws-logo.png');
+}
+body #footer .powered-by-logo img {
+    height: 20px;
+}
 /*media*/
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line,#main.lookup form ul li.registrant-form__name-suffix__line,#main.lookup form ul li.registrant-form__prev-name-suffix__line,#main.lookup form ul li.width_f.registrant-form__name-title__line,#main.lookup form ul li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
@@ -684,7 +697,7 @@ form#new_abr {
 	body #header {
 		width: calc(100% - 30px);
 		min-width: 270px;
-		background-image: url('https://rtv-com.s3.us-east-1.amazonaws.com/images/logos/300px-rtv-logo.png');
+		background-image: image-url('300px-rtv-logo.png');
 		background-position: 10px 14px;
 		background-size: auto 40px;
 		height: auto;
@@ -909,4 +922,25 @@ form#new_abr {
 		margin: 2em 0;
 	}
 }
-/*registration3*/
+/*new mobile ui overrides */
+body.new-mobile-ui #main #dynamic-progress-bar {
+    background: transparent;
+    border-radius: 4px;
+    border: 1px solid #000000;
+}
+body.new-mobile-ui #main #dynamic-progress-bar .filler {
+    background: #BED9EC;
+    border-right: 1px solid #000;
+    z-index: -1;
+}
+body.new-mobile-ui #main #dynamic-progress-bar .content {
+    visibility: hidden;
+}
+body.new-mobile-ui #main form ul li.registrant-form__name-suffix__line,
+body.new-mobile-ui #main form ul li.registrant-form__prev-name-suffix__line {
+    /*width: 45%;
+    margin-left: 0;*/
+}
+/*new mobile ui overrides */
+
+/*registration 2024 edits*/
