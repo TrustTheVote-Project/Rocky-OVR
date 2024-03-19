@@ -1,3 +1,5 @@
+/*
+
 /*registration 2024 edits*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
@@ -727,6 +729,10 @@ form#new_abr {
 		font-size: 14px;
 		line-height: 21px;
 	}
+	#main .declaration-text ul li {
+		font-size: 14px;
+		line-height: 21px;
+	}
 	#main.abr span.rollover_button a, #main form .rollover_button button, #main form .rollover_button span.button-style, #main.lookup span.rollover_button a, #main .continue_shift .rollover_button a, #main .download .rollover_button a, #main .download h2.preparing, span.rollover_button a, span.rollover_button a {
 		font-size: 14px !important;
 	}
@@ -930,7 +936,7 @@ form#new_abr {
 		margin: 2em 0;
 	}
 }
-/*new mobile ui overrides */
+/* new mobile ui overrides */
 body.new-mobile-ui #main #dynamic-progress-bar {
     background: transparent;
     border-radius: 4px;
@@ -984,6 +990,8 @@ body.new-mobile-ui #main .step_4 span.button.rollover_button {
 body.new-mobile-ui #main .step_2 .skip_state_registration .checkbox {
     margin: 24px 0;
 }
-/*new mobile ui overrides */
+/* new mobile ui overrides */
 
 /*registration 2024 edits*/
+
+*/
