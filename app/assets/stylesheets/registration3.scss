@@ -158,6 +158,9 @@ legend {
 	font-size: 12px;
 	font-weight: 600;
 }
+.declaration-text {
+    border-radius: 4px;
+}
 #main form ul li.registrant-form__us-citizen__line h3 input, #main form ul li.registrant-form__us-citizen__line h3 label, #main form ul li.registrant-form__will-be-18-by-election__line h3 input, #main form ul li.registrant-form__will-be-18-by-election__line h3 label, #main form ul li.registrant-form__required-checkbox h3 input, #main form ul li.registrant-form__required-checkbox h3 label, #main form ul li.width_f.registrant-form__us-citizen__line h3 input, #main form ul li.width_f.registrant-form__us-citizen__line h3 label, #main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 input, #main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 label, #main form ul li.width_f.registrant-form__required-checkbox h3 input, #main form ul li.width_f.registrant-form__required-checkbox h3 label, #main form ul.flat li.registrant-form__us-citizen__line h3 input, #main form ul.flat li.registrant-form__us-citizen__line h3 label, #main form ul.flat li.registrant-form__will-be-18-by-election__line h3 input, #main form ul.flat li.registrant-form__will-be-18-by-election__line h3 label, #main form ul.flat li.registrant-form__required-checkbox h3 input, #main form ul.flat li.registrant-form__required-checkbox h3 label, #main form ul.flat li.width_f.registrant-form__us-citizen__line h3 input, #main form ul.flat li.width_f.registrant-form__us-citizen__line h3 label, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 input, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 label, #main form ul.flat li.width_f.registrant-form__required-checkbox h3 input, #main form ul.flat li.width_f.registrant-form__required-checkbox h3 label {
 	font-size: 14px;
 }
@@ -288,12 +291,10 @@ label {
 	display: inline-block;
 	cursor: pointer;
 	font-size: 14px;
-	/* Adjust font size as needed */
 }
 /* Error styling for checkboxes */
 .has_error input[type="checkbox"] + label::before {
 	border-color: rgb(179, 36, 38);
-	/* Red border */
 }
 /* Additional styling for checkboxes outside the .opt-ins and not within .registrant-form__us-citizen__line */
 :not(.opt-ins) input[type="checkbox"] + label::after {
@@ -304,10 +305,6 @@ label {
 	width: 18px;
 	height: 18px;
 	position: absolute;
-	/* Position absolute to overlay on top of checkbox */
-	/*top: 2px;
-	*/
-	/* Adjust to drop down by 1px */
 	left: 5px;
 	background-repeat: no-repeat;
 	/* Ensure checkmark is not repeated */
@@ -315,14 +312,14 @@ label {
 	/* Center the checkmark */
 }
 li.registrant-form__change-of-name__line > h3 > label::after,li.registrant-form__change-of-address__line > h3 > label::after {
-	top: 0 !important;
+	top: 0;
 }
 li.registrant-form__us-citizen__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line.registrant-form__required-checkbox > h3 > label::after,ul.checkbox.checkbox-step-1 > li.registrant-form__us-citizen__line > h3 > label::after,li.registrant-form__confirm_will_be_18__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line > h3 > label::after {
-	top: 1px !important;
+	top: 1px;
 	margin-left: 0;
 }
 li.registrant-form__opt-in-sms__line > h3 > label::after,li.registrant-form__opt-in-email__line > h3 > label::after,fieldset.no_border.opt-ins > fieldset > ul.checkbox > li.registrant-form__volunteer__line > h3 > label::after,li.registrant-form__partner-opt-in-email__line > h3 > label::after,li.registrant-form__partner-opt-in-sms__line > h3 > label::after,li.registrant-form__partner-volunteer__line > h3 > label::after,.edit_state_registrants_pa_registrant ul > li.registrant-form__change-of-address__line > h3 > label::after,.edit_state_registrants_pa_registrant li.registrant-form__change-of-name__line > h3 > label::after,.edit_state_registrants_wa_registrant ul > li.registrant-form__change-of-name__line > h3 > label::after {
-	top: 2px !important;
+	top: 2px;
 }
 ul > li.registrant-form__change-of-name__line > h3 > label {
 	width: auto;
@@ -342,7 +339,7 @@ ul > li.registrant-form__change-of-name__line > h3 > label {
 	margin-top: 0;
 }
 .edit_state_registrants_wa_registrant #dln_set {
-	margin-top: 20px !important;
+	margin-top: 20px;
 }
 /* radio input size */
 #main.abr .state-abr-form-fields .radio input,#main.lookup .state-abr-form-fields .radio input,#main.alert_request .state-abr-form-fields .radio input,#main.ballot-status-check .state-abr-form-fields .radio input,#main .radio input {
@@ -455,13 +452,13 @@ input[type=text], input[type=tel], input, select, textarea {
 	background: none;
 	background-color: rgb(15,117,189);
 	border: none;
-	color: #fff !important;
+	color: #fff;
 	font-family: 'Inter', sans-serif;
 	font-weight: 600;
 	font-size: 16px;
 	border-radius: 4px;
 	transition: all .3s;
-	padding: 11px 24px !important;
+	padding: 11px 24px;
 }
 #main.abr span.rollover_button a:hover, #main form .rollover_button button:hover, #main form .rollover_button span.button-style:hover, #main.lookup span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover, span.rollover_button a:hover, span.rollover_button:hover a {
 	text-decoration: none !important;
@@ -730,6 +727,9 @@ form#new_abr {
 		font-size: 14px;
 		line-height: 21px;
 	}
+	#main.abr span.rollover_button a, #main form .rollover_button button, #main form .rollover_button span.button-style, #main.lookup span.rollover_button a, #main .continue_shift .rollover_button a, #main .download .rollover_button a, #main .download h2.preparing, span.rollover_button a, span.rollover_button a {
+		font-size: 14px;
+	}
 	.qtip {
 		left: 0px !important;
 	}
@@ -861,6 +861,9 @@ form#new_abr {
 	#main .edit_state_registrants_mi_registrant label {
 		display: inline;
 	}
+	body #footer .powered-by-logo img {
+		height: 20px;
+	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
 	#main.lookup form ul li.registrant-form__first-name__line, #main.lookup form ul li.registrant-form__last-name__line {
@@ -962,6 +965,17 @@ body.new-mobile-ui #main .step_4 form ul li.registrant-form__change-of-name__lin
 }
 body.new-mobile-ui #main .step_4 form fieldset legend {
     padding: 0;
+}
+body.new-mobile-ui #main .step_2 form ul li.registrant-form__will-be-18-by-election__line {
+margin-top: 16px;
+}
+body.new-mobile-ui #main .step_4  a.button_edit_en.button_edit {
+    width: fit-content;
+    float: left;
+    padding: 5px 10px;
+    font-size: 12px;
+    text-decoration: inherit;
+    margin-top: 8px;
 }
 /*new mobile ui overrides */
 
