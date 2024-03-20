@@ -567,7 +567,7 @@ input[type=text], input[type=tel], input, select, textarea {
 	color: $link-hover-color;
 }
 input:focus, select:focus, textarea:focus {
-	border: 1px solid rgb(15,117,189);
+	border: 1px solid rgb(15,117,189) !important;
 	background-color: #fff;
 }
 #other_language_link select:focus {
@@ -917,7 +917,8 @@ body #footer #powered_by_logo.powered-by-logo img {
 	}
 	body #header .header-text {
 		font-size: 22px;
-		/*width: 80%;*/
+		margin-left: 66px;
+		margin-right: 66px;
 	}
 	#main.alert_request li.width_c.registrant-form__middle-name__line {
 		display: none;
@@ -947,6 +948,9 @@ body #footer #powered_by_logo.powered-by-logo img {
 	}
 	a.skip_state_registration_link {
     	line-height: 22px;
+	}
+	#main.abr span.rollover_button a, #main form .rollover_button button, #main form .rollover_button span.button-style, #main.lookup span.rollover_button a, #main .continue_shift .rollover_button a, #main .download .rollover_button a, #main .download h2.preparing, span.rollover_button a, span.rollover_button a {
+    width: 100%;
 	}
 }
 /* new mobile ui overrides */
