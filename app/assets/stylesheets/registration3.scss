@@ -97,6 +97,9 @@ label {
 	font-size: 14px;
 	font-weight: 600;
 }
+.skip_state_registration label {
+    text-transform: initial;
+}
 #main form fieldset legend img.tooltip {
 	top: 5px;
 	position: relative;
@@ -186,6 +189,14 @@ ul.checkbox label {
 	border: 1px solid #000;
 	border-radius: 4px;
 	padding: 10px;
+}
+/* change autofill color */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    &, &:hover, &:focus, &:active{
+        -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    }
 }
 /* mail me my form checkbox */
 #main .skip_state_registration .checkbox {
@@ -299,14 +310,14 @@ label {
 	background-position: center;
 }
 li.registrant-form__change-of-name__line > h3 > label::after,li.registrant-form__change-of-address__line > h3 > label::after {
-	top: 0;
+	top: 0 !important;
 }
 li.registrant-form__us-citizen__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line.registrant-form__required-checkbox > h3 > label::after,ul.checkbox.checkbox-step-1 > li.registrant-form__us-citizen__line > h3 > label::after,li.registrant-form__confirm_will_be_18__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line > h3 > label::after {
-	top: 1px;
+	top: 1px !important;
 	margin-left: 0;
 }
 li.registrant-form__opt-in-sms__line > h3 > label::after,li.registrant-form__opt-in-email__line > h3 > label::after,fieldset.no_border.opt-ins > fieldset > ul.checkbox > li.registrant-form__volunteer__line > h3 > label::after,li.registrant-form__partner-opt-in-email__line > h3 > label::after,li.registrant-form__partner-opt-in-sms__line > h3 > label::after,li.registrant-form__partner-volunteer__line > h3 > label::after,.edit_state_registrants_pa_registrant ul > li.registrant-form__change-of-address__line > h3 > label::after,.edit_state_registrants_pa_registrant li.registrant-form__change-of-name__line > h3 > label::after,.edit_state_registrants_wa_registrant ul > li.registrant-form__change-of-name__line > h3 > label::after {
-	top: 2px;
+	top: 2px !important;
 }
 ul > li.registrant-form__change-of-name__line > h3 > label {
 	width: auto;
