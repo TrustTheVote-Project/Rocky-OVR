@@ -177,6 +177,13 @@ legend {
 .declaration-text {
     border-radius: 4px;
 }
+ul.affirm .disclosures li {
+	font-size: 14px;
+	line-height: 24px;
+}
+.disclosures * {
+	font-size: 14px;
+}
 #main form ul li.registrant-form__us-citizen__line h3 input, #main form ul li.registrant-form__us-citizen__line h3 label, #main form ul li.registrant-form__will-be-18-by-election__line h3 input, #main form ul li.registrant-form__will-be-18-by-election__line h3 label, #main form ul li.registrant-form__required-checkbox h3 input, #main form ul li.registrant-form__required-checkbox h3 label, #main form ul li.width_f.registrant-form__us-citizen__line h3 input, #main form ul li.width_f.registrant-form__us-citizen__line h3 label, #main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 input, #main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 label, #main form ul li.width_f.registrant-form__required-checkbox h3 input, #main form ul li.width_f.registrant-form__required-checkbox h3 label, #main form ul.flat li.registrant-form__us-citizen__line h3 input, #main form ul.flat li.registrant-form__us-citizen__line h3 label, #main form ul.flat li.registrant-form__will-be-18-by-election__line h3 input, #main form ul.flat li.registrant-form__will-be-18-by-election__line h3 label, #main form ul.flat li.registrant-form__required-checkbox h3 input, #main form ul.flat li.registrant-form__required-checkbox h3 label, #main form ul.flat li.width_f.registrant-form__us-citizen__line h3 input, #main form ul.flat li.width_f.registrant-form__us-citizen__line h3 label, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 input, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 label, #main form ul.flat li.width_f.registrant-form__required-checkbox h3 input, #main form ul.flat li.width_f.registrant-form__required-checkbox h3 label {
 	font-size: 14px;
 }
@@ -698,11 +705,6 @@ body #footer #powered_by_logo.powered-by-logo img {
 	}
 	.using_state_registration .step_2 ul.flat.dob-and-phone {
 		margin-top: 12px !important;
-	}
-	/* give some more space in outlined checkbox */
-	ul.checkbox li.spacer {
-		display: inline-block !important;
-		height: 5px;
 	}
 }
 @media screen and (max-width: 600px) {
