@@ -5,6 +5,8 @@ $font-color: #000;
 $footer-font-color: #373D42;
 $link-color: #B32426;
 $link-hover-color: #000;
+$footer-link-color: rgb(8,59,95);
+$footer-link-hover-color: #000;
 $button-color: rgb(15,117,189);
 $button-hover-color: rgb(8,59,95);
 $font-stack: 'Inter', sans-serif;
@@ -64,10 +66,13 @@ body #sticky_footer {
 	background-color: #fff;
 }
 body #footer p a, body #footer p a:visited, body #footer p a:link {
-	color: rgb(8,59,95);
+	color: $footer-link-color;
 }
 body #footer p a:hover {
-	color: $link-hover-color;
+	color: $footer-link-hover-color;
+}
+body #footer {
+	font-family: $font-stack;
 }
 p.privacy_policy_acceptance {
 	display: block;
@@ -372,9 +377,6 @@ a:link, a:visited, a:active {
 	font-weight: 500;
 	text-decoration: underline;
 }
-body #footer p a, body #footer p a:visited, body #footer p a:link {
-    color: $link-color;
-}
 body #footer p a:hover, a:hover {
 	color: $link-hover-color;
 }
@@ -550,7 +552,7 @@ input[type=text], input[type=tel], input, select, textarea {
 .button_keep_going_en.button_keep_going, .button_keep_going_en.button_keep_going:hover {
 	background-color: transparent;
 	text-align: center;
-	color: $link-color;
+	color: $link-color !important;
 }
 .button_keep_going_en.button_keep_going:hover {
 	background-color: transparent;
@@ -663,7 +665,9 @@ form#new_abr {
 #main.alert_request .consent_copy {
 	margin-top: 8px;
 }
-
+#main .step_4 ul li.registrant-form__state-id-number__line {
+	margin-top: 16px;
+}
 /* swap footer logos */
 body #footer #powered_by_aws_logo.powered-by-logo img {
 	content: image-url('powered-by-aws-logo.png');
@@ -694,6 +698,11 @@ body #footer #powered_by_logo.powered-by-logo img {
 	}
 	.using_state_registration .step_2 ul.flat.dob-and-phone {
 		margin-top: 12px !important;
+	}
+	/* give some more space in outlined checkbox */
+	ul.checkbox li.spacer {
+		display: inline-block !important;
+		height: 5px;
 	}
 }
 @media screen and (max-width: 600px) {
@@ -848,9 +857,6 @@ body #footer #powered_by_logo.powered-by-logo img {
 	#main .edit_state_registrants_mi_registrant ul.stacked li {
 		padding-bottom: 0px;
 	}
-	#main .edit_state_registrants_mi_registrant ul.stacked li {
-		padding-bottom: 0px;
-	}
 	#main .step_3 .edit_state_registrants_mi_registrant ul.stacked li {
 		padding-bottom: 12px;
 	}
@@ -866,6 +872,12 @@ body #footer #powered_by_logo.powered-by-logo img {
 	#main .edit_state_registrants_mi_registrant label {
 		display: inline;
 	}
+	#main.lookup form ul li.registrant-form__home-city__line {
+		width: 100%;
+	}
+	#main.lookup form li.width_b.registrant-form__last-name__line {
+		margin-right: 0 !important;
+	}
 	/* move aws logo down on smaller devices */
 	body.primary-partner #footer #powered_by_aws_logo {
 		display: inline-block;
@@ -877,14 +889,8 @@ body #footer #powered_by_logo.powered-by-logo img {
 	#main.lookup form ul li.registrant-form__first-name__line, #main.lookup form ul li.registrant-form__last-name__line {
 		width: 49%;
 	}
-	#main.lookup form li.width_b.registrant-form__last-name__line {
-		margin-right: 0 !important;
-	}
 	#main.lookup form li.width_d.registrant-form__name-suffix__line {
 		top: -20px !important;
-	}
-	#main.lookup form ul li.registrant-form__home-city__line {
-		width: 100%;
 	}
 	#main {
 		padding: 0 10px;
@@ -897,18 +903,12 @@ body #footer #powered_by_logo.powered-by-logo img {
 	#main.lookup form ul li.registrant-form__first-name__line, #main.lookup form ul li.registrant-form__last-name__line {
 		width: 100%;
 	}
-	#main.lookup form li.width_b.registrant-form__last-name__line {
-		margin-right: 0 !important;
-	}
 	#main.lookup form li.width_d.registrant-form__name-suffix__line {
 		top: 0px !important;
 	}
 	#main.lookup form li.registrant-form__date-of-birth__line {
 		top: 16px;
 		margin-bottom: 20px !important;
-	}
-	#main.lookup form ul li.registrant-form__home-city__line {
-		width: 100%;
 	}
 	body #header .header-text {
 		font-size: 22px;
