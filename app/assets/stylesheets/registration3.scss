@@ -942,6 +942,12 @@ body #footer #powered_by_logo.powered-by-logo img {
 	#main p.overseas-instructions {
 		margin: 2em 0;
 	}
+	body #main p.already-registered {
+    	margin: 4em 0;
+	}
+	a.skip_state_registration_link {
+    	line-height: 22px;
+	}
 }
 /* new mobile ui overrides */
 body.new-mobile-ui #main #dynamic-progress-bar {
