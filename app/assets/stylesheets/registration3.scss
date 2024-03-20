@@ -206,7 +206,7 @@ ul.checkbox label {
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-    &, &:hover, &:focus, &:active{
+    &, &:hover, &:active{
         -webkit-box-shadow: 0 0 0px 1000px white inset !important;
     }
 }
@@ -674,6 +674,9 @@ form#new_abr {
 }
 #main .step_4 ul li.registrant-form__state-id-number__line {
 	margin-top: 16px;
+}
+.no_border ul.checkbox h3 {
+	margin-bottom: 0px;
 }
 /* swap footer logos */
 body #footer #powered_by_aws_logo.powered-by-logo img {
