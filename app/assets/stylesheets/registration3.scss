@@ -103,7 +103,7 @@ label {
 	font-weight: 600;
 }
 .skip_state_registration label {
-    text-transform: initial;
+	text-transform: initial;
 }
 #main form fieldset legend img.tooltip {
 	top: 5px;
@@ -117,7 +117,7 @@ label {
 	padding: 2px 0;
 	float: none;
 	display: inline;
-    position: relative;
+	position: relative;
 	left: 0;
 	text-align: left;
 }
@@ -175,7 +175,7 @@ legend {
 	font-weight: 600;
 }
 .declaration-text {
-    border-radius: 4px;
+	border-radius: 4px;
 }
 ul.affirm .disclosures li {
 	font-size: 14px;
@@ -206,9 +206,9 @@ ul.checkbox label {
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-    &, &:hover, &:active{
-        -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-    }
+	&, &:hover, &:active{
+		-webkit-box-shadow: 0 0 0px 1000px white inset !important;
+	}
 }
 /* mail me my form checkbox */
 #main .skip_state_registration .checkbox {
@@ -402,7 +402,7 @@ body #footer p a:hover, a:hover {
 	border-radius: 4px;
 }
 #main form ul li div select, #main form ul li.width_f div select, #main form ul.flat li div select, #main form ul.flat li.width_f div select {
-    border-radius: 4px;
+	border-radius: 4px;
 }
 #main.abr .requirements, #main.abr .state-instructions, #main.abr .intro-message, #main.abr .finish_instructions, #main.lookup .requirements, #main.lookup .state-instructions, #main.lookup .intro-message, #main.lookup .finish_instructions, #main.alert_request .requirements, #main.alert_request .state-instructions, #main.alert_request .intro-message, #main.alert_request .finish_instructions, #main.ballot-status-check .requirements, #main.ballot-status-check .state-instructions, #main.ballot-status-check .intro-message, #main.ballot-status-check .finish_instructions {
 	margin-top: 0;
@@ -496,10 +496,11 @@ input[type=text], input[type=tel], input, select, textarea {
 	height: 8px;
 }
 #main.abr .stacked span.error, #main.abr .stacked span.example, #main.abr .flat span.error, #main.abr .flat span.example {
-    height: 16px;
-    top: -32px;
-    right: 10px;
-    float: right;
+	height: 12px;
+	/* need further testing */
+	top: -32px;
+	right: 28px;
+	float: right;
 }
 #main.abr .instructions {
 	display: inline-block;
@@ -681,7 +682,7 @@ form#new_abr {
 /* swap footer logos */
 body #footer #powered_by_aws_logo.powered-by-logo img {
 	content: image-url('powered-by-aws-logo.png');
-    height: 20px;
+	height: 20px;
 }
 body #footer #powered_by_logo.powered-by-logo img {
 	content: image-url('rock-the-vote-horizontal-logo.png');
@@ -944,68 +945,72 @@ body #footer #powered_by_logo.powered-by-logo img {
 		margin: 2em 0;
 	}
 	body #main p.already-registered {
-    	margin: 4em 0;
+		margin: 4em 0;
 	}
 	a.skip_state_registration_link {
-    	line-height: 22px;
+		line-height: 21px;
 	}
 	#main.abr span.rollover_button a, #main form .rollover_button button, #main form .rollover_button span.button-style, #main.lookup span.rollover_button a, #main .continue_shift .rollover_button a, #main .download .rollover_button a, #main .download h2.preparing, span.rollover_button a, span.rollover_button a {
-    width: 100%;
+		width: 100%;
+		line-height: 21px;
+	}
+	#main.lookup .reject ol li, #main.alert_request .reject ol li, #main.abr .reject ol li {
+		margin-left: 30px;
 	}
 }
 /* new mobile ui overrides */
 body.new-mobile-ui #main #dynamic-progress-bar {
-    background: transparent;
-    border-radius: 4px;
-    border: 1px solid #000;
+	background: transparent;
+	border-radius: 4px;
+	border: 1px solid #000;
 }
 body.new-mobile-ui #main #dynamic-progress-bar .filler {
-    background: #BED9EC;
-    border-right: 1px solid #000;
-    z-index: -1;
+	background: #BED9EC;
+	border-right: 1px solid #000;
+	z-index: -1;
 }
 body.new-mobile-ui #main #dynamic-progress-bar .content {
-    visibility: hidden;
+	visibility: hidden;
 }
 body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line, body.new-mobile-ui #main form ul li.registrant-form__change-of-name__line {
-    margin-top: 16px;
+	margin-top: 16px;
 }
 body.new-mobile-ui #main #download_no_js {
-    padding: 0px;
+	padding: 0px;
 }
 body.new-mobile-ui #sticky_footer {
-    display: inherit;
+	display: inherit;
 }
 body.new-mobile-ui #main .step_4 form ul li.registrant-form__name-suffix__line, 
 body.new-mobile-ui #main .step_4 form ul li.registrant-form__prev-name-suffix__line {
-    margin-left: 0;
+	margin-left: 0;
 }
 body.new-mobile-ui #main .step_4 ul li.registrant-form__state-id-number__line {
-    margin-top: 8px;
+	margin-top: 8px;
 }
 body.new-mobile-ui #main .step_4 form ul li.registrant-form__change-of-name__line {
-    margin-top: 0px;
+	margin-top: 0px;
 }
 body.new-mobile-ui #main .step_4 form fieldset legend {
-    padding: 0;
+	padding: 0;
 }
 body.new-mobile-ui #main .step_2 form ul li.registrant-form__will-be-18-by-election__line {
    margin-top: 16px;
 }
 body.new-mobile-ui #main .step_4  a.button_edit_en.button_edit {
-    width: fit-content;
-    float: left;
-    padding: 5px 10px !important;
-    font-size: 12px;
-    text-decoration: inherit;
-    margin-top: 8px;
-    display: block;
+	width: fit-content;
+	float: left;
+	padding: 5px 10px !important;
+	font-size: 12px;
+	text-decoration: inherit;
+	margin-top: 8px;
+	display: block;
 }
 body.new-mobile-ui #main .step_4 span.button.rollover_button {
-    display: block;
+	display: block;
 }
 body.new-mobile-ui #main .step_2 .skip_state_registration .checkbox {
-    margin: 24px 0;
+	margin: 24px 0;
 }
 /* new mobile ui overrides */
 
