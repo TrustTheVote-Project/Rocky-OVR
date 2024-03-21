@@ -1,8 +1,7 @@
-%h2= t('txt.ballot_status_check.step_1_header')
+%h2{title: t('txt.ballot_status_check.step_1_header')}= t('txt.ballot_status_check.step_1_header')
 
-<div style="display: none;" class="find-election-official">
+%div{style: "display: none;", class: "find-election-official", title: t('txt.ballot_status_check.find_election_official')}
 %h1= t('txt.ballot_status_check.find_election_official')
-</div>
 
 .intro-message
   = t('txt.ballot_status_check.step_1_instructions').html_safe
@@ -14,25 +13,23 @@
   - (@query_parameters || {}).keys.each do |qpk|
     = hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk]
 
-
-
-  %fieldset
+  %fieldset{title: t('txt.registration.contact_information')}
     %ul.stacked
-      = field_li form, :first_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__first-name__line'}
-      = field_li form, :last_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__last-name__line'}
-      = field_li form, :zip, required: true, skip_tooltip: true
+      = field_li form, :first_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__first-name__line', title: t('txt.first_name')}
+      = field_li form, :last_name, required: true, skip_tooltip: true, li_options: {class: 'registrant-form__last-name__line', title: t('txt.last_name')}
+      = field_li form, :zip, required: true, skip_tooltip: true, title: t('txt.zip_code')
 
   %ul.stacked
     - form.object.errors.add(:zip, "Must be a valid ZIP code") if form.object.errors[:zip].any?
 
   %ul.stacked
-    = field_li form, :email, required: true, skip_tooltip: true, li_options: { class: 'registrant-form__email-address__line' }
-    %li.registrant-form__phone__line
+    = field_li form, :email, required: true, skip_tooltip: true, li_options: { class: 'registrant-form__email-address__line', title: t('txt.email_address') }
+    %li.registrant-form__phone__line{title: t('label.phone')}
       %h3.registrant-form__label
         = form.label :phone, class: 'registrant-form__label', skip_tooltip: true do
           = t('label.phone')
       %div.registrant-form__phone__input-wrapper
-        = form.phone_field :phone, class: 'registrant-form__phone__input', placeholder: '###-###-####', skip_tooltip: true
+        = form.phone_field :phone, class: 'registrant-form__phone__input', placeholder: '###-###-####', skip_tooltip: true, title: t('txt.phone_number')
       - if form.object.errors[:phone].present?
         %span.error
           = form.object.errors.full_messages_for(:phone).join(", ")
@@ -43,4 +40,3 @@
   = rollover_button(:next_step, I18n.t('txt.button.next').html_safe)
 
   %p= I18n.t('txt.privacy_policy_acceptance').html_safe
-  

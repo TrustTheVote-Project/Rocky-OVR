@@ -974,6 +974,9 @@ body #footer #powered_by_logo.powered-by-logo img {
 	#main.lookup .reject ol li, #main.alert_request .reject ol li, #main.abr .reject ol li {
 		margin-left: 30px;
 	}
+	#header.partner {
+		background-size: 55px auto;
+	}
 }
 /* new mobile ui overrides */
 body.new-mobile-ui #main #dynamic-progress-bar {
