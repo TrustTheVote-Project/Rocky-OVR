@@ -182,7 +182,7 @@ ul.affirm .disclosures li {
 	line-height: 24px;
 }
 .disclosures * {
-	font-size: 14px;
+	font-size: 14px !important;
 }
 #main form ul li.registrant-form__us-citizen__line h3 input, #main form ul li.registrant-form__us-citizen__line h3 label, #main form ul li.registrant-form__will-be-18-by-election__line h3 input, #main form ul li.registrant-form__will-be-18-by-election__line h3 label, #main form ul li.registrant-form__required-checkbox h3 input, #main form ul li.registrant-form__required-checkbox h3 label, #main form ul li.width_f.registrant-form__us-citizen__line h3 input, #main form ul li.width_f.registrant-form__us-citizen__line h3 label, #main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 input, #main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 label, #main form ul li.width_f.registrant-form__required-checkbox h3 input, #main form ul li.width_f.registrant-form__required-checkbox h3 label, #main form ul.flat li.registrant-form__us-citizen__line h3 input, #main form ul.flat li.registrant-form__us-citizen__line h3 label, #main form ul.flat li.registrant-form__will-be-18-by-election__line h3 input, #main form ul.flat li.registrant-form__will-be-18-by-election__line h3 label, #main form ul.flat li.registrant-form__required-checkbox h3 input, #main form ul.flat li.registrant-form__required-checkbox h3 label, #main form ul.flat li.width_f.registrant-form__us-citizen__line h3 input, #main form ul.flat li.width_f.registrant-form__us-citizen__line h3 label, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 input, #main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 label, #main form ul.flat li.width_f.registrant-form__required-checkbox h3 input, #main form ul.flat li.width_f.registrant-form__required-checkbox h3 label {
 	font-size: 14px;
@@ -385,7 +385,7 @@ a:link, a:visited, a:active {
 	text-decoration: underline;
 }
 body #footer p a:hover, a:hover {
-	color: $link-hover-color;
+	color: $link-hover-color !important;
 }
 #main .intro-message p, #main p, #main.abr .intro-message p, #main.alert_request .intro-message, #main.alert_request .intro-message, #main.lookup .intro-message p, #main.lookup .reject p, #main.lookup .reject li, #main.alert_request .reject p, #main.alert_request .reject li, #main.abr p, #main.lookup p, #main.alert_request p, #main.ballot-status-check p, #main .declaration-text p, .fulltext p {
 	font-family: $font-stack;
@@ -557,10 +557,13 @@ input[type=text], input[type=tel], input, select, textarea {
 #main .step_4 .rollover_button button {
 	line-height: 20px;
 }
-.button_keep_going_en.button_keep_going, .button_keep_going_en.button_keep_going:hover {
+.button_keep_going_en.button_keep_going {
 	background-color: transparent;
 	text-align: center;
 	color: $link-color !important;
+}
+.button_keep_going_en.button_keep_going:hover {
+	color: $link-hover-color !important;
 }
 .button_keep_going_en.button_keep_going:hover {
 	background-color: transparent;
@@ -687,7 +690,9 @@ body #footer #powered_by_aws_logo.powered-by-logo img {
 body #footer #powered_by_logo.powered-by-logo img {
 	content: image-url('rock-the-vote-horizontal-logo.png');
 }
-
+.url-treatment {
+	overflow-wrap: break-word;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
