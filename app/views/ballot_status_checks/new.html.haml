@@ -24,7 +24,7 @@
     - form.object.errors.add(:zip, "Must be a valid ZIP code") if form.object.errors[:zip].any?
 
   %ul.stacked
-    = field_li form, :email, required: true, skip_tooltip: true, li_options: { class: 'registrant-form__email-address__line', title: t('txt.registration.email_address') }
+    = field_li form, :email, required: true, skip_tooltip: true, li_options: { class: 'registrant-form__email-address__line', title: t('txt.registration.email_address') }, type: 'email'
     %li.registrant-form__phone__line
       %h3.registrant-form__label
         = form.label :phone, class: 'registrant-form__label', skip_tooltip: true, title: t('txt.registration.phone_number') do

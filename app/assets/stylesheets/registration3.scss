@@ -702,7 +702,6 @@ body #footer #powered_by_logo.powered-by-logo img {
 .button a span {
 	white-space: normal;
 }
-
 /* media */
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line, #main.lookup form ul li.registrant-form__name-suffix__line, #main.lookup form ul li.registrant-form__prev-name-suffix__line, #main.lookup form ul li.width_f.registrant-form__name-title__line, #main.lookup form ul li.width_f.registrant-form__prev-name-title__line, #main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line, #main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
@@ -723,6 +722,9 @@ body #footer #powered_by_logo.powered-by-logo img {
 	}
 	.using_state_registration .step_2 ul.flat.dob-and-phone {
 		margin-top: 12px !important;
+	}
+	#main.lookup form ul.flat li {
+		margin: 16px 0 0 0;
 	}
 }
 @media screen and (max-width: 600px) {
