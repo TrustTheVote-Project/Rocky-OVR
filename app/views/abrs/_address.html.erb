@@ -3,7 +3,7 @@
   <ul class="stacked">
     <li class="width_a registrant-form__home-address-number__line">
       <h3><%= form.label :street_number %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :street_number, required: true %>
+      <%= field_div form, :street_number, required: true, pattern: "[0-9]*", title: "Please enter only numbers" %>
       <span class="error"><%= form.object.errors[:street_number].join("\n") %></span>
     </li>
     <li class="width_a registrant-form__home-address-name__line">

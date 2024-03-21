@@ -466,7 +466,6 @@ input[type=text], input[type=tel], input, select, textarea {
 	border-radius: 4px;
 	transition: all .3s;
 	padding: 11px 24px !important;
-	line-height: 21px;
 }
 #main.abr span.rollover_button a:hover, #main form .rollover_button button:hover, #main form .rollover_button span.button-style:hover, #main.lookup span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover, span.rollover_button a:hover, span.rollover_button:hover a {
 	text-decoration: none !important;
@@ -478,7 +477,6 @@ input[type=text], input[type=tel], input, select, textarea {
 	font-weight: 600;
 	font-size: 16px;
 	border-radius: 4px;
-	line-height: 21px;
 }
 #main.lookup span.rollover_button a:hover, #main.abr span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover {
 	background-color: $button-hover-color;
