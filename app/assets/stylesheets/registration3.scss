@@ -693,8 +693,11 @@ body #footer #powered_by_logo.powered-by-logo img {
 .url-treatment {
 	overflow-wrap: break-word;
 }
-.text-center {
+#preparing_content {
 	text-align: center;
+}
+.text-center {
+	text-align: center !important;
 }
 
 /* media */
@@ -963,7 +966,7 @@ body #footer #powered_by_logo.powered-by-logo img {
 		line-height: 21px;
 	}
 	#main .step_1 form .rollover_button button {
-		line-height: initial;
+		line-height: 1;
 	}
 	#main.lookup .reject ol li, #main.alert_request .reject ol li, #main.abr .reject ol li {
 		margin-left: 30px;
