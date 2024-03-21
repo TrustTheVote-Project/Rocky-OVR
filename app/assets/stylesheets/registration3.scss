@@ -699,6 +699,9 @@ body #footer #powered_by_logo.powered-by-logo img {
 .text-center {
 	text-align: center !important;
 }
+.button a span {
+	white-space: normal;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
