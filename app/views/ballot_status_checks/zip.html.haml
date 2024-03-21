@@ -44,8 +44,8 @@
     %br
   - if leo_contact_info[:website]
     %strong{style: "font-weight: bold"} Website:
-    = link_to leo_contact_info[:website], leo_contact_info[:website], class: "url-treatment", target: "_blank" do
-    | #{leo_contact_info[:website]} (opens in a new tab)
+    = link_to leo_contact_info[:website], leo_contact_info[:website], class: "url-treatment", target: "_blank"
+    | (opens in a new tab)
     %br
   - if leo_contact_info[:address]
     %strong{style: "font-weight: bold"} Address:
