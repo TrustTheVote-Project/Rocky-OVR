@@ -738,6 +738,11 @@ span.rollover_button .button_keep_going:hover {
 .alert_request li.width_e.registrant-form__survey-answer-2__line {
 	margin-bottom: 0px !important;
 }
+/* give some space around radios */
+#main form ul.radio li label,
+#main form ul.flat.radio li label {
+	padding-left: 10px;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
@@ -766,6 +771,9 @@ span.rollover_button .button_keep_going:hover {
 	#main.lookup form ul li.registrant-form__email__line {
 		width: 63%;
 		margin-right: 2%;
+	}
+	#main form ul li.registrant-form__survey-answer-1__line {
+		margin-bottom: 12px;
 	}
 }
 @media screen and (max-width: 600px) {
