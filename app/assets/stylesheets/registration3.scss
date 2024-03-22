@@ -493,7 +493,7 @@ input[type=text], input[type=tel], input, select, textarea {
 	margin: 0 0;
 }
 #main.lookup .stacked span.error,#main.lookup .stacked span.example {
-	height: 8px;
+	height: 12px;
 }
 #main.abr .stacked span.error, #main.abr .stacked span.example, #main.abr .flat span.error, #main.abr .flat span.example {
 	/* need further testing */
@@ -608,17 +608,21 @@ select:focus {
 span#link-to-copy {
 	overflow-wrap: anywhere;
 }
+
 #progress-bar li.progress-done {
 	background-color: #BED9EC;
 	border-radius: 4px;
+	border-color: #000;
 }
 #progress-bar li.progress-current {
 	background-color: #BED9EC;
 	border-radius: 4px;
+	border-color: #000;
 }
 #progress-bar li.progress-todo {
 	background-color: #fff;
 	border-radius: 4px;
+	border-color: #000;
 }
 #main.lookup form ul li.registrant-form__phone__line {
 	margin-top: 0;
@@ -714,6 +718,14 @@ body #footer #powered_by_logo.powered-by-logo img {
 .button a span {
 	white-space: normal;
 }
+/* edit buttons */
+.step_4 a.button_edit {
+	width: fit-content;
+	padding: 5px 10px !important;
+	margin: 12px 0 0 0;
+	font-size: 12px !important;
+	text-decoration: none;
+}
 /* media */
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line, #main.lookup form ul li.registrant-form__name-suffix__line, #main.lookup form ul li.registrant-form__prev-name-suffix__line, #main.lookup form ul li.width_f.registrant-form__name-title__line, #main.lookup form ul li.width_f.registrant-form__prev-name-title__line, #main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line, #main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
@@ -737,6 +749,10 @@ body #footer #powered_by_logo.powered-by-logo img {
 	}
 	#main.lookup form ul.flat li {
 		margin: 16px 0 0 0;
+	}
+	#main.lookup form ul li.registrant-form__email__line {
+		width: 63%;
+		margin-right: 2%;
 	}
 }
 @media screen and (max-width: 600px) {
@@ -788,6 +804,7 @@ body #footer #powered_by_logo.powered-by-logo img {
 	.flat span.error, .flat span.example {
 		height: auto;
 		min-height: 8px;
+		margin-left: 0;
 	}
 	.stacked span.error, .stacked span.example {
 		height: auto;
