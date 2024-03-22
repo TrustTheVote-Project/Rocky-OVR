@@ -778,6 +778,15 @@ span.rollover_button .button_keep_going:hover {
 	#main form ul li.registrant-form__survey-answer-1__line {
 		margin-bottom: 12px;
 	}
+	#main form ul .has_license .checkbox-explanation p, #main form ul.flat .has_license .checkbox-explanation p {
+		margin: 0px 28px 20px;
+	}
+	#main.using_state_registration form ul li.registrant-form__survey-answer-2__line {
+		margin-bottom: 12px;
+	}
+	#main.using_state_registration fieldset.questions {
+		margin-top: 24px;
+	}
 }
 @media screen and (max-width: 600px) {
 	body #header {
@@ -1030,6 +1039,9 @@ span.rollover_button .button_keep_going:hover {
 	}
 	#header.partner {
 		background-size: 55px auto;
+	}
+	#main form ul.radio li label, #main form ul.flat.radio li label {
+		text-indent: 0px;
 	}
 }
 /* new mobile ui overrides */
