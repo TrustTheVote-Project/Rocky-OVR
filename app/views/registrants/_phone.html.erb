@@ -2,7 +2,7 @@
   <li class="width_b registrant-form__phone__line">
     <h3><%= form.label :phone %></h3>
     <div class="flat-stack">
-      <%= field_div form, :phone, placeholder: '###-###-####' %>
+      <%= field_div form, :phone, placeholder: '###-###-####', type: 'tel' %>
       <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
     </div>
     <%- unless skip_tooltip %>

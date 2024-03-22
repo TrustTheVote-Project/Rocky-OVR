@@ -8,7 +8,7 @@
     <ul class="flat">
       <li class='registrant-form__state-id-number__line'>
         <h3><%= form.label :state_id_number %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-        <%= field_div form, :state_id_number, {:size => id_size, required: true} %>
+        <%= field_div form, :state_id_number, { size: id_size, required: true, type: 'text' } %>
         <span class="error"><%= form.object.errors[:state_id_number].join("\n") %></span>
       </li>
       <% if include_date_of_birth %>

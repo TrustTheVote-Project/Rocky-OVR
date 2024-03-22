@@ -14,28 +14,28 @@ $(document).ready(function() {
   <ul class="stacked">
     <li class="width_a registrant-form__home-address__line">
       <h3><%= form.label :home_address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :home_address, required: true %>
+      <%= field_div form, :home_address, required: true, type: 'text' %>
       <span class="error"><%= form.object.errors[:home_address].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__home-unit__line">
       <h3><%= form.label :home_unit %></h3>
-      <%= field_div form, :home_unit %>
+      <%= field_div form, :home_unit, type: 'text' %>
     </li>
   </ul>
   <ul class="stacked">
     <li class="width_a registrant-form__home-city__line">
       <h3><%= form.label :home_city %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :home_city, required: true %>
+      <%= field_div form, :home_city, required: true, type: 'text' %>
       <span class="error"><%= form.object.errors[:home_city].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__home-state-abbrev__line">
       <h3><%= form.label :home_state_abbrev %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :home_state_abbrev, :disabled => true %>
+      <%= field_div form, :home_state_abbrev, disabled: true, type: 'text' %>
       <span class="error"><%= form.object.errors[:home_state_name].join("\n") %></span>
     </li>
     <li class="width_c registrant-form__home-zip-code__line">
       <h3><%= form.label :home_zip_code %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :home_zip_code, {:size => 8, autocomplete: 'postal-code', required: true} %>
+      <%= field_div form, :home_zip_code, { size: 8, autocomplete: 'postal-code', required: true }, type: 'text' %>
       <span class="error"><%= form.object.errors[:home_zip_code].join("\n") %></span>
     </li>
   </ul>
@@ -55,18 +55,18 @@ $(document).ready(function() {
   <ul class="stacked">
     <li class="width_a registrant-form__mailing-address__line">
       <h3><%= form.label :mailing_address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :mailing_address, required: true %>
+      <%= field_div form, :mailing_address, required: true, type: 'text' %>
       <span class="error"><%= form.object.errors[:mailing_address].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__mailing-unit__line">
       <h3><%= form.label :mailing_unit %></h3>
-      <%= field_div form, :mailing_unit, :size => 15 %>
+      <%= field_div form, :mailing_unit, size: 15, type: 'text' %>
     </li>
   </ul>
   <ul class="stacked">
     <li class="width_a registrant-form__mailing-city__line">
       <h3><%= form.label :mailing_city %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :mailing_city, required: true %>
+      <%= field_div form, :mailing_city, required: true, type: 'text' %>
       <span class="error"><%= form.object.errors[:mailing_city].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__mailing-state-abbrev__line">
@@ -76,7 +76,7 @@ $(document).ready(function() {
     </li>
     <li class="width_c registrant-form__mailing-zip-code__line">
       <h3><%= form.label :mailing_zip_code %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :mailing_zip_code, {:size => 10, :maxlength => 10, required: true }%>
+      <%= field_div form, :mailing_zip_code, { size: 10, maxlength: 10, required: true }, type: 'text' %>
       <span class="error"><%= form.object.errors[:mailing_zip_code].join("\n") %></span>
     </li>
   </ul>

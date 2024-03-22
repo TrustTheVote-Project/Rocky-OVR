@@ -1,4 +1,4 @@
-<%- model ||= @registant || form.object %>
+<%- model ||= @registrant || form.object %>
 
 <%- if !@question_1.blank? || !@question_2.blank? || model.any_ask_for_volunteers? %>
   <fieldset class="questions">
@@ -9,7 +9,7 @@
       <ul class="question">
         <li class="width_e registrant-form__survey-answer-1__line">
           <h3><%= form.label :survey_answer_1, h(@question_1) %></h3>
-          <%= field_div form, :survey_answer_1, :maxlength => 60 %>
+          <%= field_div form, :survey_answer_1, maxlength: 60, type: 'text' %>
           <span class="error"><br/><%= form.object.errors[:survey_answer_1].join("\n") %></span>
         </li>
       </ul>
@@ -18,7 +18,7 @@
       <ul class="question">
         <li class="width_e registrant-form__survey-answer-2__line">
           <h3><%= form.label :survey_answer_2, h(@question_2) %></h3>
-          <%= field_div form, :survey_answer_2, :maxlength => 60 %>
+          <%= field_div form, :survey_answer_2, maxlength: 60, type: 'text' %>
           <span class="error"><br/><%= form.object.errors[:survey_answer_2].join("\n") %></span>
         </li>
       </ul>
@@ -29,7 +29,7 @@
         <li class='registrant-form__volunteer__line'>
           <h3>
             <%= form.check_box :volunteer %>
-            <%= form.label :volunteer, t('txt.registration.volunteer', :organization => h("Rock the Vote")) %>
+            <%= form.label :volunteer, t('txt.registration.volunteer', organization: h("Rock the Vote")) %>
           </h3>
         </li>
       </ul>
@@ -40,7 +40,7 @@
         <li class='registrant-form__partner-volunteer__line'>
           <h3>
             <%= form.check_box :partner_volunteer %>
-            <%= form.label :partner_volunteer, t('txt.registration.volunteer', :organization => h(model.partner.organization)).html_safe %>
+            <%= form.label :partner_volunteer, t('txt.registration.volunteer', organization: h(model.partner.organization)).html_safe %>
           </h3>
         </li>
       </ul>

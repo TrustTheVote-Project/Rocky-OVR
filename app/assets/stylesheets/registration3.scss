@@ -353,8 +353,9 @@ ul > li.registrant-form__change-of-name__line > h3 > label {
 }
 /* radio input size */
 #main.abr .state-abr-form-fields .radio input,#main.lookup .state-abr-form-fields .radio input,#main.alert_request .state-abr-form-fields .radio input,#main.ballot-status-check .state-abr-form-fields .radio input,#main .radio input {
-	width: 18px;
-	height: 18px;
+	/*width: 18px;
+	height: 18px;*/
+	transform: scale(1.25);
 }
 .tooltip #tooltip-prev_name_title {
 	display: none;
