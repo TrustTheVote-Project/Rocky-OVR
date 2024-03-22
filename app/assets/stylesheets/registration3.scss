@@ -496,16 +496,28 @@ input[type=text], input[type=tel], input, select, textarea {
 	height: 8px;
 }
 #main.abr .stacked span.error, #main.abr .stacked span.example, #main.abr .flat span.error, #main.abr .flat span.example {
-	height: 12px;
 	/* need further testing */
-	top: -32px;
+	/*height: 12px;*/
+	/*top: -32px;
 	right: 28px;
-	float: right;
+	float: right;*/
+}
+.stacked span.error, .stacked span.example {
+	margin-left: 0px;
+}
+p.reject {
+	text-align: center !important;
 }
 #main.abr .instructions {
 	display: inline-block;
 	clear: both;
 	width: 100%;
+}
+#main .declaration-text {
+	margin-bottom: 12px;
+}
+.declaration-text strong {
+	font-size: 18px;
 }
 /*share page*/
 #container2 div.rollover_button a, #container2 div.rollover_button:active a, #container2 span.rollover_button a, #container2 span.rollover_button:active a {
