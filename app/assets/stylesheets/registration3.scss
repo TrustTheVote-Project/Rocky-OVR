@@ -466,8 +466,7 @@ input[type=text], input[type=tel], input, select, textarea {
 	font-size: 16px;
 	border-radius: 4px;
 	transition: all .3s;
-	/*padding: 11px 24px !important;*/
-	padding: 11px !important;
+	padding: 11px 24px !important;
 }
 #main.abr span.rollover_button a:hover, #main form .rollover_button button:hover, #main form .rollover_button span.button-style:hover, #main.lookup span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover, span.rollover_button a:hover, span.rollover_button:hover a {
 	text-decoration: none !important;
@@ -483,6 +482,10 @@ input[type=text], input[type=tel], input, select, textarea {
 #main.lookup span.rollover_button a:hover, #main.abr span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover {
 	background-color: $button-hover-color;
 	color: #fff;
+}
+.step_1 .button.rollover_button #registrant_submit {
+	padding: 11px 0 !important;
+	height: auto;
 }
 #main form ul li.registrant-form__has-no-state-license__line, #main form ul li.width_f.registrant-form__has-no-state-license__line, #main form ul.flat li.registrant-form__has-no-state-license__line, #main form ul.flat li.width_f.registrant-form__has-no-state-license__line {
 	margin-bottom: 4px;
@@ -571,19 +574,6 @@ p.reject {
 #main .step_4 .rollover_button button {
 	line-height: 20px;
 }
-.button_keep_going {
-	background-color: transparent;
-	text-align: center;
-	color: $link-color !important;
-}
-.button_keep_going:hover {
-	color: $link-hover-color !important;
-}
-.button_keep_going:hover {
-	background-color: transparent;
-	text-align: center;
-	color: $link-hover-color;
-}
 input:focus, select:focus, textarea:focus {
 	border: 1px solid rgb(15,117,189) !important;
 	background-color: #fff;
@@ -610,7 +600,6 @@ select:focus {
 span#link-to-copy {
 	overflow-wrap: anywhere;
 }
-
 #progress-bar li.progress-done {
 	background-color: #BED9EC;
 	border-radius: 4px;
@@ -722,6 +711,19 @@ body #footer #powered_by_logo.powered-by-logo img {
 }
 .flat span.error, .flat span.example {
 	margin-left: 0;
+}
+.button_keep_going {
+	background-color: transparent !important;
+	text-align: center;
+	color: $link-color !important;
+}
+.button_keep_going:hover {
+	color: $link-hover-color !important;
+}
+.button_keep_going:hover {
+	background-color: transparent;
+	text-align: center;
+	color: $link-hover-color !important;
 }
 /* edit buttons */
 .step_4 a.button_edit {
