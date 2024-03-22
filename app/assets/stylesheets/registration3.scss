@@ -741,7 +741,10 @@ span.rollover_button .button_keep_going:hover {
 /* give some space around radios */
 #main form ul.radio li label,
 #main form ul.flat.radio li label {
-	padding-left: 10px;
+	text-indent: 4px;
+}
+#main.abr input[type='radio'] {
+	margin-right: 8px !important;
 }
 
 /* media */
