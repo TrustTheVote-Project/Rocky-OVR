@@ -712,17 +712,12 @@ body #footer #powered_by_logo.powered-by-logo img {
 .flat span.error, .flat span.example {
 	margin-left: 0;
 }
-.button_keep_going {
+span.rollover_button .button_keep_going {
 	background-color: transparent !important;
 	text-align: center;
 	color: $link-color !important;
 }
-.button_keep_going:hover {
-	color: $link-hover-color !important;
-}
-.button_keep_going:hover {
-	background-color: transparent;
-	text-align: center;
+span.rollover_button .button_keep_going:hover {
 	color: $link-hover-color !important;
 }
 /* edit buttons */
@@ -739,6 +734,9 @@ body #footer #powered_by_logo.powered-by-logo img {
 }
 #main form fieldset.questions legend {
 	margin-bottom: 0px;
+}
+.alert_request li.width_e.registrant-form__survey-answer-2__line {
+	margin-bottom: 0px !important;
 }
 
 /* media */
