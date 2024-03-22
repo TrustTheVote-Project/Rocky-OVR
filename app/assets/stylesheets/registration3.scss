@@ -726,6 +726,13 @@ body #footer #powered_by_logo.powered-by-logo img {
 	font-size: 12px !important;
 	text-decoration: none;
 }
+/* move survey questions closer together */
+#main form ul li.registrant-form__survey-answer-1__line {
+	margin-bottom: 0px;
+}
+.flat span.error, .flat span.example {
+	margin-left: 0;
+}
 /* media */
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line, #main.lookup form ul li.registrant-form__name-suffix__line, #main.lookup form ul li.registrant-form__prev-name-suffix__line, #main.lookup form ul li.width_f.registrant-form__name-title__line, #main.lookup form ul li.width_f.registrant-form__prev-name-title__line, #main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line, #main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
@@ -804,7 +811,6 @@ body #footer #powered_by_logo.powered-by-logo img {
 	.flat span.error, .flat span.example {
 		height: auto;
 		min-height: 8px;
-		margin-left: 0;
 	}
 	.stacked span.error, .stacked span.example {
 		height: auto;
