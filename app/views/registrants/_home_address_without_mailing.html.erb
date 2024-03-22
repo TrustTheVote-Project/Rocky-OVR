@@ -19,12 +19,12 @@
     </li>
     <li class="width_b registrant-form__home-state-abbrev__line">
       <h3><%= form.label :home_state_abbrev %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :home_state_abbrev, disabled: true %>
+      <%= field_div form, :home_state_abbrev, :disabled => true %>
       <span class="error"><%= form.object.errors[:home_state_name].join("\n") %></span>
     </li>
     <li class="width_c registrant-form__home-zip-code__line">
       <h3><%= form.label :home_zip_code %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :home_zip_code, size: 8, required: true, type: 'text' %>
+      <%= field_div form, :home_zip_code, {:size => 8, required: true, type: 'text'} %>
       <span class="error"><%= form.object.errors[:home_zip_code].join("\n") %></span>
     </li>
   </ul>
@@ -44,6 +44,7 @@
     <li class="spacer">&nbsp;</li>
     <li class='registrant-form__change-of-address__line'>
       <h3><%= form.check_box :change_of_address %> <%= form.label :change_of_address, I18n.t('activerecord.attributes.registrant.change_of_address')%> <%= tooltip_tag(:previous_address) %></h3>
+       
     </li>
   </ul>
 </fieldset>
