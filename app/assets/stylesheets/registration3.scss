@@ -466,7 +466,8 @@ input[type=text], input[type=tel], input, select, textarea {
 	font-size: 16px;
 	border-radius: 4px;
 	transition: all .3s;
-	padding: 11px 24px !important;
+	/*padding: 11px 24px !important;*/
+	padding: 11px !important;
 }
 #main.abr span.rollover_button a:hover, #main form .rollover_button button:hover, #main form .rollover_button span.button-style:hover, #main.lookup span.rollover_button a:hover, #main .continue_shift .rollover_button a:hover, #main .download .rollover_button a:hover, span.rollover_button a:hover, span.rollover_button:hover a {
 	text-decoration: none !important;
@@ -570,15 +571,15 @@ p.reject {
 #main .step_4 .rollover_button button {
 	line-height: 20px;
 }
-.button_keep_going_en.button_keep_going {
+.button_keep_going {
 	background-color: transparent;
 	text-align: center;
 	color: $link-color !important;
 }
-.button_keep_going_en.button_keep_going:hover {
+.button_keep_going:hover {
 	color: $link-hover-color !important;
 }
-.button_keep_going_en.button_keep_going:hover {
+.button_keep_going:hover {
 	background-color: transparent;
 	text-align: center;
 	color: $link-hover-color;
