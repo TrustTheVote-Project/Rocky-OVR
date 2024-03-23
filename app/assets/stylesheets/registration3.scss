@@ -10,6 +10,8 @@ $footer-link-hover-color: #000;
 $button-color: rgb(15,117,189);
 $button-hover-color: rgb(8,59,95);
 $font-stack: 'Inter', sans-serif;
+$progress-background-color: transparent;
+$progress-filler-color: #BED9EC;
 
 body {
 	color: $font-color;
@@ -980,11 +982,14 @@ span.rollover_button .button_keep_going:hover {
 	#main.using_state_registration fieldset.questions {
 		margin-top: 12px;
 	}
-	body #main form ul li.registrant-form__has-state-license__line label {
+	body #main form ul li.registrant-form__has-state-license__line label, body #main form ul li.registrant-form__has-no-state-license__line label {
 		font-weight: 700;
 	}
 	#main.skipping_state_registration .step_2 li.registrant-form__date-of-birth__line {
 		margin: 12px 0 !important;
+	}
+	body.new-mobile-ui #main form fieldset.opt-ins {
+		margin-top: 12px;
 	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
@@ -1065,12 +1070,12 @@ span.rollover_button .button_keep_going:hover {
 }
 /* new mobile ui overrides */
 body.new-mobile-ui #main #dynamic-progress-bar {
-	background: transparent;
+	background: $progress-background-color;
 	border-radius: 4px;
 	border: 1px solid #000;
 }
 body.new-mobile-ui #main #dynamic-progress-bar .filler {
-	background: #BED9EC;
+	background: $progress-filler-color;
 	border-right: 1px solid #000;
 	z-index: -1;
 }
