@@ -683,6 +683,9 @@ form#new_abr {
 #main.alert_request .consent_copy {
 	margin-top: 8px;
 }
+#main.alert_request fieldset.questions {
+	margin-top: 12px;
+}
 #main .step_4 ul li.registrant-form__state-id-number__line {
 	margin-top: 16px;
 }
@@ -775,6 +778,10 @@ span.rollover_button .button_keep_going:hover {
 		width: 63%;
 		margin-right: 2%;
 	}
+	#main.alert_request form ul li.registrant-form__email__line {
+		width: 63%;
+		margin-right: 2%;
+	}
 	#main form ul li.registrant-form__survey-answer-1__line {
 		margin-bottom: 12px;
 	}
@@ -786,6 +793,9 @@ span.rollover_button .button_keep_going:hover {
 	}
 	#main.using_state_registration fieldset.questions {
 		margin-top: 24px;
+	}
+	#main.alert_request .consent_copy {
+		margin-top: 0;
 	}
 }
 @media screen and (max-width: 600px) {
@@ -966,6 +976,15 @@ span.rollover_button .button_keep_going:hover {
 		display: inline-block;
 		position: absolute;
 		bottom: 0px;
+	}
+	#main.using_state_registration fieldset.questions {
+		margin-top: 12px;
+	}
+	body #main form ul li.registrant-form__has-state-license__line label {
+		font-weight: 700;
+	}
+	#main.skipping_state_registration .step_2 li.registrant-form__date-of-birth__line {
+		margin: 12px 0 !important;
 	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
