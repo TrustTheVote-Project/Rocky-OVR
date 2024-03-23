@@ -751,6 +751,9 @@ span.rollover_button .button_keep_going:hover {
 #main.abr input[type='radio'] {
 	margin-right: 8px !important;
 }
+ul.checkbox h3 label {
+	width: auto;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
@@ -990,6 +993,10 @@ span.rollover_button .button_keep_going:hover {
 	}
 	body.new-mobile-ui #main form fieldset.opt-ins {
 		margin-top: 12px;
+	}
+	/* drop the required text on mobile */
+	body #main .required--text {
+		display: none !important;
 	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
