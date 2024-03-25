@@ -184,7 +184,7 @@
 
     .skip_state_registration
       - if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?
-        .checkbox{style: "font-size: 150%; text-align: center;"}
+        .checkbox.pdf_assistance{style: "font-size: 150%; text-align: center;"}
           = hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden
           = check_box_tag :pdf_assistance, "1", @pdf_assistance == "1"
           = label_tag :pdf_assistance, I18n.t('txt.button.download_assistance')
