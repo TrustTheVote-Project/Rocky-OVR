@@ -578,8 +578,13 @@ p.reject {
 	line-height: 20px;
 }
 input:focus, select:focus, textarea:focus {
-	border: 1px solid rgb(15,117,189) !important;
-	background-color: #fff;
+	border: 1px solid transparent !important;
+	background-color: rgba(255, 255, 255, 0) !important;
+	transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+input:focus, select:focus, textarea:focus {
+	border-color: rgb(15, 117, 189) !important;
+	background-color: rgba(255, 255, 255, 1) !important;
 }
 #other_language_link select:focus {
 	border: none !important;
@@ -1086,6 +1091,9 @@ ul.checkbox h3 label {
 	#main .skip_state_registration .checkbox {
 		padding: 8px;
 	}
+	.checkbox.pdf_assistance {
+		text-wrap: balance;
+	}
 }
 /* new mobile ui overrides */
 body.new-mobile-ui #main #dynamic-progress-bar {
@@ -1141,6 +1149,9 @@ body.new-mobile-ui #main .step_4 span.button.rollover_button {
 body.new-mobile-ui #main .step_2 .skip_state_registration .checkbox {
 	margin: 24px 0;
 }
+body.new-mobile-ui .step_2 .edit_state_registrants_pa_registrant #main form fieldset.phone {
+	margin-top: 4px;
+}
 
 
 @media (min-width: 601px) {
@@ -1162,6 +1173,9 @@ body.new-mobile-ui #main .step_2 .skip_state_registration .checkbox {
 	}
 	body.new-mobile-ui #main form li.width_c.registrant-form__middle-name__line, body.new-mobile-ui #main form li.width_c.registrant-form__prev-middle-name__line {
 		width: 16%;
+	}
+	body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line {
+		margin-top: 0px;
 	}
 }
 

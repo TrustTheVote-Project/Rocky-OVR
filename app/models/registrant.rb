@@ -174,7 +174,7 @@ class Registrant < ActiveRecord::Base
   
   
 
-  FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share.php"
+  FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share-vanilla.php"
 
   CSV_HEADER = [
     "Status",
