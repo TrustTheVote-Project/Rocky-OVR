@@ -981,7 +981,7 @@ ul.checkbox h3 label {
 		width: 100%;
 	}
 	#main.lookup form li.width_b.registrant-form__last-name__line {
-		margin-right: 0 !important;
+		margin-right: 0;
 	}
 	/* move aws logo down on smaller devices */
 	body.primary-partner #footer #powered_by_aws_logo {
@@ -1014,6 +1014,7 @@ ul.checkbox h3 label {
 	#main.lookup form ul li.registrant-form__first-name__line, 
 	#main.lookup form ul li.registrant-form__last-name__line {
 		width: 32%;
+		margin-right: 2%;
 	}
 	#main.lookup form li.width_d.registrant-form__name-suffix__line {
 		width: 32%;
@@ -1025,35 +1026,35 @@ ul.checkbox h3 label {
 	/* abr specific */
 	body #main.abr form li.width_d.registrant-form__name-suffix__line,
 	body #main.abr form li.width_d.registrant-form__prev-suffix__line {
-	width: 19%;
+	width: 23%;
 	}
 	body #main.abr form li.width_b.registrant-form__last-name__line,
 	body #main.abr form li.width_b.registrant-form__prev-last-name__line {
-		width: 30%;
+		width: 29%;
 	}
 	body #main.abr form li.width_c.registrant-form__middle-name__line,
 	body #main.abr form li.width_c.registrant-form__prev-middle-name__line {
-		width: 15%;
+		width: 13%;
 	}
 	body #main.abr form li.width_b.registrant-form__first-name__line,
 	body #main.abr form li.width_b.registrant-form__prev-first-name__line {
-		width: 30%;
+		width: 29%;
 	}
 	body #main.abr form ul.stacked li.registrant-form__home-unit__line, 
 	body #main.abr form ul.stacked li.registrant-form__prev-unit__line, 
 	body #main.abr form ul.stacked li.registrant-form__mailing-unit__line {
-		width: 24%;
+		width: 20%;
 		margin-right: 0;
 	}
 	body #main.abr form li.width_a.registrant-form__home-address-name__line,
 	body #main.abr form li.width_a.registrant-form__prev-address-name__line,
 	body #main.abr form li.width_a.registrant-form__mailing-address-name__line {
-		width: 42%;
+		width: 44%;
 	}
 	body #main.abr form li.width_a.registrant-form__home-address-number__line,
 	body #main.abr form li.width_a.registrant-form__prev-address-number__line,
 	body #main.abr form li.width_a.registrant-form__mailing-address-number__line {
-		width: 30%;
+		width: 32%;
 	}
 	/* tracking ballot specific */
 	body #main.ballot-status-check form li.registrant-form__first-name__line {
