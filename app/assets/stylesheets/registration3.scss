@@ -1009,6 +1009,14 @@ ul.checkbox h3 label {
 	#main {
 		padding: 0 10px;
 	}
+	#main.lookup form li.width_d.registrant-form__name-suffix__line {
+		width: 50% !important;
+		margin: 16px 0 0 0 !important;
+	}
+	#main.alert_request form ul li.registrant-form__email__line {
+		width: 63%;
+		margin-right: 2%;
+	}
 }
 @media (max-width: 468px) {
 	#main {
@@ -1129,6 +1137,30 @@ body.new-mobile-ui #main .step_4 span.button.rollover_button {
 body.new-mobile-ui #main .step_2 .skip_state_registration .checkbox {
 	margin: 24px 0;
 }
+
+
+@media (min-width: 601px) and (max-width: 767px) {
+	body.new-mobile-ui #main form ul li.registrant-form__name-title__line, body.new-mobile-ui #main form ul li.registrant-form__prev-name-title__line {
+		width: 48%;
+		margin-right: 2%;
+	}
+	body.new-mobile-ui #main form ul li.registrant-form__name-suffix__line, body.new-mobile-ui #main form ul li.registrant-form__prev-name-suffix__line {
+		width: 50%;
+		margin-left: 0;
+	}
+	body.new-mobile-ui #main form ul li.registrant-form__first-name__line, body.new-mobile-ui #main form ul li.registrant-form__prev-first-name__line {
+		clear: both;
+		width: 40%;
+	}
+	body.new-mobile-ui #main form ul li.width_b.registrant-form__last-name__line, body.new-mobile-ui #main form ul li.width_b.registrant-form__prev-last-name__line {
+		margin-right: 0;
+		width: 40%;
+	}
+	body.new-mobile-ui #main form li.width_c.registrant-form__middle-name__line, body.new-mobile-ui #main form li.width_c.registrant-form__prev-middle-name__line {
+		width: 16%;
+	}
+}
+
 /* new mobile ui overrides */
 
 /* registration 2024 edits */
