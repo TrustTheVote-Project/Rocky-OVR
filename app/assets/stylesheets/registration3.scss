@@ -1007,22 +1007,61 @@ ul.checkbox h3 label {
 	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
-	#main.lookup form ul li.registrant-form__first-name__line, #main.lookup form ul li.registrant-form__last-name__line {
-		width: 49%;
-	}
-	#main.lookup form li.width_d.registrant-form__name-suffix__line {
-		top: -20px !important;
-	}
 	#main {
 		padding: 0 10px;
 	}
+	/* lookup specific */
+	#main.lookup form ul li.registrant-form__first-name__line, 
+	#main.lookup form ul li.registrant-form__last-name__line {
+		width: 32%;
+	}
 	#main.lookup form li.width_d.registrant-form__name-suffix__line {
-		width: 50% !important;
-		margin: 16px 0 0 0 !important;
+		width: 32%;
 	}
 	#main.alert_request form ul li.registrant-form__email__line {
 		width: 63%;
 		margin-right: 2%;
+	}
+	/* abr specific */
+	body #main.abr form li.width_d.registrant-form__name-suffix__line,
+	body #main.abr form li.width_d.registrant-form__prev-suffix__line {
+	width: 19%;
+	}
+	body #main.abr form li.width_b.registrant-form__last-name__line,
+	body #main.abr form li.width_b.registrant-form__prev-last-name__line {
+		width: 30%;
+	}
+	body #main.abr form li.width_c.registrant-form__middle-name__line,
+	body #main.abr form li.width_c.registrant-form__prev-middle-name__line {
+		width: 15%;
+	}
+	body #main.abr form li.width_b.registrant-form__first-name__line,
+	body #main.abr form li.width_b.registrant-form__prev-first-name__line {
+		width: 30%;
+	}
+	body #main.abr form ul.stacked li.registrant-form__home-unit__line, 
+	body #main.abr form ul.stacked li.registrant-form__prev-unit__line, 
+	body #main.abr form ul.stacked li.registrant-form__mailing-unit__line {
+		width: 24%;
+		margin-right: 0;
+	}
+	body #main.abr form li.width_a.registrant-form__home-address-name__line,
+	body #main.abr form li.width_a.registrant-form__prev-address-name__line,
+	body #main.abr form li.width_a.registrant-form__mailing-address-name__line {
+		width: 42%;
+	}
+	body #main.abr form li.width_a.registrant-form__home-address-number__line,
+	body #main.abr form li.width_a.registrant-form__prev-address-number__line,
+	body #main.abr form li.width_a.registrant-form__mailing-address-number__line {
+		width: 30%;
+	}
+	/* tracking ballot specific */
+	body #main.ballot-status-check form li.registrant-form__first-name__line {
+		width: 48%;
+	}
+	body #main.ballot-status-check form li.registrant-form__last-name__line {
+		width: 50%;
+		margin-right: 0;
 	}
 }
 @media (max-width: 468px) {
@@ -1155,7 +1194,7 @@ body.new-mobile-ui .step_2 .edit_state_registrants_pa_registrant #main form fiel
 }
 
 
-@media (min-width: 601px) {
+@media (min-width: 600px) {
 	body.new-mobile-ui #main form ul li.registrant-form__name-title__line, body.new-mobile-ui #main form ul li.registrant-form__prev-name-title__line {
 		width: 48%;
 		margin-right: 2%;
