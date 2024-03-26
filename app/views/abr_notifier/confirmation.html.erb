@@ -1,29 +1,14 @@
 <style type="text/css">
 <!--
-.boxtext {
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 22px;
-  font-style: normal;
-  line-height: 1.5em;
-  font-weight: bolder;
-  text-transform: uppercase;
-  margin: 0;
-  text-align: center;
-}
 .reminder-box {
   float: right;
-  margin: 0 0 15px 15px; 
   width: 275px;
-  border: 8px solid #cc0000;
-  color:black;
-  padding: 15px;
-  display: block;
-  box-sizing: border-box;
-  height: fit-content !important;
+  margin: 0 0 15px 15px !important;
+  
 }
 @media screen and (max-width: 468px) {
   .reminder-box {
-    margin: 0 0 20px 0;
+    margin: 0 0 20px 0 !important;
     float: none;
     width: 100%;
   }
@@ -32,9 +17,10 @@
 </style>
 
 <div style="max-width: 700px; margin: 0 auto;">
-<div class="reminder-box">
-  <p class="boxtext"><%=I18n.t('email.abr.confirmation.body.reminder', :locale => @locale).html_safe %></p>
+<div style="border: 8px solid #cc0000; margin: 0 0 15px 0px; display: block; box-sizing: border-box; height: fit-content !important;" class="reminder-box">
+  <p style="color: black; padding: 15px; font-family: 'Arial Black', Gadget, sans-serif; font-size: 22px; font-style: normal; line-height: 1.5em; font-weight: bolder; text-transform: uppercase; margin: 0; text-align: center;"><%=I18n.t('email.abr.confirmation.body.reminder', :locale => @locale).html_safe %></p>
 </div>
+
 <%= I18n.t('email.abr.confirmation.body.greeting', :abr_first_name=>@abr_first_name, :abr_last_name=>@abr_last_name, :locale => @locale).html_safe %> <br><br>
 
 <%= I18n.t('email.abr.confirmation.body.main', 
