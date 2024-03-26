@@ -245,10 +245,10 @@
       - hidden_any_conditions_value = opts[:hidden_any].is_a?(Array) ? opts[:hidden_any][1] : nil
       - data["hidden-any-conditions"] = hidden_any_conditions unless hidden_any_conditions.blank?
       - data["hidden-any-conditions-value"] = hidden_any_conditions_value unless hidden_any_conditions_value.blank?
-      - if opts[:type] == :instructions && instructions.present?
+      - if opts[:type] == :instructions
         %li.instructions{class: class_name, data: data}
-          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")
-          %p.instructions= raw(instructions)
+          %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}").html_safe
+
 
 
       - if opts[:type] == :checkbox
