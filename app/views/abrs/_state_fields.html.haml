@@ -248,7 +248,8 @@
       - if opts[:type] == :instructions && instructions.present?
         %li.instructions{class: class_name, data: data}
           %p.instructions= t("states.custom.#{@abr.i18n_key}.abr_form_fields.#{opts[:method]}")
-          %p.instructions= instructions
+          %p.instructions= raw(instructions)
+
 
       - if opts[:type] == :checkbox
         - class_name += " registrant-form__required-checkbox " if required
