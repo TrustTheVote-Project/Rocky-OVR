@@ -21,12 +21,6 @@
   box-sizing: border-box;
   height: fit-content !important;
 }
-.hr-line {
-  border: none;
-  height: 3px;
-  background-color: black;
-  margin: 20px 0;
-}
 @media screen and (max-width: 468px) {
   .reminder-box {
     margin: 0 0 20px 0;
@@ -54,14 +48,14 @@
   :rtv_link=>@rtv_link, :locale => @locale
 ).html_safe %>
 
-<hr class="hr-line" size="3" align="left" width="100%" color="black">
+<hr style="border: none; height: 3px; background-color: black; margin: 20px 0; width: 100%;">
 
 <%= I18n.t('email.reminder.body.send_to_friends',
   :rtv_link=>@rtv_link,
   :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %>
 
 
-<hr class="hr-line" size="3" align="left" width="100%" color="black">
+<hr style="border: none; height: 3px; background-color: black; margin: 20px 0; width: 100%;">
 
 <%= I18n.t('email.reminder.body.footer', :locale => @locale).html_safe %>
 </div>
