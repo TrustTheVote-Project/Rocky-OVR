@@ -804,13 +804,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 /* replace old spinner.gif */
 /* Apply spinner styles to .preparing class */
-.preparing {
+.preparing .download {
 	position: relative;
 }
 .preparing img {
 	display: none;
 }
-.preparing::before {
+.preparing .download::before {
 	content: '';
 	position: absolute;
 	top: 50%;
