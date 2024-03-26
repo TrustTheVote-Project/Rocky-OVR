@@ -784,7 +784,14 @@ ul.checkbox h3 label {
 	padding-left: 0px;
 	margin-top: 24px;
 }
-
+#main .timeout-text {
+	margin-top: 24px;
+}
+/* make all the abr h3 labels the same even if no label surrounding */
+#main.abr .step_3 ul li h3 {
+	font-weight: 600;
+	font-size: 14px;
+}
 /* media */
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line, #main.lookup form ul li.registrant-form__name-suffix__line, #main.lookup form ul li.registrant-form__prev-name-suffix__line, #main.lookup form ul li.width_f.registrant-form__name-title__line, #main.lookup form ul li.width_f.registrant-form__prev-name-title__line, #main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line, #main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
