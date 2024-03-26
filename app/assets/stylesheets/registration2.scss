@@ -18,9 +18,6 @@ input[type=text], input[type=tel] {
 }
 
 /* replace old spinner.gif */
-.download {
-  text-align: center;
-}
 .spinner  {
 	width: 60px;
 	height: 60px;
@@ -28,6 +25,8 @@ input[type=text], input[type=tel] {
 	border: 8px solid #ccc;
 	border-top-color: #333;
 	animation: spin 1s linear infinite;
+	margin-right: auto;
+	margin-left: auto;
 }
 @keyframes spin {
 	0% { transform: rotate(0deg); }
