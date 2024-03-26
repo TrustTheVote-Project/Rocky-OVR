@@ -15,6 +15,7 @@ $progress-filler-color: #BED9EC;
 $border-radius: 4px;
 $flash-background-color: #BED9EC;
 $flash-border-color: #000;
+$spinner-color: rgb(15,117,189);
 
 body {
 	color: $font-color;
@@ -798,9 +799,35 @@ ul.checkbox h3 label {
 /* Hide number input spinners */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
 }
+/* replace old spinner.gif */
+/* Apply spinner styles to .preparing class */
+.preparing {
+	position: relative;
+}
+.preparing img {
+	display: none;
+}
+.preparing::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border: 8px solid #ccc;
+	border-top-color: $spinner-color;
+	animation: spin 1s linear infinite;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
 /* media */
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line, #main.lookup form ul li.registrant-form__name-suffix__line, #main.lookup form ul li.registrant-form__prev-name-suffix__line, #main.lookup form ul li.width_f.registrant-form__name-title__line, #main.lookup form ul li.width_f.registrant-form__prev-name-title__line, #main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line, #main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
