@@ -1138,9 +1138,11 @@ input[type=number]::-webkit-outer-spin-button {
 		margin-bottom: 20px !important;
 	}
 	body #header .header-text {
-		font-size: 22px;
-		margin-left: 66px;
-		margin-right: 66px;
+		font-size: 20px !important;
+		margin-left: 70px;
+		margin-right: 70px;
+		padding-top: 16px;
+		text-wrap: balance;
 	}
 	#main.alert_request li.width_c.registrant-form__middle-name__line {
 		display: none;
