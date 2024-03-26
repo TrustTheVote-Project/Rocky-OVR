@@ -197,6 +197,14 @@
     });
   }
   $(document).ready(function() {
+    // Find all <p class="instructions"> elements
+    $('p.instructions').each(function() {
+        // Check if the element is empty
+        if ($(this).html().trim() === '') {
+            // Remove the element if it's empty
+            $(this).remove();
+        }
+    });
     toggleHiddenVisible();
     toggleHiddenAny();
     //toggleVisible();
