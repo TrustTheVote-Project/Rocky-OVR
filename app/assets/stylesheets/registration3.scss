@@ -9,10 +9,12 @@ $footer-link-color: rgb(8,59,95);
 $footer-link-hover-color: #000;
 $button-color: rgb(15,117,189);
 $button-hover-color: rgb(8,59,95);
-$font-stack: 'Inter', sans-serif;
+$font-stack: 'Inter', Arial, sans-serif;
 $progress-background-color: transparent;
 $progress-filler-color: #BED9EC;
 $border-radius: 4px;
+$flash-background-color: #BED9EC;
+$flash-border-color: #000;
 
 body {
 	color: $font-color;
@@ -324,7 +326,9 @@ label {
 	background-repeat: no-repeat;
 	background-position: center;
 }
-li.registrant-form__change-of-name__line > h3 > label::after,li.registrant-form__change-of-address__line > h3 > label::after {
+li.registrant-form__change-of-name__line > h3 > label::after,
+li.registrant-form__change-of-address__line > h3 > label::after,
+#main .step_3 .edit_state_registrants_pa_registrant label::after {
 	top: 0 !important;
 }
 li.registrant-form__us-citizen__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line.registrant-form__required-checkbox > h3 > label::after,ul.checkbox.checkbox-step-1 > li.registrant-form__us-citizen__line > h3 > label::after,li.registrant-form__confirm_will_be_18__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line > h3 > label::after {
@@ -513,6 +517,9 @@ input[type=text], input[type=tel], input, select, textarea {
 .stacked span.error, .stacked span.example {
 	margin-left: 0px;
 }
+span.error, span.example {
+	white-space: normal;
+}
 p.reject {
 	text-align: center !important;
 }
@@ -608,6 +615,10 @@ select:focus {
 }
 span#link-to-copy {
 	overflow-wrap: anywhere;
+}
+#progress-bar li {
+	font-weight: 400;
+	line-height: 21px;
 }
 #progress-bar li.progress-done {
 	background-color: #BED9EC;
@@ -760,6 +771,18 @@ span.rollover_button .button_keep_going:hover {
 }
 ul.checkbox h3 label {
 	width: auto;
+}
+/* flash message */
+.flash li {
+	border-radius: $border-radius;
+	-moz-border-radius: $border-radius;
+	-webkit-border-radius: $border-radius;
+	border-color: $flash-border-color;
+	background-color: $flash-background-color;
+}
+#main form #signature-cropper, #main form #continue_on_device {
+	padding-left: 0px;
+	margin-top: 24px;
 }
 
 /* media */
@@ -1014,6 +1037,8 @@ ul.checkbox h3 label {
 	#main.lookup form ul li.registrant-form__first-name__line, 
 	#main.lookup form ul li.registrant-form__last-name__line {
 		width: 32%;
+	}
+	#main.lookup form li.width_b.registrant-form__last-name__line {
 		margin-right: 2%;
 	}
 	#main.lookup form li.width_d.registrant-form__name-suffix__line {
@@ -1043,13 +1068,13 @@ ul.checkbox h3 label {
 	body #main.abr form ul.stacked li.registrant-form__home-unit__line, 
 	body #main.abr form ul.stacked li.registrant-form__prev-unit__line, 
 	body #main.abr form ul.stacked li.registrant-form__mailing-unit__line {
-		width: 20%;
+		width: 19%;
 		margin-right: 0;
 	}
 	body #main.abr form li.width_a.registrant-form__home-address-name__line,
 	body #main.abr form li.width_a.registrant-form__prev-address-name__line,
 	body #main.abr form li.width_a.registrant-form__mailing-address-name__line {
-		width: 44%;
+		width: 45%;
 	}
 	body #main.abr form li.width_a.registrant-form__home-address-number__line,
 	body #main.abr form li.width_a.registrant-form__prev-address-number__line,
