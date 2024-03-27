@@ -32,14 +32,14 @@
   :rtv_link=>@rtv_link, :locale => @locale
 ).html_safe %>
 
-<hr style="border: none; height: 3px; background-color: black; margin: 20px 0; width: 100%;">
+<hr style="border: none; height: 3px; background-color: white; margin: 23px 0 20px 0; width: 100%; border-top: 3px solid black;">
 
 <%= I18n.t('email.abr.reminder.body.send_to_friends',
   :rtv_link=>@rtv_link,
   :abr_first_name=>@abr_first_name, :abr_last_name=>@abr_last_name, :locale => @locale).html_safe %>
 
 
-<hr style="border: none; height: 3px; background-color: black; margin: 20px 0; width: 100%;">
+<hr style="border: none; height: 3px; background-color: white; margin: 23px 0 20px 0; width: 100%; border-top: 3px solid black;">
 
 <%= I18n.t('email.abr.reminder.body.footer', :locale => @locale).html_safe %>
 </div>

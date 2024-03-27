@@ -11,22 +11,22 @@
     <%- end %>
   </title>
   
-  <meta name="description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
+  <meta name="description" content="Secure your right to vote from the comfort and safety of your home by requesting your absentee ballot today. Our absentee voting tool makes the process simple and convenient—ensure your voice is heard in elections, no matter where you are!" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Rock the Vote" />
-  <meta property="og:description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
-  <meta property="og:site_name" content="Rock the Vote" />
+  <meta property="og:title" content="Rock the Vote - Building the Political Power of Young People" />
+  <meta property="og:description" content="Request your absentee ballot now with Rock the Vote's online tool. Vote safely and conveniently from home. Empowering voters across the nation." />
   <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:secure_url" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:description" content="Request your absentee ballot now to vote from the ease and safety of your home." />
-  <meta name="twitter:title" content="Online Ballot Request" />
+  <meta name="twitter:description" content="Request your absentee ballot now with Rock the Vote's online tool. Vote safely and conveniently from home. Empowering voters across the nation." />
+  <meta name="twitter:title" content="Rock the Vote - Building the Political Power of Young People" />
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta name="twitter:creator" content="@rockthevote" />
+
   <%- unless controller.action_name == "new" %>
     <meta name="robots" content="noindex" />
   <%- end %>
@@ -76,7 +76,7 @@
 
 </head>
 
-<body class="abr-page <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<body class="abr-page <%= 'not-landing' if @abr && @abr.home_state_abbrev %> <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
   <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
@@ -87,7 +87,7 @@
       <span role="img" aria-label="<%="#{@partner.organization} logo" %>"> </span>
     <% else -%>
       <div id="header">
-        <span role="img" aria-label="Rock The Vote logo"> </span>      
+        <span role="img" aria-label="Rock the Vote logo"> </span>      
         <% end -%>
         <h1 role="heading" aria-level="1" class='header-text'>
           <%- if @abr && @abr.home_state_abbrev %>

@@ -3,10 +3,10 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Online Voter Registration</title>
-  <meta name="description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
+  <meta name="description" content="Exercise your right to vote by registering online with our quick and user-friendly voter registration tool. Don't miss your chance to make your voice heard in elections—register now!" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Rock the Vote" />
+  <meta property="og:title" content="Rock the Vote - Building the Political Power of Young People" />
   <meta property="og:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
   <meta property="og:site_name" content="Rock the Vote" />
   <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
@@ -15,7 +15,7 @@
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
-  <meta name="twitter:title" content="Online Voter Registration" />
+  <meta name="twitter:title" content="Rock the Vote Online Voter Registration" />
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta name="twitter:creator" content="@rockthevote" />
@@ -58,7 +58,7 @@
   </script>
   <%= yield :head %>
 </head>
-<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<body class="registration-page <%- if !@registrant || @registrant.short_form? %><%= 'not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %> <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
   <%- if @registrant %>
     <script type="text/javascript">
       window._registrantUID = "<%= j @registrant.uid %>";
@@ -81,7 +81,7 @@
     <%- end %>
   <% else -%>
     <div id="header">
-      <span role="img" aria-label="<%="Rock The Vote logo" %>"> </span>
+      <span role="img" aria-label="<%="Rock the Vote logo" %>"> </span>
   <% end -%>
       <div class='header-text'>
         <%- if !@registrant || @registrant.short_form? %>
