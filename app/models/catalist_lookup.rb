@@ -64,8 +64,8 @@ class CatalistLookup < ActiveRecord::Base
       errors.add(:date_of_birth, :too_old)
     elsif birthdate > Date.today
       errors.add(:date_of_birth, :future)
-    elsif birthdate > 16.years.ago.to_date
-      errors.add(:date_of_birth, :'txt.lookup.too_young')
+    elsif birthdate > 17.years.ago.to_date
+      errors.add(:date_of_birth, :too_young)
     end
   end
   

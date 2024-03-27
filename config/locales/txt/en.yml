@@ -34,7 +34,6 @@ en:
       step_2_instructions: ''
       accept: Yes, this is me.
       reject: No, this is not me.
-      too_young: You must be at least 16 for this.
       check:
         matched: Is this your registration information, %{first_name}?
         gender: 'Gender: %{gender}'

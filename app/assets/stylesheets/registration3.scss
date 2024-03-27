@@ -829,7 +829,8 @@ input[type=number]::-webkit-outer-spin-button {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }
-.remind-me-later, .keep-going {
+.step_1 .remind-me-later .button.rollover_button #registrant_submit,
+.step_1 .keep-going .button.rollover_button #registrant_submit {
 	padding: 11px !important;
 }
 /* media */
