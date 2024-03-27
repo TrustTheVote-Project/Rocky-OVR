@@ -80,7 +80,8 @@ module DateOfBirthMethods
   # TODO: remove duplicate from RegistrantAbrMethods
   def validate_date_of_birth_age
     if date_of_birth.present?
-      if (Date.today - date_of_birth) < 13.years
+      age_in_years = (Date.today - date_of_birth).to_i / 365
+      if age_in_years < 13
         errors.add(:date_of_birth, :way_too_young)
         return
       end
