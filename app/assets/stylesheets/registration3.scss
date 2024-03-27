@@ -866,6 +866,10 @@ input[type=number]::-webkit-outer-spin-button {
 	#main.alert_request .consent_copy {
 		margin-top: 0;
 	}
+	body.registration-page #header .header-text, body.abr-page #header .header-text, body.lookup-page #header .header-text, body.tracking-page #header .header-text {
+		font-size: 28px;
+		padding-top: 28px;
+	}
 }
 @media screen and (max-width: 600px) {
 	body #header {
@@ -1148,8 +1152,8 @@ input[type=number]::-webkit-outer-spin-button {
 	body.not-landing #header .header-text {
 		font-size: 20px;
 		padding-top: 16px;
-		margin-left: 70px;
-		margin-right: 70px;
+		margin-left: 80px;
+		margin-right: 80px;
 		text-wrap: balance;
 	}
 	body.tracking-page #header .header-text, body.abr-page #header .header-text {
