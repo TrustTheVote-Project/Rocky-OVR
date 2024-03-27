@@ -218,8 +218,8 @@ en:
         registration record in %{state_name}.</p>"
       not_registered_link: <p>Would you like to <a href="%{url}">registration to vote</a>?</p>
     alert_request:
-      pledge_to_vote: Pledge to Vote
-      pledge_to_vote_in: Pledge to Vote
+      pledge_to_vote: Pledge To Vote
+      pledge_to_vote_in: Pledge To Vote
       step_1_header: Pledge to Vote
       step_1_instructions: Pledge to vote and get personalized reminders about upcoming
         election dates and deadlines - never miss an election!
@@ -239,7 +239,7 @@ en:
       Rock the Vote. You can opt out from emails at any time.
 
     register_to_vote: Register To Vote
-    register_to_vote_in: Register in %{state_abbrev}
+    register_to_vote_in: Register In %{state_abbrev}
     request_absentee_ballot_in: Request an Absentee Ballot In %{state_abbrev}
     request_absentee_ballot: Request An Absentee Ballot
     check_voter_status_in: Check Voter Status In %{state_abbrev}

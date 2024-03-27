@@ -791,6 +791,10 @@ ul.checkbox h3 label {
 body.pledge-page div#finish_page_iframe {
 	margin-top: 24px;
 }
+/* hide pledge subtitle since it says the same as the header text */
+body.pledge-page h2.subtitle {
+	display: none;
+}
 /* make all the abr h3 labels the same even if no label surrounding */
 #main.abr .step_3 ul li h3 {
 	font-weight: 600 !important;
