@@ -93,7 +93,7 @@ p.privacy_policy_acceptance {
 	display: block;
 	color: $font-color;
 	font-size: 28px;
-	text-transform: capitalize;
+	text-transform: none;
 	padding-top: 20px;
 	font-family: $font-stack;
 	font-weight: 600;
@@ -788,6 +788,9 @@ ul.checkbox h3 label {
 #main .timeout-text {
 	margin-top: 24px;
 }
+body.pledge-page div#finish_page_iframe {
+	margin-top: 24px;
+}
 /* make all the abr h3 labels the same even if no label surrounding */
 #main.abr .step_3 ul li h3 {
 	font-weight: 600 !important;
@@ -866,7 +869,7 @@ input[type=number]::-webkit-outer-spin-button {
 	#main.alert_request .consent_copy {
 		margin-top: 0;
 	}
-	body.registration-page #header .header-text, body.abr-page #header .header-text, body.lookup-page #header .header-text, body.tracking-page #header .header-text {
+	body.registration-page #header .header-text, body.abr-page #header .header-text, body.lookup-page #header .header-text, body.tracking-page #header .header-text, body.pledge-page #header .header-text {
 		font-size: 28px;
 		padding-top: 28px;
 	}
