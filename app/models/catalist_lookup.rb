@@ -60,12 +60,12 @@ class CatalistLookup < ActiveRecord::Base
   end
 
   def validate_date_of_birth_age
-    if birthdate < 16.years.ago.to_date
-      errors.add(:date_of_birth, :'txt.lookup.too_young')
-    elsif birthdate < Date.parse("1900-01-01")
+    if birthdate < Date.parse("1900-01-01")
       errors.add(:date_of_birth, :too_old)
     elsif birthdate > Date.today
       errors.add(:date_of_birth, :future)
+    elsif birthdate > 16.years.ago.to_date
+      errors.add(:date_of_birth, :'txt.lookup.too_young')
     end
   end
   
