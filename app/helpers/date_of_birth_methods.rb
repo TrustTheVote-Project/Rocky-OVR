@@ -82,14 +82,15 @@ module DateOfBirthMethods
   def validate_date_of_birth_age
     if date_of_birth.present?
       validate_minimum_age
+      return if errors[:date_of_birth].present? # Skip other validations if age is invalid
       if date_of_birth < Date.parse("1900-01-01")
         errors.add(:date_of_birth, :too_old)
-      end
-      if date_of_birth > Date.today
+      elsif date_of_birth > Date.today
         errors.add(:date_of_birth, :future)
       end
     end
   end
+
 
   # TODO: remove duplicate from RegistrantAbrMethods
   def validate_date_of_birth
