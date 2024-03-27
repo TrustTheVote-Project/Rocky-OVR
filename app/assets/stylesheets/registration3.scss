@@ -781,6 +781,10 @@ ul.checkbox h3 label {
 	border-color: $flash-border-color;
 	background-color: $flash-background-color;
 }
+#main .state-flow-error {
+	border-radius: $border-radius;
+	margin-top: 24px;
+}
 #main form #signature-cropper, #main form #continue_on_device {
 	padding-left: 0px;
 	margin-top: 24px;
