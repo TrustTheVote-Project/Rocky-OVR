@@ -1160,8 +1160,12 @@ input[type=number]::-webkit-outer-spin-button {
 		padding-top: 16px;*/
 	}
 	body.abr-page #header .header-text {
-		margin-left: 70px;
-		margin-right: 70px;
+		margin-left: 74px;
+		margin-right: 74px;
+	}
+	body.abr-page.not-landing #header h1.header-text {
+		margin-right: 68px;
+		margin-left: 68px;
 	}
 	body.tracking-page #header .header-text {
 		margin-left: 84px;
