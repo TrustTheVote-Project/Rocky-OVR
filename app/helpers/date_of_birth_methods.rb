@@ -71,14 +71,23 @@ module DateOfBirthMethods
       nil
     end
   end
+
+  def validate_minimum_age
+    if date_of_birth.present? && (Date.today - date_of_birth) < 13.years
+      errors.add(:date_of_birth, :way_too_young)
+    end
+  end
   
   # TODO: remove duplicate from RegistrantAbrMethods
   def validate_date_of_birth_age
-    if date_of_birth < Date.parse("1900-01-01")
-      errors.add(:date_of_birth, :too_old)
-    end
-    if date_of_birth > Date.today
-      errors.add(:date_of_birth, :future)      
+    if date_of_birth.present?
+      validate_minimum_age
+      if date_of_birth < Date.parse("1900-01-01")
+        errors.add(:date_of_birth, :too_old)
+      end
+      if date_of_birth > Date.today
+        errors.add(:date_of_birth, :future)
+      end
     end
   end
 
