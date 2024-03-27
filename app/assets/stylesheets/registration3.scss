@@ -997,6 +997,9 @@ input[type=number]::-webkit-outer-spin-button {
 	h1 .sub-header {
 		margin: 16px 0 0 0;
 	}
+	h3#registrant_phone_type_label {
+		margin-left: 0;
+	}
 	#form_header {
 		margin-bottom: 0px;
 	}
@@ -1155,6 +1158,14 @@ input[type=number]::-webkit-outer-spin-button {
 		margin-left: 70px;
 		margin-right: 70px;
 		padding-top: 16px;*/
+	}
+	body.abr-page #header .header-text {
+		margin-left: 70px;
+		margin-right: 70px;
+	}
+	body.tracking-page #header .header-text {
+		margin-left: 84px;
+		margin-right: 84px;
 	}
 	body.not-landing #header .header-text {
 		font-size: 20px;
