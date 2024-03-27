@@ -829,7 +829,9 @@ input[type=number]::-webkit-outer-spin-button {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }
-
+.remind-me-later, .keep-going {
+    padding: 11px !important;
+}
 /* media */
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line, #main.lookup form ul li.registrant-form__name-suffix__line, #main.lookup form ul li.registrant-form__prev-name-suffix__line, #main.lookup form ul li.width_f.registrant-form__name-title__line, #main.lookup form ul li.width_f.registrant-form__prev-name-title__line, #main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line, #main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
