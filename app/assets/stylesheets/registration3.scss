@@ -833,6 +833,13 @@ input[type=number]::-webkit-outer-spin-button {
 .step_1 .keep-going .button.rollover_button #registrant_submit {
 	padding: 11px !important;
 }
+h3#registrant_phone_type_label {
+	margin-left: 0;
+}
+
+
+
+
 /* media */
 @media screen and (min-width: 600px) {
 	#main.lookup form ul li.registrant-form__prev-name-title__line, #main.lookup form ul li.registrant-form__name-suffix__line, #main.lookup form ul li.registrant-form__prev-name-suffix__line, #main.lookup form ul li.width_f.registrant-form__name-title__line, #main.lookup form ul li.width_f.registrant-form__prev-name-title__line, #main.lookup form ul li.width_f.registrant-form__name-suffix__line,#main.lookup form ul li.width_f.registrant-form__prev-name-suffix__line, #main.lookup form ul.flat li.registrant-form__name-title__line,#main.lookup form ul.flat li.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.registrant-form__name-suffix__line,#main.lookup form ul.flat li.registrant-form__prev-name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__name-title__line, #dd2834#main.lookup form ul.flat li.width_f.registrant-form__prev-name-title__line,#main.lookup form ul.flat li.width_f.registrant-form__name-suffix__line,#main.lookup form ul.flat li.width_f.registrant-form__prev-name-suffix__line {
@@ -1003,9 +1010,6 @@ input[type=number]::-webkit-outer-spin-button {
 	}
 	h1 .sub-header {
 		margin: 16px 0 0 0;
-	}
-	h3#registrant_phone_type_label {
-		margin-left: 0;
 	}
 	#form_header {
 		margin-bottom: 0px;

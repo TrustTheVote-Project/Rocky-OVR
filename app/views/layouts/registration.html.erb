@@ -58,7 +58,7 @@
   </script>
   <%= yield :head %>
 </head>
-<body class="registration-page <%- if !@registrant || @registrant.short_form? %><%= 'not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %> <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<body class="registration-page <%- if !@registrant || @registrant.short_form? %><%= 'not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %> <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %> <%= @registrant&.locale || 'en' %>">
   <%- if @registrant %>
     <script type="text/javascript">
       window._registrantUID = "<%= j @registrant.uid %>";
