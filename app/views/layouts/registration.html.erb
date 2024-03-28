@@ -63,7 +63,8 @@
 <body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %><%= ' old-school' if @registrant && !@registrant.short_form? %> <%= @registrant&.locale || 'en' %>">
 <% if @registrant && !@registrant.short_form? %>
 <!--short form was set to false so display not supported message-->
-<% new_params = params.except(:short_form) %>
+<% excluded_params = [:short_form, :action, :controller] %>
+<% new_params = params.except(*excluded_params) %>
 <p style="margin-top: 28px; line-height: 2; font-size: 16px; font-weight: 600; text-align: center;">This form is no longer supported.<br/>Please visit <a href="<%= root_url(new_params.merge(source: 'short-form-false')) %>"><%= root_url %></a> to register to vote.</p>
 <% else %>
   <%- if @registrant %>
