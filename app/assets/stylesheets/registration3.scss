@@ -919,13 +919,13 @@ h3#registrant_phone_type_label {
 		line-height: 1;
 		font-size: 13px;
 	}
-	body.ja #main form ul li.registrant-form__first-name__line,
-	body.ja #main form ul li.registrant-form__prev-first-name__line {
-		width: 30%
+	body.ja #main form ul.stacked li.registrant-form__first-name__line,
+	body.ja #main form ul.stacked li.registrant-form__prev-first-name__line {
+		width: 30%;
 	}
-	body.ja #main form ul li.registrant-form__name-title__line,
-	body.ja #main form ul li.registrant-form__prev-name-title__line {
-		width; 20%;
+	body.ja #main form ul.stacked li.registrant-form__name-title__line,
+	body.ja #main form ul.stacked li.registrant-form__prev-name-title__line {
+		width: 20%;
 	}
 	/* end locale specific fixes */
 }
