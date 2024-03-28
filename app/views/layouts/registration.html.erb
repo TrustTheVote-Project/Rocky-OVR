@@ -1,10 +1,11 @@
 <% classes = [] %>
 <% classes << 'not-landing' if !@registrant || @registrant.short_form? %>
 <% classes << 'primary-partner' if @partner && @partner.primary? %>
-<% classes << 'new-mobile-ui' if @use_mobile_ui && !controller.is_in_iframe? %>
+<% classes << 'new-mobile-ui' if @use_mobile_ui %>
 <% if params[:short_form] == 'false' %>
   <%# Redirect to the same URL without the short_form parameter %>
-  <% new_url = request.original_url.gsub(/\&?short_form=false/, '') %>
+  <% new_params = request.query_parameters.except(:short_form) %>
+  <% new_url = url_for(new_params) %>
   <script type="text/javascript">
     window.location.href = "<%= new_url %>";
   </script>
@@ -72,6 +73,10 @@
 </head>
 
 <body class="registration-page <%= classes.join(' ') %>">
+
+<% if controller.is_in_iframe? %>
+you're in an iframe
+<%- end %>
 
   <%- if @registrant %>
     <script type="text/javascript">
