@@ -1,10 +1,6 @@
-<% classes = [] %>
-<% classes << 'not-landing' if !@registrant || @registrant.short_form? %>
-<% classes << 'primary-partner' if @partner && @partner.primary? %>
-<% classes << 'new-mobile-ui' if @use_mobile_ui %>
 <% if params[:short_form] == 'false' %>
-  <%# Redirect to the same URL without the short_form parameter %>
-  <% new_params = request.query_parameters.except(:short_form) %>
+  <%# Convert short_form=false to short_form=true %>
+  <% new_params = request.query_parameters.merge(short_form: 'true') %>
   <% new_url = url_for(new_params) %>
   <script type="text/javascript">
     window.location.href = "<%= new_url %>";
@@ -72,10 +68,10 @@
   <%= yield :head %>
 </head>
 
-<body class="registration-page <%= classes.join(' ') %>">
+<body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %> <%= @registrant&.locale || 'en' %>">
 
 <% if controller.is_in_iframe? %>
-you're in an iframe
+<!--you are in an iframe-->
 <%- end %>
 
   <%- if @registrant %>
