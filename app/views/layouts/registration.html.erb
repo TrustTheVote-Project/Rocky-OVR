@@ -1,3 +1,7 @@
+<% if params[:short_form] == 'false' %>
+<%# Redirect to the same URL with short_form set to true %>
+  <%= link_to "Continue with short form", "#{request.original_url}&short_form=true" %>
+<% else %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<%= @registrant&.locale || "en" %>">
 <head>
@@ -58,7 +62,7 @@
   </script>
   <%= yield :head %>
 </head>
-<body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %> <%= @registrant&.locale || 'en' %>">
+<body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui && !controller.is_in_iframe? %> <%= @registrant&.locale || 'en' %>">
   <%- if @registrant %>
     <script type="text/javascript">
       window._registrantUID = "<%= j @registrant.uid %>";
@@ -138,3 +142,4 @@
 
 </body>
 </html>
+<% end %>

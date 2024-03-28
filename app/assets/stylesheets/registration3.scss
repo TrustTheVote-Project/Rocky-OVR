@@ -1304,12 +1304,14 @@ h3#registrant_phone_type_label {
 	#main .skip_state_registration .checkbox {
 		padding: 8px;
 	}
-	.checkbox.pdf_assistance {
-		text-wrap: balance;
+	.checkbox.pdf_assistance label {
+		font-size: 12px;
 	}
 	#main.abr form input#abr_street_number, 
-	#main.abr form select#abr_name_suffix, 
-	#main.abr form input#abr_unit {
+	#main.abr form select#abr_name_suffix {
+		width: 48%;
+	}
+	body #main form ul.stacked li.registrant-form__home-unit__line {
 		width: 48%;
 	}
 	/* help longer labels in other languages fit on smaller screens */
@@ -1328,17 +1330,17 @@ h3#registrant_phone_type_label {
 	}
 }
 /* new mobile ui overrides */
-body.new-mobile-ui #main #dynamic-progress-bar {
+#main #dynamic-progress-bar {
 	background: $progress-background-color;
 	border-radius: $border-radius;
 	border: 1px solid #000;
 }
-body.new-mobile-ui #main #dynamic-progress-bar .filler {
+#main #dynamic-progress-bar .filler {
 	background: $progress-filler-color;
 	border-right: 1px solid #000;
 	z-index: -1;
 }
-body.new-mobile-ui #main #dynamic-progress-bar .content {
+#main #dynamic-progress-bar .content {
 	visibility: hidden;
 }
 body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line, body.new-mobile-ui #main form ul li.registrant-form__change-of-name__line {
