@@ -34,7 +34,7 @@ class RegistrantsController < RegistrationStep
 
   # Rocky inside an iframe so we can do different things
   def is_in_iframe?
-    !request.referrer.blank?
+    request.xhr?
   end
 
   def track_view

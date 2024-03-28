@@ -1,12 +1,3 @@
-<% if params[:short_form] == 'false' %>
-  <%# Convert short_form=false to short_form=true %>
-  <% new_params = request.query_parameters.merge(short_form: 'true') %>
-  <% new_url = url_for(new_params) %>
-  <script type="text/javascript">
-    window.location.href = "<%= new_url %>";
-  </script>
-<% else %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<%= @registrant&.locale || "en" %>">
 <head>
@@ -153,4 +144,3 @@
 
 </body>
 </html>
-<% end %>
