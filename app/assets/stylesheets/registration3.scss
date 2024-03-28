@@ -892,19 +892,42 @@ h3#registrant_phone_type_label {
 		padding-top: 28px;
 	}
 	/* locale specific fixes */
+
+	/* make more room for longer field labels */
 	body.es li.width_c.registrant-form__middle-name__line, 
 	body.tl li.width_c.registrant-form__middle-name__line, 
 	body.ilo li.width_c.registrant-form__middle-name__line, 
-	body.ja li.width_c.registrant-form__middle-name__line {
+	body.ja li.width_c.registrant-form__middle-name__line,
+	body.es li.width_c.registrant-form__prev-middle-name__line, 
+	body.tl li.width_c.registrant-form__prev-middle-name__line, 
+	body.ilo li.width_c.registrant-form__prev-middle-name__line, 
+	body.ja li.width_c.registrant-form__prev-middle-name__line {
 		display: none;
 	}
 	body.tl li.width_d.registrant-form__name-suffix__line label,
 	body.ilo li.width_d.registrant-form__name-suffix__line label, 
 	body.vi li.width_d.registrant-form__name-suffix__line label,
-	body.ja li.width_d.registrant-form__name-suffix__line label {
-		font-size: 12px !important;
+	body.ja li.width_d.registrant-form__name-suffix__line label,
+	body.tl li.width_d.registrant-form__prev-name-suffix__line label,
+	body.ilo li.width_d.registrant-form__prev-name-suffix__line label, 
+	body.vi li.width_d.registrant-form__prev-name-suffix__line label,
+	body.ja li.width_d.registrant-form__prev-name-suffix__line label {
 		text-wrap: nowrap;
 	}
+	body.ja label {
+		text-transform: none;
+		line-height: 1;
+		font-size: 13px;
+	}
+	body.ja #main form ul li.registrant-form__first-name__line,
+	body.ja #main form ul li.registrant-form__prev-first-name__line {
+		width: 30%
+	}
+	body.ja #main form ul li.registrant-form__name-title__line,
+	body.ja #main form ul li.registrant-form__prev-name-title__line {
+		width; 20%;
+	}
+	/* end locale specific fixes */
 }
 @media screen and (max-width: 600px) {
 	body #header {
