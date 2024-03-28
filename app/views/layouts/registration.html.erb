@@ -61,10 +61,6 @@
 
 <body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %> <%= @registrant&.locale || 'en' %>">
 
-<% if controller.is_in_iframe? %>
-<!--you are in an iframe-->
-<%- end %>
-
   <%- if @registrant %>
     <script type="text/javascript">
       window._registrantUID = "<%= j @registrant.uid %>";

@@ -32,11 +32,6 @@ class RegistrantsController < RegistrationStep
     @host = host_url
   end
 
-  # Rocky inside an iframe so we can do different things
-  def is_in_iframe?
-    request.xhr?
-  end
-
   def track_view
     # Record that a particular page got viewed
     find_registrant(:track)
