@@ -1124,6 +1124,19 @@ h3#registrant_phone_type_label {
 	body #main .required--text {
 		display: none !important;
 	}
+	/* try num shift fix */
+	input[type=tel] {
+		font-size: 16px;
+		-webkit-appearance: none;
+		margin-top: 0;
+	}
+	/* tighten up print your form screen */
+	#main .download p {
+		font-size: 14px;
+		margin-bottom: 24px;
+		margin-top: 24px;
+		line-height: 1.5;
+	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
 	#main {
@@ -1200,12 +1213,17 @@ h3#registrant_phone_type_label {
 		top: 16px;
 		margin-bottom: 20px !important;
 	}
-
+	body.abr-page #main #main_inner.step_1 .intro-message {
+		margin-top: 8px;
+	}
+	#main.abr .step_2 .intro-message {
+		margin: 16px 0;
+	}
 	body #header .header-text {
 		/*font-size: 20px !important;
 		margin-left: 70px;
-		margin-right: 70px;
-		padding-top: 16px;*/
+		margin-right: 70px;*/
+		padding-top: 16px;
 	}
 	body.abr-page #header .header-text {
 		margin-left: 74px;
@@ -1230,6 +1248,13 @@ h3#registrant_phone_type_label {
 		padding-top: 16px;
 		font-size: 20px;
 		text-wrap: balance;
+	}
+	#header .header-text {
+		height: 70px;
+		display: flex !important;
+		align-content: center;
+		justify-content: center;
+		align-items: center;
 	}
 	#main.alert_request li.width_c.registrant-form__middle-name__line {
 		display: none;
@@ -1281,6 +1306,25 @@ h3#registrant_phone_type_label {
 	}
 	.checkbox.pdf_assistance {
 		text-wrap: balance;
+	}
+	#main.abr form input#abr_street_number, 
+	#main.abr form select#abr_name_suffix, 
+	#main.abr form input#abr_unit {
+		width: 48%;
+	}
+	/* help longer labels in other languages fit on smaller screens */
+	body.tl li.width_d.registrant-form__name-suffix__line label,
+	body.ilo li.width_d.registrant-form__name-suffix__line label, 
+	body.vi li.width_d.registrant-form__name-suffix__line label,
+	body.ja li.width_d.registrant-form__name-suffix__line label,
+	body.tl li.width_d.registrant-form__prev-name-suffix__line label,
+	body.ilo li.width_d.registrant-form__prev-name-suffix__line label, 
+	body.vi li.width_d.registrant-form__prev-name-suffix__line label,
+	body.ja li.width_d.registrant-form__prev-name-suffix__line label {
+		text-wrap: nowrap;
+	}
+	body.tl label, body.ilo label, body.vi label, body.ja label {
+		font-size: 12px;
 	}
 }
 /* new mobile ui overrides */
