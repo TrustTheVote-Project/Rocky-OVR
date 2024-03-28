@@ -39,7 +39,7 @@
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
-  <%= stylesheet_link_tag 'registration3' unless params[:short_form] == 'false' || (@partner&.partner2_css_present? && @partner&.whitelabeled) %>
+  <%= stylesheet_link_tag 'registration3' unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
 
   <!--[if !IE 7]>
     <style type="text/css">
@@ -60,7 +60,7 @@
   <%= yield :head %>
 </head>
 
-<body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %> <%= @registrant&.locale || 'en' %>">
+<body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %><%= ' old-school' if params[:short_form] == 'false' %> <%= @registrant&.locale || 'en' %>">
 
   <%- if @registrant %>
     <script type="text/javascript">
