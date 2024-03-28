@@ -1330,17 +1330,17 @@ h3#registrant_phone_type_label {
 	}
 }
 /* new mobile ui overrides */
-#main #dynamic-progress-bar {
+body.new-mobile-ui #main #dynamic-progress-bar {
 	background: $progress-background-color;
 	border-radius: $border-radius;
 	border: 1px solid #000;
 }
-#main #dynamic-progress-bar .filler {
+body.new-mobile-ui #main #dynamic-progress-bar .filler {
 	background: $progress-filler-color;
 	border-right: 1px solid #000;
 	z-index: -1;
 }
-#main #dynamic-progress-bar .content {
+body.new-mobile-ui #main #dynamic-progress-bar .content {
 	visibility: hidden;
 }
 body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line, body.new-mobile-ui #main form ul li.registrant-form__change-of-name__line {
