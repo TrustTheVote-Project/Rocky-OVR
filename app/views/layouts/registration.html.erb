@@ -62,9 +62,9 @@
 
 <body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %><%= ' old-school' if @registrant && !@registrant.short_form? %> <%= @registrant&.locale || 'en' %>">
 
-<%= if @registrant && !@registrant.short_form? %>
+<% if @registrant && !@registrant.short_form? %>
 <p style="text-align: center"><strong>This form is no longer supported. Please visit <a href="https://register.rockthevote.com/registrants/new?source=short-form-false">https://register.rockthevote.com/?source=short-form-false</a> to register to vote.</strong></p>
-<%- else %>
+<% else %>
 
   <%- if @registrant %>
     <script type="text/javascript">
@@ -118,7 +118,7 @@
     <%= render :partial => 'layouts/footer' %>
   </div>
 
-<%- end %>
+<% end %>
 
 <%= render :partial => 'layouts/urchin' %>
 <%- if !@registrant || @registrant.short_form? %>
