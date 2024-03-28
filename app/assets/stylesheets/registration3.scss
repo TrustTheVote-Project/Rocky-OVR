@@ -891,6 +891,20 @@ h3#registrant_phone_type_label {
 		font-size: 28px;
 		padding-top: 28px;
 	}
+	/* locale specific fixes */
+	body.es li.width_c.registrant-form__middle-name__line, 
+	body.tl li.width_c.registrant-form__middle-name__line, 
+	body.ilo li.width_c.registrant-form__middle-name__line, 
+	body.ja li.width_c.registrant-form__middle-name__line {
+		display: none;
+	}
+	body.tl li.width_d.registrant-form__name-suffix__line label,
+	body.ilo li.width_d.registrant-form__name-suffix__line label, 
+	body.vi li.width_d.registrant-form__name-suffix__line label,
+	body.ja li.width_d.registrant-form__name-suffix__line label {
+		font-size: 12px !important;
+		text-wrap: nowrap;
+	}
 }
 @media screen and (max-width: 600px) {
 	body #header {
