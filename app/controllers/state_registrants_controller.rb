@@ -136,6 +136,7 @@ class StateRegistrantsController < RegistrationStep
         @question_1 = @registrant.question_1
         @question_2 = @registrant.question_2
       end
+      @registrant_other_parameters = @registrant.other_parameters
     end
     
   end
