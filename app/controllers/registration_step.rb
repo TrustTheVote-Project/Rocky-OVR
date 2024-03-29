@@ -288,9 +288,7 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
-    #if registrant.iframe == 'true'
-    #  return false
-    #end
+    return false if registrant.other_parameters.include?('iframe=true')
 
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
