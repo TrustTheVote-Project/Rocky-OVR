@@ -46,7 +46,10 @@ module TrackableMethods
 
   #used to change ui in the case when rocky is inside an iframe
   def iframe
-    (self.query_parameters || {})["iframe"]
+    iframe_param = (self.query_parameters || {})["iframe"]
+    # Validate iframe parameter here
+    return nil if iframe_param.nil?
+    iframe_param.length <= 12 ? iframe_param : nil
   end
 
   def other_parameters
