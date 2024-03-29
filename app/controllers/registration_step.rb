@@ -295,8 +295,18 @@ class RegistrationStep < ApplicationController
         is_mobile = true
       end
     end
+    return false if inside_iframe?
     return nil if !is_mobile
     return true
+  end
+
+  private
+
+  def inside_iframe?
+    # Check if the X-Frame-Options header is set to deny or sameorigin
+    return true if response.headers['X-Frame-Options'].present?
+
+    false
   end
 
   # def redirect_app_role
