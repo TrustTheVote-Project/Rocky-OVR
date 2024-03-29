@@ -23,11 +23,18 @@
   <!-- Scroll to the top after each step if used in iframe -->
   <script>
     function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.body.focus(); // Focus on the body element
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
-    // Listen for changes in the content and scroll to the top
+    // Attach an event listener to buttons with the class "button"
     document.addEventListener('DOMContentLoaded', function() {
-      scrollToTop();
+      var buttons = document.querySelectorAll('.button button');
+      if (buttons) {
+        buttons.forEach(function(button) {
+          button.addEventListener('click', scrollToTop);
+        });
+      }
     });
   </script>
 <% end %>
