@@ -44,6 +44,11 @@ module TrackableMethods
     (self.query_parameters || {})["utm_content"]
   end
 
+  #used to change ui in the case when rocky is inside an iframe
+  def iframe
+    (self.query_parameters || {})["iframe"]
+  end
+
   def other_parameters
     extra_query_params = (self.query_parameters || {}).clone
     extra_query_params.delete("utm_source")
@@ -51,9 +56,7 @@ module TrackableMethods
     extra_query_params.delete("utm_campaign")
     extra_query_params.delete("utm_term")
     extra_query_params.delete("utm_content")
-    
+    extra_query_params.delete("iframe")
     extra_query_params.collect {|k,v| "#{k}=#{v}"}.join("&")
   end
-
-
 end

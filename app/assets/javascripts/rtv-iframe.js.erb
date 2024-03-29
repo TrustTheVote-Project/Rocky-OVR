@@ -30,11 +30,11 @@
         }
       }
       
-      // Append utm_content=iframe to the query string
+      // Append iframe=true to the query string
       if (queryString != "") {
-        queryString = queryString + "&utm_content=iframe";
+        queryString = queryString + "&iframe=true";
       } else {
-        queryString = "utm_content=iframe";
+        queryString = "iframe=true";
       }
 
       var baseUrl = "<%= Rails.env.development? ? 'http' : 'https' %>://<%= RockyConf.ui_url_host %>";
