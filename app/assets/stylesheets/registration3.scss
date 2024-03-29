@@ -1120,6 +1120,12 @@ h3#registrant_phone_type_label {
 	body.new-mobile-ui #main form fieldset.opt-ins {
 		margin-top: 12px;
 	}
+	body.registration-page #main form ul.stacked li.registrant-form__home-address__line, 
+	body.registration-page #main form ul.stacked li.registrant-form__prev-address__line, 
+	body.registration-page #main form ul.stacked li.registrant-form__mailing-address__line {
+		width: 100%;
+		margin-right: 0;
+	}
 	/* drop the required text on mobile */
 	body #main .required--text {
 		display: none !important;

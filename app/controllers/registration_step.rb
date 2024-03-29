@@ -286,7 +286,8 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.home_state_allows_ovr_ignoring_license?
     #return nil if registrant.locale != 'en'
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
-    # Check if utm_content is equal to 'iframe'
+    
+    # Check if utm_content is equal to 'iframe' so we can use the non-mobile ui inside iframes which is a better ux
     if registrant.utm_content == 'iframe'
       return false
     end
