@@ -1137,6 +1137,11 @@ h3#registrant_phone_type_label {
 		margin-top: 24px;
 		line-height: 1.5;
 	}
+	/* mobile bottom nav isn't good on mobile inside an iframe so try this */
+	body.new-mobile-ui #main .dynamic-navigation {
+		position: relative;
+		margin-top: 24px;
+	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
 	#main {

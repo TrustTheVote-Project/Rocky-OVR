@@ -286,6 +286,11 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.home_state_allows_ovr_ignoring_license?
     #return nil if registrant.locale != 'en'
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
+    # Check if utm_content is equal to 'iframe'
+    if registrant.utm_content == 'iframe'
+      return false
+    end
+
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
     is_mobile = false
