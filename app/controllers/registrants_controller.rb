@@ -148,6 +148,9 @@ class RegistrantsController < RegistrationStep
 
   protected
 
+  def set_up_common_variables
+    @registrant_other_parameters = @registrant.other_parameters if defined?(@registrant)
+  end
 
   def advance_to_next_step
     @registrant.advance_to_step_1
