@@ -51,12 +51,9 @@ module TrackableMethods
 
   def other_parameters
     extra_query_params = (self.query_parameters || {}).clone
-    extra_query_params.delete("utm_source")
-    extra_query_params.delete("utm_medium")
-    extra_query_params.delete("utm_campaign")
-    extra_query_params.delete("utm_term")
-    extra_query_params.delete("utm_content")
-    extra_query_params.delete("iframe")
-    extra_query_params.collect {|k,v| "#{k}=#{v}"}.join("&")
+    excluded_params = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"]
+    extra_query_params.delete_if { |key, _| excluded_params.include?(key) }
+    extra_query_params.collect { |k, v| "#{k}=#{v}" }.join("&")
   end
+
 end
