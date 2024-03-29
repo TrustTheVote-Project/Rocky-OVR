@@ -291,7 +291,7 @@ class RegistrationStep < ApplicationController
     begin
       return false if registrant.other_parameters.include?('iframe=true')
     rescue => e
-      puts "error occured: #{e.message}"
+      puts "error occured with iframe check: #{e.message}"
     end
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
