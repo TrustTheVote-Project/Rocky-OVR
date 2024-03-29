@@ -18,3 +18,16 @@
       <span class="copyright"><%= (RockyConf.sponsor.footer_copyright % Date.today.year).html_safe %></span>
     </p>
   </div>
+
+<%- if @registrant && @registrant.iframe == 'true' %>
+  <!-- Scroll to the top after each step if used in iframe -->
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // Listen for changes in the content and scroll to the top
+    document.addEventListener('DOMContentLoaded', function() {
+      scrollToTop();
+    });
+  </script>
+<% end %>
