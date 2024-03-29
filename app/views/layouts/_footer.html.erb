@@ -20,15 +20,5 @@
   </div>
 
 <%- if @registrant && @registrant.iframe == 'true' %>
-  <!-- Scroll to the top after each step if used in iframe -->
-  <script>
-    // Listen for messages from the parent window
-    window.addEventListener('message', function(event) {
-        // Check if the message is requesting to scroll to top
-        if (event.data === 'scrollToTop') {
-          // Scroll the iframe to the top
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-   });
-  </script>
+<!-- TO DO: figure out how to better control page when buttons are clicked inside rocky when used as iframe -->
 <% end %>
