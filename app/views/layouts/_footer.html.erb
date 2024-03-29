@@ -22,19 +22,13 @@
 <%- if @registrant && @registrant.iframe == 'true' %>
   <!-- Scroll to the top after each step if used in iframe -->
   <script>
-    function scrollToTop() {
-      document.body.focus(); // Focus on the body element
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-    // Attach an event listener to buttons with the class "button"
-    document.addEventListener('DOMContentLoaded', function() {
-      var buttons = document.querySelectorAll('.button button');
-      if (buttons) {
-        buttons.forEach(function(button) {
-          button.addEventListener('click', scrollToTop);
-        });
-      }
-    });
+    // Listen for messages from the parent window
+    window.addEventListener('message', function(event) {
+        // Check if the message is requesting to scroll to top
+        if (event.data === 'scrollToTop') {
+          // Scroll the iframe to the top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+   });
   </script>
 <% end %>
