@@ -18,3 +18,8 @@
       <span class="copyright"><%= (RockyConf.sponsor.footer_copyright % Date.today.year).html_safe %></span>
     </p>
   </div>
+<% if @registrant.iframe_parameter_present? %>
+  <p>Iframe parameter is present</p>
+<% else %>
+  <p>Iframe parameter is not present</p>
+<% end %>
