@@ -5,7 +5,7 @@ module RegistrantMethods
   def aasm_current_state
     aasm.current_state
   end
-  
+
   def at_least_step?(step)
     current_step = step_index
     !current_step.nil? && (current_step >= step)

@@ -289,7 +289,7 @@ class RegistrationStep < ApplicationController
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
     begin
-      return false if registrant.other_parameters.include?('iframe=true')
+      return false if registrant.iframe_parameter_present?
     rescue => e
       puts "error occured with iframe check: #{e.message}"
     end
