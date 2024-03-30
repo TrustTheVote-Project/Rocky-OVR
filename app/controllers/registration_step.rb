@@ -275,9 +275,9 @@ class RegistrationStep < ApplicationController
       end
     end
 
-    # Check if 'iframe=true' is in the parameters
-    iframe_param = params[:query_parameters].include?('iframe=true') ? 'true' : 'false'
-    @query_parameters['iframe'] = iframe_param
+    # Check if 'iframe=true' is in the parameters not working yet
+    #iframe_param = params[:query_parameters].include?('iframe=true') ? 'true' : 'false'
+    #@query_parameters['iframe'] = iframe_param
 
     if !@state_abbrev.blank?
       @short_form = true
@@ -293,7 +293,8 @@ class RegistrationStep < ApplicationController
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
     # Needs work cause it's not working in all views yet
-    return false if @iframe
+    #return false if @iframe
+    # or this one will work on pdf flows only
     #begin
     #  return false if registrant.other_parameters.include?('iframe=true')
     #rescue => e
