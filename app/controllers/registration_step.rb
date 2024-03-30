@@ -276,8 +276,8 @@ class RegistrationStep < ApplicationController
     end
 
     # Check if 'iframe=true' is in the parameters
-    #@iframe = params[:iframe] == 'true'
-    @iframe = registrant.other_parameters.include?('iframe=true')
+    iframe_param = registrant.other_parameters.include?('iframe=true') ? 'true' : 'false'
+    @query_parameters['iframe'] = iframe_param
 
     if !@state_abbrev.blank?
       @short_form = true
