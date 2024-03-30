@@ -23,7 +23,6 @@
 #
 #***** END LICENSE BLOCK *****
 class RegistrationStep < ApplicationController
-  include TrackableMethods
   CURRENT_STEP = -1
   include ApplicationHelper
   include TwilioHelper
@@ -293,6 +292,7 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
+    # Needs work cause it's not working in all views yet
     begin
       iframe_param = registrant.other_parameters.include?('iframe=true')
       return false if iframe_param
@@ -300,14 +300,6 @@ class RegistrationStep < ApplicationController
       puts "error occured with iframe check: #{e.message}"
     end
 
-    # Needs work cause it's not working in all views yet
-    #return false if @iframe
-    # or this one will work on pdf flows only
-    #begin
-    #  return false if registrant.other_parameters.include?('iframe=true')
-    #rescue => e
-    #  puts "error occured with iframe check: #{e.message}"
-    #end
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
     is_mobile = false
