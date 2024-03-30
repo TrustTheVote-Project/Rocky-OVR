@@ -56,4 +56,9 @@ module TrackableMethods
     extra_query_params.collect { |k, v| "#{k}=#{v}" }.join("&")
   end
 
+  def parse_url_params
+    iframe_param = query_parameters["iframe"] == 'true' ? 'true' : 'false'
+    iframe_param
+  end
+
 end

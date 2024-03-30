@@ -292,6 +292,9 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
+    iframe_param = registrant.other_parameters['iframe']
+    return false if iframe_param == 'true'
+
     # Needs work cause it's not working in all views yet
     #return false if @iframe
     # or this one will work on pdf flows only
