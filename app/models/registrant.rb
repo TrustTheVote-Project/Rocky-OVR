@@ -41,11 +41,6 @@ class Registrant < ActiveRecord::Base
   include TimeStampHelper
 
   include TrackableMethods
-
-  def iframe_parameter_present?
-    return false unless respond_to?(:iframe)
-    iframe == 'true'
-  end
   
   scope :abandoned, -> {where(abandoned: true)}
   
