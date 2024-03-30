@@ -275,6 +275,9 @@ class RegistrationStep < ApplicationController
       end
     end
 
+    # Check if 'iframe=true' is in the parameters
+    @iframe = params[:iframe] == 'true'
+
     if !@state_abbrev.blank?
       @short_form = true
     end
