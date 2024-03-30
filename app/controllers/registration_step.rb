@@ -292,11 +292,12 @@ class RegistrationStep < ApplicationController
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
     # Needs work cause it's not working in all views yet
-    begin
-      return false if registrant.other_parameters.include?('iframe=true')
-    rescue => e
-      puts "error occured with iframe check: #{e.message}"
-    end
+    return false if @iframe
+    #begin
+    #  return false if registrant.other_parameters.include?('iframe=true')
+    #rescue => e
+    #  puts "error occured with iframe check: #{e.message}"
+    #end
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
     is_mobile = false
