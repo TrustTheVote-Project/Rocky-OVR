@@ -23,6 +23,7 @@
 #
 #***** END LICENSE BLOCK *****
 class RegistrationStep < ApplicationController
+  include TrackableMethods
   CURRENT_STEP = -1
   include ApplicationHelper
   include TwilioHelper
@@ -292,8 +293,12 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
-    iframe_param = registrant.other_parameters.include?('iframe=true')
-    return false if iframe_param
+    begin
+      iframe_param = registrant.other_parameters.include?('iframe=true')
+      return false if iframe_param
+    rescue => e
+      puts "error occured with iframe check: #{e.message}"
+    end
 
     # Needs work cause it's not working in all views yet
     #return false if @iframe
