@@ -247,12 +247,6 @@ class RegistrationStep < ApplicationController
         @partner= Partner.find_by_id(@partner_id) || @partner
       end
     end
-    
-    # Set iframe parameter based on other_parameters
-    @iframe = @registrant.other_parameters.include?('iframe=true')
-    
-    # Add iframe parameter to query_parameters
-    @query_parameters['iframe'] = 'true' if @iframe
 
     remaining_query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
       "source",
@@ -295,12 +289,11 @@ class RegistrationStep < ApplicationController
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
     # Needs work cause it's not working in all views yet
-    return false if registrant.query_parameters.include?('iframe=true')
-    #begin
-    #  return false if registrant.iframe_parameter_present?
-    #rescue => e
-    #  puts "error occured with iframe check: #{e.message}"
-    #end
+    begin
+      return false if registrant.other_parameters.include?('iframe=true')
+    rescue => e
+      puts "error occured with iframe check: #{e.message}"
+    end
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
     is_mobile = false
