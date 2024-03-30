@@ -285,8 +285,7 @@ class RegistrationStep < ApplicationController
   end
 
   def determine_iframe_presence
-    # Check if registrant.other_parameters include 'iframe=true'
-    registrant && registrant.other_parameters && registrant.other_parameters.include?('iframe=true')
+    registrant.present? && registrant.other_parameters.present? && registrant.other_parameters.include?('iframe=true')
   end
 
   def determine_mobile_ui(registrant)
