@@ -276,11 +276,17 @@ class RegistrationStep < ApplicationController
     end
 
     # Check if 'iframe=true' is in the parameters
-    @iframe = params[:iframe] == 'true'
+    #@iframe = params[:iframe] == 'true'
+    @iframe = params[:iframe] == 'true' || determine_iframe_presence
 
     if !@state_abbrev.blank?
       @short_form = true
     end
+  end
+
+  def determine_iframe_presence
+    # Check if registrant.other_parameters include 'iframe=true'
+    registrant && registrant.other_parameters.include?('iframe=true')
   end
 
   def determine_mobile_ui(registrant)
