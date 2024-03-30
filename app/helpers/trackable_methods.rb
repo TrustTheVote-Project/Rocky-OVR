@@ -58,6 +58,8 @@ module TrackableMethods
 
   def parse_url_params
     iframe_param = query_parameters["iframe"] == 'true' ? 'true' : 'false'
+    new_params = "#{other_parameters}&iframe=#{iframe_param}"
+    update(other_parameters: new_params)
     iframe_param
   end
 
