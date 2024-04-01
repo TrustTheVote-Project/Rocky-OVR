@@ -218,10 +218,8 @@ class RegistrationStep < ApplicationController
     false
   end
 
-  def state_flow_redirect(iframe = false)
-    redirect_url = edit_state_registrant_url(@registrant.to_param, 'step_2', iframe: iframe)
-    redirect_url += "?" + @additional_registrant_params.to_query if @additional_registrant_params.present?
-    redirect_to redirect_url
+  def state_flow_redirect
+    redirect_to edit_state_registrant_path(@registrant.to_param, 'step_2')
   end
 
 
@@ -296,12 +294,12 @@ class RegistrationStep < ApplicationController
     
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
     # Needs work cause it's not working in all views yet
-    begin
-      iframe_param = registrant.other_parameters.include?('iframe=true')
-      return false if iframe_param
-    rescue => e
-      puts "error occured with iframe check: #{e.message}"
-    end
+    #begin
+    #  iframe_param = registrant.other_parameters.include?('iframe=true')
+    #  return false if iframe_param
+    #rescue => e
+    #  puts "error occured with iframe check: #{e.message}"
+    #end
 
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
