@@ -3790,15 +3790,15 @@ en:
           New Hampshire law does not allow you to use this form to register
           to vote.  For information about registering to vote, contact your town or
           city clerk.  Contact information for town and city clerks are listed at
-          <a href="https://app.sos.nh.gov/Public/ClerkDetails.aspx">https://app.sos.nh.gov/Public/ClerkDetails.aspx</a>  You can also contact the Secretary of State at 603-271-3242 or visit <a href="https://sos.nh.gov/elections/voters/elections-voting-division/">https://sos.nh.gov/elections/voters/elections-voting-division/<a>
+          <a href="https://app.sos.nh.gov/Public/ClerkDetails.aspx" target="_blank">https://app.sos.nh.gov/Public/ClerkDetails.aspx</a>  You can also contact the Secretary of State at 603-271-3242 or visit <a href="https://sos.nh.gov/elections/voters/elections-voting-division/" target="_blank">https://sos.nh.gov/elections/voters/elections-voting-division/<a>
         north_dakota: |-
           GREAT NEWS! NORTH DAKOTA DOES NOT REQUIRE RESIDENTS TO REGISTER TO VOTE.<br/><br/>
           North Dakota does not have voter registration. For more information, contact your
-          Secretary of State’s office at 701-328-4146 or visit Vote.ND.Gov.
+          Secretary of State’s office at 701-328-4146 or visit <a href="https://www.sos.nd.gov/elections" target="_blank">Vote.ND.Gov</a>.
         wyoming: |-
           Wyoming law does not allow you to use this form to register to vote.  To
           learn more about registering to vote in Wyoming, please contact the county
-          clerk where you live.  Contact information can be found at http://soswy.state.wy.us/Elections/RegisteringToVote.aspx
+          clerk where you live.  Contact information can be found at <a href="http://soswy.state.wy.us/Elections/RegisteringToVote.aspx" target="_blank">http://soswy.state.wy.us/Elections/RegisteringToVote.aspx</a>
           or by calling 307-777-3573.
       race:
         blank: ''

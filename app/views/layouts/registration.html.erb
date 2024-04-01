@@ -109,7 +109,7 @@
     </div>
 
     <div id="main">
-      <div id="main_inner" class="step_<%= controller.current_step %> <%= ' ' + @registrant.home_state_abbrev if @registrant.home_state_abbrev.present? %>">
+      <div id="main_inner" class="step_<%= controller.current_step %> <%= ' ' + @registrant.home_state_abbrev.downcase if @registrant.home_state_abbrev.present? %>">
         <%= yield %>
       </div>
     </div>

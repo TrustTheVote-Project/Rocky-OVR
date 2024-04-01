@@ -857,7 +857,10 @@ h3#registrant_phone_type_label {
 	float: left;
 	color: #B32426;
 }
-
+/* fix urls not breaking on mobile */
+p.reason {
+	word-break: break-word;
+}
 
 
 /* media */
