@@ -836,7 +836,17 @@ input[type=number]::-webkit-outer-spin-button {
 h3#registrant_phone_type_label {
 	margin-left: 0;
 }
-
+/* MI specific */
+#main .step_2 .edit_state_registrants_mi_registrant span.error,
+#main .step_2 .edit_state_registrants_mi_registrant .flat span.error, 
+#main .step_2 .edit_state_registrants_mi_registrant .stacked span.error {
+	min-height: initial;
+}
+#main .step_2 .edit_state_registrants_mi_registrant li.registrant-form__registration_cancellation_authorized__line.registrant-form__required-checkbox,
+#main .step_2 .edit_state_registrants_mi_registrant li.registrant-form__is_30_day_resident__line registrant-form__required-checkbox,
+#main .step_2 .edit_state_registrants_mi_registrant li.registrant-form__digital_signature_authorized__line.registrant-form__required-checkbox {
+	margin-top: 16px !important;
+}
 
 
 
@@ -928,7 +938,21 @@ h3#registrant_phone_type_label {
 		width: 20%;
 	}
 	/* end locale specific fixes */
+
+	/* MI specific */
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-street-type__line {
+		width: 16%;
+		text-wrap: nowrap;
+	}
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-street-name__line {
+		width: 40%;
+	}
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-unit-number__line,
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__phone__line {
+		width: 45%;
+	}
 }
+
 @media screen and (max-width: 600px) {
 	body #header {
 		width: calc(100% - 30px);
@@ -1208,6 +1232,22 @@ h3#registrant_phone_type_label {
 	body #main.ballot-status-check form li.registrant-form__last-name__line {
 		width: 50%;
 		margin-right: 0;
+	}
+	/* MI specific */
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-number__line {
+		width: 47% !important;
+		margin-right: 3%;
+	}
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-street-name__line {
+		width: 50% !important;
+		margin-right: 0;
+	}
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-street-type__line {
+		width: 47% !important;
+		margin-right: 3%;
+	}
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-unit-number__line {
+		width: 45%
 	}
 }
 @media (max-width: 468px) {

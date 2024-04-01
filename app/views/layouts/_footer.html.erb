@@ -18,3 +18,13 @@
       <span class="copyright"><%= (RockyConf.sponsor.footer_copyright % Date.today.year).html_safe %></span>
     </p>
   </div>
+
+<%# Print out query parameters as hidden HTML comments %>
+<% (@query_parameters || {}).each do |qpk, value| %>
+  <!-- <%= "query_parameters[#{qpk}]: #{value}" %> -->
+<% end %>
+
+<%# Print out additional registrant parameters as hidden HTML comments %>
+<% (@additional_registrant_params || {}).each do |rpk, value| %>
+  <!-- <%= "registrant[#{rpk}]: #{value}" %> -->
+<% end %>
