@@ -61,6 +61,9 @@ class RegistrationStep < ApplicationController
       rendered = attempt_to_advance
       return if rendered == :rendered
     end
+
+    # Pass @additional_registrant_params as parameters
+    redirect_to some_other_action_path(additional_registrant_params: @additional_registrant_params)
   end
 
 
@@ -210,16 +213,19 @@ class RegistrationStep < ApplicationController
   end
 
 
-  def detect_state_flow
-    if @registrant && @registrant.use_state_flow? && !@registrant.skip_state_flow? && current_step != 1
-      # PASS registrant over to state flow, creating a new state-specific registrant
+  def detect_state_flow(iframe = false)
+    if @registrant && @registrant.use_state_flow? && !@registrant.skip_state_flow? && current_step != 1 && iframe
       return true
     end
     false
   end
 
-  def state_flow_redirect
-    redirect_to edit_state_registrant_path(@registrant.to_param, 'step_2')
+  def state_flow_redirect(iframe = false)
+    if iframe
+      redirect_to edit_state_registrant_path(@registrant.to_param, 'step_2', iframe: true)
+    else
+      redirect_to edit_state_registrant_path(@registrant.to_param, 'step_2')
+    end
   end
 
   def set_params
@@ -294,7 +300,7 @@ class RegistrationStep < ApplicationController
     # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
     # Needs work cause it's not working in all views yet
     begin
-      iframe_param = registrant.other_parameters.include?('iframe=true')
+      iframe_param = registrant.other_parameters['iframe'] == 'true'
       return false if iframe_param
     rescue => e
       puts "error occured with iframe check: #{e.message}"

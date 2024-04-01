@@ -847,8 +847,15 @@ h3#registrant_phone_type_label {
 	margin-top: 16px !important;
 }
 #main .step_2 form.edit_state_registrants_mi_registrant ul li.registrant-form__confirm_will_be_18__line {
-    margin-top: 12px;
-    margin-bottom: 24px;
+	margin-top: 12px;
+	margin-bottom: 24px;
+}
+#main .step_2 form.edit_state_registrants_mi_registrant fieldset.requested-duplicate-dln-today {
+	/*top: -16px;*/
+}
+#main p.radio_long_error {
+	float: left;
+	color: #B32426;
 }
 
 
@@ -953,9 +960,7 @@ h3#registrant_phone_type_label {
 	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-unit-number__line,
 	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__phone__line {
 		width: 45%;
-	}
-	#main .edit_state_registrants_mi_registrant ul.stacked li span.error {
-		height: 16px;
+		text-wrap: nowrap;
 	}
 }
 
@@ -1177,6 +1182,10 @@ h3#registrant_phone_type_label {
 	body.new-mobile-ui #main .dynamic-navigation {
 		position: relative;
 		margin-top: 24px;
+	}
+	/* MI specific */
+	#main .edit_state_registrants_mi_registrant ul.stacked li span.error {
+		height: 16px;
 	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
