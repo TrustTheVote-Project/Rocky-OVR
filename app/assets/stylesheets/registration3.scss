@@ -724,7 +724,7 @@ body #footer #powered_by_logo.powered-by-logo img {
 .url-treatment {
 	overflow-wrap: break-word;
 }
-#preparing_content {
+#preparing_content, #preparing_content h1 {
 	text-align: center;
 }
 .text-center {
@@ -861,7 +861,20 @@ h3#registrant_phone_type_label {
 p.reason {
 	word-break: break-word;
 }
-
+#main form ul li.registrant-form__us-citizen__line h3 span.error, 
+#main form ul li.registrant-form__will-be-18-by-election__line h3 span.error, 
+#main form ul li.registrant-form__required-checkbox h3 span.error, 
+#main form ul li.width_f.registrant-form__us-citizen__line h3 span.error, 
+#main form ul li.width_f.registrant-form__will-be-18-by-election__line h3 span.error, 
+#main form ul li.width_f.registrant-form__required-checkbox h3 span.error, 
+#main form ul.flat li.registrant-form__us-citizen__line h3 span.error, 
+#main form ul.flat li.registrant-form__will-be-18-by-election__line h3 span.error, 
+#main form ul.flat li.registrant-form__required-checkbox h3 span.error, 
+#main form ul.flat li.width_f.registrant-form__us-citizen__line h3 span.error, 
+#main form ul.flat li.width_f.registrant-form__will-be-18-by-election__line h3 span.error, 
+#main form ul.flat li.width_f.registrant-form__required-checkbox h3 span.error {
+	margin-top: 0px;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
