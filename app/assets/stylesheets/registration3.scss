@@ -843,9 +843,12 @@ h3#registrant_phone_type_label {
 	min-height: initial;
 }
 #main .step_2 .edit_state_registrants_mi_registrant li.registrant-form__registration_cancellation_authorized__line.registrant-form__required-checkbox,
-#main .step_2 .edit_state_registrants_mi_registrant li.registrant-form__is_30_day_resident__line registrant-form__required-checkbox,
 #main .step_2 .edit_state_registrants_mi_registrant li.registrant-form__digital_signature_authorized__line.registrant-form__required-checkbox {
 	margin-top: 16px !important;
+}
+#main .step_2 form.edit_state_registrants_mi_registrant ul li.registrant-form__confirm_will_be_18__line {
+    margin-top: 12px;
+    margin-bottom: 24px;
 }
 
 
@@ -950,6 +953,9 @@ h3#registrant_phone_type_label {
 	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-unit-number__line,
 	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__phone__line {
 		width: 45%;
+	}
+	#main .edit_state_registrants_mi_registrant ul.stacked li span.error {
+		height: 16px;
 	}
 }
 
@@ -1238,7 +1244,8 @@ h3#registrant_phone_type_label {
 		width: 47% !important;
 		margin-right: 3%;
 	}
-	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-street-name__line {
+	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__home-address-street-name__line,
+	#main .edit_state_registrants_mi_registrant ul li.registrant-form__home-address-post-directional__line {
 		width: 50% !important;
 		margin-right: 0;
 	}

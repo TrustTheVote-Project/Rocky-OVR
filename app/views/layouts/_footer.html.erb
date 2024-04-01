@@ -19,12 +19,19 @@
     </p>
   </div>
 
-<%# Print out query parameters as hidden HTML comments %>
-<% (@query_parameters || {}).each do |qpk, value| %>
-  <!-- <%= "query_parameters[#{qpk}]: #{value}" %> -->
+<!-- Print out query parameters -->
+<% if @query_parameters.present? %>
+  <!-- Query Params -->
+  <% @query_parameters.each do |key, value| %>
+  <!-- <%= key %>: <%= value %> -->
+  <% end %>
 <% end %>
 
-<%# Print out additional registrant parameters as hidden HTML comments %>
-<% (@additional_registrant_params || {}).each do |rpk, value| %>
-  <!-- <%= "registrant[#{rpk}]: #{value}" %> -->
+<!-- Print out additional registrant parameters -->
+<% if @additional_registrant_params.present? %>
+  <!-- Additional Registrant Parameters -->
+  <% @additional_registrant_params.each do |key, value| %>
+  <!-- <%= key %>: <%= value %> -->
+  <% end %>
 <% end %>
+
