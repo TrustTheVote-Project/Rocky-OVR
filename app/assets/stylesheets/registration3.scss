@@ -724,10 +724,7 @@ body #footer #powered_by_logo.powered-by-logo img {
 .url-treatment {
 	overflow-wrap: break-word;
 }
-#preparing_content, #preparing_content h1 {
-	text-align: center;
-}
-.text-center {
+.text-center, #preparing_content, #preparing_content h1 {
 	text-align: center !important;
 }
 .button a span {
@@ -875,6 +872,23 @@ p.reason {
 #main form ul.flat li.width_f.registrant-form__required-checkbox h3 span.error {
 	margin-top: 0px;
 }
+#main form ul li.registrant-form__race__line, 
+#main form ul li.width_f.registrant-form__race__line, 
+#main form ul.flat li.registrant-form__race__line, 
+#main form ul.flat li.width_f.registrant-form__race__line {
+	width: 90%;
+}
+/* move required error span up for id to fix description issue */
+#main form ul.flat li.registrant-form__state-id-number__line span.error {
+	top: -32px;
+	right: 16px;
+	position: relative;
+	float: right;
+	height: 12px;
+}
+.instructions.instructions--state-id-number {
+	margin-bottom: 12px;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
@@ -977,6 +991,10 @@ p.reason {
 	#main form.edit_state_registrants_mi_registrant ul li.registrant-form__phone__line {
 		width: 45%;
 		text-wrap: nowrap;
+	}
+	/* give survey questions more room */
+	fieldset.questions {
+		margin-top: 16px !important;
 	}
 }
 
