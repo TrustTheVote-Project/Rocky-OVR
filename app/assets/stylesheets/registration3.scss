@@ -1204,23 +1204,12 @@ p.reason {
 	body #main .required--text {
 		display: none !important;
 	}
-	/* try num shift fix */
-	input[type=tel] {
-		font-size: 16px;
-		-webkit-appearance: none;
-		margin-top: 0;
-	}
 	/* tighten up print your form screen */
 	#main .download p {
 		font-size: 14px;
 		margin-bottom: 24px;
 		margin-top: 24px;
 		line-height: 1.5;
-	}
-	/* mobile bottom nav isn't good on mobile inside an iframe so try this */
-	body.new-mobile-ui #main .dynamic-navigation {
-		position: relative;
-		margin-top: 24px;
 	}
 	/* MI specific */
 	#main .edit_state_registrants_mi_registrant ul.stacked li span.error {
@@ -1498,6 +1487,11 @@ body.new-mobile-ui .step_2 .edit_state_registrants_pa_registrant #main form fiel
 body.new-mobile-ui #main .dynamic-navigation {
 	height: 78px;
 }
+/* mobile bottom nav isn't good on mobile inside an iframe so try this */
+body.new-mobile-ui #main .dynamic-navigation {
+	position: relative;
+	margin-top: 24px;
+}
 
 @media (min-width: 600px) {
 	body.new-mobile-ui #main form ul li.registrant-form__name-title__line, body.new-mobile-ui #main form ul li.registrant-form__prev-name-title__line {
@@ -1521,6 +1515,14 @@ body.new-mobile-ui #main .dynamic-navigation {
 	}
 	body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line {
 		margin-top: 0px;
+	}
+	#main form ul.checkbox li.registrant-form__us-citizen__line span.error {
+		position: absolute;
+		top: 6px;
+		right: 8px;
+	}
+	#main form ul li.registrant-form__us-citizen__line h3 label {
+		line-height: 28px;
 	}
 }
 
