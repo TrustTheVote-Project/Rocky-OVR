@@ -833,6 +833,10 @@ input[type=number]::-webkit-outer-spin-button {
 h3#registrant_phone_type_label {
 	margin-left: 0;
 }
+/* PA specific */
+#main form.edit_state_registrants_pa_registrant ul li.registrant-form__race__line {
+	width: 100%;
+}
 /* MI specific */
 #main .step_2 .edit_state_registrants_mi_registrant span.error,
 #main .step_2 .edit_state_registrants_mi_registrant .flat span.error, 
@@ -1444,8 +1448,11 @@ body.new-mobile-ui #main #dynamic-progress-bar .filler {
 body.new-mobile-ui #main #dynamic-progress-bar .content {
 	visibility: hidden;
 }
-body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line, body.new-mobile-ui #main form ul li.registrant-form__change-of-name__line {
+body.new-mobile-ui #main form ul li.registrant-form__us-citizen__line {
 	margin-top: 16px;
+}
+body.new-mobile-ui #main form ul li.registrant-form__change-of-name__line {
+	margin-top: 0px;
 }
 body.new-mobile-ui #main #download_no_js {
 	padding: 0px;
