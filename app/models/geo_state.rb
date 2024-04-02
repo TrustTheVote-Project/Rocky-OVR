@@ -416,7 +416,7 @@ class GeoState < ActiveRecord::Base
   end
 
   def self.for_zip_code(zip)
-    self[ zip5map[zip]] || zip3map[zip[0,3]] ]
+    self[ zip5map[zip] || zip3map[zip[0,3]] ]
   end
 
   def self.valid_zip_code?(zip)
