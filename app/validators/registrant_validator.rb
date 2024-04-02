@@ -193,11 +193,11 @@ class RegistrantValidator < ActiveModel::Validator
     reg.validates_format_of(attr_name, with: /\A\d{5}(-\d{4})?\z/, allow_blank: true)
 
     reg.before_validation do
-      send("#{attr_name}=", send(attr_name).strip) if send(attr_name).present?
+      self[attr_name] = self[attr_name].strip if self[attr_name].present?
     end
 
-    if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
-      reg.errors.add(attr_name, :invalid, default: nil, value: reg.send(attr_name))
+    if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg[attr_name])
+      reg.errors.add(attr_name, :invalid, default: nil, value: reg[attr_name])
     end
   end
 
