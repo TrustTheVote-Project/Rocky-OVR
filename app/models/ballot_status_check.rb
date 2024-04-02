@@ -7,8 +7,9 @@ class BallotStatusCheck < ActiveRecord::Base
   validates_presence_of :zip
   validates_presence_of :partner_id
   
-  validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "Must be a valid ZIP code"
-  
+  #validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "Must be a valid ZIP code"
+  validate :validate_zip_code_with_geo_state # New custom validation added
+
   before_validation :clean_phone_number
 
   validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true, message: "is invalid"
@@ -74,6 +75,15 @@ class BallotStatusCheck < ActiveRecord::Base
 
   def leo_lookup_url
     state&.state_customization&.abr_settings&.leo_lookup_url
+  end
+
+  private
+
+  # New custom validation method
+  def validate_zip_code_with_geo_state
+    unless GeoState.valid_zip_code?(zip)
+      errors.add(:zip, "is not a valid geo ZIP code")
+    end
   end
 
 end
