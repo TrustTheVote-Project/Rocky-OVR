@@ -190,7 +190,7 @@ class RegistrantValidator < ActiveModel::Validator
   
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
-    reg.validates_format_of(attr_name, with: /\A0{0,2}[1-9]\d{4,}(-\d{4})?\z/, allow_blank: true)
+    reg.validates_format_of(attr_name, with: /\A(?!00000)\d{5}(?:[-\s](?!0000)\d{4})?\z/, allow_blank: true)
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
