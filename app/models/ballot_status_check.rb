@@ -8,8 +8,7 @@ class BallotStatusCheck < ActiveRecord::Base
   validates_presence_of :partner_id
   
   #validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "Must be a valid ZIP code"
-  validate :validate_zip_code_format
-  validate :validate_zip_code_with_geo_state, if: -> { zip.present? } # Perform geostate validation only if zip is present
+  validate :validate_zip_code_with_geo_state
 
   before_validation :clean_phone_number
 
@@ -80,16 +79,9 @@ class BallotStatusCheck < ActiveRecord::Base
 
   private
 
-  def validate_zip_code_format
-    unless /\A\d{5}(-\d{4})?\z/.match?(zip)
-      errors.add(:zip, "is not in a valid format")
-    end
-  end
-
-  # New custom validation method
   def validate_zip_code_with_geo_state
-    unless GeoState.valid_zip_code?(zip)
-      errors.add(:zip, "is not a valid geo ZIP code")
+    unless /\A\d{5}(-\d{4})?\z/.match?(zip) && GeoState.valid_zip_code?(zip)
+      errors.add(:zip, "is not a valid ZIP code")
     end
   end
 
