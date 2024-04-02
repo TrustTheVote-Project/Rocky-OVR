@@ -38,7 +38,7 @@
 <ul class="flat registrant-form__home-zip">
   <li class="width_f registrant-form__home-zip__line">
     <h3 class='registrant-form__home-zip__line__label'><%= form.label :home_zip_code %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-    <%= field_div form, :home_zip_code, class: 'registrant-form__home-zip__line__input', autocomplete: 'postal-code', required: true, type: 'text' %>
+    <%= field_div form, :home_zip_code, class: 'registrant-form__home-zip__line__input', autocomplete: 'postal-code', required: true %>
     <div class="tooltip registrant-form__home-zip__line__tooltip"><%= tooltip_tag :home_zip_code %></div>
     <span class="error registrant-form__home-zip__line__error"><%= form.object.errors[:home_zip_code].join("\n") %></span>
   </li>

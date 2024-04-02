@@ -20,12 +20,12 @@ $(document).ready(function() {
     
     <li class="width_b registrant-form__first-name__line">
       <h3><%= form.label :first %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :first,  required: true, type: 'text' %>
+      <%= field_div form, :first, required: true, type: 'text', autocomplete: 'given-name' %>
       <span class="error"><%= form.object.errors[:first].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__last-name__line">
       <h3><%= form.label :last %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :last, required: true, type: 'text' %>
+      <%= field_div form, :last, required: true, type: 'text', autocomplete: 'family-name' %>
       <span class="error"><%= form.object.errors[:last].join("\n") %></span>
     </li>
      <li class="width_d registrant-form__name-suffix__line">
@@ -48,19 +48,19 @@ $(document).ready(function() {
   <ul class="stacked">
     <li class="width_a registrant-form__home-address-__line">
       <h3><%= form.label :address %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :address, required: true, type: 'text' %>
+      <%= field_div form, :address, { required: true, type: 'text', autocomplete: 'address-line1' } %>
       <span class="error"><%= form.object.errors[:address].join("\n") %></span>
     </li>
   </ul>
   <ul class="stacked">
     <li class="width_a registrant-form__home-city__line">
       <h3><%= form.label :city %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :city, required: true, type: 'text' %>
+      <%= field_div form, :city, { required: true, type: 'text', autocomplete: 'address-level2' } %>
       <span class="error"><%= form.object.errors[:city].join("\n") %></span>
     </li>
     <li class="width_c registrant-form__home-zip-code__line">
       <h3><%= form.label :zip %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, :zip, {:size => 8, required: true} %>
+      <%= field_div form, :zip, {:size => 8, required: true, autocomplete: 'postal-code' } %>
       <span class="error"><%= form.object.errors[:zip].join("\n") %></span>
     </li>
   </ul>  
@@ -74,13 +74,13 @@ $(document).ready(function() {
     <li class="width_f registrant-form__email__line">
       <h3 class='registrant-form__email__line__label'><%= form.label :email %><%- unless !@lookup.require_email_address?%><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end%></h3>
       
-      <%= field_div form, :email, {class: 'registrant-form__email__line__input', required: @lookup.require_email_address?, type: 'email' } %>
+      <%= field_div form, :email, {class: 'registrant-form__email__line__input', required: @lookup.require_email_address?, type: 'email', autocomplete: 'email' } %>
       <span class="error registrant-form__email__line__error"><%= form.object.errors[:email].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__phone__line">
       <h3><%= form.label :phone %></h3>
       <div class="flat-stack">
-        <%= field_div form, :phone, placeholder: '###-###-####', type: 'tel' %>
+        <%= field_div form, :phone, { placeholder: '###-###-####', type: 'tel', autocomplete: 'tel' } %>
         <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
       </div>
     </li>
