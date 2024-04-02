@@ -18,20 +18,26 @@
     $(document).ready(function() {
         $('#registrant_javascript_disabled').remove();
 
-        // Zip code validation
+        // Function to validate zip code
+        function validateZipCode(zipCode) {
+          var zipCodeRegex = /^\d{5}(?:-\d{4})?$/;
+          return zipCodeRegex.test(zipCode);
+        }
+
+        // Zip code validation on form submission
         $('#new_registrant').submit(function() {
-            var zipCode = $('input[name="registrant[home_zip_code]"]').val();
-            var zipCodeRegex = /^\d{5}(?:-\d{4})?$/;
-            var errorSpan = $('.registrant-form__home-zip__line__error');
+          var zipCode = $('input[name="registrant[home_zip_code]"]').val();
+          var errorSpan = $('.registrant-form__home-zip__line__error');
 
-            if (!zipCodeRegex.test(zipCode)) {
-                errorSpan.html('(12345 or 12345-6789)');
-                errorSpan.show(); // Show the error span
-                return false; // Prevent form submission
-            }
+          if (!validateZipCode(zipCode)) {
+            errorSpan.html('(12345 or 12345-6789)');
+            errorSpan.show(); // Show the error span
+            return false; // Prevent form submission
+          }
 
-            return true; // Allow form submission
-        });
+  return true; // Allow form submission
+});
+
     });
 </script>
 

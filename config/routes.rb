@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   match "/trackballot", to: "ballot_status_checks#new", via: :get
   match "/trackballot/:zip", to: "ballot_status_checks#zip", via: :get, as: :ballot_status_check_zip
   match "/share", to: "registrants#share", via: :get
-  
+
+  match "/register", to: "registrants#landing", via: :get
+  match "/register-to-vote", to: "registrants#landing", via: :get
+  match "/am-i-registered-to-vote", to: "catalist_lookups#new", via: :get
+  match "/absentee-ballot", to: "abrs#new", via: :get
+
   match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
   match "/state_registrants/:registrant_id/skip_state_flow", to: "state_registrants#skip_state_flow", as: "skip_state_flow_registrant", via: :get
   match "/state_registrants/:registrant_id/complete", to: "state_registrants#complete", as: "complete_state_registrant", via: :get
