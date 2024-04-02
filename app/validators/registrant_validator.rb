@@ -193,7 +193,7 @@ class RegistrantValidator < ActiveModel::Validator
     reg.validates_format_of(attr_name, with: /\A\d{5}(-\d{4})?\z/, allow_blank: true)
 
     reg.before_validation do
-      self[attr_name] = self[attr_name].strip if self[attr_name].present?
+      self[attr_name]&.strip! # Remove leading and trailing spaces
     end
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg[attr_name])
