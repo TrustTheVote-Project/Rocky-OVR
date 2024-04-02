@@ -833,10 +833,7 @@ input[type=number]::-webkit-outer-spin-button {
 h3#registrant_phone_type_label {
 	margin-left: 0;
 }
-/* PA specific */
-#main form.edit_state_registrants_pa_registrant ul li.registrant-form__race__line {
-	width: 100%;
-}
+
 /* MI specific */
 #main .step_2 .edit_state_registrants_mi_registrant span.error,
 #main .step_2 .edit_state_registrants_mi_registrant .flat span.error, 
@@ -881,6 +878,10 @@ p.reason {
 #main form ul.flat li.registrant-form__race__line, 
 #main form ul.flat li.width_f.registrant-form__race__line {
 	width: 90%;
+}
+/* PA specific */
+#main form.edit_state_registrants_pa_registrant ul li.registrant-form__race__line {
+	width: 100%;
 }
 /* move required error span up for id to fix description issue */
 #main form ul.flat li.registrant-form__state-id-number__line span.error {
