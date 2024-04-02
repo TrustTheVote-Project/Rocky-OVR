@@ -190,12 +190,17 @@ class RegistrantValidator < ActiveModel::Validator
   
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
-    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
+    reg.validates_format_of(attr_name, with: /\A\d{5}(-\d{4})?\z/, allow_blank: true)
+
+    reg.before_validation do
+      send("#{attr_name}=", send(attr_name).strip) if send(attr_name).present?
+    end
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
-      reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
+      reg.errors.add(attr_name, :invalid, default: nil, value: reg.send(attr_name))
     end
   end
+
   
   def validate_phone_present_if_opt_in_sms(reg)
     return true if reg.building_via_api_call?
