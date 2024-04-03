@@ -63,14 +63,7 @@ class RegistrantsController < RegistrationStep
   end
   
   def share
-    begin
-      @registrant_finish_iframe_url = params[:registrant_finish_iframe_url]
-    rescue => e
-      puts "An error occurred: #{e.message}"
-      flash[:error] = "An error occurred: #{e.message}"
-      redirect_to root_path
-      return
-    end
+    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
   end
 
 
