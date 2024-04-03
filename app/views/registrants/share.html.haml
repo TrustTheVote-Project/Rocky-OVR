@@ -1,7 +1,5 @@
-<% flash.each do |type, message| %>
-  <div class="alert alert-<%= type %>">
-    <%= message %>
-  </div>
-<% end %>
+- flash.each do |type, message|
+  .alert.alert-#{type}
+    = message
 
 = render 'finishes/finish_iframe'
