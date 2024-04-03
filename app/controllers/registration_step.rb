@@ -222,7 +222,6 @@ class RegistrationStep < ApplicationController
     redirect_to edit_state_registrant_path(@registrant.to_param, 'step_2')
   end
 
-
   def set_params
     @source = params[:source]
     @tracking = params[:tracking]
@@ -276,10 +275,6 @@ class RegistrationStep < ApplicationController
       end
     end
 
-    # Check if 'iframe=true' is in the parameters not working yet
-    #iframe_param = params[:query_parameters].include?('iframe=true') ? 'true' : 'false'
-    #@query_parameters['iframe'] = iframe_param
-
     if !@state_abbrev.blank?
       @short_form = true
     end
@@ -291,16 +286,6 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.home_state_allows_ovr_ignoring_license?
     #return nil if registrant.locale != 'en'
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
-    
-    # Check if iframe is equal to true so we can use the non-mobile ui inside iframes which is a better ux
-    # Needs work cause it's not working in all views yet
-    #begin
-    #  iframe_param = registrant.other_parameters.include?('iframe=true')
-    #  return false if iframe_param
-    #rescue => e
-    #  puts "error occured with iframe check: #{e.message}"
-    #end
-
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
     is_mobile = false

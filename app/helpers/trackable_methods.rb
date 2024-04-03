@@ -44,23 +44,16 @@ module TrackableMethods
     (self.query_parameters || {})["utm_content"]
   end
 
-  #used to change ui in the case when rocky is inside an iframe
-  def iframe
-    (self.query_parameters || {})["iframe"]
-  end
-
   def other_parameters
     extra_query_params = (self.query_parameters || {}).clone
-    excluded_params = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"]
-    extra_query_params.delete_if { |key, _| excluded_params.include?(key) }
-    extra_query_params.collect { |k, v| "#{k}=#{v}" }.join("&")
+    extra_query_params.delete("utm_source")
+    extra_query_params.delete("utm_medium")
+    extra_query_params.delete("utm_campaign")
+    extra_query_params.delete("utm_term")
+    extra_query_params.delete("utm_content")
+    
+    extra_query_params.collect {|k,v| "#{k}=#{v}"}.join("&")
   end
 
-  def parse_url_params
-    iframe_param = query_parameters["iframe"] == 'true' ? 'true' : 'false'
-    new_params = "#{other_parameters}&iframe=#{iframe_param}"
-    update(other_parameters: new_params)
-    iframe_param
-  end
 
 end

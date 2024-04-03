@@ -148,9 +148,11 @@ class RegistrantsController < RegistrationStep
 
   protected
 
+
   def advance_to_next_step
     @registrant.advance_to_step_1
   end
+
 
   def next_url
     registrant_step_2_url(@registrant)
