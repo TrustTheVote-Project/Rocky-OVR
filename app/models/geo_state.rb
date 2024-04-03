@@ -416,8 +416,10 @@ class GeoState < ActiveRecord::Base
   end
 
   def self.for_zip_code(zip)
-    self[zip5map[zip]]
     #self[ zip5map[zip] || zip3map[zip] ]
+    #self[zip5map[zip]]
+    zip5 = zip[0, 5] # Extract the first 5 digits of the ZIP code
+    self[zip5map[zip5]]
   end
 
   def self.valid_zip_code?(zip)
