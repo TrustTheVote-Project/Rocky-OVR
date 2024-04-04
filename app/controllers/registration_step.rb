@@ -286,12 +286,12 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.home_state_allows_ovr_ignoring_license?
     #return nil if registrant.locale != 'en'
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
-    begin
-      iframe_param = registrant.other_parameters.include?('iframe=true')
-      return false if iframe_param
-    rescue => e
-      puts "error occured with iframe check: #{e.message}"
-    end
+    #begin
+    #  iframe_param = registrant.other_parameters.include?('iframe=true')
+    #  return false if iframe_param
+    #rescue => e
+    #  puts "error occured with iframe check: #{e.message}"
+    #end
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
     is_mobile = false

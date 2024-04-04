@@ -1,4 +1,5 @@
 class StateRegistrantsController < RegistrationStep
+  
   # layout "registration"
   # before_action :find_partner
   before_action :load_state_registrant
