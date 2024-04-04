@@ -151,7 +151,7 @@ class Abr < ActiveRecord::Base
 
   def will_be_18
     if date_of_birth.present? && date_of_birth > 17.years.ago.to_date
-      errors.add(:date_of_birth, "Must be at least 17")
+      errors.add(:date_of_birth, :too_young)
     end
   end
 
