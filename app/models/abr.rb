@@ -139,14 +139,22 @@ class Abr < ActiveRecord::Base
     registration_county
   end
   
-  MAX_DATE_OF_BIRTH = Date.parse("2007-11-05")
+  #MAX_DATE_OF_BIRTH = Date.parse("2007-11-05")
   
+  #def will_be_18
+  #  if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 
+  #    errors.add(:date_of_birth, :too_young)
+  #  end
+  #end
+  
+  validate :will_be_18
+
   def will_be_18
-    if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 
-      errors.add(:date_of_birth, :too_young)
+    if date_of_birth.present? && date_of_birth > 17.years.ago.to_date
+      errors.add(:date_of_birth, "Must be at least 17")
     end
   end
-  
+
   def validates_zip
     validates_zip_code(self, :zip)
   end
