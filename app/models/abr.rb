@@ -59,7 +59,7 @@ class Abr < ActiveRecord::Base
   validates_presence_of :street_name, if: :advancing_to_step_3?
   validates_presence_of :city, if: :advancing_to_step_3?
   validates_presence_of :date_of_birth, if: :advancing_to_step_3?
-  #validate :will_be_18, if: :advancing_to_step_3?
+  validate :will_be_18, if: :advancing_to_step_3?
   validates_presence_of :zip
   validate :validate_form_fields, if: :advancing_to_step_4?
   validate :validate_date_of_birth, if: :advancing_to_step_3?
@@ -147,13 +147,13 @@ class Abr < ActiveRecord::Base
   #  end
   #end
   
-  #validate :will_be_18
+  validate :will_be_18
 
-  #def will_be_18
-  #  if date_of_birth.present? && date_of_birth > 17.years.ago.to_date
-  #    errors.add(:date_of_birth, :too_young)
-  #  end
-  #end
+  def will_be_18
+    if date_of_birth.present? && date_of_birth > 17.years.ago.to_date
+      errors.add(:date_of_birth, :too_young)
+    end
+  end
 
   def validates_zip
     validates_zip_code(self, :zip)
