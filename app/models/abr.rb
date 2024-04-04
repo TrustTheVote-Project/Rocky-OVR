@@ -147,13 +147,13 @@ class Abr < ActiveRecord::Base
   #  end
   #end
   
-  validate :will_be_18
+  #validate :will_be_18
 
-  def will_be_18
-    if date_of_birth.present? && date_of_birth > 17.years.ago.to_date
-      errors.add(:date_of_birth, :too_young)
-    end
-  end
+  #def will_be_18
+  #  if date_of_birth.present? && date_of_birth > 17.years.ago.to_date
+  #    errors.add(:date_of_birth, :too_young)
+  #  end
+  #end
 
   def validates_zip
     validates_zip_code(self, :zip)
