@@ -894,6 +894,15 @@ p.reason {
 .instructions.instructions--state-id-number {
 	margin-bottom: 12px;
 }
+/* pa complete */
+#main .step_5 h1 {
+	margin-top: 24px;
+	text-align: center;
+	font-size: 20px;
+}
+#main .step_5 .declaration-text {
+	margin-bottom: 28px;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
@@ -1422,6 +1431,13 @@ p.reason {
 	}
 	body.tl label, body.ilo label, body.vi label, body.ja label {
 		font-size: 12px;
+	}
+	/* replace old spinner.gif */
+	.spinner  {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: 6px solid #ccc;
 	}
 }
 /* new mobile ui overrides */

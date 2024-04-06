@@ -106,7 +106,7 @@ module Rocky
     config.middleware.use ExceptionNotification::Rack,
       email: {
         email_prefix: "[ROCKY Exception - #{Rails.env}] ",
-        sender_address: %{"Exception Notifier" <no-reply@rockthevote.com>},
+        sender_address: %{"Exception Notifier" <no-reply@rockthevote.org>},
         exception_recipients: %w{alex.mekelburg@osetfoundation.org david@rockthevote.org}
     }
     
