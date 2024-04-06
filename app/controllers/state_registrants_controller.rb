@@ -138,7 +138,7 @@ class StateRegistrantsController < RegistrationStep
       end
 
       # to help deteermine if someone is iframing and we need to not use mobile ui
-      @iframe_param = @registrant.other_parameters.include?('iframe=true')
+      @iframe_param = @old_registrant.other_parameters.include?('iframe=true')
     end
     
   end
