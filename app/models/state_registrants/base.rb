@@ -81,6 +81,11 @@ class StateRegistrants::Base < ActiveRecord::Base
   def has_other_party?
     false
   end
+
+  # used to determine if mobile ui should be used in cases where iframed
+  def iframe_param_present?
+    registrant&.other_parameters&.include?('iframe=true')
+  end
   
   def name_title_key
     key_for_attribute(:name_title, 'titles')

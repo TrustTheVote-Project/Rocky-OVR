@@ -136,9 +136,6 @@ class StateRegistrantsController < RegistrationStep
         @question_1 = @registrant.question_1
         @question_2 = @registrant.question_2
       end
-
-      # to help deteermine if someone is iframing and we need to not use mobile ui
-      @iframe_param = @old_registrant.other_parameters.include?('iframe=true')
     end
     
   end
