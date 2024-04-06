@@ -52,6 +52,11 @@ class Registrant < ActiveRecord::Base
     tracking_events.where(tracking_event_name: "registrant::render_view")
   end
 
+  # used to determine if mobile ui should be used in cases where iframed
+  def iframe_param_present?
+    other_parameters&.include?('iframe=true')
+  end
+
   
   
   serialize :state_ovr_data, Hash
