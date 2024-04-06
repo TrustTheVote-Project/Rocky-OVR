@@ -88,7 +88,7 @@ class RegistrationStep < ApplicationController
 
   def set_up_view_variables
     @use_mobile_ui = determine_mobile_ui(@registrant)
-    @pdf_assistance ||= "0" if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?    
+    @pdf_assistance ||= "0" if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?
   end
 
   def set_up_share_variables
@@ -287,8 +287,8 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.locale != 'en'
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
     #begin
-    #  iframe_param = registrant.other_parameters.include?('iframe=true')
-    #  return false if iframe_param
+    iframe_param = registrant.other_parameters.include?('iframe=true')
+    return false if iframe_param
     #rescue => e
     #  puts "error occured with iframe check: #{e.message}"
     #end

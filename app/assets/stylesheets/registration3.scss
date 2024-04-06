@@ -1432,13 +1432,6 @@ p.reason {
 	body.tl label, body.ilo label, body.vi label, body.ja label {
 		font-size: 12px;
 	}
-	/* replace old spinner.gif */
-	.spinner  {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		border: 6px solid #ccc;
-	}
 }
 /* new mobile ui overrides */
 body.new-mobile-ui #main #dynamic-progress-bar {
