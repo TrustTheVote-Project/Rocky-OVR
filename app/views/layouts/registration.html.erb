@@ -148,6 +148,7 @@
 <% if params[:iframe] == 'true' || (@registrant && @registrant.iframe_param_present?) %>
   <!-- iframed-->
   <script>
+    console.log('Script is running');
     // Scroll the specified iframe to the top
     function scrollToTopOfIframe(iframe) {
       if (iframe) {
@@ -180,6 +181,7 @@
     });
   </script>
 <% end %>
+
 
 
 </body>
