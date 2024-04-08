@@ -148,13 +148,16 @@
 <% if params[:iframe] == 'true' || (@registrant && @registrant.iframe_param_present?) %>
   <!-- iframed-->
   <script>
-    // Function to scroll the parent window to the top
-    function scrollToTopOfParentWindow() {
+    // Send a message to the parent window requesting scroll to top
+    function requestScrollToTop() {
+        console.log('Requesting parent window to scroll to top');
         window.parent.postMessage('scrollToTop', '*');
     }
+
+    // Call the function to scroll the parent window to the top
+    requestScrollToTop();
   </script>
 <% end %>
-
 
 </body>
 </html>
