@@ -155,34 +155,32 @@
       }
     }
 
-    // Add event listener to the form submit event to call scrollToTopOfIframe function
-    window.addEventListener('load', function() {
-      // Get references to all iframes
-      var iframes = document.querySelectorAll('iframe');
+    // Add event listener to form submit buttons to call scrollToTopOfIframe function
+    document.addEventListener('DOMContentLoaded', function() {
+      // Function to handle button click
+      function handleButtonClick(event) {
+        // Get the closest parent form element
+        var form = event.target.closest('form');
+        if (!form) return; // Exit if form not found
 
-      // Function to handle form submission
-      function handleFormSubmission(event) {
-        // Prevent the default form submission behavior
-        event.preventDefault();
+        // Find the iframe within the same form
+        var iframe = form.querySelector('iframe');
+        if (!iframe) return; // Exit if iframe not found
 
-        // Scroll each iframe to the top
-        iframes.forEach(function(iframe) {
-          scrollToTopOfIframe(iframe);
-          console.log('Scrolled to the top of iframe:', iframe);
-        });
-
-        // Submit the form programmatically
-        this.submit();
+        // Scroll the iframe content to the top
+        scrollToTopOfIframe(iframe);
+        console.log('Scrolled to the top of iframe:', iframe);
       }
 
-      // Attach event listener to the form submit event
-      var form = document.querySelector('form');
-      if (form) {
-        form.addEventListener('submit', handleFormSubmission);
-      }
+      // Attach event listener to form submit buttons
+      var buttons = document.querySelectorAll('button[type="submit"]');
+      buttons.forEach(function(button) {
+        button.addEventListener('click', handleButtonClick);
+      });
     });
   </script>
 <% end %>
+
 
 </body>
 </html>
