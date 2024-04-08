@@ -148,17 +148,13 @@
 <% if params[:iframe] == 'true' || (@registrant && @registrant.iframe_param_present?) %>
   <!-- iframed-->
   <script>
-    console.log('Script is running');
-
-    // Add event listener to form submit buttons to scroll parent window to top when iframe content loads
-    window.addEventListener('load', function() {
-      console.log('Iframe content loaded');
-      // Scroll the parent window to the top
-      window.parent.scrollTo(0, 0);
-      console.log('Scrolled parent window to the top');
-    });
+    // Function to scroll the parent window to the top
+    function scrollToTopOfParentWindow() {
+        window.parent.postMessage('scrollToTop', '*');
+    }
   </script>
 <% end %>
+
 
 </body>
 </html>
