@@ -150,20 +150,24 @@
   <script>
     console.log('Script is running');
 
-    // Function to scroll the content of the iframe to the top
-    function scrollToTopOfIframe() {
-      // Scroll the iframe content to the top
-      window.scrollTo(0, 0);
-      console.log('Scrolled to the top of iframe');
+    // Function to focus on the top element of the iframe
+    function focusOnTopElementOfIframe() {
+      // Find the top element to focus on in the iframe
+      var topElement = document.querySelector('body');
+      // Focus on the top element
+      if (topElement) {
+        topElement.focus();
+        console.log('Focused on the top element of the iframe');
+      }
     }
 
-    // Add event listener to form submit buttons to call scrollToTopOfIframe function
+    // Add event listener to form submit buttons to call focusOnTopElementOfIframe function
     document.addEventListener('DOMContentLoaded', function() {
       // Function to handle button click
       function handleButtonClick() {
         console.log('Button clicked');
-        // Scroll the iframe content to the top
-        scrollToTopOfIframe();
+        // Focus on the top element of the iframe
+        focusOnTopElementOfIframe();
       }
 
       // Attach event listener to form submit buttons
