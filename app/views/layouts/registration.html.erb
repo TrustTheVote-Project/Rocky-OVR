@@ -150,37 +150,15 @@
   <script>
     console.log('Script is running');
 
-    // Function to focus on the top element of the iframe
-    function focusOnTopElementOfIframe() {
-      // Find the top element to focus on in the iframe
-      var topElement = document.querySelector('body');
-      // Focus on the top element
-      if (topElement) {
-        topElement.focus();
-        console.log('Focused on the top element of the iframe');
-      }
-    }
-
-    // Add event listener to form submit buttons to call focusOnTopElementOfIframe function
-    document.addEventListener('DOMContentLoaded', function() {
-      // Function to handle button click
-      function handleButtonClick() {
-        console.log('Button clicked');
-        // Focus on the top element of the iframe
-        focusOnTopElementOfIframe();
-      }
-
-      // Attach event listener to form submit buttons
-      var buttons = document.querySelectorAll('button[type="submit"]');
-      console.log('Number of submit buttons:', buttons.length);
-      buttons.forEach(function(button) {
-        console.log('Adding event listener to button:', button);
-        button.addEventListener('click', handleButtonClick);
-      });
+    // Add event listener to form submit buttons to scroll parent window to top when iframe content loads
+    window.addEventListener('load', function() {
+      console.log('Iframe content loaded');
+      // Scroll the parent window to the top
+      window.parent.scrollTo(0, 0);
+      console.log('Scrolled parent window to the top');
     });
   </script>
 <% end %>
-
 
 </body>
 </html>
