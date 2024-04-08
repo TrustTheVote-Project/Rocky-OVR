@@ -145,7 +145,7 @@
   } 
 </script>
 
-<% if @registrant && @registrant.iframe_param_present? %>
+<% if params[:iframe] == 'true' || (@registrant && @registrant.iframe_param_present?) %>
   <!-- iframed-->
   <script>
     // Scroll the specified iframe to the top
@@ -156,7 +156,7 @@
     }
 
     // Add event listener to the form submit event to call scrollToTopOfIframe function
-    document.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('load', function() {
       // Get references to all iframes
       var iframes = document.querySelectorAll('iframe');
 
