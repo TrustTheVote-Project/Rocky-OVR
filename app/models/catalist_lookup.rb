@@ -44,7 +44,6 @@ class CatalistLookup < ActiveRecord::Base
       self.errors.add(:phone, :required_if_opt_in)
     end
   end
-  
 
   def validates_zip
     validates_zip_code(self, :zip)

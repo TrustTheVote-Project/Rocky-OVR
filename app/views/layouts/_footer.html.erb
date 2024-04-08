@@ -19,38 +19,3 @@
     </p>
   </div>
 
-<% if @registrant && @registrant.iframe_param_present? %>
-  <!-- iframed-->
-  <script>
-    // Function to scroll the parent window to the top of the iframe content
-    function scrollToTopOfIframe() {
-      // If the parent window exists (i.e., the page is inside an iframe)
-      if (window.parent) {
-        // Get the iframe element
-        var iframe = window.parent.document.querySelector('iframe');
-
-        // Scroll the iframe content to the top
-        if (iframe) {
-          iframe.contentWindow.scrollTo(0, 0);
-        }
-      }
-    }
-
-    // Add event listeners to submit buttons to call scrollToTopOfIframe function
-    document.addEventListener('DOMContentLoaded', function() {
-      // Get references to submit buttons
-      var submitButtons = document.querySelectorAll('button[type="submit"]');
-
-      // Function to handle button click
-      function handleButtonClick() {
-        // Scroll parent window to top of iframe content
-        scrollToTopOfIframe();
-      }
-
-      // Attach event listeners to submit buttons
-      submitButtons.forEach(function(button) {
-        button.addEventListener('click', handleButtonClick);
-      });
-    });
-  </script>
-<% end %>

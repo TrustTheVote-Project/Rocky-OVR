@@ -15,7 +15,6 @@ class AlertRequest < ApplicationRecord
     false
   end
 
-
   belongs_to :partner, optional: true
   belongs_to :state, class_name: 'GeoState', optional: true
 

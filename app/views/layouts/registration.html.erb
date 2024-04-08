@@ -144,6 +144,46 @@
     }, false);
   } 
 </script>
+<% if @registrant && @registrant.iframe_param_present? %>
+  <!-- iframed-->
+  <script>
+    // Function to scroll the parent window to the top of the iframe content
+    function scrollToTopOfIframe() {
+      // If the parent window exists (i.e., the page is inside an iframe)
+      if (window.parent) {
+        // Get the iframe element
+        var iframe = window.parent.document.querySelector('iframe');
 
+        // Scroll the iframe content to the top
+        if (iframe) {
+          iframe.contentWindow.scrollTo(0, 0);
+        }
+      }
+    }
+
+    // Add event listener to the form submit event to call scrollToTopOfIframe function
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get reference to the form element
+      var form = document.querySelector('form');
+
+      // Function to handle form submission
+      function handleFormSubmission(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Scroll parent window to top of iframe content
+        scrollToTopOfIframe();
+
+        // Submit the form programmatically
+        form.submit();
+      }
+
+      // Attach event listener to the form submit event
+      if (form) {
+        form.addEventListener('submit', handleFormSubmission);
+      }
+    });
+  </script>
+<% end %>
 </body>
 </html>
