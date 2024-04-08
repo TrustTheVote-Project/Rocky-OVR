@@ -149,40 +149,53 @@
   <!-- iframed-->
   <script>
     console.log('Script is running');
-    // Scroll the specified iframe to the top
-    function scrollToTopOfIframe(iframe) {
-      if (iframe) {
-        iframe.contentWindow.scrollTo(0, 0);
+
+    // Function to scroll the iframe containing the current document to the top
+    function scrollToTopOfContainingIframe() {
+      // Get the current document's location
+      var currentDocumentLocation = window.location.href;
+      console.log('Current document location:', currentDocumentLocation);
+
+      // Get all iframes in the parent window
+      var iframes = window.parent.document.getElementsByTagName('iframe');
+      console.log('Number of iframes:', iframes.length);
+
+      // Loop through each iframe to find the one containing the current document
+      for (var i = 0; i < iframes.length; i++) {
+        var iframe = iframes[i];
+        console.log('Checking iframe:', iframe);
+
+        // Check if the iframe's source matches the current document's location
+        if (iframe.contentWindow.location.href === currentDocumentLocation) {
+          console.log('Found containing iframe:', iframe);
+          
+          // Scroll the iframe content to the top
+          iframe.contentWindow.scrollTo(0, 0);
+          console.log('Scrolled to the top of containing iframe');
+          break; // Exit loop once the containing iframe is found
+        }
       }
     }
 
-    // Add event listener to form submit buttons to call scrollToTopOfIframe function
+    // Add event listener to form submit buttons to call scrollToTopOfContainingIframe function
     document.addEventListener('DOMContentLoaded', function() {
       // Function to handle button click
-      function handleButtonClick(event) {
-        // Get the closest parent form element
-        var form = event.target.closest('form');
-        if (!form) return; // Exit if form not found
-
-        // Find the iframe within the same form
-        var iframe = form.querySelector('iframe');
-        if (!iframe) return; // Exit if iframe not found
-
-        // Scroll the iframe content to the top
-        scrollToTopOfIframe(iframe);
-        console.log('Scrolled to the top of iframe:', iframe);
+      function handleButtonClick() {
+        console.log('Button clicked');
+        // Scroll the containing iframe content to the top
+        scrollToTopOfContainingIframe();
       }
 
       // Attach event listener to form submit buttons
       var buttons = document.querySelectorAll('button[type="submit"]');
+      console.log('Number of submit buttons:', buttons.length);
       buttons.forEach(function(button) {
+        console.log('Adding event listener to button:', button);
         button.addEventListener('click', handleButtonClick);
       });
     });
   </script>
 <% end %>
-
-
 
 </body>
 </html>
