@@ -150,40 +150,20 @@
   <script>
     console.log('Script is running');
 
-    // Function to scroll the iframe containing the current document to the top
-    function scrollToTopOfContainingIframe() {
-      // Get the current document's location
-      var currentDocumentLocation = window.location.href;
-      console.log('Current document location:', currentDocumentLocation);
-
-      // Get all iframes in the parent window
-      var iframes = window.parent.document.getElementsByTagName('iframe');
-      console.log('Number of iframes:', iframes.length);
-
-      // Loop through each iframe to find the one containing the current document
-      for (var i = 0; i < iframes.length; i++) {
-        var iframe = iframes[i];
-        console.log('Checking iframe:', iframe);
-
-        // Check if the iframe's source matches the current document's location
-        if (iframe.contentWindow.location.href === currentDocumentLocation) {
-          console.log('Found containing iframe:', iframe);
-          
-          // Scroll the iframe content to the top
-          iframe.contentWindow.scrollTo(0, 0);
-          console.log('Scrolled to the top of containing iframe');
-          break; // Exit loop once the containing iframe is found
-        }
-      }
+    // Function to scroll the content of the iframe to the top
+    function scrollToTopOfIframe() {
+      // Scroll the iframe content to the top
+      window.scrollTo(0, 0);
+      console.log('Scrolled to the top of iframe');
     }
 
-    // Add event listener to form submit buttons to call scrollToTopOfContainingIframe function
+    // Add event listener to form submit buttons to call scrollToTopOfIframe function
     document.addEventListener('DOMContentLoaded', function() {
       // Function to handle button click
       function handleButtonClick() {
         console.log('Button clicked');
-        // Scroll the containing iframe content to the top
-        scrollToTopOfContainingIframe();
+        // Scroll the iframe content to the top
+        scrollToTopOfIframe();
       }
 
       // Attach event listener to form submit buttons
@@ -196,6 +176,7 @@
     });
   </script>
 <% end %>
+
 
 </body>
 </html>
