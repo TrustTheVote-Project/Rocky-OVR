@@ -1249,6 +1249,9 @@ body #main .step_2 ul li.registrant-form__change-of-name__line img#tooltip-previ
 	body #main .step_2 ul.checkbox-step-1 label {
 		width: auto;
 	}
+	body.new-mobile-ui #main .step_4 form ul li.registrant-form__change-of-name__line {
+		margin-top: -2px;
+	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
 	#main {
@@ -1490,9 +1493,6 @@ body.new-mobile-ui #main .step_4 form ul li.registrant-form__prev-name-suffix__l
 }
 body.new-mobile-ui #main .step_4 ul li.registrant-form__state-id-number__line {
 	margin-top: 8px;
-}
-body.new-mobile-ui #main .step_4 form ul li.registrant-form__change-of-name__line {
-	margin-top: 0px;
 }
 body.new-mobile-ui #main .step_4 form fieldset legend {
 	padding: 0;
