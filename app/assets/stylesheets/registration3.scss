@@ -328,15 +328,24 @@ label {
 	background-position: center;
 }
 li.registrant-form__change-of-name__line > h3 > label::after,
-li.registrant-form__change-of-address__line > h3 > label::after,
-#main .step_3 .edit_state_registrants_pa_registrant label::after {
+li.registrant-form__change-of-address__line > h3 > label::after {
 	top: 0 !important;
 }
-li.registrant-form__us-citizen__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line.registrant-form__required-checkbox > h3 > label::after,ul.checkbox.checkbox-step-1 > li.registrant-form__us-citizen__line > h3 > label::after,li.registrant-form__confirm_will_be_18__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line > h3 > label::after {
+li.registrant-form__us-citizen__line.registrant-form__required-checkbox > h3 > label::after,
+li.registrant-form__will-be-18-by-election__line.registrant-form__required-checkbox > h3 > label::after,ul.checkbox.checkbox-step-1 > li.registrant-form__us-citizen__line > h3 > label::after,
+li.registrant-form__confirm_will_be_18__line.registrant-form__required-checkbox > h3 > label::after,li.registrant-form__will-be-18-by-election__line > h3 > label::after,
+#main .step_3 .edit_state_registrants_pa_registrant label::after {
 	top: 1px !important;
 	margin-left: 0;
 }
-li.registrant-form__opt-in-sms__line > h3 > label::after,li.registrant-form__opt-in-email__line > h3 > label::after,fieldset.no_border.opt-ins > fieldset > ul.checkbox > li.registrant-form__volunteer__line > h3 > label::after,li.registrant-form__partner-opt-in-email__line > h3 > label::after,li.registrant-form__partner-opt-in-sms__line > h3 > label::after,li.registrant-form__partner-volunteer__line > h3 > label::after,.edit_state_registrants_pa_registrant ul > li.registrant-form__change-of-address__line > h3 > label::after,.edit_state_registrants_pa_registrant li.registrant-form__change-of-name__line > h3 > label::after,.edit_state_registrants_wa_registrant ul > li.registrant-form__change-of-name__line > h3 > label::after {
+li.registrant-form__opt-in-sms__line > h3 > label::after,
+li.registrant-form__opt-in-email__line > h3 > label::after,
+fieldset.no_border.opt-ins > fieldset > ul.checkbox > li.registrant-form__volunteer__line > h3 > label::after,
+li.registrant-form__partner-opt-in-email__line > h3 > label::after,li.registrant-form__partner-opt-in-sms__line > h3 > label::after,
+li.registrant-form__partner-volunteer__line > h3 > label::after,
+.edit_state_registrants_pa_registrant ul > li.registrant-form__change-of-address__line > h3 > label::after,
+.edit_state_registrants_pa_registrant li.registrant-form__change-of-name__line > h3 > label::after,
+.edit_state_registrants_wa_registrant ul > li.registrant-form__change-of-name__line > h3 > label::after {
 	top: 2px !important;
 }
 ul > li.registrant-form__change-of-name__line > h3 > label {
@@ -903,6 +912,15 @@ p.reason {
 #main .step_5 .declaration-text {
 	margin-bottom: 28px;
 }
+/* tweak tooltip icon positions */
+body #main img#tooltip-previous_name, 
+body #main .step_4 img#tooltip-previous_address,
+body #main .step_2 ul li.registrant-form__change-of-name__line img#tooltip-previous_name {
+	top: 4px;
+	position: relative;
+	margin-left: 2px;
+	margin-bottom: 1px;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
@@ -1224,6 +1242,13 @@ p.reason {
 	#main .edit_state_registrants_mi_registrant ul.stacked li span.error {
 		height: 16px;
 	}
+	body #main .step_4 ul li.registrant-form__change-of-name__line {
+		margin-top: 0;
+	}
+	/* fix help icon positioning */
+	body #main .step_2 ul.checkbox-step-1 label {
+		width: auto;
+	}
 }
 @media (min-width: 468px) and (max-width: 600px) {
 	#main {
@@ -1532,6 +1557,11 @@ body.new-mobile-ui #main .dynamic-navigation {
 	}
 	#main form ul li.registrant-form__us-citizen__line h3 label {
 		line-height: 28px;
+	}
+	/* tighten up top spacing in outlined checkboxs */
+	body #main .step_4 ul li.registrant-form__change-of-name__line, 
+	body #main .step_4 ul li.registrant-form__change-of-name__line {
+		margin-top: -2px;
 	}
 }
 
