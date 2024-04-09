@@ -1,7 +1,6 @@
 class AlertRequestsController < ApplicationController
   layout 'alert_request'
   before_action :find_partner
-  before_action :no_emojis_in_survey_answers, only: [:create]
 
   def new
     @alert_request = AlertRequest.new(new_alert_request_params)
@@ -135,18 +134,5 @@ class AlertRequestsController < ApplicationController
       original_survey_question_1: original_survey_question_1,
       original_survey_question_2: original_survey_question_2
     )
-  end
-
-  def no_emojis_in_survey_answers
-    survey_answer_1 = alert_request_params[:survey_answer_1]
-    survey_answer_2 = alert_request_params[:survey_answer_2]
-
-    if survey_answer_1.present? && survey_answer_1.match(/\p{Emoji}/)
-      @alert_request.errors.add(:survey_answer_1, :invalid_emoji)
-    end
-
-    if survey_answer_2.present? && survey_answer_2.match(/\p{Emoji}/)
-      @alert_request.errors.add(:survey_answer_2, :invalid_emoji)
-    end
   end
 end

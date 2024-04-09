@@ -129,4 +129,14 @@ class AlertRequest < ApplicationRecord
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
     end
   end
+
+  def no_emojis_in_survey_answers
+    if survey_answer_1.present? && survey_answer_1.match(/\p{Emoji}/)
+      errors.add(:survey_answer_1, :invalid_emoji)
+    end
+
+    if survey_answer_2.present? && survey_answer_2.match(/\p{Emoji}/)
+      errors.add(:survey_answer_2, :invalid_emoji)
+    end
+  end
 end
