@@ -67,24 +67,6 @@ module Rocky
     end
     
     #config.middleware.insert_before ActionDispatch::ParamsParser, "CatchJsonParseErrors"
-    # Add the CatchJsonParseErrors middleware
-    config.middleware.insert_before ActionDispatch::ParamsParser, CatchJsonParseErrors
-
-    # Ensure emoji sanitization
-    config.middleware.use Rack::Robustness do |g|
-      g.on(ActiveRecord::StatementInvalid) do |ex|
-        # Handle ActiveRecord::StatementInvalid exceptions
-        [500, {}, ['An internal server error occurred']]
-      end
-      g.ensure(true) do
-        # Remove emojis from request parameters before processing
-        request.params.each do |key, value|
-          if value.is_a?(String)
-            request.params[key] = value.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
-          end
-        end
-      end
-    end
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true

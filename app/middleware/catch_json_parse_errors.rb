@@ -5,20 +5,6 @@ class CatchJsonParseErrors
   end
 
   def call(env)
-    if env['CONTENT_TYPE']&.include?('application/json') && env['rack.input']
-      request = Rack::Request.new(env)
-      request.body.rewind
-      json = JSON.parse(request.body.read)
-      
-      # Iterate over JSON keys and sanitize values
-      json.each do |key, value|
-        json[key] = remove_emojis(value) if value.is_a?(String)
-      end
-
-      # Replace the request body with the sanitized JSON
-      env['rack.input'] = StringIO.new(json.to_json)
-    end
-
     begin
       @app.call(env)
     rescue MultiJson::LoadError => error
@@ -32,11 +18,5 @@ class CatchJsonParseErrors
         raise "There was a problem with the format of the submitted JSON"
       end
     end
-  end
-
-  private
-
-  def remove_emojis(text)
-    text.gsub(/\p{Emoji}/, '')
   end
 end
