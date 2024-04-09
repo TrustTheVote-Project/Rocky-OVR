@@ -173,16 +173,8 @@ class Registrant < ActiveRecord::Base
   #     message: :invalid_for_pdf }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
   # end
   
-  #SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
-  #validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
-
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
-
-  def validate(reg)
-    validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
-    validate_no_emojis(reg)
-  end
-  
+  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
   
   
 
@@ -2079,21 +2071,6 @@ class Registrant < ActiveRecord::Base
   end
 
   private ###
-
-  def validate_no_emojis(reg)
-    SURVEY_FIELDS.each do |field|
-      value = reg.send(field)
-      if value&.match?(/\p{Emoji}/)
-        # Remove emoji characters from the value
-        sanitized_value = value.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
-        # Update the attribute with the sanitized value
-        reg.send("#{field}=", sanitized_value)
-        puts "Emoji characters removed from #{field} attribute."
-        # Tell user about the removal of emoji characters
-        reg.errors.add(field.to_sym, :invalid_emoji_removed, :invalid_emoji)
-      end
-    end
-  end
 
 
   def generate_uid
