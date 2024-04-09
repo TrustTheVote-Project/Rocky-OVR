@@ -173,8 +173,15 @@ class Registrant < ActiveRecord::Base
   #     message: :invalid_for_pdf }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
   # end
   
+  #SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
+  #validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
+
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
-  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
+
+  def validate(reg)
+    validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
+    validate_no_emojis(reg)
+  end
   
   
   
@@ -2073,7 +2080,13 @@ class Registrant < ActiveRecord::Base
 
   private ###
 
-
+  def validate_no_emojis(reg)
+    SURVEY_FIELDS.each do |field|
+      if reg.send(field)&.match?(/\p{Emoji}/)
+        reg.errors.add(field.to_sym, :invalid_emoji)
+      end
+    end
+  end
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
