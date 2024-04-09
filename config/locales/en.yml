@@ -16,7 +16,8 @@ en:
       too_long: too long (maximum is %{count} characters).
       too_short: too short (minimum is %{count} characters).
       wrong_length: wrong length (should be %{count} characters).
-      too_young: You must be 18 on or before November 8, 2022 to vote in this election.
+      too_young: You must be 18 on or before Election day.
+      way_too_young: You are too young for this.
   or: OR
   affirm: Affirm
   decline: Decline

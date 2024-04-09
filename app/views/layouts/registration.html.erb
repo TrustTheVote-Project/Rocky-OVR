@@ -3,10 +3,10 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title>Online Voter Registration</title>
-  <meta name="description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
+  <meta name="description" content="Exercise your right to vote by registering online with our quick and user-friendly voter registration tool. Don't miss your chance to make your voice heard in elections—register now!" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Rock the Vote" />
+  <meta property="og:title" content="Rock the Vote - Building the Political Power of Young People" />
   <meta property="og:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
   <meta property="og:site_name" content="Rock the Vote" />
   <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
@@ -15,7 +15,7 @@
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:description" content="You can't vote unless you register. Register to vote using our quick and easy online voter registration tool." />
-  <meta name="twitter:title" content="Online Voter Registration" />
+  <meta name="twitter:title" content="Rock the Vote Online Voter Registration" />
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta name="twitter:creator" content="@rockthevote" />
@@ -39,6 +39,8 @@
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
+  <%= stylesheet_link_tag 'registration3' unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
+
   <!--[if !IE 7]>
     <style type="text/css">
       #container { display:table; height:100% }
@@ -57,7 +59,14 @@
   </script>
   <%= yield :head %>
 </head>
-<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+
+<body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %><%= ' old-school' if @registrant && !@registrant.short_form? %> <%= @registrant&.locale || 'en' %>">
+<% if @registrant && !@registrant.short_form? %>
+<!--short form was set to false so display not supported message-->
+<% excluded_params = [:short_form, :action, :controller] %>
+<% new_params = params.except(*excluded_params) %>
+<p style="margin-top: 28px; line-height: 2; font-size: 16px; font-weight: 600; text-align: center;">This form is no longer supported.<br/>Please visit <a href="<%= root_url(new_params.merge(source: 'short-form-false')) %>"><%= root_url %></a> to register to vote.</p>
+<% else %>
   <%- if @registrant %>
     <script type="text/javascript">
       window._registrantUID = "<%= j @registrant.uid %>";
@@ -80,7 +89,7 @@
     <%- end %>
   <% else -%>
     <div id="header">
-      <span role="img" aria-label="<%="Rock The Vote logo" %>"> </span>
+      <span role="img" aria-label="<%="Rock the Vote logo" %>"> </span>
   <% end -%>
       <div class='header-text'>
         <%- if !@registrant || @registrant.short_form? %>
@@ -110,6 +119,7 @@
     <%= render :partial => 'layouts/footer' %>
   </div>
 
+<% end %>
 
 <%= render :partial => 'layouts/urchin' %>
 <%- if !@registrant || @registrant.short_form? %>
@@ -134,6 +144,10 @@
     }, false);
   } 
 </script>
+
+<% if params[:iframe] == 'true' || (@registrant && @registrant.iframe_param_present?) %>
+  <!-- iframed -->
+<% end %>
 
 </body>
 </html>

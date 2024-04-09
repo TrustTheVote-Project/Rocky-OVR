@@ -44,7 +44,6 @@ class CatalistLookup < ActiveRecord::Base
       self.errors.add(:phone, :required_if_opt_in)
     end
   end
-  
 
   def validates_zip
     validates_zip_code(self, :zip)
@@ -62,9 +61,10 @@ class CatalistLookup < ActiveRecord::Base
   def validate_date_of_birth_age
     if birthdate < Date.parse("1900-01-01")
       errors.add(:date_of_birth, :too_old)
-    end    
-    if birthdate > Date.today
+    elsif birthdate > Date.today
       errors.add(:date_of_birth, :future)
+    elsif birthdate > 17.years.ago.to_date
+      errors.add(:date_of_birth, :way_too_young)
     end
   end
   

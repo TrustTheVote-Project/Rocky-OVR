@@ -30,10 +30,11 @@ module AbrStateMethods::GA
     "abr_election_type_selections": {method: "abr_election_date"},
     "abr_election_type_selections_options": {
       options: [
-        #"abr_election_type1",
-        #"abr_election_type3",
-        #"abr_election_type2",
+        "abr_election_type1",
+        "abr_election_type3",
+        "abr_election_type2",
         "abr_election_type4",
+        "abr_election_type5",
       ]
     },	
     "abr_primary_type_selections1": {
@@ -68,13 +69,15 @@ module AbrStateMethods::GA
 
   def abr_election_date
     if self.abr_election_type_selections_options == "abr_election_type1"
-      return "05/24/2022"
+      return "04/29/2024"
     elsif self.abr_election_type_selections_options == "abr_election_type3"
-      return "06/21/2022"
+      return "05/21/2024"
     elsif self.abr_election_type_selections_options == "abr_election_type2"
-      return "11/08/2022"
+      return "06/18/2024"
     elsif  self.abr_election_type_selections_options == "abr_election_type4"
-      return "12/06/2022"
+      return "11/05/2024"
+    elsif  self.abr_election_type_selections_options == "abr_election_type5"
+      return "12/03/2024"
     end
     return ""
   end

@@ -66,6 +66,7 @@ class RegistrantsController < RegistrationStep
     @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
   end
 
+
   # GET /registrants/new
   def new
     set_up_locale
@@ -90,7 +91,7 @@ class RegistrantsController < RegistrationStep
         is_fake: params.keys.include?('preview_custom_assets')
       }
       create
-    else        
+    else
       @registrant = Registrant.new(
           partner_id: @partner_id, 
           locale: @locale, 
@@ -152,7 +153,7 @@ class RegistrantsController < RegistrationStep
   def advance_to_next_step
     @registrant.advance_to_step_1
   end
-  
+
 
   def next_url
     registrant_step_2_url(@registrant)

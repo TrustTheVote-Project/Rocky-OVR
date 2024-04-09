@@ -17,6 +17,21 @@ input[type=text], input[type=tel] {
   outline: none;
 }
 
+/* replace old spinner.gif */
+.spinner  {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border: 8px solid #ccc;
+	border-top-color: #333;
+	animation: spin 1s linear infinite;
+	margin-right: auto;
+	margin-left: auto;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
 
 body {
   width: 100%;
@@ -345,14 +360,14 @@ body {
       text-align: center !important;
       text-decoration: none !important;
       text-shadow: none;
-      transition: background 0.5s ease-out 0s, color 0.05s ease-in 0s;
+      transition: background 0.3s ease-out 0s, color 0.03s ease-in 0s;
       margin: 0;
       min-width: auto;
       &:hover {
         background: #B32426;
         color: #fff !important;
         cursor: pointer;
-        transition: background 0.9s ease-out, color 0.05s ease-in;
+        transition: background 0.5s ease-out, color 0.03s ease-in;
       }
     }
     
@@ -723,14 +738,14 @@ body {
     text-align: center !important;
     text-decoration: none !important;
     text-shadow: none;
-    transition: background 0.5s ease-out 0s, color 0.05s ease-in 0s;
+    transition: background 0.3s ease-out 0s, color 0.03s ease-in 0s;
     margin: 0;
     min-width: auto;
     &:hover {
       background: #B32426;
       color: #fff !important;
       cursor: pointer;
-      transition: background 0.9s ease-out, color 0.05s ease-in;
+      transition: background 0.5s ease-out, color 0.03s ease-in;
     }
   }
 
@@ -1073,3 +1088,7 @@ body {
 body.abr-page {
   @import 'abr-page';
 }
+
+
+
+

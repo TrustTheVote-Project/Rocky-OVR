@@ -1,16 +1,4 @@
-<style type="text/css">
-<!--
-.boxtext {
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 22px;
-  font-style: normal;
-  line-height: 1.5em;
-  font-weight: bolder;
-  text-transform: uppercase;
-}
--->
-</style>
-
+<div style="max-width: 700px; margin: 0 auto;">
 <%= I18n.t('email.confirmation_with_signature.body.greeting', :registrant_first_name=>@registrant_first_name, :registrant_last_name=>@registrant_last_name, :locale => @locale).html_safe %> <br><br>
 
 <%= I18n.t('email.confirmation_with_signature.body.main', 
@@ -23,6 +11,7 @@
   :registrant_home_state_name=>@registrant_home_state_name,
   :registrar_url=>@registrar_url, :locale => @locale).html_safe %>
 
-<hr size="3" align="left" width="100%" color="black"><br><br>
+<hr style="border: none; height: 3px; background-color: white; margin: 23px 0 20px 0; width: 100%; border-top: 3px solid black;">
 
 <%= I18n.t('email.confirmation_with_signature.body.footer', :locale => @locale).html_safe %>
+</div>

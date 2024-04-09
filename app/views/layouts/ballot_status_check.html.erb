@@ -7,7 +7,7 @@
   <meta name="description" content="Check your ballot status now." />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Rock the Vote" />
+  <meta property="og:title" content="Rock the Vote - Building the Political Power of Young People" />
   <meta property="og:description" content="Check your ballot status now." />
   <meta property="og:site_name" content="Rock the Vote" />
   <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
@@ -16,7 +16,7 @@
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:description" content="Check your ballot status now." />
-  <meta name="twitter:title" content="Check Your Ballot Status" />
+  <meta name="twitter:title" content="Check Your Ballot Status with Rock the Vote" />
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta name="twitter:creator" content="@rockthevote" />
@@ -40,6 +40,7 @@
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
+  <%= stylesheet_link_tag 'registration3' unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
   <!--[if !IE 7]>
     <style type="text/css">
       #container { display:table; height:100% }
@@ -56,7 +57,7 @@
   <%= yield :head %>
 </head>
 
-<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<body class="tracking-page <%= 'not-landing' if @bsc && @bsc.state_abbrev %> <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
   <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
@@ -67,7 +68,7 @@
       <span role="img" aria-label="<%="#{@partner.organization} logo" %>"> </span>
     <% else -%>
       <div id="header">
-      <span role="img" aria-label="Rock The Vote logo"> </span>
+      <span role="img" aria-label="Rock the Vote logo"> </span>
         <% end -%>
         <div class='header-text'>
           <%- if @bsc && @bsc.state_abbrev %>

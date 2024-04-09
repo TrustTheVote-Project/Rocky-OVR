@@ -1,37 +1,36 @@
 module AbrStateMethods::MO
   
   PDF_FIELDS = {
-    "abr_email": {method: "email"},	
-    "abr_phone": {method: "phone"},	
-    "abr_first_name": {method: "first_name"},	
-    "abr_middle_initial": {method: "middle_initial"},	
-    "abr_last_name": {method: "last_name"},	
-    "abr_name_suffix": {method: "name_suffix"},	
-    "abr_street_number": {method: "street_number"},	
-    "abr_street_name": {method: "street_name"},	
-    "abr_unit": {method: "unit"},	
-    "abr_city": {method: "city"},	
-    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
-    "abr_zip": {method: "zip"},	
+    "abr_email": {method: "email"},
+    "abr_phone": {method: "phone"},
+    "abr_first_name": {method: "first_name"},
+    "abr_middle_initial": {method: "middle_initial"},
+    "abr_last_name": {method: "last_name"},
+    "abr_name_suffix": {method: "name_suffix"},
+    "abr_street_number": {method: "street_number"},
+    "abr_street_name": {method: "street_name"},
+    "abr_unit": {method: "unit"},
+    "abr_city": {method: "city"},
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},
+    "abr_zip": {method: "zip"},
     
-    
-    "abr_last_4_ssn": {sensitive: true},	
-    "abr_check_mailing_address": {},	
+    "abr_last_4_ssn": {sensitive: true},
+    "abr_check_mailing_address": {},
     "abr_mailing_address_line_1": {
       method: "mailing_address_line_1"
-    },	
+    },
     "abr_mailing_unit": {
       method: "mailing_unit"
-    },	
+    },
     "abr_mailing_city": {
       method: "mailing_city"
-    },	
+    },
     "abr_mailing_state_abbrev": {
       method: "mailing_state_abbrev"
-    },	
+    },
     "abr_mailing_zip": {
       method: "mailing_zip"
-    },	
+    },
     "abr_reason_selections": {
       options: [
         "abr_reason1",
@@ -44,11 +43,11 @@ module AbrStateMethods::MO
     },
     "abr_election_type_selections": {
       options: [
-        #"abr_election_type1",
+        "abr_election_type1",
         "abr_election_type2",
         "abr_election_type3",
       ]
-    },	
+    },
     "abr_election_date": {
       method: "abr_election_date_input_string"
     },
@@ -65,7 +64,7 @@ module AbrStateMethods::MO
         "abr_primary_type4",
         "abr_primary_type5",
       ]
-    },	
+    },
   }
 
   EXTRA_FIELDS = ["abr_election_date_input_dd", "abr_election_date_input_mm", "abr_election_date_input_yyyy",
@@ -78,14 +77,14 @@ module AbrStateMethods::MO
   
   def form_field_items
     [
-      {"abr_last_4_ssn": {required: true, regexp: /\A\d{4}\z/}},	
-      {"abr_check_mailing_address": {type: :checkbox}},	
+      {"abr_last_4_ssn": {required: true, regexp: /\A\d{4}\z/}},
+      {"abr_check_mailing_address": {type: :checkbox}},
       {"abr_mailing_address_instructions": {type: :instructions, visible: "abr_check_mailing_address"}},
-      {"abr_mailing_address_line_1_input": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_state_abbrev_input": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_zip_input": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_address_line_1_input": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_unit_input": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_city_input": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_state_abbrev_input": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_zip_input": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
       
       {"abr_reason_selections": { type: :radio, required: true }},
       {"abr_election_type_selections_instructions": {type: :instructions}},
@@ -97,9 +96,9 @@ module AbrStateMethods::MO
   
   def abr_election_date_input_string
     if self.abr_election_type_selections == "abr_election_type1"
-      "08/02/2022"
+      "03/23/2024"
     elsif self.abr_election_type_selections == "abr_election_type2"
-      "11/08/2022"
+      "04/02/2024"
     else
       date_field_string_mm_dd_yyyy(method: :abr_election_date_input)
     end

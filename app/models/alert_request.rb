@@ -15,7 +15,6 @@ class AlertRequest < ApplicationRecord
     false
   end
 
-
   belongs_to :partner, optional: true
   belongs_to :state, class_name: 'GeoState', optional: true
 
@@ -37,6 +36,15 @@ class AlertRequest < ApplicationRecord
   end
   
   validate :validate_date_of_birth
+
+  validate :validate_date_of_birth_min_age
+
+  def validate_date_of_birth_min_age
+    if date_of_birth.present? && date_of_birth > 13.years.ago.to_date
+      errors.add(:date_of_birth, "Must be at least 13 years old")
+    end
+  end
+
   validate :validates_zip
   validate :validate_phone_present_if_opt_in_partner_sms
 

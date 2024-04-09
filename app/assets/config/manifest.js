@@ -6,6 +6,7 @@
 //= link qtip-custom.css
 //= link registration.css
 //= link registration2.css
+//= link registration3.css
 //= link reset.css
 //= link rocky.css
 //= link nvra.css

@@ -1,17 +1,4 @@
-<style type="text/css">
-<!--
-.boxtext {
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 22px;
-  font-style: normal;
-  line-height: 1.5em;
-  font-weight: bolder;
-  text-transform: uppercase;
-}
--->
-</style>
-
-
+<div style="max-width: 700px; margin: 0 auto;">
 <%= I18n.t('email.abr.chaser.body.main', 
   :abr_first_name=>@abr_first_name, 
   :abr_first_name_with_space=>(@abr_first_name.blank? ? "" : " #{@abr_first_name}"),
@@ -25,4 +12,4 @@
   :registrar_url=>@registrar_url,
   :rtv_link=>@rtv_link, :locale => @locale
 ).html_safe %>
-
+</div>
