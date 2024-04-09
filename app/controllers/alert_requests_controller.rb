@@ -138,12 +138,15 @@ class AlertRequestsController < ApplicationController
   end
 
   def no_emojis_in_survey_answers
+    survey_answer_1 = alert_request_params[:survey_answer_1]
+    survey_answer_2 = alert_request_params[:survey_answer_2]
+
     if survey_answer_1.present? && survey_answer_1.match(/\p{Emoji}/)
-      errors.add(:survey_answer_1, :invalid_emoji)
+      @alert_request.errors.add(:survey_answer_1, :invalid_emoji)
     end
 
     if survey_answer_2.present? && survey_answer_2.match(/\p{Emoji}/)
-      errors.add(:survey_answer_2, :invalid_emoji)
+      @alert_request.errors.add(:survey_answer_2, :invalid_emoji)
     end
   end
 end
