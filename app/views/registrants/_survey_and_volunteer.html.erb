@@ -1,5 +1,16 @@
 <%- model ||= @registrant || form.object %>
 
+<%- def sanitize_input(input) %>
+  # Remove emojis
+  sanitized_input = input.gsub(/\p{Emoji}/, '')
+  if sanitized_input != input
+    # An emoji was removed, add error message
+    form.object.errors.add(:survey_answer_1, :invalid_emoji) if form.object.survey_answer_1.include?("\u{FFFD}") # Check for � character which may indicate a removed emoji
+    form.object.errors.add(:survey_answer_2, :invalid_emoji) if form.object.survey_answer_2.include?("\u{FFFD}") # Check for � character which may indicate a removed emoji
+  end
+  sanitized_input
+<%- end %>
+
 <%- if !@question_1.blank? || !@question_2.blank? || model.any_ask_for_volunteers? %>
   <fieldset class="questions">
     <%- if !@question_1.blank? || !@question_2.blank?  %>
@@ -47,14 +58,3 @@
     <% end %>
   </fieldset>
 <% end %>
-
-<%- def sanitize_input(input) %>
-  # Remove emojis
-  sanitized_input = input.gsub(/\p{Emoji}/, '')
-  if sanitized_input != input
-    # An emoji was removed, add error message
-    form.object.errors.add(:survey_answer_1, :invalid_emoji) if form.object.survey_answer_1.include?("\u{FFFD}") # Check for � character which may indicate a removed emoji
-    form.object.errors.add(:survey_answer_2, :invalid_emoji) if form.object.survey_answer_2.include?("\u{FFFD}") # Check for � character which may indicate a removed emoji
-  end
-  sanitized_input
-<%- end %>
