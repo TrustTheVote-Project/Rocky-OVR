@@ -2082,11 +2082,19 @@ class Registrant < ActiveRecord::Base
 
   def validate_no_emojis(reg)
     SURVEY_FIELDS.each do |field|
-      if reg.send(field)&.match?(/\p{Emoji}/)
-        reg.errors.add(field.to_sym, :invalid_emoji)
+      value = reg.send(field)
+      if value&.match?(/\p{Emoji}/)
+        # Remove emoji characters from the value
+        sanitized_value = value.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+        # Update the attribute with the sanitized value
+        reg.send("#{field}=", sanitized_value)
+        puts "Emoji characters removed from #{field} attribute."
+        # Tell user about the removal of emoji characters
+        reg.errors.add(field.to_sym, :invalid_emoji_removed, :invalid_emoji)
       end
     end
   end
+
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
