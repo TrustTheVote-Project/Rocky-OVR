@@ -132,11 +132,21 @@ class AlertRequest < ApplicationRecord
 
   def no_emojis_in_survey_answers
     if survey_answer_1.present? && survey_answer_1.match(/\p{Emoji}/)
-      errors.add(:survey_answer_1, :invalid_emoji)
+      self.errors.add(:survey_answer_1, :invalid_emoji)
+      self.survey_answer_1 = remove_emojis(survey_answer_1)
     end
 
     if survey_answer_2.present? && survey_answer_2.match(/\p{Emoji}/)
-      errors.add(:survey_answer_2, :invalid_emoji)
+      self.errors.add(:survey_answer_2, :invalid_emoji)
+      self.survey_answer_2 = remove_emojis(survey_answer_2)
     end
   end
+
+
+  private
+
+  def remove_emojis(text)
+    text.gsub(/\p{Emoji}/, '')
+  end
+
 end
