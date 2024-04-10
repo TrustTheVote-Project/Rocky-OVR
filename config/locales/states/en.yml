@@ -2084,11 +2084,22 @@ en:
           abr_mailing_city: City
           abr_mailing_state_abbrev: State
           abr_mailing_zip: ZIP
-          abr_election_type_selections: Select the election you'd like to request
-            a ballot for.
-          abr_election_type_selections__options:
-            abr_election_type1: Statewide General Election
-            abr_election_type2: Special Election
+          abr_id_type_selections: |-
+            <h3>Identification (* required)</h3>
+            <p>You must provide one of the following:</p>
+          abr_id_type_selections__options:
+            abr_id_type1: Nebraska Driver's License or State ID Number
+            abr_id_type2: Enclose a Photocopy of other acceptable photo ID
+            abr_id_type3: Enclose a Reasonable Impediment Certification
+          abr_primary_type_selections: |-
+            <h3>Nonpartisans Only (optional)</h3>
+            <p>If you are not registered with a recognized political party in Nebraska, 
+            request a partisan ballot from the following party:</p>
+          abr_primary_type_selections__options:
+            abr_primary_type1: Republican
+            abr_primary_type2: Democratic
+            abr_primary_type3: Libertarian
+            abr_primary_type4: Legal Marijuana Now
           abr_election_date: Enter the date of the election
           abr_request_check: Are you requesting a ballot on behalf of a voter?
           abr_request_check__hint: An agent is a person who requests a ballot for
