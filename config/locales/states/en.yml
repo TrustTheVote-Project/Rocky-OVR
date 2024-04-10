@@ -2088,7 +2088,7 @@ en:
           abr_id_instructions: |-
             <h2>Identification</h2>
           abr_id_selections: |-
-            <p>You must provide one of the following:</p>
+            You must provide one of the following:
           abr_id_selections__options:
             abr_id_type1: Nebraska Driver's License or State ID Number
             abr_id_type2: Enclose a Photocopy of other acceptable photo ID
