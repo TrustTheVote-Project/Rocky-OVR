@@ -3,7 +3,7 @@ class RegistrantValidator < ActiveModel::Validator
   def validate(reg)
     
     #regexp = /\A(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))\z/i
-
+    
     reg.validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
 
     reg.validates_format_of :email_address, :with => Registrant::EMAIL_REGEX, :allow_blank => true
@@ -78,7 +78,7 @@ class RegistrantValidator < ActiveModel::Validator
 
     if reg.at_least_step_3?
       unless reg.in_ovr_flow?
-        validate_race(reg)
+        validate_race(reg)        
       end
     end
   
@@ -89,7 +89,7 @@ class RegistrantValidator < ActiveModel::Validator
   
   
     if reg.at_least_step_4? && !reg.using_state_online_registration?
-      validate_race(reg)
+      validate_race(reg)        
     end
 
     if reg.needs_prev_name?
@@ -224,5 +224,7 @@ class RegistrantValidator < ActiveModel::Validator
       end
     end
   end
-
+  
+  
+  
 end

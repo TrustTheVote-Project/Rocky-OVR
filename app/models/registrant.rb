@@ -57,6 +57,8 @@ class Registrant < ActiveRecord::Base
     other_parameters&.include?('iframe=true')
   end
 
+
+
   serialize :state_ovr_data, Hash
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]
@@ -173,7 +175,8 @@ class Registrant < ActiveRecord::Base
   # end
   
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
-  validate_fields(SURVEY_FIELDS, [DB_REGEX, DB_NO_EMOJI_REGEX], :invalid)
+  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
+  validate_fields(SURVEY_FIELDS, DB_NO_EMOJI_REGEX, :invalid)
 
   FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share-vanilla.php"
 
