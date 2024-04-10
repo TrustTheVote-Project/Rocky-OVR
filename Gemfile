@@ -124,3 +124,5 @@ gem "delayed_job_active_record" #, "~> 4.1"
 gem 'delayed_cron_job'
 
 gem 'exception_notification'
+
+gem 'gemoji'

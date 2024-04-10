@@ -1,6 +1,7 @@
 class AlertRequestsController < ApplicationController
   layout 'alert_request'
   before_action :find_partner
+  require 'gemoji'
 
   def new
     @alert_request = AlertRequest.new(new_alert_request_params)
@@ -93,7 +94,10 @@ class AlertRequestsController < ApplicationController
   end
 
   def remove_emojis(text)
-    text.gsub(/\p{Emoji}/) { |emoji| "[EMOJI]" }
+    text.gsub(/\p{Emoji}/) do |emoji|
+      emoji_info = Emoji.find_by_unicode(emoji)
+      emoji_info ? ":#{emoji_info.name}:" : "[EMOJI]"
+    end
   end
 
   def new_alert_request_params
