@@ -227,8 +227,9 @@ class RegistrantValidator < ActiveModel::Validator
     end
   end
 
+  # Let's remove the emojis from survey questions since db doesn't support
+
   def remove_emojis(text)
-    # emove_emojis method
     text.gsub(/\p{Emoji}/, '')
   end
 

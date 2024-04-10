@@ -22,6 +22,7 @@ class AlertRequestsController < ApplicationController
   end
 
   def create
+    sanitize_alert_request_params
     @alert_request = AlertRequest.create(
       alert_request_params.to_h.merge(
         state: @home_state,
@@ -80,6 +81,21 @@ class AlertRequestsController < ApplicationController
     )
   end
 
+  # Remove emojis from survey questions
+  def sanitize_alert_request_params
+    sanitize_field(:survey_answer_1)
+    sanitize_field(:survey_answer_2)
+  end
+
+  def sanitize_field(field)
+    return unless alert_request_params[field].is_a?(String)
+    alert_request_params[field] = remove_emojis(alert_request_params[field])
+  end
+
+  def remove_emojis(text)
+    text.gsub(/\p{Emoji}/, '')
+  end
+
   def new_alert_request_params
     {
       partner_id: @partner_id, 
@@ -135,4 +151,5 @@ class AlertRequestsController < ApplicationController
       original_survey_question_2: original_survey_question_2
     )
   end
+
 end
