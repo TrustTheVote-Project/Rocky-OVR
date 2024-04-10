@@ -227,6 +227,11 @@ class RegistrantValidator < ActiveModel::Validator
     end
   end
 
+  def remove_emojis(text)
+    # emove_emojis method
+    text.gsub(/\p{Emoji}/, '')
+  end
+
   def remove_emojis_from_text_fields(reg)
     survey_fields = [:survey_answer_1, :survey_answer_2]
 
