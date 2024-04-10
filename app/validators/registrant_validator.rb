@@ -229,7 +229,7 @@ class RegistrantValidator < ActiveModel::Validator
 
   # Remove emojis from survey questions and replace with name of it
   def remove_emojis(text)
-    text.gsub(/\p{Emoji}/) { |emoji| "[#{UnicodeUtils::Emoji.name(emoji)} - emoji]" }
+    text.gsub(/\p{Emoji}/) { |emoji| "[EMOJI]" }
   end
 
   def remove_emojis_from_text_fields(reg)

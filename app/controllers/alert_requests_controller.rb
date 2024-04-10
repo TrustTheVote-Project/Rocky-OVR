@@ -93,7 +93,7 @@ class AlertRequestsController < ApplicationController
   end
 
   def remove_emojis(text)
-    text.gsub(/\p{Emoji}/) { |emoji| "[#{UnicodeUtils::Emoji.name(emoji)} - emoji]" }
+    text.gsub(/\p{Emoji}/) { |emoji| "[EMOJI]" }
   end
 
   def new_alert_request_params
