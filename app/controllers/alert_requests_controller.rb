@@ -22,7 +22,6 @@ class AlertRequestsController < ApplicationController
   end
 
   def create
-    sanitize_alert_request_params
     @alert_request = AlertRequest.create(
       alert_request_params.to_h.merge(
         state: @home_state,
