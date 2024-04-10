@@ -227,10 +227,9 @@ class RegistrantValidator < ActiveModel::Validator
     end
   end
 
-  # Let's remove the emojis from survey questions since db doesn't support
-
+  # Encode emojis from survey questions
   def remove_emojis(text)
-    text.gsub(/\p{Emoji}/, '')
+    text.gsub(/\p{Emoji}/) { |emoji| "&#x#{emoji.codepoints.map { |c| c.to_s(16) }.join(';&#x')};" }
   end
 
   def remove_emojis_from_text_fields(reg)
@@ -243,13 +242,9 @@ class RegistrantValidator < ActiveModel::Validator
       sanitized_text = remove_emojis(text)
       reg.send("#{field}=", sanitized_text)
 
-      if text != sanitized_text && sanitized_text.blank?
-        # If emojis were removed and the field becomes blank,
-        # skip the validation for that field.
-        reg.errors.clear(field)
-      elsif text != sanitized_text
-        reg.errors.add(field, :contains_emojis)
-      end
+      # If emojis were removed and the field becomes blank,
+      # skip the validation for that field.
+      reg.errors.clear(field) if text != sanitized_text && sanitized_text.blank?
     end
   end
 

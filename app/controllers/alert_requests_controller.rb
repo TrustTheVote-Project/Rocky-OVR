@@ -81,7 +81,7 @@ class AlertRequestsController < ApplicationController
     )
   end
 
-  # Remove emojis from survey questions
+  # Encode emojis from survey questions
   def sanitize_alert_request_params
     sanitize_field(:survey_answer_1)
     sanitize_field(:survey_answer_2)
@@ -93,7 +93,7 @@ class AlertRequestsController < ApplicationController
   end
 
   def remove_emojis(text)
-    text.gsub(/\p{Emoji}/, '')
+    text.gsub(/\p{Emoji}/) { |emoji| "&#x#{emoji.codepoints.map { |c| c.to_s(16) }.join(';&#x')};" }
   end
 
   def new_alert_request_params

@@ -18,7 +18,6 @@ en:
       wrong_length: wrong length (should be %{count} characters).
       too_young: You must be 18 on or before Election day.
       way_too_young: You are too young for this.
-      contains_emojis: Contains invalid emoji characters. Please remove them.
   or: OR
   affirm: Affirm
   decline: Decline
