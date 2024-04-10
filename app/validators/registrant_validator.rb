@@ -1,12 +1,8 @@
-require 'gemoji'
-
 class RegistrantValidator < ActiveModel::Validator
   
   def validate(reg)
     
     #regexp = /\A(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))\z/i
-
-    remove_emojis_from_text_fields(reg)
 
     reg.validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
 
@@ -228,30 +224,5 @@ class RegistrantValidator < ActiveModel::Validator
       end
     end
   end
-
-  # Remove emojis from survey questions and replace with name of it
-  def remove_emojis(text)
-    text.gsub(/\p{Emoji}/) do |emoji|
-      emoji_info = Emoji.find_by_unicode(emoji)
-      emoji_info ? ":#{emoji_info.name}:" : "[EMOJI]"
-    end
-  end
-
-  def remove_emojis_from_text_fields(reg)
-    survey_fields = [:survey_answer_1, :survey_answer_2]
-
-    survey_fields.each do |field|
-      next unless reg.respond_to?(field) && reg.send(field).is_a?(String)
-
-      text = reg.send(field)
-      sanitized_text = remove_emojis(text)
-      reg.send("#{field}=", sanitized_text)
-
-      # If emojis were removed and the field becomes blank,
-      # skip the validation for that field.
-      reg.errors.clear(field) if text != sanitized_text && sanitized_text.blank?
-    end
-  end
-
 
 end

@@ -96,7 +96,7 @@ class AlertRequestsController < ApplicationController
   def remove_emojis(text)
     text.gsub(/\p{Emoji}/) do |emoji|
       emoji_info = Emoji.find_by_unicode(emoji)
-      emoji_info ? ":#{emoji_info.name}:" : "[EMOJI]"
+      emoji_info ? ":#{emoji_info.name}:" : ""
     end
   end
 

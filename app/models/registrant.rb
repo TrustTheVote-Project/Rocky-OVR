@@ -24,6 +24,8 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
+require 'gemoji'
+
 class Registrant < ActiveRecord::Base
   class AbandonedRecord < StandardError
     attr_reader :registrant
@@ -57,7 +59,7 @@ class Registrant < ActiveRecord::Base
     other_parameters&.include?('iframe=true')
   end
 
-  
+  remove_emojis_from_text_fields(self)
   
   serialize :state_ovr_data, Hash
 
@@ -175,8 +177,31 @@ class Registrant < ActiveRecord::Base
   
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
   validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
-  
-  
+
+  # Remove emojis from survey questions and replace with name of it
+  def remove_emojis(text)
+    text.gsub(/\p{Emoji}/) do |emoji|
+      emoji_info = Emoji.find_by_unicode(emoji)
+      emoji_info ? ":#{emoji_info.name}:" : ""
+    end
+  end
+
+  def self.remove_emojis_from_text_fields(reg)
+    survey_fields = [:survey_answer_1, :survey_answer_2]
+
+    survey_fields.each do |field|
+      next unless reg.respond_to?(field) && reg.send(field).is_a?(String)
+
+      text = reg.send(field)
+      sanitized_text = remove_emojis(text)
+      reg.send("#{field}=", sanitized_text)
+
+      # If emojis were removed and the field becomes blank,
+      # skip the validation for that field.
+      reg.errors.clear(field) if text != sanitized_text && sanitized_text.blank?
+    end
+  end
+
 
   FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share-vanilla.php"
 
