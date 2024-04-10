@@ -24,8 +24,6 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-require 'gemoji'
-
 class Registrant < ActiveRecord::Base
   class AbandonedRecord < StandardError
     attr_reader :registrant
@@ -59,8 +57,6 @@ class Registrant < ActiveRecord::Base
     other_parameters&.include?('iframe=true')
   end
 
-  remove_emojis_from_text_fields(self)
-  
   serialize :state_ovr_data, Hash
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]
@@ -121,6 +117,7 @@ class Registrant < ActiveRecord::Base
   OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
   #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
   DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
+  DB_NO_EMOJI_REGEX = /\A[^\p{Emoji}]*\z/
   EMAIL_REGEX = /
     \A
     [A-Z0-9_.&%+\-']+   # mailbox
@@ -176,32 +173,7 @@ class Registrant < ActiveRecord::Base
   # end
   
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
-  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
-
-  # Remove emojis from survey questions and replace with name of it
-  def remove_emojis(text)
-    text.gsub(/\p{Emoji}/) do |emoji|
-      emoji_info = Emoji.find_by_unicode(emoji)
-      emoji_info ? ":#{emoji_info.name}:" : ""
-    end
-  end
-
-  def self.remove_emojis_from_text_fields(reg)
-    survey_fields = [:survey_answer_1, :survey_answer_2]
-
-    survey_fields.each do |field|
-      next unless reg.respond_to?(field) && reg.send(field).is_a?(String)
-
-      text = reg.send(field)
-      sanitized_text = remove_emojis(text)
-      reg.send("#{field}=", sanitized_text)
-
-      # If emojis were removed and the field becomes blank,
-      # skip the validation for that field.
-      reg.errors.clear(field) if text != sanitized_text && sanitized_text.blank?
-    end
-  end
-
+  validate_fields(SURVEY_FIELDS, [DB_REGEX, DB_NO_EMOJI_REGEX], :invalid)
 
   FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share-vanilla.php"
 
