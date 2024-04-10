@@ -229,7 +229,7 @@ class RegistrantValidator < ActiveModel::Validator
 
   # Encode emojis from survey questions
   def remove_emojis(text)
-    text.gsub(/\p{Emoji}/) { |emoji| "&#x#{emoji.codepoints.map { |c| c.to_s(16) }.join(';&#x')};" }
+    text.gsub(/\p{Emoji}/) { |emoji| emoji.codepoints.map { |c| "\\u#{c.to_s(16)}" }.join }
   end
 
   def remove_emojis_from_text_fields(reg)
