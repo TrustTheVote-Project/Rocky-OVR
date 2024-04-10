@@ -15,7 +15,7 @@ module AbrStateMethods::NE
     "abr_home_state_abbrev": {method: "home_state_abbrev"},
     "abr_zip": {method: "zip"},
 
-	"abr_id_type":{
+	"abr_id_selections":{
       options:[
         'abr_id_type1',
         'abr_id_type2',
