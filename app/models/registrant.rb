@@ -176,7 +176,7 @@ class Registrant < ActiveRecord::Base
   
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
   validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
-  validate_fields(SURVEY_FIELDS, DB_NO_EMOJI_REGEX, :invalid)
+  validate_fields(SURVEY_FIELDS, DB_NO_EMOJI_REGEX, :contains_emojis)
 
   FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share-vanilla.php"
 

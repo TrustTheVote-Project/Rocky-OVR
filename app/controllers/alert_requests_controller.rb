@@ -81,7 +81,7 @@ class AlertRequestsController < ApplicationController
     )
   end
 
-  # Remove emojis from survey questions
+  # Remove as many emojis from survey questions as we can until we can implement utf8mb4
   def sanitize_alert_request_params
     sanitize_field(:survey_answer_1)
     sanitize_field(:survey_answer_2)
