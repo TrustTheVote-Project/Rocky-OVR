@@ -15,7 +15,7 @@ module AbrStateMethods::NE
     "abr_home_state_abbrev": {method: "home_state_abbrev"},
     "abr_zip": {method: "zip"},
 
-	"abr_id_selections":{
+	"abr_id_type":{
       options:[
         'abr_id_type1',
         'abr_id_type2',
@@ -24,7 +24,7 @@ module AbrStateMethods::NE
     },
     "abr_drivers_license": {sensitive:true},
 
-    "abr_primary_type_selections": {
+    "abr_primary_type_selections1": {
       options: [
         "abr_primary_type1",
         "abr_primary_type2",
@@ -66,7 +66,7 @@ module AbrStateMethods::NE
     [
       {"abr_id_selections": {type: :radio, required: true, options: ["abr_id_type1", "abr_id_type2", "abr_id_type3"]}},
       {"abr_drivers_license": {visible: "abr_id_selections_abr_id_type1", required: :if_visible, ui_regexp:"^[a-zA-Z][0-9]{8}$|^[0-9]{9}$", min:9, max:9}},
-      {"abr_primary_type_selections": {required: false, type: :radio}},
+      {"abr_primary_type_selections1": {required: false, type: :radio}},
       {"abr_check_mailing_address": {type: :checkbox}},
       {"abr_mailing_address_line_1": {classes: "three-quarter", required: :if_visible, visible: "abr_check_mailing_address"}},
       {"abr_mailing_unit": {classes: "quarter", visible: "abr_check_mailing_address"}},

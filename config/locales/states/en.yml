@@ -2087,15 +2087,15 @@ en:
           abr_id_type_selections: |-
             <h3>Identification (* required)</h3>
             <p>You must provide one of the following:</p>
-          abr_id_type_selections__options:
+          abr_id_selections__options:
             abr_id_type1: Nebraska Driver's License or State ID Number
             abr_id_type2: Enclose a Photocopy of other acceptable photo ID
             abr_id_type3: Enclose a Reasonable Impediment Certification
-          abr_primary_type_selections: |-
+          abr_primary_type_selections1: |-
             <h3>Nonpartisans Only (optional)</h3>
             <p>If you are not registered with a recognized political party in Nebraska, 
             request a partisan ballot from the following party:</p>
-          abr_primary_type_selections__options:
+          abr_primary_type_selections1__options:
             abr_primary_type1: Republican
             abr_primary_type2: Democratic
             abr_primary_type3: Libertarian
