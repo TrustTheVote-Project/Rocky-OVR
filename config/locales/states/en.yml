@@ -2084,7 +2084,7 @@ en:
           abr_mailing_city: City
           abr_mailing_state_abbrev: State
           abr_mailing_zip: ZIP
-          abr_id_type_selections: |-
+          abr_id_selections: |-
             <h3>Identification (* required)</h3>
             <p>You must provide one of the following:</p>
           abr_id_selections__options:
