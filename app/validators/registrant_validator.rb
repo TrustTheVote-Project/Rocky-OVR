@@ -3,7 +3,9 @@ class RegistrantValidator < ActiveModel::Validator
   def validate(reg)
     
     #regexp = /\A(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))\z/i
-    
+
+    remove_emojis_from_text_fields(reg)
+
     reg.validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
 
     reg.validates_format_of :email_address, :with => Registrant::EMAIL_REGEX, :allow_blank => true
@@ -78,7 +80,7 @@ class RegistrantValidator < ActiveModel::Validator
 
     if reg.at_least_step_3?
       unless reg.in_ovr_flow?
-        validate_race(reg)        
+        validate_race(reg)
       end
     end
   
@@ -89,7 +91,7 @@ class RegistrantValidator < ActiveModel::Validator
   
   
     if reg.at_least_step_4? && !reg.using_state_online_registration?
-      validate_race(reg)        
+      validate_race(reg)
     end
 
     if reg.needs_prev_name?
@@ -224,7 +226,26 @@ class RegistrantValidator < ActiveModel::Validator
       end
     end
   end
-  
-  
-  
+
+  def remove_emojis_from_text_fields(reg)
+    survey_fields = [:survey_answer_1, :survey_answer_2]
+
+    survey_fields.each do |field|
+      next unless reg.respond_to?(field) && reg.send(field).is_a?(String)
+
+      text = reg.send(field)
+      sanitized_text = remove_emojis(text)
+      reg.send("#{field}=", sanitized_text)
+
+      if text != sanitized_text && sanitized_text.blank?
+        # If emojis were removed and the field becomes blank,
+        # skip the validation for that field.
+        reg.errors.clear(field)
+      elsif text != sanitized_text
+        reg.errors.add(field, :contains_emojis)
+      end
+    end
+  end
+
+
 end
