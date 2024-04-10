@@ -2096,8 +2096,8 @@ en:
           abr_primary_type_instructions: |-
             <h2>Nonpartisans Only (optional)</h2>
           abr_primary_type_selections1: |-
-            <p>If you are not registered with a recognized political party in Nebraska, 
-            request a partisan ballot from the following party:</p>
+            If you are not registered with a recognized political party in Nebraska, 
+            request a partisan ballot from the following party:
           abr_primary_type_selections1__options:
             abr_primary_type1: Republican
             abr_primary_type2: Democratic
