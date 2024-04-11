@@ -72,16 +72,6 @@ module AbrStateMethods::AR
   EXTRA_FIELDS = [
     "abr_election_date_input_mm", "abr_election_date_input_dd", "abr_election_date_input_yyyy",
       "delivery_ballot_address_1", "delivery_ballot_address_2", "delivery_ballot_address_3"]
-
-  def self.included(base)
-    base.extend(ClassMethods)
-  end
-    
-  module ClassMethods
-    def custom_form_field_validations
-      before_validation :process_abbrev
-    end
-  end
  
   def form_field_items
     [
@@ -175,6 +165,12 @@ module AbrStateMethods::AR
   def process_abbrev
     if self.abr_assistant_state_abbrev.present?
       self.abr_assistant_state_abbrev = self.abr_assistant_state_abbrev[0..1].upcase
+    end
+  end
+
+  def validate_state_abbrev_length
+    if abr_assistant_state_abbrev.present? && abr_assistant_state_abbrev.length != 2
+      errors.add(:abr_assistant_state_abbrev, "State must be exactly two characters long")
     end
   end  
  
