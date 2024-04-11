@@ -148,10 +148,8 @@ module AbrStateMethods::AR
   # end
 
   def custom_form_field_validations
-    if self.abr_assistant_check_selections.present?
-      unless self.abr_assistant_check_option1 == "abr_assistant_check_option1" || self.abr_assistant_check_option2 == "abr_assistant_check_option2"
-        errors.add(:abr_assistant_check_selections, "Please select one assistant option")
-      end
+    unless self.abr_assistant_check_option1.present? || self.abr_assistant_check_option2.present?
+      errors.add(:abr_assistant_check_selections, "Please select one option")
     end
 
     if self.abr_assistant_check_option2 == "abr_assistant_check_option2"
