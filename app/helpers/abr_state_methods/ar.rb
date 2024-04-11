@@ -148,17 +148,16 @@ module AbrStateMethods::AR
   # end
 
   def custom_form_field_validations
-    unless self.abr_assistant_check_option1.present? || self.abr_assistant_check_option2.present?
+    unless self.abr_assistant_check_selections.present?
       errors.add(:abr_assistant_check_selections, "Please select one option")
     end
 
-    if self.abr_assistant_check_option2 == "abr_assistant_check_option2"
+     if self.abr_assistant_check_selections == "abr_assistant_check_option2"
       if self.abr_assistant_name.blank? || self.abr_assistant_address_line1.blank? || self.abr_assistant_city.blank? || self.abr_assistant_state_abbrev.blank? || self.abr_assistant_zip.blank?
         errors.add(:base, "Please fill in all assistant details")
       end
     end
 
-    # Add any additional custom validations here
     validate_state_abbrev_length
   end
 
