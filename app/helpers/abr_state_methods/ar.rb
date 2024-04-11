@@ -52,6 +52,20 @@ module AbrStateMethods::AR
       ]
     },
     "abr_election_date": {method: "abr_election_date_string"},
+
+    "abr_assistant_check_selections": {
+      options: [
+        "abr_assistant_check_option1",
+        "abr_assistant_check_option2",
+      ]
+    },
+    "abr_assistant_name": {},
+    "abr_assistant_address_line_1": {},
+    "abr_assistant_city": {},
+    "abr_assistant_state_abbrev": {},
+    "abr_assistant_zip": {},
+
+
     "abr_phone": {method: "phone"},
   }
 
@@ -83,6 +97,16 @@ module AbrStateMethods::AR
       {"abr_election_type1_instructions": {type: :instructions, visible: "abr_election_type1"}},
       {"abr_election_type2_instructions": {type: :instructions, visible: "abr_election_type_selections_abr_election_type2"}},
       {"abr_election_date_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type5"}},
+
+      #{"abr_assistant_check_selections": {type: :instructions}},
+
+      {'abr_assistant_check_selections': {type: :radio, required: true}},
+      {"abr_assistant_name": {visible: "abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_address_instructions": {type: :instructions,  visible: "abr_assistant_check_option2"}},
+      {"abr_assistant_address_line_1": {visible: "abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_city": {visible: "abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_state_abbrev": {visible: "abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_zip": {visible: "abr_assistant_check_option2", required: :if_visible}},
       
       
     ]
@@ -130,8 +154,15 @@ module AbrStateMethods::AR
   # end
   
   def custom_form_field_validations
-    
+    before_validation :process_abbrev
   end
   
+  private
+  
+  def process_abbrev
+    if self.abr_assistant_state_abbrev.present?
+      self.abr_assistant_state_abbrev = self.abr_assistant_state_abbrev[0..1].upcase
+    end
+  end  
  
 end
