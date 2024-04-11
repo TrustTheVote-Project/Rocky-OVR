@@ -60,7 +60,7 @@ module AbrStateMethods::AR
       ]
     },
     "abr_assistant_name": {},
-    "abr_assistant_address_line_1": {},
+    "abr_assistant_address_line1": {},
     "abr_assistant_city": {},
     "abr_assistant_state_abbrev": {},
     "abr_assistant_zip": {},
