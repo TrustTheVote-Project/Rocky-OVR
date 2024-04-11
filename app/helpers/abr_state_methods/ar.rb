@@ -72,6 +72,16 @@ module AbrStateMethods::AR
   EXTRA_FIELDS = [
     "abr_election_date_input_mm", "abr_election_date_input_dd", "abr_election_date_input_yyyy",
       "delivery_ballot_address_1", "delivery_ballot_address_2", "delivery_ballot_address_3"]
+
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+    
+  module ClassMethods
+    def custom_form_field_validations
+      before_validation :process_abbrev
+    end
+  end
  
   def form_field_items
     [
@@ -88,9 +98,6 @@ module AbrStateMethods::AR
       {"delivery_ballot_address_3": {required: :if_visible, visible: "abr_check_mailing_address"}},
       
       {"abr_request_name": { required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type3" }},
-
-      
-
       
       {"abr_election_type1": { type: :checkbox, visible_any: "abr_reason_selections_abr_reason2 abr_reason_selections_abr_reason3 abr_address_type_selections_abr_address_type2" }},
       {"abr_election_type_selections": { type: :radio, hidden: "abr_election_type1" }},
@@ -102,7 +109,7 @@ module AbrStateMethods::AR
       {"abr_assistant_check_selections": {type: :radio, required: true}},
       {"abr_assistant_name": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
       {"abr_assistant_address_instructions": {type: :instructions,  visible: "abr_assistant_check_selections_abr_assistant_check_option2"}},
-      {"abr_assistant_address_line_1": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_address_line1": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
       {"abr_assistant_city": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
       {"abr_assistant_state_abbrev": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
       {"abr_assistant_zip": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
