@@ -107,7 +107,11 @@ module AbrStateMethods::AR
     ]
   end
 
-  
+  def validate_form_fields
+    super
+    validate_state_abbrev_length
+  end
+
   def mailing_addr_1
     if self.abr_delivery_address_selections_abr_delivery_address_type1
       delivery_ballot_address_1 || full_name
@@ -172,6 +176,6 @@ module AbrStateMethods::AR
     if abr_assistant_state_abbrev.present? && abr_assistant_state_abbrev.length != 2
       errors.add(:abr_assistant_state_abbrev, "State must be exactly two characters long")
     end
-  end  
+  end
  
 end
