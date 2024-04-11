@@ -98,17 +98,15 @@ module AbrStateMethods::AR
       {"abr_election_type2_instructions": {type: :instructions, visible: "abr_election_type_selections_abr_election_type2"}},
       {"abr_election_date_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type5"}},
 
-      #{"abr_assistant_check_selections": {type: :instructions}},
 
-      {'abr_assistant_check_selections': {type: :radio, required: true}},
-      {"abr_assistant_name": {visible: "abr_assistant_check_option2", required: :if_visible}},
-      {"abr_assistant_address_instructions": {type: :instructions,  visible: "abr_assistant_check_option2"}},
-      {"abr_assistant_address_line_1": {visible: "abr_assistant_check_option2", required: :if_visible}},
-      {"abr_assistant_city": {visible: "abr_assistant_check_option2", required: :if_visible}},
-      {"abr_assistant_state_abbrev": {visible: "abr_assistant_check_option2", required: :if_visible}},
-      {"abr_assistant_zip": {visible: "abr_assistant_check_option2", required: :if_visible}},
-      
-      
+      {"abr_assistant_check_selections": {type: :radio, required: true}},
+      {"abr_assistant_name": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_address_instructions": {type: :instructions,  visible: "abr_assistant_check_selections_abr_assistant_check_option2"}},
+      {"abr_assistant_address_line_1": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_city": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_state_abbrev": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_zip": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+
     ]
   end
 
@@ -152,6 +150,14 @@ module AbrStateMethods::AR
   # def mailing_addr_3=(value)
   #   self.delivery_ballot_address_3 = value
   # end
+
+  def abr_assistant_check_option1
+    abr_assistant_check_selections == 'abr_assistant_check_option1' ? 'abr_assistant_check_option1_value' : abr_assistant_check_selections
+  end
+
+  def abr_assistant_check_option2
+    abr_assistant_check_selections == 'abr_assistant_check_option2' ? 'abr_assistant_check_option2_value' : abr_assistant_check_selections
+  end
   
   def custom_form_field_validations
     before_validation :process_abbrev
