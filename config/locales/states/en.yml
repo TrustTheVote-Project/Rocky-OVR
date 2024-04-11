@@ -308,7 +308,8 @@ en:
           delivery_ballot_address_1: Street Address (Mailing)
           delivery_ballot_address_2: Unit (Mailing)
           delivery_ballot_address_3: City, State, Zip (Mailing)
-          abr_assistant_check_selections: Please indicate whether or not you received assistance in completing this application.
+          abr_assistant_check_selections: Please indicate whether or not you received 
+            assistance in completing this application.
           abr_assistant_check_selections__options: 
             abr_assistant_check_option1: I filled out this information on my own with no assitance.
             abr_assistant_check_option2: I received assistance in filling out this application.
@@ -317,7 +318,7 @@ en:
           abr_assistant_address_line1: Street Address
           abr_assistant_city: City
           abr_assistant_state_abbrev: State Abbreviation
-          abr_assistant_zip: Zip
+          abr_assistant_zip: Zip Code
       az:
         state_online_abr:
           instructions_header: 'I have an AZ Driver''s License or Non-Operating ID

@@ -158,6 +158,10 @@ module AbrStateMethods::AR
       end
     end
 
+    unless valid_zip_code?(self.abr_assistant_zip)
+      errors.add(:abr_assistant_zip, "Zip code is invalid")
+    end
+
     validate_state_abbrev_length
   end
 
@@ -173,6 +177,11 @@ module AbrStateMethods::AR
     if abr_assistant_state_abbrev.present? && abr_assistant_state_abbrev.length != 2
       errors.add(:abr_assistant_state_abbrev, "State must be exactly two characters long")
     end
+  end
+
+  def valid_zip_code?(zip_code)
+    return false unless zip_code.present?
+    return zip_code.match?(/\A[0-9]{5}(?:-[0-9]{4})?\z/)
   end
  
 end
