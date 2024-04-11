@@ -107,11 +107,6 @@ module AbrStateMethods::AR
     ]
   end
 
-  def validate_form_fields
-    super
-    validate_state_abbrev_length
-  end
-
   def mailing_addr_1
     if self.abr_delivery_address_selections_abr_delivery_address_type1
       delivery_ballot_address_1 || full_name
@@ -152,18 +147,23 @@ module AbrStateMethods::AR
   #   self.delivery_ballot_address_3 = value
   # end
 
-  def abr_assistant_check_option1
-    abr_assistant_check_selections == 'abr_assistant_check_option1' ? 'abr_assistant_check_option1_value' : abr_assistant_check_selections
+  def custom_form_field_validations
+    if self.abr_assistant_check_selections.present?
+      unless self.abr_assistant_check_option1 == "abr_assistant_check_option1" || self.abr_assistant_check_option2 == "abr_assistant_check_option2"
+        errors.add(:abr_assistant_check_selections, "Please select one assistant option")
+      end
+    end
+
+    if self.abr_assistant_check_option2 == "abr_assistant_check_option2"
+      if self.abr_assistant_name.blank? || self.abr_assistant_address_line1.blank? || self.abr_assistant_city.blank? || self.abr_assistant_state_abbrev.blank? || self.abr_assistant_zip.blank?
+        errors.add(:base, "Please fill in all assistant details")
+      end
+    end
+
+    # Add any additional custom validations here
+    validate_state_abbrev_length
   end
 
-  def abr_assistant_check_option2
-    abr_assistant_check_selections == 'abr_assistant_check_option2' ? 'abr_assistant_check_option2_value' : abr_assistant_check_selections
-  end
-  
-  def custom_form_field_validations
-    before_validation :process_abbrev
-  end
-  
   private
   
   def process_abbrev
