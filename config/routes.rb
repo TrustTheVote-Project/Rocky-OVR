@@ -2,7 +2,7 @@ Rails.application.routes.draw do
     
   root :to => "registrants#landing"
   get "/registrants/new/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
-  get "/registrants/new/robots.txt", to: "robots#robots_txt"
+  get "/registrants/new/robots.txt", to: redirect("https://register.rockthevote.com/robots.txt")
 
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui", via: :get
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout', via: :get
