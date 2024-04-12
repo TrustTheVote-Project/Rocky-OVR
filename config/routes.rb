@@ -27,8 +27,7 @@ Rails.application.routes.draw do
   match "/get-bounce-notification", to: "ses#bounce", via: [:get, :post]
 
   get ":path/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
-  match "/registrants/new/robots.txt", to: "robots#robots_txt"
-  match ":path/robots.txt", to: "robots#robots_txt"
+  get "robots.txt", to: "robots#robots_txt"
   
   resource :canvassing_shifts, path: "shift" do
     member do
