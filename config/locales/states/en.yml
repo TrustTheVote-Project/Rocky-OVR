@@ -241,11 +241,17 @@ en:
             <a href="https://www.sos.arkansas.gov/elections/voter-information/absentee-voting" target="_blank" rel="noopener noreferrer">qualifying reason</a> to vote absentee.</p>
           request_deadline: |-
             <p>Received by election officials 7 days before the election.</p>
-          status_check_instructions: <p>Contact your County Clerk (<a href="https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf">https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf</a>)
+          status_check_instructions: |-
+            <p>Contact your County Clerk (<a href="https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf" target="_blank" rel="noopener noreferrer">https://www.sos.arkansas.gov/</a>)
             with any questions about the status of your absentee ballot.</p>
           finish_instructions_1_hint: |-
-            <p>If you've requested an absentee ballot for the Presidential Primary or for all elections in the calendar year (disabled, residents of a care facility, or living outside of your county only), make sure you've circled the party you'd like to receive a ballot for.</p>
-            <p>If you've designated an authorized agent to pick up your ballot, they should wait to sign the application until they are in the presence of the county clerk.</p>
+            <p>If you've requested an absentee ballot for the Presidential Primary or for 
+            all elections in the calendar year (disabled, residents of a care facility, or 
+            living outside of your county only), make sure you've circled the party you'd 
+            like to receive a ballot for.</p>
+            <p>If you've designated an authorized agent to pick up your ballot, they should 
+            wait to sign the application until they are in the presence of the county 
+            clerk.</p>
         abr_form_fields:
           abr_address_type_selections: Select from one of the following
           abr_address_type_selections__options:
@@ -262,7 +268,7 @@ en:
               Administrator, or Authorized Agent.
           abr_delivery_address_selections_abr_delivery_address_type2_instructions: |-
             Find information about your county clerk here:
-            <a href="https://www.sos.arkansas.gov/uploads/elections/ARCountyClerks.pdf" target="_blank" rel="noopener noreferrer">https://www.sos.arkansas.gov/uploads/elections/ARCountyClerks.pdf</a>
+            <a href="https://www.sos.arkansas.gov/uploads/elections/ARCountyClerks.pdf" target="_blank" rel="noopener noreferrer">https://www.sos.arkansas.gov/</a>
           abr_delivery_address_selections_abr_delivery_address_type3_instructions: A
             designated bearer may obtain or deliver absentee ballots for no more than
             two (2) voters per election and may only do so within the 15 days before
