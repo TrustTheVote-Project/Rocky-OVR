@@ -6,6 +6,8 @@ class AlertRequest < ApplicationRecord
   include AlertRequestReportingMethods
   include TrackableMethods
   
+  DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
+  DB_NO_EMOJI_REGEX = /\A[^\p{Emoji}]*\z/
   
   # TODO create model fields for volunteering booleans before removing these overrides:
   def ask_for_primary_volunteers?
@@ -63,6 +65,10 @@ class AlertRequest < ApplicationRecord
         message: message }
     end    
   end
+
+  SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
+  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
+  validate_fields(SURVEY_FIELDS, DB_NO_EMOJI_REGEX, :contains_emojis)
   
   validate_fields(NAME_FIELDS, Registrant::OVR_REGEX, :invalid)
   validate_fields(ADDRESS_FIELDS, Registrant::CA_ADDRESS_REGEX, "Valid characters are: A-Z a-z 0-9 # dash space comma forward-slash period")
@@ -129,4 +135,5 @@ class AlertRequest < ApplicationRecord
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
     end
   end
+
 end

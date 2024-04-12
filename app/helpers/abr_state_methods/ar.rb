@@ -52,6 +52,26 @@ module AbrStateMethods::AR
       ]
     },
     "abr_election_date": {method: "abr_election_date_string"},
+
+    "abr_primary_type_selections1": {options:[
+      "abr_primary_type1",
+      "abr_primary_type2",
+      "abr_primary_type3",
+    ]},
+
+    "abr_assistant_check_selections": {
+      options: [
+        "abr_assistant_check_option1",
+        "abr_assistant_check_option2",
+      ]
+    },
+    "abr_assistant_name": {},
+    "abr_assistant_address_line1": {},
+    "abr_assistant_city": {},
+    "abr_assistant_state_abbrev": {},
+    "abr_assistant_zip": {},
+
+
     "abr_phone": {method: "phone"},
   }
 
@@ -74,21 +94,25 @@ module AbrStateMethods::AR
       {"delivery_ballot_address_3": {required: :if_visible, visible: "abr_check_mailing_address"}},
       
       {"abr_request_name": { required: :if_visible, visible: "abr_delivery_address_selections_abr_delivery_address_type3" }},
-
-      
-
       
       {"abr_election_type1": { type: :checkbox, visible_any: "abr_reason_selections_abr_reason2 abr_reason_selections_abr_reason3 abr_address_type_selections_abr_address_type2" }},
       {"abr_election_type_selections": { type: :radio, hidden: "abr_election_type1" }},
       {"abr_election_type1_instructions": {type: :instructions, visible: "abr_election_type1"}},
-      {"abr_election_type2_instructions": {type: :instructions, visible: "abr_election_type_selections_abr_election_type2"}},
+      {"abr_primary_type_selections1": {visible: "abr_election_type_selections_abr_election_type2", required: :if_visible, type: :radio, options: ["abr_primary_type1", "abr_primary_type2", "abr_primary_type3"]}},
+      #{"abr_election_type2_instructions": {type: :instructions, visible: "abr_election_type_selections_abr_election_type2"}},
       {"abr_election_date_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type5"}},
-      
-      
+
+      {"abr_assistant_check_selections": {type: :radio, required: true}},
+      {"abr_assistant_name": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_address_instructions": {type: :instructions,  visible: "abr_assistant_check_selections_abr_assistant_check_option2"}},
+      {"abr_assistant_address_line1": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_city": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_state_abbrev": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+      {"abr_assistant_zip": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},
+
     ]
   end
 
-  
   def mailing_addr_1
     if self.abr_delivery_address_selections_abr_delivery_address_type1
       delivery_ballot_address_1 || full_name
@@ -128,10 +152,42 @@ module AbrStateMethods::AR
   # def mailing_addr_3=(value)
   #   self.delivery_ballot_address_3 = value
   # end
-  
+
   def custom_form_field_validations
-    
+    unless self.abr_assistant_check_selections.present?
+      errors.add(:abr_assistant_check_selections, "Please select one option")
+    end
+
+    if self.abr_assistant_check_selections == "abr_assistant_check_option2"
+      if self.abr_assistant_name.blank? || self.abr_assistant_address_line1.blank? || self.abr_assistant_city.blank? || self.abr_assistant_state_abbrev.blank? || self.abr_assistant_zip.blank?
+        errors.add(:base, "Please fill in all assistant details")
+      else
+        unless valid_zip_code?(self.abr_assistant_zip)
+          errors.add(:abr_assistant_zip, "Zip code is invalid")
+        end
+      end
+    end
+
+    validate_state_abbrev_length
   end
+
+  private
   
+  def process_abbrev
+    if self.abr_assistant_state_abbrev.present?
+      self.abr_assistant_state_abbrev = self.abr_assistant_state_abbrev[0..1].upcase
+    end
+  end
+
+  def validate_state_abbrev_length
+    if abr_assistant_state_abbrev.present? && abr_assistant_state_abbrev.length != 2
+      errors.add(:abr_assistant_state_abbrev, "State must be exactly two characters long")
+    end
+  end
+
+  def valid_zip_code?(zip_code)
+    return false unless zip_code.present?
+    return zip_code.match?(/\A[0-9]{5}(?:-[0-9]{4})?\z/)
+  end
  
 end

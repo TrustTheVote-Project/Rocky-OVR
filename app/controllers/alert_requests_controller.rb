@@ -135,4 +135,5 @@ class AlertRequestsController < ApplicationController
       original_survey_question_2: original_survey_question_2
     )
   end
+
 end

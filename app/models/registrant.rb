@@ -57,8 +57,8 @@ class Registrant < ActiveRecord::Base
     other_parameters&.include?('iframe=true')
   end
 
-  
-  
+
+
   serialize :state_ovr_data, Hash
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]
@@ -119,6 +119,7 @@ class Registrant < ActiveRecord::Base
   OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
   #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
   DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
+  DB_NO_EMOJI_REGEX = /\A[^\p{Emoji}]*\z/
   EMAIL_REGEX = /
     \A
     [A-Z0-9_.&%+\-']+   # mailbox
@@ -175,9 +176,7 @@ class Registrant < ActiveRecord::Base
   
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
   validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
-  
-  
-  
+  validate_fields(SURVEY_FIELDS, DB_NO_EMOJI_REGEX, :contains_emojis)
 
   FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share-vanilla.php"
 
@@ -2072,7 +2071,6 @@ class Registrant < ActiveRecord::Base
   end
 
   private ###
-
 
 
   def generate_uid

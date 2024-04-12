@@ -236,20 +236,22 @@ en:
       ar:
         abr:
           step_2_instructions: |-
-            <h3>You must have a reason to request an absentee ballot</h3>
-            <p>You will need to provide a reason to vote absentee:</p>
-            <ul>
-            <li>You will be absentee from your polling place on Election day,</li>
-            <li>You will be unable to attend the polls due to an illness or physical disability, or</li>
-            <li>You are a resident of a long-term care facility licensed by the state.</li>
-            </ul>
+            <h3>You must have a reason to request an absentee ballot.</h3>
+            <p>In Arkansas, you must have a 
+            <a href="https://www.sos.arkansas.gov/elections/voter-information/absentee-voting" target="_blank" rel="noopener noreferrer">qualifying reason</a> to vote absentee.</p>
           request_deadline: |-
             <p>Received by election officials 7 days before the election.</p>
-          status_check_instructions: <p>Contact your County Clerk (<a href="https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf">https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf</a>)
+          status_check_instructions: |-
+            <p>Contact your County Clerk (<a href="https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf" target="_blank" rel="noopener noreferrer">https://www.sos.arkansas.gov/</a>)
             with any questions about the status of your absentee ballot.</p>
           finish_instructions_1_hint: |-
-            <p>If you've requested an absentee ballot for the Presidential Primary or for all elections in the calendar year (disabled, residents of a care facility, or living outside of your county only), make sure you've circled the party you'd like to receive a ballot for.</p>
-            <p>If you've designated an authorized agent to pick up your ballot, they should wait to sign the application until they are in the presence of the county clerk.</p>
+            <p>If you've requested an absentee ballot for the Presidential Primary or for 
+            all elections in the calendar year (disabled, residents of a care facility, or 
+            living outside of your county only), make sure you've circled the party you'd 
+            like to receive a ballot for.</p>
+            <p>If you've designated an authorized agent to pick up your ballot, they should 
+            wait to sign the application until they are in the presence of the county 
+            clerk.</p>
         abr_form_fields:
           abr_address_type_selections: Select from one of the following
           abr_address_type_selections__options:
@@ -266,7 +268,7 @@ en:
               Administrator, or Authorized Agent.
           abr_delivery_address_selections_abr_delivery_address_type2_instructions: |-
             Find information about your county clerk here:
-            <a href="https://www.sos.arkansas.gov/uploads/elections/ARCountyClerks.pdf" target="_blank" rel="noopener noreferrer">https://www.sos.arkansas.gov/uploads/elections/ARCountyClerks.pdf</a>
+            <a href="https://www.sos.arkansas.gov/uploads/elections/ARCountyClerks.pdf" target="_blank" rel="noopener noreferrer">https://www.sos.arkansas.gov/</a>
           abr_delivery_address_selections_abr_delivery_address_type3_instructions: A
             designated bearer may obtain or deliver absentee ballots for no more than
             two (2) voters per election and may only do so within the 15 days before
@@ -308,6 +310,22 @@ en:
           delivery_ballot_address_1: Street Address (Mailing)
           delivery_ballot_address_2: Unit (Mailing)
           delivery_ballot_address_3: City, State, Zip (Mailing)
+          abr_assistant_check_selections: Please indicate whether or not you received 
+            assistance in completing this application.
+          abr_assistant_check_selections__options: 
+            abr_assistant_check_option1: I filled out this information on my own with no assistance.
+            abr_assistant_check_option2: I received assistance in filling out this application.
+          abr_assistant_name: Name of Person Giving Assistance
+          abr_assistant_address_instructions: Residential Address of Person Giving Assistance
+          abr_assistant_address_line1: Street Address
+          abr_assistant_city: City
+          abr_assistant_state_abbrev: State Abbreviation
+          abr_assistant_zip: Zip Code
+          abr_primary_type_selections1: Select the type of ballot you wish to receive.
+          abr_primary_type_selections1__options:
+            abr_primary_type1: Democratic
+            abr_primary_type2: Republican
+            abr_primary_type3: Nonpartisan
       az:
         state_online_abr:
           instructions_header: 'I have an AZ Driver''s License or Non-Operating ID
@@ -2084,11 +2102,25 @@ en:
           abr_mailing_city: City
           abr_mailing_state_abbrev: State
           abr_mailing_zip: ZIP
-          abr_election_type_selections: Select the election you'd like to request
-            a ballot for.
-          abr_election_type_selections__options:
-            abr_election_type1: Statewide General Election
-            abr_election_type2: Special Election
+          abr_drivers_license: Please enter Driver's License or State ID Number
+          abr_id_instructions: |-
+            <h2>Identification</h2>
+          abr_id_selections: |-
+            You must provide one of the following:
+          abr_id_selections__options:
+            abr_id_type1: Nebraska Driver's License or State ID Number
+            abr_id_type2: Enclose a Photocopy of other acceptable photo ID
+            abr_id_type3: Enclose a Reasonable Impediment Certification
+          abr_primary_type_instructions: |-
+            <h2>Nonpartisans Only (optional)</h2>
+          abr_primary_type_selections1: |-
+            If you are not registered with a recognized political party in Nebraska, 
+            request a partisan ballot from the following party:
+          abr_primary_type_selections1__options:
+            abr_primary_type1: Republican
+            abr_primary_type2: Democratic
+            abr_primary_type3: Libertarian
+            abr_primary_type4: Legal Marijuana Now
           abr_election_date: Enter the date of the election
           abr_request_check: Are you requesting a ballot on behalf of a voter?
           abr_request_check__hint: An agent is a person who requests a ballot for

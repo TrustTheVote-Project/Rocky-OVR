@@ -18,6 +18,7 @@ en:
       wrong_length: wrong length (should be %{count} characters).
       too_young: You must be 18 on or before Election day.
       way_too_young: You are too young for this.
+      contains_emojis: Contains invalid emoji characters. Please remove them.
   or: OR
   affirm: Affirm
   decline: Decline
@@ -709,6 +710,7 @@ en:
             of California, you must accept the disclosures above.
           blank: Required
           invalid: "%{attribute} is invalid."
+          contains_emojis: Contains invalid emoji characters.
           invalid_zip: Invalid ZIP
           attributes:
             home_zip_code:
