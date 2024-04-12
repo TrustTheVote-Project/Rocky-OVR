@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   get ":path/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
   
-  get "*path/robots.txt", to: "robots#robots_txt"
+  get "(*path)/robots.txt", to: "robots#robots_txt", format: false
   
   resource :canvassing_shifts, path: "shift" do
     member do
