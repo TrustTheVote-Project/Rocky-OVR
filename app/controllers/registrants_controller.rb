@@ -63,8 +63,14 @@ class RegistrantsController < RegistrationStep
   end
   
   def share
-    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+    if params[:registrant_finish_iframe_url].valid_encoding?
+      @registrant_finish_iframe_url = params[:registrant_finish_iframe_url]
+    else
+    # Handle the case where the parameter is not properly encoded
+      redirect_to error_page_path
+    end
   end
+
 
 
   # GET /registrants/new
