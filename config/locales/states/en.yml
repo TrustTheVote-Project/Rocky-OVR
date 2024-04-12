@@ -236,13 +236,9 @@ en:
       ar:
         abr:
           step_2_instructions: |-
-            <h3>You must have a reason to request an absentee ballot</h3>
-            <p>You will need to provide a reason to vote absentee:</p>
-            <ul>
-            <li>You will be absentee from your polling place on Election day,</li>
-            <li>You will be unable to attend the polls due to an illness or physical disability, or</li>
-            <li>You are a resident of a long-term care facility licensed by the state.</li>
-            </ul>
+            <h3>You must have a reason to request an absentee ballot.</h3>
+            <p>In Arkansas, you must have a 
+            <a href="https://www.sos.arkansas.gov/elections/voter-information/absentee-voting" target="_blank" rel="noopener noreferrer">qualifying reason</a> to vote absentee.</p>
           request_deadline: |-
             <p>Received by election officials 7 days before the election.</p>
           status_check_instructions: <p>Contact your County Clerk (<a href="https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf">https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf</a>)
@@ -311,7 +307,7 @@ en:
           abr_assistant_check_selections: Please indicate whether or not you received 
             assistance in completing this application.
           abr_assistant_check_selections__options: 
-            abr_assistant_check_option1: I filled out this information on my own with no assitance.
+            abr_assistant_check_option1: I filled out this information on my own with no assistance.
             abr_assistant_check_option2: I received assistance in filling out this application.
           abr_assistant_name: Name of Person Giving Assistance
           abr_assistant_address_instructions: Residential Address of Person Giving Assistance
