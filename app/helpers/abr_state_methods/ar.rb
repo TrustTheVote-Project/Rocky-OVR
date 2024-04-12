@@ -53,6 +53,12 @@ module AbrStateMethods::AR
     },
     "abr_election_date": {method: "abr_election_date_string"},
 
+    "abr_primary_type_selections1": {options:[
+      "abr_primary_type1",
+      "abr_primary_type2",
+      "abr_primary_type3",
+    ]},
+
     "abr_assistant_check_selections": {
       options: [
         "abr_assistant_check_option1",
@@ -91,10 +97,11 @@ module AbrStateMethods::AR
       
       {"abr_election_type1": { type: :checkbox, visible_any: "abr_reason_selections_abr_reason2 abr_reason_selections_abr_reason3 abr_address_type_selections_abr_address_type2" }},
       {"abr_election_type_selections": { type: :radio, hidden: "abr_election_type1" }},
-      {"abr_election_type1_instructions": {type: :instructions, visible: "abr_election_type1"}},
+      #{"abr_election_type1_instructions": {type: :instructions, visible: "abr_election_type1"}},
+      {"abr_primary_type_selections1": {visible: "abr_election_type1", required: :if_visible, type: :radio, options: ["abr_primary_type1", "abr_primary_type2", "abr_primary_type3"]}},
+
       {"abr_election_type2_instructions": {type: :instructions, visible: "abr_election_type_selections_abr_election_type2"}},
       {"abr_election_date_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type5"}},
-
 
       {"abr_assistant_check_selections": {type: :radio, required: true}},
       {"abr_assistant_name": {visible: "abr_assistant_check_selections_abr_assistant_check_option2", required: :if_visible}},

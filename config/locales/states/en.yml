@@ -315,6 +315,11 @@ en:
           abr_assistant_city: City
           abr_assistant_state_abbrev: State Abbreviation
           abr_assistant_zip: Zip Code
+          abr_primary_type_selections1: Select the type of ballot you wish to receive.
+          abr_primary_type_selections1__options:
+            abr_primary_type1: Democratic
+            abr_primary_type2: Republican
+            abr_primary_type3: Nonpartisan
       az:
         state_online_abr:
           instructions_header: 'I have an AZ Driver''s License or Non-Operating ID
