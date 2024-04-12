@@ -152,14 +152,14 @@ module AbrStateMethods::AR
       errors.add(:abr_assistant_check_selections, "Please select one option")
     end
 
-     if self.abr_assistant_check_selections == "abr_assistant_check_option2"
+    if self.abr_assistant_check_selections == "abr_assistant_check_option2"
       if self.abr_assistant_name.blank? || self.abr_assistant_address_line1.blank? || self.abr_assistant_city.blank? || self.abr_assistant_state_abbrev.blank? || self.abr_assistant_zip.blank?
         errors.add(:base, "Please fill in all assistant details")
+      else
+        unless valid_zip_code?(self.abr_assistant_zip)
+          errors.add(:abr_assistant_zip, "Zip code is invalid")
+        end
       end
-    end
-
-    unless valid_zip_code?(self.abr_assistant_zip)
-      errors.add(:abr_assistant_zip, "Zip code is invalid")
     end
 
     validate_state_abbrev_length
