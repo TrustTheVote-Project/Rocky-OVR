@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
     
   root :to => "registrants#landing"
+  get "/registrants/new/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
   get "/registrants/new/robots.txt", to: "robots#robots_txt"
+
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui", via: :get
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout', via: :get
   match "/registrants/new/:state_abbrev", to: "registrants#new", via: :get
@@ -27,8 +29,7 @@ Rails.application.routes.draw do
 
   match "/get-bounce-notification", to: "ses#bounce", via: [:get, :post]
 
-  get ":path/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
-  
+  get ":path/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")  
   get "(*path)/robots.txt", to: "robots#robots_txt", format: false
   
   resource :canvassing_shifts, path: "shift" do
