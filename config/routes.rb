@@ -25,6 +25,10 @@ Rails.application.routes.draw do
   match "/state_registrants/:registrant_id/:step", to: "state_registrants#update", as: "update_state_registrant", via: :patch
 
   match "/get-bounce-notification", to: "ses#bounce", via: [:get, :post]
+
+  get '/sitemap.xml', to: redirect('https://register.rockthevote.com/sitemap.xml')
+  get '/robots.txt', to: redirect('https://register.rockthevote.com/robots.txt')
+
   
   resource :canvassing_shifts, path: "shift" do
     member do
