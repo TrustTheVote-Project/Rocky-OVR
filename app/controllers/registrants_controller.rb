@@ -78,10 +78,10 @@ class RegistrantsController < RegistrationStep
 #  end
 
 
-#  def share_no_reg
-#    @partner_id = params[:partner_id] || '1'
-#    @finish_iframe_url = Partner.find(@partner_id).finish_iframe_url
-#  end
+  def share_no_reg
+    @partner_id = params[:partner_id] || '1'
+    @finish_iframe_url = Partner.find(@partner_id).finish_iframe_url
+  end
 
 
 
