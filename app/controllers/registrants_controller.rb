@@ -72,7 +72,7 @@ class RegistrantsController < RegistrationStep
     @registrant_finish_iframe_url = @partner&.finish_iframe_url || Registrant::FINISH_IFRAME_URL
 
     respond_to do |format|
-      format.html { render partial: 'finishes/finish_iframe', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url } }
+      format.html { render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url } }
     end
   end
 
