@@ -67,8 +67,8 @@ class RegistrantsController < RegistrationStep
   #end
 
   def share
-    @partner = Partner.find(params[:partner_id])
-    @registrant_finish_iframe_url = @partner.finish_iframe_url
+    @partner_id = params[:partner_id]
+    @finish_iframe_url = Partner.find(@partner_id).finish_iframe_url
   end
 
 
