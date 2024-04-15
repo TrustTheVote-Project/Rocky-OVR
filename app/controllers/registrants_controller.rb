@@ -62,9 +62,9 @@ class RegistrantsController < RegistrationStep
     redirect_to new_registrant_url(options)
   end
   
-  def share
-    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
-  end
+  #def share
+  #  @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+  #end
 
   # Already registered share only view
   def share_no_reg
