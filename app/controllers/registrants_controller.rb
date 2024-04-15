@@ -80,10 +80,10 @@ class RegistrantsController < RegistrationStep
     # Fetch locale parameter
     locale_param = params[:locale] || I18n.locale.to_s
 
-    @registrant_finish_iframe_url_with_locale = "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
+    @registrant_finish_iframe_url = "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
 
     # Render the view directly
-    render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url_with_locale }
+    render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url }
   end
 
 
