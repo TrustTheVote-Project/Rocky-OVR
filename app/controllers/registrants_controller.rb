@@ -68,7 +68,7 @@ class RegistrantsController < RegistrationStep
 
   def share_no_reg
     @partner_id = params[:partner_id] || '1'
-    @registrant_finish_iframe_url = Partner.find_by(id: @partner_id)&.finish_iframe_url
+    @registrant_finish_iframe_url = partner&.finish_iframe_url || Registrant::FINISH_IFRAME_URL
 
     respond_to do |format|
       format.html { render partial: 'finishes/finish_iframe', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url } }
