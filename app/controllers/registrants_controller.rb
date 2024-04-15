@@ -66,15 +66,22 @@ class RegistrantsController < RegistrationStep
     @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
   end
 
+  # Already registered share only view
   def share_no_reg
     @partner_id = params[:partner_id] || '1'
     @partner = Partner.find_by(id: @partner_id)
-    @registrant_finish_iframe_url = @partner&.finish_iframe_url || Registrant::FINISH_IFRAME_URL
+  
+    if @partner && @partner.finish_iframe_url.present?
+      @registrant_finish_iframe_url = @partner.finish_iframe_url
+    else
+      @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
+    end
 
     respond_to do |format|
       format.html { render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url } }
     end
   end
+
 
 
   # GET /registrants/new
