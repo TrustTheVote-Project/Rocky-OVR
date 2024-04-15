@@ -71,7 +71,7 @@ class RegistrantsController < RegistrationStep
     @registrant_finish_iframe_url = Partner.find_by(id: @partner_id)&.finish_iframe_url
 
     respond_to do |format|
-      format.html { render partial: 'finish_iframe', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url } }
+      format.html { render partial: 'finishes/finish_iframe', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url } }
     end
   end
 
