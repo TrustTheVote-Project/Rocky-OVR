@@ -72,15 +72,16 @@ class RegistrantsController < RegistrationStep
     @partner = Partner.find_by(id: @partner_id)
   
     if @partner && @partner.finish_iframe_url.present?
-      @registrant_finish_iframe_url = @partner.finish_iframe_url
+      finish_iframe_url_with_locale = "#{@partner.finish_iframe_url}?locale=#{I18n.locale}"
     else
-      @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
+      finish_iframe_url_with_locale = "#{Registrant::FINISH_IFRAME_URL}?locale=#{I18n.locale}"
     end
 
     respond_to do |format|
-      format.html { render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url } }
+      format.html { render 'share', locals: { registrant_finish_iframe_url: finish_iframe_url_with_locale } }
     end
   end
+
 
 
 
