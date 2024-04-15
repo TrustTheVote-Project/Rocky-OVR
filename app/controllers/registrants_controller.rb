@@ -64,26 +64,12 @@ class RegistrantsController < RegistrationStep
   
   def share
     @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
-    @finish_iframe_url = @registrant_finish_iframe_url
   end
-
-#  def share
-#    if params[:partner_id].present?
-#      @partner_id = params[:partner_id] || '1'
-#      @finish_iframe_url = Partner.find(@partner_id).finish_iframe_url
-#    else
-#      @registrant_finish_iframe_url = params[:registrant_finish_iframe_url]
-#      @finish_iframe_url = @registrant_finish_iframe_url
-#    end
-#  end
-
 
   def share_no_reg
     @partner_id = params[:partner_id] || '1'
-    @finish_iframe_url = Partner.find(@partner_id).finish_iframe_url
+    @registrant_finish_iframe_url = Partner.find_by(id: @partner_id)&.finish_iframe_url
   end
-
-
 
   # GET /registrants/new
   def new
