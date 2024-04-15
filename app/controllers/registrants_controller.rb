@@ -62,9 +62,15 @@ class RegistrantsController < RegistrationStep
     redirect_to new_registrant_url(options)
   end
   
+  #def share
+  #  @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+  #end
+
   def share
-    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+    @partner = Partner.find(params[:partner_id])
+    @registrant_finish_iframe_url = @partner.finish_iframe_url
   end
+
 
 
   # GET /registrants/new
