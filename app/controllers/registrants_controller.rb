@@ -77,12 +77,13 @@ class RegistrantsController < RegistrationStep
       finish_iframe_url = Registrant::FINISH_IFRAME_URL
     end
 
-    finish_iframe_url_with_locale = url_for(finish_iframe_url, locale: I18n.locale)
+    finish_iframe_url_with_locale = "#{finish_iframe_url}?locale=#{I18n.locale}"
 
     respond_to do |format|
       format.html { render 'share', locals: { registrant_finish_iframe_url: finish_iframe_url_with_locale } }
     end
   end
+
 
 
   # GET /registrants/new
