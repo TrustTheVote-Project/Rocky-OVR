@@ -70,20 +70,19 @@ class RegistrantsController < RegistrationStep
   def share_no_reg
     @partner_id = params[:partner_id] || '1'
     @partner = Partner.find_by(id: @partner_id)
-  
+
     if @partner && @partner.finish_iframe_url.present?
-      finish_iframe_url = @partner.finish_iframe_url
+      @registrant_finish_iframe_url = @partner.finish_iframe_url
     else
-      finish_iframe_url = Registrant::FINISH_IFRAME_URL
+      @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
     end
 
-    finish_iframe_url_with_locale = "#{finish_iframe_url}?locale=#{I18n.locale}"
+    @registrant_finish_iframe_url_with_locale = "#{@registrant_finish_iframe_url}?locale=#{I18n.locale}"
 
     respond_to do |format|
-      format.html { render 'share', locals: { registrant_finish_iframe_url: finish_iframe_url_with_locale } }
+      format.html { render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url_with_locale } }
     end
   end
-
 
 
   # GET /registrants/new
