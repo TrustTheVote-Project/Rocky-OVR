@@ -77,18 +77,13 @@ class RegistrantsController < RegistrationStep
       @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
     end
 
-   @registrant_finish_iframe_url_with_locale = "#{@registrant_finish_iframe_url}?locale=#{I18n.locale}"
+    # Fetch locale parameter
+    locale_param = params[:locale] || I18n.locale.to_s
 
-    # Debugging
-    puts "Partner ID: #{@partner_id}"
-    puts "Partner Finish Iframe URL: #{@partner&.finish_iframe_url}"
-    puts "Registrant Finish Iframe URL: #{@registrant_finish_iframe_url}"
-    puts "Locale: #{I18n.locale}"
-    puts "Finish Iframe URL with Locale: #{@registrant_finish_iframe_url_with_locale}"
+    @registrant_finish_iframe_url_with_locale = "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
 
-    respond_to do |format|
-      format.html { render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url_with_locale } }
-    end
+    # Render the view directly
+    render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url_with_locale }
   end
 
 
