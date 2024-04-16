@@ -2115,9 +2115,10 @@ class Registrant < ActiveRecord::Base
   end
 
   def update_attribute_with_translation(attribute, key)
-    translation = I18n.t("txt.registration.#{attribute.pluralize}.#{key}", locale: locale)
+    translation = I18n.t("txt.registration.#{attribute}.#{key}", locale: locale)
     self[attribute] = translation if key && translation.present?
   end
+
 
   def update_party
     party_idx = state_parties.index(party)
@@ -2170,12 +2171,15 @@ class Registrant < ActiveRecord::Base
   end
 
   def partner_survey_question_1
-    locale.blank? ? "" : partner.send("survey_question_1_#{locale}")
+    locale_to_use = locale.present? && ENABLED_LOCALES.include?(locale) ? locale : 'en'
+    partner.send("survey_question_1_#{locale_to_use}")
   end
 
   def partner_survey_question_2
-    locale.blank? ? "" : partner.send("survey_question_2_#{locale}")
+    locale_to_use = locale.present? && ENABLED_LOCALES.include?(locale) ? locale : 'en'
+    partner.send("survey_question_2_#{locale_to_use}")
   end
+
 
   def set_questions
     if self.survey_answer_1_changed? && !self.original_survey_question_1_changed?
