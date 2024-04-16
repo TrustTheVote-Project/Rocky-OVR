@@ -25,8 +25,6 @@
 class RegistrantsController < RegistrationStep
   CURRENT_STEP = 1
 
-  ENABLED_LOCALES = YAML.load_file("#{Rails.root}/config/settings/#{Rails.env}.yml")["enabled_locales"]
-
   helper_method :registrant_params
 
   # GET /widget_loader.js
@@ -64,52 +62,8 @@ class RegistrantsController < RegistrationStep
     redirect_to new_registrant_url(options)
   end
 
-  #def share
-  #  @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
-  #end
-
-  # Already registered share only view
-  def share_no_reg
-    begin
-      @partner_id = params[:partner_id].present? ? params[:partner_id].to_i : 1
-
-      # Find the partner directly without caching
-      @partner = Partner.find_by(id: @partner_id)
-
-      if @partner && @partner.finish_iframe_url.present?
-        @registrant_finish_iframe_url = @partner.finish_iframe_url
-      else
-        @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
-      end
-
-      # Fetch locale parameter
-      locale_param = params[:locale] || I18n.locale.to_s
-
-      # Validate the locale parameter
-      if validate_locale(locale_param)
-        # Construct the finish iframe URL with the locale parameter
-        @registrant_finish_iframe_url += "?locale=#{locale_param}"
-
-        # Sanitize the registrant_finish_iframe_url to prevent XSS attacks
-        @registrant_finish_iframe_url = CGI.escapeHTML(@registrant_finish_iframe_url)
-
-        # Render the view directly
-        render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url }
-      else
-        render plain: "Invalid locale parameter.", status: :bad_request
-      end
-    rescue => e
-      # Log the error
-      Rails.logger.error("Error in share_no_reg action: #{e.message}")
-
-      # Render an error page or redirect as needed
-      render plain: "An error occurred. Please try again later.", status: :internal_server_error
-    end
-  end
-
-  # Method to validate locale parameter
-  def validate_locale(locale)
-    ENABLED_LOCALES.include?(locale)
+  def share
+    @registrant_finish_iframe_url = CGI.escapeHTML(params[:registrant_finish_iframe_url])
   end
 
   # GET /registrants/new
