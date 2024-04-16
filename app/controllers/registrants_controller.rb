@@ -39,53 +39,53 @@ class RegistrantsController < RegistrationStep
   end
 
   # GET /registrants
-  #def landing
-  #  find_partner
-  #  options = {}
-  #  options[:partner] = @partner.to_param if params[:partner]
+  def landing
+    find_partner
+    options = {}
+    options[:partner] = @partner.to_param if params[:partner]
     
-   # request.query_parameters.keys.each do |key|
-   #   options[key] = params[key] unless key.to_s === "partner"
-   # end
-   # # options[:locale] = params[:locale] if params[:locale]
-    ## options[:source] = params[:source] if params[:source]
-    ## options[:tracking] = params[:tracking] if params[:tracking]
-    ## options[:short_form] = params[:short_form] if params[:short_form]
-    ## options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
-    ## options[:home_zip_code] = params[:home_zip_code] if params[:home_zip_code]
-    ## options[:state_abbrev] = params[:state_abbrev] if params[:state_abbrev]
-    ## options[:state] = params[:state] if params[:state]
-    ## options[:first_name] = params[:first_name] if params[:first_name]
-    ## options[:last_name] = params[:last_name] if params[:last_name]
-    ## options[:email_address] = params[:email_address] if params[:email_address]
-    #options.merge!(:protocol => "https") if RockyConf.use_https
-    #redirect_to new_registrant_url(options)
- # end
+    request.query_parameters.keys.each do |key|
+      options[key] = params[key] unless key.to_s === "partner"
+    end
+    # options[:locale] = params[:locale] if params[:locale]
+    # options[:source] = params[:source] if params[:source]
+    # options[:tracking] = params[:tracking] if params[:tracking]
+    # options[:short_form] = params[:short_form] if params[:short_form]
+    # options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
+    # options[:home_zip_code] = params[:home_zip_code] if params[:home_zip_code]
+    # options[:state_abbrev] = params[:state_abbrev] if params[:state_abbrev]
+    # options[:state] = params[:state] if params[:state]
+    # options[:first_name] = params[:first_name] if params[:first_name]
+    # options[:last_name] = params[:last_name] if params[:last_name]
+    # options[:email_address] = params[:email_address] if params[:email_address]
+    options.merge!(:protocol => "https") if RockyConf.use_https
+    redirect_to new_registrant_url(options)
+  end
 
   # GET /registrants with caching
-  def landing
+ # def landing
     # Set cache key based on request parameters
-    cache_key = "landing_page_#{request.query_parameters.to_param}"
+  #  cache_key = "landing_page_#{request.query_parameters.to_param}"
 
     # Try to fetch the landing page content from cache
-    cached_content = Rails.cache.read(cache_key)
+   # cached_content = Rails.cache.read(cache_key)
 
-    unless cached_content
+    #unless cached_content
       # If content is not cached, generate it
-      find_partner
-      options = { partner: @partner.to_param }.merge(request.query_parameters)
-      options[:protocol] = "https" if RockyConf.use_https
+     # find_partner
+     # options = { partner: @partner.to_param }.merge(request.query_parameters)
+     # options[:protocol] = "https" if RockyConf.use_https
 
       # Redirect to the new registrant URL with all parameters
-      redirect_to new_registrant_url(options)
+   #   redirect_to new_registrant_url(options)
 
       # Cache the generated content with a 24-hour expiration
-      Rails.cache.write(cache_key, response.body, expires_in: 24.hours)
-    else
+    #  Rails.cache.write(cache_key, response.body, expires_in: 24.hours)
+    #else
       # If content is cached, directly render it
-      render html: cached_content.html_safe
-    end
-  end
+     # render html: cached_content.html_safe
+    #end
+ # end
 
   
   #def share
