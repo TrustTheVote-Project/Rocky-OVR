@@ -180,18 +180,25 @@ class RegistrantsController < RegistrationStep
 
   private
 
-  def add_locale_to_url(url)
-    # Get the current locale or use the default locale
-    locale = I18n.locale || I18n.default_locale
-    # Remove any existing locale parameter from the URL
-    url_without_locale = url.gsub(/(\?|&)locale=[^&]*/, '')
-    # Add the locale parameter to the URL
-    url_with_locale = if url.include?('?')
-                        "#{url_without_locale}&locale=#{locale}"
-                      else
-                        "#{url_without_locale}?locale=#{locale}"
-                      end
-    url_with_locale
+  def add_locale_to_url(url, locale)
+    begin
+      # Check if the URL already contains a locale parameter
+      if url =~ /(\?|&)locale=[^&]*/
+        # Update the value of the existing locale parameter
+        url.gsub(/(\?|&)locale=[^&]*/, "\\1locale=#{locale}")
+      else
+        # Add the locale parameter to the URL
+        if url.include?('?')
+          "#{url}&locale=#{locale}"
+        else
+          "#{url}?locale=#{locale}"
+        end
+      end
+    rescue => e
+      # Log the error and return the original URL
+      Rails.logger.error "Error occurred while adding locale to URL: #{e.message}"
+      url
+    end
   end
 
 
