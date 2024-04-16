@@ -8,6 +8,7 @@
   - if @registrant.new_record?
     :javascript
       function followOtherLanguageLink() {
+        var url = $("#other_language_link select").val();
         window.location = $("#other_language_link select").val()
       }
     %select{:name=>"language_select", :onchange=>"followOtherLanguageLink();"}
@@ -41,7 +42,4 @@
     %br
     %br
     = I18n.t('txt.registration.instructions.overseas').html_safe
-  - if @registrant.finish_iframe_url.present?
-    %p.already-registered= I18n.t('txt.registration.already_registered', url: ("/share?partner=#{@registrant.partner_id}&registrant_finish_iframe_url=#{CGI.escape(@registrant.finish_iframe_url)}")).html_safe
-  - else
-    %p.already-registered= I18n.t('txt.registration.already_registered', url: ("/share?partner=#{@registrant.partner_id}&registrant_finish_iframe_url=#{CGI.escape(Registrant::FINISH_IFRAME_URL)}")).html_safe
+  %p.already-registered= I18n.t('txt.registration.already_registered', url: ("/share?partner=#{@registrant.partner_id}")).html_safe
