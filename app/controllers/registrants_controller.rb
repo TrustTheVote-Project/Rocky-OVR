@@ -183,8 +183,16 @@ class RegistrantsController < RegistrationStep
   def add_locale_to_url(url)
     # Get the current locale or use the default locale
     locale = I18n.locale || I18n.default_locale
+    # Remove any existing locale parameter from the URL
+    url_without_locale = url.gsub(/(\?|&)locale=[^&]*/, '')
     # Add the locale parameter to the URL
-    url += url.include?('?') ? "&locale=#{locale}" : "?locale=#{locale}"
+    url_with_locale = if url.include?('?')
+                        "#{url_without_locale}&locale=#{locale}"
+                      else
+                        "#{url_without_locale}?locale=#{locale}"
+                      end
+    url_with_locale
   end
+
 
 end
