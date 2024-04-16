@@ -67,9 +67,9 @@ class RegistrantsController < RegistrationStep
       # Check if the URL belongs to one of the partner domains
       partner = Partner.find_by(finish_iframe_url: params[:registrant_finish_iframe_url])
       if partner.present?
-        @registrant_finish_iframe_url = CGI.escapeHTML(params[:registrant_finish_iframe_url])
+        @registrant_finish_iframe_url = CGI.escapeHTML(partner.finish_iframe_url)
       else
-        # If no partner record found, default to Registrant::FINISH_IFRAME_URL
+        # If no partner record found, use the default value
         @registrant_finish_iframe_url = CGI.escapeHTML(Registrant::FINISH_IFRAME_URL)
       end
     else
