@@ -25,6 +25,8 @@
 class RegistrantsController < RegistrationStep
   CURRENT_STEP = 1
 
+  ENABLED_LOCALES = YAML.load_file("#{Rails.root}/config/settings.yml")["enabled_locales"]
+
   helper_method :registrant_params
 
   # GET /widget_loader.js
@@ -137,8 +139,7 @@ class RegistrantsController < RegistrationStep
 
   # Method to validate locale parameter
   def validate_locale(locale)
-    enabled_locales = YAML.load_file("#{Rails.root}/config/settings.yml")["enabled_locales"]
-    enabled_locales.include?(locale)
+    ENABLED_LOCALES.include?(locale)
   end
 
 
