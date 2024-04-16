@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
     
-  root :to => "registrants#landing"
+  #root :to => "registrants#landing"
+  root :to => "registrants#landing", :via => [:get], :constraints => { :format => /(html|)/ }
+
   get "/registrants/new/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
   get "/registrants/new/robots.txt", to: redirect("https://register.rockthevote.com/robots.txt")
 
