@@ -63,23 +63,25 @@ class RegistrantsController < RegistrationStep
   end
 
   def share
+    locale = params[:locale] || I18n.locale || I18n.default_locale
     if params[:partner].present?
       partner_id = params[:partner].to_i
       if partner_id.positive?
         partner = Partner.find_by(id: partner_id)
         if partner.present? && partner.finish_iframe_url.present?
           # Include locale parameter in the iframe URL
-          @registrant_finish_iframe_url = CGI.escapeHTML("#{partner.finish_iframe_url}?locale=#{I18n.locale || I18n.default_locale}&#{Time.now.to_i}")
+          @registrant_finish_iframe_url = CGI.escapeHTML("#{partner.finish_iframe_url}?locale=#{locale}")
         else
-          @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{I18n.locale || I18n.default_locale}&#{Time.now.to_i}")
+          @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
         end
       else
-        @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{I18n.locale || I18n.default_locale}&#{Time.now.to_i}")
+        @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
       end
     else
-      @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{I18n.locale || I18n.default_locale}&#{Time.now.to_i}")
+      @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
     end
   end
+
 
 
 
