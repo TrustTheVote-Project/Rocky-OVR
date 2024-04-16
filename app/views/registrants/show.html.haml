@@ -41,4 +41,4 @@
     %br
     %br
     = I18n.t('txt.registration.instructions.overseas').html_safe
-   %p.already-registered= I18n.t('txt.registration.already_registered', url: ("/share/#{@registrant.partner_id}&locale=#{I18n.locale.to_s}")).html_safe
+  %p.already-registered= I18n.t('txt.registration.already_registered', url: ("/share/#{@registrant.partner_id}&locale=#{I18n.locale.to_s}")).html_safe
