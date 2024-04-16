@@ -180,8 +180,11 @@ class RegistrantsController < RegistrationStep
 
   private
 
-  def add_locale_to_url(url, locale)
+  def add_locale_to_url(url)
     begin
+      # Get the current locale or use the default locale
+      locale = I18n.locale || I18n.default_locale
+
       # Check if the URL already contains a locale parameter
       if url =~ /(\?|&)locale=[^&]*/
         # Update the value of the existing locale parameter
