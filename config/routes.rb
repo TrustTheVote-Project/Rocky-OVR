@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   match "/lookup", to: "catalist_lookups#new", via: :get
   match "/trackballot", to: "ballot_status_checks#new", via: :get
   match "/trackballot/:zip", to: "ballot_status_checks#zip", via: :get, as: :ballot_status_check_zip
-  match "/share", to: "registrants#share", via: :get
+  #match "/share", to: "registrants#share", via: :get
+  match "/share", to: "registrants#share_no_reg", via: :get
+  get "/share/:partner_id", to: "registrants#share_no_reg", as: :share_no_reg_with_locale
+
 
   match "/register", to: "registrants#landing", via: :get
   match "/register-to-vote", to: "registrants#landing", via: :get
