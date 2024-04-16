@@ -9,7 +9,7 @@
     :javascript
       function followOtherLanguageLink() {
         var url = $("#other_language_link select").val();
-        window.location = encodeURIComponent(url);
+        window.location = $("#other_language_link select").val()
       }
     %select{:name=>"language_select", :onchange=>"followOtherLanguageLink();"}
       %option Select Language
