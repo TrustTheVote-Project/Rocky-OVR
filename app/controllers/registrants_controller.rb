@@ -64,23 +64,20 @@ class RegistrantsController < RegistrationStep
 
   def share
     if params[:partner].present?
-      # Check if the URL belongs to one of the partner domains
       partner_id = params[:partner].to_i
       if partner_id.positive?
         partner = Partner.find_by(id: partner_id)
         if partner.present? && partner.finish_iframe_url.present?
-          @registrant_finish_iframe_url = CGI.escapeHTML(partner.finish_iframe_url)
+          # Include locale parameter in the iframe URL
+          @registrant_finish_iframe_url = CGI.escapeHTML(add_locale_to_url(partner.finish_iframe_url))
         else
-          # If partner exists but doesn't have a finish_iframe_url, use default
-          @registrant_finish_iframe_url = CGI.escapeHTML(Registrant::FINISH_IFRAME_URL)
+          @registrant_finish_iframe_url = CGI.escapeHTML(add_locale_to_url(Registrant::FINISH_IFRAME_URL))
         end
       else
-        # If partner id is not provided or invalid, use default
-        @registrant_finish_iframe_url = CGI.escapeHTML(Registrant::FINISH_IFRAME_URL)
+        @registrant_finish_iframe_url = CGI.escapeHTML(add_locale_to_url(Registrant::FINISH_IFRAME_URL))
       end
     else
-      # If partner id is not present, use default
-      @registrant_finish_iframe_url = CGI.escapeHTML(Registrant::FINISH_IFRAME_URL)
+      @registrant_finish_iframe_url = CGI.escapeHTML(add_locale_to_url(Registrant::FINISH_IFRAME_URL))
     end
   end
 
@@ -179,6 +176,15 @@ class RegistrantsController < RegistrationStep
 
   def host_url
     "#{request.protocol}#{request.host_with_port}"
+  end
+
+  private
+
+  def add_locale_to_url(url)
+    # Get the current locale or use the default locale
+    locale = I18n.locale || I18n.default_locale
+    # Add the locale parameter to the URL
+    url += url.include?('?') ? "&locale=#{locale}" : "?locale=#{locale}"
   end
 
 end
