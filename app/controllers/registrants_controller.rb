@@ -119,16 +119,20 @@ class RegistrantsController < RegistrationStep
         "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
       end
 
+      # Sanitize the registrant_finish_iframe_url to prevent XSS attacks
+      @registrant_finish_iframe_url = CGI.escapeHTML(@registrant_finish_iframe_url)
+
       # Render the view directly
       render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url }
     rescue => e
       # Log the error
       Rails.logger.error("Error in share_no_reg action: #{e.message}")
-    
+  
       # Render an error page or redirect as needed
       render plain: "An error occurred. Please try again later.", status: :internal_server_error
     end
   end
+
 
 
 
