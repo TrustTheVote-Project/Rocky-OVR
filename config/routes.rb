@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   match "/trackballot/:zip", to: "ballot_status_checks#zip", via: :get, as: :ballot_status_check_zip
   match "/share", to: "registrants#share", via: :get
 
+
   match "/register", to: "registrants#landing", via: :get
   match "/register-to-vote", to: "registrants#landing", via: :get
   match "/am-i-registered-to-vote", to: "catalist_lookups#new", via: :get
