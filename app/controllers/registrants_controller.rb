@@ -110,6 +110,9 @@ class RegistrantsController < RegistrationStep
     # Fetch locale parameter
     locale_param = params[:locale] || I18n.locale.to_s
 
+    # Ensure locale parameter is not more than 5 characters long
+    locale_param = locale_param[0, 5] if locale_param.length > 5
+
     # Cache the constructed finish iframe URL with the locale parameter and a 24-hour expiration
     @registrant_finish_iframe_url = Rails.cache.fetch("finish_iframe_url_#{params[:partner_id]}_#{locale_param}", expires_in: 24.hours) do
       "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
