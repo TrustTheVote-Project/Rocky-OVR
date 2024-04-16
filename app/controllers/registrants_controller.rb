@@ -25,6 +25,8 @@
 class RegistrantsController < RegistrationStep
   CURRENT_STEP = 1
 
+  ENABLED_LOCALES = YAML.load_file("#{Rails.root}/config/settings/#{Rails.env}.yml")["enabled_locales"]
+
   helper_method :registrant_params
 
   # GET /widget_loader.js
@@ -61,10 +63,85 @@ class RegistrantsController < RegistrationStep
     options.merge!(:protocol => "https") if RockyConf.use_https
     redirect_to new_registrant_url(options)
   end
+
+  # GET /registrants with caching
+ # def landing
+    # Set cache key based on request parameters
+  #  cache_key = "landing_page_#{request.query_parameters.to_param}"
+
+    # Try to fetch the landing page content from cache
+   # cached_content = Rails.cache.read(cache_key)
+
+    #unless cached_content
+      # If content is not cached, generate it
+     # find_partner
+     # options = { partner: @partner.to_param }.merge(request.query_parameters)
+     # options[:protocol] = "https" if RockyConf.use_https
+
+      # Redirect to the new registrant URL with all parameters
+   #   redirect_to new_registrant_url(options)
+
+      # Cache the generated content with a 24-hour expiration
+    #  Rails.cache.write(cache_key, response.body, expires_in: 24.hours)
+    #else
+      # If content is cached, directly render it
+     # render html: cached_content.html_safe
+    #end
+ # end
+
   
-  def share
-    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+  #def share
+  #  @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+  #end
+
+  # Already registered share only view
+  def share_no_reg
+    begin
+      @partner_id = params[:partner_id].present? ? params[:partner_id].to_i : 1
+
+      # Cache the result of finding the partner with a 24-hour expiration
+      @partner = Rails.cache.fetch("partner_#{params[:partner_id]}", expires_in: 24.hours) do
+        Partner.find_by(id: @partner_id)
+      end
+
+      if @partner && @partner.finish_iframe_url.present?
+        @registrant_finish_iframe_url = @partner.finish_iframe_url
+      else
+        @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
+      end
+
+      # Fetch locale parameter
+      locale_param = params[:locale] || I18n.locale.to_s
+
+      # Validate the locale parameter
+      if validate_locale(locale_param)
+        # Cache the constructed finish iframe URL with the locale parameter and a 24-hour expiration
+        @registrant_finish_iframe_url = Rails.cache.fetch("finish_iframe_url_#{params[:partner_id]}_#{locale_param}", expires_in: 24.hours) do
+          "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
+        end
+
+        # Sanitize the registrant_finish_iframe_url to prevent XSS attacks
+        @registrant_finish_iframe_url = CGI.escapeHTML(@registrant_finish_iframe_url)
+
+        # Render the view directly
+        render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url }
+      else
+        render plain: "Invalid locale parameter.", status: :bad_request
+      end
+    rescue => e
+      # Log the error
+      Rails.logger.error("Error in share_no_reg action: #{e.message}")
+
+      # Render an error page or redirect as needed
+      render plain: "An error occurred. Please try again later.", status: :internal_server_error
+    end
   end
+
+  # Method to validate locale parameter
+  def validate_locale(locale)
+    ENABLED_LOCALES.include?(locale)
+  end
+
 
   # GET /registrants/new
   def new
