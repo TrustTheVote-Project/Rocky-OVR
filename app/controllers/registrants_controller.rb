@@ -64,32 +64,6 @@ class RegistrantsController < RegistrationStep
     redirect_to new_registrant_url(options)
   end
 
-  # GET /registrants with caching
- # def landing
-    # Set cache key based on request parameters
-  #  cache_key = "landing_page_#{request.query_parameters.to_param}"
-
-    # Try to fetch the landing page content from cache
-   # cached_content = Rails.cache.read(cache_key)
-
-    #unless cached_content
-      # If content is not cached, generate it
-     # find_partner
-     # options = { partner: @partner.to_param }.merge(request.query_parameters)
-     # options[:protocol] = "https" if RockyConf.use_https
-
-      # Redirect to the new registrant URL with all parameters
-   #   redirect_to new_registrant_url(options)
-
-      # Cache the generated content with a 24-hour expiration
-    #  Rails.cache.write(cache_key, response.body, expires_in: 24.hours)
-    #else
-      # If content is cached, directly render it
-     # render html: cached_content.html_safe
-    #end
- # end
-
-  
   #def share
   #  @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
   #end
@@ -99,10 +73,8 @@ class RegistrantsController < RegistrationStep
     begin
       @partner_id = params[:partner_id].present? ? params[:partner_id].to_i : 1
 
-      # Cache the result of finding the partner with a 24-hour expiration
-      @partner = Rails.cache.fetch("partner_#{params[:partner_id]}", expires_in: 24.hours) do
-        Partner.find_by(id: @partner_id)
-      end
+      # Find the partner directly without caching
+      @partner = Partner.find_by(id: @partner_id)
 
       if @partner && @partner.finish_iframe_url.present?
         @registrant_finish_iframe_url = @partner.finish_iframe_url
@@ -115,10 +87,8 @@ class RegistrantsController < RegistrationStep
 
       # Validate the locale parameter
       if validate_locale(locale_param)
-        # Cache the constructed finish iframe URL with the locale parameter and a 24-hour expiration
-        @registrant_finish_iframe_url = Rails.cache.fetch("finish_iframe_url_#{params[:partner_id]}_#{locale_param}", expires_in: 24.hours) do
-          "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
-        end
+        # Construct the finish iframe URL with the locale parameter
+        @registrant_finish_iframe_url += "?locale=#{locale_param}"
 
         # Sanitize the registrant_finish_iframe_url to prevent XSS attacks
         @registrant_finish_iframe_url = CGI.escapeHTML(@registrant_finish_iframe_url)
@@ -141,7 +111,6 @@ class RegistrantsController < RegistrationStep
   def validate_locale(locale)
     ENABLED_LOCALES.include?(locale)
   end
-
 
   # GET /registrants/new
   def new
