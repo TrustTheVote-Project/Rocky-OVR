@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
     
-  get '/', to: redirect('/registrants/new')
-  root :to => "registrants#landing"
+  #root :to => "registrants#landing"
+
+  # Define a named route for the root path
+  get '/', to: redirect_to_registrants_new
+
+  # Define the root route
+  root to: "registrants#landing"
+
+  # Define the redirect_to_registrants_new route helper
+  get '/registrants/new', to: redirect('/registrants/new')
 
   get "/registrants/new/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
   get "/registrants/new/robots.txt", to: redirect("https://register.rockthevote.com/robots.txt")
