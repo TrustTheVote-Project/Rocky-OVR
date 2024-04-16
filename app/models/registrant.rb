@@ -41,6 +41,9 @@ class Registrant < ActiveRecord::Base
   include TimeStampHelper
 
   include TrackableMethods
+
+  ENABLED_LOCALES = YAML.load_file("#{Rails.root}/config/settings/#{Rails.env}.yml")["enabled_locales"]
+
   
   scope :abandoned, -> {where(abandoned: true)}
   
@@ -742,24 +745,30 @@ class Registrant < ActiveRecord::Base
   # Reset name/prev prefix, suffix, race, party, phone_type
   def check_locale_change
     if !self.new_locale.blank? && self.new_locale != self.locale
-      selected_name_title_key = name_title_key
-      selected_name_suf_key = name_suffix_key
-      selected_prev_name_title_key = prev_name_title_key
-      selected_prev_name_suf_key = prev_name_suffix_key
-      selected_race_key = race_key
-      party_idx = state_parties.index(self.party)
-      selected_phone_key = phone_type_key
+      if ENABLED_LOCALES.include?(self.new_locale)
+        selected_name_title_key = name_title_key
+        selected_name_suf_key = name_suffix_key
+        selected_prev_name_title_key = prev_name_title_key
+        selected_prev_name_suf_key = prev_name_suffix_key
+        selected_race_key = race_key
+        party_idx = state_parties.index(self.party)
+        selected_phone_key = phone_type_key
       
-      self.locale = self.new_locale
+        self.locale = self.new_locale
       
-      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
-      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
-      self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
-      self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
-      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
-      self.party = state_parties[party_idx] if !party_idx.nil?
-      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
-      self.save(validate: false)
+        self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
+        self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
+        self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
+        self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
+        self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
+        self.party = state_parties[party_idx] if !party_idx.nil?
+        self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
+        self.save(validate: false)
+      else
+        # Default to 'en' if the locale is invalid
+        self.locale = 'en'
+        self.save(validate: false)
+      end
     end
   end
 
