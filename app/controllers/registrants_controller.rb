@@ -63,7 +63,7 @@ class RegistrantsController < RegistrationStep
   end
 
   def share
-    if params[:registrant_finish_iframe_url].present?
+    if params[:partner].present?
       # Check if the URL belongs to one of the partner domains
       partner_id = params[:partner].to_i
       if partner_id.positive?
@@ -79,7 +79,7 @@ class RegistrantsController < RegistrationStep
         @registrant_finish_iframe_url = CGI.escapeHTML(Registrant::FINISH_IFRAME_URL)
       end
     else
-      # If no registrant_finish_iframe_url provided, use default
+      # If partner id is not present, use default
       @registrant_finish_iframe_url = CGI.escapeHTML(Registrant::FINISH_IFRAME_URL)
     end
   end
