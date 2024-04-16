@@ -63,8 +63,14 @@ class RegistrantsController < RegistrationStep
   end
 
   def share
-    @registrant_finish_iframe_url = CGI.escapeHTML(params[:registrant_finish_iframe_url])
+    if params[:registrant_finish_iframe_url].present?
+      @registrant_finish_iframe_url = CGI.escapeHTML(params[:registrant_finish_iframe_url])
+    else
+      # Use Registrant::FINISH_IFRAME_URL as the default value
+      @registrant_finish_iframe_url = CGI.escapeHTML(Registrant::FINISH_IFRAME_URL)
+    end
   end
+
 
   # GET /registrants/new
   def new
