@@ -41,5 +41,4 @@
     %br
     %br
     = I18n.t('txt.registration.instructions.overseas').html_safe
-  //%p.already-registered= I18n.t('txt.registration.already_registered', url: ( "/share?partner=#{@registrant.partner_id}&registrant_finish_iframe_url=#{CGI.escape(@registrant.finish_iframe_url)}")).html_safe
-  %p.already-registered= I18n.t('txt.registration.already_registered', url: share_no_reg_with_locale_path(partner_id: @registrant.partner_id.to_i, locale: I18n.locale.to_s)).html_safe
+   %p.already-registered= I18n.t('txt.registration.already_registered', url: ("/share/#{@registrant.partner_id}&locale=#{I18n.locale.to_s}")).html_safe
