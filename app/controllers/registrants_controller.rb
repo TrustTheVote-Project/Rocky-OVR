@@ -137,7 +137,8 @@ class RegistrantsController < RegistrationStep
 
   # Method to validate locale parameter
   def validate_locale(locale)
-    ENABLED_LOCALES.include?(locale)
+    enabled_locales = YAML.load_file("#{Rails.root}/config/settings.yml")["enabled_locales"]
+    enabled_locales.include?(locale)
   end
 
 
