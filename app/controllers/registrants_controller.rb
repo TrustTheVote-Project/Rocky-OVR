@@ -94,33 +94,42 @@ class RegistrantsController < RegistrationStep
 
   # Already registered share only view
   def share_no_reg
-    @partner_id = params[:partner_id] || '1'
+    begin
+      @partner_id = params[:partner_id] || '1'
 
-    # Cache the result of finding the partner with a 24-hour expiration
-    @partner = Rails.cache.fetch("partner_#{params[:partner_id]}", expires_in: 24.hours) do
-      Partner.find_by(id: @partner_id)
+      # Cache the result of finding the partner with a 24-hour expiration
+      @partner = Rails.cache.fetch("partner_#{params[:partner_id]}", expires_in: 24.hours) do
+        Partner.find_by(id: @partner_id)
+      end
+
+      if @partner && @partner.finish_iframe_url.present?
+        @registrant_finish_iframe_url = @partner.finish_iframe_url
+      else
+        @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
+      end
+
+      # Fetch locale parameter
+      locale_param = params[:locale] || I18n.locale.to_s
+
+      # Ensure locale parameter is not more than 5 characters long
+      locale_param = locale_param[0, 5] if locale_param.length > 5
+
+      # Cache the constructed finish iframe URL with the locale parameter and a 24-hour expiration
+      @registrant_finish_iframe_url = Rails.cache.fetch("finish_iframe_url_#{params[:partner_id]}_#{locale_param}", expires_in: 24.hours) do
+        "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
+      end
+
+      # Render the view directly
+      render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url }
+    rescue => e
+      # Log the error
+      Rails.logger.error("Error in share_no_reg action: #{e.message}")
+    
+      # Render an error page or redirect as needed
+      render plain: "An error occurred. Please try again later.", status: :internal_server_error
     end
-
-    if @partner && @partner.finish_iframe_url.present?
-      @registrant_finish_iframe_url = @partner.finish_iframe_url
-    else
-      @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
-    end
-
-    # Fetch locale parameter
-    locale_param = params[:locale] || I18n.locale.to_s
-
-    # Ensure locale parameter is not more than 5 characters long
-    locale_param = locale_param[0, 5] if locale_param.length > 5
-
-    # Cache the constructed finish iframe URL with the locale parameter and a 24-hour expiration
-    @registrant_finish_iframe_url = Rails.cache.fetch("finish_iframe_url_#{params[:partner_id]}_#{locale_param}", expires_in: 24.hours) do
-      "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
-    end
-
-    # Render the view directly
-    render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url }
   end
+
 
 
   # GET /registrants/new
