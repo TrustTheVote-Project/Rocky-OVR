@@ -25,7 +25,7 @@
 class RegistrantsController < RegistrationStep
   CURRENT_STEP = 1
 
-  ENABLED_LOCALES = YAML.load_file("#{Rails.root}/config/settings.yml")["enabled_locales"]
+  ENABLED_LOCALES = YAML.load_file("#{Rails.root}/config/settings/#{Rails.env}.yml")["enabled_locales"]
 
   helper_method :registrant_params
 
