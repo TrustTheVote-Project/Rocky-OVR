@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
     
-  get '/', to: redirect('/registrants/landing')
+  get '/', to: redirect('/registrants/new')
   root :to => "registrants#landing"
 
   get "/registrants/new/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
