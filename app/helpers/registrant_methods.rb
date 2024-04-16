@@ -138,13 +138,13 @@ module RegistrantMethods
       return party unless en_localization
       return party if en_localization[:parties].include?(party)
       if locale.to_s == "en"
-        return party == en_localization.no_party ? I18n.t('states.no_party_label.none') : party
+        return party == en_localization&.no_party ? I18n.t('states.no_party_label.none') : party
       else
-        if party == localization.no_party
-          return I18n.t('states.no_party_label.none', :locale=>:en)
+        if localization&.no_party && party == localization.no_party
+          return I18n.t('states.no_party_label.none', :locale => :en)
         else
-          if (p_index = localization[:parties].index(party))
-            return en_localization[:parties][p_index]
+          if localization && (p_index = localization[:parties]&.index(party))
+            return en_localization&.dig(:parties, p_index)
           else
             Rails.logger.warn "***** UNKNOWN PARTY:: registrant: #{id}, locale: #{locale}, party: #{party}"
             return nil
@@ -153,6 +153,7 @@ module RegistrantMethods
       end
     end
   end
+
   
   def english_state_parties
     if requires_party? || optional_party?
