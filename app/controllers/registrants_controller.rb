@@ -62,31 +62,9 @@ class RegistrantsController < RegistrationStep
     redirect_to new_registrant_url(options)
   end
   
-  #def share
-  #  @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
-  #end
-
-  # Already registered share only view
-  def share_no_reg
-    @partner_id = params[:partner_id] || '1'
-    @partner = Partner.find_by(id: @partner_id)
-
-    if @partner && @partner.finish_iframe_url.present?
-      @registrant_finish_iframe_url = @partner.finish_iframe_url
-    else
-      @registrant_finish_iframe_url = Registrant::FINISH_IFRAME_URL
-    end
-
-    # Fetch locale parameter
-    locale_param = params[:locale] || I18n.locale.to_s
-
-    @registrant_finish_iframe_url = "#{@registrant_finish_iframe_url}?locale=#{locale_param}"
-
-    # Render the view directly
-    render 'share', locals: { registrant_finish_iframe_url: @registrant_finish_iframe_url }
+  def share
+    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
   end
-
-
 
   # GET /registrants/new
   def new
