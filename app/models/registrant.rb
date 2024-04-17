@@ -2103,13 +2103,13 @@ class Registrant < ActiveRecord::Base
   def update_attributes_with_locale
     self.locale = new_locale
 
-    update_attribute_with_translation(:name_title, name_title_key)
-    update_attribute_with_translation(:name_suffix, name_suffix_key)
-    update_attribute_with_translation(:prev_name_title, prev_name_title_key)
-    update_attribute_with_translation(:prev_name_suffix, prev_name_suffix_key)
-    update_attribute_with_translation(:race, race_key)
+    # Skip updating certain fields
+    skip_fields = [:name_title, :name_suffix, :prev_name_title, :prev_name_suffix, :race, :phone_type]
+    skip_fields.each do |field|
+      self[field] = send("#{field}_key")
+    end
+
     update_party
-    update_attribute_with_translation(:phone_type, phone_type_key)
 
     save_without_validation
   end
