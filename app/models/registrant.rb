@@ -2101,24 +2101,53 @@ class Registrant < ActiveRecord::Base
   end
 
   def update_attributes_with_locale
+    # Store original values of fields that should not be affected by locale change
+    original_values = {
+      name_title: name_title,
+      name_suffix: name_suffix,
+      prev_name_title: prev_name_title,
+      prev_name_suffix: prev_name_suffix,
+      race: race,
+      party: party,
+      phone_type: phone_type
+    }
+
+    # Update the locale
     self.locale = new_locale
 
-    # Skip updating certain fields
-    skip_fields = [:name_title, :name_suffix, :prev_name_title, :prev_name_suffix, :race, :phone_type]
-    skip_fields.each do |field|
-      self[field] = send("#{field}_key")
+    # Validate the new locale
+    if valid_locale?
+      # Update translations for fields that are supposed to change with locale
+      update_translations
+
+      # Restore original values for fields that should remain unchanged
+      original_values.each do |field, value|
+        self[field] = value
+      end
+
+      # Save the record without validation
+      save_without_validation
+    else
+      # Default to 'en' if the locale is invalid
+      set_default_locale
     end
+  end
 
+  def update_translations
+    # Translation logic for fields that should change with locale
+    update_attribute_with_translation(:name_title, name_title_key)
+    update_attribute_with_translation(:name_suffix, name_suffix_key)
+    update_attribute_with_translation(:prev_name_title, prev_name_title_key)
+    update_attribute_with_translation(:prev_name_suffix, prev_name_suffix_key)
+    update_attribute_with_translation(:race, race_key)
     update_party
-
-    save_without_validation
+    update_attribute_with_translation(:phone_type, phone_type_key)
   end
 
   def update_attribute_with_translation(attribute, key)
     translation = I18n.t("txt.registration.#{attribute}.#{key}", locale: locale)
     self[attribute] = translation if key && translation.present?
   end
-
 
   def update_party
     party_idx = state_parties.index(party)
