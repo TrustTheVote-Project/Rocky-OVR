@@ -772,16 +772,28 @@ class Registrant < ActiveRecord::Base
 #    end
 #  end
 
-  def check_locale_change
-    return unless should_update_locale?
+ def check_locale_change
+  if !new_locale.blank? && new_locale != locale
+    if ENABLED_LOCALES.include?(new_locale)
+      # Store original locale
+      original_locale = locale
 
-    if valid_locale?
-      update_attributes_with_locale
+      # Update locale
+      self.locale = new_locale
+
+      # Update fields affected by locale change
+      update_translations
+
+      # Restore original locale
+      self.locale = original_locale
+
+      # Save the record without validation
+      save_without_validation
     else
+      # Default to 'en' if the locale is invalid
       set_default_locale
     end
   end
-
 
   def pdf_date_of_birth_month
     pdf_date_of_birth.split('/')[0]
@@ -2092,77 +2104,25 @@ class Registrant < ActiveRecord::Base
 
   private ###
 
-  def should_update_locale?
-    !new_locale.blank? && new_locale != locale
-  end
-
-  def valid_locale?
-    ENABLED_LOCALES.include?(new_locale)
-  end
-
-  def update_attributes_with_locale
-    # Store original values of fields that should not be affected by locale change
-    original_values = {
-      name_title: name_title,
-      name_suffix: name_suffix,
-      prev_name_title: prev_name_title,
-      prev_name_suffix: prev_name_suffix,
-      race: race,
-      party: party,
-      phone_type: phone_type
-    }
-
-    # Update the locale
-    self.locale = new_locale
-
-    # Validate the new locale
-    if valid_locale?
-      # Update translations for fields that are supposed to change with locale
-      update_translations
-
-      # Restore original values for fields that should remain unchanged
-      original_values.each do |field, value|
-        self[field] = value
-      end
-
-      # Save the record without validation
-      save_without_validation
-    else
-      # Default to 'en' if the locale is invalid
-      set_default_locale
-    end
-  end
-
   def update_translations
-    # Translation logic for fields that should change with locale
-    update_attribute_with_translation(:name_title, name_title_key)
-    update_attribute_with_translation(:name_suffix, name_suffix_key)
-    update_attribute_with_translation(:prev_name_title, prev_name_title_key)
-    update_attribute_with_translation(:prev_name_suffix, prev_name_suffix_key)
-    update_attribute_with_translation(:race, race_key)
-    update_party
-    update_attribute_with_translation(:phone_type, phone_type_key)
-  end
-
-  def update_attribute_with_translation(attribute, key)
-    translation = I18n.t("txt.registration.#{attribute}.#{key}", locale: locale)
-    self[attribute] = translation if key && translation.present?
-  end
-
-  def update_party
-    party_idx = state_parties.index(party)
-    self.party = state_parties[party_idx] if party_idx
+    # Add translation logic here for fields that should change with locale
+    self.name_title = I18n.t("txt.registration.titles.#{name_title_key}", locale: locale) if name_title_key
+    self.name_suffix = I18n.t("txt.registration.suffixes.#{name_suffix_key}", locale: locale) if name_suffix_key
+    self.prev_name_title = I18n.t("txt.registration.titles.#{prev_name_title_key}", locale: locale) if prev_name_title_key
+    self.prev_name_suffix = I18n.t("txt.registration.suffixes.#{prev_name_suffix_key}", locale: locale) if prev_name_suffix_key
+    self.race = I18n.t("txt.registration.races.#{race_key}", locale: locale) if race_key
+    self.party = state_parties[state_parties.index(party)] if state_parties.include?(party)
+    self.phone_type = I18n.t("txt.registration.phone_types.#{phone_type_key}", locale: locale) if phone_type_key
   end
 
   def set_default_locale
     self.locale = 'en'
-    save_without_validation
+   save_without_validation
   end
 
   def save_without_validation
     save(validate: false)
   end
-
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
