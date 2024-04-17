@@ -743,55 +743,32 @@ class Registrant < ActiveRecord::Base
   end
 
   # Reset name/prev prefix, suffix, race, party, phone_type
-#  def check_locale_change
-#    if !self.new_locale.blank? && self.new_locale != self.locale
-#      if ENABLED_LOCALES.include?(self.new_locale)
-#        selected_name_title_key = name_title_key
-#        selected_name_suf_key = name_suffix_key
-#        selected_prev_name_title_key = prev_name_title_key
-#        selected_prev_name_suf_key = prev_name_suffix_key
-#        selected_race_key = race_key
-#        party_idx = state_parties.index(self.party)
-#        selected_phone_key = phone_type_key
+  def check_locale_change
+    if !self.new_locale.blank? && self.new_locale != self.locale
+      if ENABLED_LOCALES.include?(self.new_locale)
+        selected_name_title_key = name_title_key
+        selected_name_suf_key = name_suffix_key
+        selected_prev_name_title_key = prev_name_title_key
+        selected_prev_name_suf_key = prev_name_suffix_key
+        selected_race_key = race_key
+        party_idx = state_parties.index(self.party)
+        selected_phone_key = phone_type_key
       
-#        self.locale = self.new_locale
+        self.locale = self.new_locale
       
-#        self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
-#        self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
-#        self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
-#        self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
-#        self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
-#        self.party = state_parties[party_idx] if !party_idx.nil?
-#        self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
-#        self.save(validate: false)
-#      else
+        self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
+        self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
+        self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
+        self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
+        self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
+        self.party = state_parties[party_idx] if !party_idx.nil?
+        self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
+        self.save(validate: false)
+      else
         # Default to 'en' if the locale is invalid
-#        self.locale = 'en'
-#        self.save(validate: false)
-#      end
-#    end
-#  end
-
- def check_locale_change
-  if !new_locale.blank? && new_locale != locale
-    if ENABLED_LOCALES.include?(new_locale)
-      # Store original locale
-      original_locale = locale
-
-      # Update locale
-      self.locale = new_locale
-
-      # Update fields affected by locale change
-      update_translations
-
-      # Restore original locale
-      self.locale = original_locale
-
-      # Save the record without validation
-      save_without_validation
-    else
-      # Default to 'en' if the locale is invalid
-      set_default_locale
+        self.locale = 'en'
+        self.save(validate: false)
+      end
     end
   end
 
@@ -2103,34 +2080,6 @@ class Registrant < ActiveRecord::Base
   end
 
   private ###
-
-  def update_attributes_with_locale
-    if should_update_locale?
-      if valid_locale?
-        selected_name_title_key = name_title_key
-        selected_name_suf_key = name_suffix_key
-        selected_prev_name_title_key = prev_name_title_key
-        selected_prev_name_suf_key = prev_name_suffix_key
-        selected_race_key = race_key
-        party_idx = state_parties.index(party)
-        selected_phone_key = phone_type_key
-    
-        self.locale = new_locale
-    
-        self.name_title = I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: locale) if selected_name_title_key
-        self.name_suffix = I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: locale) if selected_name_suf_key
-        self.prev_name_title = I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: locale) if selected_prev_name_title_key
-        self.prev_name_suffix = I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: locale) if selected_prev_name_suf_key
-        self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: locale) if selected_race_key
-        self.party = state_parties[party_idx] if party_idx
-        self.phone_type = I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: locale) if selected_phone_key
-        save_without_validation
-      else
-        # Default to 'en' if the locale is invalid
-        set_default_locale
-      end
-    end
-  end
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
