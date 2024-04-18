@@ -710,7 +710,7 @@ en:
             of California, you must accept the disclosures above.
           blank: Required
           invalid: "%{attribute} is invalid."
-          contains_emojis: Contains invalid emoji characters.
+          contains_emojis: Contains invalid characters.
           invalid_zip: Invalid ZIP
           attributes:
             home_zip_code:

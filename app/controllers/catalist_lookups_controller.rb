@@ -7,8 +7,8 @@ class CatalistLookupsController < ApplicationController
   def new
     @lookup = CatalistLookup.new(
       partner_id: @partner_id,
-      tracking_source: @source,
-      tracking_id: @tracking,
+      tracking_source: ERB::Util.html_escape(@source),
+      tracking_id: ERB::Util.html_escape(@tracking),
       email: @email,
       first: @first_name,
       last: @last_name,
