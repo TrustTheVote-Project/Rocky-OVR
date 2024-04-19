@@ -310,4 +310,5 @@ class RegistrationStep < ApplicationController
   #     redirect_to "//#{RockyConf.ui_url_host}"
   #   end
   # end
+
 end

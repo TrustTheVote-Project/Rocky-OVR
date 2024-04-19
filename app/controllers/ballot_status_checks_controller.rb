@@ -5,8 +5,8 @@ class BallotStatusChecksController < ApplicationController
   def new
     @bsc = BallotStatusCheck.new(
       partner_id: @partner_id, 
-      tracking_source: @source,
-      tracking_id: @tracking,
+      tracking_source: ERB::Util.html_escape(@source),
+      tracking_id: ERB::Util.html_escape(@tracking),
       email: @email,
       first_name: @first_name,
       last_name: @last_name,
