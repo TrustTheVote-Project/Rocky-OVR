@@ -80,6 +80,8 @@ class RegistrantsController < RegistrationStep
     else
       @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
     end
+    # Set @show_back_button to true
+    @show_back_button = true
   end
 
 
