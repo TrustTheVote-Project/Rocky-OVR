@@ -260,6 +260,7 @@ en:
       trackballot: Check Ballot Status
       edit: Edit
       back: "&lt; Previous Step"
+      back_to_register: "&lt; Register to Vote"
       download: Print your registration form now
       download_assistance: Please mail me my form, I can't print it right now
       download_abr: Print your Absentee Request now
