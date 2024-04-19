@@ -25,9 +25,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-  <%= javascript_include_tag "iframeResizer.contentWindow.min.js" %>
+ <%= javascript_include_tag "iframeResizer.contentWindow.min.js", defer: true %>
   
+  <% if @partner&.partner2_css_present? && @partner&.whitelabeled %>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" defer></script>
   <script>
     WebFont.load({
       google: {
@@ -35,8 +36,9 @@
       }
     });
   </script>
+  <% end %>
   
-  <%= stylesheet_link_tag 'jquery.qtip.min' %>
+  <script src="<%= asset_path('jquery.qtip.min.js') %>" defer></script>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
   <%= stylesheet_link_tag 'registration3' unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
@@ -46,7 +48,7 @@
       #container { display:table; height:100% }
     </style>
   <![endif]-->
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application', defer: true %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {

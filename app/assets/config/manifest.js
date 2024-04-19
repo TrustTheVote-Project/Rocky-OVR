@@ -30,4 +30,4 @@
 //= link_directory ../stylesheets/states .css
 //= link_directory ../stylesheets/nvra/locales .css
 
-//= link_directory ../javascripts/abr_states .js    
+//= link_directory ../javascripts/abr_states .js
