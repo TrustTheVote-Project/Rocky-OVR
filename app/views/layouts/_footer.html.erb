@@ -1,3 +1,4 @@
+<%- cache 'footer_partial' do %>
   <div id="footer">
     <%- if !@registrant || @registrant.use_short_form? %>
       <div id="powered_by_logo" class="powered-by-logo">
@@ -18,4 +19,4 @@
       <span class="copyright"><%= (RockyConf.sponsor.footer_copyright % Date.today.year).html_safe %></span>
     </p>
   </div>
-
+<%- end %>
