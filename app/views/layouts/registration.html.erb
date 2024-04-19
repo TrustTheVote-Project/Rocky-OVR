@@ -38,7 +38,7 @@
   </script>
   <% end %>
   
-  <script src="<%= asset_path('jquery.qtip.min.js') %>" defer></script>
+  <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
   <%= stylesheet_link_tag 'registration3' unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
