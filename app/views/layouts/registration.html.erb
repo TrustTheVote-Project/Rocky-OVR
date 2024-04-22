@@ -25,8 +25,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   
- <%= javascript_include_tag "iframeResizer.contentWindow.min.js", defer: true %>
+  <%= javascript_include_tag "iframeResizer.contentWindow.min.js", defer: true %>
   
+  <% if @partner&.partner2_css_present? && @partner&.whitelabeled %>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
   <script>
     WebFont.load({
@@ -35,6 +36,7 @@
       }
     });
   </script>
+  <% end %>
   
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
