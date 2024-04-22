@@ -137,6 +137,12 @@ class RegistrantsController < RegistrationStep
     # Escape all query parameters
     query_params = params[:query_parameters].present? ? params[:query_parameters].transform_values { |value| ERB::Util.html_escape(value) } : {}
 
+    # Check if the 'id' parameter is present in the request and if so force them back
+    if params[:registrant].present? && params[:registrant][:id].present?
+      # Redirect to root URL without the 'id' parameter
+      redirect_to root_url(registrant_params.except(:id)) and return
+    end
+
     @registrant = Registrant.new((registrant_params || {}).reverse_merge(
       :locale => @locale,
       :partner_id => @partner_id,
