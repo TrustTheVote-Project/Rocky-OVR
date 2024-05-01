@@ -28,8 +28,7 @@
         display: none;
       }
       .signature_done, .signature_clear {
-        //margin: 1em;
-		margin: 10px;
+        margin: 1em;
       }
       .signature_done {
         float: right;
@@ -96,11 +95,8 @@
       border: 1px solid #ccc; 
       //width: 362px;
       //height: 122px;
-      //height: 33vw;
-      //width: 100vw;
-	  height: 31vw;
-      width: 96vw;
-	  margin: 0 15px;
+      height: 33vw;
+      width: 100vw;
     }
     #signature_preview {
       img.preview {
