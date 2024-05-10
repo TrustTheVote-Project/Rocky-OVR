@@ -88,7 +88,7 @@ ja:
         work: 勤務先の電話
         other: その他
       instructions:
-        overseas: <b>注意</b>:海外に住むアメリカ市民や（制服を着る）軍関係の投票者は、投票登録するために <a href='https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote'
+        overseas: <b>注意</b>:海外に住むアメリカ市民や（制服を着る）軍関係の投票者は、投票登録するために <a href='https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote'
           target='_blank'> ここを</a>押して下さい。
         opt_in_email: 私達から時期にあわせた選挙通知に関する投票所の場所、音楽やその他の事柄に関する情報が送信されます。
         under_18: まだ１８歳になっていないようですね。大丈夫です。%{state_name}では%{state_rule}投票登録できます。次の選挙がいつになるかは、私たちの
