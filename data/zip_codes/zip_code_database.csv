@@ -2752,6 +2752,7 @@ zip,type,primary_city,acceptable_cities,unacceptable_cities,state,county,timezon
 07710,PO BOX,Adelphia,,,NJ,Monmouth County,America/New_York,US
 07711,STANDARD,Allenhurst,"Loch Arbour, W Allenhurst, West Allenhurst",,NJ,Monmouth County,America/New_York,US
 07712,STANDARD,Asbury Park,"Interlaken, Ocean, Tinton Falls","Wanamassa, Wayside",NJ,Monmouth County,America/New_York,US
+07713,STANDARD,Asbury Park,"Interlaken, Ocean, Tinton Falls","Wanamassa, Wayside",NJ,Monmouth County,America/New_York,US
 07715,UNIQUE,Belmar,,Nj Natural Gas Co,NJ,Monmouth County,America/New_York,US
 07716,STANDARD,Atlantic Highlands,Atlantic Hlds,Atlantic Hl,NJ,Monmouth County,America/New_York,US
 07717,STANDARD,Avon By The Sea,Avon By Sea,Avon,NJ,Monmouth County,America/New_York,US

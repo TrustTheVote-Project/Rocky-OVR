@@ -27,7 +27,7 @@ gem 'mysql2' #, '~> 0.3.18'
 
 gem 'distribute_reads'
 
-gem 'google-authenticator-rails'
+gem 'google-authenticator-rails', '~> 3.4', '>= 3.4.2'
 
 
 gem "rubyzip" #, '~> 1.3.0'
