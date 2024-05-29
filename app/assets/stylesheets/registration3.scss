@@ -921,6 +921,10 @@ body #main .step_2 ul li.registrant-form__change-of-name__line img#tooltip-previ
 	margin-left: 2px;
 	margin-bottom: 1px;
 }
+.question h3 {
+	height: auto !important;
+	margin-bottom: 8px;
+}
 
 /* media */
 @media screen and (min-width: 600px) {
