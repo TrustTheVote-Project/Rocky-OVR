@@ -163,7 +163,7 @@ class Registrant < ActiveRecord::Base
       #Also allow city fields to have the same as address fields (, / .) - just remove them
       val = self.send(field).to_s
       val = val.gsub(/[,\.]/i,"").gsub(/\//i, " ")
-      self.send("#{field}=", val)      
+      self.send("#{field}=", val)
     end
   end
   
@@ -179,7 +179,7 @@ class Registrant < ActiveRecord::Base
   #     message: :invalid_for_pdf }#I18n.t('activerecord.errors.messages.invalid_for_pdf')}
   # end
   
-  SURVEY_FIELDS = %w(survey_question_1 survey_question_2 survey_answer_1 survey_answer_2)
+  SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
   validate_fields(SURVEY_FIELDS, SURVEY_REGEX, :contains_emojis)
 
 
