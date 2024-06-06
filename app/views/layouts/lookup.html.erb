@@ -59,6 +59,9 @@
 </head>
 
 <body class="lookup-page <%= 'not-landing ' if (@bsc && @bsc.state_abbrev) || (@lookup && @lookup.state_abbrev) %><%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<script type="text/javascript">
+  window._registrantUID = "<%= j @lookup.uid %>";
+</script>
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
   <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
