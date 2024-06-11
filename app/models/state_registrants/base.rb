@@ -20,7 +20,7 @@ class StateRegistrants::Base < ActiveRecord::Base
   before_create :set_default_opt_ins
 
   attr_accessor :new_locale
-  
+
   def self.permitted_attributes
     attrs = self.column_names - self.protected_attributes
     return [attrs, 
