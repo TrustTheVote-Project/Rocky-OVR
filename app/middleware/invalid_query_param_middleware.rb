@@ -17,7 +17,7 @@ class InvalidQueryParamMiddleware
 
   def invalid_query_param?(query_string)
     # Check for characters that are not standard in URLs and should be percent-encoded
-    invalid_characters = /[^A-Za-z0-9\-._!*\(\);:@&=+\/?\[\]]/
+    invalid_characters = /[^A-Za-z0-9\-._~!*\(\);:@&=+\/?\[\]áéíóúÁÉÍÓÚ]/ # Added Spanish accented characters
     query_string.match?(invalid_characters)
   end
 end
