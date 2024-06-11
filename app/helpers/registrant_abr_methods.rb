@@ -14,7 +14,6 @@ module RegistrantAbrMethods
   end
 
   def finish_iframe_url
-    
     base_url = self.is_a?(Abr) ? "https://s3.rockthevote.com/rocky/rtv-abr-share-vanilla.php" : Registrant::FINISH_IFRAME_URL
     if self.partner && !self.partner.primary? && self.partner.whitelabeled? && !self.partner.finish_iframe_url.blank?
       base_url = self.partner.finish_iframe_url
@@ -29,13 +28,12 @@ module RegistrantAbrMethods
     I18n.t("locales.#{self.locale}.name", locale: "en")
   end
 
-
   def any_email_opt_ins?
-    collect_email_address? && (partner.rtv_email_opt_in || partner.primary? || partner.partner_email_opt_in)
+    collect_email_address? && partner.present? && (partner.rtv_email_opt_in || partner.primary? || partner.partner_email_opt_in)
   end
   
   def any_phone_opt_ins?
-    partner.rtv_sms_opt_in || partner.partner_sms_opt_in? || partner.primary?
+    partner.present? && (partner.rtv_sms_opt_in || partner.partner_sms_opt_in? || partner.primary?)
   end
   
   def has_phone?
@@ -54,22 +52,19 @@ module RegistrantAbrMethods
   def phone_digits
     phone.to_s.gsub(/\D/,'')
   end
-  
-  
-  
+
   def is_blacklisted(email_address)
     EmailAddress.is_blacklisted?(email_address)
   end
 
-
-
-
   def home_state_abbrev
     home_state && home_state.abbreviation
   end
+
   def home_state_name
     home_state && home_state.name
   end
+
   def home_state_system_name
     name = home_state&.online_registration_system_name
     if home_state && !name
@@ -77,7 +72,6 @@ module RegistrantAbrMethods
     end
     name      
   end
-  
   
   def mailing_state_abbrev=(abbrev)
     self.mailing_state = GeoState[abbrev]
@@ -87,25 +81,18 @@ module RegistrantAbrMethods
     mailing_state && mailing_state.abbreviation
   end
   
-  def home_state_name
-    home_state && home_state.name
-  end
-  
   def mailing_state_name
     mailing_state && mailing_state.name
   end
-  
-  
+
   def to_param
     uid
   end
-  
-  
+
   def home_state_online_reg_url
     home_state && home_state.online_reg_url(self)
   end
-  
-  
+
   def prev_state_abbrev=(abbrev)
     self.prev_state = GeoState[abbrev]
   end
@@ -137,7 +124,7 @@ module RegistrantAbrMethods
       RockyConf.from_address
     end
   end
-  
+
   def enqueue_reminder_emails
     if send_emails?
       self.reminders_left = self.class.reminder_emails_to_send
@@ -145,16 +132,16 @@ module RegistrantAbrMethods
       self.reminders_left = 0
     end
   end
+
   def validate_date_of_birth_age
     if date_of_birth < Date.parse("1900-01-01")
       errors.add(:date_of_birth, :too_old)
     end
     if date_of_birth > Date.today
-      errors.add(:date_of_birth, :future)      
+      errors.add(:date_of_birth, :future)
     end
-
   end
-  
+
   def validate_date_of_birth
     if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
       validate_date_of_birth_age
@@ -185,5 +172,4 @@ module RegistrantAbrMethods
       end
     end
   end
-  
 end
