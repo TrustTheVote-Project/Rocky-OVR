@@ -31,7 +31,8 @@ class Api::V5::RegistrantReportsController < Api::V5::BaseController
       :since            => params[:since],
       :before           => params[:before],
       :email            => params[:email],
-      :report_type      => params[:report_type]
+      :report_type      => params[:report_type],
+      :uid              => params[:uid]
     }
 
     jsonp V5::RegistrationService.create_report(query)
@@ -46,7 +47,8 @@ class Api::V5::RegistrantReportsController < Api::V5::BaseController
       :gpartner_api_key  => params[:gpartner_API_key],
       :since            => params[:since],
       :email            => params[:email],
-      :report_type      => params[:report_type]
+      :report_type      => params[:report_type],
+      :uid              => params[:uid]
     }
     jsonp V5::RegistrationService.create_report(query)
   rescue ArgumentError => e

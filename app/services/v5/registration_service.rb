@@ -147,7 +147,7 @@ module V5
       begin
         pa_data, modifications = pa_adapter.convert
       rescue => e
-        return ["Error parsing request: #{e.message}"]        
+        return ["Error parsing request: #{e.message}"]
       end
       return []
     end
@@ -318,7 +318,7 @@ module V5
     # end
 
     # Lists records for the given registrant
-    ALLOWED_PARAMETERS = [:partner_id, :gpartner_id, :partner_api_key, :gpartner_api_key, :since, :before, :email, :callback, :report_type]
+    ALLOWED_PARAMETERS = [:partner_id, :gpartner_id, :partner_api_key, :gpartner_api_key, :since, :before, :email, :callback, :report_type, :uid]
     def self.create_report(query)
       query ||= {}
 
@@ -333,9 +333,9 @@ module V5
       report_type = Report::REGISTRANTS_REPORT
       if query[:report_type] && query[:report_type].to_s.downcase == "extended"
         report_type = Report::REGISTRANTS_REPORT_EXTENDED
+      elsif query[:report_type] && Report::REPORT_TYPES.include?(query[:report_type])
+        report_type = query[:report_type]
       end
-      
-      
       
       filters = {}
       g_partner = false
@@ -357,7 +357,7 @@ module V5
       start_date = nil
       if since = query[:since]
         if !(query[:since] =~ /\A\d\d\d\d-\d\d-\d\d([T\s]\d\d:\d\d(:\d\d(\+\d\d:\d\d|\s...)?)?)?\z/)
-          raise InvalidParameterValue.new(:since)          
+          raise InvalidParameterValue.new(:since)
         else
           start_date = Time.parse(since)
         end
@@ -366,13 +366,17 @@ module V5
       end_date = nil   
       if before = query[:before]
         if !(query[:before] =~ /\A\d\d\d\d-\d\d-\d\d([T\s]\d\d:\d\d(:\d\d(\+\d\d:\d\d|\s...)?)?)?\z/)
-          raise InvalidParameterValue.new(:before)          
+          raise InvalidParameterValue.new(:before)
         else
           end_date = Time.parse(before)
         end
       end
       
+      # Set email filter
       filters[:email_address] = query[:email]
+
+      # Set uid filter if present
+      filters[:uid] = query[:uid] if query[:uid].present?
       
       r = Report.new({
         report_type: report_type,
@@ -381,7 +385,7 @@ module V5
         filters: filters,
         partner: partner
       })
-      r.queue!    
+      r.queue!
       return {
         status: r.status,
         record_count: r.record_count,
@@ -390,9 +394,9 @@ module V5
         download_url: r.status == Report::Status.complete ? (g_partner ? Rails.application.routes.url_helpers.api_v5_download_gregistrant_report_url(r, host: RockyConf.api_host_name) : Rails.application.routes.url_helpers.download_api_v5_registrant_report_url(r, host: RockyConf.api_host_name)) : nil
       }
 
-      
-      
     end
+
+
 
     def self.get_report(query)
       query ||= {}

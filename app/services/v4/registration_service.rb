@@ -277,7 +277,7 @@ module V4
     # end
 
     # Lists records for the given registrant
-    ALLOWED_PARAMETERS = [:partner_id, :gpartner_id, :partner_api_key, :gpartner_api_key, :since, :before, :email, :callback, :report_type]
+    ALLOWED_PARAMETERS = [:partner_id, :gpartner_id, :partner_api_key, :gpartner_api_key, :since, :before, :email, :callback, :report_type, :uid]
     def self.create_report(query)
       query ||= {}
 
@@ -331,7 +331,11 @@ module V4
         end
       end
       
+      # Set email filter
       filters[:email_address] = query[:email]
+
+      # Set uid filter if present
+      filters[:uid] = query[:uid] if query[:uid].present?
       
       r = Report.new({
         report_type: report_type,

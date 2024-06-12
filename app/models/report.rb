@@ -331,7 +331,7 @@ class Report < ActiveRecord::Base
     CatalistLookup::CSV_HEADER
   end
   
-  def lookup_report_conditions    
+  def lookup_report_conditions
     conditions = [[]]
     if start_date
       conditions[0] << " catalist_lookups.created_at >= ? "
@@ -341,12 +341,25 @@ class Report < ActiveRecord::Base
       conditions[0] << " catalist_lookups.created_at < ? "
       conditions << end_date + 1.day
     end
+    if filters && filters[:email_address] && !filters[:email_address].blank?
+      conditions[0] << " email_address = ? "
+      conditions << filters[:email_address]
+    elsif filters[:uid].present?
+      conditions[0] << " uid = ? "
+      conditions << filters[:uid]
+    end
     conditions[0] = conditions[0].join(" AND ")
     return conditions
   end
   
   def lookup_report_selector
-    @lookup_report_selector ||= partner.catalist_lookups.where(lookup_report_conditions)
+    @lookup_report_selector ||= begin
+      selector = partner.catalist_lookups.where(lookup_report_conditions)
+      if filters[:uid].present?
+        selector = selector.where(uid: filters[:uid])
+      end
+      selector.includes(abrs_catalist_lookup: [:abr], catalist_lookups_registrant: [], state: []).order(:id)
+    end
   end
     
   def generate_lookup_report(start=0, csv_method=:to_csv_array)
@@ -371,7 +384,7 @@ class Report < ActiveRecord::Base
     Registrant::CSV_HEADER_EXTENDED
   end
   
-  def registrants_report_conditions    
+  def registrants_report_conditions
     conditions = [[]]
     if start_date
       conditions[0] << " registrants.created_at >= ? "
@@ -384,6 +397,9 @@ class Report < ActiveRecord::Base
     if filters && filters[:email_address] && !filters[:email_address].blank?
       conditions[0] << " email_address = ? "
       conditions << filters[:email_address]
+    elsif filters[:uid].present?
+      conditions[0] << " uid = ? "
+      conditions << filters[:uid]
     end
     conditions[0] = conditions[0].join(" AND ")
     return conditions
@@ -394,20 +410,24 @@ class Report < ActiveRecord::Base
   end
   
   def registrants_report_selector
-    if filters && filters[:home_state_id] || filters[:home_zip_code]
+    if filters && (filters[:home_state_id] || filters[:home_zip_code])
       if filters[:home_state_id]
         @registrants_report_selector ||= Registrant.where(home_state_id: filters[:home_state_id]).where(registrants_report_conditions)
       elsif filters[:home_zip_code]
         @registrants_report_selector ||= Registrant.where(home_zip_code: filters[:home_zip_code]).where(registrants_report_conditions)
       end
     else
-      @registrants_report_selector ||= partner.registrants.where(registrants_report_conditions)
+      selector = partner.registrants.where(registrants_report_conditions)
+      if filters[:uid].present?
+        selector = selector.where(uid: filters[:uid])
+      end
+      @registrants_report_selector ||= selector
     end
     @registrants_report_selector.includes(:voter_signature)
   end
   
   def registrants_report_extended_selector
-    @registrants_report_extended_selector ||= registrants_report_selector.includes(:pdf_delivery, {:canvassing_shift_registrant => :canvassing_shift})    
+    @registrants_report_extended_selector ||= registrants_report_selector.includes(:pdf_delivery, {:canvassing_shift_registrant => :canvassing_shift})
   end
   
   
