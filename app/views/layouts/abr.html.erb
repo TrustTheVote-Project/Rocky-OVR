@@ -38,7 +38,12 @@
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag 'select2.min' %>
   <%= stylesheet_link_tag *partner_css %>
-  <%= stylesheet_link_tag 'registration3' unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
+  <%- unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+    <%= stylesheet_link_tag 'registration3' %>
+  <%- end %>
 
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
