@@ -1,8 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<%= @abr&.locale || "en" %>">
+<!DOCTYPE html>
+<html lang="<%= @abr&.locale || "en" %>">
 
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>
     <%- if @abr && @abr.home_state_abbrev %>
     <%= I18n.t('txt.request_absentee_ballot_in', state_abbrev: @abr.home_state_abbrev) %>
@@ -33,29 +34,12 @@
     <meta name="robots" content="noindex" />
   <%- end %>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-
-  <% if @partner&.partner2_css_present? && @partner&.whitelabeled %>
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-  <script>
-    WebFont.load({
-      google: {
-        families: ['Caveat:400', 'Fira Sans:400,700,700i']
-      }
-    });
-  </script>
-  <% end %>
-
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag 'select2.min' %>
   <%= stylesheet_link_tag *partner_css %>
   <%= stylesheet_link_tag 'registration3' unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
-  <!--[if !IE 7]>
-    <style type="text/css">
-      #container { display:table; height:100% }
-    </style>
-  <![endif]-->
+
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 
@@ -142,6 +126,16 @@
       }
     </script>
 
+  <% if @partner&.partner2_css_present? && @partner&.whitelabeled %>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Caveat:400', 'Fira Sans:400,700,700i']
+      }
+    });
+  </script>
+  <% end %>
 </body>
 
 </html>
