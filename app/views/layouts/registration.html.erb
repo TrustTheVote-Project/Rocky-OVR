@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="<%= @registrant&.locale || "en" %>">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -30,7 +31,12 @@
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
-  <%= stylesheet_link_tag 'registration3' unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
+  <%- unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+    <%= stylesheet_link_tag 'registration3' %>
+  <%- end %>
 
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
