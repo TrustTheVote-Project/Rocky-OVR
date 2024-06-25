@@ -229,7 +229,7 @@ es:
       
     register_to_vote: Registrarse para votar
     register_to_vote_in: Registrarse en %{state_abbrev}
-    check_voter_status: Verifica el estado de tu registro de votante
+    check_voter_status: Verifica el estado<br/>de tu registro de votante
     check_voter_status_in: Verifica el estado de tu registro de votante en %{state_abbrev}
     
     unknown_error: ! 'Error desconocido: los administradores de red han sido contactados.'

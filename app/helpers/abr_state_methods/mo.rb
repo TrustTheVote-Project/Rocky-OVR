@@ -45,7 +45,6 @@ module AbrStateMethods::MO
       options: [
         "abr_election_type1",
         "abr_election_type2",
-        "abr_election_type3",
       ]
     },
     "abr_election_date": {
@@ -89,16 +88,14 @@ module AbrStateMethods::MO
       {"abr_reason_selections": { type: :radio, required: true }},
       {"abr_election_type_selections_instructions": {type: :instructions}},
       {"abr_election_type_selections": { type: :radio, required: true}},
-      {"abr_election_date_input": { type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type3" }},
+      {"abr_election_date_input": { type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type2" }},
       #{"abr_primary_type_selections": { type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type1" }},
     ]
   end
   
   def abr_election_date_input_string
     if self.abr_election_type_selections == "abr_election_type1"
-      "03/23/2024"
-    elsif self.abr_election_type_selections == "abr_election_type2"
-      "04/02/2024"
+      "08/06/2024"
     else
       date_field_string_mm_dd_yyyy(method: :abr_election_date_input)
     end
