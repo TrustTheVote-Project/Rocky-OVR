@@ -486,7 +486,10 @@ es:
         registrant_name: Poner tu nombre completo en estos espacios.  Porfavor no
           usar apodos o iniciales.  Si esta aplicación es para el cambio de nombre
           se te preguntará tu nombre anterior registrado.  Y no olvidar poner tu título
-          (Sr., Sra., Srta., Ms.).
+          (Sr., Sra., Srta., Ms.). Las opciones para el campo Título están predeterminadas 
+          por el formulario nacional de inscripción de votantes, y este campo es requerido 
+          por algunos estados. No reflejan los valores o las creencias de Rock the Vote 
+          sobre la inclusión de género.
         home_address: Poner tu dirección en estos espacios.  No poner tu dirección
           de correo aquí si es diferente a la dirección de tu casa.  No usar Post
           office Box o rural route sin un número de box.  Si vives en un area rural
