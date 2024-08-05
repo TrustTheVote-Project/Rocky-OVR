@@ -522,7 +522,10 @@ en:
         registrant_name: Put your full name and in these boxes. Please do not use
           nicknames or initials. If this application is for a change of name you will
           be asked for your previous name in a later section.  And don't forget to
-          include your title (Mr., Mrs., Miss, Ms.).
+          include your title (Mr., Mrs., Miss, Ms.). The pre-determined options for 
+          the Title field are dictated by the National Mail Voter Registration Form, 
+          and this field is required by some states. They are not reflective of 
+          Rock the Vote's views or values on gender inclusivity.
         home_address: Put your home address in these boxes. Do not put your mailing
           address here if it is different from your home address. Do not use a post
           office box or rural route without a box number. If you live in a rural area
