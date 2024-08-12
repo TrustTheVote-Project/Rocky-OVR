@@ -4,7 +4,7 @@
   
 %h1= t('txt.registration.step_1_header')
 
-#other_language_link
+#other_language_link{ style: 'display: none;' }
   - if @registrant.new_record?
     :javascript
       function followOtherLanguageLink() {

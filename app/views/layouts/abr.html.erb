@@ -64,7 +64,12 @@
   <%- end %> 
 
   <%= yield :head %>
-
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_998f62092305ff602e8efd215c8fd0633'
+    });
+</script>
 </head>
 
 <body class="abr-page <%= 'not-landing' if @abr && @abr.home_state_abbrev %> <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">

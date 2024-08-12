@@ -50,6 +50,28 @@
     });
   </script>
   <%= yield :head %>
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_998f62092305ff602e8efd215c8fd0633'
+    });
+
+    Weglot.on('languageChanged', function(newLang) {
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('locale', newLang);
+        window.history.replaceState({}, '', currentUrl.toString());
+    });
+
+    // Check the URL for the locale parameter on page load
+    window.addEventListener('load', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const locale = urlParams.get('locale');
+
+        if (locale) {
+            Weglot.switchTo(locale);
+        }
+    });
+</script>
 </head>
 
 <body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %><%= ' old-school' if @registrant && !@registrant.short_form? %> <%= @registrant&.locale&.html_safe || 'en' %>">
