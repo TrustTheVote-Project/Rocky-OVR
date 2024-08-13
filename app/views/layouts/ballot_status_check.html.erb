@@ -52,7 +52,41 @@
     Weglot.initialize({
         api_key: 'wg_998f62092305ff602e8efd215c8fd0633'
     });
+
+    Weglot.on('languageChanged', function(newLang) {
+        const currentUrl = new URL(window.location.href);
+
+        // Set the locale parameter
+        currentUrl.searchParams.set('locale', newLang);
+
+        // Check if 'utm_medium' exists
+        let utm_medium = currentUrl.searchParams.get('utm_medium');
+        if (utm_medium) {
+            // Remove any existing 'weglot' or '-weglot' suffix
+            utm_medium = utm_medium.replace(/(?:-weglot|weglot)$/, '');
+        } else {
+            // If 'utm_medium' doesn't exist, initialize it as an empty string
+            utm_medium = '';
+        }
+
+        // Append '-weglot' only once, ensuring no extra dashes
+        currentUrl.searchParams.set('utm_medium', `${utm_medium}-weglot`.replace(/^-/, ''));
+
+        // Update the URL without reloading the page
+        window.history.replaceState({}, '', currentUrl.toString());
+    });
+
+    // Check the URL for the locale parameter on page load
+    window.addEventListener('load', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const locale = urlParams.get('locale');
+
+        if (locale) {
+            Weglot.switchTo(locale);
+        }
+    });
 </script>
+
 </head>
 
 <body class="tracking-page <%= 'not-landing' if @bsc && @bsc.state_abbrev %> <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">

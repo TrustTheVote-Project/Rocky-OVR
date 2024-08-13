@@ -58,7 +58,24 @@
 
     Weglot.on('languageChanged', function(newLang) {
         const currentUrl = new URL(window.location.href);
+
+        // Set the locale parameter
         currentUrl.searchParams.set('locale', newLang);
+
+        // Check if 'utm_medium' exists
+        let utm_medium = currentUrl.searchParams.get('utm_medium');
+        if (utm_medium) {
+            // Remove any existing 'weglot' or '-weglot' suffix
+            utm_medium = utm_medium.replace(/(?:-weglot|weglot)$/, '');
+        } else {
+            // If 'utm_medium' doesn't exist, initialize it as an empty string
+            utm_medium = '';
+        }
+
+        // Append '-weglot' only once, ensuring no extra dashes
+        currentUrl.searchParams.set('utm_medium', `${utm_medium}-weglot`.replace(/^-/, ''));
+
+        // Update the URL without reloading the page
         window.history.replaceState({}, '', currentUrl.toString());
     });
 
@@ -72,6 +89,7 @@
         }
     });
 </script>
+
 </head>
 
 <body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %><%= ' old-school' if @registrant && !@registrant.short_form? %> <%= @registrant&.locale&.html_safe || 'en' %>">
