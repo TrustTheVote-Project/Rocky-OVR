@@ -22,7 +22,7 @@
 
 = form_for(@registrant) do |form|
   - if @registrant.use_short_form? && !@registrant.new_record?
-    #other_language_link
+    #other_language_link{ style: 'display: none;' }
       = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {selected: @registrant.locale}, onchange: "$(this.form).find('input[name=skip_advance]').val(true); $(this.form).submit()"
       = form.hidden_field :locale, :value=>@registrant.locale
       = hidden_field_tag 'skip_advance', false

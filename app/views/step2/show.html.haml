@@ -1,5 +1,3 @@
-= render :partial => 'layouts/weglot'
-
 - if @registrant.mail_with_esig?
   = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @registrant.allow_desktop_signature? }
   = flash_messages.html_safe
