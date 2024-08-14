@@ -1,0 +1,43 @@
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_998f62092305ff602e8efd215c8fd0633',
+        cache: true  // Enable caching for translations
+    });
+
+    Weglot.on("languageChanged", function(newLang) {
+        const currentUrl = new URL(window.location.href);
+
+        // Get the current locale from the URL
+        let currentLocale = currentUrl.searchParams.get('locale');
+
+        // If the locale doesn't exist and newLang is 'en', or if the locale is already set correctly, do nothing
+        if ((currentLocale === null && newLang === 'en') || currentLocale === newLang) {
+            return;
+        }
+
+        // Set the new locale parameter
+        currentUrl.searchParams.set('locale', newLang);
+
+        // Update the 'utm_medium' parameter by removing any existing '-weglot' suffix
+        let utm_medium = currentUrl.searchParams.get('utm_medium') || '';
+        utm_medium = utm_medium.replace(/(?:-weglot|weglot)$/, '');
+
+        // Append '-weglot' if it's not already present
+        if (utm_medium) {
+            // Ensure it ends with '-weglot' if it's not already present
+            if (!utm_medium.endsWith('-weglot')) {
+                utm_medium += '-weglot';
+            }
+        } else {
+            // If 'utm_medium' is empty, just set it to 'weglot'
+            utm_medium = 'weglot';
+        }
+
+        // Set the updated 'utm_medium' value in the URL
+        currentUrl.searchParams.set('utm_medium', utm_medium);
+
+        // Redirect to the updated URL
+        window.location.href = currentUrl.toString();
+    });
+</script>
