@@ -297,7 +297,7 @@ end
   end
 
   def abr_election_type2_string
-    return "11/18/2023" if self.abr_election_type2_input.to_s == "1"
+    return "11/5/2024" if self.abr_election_type2_input.to_s == "1"
   end
   
   #def abr_election_type1_string
