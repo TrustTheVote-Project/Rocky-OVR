@@ -254,11 +254,11 @@ es:
         zip: Código postal
         name_title: Título
         first_name: Nombre
-        middle_name: Segundo Nombre
+        middle_name: Medio
         last_name: Apellido
         name_suffix: Sufijo
         address: Dirección
-        street_name: ''
+        street_name: Nombre y tipo de calle
         unit: No.
         city: Ciudad
         home_state_name: Estado
@@ -283,41 +283,6 @@ es:
           dentro de mi conocimiento.
         confirm_email_delivery: ''
         registration_county: ''
-      alert_request:
-        first: Nombre
-        middle: Nombre Segundo
-        last: Apellido
-        date_of_birth: Fecha de Nac
-        address: Dirección
-        address_2: ''
-        city: Ciudad
-        zip: Código postal
-        email: Correo Electrónico
-        phone: Teléfono
-      catalist_lookup:
-        date_of_birth: Fecha de Nac
-        email: Correo Electrónico
-        zip: Codigo postal
-        first: Nombre
-        last: Apellido
-        address: Dirección
-        city: Ciudad
-        state_name: Estado
-        state_abbrev: Estado
-        phone: Teléfono
-        phone_type: ''
-        opt_in_email: Recibir correo electronico
-        opt_in_sms: Recibir mensajes de texto
-      ballot_status_check:
-        email: Correo Electrónico
-        zip: Código postal
-        first_name: Nombre
-        last_name: Apellido
-        address: Dirección
-        city: Ciudad
-        state_name: Estado
-        state_abbrev: Estado
-        phone: Teléfono
       registrant:
         date_of_birth: Fecha de Nac
         email_address: Correo Electrónico
@@ -411,7 +376,7 @@ es:
             registration_address_street_type:
               invalid: ''
             date_of_birth:
-              format: Debe ser MM-DD-AAAA
+              format: Debe ser MM-DD-YYYY
               too_old: Debe ser después de 1900
               too_young: ''
         state_registrants/mn_registrant:
@@ -445,7 +410,7 @@ es:
             assistant_phone:
               invalid: 'Debe ser ###-###-####'
             date_of_birth:
-              format: Debe ser MM-DD-AAAA
+              format: Debe ser MM-DD-YYYY
               too_old: Debe ser después de 1900
             ssn:
               format: Debe ser 9 dígitos
@@ -481,7 +446,7 @@ es:
             assistant_phone:
               invalid: Deber ser ***-***-****
             date_of_birth:
-              format: Debe ser MM-DD-AAAA
+              format: Debe ser MM-DD-YYYY
               too_old: Debe ser después de 1900
             penndot_number:
               format: Deberían tener 8 dígitos
@@ -507,7 +472,7 @@ es:
             confirm_email_delivery:
               accepted: ''
             date_of_birth:
-              format: Debe ser MM-DD-AAAA
+              format: Debe ser MM-DD-YYYY
               too_old: Debe ser después de 1900
         alert_request:
           blank: Requerido
@@ -533,7 +498,7 @@ es:
             phone_type:
               blank: ''
             date_of_birth:
-              format: Debe ser MM-DD-AAAA
+              format: Debe ser MM-DD-YYYY
               too_old: Debe ser después de 1900
         registrant:
           ca_disclosures_error: Para completar su inscripción para votar en el estado
@@ -551,7 +516,7 @@ es:
             email_address:
               invalid: Dirección no válida
             date_of_birth:
-              format: Debe ser MM-DD-AAAA
+              format: Debe ser MM-DD-YYYY
               too_old: Debe ser después de 1900
             phone:
               invalid: Deber ser ***-***-****

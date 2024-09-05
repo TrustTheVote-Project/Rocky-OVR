@@ -1,12 +1,22 @@
+<% show_additional_js = true if show_additional_js.nil? %>
+
 <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+
+<% if show_additional_js %>
 <script>
     Weglot.initialize({
-        api_key: '<%= ENV["WEGLOT_KEY"] %>',
-        cache: true  // Enable caching for translations
+        api_key: '<%= ENV["WEGLOT_KEY"] %>'
     });
 
     Weglot.on("languageChanged", function(newLang) {
         const currentUrl = new URL(window.location.href);
+        const currentPath = currentUrl.pathname;
+
+        // Only modify the URL if the current path contains '/registrants/new'
+        if (!currentPath.includes('/registrants/new')) {
+            console.log("URL modification skipped because the path does not contain '/registrants/new'.");
+            return; // Exit if the path condition is not met
+        }
 
         // Get the current locale from the URL
         let currentLocale = currentUrl.searchParams.get('locale');
@@ -25,12 +35,10 @@
 
         // Append '-weglot' if it's not already present
         if (utm_medium) {
-            // Ensure it ends with '-weglot' if it's not already present
             if (!utm_medium.endsWith('-weglot')) {
                 utm_medium += '-weglot';
             }
         } else {
-            // If 'utm_medium' is empty, just set it to 'weglot'
             utm_medium = 'weglot';
         }
 
@@ -41,3 +49,73 @@
         window.location.href = currentUrl.toString();
     });
 </script>
+<% else %>
+<script>
+    Weglot.initialize({
+        api_key: '<%= ENV["WEGLOT_KEY"] %>'
+    });
+
+    Weglot.on("languageChanged", function(newLang) {
+        // Function to create and append a hidden input to a target element
+        function createHiddenInput(target, name, id, value) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.id = id;
+            input.value = value;
+            target.appendChild(input);  // Append the input to the target element (form or body)
+            return input;
+        }
+
+        // Get the form where the hidden inputs should be added
+        const form = document.querySelector('form');  // Modify selector if needed
+
+        // If the form doesn't exist, use the body as the target
+        const target = form || document.body;
+
+        // Get or create the 'locale' hidden input
+        let localeInput = document.querySelector('input[name="locale"]');
+        if (!localeInput) {
+            localeInput = createHiddenInput(target, 'locale', 'locale', newLang);
+        }
+
+        // Get or create the 'utm_medium' hidden input
+        let utmMediumInput = document.querySelector('input[name="query_parameters[utm_medium]"]');
+        if (!utmMediumInput) {
+            utmMediumInput = createHiddenInput(target, 'query_parameters[utm_medium]', 'query_parameters_utm_medium', 'weglot');
+        }
+
+        // Get the current locale from the locale input field
+        let currentLocale = localeInput.value;
+
+        // Update the 'locale' input value
+        localeInput.value = newLang;
+
+        // Get and update the 'utm_medium' value, removing any existing '-weglot' suffix
+        let utm_medium = utmMediumInput.value || '';  // Default to an empty string if no value is present
+        utm_medium = utm_medium.replace(/(?:-weglot-[a-z]{2}|weglot-[a-z]{2}|-weglot|weglot)$/, '');
+
+        // Append '-weglot-LOCALE' only if utm_medium has a value
+        if (utm_medium) {
+            utm_medium += `-weglot-${newLang}`;
+        } else {
+            utm_medium = `weglot-${newLang}`;
+        }
+
+        // Update the 'utm_medium' input value
+        utmMediumInput.value = utm_medium;
+
+        // Now update the URL with locale and utm_medium
+        const url = new URL(window.location.href);
+
+        // Update or add the 'locale' parameter in the URL
+        url.searchParams.set('locale', newLang);
+
+        // Update or add the 'utm_medium' parameter in the URL
+        url.searchParams.set('utm_medium', utm_medium);
+
+        // Update the browser's address bar without reloading the page
+        window.history.replaceState({}, '', url.toString());
+    });
+</script>
+<% end %>

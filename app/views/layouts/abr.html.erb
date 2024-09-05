@@ -64,7 +64,7 @@
   <%- end %> 
 
   <%= yield :head %>
-<%= render :partial => 'layouts/weglot' %>
+<%= render :partial => 'layouts/weglot', locals: { show_additional_js: false } %>
 </head>
 
 <body class="abr-page <%= 'not-landing' if @abr && @abr.home_state_abbrev %> <%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
