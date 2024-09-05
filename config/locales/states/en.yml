@@ -1336,22 +1336,12 @@ en:
           has_no_state_license: I don't have a ME driver's license, ME State ID, or Social Security Number.
       ma:
         abr:
-          step_2_header: MA Automatically Mails all Registered Voters a Ballot Application
+          step_2_header: Eligibility to Request a Vote by Mail Ballot
           step_2_instructions: |-
-            <p>You only need to continue and request an absentee ballot if you registered after September
-            or have not yet received an application in the mail. Applications will be mailed out in September.
-            </p>
-            <p>You do not need to request an absentee ballot to vote if you registered to vote in MA prior
-            to September and your voter registration is active: you will automatically receive a vote
-            by mail ballot application in the mail for the November General Election.
-            </p>
-          finish_instructions_1_hint: |-
-            <p>Applications can be submitted by mail, email, or fax. If you are emailing
-            your application, you may either scan or take a photo of your signed application
-            and email it to your local election office. Typed signatures are not acceptable.
-            </p>
+            <p>All voters in Massachusetts are eligible to request an early Vote by Mail ballot. Massachusetts sends a pre-addressed, postage pre-paid Vote by Mail application to every registered voter before each statewide election. You can use this tool if you need another application or don't want to wait for your request form to arrive in the mail.</p>
+          finish_instructions_1_hint: ''
           request_deadline: |-
-            <p>Received by election officials by 5 p.m. on the 5th business day before the election.</p>
+            <p>Received by local election office by 5 p.m. on the 5th business day before the election.</p>
           status_check_instructions: |-
             <p>You can track the status of your absentee ballot here:
             <a href="https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx">https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx</a>
@@ -2740,7 +2730,7 @@ en:
       sc:
         abr:
           step_2_instructions: |-
-            <p>"<p>In South Carolina, you must have an <a rel=\"noopener noreferrer\" href=\"https://scvotes.gov/voters/absentee-voting\" target=\"_blank\">eligible reason</a> to vote absentee.</p>"</p>
+            <p>In South Carolina, you must have an <a rel="noopener noreferrer" href="https://scvotes.gov/voters/absentee-voting" target="_blank">eligible reason</a> to vote absentee.</p>
           request_deadline: |-
             <p>Received by election officials by 5:00 p.m. on the 11th day before the election.</p>
           status_check_instructions: "<a target='_blank' rel='noreferrer noopener'
