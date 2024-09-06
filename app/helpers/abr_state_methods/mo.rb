@@ -95,7 +95,7 @@ module AbrStateMethods::MO
   
   def abr_election_date_input_string
     if self.abr_election_type_selections == "abr_election_type1"
-      "08/06/2024"
+      "11/05/2024"
     else
       date_field_string_mm_dd_yyyy(method: :abr_election_date_input)
     end
