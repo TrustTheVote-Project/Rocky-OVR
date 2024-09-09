@@ -459,6 +459,7 @@ body #footer p a:hover, a:hover {
 	color: $font-color;
 	font-family: $font-stack;
 	font-size: 17px;
+	height: auto;
 }
 input[type=text], input[type=tel], input, select, textarea {
 	font-family: $font-stack;
