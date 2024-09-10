@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize Weglot with hide_switcher set to true
         Weglot.initialize({
             api_key: '<%= ENV["WEGLOT_KEY"] %>',
-            hide_switcher: false
+            hide_switcher: false,
+            cache: true
         });
 
         Weglot.on("languageChanged", function(newLang) {
@@ -69,7 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <% else %>
 <script>
     Weglot.initialize({
-        api_key: '<%= ENV["WEGLOT_KEY"] %>'
+        api_key: '<%= ENV["WEGLOT_KEY"] %>',
+        cache: true
     });
 
     Weglot.on("languageChanged", function(newLang) {
