@@ -1,6 +1,16 @@
 ---
 ilo:
   txt:
+    privacy_policy_acceptance: |-
+      Babaen ti panagtuloy, inkikilala mo ti 
+      <a href="https://www.rockthevote.org/about-rock-the-vote/privacy-policy/" target="_blank" rel="noopener">
+      Privacy Policy</a> ti Rock the Vote 
+      ken umay-umay a sumangbay a emails nga agipatarus ti eleksyon manipud 
+      iti Rock the Vote. Mabalin kang ag-unsubscribe manipud kadagiti emails 
+      iti aniaman nga oras.
+
+    register_to_vote: Agparehistro Tapno Agbotar
+    register_to_vote_in: Agparehistro iti %{state_abbrev}
     unknown_error: Kamali nga error nacontaken ti web administrator.
     error: Adda nagkamali.
     try_again: Agsubli ken padasem manen.
@@ -28,6 +38,7 @@ ilo:
       in_language_name: Ilocano (ilo)
       powered_by: pinaandar ti
       progress_indicator: Pagna
+      intro_message: "Ti voter registration ket agkurang ti dua a minuto wenno bassit pay."
       step_1_header: Baro nga nagre-rehistro
       step_2_header: Impormasyon personal
       step_3_header: Dagdag nga impormasyon para ti rehistrasyon
@@ -36,9 +47,13 @@ ilo:
       step_5_header: Adalem manen ken agconpirmaca
       stay_informed_header: Agdeng-ngeg
       identification_header: Ditalye ti Impormasyon
+      already_registered: "Nairehistro kadin? <a href='%{url}'>Ibinglaymo kadagiti 
+        gagayyemmo</a>."
       survey_title: Damdamag para kenca
       preparing_header: Agrub-rubuat iti porma ti rehistrasyon...
       download_header: Iprenta iti porma
+      after_you_download: "Ibagam kadagiti gagayyemmo a mabalinda met ti agparehistro 
+        nga agboto."
       finish_header: Iwaragawag mo iti sarita!
       finish_pdf_delay_header: Suriin ang iyong Email
       finish_pdf_delay: Paglalaan Ito ay isang habang upang likhain ang iyong pagpaparehistro
@@ -53,7 +68,7 @@ ilo:
         ti eleksyon iti estado. No dad-duma, adu nga semana iti masapulda nga agadal
         ti applikasyon mo.
       finish_reminder_2: No cayat mo nga maam-muan iti kasasaad ti porma ti rehistrasyon
-        mo, maam-muam daytoy iti Sekretarya ti Estado idiay sa <a href="http://www.rockthevote.com/election-center/"
+        mo, maam-muam daytoy iti Sekretarya ti Estado idiay sa <a href="https://www.rockthevote.org/how-to-vote/"
         target="_blank">Election Center</a>.
       ineligible_header: ! 'Madi iti damag, saan mo nga mabalin iti agbuto gapu kadagitoy
         nga rason:'
@@ -65,6 +80,13 @@ ilo:
       previous_name: Nagbaliw nga nagan
       previous_address: Umun-una nga address
       opt_in_sms: Ipatulod mo txt mensahe nga aggapu ti %{organization}.
+      opt_in_sms_compliance: "Babaen ti panagpirma, umanamongka nga umawat kadagiti 
+        periodiko a text message manipud iti %{organization} (%{short_code}). Mabalin nga 
+        agaplikar dagiti rate ti mensahe ken data. I-text ti HELP para iti info wenno STOP 
+        tapno agsardeng ti umawat kadagiti mensahe. Saan a kasapulan ti panaggatang. Kitaen
+        <a href='%{terms_url}' target='_blank' rel='noopener'>dagiti kondision ken 
+        kondision</a> ken <a href='%{privacy_url}' target='_blank' rel='noopener'>patakaran 
+        ti kinapribado</a>."
       opt_in_email: Umawat dagiti email nga aggapu ti '%{organization}.
       remind_when_18: Ipalagip mo caniac ti aldaw nga kaaldawam ko no 18 ti tawen
         ko.
@@ -101,13 +123,14 @@ ilo:
         work: Trabaho
         other: Sabali
       instructions:
+        online: "<b>Nota</b>: Adda dagiti estado nga agtaray ti online voter registration. <a href='https://www.rockthevote.org/online/' target='_blank'>Ad-adu a maamuan.</a>"
         overseas: ! '<b>Palagip</b>: No sica Americano nga aggigian ti ruar ti USA,
           o botante nga aktibo iti militar, <a href=''https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote''
           target=''_blank''>i-click ditoy</a> para agrehistro nga agbuto'
         opt_in_email: Macaawat ka dagiti palagip iti eleksyon nga aggapu cadakami,
           ti lugar ti agbuto, ken impormasyon ti musika kensaba-sabali nga tema.
         under_18: Hey, kasla saan kapay nga agtawen ti 18. Kool ka. Sa %{state_name},
-          mabalin mo agrehistro nga agbuto '%{state_rule}'. Mapanka idiay ti <a href="http://www.rockthevote.com/election-center/"
+          mabalin mo agrehistro nga agbuto '%{state_rule}'. Mapanka idiay ti <a href="https://www.rockthevote.org/how-to-vote/"
           target="_blank">Election Center</a>to kitaem ti sumaruno nga eleksyon.
         under_18_2: I-click iti button tapno ituloy iti applikasyon no husto iti kuwenta.
         under_18_3: Ketno saan, pawitan da kayo iti abiso nga agrehistro into no dies-y-ocho
@@ -118,6 +141,11 @@ ilo:
           rehistro. Pirmaon yo ken edta address nga naka-kabil edta porma.
         download_2: Saan ka nga rehistrado no saan yo nga i-prenta, pirmaan ken ibuson
           dayta porma yo!
+        download_3: "<p>Awan kadi ti access iti printer ita? In-emailmi ti pormam tapno 
+          maimaldit inton agangay.</p>"
+        state_not_enabled_download: "Gapu ta awan ti online registration facility ti 
+          %{state}, kasapulam nga i-print ken i-mail ti registration form-mo wenno 
+          i-drop-mo iti lokal nga opisina ti eleksionmo."
         finish: Saan yo nga lipatan nga ibaga kada gayyem ken pamilya yo nga nalaka
           laeng iti agrehistro. Ket adtoy amin a tulong nga mausaryo tapno ipakaalammo
           yo panggep iti botante nga agrehistro.
@@ -207,7 +235,7 @@ ilo:
           nga aw-awatin iti suratyo dita.
         date_of_birth: Dita applikasyon para bomoto, masapol nga ipakita nga diyesyocho
           ka into wenno antes aldaw iti eleksyon. Kem, addo nga estado nga mabalin
-          kayo agrehistro antes diyesyocho iti. Ket pangngaasi <a href="http://www.rockthevote.com/voter-registration/online-application-system/register-before-you-are-18-rules.html">i-click
+          kayo agrehistro antes diyesyocho iti. Ket pangngaasi <a href="https://www.rockthevote.org/how-to-vote/nationwide-voting-info/voter-pre-registration/">i-click
           iti ditoy</a>ta basaem dagiti regulasyon ti estado nga ayanmo.
         registrant_name: Ikabil iti nagan ditoy kahon. Saan nga usaren iti "nicknames"
           wenno initiales. No daytoy nga aplikasyon ket para nagsukat iti nagan, masaludsod
@@ -227,6 +255,14 @@ ilo:
         previous_name: No sabali iti nagan yo tatta, ikabil diay sakbay ti nagan.
         previous_address: No sabali iti address yo manipod idi nagrehistro kayo, ikabil
           iti sakbay ti address yo.
+      mobile_ui:
+        step_2:
+          title: Kualipikado
+          instructions: "Dagiti tay-ak ti input a namarkaan iti asterisk (*) ket kasapulan"
+        step_8:
+          title: Panangbigbig
+        step_9:
+          title: Personal nga Impormasion
     status_text:
       message: Nagrehistro-ak tapno makaboto, mabalin yo met!
       under_18_message: Agrehistro kayo tapno makaboto kayo. Nalaka laeng!
