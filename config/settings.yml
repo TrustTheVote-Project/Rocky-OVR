@@ -620,6 +620,18 @@ ovr_states:
     languages:
       - en
       - es
+      - zh
+      - tl
+      - ilo
+      - vi
+      - ur
+      - ja
+      - ko
+      - km
+      - hi
+      - zh-tw
+      - th
+      - bn
 
 enabled_locales:
   - en
