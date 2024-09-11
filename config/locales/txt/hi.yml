@@ -1,6 +1,15 @@
 ---
 hi:
   txt:
+    privacy_policy_acceptance: |-
+      जारी रखते हुए, आप Rock the Vote की 
+      <a href="https://www.rockthevote.org/about-rock-the-vote/privacy-policy/" target="_blank" rel="noopener">
+      गोपनीयता नीति</a> 
+      को स्वीकार करते हैं और Rock the Vote से चुनाव के अनुस्मारक ईमेल प्राप्त करने पर सहमत होते हैं। आप कभी भी ईमेल से ऑप्ट आउट कर सकते हैं।
+
+
+    register_to_vote: "मतदाता के रूप में पंजीकृत करें"
+    register_to_vote_in: "%{state_abbrev}में रजिस्टर करें"
     unknown_error: ! 'एरर की पहचान नही हो रही है: वेब अधिकारियों के साथ संपर्क किया
       गया है (Unknown error)'
     error: कुछ ग़लत हुआ है
@@ -29,6 +38,7 @@ hi:
       in_language_name: हिंदी में
       powered_by: ! 'द्वारा संचालित:'
       progress_indicator: ! 'कदम:'
+      intro_message: मतदाता पंजीकरण में औसतन दो मिनट या उससे कम समय लगता है।
       step_1_header: नये रिजिस्ट्रॅंट
       step_2_header: व्यक्तिगत जानकारी
       step_3_header: पंजीकरण के लिए और अधिक जानकारी
@@ -37,9 +47,11 @@ hi:
       step_5_header: समीक्षा करें और पुष्टि करें
       stay_informed_header: सूचित रहें
       identification_header: पहचान की जानकारी
+      already_registered: "पहले से ही पंजीकृत? <a href='%{url}'>अपने दोस्तों के साथ साझा करें</a>।"
       survey_title: आपके लिए सवाल
       preparing_header: पंजीकरण (रेजिस्ट्रेशन) फॉर्म तैयार हो रहा है...
       download_header: अपना फॉर्म प्रिंट करें
+      after_you_download: "अपने मित्रों को बताएं कि वे भी मतदान के लिए पंजीकरण करा सकते हैं।"
       finish_header: सब को बतायें!
       finish_pdf_delay_header: अपने ईमेल की जाँच
       finish_pdf_delay: इसे डाउनलोड करने के लिए अपने पंजीकरण फार्म बनाने के लिए एक
@@ -54,7 +66,7 @@ hi:
         जल्दी ही मिल जाएगा| कभी कभी प्रोसेसिंग होने में कुछ समय लग सकता है
       finish_reminder_2: अगर आप अपने वोटर रेजिस्ट्रेशन फॉर्म का स्टेटस जानणना चाहतें
         हैं तो यह जानकारी आपको अपने स्टेट सेक्रेटरी से संपर्क करने पर पता चलेगा| आप
-        अपने स्टेट सेक्रेटरी की जानकारी हमारे <a href="http://www.rockthevote.com/election-center/"
+        अपने स्टेट सेक्रेटरी की जानकारी हमारे <a href="https://www.rockthevote.org/how-to-vote/"
         target="_blank">Election Center</a> वेबसाइट से प्राप्त कर सकतें हैं
       ineligible_header: माफ़ कीजिए, दिए गये कारणों के वजह से आप वोट करने के लिए रिजिस्टर
         करने योग्य नही हैं
@@ -66,6 +78,12 @@ hi:
       previous_name: पिछला/पुराना नाम
       previous_address: पिछला/पुराना पता
       opt_in_sms: ! '%{organization} से मुझे टेक्स्ट मेसेज/संदेश भेजें'
+      opt_in_sms_compliance: |-
+        साइन अप करके, आप %{organization} (%{short_code}) से समय-समय पर पाठ संदेश प्राप्त करने के लिए 
+        सहमति देते हैं। संदेश और डेटा दरें लागू हो सकती हैं। जानकारी के लिए HELP पाठ करें या संदेश प्राप्त करना बंद करने 
+        के लिए STOP पाठ करें। कोई खरीद आवश्यक नहीं है। <a href="%{terms_url}" target="_blank" 
+        rel="noopener">नियम और शर्तें</a> और <a href="%{privacy_url}" target="_blank" 
+        rel="noopener">गोपनीयता नीति</a> देखें।
       opt_in_email: ! '%{organization} से ईमेल मिले'
       remind_when_18: मेरे 18वे जन्मदिन पर मुझे याद करवायें/मुझे रिमाइंडर भेजें
       get_updates: Rock the Vote से अपडेट पाना
@@ -102,6 +120,7 @@ hi:
         work: काम
         other: अन्य
       instructions:
+        online: "<b>नोट</b>: कुछ राज्यों में ऑनलाइन मतदाता पंजीकरण की सुविधा है। <a href='https://www.rockthevote.org/online/' target='_blank'>अधिक जानें।</a>"
         overseas: ! '<b>Note</b>: अगर आप अमेरिका के नागरिक हैं जो बाहर के देश में
           रहतें हैं या एक वर्दीधारी सैन्य (यूनिफॉर्म्ड मिलिटरी) मतदाता (वोटर) हैं
           तो <a href=''https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote''
@@ -110,7 +129,7 @@ hi:
           और संगीत और मुद्दों के बारे में जानकारी भेज देंगे
         under_18: अरे, ऐसा लगता हैं की आप अभी 18 वर्ष के नही हुए| यह अच्छा है| %{state_name}
           में, आप %{state_rule} माध्यम से वोट करने के लिए रिजिस्टर कर सकतें हैं| <a
-          href="http://www.rockthevote.com/election-center/" target="_blank">Election
+          href="https://www.rockthevote.org/how-to-vote/" target="_blank">Election
           Center</a> में जाकेर अगले चुनाव के बारे में अधिक जानकारी प्राप्त करें
         under_18_2: अगर आप बिल में फिट होते हैं तो अपना अप्लिकेशन जारी रखने के लिए
           बटन पर क्लिक करें
@@ -123,6 +142,10 @@ hi:
           पर भेज दें
         download_2: आपका पंजीकरण (रेजिस्ट्रेशन) तब तक पूरा नही होगा जब तक आप अपने
           फॉर्म को छाप कर, साइन करके, मेल नही करेंगे!
+        download_3: "<p>क्या आपके पास अभी प्रिंटर उपलब्ध नहीं है? हमने आपका फॉर्म बाद में प्रिंट करने के लिए ईमेल 
+          कर दिया है।</p>"
+        state_not_enabled_download: "चूंकि %{state} में ऑनलाइन पंजीकरण की सुविधा नहीं है, इसलिए आपको 
+          अपना पंजीकरण फॉर्म प्रिंट करके मेल करना होगा या अपने स्थानीय चुनाव कार्यालय में जमा कराना होगा।"
         finish: अपने दोस्तों और परिवार वालों को बताना ना भूलें की रिजिस्टर करना कितना
           आसान है| यहाँ कुछ तारीख़े दिए गये है जिनको इस्तेमाल करके आप इसके बारे में
           अन्य लोगों को और अधिक जानकारी दे सकतें है
@@ -219,7 +242,7 @@ hi:
         date_of_birth: अपने वोटर रेजिस्ट्रेशन अप्लिकेशन पर, यह बताना ज़रूरी है की
           आप चुनाव के दिन या उससे पहले 18 वर्ष के हो गये हैं या नही| कई राज्य आपके
           के 18 वर्ष के होने से पहले ही आपको पंजीकृत (रिजिस्टर) होने की अनुमति देते
-          हैं, इसलिए कृपया <a href="http://www.rockthevote.com/voter-registration/online-application-system/register-before-you-are-18-rules.html">
+          हैं, इसलिए कृपया <a href="https://www.rockthevote.org/how-to-vote/nationwide-voting-info/voter-pre-registration/">
           पर क्लिक करें </a> यह जानने के लिए की आपके राज्य के क्या नियम हैं
         registrant_name: इन खानो (बॉक्सस) में अपना पूरा नाम डालें| कृपया उपनाम या
           नाम के पहले अक्षर ना डालें| अगर यह अप्लिकेशन नाम बदलने के लिए है, तो आपका
@@ -242,6 +265,14 @@ hi:
           यहाँ अपना पुराना नाम डालें
         previous_address: अगर आपने पिछले रेजिस्ट्रेशन के बाद अपना पता बदल डाला है
           तो, यहाँ अपना पुराना पता डालें
+      mobile_ui:
+        step_2:
+          title: पात्रता
+          instructions: तारांकन (*) से चिह्नित इनपुट फ़ील्ड अनिवार्य हैं
+        step_8:
+          title: पहचान
+        step_9:
+          title: व्यक्तिगत जानकारी
     status_text:
       message: मैं ने बस अभी खुद को वोट डालने के लिए रिजिस्टर करवाया है और आप भी कर
         सकतें हैं!
