@@ -30,8 +30,14 @@
       // Get the existing iframe query parameters or create an empty set
       let iframeParams = new URLSearchParams(iframe.src.split('?')[1] || '');
 
-      // Update or add the 'locale' parameter in the iframe src
-      iframeParams.set('locale', currentLocale);
+      // Check if the 'locale' parameter is 'il' and replace with 'ilo'
+      let localeParam = iframeParams.get('locale');
+      if (localeParam === 'il') {
+        iframeParams.set('locale', 'ilo');
+      } else {
+        // Update or add the 'locale' parameter in the iframe src
+        iframeParams.set('locale', currentLocale);
+      }
 
       // Rebuild the iframe src with the updated parameters
       iframe.src = `${iframeSrc}?${iframeParams.toString()}`;
@@ -59,4 +65,3 @@
   = @alert_request.partner.external_conversion_snippet.to_s.html_safe
 
 = render :partial => 'abrs/finish_adwords'
-
