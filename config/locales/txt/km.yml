@@ -150,7 +150,7 @@ km:
           Facebook និងTwitter!
         state_online_registration: អ្នកប្រហែលជាអាចបញ្ចប់ការចុះឈ្មោះបោះឆ្នោតរបស់អ្នកបានហើយ
           ដោយការប្រើ រដ្ឋ%{state} តាមរយៈប្រព័ន្ធចុះឈ្មោះបោះឆ្នោត អនឡាញ។
-        state_online_registration_id_not_required: ""
+        state_online_registration_id_not_required: "អ្នកមានសិទ្ធិចុះឈ្មោះឆ្នោតតាមអ៊ីនធឺណិតជាមួយ%{state}"
         state_online_registration_sub_header: ចូរចញចខាងបរោម បដ្ើមបីបុំបេញ េិធីចញោះប្មោះ
           ឥឡូវបនោះ ជ្ញមួយនឹងរដ្ឋរបស់អនក។
         leave_state_online_registration: អ្នកអាចបញ្ចប់ការចុះឈ្មោះបោះឆ្នោត អនឡាញ របស់អ្នកបានហើយ

@@ -128,7 +128,7 @@ ja:
         finish_email_sent: Eメールが送られました。
         finish_update_status: フェイスブックやツイッターでの更新を忘れないで下さい。
         state_online_registration: あなたには、%{state} オンライン投票登録システムを使って投票登録を完了させる資格があるかもしれません。
-        state_online_registration_id_not_required: ""
+        state_online_registration_id_not_required: "あなたは、ご自身 %{state} オンラインで有権者登録を完了する資格があります。"
         state_online_registration_sub_header: あなたの州の登録手続きを完了させるために今すぐ下をクリックしてください。
         leave_state_online_registration: 下の用紙を使ってオンラインで%{state} の投票登録を完了させることができます。運転免許証や州の身分証明書カードが無効であったり、州があなたのDMVの記録を見つける、または確認することができなくても心配はいりません。&mdash%{link}することも可能です。印刷し、署名し、郵送するだけです。
         leave_state_online_registration_link: ! '%{rtv_and_partner_name}で登録を終了して下さい。'

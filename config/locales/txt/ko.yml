@@ -129,6 +129,7 @@ ko:
         finish_email_sent: 이메일을 보냈습니다.
         finish_update_status: 페이스북과 트위터에도 공유하세요!
         state_online_registration: "%{state} 주 선거관리국 온라인 시스템을 통해 유권자 등록을 마칠 수도 있습니다."
+        state_online_registration_id_not_required: "귀하는 %{state} 온라인으로 유권자 등록을 완료할 수 있습니다."
         state_online_registration_sub_header: 주 정부 웹사이트에서 유권자 등록을 완료하기 위해서는 아래의 버튼을
           클릭하세요
         leave_state_online_registration: "아래의 양식을 이용해 %{state} 주 선거관리국에 유권자 등록을 할 수
