@@ -985,10 +985,12 @@ body #main .step_2 ul li.registrant-form__change-of-name__line img#tooltip-previ
 	body.tl li.width_c.registrant-form__middle-name__line, 
 	body.ilo li.width_c.registrant-form__middle-name__line, 
 	body.ja li.width_c.registrant-form__middle-name__line,
+	body.km li.width_c.registrant-form__middle-name__line,
 	body.es li.width_c.registrant-form__prev-middle-name__line, 
 	body.tl li.width_c.registrant-form__prev-middle-name__line, 
 	body.ilo li.width_c.registrant-form__prev-middle-name__line, 
-	body.ja li.width_c.registrant-form__prev-middle-name__line {
+	body.ja li.width_c.registrant-form__prev-middle-name__line,
+	body.km li.width_c.registrant-form__prev-middle-name__line {
 		display: none;
 	}
 	body.tl li.width_d.registrant-form__name-suffix__line label,
