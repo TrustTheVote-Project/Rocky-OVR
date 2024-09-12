@@ -117,6 +117,12 @@ tl:
             has_state_license:
               inclusion: Mangyaring ipahiwatig kung mayroon kang isang valid na lisensya
                 ng estado
+            us_citizen:
+              accepted: Dapat ikaw ay isang US citizen!
+            sms_number_for_continue_on_device:
+              format: Pakibigay ang tamang numero
+            email_address_for_continue_on_device:
+              format: Pakibigay ang tamang email
       messages:
         inclusion: ! '%{attribute} ay hindi kasama sa listahan.'
         exclusion: ! '%{attribute} ay nakareserba.'
