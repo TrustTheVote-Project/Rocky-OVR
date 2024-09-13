@@ -459,6 +459,7 @@ body #footer p a:hover, a:hover {
 	color: $font-color;
 	font-family: $font-stack;
 	font-size: 17px;
+	height: auto;
 }
 input[type=text], input[type=tel], input, select, textarea {
 	font-family: $font-stack;
@@ -984,10 +985,12 @@ body #main .step_2 ul li.registrant-form__change-of-name__line img#tooltip-previ
 	body.tl li.width_c.registrant-form__middle-name__line, 
 	body.ilo li.width_c.registrant-form__middle-name__line, 
 	body.ja li.width_c.registrant-form__middle-name__line,
+	body.km li.width_c.registrant-form__middle-name__line,
 	body.es li.width_c.registrant-form__prev-middle-name__line, 
 	body.tl li.width_c.registrant-form__prev-middle-name__line, 
 	body.ilo li.width_c.registrant-form__prev-middle-name__line, 
-	body.ja li.width_c.registrant-form__prev-middle-name__line {
+	body.ja li.width_c.registrant-form__prev-middle-name__line,
+	body.km li.width_c.registrant-form__prev-middle-name__line {
 		display: none;
 	}
 	body.tl li.width_d.registrant-form__name-suffix__line label,

@@ -1,6 +1,14 @@
 ---
 tl:
   txt:
+    privacy_policy_acceptance: |-
+      Sa pagpapatuloy, tinatanggap mo ang 
+      <a href="https://www.rockthevote.org/about-rock-the-vote/privacy-policy/" target="_blank" rel="noopener">
+      Patakaran sa Privacy</a> ng Rock the Vote 
+      at pumapayag kang makatanggap ng paminsan-minsan na mga paalala sa eleksyon mula sa 
+      Rock the Vote. Maaari kang mag-unsubscribe mula sa mga email anumang oras.
+    register_to_vote: "Magparehistro upang Bumoto"
+    register_to_vote_in: "Magrehistro sa %{state_abbrev}"    
     unknown_error: ! 'Hindi kilalang pagkakamali:  ang mga administrador ng web ay
       na-kontak  na.'
     error: May nangyaring kamalian
@@ -37,9 +45,12 @@ tl:
       step_5_header: Suriin at Kumpirmahin
       stay_informed_header: Manatiling nakakaalam
       identification_header: Impormasyong Pagkakakilanlan
+      already_registered: "Nakarehistro na? <a href='%{url}'>Ibahagi sa iyong mga kaibigan</a>."
       survey_title: Mga Katanungan Para sa Iyo
       preparing_header: Inihahanda ang Porma ng Pagpaparehistro
       download_header: I-imprenta ang Iyong Porma
+      after_you_download: Sabihin sa iyong mga kaibigan na maaari rin silang magparehistro 
+        para bumoto.
       finish_header: Ikalat ang salita!
       finish_pdf_delay_header: Suriin ang iyong Email
       finish_pdf_delay: Paglalaan Ito ay isang habang upang likhain ang iyong pagpaparehistro
@@ -55,7 +66,7 @@ tl:
         maaring tumagal ng ilang linggo.
       finish_reminder_2: Kung gusto mong malaman ang kalagayan ng iyong porma sa pagrerehistro
         ng botante, maaari mong hanapin ang  taga-ugnay na impormasyon sa iyong Kalihim
-        ng Estado sa aming<a href="http://www.rockthevote.com/election-center/" target="_blank">Sentro
+        ng Estado sa aming<a href="https://www.rockthevote.org/how-to-vote/" target="_blank">Sentro
         ng Halalan</a>.
       ineligible_header: ! 'Paumanhin, hindi ka eligible na magrehistro upang bumoto
         dahil sa (mga) sumusunod na kadahilanan:'
@@ -67,6 +78,12 @@ tl:
       previous_name: Dating Pangalan
       previous_address: Dating Tirahan
       opt_in_sms: Ipadala sa akin ang mga mensaheng txt galing sa %{organization}.
+      opt_in_sms_compliance: "Sa pag-sign up, pumapayag kang makatanggap ng pana-panahong 
+        mga text message mula sa %{organization} (%{short_code}). Maaaring malapat ang mga 
+        rate ng mensahe at data. I-text ang HELP para sa impormasyon o STOP para huminto sa 
+        pagtanggap ng mga mensahe. Walang kinakailangang pagbili. Tingnan
+        <a href='%{terms_url}' target='_blank' rel='noopener'>ang mga tuntunin at kundisyon</a>
+        at <a href='%{privacy_url}' target='_blank' rel='noopener'>patakaran sa privacy</a>."
       opt_in_email: Tanggapin ang mga E-mail galing sa %{organization}.
       remind_when_18: Padalhan ako ng isang paalaala sa aking ika-18 kaarawan.
       get_updates: Kumuha ng mga updates galing sa "Rock the Vote"
@@ -108,7 +125,7 @@ tl:
         opt_in_email: Ipadadala namin sa iyo ang napapanahong mga paalaala ng halalan,
           ang iyong lugar ng botohan, at impormasyon tungkol sa musika at mga isyu.
         under_18: Hey, mukhang hindi ka pa 18. Iyan ay cool. Sa %{state_name}, maaari
-          kang magrehistrong bumoto sa %{state_rule}. Bisitahin ang aming  <a href="http://www.rockthevote.com/election-center/"
+          kang magrehistrong bumoto sa %{state_rule}. Bisitahin ang aming  <a href="https://www.rockthevote.org/how-to-vote/"
           target="_blank">Election Center</a> upang malaman kung kailan ang susunod
           na halalan.
         under_18_2: Kung tama sa iyo ang kuwenta, i-click ang buton upang ipagpatuloy
@@ -123,6 +140,11 @@ tl:
           ito at ihulog sa address na nasa porma.
         download_2: Hindi ka mairerehistro hanggang hindi mo ma-imprenta, mapirmahan
           at maihulog sa koreo ang iyong porma.
+        download_3: "<p>Walang access sa isang printer sa ngayon? Na-email namin ang 
+          iyong form upang i-print sa ibang pagkakataon.</p>"
+        state_not_enabled_download: "Dahil walang online na pagpaparehistro ang %{state}, 
+          kakailanganin mong i-print at ipadala sa koreo o ihulog ang iyong form sa 
+          pagpaparehistro sa iyong lokal na opisina ng halalan."
         finish: Huwag kalimutang sabihin sa iyong mga kaibigan at pamilya kung gaano
           kadali ang magrehistro. Narito ang mga pantulong na maaari mong gamitin
           para ikalat ang salita tungkol sa pagrerehistro ng botante.
@@ -139,6 +161,8 @@ tl:
           at Twitter!
         state_online_registration: Ikaw ay eligible na tapusin ang iyong pagrerehistro
           na gumagamit ng online na sistema ng pagrerehistro ng botante ng estado.
+        state_online_registration_id_not_required: "Ikaw ay karapat-dapat na kumpletuhin 
+          ang iyong pagpaparehistro bilang botante online kasama ang %{state}."
         state_online_registration_sub_header: I-click mo sa ibaba para makumpleto
           ang pagrerehistro ngayon sa iyong estado.
         leave_state_online_registration: Maaari mong tapusin ang iyong pagrerehistro
@@ -226,7 +250,7 @@ tl:
           ay kinakailangang magpahiwatig kung ikaw ay 18 taong gulang sa araw ng o
           bago dumating ang araw ng halalan. Gayunpaman, maraming mga estado ang nagpapahintulot
           sa iyo na magrehistro bago ang iyong ika-18 kaarawan, kaya mangyaring  <a
-          href="http://www.rockthevote.com/voter-registration/online-application-system/register-before-you-are-18-rules.html">i-click
+          href="https://www.rockthevote.org/how-to-vote/nationwide-voting-info/voter-pre-registration/">i-click
           dito</a> para makita ang batas para sa iyong estado.
         registrant_name: Ilagay ang iyong buong pangalan sa mga kahong ito. Mangyari
           lamang na huwag gumamit ng palayaw o mga inisyal. Kung ang aplikasyong ito
@@ -251,6 +275,14 @@ tl:
           ipasok ang iyong dating pangalan.
         previous_address: Kung lumipat ka mula ng huli kang magrehistro, ipasok ang
           iyong dating tirahan.
+      mobile_ui:
+        step_2:
+          title: Pagiging karapat-dapat
+          instructions: Kinakailangan ang mga input field na may markang asterisk (*).
+        step_8:
+          title: Pagkakakilanlan
+        step_9:
+          title: Personal na Impormasyon
     status_text:
       message: Karerehistro ko lamang para bumoto at kaya mo rin ito!
       under_18_message: Siguruhin mong magrehistro upang bumoto. Madali ito !

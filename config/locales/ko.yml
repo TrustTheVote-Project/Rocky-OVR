@@ -110,6 +110,12 @@ ko:
               accepted: 상기 정보가 맞는지 확인했다는 박스를 클릭 해 주십시오.
             has_state_license:
               inclusion: 유효한 주 정부 운전면허증을 가지고 있는지 표시해주십시오.
+            us_citizen:
+              accepted: 미국 시민이어야 합니다!
+            sms_number_for_continue_on_device:
+              format: 유효한 전화번호를 입력하세요
+            email_address_for_continue_on_device:
+              format: 유효한 이메일 주소를 입력하세요
       messages:
         inclusion: ! '%{attribute} 는 명단에 포함되어 있지 않습니다.'
         exclusion: ! '%{attribute} 는 예약되어 있습니다.'

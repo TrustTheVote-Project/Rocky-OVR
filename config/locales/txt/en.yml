@@ -98,8 +98,7 @@ en:
         leo_contact_info: you can check with your local election official at</p><p>%{leo_contact_info}</p>
         leo_lookup_url: you can find your local election office at <a href="%{leo_lookup_url}">%{leo_lookup_url}</a>
       step_1_header: ''
-      step_1_instructions: "<p>Request your absentee ballot now to vote from the ease
-        and safety of your home.</p>"
+      step_1_instructions: "<p>Request your absentee ballot now to vote from home.</p>"
       step_2_eligibility_header: Eligibility to Request an Absentee Ballot
       step_2_eligibility_instructions: |-
         <p>
@@ -287,8 +286,7 @@ en:
       in_language_name: In English
       powered_by: 'powered by:'
       progress_indicator: 'Step:'
-      intro_message: Voter registration time takes an average of two minutes or less
-        to complete.
+      intro_message: Voter registration takes an average of two minutes or less.
       step_1_header: New Registrant
       step_2_header: Personal Information
       step_3_header: Additional Registration Information

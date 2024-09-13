@@ -301,8 +301,12 @@ class AbrsController < ApplicationController
   end
 
   def set_up_locale
-    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
-    @locale = params[:locale] || (@abr ? @abr.locale : nil) || 'en'
+    #params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
+    #@locale = params[:locale] || (@abr ? @abr.locale : nil) || 'en'
+    #I18n.locale = @locale.to_sym
+
+    # Set the locale to 'en' regardless of any locale parameter
+    @locale = 'en'
     I18n.locale = @locale.to_sym
   end
   

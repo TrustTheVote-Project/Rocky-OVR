@@ -1,10 +1,12 @@
+= render :partial => 'layouts/weglot'
+
 - if !@registrant || @registrant.short_form?
   .intro-message
     %p=t('txt.registration.intro_message')
   
 %h1= t('txt.registration.step_1_header')
 
-#other_language_link
+#other_language_link{ style: 'display: none;' }
   - if @registrant.new_record?
     :javascript
       function followOtherLanguageLink() {
@@ -20,9 +22,9 @@
 
 = form_for(@registrant) do |form|
   - if @registrant.use_short_form? && !@registrant.new_record?
-    #other_language_link
+    #other_language_link{ style: 'display: none;' }
       = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {selected: @registrant.locale}, onchange: "$(this.form).find('input[name=skip_advance]').val(true); $(this.form).submit()"
-      = form.hidden_field :locale, :value=>@registrant.locale      
+      = form.hidden_field :locale, :value=>@registrant.locale
       = hidden_field_tag 'skip_advance', false
 
   = render :partial => 'form', :object => form

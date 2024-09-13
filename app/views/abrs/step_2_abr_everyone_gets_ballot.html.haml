@@ -14,9 +14,53 @@
 .state-instructions
   = t("states.custom.#{abbrev}.abr.everyone_gets_ballot.instructions_3").html_safe
 
-
+-# #finish_page_iframe
+-#   %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
 
 #finish_page_iframe
-  %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
+  - src_url = @abr_finish_iframe_url
+  - src_url = src_url.split('?')[0] # Remove all existing query parameters
+  %iframe#dynamicLocaleIframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: src_url }
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function () {
+    function updateIframeLocale() {
+      // Get the locale from the hidden input field
+      let hiddenLocaleInput = document.getElementById('locale');
+      let currentLocale = hiddenLocaleInput ? hiddenLocaleInput.value : "#{I18n.locale}";
+
+      // Get the iframe element
+      let iframe = document.getElementById('dynamicLocaleIframe');
+
+      // Extract the base iframe src (everything before the ?)
+      let iframeSrc = iframe.src.split('?')[0];
+
+      // Get the existing iframe query parameters or create an empty set
+      let iframeParams = new URLSearchParams(iframe.src.split('?')[1] || '');
+
+      // Update or add the 'locale' parameter in the iframe src
+      iframeParams.set('locale', currentLocale);
+
+      // Rebuild the iframe src with the updated parameters
+      iframe.src = `${iframeSrc}?${iframeParams.toString()}`;
+    }
+
+    // Call updateIframeLocale when the page loads
+    updateIframeLocale();
+
+    // Function to manually trigger iframe locale update when the hidden locale field is updated
+    function setLocale(newLocale) {
+      let hiddenLocaleInput = document.getElementById('locale');
+      if (hiddenLocaleInput) {
+        hiddenLocaleInput.value = newLocale;
+        updateIframeLocale(); // Manually update the iframe after setting the locale
+      }
+    }
+
+    // Simulate locale change for testing (replace with actual language change logic)
+    Weglot.on("languageChanged", function(newLang) {
+      setLocale(newLang);
+    });
+  });
 
 = render :partial => 'abrs/finish_adwords'

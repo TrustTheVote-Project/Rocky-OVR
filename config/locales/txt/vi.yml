@@ -1,6 +1,14 @@
 ---
 vi:
   txt:
+    privacy_policy_acceptance: |-
+      Bằng cách tiếp tục, bạn đồng ý với 
+      <a href="https://www.rockthevote.org/about-rock-the-vote/privacy-policy/" target="_blank" rel="noopener">
+      Chính sách bảo mật</a> của Rock the Vote 
+      và đồng ý nhận email nhắc nhở về bầu cử từ 
+      Rock the Vote. Bạn có thể từ chối nhận email bất cứ lúc nào.
+    register_to_vote: Đăng ký Bầu cử
+    register_to_vote_in: "Đăng ký tại %{state_abbrev}"
     unknown_error: ! 'Không nhận dạng được lỗi: đã liên lạc với những người quản lý
       trang mạng.'
     error: Một điều gì đó không đúng đã xảy ra
@@ -29,6 +37,7 @@ vi:
       in_language_name: Bằng Tiếng Việt
       powered_by: ! 'Được hỗ trợ bỡi:'
       progress_indicator: ! 'Bước:'
+      intro_message: "Đăng ký cử tri chỉ mất trung bình hai phút hoặc ít hơn."
       step_1_header: Người Đăng Ký Mới
       step_2_header: Thông Tin Cá Nhân
       step_3_header: Thông Tin Đăng Ký Phụ
@@ -38,9 +47,11 @@ vi:
       step_5_header: Xem Lại và Công Nhận
       stay_informed_header: Cập nhật thông tin cho chính mình
       identification_header: Thông Tin Nhận Dạng
+      already_registered: "Bạn đã đăng ký? <a href='%{url}'>Chia sẻ với bạn bè của bạn</a>."
       survey_title: Câu Hỏi Cho Bạn
       preparing_header: Đang chuẩn bị tờ đơn đăng ký...
       download_header: In Mẫu Của Bạn
+      after_you_download: "Hãy cho bạn bè của bạn biết rằng họ cũng có thể đăng ký bỏ phiếu."
       finish_header: Phát tán thông tin!
       finish_pdf_delay_header: Kiểm tra Email của bạn
       finish_pdf_delay: Nó một khoảng thời gian để tạo ra mẫu đăng ký của bạn để tải
@@ -53,9 +64,10 @@ vi:
       finish_reminder: Cảm ơn bạn, %{first_name}, đã gởi đơn xin đăng ký đi bầu!  Bạn
         sẽ nhận được xác nhận đăng ký của bạn từ các quan chức bầu cử bang.  Đôi khi
         việc tiến hành thủ tục phải mất vài tuần lễ.
-      finish_reminder_2: Nếu bạn muốn biết tình trạng về đơn đăng ký đi bầu của bạn,
-        bạn có thể tìm thông tin liên lạc ở Thư ký Bang tại <a href="http://www.rockthevote.com/election-center/
-        "target="_blank">Trung tâm Bầu cử</a>.
+      finish_reminder_2: "Nếu bạn muốn biết tình trạng về đơn đăng ký đi bầu của bạn,
+        bạn có thể tìm thông tin liên lạc ở Thư ký Bang tại 
+        <a href='https://www.rockthevote.org/how-to-vote/' target='_blank'>Trung tâm Bầu 
+        cử</a>."
       ineligible_header: ! 'Xin lỗi, bạn không hội đủ điều kiện đăng ký đi bầu vì
         các lý do sau:'
       external_header: Người đăng ký %{state}
@@ -66,6 +78,12 @@ vi:
       previous_name: Tên trước đây
       previous_address: Địa chỉ trước đây
       opt_in_sms: Xin gởi cho tôi tin nhắn từ %{organization}.
+      opt_in_sms_compliance: "Bằng cách đăng ký, bạn đồng ý nhận tin nhắn văn bản định kỳ 
+        từ %{organization} (%{short_code}). Có thể áp dụng cước phí tin nhắn và dữ liệu. 
+        Nhắn tin HELP để biết thông tin hoặc STOP để ngừng nhận tin nhắn. Không cần mua. 
+        Xem <a href='%{terms_url}' target='_blank' rel='noopener'>các điều khoản và điều 
+        kiện</a> và <a href='%{privacy_url}' target='_blank' rel='noopener'>chính sách 
+        bảo mật</a>."
       opt_in_email: Nhận thư điện tử (email) từ %{organization}.
       remind_when_18: Xin gởi lời nhắc nhở cho tôi vào sinh nhật thứ 18 của tôi.
       get_updates: Nhận cập nhật từ Rock the Vote
@@ -101,6 +119,7 @@ vi:
         work: Điện thoaị nơi làm việc
         other: Khác
       instructions:
+        online: "<b>Lưu ý</b>: Một số tiểu bang cung cấp đăng ký cử tri trực tuyến. <a href='https://www.rockthevote.org/online/' target='_blank'>Tìm hiểu thêm.</a>"
         overseas: ! '<b>Ghi chú</b>: Nếu bạn là công dân Hoa Kỳ sống ở nước ngoài
           hoặc là cử tri trong quân đội, <a href=''https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote''
           target=''_blank''>ấn vào đây</a>để đăng ký bầu cử.'
@@ -108,7 +127,7 @@ vi:
           tin về âm nhạc và những vấn đề cần thiết đến cho bạn một cách đúng giờ.
         under_18: ! "Hey, bạn có vẻ chưa tròn 18 tuổi. Không sao. Tại %{state_name},
           bạn có thể đăng ký bầu cử \n%{state_rule}. Hãy vào trang của chúng tôi <a
-          href=\"http://www.rockthevote.com/election-center/\" target=\"_blank\">Trung
+          href=\"https://www.rockthevote.org/how-to-vote/\" target=\"_blank\">Trung
           tâm Bầu cử,</a> để tìm hiểu thời gian bầu cử lần kế."
         under_18_2: Nếu bạn phù hợp giấy tờ, hãy nhấp vào nút này để tiếp tục đơn
           đăng ký của bạn.
@@ -120,6 +139,11 @@ vi:
           bạn ra.  Ký tên vào và gởi đi theo địa chỉ trên mẫu.
         download_2: Bạn sẽ không đăng ký được nếu bạn không in ra, ký tên vào và gửi
           đi!
+        download_3: "<p>Bạn hiện không có máy in? Chúng tôi đã gửi biểu mẫu qua email 
+          để bạn in sau.</p>"
+        state_not_enabled_download: "Vì %{state} không có đăng ký trực tuyến, bạn sẽ cần 
+          phải in & gửi qua thư hoặc gửi mẫu đăng ký của mình đến văn phòng bầu cử địa 
+          phương của bạn."
         finish: ! 'Đừng quên kể cho bạn bè và gia đình của bạn cách đăng ký là dễ
           dàng như thế nào. Dưới đây là một vài dụng cụ bạn có thể sử dụng để truyền
           đạt thông tin về đăng ký cử tri:'
@@ -137,6 +161,8 @@ vi:
         state_online_registration: Bạn có thể đủ điều kiện để hoàn thành đăng ký cử
           tri của bạn bằng cách sử dụng hệ thống đăng ký cử tri trực tuyến của bang
           %{state}.
+        state_online_registration_id_not_required: "Bạn đủ điều kiện để hoàn thành đăng 
+          ký trực tuyến với %{state}."
         state_online_registration_sub_header: Nhấp vào bên dưới để hoàn tất quá trình
           đăng ký ngay bây giờ với nhà nước của bạn.
         leave_state_online_registration: Bạn có thể hoàn thành đăng ký cử tri trực
@@ -210,7 +236,7 @@ vi:
         date_of_birth: Trên đơn xin đăng ký cử tri của bạn, bạn được yêu cầu cho biết
           bạn sẽ tròn 18 tuổi vào đúng ngày bầu cử hay trước đó. Tuy nhiên, nhiều
           tiểu bang cho phép bạn đăng ký trước ngày sinh nhật thứ 18 của bạn, vì vậy
-          hãy <a href="http://www.rockthevote.com/voter-registration/online-application-system/register-before-you-are-18-rules.html">nhấp
+          hãy <a href="https://www.rockthevote.org/how-to-vote/nationwide-voting-info/voter-pre-registration/">nhấp
           vào đây</a> để xem các quy tắc về tiểu bang của bạn.
         registrant_name: Ghi tên đầy đủ của bạn vào các khung nầy. Xin đừng sử dụng
           biệt danh hoặc tên viết tắt. Nếu đơn này là để đổi tên, bạn sẽ được hỏi
@@ -232,6 +258,14 @@ vi:
           tên trước đây của bạn.
         previous_address: Nếu bạn đã di chuyển từ lần đăng ký sau cùng của bạn, hãy
           ghi địa chỉ trước đó của bạn.
+      mobile_ui:
+        step_2:
+          title: Điều kiện đủ
+          instructions: "Các trường nhập được đánh dấu bằng dấu hoa thị (*) là bắt buộc"
+        step_8:
+          title: Nhận dạng
+        step_9:
+          title: Thông tin cá nhân
     status_text:
       message: Tôi vừa đăng ký đi bầu, và bạn cũng có thể!
       under_18_message: Hãy chắc chắn rằng bạn đăng ký đi bầu. Thật dễ dàng!

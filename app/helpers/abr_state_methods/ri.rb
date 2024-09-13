@@ -4,10 +4,10 @@ module AbrStateMethods::RI
 
     "abr_email": {method: "email"},
     "abr_phone": {method: "phone"},
-    #"abr_first_name": {method: "first_name"},
-    #'abr_middle_initial': {:method=>"middle_initial"},
-    #"abr_last_name": {method: "last_name"},
-    "abr_full_name": {method: "full_name"},
+    "abr_first_name": {method: "first_name"},
+    "abr_middle_initial": {:method=>"middle_initial"},
+    "abr_last_name": {method: "last_name"},
+    #"abr_full_name": {method: "full_name"},
     #"abr_name_suffix": {method: "name_suffix"},
     "abr_street_number": {method: "street_number"},
     "abr_street_name": {method: "street_name"},
@@ -30,14 +30,14 @@ module AbrStateMethods::RI
     'abr_mailing_address_line_2': {method: "abr_mailing_address_line_2"},
 
     # 'abr_application_type_check1': {options: ['Off','On']},
-    'abr_party_selections':{
-      options: [
-        'abr_party1',
-        'abr_party2',
-      ],
-      'abr_party1': {method: "abr_party_selection1"},
-      'abr_party2': {method: "abr_party_selection2"}
-    }
+    #'abr_party_selections':{
+    #  options: [
+    #    'abr_party1',
+    #    'abr_party2',
+    #  ],
+    #  'abr_party1': {method: "abr_party_selection1"},
+    #  'abr_party2': {method: "abr_party_selection2"}
+    #}
     # 'abr_request_check': {options: ['Off','On']},
   }
   EXTRA_FIELDS = []
@@ -68,7 +68,7 @@ module AbrStateMethods::RI
       
       # {'abr_application_type_check1':{type: :checkbox, options: ['Off','On']}},
 
-      {"abr_party_selections":{type: :radio, options:['abr_party1','abr_party2'], required: :if_visible}}
+      #{"abr_party_selections":{type: :radio, options:['abr_party1','abr_party2'], required: :if_visible}}
       # {'abr_request_check':{type: :checkbox, options: ['Off','On']}},
     ]
   end

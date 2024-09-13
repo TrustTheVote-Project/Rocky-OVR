@@ -97,7 +97,7 @@ absentee_states:
     abr_status_check_url: "https://www.sos.state.co.us/voter/pages/pub/olvr/findVoterReg.xhtml"
     abr_track_ballot_url: "https://colorado.ballottrax.net/voter/"
   CT:
-    online_req_url: https://portal.ct.gov/SOTS/Election-Services/Voter-Information/Absentee-Voting
+    online_req_url: https://oabr-sots.ct.gov/OABR/absenteeBallotReqPortalHome.do
     abr_status_check_url: "https://portaldir.ct.gov/sots/LookUp.aspx"
     abr_track_ballot_url: "https://portaldir.ct.gov/sots/LookUp.aspx"
     abr_track_ballot_use_leo: false
@@ -237,7 +237,7 @@ absentee_states:
     abr_status_check_url: "https://www.nvsos.gov/votersearch/"
     abr_track_ballot_url: "https://nevada.ballottrax.net/voter/"
   NY:
-    online_req_url: https://absenteeballot.elections.ny.gov
+    online_req_url: https://ballotapplication.elections.ny.gov/home/earlymail
     abr_status_check_url: "https://absenteeballot.elections.ny.gov"
     abr_track_ballot_url: "https://absenteeballot.elections.ny.gov"
   OH:
@@ -620,6 +620,18 @@ ovr_states:
     languages:
       - en
       - es
+      - zh
+      - tl
+      - ilo
+      - vi
+      - ur
+      - ja
+      - ko
+      - km
+      - hi
+      - zh-tw
+      - th
+      - bn
 
 enabled_locales:
   - en

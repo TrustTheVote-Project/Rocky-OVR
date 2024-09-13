@@ -113,6 +113,12 @@ vi:
             has_state_license:
               inclusion: Xin vui lòng cho biết bạn có giấy phép hợp lệ cung cấp bởi
                 bang không.
+            us_citizen:
+              accepted: Bạn phải là công dân Hoa Kỳ!
+            sms_number_for_continue_on_device:
+              format: Vui lòng cung cấp số điện thoại hợp lệ
+            email_address_for_continue_on_device:
+              format: Vui lòng cung cấp địa chỉ email hợp lệ
       messages:
         inclusion: ! '%{attribute} không bao gồm trong danh sách.'
         exclusion: ! '%{attribute} được để riêng.'

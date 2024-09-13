@@ -46,8 +46,8 @@ tl:
         home_zip_code: Zip Code
         us_citizen: Ako ay isang mamamayan ng Estados Unidos.
         name_title: Titulo
-        first_name: Unang Pangalan
-        middle_name: Gitnang Pangalan
+        first_name: Pangalan
+        middle_name: Gitnang
         last_name: Apelyido
         name_suffix: Huling Titulo
         home_address: Address o Tirahan
@@ -71,8 +71,8 @@ tl:
         phone_type: Tipo
         change_of_name: Ako ay nagpalit ng aking pangalan
         prev_name_title: Titulo
-        prev_first_name: Unang pangalan
-        prev_middle_name: Gitnang Pangalan
+        prev_first_name: Pangalan
+        prev_middle_name: Gitnang
         prev_last_name: Apelyido
         prev_name_suffix: Huling Titulo
         change_of_address: Ako ay nagbago ng aking tirahan
@@ -117,6 +117,12 @@ tl:
             has_state_license:
               inclusion: Mangyaring ipahiwatig kung mayroon kang isang valid na lisensya
                 ng estado
+            us_citizen:
+              accepted: Dapat ikaw ay isang US citizen!
+            sms_number_for_continue_on_device:
+              format: Pakibigay ang tamang numero
+            email_address_for_continue_on_device:
+              format: Pakibigay ang tamang email
       messages:
         inclusion: ! '%{attribute} ay hindi kasama sa listahan.'
         exclusion: ! '%{attribute} ay nakareserba.'

@@ -1,6 +1,15 @@
 ---
 ur:
   txt:
+    privacy_policy_acceptance: |-
+      جاری رکھتے ہوئے، آپ Rock the Vote کی
+      <a href="https://www.rockthevote.org/about-rock-the-vote/privacy-policy/" target="_blank" rel="noopener">
+      پرائیویسی پالیسی</a> کو قبول کرتے ہیں اور اس بات سے اتفاق کرتے ہیں کہ آپ کو 
+      Rock the Vote سے وقتاً فوقتاً انتخاب کی یاد دہانیوں کے ای میلز موصول ہوں گے۔ 
+      آپ کسی بھی وقت ای میلز سے ان سبسکرائب کر سکتے ہیں۔
+
+    register_to_vote: ووٹ کے لیے رجسٹر کریں
+    register_to_vote_in: یں رجسٹر کریں۔ %{state_abbrev}
     unknown_error: انجانی غلطی - ویب ایڈمنسٹریٹر سے رابطہ کیا گیا ہے
     error: کچھ گڑبڑ ہو گئی ہے
     try_again: نئے سرے سے کوشش کریں
@@ -28,6 +37,7 @@ ur:
       in_language_name: اردو میں
       powered_by: تیار کردہ
       progress_indicator: قدم
+      intro_message: ووٹر رجسٹریشن میں اوسطاً دو منٹ یا اس سے کم وقت لگتا ہے۔
       step_1_header: نیا رجسٹر کنندہ
       step_2_header: ذاتی معلومات
       step_3_header: رجسٹریشن کی اضافی معلومات
@@ -37,9 +47,11 @@ ur:
       step_5_header: جائزہ لیں اور تصدیق کریں
       stay_informed_header: مطلع رہیں
       identification_header: شناختی معلومات
+      already_registered: ".<a href='%{url}'>اپنے دوستوں کے ساتھ اشتراک کریں</a>پہلے سے رجسٹرڈ؟"
       survey_title: آپ کے لیے سوالات
       preparing_header: رجسٹریشن فارم کی تیاری جاری ہے
       download_header: اپنے فارم کا پرنٹ نکالیں
+      after_you_download: "اپنے دوستوں کو بتائیں کہ وہ بھی ووٹ دینے کے لیے رجسٹر کر سکتے ہیں۔"
       finish_header: لفظ پھیلائیں
       finish_pdf_delay_header: آپ کا ای میل چیک کریں
       finish_pdf_delay: اسے ڈاؤن لوڈ کرنے کے لئے اپنے رجسٹریشن فارم تخلیق کرنے کے
@@ -56,7 +68,7 @@ ur:
       finish_reminder_2: ! 'اگر آپ اپنی ووٹر رجسٹریشن کے بارے میں جاننا چاہیں تو ریاست
         کے سیکرٹری برائے الیکشن سینٹر سے درج ذیل ای میل پر رابطہ کر سکتے ہیں
 
-        http://www.rockthevote.com/election-center/'
+        https://www.rockthevote.org/how-to-vote/'
       ineligible_header: ! 'معاف کیجیئے، ہم آپ کو ووٹ ڈالنے کے رجسٹر کرنے میں مدد
         کرنے سے قاصر ہیں۔<BR>
 
@@ -69,6 +81,13 @@ ur:
       previous_name: پرانا نام
       previous_address: پرانا پتہ
       opt_in_sms: تنظیم کی طرف سے مجھے ٹیکسٹ پیغام بھجوائیں %{organization}
+      opt_in_sms_compliance: |-
+        سائن اپ کرکے، آپ %{organization} (%{short_code}) سے وقتاً فوقتاً ٹیکسٹ پیغامات 
+        وصول کرنے کی رضامندی دیتے ہیں۔ پیغام اور ڈیٹا کی شرحیں لاگو ہوسکتی ہیں۔ معلومات 
+        کے لیے HELP ٹیکسٹ کریں یا پیغامات وصول کرنا بند کرنے کے لیے STOP بھیجیں۔ خریداری 
+        کی ضرورت نہیں ہے۔ دیکھیں 
+        <a href="%{terms_url}" target="_blank" rel="noopener">شرائط و ضوابط</a> اور 
+        <a href="%{privacy_url}" target="_blank" rel="noopener">رازداری کی پالیسی</a>۔
       opt_in_email: تنظیم کی طرف سے ای میل وصول کریں %{organization}
       remind_when_18: میری اٹھارویں سالگرہ پر مجھے یاددہانی کا پیغام بھیجا جائے
       get_updates: راک دا ووٹ سے تازہ ترین صورتحال جانیں
@@ -104,6 +123,8 @@ ur:
         work: کام کی جگہ
         other: دیگر
       instructions:
+        online: "<b>نوٹ</b>: کچھ ریاستیں آن لائن ووٹر رجسٹریشن کی پیشکش کرتی ہیں۔ 
+          <a href='https://www.rockthevote.org/online/' target='_blank'>مزید جانیں۔</a>"
         overseas: ! '<b>Note</b>: اگر آپ امریکی شہری ہیں لیکن کسی دوسرے ملک میں رہتے
           ہیں یا فوجی خدمات سرانجام دے رہے ہیں تو اپنے ووٹ کی رجسٹریشن کے لیے اسے
           کلک کریں
@@ -117,7 +138,7 @@ ur:
           انتخابات کے انعقاد کے بارے میں الیکشن سینٹر سے رابطہ کے لیے نیچے دی گئی
           ویب سائٹ کا معائنہ کریں
 
-          <a href="http://www.rockthevote.com/election-center/" target="_blank">Election
+          <a href="https://www.rockthevote.org/how-to-vote/" target="_blank">Election
           Center</a>'
         under_18_2: اگر آپ شرائط پر پورے اترتے ہوں تو بٹن دبائیں اور اپنی درخواست
           مکمل کریں
@@ -130,6 +151,11 @@ ur:
           لیے پرنٹ فارم بٹن دبائیں۔ اسے دستخط کر کے فارم پر دیئے گئے پتہ پر بھجوائیں
         download_2: جب تک آپ اپنے فارم کا پرنٹ لے کر اسے دستخط کر دے ہمیں ای میل نہ
           کریں گے آپ رجسٹر نہیں ہوں گے
+        download_3: "<p>ابھی پرنٹر تک رسائی نہیں ہے؟ ہم نے آپ کا فارم بعد میں پرنٹ کرنے 
+          کے لیے ای میل کر دیا ہے۔</p>"
+        state_not_enabled_download: "چونکہ %{state} کے پاس آن لائن رجسٹریشن نہیں ہے، اس 
+          لیے آپ کو اپنے رجسٹریشن فارم کو پرنٹ اور میل یا اپنے مقامی الیکشن آفس کو پہنچانے 
+          کی ضرورت ہوگی۔"
         finish: اپنے گھر والوں اور دوستوں کو بتانا نہ بھولیں کہ ووٹ رجسٹر کرانا کتنا
           آسان ہے۔ ذیل میں چند اشارات دیئے گئے جو ووٹر رجسٹریشن کی معلومات دوسروں
           کو دینے میں معاون ثابت ہوں گے
@@ -145,6 +171,8 @@ ur:
         finish_update_status: اپنا سٹیٹس فیس بک یا ٹویٹر پر اپ ڈیٹ کرنا نہ بھولیں
         state_online_registration: اپنی ریاست کے آن لائن ووٹر رجسٹریشن سسٹم کے استعمال
           سے ہی آپ اپنا ووٹر رجسٹریشن مکمل کرنے کے اہل ہوں گے %{state}
+        state_online_registration_id_not_required: "آپ {state}%ساتھ آن لائن ووٹر رجسٹریشن 
+          مکمل کرنے کے اہل ہیں۔"
         state_online_registration_sub_header: ​ووٹر رجسٹریشن کے عمل کو مکمل کرنے کے
           لیے نیچے دیئے گئے بٹن کو اپنی سٹیٹ کے نام پر کلک کریں
         leave_state_online_registration: آپ اپنا ووٹر رجسٹریشن فارم اپنی ریاست کے
@@ -221,7 +249,7 @@ ur:
           اٹھارویں سالگرہ سے قبل ووٹر رجسٹریشن کی اجازت دے دیتی ہیں۔ مزید معلومات
           کے لیے نیچے دی گئی ویب سائٹ دیکھیں
 
-          <a href="http://www.rockthevote.com/voter-registration/online-application-system/register-before-you-are-18-rules.html"'
+          <a href="https://www.rockthevote.org/how-to-vote/nationwide-voting-info/voter-pre-registration/"'
         registrant_name: خانوں کے اندر اپنا مکمل نام لکھیں۔ مہربانی فرما کر اپنا عرف
           نام یا مختصر نام نہ لکھیں۔ اگر آپ تبدیلی نام کے لیے درخواست دے رہے ہیں تو
           اس درخواست کے دوسرے حصے میں آپ سے آپ کا پہلا نام پوچھا جائے گا۔ اپنے نام
@@ -239,6 +267,14 @@ ur:
           سابقہ نام لکھیں
         previous_address: اگر آپ نے گزشتہ رجسٹریشن کے بعد اپنی رہائش تبدیل کر لی ہو
           تو سابقہ پتہ لکھیں
+      mobile_ui:
+        step_2:
+          title: اہلیت
+          instructions: ستارے (*) سے نشان زد ان پٹ فیلڈز کی ضرورت ہے۔
+        step_8:
+          title: شناخت
+        step_9:
+          title: ذاتی معلومات
     status_text:
       message: میں نے اپنا ووٹ رجسٹر کروا لیا ہے آپ بھی کروالیں
       under_18_message: اپنے ووٹ کی رجسٹریشن یقینی بنائیں۔ یہ بہت آسان ہے
