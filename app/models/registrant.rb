@@ -120,7 +120,8 @@ class Registrant < ActiveRecord::Base
     ]
   
   #original -OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
-  OVR_REGEX = /\A(?:\p{Latin}|[^\p{Letter}\p{So}<>\[\]{}|[:cntrl:]!@#$%^&*()])*\z/
+  #OVR_REGEX = /\A(?:\p{Latin}|[^\p{Letter}\p{So}<>\[\]{}|[:cntrl:]!@#$%^&*()])*\z/
+  OVR_REGEX = /\A(?:\p{Latin}|[^\p{Letter}\p{So}<>\[\]{}|[:cntrl:]!@$%^&*()])*\z/
   #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
   DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
   SURVEY_REGEX = /\A[^\p{C}\p{So}<>\@\#\$\%\^\&\*\(\)\+\=\p{Emoji}]*\z/
