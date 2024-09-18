@@ -1530,16 +1530,18 @@ en:
           ssn4: A social security number is required for all-online voter registration.
             If you don't have one, you can <a href="%{url}">click here</a> to create
             a paper registration form to download, print, sign, and mail.
-          updated_dln_recently: "<p class=\"radio_long_error\">You said you recently 
-            updated your driver\'s license or state ID address. Because it takes 11 days to 
-            update address changes in our system, we\'re not ready to register you to vote 
-            online. <br><br>If you can\'t wait, you can <a href=\"%{url}\">Click here</a> 
-            to create a paper registration form to download, print, sign, and mail.</p>"
-          requested_duplicate_dln_today: "<p class=\"radio_long_error\">You said you 
-            applied for a duplicate driver\'s license or state ID today. Because these take 
-            a day to process, we can\'t register you to vote online until tomorrow. <br><br> 
-            If you can\'t wait, you can <a href=\"%{url}\">Click here</a> to create a paper 
-            registration form to download, print, sign, and mail.</p>"
+          updated_dln_recently: |
+            <p class="radio_long_error">You said you recently updated your driver's license or 
+            state ID address. Because it takes 11 days to update address changes in our system, 
+            we're not ready to register you to vote online. <br><br>If you can't wait, you can 
+            <a href="%{url}">Click here</a> to create a paper registration form to download, 
+            print, sign, and mail.</p>
+          requested_duplicate_dln_today: |
+            <p class="radio_long_error">You said you applied for a duplicate driver's license 
+            or state ID today. Because these take a day to process, we can't register you to 
+            vote online until tomorrow. <br><br>If you can't wait, you can 
+            <a href="%{url}">Click here</a> to create a paper registration form to download, 
+            print, sign, and mail.</p>
           po_box:
             mailing_address_1: Enter the number only
             mailing_address_1_length: PO Box is too long (maximum is %{count} characters).
