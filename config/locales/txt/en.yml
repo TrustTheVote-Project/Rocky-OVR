@@ -92,7 +92,7 @@ en:
       deadline_passed_instructions: |-
         <p>The most common reasons we deactivate our tool include:
         <ul>
-        <li>The deadline to request an absentee ballot in %{state_name} has passed</li>
+        <li>The deadline to request an absentee ballot in %{state} has passed</li>
         <li>It’s too soon to request an absentee ballot for the next election</li>
         <li>Our team is updating the tool in your state</li>
         </ul>
