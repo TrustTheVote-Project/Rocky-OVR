@@ -39,7 +39,7 @@
   - existing_locale = src_url.match(/(\?|&)locale=([^&]*)/)&.captures&.last || I18n.locale
   - src_url = src_url.gsub(/(\?|&)locale=[^&]*/, '') # Remove any existing locale parameter
   - src_url += src_url.include?('?') ? "&locale=#{existing_locale}" : "?locale=#{existing_locale}" # Append the new locale
-  %iframe#dynamicLocaleIframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: src_url }
+  %iframe#dynamicLocaleIframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:40px 0 0 0; padding:0; width:100%;', src: src_url }
 
 :javascript
   document.addEventListener('DOMContentLoaded', function () {

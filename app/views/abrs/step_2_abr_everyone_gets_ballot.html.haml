@@ -1,16 +1,22 @@
+-# STATENAME Automatically mails all registered voters a ballot
 - abbrev = @abr.i18n_key
 %h2{role: "heading", "aria-level": 2}= t("states.custom.#{abbrev}.abr.everyone_gets_ballot.header_1", state_name: @abr.home_state_name, default:t("txt.abr.everyone_gets_ballot.header_1", state_name: @abr.home_state_name)).html_safe
 
+-# If you are registered to vote in STATE NAME you do not need to request...
 .state-instructions
   = t("states.custom.#{abbrev}.abr.everyone_gets_ballot.instructions_1", state_name: @abr.home_state_name, url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), default: t("txt.abr.everyone_gets_ballot.instructions_1", state_name: @abr.home_state_name, url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip))).html_safe
 
+-# questions and next steps
 %h2{role: "heading", "aria-level": 2}= t("txt.abr.everyone_gets_ballot.header_2").html_safe
 
+-# custom from state instructions_2
 .state-instructions
   = t("states.custom.#{abbrev}.abr.everyone_gets_ballot.instructions_2", registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip)).html_safe
 
+-# Don't Forget to Vote!
 %h2{role: "heading", "aria-level": 2}= t("txt.abr.everyone_gets_ballot.header_3").html_safe
 
+-# custom from state instructions 3 (deadlines for delivering your ballot)
 .state-instructions
   = t("states.custom.#{abbrev}.abr.everyone_gets_ballot.instructions_3").html_safe
 
@@ -20,7 +26,7 @@
 #finish_page_iframe
   - src_url = @abr_finish_iframe_url
   - src_url = src_url.split('?')[0] # Remove all existing query parameters
-  %iframe#dynamicLocaleIframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: src_url }
+  %iframe#dynamicLocaleIframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:40px 0 0 0; padding:0; width:100%;', src: src_url }
 
 :javascript
   document.addEventListener('DOMContentLoaded', function () {
