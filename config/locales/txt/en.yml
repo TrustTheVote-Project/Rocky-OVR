@@ -78,14 +78,17 @@ en:
         directly with your state</a> for the most recent and accurate results</p>
     abr:
       splash:
-        header_1: How to Request an Absentee Ballot in %{state_name}
+        header_1: "%{state_name} restricts third-party organizations like Rock the Vote from helping you with your absentee ballot application."
         header_2: Questions & Next Steps
         header_3: Don't Forget to Vote!
+        instructions_1: "If you are registered to vote in %{state_name}, continue to your state's website to request an absentee ballot:"
       everyone_gets_ballot:
         header_1: "%{state_name} Automatically Mails All Registered Voters a Ballot"
         instructions_1: |-
-          <p>If you are registered to vote in %{state_name} you do not need to request an absentee ballot.</p>
-          <p><a href="%{url}">Make sure you are registered to vote!</a></p>
+          <p>If you are registered to vote in %{state_name} you do not need to request a 
+          vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered voters 
+          before the upcoming election. You can return the vote-by-mail ballot you receive 
+          by mail, or vote in person at your polling location.</p>
         header_2: Questions & Next Steps
         header_3: Don't Forget To Vote!
       deadline_passed_header: Rock the Vote has temporarily turned off the Absentee Request Tool in %{state}

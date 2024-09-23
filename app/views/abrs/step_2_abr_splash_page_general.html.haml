@@ -7,10 +7,12 @@
 .state-instructions
   - instructions_1 = t("states.custom.#{abbrev}.abr.splash.instructions_1", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip))
   = instructions_1.html_safe
+
+  
 -# The following instructions are coming from:
 -# = t("states.custom.#{abbrev}.abr.splash.instructions_1", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip))
 
-%h2{role: "heading", "aria-level": 2, id: "abr_splash_header_2"}= t("txt.abr.splash.header_2").html_safe
+-#%h2{role: "heading", "aria-level": 2, id: "abr_splash_header_2"}= t("txt.abr.splash.header_2").html_safe
 -# The following header is coming from: 
 -# = t("txt.abr.splash.header_2")
 
@@ -20,7 +22,8 @@
 -# The following instructions are coming from:
 -# = t("states.custom.#{abbrev}.abr.splash.instructions_2", state_name: @abr.home_state_name, registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip))
 
-%h2{role: "heading", "aria-level": 2, id: "abr_splash_header_3"}= t("txt.abr.splash.header_3").html_safe
+-# Don't Forget to Vote!
+-#%h2{role: "heading", "aria-level": 2, id: "abr_splash_header_3"}= t("txt.abr.splash.header_3").html_safe
 -# The following header is coming from: 
 -# = t("txt.abr.splash.header_3")
 

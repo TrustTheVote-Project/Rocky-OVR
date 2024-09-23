@@ -771,8 +771,8 @@ en:
       email_invalid: Email is not valid.
       password_blank: Password can not be blank.
       password_invalid: Login/password combination is not valid.
-      not_active: Your account is not active. Please contact <a href="mailto:civictech@rockthevote.org">civictech@rockthevote.org</a>
-        to re-activate your account.
+      not_active: This account is not active. Accounts are deactivated after 90 days of inactivity or if your licensing agreement has lapsed. Please contact <a href="mailto:civictech@rockthevote.org">civictech@rockthevote.org</a>
+        to reactivate your account.
       not_confirmed: Your account is not confirmed.
       not_approved: Your account is not approved.
       no_authentication_details: You did not provide any details for authentication.
