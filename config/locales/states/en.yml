@@ -406,6 +406,11 @@ en:
       ca:
         abr:
           everyone_gets_ballot:
+            instructions_1: |-
+              <p>If you are registered to vote in Cali you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered voters 
+              before the upcoming election. You can return the vote-by-mail ballot you receive 
+              by mail, or vote in person at your polling location.</p>
             instructions_2: |-
               <p>Any registered voter may vote using a vote-by-mail ballot instead of going to the polls on Election Day.</p>
               <p>To update your name or address, submit a new <a href="%{registration_url}">voter registration</a>.</p>
