@@ -439,7 +439,7 @@ record_22:
     MI 48901-0726
   sos_phone: "(800) 292-5973"
   sos_url: https://mvic.sos.state.mi.us/Voter/Index
-  sub_18: 6_months_before
+  sub_18: once_turned_16
   registration_deadline: michigan
   online_registration_url: https://mvic.sos.state.mi.us/registervoter
   online_registration_system_name: Michigan Voter Information Center
