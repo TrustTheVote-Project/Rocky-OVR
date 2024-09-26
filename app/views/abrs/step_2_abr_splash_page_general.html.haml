@@ -8,6 +8,9 @@
   - instructions_1 = t("states.custom.#{abbrev}.abr.splash.instructions_1", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip))
   = instructions_1.html_safe
 
+%p
+    = link_to 'Request Absentee Ballot', @geo_state.state_customization.abr_settings.online_req_url, target: "_blank"
+
   
 -# The following instructions are coming from:
 -# = t("states.custom.#{abbrev}.abr.splash.instructions_1", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip))
