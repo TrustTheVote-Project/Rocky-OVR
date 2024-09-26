@@ -5,14 +5,13 @@
 -# = t("txt.abr.splash.header_1", state_name: @abr.home_state_name)
 
 .state-instructions
-  - instructions_1 = t("states.custom.#{abbrev}.abr.splash.instructions_1", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip))
+  - instructions_1 = t("txt.abr.splash.instructions_1", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip))
   = instructions_1.html_safe
 
 - if @abr.home_state_oabr_url.present?
-  %a{ href: @abr.home_state_oabr_url } Go to OABR
+  %a{ href: @abr.home_state_oabr_url, style: "word-wrap: break-word; overflow-wrap: break-word; display: inline-block;" }= @abr.home_state_oabr_url
 - else
-  %p No OABR URL available for your home state.
-
+  %p No URL available at this time.
 
   
 -# The following instructions are coming from:
