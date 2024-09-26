@@ -8,8 +8,26 @@
   - instructions_1 = t("states.custom.#{abbrev}.abr.splash.instructions_1", state_name: @abr.home_state_name, lookup_url: new_catalist_lookup_path(partner: @abr.partner_id, email: @abr.email, zip: @abr.zip), registration_url: new_registrant_path(partner: @abr.partner, email_address: @abr.email, home_zip_code: @abr.zip))
   = instructions_1.html_safe
 
-%p
-  = link_to 'Request Absentee Ballot', @abr.online_req_url, target: "_blank"
+= rollover_button(:state_online_registration, t("states.custom.#{@abr.i18n_key}.state_online_abr.button", default: I18n.t('txt.button.state_online_abr', :state=>@abr.home_state_name).html_safe).html_safe, {:id=>'abr_state_online_abr',:name=>'abr_state_online_abr',:value=>'abr_state_online_abr'}) 
+    :javascript
+      $(document).ready(function() {
+        if (!window.isFacebookApp()) {
+          $("#abr_state_online_abr").attr('formtarget','_BLANK')      
+        }
+      });
+  
+      $("#abr_state_online_abr").click(function() {
+        showSharing();
+        return true;
+      })
+      function showSharing() {
+        setTimeout(function(){
+          //console.log("redirect!")
+          if (!window.isFacebookApp()) {
+            window.location.href = "#{finish_abr_path(@abr, :share_only=>true)}";
+          }
+        }, 1000);
+      }
 
   
 -# The following instructions are coming from:
