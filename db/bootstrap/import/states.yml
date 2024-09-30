@@ -628,7 +628,7 @@ record_33:
   name: North Carolina
   requires_race: true
   race_tooltip: not_required_with_state_name
-  requires_party: true
+  requires_party: false
   party_tooltip: required_for_primary_unless
   id_number_tooltip: drivers_license_or_dmv_with_state_name
   sos_address: State Board of Elections<br>P.O. Box 27255<br>Raleigh, NC 27611-7255
@@ -638,6 +638,9 @@ record_33:
   id_length_min: '4'
   sub_18: once_turned_16
   online_registration_url: https://payments.ncdot.gov/service/nc_voter_registration/workflow/nc_voter_reg_standalone_entry/1?initialTalkObject=%7B%22dashboard%22%3A%7B%22serviceOfferingId%22%3A%22nc_voter_registration%22%2C%22licenses%22%3A%5B%5D%7D%7D
+  pdf_instructions: north_carolina
+  pdf_other_instructions: north_carolina
+  email_instructions: north_carolina
   parties:
   - democratic
   - republican
