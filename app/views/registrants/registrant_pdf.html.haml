@@ -61,10 +61,10 @@
           %p= @registrant.registration_deadline.to_s.html_safe
       %tr
         %td.other_block
-          %h4.title= I18n.t('pdf.nvra.page1.other_block', :instructions_url=>@registrant_instructions_link).to_s.html_safe
           - if !@registrant.home_state_pdf_other_instructions.blank?
             .state_instructions
               %p= @registrant.home_state_pdf_other_instructions.to_s.html_safe
+          %h4.title= I18n.t('pdf.nvra.page1.other_block', :instructions_url=>@registrant_instructions_link).to_s.html_safe
           - if @for_printer 
             %p= I18n.t('pdf.nvra.page1.ep_hotline').to_s.html_safe
     %h3.bottom_title= I18n.t('pdf.nvra.page1.bottom_block.title' ).to_s.html_safe

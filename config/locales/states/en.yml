@@ -4282,8 +4282,16 @@ en:
         If not, you must submit "proof of citizenship" along with your voter registration
         application. The most common "proof" is a photocopy of your birth certificate
         or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>
+      north_carolina: |-
+        Custom NC instructions here.
     pdf_other_instructions:
       blank: ''
+      north_carolina: |-
+        <b>If you want to register with a party, fill in Section 7 (Choice of Party) on 
+        your form.</b> You must register with a party to vote in that party’s primary 
+        unless that party allows unaffiliated voters to vote in its primary. If you 
+        indicate a political party that is not a qualified party, or indicate no party, 
+        you will be listed as "Unaffiliated."
       wisconsin: |-
         Visit https://myvote.wi.gov up to 20 days before the election if
         the voter has a current and valid Wisconsin driver license or state-issued
@@ -4312,6 +4320,12 @@ en:
         </ol>
         <p>A full list of acceptable documentation can be found on the 
         <a href="https://azsos.gov/elections/voters/registering-vote/registration-requirements/proof-citizenship-requirements">Secretary of State's website</a>.</p>
+      north_carolina: |-
+        <p><b>If you want to register with a party, fill in Section 7 (Choice of Party) on 
+        your form.</b> You must register with a party to vote in that party’s primary 
+        unless that party allows unaffiliated voters to vote in its primary. If you 
+        indicate a political party that is not a qualified party, or indicate no party, 
+        you will be listed as "Unaffiliated."</p>
       wisconsin: |-
         <strong>*Note: All voters MUST provide a Proof of Residence Document in 
         Wisconsin.</strong><br /> If you register to vote by mail, in-person in your clerk’s 
